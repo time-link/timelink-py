@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/joaquimrcarvalho/timelink/issues.
+Report bugs at https://github.com/time-link/timelink-py/issues.
 
 If you are reporting a bug, please include:
 
@@ -45,7 +45,7 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/joaquimrcarvalho/timelink/issues.
+The best way to send feedback is to file an issue at https://github.com/time-link/timelink-py/issues.
 
 If you are proposing a feature:
 
@@ -57,12 +57,12 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `timelink` for local development.
+Ready to contribute? Here's how to set up `timelink-py` for local development.
 
-1. Fork the `timelink` repo on GitHub.
+1. Fork the `timelink-py` repo on GitHub.
 2. Clone your fork locally::
 
-    $ git clone git@github.com:your_name_here/timelink.git
+    $ git clone git@github.com:your_name_here/timelink-py.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 

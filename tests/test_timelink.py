@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Tests for `timelink` package."""
+"""Tests for `timelink-py` package."""
 
 import pytest
 

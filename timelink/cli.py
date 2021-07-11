@@ -3,14 +3,28 @@ import sys
 import click
 
 
+@click.group()
+def cli():
+    pass
+
+
 @click.command()
-def main(args=None):
-    """Console script for timelink."""
-    click.echo("Replace this message by putting your code into "
-               "timelink.cli.main")
-    click.echo("See click documentation at https://click.palletsprojects.com/")
+def mhk():
+    """MHK mode in Timelink-py"""
+    mhk.echo("MHK cli in timelink-py")
     return 0
 
 
+@click.command()
+def timelink():
+    """timelink command line interface"""
+    timelink.echo("timelink cli")
+    return 0
+
+
+cli.add_command(mhk)
+cli.add_command(timelink)
+
+
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    cli()  # pragma: no cover

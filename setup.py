@@ -28,7 +28,9 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description="Timelink is an information system for person related information collected from historical sources. ",
+    description="Timelink is an information system for "
+                "person related information collected "
+                "from historical sources. ",
     entry_points={
         'console_scripts': [
             'timelink=timelink.cli:main',
@@ -43,7 +45,7 @@ setup(
     packages=find_packages(include=['timelink', 'timelink.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/joaquimrcarvalho/timelink',
+    url='https://github.com/time-link/timelink-py',
     version='0.1.0',
     zip_safe=False,
 )
