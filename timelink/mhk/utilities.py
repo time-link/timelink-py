@@ -18,7 +18,6 @@ def get_mhk_env():
     current user. It is created by the MHK install process.
     """
     home_dir = os.getenv('HOME')
-    print("home  : " + home_dir)
     result = dotenv_values(home_dir + "/.mhk")
     return result
 

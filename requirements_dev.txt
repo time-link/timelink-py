@@ -9,3 +9,5 @@ Sphinx==1.8.5
 twine==1.14.0
 Click==7.0
 pytest==6.2.4
+docker==5.0.0
+

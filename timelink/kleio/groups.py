@@ -4,7 +4,7 @@ Classes to generate Kleio sources.
 Classes in this module allow the generation of Kleio sources.
 
 """
-from typing import Any
+from typing import Any, Type
 
 from timelink.kleio.utilities import quote_long_text
 
@@ -119,7 +119,7 @@ class KGroup:
         for (k, v) in kwargs.items():
             if k not in self._position + self._guaranteed + self._also:
                 raise ValueError(f'Element not allowed: {k}')
-            if not issubclass(v, KElement): # we did not get a KElement
+            if not isinstance(v, KElement): # we did not get a KElement
                 el = KElement(k, v)         # we make one
             else:            # we got a KElement object
                 el = v
@@ -149,9 +149,12 @@ class KGroup:
                     s = s + str(v)
                     first = False
                 out.append(e)
-        more = set(self._guaranteed).union(set(self._also)).union(
-            self._position).difference(out)
-        print(more)
+        more = sorted(list(set(self._guaranteed).union(set(self._also)).union(
+            self._position).difference(out)))
+        # print(more)
+        if 'obs' in more:     # we like obs elements at the end
+            more.remove('obs')
+            more.append('obs')
         for e in more:
             m = getattr(self, e, None)
             if m is not None:
@@ -162,22 +165,46 @@ class KGroup:
                     first = False
         return s
 
-    def to_kleio(self):
+    def to_kleio(self) -> str:
         return str(self)
+
+    def elements(self) -> set:
+        return set(self._guaranteed).union(set(self._also)).union(
+            self._position)
+
+    def to_dict(self):
+        kd = dict()
+        for e in self.elements():
+            v = getattr(self, e, None)
+            if v is not None:
+                kd[e] = v
+        return kd
 
 
 class KSource(KGroup):
     """ A Historical Source
-    KSource(id,year,type,ref,loc=,obs=,ref=)
+    KSource(id,type,loc=,ref=,date=,obs=)
 
-    Parameters
-    ----------
-    ref: str The call number or "cota" of the source
-    loc: str Location, archive, name
+    Elements:
+        id: An unique id for this source. A string.
+        type: The type of the source (e.g. baptisms, marriages); optional.
+
+        loc: Location (name of archive, library, collection); optional.
+        ref: The call reference ("cota") of the source in the location; optional.
+        date: the date of the source. A string in timelink format; optional.
+              1582
+              1582-05-04
+              1582:1609
+              >1582:<1702
+        year: A single year. A number. Deprecated, use date instead
+        obs: Observations on the source (can be long and multiline); optional.
+        replace: Id of source to be replaced. A string; optional.
+                 Upon import the source with this id is removed.
+                 Used when changing the id of a file.
 
     """
     _name = 'source'
     _guaranteed = ['id']
     _also = ['type', 'date', 'year', 'loc', 'ref', 'obs', 'replace']
-    _position = ['id', 'year', 'type', 'ref']
+    _position = ['id']
     _part = ['act']

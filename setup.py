@@ -33,7 +33,7 @@ setup(
                 "from historical sources. ",
     entry_points={
         'console_scripts': [
-            'timelink=timelink.cli:main',
+            'timelink=timelink.cli:cli',
         ],
     },
     install_requires=requirements,
