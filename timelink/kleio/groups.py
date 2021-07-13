@@ -98,6 +98,7 @@ class KGroup:
     Use _part to list allowed enclosed groups.
 
     For an example see timelink.kleio.groups.KPerson
+
     """
 
     id: str = '*id*'
@@ -106,11 +107,25 @@ class KGroup:
     _guaranteed: list = []
     _also: list = []
     _part: list = []
+    _contains: list = []
+
+    @classmethod
+    def allow_as_part(cls, g):
+        """ Allow g to be enclosed as part of this group.
+
+        Arguments:
+            g: the name of KGroup, or a subclass of KGroup. A string or class
+        """
+        if g not in cls._part:
+            cls._part.append(g)
+
+        if g not in cls._part:
+            cls._part.append(g)
 
     def __init__(self, *args, **kwargs):
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
-        self.contains = []
+        self._contains = []
         n = 0
         for arg in args:
             e = self._position[n]
@@ -119,9 +134,9 @@ class KGroup:
         for (k, v) in kwargs.items():
             if k not in self._position + self._guaranteed + self._also:
                 raise ValueError(f'Element not allowed: {k}')
-            if not isinstance(v, KElement): # we did not get a KElement
-                el = KElement(k, v)         # we make one
-            else:            # we got a KElement object
+            if not isinstance(v, KElement):  # we did not get a KElement
+                el = KElement(k, v)  # we make one
+            else:  # we got a KElement object
                 el = v
                 el.name = k  # we override the element name with the arg name
             setattr(self, k, el)
@@ -130,11 +145,15 @@ class KGroup:
                 raise TypeError(f'Element {g} in _guaranteed is missing'
                                 f' or with None value')
 
+    # TODO test for allowed subclasses of KGroup
+    # e.g. g.name in [cls.__name__ for cls in KGroup.__subclasses__()]
     def include(self, group):
-        if group.name not in self._part:
-            raise ValueError('Group {self.name} cannot contain {group.name}')
+        """ Include a group. `group` must in _part list"""
+        if group._name not in self._part:
+            raise ValueError(
+                f'Group {self._name} cannot contain {group._name}')
         else:
-            self.contains.append(group)
+            self._contains.append(group)
 
     def __str__(self):
         s = self._name + '$'
@@ -152,7 +171,7 @@ class KGroup:
         more = sorted(list(set(self._guaranteed).union(set(self._also)).union(
             self._position).difference(out)))
         # print(more)
-        if 'obs' in more:     # we like obs elements at the end
+        if 'obs' in more:  # we like obs elements at the end
             more.remove('obs')
             more.append('obs')
         for e in more:
@@ -169,6 +188,7 @@ class KGroup:
         return str(self)
 
     def elements(self) -> set:
+        """Set of  Elements allowed in this Group"""
         return set(self._guaranteed).union(set(self._also)).union(
             self._position)
 
@@ -179,6 +199,25 @@ class KGroup:
             if v is not None:
                 kd[e] = v
         return kd
+
+
+class KKleio(KGroup):
+    """ A Kleio notation document
+
+    KKleio(structure,prefix=,translations=,translator=,obs=)
+
+    Elements:
+        structure: The path to a Kleio structure file (default gacto2.str)
+        prefix: Prefix to be added to all ids generated from this file
+        translations: number of times this file was translated
+        translator: name of the translator to be used (currently not used)
+        obs: observations
+
+    """
+    _name = 'kleio'
+    _position = ['structure']
+    _also = ['prefix', 'translations', 'translator', 'obs']
+    _part = ['source', 'aregister']
 
 
 class KSource(KGroup):
@@ -202,9 +241,43 @@ class KSource(KGroup):
                  Upon import the source with this id is removed.
                  Used when changing the id of a file.
 
+    Kleio str definition:
+        part name=historical-source;
+             guaranteed=id;
+             also=type,date,year,loc,ref,obs,replace;
+             position=id,year,type,ref;
+             part=historical-act
+
     """
     _name = 'source'
     _guaranteed = ['id']
-    _also = ['type', 'date', 'year', 'loc', 'ref', 'obs', 'replace']
+    _also = ['type', 'date', 'year', 'loc', 'ref', 'replace', 'obs']
     _position = ['id']
     _part = ['act']
+
+
+class KAct(KGroup):
+    """ An Act in a historical Source
+
+    An Act is a record of an event in a specific date.
+
+    Elements:
+        id: an unique id for this act. A string.
+        type: type of the act (baptism, marriage, contract...). A string.
+        date: the date of the act. A string in timelink format.
+
+    Kleio str definition:
+
+    part 	name=historical-act;
+            guaranteed=id,type,date;
+            position=id,type,date;
+            also=loc,ref,obs,day,month,year;
+            arbitrary=person,object,geoentity,abstraction,ls,atr,rel
+
+    """
+    _name = 'act'
+    _guaranteed = ['id', 'tyoe', 'date']
+    _position = ['id', 'type', 'date']
+    _also = ['loc', 'ref', 'obs', 'day', 'month', 'year']
+    _part = ['person', 'object', 'geoentity', 'abstraction', 'ls', 'atr',
+             'rel']

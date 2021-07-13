@@ -3,9 +3,32 @@ Test for timelink.kleio package
 (c) Joaquim Carvalho 2021.
 MIT License, no warranties.
 """
+import pytest
+
 from timelink.kleio.groups import KElement
 from timelink.kleio.utilities import quote_long_text
-from timelink.kleio.groups import KSource
+from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
+
+
+@pytest.fixture
+def kgroup_source_dev() -> KSource:
+    """
+    KSource('dev-1718',
+                 type='Episcopal visitation',
+                 loc='AUC',
+                 ref='III/D,1,4,4,55',
+                 date='1721-10-10:1723-07-09',
+                 replace='visita-1718',
+                 obs=\"""Transcrition available, manuscript.\""")
+    """
+    ks = KSource('dev-1718',
+                 type='Episcopal visitation',
+                 loc='AUC',
+                 ref='III/D,1,4,4,55',
+                 date='1721-10-10:1723-07-09',
+                 replace='visita-1718',
+                 obs="""Transcrition available, manuscript.""")
+    return ks
 
 
 def test_kelement():
@@ -69,17 +92,52 @@ def test_kelement_to_kleio():
         "bad kleio representation of Element"
 
 
-def test_kgroup_1():
-    ks = KSource('dev-1718',
-                 type='Episcopal visitation',
-                 loc='AUC',
-                 ref='III/D,1,4,4,55',
-                 date='1721-10-10:1723-07-09',
-                 replace='visita-1718',
-                 obs="""Transcrition available, manuscript."""
-                 )
-    print(ks.to_kleio())
-    s =  'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation/obs=Transcrition available, manuscript.'
-    print(s)
-    assert ks.to_kleio() == s, "Bad group representation"
+def test_allow_as_part_1():
+    class Kx(KGroup):
+        pass
 
+    class Ky(KGroup):
+        pass
+
+    Kx._name = 'kx'
+    Kx._guaranteed = ['id']
+
+    Ky._name = 'ky'
+    Ky._guaranteed = ['id']
+    Ky._position = ['id']
+
+    x = Kx(id='x001')
+    y = Ky('y001')
+
+    print(x.to_kleio())
+    print(y.to_kleio())
+
+    with pytest.raises(ValueError):
+        x.include(y), "include should have failed"
+
+    Kx.allow_as_part('ky')
+    x.include(y)
+    assert y in x._contains, "include failed"
+
+# TODO a test based on classes
+#  Kx.allow_as_part(Ky)
+
+
+
+
+
+
+def test_kgroup_to_kleio(kgroup_source_dev):
+    kgroup_source_dev
+    s = 'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation/obs=Transcrition available, manuscript.'
+    assert kgroup_source_dev.to_kleio() == s, "Bad group representation"
+
+
+def test_kgroup_core_value(kgroup_source_dev):
+    assert kgroup_source_dev.id.core == 'dev-1718', \
+        "Failed to retrieve core value"
+
+
+def test_kgroup_2(kgroup_source_dev):
+    assert kgroup_source_dev.id.core == 'dev-1718', \
+        "Failed to retrieve core value"
