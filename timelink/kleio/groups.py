@@ -147,6 +147,9 @@ class KGroup:
 
     # TODO test for allowed subclasses of KGroup
     # e.g. g.name in [cls.__name__ for cls in KGroup.__subclasses__()]
+    # allowed_classes = [x for x in self._part if type(x) is not str]
+    # super_classes = self.__mro__
+    # set(super_classes).intersect(allowed_classes)
     def include(self, group):
         """ Include a group. `group` must in _part list"""
         if group._name not in self._part:
