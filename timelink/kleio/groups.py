@@ -4,7 +4,7 @@ Classes to generate Kleio sources.
 Classes in this module allow the generation of Kleio sources.
 
 """
-from typing import Any, Type
+from typing import Any, Union
 
 from timelink.kleio.utilities import quote_long_text
 
@@ -110,11 +110,40 @@ class KGroup:
     _contains: list = []
 
     @classmethod
-    def allow_as_part(cls, g):
+    def extend(cls, name: str,
+               position=Union[list, None],
+               guaranteed=Union[list, None],
+               also=Union[list, None],
+               part=Union[list, None],
+               kgroup=None):
+        """ Create a new class extending this one
+        fonte = KGroup.extends('fonte',
+                        also=['tipo',
+                              'data',
+                              'ano',
+                              'obs',
+                              'substitui'])
+
+        """
+        new_group = type(name, (cls,), {})
+        new_group._name = name
+        if position is not None:
+            new_group._position = position
+        if guaranteed is not None:
+            new_group._guaranteed = position
+        if also is not None:
+            new_group._also = also
+        if part is not None:
+            new_group._part = part
+        return new_group
+
+    @classmethod
+    def allow_as_part(cls, g: Union[str, type]):
         """ Allow g to be enclosed as part of this group.
 
         Arguments:
-            g: the name of KGroup, or a subclass of KGroup. A string or class
+            g: the name of a group, or a subclass of KGroup.
+               A string or class.
         """
         if g not in cls._part:
             cls._part.append(g)
@@ -145,21 +174,21 @@ class KGroup:
                 raise TypeError(f'Element {g} in _guaranteed is missing'
                                 f' or with None value')
 
-    # TODO test for allowed subclasses of KGroup
-    # e.g. g.name in [cls.__name__ for cls in KGroup.__subclasses__()]
-    # allowed_classes = [x for x in self._part if type(x) is not str]
-    # super_classes = self.__mro__
-    # set(super_classes).intersect(allowed_classes)
     def include(self, group):
-        """ Include a group. `group` must in _part list"""
+        """ Include a group. `group` of its class must in _part list"""
         if group._name not in self._part:
-            raise ValueError(
-                f'Group {self._name} cannot contain {group._name}')
-        else:
-            self._contains.append(group)
+            allowed_classes = [c for c in self._part if type(c) is not str]
+            super_classes = type(group).mro()
+            r = list(set(super_classes).intersection(set(allowed_classes)))
+            if len(r) == 0:
+                raise ValueError(
+                    f'Group {self._name} cannot contain {group._name}')
+        self._contains.append(group)
+        return self
 
     def __str__(self):
-        s = self._name + '$'
+        sname = getattr(self, '_name', self.__class__.__name__)
+        s = sname + '$'
         first = True
         out = []
         for e in self._position:
@@ -187,6 +216,21 @@ class KGroup:
                     first = False
         return s
 
+    def get_core(self, *args):
+        """ get_core(element_name [, default])
+        Returns the core value of an element
+        """
+        element = args[0]
+        if len(args)>1:
+            default = args[1]
+        else:
+            default = None
+        e = getattr(self, element,None)
+        if e is None:
+            return default
+        else:
+            return getattr(e, 'core', default)
+
     def to_kleio(self) -> str:
         return str(self)
 
@@ -205,9 +249,10 @@ class KGroup:
 
 
 class KKleio(KGroup):
-    """ A Kleio notation document
+    """ Kleio notation document
+    KKleio(structure,prefix=,obs=)
 
-    KKleio(structure,prefix=,translations=,translator=,obs=)
+    Represent a file in Kleio notation.
 
     Elements:
         structure: The path to a Kleio structure file (default gacto2.str)
@@ -224,7 +269,7 @@ class KKleio(KGroup):
 
 
 class KSource(KGroup):
-    """ A Historical Source
+    """ Historical Source
     KSource(id,type,loc=,ref=,date=,obs=)
 
     Elements:
@@ -256,11 +301,14 @@ class KSource(KGroup):
     _guaranteed = ['id']
     _also = ['type', 'date', 'year', 'loc', 'ref', 'replace', 'obs']
     _position = ['id']
-    _part = ['act']
+    _part = ['act', 'attr']
+
+
+KKleio.allow_as_part(KSource)
 
 
 class KAct(KGroup):
-    """ An Act in a historical Source
+    """ Act in a historical source
 
     An Act is a record of an event in a specific date.
 
@@ -268,6 +316,8 @@ class KAct(KGroup):
         id: an unique id for this act. A string.
         type: type of the act (baptism, marriage, contract...). A string.
         date: the date of the act. A string in timelink format.
+
+
 
     Kleio str definition:
 
@@ -282,5 +332,72 @@ class KAct(KGroup):
     _guaranteed = ['id', 'tyoe', 'date']
     _position = ['id', 'type', 'date']
     _also = ['loc', 'ref', 'obs', 'day', 'month', 'year']
-    _part = ['person', 'object', 'geoentity', 'abstraction', 'ls', 'atr',
+    _part = ['person', 'object', 'geoentity', 'abstraction', 'ls', 'attr',
              'rel']
+
+
+KSource.allow_as_part(KAct)
+
+
+class KPerson(KGroup):
+    """ Person in a historical source
+
+    Elements:
+        name: the name of the person. A string.
+        sex:  the gender of the person. A string.
+        id: an unique id for this person. A string, optional.
+        obs: a note on the person. A string, optional.
+
+    Kleio str definition:
+
+    part	name=person ;
+            guaranteed=name,sex;
+            also=id,obs,same_as;
+            position=name,sex,id,same_as;
+            arbitrary=atr,rel,ls
+    """
+    _name = 'person'
+    _guaranteed = ['name', 'sex']
+    _also = ['id', 'obs', 'same_as']
+    _position = ['name', 'sex', 'id', 'same_as']
+    _part = ['rel', 'attr']
+
+
+KAct.allow_as_part(KPerson)
+
+
+class KAttribute(KGroup):
+    """ Time varying attribute of a person, object, or other
+
+    Attributes represent time-varying information about historical entities.
+    Each attribute has a type ('address','profession', 'age'), a value and
+    a date associated with the attribute.
+
+    Elements:
+
+        type: the type of the attribute. A String
+        value: the value of the attribute. A string.
+        date: the date of attribute. A string in Timelink format, optional.
+        obs: a note on the attribute. A string optional.
+
+     Kleio str definition :
+
+        part	name=attribute ;
+                guaranteed=type,value ;
+                also=obs,date ;
+                position=type,value,date
+
+    """
+    _name = 'attr'
+    _guaranteed = ['type', 'value']
+    _also = ['date', 'obs']
+    _position = ['type', 'value', 'date']
+
+
+KPerson.allow_as_part(KAttribute)
+
+
+class KLs(KAttribute):
+    """Synonym for KAttribute"""
+
+    _name = 'ls'

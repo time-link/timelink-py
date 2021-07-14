@@ -24,7 +24,11 @@ def mhk():
 
 @mhk.command(name='version')
 def mhk_version():
-    """shows MHK manager version"""
+    """shows MHK manager version
+
+    Demonstrates how to access MHK installation files and
+    usage of Docker API
+    """
 
     # this should go to mhk.utilities as get_mhk_info()
     mhk_env = get_mhk_env()

@@ -92,6 +92,19 @@ def test_kelement_to_kleio():
         "bad kleio representation of Element"
 
 
+def test_kgroup_extend():
+    kfonte: KGroup = KGroup.extend('fonte',
+                                   position=['id'],
+                                   also=['tipo',
+                                         'data',
+                                         'ano',
+                                         'obs',
+                                         'substitui'])
+    afonte = kfonte('f001', ano=2021, tipo='teste')
+    k = afonte.to_kleio()
+    assert afonte.id.core == 'f001', 'could not extend group and instantiate'
+
+
 def test_allow_as_part_1():
     class Kx(KGroup):
         pass
@@ -119,12 +132,28 @@ def test_allow_as_part_1():
     x.include(y)
     assert y in x._contains, "include failed"
 
-# TODO a test based on classes
-#  Kx.allow_as_part(Ky)
 
+def test_allow_as_part_2():
+    class Kx(KGroup):
+        pass
 
+    class Ky(KGroup):
+        pass
 
+    Kx._name = 'kx'
+    Kx._guaranteed = ['id']
 
+    Ky._name = 'ky'
+    Ky._guaranteed = ['id']
+    Ky._position = ['id']
+
+    x = Kx(id='x001')
+    y = Ky('y001')
+
+    Kx.allow_as_part(Ky)
+    x.include(y)
+    assert y in x._contains, \
+        "include failed after class allowed as part"
 
 
 def test_kgroup_to_kleio(kgroup_source_dev):
@@ -136,6 +165,16 @@ def test_kgroup_to_kleio(kgroup_source_dev):
 def test_kgroup_core_value(kgroup_source_dev):
     assert kgroup_source_dev.id.core == 'dev-1718', \
         "Failed to retrieve core value"
+
+
+def test_kgroup_get_core(kgroup_source_dev):
+    assert kgroup_source_dev.get_core('id') == 'dev-1718', \
+        "Failed to retrieve core value"
+
+
+def test_kgroup_get_core2(kgroup_source_dev):
+    assert kgroup_source_dev.get_core('year', 2021) == 2021, \
+        "Failed to retrieve default for core value"
 
 
 def test_kgroup_2(kgroup_source_dev):
