@@ -5,7 +5,7 @@ MIT License, no warranties.
 """
 import pytest
 
-from timelink.kleio.groups import KElement
+from timelink.kleio.groups import KElement, KPerson, KLs
 from timelink.kleio.utilities import quote_long_text
 from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
@@ -84,6 +84,21 @@ def test_kelement_to_str_4():
         "str() failed with optional comment"
 
 
+def test_kelement_is_empty():
+    e = KElement('el',None,comment=None,original=None)
+    assert e.is_empty(), "Did not detect empty element"
+
+
+def test_kelement_is_empty_2():
+    e = KElement('el', 'something', comment=None, original=None)
+    assert not e.is_empty(), "Did not detect empty element"
+
+
+def test_kelement_is_empty_3():
+    e = KElement('el', None, comment='comment', original=None)
+    assert not e.is_empty(), "Did not detect empty element"
+
+
 def test_kelement_to_kleio():
     e = KElement('name', 'Joaquim Carvalho', original='Joachim Carvº',
                  comment="Carvº added in the margin")
@@ -101,7 +116,6 @@ def test_kgroup_extend():
                                          'obs',
                                          'substitui'])
     afonte = kfonte('f001', ano=2021, tipo='teste')
-    k = afonte.to_kleio()
     assert afonte.id.core == 'f001', 'could not extend group and instantiate'
 
 
@@ -156,6 +170,13 @@ def test_allow_as_part_2():
         "include failed after class allowed as part"
 
 
+def test_kgroup_attr():
+    p = KPerson('joaquim', 'm')
+    p.attr('location', 'macau', '2021')
+    attrs = p.includes()
+    assert len(attrs) > 0, "attribute not included in KGroup"
+
+
 def test_kgroup_to_kleio(kgroup_source_dev):
     kgroup_source_dev
     s = 'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation/obs=Transcrition available, manuscript.'
@@ -180,3 +201,10 @@ def test_kgroup_get_core2(kgroup_source_dev):
 def test_kgroup_2(kgroup_source_dev):
     assert kgroup_source_dev.id.core == 'dev-1718', \
         "Failed to retrieve core value"
+
+
+def test_person_ls_rel():
+    p = KPerson('joaquim', 'm', 'jrc', obs='aka JRC')
+    p.include(KLs('location', 'Macau', '2021-07-15'))
+    assert '    ls$location/Macau/2021-07-15' in p.to_kleio().splitlines(), \
+        "ls failed to show in person"
