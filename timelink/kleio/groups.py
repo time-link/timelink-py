@@ -6,7 +6,7 @@ Classes in this module allow the generation of Kleio sources.
 """
 from os import linesep as nl
 import textwrap
-from typing import Any, Union
+from typing import Any, Union, Type
 from timelink.kleio.utilities import quote_long_text
 
 
@@ -85,11 +85,11 @@ class KElement:
 
     def is_empty(self):
         """True if all aspects of the element are None or empty string"""
-        if (self.core, self.comment, self.original) != (None, None, None) and (
-            self.core, self.comment, self.original) != ('', '', ''):
-            return False
-        else:
+        e = [x for x in [self.core, self.comment, self.original] if x is None or x == '']
+        if len(e) == 3:
             return True
+        else:
+            return False
 
     def to_tuple(self):
         """ Return Element as a tuple (core,comment,original)"""
@@ -123,12 +123,15 @@ class KGroup:
     _part: list = []
     _contains: list = []
 
+    # TODO to_kleio_str generates the definition of a group for a kleio str file. recurse=yes
+    # collects included groups and generates for those also.
+
     @classmethod
     def extend(cls, name: str,
-               position=Union[list, None],
-               guaranteed=Union[list, None],
-               also=Union[list, None],
-               part=Union[list, None],
+               position: Union[list, None] = None,
+               guaranteed: Union[list, None] = None,
+               also: Union[list, None] = None,
+               part: Union[list, None] = None,
                kgroup=None):
         """ Create a new class extending this one
         fonte = KGroup.extends('fonte',
@@ -144,13 +147,37 @@ class KGroup:
         if position is not None:
             new_group._position = position
         if guaranteed is not None:
-            new_group._guaranteed = position
+            new_group._guaranteed = guaranteed
         if also is not None:
             new_group._also = also
         if part is not None:
             new_group._part = part
-        new_group.kgroup = kgroup
+        if kgroup is not None:
+            new_group.kgroup = kgroup
+        else:
+            new_group.kgroup = name
         return new_group
+
+    @classmethod
+    def get_subclasses(cls):
+        for subclass in cls.__subclasses__():
+            yield from subclass.get_subclasses()
+            yield subclass
+
+    @classmethod
+    def all_subclasses(cls):
+        return list(cls.get_subclasses())
+
+    @classmethod
+    def is_kgroup(cls, g):
+        """True g is an instance of a subclass of KGroup"""
+        return 'KGroup' in [c.__name__ for c in type(g).mro()]
+
+    @classmethod
+    def elements(cls) -> set:
+        """Set of  Elements allowed in this Group"""
+        return set(cls._guaranteed).union(set(cls._also)).union(
+            cls._position)
 
     @classmethod
     def allow_as_part(cls, g: Union[str, type]):
@@ -188,10 +215,12 @@ class KGroup:
             if getattr(self, g, None) is None:
                 raise TypeError(f'Element {g} in _guaranteed is missing or with None value')
 
-    def include(self, group: 'KGroup'):
-        """ Include a group. `group` of its class must in _part list
+    def include(self, group: Type['KGroup']):
+        """ Include a group. `group` or its class must in _part list
 
-        Return self so it is possible to chain: g.include(g2).include(g3)"""
+        Returns self so it is possible to chain: g.include(g2).include(g3)"""
+        if not self.is_kgroup(group):
+            raise TypeError(f"Argument must subclasse of KGroup")
         if group._name not in self._part:
             allowed_classes = [c for c in self._part if type(c) is not str]
             super_classes = type(group).mro()
@@ -224,11 +253,6 @@ class KGroup:
         """ include a relation in this KGroup"""
         kr = globals()['KRelation']
         self.include(kr(the_type, value, destname, destination, date, obs))
-
-    def elements(self) -> set:
-        """Set of  Elements allowed in this Group"""
-        return set(self._guaranteed).union(set(self._also)).union(
-            self._position)
 
     def to_kleio(self, indent='') -> str:
         """ Return a kleio representation of the group."""
@@ -267,7 +291,8 @@ class KGroup:
             more.append('obs')
         for e in more:
             m: KElement = getattr(self, e, None)
-            if m is not None and not m.is_empty():
+            if m is not None \
+                and (type(m) is str and m > '' or (issubclass(type(m), KElement) and not m.is_empty())):
                 if not first:
                     s = s + f'/{e}={str(m)}'
                 else:
@@ -275,8 +300,13 @@ class KGroup:
                     first = False
         if len(self._contains) > 0:
             for g in self._contains:
-                s = s + nl + g.__str__(indent + 4 * " ")
+                s = s + nl + g.__str__(indent + " ")
         return textwrap.indent(s, indent)
+
+    def __getitem__(self, arg):
+        if arg not in self.elements():
+            raise ValueError("Element does not exist in group")
+        return getattr(self, arg)
 
     def get_core(self, *args):
         """ get_core(element_name [, default])

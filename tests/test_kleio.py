@@ -85,7 +85,7 @@ def test_kelement_to_str_4():
 
 
 def test_kelement_is_empty():
-    e = KElement('el',None,comment=None,original=None)
+    e = KElement('el', None, comment=None, original=None)
     assert e.is_empty(), "Did not detect empty element"
 
 
@@ -117,6 +117,22 @@ def test_kgroup_extend():
                                          'substitui'])
     afonte = kfonte('f001', ano=2021, tipo='teste')
     assert afonte.id.core == 'f001', 'could not extend group and instantiate'
+
+
+def test_kgroup_include():
+    p = KPerson('joaquim', 'm', 'jrc')
+    with pytest.raises(TypeError):
+        p.include('xpto')
+
+
+def test_kgroup_subclasses():
+    n = KPerson.extend('n')
+    m = KPerson.extend('m')
+    f = KPerson.extend('f')
+    p = n('joaquim', 'm', '01')
+    sc = KPerson.all_subclasses()
+    assert len(sc) == 3, "Failed to register subclasses"
+    assert KPerson.is_kgroup(p), "Failed is_kgroup test"
 
 
 def test_allow_as_part_1():
@@ -183,6 +199,16 @@ def test_kgroup_to_kleio(kgroup_source_dev):
     assert kgroup_source_dev.to_kleio() == s, "Bad group representation"
 
 
+def test_kgroup_to_kleio_empty_1():
+    p = KPerson('joaquim', 'm', 'jrc', obs='')
+    assert p.to_kleio() == 'person$joaquim/m/jrc'
+
+
+def test_kgroup_get_item():
+    p = KPerson('joaquim', 'm', 'jrc', obs='')
+    assert p['name'].core == 'joaquim'
+
+
 def test_kgroup_core_value(kgroup_source_dev):
     assert kgroup_source_dev.id.core == 'dev-1718', \
         "Failed to retrieve core value"
@@ -206,5 +232,5 @@ def test_kgroup_2(kgroup_source_dev):
 def test_person_ls_rel():
     p = KPerson('joaquim', 'm', 'jrc', obs='aka JRC')
     p.include(KLs('location', 'Macau', '2021-07-15'))
-    assert '    ls$location/Macau/2021-07-15' in p.to_kleio().splitlines(), \
+    assert ' ls$location/Macau/2021-07-15' in p.to_kleio().splitlines(), \
         "ls failed to show in person"
