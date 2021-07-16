@@ -50,6 +50,31 @@ def test_kelement_tuple():
         "Failed comment from tuple"
 
 
+def test_kelement_dict():
+    e = KElement('name',
+                 ('Joaquim Carvalho',
+                  'Family name added in the margin',
+                  'Joachim Carvº',
+                  ))
+    ed = e.to_dict(name=True)
+    assert ed['name'] == 'name', "Failed name from dict"
+    assert ed['core'] == 'Joaquim Carvalho', "Failed core  from dict"
+    assert ed['original'] == 'Joachim Carvº', "Failed original from dict"
+    assert ed['comment'] == 'Family name added in the margin', \
+        "Failed comment from dict"
+
+
+def test_kelement_dict2():
+    e = KElement('name',
+                 ('Joaquim Carvalho',
+                  'Family name added in the margin',
+                  'Joachim Carvº',
+                  ))
+    ed = e.to_dict(name=False)
+    assert len(ed) == 3, \
+        "Failed dictionary without name"
+
+
 def test_kelement_optionals():
     e = KElement('name', 'Joaquim Carvalho', original='Joachim Carvº',
                  comment="Family name added in the margin")
@@ -207,6 +232,82 @@ def test_kgroup_to_kleio_empty_1():
 def test_kgroup_get_item():
     p = KPerson('joaquim', 'm', 'jrc', obs='')
     assert p['name'].core == 'joaquim'
+
+
+@pytest.fixture
+def kgroup_nested() -> KSource:
+    """Returns a nested structure"""
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
+    ka2 = KAct('a2', 'test-act', date='2021-07-17',
+               day=17, month=7, year=2021,
+               loc='auc', ref='p.2', obs='Test Act')
+    ks.include(ka2)
+
+    p1 = KPerson('Joaquim', 'm', 'p01')
+    p2 = KPerson('Margarida', 'f', 'p02')
+    p3 = KPerson('Pedro', 'm', 'p03')
+    ka1.include(p1)
+    ka1.include(p2)
+    ka1.include(p3)
+    p4 = KPerson('Maria', 'f', 'p04')
+    p5 = KPerson('Manuel', 'm', 'p05')
+    p6 = KPerson('João', 'm', 'p06')
+    ka2.include(p4)
+    ka2.include(p5)
+    ka2.include(p6)
+    return ks
+
+
+def test_kgroup_get(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.get["includes"]["act"][0]["id"] == 'a1', \
+        "Failed nested dictionary"
+
+
+def test_kgroup_get_id(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.get["act"]['a1']['date'] == '2021-07-16', \
+        "Failed nested dictionary"
+
+
+def test_kgroup_get2(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.get["acts"][0]["id"] == 'a1', \
+        "Failed nested dictionary"
+
+
+def test_kgroup_dots(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.dots.includes.act[0].id == 'a1', \
+        "Failed dots retrieval"
+
+
+def test_kgroup_dots2(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.dots.acts[0].id == 'a1', \
+        "Failed dots retrieval"
+
+
+def test_kgroup_dots3(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.dots.act[0].includes.person[0].name == 'Joaquim', \
+        "Failed dots retrieval"
+
+
+def test_kgroup_dots3(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.dots.acts[0].persons[0].name == 'Joaquim', \
+        "Failed dots retrieval"
+
+
+def test_kgroup_dots_id(kgroup_nested):
+    kgroup_nested
+    assert kgroup_nested.dots.act.a1.person.p01.name == 'Joaquim', \
+        "Failed dots retrieval"
 
 
 def test_kgroup_core_value(kgroup_source_dev):

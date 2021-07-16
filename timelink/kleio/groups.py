@@ -8,6 +8,7 @@ from os import linesep as nl
 import textwrap
 from typing import Any, Union, Type
 from timelink.kleio.utilities import quote_long_text
+from attrdict import AttrDict
 
 
 class KElement:
@@ -99,6 +100,18 @@ class KElement:
         """Return element as a kleio string: element=core#comment%original"""
         return self.name + '=' + str(self)
 
+    def to_dict(self, name=False):
+        """ Return Element as a dict {core:_, comment:_, original:_}
+        add name=True to add name to dictionnary: {name:_, core:_, comment:_, original:_}"""
+        if name:
+            return {'name': self.name,
+                    'core': self.core, 'comment': self.comment, 'original': self.original}
+        else:
+            return {'core': self.core, 'comment': self.comment, 'original': self.original}
+
+    def to_dots(self):
+        return AttrDict(self.to_dict())
+
 
 class KGroup:
     """
@@ -125,6 +138,10 @@ class KGroup:
 
     # TODO to_kleio_str generates the definition of a group for a kleio str file. recurse=yes
     # collects included groups and generates for those also.
+
+    @property
+    def kname(self):
+        return self._name
 
     @classmethod
     def extend(cls, name: str,
@@ -261,13 +278,76 @@ class KGroup:
     def to_dict(self):
         """ Return group information as a dict.
 
+        Also available as property "get" so that
+        group.to_dict()['id'] == group.get['id']
+
+        Format of keys:
+            group[element]: core value of element
+            group[element_comment]: comment aspect of element
+            group[element_original]: original aspect of element
+            group[element_str] : string representation of element
+                                 (with # and % if necessary)
+            group[element_kleio]: kleio representation element=string
+
+            group[includes]: list of enclosed groups
+            group[includes][subgroup]: list of enclosed groups of type subgroup
+
+            enclose subgroups can also be accessed in the plural form
+                if there are no name conflict with existing elements:
+
+            group[subgroup+'s'] = group[includes][subgroup]
+
+
         """
         kd = dict()
         for e in self.elements():
-            v = getattr(self, e, None)
+            v: KElement = getattr(self, e, None)
             if v is not None:
-                kd[e] = v
+                if type(v) is KElement:
+                    core, comment, original = v.to_tuple()
+                    kd[e] = core
+                    kd[e + '_comment'] = comment
+                    kd[e + '_original'] = original
+                    kd[e + '_str'] = str(v)
+                    kd[e + '_kleio'] = v.to_kleio()
+                else:
+                    kd[e] = v
+            ki = dict()
+        # we now collect subgroups by name
+        for i in self.includes():
+            n = getattr(i, '_name')
+            if n not in ki.keys():
+                ki[n] = [i.to_dict()]
+            else:
+                ki[n].append(i.to_dict())
+        if len(ki) > 0:
+            kd['includes'] = ki
+            # if there are no name conflicts and plural form
+            # so g['includes']['act'] can be accessed as
+            #    g['acts']
+            for subgroup in ki.keys():
+                if subgroup + 's' not in self.elements():
+                    kd[subgroup + 's'] = ki[subgroup]
+                    # we include subgroup indexed by id
+                    # so we can have source['act']['ac010]['person']['p01']
+                    for group in ki[subgroup]:
+                        id = group.get('id', None)
+                        if id is not None and subgroup not in self.elements():
+                            if subgroup not in kd.keys():
+                                kd[subgroup] = dict()
+                            kd[subgroup][id] = group
         return kd
+
+    @property
+    def get(self):
+        return self.to_dict()
+
+    def to_dots(self):
+        return AttrDict(self.to_dict())
+
+    @property
+    def dots(self):
+        return self.to_dots()
 
     def __str__(self, indent=""):
         sname = getattr(self, '_name', self.__class__.__name__)
