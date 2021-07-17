@@ -86,7 +86,8 @@ class KElement:
 
     def is_empty(self):
         """True if all aspects of the element are None or empty string"""
-        e = [x for x in [self.core, self.comment, self.original] if x is None or x == '']
+        e = [x for x in [self.core, self.comment, self.original] if
+             x is None or x == '']
         if len(e) == 3:
             return True
         else:
@@ -105,9 +106,11 @@ class KElement:
         add name=True to add name to dictionnary: {name:_, core:_, comment:_, original:_}"""
         if name:
             return {'name': self.name,
-                    'core': self.core, 'comment': self.comment, 'original': self.original}
+                    'core': self.core, 'comment': self.comment,
+                    'original': self.original}
         else:
-            return {'core': self.core, 'comment': self.comment, 'original': self.original}
+            return {'core': self.core, 'comment': self.comment,
+                    'original': self.original}
 
     def to_dots(self):
         return AttrDict(self.to_dict())
@@ -145,11 +148,11 @@ class KGroup:
 
     @classmethod
     def extend(cls, name: str,
-               position: Union[list, None] = None,
-               guaranteed: Union[list, None] = None,
-               also: Union[list, None] = None,
-               part: Union[list, None] = None,
-               kgroup=None):
+        position: Union[list, None] = None,
+        guaranteed: Union[list, None] = None,
+        also: Union[list, None] = None,
+        part: Union[list, None] = None,
+        kgroup=None):
         """ Create a new class extending this one
         fonte = KGroup.extends('fonte',
                         also=['tipo',
@@ -230,7 +233,8 @@ class KGroup:
             setattr(self, k, el)
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
-                raise TypeError(f'Element {g} in _guaranteed is missing or with None value')
+                raise TypeError(
+                    f'Element {g} in _guaranteed is missing or with None value')
 
     def include(self, group: Type['KGroup']):
         """ Include a group. `group` or its class must in _part list
@@ -253,20 +257,20 @@ class KGroup:
         return self._contains
 
     def attr(self, the_type: Union[str, tuple],
-             value: Union[str, tuple],
-             date: Union[str, tuple],
-             obs=None):
+        value: Union[str, tuple],
+        date: Union[str, tuple],
+        obs=None):
         """ Include an KAttribute in this KGroup"""
         ka = globals()['KAttribute']
         self.include(ka(the_type, value, date=date, obs=obs))
         return self
 
     def rel(self, the_type: Union[str, tuple],
-            value: Union[str, tuple],
-            destname: Union[str, tuple],
-            destination: Union[str, tuple],
-            date: Union[str, tuple],
-            obs: str = None):
+        value: Union[str, tuple],
+        destname: Union[str, tuple],
+        destination: Union[str, tuple],
+        date: Union[str, tuple],
+        obs: str = None):
         """ include a relation in this KGroup"""
         kr = globals()['KRelation']
         self.include(kr(the_type, value, destname, destination, date, obs))
@@ -312,7 +316,7 @@ class KGroup:
                     kd[e + '_kleio'] = v.to_kleio()
                 else:
                     kd[e] = v
-            ki = dict()
+        ki = dict()
         # we now collect subgroups by name
         for i in self.includes():
             n = getattr(i, '_name')
@@ -372,7 +376,8 @@ class KGroup:
         for e in more:
             m: KElement = getattr(self, e, None)
             if m is not None \
-                and (type(m) is str and m > '' or (issubclass(type(m), KElement) and not m.is_empty())):
+                and (type(m) is str and m > '' or (
+                issubclass(type(m), KElement) and not m.is_empty())):
                 if not first:
                     s = s + f'/{e}={str(m)}'
                 else:
@@ -407,7 +412,7 @@ class KGroup:
 class KKleio(KGroup):
     """KKleio(structure,prefix=,obs=)
 
-    Kleio notation document. Represent a file in Kleio notation.
+    Kleio notation document. Represents a file in Kleio notation.
 
     Elements:
         structure: The path to a Kleio structure file (default gacto2.str)
@@ -495,7 +500,7 @@ KSource.allow_as_part(KAct)
 
 
 class KPerson(KGroup):
-    """ KPerson(name,sex,id,obs=,same_as=)
+    """ KPerson(name,sex,id,obs=,same_as=,xsame_as=)
 
     Person in a historical source
 
@@ -504,6 +509,8 @@ class KPerson(KGroup):
         sex:  the gender of the person. A string.
         id: an unique id for this person. A string, optional.
         obs: a note on the person. A string, optional.
+        same_as: id of another instance of this person in the same file.
+        xsame_as: id of another instance of this person in another file.
 
     Kleio str definition:
 
@@ -516,11 +523,54 @@ class KPerson(KGroup):
     _name = 'person'
     _guaranteed = ['name', 'sex']
     _also = ['id', 'obs', 'same_as']
-    _position = ['name', 'sex', 'id', 'same_as']
+    _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
     _part = ['rel', 'attr']
 
 
 KAct.allow_as_part(KPerson)
+
+
+class KObject(KGroup):
+    """ KObject(name,type,id=,obs=,same_as=,xsame_as=)
+
+    An object in a historical source.
+    Object groups represent physical entities like
+    houses, pieces of land, movable objects
+
+    Elements:
+        name: the name of the object. A string.
+        type:  the . A string.
+        id: an unique id for this person. A string, optional.
+        obs: a note on the person. A string, optional.
+        same_as: id of another instance of this object in the same file.
+        xsame_as: id of another instance of this object in another file.
+
+    Kleio str definition:
+
+        part name=object;
+             guaranteed=name;
+             position=name,type;
+             also=obs,id,same_as,xsame_as;
+             arbitrary=atr,ls,rel
+    """
+    _name = 'object'
+    _guaranteed = ['name']
+    _also = ['id', 'obs', 'same_as']
+    _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
+    _part = ['rel', 'attr']
+
+
+KAct.allow_as_part(KObject)
+
+
+class KAbstraction(KObject):
+    """ KAbstraction(name,type,id=,obs=,same_as=,xsame_as=)
+    A synonym for object, used in non physical entities such as
+    institutions.
+    """
+    pass
+
+KAct.allow_as_part(KAbstraction)
 
 
 class KAttribute(KGroup):

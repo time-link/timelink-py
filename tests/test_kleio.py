@@ -219,7 +219,6 @@ def test_kgroup_attr():
 
 
 def test_kgroup_to_kleio(kgroup_source_dev):
-    kgroup_source_dev
     s = 'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation/obs=Transcrition available, manuscript.'
     assert kgroup_source_dev.to_kleio() == s, "Bad group representation"
 
