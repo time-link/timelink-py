@@ -5,7 +5,7 @@ MIT License, no warranties.
 """
 import pytest
 
-from timelink.kleio.groups import KElement, KPerson, KLs
+from timelink.kleio.groups import KElement, KPerson, KLs, KAbstraction, KAtr
 from timelink.kleio.utilities import quote_long_text
 from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
@@ -334,3 +334,47 @@ def test_person_ls_rel():
     p.include(KLs('location', 'Macau', '2021-07-15'))
     assert ' ls$location/Macau/2021-07-15' in p.to_kleio().splitlines(), \
         "ls failed to show in person"
+
+
+def test_kleio_stru():
+    # We specialize the kleio groups for this purposo, using definitions already in gacto2.str
+    kleio = KKleio
+    fonte = KSource.extend('fonte',
+                           also=['tipo', 'data', 'ano', 'substitui', 'loc',
+                                 'ref', 'obs'])
+    lista = KAct.extend('lista', position=['id', 'dia', 'mes', 'ano'],
+                        guaranteed=['id', 'ano', 'mes', 'dia'],
+                        also=['data', 'tipo', 'loc', 'obs'])
+    auc = KAbstraction.extend('auc', position=['name', ''],
+                              also=['level', 'id'], guaranteed=['id'])
+    n = KPerson.extend('n', position=['nome', 'sexo'],
+                       guaranteed=['id', 'nome', 'sexo'],
+                       also=['mesmo_que', 'obs'])
+    pai = KPerson.extend('pai', position=['nome'], guaranteed=['id', 'nome'],
+                         also=['mesmo_que', 'obs'])
+    mae = KPerson.extend('mae', position=['nome'], guaranteed=['id', 'nome'],
+                         also=['mesmo_que', 'obs'])
+    n.allow_as_part(pai)
+    n.allow_as_part(mae)
+    ls = KLs.extend('ls', position=['type', 'value'], also=['data', 'obs'])
+    atr = KAtr.extend('atr', position=['type', 'value'], also=['data', 'obs'])
+
+    kf = KKleio()
+    f = fonte('f001', tipo='auc-tests')
+    kf.include(f)
+    l: KGroup = lista('l001', 11, 2, 2021, data='1537-1913', tipo='auc-list', loc='A')
+    f.include(l)
+    a = auc('alumni-record', 'archeevo-record', id='xpto')
+    l.include(a)
+    j = n('joaquim', 'm', obs='em macau')
+    j.include(ls('uc', 'início', data=2021))
+    j.include(atr('xauc', 'dsd'))
+    l.include(j)
+    l2 = lista('l003', 18, 2, 2021, data='1537-1913', tipo='auc-list', loc='B')
+    f.include(l2)
+    m = n('manuel', 'm', obs='em Berlin')
+    m.include(ls('uc', 'fim', data=2021))
+    l2.include(m)
+
+    assert j.nome.core == 'joaquim'
+
