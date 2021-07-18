@@ -210,9 +210,6 @@ class KGroup:
         if g not in cls._part:
             cls._part.append(g)
 
-        if g not in cls._part:
-            cls._part.append(g)
-
     def __init__(self, *args, **kwargs):
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
@@ -569,6 +566,7 @@ class KAbstraction(KObject):
     institutions.
     """
     pass
+
 
 KAct.allow_as_part(KAbstraction)
 
