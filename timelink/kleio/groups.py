@@ -164,14 +164,23 @@ class KGroup:
         """
         new_group = type(name, (cls,), {})
         new_group._name = name
+        # todo: k,v in kwargs if in cls set if not error
         if position is not None:
             new_group._position = position
+        else:
+            new_group._position = list(cls._position)
         if guaranteed is not None:
             new_group._guaranteed = guaranteed
+        else:
+            new_group._guaranteed = list(cls._guaranteed)
         if also is not None:
             new_group._also = also
+        else:
+            new_group._also = list(cls._also)
         if part is not None:
             new_group._part = part
+        else:
+            new_group._part = list(cls._part)
         if kgroup is not None:
             new_group.kgroup = kgroup
         else:
@@ -381,6 +390,7 @@ class KGroup:
                     s = s + f'{e}={str(m)}'
                     first = False
         if len(self._contains) > 0:
+
             for g in self._contains:
                 s = s + nl + g.__str__(indent + " ")
         return textwrap.indent(s, indent)
@@ -389,6 +399,16 @@ class KGroup:
         if arg not in self.elements():
             raise ValueError("Element does not exist in group")
         return getattr(self, arg)
+
+    def __setitem__(self, arg, value):
+        if arg not in self._position + self._guaranteed + self._also:
+            raise ValueError(f'Element not allowed: {arg}')
+        if not isinstance(value, KElement):  # we did not get a KElement
+            el = KElement(arg, value)  # we make one
+        else:  # we got a KElement object
+            el = value
+            el.name = arg  # we override the element name with the arg name
+        setattr(self, arg, el)
 
     def get_core(self, *args):
         """ get_core(element_name [, default])

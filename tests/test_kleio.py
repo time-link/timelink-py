@@ -211,6 +211,19 @@ def test_allow_as_part_2():
         "include failed after class allowed as part"
 
 
+def test_allow_as_part_3():
+    Kx = KGroup.extend('kx')
+    Ky = KGroup.extend('ky')
+    Kx.allow_as_part(Ky)
+    l1 = len(Kx._part)
+    Kx.allow_as_part(Ky)
+    Kx.allow_as_part(Ky)
+    Kx.allow_as_part(Ky)
+    l2 = len(Kx._part)
+
+    assert l1 == l2, "allow_as_part added repeated group"
+
+
 def test_kgroup_attr():
     p = KPerson('joaquim', 'm')
     p.attr('location', 'macau', '2021')
@@ -231,6 +244,14 @@ def test_kgroup_to_kleio_empty_1():
 def test_kgroup_get_item():
     p = KPerson('joaquim', 'm', 'jrc', obs='')
     assert p['name'].core == 'joaquim'
+
+
+def test_kgroup_set_item():
+    p = KPerson('joaquim', 'm', 'jrc', obs='')
+    p['name'] = ('joaquim', 'aka jrc', 'jota')
+    assert p.name.core == 'joaquim', "__setitem__ failed"
+    assert p.name.comment == 'aka jrc', "__setitem__ failed"
+    assert p.name.original == 'jota', "__setitem__ failed"
 
 
 @pytest.fixture
@@ -362,7 +383,8 @@ def test_kleio_stru():
     kf = KKleio()
     f = fonte('f001', tipo='auc-tests')
     kf.include(f)
-    l: KGroup = lista('l001', 11, 2, 2021, data='1537-1913', tipo='auc-list', loc='A')
+    l: KGroup = lista('l001', 11, 2, 2021, data='1537-1913', tipo='auc-list',
+                      loc='A')
     f.include(l)
     a = auc('alumni-record', 'archeevo-record', id='xpto')
     l.include(a)
