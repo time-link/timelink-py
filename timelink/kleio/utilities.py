@@ -81,11 +81,11 @@ def make_kgroup(group_name, Entity):
     return s
 
 
-def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2):
+def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=200):
     if len(txt) > 127 or len(txt.splitlines()) > 1:
         s = '"""' + nl
         for line in txt.splitlines():
-            w = textwrap.fill(line, width=80, initial_indent=initial_indent)
+            w = textwrap.fill(line, width=width, initial_indent=initial_indent)
             s = s + textwrap.indent(w, indent) + nl
         s = s + indent + '"""'
     else:
