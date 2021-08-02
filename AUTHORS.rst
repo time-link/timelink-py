@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Joaquim Ramos de Carvalho <joaquim@uc.pt>
+* Joaquim Ramos de Carvalho <joaquimcarvalho@ipm.edu.mo>
 
 Contributors
 ------------

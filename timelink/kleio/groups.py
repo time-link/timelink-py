@@ -3,6 +3,9 @@ Classes to generate Kleio sources.
 
 Classes in this module allow the generation of Kleio sources.
 
+TODO evaluate doing a asNamedtuple()
+    asNamedTuple(self): return namedtuple(self.name,"core,comment,original")
+
 """
 from os import linesep as nl
 import textwrap
@@ -115,7 +118,7 @@ class KElement:
     def to_dots(self):
         return AttrDict(self.to_dict())
 
-
+# TODO use namedtuples?
 class KGroup:
     """
     KGroup(*positional_elements ,**more_elements)

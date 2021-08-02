@@ -16,7 +16,7 @@ test_requirements = ['pytest>=3', ]
 
 setup(
     author="Joaquim Ramos de Carvalho",
-    author_email='joaquim@uc.pt',
+    author_email='joaquimcarvalho@ipm.edu.mo',
     python_requires='>=3.6',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
