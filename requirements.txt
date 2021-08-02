@@ -1,5 +1,5 @@
 pytest~=6.2.4
-Click~=7.0
+Click~=8.0.1
 setuptools~=57.1.0
 python-dotenv~=0.18.0
 mysql-connector-python~=8.0.25
