@@ -224,6 +224,42 @@ def test_allow_as_part_3():
     assert l1 == l2, "allow_as_part added repeated group"
 
 
+def test_allow_as_part_4():
+    n: KPerson = KPerson.extend('n', position=['name', 'sex'],
+                                guaranteed=['name'])
+    j = n('joaquim', 'm')
+    pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
+    n.allow_as_part(pn)
+    j.include(pn('Arménio'))
+    assert len(j.includes()) == 1, "Could not insert sub group"
+
+
+def test_includes_group():
+    n: KPerson = KPerson.extend('n', position=['name', 'sex'],
+                                guaranteed=['name'])
+    j = n('joaquim', 'm')
+    pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
+    n.allow_as_part(pn)
+    j.include(pn('Arménio'))
+    j.attr('residencia', 'Macau', date='2021-08-08', obs='Taipa')
+    l = j.includes(group='pn')
+    pai = l[0]
+    np = pai.name.core
+    assert np == 'Arménio', "Could not retrieve group by name"
+
+
+def test_includes_by_part_order():
+    n: KPerson = KPerson.extend('n', position=['name', 'sex'],
+                                guaranteed=['name'])
+    j = n('joaquim', 'm')
+    pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
+    n.allow_as_part(pn)
+    j.include(pn('Arménio'))
+    j.attr('residencia', 'Macau', date='2021-08-08', obs='Taipa')
+    inc = j.includes()
+    assert inc[-1].kname == 'pn', "included groups not by part order"
+
+
 def test_kgroup_attr():
     p = KPerson('joaquim', 'm')
     p.attr('location', 'macau', '2021')
@@ -266,7 +302,6 @@ def kgroup_nested() -> KSource:
                day=17, month=7, year=2021,
                loc='auc', ref='p.2', obs='Test Act')
     ks.include(ka2)
-
     p1 = KPerson('Joaquim', 'm', 'p01')
     p2 = KPerson('Margarida', 'f', 'p02')
     p3 = KPerson('Pedro', 'm', 'p03')
@@ -399,4 +434,3 @@ def test_kleio_stru():
     l2.include(m)
 
     assert j.nome.core == 'joaquim'
-

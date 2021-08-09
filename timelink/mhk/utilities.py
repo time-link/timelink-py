@@ -45,8 +45,7 @@ def get_dbnames():
 
     A search is made in the MySQL server running in the local host port 3307
     """
-    app_env = get_mhk_app_env()
-    pwd = app_env['MYSQL_ROOT_PASSWORD']
+    pwd = get_db_pwd()
     conn_string = \
         'mysql+mysqlconnector://root:{p}@localhost:3307/mysql'.format(p=pwd)
     mysql = create_engine(conn_string, echo=False, future=True)
@@ -57,4 +56,14 @@ def get_dbnames():
         result = [db[0] for db in databases]
     return result
 
+
+def get_db_pwd():
+    """
+    Get the password of the database from the MHL environment
+    """
+    app_env = get_mhk_app_env()
+    pwd = app_env['MYSQL_ROOT_PASSWORD']
+    if pwd is None:
+        raise TypeError("Could not find MHK database password. Is MHK installed?")
+    return pwd
 

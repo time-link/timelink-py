@@ -9,9 +9,11 @@ TODO evaluate doing a asNamedtuple()
 """
 from os import linesep as nl
 import textwrap
-from typing import Any, Union, Type
+from typing import Any, Union, Type, Tuple
+
+from box import Box
+
 from timelink.kleio.utilities import quote_long_text
-from attrdict import AttrDict
 
 
 class KElement:
@@ -116,9 +118,9 @@ class KElement:
                     'original': self.original}
 
     def to_dots(self):
-        return AttrDict(self.to_dict())
+        return Box(self.to_dict())
 
-# TODO use namedtuples?
+
 class KGroup:
     """
     KGroup(*positional_elements ,**more_elements)
@@ -151,10 +153,10 @@ class KGroup:
 
     @classmethod
     def extend(cls, name: str,
-        position: Union[list, None] = None,
-        guaranteed: Union[list, None] = None,
-        also: Union[list, None] = None,
-        part: Union[list, None] = None,
+        position: Union[list, str, None] = None,
+        guaranteed: Union[list, str, None] = None,
+        also: Union[list, str, None] = None,
+        part: Union[list, str, None] = None,
         kgroup=None):
         """ Create a new class extending this one
         fonte = KGroup.extends('fonte',
@@ -227,10 +229,12 @@ class KGroup:
             raise ValueError('Too many positional elements')
         self._contains = []
         n = 0
+        # set the positional arguments according to "_position"
         for arg in args:
             e = self._position[n]
             setattr(self, e, KElement(e, arg))
             n = n + 1
+        # keyword arguments must be in one the element lists
         for (k, v) in kwargs.items():
             if k not in self._position + self._guaranteed + self._also:
                 raise ValueError(f'Element not allowed: {k}')
@@ -240,6 +244,7 @@ class KGroup:
                 el = v
                 el.name = k  # we override the element name with the arg name
             setattr(self, k, el)
+        # test if the compulsory (guaranteed) elements are present
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
                 raise TypeError(
@@ -261,15 +266,45 @@ class KGroup:
         self._contains.append(group)
         return self
 
-    def includes(self):
-        """Returns included groups"""
-        return self._contains
+    def includes(self, group: str = None):
+        """Returns included groups
 
-    def attr(self, the_type: Union[str, tuple],
-        value: Union[str, tuple],
-        date: Union[str, tuple],
+        :param str group: filter by group name
+        """
+        if group is not None:
+            return [g for g in self._contains if g.kname == group]
+        else:
+            inc_by_part_order = []
+            for p in self._part:
+                for g in self._contains:
+                    if type(p) is str:
+                        if g.kname == p:
+                            inc_by_part_order.append(g)
+                    else:
+                        tg = type(g)
+                        if p is tg:
+                            if g not in inc_by_part_order:
+                                inc_by_part_order.append(g)
+            return inc_by_part_order
+
+    def attr(self, the_type: Union[str, KElement, Tuple[str,str,str]],
+        value: Union[str, KElement, Tuple[str,str,str]],
+        date: Union[str, KElement, Tuple[str,str,str]],
         obs=None):
-        """ Include an KAttribute in this KGroup"""
+        """ Include an KAttribute in this KGroup
+
+        KGroup.attr('age','25','2021-08-08',obs='in May')
+
+        is the same as
+
+        KGroup.include(KAttr('age','25','2021-08-08',obs='in May'))
+
+        :param str or tuple the_type: core or (core,org,comment)
+        :param str or tuple value: core or (core,org,comment)
+        :param str date: date as string in Kleio format, or (date,org,comment)
+        :param str obs: options observation field
+
+        """
         ka = globals()['KAttribute']
         self.include(ka(the_type, value, date=date, obs=obs))
         return self
@@ -308,7 +343,7 @@ class KGroup:
             enclose subgroups can also be accessed in the plural form
                 if there are no name conflict with existing elements:
 
-            group[subgroup+'s'] = group[includes][subgroup]
+            group[subgroup+'s'] == group[includes][subgroup]
 
 
         """
@@ -356,7 +391,7 @@ class KGroup:
         return self.to_dict()
 
     def to_dots(self):
-        return AttrDict(self.to_dict())
+        return Box(self.to_dict())
 
     @property
     def dots(self):
@@ -393,7 +428,6 @@ class KGroup:
                     s = s + f'{e}={str(m)}'
                     first = False
         if len(self._contains) > 0:
-
             for g in self._contains:
                 s = s + nl + g.__str__(indent + " ")
         return textwrap.indent(s, indent)
@@ -449,12 +483,12 @@ class KKleio(KGroup):
 
 
 class KSource(KGroup):
-    """  KSource(id,type,loc=,ref=,date=,obs=)
+    """  Represents an Historical Source. Sources contain :class: `KAct` and
+    may contain :class: `KAttribute`.
 
-    Elements:
-        id: An unique id for this source. A string.
-        type: The type of the source (e.g. baptisms, marriages); optional.
 
+     :param str id: String, an unique id for this source.
+     :param str type: The type of the source (e.g. baptisms, marriages); optional.
         loc: Location (name of archive, library, collection); optional.
         ref: The call reference ("cota") of the source in the location; optional.
         date: the date of the source. A string in timelink format; optional.

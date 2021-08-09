@@ -2,6 +2,7 @@
 
 Also provides basic mhk manager functionality.
 
+TODO consider typer https://typer.tiangolo.com
 
 """
 import platform

@@ -1,5 +1,5 @@
 Welcome to Timelink Python package's documentation!
-======================================
+===================================================
 
 .. toctree::
    :maxdepth: 2

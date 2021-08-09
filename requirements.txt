@@ -6,4 +6,10 @@ mysql-connector-python~=8.0.25
 SQLAlchemy~=1.4.20
 timelink~=0.1.0
 docker~=5.0.0
-attrdict~=2.0.1
+python-dotenv~=0.18.0
+SQLAlchemy~=1.4.20
+mysql-connector-python~=8.0.25
+python-box~=5.3.0
+
+
+

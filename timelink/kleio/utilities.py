@@ -81,7 +81,7 @@ def make_kgroup(group_name, Entity):
     return s
 
 
-def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=200):
+def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=2048):
     if len(txt) > 127 or len(txt.splitlines()) > 1:
         s = '"""' + nl
         for line in txt.splitlines():
@@ -112,9 +112,12 @@ def entity_to_kleio(entity):
     for f in positional:
         # print(f'testing posicional {f.name}')
         if hasattr(entity, f.name):
-            if f.name not in ['obs', 'kgroup', 'attributes', 'relations_in',
-                              'relations_out', 'contains'] and getattr(entity,
-                                                                       f.name) != None:
+            if f.name not in ['obs', 'kgroup',
+                              'attributes',
+                              'relations_in',
+                              'relations_out',
+                              'contains'] \
+                    and getattr(entity, f.name) is not None:
                 if slash_needed:
                     s = s + '/'
                 s = s + make_element(None, getattr(entity, f.name))
@@ -123,14 +126,14 @@ def entity_to_kleio(entity):
         if hasattr(entity, f.name):
             # print(f'testing optional {f.name}')
             if f.name not in ['obs', 'kgroup', 'attributes', 'relations_in',
-                              'relations_out', 'contains'] and getattr(entity,
-                                                                       f.name) != None:
+                              'relations_out', 'contains'] \
+                    and getattr(entity, f.name) is not None:
                 if slash_needed:
                     s = s + '/'
                 slash_needed = True
                 n = f.metadata.get('kleio_name', f.name)
                 s = s + make_element(n, getattr(entity, f.name))
-    if entity.obs != None and entity.obs > ' ':
+    if entity.obs is not None and entity.obs > ' ':
         s = s + format_obs(entity.obs)
     for a in entity.attributes:
         s = s + nl + '  ' + str(a)
