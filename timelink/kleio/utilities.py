@@ -1,56 +1,23 @@
+""".. module:: utilities
+   :synopsis: Various utilities for handling Kleio groups and elements
+
+.. moduleauthor: Joaquim Ramos de Carvalho
+
+Kleio Groups are the building blocks for transcription of historical sources.
+"""
 from dataclasses import dataclass, fields
 import textwrap
 from os import linesep as nl
 
 
-def get_metadata_key(*args):
+def kleio_escape(v: str) -> str:
     """
-    get_metada_key(o,f,m,d)
+    Checks for Kleio special characters and quotes if needed::
 
-    Get the value of metadata kley in a dataclass field.
-    If f does not exist in o throws an error
-
-    Parameters
-    ----------
-
-    o: dataclasses.dataclass
-       A dataclass instance of class
-    f: dataclasses.field
-        A field in a dataclass
-    m: str
-        A key of the metadata dictionnary of a dataclass field.
-    d: Any
-        A default value if metadata key is absent or no metadata on the field
-
-
-    """
-    assert len(args) == 3 or len(args) == 4, \
-        f'Expected 3 or 4 arguments, got {len(args)} '
-    o = args[0]
-    assert issubclass(type(o), dataclass), \
-        f'First argument must be subclass of dataclass'
-
-    f = args[1]
-    assert f in o.__dataclass_fields__.keys(), f'No field {f} in {o}'
-
-    k = args[2]
-    if len(args) > 3:
-        d = args[3]
-    else:
-        d = None
-
-    dcf = o.__dataclass_fields__.get(f)
-    md = dcf.get('metadata', None)
-    if md is None:
-        return d
-    else:
-        return md.get(k, d)
-
-
-def kleio_escape(v):
-    """
-    Checks for Kleio special characterss and quotes string if needed.
-    Convert argument to str as needed.
+         >>> print(kleio_escape('normal string'))
+         normal string
+         >>> print(kleio_escape('oops we have a / in the middle'))
+         "oops we have a / in the middle"
 
     """
     s = str(v)
@@ -61,15 +28,15 @@ def kleio_escape(v):
 
 
 def make_element(element, value, original=None, comment=None):
-    if element == None:
+    if element is None:
         s = ''
     else:
         s = element + '='
-    if value != None:
+    if value is not None:
         s = s + kleio_escape(value)
-        if original != None:
+        if original is not None:
             s = s + '%' + kleio_escape(original)
-        if comment != None:
+        if comment is not None:
             s = s + '%' + kleio_escape(comment)
     else:
         s = s + ''
@@ -81,7 +48,24 @@ def make_kgroup(group_name, Entity):
     return s
 
 
-def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=2048):
+def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=2048) -> str:
+    """ Surround long text with triple quotes, wraps and indents lines if needed.
+    Some of the parameters are passed on to See :py:func:`textwrap.fill`.
+
+    Sphynx style markup
+
+    :param txt: The text to be transformed
+    :type txt: str
+    :param initial_indent: string to ident the first line of paragraphs.
+                        Default is 4 spaces. See :py:func:`textwrap.fill`.
+    :type initial_indent: str
+    :param indent: string to ident the wrap lines of paragraphs (after the first).
+                        Default is 2 spaces. See :py:func:`textwrap.fill`.
+    :type indent: str
+    :param width: width of line for wrapping. See :py:func:`textwrap.fill`.
+    :type width: int
+    :rtype: str
+    """
     if len(txt) > 127 or len(txt.splitlines()) > 1:
         s = '"""' + nl
         for line in txt.splitlines():
@@ -94,6 +78,7 @@ def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=2048):
 
 
 def format_obs(obs, initial_indent=' ' * 4, indent=' ' * 2):
+    """ Not used in current implemented"""
     o = quote_long_text(obs)
     if len(o) > 127:
         s = nl + '   /obs=' + o
@@ -103,6 +88,9 @@ def format_obs(obs, initial_indent=' ' * 4, indent=' ' * 2):
 
 
 def entity_to_kleio(entity):
+    """
+    DEPRECATED
+    """
     s = f'{entity.kgroup}$'
     positional = [f for f in fields(entity) if
                   f.metadata.get('positional', False) == True]

@@ -39,6 +39,16 @@ def get_mhk_app_env():
     return app_env
 
 
+def get_connection_string(db: str, host='localhost', port='3307'):
+    pwd = get_db_pwd()
+    conn_string = f'mysql+mysqlconnector://root:{pwd}@{host}:{port}/{db}'
+    return conn_string
+
+
+def get_engine(db: str, host='localhost', port='3307', echo=False):
+   cs = get_connection_string(db, host, port)
+   return create_engine(cs, echo=echo, future=True)
+
 def get_dbnames():
     """
     Get the names of MHK databases in MySQL

@@ -1,10 +1,8 @@
-"""Top-level package for Timelink Python package.
+"""Timelink Python package.
 
-Contains:
+.. moduleauthor:: Joaquim Ramos de Carvalho
 
-- kleio: package for generating Kleio Sources
-- networks: generation and analysis of networks
-- mhk: interaction with MHK installations
+This the top level __init__.py
 
 """
 
