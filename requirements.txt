@@ -2,14 +2,9 @@ pytest~=6.2.4
 Click~=8.0.1
 setuptools~=57.1.0
 python-dotenv~=0.18.0
-mysql-connector-python~=8.0.25
 SQLAlchemy~=1.4.20
 timelink~=0.1.0
 docker~=5.0.0
-python-dotenv~=0.18.0
-SQLAlchemy~=1.4.20
-mysql-connector-python~=8.0.25
-python-box~=5.3.0
 
 
 

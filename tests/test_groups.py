@@ -11,6 +11,33 @@ from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
 
 @pytest.fixture
+def kgroup_nested() -> KSource:
+    """Returns a nested structure"""
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
+    ka2 = KAct('a2', 'test-act', date='2021-07-17',
+               day=17, month=7, year=2021,
+               loc='auc', ref='p.2', obs='Test Act')
+    ks.include(ka2)
+    p1 = KPerson('Joaquim', 'm', 'p01')
+    p2 = KPerson('Margarida', 'f', 'p02')
+    p3 = KPerson('Pedro', 'm', 'p03')
+    ka1.include(p1)
+    ka1.include(p2)
+    ka1.include(p3)
+    p4 = KPerson('Maria', 'f', 'p04')
+    p5 = KPerson('Manuel', 'm', 'p05')
+    p6 = KPerson('João', 'm', 'p06')
+    ka2.include(p4)
+    ka2.include(p5)
+    ka2.include(p6)
+    return ks
+
+
+@pytest.fixture
 def kgroup_source_dev() -> KSource:
     """
     KSource('dev-1718',
@@ -259,6 +286,23 @@ def test_includes_by_part_order():
     inc = j.includes()
     assert inc[-1].kname == 'pn', "included groups not by part order"
 
+def test_includes_no_arg():
+    kleio = KKleio('gacto2.str')
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    kleio.include(ks)
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
+    kdots = kleio.dots
+    sources = kdots.sources
+    source = sources[0]
+    acts = source.acts
+    act = acts[0]
+    assert act.id == 'a1', "Problem with dot notation"
+    assert kdots.sources[0].acts[0].id == 'a1', "Could not use dots notation for includes"
+    # pretty neat!
+    assert kdots.source.s1.act.a1.type == 'test-act', "group-id dot notation failed"
 
 def test_kgroup_attr():
     p = KPerson('joaquim', 'm')
@@ -288,33 +332,6 @@ def test_kgroup_set_item():
     assert p.name.core == 'joaquim', "__setitem__ failed"
     assert p.name.comment == 'aka jrc', "__setitem__ failed"
     assert p.name.original == 'jota', "__setitem__ failed"
-
-
-@pytest.fixture
-def kgroup_nested() -> KSource:
-    """Returns a nested structure"""
-    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
-    ka1 = KAct('a1', 'test-act', date='2021-07-16',
-               day=16, month=7, year=2021,
-               loc='auc', ref='p.1', obs='Test Act')
-    ks.include(ka1)
-    ka2 = KAct('a2', 'test-act', date='2021-07-17',
-               day=17, month=7, year=2021,
-               loc='auc', ref='p.2', obs='Test Act')
-    ks.include(ka2)
-    p1 = KPerson('Joaquim', 'm', 'p01')
-    p2 = KPerson('Margarida', 'f', 'p02')
-    p3 = KPerson('Pedro', 'm', 'p03')
-    ka1.include(p1)
-    ka1.include(p2)
-    ka1.include(p3)
-    p4 = KPerson('Maria', 'f', 'p04')
-    p5 = KPerson('Manuel', 'm', 'p05')
-    p6 = KPerson('João', 'm', 'p06')
-    ka2.include(p4)
-    ka2.include(p5)
-    ka2.include(p6)
-    return ks
 
 
 def test_kgroup_get(kgroup_nested):
