@@ -4,14 +4,6 @@ timelink.kleio package
 Submodules
 ----------
 
-timelink.kleio.entities module
-------------------------------
-
-.. automodule:: timelink.kleio.entities
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 timelink.kleio.groups module
 ----------------------------
 

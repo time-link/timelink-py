@@ -2,9 +2,10 @@ Welcome to Timelink Python package's documentation!
 ===================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
+   timelink-introduction
    readme
    installation
    usage

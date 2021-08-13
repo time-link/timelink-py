@@ -14,9 +14,10 @@ Timelink Python package
         :alt: Documentation Status
 
 
+This comes from the toplevel README.rst
 
-
-Timelink is an information system for person related information collected from historical sources. 
+Timelink is an information system for person related information collected
+from historical sources.
 
 
 * Free software: MIT license
