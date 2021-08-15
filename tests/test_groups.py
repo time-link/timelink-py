@@ -212,7 +212,7 @@ def test_allow_as_part_1():
 
     Kx.allow_as_part('ky')
     x.include(y)
-    assert y in x._contains, "include failed"
+    assert y in x.includes(), "include failed"
 
 
 def test_allow_as_part_2():
@@ -234,7 +234,7 @@ def test_allow_as_part_2():
 
     Kx.allow_as_part(Ky)
     x.include(y)
-    assert y in x._contains, \
+    assert y in list(x.includes()), \
         "include failed after class allowed as part"
 
 
@@ -269,7 +269,11 @@ def test_includes_group():
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
     j.attr('residencia', 'Macau', date='2021-08-08', obs='Taipa')
-    l = j.includes(group='pn')
+
+    for pai in j.includes():
+        print("pai: ", pai)
+
+    l = list(j.includes(group=pn))
     pai = l[0]
     np = pai.name.core
     assert np == 'Arménio', "Could not retrieve group by name"
@@ -283,8 +287,9 @@ def test_includes_by_part_order():
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
     j.attr('residencia', 'Macau', date='2021-08-08', obs='Taipa')
-    inc = j.includes()
+    inc = list(j.includes())
     assert inc[-1].kname == 'pn', "included groups not by part order"
+
 
 def test_includes_no_arg():
     kleio = KKleio('gacto2.str')
@@ -300,14 +305,16 @@ def test_includes_no_arg():
     acts = source.acts
     act = acts[0]
     assert act.id == 'a1', "Problem with dot notation"
-    assert kdots.sources[0].acts[0].id == 'a1', "Could not use dots notation for includes"
+    assert kdots.sources[0].acts[
+               0].id == 'a1', "Could not use dots notation for includes"
     # pretty neat!
     assert kdots.source.s1.act.a1.type == 'test-act', "group-id dot notation failed"
+
 
 def test_kgroup_attr():
     p = KPerson('joaquim', 'm')
     p.attr('location', 'macau', '2021')
-    attrs = p.includes()
+    attrs = list(p.includes())
     assert len(attrs) > 0, "attribute not included in KGroup"
 
 

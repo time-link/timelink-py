@@ -11,6 +11,7 @@ from os import linesep as nl
 import textwrap
 from typing import Any, Union, Type, Tuple
 
+import keyring.errors
 from box import Box
 
 from timelink.kleio.utilities import quote_long_text
@@ -144,7 +145,6 @@ class KGroup:
     _guaranteed: list = []
     _also: list = []
     _part: list = []
-    _contains: list = []
     _extends: Type['KGroup']
 
     # TODO to_kleio_str generates the definition of a group for a kleio str file. recurse=yes
@@ -159,8 +159,7 @@ class KGroup:
         position: Union[list, str, None] = None,
         guaranteed: Union[list, str, None] = None,
         also: Union[list, str, None] = None,
-        part: Union[list, str, None] = None,
-        kgroup=None):
+        part: Union[list, str, None] = None):
         """ Create a new group extending this one
         fonte = KGroup.extends('fonte',
                         also=['tipo',
@@ -189,10 +188,8 @@ class KGroup:
             new_group._part = part
         else:
             new_group._part = list(cls._part)
-        if kgroup is not None:
-            new_group.kgroup = kgroup
-        else:
-            new_group.kgroup = name
+        new_group._extends = cls
+
         return new_group
 
     @classmethod
@@ -228,9 +225,10 @@ class KGroup:
             cls._part.append(g)
 
     def __init__(self, *args, **kwargs):
+        self._containsd: dict = {}
+
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
-        self._contains = []
         n = 0
         # set the positional arguments according to "_position"
         for arg in args:
@@ -279,19 +277,47 @@ class KGroup:
                         raise ....
 
         Returns self so it is possible to chain: g.include(g2).include(g3)"""
+
+        allowed = self.is_allowed_as_part(group)
+        if allowed is None:
+            raise ValueError(
+                f'Group {self.kname} cannot contain {group.kname}')
+
+        # new style, dictionary based
+        k = self._containsd.keys()
+        if allowed in k:
+            self._containsd[allowed].append(group)
+        else:
+            self._containsd[allowed] = [group]
+        return self
+
+    def is_allowed_as_part(self, group):
+        """ Test if a group can be included in the current one.
+
+        For a group to be allowed for inclusion one of 3 conditions necessary:
+            1. the kname of the group is in self._pars
+            2. the type of the group is in self._pars
+            3. the type of the group inherits from a type in self._pars
+
+        Return key under which the group is allowed (kname, type, or super tupe
+        Return None if not allowed
+        """
         if not self.is_kgroup(group):
-            raise TypeError(f"Argument must subclasse of KGroup")
-        if group._name not in self._part:
+            raise TypeError(f"Argument must be subclass of KGroup")
+        if group.kname not in self._part:
             allowed_classes = [c for c in self._part if type(c) is not str]
             super_classes = type(group).mro()
             r = list(set(super_classes).intersection(set(allowed_classes)))
             if len(r) == 0:
-                raise ValueError(
-                    f'Group {self._name} cannot contain {group._name}')
-        self._contains.append(group)
-        return self
+                allowed = None
+            else:
+                allowed = r[0]
+        else:
+            allowed = group.kname
 
-    def includes(self, group: str = None) -> list:
+        return allowed
+
+    def includes(self, group: Type[Union[str, Type['KGroup']]] = None) -> list:
         """Returns included groups.
 
         Groups are returned by the order in _pars.
@@ -301,24 +327,27 @@ class KGroup:
         :param str group: filter by group name
         """
         if group is not None:
-            return [g for g in self._contains if g.kname == group]
-        else:
+            if group in self._containsd.keys():
+                return self._containsd[group]
+            else:
+                inc_by_part_order = []
+                classes_in_contains = [c for c in self._containsd.keys()
+                                       if hasattr(c, 'kname')]
+                for class_in_contains in classes_in_contains:
+                    inc_by_part_order.extend(
+                        self._containsd[class_in_contains])
+                return inc_by_part_order
+        else:  # no specific subgroup, we return by pars order
             inc_by_part_order = []
             for p in self._part:
-                for g in self._contains:
-                    if type(p) is str:
-                        if g.kname == p:
-                            inc_by_part_order.append(g)
-                    else:
-                        tg = type(g)
-                        if p is tg or p in tg.mro():
-                            if g not in inc_by_part_order:
-                                inc_by_part_order.append(g)
+                if p in self._containsd.keys():
+                    inc_by_part_order.extend(self._containsd[p])
+
             return inc_by_part_order
 
-    def attr(self, the_type: Union[str, KElement, Tuple[str,str,str]],
-        value: Union[str, KElement, Tuple[str,str,str]],
-        date: Union[str, KElement, Tuple[str,str,str]],
+    def attr(self, the_type: Union[str, KElement, Tuple[str, str, str]],
+        value: Union[str, KElement, Tuple[str, str, str]],
+        date: Union[str, KElement, Tuple[str, str, str]],
         obs=None):
         """ Utility function to include a KAttribute in this KGroup
 
@@ -354,7 +383,7 @@ class KGroup:
 
     def to_kleio(self, indent='') -> str:
         """ Return a kleio representation of the group."""
-        return self.__str__(indent=indent)
+        return self.__str__(indent=indent, recurse=True)
 
     def to_dict(self):
         """ Return group information as a dict.
@@ -393,10 +422,13 @@ class KGroup:
                     kd[e + '_kleio'] = v.to_kleio()
                 else:
                     kd[e] = v
+
+        # we now includes subgroups
         ki = dict()
         # we now collect subgroups by name
-        for i in self.includes():
-            n = getattr(i, '_name')
+        included = list(self.includes())
+        for i in included:
+            n = i.kname
             if n not in ki.keys():
                 ki[n] = [i.to_dict()]
             else:
@@ -412,11 +444,11 @@ class KGroup:
                     # we include subgroup indexed by id
                     # so we can have source['act']['ac010]['person']['p01']
                     for group in ki[subgroup]:
-                        id = group.get('id', None)
-                        if id is not None and subgroup not in self.elements():
+                        gid = group.get('id', None)
+                        if gid is not None and subgroup not in self.elements():
                             if subgroup not in kd.keys():
                                 kd[subgroup] = dict()
-                            kd[subgroup][id] = group
+                            kd[subgroup][gid] = group
         return kd
 
     @property
@@ -430,7 +462,7 @@ class KGroup:
     def dots(self):
         return self.to_dots()
 
-    def __str__(self, indent=""):
+    def __str__(self, indent="", recurse=False):
         sname = getattr(self, '_name', self.__class__.__name__)
         s = sname + '$'
         first = True
@@ -460,9 +492,10 @@ class KGroup:
                 else:
                     s = s + f'{e}={str(m)}'
                     first = False
-        if len(self._contains) > 0:
-            for g in self._contains:
-                s = s + nl + g.__str__(indent + " ")
+
+        if recurse:
+            for g in self.includes():
+                s = s + nl + g.__str__(indent + " ", recurse=recurse)
         return textwrap.indent(s, indent)
 
     def __getitem__(self, arg):
