@@ -7,11 +7,10 @@
 Kleio Groups are the building blocks for transcription of historical sources.
 
 """
-from os import linesep as nl
 import textwrap
+from os import linesep as nl
 from typing import Any, Union, Type, Tuple
 
-import keyring.errors
 from box import Box
 
 from timelink.kleio.utilities import quote_long_text
