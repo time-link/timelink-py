@@ -15,4 +15,4 @@ deploy:
   on:
     tags: true
     repo: time-link/timelink
-    python: 3.9
+    python: 3.8
