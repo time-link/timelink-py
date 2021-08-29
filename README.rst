@@ -6,19 +6,12 @@ Timelink Python package
 .. image:: https://img.shields.io/pypi/v/timelink.svg
         :target: https://pypi.python.org/pypi/timelink
 
-.. image:: https://img.shields.io/travis/joaquimrcarvalho/timelink.svg
+.. image:: https://api.travis-ci.com/time-link/timelink-py.svg?branch=main
         :target: https://travis-ci.com/joaquimrcarvalho/timelink
 
-.. image:: https://readthedocs.org/projects/timelink/badge/?version=latest
-        :target: https://timelink.readthedocs.io/en/latest/?version=latest
+.. image:: https://readthedocs.org/projects/timelink-py/badge/?version=latest
+        :target: https://timelink-py.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
-
-
-This comes from the toplevel README.rst
-
-Timelink is an information system for person related information collected
-from historical sources.
-
 
 * Free software: MIT license
 * Documentation: https://timelink.readthedocs.io.
@@ -27,7 +20,10 @@ from historical sources.
 Features
 --------
 
-* TODO
+
+* Pythonic representation of Kleio groups, easing generation of Kleio file from data in other formats.
+* Utility functions for acessing MHK instalation, including database access.
+* CLI tool
 
 Credits
 -------
