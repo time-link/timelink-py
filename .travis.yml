@@ -14,4 +14,5 @@ deploy:
   on:
     tags: true
     repo: time-link/timelink-py
+    branch: main
     python: 3.9
