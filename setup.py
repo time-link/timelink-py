@@ -35,6 +35,9 @@ setup(
             'timelink=timelink.cli:cli',
         ],
     },
+    project_urls={
+         'Documentation': 'https://timelink-py.readthedocs.io/',
+    },
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
