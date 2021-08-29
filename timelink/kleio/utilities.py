@@ -5,7 +5,7 @@
 
 Kleio Groups are the building blocks for transcription of historical sources.
 """
-from dataclasses import dataclass, fields
+from dataclasses import fields
 import textwrap
 from os import linesep as nl
 
@@ -48,9 +48,14 @@ def make_kgroup(group_name, Entity):
     return s
 
 
-def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=2048) -> str:
-    """ Surround long text with triple quotes, wraps and indents lines if needed.
-    Some of the parameters are passed on to See :py:func:`textwrap.fill`.
+def quote_long_text(
+        txt,
+        initial_indent=' ' * 4,
+        indent=' ' * 2,
+        width=2048) -> str:
+    """ Surround long text with triple quotes,
+    wraps and indents lines if needed.
+    Some of the parameters are passed on to :py:func:`textwrap.fill`.
 
     Sphynx style markup
 
@@ -59,8 +64,9 @@ def quote_long_text(txt, initial_indent=' ' * 4, indent=' ' * 2, width=2048) -> 
     :param initial_indent: string to ident the first line of paragraphs.
                         Default is 4 spaces. See :py:func:`textwrap.fill`.
     :type initial_indent: str
-    :param indent: string to ident the wrap lines of paragraphs (after the first).
-                        Default is 2 spaces. See :py:func:`textwrap.fill`.
+    :param indent: string to ident the wrap lines of
+                    paragraphs (after the first).
+                    Default is 2 spaces. See :py:func:`textwrap.fill`.
     :type indent: str
     :param width: width of line for wrapping. See :py:func:`textwrap.fill`.
     :type width: int
@@ -93,9 +99,9 @@ def entity_to_kleio(entity):
     """
     s = f'{entity.kgroup}$'
     positional = [f for f in fields(entity) if
-                  f.metadata.get('positional', False) == True]
+                  f.metadata.get('positional', False) is True]
     optional = [f for f in fields(entity) if
-                f.metadata.get('positional', False) == False]
+                f.metadata.get('positional', False) is False]
     slash_needed = False
     for f in positional:
         # print(f'testing posicional {f.name}')

@@ -6,11 +6,13 @@ MHK is the name of Java Webapp that preceded Timelink.
 
 """
 import os
+from typing import Type, Union
+
 from dotenv import dotenv_values
 from sqlalchemy import create_engine, text
 
 
-def get_mhk_env():
+def get_mhk_env() -> Type[Union[str, None]]:
     """
     Get the MHK environment variables from ~/.mhk
 
@@ -18,8 +20,10 @@ def get_mhk_env():
     current user. It is created by the MHK install process.
     """
     home_dir = os.getenv('HOME')
-    result = dotenv_values(home_dir + "/.mhk")
-    return result
+    if home_dir is None:
+        return {}
+    else:
+        return dotenv_values(home_dir + "/.mhk")
 
 
 def get_mhk_app_env():
@@ -35,8 +39,10 @@ def get_mhk_app_env():
     """
     mhk_env = get_mhk_env()
     mhk_home_dir = mhk_env['HOST_MHK_HOME']
-    app_env = dotenv_values(mhk_home_dir + '/app/.env')
-    return app_env
+    if mhk_home_dir is not None:
+        app_env = dotenv_values(mhk_home_dir + '/app/.env')
+        return app_env
+    return {}
 
 
 def get_connection_string(db: str, host='localhost', port='3307'):
@@ -46,8 +52,9 @@ def get_connection_string(db: str, host='localhost', port='3307'):
 
 
 def get_engine(db: str, host='localhost', port='3307', echo=False):
-   cs = get_connection_string(db, host, port)
-   return create_engine(cs, echo=echo, future=True)
+    cs = get_connection_string(db, host, port)
+    return create_engine(cs, echo=echo, future=True)
+
 
 def get_dbnames():
     """
@@ -74,6 +81,8 @@ def get_db_pwd():
     app_env = get_mhk_app_env()
     pwd = app_env['MYSQL_ROOT_PASSWORD']
     if pwd is None:
-        raise TypeError("Could not find MHK database password. Is MHK installed?")
-    return pwd
-
+        raise TypeError(
+            "Could not find MHK database password."
+            "Is MHK installed?")
+    else:
+        return pwd

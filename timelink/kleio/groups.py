@@ -110,7 +110,8 @@ class KElement:
 
     def to_dict(self, name=False):
         """ Return Element as a dict {core:_, comment:_, original:_}
-        add name=True to add name to dictionnary: {name:_, core:_, comment:_, original:_}"""
+        add name=True to add name to dictionnary:
+        {name:_, core:_, comment:_, original:_}"""
         if name:
             return {'name': self.name,
                     'core': self.core, 'comment': self.comment,
@@ -146,7 +147,8 @@ class KGroup:
     _part: list = []
     _extends: Type['KGroup']
 
-    # TODO to_kleio_str generates the definition of a group for a kleio str file. recurse=yes
+    # TODO to_kleio_str generates the definition of a group
+    #  for a kleio str file. recurse=yes
     # collects included groups and generates for those also.
 
     @property
@@ -154,18 +156,21 @@ class KGroup:
         return self._name
 
     @classmethod
-    def extend(cls, name: str,
-        position: Union[list, str, None] = None,
-        guaranteed: Union[list, str, None] = None,
-        also: Union[list, str, None] = None,
-        part: Union[list, str, None] = None):
+    def extend(
+            cls,
+            name: str,
+            position: Union[list, str, None] = None,
+            guaranteed: Union[list, str, None] = None,
+            also: Union[list, str, None] = None,
+            part: Union[list, str, None] = None):
         """ Create a new group extending this one
-        fonte = KGroup.extends('fonte',
-                        also=['tipo',
-                              'data',
-                              'ano',
-                              'obs',
-                              'substitui'])
+                fonte = KGroup.extends('fonte',
+                                also=['tipo',
+                                      'data',
+                                      'ano',
+                                      'obs',
+                                      'substitui'])
+                                      :type part: KGroup
 
         """
         new_group = type(name, (cls,), {})
@@ -248,7 +253,8 @@ class KGroup:
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
                 raise TypeError(
-                    f'Element {g} in _guaranteed is missing or with None value')
+                    f'Element {g} in _guaranteed '
+                    f'is missing or with None value')
 
     def include(self, group: Type['KGroup']):
         """ Include a group. `group`, its class, must in _part list or
@@ -302,7 +308,7 @@ class KGroup:
         Return None if not allowed
         """
         if not self.is_kgroup(group):
-            raise TypeError(f"Argument must be subclass of KGroup")
+            raise TypeError("Argument must be subclass of KGroup")
         if group.kname not in self._part:
             allowed_classes = [c for c in self._part if type(c) is not str]
             super_classes = type(group).mro()
@@ -321,7 +327,7 @@ class KGroup:
 
         Groups are returned by the order in _pars.
 
-        TODO this would better be a generator, yield instead of append
+        TODO this would better be a generator, yield instead of extend
 
         :param str group: filter by group name
         """
@@ -344,10 +350,12 @@ class KGroup:
 
             return inc_by_part_order
 
-    def attr(self, the_type: Union[str, KElement, Tuple[str, str, str]],
-        value: Union[str, KElement, Tuple[str, str, str]],
-        date: Union[str, KElement, Tuple[str, str, str]],
-        obs=None):
+    def attr(
+            self,
+            the_type: Union[str, KElement, Tuple[str, str, str]],
+            value: Union[str, KElement, Tuple[str, str, str]],
+            date: Union[str, KElement, Tuple[str, str, str]],
+            obs=None):
         """ Utility function to include a KAttribute in this KGroup
 
         The call::
@@ -370,12 +378,14 @@ class KGroup:
         self.include(ka(the_type, value, date=date, obs=obs))
         return self
 
-    def rel(self, the_type: Union[str, tuple],
-        value: Union[str, tuple],
-        destname: Union[str, tuple],
-        destination: Union[str, tuple],
-        date: Union[str, tuple],
-        obs: str = None):
+    def rel(
+            self,
+            the_type: Union[str, tuple],
+            value: Union[str, tuple],
+            destname: Union[str, tuple],
+            destination: Union[str, tuple],
+            date: Union[str, tuple],
+            obs: str = None):
         """ include a relation in this KGroup"""
         kr = globals()['KRelation']
         self.include(kr(the_type, value, destname, destination, date, obs))
@@ -483,9 +493,15 @@ class KGroup:
             more.append('obs')
         for e in more:
             m: Union[KElement, str] = getattr(self, e, None)
-            if m is not None \
-                and (type(m) is str and m > '' or (
-                issubclass(type(m), KElement) and not m.is_empty())):
+            if (
+                m is not None and
+                (
+                     type(m) is str and m > '' or
+                     (
+                         issubclass(type(m), KElement) and
+                         not m.is_empty()
+                     ))):
+                # m contains data, lets output
                 if not first:
                     s = s + f'/{e}={str(m)}'
                 else:

@@ -3,10 +3,8 @@
 """Tests for `timelink-py` package."""
 
 import pytest
-
 from click.testing import CliRunner
 
-from timelink import timelink
 from timelink import cli
 
 
