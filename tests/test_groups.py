@@ -156,7 +156,7 @@ def test_kelement_to_kleio():
                  comment="Carvº added in the margin")
     assert e.to_kleio() == \
            'name=Joaquim Carvalho#Carvº added in the margin%Joachim Carvº', \
-        "bad kleio representation of Element"
+           "bad kleio representation of Element"
 
 
 def test_kgroup_extend():
@@ -181,9 +181,11 @@ def test_kgroup_subclasses():
     n = KPerson.extend('n')
     m = KPerson.extend('m')
     f = KPerson.extend('f')
+    sub_classes = (n, m, f)
     p = n('joaquim', 'm', '01')
     sc = KPerson.all_subclasses()
-    assert len(sc) == 3, "Failed to register subclasses"
+    assert len(sc) == 3 and len(sub_classes) == 3, \
+        "Failed to register subclasses"
     assert KPerson.is_kgroup(p), "Failed is_kgroup test"
 
 
@@ -273,8 +275,8 @@ def test_includes_group():
     for pai in j.includes():
         print("pai: ", pai)
 
-    l = list(j.includes(group=pn))
-    pai = l[0]
+    lpn = list(j.includes(group=pn))
+    pai = lpn[0]
     np = pai.name.core
     assert np == 'Arménio', "Could not retrieve group by name"
 
@@ -308,7 +310,8 @@ def test_includes_no_arg():
     assert kdots.sources[0].acts[
                0].id == 'a1', "Could not use dots notation for includes"
     # pretty neat!
-    assert kdots.source.s1.act.a1.type == 'test-act', "group-id dot notation failed"
+    assert kdots.source.s1.act.a1.type == 'test-act', \
+        "group-id dot notation failed"
 
 
 def test_kgroup_attr():
@@ -319,7 +322,9 @@ def test_kgroup_attr():
 
 
 def test_kgroup_to_kleio(kgroup_source_dev):
-    s = 'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation/obs=Transcrition available, manuscript.'
+    s = 'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/' \
+        'ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation' \
+        '/obs=Transcrition available, manuscript.'
     assert kgroup_source_dev.to_kleio() == s, "Bad group representation"
 
 
@@ -373,11 +378,14 @@ def test_kgroup_dots2(kgroup_nested):
 
 def test_kgroup_dots3(kgroup_nested):
     kgroup_nested
-    assert kgroup_nested.dots.act[0].includes.person[0].name == 'Joaquim', \
-        "Failed dots retrieval"
+    the_dots = kgroup_nested.dots
+    anact: KGroup = the_dots.acts[0]
+    inc = anact.includes
+    name = inc.person[0].name
+    assert name == 'Joaquim', "Failed dots retrieval"
 
 
-def test_kgroup_dots3(kgroup_nested):
+def test_kgroup_dots4(kgroup_nested):
     kgroup_nested
     assert kgroup_nested.dots.acts[0].persons[0].name == 'Joaquim', \
         "Failed dots retrieval"
@@ -417,8 +425,10 @@ def test_person_ls_rel():
 
 
 def test_kleio_stru():
-    # We specialize the kleio groups for this purposo, using definitions already in gacto2.str
+    # We specialize the kleio groups for this purpose,
+    # using definitions already in gacto2.str
     kleio = KKleio
+    assert kleio is not None
     fonte = KSource.extend('fonte',
                            also=['tipo', 'data', 'ano', 'substitui', 'loc',
                                  'ref', 'obs'])
