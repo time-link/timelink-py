@@ -3,7 +3,6 @@ python:
 - 3.9
 - 3.8
 - 3.7
-- 3.6
 install: pip install -U tox-travis
 script: tox
 deploy:
@@ -15,4 +14,4 @@ deploy:
   on:
     tags: true
     repo: time-link/timelink
-    python: 3.8
+    python: 3.9
