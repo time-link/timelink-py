@@ -13,5 +13,5 @@ deploy:
     secure: IUisEjOeYFpAYmBQ9TodoHIdCC/wgMoHKkBIfCfrhw2v1hQlMw89AMYsfh7s75C9mQ6E3Je02g5hyV+iVJ0VXapXgatHFgfI71vAGc+lb2RfSMF9WnlhkqCvKtRXc7/ot0BVo/6818c9KRyRF6UG+7PcOFOkcMbPGeqJHAaZUg8ckcarW7Ky1ItetSf+aHZJdbYM1q1QOa3CPji9+gjPiKz/WXc2cDI/OIKzbDp8X1TVLFsgixPddC4ik1kX2hLaUYW4zdp+zZOSqKkGyvcCTcRGLou1naPUBl4w13pFy5VAbW7n2M01g2BdWHvG82QKmxSmViBkxfUdz7y/SdglyBbgJWsoDeF5j8z6DA+aLNhqaRmYzBGypipLGh1ECmQgmyGhZY217JcAHMYCrnIsYzpsdd6Rzyqwbv+GVvG8WyGmAH3LJWr+L4rMDu2FcaLkDwf3mjxKbzmdCP2soXydNSYZqamda45DOY5bhZ0/C9Y4JrVOZBTNLWoNfGT3goqX3r25Ox94r4tYWZre0y7MQTeCtOk7AqbqRuZKeu5BCZy5qpcxzsQO/RHzd5unYLKnVGJBZOOf49D+/nBAohSP9gZqj8LEpYhKWSR2ZTV1GFrZj2oT8etLaFwt908kWdiwPGx0iwm+7EVhYS8gml8So3WQH5IfipUVrQhthGMerOY=
   on:
     tags: true
-    repo: time-link/timelink
+    repo: time-link/timelink-py
     python: 3.9
