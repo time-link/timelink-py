@@ -14,7 +14,7 @@ Timelink Python package
         :alt: Documentation Status
 
 * Free software: MIT license
-* Documentation: https://timelink.readthedocs.io.
+* Documentation: https://timelink-py.readthedocs.io/
 
 
 Features
