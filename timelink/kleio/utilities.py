@@ -5,7 +5,6 @@
 
 Kleio Groups are the building blocks for transcription of historical sources.
 """
-from dataclasses import fields
 import textwrap
 from os import linesep as nl
 
@@ -91,4 +90,3 @@ def format_obs(obs, initial_indent=' ' * 4, indent=' ' * 2):
     else:
         s = '/obs=' + o + nl
     return s
-

@@ -15,10 +15,12 @@ KKleio
     Represents a Kleio document. It should include a single KSource group.
 
 KSource
-    Represent an Historical Source. Can contain a variable number of KAct groups.
+    Represent an Historical Source. Can contain a variable number
+    of KAct groups.
 
 KAct
-    Represents an historical act. Can contain a variable number of KPerson or KObject.
+    Represents an historical act. Can contain a variable number
+    of KPerson or KObject.
 
 In normal usage the basic groups are extended for a particular context:
 
@@ -32,11 +34,14 @@ In normal usage the basic groups are extended for a particular context:
 
         kleio = KKleio
 
-        fonte = KSource.extend(
-            'fonte', also=['tipo', 'data', 'ano', 'substitui', 'loc', 'ref', 'obs'])
+        fonte = KSource.extend('fonte',
+                                also=['tipo', 'data', 'ano', 'substitui',
+                                        'loc', 'ref', 'obs'])
 
-        lista = KAct.extend('lista', position=['id', 'dia', 'mes', 'ano'], guaranteed=[
-            'id', 'ano', 'mes', 'dia'], also=['data', 'tipo', 'loc', 'obs'])
+        lista = KAct.extend('lista',
+                            position=['id', 'dia', 'mes', 'ano'],
+                            guaranteed=['id', 'ano', 'mes', 'dia'],
+                            also=['data', 'tipo', 'loc', 'obs'])
 
         auc = KAbstraction.extend('auc', position=['name', ''], also=[
             'level', 'id'], guaranteed=['id'])
@@ -50,7 +55,9 @@ In normal usage the basic groups are extended for a particular context:
         mae = KPerson.extend('mae', position=['nome'], guaranteed=[
             'id', 'nome'], also=['mesmo_que', 'obs'])
 
-        ls = KLs.extend('ls', position=['type', 'value', 'data'], also=['data', 'obs'])
+        ls = KLs.extend('ls',
+                        position=['type', 'value', 'data'],
+                        also=['data', 'obs'])
 
         atr = KAtr.extend(
             'atr', position=['type', 'value', 'data'], also=['data', 'obs'])
@@ -214,13 +221,12 @@ class KGroup:
         return self._name
 
     @classmethod
-    def extend(
-            cls,
-            name: str,
-            position: Union[list, str, None] = None,
-            guaranteed: Union[list, str, None] = None,
-            also: Union[list, str, None] = None,
-            part: Union[list, str, None] = None):
+    def extend(cls,
+               name: str,
+               position: Union[list, str, None] = None,
+               guaranteed: Union[list, str, None] = None,
+               also: Union[list, str, None] = None,
+               part: Union[list, str, None] = None):
         """ Create a new group extending this one
                 fonte = KGroup.extends('fonte',
                                 also=['tipo',
@@ -230,7 +236,7 @@ class KGroup:
                                       'substitui'])
                                       :type part: KGroup
 
-        """
+    """
         new_group = type(name, (cls,), {})
         new_group._name = name
         # todo: k,v in kwargs if in cls set if not error
@@ -362,7 +368,7 @@ class KGroup:
             2. the type of the group is in self._pars
             3. the type of the group inherits from a type in self._pars
 
-        Return key under which the group is allowed (kname, type, or super tupe
+        Return key under which the group is allowed (kname, type or super type)
         Return None if not allowed
         """
         if not self.is_kgroup(group):
@@ -408,12 +414,11 @@ class KGroup:
 
             return inc_by_part_order
 
-    def attr(
-            self,
-            the_type: Union[str, KElement, Tuple[str, str, str]],
-            value: Union[str, KElement, Tuple[str, str, str]],
-            date: Union[str, KElement, Tuple[str, str, str]],
-            obs=None):
+    def attr(self,
+             the_type: Union[str, KElement, Tuple[str, str, str]],
+             value: Union[str, KElement, Tuple[str, str, str]],
+             date: Union[str, KElement, Tuple[str, str, str]],
+             obs=None):
         """ Utility function to include a KAttribute in this KGroup
 
         The call::
@@ -436,8 +441,7 @@ class KGroup:
         self.include(ka(the_type, value, date=date, obs=obs))
         return self
 
-    def rel(
-            self,
+    def rel(self,
             the_type: Union[str, tuple],
             value: Union[str, tuple],
             destname: Union[str, tuple],
@@ -452,15 +456,16 @@ class KGroup:
         """ Return a kleio representation of the group."""
         return self.__str__(indent=indent, recurse=True)
 
-    def to_dict(self,allow_none: bool=False,
-                include_str: bool=False,
-                include_kleio: bool=False,
+    def to_dict(self, allow_none: bool = False,
+                include_str: bool = False,
+                include_kleio: bool = False,
                 redundant_keys: bool = True):
         """ Return group information as a dict.
 
         Params:
             allow_none bool = Include null values (default False)
-            include_str = include a string represention of the element (with # and % if necessary)
+            include_str = include a string represention of the element
+                            (with # and % if necessary)
             include_kleio = include a kleio representation of the element
 
 
@@ -472,18 +477,22 @@ class KGroup:
             group[element_comment]: comment aspect of element
             group[element_original]: original aspect of element
             group[element_str] : string representation of element
-                                 (with # and % if necessary) if include_str=True
-            group[element_kleio]: kleio representation element=string if include_kleio=True
+                                 (with # and % if necessary)
+                                 if include_str=True
+            group[element_kleio]: kleio representation element=string
+                                  if include_kleio=True
 
             group[includes]: list of enclosed groups
             group[includes][subgroup]: list of enclosed groups of type subgroup
 
-            if redundant_keys=True enclose subgroups can also be accessed in the plural form
-                if there are no name conflict with existing elements:
+            if redundant_keys=True enclose subgroups can also be accessed
+                              in the plural form if there are no name
+                            conflict with existing elements:
 
             group['persons'] == group['includes']['persons']
             and
-            group['person']['id1']  == [p for p in group['includes']['persons'] if p.id='id1'][0]
+            group['person']['id1']  == [p for p in group['includes']['persons']
+                                        if p.id='id1'][0]
 
 
         """
@@ -497,12 +506,15 @@ class KGroup:
                     kd[e] = core
                     kd[e + '_comment'] = comment
                     kd[e + '_original'] = original
-                    if include_str: kd[e + '_str'] = str(v)
-                    if include_kleio: kd[e + '_kleio'] = v.to_kleio()
+                    if include_str:
+                        kd[e + '_str'] = str(v)
+                    if include_kleio:
+                        kd[e + '_kleio'] = v.to_kleio()
                 else:
                     kd[e] = v
         if not allow_none:
-            kd = dict([(key, value) for key, value in kd.items() if value is not None])
+            kd = dict([(key, value) for key, value in kd.items()
+                       if value is not None])
         # we now includes subgroups
         ki = dict()
         # we now collect subgroups by name
@@ -510,9 +522,14 @@ class KGroup:
         for i in included:
             n = i.kname
             if n not in ki.keys():
-                ki[n] = [i.to_dict(include_str=include_str,include_kleio=include_kleio,redundant_keys=redundant_keys)]
+                ki[n] = [i.to_dict(include_str=include_str,
+                                   include_kleio=include_kleio,
+                                   redundant_keys=redundant_keys)]
             else:
-                ki[n].append(i.to_dict(include_str=include_str,include_kleio=include_kleio,redundant_keys=redundant_keys))
+                ki[n].append(
+                    i.to_dict(include_str=include_str,
+                              include_kleio=include_kleio,
+                              redundant_keys=redundant_keys))
         if len(ki) > 0:
             kd['includes'] = ki
             # if there are no name conflicts and plural form
@@ -526,16 +543,20 @@ class KGroup:
                         # so we can have source['act']['ac010]['person']['p01']
                         for group in ki[subgroup]:
                             gid = group.get('id', None)
-                            if gid is not None and subgroup not in self.elements():
+                            if gid is not None and subgroup \
+                                    not in self.elements():
                                 if subgroup not in kd.keys():
                                     kd[subgroup] = dict()
                                 kd[subgroup][gid] = group
         return kd
 
     def to_json(self):
-        return json.dumps(self.to_dict(include_str=False,include_kleio=False,redundant_keys=False),
-                      indent=4,
-                      allow_nan=False)
+        return json.dumps(self.to_dict(include_str=False,
+                                       include_kleio=False,
+                                       redundant_keys=False),
+                          indent=4,
+                          allow_nan=False)
+
     @property
     def get(self):
         return self.to_dict()
@@ -548,11 +569,13 @@ class KGroup:
         """
         Allows easy referencing of the dictionary representation of the group.
 
-        It is very usefull in list comprehension, e.g.:
+        It is very usefull in list comprehensiona, e.g.:
 
-          >> 'Diamantina' in [ls.value for ls in person.dots.lss if ls.type == 'nome-geografico']
+          >> 'Diamantina' in [ls.value for ls in person.dots.lss
+                                if ls.type == 'nome-geografico']
 
-          >> [ls.value for ls in person.dots.lss if ls.type == 'nome-geografico']
+          >> [ls.value for ls in person.dots.lss
+                        if ls.type == 'nome-geografico']
 
         :return:
         """
@@ -583,11 +606,11 @@ class KGroup:
             if (
                 m is not None and
                 (
-                     type(m) is str and m > '' or
-                     (
-                         issubclass(type(m), KElement) and
-                         not m.is_empty()
-                     ))):
+                    type(m) is str and m > '' or
+                    (
+                        issubclass(type(m), KElement) and
+                        not m.is_empty()
+                    ))):
                 # m contains data, lets output
                 if not first:
                     s = s + f'/{e}={str(m)}'

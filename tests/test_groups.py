@@ -384,6 +384,7 @@ def test_kgroup_dots3(kgroup_nested):
     name = inc.person[0].name
     assert name == 'Joaquim', "Failed dots retrieval"
 
+
 def test_kgroup_dots4(kgroup_nested):
     kgroup_nested
     assert kgroup_nested.dots.acts[0].persons[0].name == 'Joaquim', \
@@ -395,9 +396,10 @@ def test_kgroup_dots_id(kgroup_nested):
     assert kgroup_nested.dots.act.a1.person.p01.name == 'Joaquim', \
         "Failed dots retrieval"
 
+
 def test_kgroup_to_json(kgroup_nested):
     json_string = kgroup_nested.to_json()
-    assert json_string , "Could not produce json"
+    assert json_string, "Could not produce json"
 
 
 def test_kgroup_core_value(kgroup_source_dev):
