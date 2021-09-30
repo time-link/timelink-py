@@ -88,11 +88,13 @@ To release a new version:
 
 .. code-block:: bash
 
-   make lint       # check code style
-   make test       # run the local test suite
-   make coverage   # check test coverage
-   make test-all   # run the test on various version of python
-   make docs       # update the documentation
+   make lint                        # check code style
+   make test                        # run the local test suite
+   make coverage                    # check test coverage
+   make test-all                    # test on different versions of python
+   make docs                        # update the documentation
+   bump2version [major|minor|patch] # update version
+   git push --tags                  # will trigger travis build and deploy
 
 Credits
 -------
