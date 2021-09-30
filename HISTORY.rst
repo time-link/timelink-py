@@ -2,6 +2,12 @@
 History
 =======
 
+0.2.8 (2021-09-30)
+------------------
+
+* Add to_json() method to KGroup, enabling Kleio to JSon serialization.
+
+
 0.2.7 (2021-08-29)
 ------------------
 
