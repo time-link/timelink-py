@@ -21,9 +21,13 @@ Features
 --------
 
 
-* Pythonic representation of Kleio groups, easing generation of Kleio file from data in other formats.
-* Utility functions for acessing MHK instalation, including database access.
-* CLI tool
+* Pythonic representation of Kleio groups, easing generation of Kleio
+  file from data in other formats. See :py:mod:`timelink.kleio.groups`
+* Utility functions for acessing MHK instalation,
+  including database access. See :py:mod:`timelink.mhk.utilities`
+* CLI tool. See :py:mod:`timelink.cli`
+
+See package documentation :py:mod:`timelink`
 
 Credits
 -------

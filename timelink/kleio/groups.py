@@ -6,7 +6,63 @@
 
 Kleio Groups are the building blocks for transcription of historical sources.
 
+The classes in this package can be used to generate Kleio sources from data
+fetched from databases or read from csv or json files.
+
+The base classes are:
+
+KKleio
+    Represents a Kleio document. It should include a single KSource group.
+
+KSource
+    Represent an Historical Source. Can contain a variable number of KAct groups.
+
+KAct
+    Represents an historical act. Can contain a variable number of KPerson or KObject.
+
+In normal usage the basic groups are extended for a particular context:
+
+
+.. code-block:: python
+
+
+        from timelink.kleio.groups import KKleio, KSource, KAct, \
+            KAbstraction, KPerson, KLs, KAtr
+
+
+        kleio = KKleio
+
+        fonte = KSource.extend(
+            'fonte', also=['tipo', 'data', 'ano', 'substitui', 'loc', 'ref', 'obs'])
+
+        lista = KAct.extend('lista', position=['id', 'dia', 'mes', 'ano'], guaranteed=[
+            'id', 'ano', 'mes', 'dia'], also=['data', 'tipo', 'loc', 'obs'])
+
+        auc = KAbstraction.extend('auc', position=['name', ''], also=[
+            'level', 'id'], guaranteed=['id'])
+
+        n = KPerson.extend('n', position=['nome', 'sexo'], guaranteed=[
+            'id', 'nome', 'sexo'], also=['mesmo_que', 'obs'])
+
+        pai = KPerson.extend('pai', position=['nome'], guaranteed=[
+            'id', 'nome'], also=['mesmo_que', 'obs'])
+
+        mae = KPerson.extend('mae', position=['nome'], guaranteed=[
+            'id', 'nome'], also=['mesmo_que', 'obs'])
+
+        ls = KLs.extend('ls', position=['type', 'value', 'data'], also=['data', 'obs'])
+
+        atr = KAtr.extend(
+            'atr', position=['type', 'value', 'data'], also=['data', 'obs'])
+
+        n.allow_as_part(pai)
+
+        n.allow_as_part(mae)
+
+
+
 """
+import json
 import textwrap
 from os import linesep as nl
 from typing import Any, Union, Type, Tuple
@@ -136,6 +192,8 @@ class KGroup:
     Use _part to list allowed enclosed groups.
 
     For an example see timelink.kleio.groups.KPerson
+
+
 
     """
 
@@ -394,8 +452,17 @@ class KGroup:
         """ Return a kleio representation of the group."""
         return self.__str__(indent=indent, recurse=True)
 
-    def to_dict(self):
+    def to_dict(self,allow_none: bool=False,
+                include_str: bool=False,
+                include_kleio: bool=False,
+                redundant_keys: bool = True):
         """ Return group information as a dict.
+
+        Params:
+            allow_none bool = Include null values (default False)
+            include_str = include a string represention of the element (with # and % if necessary)
+            include_kleio = include a kleio representation of the element
+
 
         Also available as property "get" so that
         group.to_dict()['id'] == group.get['id']
@@ -405,20 +472,23 @@ class KGroup:
             group[element_comment]: comment aspect of element
             group[element_original]: original aspect of element
             group[element_str] : string representation of element
-                                 (with # and % if necessary)
-            group[element_kleio]: kleio representation element=string
+                                 (with # and % if necessary) if include_str=True
+            group[element_kleio]: kleio representation element=string if include_kleio=True
 
             group[includes]: list of enclosed groups
             group[includes][subgroup]: list of enclosed groups of type subgroup
 
-            enclose subgroups can also be accessed in the plural form
+            if redundant_keys=True enclose subgroups can also be accessed in the plural form
                 if there are no name conflict with existing elements:
 
-            group[subgroup+'s'] == group[includes][subgroup]
+            group['persons'] == group['includes']['persons']
+            and
+            group['person']['id1']  == [p for p in group['includes']['persons'] if p.id='id1'][0]
 
 
         """
         kd = dict()
+        kd['kleio_group'] = self._name
         for e in self.elements():
             v: KElement = getattr(self, e, None)
             if v is not None:
@@ -427,11 +497,12 @@ class KGroup:
                     kd[e] = core
                     kd[e + '_comment'] = comment
                     kd[e + '_original'] = original
-                    kd[e + '_str'] = str(v)
-                    kd[e + '_kleio'] = v.to_kleio()
+                    if include_str: kd[e + '_str'] = str(v)
+                    if include_kleio: kd[e + '_kleio'] = v.to_kleio()
                 else:
                     kd[e] = v
-
+        if not allow_none:
+            kd = dict([(key, value) for key, value in kd.items() if value is not None])
         # we now includes subgroups
         ki = dict()
         # we now collect subgroups by name
@@ -439,27 +510,32 @@ class KGroup:
         for i in included:
             n = i.kname
             if n not in ki.keys():
-                ki[n] = [i.to_dict()]
+                ki[n] = [i.to_dict(include_str=include_str,include_kleio=include_kleio,redundant_keys=redundant_keys)]
             else:
-                ki[n].append(i.to_dict())
+                ki[n].append(i.to_dict(include_str=include_str,include_kleio=include_kleio,redundant_keys=redundant_keys))
         if len(ki) > 0:
             kd['includes'] = ki
             # if there are no name conflicts and plural form
             # so g['includes']['act'] can be accessed as
             #    g['acts']
-            for subgroup in ki.keys():
-                if subgroup + 's' not in self.elements():
-                    kd[subgroup + 's'] = ki[subgroup]
-                    # we include subgroup indexed by id
-                    # so we can have source['act']['ac010]['person']['p01']
-                    for group in ki[subgroup]:
-                        gid = group.get('id', None)
-                        if gid is not None and subgroup not in self.elements():
-                            if subgroup not in kd.keys():
-                                kd[subgroup] = dict()
-                            kd[subgroup][gid] = group
+            if redundant_keys:
+                for subgroup in ki.keys():
+                    if subgroup + 's' not in self.elements():
+                        kd[subgroup + 's'] = ki[subgroup]
+                        # we include subgroup indexed by id
+                        # so we can have source['act']['ac010]['person']['p01']
+                        for group in ki[subgroup]:
+                            gid = group.get('id', None)
+                            if gid is not None and subgroup not in self.elements():
+                                if subgroup not in kd.keys():
+                                    kd[subgroup] = dict()
+                                kd[subgroup][gid] = group
         return kd
 
+    def to_json(self):
+        return json.dumps(self.to_dict(include_str=False,include_kleio=False,redundant_keys=False),
+                      indent=4,
+                      allow_nan=False)
     @property
     def get(self):
         return self.to_dict()
@@ -469,6 +545,17 @@ class KGroup:
 
     @property
     def dots(self):
+        """
+        Allows easy referencing of the dictionary representation of the group.
+
+        It is very usefull in list comprehension, e.g.:
+
+          >> 'Diamantina' in [ls.value for ls in person.dots.lss if ls.type == 'nome-geografico']
+
+          >> [ls.value for ls in person.dots.lss if ls.type == 'nome-geografico']
+
+        :return:
+        """
         return self.to_dots()
 
     def __str__(self, indent="", recurse=False):
