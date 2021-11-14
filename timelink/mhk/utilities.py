@@ -26,7 +26,7 @@ def get_mhk_env() -> Type[Union[str, None]]:
         return dotenv_values(home_dir + "/.mhk")
 
 
-def get_mhk_app_env():
+def get_mhk_app_env() -> Type[Union[str, None]]:
     """
     Get the mhk app environment variables from mhk-home/app/.env
 
@@ -45,7 +45,7 @@ def get_mhk_app_env():
     return {}
 
 
-def get_connection_string(db: str, host='localhost', port='3307'):
+def get_connection_string(db: str, host='localhost', port='3307') -> str:
     pwd = get_db_pwd()
     conn_string = f'mysql+mysqlconnector://root:{pwd}@{host}:{port}/{db}'
     return conn_string
