@@ -1,7 +1,7 @@
 
-from sqlalchemy import Column,String,Integer,DateTime, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy import case
+from sqlalchemy.orm import relationship
 
 from timelink.mhk.models.base_class import Base
 

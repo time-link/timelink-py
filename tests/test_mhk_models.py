@@ -32,7 +32,9 @@ def dbsystem():
 
 
 def test_create_db(dbsystem):
-    pass
+    metadata = Base.metadata
+    tables = list(metadata.tables.keys())
+    assert len(tables) > 0, "tables where not created"
 
 
 
