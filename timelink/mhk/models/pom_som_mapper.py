@@ -8,6 +8,13 @@ from timelink.mhk.models.entity import Entity
 
 
 class PomSomMapper(Entity):
+    """
+    Represents a mapping between a Kleio Group in the
+    Source Oriented Model (Som) and a relational database entity
+    in the Person Oriented Model (Pom).
+
+
+    """
     __tablename__ = 'classes'
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
@@ -22,9 +29,12 @@ class PomSomMapper(Entity):
 
     def ensure_mapping(self, session):
         """
-        Ensure that a table exists to support this class.
+        Ensure that a table exists to support
+        this SOM Mapping
 
-        Checks in the metadata object if there is a table definition for this table.
+        Checks if there is a table definition
+        to support this mapping. If not a new table
+        definition is created.
         NOT TESTED
         """
         metadata_obj = type(self).metadata
