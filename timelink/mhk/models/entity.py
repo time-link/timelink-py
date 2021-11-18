@@ -5,7 +5,6 @@ from sqlalchemy.orm import relationship
 
 from timelink.mhk.models.base_class import Base
 
-
 class Entity(Base):
     __tablename__ = 'entities'
 
@@ -36,12 +35,9 @@ class Entity(Base):
 
     __mapper_args__ = {
         'polymorphic_identity': 'entity',
-        'polymorphic_on': case(
-            [(pom_class.in_(
-                ['attribute', 'relation', 'person', 'object', 'act', 'source',
-                 'class']), pom_class)],
-            else_="entity")
+        'polymorphic_on': pom_class,
     }
+
 
     # untested
     @classmethod  # untested
@@ -67,10 +63,13 @@ class Entity(Base):
     @classmethod
     def pom_class_to_orm(cls):
         """
-        Return a dict with pom_class as key and ORM class as valu
+        Return a dict with pom_class id as key and ORM class as value
         """
+        sc = list(cls.get_subclasses())
+        if sc is not None:
+            sc.append(cls)
         return {subclass.__mapper__.polymorphic_identity: subclass for subclass
-                in cls.get_subclasses()}
+                in sc}
 
     @classmethod
     def get_orm_for_table(cls, table: String):

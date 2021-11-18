@@ -5,7 +5,7 @@ MIT License, no warranties.
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.mhk.models.base import Entity
-
+from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
 
 class Act(Entity):
     __tablename__ = 'acts'
@@ -20,6 +20,41 @@ class Act(Entity):
     __mapper_args__ = {
         'polymorphic_identity':'act'
     }
+
+
+    @classmethod
+    def get_pom_som_data(cls):
+        """
+        from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
+
+        Not sure if I need to map the basic classes
+        :return: List of PomSomMapper and PomClassAttributes
+        """
+        return [
+            PomSomMapper(id="act", table_name="acts",
+                         class_group="historical-act", super_class="entity"),
+            PomClassAttributes(the_class="act", name="date",
+                               colname="the_date", colclass="the_date",
+                               coltype="varchar", colsize="24",
+                               colprecision="0", pkey="0"),
+            PomClassAttributes(the_class="act", name="id", colname="id",
+                               colclass="id", coltype="varchar", colsize="64",
+                               colprecision="0", pkey="1"),
+            PomClassAttributes(the_class="act", name="loc", colname="loc",
+                               colclass="loc", coltype="varchar", colsize="64",
+                               colprecision="0", pkey="0"),
+            PomClassAttributes(the_class="act", name="obs", colname="obs",
+                               colclass="obs", coltype="varchar",
+                               colsize="1024", colprecision="0", pkey="0"),
+            PomClassAttributes(the_class="act", name="ref", colname="ref",
+                               colclass="ref", coltype="varchar", colsize="64",
+                               colprecision="0", pkey="0"),
+            PomClassAttributes(the_class="act", name="type",
+                               colname="the_type", colclass="the_type",
+                               coltype="varchar", colsize="32",
+                               colprecision="0", pkey="0"),
+
+        ]
 
 
     def __repr__(self):
