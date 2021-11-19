@@ -29,19 +29,25 @@ def test_create_db(dbsystem):
 
 def test_populate_entity_class(dbsystem):
     session: Session
-
-
     with Session(dbsystem.engine) as session:
-        orm_mapped_classes = Entity.pom_class_to_orm()
-        orm_mapped_tables = Entity.table_to_orm()
-        db_tables = list(Entity.metadata.tables.keys())
         pom_classes = PomSomMapper.get_pom_classes(session=session)
         pom_ids = PomSomMapper.get_pom_class_ids(session=session)
+        pom_tables = [pom_class.table_name for pom_class in pom_classes]
         pom_class: PomSomMapper
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session=session)
             print(repr(pom_class))
             print(pom_class)
+        orm_mapped_classes = Entity.pom_class_to_orm()
+        non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
+        assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
+        orm_mapped_tables = Entity.table_to_orm()
+        tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
+        assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
+        db_tables = list(Entity.metadata.tables.keys())
+        tables_not_in_db = set(orm_mapped_tables) - set (db_tables)
+        assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
+
 
 
 

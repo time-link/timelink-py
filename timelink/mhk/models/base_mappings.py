@@ -194,6 +194,31 @@ pom_som_base_mappings = {
                            coltype="varchar", colsize="254", colprecision="0",
                            pkey="0"),
     ],
+    'rentity': [
+        PomSomMapper(id="rentity", table_name="rentities",
+                     class_group="rentity", super_class="entity"),
+        PomClassAttributes(the_class="rentity", name="description",
+                           colname="description", colclass="description",
+                           coltype="varchar", colsize="128", colprecision="0",
+                           pkey="0"),
+        PomClassAttributes(the_class="rentity", name="id", colname="id",
+                           colclass="id", coltype="varchar", colsize="64",
+                           colprecision="0", pkey="1"),
+        PomClassAttributes(the_class="rentity", name="obs", colname="obs",
+                           colclass="obs", coltype="varchar", colsize="1024",
+                           colprecision="0", pkey="0"),
+        PomClassAttributes(the_class="rentity", name="status",
+                           colname="status", colclass="status",
+                           coltype="varchar", colsize="64", colprecision="0",
+                           pkey="0"),
+        PomClassAttributes(the_class="rentity", name="the_class",
+                           colname="the_class", colclass="the_class",
+                           coltype="varchar", colsize="32", colprecision="0",
+                           pkey="0"),
+        PomClassAttributes(the_class="rentity", name="user", colname="user",
+                           colclass="user", coltype="varchar", colsize="64",
+                           colprecision="0", pkey="0"),
+    ],
     'rgeoentity': [
         PomSomMapper(id="rgeoentity", table_name="rgeoentities",
                      class_group="rgeoentity", super_class="rentity"),
@@ -291,6 +316,7 @@ pom_som_base_mappings = {
                            coltype="varchar", colsize="254", colprecision="0",
                            pkey="0"),
     ],
+
 }
 
 more_mappings = {

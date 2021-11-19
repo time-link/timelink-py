@@ -138,21 +138,27 @@ class PomSomMapper(Entity):
                     PyType = String
                 print(f"Inferred python type for {cattr.colname}: ", PyType)
 
-                print("Getting super class " + self.super_class)
-                pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                    session, self.super_class)
-                if pom_super_class is not None:
-                    super_class_table_id = pom_super_class.table_name + '.id'
-                else:
-                    print("ERROR could not find superclass: ",
-                          self.super_class)
-                    super_class_table_id = 'entities.id'
+
                 if cattr.pkey != 0:
-                    my_table.append_column(Column(cattr.colname, PyType,
-                                                  ForeignKey(
-                                                      super_class_table_id),
-                                                  primary_key=True),
-                                           replace_existing=True)
+                    if self.super_class not in ['root','base']:
+                        print("Getting super class " + self.super_class)
+                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
+                            session, self.super_class)
+                        if pom_super_class is not None:
+                            super_class_table_id = pom_super_class.table_name + '.id'
+                        else:
+                            print("ERROR could not find superclass: ",
+                                  self.super_class)
+                            super_class_table_id = 'entities.id'
+                        my_table.append_column(Column(cattr.colname, PyType,
+                                                      ForeignKey(
+                                                          super_class_table_id),
+                                                      primary_key=True),
+                                               replace_existing=True)
+                    else:
+                        my_table.append_column(Column(cattr.colname, PyType,
+                                                      primary_key=True),
+                                               replace_existing=True)
                 else:
                     my_table.append_column(
                         Column(cattr.colname, PyType, primary_key=False),
@@ -164,7 +170,10 @@ class PomSomMapper(Entity):
                 '__mapper_args__': {'polymorphic_identity': self.id}
             }
 
-            my_orm = type(self.id.capitalize(), (super_orm,), props)
+            try:
+                my_orm = type(self.id.capitalize(), (super_orm,), props)
+            except:
+                pass
             self.orm_class = my_orm
             return self.orm_class
             # print("----")
