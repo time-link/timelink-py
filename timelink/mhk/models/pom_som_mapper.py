@@ -3,7 +3,7 @@ from typing import Optional, Type, List
 from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
     select
 from sqlalchemy import inspect
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, Session
 
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.entity import Entity
@@ -13,17 +13,25 @@ class PomSomMapper(Entity):
     """
     Represents a mapping between a Kleio Group in the
     Source Oriented Model (Som) and a relational database entity
-    in the Person Oriented Model (Pom). This class in an ORM
-    mapping for the table "classes" in a Timelink-MHK database,
+    in the Person Oriented Model (Pom). This class corresponds
+    to the table "classes" in a Timelink-MHK database,
     and the associated "class_attributes" table. Together the
-    two tables describe a Som-Pom mapping, and allow for dynamic
-    mappings to be added to a given project.
+    two tables describe a Som-Pom mapping, that define how
+    Kleio groups are store in the relational database.
 
     Fields:
         * id - name of this PomSomMapper, singular form
         * table_name - name of the table in Pom, plural form
         * class_group - name of Som group that maps to this table
         * super_class - name of PomSom class extended by this one
+
+    For the core kleio groups (source,act,person,object, relation,attribute)
+    the mapping information is predefined and created at database creation time.
+
+    The Kleio translator can provide new mappings for new groups that are
+    created for specific sources. The mapping information between new groups
+    and the database is embedded in the translator output of new sources in the
+    form of data for the tables mapped to the PomSomMapper.
 
     For a mapping between a Som Group and a Pom table
     to be fully operational it is necessary that:
@@ -33,13 +41,16 @@ class PomSomMapper(Entity):
     the database (DBSystem.db_init) and updated during import,
     as new sources define new mappings dynamically.
 
-    2. A table for storing the elements of the Som Group. This is either
-    mapped to a basic core table (persons,objects,acts,sources,...) or
-    to an additional table for extra information. The name of the table for
-    a given group and the correspondence between group elements and table
-    columns is given in the "classes" and "class_attributes" tables. If the
-    group adds extra information creating a new table that "extends"
-     an existing table, through what is called a joined inheritance hierarchy
+    2. A table for storing the elements of the Som Group converted
+    in a Pom Entity. This is either mapped to a basic core table
+    (persons,objects,acts,sources,...) or a table that extends
+    a basic core table with extra information.
+
+    The name of the table for a given group and the correspondence between
+    group elements and table columns is handled by the PomSomMapper. If the
+    group adds extra information then a new table
+    is created  that "extends" an existing core table,
+    by what is called a "joined inheritance hierarchy"
     (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
 
     3. An ORM sqlalchemy model that represents the Pom model and joins
@@ -50,7 +61,7 @@ class PomSomMapper(Entity):
     To ensure that all the three dimensions exist in a given context it
     is necessary that:
 
-    1. When creating a new database, the core Pom tables can be created
+    1. When creating a new database, the core Pom tables should be created
     using sqlalchemy `metadata.create_all(bind=engine)`. Then the
     tables "classes" and "class_attributes" must be populated with the mapping
     of the core Som and Pom core entities. See timelink.models.base_mappings.py
@@ -65,10 +76,12 @@ class PomSomMapper(Entity):
    PomSomMapper.ensure_mapping(session).
 
    3. When connecting to a database created by a legacy version of MHK, it is
-   necessary to ensure that the ORM mappings exist, by examining all the
+   necessary to ensure that all the ORM mappings are created, by examining the
    information in the "classes" table and checking if the ORM mapping and
    table representations exist.
    This is also done by the PomSomMapper.ensure_mapping(session) method.
+
+
 
 
 
@@ -91,7 +104,7 @@ class PomSomMapper(Entity):
     # stores the ORM mapper for this mapping
     orm_class: Entity
 
-    def ensure_mapping(self, session=None):
+    def ensure_mapping(self, session: Session=None):
         """
         Ensure that a table exists to support
         this SOM Mapping
@@ -116,12 +129,15 @@ class PomSomMapper(Entity):
         if session is None:
             # cannot ensure mapping if no connection to db
             return None
+
+        # we have no ORM mapping for the SomPomMapper
         metadata_obj = type(self).metadata
         pytables = metadata_obj.tables
         my_table: Table
+        # first we check that if we have a table in the database
         if self.table_name in pytables.keys():
             my_table = pytables[self.table_name]
-        else:
+        else:   # no table, we must create it
             my_table = Table(self.table_name, metadata_obj,
                              extend_existing=True)
             cattr: Type["PomClassAttributes"]
@@ -163,25 +179,27 @@ class PomSomMapper(Entity):
                     my_table.append_column(
                         Column(cattr.colname, PyType, primary_key=False),
                         replace_existing=True)
+            my_table.create(session.get_bind())
 
-            super_orm = Entity.get_orm_for_pom_class(self.super_class)
-            props = {
-                '__table__': my_table,
-                '__mapper_args__': {'polymorphic_identity': self.id}
-            }
 
-            try:
-                my_orm = type(self.id.capitalize(), (super_orm,), props)
-            except:
-                pass
-            self.orm_class = my_orm
-            return self.orm_class
-            # print("----")
-            # print(repr(NewTable))
-            # self.__table__= NewTable
+        # we know create a new ORM mapping for this PomSomMapper
+        super_orm = Entity.get_orm_for_pom_class(self.super_class)
+        props = {
+            '__table__': my_table,
+            '__mapper_args__': {'polymorphic_identity': self.id}
+        }
+        try:
+            my_orm = type(self.id.capitalize(), (super_orm,), props)
+        except:
+            pass
+        self.orm_class: Optional[Entity] = my_orm
+        return self.orm_class
+        # print("----")
+        # print(repr(NewTable))
+        # self.__table__= NewTable
 
     @classmethod
-    def get_pom_classes(cls, session=None):
+    def get_pom_classes(cls, session: object = None) -> Optional[List["PomSomMapper"]]:
         if session is None:
             session = inspect(cls).session
             if session is None:
@@ -198,8 +216,7 @@ class PomSomMapper(Entity):
             session = inspect(cls).session
             if session is None:
                 # cannot ensure mapping if no connection to db
-                return
-
+                return None
         stmt = select(cls.id)
         pom_class_ids: Optional[List[str]] = session.execute(
             stmt).scalars().all()
