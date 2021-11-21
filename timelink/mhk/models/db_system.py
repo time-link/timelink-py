@@ -1,4 +1,4 @@
-from sqlalchemy import MetaData, create_engine, select
+from sqlalchemy import MetaData, engine, create_engine, select
 from sqlalchemy.orm import Session
 
 from timelink.mhk.models import base  # noqa
@@ -7,7 +7,7 @@ from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
 
 class DBSystem:
-    engine = None
+    engine: engine = None
     conn_string = None
     metadata: MetaData = None
 
@@ -27,7 +27,8 @@ class DBSystem:
                     session.bulk_save_objects(data)
                     session.commit()
 
-
+    def table_names(self):
+        return self.engine.table_names()
 
     def db_drop(self):
         self.metadata.drop_all(bind=self.engine)
