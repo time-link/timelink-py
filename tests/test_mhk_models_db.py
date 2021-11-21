@@ -1,5 +1,3 @@
-from typing import List
-
 import pytest
 from sqlalchemy.orm import Session
 
@@ -27,7 +25,7 @@ def test_create_db(dbsystem):
 
     assert len(tables) > 0, "tables where not created"
 
-def test_populate_entity_class(dbsystem):
+def teste_ensure_mapping(dbsystem):
     session: Session
     with Session(dbsystem.engine) as session:
         pom_classes = PomSomMapper.get_pom_classes(session=session)
@@ -38,13 +36,13 @@ def test_populate_entity_class(dbsystem):
             pom_class.ensure_mapping(session=session)
             print(repr(pom_class))
             print(pom_class)
-        orm_mapped_classes = Entity.pom_class_to_orm()
+        orm_mapped_classes = Entity.get_spmapper_to_orm_as_dict()
         non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
         assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
-        orm_mapped_tables = Entity.table_to_orm()
+        orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
         assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
-        db_tables = list(Entity.metadata.tables.keys())
+        db_tables = dbsystem.table_names()
         tables_not_in_db = set(orm_mapped_tables) - set (db_tables)
         assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
 
