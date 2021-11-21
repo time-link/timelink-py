@@ -1,15 +1,15 @@
 
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy import case
 from sqlalchemy.orm import relationship
 
 from timelink.mhk.models.base_class import Base
+
 
 class Entity(Base):
     __tablename__ = 'entities'
 
     id = Column(String, primary_key=True)
-    pom_class = Column('class', String,ForeignKey('classes.id'))
+    pom_class = Column('class', String, ForeignKey('classes.id'))
     inside = Column(String, ForeignKey('entities.id'))
     the_order = Column(Integer)
     the_level = Column(Integer)
@@ -39,36 +39,49 @@ class Entity(Base):
     }
 
 
-    # untested
-    @classmethod  # untested
+    @classmethod
     def get_subclasses(cls):
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
 
-    @classmethod
-    def mapped_pom_classes(cls):
-        return [aclass.__mapper_args__['polymorphic_identity']
-                for aclass
-                in Entity.__subclasses__()]
 
     @classmethod
-    def table_to_orm(cls):
+    def get_orm_entities_classes(cls):
+        """
+        Returns the currently defined ORM classes that extend Entity
+        (including Entity itself)
+        :return: List of ORM classes
+        """
+        sc = list(Entity.get_subclasses())
+        sc.append(Entity)
+        return sc
+
+    @classmethod
+    def get_spmapper_ids(cls):
+        """
+        Returns the ids of SomPomMapper references by orm classes
+        :return: List of strings
+        """
+        return [aclass.__mapper_args__['polymorphic_identity']
+                for aclass
+                in Entity.get_orm_entities_classes()]
+
+    @classmethod
+    def get_tables_to_orm_as_dict(cls):
         """
         Return a dict with table name as key and ORM class as value
         """
-        return {subclass.__mapper__.local_table.name: subclass for subclass in
-                cls.get_subclasses()}
+        return {ormclass.__mapper__.local_table.name: ormclass for ormclass in
+                Entity.get_orm_entities_classes()}
 
     @classmethod
-    def pom_class_to_orm(cls):
+    def get_spmapper_to_orm_as_dict(cls):
         """
         Return a dict with pom_class id as key and ORM class as value
         """
-        sc = list(cls.get_subclasses())
-        if sc is not None:
-            sc.append(cls)
-        return {subclass.__mapper__.polymorphic_identity: subclass for subclass
+        sc = Entity.get_orm_entities_classes()
+        return {ormclass.__mapper__.polymorphic_identity: ormclass for ormclass
                 in sc}
 
     @classmethod
@@ -78,16 +91,16 @@ class Entity(Base):
 
         will return the ORM class handling the "acts" table
         """
-        return cls.table_to_orm().get(table, None)
+        return cls.get_tables_to_orm_as_dict().get(table, None)
 
     @classmethod
-    def get_orm_for_pom_class(cls, pom_class: String):
+    def get_orm_for_pom_class(cls, pom_class: str):
         """
         Entity.get_orgm_for_pom_class("act")
 
         will return the ORM class corresponding to the pom_class "act"
         """
-        return cls.pom_class_to_orm().get(pom_class, None)
+        return cls.get_spmapper_to_orm_as_dict().get(pom_class, None)
 
     def __repr__(self):
         return (
