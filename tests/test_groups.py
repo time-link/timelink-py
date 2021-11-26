@@ -351,6 +351,19 @@ def test_kgroup_get(kgroup_nested):
     assert kgroup_nested.get["includes"]["act"][0]["id"] == 'a1', \
         "Failed nested dictionary"
 
+def test_kgroup_line_seq_level(kgroup_nested):
+    line = kgroup_nested._line
+    level = kgroup_nested._level
+    sequence = kgroup_nested._sequence
+    assert line == 1, \
+        "Failed line update"
+    act = kgroup_nested.includes('act')[0]
+    assert act._level == 2, " Failed level update"
+    person = act.includes('person')[0]
+    assert person._level == 3, " Failed level update"
+    assert person._sequence == 4, " Failed sequence update"
+
+
 
 def test_kgroup_get_id(kgroup_nested):
     kgroup_nested
@@ -462,7 +475,7 @@ def test_kleio_stru():
     f.include(l)
     a = auc('alumni-record', 'archeevo-record', id='xpto')
     l.include(a)
-    j = n('joaquim', 'm', obs='em macau')
+    j: KGroup = n('joaquim', 'm', obs='em macau')
     j.include(ls('uc', 'início', data=2021))
     j.include(atr('xauc', 'dsd'))
     l.include(j)
@@ -471,5 +484,5 @@ def test_kleio_stru():
     m = n('manuel', 'm', obs='em Berlin')
     m.include(ls('uc', 'fim', data=2021))
     l2.include(m)
-
+    json_string = j.to_json()
     assert j.nome.core == 'joaquim'

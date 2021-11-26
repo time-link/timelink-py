@@ -1,6 +1,8 @@
 import pytest
 from sqlalchemy.orm import Session
 
+from timelink.kleio.groups import KKleio, KSource, KAct, KAbstraction, KPerson, \
+    KLs, KAtr, KGroup
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
@@ -12,10 +14,10 @@ DBSystem.conn_string = 'sqlite:///teste_db'
 
 @pytest.fixture(scope="module")
 def dbsystem():
-    db = DBSystem()
-    db.init_db(DBSystem.conn_string)
+    db = DBSystem(DBSystem.conn_string)
+    db.create_db()
     yield db
-    db.db_drop()
+    db.drop_db()
 
 
 def test_create_db(dbsystem):
@@ -25,9 +27,9 @@ def test_create_db(dbsystem):
 
     assert len(tables) > 0, "tables where not created"
 
-def teste_ensure_mapping(dbsystem):
+def test_ensure_mapping(dbsystem):
     session: Session
-    with Session(dbsystem.engine) as session:
+    with dbsystem.session() as session:
         pom_classes = PomSomMapper.get_pom_classes(session=session)
         pom_ids = PomSomMapper.get_pom_class_ids(session=session)
         pom_tables = [pom_class.table_name for pom_class in pom_classes]
@@ -45,7 +47,6 @@ def teste_ensure_mapping(dbsystem):
         db_tables = dbsystem.table_names()
         tables_not_in_db = set(orm_mapped_tables) - set (db_tables)
         assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
-
 
 
 

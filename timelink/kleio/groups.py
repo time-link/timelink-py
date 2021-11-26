@@ -12,24 +12,25 @@ fetched from databases or read from csv or json files.
 The base classes are:
 
 KKleio
-    Represents a Kleio document. It should include a single KSource group.
+    A Kleio document. It should include a single KSource group.
 
 KSource
-    Represent an Historical Source. Can contain a variable number
+    A Historical Source. Can contain a variable number
     of KAct groups.
 
 KAct
-    Represents an historical act. Can contain a variable number
+    A historical act. Can contain a variable number
     of KPerson or KObject.
 
 In normal usage the basic groups are extended for a particular context:
 
 
+
 .. code-block:: python
 
 
-        from timelink.kleio.groups import KKleio, KSource, KAct, \
-            KAbstraction, KPerson, KLs, KAtr
+        from timelink.kleio.groups import KKleio, KSource, KAct,
+        KAbstraction, KPerson, KLs, KAtr
 
 
         kleio = KKleio
@@ -173,7 +174,7 @@ class KElement:
 
     def to_dict(self, name=False):
         """ Return Element as a dict {core:_, comment:_, original:_}
-        add name=True to add name to dictionnary:
+        add name=True to add name to dictionary:
         {name:_, core:_, comment:_, original:_}"""
         if name:
             return {'name': self.name,
@@ -211,6 +212,19 @@ class KGroup:
     _also: list = []
     _part: list = []
     _extends: Type['KGroup']
+    _pom_class_id: str   # KGroup.rch_class in MHK
+
+    # The following fields are generated during the translation process.
+    # If the Kleio groups are generated programatically (for instance when
+    # importing from csv files or from databases) then the cls.include method
+    # will update these values
+
+    _line: int  # line in the source file
+    _level: int  # nesting always +1  than enclosing group
+    _sequence: int  # sequential number of this group in the original source
+    # class scoped counters to ensure proper numbering across different groups
+    _global_sequence: int = 1  # global sequence count
+    _global_line: int = 1  # global line count
 
     # TODO to_kleio_str generates the definition of a group
     #  for a kleio str file. recurse=yes
@@ -292,9 +306,21 @@ class KGroup:
         if g not in cls._part:
             cls._part.append(g)
 
+    @classmethod
+    def inc_sequence(cls):
+        KGroup._global_sequence += 1
+        return KGroup._global_sequence
+
+    @classmethod
+    def inc_line(cls):
+        KGroup._global_line += 1
+        return KGroup._global_line
+
     def __init__(self, *args, **kwargs):
         self._containsd: dict = {}
-
+        self._level = 1
+        self._line = 1
+        self._sequence = 1
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
         n = 0
@@ -351,6 +377,10 @@ class KGroup:
         if allowed is None:
             raise ValueError(
                 f'Group {self.kname} cannot contain {group.kname}')
+
+        group._level = self._level + 1
+        group._line = KGroup.inc_line()
+        group._sequence = KGroup.inc_sequence()
 
         # new style, dictionary based
         k = self._containsd.keys()
@@ -464,8 +494,10 @@ class KGroup:
 
         Params:
             allow_none bool = Include null values (default False)
+
             include_str = include a string represention of the element
                             (with # and % if necessary)
+
             include_kleio = include a kleio representation of the element
 
 
@@ -474,25 +506,29 @@ class KGroup:
 
         Format of keys:
             group[element]: core value of element
+
             group[element_comment]: comment aspect of element
+
             group[element_original]: original aspect of element
+
             group[element_str] : string representation of element
                                  (with # and % if necessary)
                                  if include_str=True
             group[element_kleio]: kleio representation element=string
                                   if include_kleio=True
-
             group[includes]: list of enclosed groups
+
             group[includes][subgroup]: list of enclosed groups of type subgroup
 
             if redundant_keys=True enclose subgroups can also be accessed
-                              in the plural form if there are no name
-                            conflict with existing elements:
+            in the plural form if there are no name
+            conflict with existing elements:
 
-            group['persons'] == group['includes']['persons']
-            and
-            group['person']['id1']  == [p for p in group['includes']['persons']
-                                        if p.id='id1'][0]
+                    group['persons'] == group['includes']['persons']
+
+                    group['person']['id1'] ==
+                    [p for p in group['includes']['persons']
+                    if p.id='id1'][0]
 
 
         """
@@ -544,7 +580,7 @@ class KGroup:
                         for group in ki[subgroup]:
                             gid = group.get('id', None)
                             if gid is not None and subgroup \
-                                    not in self.elements():
+                                not in self.elements():
                                 if subgroup not in kd.keys():
                                     kd[subgroup] = dict()
                                 kd[subgroup][gid] = group
