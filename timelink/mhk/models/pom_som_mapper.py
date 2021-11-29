@@ -106,6 +106,14 @@ class PomSomMapper(Entity):
     # stores the ORM mapper for this mapping
     orm_class: Entity
 
+
+    def __init__(self, id = None, name=None, super=None, table=None, group=None):
+        self.id = name or id
+        self.table_name = table
+        self.class_group = group
+        self.super_class = super
+
+
     def ensure_mapping(self, session = None):
         """
         Ensure that a table exists to support
