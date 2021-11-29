@@ -2,7 +2,7 @@ pytest~=6.2.4
 Click~=8.0.1
 setuptools~=57.1.0
 python-dotenv~=0.18.0
-SQLAlchemy~=1.4.20
+SQLAlchemy~=1.4.27
 docker~=5.0.0
 
 docutils~=0.16

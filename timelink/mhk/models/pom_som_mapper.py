@@ -3,7 +3,8 @@ from typing import Optional, Type, List
 from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
     select
 from sqlalchemy import inspect
-from sqlalchemy.orm import relationship, Session
+from sqlalchemy.engine import Engine
+from sqlalchemy.orm import relationship, Session, sessionmaker
 
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.entity import Entity
@@ -105,7 +106,7 @@ class PomSomMapper(Entity):
     # stores the ORM mapper for this mapping
     orm_class: Entity
 
-    def ensure_mapping(self, bind = None):
+    def ensure_mapping(self, session = None):
         """
         Ensure that a table exists to support
         this SOM Mapping and ORM class is created
@@ -121,71 +122,93 @@ class PomSomMapper(Entity):
         ORM mapping
 
         """
+
         if not hasattr(self, 'orm_class'):
             self.orm_class = None
 
-        my_orm = self.orm_class
-
-        if my_orm is not None:
+        # if we have ensured before return what we found then
+        if self.orm_class is not None:
             return self.orm_class
+
+        # if not check if Entity knows about an orm class
+        # if so return it and save for next time
         my_orm = Entity.get_orm_for_pom_class(self.id)
         if my_orm is not None:
             self.orm_class = my_orm
             return self.orm_class
 
-        if bind is not None:
-            Session.configure(bind=bind)
+        # we have no ORM mapping for the SomPomMapper
+        # First check if we have this table already mapped to some Entity.
+        # This might happen if we have different kleio groups mapped to the
+        # same table, in order to make the kleio transcripts more readable
+        # (it happens frequently with the table 'acts').
+        # If so we will reuse the existing Table class
+        # It can also happen that while not having a ORM mapping the table
+        # can already exist in the database as result of previous imports.
+        #
+        # Note that non core PomSomMappings and corresponding ORM classes,
+        # which are dynamically defined during import, have to be recreated
+        # from the database information each time an application runs.
+        metadata_obj = type(self).metadata
+        pytables = metadata_obj.tables   # these are the tables known to ORM
 
-        with Session() as session:
-            # we have no ORM mapping for the SomPomMapper
-            metadata_obj = type(self).metadata
-            pytables = metadata_obj.tables
-            my_table: Table
-            # first we check that if we have a table in the database
-            if self.table_name in pytables.keys():
-                my_table = pytables[self.table_name]
-            else:  # no table, we must create it
-                my_table = Table(self.table_name, metadata_obj,
-                                 extend_existing=True)
-                cattr: Type["PomClassAttributes"]
-                for cattr in self.class_attributes:
-                    PyType = None
-                    pom_type = cattr.coltype.lower()
-                    if pom_type == 'varchar':
-                        PyType = String(cattr.colsize)
-                    elif pom_type == 'numeric' and cattr.colprecision == 0:
-                        PyType = Integer
-                    elif pom_type == 'numeric' and cattr.colprecision > 0:
-                        PyType = Float
-                    else:
-                        PyType = String
-                    print(f"Inferred python type for {cattr.colname}: ", PyType)
+        dbengine: Engine = session.get_bind()
+        insp = inspect(dbengine)
+        dbtables = insp.get_table_names() # these are the ones in the database
 
-                    if cattr.pkey != 0:
-                        if self.super_class not in ['root', 'base']:
-                            print("Getting super class " + self.super_class)
-                            pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                                self.super_class, session)
-                            if pom_super_class is not None:
-                                super_class_table_id = pom_super_class.table_name + '.id'
-                            else:
-                                print("ERROR could not find superclass: ",
-                                      self.super_class)
-                                super_class_table_id = 'entities.id'
-                            my_table.append_column(Column(cattr.colname, PyType,
-                                                          ForeignKey(
-                                                              super_class_table_id),
-                                                          primary_key=True),
-                                                   replace_existing=True)
+        my_table: Table
+        if self.table_name in pytables.keys():
+            # table is known to ORM we used the Table class there
+            my_table = pytables[self.table_name]
+        elif self.table_name in dbtables:
+            # the table exists in the database, we introspect
+            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
+        else:
+            # Table is unknown to ORM mapper and does not exist in the database
+            # This is the dynamic part, we create a table with
+            # the definition the "class" and "class_attributes" tables
+            # fetched by this class
+            my_table = Table(self.table_name, metadata_obj,
+                             extend_existing=True)
+            cattr: Type["PomClassAttributes"]
+            for cattr in self.class_attributes:
+                PyType: str = None
+                pom_type = cattr.coltype.lower()
+                if pom_type == 'varchar':
+                    PyType = String(cattr.colsize)
+                elif pom_type == 'numeric' and cattr.colprecision == 0:
+                    PyType = Integer
+                elif pom_type == 'numeric' and cattr.colprecision > 0:
+                    PyType = Float
+                else:
+                    PyType = String
+                print(f"Inferred python type for {cattr.colname}: ", PyType)
+
+                if cattr.pkey != 0:
+                    if self.super_class not in ['root', 'base']:
+                        print("Getting super class " + self.super_class)
+                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
+                            self.super_class, session)
+                        if pom_super_class is not None:
+                            super_class_table_id = pom_super_class.table_name + '.id'
                         else:
-                            my_table.append_column(Column(cattr.colname, PyType,
-                                                          primary_key=True),
-                                                   replace_existing=True)
+                            print("ERROR could not find superclass: ",
+                                  self.super_class)
+                            super_class_table_id = 'entities.id'
+                        my_table.append_column(Column(cattr.colname, PyType,
+                                                      ForeignKey(
+                                                          super_class_table_id),
+                                                      primary_key=True),
+                                               replace_existing=True)
                     else:
-                        my_table.append_column(
-                            Column(cattr.colname, PyType, primary_key=False),
-                            replace_existing=True)
-                my_table.create(session.get_bind())
+                        my_table.append_column(Column(cattr.colname, PyType,
+                                                      primary_key=True),
+                                               replace_existing=True)
+                else:
+                    my_table.append_column(
+                        Column(cattr.colname, PyType, primary_key=False),
+                        replace_existing=True)
+            my_table.create(session.get_bind())
 
         # we know create a new ORM mapping for this PomSomMapper
         super_orm = Entity.get_orm_for_pom_class(self.super_class)
@@ -197,14 +220,14 @@ class PomSomMapper(Entity):
             my_orm = type(self.id.capitalize(), (super_orm,), props)
         except:
             pass
-        self.orm_class: Optional[Entity] = my_orm
+        self.orm_class = my_orm
         return self.orm_class
         # print("----")
         # print(repr(NewTable))
         # self.__table__= NewTable
 
     @classmethod
-    def get_pom_classes(cls, bind = None) -> Optional[
+    def get_pom_classes(cls, session = None) -> Optional[
         List["PomSomMapper"]]:
         """
         Get the pom_classes from database data in the current database.
@@ -213,58 +236,52 @@ class PomSomMapper(Entity):
         for each class. Use pom_class.ensure_mapping() method to dynamically
         produce the ORM class
 
-        :param session:
         :return: A list of SomPomMappers object for each class in the db
         """
-        if bind is not None:
-            Session.configure(bind=bind)
 
         stmt = select(cls)
-        with Session() as session:
-            pom_classes = session.execute(stmt)
-            return pom_classes
+
+        pom_classes = session.execute(stmt).scalars().all()
+        return pom_classes
 
     @classmethod
-    def get_pom_class_ids(cls, bind=None):
-        if bind is not None:
-            Session.configure(bind=bind)
+    def get_pom_class_ids(cls, session = None):
+        """
+        Return all the pom_som_class ids as a list
+        :return:
+        """
 
         stmt = select(cls.id)
-        with Session() as session:
-            pom_class_ids: Optional[List[str]] = session.execute(
-                stmt).scalars().all()
-            return pom_class_ids
+        pom_class_ids: Optional[List[str]] = session.execute(
+            stmt).scalars().all()
+        return pom_class_ids
 
     @classmethod
-    def get_pom_class(cls, pom_class_name: String, bind = None):
+    def get_pom_class(cls, pom_class_name: String, session=None):
         """
         Return the pom_class object for a given pom_class_name.
 
         See also Entity.get_orm_for_pom_class
 
+        :param pom_class_name: the name of a pom_class
         """
-        if bind is not None:
-            Session.configure(bind=bind)
 
-        with Session() as session:
-            pom_class: Optional["PomSomMapper"] = session.query(Entity).get(
-                pom_class_name)
-            return pom_class
+        pom_class: Optional["PomSomMapper"] = session.query(Entity).get(
+            pom_class_name)
+        return pom_class
 
     @classmethod
-    def ensure_all_mappings(cls, bind = None):
+    def ensure_all_mappings(cls,session=None):
         """
         Ensures that every class currently defined in the database has
         a python table object and a python ORM object
 
         :return: None
         """
-        if bind is not None:
-            Session.configure(bind=bind)
 
-        with Session() as session:
-            for pom_class in cls.get_pom_classes(session=session):
-                pom_class.ensure_mapping(session=session)
+        pom_classes = cls.get_pom_classes(session=session)
+        for pom_class in pom_classes:
+            pom_class.ensure_mapping(session=session)
 
     def __repr__(self):
         return (

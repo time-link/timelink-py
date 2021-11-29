@@ -1,5 +1,5 @@
-from sqlalchemy import MetaData, engine, create_engine, select
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy import MetaData, engine, create_engine, select, inspect
+from sqlalchemy.orm import sessionmaker
 
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.base_class import Base
@@ -20,21 +20,21 @@ class DBSystem:
 
 
     """
-    engine: engine = None
+    db_engine: engine = None
     conn_string = None
-    session_class: Session = None
     metadata: MetaData = None
 
     def __init__(self, conn_string=None):
         """
         For the interaction of "engine" and "session" alternative
         configurations see
-        https://docs.sqlalchemy.org/en/13/orm/session_basics.html
+        https://docs.sqlalchemy.org/en/14/orm/session_basics.html
 
         :param conn_string: a sqlalchemy connection URL, str.
         """
         if conn_string is not None:
             self.set_engine_and_session(conn_string)
+
 
     def set_engine_and_session(self, conn_string):
         """
@@ -56,48 +56,58 @@ class DBSystem:
         :return:
         """
         if conn_string is not None:
-            self.engine = create_engine(conn_string
-                                        or self.conn_string,
-                                        future=True,echo=SQLALCHEMY_ECHO)
-            self.session_class = sessionmaker(bind=self.engine)
+            self.db_engine = create_engine(conn_string
+                                           or self.conn_string,
+                                           future=True, echo=SQLALCHEMY_ECHO)
             self.conn_string = conn_string
-
+            with self.session() as session:
+                self.create_tables()
+                session.commit()
+                self.load_base_mappings(session=session)
+                PomSomMapper.ensure_all_mappings(session=session)
+                session.commit()
 
     def session(self):
-        return self.session_class()
+        Session = sessionmaker(self.db_engine)
+        return Session()
+
 
     def engine(self):
-        return self.engine
+        return self.db_engine
 
-    def create_db(self):
+    def create_tables(self):
         """
-        Creates a database from currently
+        Creates the tables from the current ORM metadata if needed
 
         :return: None
         """
-
         self.metadata = Base.metadata
-        self.metadata.create_all(bind=self.engine())  # only creates if missing
-        with self.session() as session:
-            self.load_base_mappings()
-            PomSomMapper.ensure_all_mappings(bind=session)
+        self.metadata.create_all(self.db_engine)  # only creates if missing
+
+
 
     def get_engine(self, conn_string):
         return create_engine(conn_string or self.conn_string)
 
-    def load_base_mappings(self):
-        with self.session() as session:
+    def load_base_mappings(self,session=None):
+        if session is None:
+            new_session = self.session()
+        else:
+            new_session = session
+
+        with new_session as session:
             stmt = select(PomSomMapper.id)
             available_mappings = session.execute(stmt).scalars().all()
             for k in pom_som_base_mappings.keys():
                 if k not in available_mappings:
                     data = pom_som_base_mappings[k]
                     session.bulk_save_objects(data)
-                    session.commit()
+            session.commit()
 
     def table_names(self):
-        return self.engine.table_names()
+        insp = inspect(self.db_engine)
+        db_tables = insp.get_table_names() # these are the ones in the database
+        return db_tables
 
     def drop_db(self):
-        with self.session() as session:
-            self.metadata.drop_all(bind=session)
+        self.metadata.drop_all(self.db_engine)

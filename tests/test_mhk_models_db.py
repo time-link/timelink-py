@@ -10,12 +10,12 @@ from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.db_system import DBSystem
 
 
-DBSystem.conn_string = 'sqlite:///teste_db'
+DBSystem.conn_string = 'sqlite:///test_db'
 
 @pytest.fixture(scope="module")
 def dbsystem():
     db = DBSystem(DBSystem.conn_string)
-    db.create_db()
+    db.create_tables()
     yield db
     db.drop_db()
 
@@ -24,7 +24,6 @@ def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
     metadata = Base.metadata
     tables = list(metadata.tables.keys())
-
     assert len(tables) > 0, "tables where not created"
 
 def test_ensure_mapping(dbsystem):
@@ -38,7 +37,7 @@ def test_ensure_mapping(dbsystem):
             pom_class.ensure_mapping(session=session)
             print(repr(pom_class))
             print(pom_class)
-        orm_mapped_classes = Entity.get_spmapper_to_orm_as_dict()
+        orm_mapped_classes = Entity.get_som_mapper_to_orm_as_dict()
         non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
         assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
         orm_mapped_tables = Entity.get_tables_to_orm_as_dict()

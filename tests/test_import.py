@@ -17,7 +17,7 @@ conn_string = 'sqlite:///teste_db'
 @pytest.fixture(scope="module")
 def dbsystem():
     db = DBSystem(conn_string)
-    db.create_db(db.conn_string)
+    db.create_tables(db.conn_string)
     yield db
     db.drop_db()
 
@@ -63,7 +63,7 @@ def test_store_kgroup(dbsystem):
     m.include(ls('uc', 'fim', data=2021))
     l2.include(m)
     print(f)
-    with Session(dbsystem.engine) as session:
+    with Session(dbsystem.db_engine) as session:
         PomSomMapper.storeKGroup(f,bind=session)
         stmt = select(Source).where(Source.id == f.id)
         print(stmt)
