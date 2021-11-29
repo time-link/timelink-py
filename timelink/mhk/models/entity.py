@@ -58,7 +58,7 @@ class Entity(Base):
         return sc
 
     @classmethod
-    def get_spmapper_ids(cls):
+    def get_som_mapper_ids(cls):
         """
         Returns the ids of SomPomMapper references by orm classes
         :return: List of strings
@@ -76,7 +76,7 @@ class Entity(Base):
                 Entity.get_orm_entities_classes()}
 
     @classmethod
-    def get_spmapper_to_orm_as_dict(cls):
+    def get_som_mapper_to_orm_as_dict(cls):
         """
         Return a dict with pom_class id as key and ORM class as value
         """
@@ -100,7 +100,7 @@ class Entity(Base):
 
         will return the ORM class corresponding to the pom_class "act"
         """
-        return cls.get_spmapper_to_orm_as_dict().get(pom_class, None)
+        return cls.get_som_mapper_to_orm_as_dict().get(pom_class, None)
 
     def __repr__(self):
         return (
