@@ -15,7 +15,6 @@ DBSystem.conn_string = 'sqlite:///test_db'
 @pytest.fixture(scope="module")
 def dbsystem():
     db = DBSystem(DBSystem.conn_string)
-    db.create_tables()
     yield db
     db.drop_db()
 
