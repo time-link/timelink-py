@@ -11,13 +11,12 @@ from timelink.mhk.models.pom_som_mapper import PomSomMapper
 
 from timelink.mhk.models.base import Source, Person
 
-conn_string = 'sqlite:///teste_db'
+conn_string = 'sqlite:///test_db'
 
 
 @pytest.fixture(scope="module")
 def dbsystem():
     db = DBSystem(conn_string)
-    db.create_tables(db.conn_string)
     yield db
     db.drop_db()
 
