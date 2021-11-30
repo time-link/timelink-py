@@ -156,7 +156,7 @@ def test_kelement_to_kleio():
                  comment="Carvº added in the margin")
     assert e.to_kleio() == \
            'name=Joaquim Carvalho#Carvº added in the margin%Joachim Carvº', \
-           "bad kleio representation of Element"
+        "bad kleio representation of Element"
 
 
 def test_kgroup_extend():
@@ -338,6 +338,19 @@ def test_kgroup_get_item():
     assert p['name'].core == 'joaquim'
 
 
+def test_kgroup_get_item_check_el():
+    p = KPerson('joaquim', 'm', 'jrc', obs='')
+    with pytest.raises(ValueError):
+        p['nome'], "get inexistent element should raise error"
+
+
+def test_kgroup_get_item_no_check_el():
+    p: KPerson = KPerson('joaquim', 'm', 'jrc', obs='')
+    p._element_check = False
+    p['profissao'] = 'Professor'
+    assert p['profissao'], "Could not enter unchecked element"
+
+
 def test_kgroup_set_item():
     p = KPerson('joaquim', 'm', 'jrc', obs='')
     p['name'] = ('joaquim', 'aka jrc', 'jota')
@@ -346,23 +359,39 @@ def test_kgroup_set_item():
     assert p.name.original == 'jota', "__setitem__ failed"
 
 
+def test_kgroup_set_item_check_el():
+    p = KPerson('joaquim', 'm', 'jrc', obs='')
+    with pytest.raises(ValueError):
+        p[
+            'profissao'] = 'professor', "set illegal element should raise error"
+
+
 def test_kgroup_get(kgroup_nested):
     kgroup_nested
     assert kgroup_nested.get["includes"]["act"][0]["id"] == 'a1', \
         "Failed nested dictionary"
 
-def test_kgroup_line_seq_level(kgroup_nested):
-    line = kgroup_nested._line
-    level = kgroup_nested._level
-    sequence = kgroup_nested._sequence
-    assert line == 1, \
-        "Failed line update"
-    act = kgroup_nested.includes('act')[0]
-    assert act._level == 2, " Failed level update"
-    person = act.includes('person')[0]
-    assert person._level == 3, " Failed level update"
-    assert person._sequence == 4, " Failed sequence update"
 
+def test_kgroup_line_seq_level():
+    kk = KKleio('gacto2.str')
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    kk.include(ks)
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
+    line = ks._line
+    level = ks._level
+    sequence = ks._sequence
+    assert line == 2, \
+        "Failed line update"
+    act = ks.includes('act')[0]
+    assert act._level == 3, " Failed level update"
+    p1 = KPerson('Joaquim', 'm', 'p01')
+    ka1.include(p1)
+    person = act.includes('person')[0]
+    assert person._level == 4, " Failed level update"
+    assert person._sequence == 4, " Failed sequence update"
 
 
 def test_kgroup_get_id(kgroup_nested):

@@ -112,7 +112,7 @@ class KElement:
     core: Any  # must have a str representation.
     comment: str = None
     original: str = None
-    _source: str = None
+    _element_class: str = None  #class
 
     def __init__(self, name: str, val: Any, comment=None, original=None):
         """
@@ -207,12 +207,12 @@ class KGroup:
 
     id: str = '*id*'
     _name: str = 'kgroup'
-    _position: list = []
-    _guaranteed: list = []
-    _also: list = []
-    _part: list = []
+    _position: list = []   # positional elements
+    _guaranteed: list = [] # required elements
+    _also: list = []       # optional elements
+    _part: list = []       # allowed sub groups
     _extends: Type['KGroup']
-    _pom_class_id: str   # KGroup.rch_class in MHK
+    _pom_class_id: str   #  Id of PomSom mapper for this group
 
     # The following fields are generated during the translation process.
     # If the Kleio groups are generated programatically (for instance when
@@ -225,10 +225,11 @@ class KGroup:
     # class scoped counters to ensure proper numbering across different groups
     _global_sequence: int = 1  # global sequence count
     _global_line: int = 1  # global line count
+    _element_check = True  # if true validates element assignment
 
     # TODO to_kleio_str generates the definition of a group
-    #  for a kleio str file. recurse=yes
-    # collects included groups and generates for those also.
+    #      for a kleio str file. recurse=yes
+    #      collects included groups and generates for those also.
 
     @property
     def kname(self):
@@ -317,10 +318,17 @@ class KGroup:
         return KGroup._global_line
 
     def __init__(self, *args, **kwargs):
+        """
+        Creates a new group with elements
+        :param args: values for positional elements
+        :param kwargs: values for optional elements.
+            Use element_check=False to turn off checking of element names
+        """
         self._containsd: dict = {}
         self._level = 1
         self._line = 1
         self._sequence = 1
+        self._element_check = True
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
         n = 0
@@ -331,7 +339,10 @@ class KGroup:
             n = n + 1
         # keyword arguments must be in one the element lists
         for (k, v) in kwargs.items():
-            if k not in self._position + self._guaranteed + self._also:
+            if k == 'element_check':
+                self._element_check = v
+            if self._element_check and \
+                k not in self._position + self._guaranteed + self._also:
                 raise ValueError(f'Element not allowed: {k}')
             if not isinstance(v, KElement):  # we did not get a KElement
                 el = KElement(k, v)  # we make one
@@ -660,12 +671,13 @@ class KGroup:
         return textwrap.indent(s, indent)
 
     def __getitem__(self, arg):
-        if arg not in self.elements():
+        if self._element_check and arg not in self.elements():
             raise ValueError("Element does not exist in group")
         return getattr(self, arg)
 
     def __setitem__(self, arg, value):
-        if arg not in self._position + self._guaranteed + self._also:
+        if self._element_check and \
+            arg not in self._position + self._guaranteed + self._also:
             raise ValueError(f'Element not allowed: {arg}')
         if not isinstance(value, KElement):  # we did not get a KElement
             el = KElement(arg, value)  # we make one
@@ -707,6 +719,11 @@ class KKleio(KGroup):
     _position = ['structure']
     _also = ['prefix', 'translations', 'translator', 'obs']
     _part = ['source', 'aregister']
+
+    def __init__(self,*args,**kwargs):
+        KGroup._global_line = 1
+        KGroup._global_sequence = 1
+        super().__init__(*args,**kwargs)
 
 
 class KSource(KGroup):

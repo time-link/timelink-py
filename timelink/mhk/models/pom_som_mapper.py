@@ -6,6 +6,7 @@ from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship, Session, sessionmaker
 
+from timelink.kleio.groups import KGroup
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.entity import Entity
 
@@ -19,6 +20,9 @@ class PomSomMapper(Entity):
     and the associated "class_attributes" table. Together the
     two tables describe a Som-Pom mapping, that define how
     Kleio groups are stored in the relational database.
+
+    This class can generate tables and ORM objects and can
+    store a Kleio group in the database.
 
     Fields:
         * id - name of this PomSomMapper, singular form
@@ -82,16 +86,6 @@ class PomSomMapper(Entity):
    information in the "classes" table and checking if the ORM mapping and
    table representations exist.
    This is also done by the pom_som_mapper.ensure_mapping(session) method.
-
-
-
-
-
-
-
-
-
-
     """
     __tablename__ = 'classes'
 
@@ -105,14 +99,6 @@ class PomSomMapper(Entity):
     }
     # stores the ORM mapper for this mapping
     orm_class: Entity
-
-
-    def __init__(self, id = None, name=None, super=None, table=None, group=None):
-        self.id = name or id
-        self.table_name = table
-        self.class_group = group
-        self.super_class = super
-
 
     def ensure_mapping(self, session = None):
         """
@@ -274,8 +260,7 @@ class PomSomMapper(Entity):
         :param pom_class_name: the name of a pom_class
         """
 
-        pom_class: Optional["PomSomMapper"] = session.query(Entity).get(
-            pom_class_name)
+        pom_class: Optional["PomSomMapper"] = session.get(Entity,pom_class_name)
         return pom_class
 
     @classmethod
@@ -290,6 +275,50 @@ class PomSomMapper(Entity):
         pom_classes = cls.get_pom_classes(session=session)
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session=session)
+
+    def element_class_to_column(self,eclass:str) -> str:
+        """
+        Return the column name corresponding to a group element class
+        :param eclass: the class of an element (included in the export file
+        :return: the name of the column corresponding to this element in the
+        mapped table.
+        """
+        cattr: PomClassAttributes = self.class_attributes.filter(PomClassAttributes.pom_class == eclass)
+        return cattr.colname
+
+    def store_KGroup(self,group: KGroup):
+        for cattr in self.class_attributes:
+            # Here it should look for the class of the elements, not the name
+            # Para isso deviamos ter um metodo KGroup.get_element_of_class(eclass)
+            # e depois um metodo em Entity que fornece o nome do attribute
+            # da class para um dado nome da coluna, e.g.
+
+            # class User(Base):
+            #     __tablename__ = 'user'
+            #     id = Column('id', String(40), primary_key=True)
+            #     email = Column('email', String(50))
+            #     firstName = Column('first_name', String(25))
+            #     lastName = Column('last_name', String(25))
+            #     addressOne = Column('address_one', String(255))
+            #
+            # from sqlalchemy.inspection import inspect
+            # # columns = [column.name for column in inspect(model).c]
+            #
+            # # Also if we want to know that User.firstName is first_name then:
+            # columnNameInDb = inspect(User).c.firstName.name
+            # # The following will print: first_name
+            # print(columnNameInDb)
+            #
+            # O flow do mapping de um element numa coluna é
+            # column = PomSom.cattr.colclass
+            # value = group.get_element_by_class(column)
+            # Entity.set_col_value(column,value)
+            # TODO KGroup.get_element_by_class
+            # TODO Entity.get_col_value, Entity.set_col_value
+            if hasattr(group,cattr.name):
+                print("found elment=",getattr(group,cattr.name))
+        pass
+
 
     def __repr__(self):
         return (
@@ -308,6 +337,19 @@ class PomSomMapper(Entity):
 
 
 class PomClassAttributes(Base):
+    """
+    Attribute of a PomClass. Maps kleio group element to table columns
+
+    the_class: id of the PomSomClass this attribute is attached to.
+    name     : name of of the attribute
+    colname  : name of the column in the corresponding table
+    colclass : class of the column (element source value if different from colname
+    coltype  : type of the column
+    colsize  : size of the column, int
+    colprecision: precision of the column (if decimal), int
+    pkey     : if > 0 order of this column in the primary key of the table
+
+    """
     __tablename__ = 'class_attributes'
 
     the_class = Column(String, ForeignKey('classes.id'), primary_key=True)

@@ -4,7 +4,11 @@ from typing import List
 
 from xml.sax import saxutils, handler, make_parser, SAXParseException
 
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
 from timelink.kleio.groups import KGroup, KElement
+from timelink.mhk.models.db_system import DBSystem, pom_som_base_mappings
 from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
 
 
@@ -53,9 +57,9 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "CLASS out of context, should be inside KLEIO element")
             self._current_class = PomSomMapper(id=attrs['NAME'],
-                                               super=attrs['SUPER'],
-                                               table=attrs['TABLE'],
-                                               group=attrs['GROUP'])
+                                               super_class=attrs['SUPER'],
+                                               table_name=attrs['TABLE'],
+                                               class_group=attrs['GROUP'])
             self._context = KleioContext.CLASS
 
         elif ename == 'ATTRIBUTE':
@@ -101,6 +105,7 @@ class SaxHandler(handler.ContentHandler):
             self._current_group._order = int(order)
             self._current_group._level = int(level)
             self._current_group._line = int(line)
+            self._context = KleioContext.GROUP
 
         elif ename == 'ELEMENT':
             if self._context != KleioContext.GROUP:
@@ -108,8 +113,8 @@ class SaxHandler(handler.ContentHandler):
                     "ELEMENT out of context, should be inside GROUP element")
             # <ELEMENT NAME="id" CLASS="id"><core>r1775-f1-per1</core></ELEMENT>
 
-            self._current_element = KElement(attrs['NAME'])
-            self._current_element._source = attrs['CLASS']
+            self._current_element = KElement(attrs['NAME'],None)
+            self._current_element._element_class = attrs['CLASS']
             self._context = KleioContext.ELEMENT
 
         elif ename == 'CORE':
@@ -159,6 +164,10 @@ class SaxHandler(handler.ContentHandler):
             self._context = KleioContext.CLASS
 
         elif ename == 'ELEMENT':
+            setattr(self._current_group,
+                    self._current_element.name,
+                    self._current_element)
+
             self._context = KleioContext.GROUP
 
         elif ename in ['CORE', 'COMMENT', 'ORIGINAL']:
@@ -185,21 +194,75 @@ class SaxHandler(handler.ContentHandler):
 
 class KleioHandler():
 
-    def __init__(self, sax_handler: SaxHandler):
-        self._sax_hander = sax_handler(self)
+    def __init__(self, conn_string: str):
+        self._db_system: DBSystem = DBSystem(conn_string)
+        self._session: Session = self._db_system.session()
 
-    def endKleioFile(self):
+    def newKleioFile(self, attrs):
         pass
+
+    def newClass(self, psm: PomSomMapper, attrs: List[PomClassAttributes]):
+        if psm.id in pom_som_base_mappings.keys():
+            # we do not allow redefining of base mappings
+            return
+
+        with self._session as session:
+            class_attr: PomClassAttributes
+            # check if we have this class defined in the database.
+            existing_psm: PomSomMapper = session.get(PomSomMapper,psm.id)
+            if existing_psm is not None:     # class exists we delete it and insert again
+                existing_attrs: List[PomClassAttributes] = \
+                    session.execute(
+                        select(PomClassAttributes).filter_by(the_class=psm.id))
+                for class_attr in existing_attrs:
+                    session.delete(class_attr)
+                session.delete(existing_psm)
+
+            # now we add the new mapping
+            session.add(psm)
+            for class_attr in attrs:
+                session.add(class_attr)
+
+            session.flush()
+            session.commit()
+            # ensure that the table and ORM classes are created
+            psm.ensure_mapping(session)
+            session.commit()
+
+
+    def newGroup(self, group: KGroup):
+        # get the PomSomMapper
+        # pass storeKGroup
+        pom_mapper_for_group = PomSomMapper.get_pom_class(group._pom_class_id,
+                                                          self._session)
+
+
+
+        pom_mapper_for_group.store_KGroup(group)
 
     def newRelation(self, attrs):
         pass
 
-    def newGroup(self, group: KGroup):
+    def endKleioFile(self):
         pass
 
-    def newClass(self, id: PomSomMapper, attrs: List[PomClassAttributes]):
-        pass
 
+def import_from_xml(filespec: str, conn_string: str, options: dict = None):
+    """
+    Import data from file or url into a timelink-mhk database
+
+    :param filespec: file path or URL of data file.
+    :param conn_string: SQLAlchemy connection string to database.
+    :param options: a dictionnary with options, currently:
+            'kleio_url': the url of kleio server;
+            'kleio_token': the authorization token for the kleio server.
+
+    :return:
+    """
+    sax_handler = SaxHandler(KleioHandler(conn_string))
+    parser = make_parser()
+    parser.setContentHandler(sax_handler)
+    parser.parse(filespec)
 
 if __name__ == '__main__':
     parser = make_parser()

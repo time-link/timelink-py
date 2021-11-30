@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from timelink.kleio.groups import KKleio, KSource, KAct, KAbstraction, KPerson, \
     KLs, KAtr, KGroup
+from timelink.kleio.importer import import_from_xml
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.db_system import DBSystem
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
@@ -20,6 +21,9 @@ def dbsystem():
     yield db
     db.drop_db()
 
+def test_import_xml():
+    file = "./xml_data/b1685.xml"
+    import_from_xml(file,conn_string)
 
 def test_store_kgroup(dbsystem):
     kleio = KKleio
