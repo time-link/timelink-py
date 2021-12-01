@@ -170,6 +170,34 @@ def test_kgroup_extend():
     afonte = kfonte('f001', ano=2021, tipo='teste')
     assert afonte.id.core == 'f001', 'could not extend group and instantiate'
 
+def test_kroup_elements_allowed():
+    my_group: KGroup = KGroup.extend('mygrou',
+                                     position='id',
+                                     also=['nome','genero','telefone'])
+    selements = sorted(my_group.elements_allowed())
+    assert selements == ['genero', 'id','nome','telefone'], "wrong element list"
+
+
+def test_kroup_allow_as_element():
+    my_group: KGroup = KGroup.extend('mygroup',
+                                     position='id',
+                                     also=['nome','genero','telefone'])
+    selements = sorted(my_group.elements_allowed())
+    assert selements == ['genero', 'id','nome','telefone'], "wrong element list"
+
+    my_group.allow_as_element('profissao',also=True)
+    selements = sorted(my_group.elements_allowed())
+    assert selements == ['genero', 'id','nome','profissao','telefone'], \
+        "wrong element list after allow_as_element"
+
+    my_group.allow_as_element('idade', guaranteed=True)
+    selements = sorted(my_group.elements_allowed())
+    assert selements == ['genero', 'id','idade', 'nome', 'profissao', 'telefone'], \
+        "wrong element list after allow_as_element"
+    assert my_group._guaranteed == ['idade']
+
+    my_group.allow_as_element('nome', position=0)
+    assert my_group._position == ['nome','id']
 
 def test_kgroup_include():
     p = KPerson('joaquim', 'm', 'jrc')

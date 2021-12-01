@@ -287,6 +287,14 @@ class PomSomMapper(Entity):
         return cattr.colname
 
     def store_KGroup(self,group: KGroup):
+        """
+        Store a Kleio Group in the database through this mapping
+        :param group: a Kleio Group
+        :return: None
+        """
+        if group._pom_class_id != self.id:
+            raise ValueError("Group is not mapped to associated with this PomSomMapper")
+
         for cattr in self.class_attributes:
             # Here it should look for the class of the elements, not the name
             # Para isso deviamos ter um metodo KGroup.get_element_of_class(eclass)

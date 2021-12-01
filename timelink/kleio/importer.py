@@ -98,7 +98,7 @@ class SaxHandler(handler.ContentHandler):
             level = attrs['LEVEL']
             line = attrs['LINE']
 
-            self._current_group = KGroup()
+            self._current_group = KGroup.extend(name)
             self._current_group.id = id
             self._current_group._name = name
             self._current_group._pom_class_id = the_class
@@ -113,7 +113,9 @@ class SaxHandler(handler.ContentHandler):
                     "ELEMENT out of context, should be inside GROUP element")
             # <ELEMENT NAME="id" CLASS="id"><core>r1775-f1-per1</core></ELEMENT>
 
-            self._current_element = KElement(attrs['NAME'],None)
+            elname = attrs['NAME']
+            self._current_group.allow_as_element(elname)
+            self._current_element = KElement(elname,None)
             self._current_element._element_class = attrs['CLASS']
             self._context = KleioContext.ELEMENT
 

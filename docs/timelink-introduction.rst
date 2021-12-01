@@ -64,16 +64,16 @@ Timelink approach
 
 - The Kleio notation (Manfred Thaller) is used for source-oriented data input.
 - A relation database structure is used to store person-oriented data
-  together with original source context
+  together with original source context.
 - A special software, “the translator” processes text transcriptions
-  of the sources and populates the person-oriented database .
+  of the sources and populates the person-oriented database.
 - This solves the inevitable tension between a source-oriented model
    and an analytical model.
 
 The Source Oriented Model
 -------------------------
 
-Uses a containment structure of source->act->persons and objects
+Uses a containment structure of source->act->persons and objects.
 
 - A historical source contains one or more acts.
 - Acts are records of events described in the sources.
@@ -117,8 +117,8 @@ The `Person Oriented Model` represents a biography through 3 domains:
 - Relations
 
 The `Person Oriented Model` is an alternative view on the information recorded
-in the sources, in a way that facilitates estatistical analysis, network analysis
-and prosopographhy.
+in the sources, in a way that facilitates statistical analysis, network analysis
+and prosopographies.
 
 The previous baptism generates information as follows (*italics* show
 information inferred by Timelink).
@@ -181,6 +181,84 @@ Relations
 +------------+---------------+---------+-----------+----------------+
 | *b1-per2*  | *b1-per1*     | *kin*   | *father*  | *17/9/1685*    |
 +------------+---------------+---------+-----------+----------------+
+
+Functions
++++++++++
+
+Functions of people (father,mother, ...) in acts are a special case
+of relations linking people to acts, with the type 'function-in-act'.
+The same applies to objects, when they appear in acts.
+
++---------------+---------------+------------------+-----------+----------------+
+| Origin        | Destination   | Type             |  Value    |  Date          |
++===============+===============+==================+===========+================+
+| b1985.9.17.gf | *b1*          | function-in-act  | gfather   | *17/9/1685*    |
++---------------+---------------+------------------+-----------+----------------+
+| *b1.per5*     | *b1*          | function-in-act  | gmother   | *17/9/1685*    |
++---------------+---------------+------------------+-----------+----------------+
+
+
+
+How translation between SOM and POM works
+-----------------------------------------
+
+Timelink contains a set of basic entities: sources, acts, persons,
+objects, attributes and relations. For an example such as the previous
+one to work, Timelink needs to know the correspondence between the Kleio
+notation and the relational database tables as well as how to infer values
+like gender and kin relations.
+
+Entities as they appear in the source notation are called "groups". In the
+example above the groups are indicated by the words before the "$": baptism$,
+n$, father$, mother$, etc...
+
+Groups correspond to database tables. Different groups can correspond to
+the same database table, as is the case of the groups above related to
+persons - they populate the same database table, 'persons'.
+
+Items of information inside groups (names, gender, ...) are called 'elements'
+in Kleio notation. They correspond to columns in a database table.
+
+The correspondence between Kleio groups and database tables is
+provided by what is called a _mapping_.
+
+
+
+Here is an example of a mapping, in the current notation::
+
+    mapping person to class person.
+    class person super entity table persons
+       with attributes
+            id column id baseclass id coltype varchar colsize 64 colprecision 0 pkey 1
+         and
+            name column name baseclass name coltype varchar colsize 128 colprecision 0 pkey 0
+         and
+            sex column sex baseclass sex coltype char colsize 1 colprecision 0 pkey 0
+         and
+            obs column obs baseclass obs coltype varchar colsize 16654 colprecision 0 pkey 0 .
+
+The statement `mapping person to class person` means that the Kleio group `person`
+will be stored in the database as class `person`.
+
+The term class is used instead of just table, because, as we will see later,
+database tables behave as class hierarchies, each class specializing a more
+generic model. This will become more clear later on, as we introduce
+the definition of new groups and tables with more information than the
+re-defined ones.
+
+The statement
+`class person super entity table persons` means that database class `person`
+is a specialization of `entity`, and is stored in a table named `persons`.
+
+The subsequent lines after `with attributes` specify the mapping between the
+group elements and the table columns.
+
+TBC
+
+
+
+
+
 
 
 

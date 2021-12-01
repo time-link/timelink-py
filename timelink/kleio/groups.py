@@ -114,7 +114,7 @@ class KElement:
     original: str = None
     _element_class: str = None  #class
 
-    def __init__(self, name: str, val: Any, comment=None, original=None):
+    def __init__(self, name: str, val: Any, comment=None, original=None, element_class=None):
         """
         Args:
             name: name of the Element. A string.
@@ -123,6 +123,9 @@ class KElement:
                     optional arguments are disregarded.
             comment: Optional; The comment aspect of the Element.
             original: Optional; The original aspect of the Element.
+            element_class: Optional; the class of this element if defined
+                in the str file with the source=parameter. If absent set
+                equal to the name of the element.
         """
 
         self.name = name
@@ -255,6 +258,12 @@ class KGroup:
         new_group = type(name, (cls,), {})
         new_group._name = name
         # todo: k,v in kwargs if in cls set if not error
+        if type(position) is str:
+            position = [position]
+        if type(guaranteed) is str:
+            guaranteed = [guaranteed]
+        if type(also) is str:
+            also = [also]
         if position is not None:
             new_group._position = position
         else:
@@ -291,10 +300,34 @@ class KGroup:
         return 'KGroup' in [c.__name__ for c in type(g).mro()]
 
     @classmethod
-    def elements(cls) -> set:
+    def elements_allowed(cls) -> set:
         """Set of  Elements allowed in this Group"""
         return set(cls._guaranteed).union(set(cls._also)).union(
             cls._position)
+
+    @classmethod
+    def allow_as_element(cls, ename:str,guaranteed=False,also=True,position=None):
+        """
+        Add element to list of allowed elements for this group. Optionally
+        define if element is positional, required (guaranteed) or optional
+        :param ename:  name of element
+        :param guaranteed: if True this is element is added to list of
+                required elements.
+        :param also: if True this element is optional (default)
+        :param position: int, this is a positional element, at this position
+            (0 = first position)
+        :return: List of allowed elements
+        """
+        if guaranteed:
+            if ename not in cls._guaranteed:
+                cls._guaranteed.append(ename)
+        if position is not None:
+            if ename in cls._position:
+                cls._position.remove(ename)
+            cls._position.insert(position,ename)
+        if ename not in cls.elements_allowed():
+            cls._also.append(ename)
+
 
     @classmethod
     def allow_as_part(cls, g: Union[str, type]):
@@ -545,7 +578,7 @@ class KGroup:
         """
         kd = dict()
         kd['kleio_group'] = self._name
-        for e in self.elements():
+        for e in self.elements_allowed():
             v: KElement = getattr(self, e, None)
             if v is not None:
                 if type(v) is KElement:
@@ -584,14 +617,14 @@ class KGroup:
             #    g['acts']
             if redundant_keys:
                 for subgroup in ki.keys():
-                    if subgroup + 's' not in self.elements():
+                    if subgroup + 's' not in self.elements_allowed():
                         kd[subgroup + 's'] = ki[subgroup]
                         # we include subgroup indexed by id
                         # so we can have source['act']['ac010]['person']['p01']
                         for group in ki[subgroup]:
                             gid = group.get('id', None)
                             if gid is not None and subgroup \
-                                not in self.elements():
+                                not in self.elements_allowed():
                                 if subgroup not in kd.keys():
                                     kd[subgroup] = dict()
                                 kd[subgroup][gid] = group
@@ -671,7 +704,7 @@ class KGroup:
         return textwrap.indent(s, indent)
 
     def __getitem__(self, arg):
-        if self._element_check and arg not in self.elements():
+        if self._element_check and arg not in self.elements_allowed():
             raise ValueError("Element does not exist in group")
         return getattr(self, arg)
 
@@ -685,6 +718,7 @@ class KGroup:
             el = value
             el.name = arg  # we override the element name with the arg name
         setattr(self, arg, el)
+
 
     def get_core(self, *args):
         """ get_core(element_name [, default])
