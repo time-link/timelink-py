@@ -73,7 +73,7 @@ In normal usage the basic groups are extended for a particular context:
 import json
 import textwrap
 from os import linesep as nl
-from typing import Any, Union, Type, Tuple
+from typing import Any, Union, Type, Tuple, List
 
 from box import Box
 
@@ -139,6 +139,9 @@ class KElement:
                 self.comment = comment
             if original is not None:
                 self.original = original
+        self._element_class = element_class
+        if self._element_class is None:
+            self._element_class = name
 
     def __str__(self):
         c = self.core
@@ -196,11 +199,14 @@ class KGroup:
     KGroup(*positional_elements ,**more_elements)
 
     Abstract Kleio Group.
-    To define a Kleio Group extend this class and set default value for _name.
-    Define allowed elements in the default values for
-     _position, _guaranteed, _also (list of strings).
 
-    Use _part to list allowed enclosed groups.
+    To define a Kleio Group extend this class and set default value for _name,
+    or use extend(name,position, guaranteed, also).
+
+    Define allowed elements in the default values for
+     _position, _guaranteed, _also (list of strings) or call allowed_as_element
+
+    Use _part to list allowed enclosed groups, or call allow_as_part
 
     For an example see timelink.kleio.groups.KPerson
 
@@ -210,9 +216,9 @@ class KGroup:
 
     id: str = '*id*'
     _name: str = 'kgroup'
-    _position: list = []   # positional elements
-    _guaranteed: list = [] # required elements
-    _also: list = []       # optional elements
+    _position: list = []   # list of positional elements
+    _guaranteed: list = [] #  list of required elements
+    _also: list = []       #  list of optional elements
     _part: list = []       # allowed sub groups
     _extends: Type['KGroup']
     _pom_class_id: str   #  Id of PomSom mapper for this group
@@ -229,6 +235,7 @@ class KGroup:
     _global_sequence: int = 1  # global sequence count
     _global_line: int = 1  # global line count
     _element_check = True  # if true validates element assignment
+    _element_list: List[KElement]  # Current elements
 
     # TODO to_kleio_str generates the definition of a group
     #      for a kleio str file. recurse=yes
@@ -306,10 +313,10 @@ class KGroup:
             cls._position)
 
     @classmethod
-    def allow_as_element(cls, ename:str,guaranteed=False,also=True,position=None):
+    def allow_as_element(cls, ename:Union[str,List[str]],guaranteed=False,also=True,position=None):
         """
-        Add element to list of allowed elements for this group. Optionally
-        define if element is positional, required (guaranteed) or optional
+        Add element or list to list of allowed elements for this group.
+        Optionally define if element(s) is positional, required (guaranteed) or optional
         :param ename:  name of element
         :param guaranteed: if True this is element is added to list of
                 required elements.
@@ -318,15 +325,25 @@ class KGroup:
             (0 = first position)
         :return: List of allowed elements
         """
-        if guaranteed:
-            if ename not in cls._guaranteed:
-                cls._guaranteed.append(ename)
-        if position is not None:
-            if ename in cls._position:
-                cls._position.remove(ename)
-            cls._position.insert(position,ename)
-        if ename not in cls.elements_allowed():
-            cls._also.append(ename)
+        if type(ename) is List:
+            for e in ename:
+                cls.allow_as_element(e,guaranteed=guaranteed,
+                                     position=position,
+                                     also=also)
+            return
+        elif type(ename) is str:
+            if guaranteed:
+                if ename not in cls._guaranteed:
+                    cls._guaranteed.append(ename)
+            if position is not None:
+                if ename in cls._position:
+                    cls._position.remove(ename)
+                cls._position.insert(position,ename)
+            if ename not in cls.elements_allowed():
+                cls._also.append(ename)
+        else:
+            raise TypeError("first argument must be string or list of strings")
+        return
 
 
     @classmethod
@@ -362,13 +379,16 @@ class KGroup:
         self._line = 1
         self._sequence = 1
         self._element_check = True
+        self._element_list = []
+
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
         n = 0
         # set the positional arguments according to "_position"
         for arg in args:
             e = self._position[n]
-            setattr(self, e, KElement(e, arg))
+            # setattr(self, e, KElement(e, arg))
+            self[e] = KElement(e, arg)  # this will go through __setitem__
             n = n + 1
         # keyword arguments must be in one the element lists
         for (k, v) in kwargs.items():
@@ -382,7 +402,7 @@ class KGroup:
             else:  # we got a KElement object
                 el = v
                 el.name = k  # we override the element name with the arg name
-            setattr(self, k, el)
+            self[k] = el
         # test if the compulsory (guaranteed) elements are present
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
@@ -717,23 +737,44 @@ class KGroup:
         else:  # we got a KElement object
             el = value
             el.name = arg  # we override the element name with the arg name
+        if el._element_class is None:
+            el._element_class = arg
         setattr(self, arg, el)
+        self._element_list.append(el)
 
-
-    def get_core(self, *args):
+    def get_core(self, element, default=None):
         """ get_core(element_name [, default])
         Returns the core value of an element
         """
-        element = args[0]
-        if len(args) > 1:
-            default = args[1]
-        else:
-            default = None
-        e = getattr(self, element, None)
+        e = getattr(self, element)
         if e is None:
             return default
         else:
             return getattr(e, 'core', default)
+
+    def get_element_by_class(self,element_class,default=None):
+        """
+        Return the value of an element with a given element_class.
+        The class of and element is the value of the "source" argument
+        in the str definition file:
+
+            element name=dia; source=day
+
+        The element class of "dia" is "day".
+        If an element has no source parameter in the str file then
+        the class is the same as the name of the element.
+
+        :param element_class: name of an element class
+        :param default: default value if not element found
+        :return: KElement, or whatever in default.
+
+        """
+        el: KElement
+        for el in self._element_list:
+            if el._element_class == element_class:
+                return el
+
+        return default
 
 
 class KKleio(KGroup):

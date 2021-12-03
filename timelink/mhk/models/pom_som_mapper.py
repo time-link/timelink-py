@@ -4,9 +4,9 @@ from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
     select
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
-from sqlalchemy.orm import relationship, Session, sessionmaker
+from sqlalchemy.orm import relationship
 
-from timelink.kleio.groups import KGroup
+from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.entity import Entity
 
@@ -103,7 +103,7 @@ class PomSomMapper(Entity):
     def ensure_mapping(self, session = None):
         """
         Ensure that a table exists to support
-        this SOM Mapping and ORM class is created
+        this SOM Mapping and an ORM class is created
         to represent data of objects from this mapping.
 
         Checks if there is a table definition
@@ -162,6 +162,12 @@ class PomSomMapper(Entity):
             # This is the dynamic part, we create a table with
             # the definition the "class" and "class_attributes" tables
             # fetched by this class
+            # NOTE this does not take into account that the columns
+            #       may already exist in the super class or up in the
+            #       class hierarchy. Not sure if this the way it is supposed
+            #       to be or if it is a problem to be dealt with here.
+            #       SQLAchemy will rename the columns to avoid conflict
+            #       automatically
             my_table = Table(self.table_name, metadata_obj,
                              extend_existing=True)
             cattr: Type["PomClassAttributes"]
@@ -221,7 +227,7 @@ class PomSomMapper(Entity):
         # self.__table__= NewTable
 
     @classmethod
-    def get_pom_classes(cls, session = None) -> Optional[
+    def get_pom_classes(cls, session) -> Optional[
         List["PomSomMapper"]]:
         """
         Get the pom_classes from database data in the current database.
@@ -239,7 +245,7 @@ class PomSomMapper(Entity):
         return pom_classes
 
     @classmethod
-    def get_pom_class_ids(cls, session = None):
+    def get_pom_class_ids(cls, session):
         """
         Return all the pom_som_class ids as a list
         :return:
@@ -251,7 +257,7 @@ class PomSomMapper(Entity):
         return pom_class_ids
 
     @classmethod
-    def get_pom_class(cls, pom_class_name: String, session=None):
+    def get_pom_class(cls, pom_class_name: String, session):
         """
         Return the pom_class object for a given pom_class_name.
 
@@ -264,7 +270,7 @@ class PomSomMapper(Entity):
         return pom_class
 
     @classmethod
-    def ensure_all_mappings(cls,session=None):
+    def ensure_all_mappings(cls,session):
         """
         Ensures that every class currently defined in the database has
         a python table object and a python ORM object
@@ -286,7 +292,7 @@ class PomSomMapper(Entity):
         cattr: PomClassAttributes = self.class_attributes.filter(PomClassAttributes.pom_class == eclass)
         return cattr.colname
 
-    def store_KGroup(self,group: KGroup):
+    def store_KGroup(self,group: KGroup, session):
         """
         Store a Kleio Group in the database through this mapping
         :param group: a Kleio Group
@@ -294,6 +300,12 @@ class PomSomMapper(Entity):
         """
         if group._pom_class_id != self.id:
             raise ValueError("Group is not mapped to associated with this PomSomMapper")
+
+        self.ensure_mapping(session)
+        ormClass: Entity = Entity.get_orm_for_pom_class(self.id)
+        entity_for_insert = ormClass()
+        entity_for_insert.groupname = group.kname
+        columns = inspect(ormClass).columns
 
         for cattr in self.class_attributes:
             # Here it should look for the class of the elements, not the name
@@ -309,10 +321,7 @@ class PomSomMapper(Entity):
             #     lastName = Column('last_name', String(25))
             #     addressOne = Column('address_one', String(255))
             #
-            # from sqlalchemy.inspection import inspect
-            # # columns = [column.name for column in inspect(model).c]
-            #
-            # # Also if we want to know that User.firstName is first_name then:
+            #  Also if we want to know that User.firstName is first_name then:
             # columnNameInDb = inspect(User).c.firstName.name
             # # The following will print: first_name
             # print(columnNameInDb)
@@ -320,12 +329,26 @@ class PomSomMapper(Entity):
             # O flow do mapping de um element numa coluna é
             # column = PomSom.cattr.colclass
             # value = group.get_element_by_class(column)
-            # Entity.set_col_value(column,value)
-            # TODO KGroup.get_element_by_class
+            # TODO Entity.set_col_value(column,value)
             # TODO Entity.get_col_value, Entity.set_col_value
-            if hasattr(group,cattr.name):
-                print("found elment=",getattr(group,cattr.name))
-        pass
+            element: KElement = group.get_element_by_class(cattr.colclass)
+            if element is not None:
+                column = columns[cattr.colname]
+                setattr(entity_for_insert,cattr.colname,str(element))
+        exists = session.get(ormClass,entity_for_insert.id)
+        if exists is not None:
+            session.delete(exists)
+        try:
+            session.add(entity_for_insert)
+        except Exception as e:
+            print(e)
+
+        try:
+            session.commit()
+        except Exception as e:
+            print(e)
+
+
 
 
     def __repr__(self):

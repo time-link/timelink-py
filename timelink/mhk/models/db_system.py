@@ -32,44 +32,41 @@ class DBSystem:
 
         :param conn_string: a sqlalchemy connection URL, str.
         """
-        if conn_string is not None:
-            self.set_engine_and_session(conn_string)
 
-
-    def set_engine_and_session(self, conn_string):
-        """
-        Create an engine and session from a connection string.
-        This is called by __init__ and should not be called again
-        except if __init__ was called without a connection string.
-
-            dbsys = DBSystem("sqlite:///test_db").
-
-            session = dbsys.session()
-
-
-            Session = dbsys.session_class
-            session = Session()
-
-            engine = dbsys.engine()
-
-        :param conn_string:
-        :return:
-        """
         if conn_string is not None:
             self.db_engine = create_engine(conn_string
                                            or self.conn_string,
                                            future=True, echo=SQLALCHEMY_ECHO)
             self.conn_string = conn_string
-            with self.session() as session:
-                self.create_tables()
-                session.commit()
-                self.load_base_mappings(session=session)
-                PomSomMapper.ensure_all_mappings(session=session)
-                session.commit()
 
-    def session(self):
+
+    def init_db(self, conn_string):
+        """
+        Create an engine from a connection string.
+        Check if database is properly setup up
+        by creating core tables, PomSomMappers
+        and ORM classes. Database should be ready
+        for import after this method is called.
+
+        :param conn_string: SQLAlchemy connection string
+        :return:
+        """
+
+        if conn_string is not None:
+            self.db_engine = create_engine(conn_string
+                                           or self.conn_string,
+                                           future=True, echo=SQLALCHEMY_ECHO)
+            self.conn_string = conn_string
+        if self.conn_string is None:
+            raise ValueError("No connection string available")
+
         Session = sessionmaker(self.db_engine)
-        return Session()
+        with Session() as session:
+            self.create_tables()
+            session.commit()
+            self.load_database_classes(session)
+            self.ensure_all_mappings(session)
+            session.commit()
 
 
     def engine(self):
@@ -85,29 +82,40 @@ class DBSystem:
         self.metadata.create_all(self.db_engine)  # only creates if missing
 
 
+    def load_database_classes(self, session):
+        """
+        Populates database with core Database classes
+        :param session:
+        :return:
+        """
+        existing_tables = self.table_names()
+        if len(existing_tables) == 0 or 'entities' not in existing_tables:
+            self.create_tables()
+        stmt = select(PomSomMapper.id)
+        available_mappings = session.execute(stmt).scalars().all()
+        for k in pom_som_base_mappings.keys():
+            if k not in available_mappings:
+                data = pom_som_base_mappings[k]
+                session.bulk_save_objects(data)
+        session.commit()
 
-    def get_engine(self, conn_string):
-        return create_engine(conn_string or self.conn_string)
 
-    def load_base_mappings(self,session=None):
-        if session is None:
-            new_session = self.session()
-        else:
-            new_session = session
-
-        with new_session as session:
-            stmt = select(PomSomMapper.id)
-            available_mappings = session.execute(stmt).scalars().all()
-            for k in pom_som_base_mappings.keys():
-                if k not in available_mappings:
-                    data = pom_som_base_mappings[k]
-                    session.bulk_save_objects(data)
-            session.commit()
+    def ensure_all_mappings(self,session):
+        """ Ensure that all database classes have a table and ORM class"""
+        pom_classes = PomSomMapper.get_pom_classes(session)
+        for pom_class in pom_classes:
+            pom_class.ensure_mapping(session)
 
     def table_names(self):
+        """ Current tables in the current database"""
         insp = inspect(self.db_engine)
         db_tables = insp.get_table_names() # these are the ones in the database
         return db_tables
 
     def drop_db(self):
+        Session = sessionmaker(self.db_engine)
+        with Session() as session:
+            self.load_database_classes(session)
+            self.ensure_all_mappings(session)
+        self.metadata = Base.metadata
         self.metadata.drop_all(self.db_engine)
