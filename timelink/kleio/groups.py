@@ -213,6 +213,8 @@ class KGroup:
 
 
     """
+    # Class scoped list of elements that reserved and used for system use
+    _builtin_elements = ['line','level','sequence','inside','groupname']
 
     id: str = '*id*'
     _name: str = 'kgroup'
@@ -220,22 +222,24 @@ class KGroup:
     _guaranteed: list = [] #  list of required elements
     _also: list = []       #  list of optional elements
     _part: list = []       # allowed sub groups
+
     _extends: Type['KGroup']
     _pom_class_id: str   #  Id of PomSom mapper for this group
+    _element_check = True  # if true validates element assignment
+    _element_list: List[KElement]  # Current elements
+    _inside: Type["KGroup"]   # group that includes this
 
     # The following fields are generated during the translation process.
     # If the Kleio groups are generated programatically (for instance when
     # importing from csv files or from databases) then the cls.include method
     # will update these values
-
     _line: int  # line in the source file
     _level: int  # nesting always +1  than enclosing group
     _sequence: int  # sequential number of this group in the original source
     # class scoped counters to ensure proper numbering across different groups
     _global_sequence: int = 1  # global sequence count
     _global_line: int = 1  # global line count
-    _element_check = True  # if true validates element assignment
-    _element_list: List[KElement]  # Current elements
+
 
     # TODO to_kleio_str generates the definition of a group
     #      for a kleio str file. recurse=yes
@@ -244,6 +248,22 @@ class KGroup:
     @property
     def kname(self):
         return self._name
+
+    @property
+    def inside(self):
+        return self._inside
+
+    @property
+    def line(self):
+        return self._line
+
+    @property
+    def level(self):
+        return self._level
+
+    @property
+    def sequence(self):
+        return self._sequence
 
     @classmethod
     def extend(cls,
@@ -380,6 +400,7 @@ class KGroup:
         self._sequence = 1
         self._element_check = True
         self._element_list = []
+        self._inside = None
 
         if len(args) > len(self._position):
             raise ValueError('Too many positional elements')
@@ -395,7 +416,7 @@ class KGroup:
             if k == 'element_check':
                 self._element_check = v
             if self._element_check and \
-                k not in self._position + self._guaranteed + self._also:
+                not self.is_allowed_as_element(k):
                 raise ValueError(f'Element not allowed: {k}')
             if not isinstance(v, KElement):  # we did not get a KElement
                 el = KElement(k, v)  # we make one
@@ -452,6 +473,7 @@ class KGroup:
             self._containsd[allowed].append(group)
         else:
             self._containsd[allowed] = [group]
+        group._inside = self
         return self
 
     def is_allowed_as_part(self, group):
@@ -479,6 +501,28 @@ class KGroup:
             allowed = group.kname
 
         return allowed
+
+    def is_allowed_as_element(self, element_name):
+        """
+        Test if this element is allowed in this group.
+
+        For an element to be allowed one the following must be true:
+
+            1. part of KGroup._builtin
+            2. part of position list
+            3. part of guarenteed list
+            4. part of also list
+
+        Note that this function is unaffected by self._element_check
+        :param element_name: name of element to check
+
+        :return: True if element allowed False otherwise
+        """
+        return element_name in self._builtin_elements \
+                    + self._position \
+                    + self._guaranteed \
+                    + self._also
+
 
     def includes(self, group: Type[Union[str, Type['KGroup']]] = None) -> list:
         """Returns included groups.
@@ -746,7 +790,7 @@ class KGroup:
         """ get_core(element_name [, default])
         Returns the core value of an element
         """
-        e = getattr(self, element)
+        e = getattr(self, element,default)
         if e is None:
             return default
         else:

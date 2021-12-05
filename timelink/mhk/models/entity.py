@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -10,6 +9,7 @@ class Entity(Base):
 
     id = Column(String, primary_key=True)
     pom_class = Column('class', String, ForeignKey('classes.id'))
+    # TODo add relationship to PomSomMapper = pom_mapper
     inside = Column(String, ForeignKey('entities.id'))
     the_order = Column(Integer)
     the_level = Column(Integer)
@@ -18,8 +18,13 @@ class Entity(Base):
     updated = Column(DateTime)
     indexed = Column(DateTime)
 
-    rels_in = relationship("Relation", back_populates="dest")
-    rels_out = relationship("Relation", back_populates="org")
+    # These are defined in relation.py
+    # rels_in = relationship("Relation", back_populates="dest")
+    # rels_out = relationship("Relation", back_populates="org")
+
+    contained_by = relationship("Entity",
+                            backref="contains", remote_side=[id],
+                            single_parent=True, cascade="all, delete-orphan")
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class see https://github.com/sqlalchemy/sqlalchemy/issues/5445
@@ -38,13 +43,11 @@ class Entity(Base):
         'polymorphic_on': pom_class,
     }
 
-
     @classmethod
     def get_subclasses(cls):
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
-
 
     @classmethod
     def get_orm_entities_classes(cls):

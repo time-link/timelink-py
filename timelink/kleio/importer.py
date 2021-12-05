@@ -197,50 +197,51 @@ class SaxHandler(handler.ContentHandler):
 class KleioHandler():
 
     def __init__(self, conn_string: str):
-        self._db_system: DBSystem = DBSystem(conn_string)
-        self._session: Session = self._db_system.session()
+        self.db_system: DBSystem = DBSystem(conn_string)
 
     def newKleioFile(self, attrs):
-        pass
+        self.session = Session(bind=self.db_system.engine())
+        self.session.commit()
 
     def newClass(self, psm: PomSomMapper, attrs: List[PomClassAttributes]):
         if psm.id in pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
             return
 
-        with self._session as session:
-            class_attr: PomClassAttributes
-            # check if we have this class defined in the database.
-            existing_psm: PomSomMapper = session.get(PomSomMapper,psm.id)
-            if existing_psm is not None:     # class exists we delete it and insert again
-                existing_attrs: List[PomClassAttributes] = \
-                    session.execute(
-                        select(PomClassAttributes).filter_by(the_class=psm.id))
-                for class_attr in existing_attrs:
-                    session.delete(class_attr)
-                session.delete(existing_psm)
+        session = self.session
 
-            # now we add the new mapping
-            session.add(psm)
-            for class_attr in attrs:
-                session.add(class_attr)
+        class_attr: PomClassAttributes
+        # check if we have this class defined in the database.
+        existing_psm: PomSomMapper = session.get(PomSomMapper,psm.id)
+        if existing_psm is not None:     # class exists we delete it and insert again
+            existing_attrs: List[PomClassAttributes] = \
+                session.execute(
+                    select(PomClassAttributes).filter_by(the_class=psm.id))
+            for class_attr in existing_attrs:
+                session.delete(class_attr)
+            session.delete(existing_psm)
 
-            session.flush()
-            session.commit()
-            # ensure that the table and ORM classes are created
-            psm.ensure_mapping(session)
-            session.commit()
+        # now we add the new mapping
+        session.add(psm)
+        for class_attr in attrs:
+            session.add(class_attr)
+
+        session.flush()
+        session.commit()
+        # ensure that the table and ORM classes are created
+        psm.ensure_mapping(session)
+        session.commit()
 
 
     def newGroup(self, group: KGroup):
         # get the PomSomMapper
         # pass storeKGroup
         pom_mapper_for_group = PomSomMapper.get_pom_class(group._pom_class_id,
-                                                          self._session)
+                                                          self.session)
 
 
 
-        pom_mapper_for_group.store_KGroup(group)
+        pom_mapper_for_group.store_KGroup(group,self.session)
 
     def newRelation(self, attrs):
         pass

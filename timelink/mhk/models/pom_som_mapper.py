@@ -100,7 +100,7 @@ class PomSomMapper(Entity):
     # stores the ORM mapper for this mapping
     orm_class: Entity
 
-    def ensure_mapping(self, session = None):
+    def ensure_mapping(self, session=None):
         """
         Ensure that a table exists to support
         this SOM Mapping and an ORM class is created
@@ -144,11 +144,11 @@ class PomSomMapper(Entity):
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
         metadata_obj = type(self).metadata
-        pytables = metadata_obj.tables   # these are the tables known to ORM
+        pytables = metadata_obj.tables  # these are the tables known to ORM
 
         dbengine: Engine = session.get_bind()
         insp = inspect(dbengine)
-        dbtables = insp.get_table_names() # these are the ones in the database
+        dbtables = insp.get_table_names()  # these are the ones in the database
 
         my_table: Table
         if self.table_name in pytables.keys():
@@ -156,7 +156,8 @@ class PomSomMapper(Entity):
             my_table = pytables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
-            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
+            my_table = Table(self.table_name, metadata_obj,
+                             autoload_with=dbengine)
         else:
             # Table is unknown to ORM mapper and does not exist in the database
             # This is the dynamic part, we create a table with
@@ -266,11 +267,12 @@ class PomSomMapper(Entity):
         :param pom_class_name: the name of a pom_class
         """
 
-        pom_class: Optional["PomSomMapper"] = session.get(Entity,pom_class_name)
+        pom_class: Optional["PomSomMapper"] = session.get(Entity,
+                                                          pom_class_name)
         return pom_class
 
     @classmethod
-    def ensure_all_mappings(cls,session):
+    def ensure_all_mappings(cls, session):
         """
         Ensures that every class currently defined in the database has
         a python table object and a python ORM object
@@ -282,29 +284,31 @@ class PomSomMapper(Entity):
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session=session)
 
-    def element_class_to_column(self,eclass:str) -> str:
+    def element_class_to_column(self, eclass: str) -> str:
         """
         Return the column name corresponding to a group element class
         :param eclass: the class of an element (included in the export file
         :return: the name of the column corresponding to this element in the
         mapped table.
         """
-        cattr: PomClassAttributes = self.class_attributes.filter(PomClassAttributes.pom_class == eclass)
+        cattr: PomClassAttributes = self.class_attributes.filter(
+            PomClassAttributes.pom_class == eclass)
         return cattr.colname
 
-    def store_KGroup(self,group: KGroup, session):
+    def kgroup_to_entity(self, group: KGroup, session) -> Entity:
         """
         Store a Kleio Group in the database through this mapping
         :param group: a Kleio Group
         :return: None
         """
         if group._pom_class_id != self.id:
-            raise ValueError("Group is not mapped to associated with this PomSomMapper")
+            raise ValueError(
+                "Group is not mapped to associated with this PomSomMapper")
 
         self.ensure_mapping(session)
-        ormClass: Entity = Entity.get_orm_for_pom_class(self.id)
-        entity_for_insert = ormClass()
-        entity_for_insert.groupname = group.kname
+        ormClass = Entity.get_orm_for_pom_class(self.id)
+        entity_from_group: Entity = ormClass()
+        entity_from_group.groupname = group.kname
         columns = inspect(ormClass).columns
 
         for cattr in self.class_attributes:
@@ -333,13 +337,20 @@ class PomSomMapper(Entity):
             # TODO Entity.get_col_value, Entity.set_col_value
             element: KElement = group.get_element_by_class(cattr.colclass)
             if element is not None:
-                column = columns[cattr.colname]
-                setattr(entity_for_insert,cattr.colname,str(element))
-        exists = session.get(ormClass,entity_for_insert.id)
+                setattr(entity_from_group, cattr.colname, str(element))
+
+        entity_from_group.inside = group.inside
+
+        return entity_from_group
+
+    def store_KGroup(self, group: KGroup, session):
+        entity_from_group: Entity = self.kgroup_to_entity(group, session)
+        ormClass = Entity.get_orm_for_pom_class(self.id)
+        exists = session.get(ormClass, entity_from_group.id)
         if exists is not None:
             session.delete(exists)
         try:
-            session.add(entity_for_insert)
+            session.add(entity_from_group)
         except Exception as e:
             print(e)
 
@@ -347,9 +358,6 @@ class PomSomMapper(Entity):
             session.commit()
         except Exception as e:
             print(e)
-
-
-
 
     def __repr__(self):
         return (
@@ -386,7 +394,7 @@ class PomClassAttributes(Base):
     the_class = Column(String, ForeignKey('classes.id'), primary_key=True)
 
     pom_class = relationship("PomSomMapper", foreign_keys=[the_class],
-                             back_populates='class_attributes')
+                             backref='class_attributes')
     name = Column(String(32), primary_key=True)
     colname = Column(String(32))
     colclass = Column(String(32))
@@ -408,6 +416,3 @@ class PomClassAttributes(Base):
             f')'
         )
 
-
-PomSomMapper.class_attributes = relationship("PomClassAttributes",
-                                             back_populates="pom_class")

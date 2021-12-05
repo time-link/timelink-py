@@ -409,8 +409,6 @@ def test_kgroup_line_seq_level():
                loc='auc', ref='p.1', obs='Test Act')
     ks.include(ka1)
     line = ks._line
-    level = ks._level
-    sequence = ks._sequence
     assert line == 2, \
         "Failed line update"
     act = ks.includes('act')[0]
@@ -421,14 +419,34 @@ def test_kgroup_line_seq_level():
     assert person._level == 4, " Failed level update"
     assert person._sequence == 4, " Failed sequence update"
 
+def test_kgroup_line_seq_level():
+    kk = KKleio('gacto2.str')
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    kk.include(ks)
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
 
-def test_kgroup_get_id(kgroup_nested):
+
+def test_kgroup_inside():
+    kk = KKleio('gacto2.str')
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    kk.include(ks)
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
+    assert ks.inside is kk, "Failed inside builtin"
+    assert ka1.inside is ks, "Failed inside builtin"
+
+def test_kgroup_get_nested_dict_get(kgroup_nested):
     kgroup_nested
     assert kgroup_nested.get["act"]['a1']['date'] == '2021-07-16', \
         "Failed nested dictionary"
 
 
-def test_kgroup_get2(kgroup_nested):
+def test_kgroup_get_nested_dict_get2(kgroup_nested):
     kgroup_nested
     assert kgroup_nested.get["acts"][0]["id"] == 'a1', \
         "Failed nested dictionary"

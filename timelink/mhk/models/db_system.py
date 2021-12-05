@@ -88,9 +88,15 @@ class DBSystem:
         :param session:
         :return:
         """
+
+        # Check if the core tables are there
         existing_tables = self.table_names()
-        if len(existing_tables) == 0 or 'entities' not in existing_tables:
+        base_tables = [ v[0].table_name for v in pom_som_base_mappings.values()]
+        missing = set(base_tables) - set(existing_tables)
+        if len(missing) > 0:
             self.create_tables()
+
+        # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
         for k in pom_som_base_mappings.keys():

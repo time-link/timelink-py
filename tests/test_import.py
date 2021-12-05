@@ -66,8 +66,8 @@ def test_store_kgroup(dbsystem):
     m.include(ls('uc', 'fim', data=2021))
     l2.include(m)
     print(f)
-    with Session(dbsystem.db_engine) as session:
-        PomSomMapper.storeKGroup(f,bind=session)
+    with Session() as session:
+        PomSomMapper.store_KGroup(f,session)
         stmt = select(Source).where(Source.id == f.id)
         print(stmt)
         for row in session.execute(stmt):
