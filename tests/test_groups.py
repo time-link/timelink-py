@@ -408,16 +408,16 @@ def test_kgroup_line_seq_level():
                day=16, month=7, year=2021,
                loc='auc', ref='p.1', obs='Test Act')
     ks.include(ka1)
-    line = ks._line
+    line = ks.line
     assert line == 2, \
         "Failed line update"
     act = ks.includes('act')[0]
-    assert act._level == 3, " Failed level update"
+    assert act.level == 3, " Failed level update"
     p1 = KPerson('Joaquim', 'm', 'p01')
     ka1.include(p1)
     person = act.includes('person')[0]
-    assert person._level == 4, " Failed level update"
-    assert person._sequence == 4, " Failed sequence update"
+    assert person.level == 4, " Failed level update"
+    assert person.order == 4, " Failed sequence update"
 
 def test_kgroup_line_seq_level():
     kk = KKleio('gacto2.str')

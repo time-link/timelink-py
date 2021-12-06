@@ -112,9 +112,10 @@ class KElement:
     core: Any  # must have a str representation.
     comment: str = None
     original: str = None
-    _element_class: str = None  #class
+    _element_class: str = None  # class
 
-    def __init__(self, name: str, val: Any, comment=None, original=None, element_class=None):
+    def __init__(self, name: str, val: Any, comment=None, original=None,
+                 element_class=None):
         """
         Args:
             name: name of the Element. A string.
@@ -214,20 +215,21 @@ class KGroup:
 
     """
     # Class scoped list of elements that reserved and used for system use
-    _builtin_elements = ['line','level','sequence','inside','groupname']
+    _builtin_elements = ['line', 'level', 'sequence', 'inside', 'groupname',
+                         'pom_class_id']
 
     id: str = '*id*'
     _name: str = 'kgroup'
-    _position: list = []   # list of positional elements
-    _guaranteed: list = [] #  list of required elements
-    _also: list = []       #  list of optional elements
-    _part: list = []       # allowed sub groups
+    _position: list = []  # list of positional elements
+    _guaranteed: list = []  # list of required elements
+    _also: list = []  # list of optional elements
+    _part: list = []  # allowed sub groups
 
-    _extends: Type['KGroup']
-    _pom_class_id: str   #  Id of PomSom mapper for this group
+    _extends: Type['KGroup']  # name of group this is based on
+    _pom_class_id: str = 'entity'  # Id of PomSom mapper for this group
     _element_check = True  # if true validates element assignment
     _element_list: List[KElement]  # Current elements
-    _inside: Type["KGroup"]   # group that includes this
+    _inside: Type["KGroup"]  # group that includes this
 
     # The following fields are generated during the translation process.
     # If the Kleio groups are generated programatically (for instance when
@@ -235,11 +237,10 @@ class KGroup:
     # will update these values
     _line: int  # line in the source file
     _level: int  # nesting always +1  than enclosing group
-    _sequence: int  # sequential number of this group in the original source
+    _order: int  # sequential number of this group in the original source
     # class scoped counters to ensure proper numbering across different groups
     _global_sequence: int = 1  # global sequence count
     _global_line: int = 1  # global line count
-
 
     # TODO to_kleio_str generates the definition of a group
     #      for a kleio str file. recurse=yes
@@ -262,8 +263,12 @@ class KGroup:
         return self._level
 
     @property
-    def sequence(self):
-        return self._sequence
+    def order(self):
+        return self._order
+
+    @property
+    def pom_class_id(self):
+        return self._pom_class_id
 
     @classmethod
     def extend(cls,
@@ -272,16 +277,15 @@ class KGroup:
                guaranteed: Union[list, str, None] = None,
                also: Union[list, str, None] = None,
                part: Union[list, str, None] = None):
-        """ Create a new group extending this one
-                fonte = KGroup.extends('fonte',
-                                also=['tipo',
-                                      'data',
-                                      'ano',
-                                      'obs',
-                                      'substitui'])
-                                      :type part: KGroup
-
-    """
+        """
+        Create a new group definition by extending this one
+        :param name:  name of the new group
+        :param position: list of positional elements
+        :param guaranteed: list of required elements
+        :param also:    list of optional elements
+        :param part: list of groups that can be included in this one
+        :return: new group class
+        """
         new_group = type(name, (cls,), {})
         new_group._name = name
         # todo: k,v in kwargs if in cls set if not error
@@ -333,7 +337,8 @@ class KGroup:
             cls._position)
 
     @classmethod
-    def allow_as_element(cls, ename:Union[str,List[str]],guaranteed=False,also=True,position=None):
+    def allow_as_element(cls, ename: Union[str, List[str]], guaranteed=False,
+                         also=True, position=None):
         """
         Add element or list to list of allowed elements for this group.
         Optionally define if element(s) is positional, required (guaranteed) or optional
@@ -347,7 +352,7 @@ class KGroup:
         """
         if type(ename) is List:
             for e in ename:
-                cls.allow_as_element(e,guaranteed=guaranteed,
+                cls.allow_as_element(e, guaranteed=guaranteed,
                                      position=position,
                                      also=also)
             return
@@ -358,13 +363,12 @@ class KGroup:
             if position is not None:
                 if ename in cls._position:
                     cls._position.remove(ename)
-                cls._position.insert(position,ename)
+                cls._position.insert(position, ename)
             if ename not in cls.elements_allowed():
                 cls._also.append(ename)
         else:
             raise TypeError("first argument must be string or list of strings")
         return
-
 
     @classmethod
     def allow_as_part(cls, g: Union[str, type]):
@@ -397,7 +401,7 @@ class KGroup:
         self._containsd: dict = {}
         self._level = 1
         self._line = 1
-        self._sequence = 1
+        self._order = 1
         self._element_check = True
         self._element_list = []
         self._inside = None
@@ -465,7 +469,7 @@ class KGroup:
 
         group._level = self._level + 1
         group._line = KGroup.inc_line()
-        group._sequence = KGroup.inc_sequence()
+        group._order = KGroup.inc_sequence()
 
         # new style, dictionary based
         k = self._containsd.keys()
@@ -519,10 +523,9 @@ class KGroup:
         :return: True if element allowed False otherwise
         """
         return element_name in self._builtin_elements \
-                    + self._position \
-                    + self._guaranteed \
-                    + self._also
-
+               + self._position \
+               + self._guaranteed \
+               + self._also
 
     def includes(self, group: Type[Union[str, Type['KGroup']]] = None) -> list:
         """Returns included groups.
@@ -790,13 +793,22 @@ class KGroup:
         """ get_core(element_name [, default])
         Returns the core value of an element
         """
-        e = getattr(self, element,default)
+        e = getattr(self, element, default)
         if e is None:
             return default
         else:
             return getattr(e, 'core', default)
 
-    def get_element_by_class(self,element_class,default=None):
+
+    def get_id(self):
+        """Return the id of the group"""
+        e = getattr(self, 'id', None)
+        if e is None:
+            return None
+        else:
+            return getattr(e, 'core',None)
+
+    def get_element_by_class(self, element_class, default=None):
         """
         Return the value of an element with a given element_class.
         The class of and element is the value of the "source" argument
@@ -838,11 +850,12 @@ class KKleio(KGroup):
     _position = ['structure']
     _also = ['prefix', 'translations', 'translator', 'obs']
     _part = ['source', 'aregister']
+    _pom_class_id: str = 'entity'
 
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
         KGroup._global_line = 1
         KGroup._global_sequence = 1
-        super().__init__(*args,**kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class KSource(KGroup):
@@ -890,6 +903,7 @@ class KSource(KGroup):
     _also = ['type', 'date', 'year', 'loc', 'ref', 'replace', 'obs']
     _position = ['id']
     _part = ['act', 'attr']
+    _pom_class_id: str = 'source'
 
 
 KKleio.allow_as_part(KSource)
@@ -923,7 +937,7 @@ class KAct(KGroup):
     _also = ['loc', 'ref', 'obs', 'day', 'month', 'year']
     _part = ['person', 'object', 'geoentity', 'abstraction', 'ls', 'attr',
              'rel']
-
+    _pom_class_id: str = 'act'
 
 KSource.allow_as_part(KAct)
 
@@ -954,7 +968,7 @@ class KPerson(KGroup):
     _also = ['id', 'obs', 'same_as']
     _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
     _part = ['rel', 'attr']
-
+    _pom_class_id: str = 'person'
 
 KAct.allow_as_part(KPerson)
 
@@ -987,7 +1001,7 @@ class KObject(KGroup):
     _also = ['id', 'obs', 'same_as']
     _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
     _part = ['rel', 'attr']
-
+    _pom_class_id: str = 'object'
 
 KAct.allow_as_part(KObject)
 
@@ -1029,7 +1043,7 @@ class KAttribute(KGroup):
     _guaranteed = ['type', 'value']
     _also = ['date', 'obs']
     _position = ['type', 'value', 'date']
-
+    _pom_class_id: str = 'attribute'
 
 KPerson.allow_as_part(KAttribute)
 KAct.allow_as_part(KAttribute)
@@ -1075,7 +1089,7 @@ class KRelation(KGroup):
     _position = ['type', 'value', 'destname', 'destination']
     _guaranteed = ['type', 'value', 'destname', 'destination']
     _also = ['obs', 'date']
-
+    _pom_class_id: str = 'relation'
 
 KPerson.allow_as_part(KRelation)
 KAct.allow_as_part(KRelation)
