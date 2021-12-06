@@ -8,9 +8,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from timelink.kleio.groups import KGroup, KElement
-from timelink.mhk.models.db_system import DBSystem, pom_som_base_mappings
+from timelink.mhk.models.db import TimelinkDB, pom_som_base_mappings
 from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
-
 
 class KleioContext(Enum):
     START = 1,
@@ -197,7 +196,7 @@ class SaxHandler(handler.ContentHandler):
 class KleioHandler():
 
     def __init__(self, conn_string: str):
-        self.db_system: DBSystem = DBSystem(conn_string)
+        self.db_system: TimelinkDB = TimelinkDB(conn_string)
 
     def newKleioFile(self, attrs):
         self.session = Session(bind=self.db_system.engine())

@@ -6,18 +6,19 @@ from timelink.kleio.groups import KKleio, KSource, KAct, KAbstraction, KPerson, 
     KLs, KAtr, KGroup
 from timelink.kleio.importer import import_from_xml
 from timelink.mhk.models import base  # noqa
-from timelink.mhk.models.db_system import DBSystem
+from timelink.mhk.models.db import TimelinkDB
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
-
-
 from timelink.mhk.models.base import Source, Person
+from tests import Session
 
 conn_string = 'sqlite:///test_db'
 
-
 @pytest.fixture(scope="module")
 def dbsystem():
-    db = DBSystem(conn_string)
+    db = TimelinkDB(conn_string)
+    Session.configure(bind=db.engine())
+    with Session() as session:
+        db.load_database_classes(session)
     yield db
     db.drop_db()
 

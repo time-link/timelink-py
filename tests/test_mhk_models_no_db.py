@@ -9,7 +9,7 @@ from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.db_system import DBSystem
+from timelink.mhk.models.db import TimelinkDB
 
 def test_entity_subclasses():
     scl = list(Entity.get_subclasses())

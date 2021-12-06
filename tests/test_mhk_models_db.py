@@ -1,29 +1,56 @@
+from typing import Type
+
 import pytest
 from sqlalchemy.orm import Session, sessionmaker
 
-from timelink.kleio.groups import KKleio, KSource, KAct, KAbstraction, KPerson, \
-    KLs, KAtr, KGroup, KElement
+from timelink.kleio.groups import KElement,KGroup, KSource,KAct,KPerson
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
+from timelink.mhk.models.person import Person
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.db_system import DBSystem
+from timelink.mhk.models.db import TimelinkDB
 # Session is shared by all tests
 from tests import Session
 
 
-DBSystem.conn_string = 'sqlite:///test_db?check_same_thread=False'
+TimelinkDB.conn_string = 'sqlite:///test_db?check_same_thread=False'
 
 
 @pytest.fixture(scope="module")
 def dbsystem():
-    db = DBSystem(DBSystem.conn_string)
+    db = TimelinkDB(TimelinkDB.conn_string)
     Session.configure(bind=db.engine())
     with Session() as session:
         db.load_database_classes(session)
     yield db
     db.drop_db()
 
+@pytest.fixture
+def kgroup_nested() -> KSource:
+    """Returns a nested structure"""
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+                                     day=16, month=7, year=2021,
+                                     loc='auc', ref='p.1', obs='Test Act')
+    ks.include(ka1)
+    ka2 = KAct('a2', 'test-act', date='2021-07-17',
+                                     day=17, month=7, year=2021,
+                                     loc='auc', ref='p.2', obs='Test Act')
+    ks.include(ka2)
+    p1 = KPerson('Joaquim', 'm', 'p01')
+    p2 = KPerson('Margarida', 'f', 'p02')
+    p3 = KPerson('Pedro', 'm', 'p03')
+    ka1.include(p1)
+    ka1.include(p2)
+    ka1.include(p3)
+    p4 = KPerson('Maria', 'f', 'p04')
+    p5 = KPerson('Manuel', 'm', 'p05')
+    p6 = KPerson('João', 'm', 'p06')
+    ka2.include(p4)
+    ka2.include(p5)
+    ka2.include(p6)
+    return ks
 
 def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
@@ -86,27 +113,39 @@ def test_ensure_mapping(dbsystem):
         assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
         session.close()
 
+
+def test_insert_entities_nested_groups(dbsystem,kgroup_nested):
+    ks = kgroup_nested
+    source_id = ks.get_id()
+    with Session() as session:
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+        source_from_db = Entity.get_entity(source_id,session)
+        assert source_from_db.id == ks.get_id()
+
+
+
+
+
 def test_store_KGroup_1(dbsystem):
     kfonte: KGroup = KGroup.extend('fonte',
-                                   position=['id','data'],
-                                   also=['tipo',
+                                           position=['id','data'],
+                                           also=['tipo',
                                          'ano',
                                          'obs',
                                          'substitui'])
     afonte = kfonte('f001',
-                    data=KElement('data','2021-12-02',element_class='date'),
-                    tipo=KElement('tipo','teste',element_class='type'),
+                    data=KElement('data', '2021-12-02', element_class='date'),
+                    tipo=KElement('tipo', 'teste', element_class='type'),
                     obs="First group stored through ORM with non core group")
     with Session() as session:
         session.commit()
         afonte._pom_class_id = 'source' # need a set_mapper method
-        # get a mapper that can generate a database entity from a group
-        source_pom_mapper: PomSomMapper = PomSomMapper.get_pom_class(afonte._pom_class_id, session)
-        # this converts a group to an database entity
-        afonte_entity = source_pom_mapper.kgroup_to_entity(afonte, session)
-        source_pom_mapper.store_KGroup(afonte, session)
+            # this converts a group to an database entity
+        afonte_entity = PomSomMapper.kgroup_to_entity(afonte, session)
+        PomSomMapper.store_KGroup(afonte, session)
         session.commit()
-        source_orm = Entity.get_orm_for_pom_class(afonte._pom_class_id)
+        source_orm = Entity.get_orm_for_pom_class(afonte.pom_class_id)
         same_fonte = session.get(source_orm,afonte.id.core)
         assert str(afonte.obs) == str(same_fonte.obs)
         session.close()
