@@ -99,11 +99,36 @@ class Entity(Base):
     @classmethod
     def get_orm_for_pom_class(cls, pom_class: str):
         """
-        Entity.get_orgm_for_pom_class("act")
+        Entity.get_orm_for_pom_class("act")
 
         will return the ORM class corresponding to the pom_class "act"
         """
         return cls.get_som_mapper_to_orm_as_dict().get(pom_class, None)
+
+
+    @classmethod
+    def get_entity(cls, id: str, session=None):
+        """
+        Get an Entity from the database. The object returned
+        will be of the ORM class defined by mappings.
+        :param id: id of the entity
+        :param session: current session
+        :return: an Entity object of the proper class for the mapping
+        """
+        entity = session.get(Entity,id)
+        if entity is not None:
+            if entity.pom_class != 'entity':
+                orm_class = Entity.get_orm_for_pom_class(entity.pom_class)
+                object_for_id = session.get(orm_class,id)
+                return object_for_id
+            else:
+                return entity
+        else:
+            return None
+
+
+        return entity
+
 
     def __repr__(self):
         return (
