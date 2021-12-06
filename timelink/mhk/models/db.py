@@ -9,13 +9,13 @@ from timelink.mhk.models.base_mappings import pom_som_base_mappings
 
 SQLALCHEMY_ECHO=True
 
-class DBSystem:
+class TimelinkDB:
     """
     Provide access to a Timelink-MHK database
 
     Usage
 
-    dbsys = DBSystem("sql alchemy connection string")
+    dbsys = TimelinkDB("sql alchemy connection string")
 
 
 
