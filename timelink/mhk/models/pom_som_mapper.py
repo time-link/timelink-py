@@ -91,7 +91,7 @@ class PomSomMapper(Entity):
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
     table_name = Column(String)
-    class_group = Column("group_name", String(32))
+    group_name = Column("group_name", String(32))
     super_class = Column("super", String)
     __mapper_args__ = {
         'polymorphic_identity': 'class',
@@ -258,18 +258,34 @@ class PomSomMapper(Entity):
         return pom_class_ids
 
     @classmethod
-    def get_pom_class(cls, pom_class_name: String, session):
+    def get_pom_class(cls, pom_class_id: String, session):
         """
-        Return the pom_class object for a given pom_class_name.
+        Return the pom_class object for a given pom_class_id.
 
         See also Entity.get_orm_for_pom_class
 
-        :param pom_class_name: the name of a pom_class
+        :param pom_class_id: the id of a pom_class
         """
 
         pom_class: Optional["PomSomMapper"] = session.get(Entity,
-                                                          pom_class_name)
+                                                          pom_class_id)
         return pom_class
+
+    @classmethod
+    def get_pom_class_from_group(cls, group: KGroup, session=None):
+        # TODO user property instead
+        pom_id = getattr(group, '_pom_class_id', None)
+        if pom_id is None:
+            kname = group.kname
+            for pom in cls.get_pom_classes(session):
+                if kname == pom.group_name:
+                    # TODO use a setter
+                    pom_id = pom.id
+                    break
+        if pom_id:
+            return cls.get_pom_class(pom_id, session)
+        else:
+            return None
 
     @classmethod
     def ensure_all_mappings(cls, session):
@@ -295,64 +311,72 @@ class PomSomMapper(Entity):
             PomClassAttributes.pom_class == eclass)
         return cattr.colname
 
-    def kgroup_to_entity(self, group: KGroup, session) -> Entity:
+    @classmethod
+    def kgroup_to_entity(cls, group: KGroup, session=None,
+                         with_pom=None) -> Entity:
         """
-        Store a Kleio Group in the database through this mapping
-        :param group: a Kleio Group
-        :return: None
-        """
-        if group._pom_class_id != self.id:
-            raise ValueError(
-                "Group is not mapped to associated with this PomSomMapper")
+        Store a Kleio Group in the database.
 
-        self.ensure_mapping(session)
-        ormClass = Entity.get_orm_for_pom_class(self.id)
+        :param group: a Kleio Group
+        :param with_pom: id of a PomSom class to handle storing this group
+        :return: An ORM object that can store this group in the database
+
+        To produce the ORM-POM representation of a group we need to find
+        the PomSomMapper specific to that group, using the following:
+
+            * if with_pom is given with a PomSomMapper id we fetch that
+            * if the group was imported it should have _pom_class_id
+            * if neither then we search for a PomSom mapper with "groupname"
+               equal to the name of the group.
+        """
+        if with_pom is not None:
+            pom_class_id = with_pom
+            pom_class = cls.get_pom_class(pom_class_id, session)
+        else:
+            pom_class = cls.get_pom_class_from_group(group, session)
+
+        if pom_class is None:
+            raise ValueError(
+                f"Could not determine PomSomMapper for this group: {group}")
+
+        pom_class.ensure_mapping(session)
+        ormClass = Entity.get_orm_for_pom_class(pom_class.id)
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
         columns = inspect(ormClass).columns
 
-        for cattr in self.class_attributes:
-            # Here it should look for the class of the elements, not the name
-            # Para isso deviamos ter um metodo KGroup.get_element_of_class(eclass)
-            # e depois um metodo em Entity que fornece o nome do attribute
-            # da class para um dado nome da coluna, e.g.
-
-            # class User(Base):
-            #     __tablename__ = 'user'
-            #     id = Column('id', String(40), primary_key=True)
-            #     email = Column('email', String(50))
-            #     firstName = Column('first_name', String(25))
-            #     lastName = Column('last_name', String(25))
-            #     addressOne = Column('address_one', String(255))
-            #
-            #  Also if we want to know that User.firstName is first_name then:
-            # columnNameInDb = inspect(User).c.firstName.name
-            # # The following will print: first_name
-            # print(columnNameInDb)
-            #
-            # O flow do mapping de um element numa coluna é
-            # column = PomSom.cattr.colclass
-            # value = group.get_element_by_class(column)
-            # TODO Entity.set_col_value(column,value)
-            # TODO Entity.get_col_value, Entity.set_col_value
+        for cattr in pom_class.class_attributes:
             element: KElement = group.get_element_by_class(cattr.colclass)
             if element is not None:
                 setattr(entity_from_group, cattr.colname, str(element))
 
-        entity_from_group.inside = group.inside
+        # positional information in the original file
+        entity_from_group.the_line = group.line
+        entity_from_group.the_level = group.level
+        entity_from_group.the_order = group.order
+
+        # check if this group is enclosed in another
+        contained_by = group.inside
+        if contained_by:
+            entity_from_group.inside = group.inside.get_core('id')
+
 
         return entity_from_group
 
-    def store_KGroup(self, group: KGroup, session):
-        entity_from_group: Entity = self.kgroup_to_entity(group, session)
-        ormClass = Entity.get_orm_for_pom_class(self.id)
-        exists = session.get(ormClass, entity_from_group.id)
+    @classmethod
+    def store_KGroup(cls, group: KGroup, session, with_pom=None):
+        entity_from_group: Entity = cls.kgroup_to_entity(group, session)
+        exists = session.get(entity_from_group.__class__, entity_from_group.id)
         if exists is not None:
             session.delete(exists)
         try:
             session.add(entity_from_group)
         except Exception as e:
             print(e)
+
+        in_group: KGroup
+        for in_group in group.includes():
+            cls.store_KGroup(in_group,session)
 
         try:
             session.commit()
@@ -363,7 +387,7 @@ class PomSomMapper(Entity):
         return (
             f'PomSomMapper(id="{self.id}", '
             f'table_name="{self.table_name}", '
-            f'class_group="{self.class_group}", '
+            f'class_group="{self.group_name}", '
             f'super_class="{self.super_class}" '
             f')'
         )
@@ -415,4 +439,3 @@ class PomClassAttributes(Base):
             f'pkey="{self.pkey}" '
             f')'
         )
-
