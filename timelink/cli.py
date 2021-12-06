@@ -5,25 +5,18 @@ Also provides basic mhk manager functionality.
 TODO consider typer https://typer.tiangolo.com
 
 """
+import typer
 import platform
-import click
 from timelink.mhk.utilities import get_mhk_env, get_mhk_app_env
 import docker
 
+# We use Typer https://typer.tiangolo.com
 
-@click.group()
-def cli():
-    pass
+app = typer.Typer(help="Timelink and MHK manager")
+mhk_app = typer.Typer()
+app.add_typer(mhk_app,name="mhk", help="MHK legacy manager")
 
-
-@click.group()
-def mhk():
-    """MHK manager commands"""
-    click.echo("mhk command line interface")
-    return 0
-
-
-@mhk.command(name='version')
+@mhk_app.command(name='version')
 def mhk_version():
     """shows MHK manager version
 
@@ -61,15 +54,16 @@ def mhk_version():
     MHK URL:          http://127.0.0.1:8080/mhk
     Kleio URL:        http://127.0.0.1:8088
     Portainer URL:    http://127.0.0.1:9000"""
-    print(mhkv)
+    typer.echo(mhkv)
     return 0
 
 
-@mhk.command(name='status')
+@mhk_app.command(name='status')
 def mhk_status():
+    """shows docker status information"""
     client = docker.from_env()
     dinfo = client.info()
-    print(f"""
+    typer.echo(f"""
     Containers  :{dinfo['Containers']}
        Running  :{dinfo['ContainersRunning']}
        Paused   :{dinfo['ContainersPaused']}
@@ -77,16 +71,14 @@ def mhk_status():
     """)
     return 0
 
+@app.callback()
+def main():
+    """
+     This is the timelink/MHK manager on the command line
+     """
 
-@click.command()
-def timelink():
-    """timelink command line interface"""
-    click.echo("timelink cli")
-    return 0
+    typer.echo("This is the timelink/MHK manager on the command line")
 
-
-cli.add_command(mhk)
-cli.add_command(timelink)
 
 if __name__ == "__main__":
-    cli()  # pragma: no cover
+    app()  # pragma: no cover

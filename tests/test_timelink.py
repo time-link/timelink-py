@@ -3,9 +3,9 @@
 """Tests for `timelink-py` package."""
 
 import pytest
-from click.testing import CliRunner
+from typer.testing import CliRunner
 
-from timelink import cli
+from timelink.cli import app
 
 
 @pytest.fixture
@@ -27,9 +27,7 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.cli)
+    result = runner.invoke(app,["--help"])
     assert result.exit_code == 0
-    assert 'timelink  timelink command line interface' in result.output
-    help_result = runner.invoke(cli.cli, ['--help'])
-    assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+    assert "Timelink and MHK manager" in result.output
+
