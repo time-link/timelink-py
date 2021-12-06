@@ -10,7 +10,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', ]
+requirements = ['typer~=0.4.0', ]
 
 test_requirements = ['pytest>=3', ]
 
@@ -32,7 +32,7 @@ setup(
                 "from historical sources. ",
     entry_points={
         'console_scripts': [
-            'timelink=timelink.cli:cli',
+            'timelink=timelink.cli:app',
         ],
     },
     project_urls={
