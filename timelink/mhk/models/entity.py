@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 from timelink.mhk.models.base_class import Base
 
@@ -10,7 +10,7 @@ class Entity(Base):
     id = Column(String, primary_key=True)
     pom_class = Column('class', String, ForeignKey('classes.id'))
     # TODo add relationship to PomSomMapper = pom_mapper
-    inside = Column(String, ForeignKey('entities.id'))
+    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'))
     the_order = Column(Integer)
     the_level = Column(Integer)
     the_line = Column(Integer)
@@ -22,9 +22,10 @@ class Entity(Base):
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
 
-    contained_by = relationship("Entity",
-                            backref="contains", remote_side=[id],
-                            single_parent=True, cascade="all, delete-orphan")
+    # this based on https://stackoverflow.com/questions/28843254/deleting-from-self-referential-inherited-objects-does-not-cascade-in-sqlalchemy
+    contains = relationship("Entity",
+                            backref=backref("contained_by",remote_side="Entity.id" ),
+                            cascade="all")
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class see https://github.com/sqlalchemy/sqlalchemy/issues/5445
@@ -139,7 +140,6 @@ class Entity(Base):
             f'the_level={self.the_level}, '
             f'the_line={self.the_line}, '
             f'groupname="{self.groupname}", '
-
             f'updated={self.updated}, '
             f'indexed={self.indexed},'
             f')'

@@ -21,10 +21,9 @@ TimelinkDB.conn_string = 'sqlite:///test_db?check_same_thread=False'
 def dbsystem():
     db = TimelinkDB(TimelinkDB.conn_string)
     Session.configure(bind=db.engine())
-    with Session() as session:
-        db.load_database_classes(session)
     yield db
-    db.drop_db()
+    with Session() as session:
+        db.drop_db(session)
 
 @pytest.fixture
 def kgroup_nested() -> KSource:
@@ -60,8 +59,7 @@ def test_create_db(dbsystem):
 
 
 def test_entity_contains(dbsystem):
-    ent1: Entity = Entity(id='e001')
-    ent1.groupname = "entity"
+    ent1: Entity = Entity(id='e001',groupname='entity')
     ent1.pom_class = 'entity'
     ent1.line = 1
     ent1.level = 1
@@ -83,14 +81,27 @@ def test_entity_contains(dbsystem):
     ent3.sequence = 2
     ent1.contains.append(ent3)
 
+    ent4: Entity = Entity(id='e004')
+    ent4.groupname = "entity"
+    ent4.pom_class = 'entity'
+    ent4.line = 4
+    ent4.level = 4
+    ent4.sequence = 4
+    ent2.contains.append(ent4)
+
     with Session() as session:
         session.add(ent1)
         session.add(ent2)
         session.add(ent3)
+        session.commit()
         ent4 = ent2.contained_by
         assert ent4 is ent1
         ent5 = ent1.contains[1]
         assert ent5 is ent3
+        session.delete(ent1)  # should delete ent2, ent3 and ent4
+        session.commit()
+        deleted = session.get(Entity,'e004')
+        assert deleted is None, "Should have deleted orphan"
 
 def test_ensure_mapping(dbsystem):
     with Session() as session:
@@ -123,7 +134,33 @@ def test_insert_entities_nested_groups(dbsystem,kgroup_nested):
         source_from_db = Entity.get_entity(source_id,session)
         assert source_from_db.id == ks.get_id()
 
+def test_insert_delete_previous_source(dbsystem,kgroup_nested):
+    ks = kgroup_nested
+    source_id = ks.get_id()
+    with Session() as session:
+        print(f"""
 
+        =================
+        Inserting a nested group
+
+        {ks.to_kleio()}
+        """)
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+        ks2 = KSource('s1', type='test',
+                     loc='auc',
+                     ref='alumni',
+                     obs='Empty should delete previous one')
+
+        print("""
+        ================
+        Reinserting group with same id
+        ===============
+        """)
+        PomSomMapper.store_KGroup(ks2, session)
+        source_from_db: Entity = Entity.get_entity(source_id,session)
+        contains = source_from_db.contains
+        assert len(contains) == 0, "import did not delete contained entities"
 
 
 

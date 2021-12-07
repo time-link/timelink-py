@@ -33,11 +33,8 @@ class TimelinkDB:
         :param conn_string: a sqlalchemy connection URL, str.
         """
 
-        if conn_string is not None:
-            self.db_engine = create_engine(conn_string
-                                           or self.conn_string,
-                                           future=True, echo=SQLALCHEMY_ECHO)
-            self.conn_string = conn_string
+        self.init_db(conn_string)
+
 
 
     def init_db(self, conn_string):
@@ -103,6 +100,7 @@ class TimelinkDB:
             if k not in available_mappings:
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)
+        # this will cache the pomsom mapper objects
         session.commit()
 
 
@@ -118,10 +116,15 @@ class TimelinkDB:
         db_tables = insp.get_table_names() # these are the ones in the database
         return db_tables
 
-    def drop_db(self):
-        Session = sessionmaker(self.db_engine)
-        with Session() as session:
-            self.load_database_classes(session)
-            self.ensure_all_mappings(session)
+    def drop_db(self,session):
+        """
+        This will drop all timelink related tables from the database.
+        It will not touch non timelink tables that might exist.
+        :param session:
+        :return:
+        """
+        session.rollback()
+        self.load_database_classes(session)
+        self.ensure_all_mappings(session)
         self.metadata = Base.metadata
         self.metadata.drop_all(self.db_engine)

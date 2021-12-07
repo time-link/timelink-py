@@ -250,21 +250,41 @@ class KGroup:
     def kname(self):
         return self._name
 
+    @kname.setter
+    def kanme(self,value):
+        self._name = value
+
     @property
     def inside(self):
         return self._inside
+
+    @inside.setter
+    def inside(self,value):
+        self._inside = value
 
     @property
     def line(self):
         return self._line
 
+    @line.setter
+    def line(self,value):
+        self._line = value
+
     @property
     def level(self):
         return self._level
 
+    @level.setter
+    def level(self,value):
+        self._level = value
+
     @property
     def order(self):
         return self._order
+
+    @order.setter
+    def order(self,value):
+        self._order = value
 
     @property
     def pom_class_id(self):
@@ -434,6 +454,7 @@ class KGroup:
                 raise TypeError(
                     f'Element {g} in _guaranteed '
                     f'is missing or with None value')
+
 
     def include(self, group: Type['KGroup']):
         """ Include a group. `group`, or its class, must in _part list or
@@ -776,8 +797,7 @@ class KGroup:
         return getattr(self, arg)
 
     def __setitem__(self, arg, value):
-        if self._element_check and \
-            arg not in self._position + self._guaranteed + self._also:
+        if self._element_check and not self.is_allowed_as_element(arg):
             raise ValueError(f'Element not allowed: {arg}')
         if not isinstance(value, KElement):  # we did not get a KElement
             el = KElement(arg, value)  # we make one

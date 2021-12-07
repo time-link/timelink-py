@@ -27,7 +27,7 @@ class PomSomMapper(Entity):
     Fields:
         * id - name of this PomSomMapper, singular form
         * table_name - name of the table in Pom, plural form
-        * class_group - name of Som group that maps to this table
+        * group_name - name of Som group that maps to this table
         * super_class - name of PomSom class extended by this one
 
     For the core kleio groups (source,act,person,object, relation,attribute)
@@ -97,8 +97,11 @@ class PomSomMapper(Entity):
         'polymorphic_identity': 'class',
         'inherit_condition': id == Entity.id
     }
-    # stores the ORM mapper for this mapping
+    # stores the ORM mapper for this mapping (source, act,person...)
     orm_class: Entity
+    # Class attribute stores current PomSomMappings keyed by id
+    pom_classes: dict = {}
+
 
     def ensure_mapping(self, session=None):
         """
@@ -241,9 +244,12 @@ class PomSomMapper(Entity):
         """
 
         stmt = select(cls)
-
         pom_classes = session.execute(stmt).scalars().all()
-        return pom_classes
+        pom_class: PomSomMapper
+        for pom_class in pom_classes:
+            cls.pom_classes[pom_class.id] = pom_class
+
+        return cls.pom_classes.values()
 
     @classmethod
     def get_pom_class_ids(cls, session):
@@ -252,10 +258,15 @@ class PomSomMapper(Entity):
         :return:
         """
 
-        stmt = select(cls.id)
-        pom_class_ids: Optional[List[str]] = session.execute(
-            stmt).scalars().all()
-        return pom_class_ids
+        # stmt = select(cls.id)
+        # pom_class_ids: Optional[List[str]] = session.execute(
+        #     stmt).scalars().all()
+        if cls.pom_classes and len(cls.pom_classes) > 0:
+             pass
+        else:
+            cls.get_pom_classes()
+        return list(cls.pom_classes.keys())
+
 
     @classmethod
     def get_pom_class(cls, pom_class_id: String, session):
@@ -266,10 +277,7 @@ class PomSomMapper(Entity):
 
         :param pom_class_id: the id of a pom_class
         """
-
-        pom_class: Optional["PomSomMapper"] = session.get(Entity,
-                                                          pom_class_id)
-        return pom_class
+        return session.get(cls,pom_class_id)
 
     @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
@@ -351,16 +359,18 @@ class PomSomMapper(Entity):
                 setattr(entity_from_group, cattr.colname, str(element))
 
         # positional information in the original file
-        entity_from_group.the_line = group.line
-        entity_from_group.the_level = group.level
-        entity_from_group.the_order = group.order
+        entity_from_group.the_line = group.line.core
+        entity_from_group.the_level = group.level.core
+        entity_from_group.the_order = group.order.core
+
+        # check if we have an id from the group
 
         # check if this group is enclosed in another
-        contained_by = group.inside
-        if contained_by:
-            entity_from_group.inside = group.inside.get_core('id')
-
-
+        contained_by: KElement = group.inside
+        if contained_by is not None:
+            container_id = contained_by.core
+            if container_id not in ['root','None','']:
+                entity_from_group.inside = contained_by.core
         return entity_from_group
 
     @classmethod

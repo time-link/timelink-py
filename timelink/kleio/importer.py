@@ -58,7 +58,7 @@ class SaxHandler(handler.ContentHandler):
             self._current_class = PomSomMapper(id=attrs['NAME'],
                                                super_class=attrs['SUPER'],
                                                table_name=attrs['TABLE'],
-                                               class_group=attrs['GROUP'])
+                                               group_name=attrs['GROUP'])
             self._context = KleioContext.CLASS
 
         elif ename == 'ATTRIBUTE':
@@ -97,7 +97,8 @@ class SaxHandler(handler.ContentHandler):
             level = attrs['LEVEL']
             line = attrs['LINE']
 
-            self._current_group = KGroup.extend(name)
+            # Mal
+            self._current_group = KGroup()
             self._current_group.id = id
             self._current_group._name = name
             self._current_group._pom_class_id = the_class
@@ -152,6 +153,9 @@ class SaxHandler(handler.ContentHandler):
         ename = name.upper()
 
         if ename == 'GROUP':
+
+
+
             self._kleio_handler.newGroup(self._current_group)
             self._context = KleioContext.KLEIO
             self._current_group = None
@@ -165,9 +169,8 @@ class SaxHandler(handler.ContentHandler):
             self._context = KleioContext.CLASS
 
         elif ename == 'ELEMENT':
-            setattr(self._current_group,
-                    self._current_element.name,
-                    self._current_element)
+            self._current_group[self._current_element.name] \
+                = self._current_element
 
             self._context = KleioContext.GROUP
 
@@ -195,11 +198,10 @@ class SaxHandler(handler.ContentHandler):
 
 class KleioHandler():
 
-    def __init__(self, conn_string: str):
-        self.db_system: TimelinkDB = TimelinkDB(conn_string)
+    def __init__(self, session):
+        self.session = session
 
     def newKleioFile(self, attrs):
-        self.session = Session(bind=self.db_system.engine())
         self.session.commit()
 
     def newClass(self, psm: PomSomMapper, attrs: List[PomClassAttributes]):
@@ -246,10 +248,10 @@ class KleioHandler():
         pass
 
     def endKleioFile(self):
-        pass
+        self.session.close()
 
 
-def import_from_xml(filespec: str, conn_string: str, options: dict = None):
+def import_from_xml(filespec: str, session, options: dict = None):
     """
     Import data from file or url into a timelink-mhk database
 
@@ -261,7 +263,7 @@ def import_from_xml(filespec: str, conn_string: str, options: dict = None):
 
     :return:
     """
-    sax_handler = SaxHandler(KleioHandler(conn_string))
+    sax_handler = SaxHandler(KleioHandler(session))
     parser = make_parser()
     parser.setContentHandler(sax_handler)
     parser.parse(filespec)
