@@ -10,11 +10,10 @@ class Relation(Entity):  # should extend Entity but gives error
     id = Column(String,ForeignKey('entities.id'), primary_key=True)
     #rel_entity = relationship("Entity",foreign_keys='id',back_populates='rel')
     origin = Column(String,ForeignKey('entities.id'))
-    org = relationship(Entity,foreign_keys=[origin], backref='rels_out')
+    org = relationship(Entity,foreign_keys=[origin], back_populates='rels_out')
 
     destination = Column(String,ForeignKey('entities.id'))
-    dest = relationship("Entity",foreign_keys=[destination], backref="rels_in")
-
+    dest = relationship("Entity",foreign_keys=[destination], back_populates="rels_in")
     the_type = Column(String)
     the_value = Column(String)
     the_date = Column(String)
@@ -47,3 +46,9 @@ class Relation(Entity):  # should extend Entity but gives error
                 r = (f'{r}  /obs={self.obs}')
         return r
 
+
+
+Entity.rels_out = relationship("Relation",foreign_keys=[Relation.origin],back_populates="dest")
+
+
+Entity.rels_in = relationship("Relation",foreign_keys=[Relation.destination],back_populates="org")

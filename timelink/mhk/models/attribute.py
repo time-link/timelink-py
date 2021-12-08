@@ -15,7 +15,7 @@ class Attribute(Entity):
     the_date = Column(String)
     obs = Column(String)
 
-    the_entity = relationship("Entity",foreign_keys=[entity],backref="attributes",)
+    the_entity = relationship("Entity",foreign_keys=[entity],back_populates="attributes",)
 
     __mapper_args__ = {
         'polymorphic_identity':'attribute',
@@ -40,3 +40,5 @@ class Attribute(Entity):
                 r = (f'{r}/obs={self.obs}')
         return r
 
+
+Entity.attributes = relationship("Attribute", foreign_keys=[Attribute.entity], back_populates="the_entity")
