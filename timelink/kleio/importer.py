@@ -59,6 +59,7 @@ class SaxHandler(handler.ContentHandler):
                                                super_class=attrs['SUPER'],
                                                table_name=attrs['TABLE'],
                                                group_name=attrs['GROUP'])
+            self._current_class_attrs = []
             self._context = KleioContext.CLASS
 
         elif ename == 'ATTRIBUTE':
@@ -103,8 +104,8 @@ class SaxHandler(handler.ContentHandler):
             self._current_group._name = name
             self._current_group._pom_class_id = the_class
             self._current_group._order = int(order)
-            self._current_group._level = int(level)
-            self._current_group._line = int(line)
+            self._current_group.level = int(level)
+            self._current_group.line = int(line)
             self._context = KleioContext.GROUP
 
         elif ename == 'ELEMENT':
@@ -227,7 +228,6 @@ class KleioHandler():
         for class_attr in attrs:
             session.add(class_attr)
 
-        session.flush()
         session.commit()
         # ensure that the table and ORM classes are created
         psm.ensure_mapping(session)
