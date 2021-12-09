@@ -35,7 +35,7 @@ class Attribute(Entity):
         )
 
     def __str__(self):
-        r = f'     ls${self.the_type}/{self.the_value}/{self.the_date}'
+        r = f'{self.groupname}${self.the_type}/{self.the_value}/{self.the_date}'
         if self.obs is not None:
                 r = (f'{r}/obs={self.obs}')
         return r

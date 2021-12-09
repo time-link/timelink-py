@@ -1,4 +1,6 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from datetime import datetime
+
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship, backref
 
 from timelink.mhk.models.base_class import Base
@@ -15,7 +17,7 @@ class Entity(Base):
     the_level = Column(Integer)
     the_line = Column(Integer)
     groupname = Column(String)
-    updated = Column(DateTime)
+    updated = Column(DateTime,default=datetime.utcnow)
     indexed = Column(DateTime)
 
     # These are defined in relation.py
@@ -147,3 +149,11 @@ class Entity(Base):
 
     def __str__(self):
         return (f'{self.groupname}${self.id}/type={self.pom_class}')
+
+    def to_kleio(self, ident="", ident_inc="  "):
+        s = f'{ident}{str(self)}'
+        for inner in self.contains:
+            innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
+            s = f"{s}\n{innerk}"
+        return s
+

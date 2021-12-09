@@ -115,7 +115,7 @@ class KElement:
     _element_class: str = None  # class
 
     def __init__(self, name: str, val: Any, comment=None, original=None,
-                 element_class=None):
+        element_class=None):
         """
         Args:
             name: name of the Element. A string.
@@ -145,6 +145,31 @@ class KElement:
             self._element_class = name
 
     def __str__(self):
+        return self.core
+
+    def __int__(self):
+        return int(str(self))
+
+    def is_empty(self):
+        """True if all aspects of the element are None or empty string"""
+        e = [x for x in [self.core, self.comment, self.original] if
+             x is None or x == '']
+        if len(e) == 3:
+            return True
+        else:
+            return False
+
+    def to_tuple(self):
+        """ Return Element as a tuple (core,comment,original)"""
+        return self.core, self.comment, self.original
+
+    def to_kleio(self, name=True):
+        """
+        Return element as a kleio string: element=core#comment%original
+        To avoid rendering the element= set name=False
+        :param name: if True(default) prefix value with element=
+        :return: a valid Kleio representation of this element value
+        """
         c = self.core
         cc = self.comment
         o = self.original
@@ -160,24 +185,10 @@ class KElement:
             o = ''
         else:
             o = '%' + quote_long_text(str(o))
-        return c + cc + o
-
-    def is_empty(self):
-        """True if all aspects of the element are None or empty string"""
-        e = [x for x in [self.core, self.comment, self.original] if
-             x is None or x == '']
-        if len(e) == 3:
-            return True
-        else:
-            return False
-
-    def to_tuple(self):
-        """ Return Element as a tuple (core,comment,original)"""
-        return self.core, self.comment, self.original
-
-    def to_kleio(self):
-        """Return element as a kleio string: element=core#comment%original"""
-        return self.name + '=' + str(self)
+        kleio = c + cc + o
+        if name:
+            kleio = f"{self.name}={kleio}"
+        return kleio
 
     def to_dict(self, name=False):
         """ Return Element as a dict {core:_, comment:_, original:_}
@@ -214,11 +225,11 @@ class KGroup:
 
 
     """
-    # Class scoped list of elements that reserved and used for system use
-    _builtin_elements = ['line', 'level', 'sequence', 'inside', 'groupname',
+    # Class scoped list of reserved element names for system use
+    _builtin_elements = ['line', 'level', 'order', 'inside', 'groupname',
                          'pom_class_id']
 
-    id: str = '*id*'
+    id = None
     _name: str = 'kgroup'
     _position: list = []  # list of positional elements
     _guaranteed: list = []  # list of required elements
@@ -248,55 +259,69 @@ class KGroup:
 
     @property
     def kname(self):
-        return self._name
+        return self.unpack_from_kelement(self._name)
 
     @kname.setter
-    def kanme(self,value):
-        self._name = value
+    def kname(self, value):
+        self._name = self.pack_as_kelement('kname', value)
 
     @property
     def inside(self):
         return self._inside
 
+    def get_container_id(self):
+        if self._inside is None:
+            gid = None
+        elif KGroup.is_kgroup(self._inside):
+            gid = self.unpack_from_kelement(self.inside.id)
+        return gid
+
     @inside.setter
-    def inside(self,value):
-        self._inside = value
+    def inside(self, value):
+        if KGroup.is_kgroup(value):
+            self._inside = value
+        else:
+            self._inside = KGroup(id=str(value),element_check=False)
 
     @property
     def line(self):
-        return self._line
+        return self.unpack_from_kelement(self._line)
 
     @line.setter
-    def line(self,value):
-        self._line = value
+    def line(self, value):
+        self._line = self.pack_as_kelement('line', value)
 
     @property
     def level(self):
-        return self._level
+        return self.unpack_from_kelement(self._level)
 
     @level.setter
-    def level(self,value):
-        self._level = value
+    def level(self, value):
+        self._level = self.pack_as_kelement('level', value)
 
     @property
     def order(self):
-        return self._order
+        return self.unpack_from_kelement(self._order)
 
     @order.setter
-    def order(self,value):
-        self._order = value
+    def order(self, value):
+        self._order = self.pack_as_kelement('order', value)
 
     @property
     def pom_class_id(self):
-        return self._pom_class_id
+        return self.unpack_from_kelement(self._pom_class_id)
+
+    @pom_class_id.setter
+    def pom_class_id(self, pcid):
+        self._pom_class_id = self.pack_as_kelement('pom_class_id', pcid)
 
     @classmethod
     def extend(cls,
-               name: str,
-               position: Union[list, str, None] = None,
-               guaranteed: Union[list, str, None] = None,
-               also: Union[list, str, None] = None,
-               part: Union[list, str, None] = None):
+        name: str,
+        position: Union[list, str, None] = None,
+        guaranteed: Union[list, str, None] = None,
+        also: Union[list, str, None] = None,
+        part: Union[list, str, None] = None):
         """
         Create a new group definition by extending this one
         :param name:  name of the new group
@@ -358,7 +383,7 @@ class KGroup:
 
     @classmethod
     def allow_as_element(cls, ename: Union[str, List[str]], guaranteed=False,
-                         also=True, position=None):
+        also=True, position=None):
         """
         Add element or list to list of allowed elements for this group.
         Optionally define if element(s) is positional, required (guaranteed) or optional
@@ -419,9 +444,9 @@ class KGroup:
             Use element_check=False to turn off checking of element names
         """
         self._containsd: dict = {}
-        self._level = 1
-        self._line = 1
-        self._order = 1
+        self.level = 1
+        self.line = 1
+        self.order = 1
         self._element_check = True
         self._element_list = []
         self._inside = None
@@ -442,19 +467,14 @@ class KGroup:
             if self._element_check and \
                 not self.is_allowed_as_element(k):
                 raise ValueError(f'Element not allowed: {k}')
-            if not isinstance(v, KElement):  # we did not get a KElement
-                el = KElement(k, v)  # we make one
-            else:  # we got a KElement object
-                el = v
-                el.name = k  # we override the element name with the arg name
+            el = self.pack_as_kelement(k, v)
             self[k] = el
         # test if the compulsory (guaranteed) elements are present
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
                 raise TypeError(
-                    f'Element {g} in _guaranteed '
+                    f'{self.kname}: element {g} in _guaranteed '
                     f'is missing or with None value')
-
 
     def include(self, group: Type['KGroup']):
         """ Include a group. `group`, or its class, must in _part list or
@@ -488,9 +508,9 @@ class KGroup:
             raise ValueError(
                 f'Group {self.kname} cannot contain {group.kname}')
 
-        group._level = self._level + 1
-        group._line = KGroup.inc_line()
-        group._order = KGroup.inc_sequence()
+        group.level = self.level + 1
+        group.line = KGroup.inc_line()
+        group.order = KGroup.inc_sequence()
 
         # new style, dictionary based
         k = self._containsd.keys()
@@ -498,7 +518,7 @@ class KGroup:
             self._containsd[allowed].append(group)
         else:
             self._containsd[allowed] = [group]
-        group._inside = self
+        group.inside = self
         return self
 
     def is_allowed_as_part(self, group):
@@ -577,10 +597,10 @@ class KGroup:
             return inc_by_part_order
 
     def attr(self,
-             the_type: Union[str, KElement, Tuple[str, str, str]],
-             value: Union[str, KElement, Tuple[str, str, str]],
-             date: Union[str, KElement, Tuple[str, str, str]],
-             obs=None):
+        the_type: Union[str, KElement, Tuple[str, str, str]],
+        value: Union[str, KElement, Tuple[str, str, str]],
+        date: Union[str, KElement, Tuple[str, str, str]],
+        obs=None):
         """ Utility function to include a KAttribute in this KGroup
 
         The call::
@@ -604,12 +624,12 @@ class KGroup:
         return self
 
     def rel(self,
-            the_type: Union[str, tuple],
-            value: Union[str, tuple],
-            destname: Union[str, tuple],
-            destination: Union[str, tuple],
-            date: Union[str, tuple],
-            obs: str = None):
+        the_type: Union[str, tuple],
+        value: Union[str, tuple],
+        destname: Union[str, tuple],
+        destination: Union[str, tuple],
+        date: Union[str, tuple],
+        obs: str = None):
         """ include a relation in this KGroup"""
         kr = globals()['KRelation']
         self.include(kr(the_type, value, destname, destination, date, obs))
@@ -619,9 +639,9 @@ class KGroup:
         return self.__str__(indent=indent, recurse=True)
 
     def to_dict(self, allow_none: bool = False,
-                include_str: bool = False,
-                include_kleio: bool = False,
-                redundant_keys: bool = True):
+        include_str: bool = False,
+        include_kleio: bool = False,
+        redundant_keys: bool = True):
         """ Return group information as a dict.
 
         Params:
@@ -758,9 +778,9 @@ class KGroup:
             v: KElement = getattr(self, e, None)
             if v is not None:
                 if not first:
-                    s = s + '/' + str(v)
+                    s = s + '/' + v.to_kleio(name=False)
                 else:
-                    s = s + str(v)
+                    s = s + v.to_kleio(name=False)
                     first = False
                 out.append(e)
         more = sorted(list(set(self._guaranteed).union(set(self._also)).union(
@@ -781,9 +801,9 @@ class KGroup:
                     ))):
                 # m contains data, lets output
                 if not first:
-                    s = s + f'/{e}={str(m)}'
+                    s = s + f'/{m.to_kleio()}'
                 else:
-                    s = s + f'{e}={str(m)}'
+                    s = s + f'{m.to_kleio()}'
                     first = False
 
         if recurse:
@@ -799,34 +819,57 @@ class KGroup:
     def __setitem__(self, arg, value):
         if self._element_check and not self.is_allowed_as_element(arg):
             raise ValueError(f'Element not allowed: {arg}')
-        if not isinstance(value, KElement):  # we did not get a KElement
-            el = KElement(arg, value)  # we make one
-        else:  # we got a KElement object
-            el = value
-            el.name = arg  # we override the element name with the arg name
+        el = self.pack_as_kelement(arg, value)
         if el._element_class is None:
             el._element_class = arg
         setattr(self, arg, el)
         self._element_list.append(el)
 
+    def pack_as_kelement(self, arg, value):
+        if not isinstance(value, KElement):  # we did not get a KElement
+            el = KElement(arg, value)  # we make one
+        else:  # we got a KElement object
+            el = value
+            el.name = arg  # we override the element name with the arg name
+        return el
+
+    def unpack_from_kelement(self, value):
+        """
+        if value is a KElement return core if not return value as is
+
+        Useful to obtain the core value in elements that normally have
+        no comment or original.
+
+        :param value:
+        :return:
+        """
+        if not isinstance(value, KElement):  # we did not get a KElement
+            return value
+        else:  # we got a KElement object
+            return value.core
+
     def get_core(self, element, default=None):
         """ get_core(element_name [, default])
         Returns the core value of an element
         """
-        e = getattr(self, element, default)
-        if e is None:
+        try:
+            core = self.unpack_from_kelement(self[element])
+        except Exception as e:
+            core = None
+        if core is None:
             return default
         else:
-            return getattr(e, 'core', default)
+            return core
+
+
+
+
+
 
 
     def get_id(self):
         """Return the id of the group"""
-        e = getattr(self, 'id', None)
-        if e is None:
-            return None
-        else:
-            return getattr(e, 'core',None)
+        return self.unpack_from_kelement(self.id)
 
     def get_element_by_class(self, element_class, default=None):
         """
@@ -959,6 +1002,7 @@ class KAct(KGroup):
              'rel']
     _pom_class_id: str = 'act'
 
+
 KSource.allow_as_part(KAct)
 
 
@@ -989,6 +1033,7 @@ class KPerson(KGroup):
     _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
     _part = ['rel', 'attr']
     _pom_class_id: str = 'person'
+
 
 KAct.allow_as_part(KPerson)
 
@@ -1022,6 +1067,7 @@ class KObject(KGroup):
     _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
     _part = ['rel', 'attr']
     _pom_class_id: str = 'object'
+
 
 KAct.allow_as_part(KObject)
 
@@ -1064,6 +1110,7 @@ class KAttribute(KGroup):
     _also = ['date', 'obs']
     _position = ['type', 'value', 'date']
     _pom_class_id: str = 'attribute'
+
 
 KPerson.allow_as_part(KAttribute)
 KAct.allow_as_part(KAttribute)
@@ -1110,6 +1157,7 @@ class KRelation(KGroup):
     _guaranteed = ['type', 'value', 'destname', 'destination']
     _also = ['obs', 'date']
     _pom_class_id: str = 'relation'
+
 
 KPerson.allow_as_part(KRelation)
 KAct.allow_as_part(KRelation)

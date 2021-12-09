@@ -30,7 +30,11 @@ class Object(Entity):
         )
 
     def __str__(self):
-        r = f'{self.groupname}${self.name}/{self.the_type}/id={self.id}'
+        if self.name is None:
+            name = ""
+        else:
+            name = self.name+"/"
+        r = f'{self.groupname}${name}{self.the_type}/id={self.id}'
         if self.obs is not None:
                 r = (f'{r}  /obs={self.obs}')
         return r
