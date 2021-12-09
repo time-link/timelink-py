@@ -116,23 +116,26 @@ def test_kelement_to_str_1():
     e = KElement('name', 'Joaquim Carvalho')
     assert str(e) == 'Joaquim Carvalho'
 
+def test_kelement_to_int():
+    e = KElement('line', '254')
+    assert int(e) + 1 == 255
 
-def test_kelement_to_str_2():
+def test_kelement_to_kleio():
     e = KElement('name', 'Joaquim \nCarvalho')
-    assert str(e) == quote_long_text(e.core), \
+    assert e.to_kleio(name=False) == quote_long_text(e.core), \
         "str() failed with multiple line core"
 
 
-def test_kelement_to_str_3():
+def test_kelement_kleio_2():
     e = KElement('name', 'Joaquim Carvalho', original='Joachim Cº')
-    assert str(e) == 'Joaquim Carvalho%Joachim Cº', \
+    assert e.to_kleio() == 'name=Joaquim Carvalho%Joachim Cº', \
         "str() failed with original option"
 
 
-def test_kelement_to_str_4():
+def test_kelement_kleio_3():
     e = KElement('name', 'Joaquim Carvalho',
                  comment="Family name added in the margin")
-    assert str(e) == 'Joaquim Carvalho#Family name added in the margin', \
+    assert e.to_kleio(name=True) == 'name=Joaquim Carvalho#Family name added in the margin', \
         "str() failed with optional comment"
 
 
@@ -143,12 +146,12 @@ def test_kelement_is_empty():
 
 def test_kelement_is_empty_2():
     e = KElement('el', 'something', comment=None, original=None)
-    assert not e.is_empty(), "Did not detect empty element"
+    assert not e.is_empty(), "Did not detect not empty element"
 
 
 def test_kelement_is_empty_3():
     e = KElement('el', None, comment='comment', original=None)
-    assert not e.is_empty(), "Did not detect empty element"
+    assert not e.is_empty(), "Did not detect not empty element"
 
 
 def test_kelement_to_kleio():
@@ -234,8 +237,8 @@ def test_allow_as_part_1():
     x = Kx(id='x001')
     y = Ky('y001')
 
-    print(x.to_kleio())
-    print(y.to_kleio())
+    #print(x.to_kleio())
+    #print(y.to_kleio())
 
     with pytest.raises(ValueError):
         x.include(y), "include should have failed"
@@ -299,9 +302,6 @@ def test_includes_group():
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
     j.attr('residencia', 'Macau', date='2021-08-08', obs='Taipa')
-
-    for pai in j.includes():
-        print("pai: ", pai)
 
     lpn = list(j.includes(group=pn))
     pai = lpn[0]
@@ -533,9 +533,9 @@ def test_kleio_stru():
     n = KPerson.extend('n', position=['nome', 'sexo'],
                        guaranteed=['id', 'nome', 'sexo'],
                        also=['mesmo_que', 'obs'])
-    pai = KPerson.extend('pai', position=['nome'], guaranteed=['id', 'nome'],
+    pai = KPerson.extend('pai', position=['nome'], guaranteed=['nome'],
                          also=['mesmo_que', 'obs'])
-    mae = KPerson.extend('mae', position=['nome'], guaranteed=['id', 'nome'],
+    mae = KPerson.extend('mae', position=['nome'], guaranteed=['nome'],
                          also=['mesmo_que', 'obs'])
     n.allow_as_part(pai)
     n.allow_as_part(mae)
@@ -550,13 +550,13 @@ def test_kleio_stru():
     f.include(l)
     a = auc('alumni-record', 'archeevo-record', id='xpto')
     l.include(a)
-    j: KGroup = n('joaquim', 'm', obs='em macau')
+    j: KGroup = n('joaquim', 'm', obs='em macau',id='jrc')
     j.include(ls('uc', 'início', data=2021))
     j.include(atr('xauc', 'dsd'))
     l.include(j)
     l2 = lista('l003', 18, 2, 2021, data='1537-1913', tipo='auc-list', loc='B')
     f.include(l2)
-    m = n('manuel', 'm', obs='em Berlin')
+    m = n('manuel', 'm', obs='em Berlin',id='mrc')
     m.include(ls('uc', 'fim', data=2021))
     l2.include(m)
     json_string = j.to_json()
