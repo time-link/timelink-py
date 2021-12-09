@@ -11,11 +11,12 @@ from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.db import TimelinkDB
 # Session is shared by all tests
-from tests import Session
+from tests import Session, skip_on_travis
 
 
 TimelinkDB.conn_string = 'sqlite:///test_db?check_same_thread=False'
 
+pytestmark = skip_on_travis
 
 @pytest.fixture(scope="module")
 def dbsystem():
@@ -51,13 +52,14 @@ def kgroup_nested() -> KSource:
     ka2.include(p6)
     return ks
 
+@skip_on_travis
 def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
     metadata = Base.metadata
     tables = list(metadata.tables.keys())
     assert len(tables) > 0, "tables where not created"
 
-
+@skip_on_travis
 def test_entity_contains(dbsystem):
     ent1: Entity = Entity(id='e001',groupname='entity')
     ent1.pom_class = 'entity'
