@@ -102,7 +102,6 @@ class PomSomMapper(Entity):
     # Class attribute stores current PomSomMappings keyed by id
     pom_classes: dict = {}
 
-
     def ensure_mapping(self, session=None):
         """
         Ensure that a table exists to support
@@ -262,11 +261,10 @@ class PomSomMapper(Entity):
         # pom_class_ids: Optional[List[str]] = session.execute(
         #     stmt).scalars().all()
         if cls.pom_classes and len(cls.pom_classes) > 0:
-             pass
+            pass
         else:
             cls.get_pom_classes()
         return list(cls.pom_classes.keys())
-
 
     @classmethod
     def get_pom_class(cls, pom_class_id: String, session):
@@ -277,7 +275,7 @@ class PomSomMapper(Entity):
 
         :param pom_class_id: the id of a pom_class
         """
-        return session.get(cls,pom_class_id)
+        return session.get(cls, pom_class_id)
 
     @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
@@ -321,7 +319,7 @@ class PomSomMapper(Entity):
 
     @classmethod
     def kgroup_to_entity(cls, group: KGroup, session=None,
-                         with_pom=None) -> Entity:
+        with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
 
@@ -355,22 +353,27 @@ class PomSomMapper(Entity):
 
         for cattr in pom_class.class_attributes:
             element: KElement = group.get_element_by_class(cattr.colclass)
-            if element is not None:
-                setattr(entity_from_group, cattr.colname, str(element))
+            if element is not None and element.core is not None:
+                try:
+                    setattr(entity_from_group, cattr.colname, str(element))
+                except Exception as e:
+                    raise ValueError(
+                        f"""Error while setting column {cattr.colname}"""
+                        f""" of class {pom_class.id} with element {element.name}"""
+                        f""" of group {group.kname}:{group.id}: {e} """
+                    )
 
         # positional information in the original file
-        entity_from_group.the_line = group.line.core
-        entity_from_group.the_level = group.level.core
-        entity_from_group.the_order = group.order.core
+        entity_from_group.the_line = group.line
+        entity_from_group.the_level = group.level
+        entity_from_group.the_order = group.order
 
         # check if we have an id from the group
 
         # check if this group is enclosed in another
-        contained_by: KElement = group.inside
-        if contained_by is not None:
-            container_id = contained_by.core
-            if container_id not in ['root','None','']:
-                entity_from_group.inside = contained_by.core
+        container_id = group.get_container_id()
+        if container_id not in ['root', 'None', '', None]:
+            entity_from_group.inside = container_id
         return entity_from_group
 
     @classmethod
@@ -379,14 +382,17 @@ class PomSomMapper(Entity):
         exists = session.get(entity_from_group.__class__, entity_from_group.id)
         if exists is not None:
             session.delete(exists)
+            session.commit()
+
         try:
             session.add(entity_from_group)
+            session.commit()
         except Exception as e:
             print(e)
 
         in_group: KGroup
         for in_group in group.includes():
-            cls.store_KGroup(in_group,session)
+            cls.store_KGroup(in_group, session)
 
         try:
             session.commit()
