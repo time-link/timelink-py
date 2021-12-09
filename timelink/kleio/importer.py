@@ -1,15 +1,18 @@
-import sys, string
+import sys
+import time
+from datetime import datetime
 from enum import Enum
-from typing import List
+from typing import List, Optional
+import platform
+from xml.sax import handler, make_parser, SAXParseException
 
-from xml.sax import saxutils, handler, make_parser, SAXParseException
-
-from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy import select, func
 
 from timelink.kleio.groups import KGroup, KElement
-from timelink.mhk.models.db import TimelinkDB, pom_som_base_mappings
+from timelink.mhk.models.db import pom_som_base_mappings
 from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
+from timelink.mhk.models.base import Entity, Person
+
 
 class KleioContext(Enum):
     START = 1,
@@ -23,14 +26,14 @@ class KleioContext(Enum):
 
 
 class SaxHandler(handler.ContentHandler):
-    _context: str
-    _current_class: PomSomMapper
+    _context: KleioContext
+    _current_class: Optional[PomSomMapper]
     _current_class_attrs: List[PomClassAttributes]
-    _current_group: KGroup
-    _current_element: KElement
+    _current_group: Optional[KGroup]
+    _current_element: Optional[KElement]
     _current_entry: str
 
-    def __init__(self, kleio_handler, out=sys.stdout):
+    def __init__(self, kleio_handler):
         handler.ContentHandler.__init__(self)
         self._kleio_handler = kleio_handler
 
@@ -116,7 +119,7 @@ class SaxHandler(handler.ContentHandler):
 
             elname = attrs['NAME']
             self._current_group.allow_as_element(elname)
-            self._current_element = KElement(elname,None)
+            self._current_element = KElement(elname, None)
             self._current_element._element_class = attrs['CLASS']
             self._context = KleioContext.ELEMENT
 
@@ -154,8 +157,6 @@ class SaxHandler(handler.ContentHandler):
         ename = name.upper()
 
         if ename == 'GROUP':
-
-
 
             self._kleio_handler.newGroup(self._current_group)
             self._context = KleioContext.KLEIO
@@ -214,8 +215,8 @@ class KleioHandler():
 
         class_attr: PomClassAttributes
         # check if we have this class defined in the database.
-        existing_psm: PomSomMapper = session.get(PomSomMapper,psm.id)
-        if existing_psm is not None:     # class exists we delete it and insert again
+        existing_psm: PomSomMapper = session.get(PomSomMapper, psm.id)
+        if existing_psm is not None:  # class exists we delete it and insert again
             existing_attrs: List[PomClassAttributes] = \
                 session.execute(
                     select(PomClassAttributes).filter_by(the_class=psm.id))
@@ -233,16 +234,13 @@ class KleioHandler():
         psm.ensure_mapping(session)
         session.commit()
 
-
     def newGroup(self, group: KGroup):
         # get the PomSomMapper
         # pass storeKGroup
         pom_mapper_for_group = PomSomMapper.get_pom_class(group._pom_class_id,
                                                           self.session)
 
-
-
-        pom_mapper_for_group.store_KGroup(group,self.session)
+        pom_mapper_for_group.store_KGroup(group, self.session)
 
     def newRelation(self, attrs):
         pass
@@ -263,10 +261,40 @@ def import_from_xml(filespec: str, session, options: dict = None):
 
     :return:
     """
+    collect_stats = False
+    nentities_before = 0
+    npersons_before = 0
+    now = datetime.now()
+    if options is not None and options.get('return_stats', False):
+        collect_stats = True
+
     sax_handler = SaxHandler(KleioHandler(session))
     parser = make_parser()
     parser.setContentHandler(sax_handler)
+    start = time.time()
+    if collect_stats:
+        nentities_before = session.query(func.count(Entity.id)).scalar()
+        npersons_before = session.query(func.count(Person.id)).scalar()
+
     parser.parse(filespec)
+
+    end = time.time()
+    if collect_stats:
+        machine = platform.node()
+        nentities = session.query(func.count(Entity.id)).scalar()
+        npersons = session.query(func.count(Person.id)).scalar()
+        erate = (nentities - nentities_before) / (end - start)
+        prate = (npersons - npersons_before) / (end - start)
+        stats = {'datetime': now.strftime("%Y-%m-%d %H:%M:%S"),
+                 'machine': machine,
+                 'file': filespec,
+                 'import_time_seconds': end - start,
+                 'entities_processed': nentities - nentities_before,
+                 'entity_rate': erate,
+                 'person_rate': prate,
+                 }
+        return stats
+
 
 if __name__ == '__main__':
     parser = make_parser()
