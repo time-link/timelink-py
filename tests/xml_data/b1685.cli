@@ -1,0 +1,587 @@
+kleio$gacto2.str/translations=38
+   fonte$baptismos 1685/tipo=reg paroquiais/localizacao=fol. 30-34/data=16850000/obs=existem baptismos anteriores mas em muito mau estado.#VERSAO ABREVIADA. USAR O TRADUTOR CORRECTO
+
+      bap$b1685.1/8/7/1685/?/manuel cordeiro
+
+         n$maria/f/id=b1685.1-per1
+
+            pai$manuel madeira/m/id=b1685.1-per1-per2
+               ls$residencia/alencarce
+
+            mae$domingas joao/f/id=b1685.1-per1-per3/obs=
+
+            pad$antonio jorge/m/id=b1685.1-per4
+               ls$residencia/alencarce
+
+            mad$maria/f/id=b1685.1-per5
+               ls$ec/s
+               ls$residencia/alencarce
+
+      bap$b1685.2/28/7/1685/?/igreja de s. tiago
+
+         n$maria/f/id=b1685.2-per1
+
+            pai$matias rodrigues/m/id=b1685.2-per1-per2
+               ls$residencia/casa velha
+
+            mae$maria donana?/f/id=b1685.2-per1-per3
+
+            pad$antonio da fonseca/m/id=b1685.2-per4
+               ls$residencia/cumieira, freguesia de Penela%termo de penela
+               ls$freguesia/penela%termo de penela
+
+            mad$maria pereira/f/id=b1685.2-per5
+
+               pmad$manuel simoes/m/id=b1685.2-per6
+                  ls$residencia/casa velha
+
+      bap$b1685.3/2/8/1685/?/igreja de s. tiago
+
+         n$ana/f/id=b1685.3-per1
+
+            pai$antonio joao/m/id=b1685.3-per1-per2
+               ls$residencia/montais
+
+            mae$maria de oliveira/f/id=b1685.3-per1-per3
+
+            pad$domingos simoes/m/id=b1685.3-per4
+               ls$residencia/sobral
+               ls$profissao/padre
+
+            mad$ana velho/f/id=b1685.3-per5
+
+               mrmad$nomes desconhecido/m/id=b1685.3-per6
+                  ls$profissao/boticario
+                  ls$residencia/soure
+
+      bap$b1685.4/22/8/1685/?/igreja de s. tiago/obs=sem madrinha
+
+         n$mariana/f/id=b1685.4-per1
+
+            pai$simao luis/m/id=b1685.4-per1-per2
+               ls$residencia/corujeira
+
+            mae$nome desconhecido/f/id=b1685.4-per1-per3
+
+            pad$manuel colaco de soares?/m/id=b1685.4-per4
+
+      bap$b1685.5/25/8/1685/?/igreja de s. tiago
+
+         n$manuel/m/id=b1685.5-per1
+
+            pai$manuel carvalho/m/id=b1685.5-per1-per2
+               ls$residencia/sobral
+
+            mae$maria joao/id=b1685.5-per1-per3
+
+      bap$b1685.6/27/8/1685/?/igreja de s. tiago
+
+         n$manuel/m/id=b1685.6-per1
+
+            pai$manuel nunes/m/id=b1685.6-per1-per2
+               ls$alcunha/moco
+               ls$residencia/casa velha
+
+            mae$catarina francisca/f/id=b1685.6-per1-per3
+
+            pad$joao da costa de vasconcelos/m/id=b1685.6-per4
+               ls$residencia/soure
+
+            mad$maria/f/id=b1685.6-per5
+               ls$ec/s
+
+               pmad$calvo/m/id=b1685.6-per6
+                  ls$residencia/casa velha
+
+      bap$b1685.7/28/8/1685/?/igreja de s. tiago
+
+         n$joao/m/id=b1685.7-per1
+
+            pai$joao rodrigues/m/id=b1685.7-per1-per2
+               ls$residencia/simoes
+
+            mae$isabel joao/f/id=b1685.7-per1-per3
+
+            pad$diogo domingues/m/id=b1685.7-per4
+               ls$residencia/simoes
+
+            mad$brites goncalves/f/id=b1685.7-per5
+               ls$residencia/simoes
+
+      bap$b1685.8/30/8/1685/?/igreja de s. tiago
+
+         n$manuel/m/id=b1685.8-per1
+
+            pai$manuel rodrigues/m/id=b1685.8-per1-per2
+               ls$residencia/barril
+
+            mae$maria esteves/id=b1685.8-per1-per3
+
+            pad$manuel cordeiro/m/id=b1685.8.4
+               ls$titulo/licenciado
+               ls$residencia/casais do espirito santo
+
+            mad$? coelho/f/id=b1685.8-per4
+               rel$parentesco/irma/manuel cordeiro/b1685.8.4
+
+      bap$b1685.9/2/9/1685/?/igreja de s. tiago
+
+         n$luisa/f/id=b1685.9-per1
+
+            pai$manuel rodrigues/m/id=b1685.9-per1-per2
+               ls$residencia/alencarce de cima
+
+            mae$maria madeira/f/id=b1685.9-per1-per3
+
+            pad$antonio da rocha manrique/m/id=b1685.9-per4
+               ls$titulo/licenciado
+
+            pad$luis coelho/m/id=b1685.9-per5
+               ls$titulo/licenciado
+
+      bap$b1685.10/12/9/1685/?/igreja de s. tiago
+
+         n$maria/f/id=b1685.10-per1
+
+            pai$matias de carvalho/m/id=b1685.10-per1-per2
+               ls$residencia/soure
+
+            mae$ana velho/f/id=b1685.10-per1-per3
+
+            pad$pedro de brito de ataide/m/id=b1685.10-per4
+               ls$residencia/quinta da capa rota
+
+      bap$b1685.11/17/9/1685/?/igreja de s. tiago
+
+         n$manuel/m/id=b1685.11-per1
+
+            pai$jose luis/m/id=b1685.11-per1-per2
+               ls$residencia/casal da corujeira
+
+            mae$domingas jorge/f/id=b1685.11-per1-per3
+
+            pad$francisco rodrigues/m/id=b1685.11.4
+               ls$residencia/moinhos do paleao
+
+            mad$maria pereira/f/id=b1685.11-per4
+               rel$parentesco/mulher/francisco rodrigues/b1685.11.4
+
+      bap$b1685.12/23/9/1685/?/igreja de s. tiago
+
+         n$maria/f/id=b1685.12-per1
+
+            pai$manuel rodrigues claro/m/id=b1685.12-per1-per2
+               ls$residencia/alencarce
+               ls$morto/antes
+
+            mae$maria alves/f/id=b1685.12-per1-per3
+               ls$ec/v
+               ls$residencia/alencarce
+
+      bap$b1685.13/23/9/1685/?/igreja de s. tiago
+
+         n$joao/m/id=b1685.13-per1
+
+            pai$manuel francisco/id=b1685.13-per1-per2
+               ls$residencia/mogadouro
+
+            mae$maria de oliveira/f/id=b1685.13-per1-per3
+
+            pad$antonio joao/m/id=b1685.13-per4
+               ls$residencia/casal do mogadouro
+
+            mad$antonia/f/id=b1685.13-per5
+               ls$ec/s
+
+               pmad$mateus de oliveira/m/id=b1685.13-per6
+                  ls$residencia/casconho
+
+      bap$b1685.14/23/9/1685/?/igreja de s. tiago
+
+         n$diogo/m/id=b1685.14-per1
+
+            pai$manuel gomes/m/id=b1685.14-per1-per2
+               ls$residencia/paleao
+
+            mae$maria gomes/f/id=b1685.14-per1-per3
+
+            pad$manuel duarte de morais/m/id=b1685.14-per4
+               ls$residencia/soure
+               ls$titulo/licenciado
+               ls$titulo/frei
+               ls$profissao/padre
+
+            mad$maria rosado de carvalho/f/id=b1685.14-per5
+               ls$residencia/soure
+
+      bap$b1685.15/4/9/1685/?/igreja de s. tiago/obs=data sic
+
+         n$mariana/f/id=b1685.15-per1
+
+            pai$manuel gomes/m/id=b1685.15-per1-per2
+
+            mae$isabel da gante/id=b1685.15-per1-per3
+
+            pad$manuel duarte/m/id=b1685.15.4
+               ls$profissao/padre
+               ls$titulo/licenciado
+               ls$titulo/frei
+
+            mad$mariana colaco/f/id=b1685.15-per4
+               rel$parentesco/irma/manuel duarte/b1685.15.4
+
+      bap$b1685.16/14/10/1685/?/igreja de s. tiago
+
+         n$maria/f/id=b1685.16-per1
+
+            pai$manuel jorge/m/id=b1685.16-per1-per2
+               ls$residencia/sobral
+
+            mae$maria cordeiro/f/id=b1685.16-per1-per3
+
+            pad$manuel simoes/m/id=b1685.16-per4
+               ls$residencia/sobral
+
+            mad$maria cordeiro/f/id=b1685.16-per5
+               ls$residencia/sobral
+
+      bap$b1685.17/21/10/1685/?/igreja de s. tiago
+
+         n$manuel/m/id=b1685.17-per1
+
+            pai$francisco rodrigues/m/id=b1685.17-per1-per2
+               ls$residencia/casais da misericordia
+
+            mae$ana carvalho/f/id=b1685.17-per1-per3
+
+            pad$mateus dias/m/id=b1685.17-per4
+               ls$residencia/casais da misericordia
+
+            mad$domingas joao/f/id=b1685.17-per5
+
+               mrmad$manuel joao/m/id=b1685.17-per6
+
+      bap$b1685.18/22/10/1685/?/igreja de s. tiago
+
+         n$manuel/m/id=b1685.18-per1
+
+            pai$pedro lopes cordeiro/m/id=b1685.18-per1-per2
+               ls$residencia/casal dos simoes
+
+            mae$domingas simoes/f/id=b1685.18-per1-per3
+               ls$residencia/casais da misericordia
+
+            pad$luis jorge/m/id=b1685.18-per4
+               ls$residencia/netos
+
+            mad$catarina joao/f/id=b1685.18-per5
+
+               mrmad$manuel gaspar/m/id=b1685.18-per6
+                  ls$residencia/casal dos simoes
+
+      bap$b1685.19/1/11/1685/?/igreja de s. tiago
+
+         n$antonio/m/id=b1685.19-per1
+
+            pai$matias da costa/m/id=b1685.19-per1-per2
+               ls$residencia/casal dos bonitos
+
+            mae$catarina goncalves/f/id=b1685.19-per1-per3
+
+            pad$gaspar rodrigues/m/id=b1685.19-per4
+               ls$residencia/barrosas%barrosos
+
+            mad$maria domingues/f/id=b1685.19-per5
+
+               mrmad$antonio joao/m/id=b1685.19-per6
+                  ls$residencia/bonitos
+
+      bap$b1685.20/4/11/1685/?/igreja de s. tiago
+
+         n$antonio/m/id=b1685.20-per1
+
+            pai$manuel goncalves/m/id=b1685.20-per1-per2
+               ls$residencia/casal dos louzoes
+
+            mae$maria simoes/f/id=b1685.20-per1-per3
+
+            pad$diogo jorge/m/id=b1685.20-per4
+               ls$residencia/casal novo
+
+            mad$maria pedroso/f/id=b1685.20-per5
+
+               pmad$joao pedroso/m/id=b1685.20-per6
+                  ls$residencia/casal novo
+
+      bap$b1685.21/4/11/1685/?/igreja de s. tiago
+
+         n$maria/f/id=b1685.21-per1
+
+            pai$manuel de oliveira/m/id=b1685.21-per1-per2
+               ls$residencia/lajem
+
+            mae$maria lopes/f/id=b1685.21-per1-per3
+
+            pad$manuel rodrigues/m/id=b1685.21-per4
+
+            mad$ines ?/f/id=b1685.21-per5
+
+               mrmad$manuel de tavora/m/id=b1685.21-per6
+                  ls$residencia/soure
+
+      bap$b1685.22/7/11/1685/?/igreja de s. tiago
+
+         n$pedro/m/id=b1685.22-per1
+
+            pai$manuel cordeiro/m/id=b1685.22-per1-per2
+               ls$residencia/casa velha
+
+            mae$maria pedroso/f/id=b1685.22-per1-per3
+
+            pad$manuel rodrigues presunto/m/id=b1685.22-per4
+               ls$residencia/casa velha
+
+            mad$maria cordeiro/f/id=b1685.22-per5
+
+               pmad$antonio cordeiro/m/id=b1685.22-per6
+                  ls$residencia/casa velha
+
+      bap$b1685.23/8/12/1684/?/igreja de s. tiago/obs=data sic o vigario tinha se esquecido de os registar
+
+         n$marcelino/m/id=b1685.23-per1
+
+            pai$tome velho/m/id=b1685.23-per1-per2
+
+            mae$isabel da rocha/f/id=b1685.23-per1-per3
+
+            pad$matias de carvalho/m/id=b1685.23-per4
+               ls$profissao/boticario
+
+            mad$isabel de seia/f/id=b1685.23-per5
+               ls$freguesia/buarcos
+
+               mrmad$cosme velho/m/id=b1685.23-per6
+                  ls$alcunha/moco
+
+      bap$b1685.24/9/6/1685/?/igreja de s. tiago/obs=data sic o vigario tinha se esquecid de registar
+
+         n$jose/m/id=b1685.24-per1
+
+            pai$francisco da silva/m/id=b1685.24-per1-per2
+
+            mae$susana da cunha/f/id=b1685.24-per1-per3
+               ls$titulo/dona
+
+            pad$manuel homem de quadros/m/id=b1685.24-per4
+
+            pad$paulo de almeida botelho/m/id=b1685.24-per5
+
+      bap$b1685.25/18/11/1685/?/igreja de s. tiago
+
+         n$maria/f/id=b1685.25-per1
+
+            pai$joao rodrigues/m/id=b1685.25-per1-per2
+               ls$residencia/alencarce de baixo
+
+            mae$isabel cardoso/f/id=b1685.25-per1-per3
+
+            pad$manuel goncalves/m/id=b1685.25.4
+               ls$residencia/alencarce
+
+            mad$maria/f/id=b1685.25-per4
+               rel$parentesco/filha/manuel goncalves/b1685.25.4
+
+      bap$b1685.26/25/11/1685/?/igreja de s. tiago
+
+         referido$domingos joao/id=b1685.26.0
+            rel$parentesco/baptizou subc/joao/b1685.26.1
+            ls$profissao/padre
+            ls$residencia/alencarce
+
+         n$joao/m/id=b1685.26.1
+
+            pai$manuel antunes/m/id=b1685.26.1-per1
+               ls$residencia/alencarce de cima
+
+            mae$francisca rodrigues/f/id=b1685.26.1-per2
+
+            pad$domingos antunes/m/id=b1685.26-per3
+               ls$residencia/alencarce de cima
+
+            mad$maria gaspar/f/id=b1685.26-per4
+               ls$residencia/carvalheira
+
+      bap$b1685.27/25/11/1685/?/igreja de s. tiago
+
+         n$isabel/f/id=b1685.27-per1
+
+            pai$mateus goncalves/m/id=b1685.27-per1-per2
+               ls$residencia/alencarce
+
+            mae$maria gomes/f/id=b1685.27-per1-per3
+
+            pad$joao simoes/m/id=b1685.27-per4
+               ls$freguesia/condeixa-a-?
+
+            mad$isabel simoes/f/id=b1685.27-per5
+               ls$residencia/alencarce
+
+      bap$b1685.27b/25/11/1685/?/igreja de s. tiago
+
+         referido$domingos goncalves/id=mb1685.25.0
+            ls$profissao/padre
+            ls$residencia/casais do espirito santo
+            rel$parentesco/baptizou subc/maria/b1685.27b.1
+
+         n$maria/f/id=b1685.27b.1
+
+            pai$manuel francisco/m/id=b1685.27b.1-per1
+               ls$residencia/casal das galinhas
+
+            mae$ana jorge/f/id=b1685.27b.1-per2
+
+            pad$joao da costa de vasconcelos/m/id=b1685.27b-per3
+
+            mad$helena/f/id=b1685.27b-per4
+               ls$titulo/dona
+
+               pmad$paulo ribeiro cabral/m/id=b1685.27b-per5
+
+      bap$b1685.27c/25/11/1685/?/igreja de s. tiago
+
+         n$catarina/f/id=b1685.27c-per1
+
+            pai$manuel rodrigues/m/id=b1685.27c-per1-per2
+               ls$residencia/soure
+
+            mae$maria da gante/f/id=b1685.27c-per1-per3
+
+            pad$joao cordeiro/m/id=b1685.27c-per4
+               ls$profissao/padre
+               ls$titulo/frei
+               ls$cargo/capelao da igreja de soure#creio que e' um dos beneficios da colegiada
+
+      bap$b1685.27d/30/4/1685/?/igreja de s. tiago/obs=data sic e o padre diz que foi descuido nao vir a atras . Fol 33
+
+         n$manuel/m/id=b1685.27d-per1
+
+            pai$antonio francisco/m/id=b1685.27d-per1-per2
+               ls$residencia/soure
+
+            mae$maria mendes/f/id=b1685.27d-per1-per3
+
+            pad$antonio da rocha/m/id=b1685.27d-r1
+               ls$titulo/licenciado
+               ls$residencia/soure
+
+            mad$josefa/f/id=b1685.27d-per4
+               ls$titulo/dona
+               rel$parentesco/irma/antonio da rocha/b1685.27d-r1
+
+      bap$b1685.28/6/12/1685/?/igreja de s. tiago
+
+         referido$manuel cordeiro/id=rb28061685
+            ls$profissao/padre
+            ls$cargo/cura da igreja de soure
+
+         n$francisco/m/id=b1685.28-per1
+
+            pai$manuel diniz/id=b1685.28-per1-per2
+               ls$residencia/casal da eureca
+
+            mae$isabel mateus/id=b1685.28-per1-per3
+
+            pad$francisco simoes/m/id=b1685.28-per4
+               ls$residencia/casal da eureca
+
+            mad$leonor joao/f/id=b1685.28-per5
+               ls$residencia/casal da eureca
+
+      bap$b1685.29/13/12/1685/?/igreja de s. tiago
+
+         n$helena/f/id=b1685.29-per1
+
+            pai$manuel francisco/m/id=b1685.29-per1-per2
+               ls$residencia/paleao
+
+            mae$isabel simoes/f/id=b1685.29-per1-per3
+
+            pad$joao da costa de vasconcelos/m/id=b1685.29-per4
+
+            mad$helena/f/id=b1685.29-per5
+               ls$titulo/dona
+
+               pmad$paulo ribeiro cabral/m/id=b1685.29-per6
+                  ls$residencia/soure
+
+      bap$b1685.30/16/12/1685/?/igreja de s. tiago
+
+         n$luis/m/id=b1685.30-per1
+
+            pai$manuel carvalho/m/id=b1685.30-per1-per2
+               ls$residencia/soure
+
+            mae$maria vieira/f/id=b1685.30-per1-per3
+
+            pad$luis coelho dos reis/m/id=b1685.30-per4
+               ls$residencia/soure
+
+            mad$maria rosado de carvalho/id=b1685.30-per5
+
+      bap$b1685.31/17/12/1685/?/igreja de s. tiago
+
+         n$josefa/f/id=b1685.31-per1
+
+            pai$pascoal rodrigues/m/id=b1685.31-per1-per2
+               ls$residencia/soure
+
+            mae$ana de paiva/f/id=b1685.31-per1-per3
+
+            pad$antonio coelho de carvalho/m/id=b1685.31-per4
+               ls$titulo/licenciado
+               ls$residencia/soure
+
+            mad$josefa/f/id=b1685.31-per5
+               ls$residencia/soure
+
+               pmad$manuel fernandes? ratinho/m/id=b1685.31-per6
+                  ls$residencia/soure
+
+      bap$b1685.32/23/12/1685/?/igreja de s. tiago
+
+         n$francisco/m/id=b1685.32-per1
+
+            pai$manuel rodrigues/m/id=b1685.32-per1-per2
+               ls$residencia/casais de pedro afonso
+
+            mae$domingas rodrigues/f/id=b1685.32-per1-per3
+
+            pad$francisco/m/id=b1685.32-per4
+               ls$ec/s
+
+               ppad$joao rodrigues/m/id=b1685.32-per5
+                  ls$residencia/casal de geotim?
+
+            mad$teresa/f/id=b1685.32-per6
+               ls$ec/s
+
+               pmad$tome rodrigues/m/id=b1685.32-per7
+                  ls$residencia/vale da borra
+
+      bap$b1685.33/26/12/1685/?/igreja de s. tiago
+
+         n$isabel/f/id=b1685.33-per1
+
+            pai$manuel goncalves/m/id=b1685.33-per1-per2
+               ls$residencia/casal de vale da borra
+
+            mae$maria rodrigues/f/id=b1685.33-per1-per3
+
+            pad$ascenso joao/m/id=b1685.33-per4
+               ls$residencia/casal de vale da borra
+
+            mad$maria/f/id=b1685.33-per5
+               ls$ec/s
+
+               pmad$domingos goncalves vargas/m/id=b1685.33-per6
+                  ls$residencia/casal de vale da borra

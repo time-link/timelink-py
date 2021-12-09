@@ -1,0 +1,1531 @@
+kleio$gacto2.str/translations=44
+   fonte$dev1692/1692/devassa/loc=auc III-d,5,2,135
+
+      devassa$devass1692/10/4/1692/visdor=manuel joao%doutor#cargo: desembargador da relacao episcopal/fol=fol?/obs= """
+      
+      Pároco Luís Álvaro Pinto.
+      A visita e' feita na igreja da Misericórdia em vários dias. 
+      Continua em 13 de Abril de 1692.
+      Continua em 15 de Abril de 1692 (a partir da testemunha 33 inc.).
+      Continua em 16 de Abril de 1692 (a partir da testemunha 45 inc.).
+      Continua em 17 de Abril de 1692 (a partir da testemunha 62 inc.).
+      Continua em 18 de Abril de 1692 (a partir da testemunha 74 inc.).
+      Continua em 19 de abril de 1692 (a partir da testemunha 83 inc.).
+      """
+
+         testo$jose machado/id=dev1692-per1
+            ls$ec/s
+            ls$residencia/soure
+            ls$idade/24
+            ls$assina/b
+
+            pai$manuel fernandes/id=dev1692-per1-per2
+               ls$alcunha/ratinho
+
+            acusa$c1692-antonio-cordeiro-alcouc/literal=alcouceiro e alcoviteiro de varias mulheres que levava a casa de alguns homens e as entregava em sua propria casa/id=dev1692-per1-obj1-20
+
+               caso$c1692-antonio-cordeiro-alcouc/alcouc/obs=dava mulheres em casa. Margem: tirada de ambos 1.1.1691%1o. 8.bro 691
+
+                  acusado$antonio cordeiro/id=d1692-2003
+                     ls$alcunha/calhau
+                     ls$ec/c
+                     ls$profissao/sapateiro
+                     ls$residencia/soure
+                     ls$residencia/soure, rua do rossio
+                     rel$parentesco/marido/francisca nunes/d1692-2004
+                     rel$visita/alcov/maria simoes/d1692-2005
+                     rel$visita/alcov/domingas simoes/d1692-2006
+                     rel$visita/dava_mulheres/antonio correia/d1692-2007
+                     rel$visita/dava_mulheres/joao costa/d1692-2008
+                     rel$visita/dava_mulheres/jose cunha sa/d1692-2009
+                     rel$visita/dava_mulheres/manuel homem de quadros/d1692-2014
+                     rel$visita/dava_mulheres/manuel fernandes nogueira/d1692-2147a/obs=cf. test.a 84
+                     rel$visita/alcov/maria esteva?/dev1692-2011/obs=segundo a testemunha Maria de Jesus
+
+                  acusada$francisca nunes#ou francisca simoes/id=d1692-2004
+                     ls$nome/fancisca simoes
+                     ls$ec/c
+
+                     referida$maria simoes/id=d1692-2005/obs=era das mulheres que antonio cordeiro dava em sua casa
+                        ls$nome/maria da silva
+                        ls$alcunha/ruiva
+
+                     referida$domingas simoes/id=d1692-2006/obs=era das mulheres que antonio cordeiro dava em sua casa
+                        ls$ec/s
+                        rel$parentesco/cunhada/antonio cordeiro/d1692-2003
+
+                     referido$antonio correia/id=d1692-2007/obs=frequentava mulheres em casa de antonio cordeiro
+                        ls$profissao/meirinho do tabaco?
+
+                     referido$joao costa/id=d1692-2008/obs=frequentava mulheres em casa de antonio cordeiro
+                        ls$profissao/escrivao do tabaco
+
+                     referido$jose cunha e sa/id=d1692-2009/obs=sera jose da cunha e sa?,segundo uma das testemunhas de 1692 era um dos que recebia em casa mulheres levadas por antonio cordeiro
+                        ls$residencia/sobral
+
+         testa$maria de jesus/id=dev1692-per3
+            ls$ec/s
+            ls$idade/22
+            rel$parentesco/filha/manuel goncalves vargas/d16922-2012
+            rel$parentesco/irma/madalena vargas/d1692-2013
+
+            acusa$c1692-antonio-cordeiro-alcouc/origem="""
+                  Viu o meirinho dos tabacos (antonio correira) entrar em casa de
+                  antonio cordeiro e é irma de madalena vargas que foi entregue 
+                  pelo antonio cordeiro a manuel homem de quadros
+                  """/literal= """
+
+                  ...sabe por ser publico e por sua irmam magdalena solteira 
+                  que o denunciado [antonio cordeiro] entregara a d.ta irmam 
+                  como dito he a manoel homen coadros m.or na sua quinta 
+                  freguesia desta igreja de santiago para o que o dito 
+                  denunciado abriu uma porta que estava fechada com um 
+                  cadeado aonde o pai da dita madalena e da dita testemunha
+                  da dita madalena que tambem o he meu [sic] a havia fechado
+                  para que ninguem a pudesse enganar a qual foi com o denunciado
+                  para casa do dito manuel homem onde esteve onze ou doze dias, 
+                  sem ninguem o saber e depois que veio comecou a queixar-se a 
+                  sua gente que o denunciado lhe? tivera a culpa. Alem da dita sua 
+                  irma o dizer ela testemunha via que o denunciado 
+                  falava algumas vezes com sua irma mas que lhe nao parecia 
+                  que lhe falava com ma intento o que tudo sabe por ser publico
+                  e pellas razoes que dito tem.
+            """/id=dev1692-per3-obj2-20
+
+            referida$maria esteva?/obs=era das mulheres que antonio cordeiro dava em sua casa/id=dev1692-2011
+
+            referido$manuel goncalves vargas/id=d1692-2012/obs=pai de madalena vargas.
+               rel$parentesco/pai/madalena vargas/d1692-2013
+               rel$parentesco/pai/juliana/d1692-2084
+
+            referida$madalena vargas/id=d1692-2013
+               ls$ec/s
+
+            referido$manuel homem de quadros/id=d1692-2014
+               ls$residencia/quinta%sua quinta freguesia desta igreja de santiago
+               ls$nome/manuel homem
+
+         testo$antonio gomes/id=dev1692-per5
+            ls$ec/c
+            ls$profissao/ferreiro
+            ls$residencia/paleao
+            ls$idade/27
+            ls$assina/b
+
+            acusa$c1692-manuel-ferreira-juras/testemunha conhece o acusado ha dois anos/origem=por presenciar desde ha dois anos/id=dev1692-per5-obj3-20
+
+            acusa$c1692-manuel-pinto-domingas-roxa/id=dev1692-per5-obj4-20
+
+            acusa$c1692-mateus-dias-curas/id=dev1692-per5-obj5-20
+
+            acusa$c1692-catarina-gaspar-curas/id=dev1692-per5-obj6-20
+
+            acusa$c1692-manuel aires-domingas-luis/tencionavam-se casar mas eram pobres para a dispensa. testemunha nao sabia o nome da mulher dele. Diz que ela queixa-se que ele a desencaminhou./literal="""
+            ... e preparar-se para ir a roma o que com efeito nao fez por ser pobre
+            """/id=dev1692-per5-obj7-20
+
+               caso$c1692-manuel-ferreira-juras/juras/obs=pela hostia sagrada
+
+                  acusado$manuel ferreira/id=c1692-manuel-ferreira-juras-per6
+                     ls$alcunha/moco#segundo testemunha 2030
+                     ls$profissao/sapateiro/obs=segundo uma testemunha da devassa de 1692.
+                     ls$profissao/rendeiro#outras testemunhas dizem sapateiro e a testemunha 2046 diz sapateiro e rendeiro.
+                     ls$residencia/paleao
+
+               caso$c1692-manuel-pinto-domingas-roxa/amanc/obs=portas adentro, ha 8 anos, tres filhos. Ja culpados anteriormente.
+
+                  acusado$manuel pinto/id=c1692-manuel-pinto-domingas-roxa-per7
+                     ls$ec/c
+                     ls$residencia/coimbra, freguesia de ?
+
+                  acusada$domingas roxa/obs=tres filhos em 1692/id=c1692-manuel-pinto-domingas-roxa-per8
+                     ls$ec/s
+                     ls$residencia/paleao
+
+               caso$c1692-mateus-dias-curas/curas/obs=benzedor de gado e de pessoas com grandes cerimonias no cimo de um monte, ha quatro anos atras. margem: tiradas
+
+                  acusado$mateus dias/id=c1692-mateus-dias-curas-per9
+                     ls$profissao/lavrador
+                     ls$ec/c#segundo a testemunha 2044, miguel ferreira
+                     ls$residencia/casais da misericordia
+
+               caso$c1692-catarina-gaspar-curas/curas/obs=benze e cura de quebranto
+
+                  acusada$catarina gaspar/id=c1692-catarina-gaspar-curas-per10
+                     ls$ec/v
+                     ls$residencia/paleao
+
+               caso$c1692-manuel-aires-domingas-luis/amanci/obs=ela seria prima da mulher dele
+
+                  acusado$manuel aires/id=d1692-2021
+                     ls$ec/v
+                     ls$residencia/paleao#segundo testemunha ana esteves
+                     rel$parentesco/grau 2a#casado com prima/domingas luis/d1692-2022/obs=explicitada atraves de outras relacoes posteriormente registadas
+                     rel$parentesco/foi marido/antonia rodrigues/d1692-2024
+
+                  acusada$domingas luis/id=d1692-2022
+                     ls$alcunha/manca
+                     ls$ec/s
+
+                     pai$luis goncalves/id=d1692-2022-per11
+
+         testo$manuel ferreira/f/id=dev1692-per12
+            ls$alcunha/moco
+            ls$profissao/sapateiro
+            ls$residencia/paleao
+            ls$idade/31
+
+            acusa$c1692-manuel-pinto-domingas-roxa/id=dev1692-per12-obj8-20
+
+            acusa$c1692-mateus-dias-curas/muitos detalhes, diz que lhe rende bem o oficio/id=dev1692-per12-obj9-20
+
+            acusa$c1692-manuel aires-domingas-luis/sabe nome da mulher dele, e dizem que os dois vivem casas juntas/id=dev1692-per12-obj10-20
+
+            acusa$c1692-antonio-gomes-maria/id=dev1692-per12-obj11-20
+
+            acusa$c1692-catarina-gaspar-curas/id=dev1692-per12-obj12-20
+
+            referida$antonia rodrigues/id=d1692-2024
+               ls$morta/antes#ja morta em 1692
+               rel$parentesco/mulher/manuel aires/d1692-2021/obs=primeira mulher
+               rel$parentesco/prima/domingas luis/d1692-2022
+
+         testa$ana esteves/id=d1692-2030
+            ls$ec/c
+            ls$residencia/paleao
+            rel$parentesco/mulher/manuel mateus/d1692-2031
+
+            acusa$c1692-manuel-pinto-domingas-roxa/ja culpados em visitas anteriores/id=d1692-2030-obj13-20
+
+            acusa$c1692-mateus-dias-curas/muitos detalhes. margem "tirada"/id=d1692-2030-obj14-20
+
+            acusa$c1692-manuel aires-domingas-luis/fornece detalhes sobre o parentesco/id=d1692-2030-obj15-20
+
+            acusa$c1692-antonio-gomes-maria/sao parentes em 4o grau de consaguinidade "mas ela testemunha nao sabe distinguir os graus". fizeram esponsais aparentemente por pressao do pai dela. estao em casa de simao luis, que esta entravado e e' parente deles./id=d1692-2030-obj16-20
+
+               caso$c1692-antonio-gomes-maria/amanci/obs=quarto grau margem: tirada dela em 25.1.692 dele 14.5.1693
+
+                  acusado$antonio gomes#apelido dado pela testemuna 2046/id=d1692-2025
+                     ls$ec/s
+                     ls$residencia/paleao
+                     ls$residencia/casconho#segundo a testemunha 2039
+                     rel$parentesco/filho/antonio gomes/d1692-2026
+                     rel$parentesco/grau 4/maria/d1692-2027
+                     rel$vizinhanca/corresidente/simao luis/d1692-2029
+
+                  acusada$maria#antonia segundo a testemunha 2037, 2039/id=d1692-2027
+                     ls$ec/s
+                     ls$nome/antonia#variacao nominal
+                     ls$residencia/casconho#segundo a testemunha 2039
+                     rel$parentesco/filha/domingos antunes/d1692-2028
+                     rel$vizinhanca/corresidente/simao luis/d1692-2029
+
+                     referido$antonio gomes/id=d1692-2026/obs=ja morto em 1692
+                        ls$residencia/paleao
+                        ls$morto/antes
+
+                     referido$domingos antunes/id=d1692-2028
+                        ls$residencia/casconho
+                        ls$nome/antonio moco#mo,co/obs=segundo test.a 2050
+                        ls$alcunha/moco
+
+                     referido$simao luis/id=d1692-2029
+                        ls$residencia/paleao
+
+            acusa$c1692-manuel-ferreira-juras/acrescenta que bebe muito e seria sapateiro (verificar)./id=d1692-2030-obj17-20
+
+            referido$manuel mateus/id=d1692-2031
+               ls$ec/c#marido da testemunha 2030
+               ls$residencia/paleao
+
+            referido$luis goncalves/id=d1692-2032
+               ls$morto/antes
+               rel$parentesco/pai/domingas luis/d1692-2022
+               rel$parentesco/irmao/guiomar jorge/d1692-2033
+
+            referida$guiomar jorge/id=d1692-2033#uma testemunha diz que e' mulher outra diz que e' um homem
+               ls$morta/antes
+               rel$parentesco/mae/antonia rodrigues/d1692-2024
+
+         testa$isabel simoes/id=d1692-2035
+            ls$residencia/paleao
+            ls$idade/25
+            ls$ec/c
+            rel$parentesco/mulher/antonio madeira/d1692-2036
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2035-obj18-20
+
+            referido$antonio madeira/id=d1692-2036
+               ls$ec/c
+               ls$residencia/paleao
+
+         testa$maria ferreira/id=d1692-2037
+            rel$parentesco/mulher/francisco rodrigues/d1692-2038
+            ls$residencia/paleao
+            ls$idade/45
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2037-obj19-20
+
+            acusa$c1692-mateus-dias-curas/curas/id=d1692-2037-obj20-20
+
+            acusa$c1692-manuel aires-domingas-luis/amanci, descreve o parentesco/id=d1692-2037-obj21-20
+
+            acusa$c1692-antonio-gomes-maria/amanci/id=d1692-2037-obj22-20
+
+            acusa$c1692-catarina-gaspar-curas/curas/id=d1692-2037-obj23-20
+
+            referido$francisco rodrigues#marido da testemunha 2037/m/id=d1692-2038
+
+         testa$francisca rodrigues guiomar/id=d1692-2039
+            ls$ec/v
+            ls$residencia/paleao
+            ls$idade/60
+            rel$parentesco/mulher/pedro domingues/d1692-2040
+            rel$parentesco/cunhada/manuel aires/d1692-2021/obs=VERIFICAR
+            rel$parentesco/prima/domingas luis/d1692-2022/obs=VERIFICAR
+
+            acusa$c1692-mateus-dias-curas/curas/id=d1692-2039-obj24-20
+
+            acusa$c1692-catarina-gaspar-curas/curas/id=d1692-2039-obj25-20
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2039-obj26-20
+
+            acusa$c1692-antonio-gomes-maria/amanci, confirma o nome dela como antonia/literal=o pai da cumplice querelou do denunciado ante o juizo secular da desfloracao da dita sua filha/id=d1692-2039-obj27-20
+
+            referido$pedro domingues/id=d1692-2040/obs=marido defunto da test.a 2039
+               ls$morto/antes
+
+         testa$ana gaspar/id=d1692-2041
+            rel$parentesco/mulher/manuel gomes valente/d1692-2042
+            ls$residencia/paleao
+            ls$ec/c
+            ls$idade/44
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2041-obj28-20
+
+            referido$manuel gomes valente#marido da testemunha 2041/id=d1692-2042
+               ls$ec/c
+
+         testa$maria simoes/id=d1692-2043
+            ls$residencia/paleao
+            ls$ec/c
+            ls$idade/40
+            rel$parentesco/mulher/pedro jorge/d1692-2043b
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2043-obj29-20
+
+            referido$pedro jorge#marido da testemunha 2043/id=d1692-2043b
+               ls$ec/c
+
+         testo$manuel ferreira/id=d1692-2044
+            ls$profissao/sapateiro
+            ls$residencia/paleao
+            ls$idade/24
+            ls$assina/VERIFICAR
+
+            acusa$c1692-mateus-dias-curas/curas/id=d1692-2044-obj30-20
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2044-obj31-20
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/id=d1692-2044-obj32-20
+
+            acusa$c1692-antonio-gomes-maria/amanci/id=d1692-2044-obj33-20
+
+         testo$pedro gomes/id=d1692-2045
+            ls$profissao/lavrador
+            ls$residencia/paleao
+            ls$assina/+
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/literal=o denunciado a desflorara e que para isso lhe metera um lenco na boca. [...] dizem que querem casar/id=d1692-2045-obj34-20
+
+         testo$diogo jorge/id=d1692-2046
+            ls$profissao/trabalhador
+            ls$residencia/paleao
+            ls$idade/40
+            ls$assina/+
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/id=d1692-2046-obj35-20
+
+            acusa$c1692-antonio-gomes-maria/amanci/id=d1692-2046-obj36-20
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2046-obj37-20
+
+            acusa$c1692-mateus-dias-curas/curas/id=d1692-2046-obj38-20
+
+            acusa$c1692-manuel-ferreira-juras/juras/id=d1692-2046-obj39-20
+
+         testo$mateus rodrigues/id=d1692-2047
+            ls$profissao/lavrador
+            ls$residencia/paleao
+            ls$idade/30
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2047-obj40-20
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/id=d1692-2047-obj41-20
+
+            acusa$c1692-antonio-gomes-maria/amanci/id=d1692-2047-obj42-20
+
+            acusa$c1692-catarina-gaspar-curas/curas/id=d1692-2047-obj43-20
+
+            acusa$c1692-mateus-dias-curas/curas/id=d1692-2047-obj44-20
+
+         testo$manuel cardoso/id=d1692-2048
+            ls$profissao/almocreve
+            ls$residencia/paleao
+            ls$idade/30
+            ls$assina/+
+            rel$vizinhanca/vizinho/manuel aires/d1692-2021
+            rel$vizinhanca/vizinho/domingas luis/d1692-2022
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2048-obj45-20
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/id=d1692-2048-obj46-20
+
+            acusa$c1692-antonio-gomes-maria/amanci/id=d1692-2048-obj47-20
+
+         testo$joao rodrigues/id=d1692-2049
+            ls$profissao/trabalhador
+            ls$residencia/paleao
+            ls$idade/36
+            ls$assina/+
+
+            acusa$c1692-manuel-pinto-domingas-roxa/amanc/id=d1692-2049-obj48-20
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/origem=ve ela entrar em casa dele porque sao vizinhos/id=d1692-2049-obj49-20
+               rel$vizinhanca/vizinho/manuel aires/d1692-2021
+               rel$vizinhanca/vizinho/domingas luis/d1692-2022
+
+            acusa$c1692-antonio-gomes-maria/amanci, ambos morando 'a soldada em casa de simao luis seu parente/id=d1692-2049-obj50-20
+
+         testo$simao afonso/id=d1692-2050/obs=foi juiz ordinario no Paliao em 1690
+            ls$profissao/lavrador
+            ls$residencia/paleao
+            ls$idade/39
+            ls$assina/b
+
+            acusa$c1692-catarina-gaspar-curas/curas, diz que tambem e' infamada de feiticeira/id=d1692-2050-obj51-20
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/origem=viu ela ir a casa dele/id=d1692-2050-obj52-20
+
+            acusa$c1692-antonio-gomes-maria/amanci, no ano 1690 a testemunha foi juiz ordinario no Paliao e recebeu a querela do pai dela e "como efeito asi se provou" e dai a pouco tempo comprometeram-se a casar e a testemunha assistiu ao juramento [promessa]/id=d1692-2050-obj53-20
+
+         testo$domingos marques/id=d1692-2051
+            ls$profissao/serrador?
+            ls$residencia/paleao
+            ls$idade/30
+            ls$assina/+
+            rel$parentesco/grau 3a/maria/d1692-2027
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/id=d1692-2051-obj54-20
+
+            acusa$c1692-antonio-gomes-maria/amanci, estao jurados/id=d1692-2051-obj55-20
+
+         testo$antonio rodrigues/id=d1692-2052
+            ls$profissao/seareiro
+            ls$residencia/sobral
+            ls$assina/+
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/literal=e que a tem da sua mao em casa 'a parte onde a sustem todo o necessario/origem=ve ele ir a casa dela/id=d1692-2052-obj56-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/origem=ve-o entrar em casa dela/id=d1692-2052-obj57-20
+
+               caso$c1692-jose-cunha-isabel-rodrigues/amanc/obs=ha mais de 6 anos,2 filhos; amancebamento tipo "por conta"
+
+                  acusado$jose da cunha/m/id=d1692-2053
+                     ls$nome/jose da cunha e sa
+                     ls$ec/s
+                     ls$residencia/sobral#na sua quinta
+
+                  acusada$isabel/f/id=d1692-2054
+                     ls$ec/s
+                     rel$parentesco/filha/simao rodrigues/d1692-2055
+
+                     referido$simao rodrigues/id=d1692-2055
+                        ls$residencia/sobral
+                        ls$nome/simao rodrigues cordeirinho#'a mg. da test.a 20 antonio rodrigues
+                        ls$nome/simao rodrigues caseirinho#segundo a testemunha 21 mateus bras moco e a 33
+
+               caso$c1692-antonio-catarina-fernandes/amanc/obs=tiveram filho(a). 2.o a t.a 23 manuel goncalves, ele foi prezo por ordem do pai dela.
+
+                  acusado$antonio/m/id=d1692-2056
+                     ls$ec/s
+                     ls$residencia/sobral
+                     rel$parentesco/irmao/manuel da costa/d1692-2059
+                     rel$parentesco/filho/simao domingues/d1692-2056a
+
+                     referido$manuel da costa/id=d1692-2059
+                        ls$profissao/padre
+
+                     referido$simao domingues#pode ser se seja simao luis/id=d1692-2056a
+                        ls$morto/antes
+                        rel$parentesco/pai/manuel da costa/d1692-2059
+
+                  acusada$catarina fernandes/f/id=d1692-2057
+                     ls$ec/v
+                     ls$residencia/vale da borra# segundo a t.a 22 mateus bras o moco
+                     rel$parentesco/filha/antonio fernandes/d1692-2058
+
+                     referido$antonio fernandes#frois/id=d1692-2058
+                        ls$residencia/vale da borra
+
+         testo$joao rodrigues/id=d1692-2060
+            ls$profissao/seareiro
+            ls$residencia/casa velha
+            ls$idade/33
+            ls$assina/+
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc/id=d1692-2060-obj58-20
+
+               caso$c1692-manuel-mendes-maria-mendes/amanc/obs=desde 7 anos 'a mg. tirada a ela 28-5-1693
+
+                  acusado$manuel mendes da fonseca/m/id=d1692-2061/obs=preso em Lisboa em 1692 nao sabemos porque
+                     ls$cargo/almoxarife
+                     ls$nome/manuel mendes
+                     ls$ec/v
+                     rel$parentesco/primo/antonio fonseca/d1692-2063
+
+                  acusada$maria mendes/f/id=d1692-2062/obs=mulher mal procedida segundo t.a 21 joao rodrigues, 1692 teria parido 2 filhos de um tal antonio da fonseca.
+                     ls$ec/s
+                     ls$idade/30#aproximadamente, segundo a testemunha 21 de 1692 joao rodrigues
+                     rel$parentesco/concubinato/antonio fonseca/d1692-2063
+                     rel$profissional/criada/manuel mendes da fonseca/d1692-2061#segundo a testemunha 2085
+
+                     referido$antonio fonseca/m/id=d1692-2063/obs=da freguesia da Cumieira/obs=teria tido dois filhos de maria mendes (2062) ver testemunha 21 joao rodrigues
+                        ls$residencia/cumieira
+
+         testo$mateus bras/id=d1692-2064
+            ls$alcunha/moco#mo,co
+            ls$ec/s
+            ls$idade/30
+            ls$assina/+#usa um sinal muito particular
+            ls$residencia/sobral
+            rel$parentesco/filho/manuel bras/d1692-2065
+            rel$parentesco/grau ??/antonio/d1692-2056
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc, refere que ele mora "na sua quinta do Sobral"./literal=ele comprou a casa onde ela vive/id=d1692-2064-obj59-20
+
+            referido$manuel bras/id=d1692-2065
+               ls$morto/antes
+
+         testo$manuel goncalves/id=d1692-2066
+            ls$profissao/seareiro
+            ls$residencia/sobral
+            ls$idade/50
+            ls$assina/+
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/id=d1692-2066-obj60-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc, ele teria sido preso por ordem do pai dela/id=d1692-2066-obj61-20
+
+         testo$antonio simoes/id=d1692-2067
+            ls$profissao/lavrador
+            ls$residencia/sobral
+            ls$idade/42
+            ls$assina/m
+            rel$parentesco/grau 4?/antonio/d1692-2056
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/id=d1692-2067-obj62-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/literal=pariu dele ha 2 anos "... sabe pelo ver que o denunciado esteve preso na cadeia desta vila por ser achado em casa da cumplice"/id=d1692-2067-obj63-20
+
+         testo$antonio simoes cordeiro/id=d1692-2068
+            ls$profissao/seareiro
+            ls$residencia/sobral
+            ls$idade/60
+            ls$assina/+
+            rel$parentesco/grau ??/antonio/d1692-2056
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/id=d1692-2068-obj64-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc, sabe o nome do pai dele/id=d1692-2068-obj65-20
+
+         testa$isabel rodrigues/id=d1692-2069
+            ls$ec/v
+            ls$residencia/casal do leonel
+            ls$idade/45
+            rel$parentesco/foi mulher/gabriel bras/d1692-2069a
+
+            referido$gabriel bras/id=d1692-2069a
+               ls$morto/antes
+
+            acusa$c1692-manuel-rodrigues-maria-joao/amanci/literal=pariu ha mais de um ano "e se dizia constantemente ser do denunciado por le nao ter fama com outro homem em tempo algum antes era donzela orfa de pai e de mae"/id=d1692-2069-obj66-20
+
+               caso$c1692-manuel-rodrigues-maria-joao/amanci/obs=4 grau.
+
+                  acusado$manuel rodrigues/m/id=d1692-2070
+                     ls$ec/c
+                     ls$residencia/carvalheira
+                     rel$parentesco/grau ??/isabel joao/d1692-2071
+
+                  acusada$isabel joao/f/id=d1692-2071
+                     ls$ec/s
+                     rel$parentesco/filha/domingos pires/d1692-2071b
+                     rel$parentesco/grau 4a#prima segunda da mulher dele/manuel rodrigues/d1692-2070
+
+                     referido$domingos pires/id=d1692-2071b
+                        ls$morto/antes
+                        ls$profissao/sapateiro
+
+         testa$catarina madeira/id=d1692-2072
+            ls$ec/v
+            ls$residencia/casal do leonel
+            ls$idade/35
+            rel$parentesco/foi mulher/gabriel bras/d1692-2072a
+
+            referido$gabriel bras/id=d1692-2072a/obs=atencao: existiam dois gabriel bras no casal do leonel antes de 1692 (ambos estavam mortos nessa data. Um tinha tinha sido casado com isabel rodrigues e outro, de alcunha o moco, casado com catarina madeira)
+               ls$alcunha/moco
+               ls$morto/antes
+
+            acusa$c1692-manuel-rodrigues-maria-joao/amanci/literal=pariu ha um ano era virtuosa e orfa/id=d1692-2072-obj67-20
+
+            referida$isabel jorge/f/id=d1692-2072b
+               rel$parentesco/mulher/manuel rodrigues/d1692-2070
+               rel$parentesco/prima segunda/isabel joao/d1692-2072c
+
+            referida$isabel joao/f/obs=VERIFICAR DADOS PESSOAIS NA DEVASSA DE 1692. Outra testemunha/id=d1692-2072c diz antonia joao
+               ls$nome/antonia joao/obs=segundo a testemunha antonio madeira
+               ls$morta/antes
+               rel$parentesco/mae/isabel joao/d1692-2071
+               rel$parentesco/mulher/domingos pires/d1692-2071b
+
+         testo$antonio martins/id=d1692-2073
+            ls$profissao/sapateiro
+            ls$residencia/pinheiro
+            ls$idade/25
+            ls$assina/m
+            ls$ec/c
+            rel$parentesco/marido/nome desconhecido/d1692-2073a
+            rel$vizinhanca/vizinho/domingos antunes/d1692-2074
+
+            referida$nome desconhecido/f/id=d1692-2073a
+               rel$parentesco/mulher/antonio martins/d1692-2073
+               rel$parentesco/sobrinha/mariana rodrigues/d1692-2075
+
+            acusa$c1692-domingo-antunes-nfvida/nfvida/literal=nao fazem vida de casados ha muitos anos, cada um em sua casa sem sentenca de divorcio (e' vizinho)/id=d1692-2073-obj68-20
+
+               caso$c1692-domingo-antunes-nfvida/nfvida
+
+                  acusado$domingos antunes/m/id=d1692-2074
+                     ls$ec/c
+                     rel$parentesco/marido/mariana rodrigues/d1692-2075
+                     ls$residencia/pinheiro
+
+                  acusada$mariana rodrigues/f/id=d1692-2075
+                     ls$ec/c
+
+         testo$manuel vaz/id=d1692-2076
+            ls$profissao/seareiro
+            ls$residencia/pinheiro
+            ls$idade/31
+            ls$assina/+
+
+            acusa$c1692-domingo-antunes-nfvida/nfvida/id=d1692-2076-obj69-20
+               rel$parentesco/compadre/domingos antunes/d1692-2074
+               rel$parentesco/grau 3?/domingos antunes/d1692-2074
+
+         testo$antonio dinis/id=d1692-2077
+            ls$profissao/seareiro
+            ls$residencia/areias
+            ls$idade/35
+            ls$assina/VERIFICAR
+
+            acusa$c1692-domingo-antunes-nfvida/nfvida/literal=mas ele da o sustento 'a mulher/id=d1692-2077-obj70-20
+
+            acusa$c1692-manuel-rodrigues-maria-joao/amanci, sabe a profissao do pai dela/id=d1692-2077-obj71-20
+               rel$parentesco/compadre/manuel rodrigues/d1692-2070
+
+         testa$maria goncalves/id=d1692-2078
+            ls$idade/36
+            ls$ec/c
+            ls$residencia/carvalheira
+            rel$parentesco/mulher/domingos simoes/d1692-2078a
+            rel$parentesco/irma/isabel joao/d1692-2071
+
+            referido$domingos simoes/id=d1692-2078a
+               ls$residencia/carvalheira
+
+            acusa$c1692-manuel-rodrigues-maria-joao/amanci/literal=pariu ha um ano e deu o denunciado como pai/id=d1692-2078-obj72-20
+
+         testo$mateus mendes/id=d1692-2079
+            ls$profissao/barbeiro
+            ls$residencia/pinheiro
+            ls$idade/33
+            ls$assina/b
+
+            acusa$c1692-domingo-antunes-nfvida/nfvida/literal=ha mais de 13 anos mas ele sustenta-a/id=d1692-2079-obj73-20
+
+            referida$nome desconhecido/f/id=d1692-2079a
+               rel$parentesco/mulher/mateus mendes/d1692-2079
+               rel$parentesco/sobrinha/domingos antunes/d1692-2074
+
+         testo$manuel jorge/id=d1692-2080
+            ls$profissao/lavrador
+            ls$residencia/sobral
+            ls$idade/30
+            ls$assina/b
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/literal=teriam dois filhos, ele comprou-lhe uma casa/id=d1692-2080-obj74-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/literal=ela pariu ha um ano, ele foi preso/id=d1692-2080-obj75-20
+               rel$parentesco/grau ??/antonio/d1692-2056
+
+         testo$manuel joao/id=d1692-2081
+            ls$residencia/sobral
+            ls$idade/45
+            ls$assina/+
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/literal=ha quatro anos/id=d1692-2081-obj76-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/literal=ele preso pelo juiz secular/id=d1692-2081-obj77-20
+
+         testo$manuel simoes/id=d1692-2082
+            ls$profissao/lavrador
+            ls$assina/b
+            ls$residencia/sobral
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/id=d1692-2082-obj78-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/id=d1692-2082-obj79-20
+               rel$parentesco/grau ??/antonio/d1692-2056
+
+         testo$domingos lopes/id=d1692-2083
+            ls$profissao/rendeiro
+            ls$residencia/casa velha
+            ls$idade/35
+            ls$assina/b
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc/literal=portas adentro. Ela tem dois filhos do primo do denunciado VERIFICAR Uma das criancas, chamada felix, esta em casa do denunciado. Ela trata da fazenda dele como sua propria/id=d1692-2083-obj80-20
+
+         testa$juliana/id=d1692-2084
+            ls$ec/s
+            ls$idade/19
+            rel$parentesco/filha/manuel goncalves vargas/d1692-2012
+            rel$parentesco/irma/madalena vargas/d1692-2013
+
+            acusa$c1692-antonio-cordeiro-alcouc/alcouc/literal= ha seis anos que o pai tinha a irma madalena vargas fechada em casa com um cadeado "por temor que a inquietassem", no primeiro sabado de maio achou-se a porta aberta. Voltou dai a 11 dias e disse perante ela testemunha que o denunciado a levara a casa de manuel homem de quadros. Viu o denunciado a falar com a irma. Viu 'a porta do denunciado um meirinho e um escrivao dos tabacos, mais joao da costa e antonio correia, falando com maria da silva, a ruiva, mulher mal procedida. fol. 27v./id=d1692-2084-obj81-20
+
+         testo$manuel goncalves vargas/mesmo_que=d1692-2012/id=dev1692-per13
+            ls$residencia/soure
+            ls$idade/79
+            ls$assina/m
+            ls$profissao/trabalhador
+
+            acusa$c1692-antonio-cordeiro-alcouc/alcouc/literal= """
+            e' o pai. versao ligeiramente diferente. 
+            
+            '... e se dizia que fora para casa de manuel homem morador 
+            na sua quinta termo desta vila, aonde esteve alguns dias 
+            e ouvio dizer a pessoas de que nao esta lembrado que o 
+            denunciado fora a causa da filha delle testemunha ir 
+            para a casa do dito manuel homem'
+            
+            testemunho menos claro que o das filhas
+            
+            """/id=dev1692-per13-obj82-20
+
+         testo$joao simoes/id=d1692-2085
+            ls$profissao/trabalhador
+            ls$residencia/casa velha
+            ls$idade/36
+            ls$assina/+
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc/literal=ele esta desde o natal em lisboa ela tem dois filhos de um tal antonio da fonseca da cumieira/id=d1692-2085-obj83-20
+
+         testo$joao duarte/id=d1692-2086
+            ls$profissao/seareiro
+            ls$idade/30
+            ls$residencia/casa velha
+            ls$assina/+
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc/id=d1692-2086-obj84-20
+
+         testo$antonio domingues/id=d1692-2087
+            ls$profissao/seareiro
+            ls$residencia/sobral
+            ls$idade/30
+            ls$assina/+
+
+            acusa$c1692-jose-cunha-isabel-rodrigues/amanc/id=d1692-2087-obj85-20
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/id=d1692-2087-obj86-20
+
+         testo$manuel luis/id=d1692-2088
+            ls$profissao/lavrador
+            ls$residencia/casa velha
+            ls$assina/+
+            ls$idade/50
+            rel$vizinhanca/vizinho/manuel mendes da fonseca/d1692-2061
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc/id=d1692-2088-obj87-20
+
+         testo$joao alves/id=d1692-2089
+            ls$profissao/lavrador
+            ls$residencia/casa velha
+            ls$idade/30
+            ls$assina/b
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc, fol.30v/id=d1692-2089-obj88-20
+
+         testo$manuel francisco/id=d1692-2090
+            ls$profissao/lavrador
+            ls$residencia/casa velha
+            ls$idade/30
+            ls$assina/+
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc, fol .31/id=d1692-2090-obj89-20
+
+         testo$manuel pereira/id=d1692-2091
+            ls$profissao/vive de sua fazenda
+            ls$residencia/casa velha
+            ls$idade/30
+            ls$assina/+
+
+            acusa$c1692-manuel-mendes-maria-mendes/amanc/id=d1692-2091-obj90-20
+
+         testo$belchior rodrigues/id=d1692-2092
+            ls$profissao/trabalhador
+            ls$residencia/soure, rua do pedrogal
+            ls$idade/43
+            ls$assina/+
+
+            acusa$c1692-antonio-cordeiro-alcouc/alcouc/literal="""
+            acusa de alcouce. 
+            Tem em casa maria da silva, a ruiva, maria esteva, solteiras, 
+            mulheres devassas, joao da costa, meirinho do tabaco e um escrivao, 
+            frequentam, com outros homens que vinham de fora " a algumas diligencias". 
+            Tb. acusa a mulher francisca nunes
+            """/id=d1692-2092-obj91-20
+
+            acusa$c1692-maria-esteva/dev/literal="""
+            
+            ela ja culpada antes de alcouce e alcov com maria da silva a ruiva, 
+            "nao terem outro negocio mais do que pecarem"
+            
+            """/id=d1692-2092-obj92-20
+
+               caso$c1692-maria-esteva/dev
+
+                  acusada$maria esteva/f/mesmo_que=dev1692-2011/id=c1692-maria-esteva-per1-29
+                     ls$ec/s
+                     ls$residencia/soure
+                     ls$residencia/soure, rua do rossio
+                     rel$crime/alcouc e alcov/maria simoes#maria da silva, a ruiva/d1692-2005/obs="""
+                     segundo testemunha 2013 da devasa de 1692 viviam juntas so do pecado"""
+
+            acusa$c1692-maria-silva/dev/id=d1692-2092-obj93-20
+
+               caso$c1692-maria-silva/dev
+
+                  acusada$maria silva/mesmo_que=d1692-2005/id=c1692-maria-silva-per14
+                     ls$alcunha/ruiva
+
+         testo$manuel simoes/id=d1692-2094
+            ls$profissao/lavrador
+            ls$residencia/simoes
+            ls$idade/30
+            ls$assina/+
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ela anda gravida e antes de o conhecer era "tida e havida por donsela e virtuosa". Ele vem a casa dela que vive com os pais./id=d1692-2094-obj94-20
+
+               caso$c1692-antonio-simoes-raposo-maria/amanc
+
+                  acusado$antonio simoes raposo/m/id=d1692-2095
+                     ls$nome/antonio raposo
+                     ls$ec/c
+                     ls$residencia/mogadouro
+
+                  acusada$maria/f/id=d1692-2096
+                     ls$ec/s
+                     ls$residencia/simoes
+                     ls$profissao/gramadeira/obs="""segundo a testemunha diogo domingues. 
+
+                     Morais da Silva:
+                     'gramadeira: instrumento de madeira em forma de cutelo com que se trilha o linho, antes de ser esadelado.|| Gancho que se usa nas estrebarias para puxar a palha para as manjedouras || provinc. Mulher que trabalha com a gramadeira ||Ant. utensilio para esmagar a palha'
+                     """
+                     rel$parentesco/filha/joao rodrigues figueiredo/d1692-2096a
+
+                     referido$joao rodrigues figueiredo/id=d1692-2096a
+                        ls$residencia/simoes
+
+                     referida$isabel joao/f/obs=verificar, a t.a 2094 da o nome da mulher como ascensa dias/id=d1692-2096b
+                        rel$parentesco/mulher/joao rodrigues figueiredo/d1692-2096a
+
+            acusa$c1692-joao-rodrigues-isabel-joao-cons/cons/literal="o consentem em sua casa sem pelejarem como ele nem com a dita sua filha" fol.33/id=d1692-2094-obj95-20
+
+               caso$c1692-joao-rodrigues-isabel-joao-cons/cons/obs=da filha
+
+                  acusado$joao rodrigues/mesmo_que=d1692-2096a/id=c1692-joao-rodrigues-isabel-joao-cons-per15
+
+                  acusada$isabel joao#ou ascensa dias/mesmo_que=d1692-2096b/id=c1692-joao-rodrigues-isabel-joao-cons-per16
+
+               caso$c1692-teresa-antonio-simoes/amanci/obs=4 grau de consaguinidade
+
+                  acusada$teresa/f/id=d1692-2097
+                     ls$ec/s
+                     rel$parentesco/filha/antonio simoes/d1692-2097a
+
+                     referido$antonio simoes/id=d1692-2097a
+                        ls$alcunha/conde
+                        ls$residencia/simoes
+                        rel$parentesco/marido/maria domingues/d1692-2097b
+
+                     referida$maria domingues/f/id=d1692-2097b
+                        ls$ec/c
+
+                  acusado$joao/m/id=d1692-2098
+                     ls$ec/s
+                     ls$residencia/moinho do marco, freguesia da redinha
+                     ls$freguesia/redinha
+                     rel$parentesco/filho/nome desconhecido/d1692-2098a
+                     rel$parentesco/grau 4c/teresa/d1692-2097
+
+                     referida$nome desconhecido/f/id=d1692-2098a
+                        ls$profissao/moleira
+                        ls$ec/v
+                        ls$residencia/moinho do marco, freguesia da redinha
+                        ls$freguesia/redinha
+
+            acusa$c1692-teresa-antonio-simoes/amanci/literal=mandou buscar bula de dispensa, ela anda gravida/id=d1692-2094-obj96-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/cons/id=d1692-2094-obj97-20
+
+               caso$c1692-antonio-simoes-maria-domingues/cons/obs=da filha
+
+                  acusado$antonio simoes/mesmo_que=d1692-2097a/id=c1692-antonio-simoes-maria-domingues-per17
+
+                  acusada$maria domingues/mesmo_que=d1692-2097b/id=c1692-antonio-simoes-maria-domingues-per18
+
+               caso$c1692-pai-de-joao-consentidor/cons/obs=nome desconhecido,2098a, descricao =do filho
+
+                  acusado$nome desconhecido/mesmo_que=d1692-2098a/id=c1692-pai-de-joao-consentidor-per19
+
+            acusa$c1692-pai-de-joao-consentidor/cons/id=d1692-2094-obj98-20
+
+         testo$manuel goncalves caiado/id=d1692-2099
+            ls$profissao/lavrador
+            ls$residencia/simoes
+            ls$idade/40
+            ls$assina/+
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/id=d1692-2099-obj99-20
+
+            acusa$c1692-teresa-antonio-simoes/amanci/id=d1692-2099-obj100-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/cons,refere a mae consentidora mas nao o pai/id=d1692-2099-obj101-20
+
+            acusa$c1692-pai-de-joao-consentidor/cons/id=d1692-2099-obj102-20
+
+         testo$joao lourenco/id=d1692-2100
+            ls$residencia/simoes
+            ls$idade/60
+            ls$assina/?#verificar
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal="""
+            
+            o denunciado ao qual dizem que ela ia buscar ao servico 
+            aonde andava por ser moça louca e amiga de ser vista
+            """,fol.34/id=d1692-2100-obj103-20
+
+            acusa$c1692-teresa-antonio-simoes/amanci/id=d1692-2100-obj104-20
+
+            acusa$c1692-pai-de-joao-consentidor/cons/id=d1692-2100-obj105-20
+
+         testo$manuel simoes/id=d1692-2101
+            ls$profissao/seareiro
+            ls$residencia/vale da borra
+            ls$idade/55
+            ls$assina/+
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/literal="""
+
+            ele testemunha na sexta-feira proxima passada, indo do 
+            lagar para sua casa achou ao juiz desta vila com seu 
+            escrivao o qual chamou a ele testemunha para dar conta 
+            daquele preso o qual acharao em casa da cumplice descalco 
+            e assentado ao lume e ele dissera se dava por preso o que ele 
+            testemunha viu por se achar presente e o acompanhar ate a cadeia desta vila
+            
+            """, fol.35/id=d1692-2101-obj106-20
+
+            acusa$c1692-manuel-catarina/amanci/literal=queriam casar mas saiu impedimento, parentes em 4o grau ela pariu uma crianca que morreu. Caso de muitos anos/id=d1692-2101-obj107-20
+
+               caso$c1692-manuel-catarina/amanci/obs=manuel e catarina, 2102 e 2103, parentes em 4 grau
+
+                  acusado$manuel/m/id=d1692-2102
+                     rel$parentesco/filho/maria francisca/d1692-2102a
+                     ls$ec/s
+                     ls$residencia/vale da borra
+
+                     referida$maria francisca/f/id=d1692-2102a
+                        ls$alcunha/travica?
+                        ls$residencia/vale da borra
+
+                  acusada$catarina/f/id=d1692-2103
+                     ls$residencia/vale da borra
+                     rel$parentesco/filha/joao simoes/d1692-2103a
+
+                     referido$joao simoes/id=d1692-2103a
+                        ls$residencia/vale da borra
+
+         testo$manuel gomes/id=d1692-2104
+            ls$alcunha/lendea
+            ls$residencia/soure, rua do pedrogal
+            ls$residencia/soure
+            ls$idade/60
+            ls$assina/+
+
+            acusa$c1692-antonio-cordeiro-alcouc/alcouc/id=d1692-2104-obj108-20
+
+            acusa$c1692-maria-esteva/dev/id=d1692-2104-obj109-20
+
+            acusa$c1692-maria-silva/dev/id=d1692-2104-obj110-20
+
+         testo$manuel joao gramasso?/m/id=2105
+            ls$residencia/simoes
+            ls$idade/60
+            ls$assina/+
+            ls$profissao/vive de sua fazenda
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ela gravida/id=2105-obj111-20
+
+            acusa$c1692-teresa-antonio-simoes/amanci/id=2105-obj112-20
+
+         testo$manuel rodrigues/id=d1692-2106
+            ls$residencia/simoes
+            ls$idade/35
+            ls$profissao/lavrador
+            ls$assina/+
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ela gravida/id=d1692-2106-obj113-20
+
+            acusa$c1692-teresa-antonio-simoes/amanci/id=d1692-2106-obj114-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/cons,so refere a mae como consentidora/id=d1692-2106-obj115-20
+
+            acusa$c1692-pai-de-joao-consentidor/cons/id=d1692-2106-obj116-20
+
+         testo$francisco rodrigues/id=d1692-2107
+            ls$profissao/trabalhador
+            ls$residencia/simoes
+            ls$idade/40
+            ls$assina/+
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ela gravida. fol 37: """
+
+               no verao passado, em tempo dos trigos em dia que nao esta
+                  lembrado viu ele testemunha que indo a cumplice tangendo
+                  uma bezerra a viu ao denunciado que andava apanhando erva
+                  e se foi para onde ela estava e que o lugar era acomodado 
+                  para cometerem pecado de sensualidade sem serem vistos  
+                  porquanto o trigo era muito alto, mas ele testemunha 
+                  nao viu se o cometeram ou nao, so estranhou ver ir a 
+                  cumplice sendo mulher donsela para aquele lugar andando
+                  ai o denunciado.
+
+                """/id=d1692-2107-obj117-20
+
+            acusa$c1692-teresa-antonio-simoes/amanci/literal=ela gravida. Parentes em quarto grau, mandaram buscar bula/id=d1692-2107-obj118-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/cons, so acusa a mae/id=d1692-2107-obj119-20
+
+            acusa$c1692-pai-de-joao-consentidor/cons/id=d1692-2107-obj120-20
+
+         testo$manuel simoes/id=d1692-2108
+            ls$alcunha/moco
+            ls$residencia/simoes
+            ls$idade/26
+            ls$assina/+
+            ls$profissao/lavrador
+
+            acusa$c1692-antonio-simoes-raposo-maria/id=d1692-2108-obj121-20
+
+            acusa$c1692-teresa-antonio-simoes/id=d1692-2108-obj122-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/so refere a mae como consentidora/id=d1692-2108-obj123-20
+
+            acusa$c1692-pai-de-joao-consentidor/id=d1692-2108-obj124-20
+
+         testo$ascenso gaspar/id=d1692-2109
+            ls$profissao/lavrador
+            ls$assina/+
+            ls$residencia/simoes
+            ls$idade/FALTA NA TRANSCRICAO, VERIFICAR
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/id=d1692-2109-obj125-20
+
+            acusa$c1692-teresa-antonio-simoes/amanci/id=d1692-2109-obj126-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/cons, so refere a mae como consentidora/id=d1692-2109-obj127-20
+
+         testo$manuel jorge/id=d1692-2110
+            ls$profissao/trabalhador
+            ls$residencia/vale da borra
+            ls$idade/25
+            ls$assina/+
+
+            acusa$c1692-manuel-catarina/amanci/literal=ela pariu, parentes em 4 grau. Ele morava em casa do pai dela 'a soldada/id=d1692-2110-obj128-20
+
+         testo$manuel rodrigues/id=d1692-2111
+            ls$residencia/vale da borra
+            ls$profissao/lavrador
+            ls$idade/50
+            ls$assina/+
+
+            acusa$c1692-manuel-catarina/amanci/literal=a crianca morrera 'a nascenca havera dois anos/id=d1692-2111-obj129-20
+
+         testo$joao simoes/mesmo_que=d1692-2103a/id=dev1692-per20
+            ls$profissao/lavrador
+            ls$residencia/vale da borra
+            ls$idade/50
+            ls$assina/+
+
+            acusa$c1692-antonio-catarina-fernandes/amanc,relata a cena da prisao/id=dev1692-per20-obj130-20
+
+            acusa$c1692-manuel-catarina/amanci/literal="""
+            
+            tendo ele testemunha por criado a manuel, solteiro, 
+            filho de maria francisca a travinca? ele aleivosamente 
+            se afeicoou a uma sua filha por nome catarina e a 
+            emprenhou ha mais de um ano a esta parte e que 
+            a dita sua filha vendo-se prenhada se absentou 
+            como tambem o dito moco os quais denunciados sao parentes em 4 grau de afinidade
+            
+            """ (explica o parentesco)/id=dev1692-per20-obj131-20
+
+            referido$manuel/id=d1692-2103b
+               rel$parentesco/avo/manuel/d1692-2102
+
+            referida$maria rodrigues/f/id=d1692-2103c
+               rel$parentesco/prima%prima inteira/manuel/d1692-2103b
+               rel$parentesco/mae/isabel rodrigues/d1692-2103d
+
+            referida$isabel rodrigues/f/id=d1692-2103d
+               ls$morta/antes
+               rel$parentesco/prima/maria francisca/d1692-2102a
+               rel$parentesco/mae/catarina/d1692-2103
+               rel$parentesco/foi mulher#primeira mulher/joao simoes/d1692-2103a
+
+         testo$diogo domingues/id=d1692-2112
+            ls$profissao/lavrador
+            ls$residencia/simoes
+            ls$idade/50
+            ls$assina/+
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/id=d1692-2112-obj132-20
+
+         testo$antonio simoes/id=d1692-2113
+            ls$profissao/lavrador
+            ls$residencia/simoes
+            ls$idade/30
+            ls$assina/+
+
+            acusa$c1692-teresa-antonio-simoes/amanci/literal=ela gravida, pediram dispensa/id=d1692-2113-obj133-20
+
+            acusa$c1692-antonio-simoes-maria-domingues/cons, so a mae/id=d1692-2113-obj134-20
+
+            acusa$c1692-pai-de-joao-consentidor/cons/id=d1692-2113-obj135-20
+
+         testo$antonio marques/id=d1692-2114
+            ls$profissao/curtidor
+            ls$residencia/paleao
+            ls$idade/60
+            ls$assina/b
+
+            acusa$c1692-manuel aires-domingas-luis/amanci/id=d1692-2114-obj136-20
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/literal=diz que fez mal a domingos antunes da carvalheira, casado/id=d1692-2114-obj137-20
+
+               caso$c1692-ana-simoes-feiticeira/feitic/obs=ana simoes,2114a
+
+                  acusada$ana simoes/f/id=d1692-2114a
+                     ls$alcunha/poupa
+                     ls$ec/v
+
+                     referido$domingos antunes/id=d1692-2116a
+                        ls$residencia/carvalheira
+                        rel$parentesco/marido/filipa goncalves/d1692-2116
+                        rel$feiticaria/sofreu feitico/ana simoes/d1692-2114a
+
+         testo$manuel de figueiredo/id=d1692-2115
+            ls$profissao/trabalhador
+            ls$idade/70
+            ls$residencia/quinta da cruz
+            rel$parentesco/tio/maria/d1692-2096
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ha 5 anos, ela gravida. "a mae da cumplice em uma romaria de nossa senhora de nazare os cobrira a ambos com um manto"/id=d1692-2115-obj138-20
+
+         testa$filipa goncalves/id=d1692-2116
+            ls$idade/40
+            ls$residencia/carvalheira
+            rel$parentesco/mulher/domingos antunes/d1692-2116a
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/literal=t.a e' mulher de uma suposta vitima. Diz que o marido adoeceu e a denunciada apareceu la com a cura e a mulher suspeita que foi ela que o fez adoecer./id=d1692-2116-obj139-20
+
+         testa$antonia francisca/id=d1692-2117
+            rel$parentesco/mulher/manuel gomes pinheiro/d1692-2117a
+            ls$ec/c
+            ls$residencia/pinheiro
+            ls$idade/65
+            rel$parentesco/tia/domingos antunes/d1692-2116a
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/id=d1692-2117-obj140-20
+
+            referido$manuel gomes pinheiro/id=d1692-2117a
+               ls$residencia/pinheiro
+
+         testa$domingas simoes/id=d1692-2118
+            ls$ec/v
+            ls$residencia/pinheiro
+            ls$idade/60
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/id=d1692-2118-obj141-20
+
+         testo$domingos antunes/id=d1692-2119
+            ls$profissao/lavrador
+            ls$residencia/pinheiro
+            ls$idade/52
+            rel$parentesco/pai/domingos antunes/d1692-2116a
+            ls$assina/b
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/id=d1692-2119-obj142-20
+
+         testo$domingos simoes/id=d1692-2120
+            ls$profissao/seareiro
+            ls$residencia/carvalheira
+            ls$idade/36
+            ls$assina/+
+
+            acusa$c1692-manuel-rodrigues-maria-joao/amanci, esta test.a primeiro diz que ela era prima segunda da mulher dele/id=d1692-2120-obj143-20
+               rel$amizade/amigo/manuel rodrigues/d1692-2070
+               rel$vizinhanca/vizinho/manuel rodrigues/d1692-2070
+
+         testo$antonio fernandes/id=d1692-2121
+            ls$alcunha/velho
+            ls$residencia/vale da borra
+            ls$profissao/seareiro
+            ls$idade/60
+            ls$assina/+
+
+            acusa$c1692-antonio-catarina-fernandes/amanc/literal=prenderam-no na sexta-feira passada/id=d1692-2121-obj144-20
+
+            acusa$c1692-manuel-catarina/amanci/literal=pariu, ele 'a soldada em casa do pai dela/id=d1692-2121-obj145-20
+
+         testa$isabel gomes/id=d1692-2122
+            ls$ec/c
+            rel$parentesco/foi mulher/antonio goncalves de brito/d1692-2122a
+            ls$residencia/panelas#ilocalizado
+            ls$idade/80
+
+            referido$antonio goncalves de brito/id=d1692-2122a
+               ls$morto/antes
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/id=d1692-2122-obj146-20
+
+         testa$catarina gomes/id=d1692-2123
+            ls$residencia/soure, rua do pedrogal
+            ls$residencia/soure
+            ls$ec/s
+            ls$idade/50
+
+            acusa$c1692-maria-esteva/dev/id=d1692-2123-obj147-20
+
+            acusa$d1692-c13b/alcov/id=d1692-2123-obj148-20
+
+            acusa$d1692-c13c/alcouc/id=d1692-2123-obj149-20
+
+               caso$d1692-c13b/alcov/obs=maria esteva,2093,de uma maria silva ou simoes a ruiva
+
+                  acusada$maria esteva/mesmo_que=dev1692-2011/id=d1692-c13b-per21
+
+               caso$d1692-c13c/alcouc/obs=maria esteva,2093,de uma maria silva ou simoes a ruiva
+
+                  acusada$maria esteva/mesmo_que=dev1692-2011/id=d1692-c13c-per22
+
+            acusa$7d1692-c1/alcouc/id=d1692-2123-obj150-20
+
+         testa$isabel marques/id=d1692-2124
+            ls$ec/v
+            rel$parentesco/foi mulher/joao rodrigues/d1692-2124a
+            ls$idade/50
+            ls$residencia/soure, rua do pedrogal
+            ls$residencia/soure
+
+            referido$joao rodrigues/id=d1692-2124a
+               ls$morto/antes
+
+            acusa$c1692-antonio-cordeiro-alcouc/alcouc/literal=que alcovitou madalena, filha de manuel goncalves vargas e a entregou a manuel homem de quadros/id=d1692-2124-obj151-20
+
+            acusa$c1692-maria-esteva/dev/id=d1692-2124-obj152-20
+
+            acusa$d1692-c13c/alcouc/id=d1692-2124-obj153-20
+
+         testa$isabel gomes/id=d1692-2125
+            ls$ec/s
+            ls$residencia/soure
+            ls$residencia/soure, rua do pedrogal
+            ls$idade/48
+
+            acusa$c1692-maria-esteva/dev/literal= admitiu um homem em casa na ultima quinta feira santa/id=d1692-2125-obj154-20
+
+            acusa$d1692-c13b/alcov/id=d1692-2125-obj155-20
+
+            acusa$d1692-c13c/alcouc/id=d1692-2125-obj156-20
+
+            acusa$c1692-antonio-cordeiro-alcouc/alcouc/id=d1692-2125-obj157-20
+
+            acusa$c1692-maria-silva/dev/id=d1692-2125-obj158-20
+
+         testa$maria/id=d1692-2126
+            ls$ec/s
+            ls$residencia/quinta da cruz
+            ls$idade/VERIFICAR
+            rel$parentesco/filha/maria simoes/d1692-2126a
+            rel$parentesco/prima/maria/d1692-2096
+
+            referida$maria simoes/f/id=d1692-2126a
+               ls$ec/v
+               ls$residencia/quinta da cruz
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal= fol 52 ..."""
+            
+            viu ela testemunha indo o ano passado no mes de julho pouco mais ou 
+            menos ao campo do mondego sachar em companhia dos denunciados 
+            juntamente com o pais da cumplice e dormindo uma noite em uma 
+            eira em alfarelos, o denunciado com a cumplice se deitaram ambos 
+            juntos muito pegados um a outro com o rosto junto um a outro a modo 
+            que foram casados e a ela testemunha pareceu muito mal ainda que 
+            nao sentiu que tivesse entre acto de copula ainda que a podiao 
+            ter pelo modo com que estavam juntos
+            """ e ainda que quando as raparigas iam "gramar" ela se desviava do caminho para ir ver o cumplice./id=d1692-2126-obj159-20
+
+         testa$brites joao/id=d1692-2127
+            ls$ec/v
+            ls$idade/40
+            ls$residencia/simoes
+            rel$parentesco/foi mulher/joao rodrigues/d1692-2127a
+            rel$vizinhanca/vizinho/maria/d1692-2096
+
+            referido$joao rodrigues/id=d1692-2127a
+               ls$morto/antes
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ela gravida """
+            
+            ... o ano passado pela ocasiao dos passos vindo o denunciado de uma sua 
+            fazenda e passando pelo lugar onde mora a dita cumplice entrara o dito 
+            denunciado em casa da dita cumplice que ai estava com outra mulher e 
+            parecendo mal a ela testemunha foi a casa da dita cumplice porque 
+            mora junto dela e pelejou muito com o denunciado que se fosse aviar 
+            sua vida e que deixasse a dita maria porque ali nao estavam seus pais em casa
+            
+            """/id=d1692-2127-obj160-20
+
+         testo$joao rodrigues alvaro/id=d1692-2128
+            ls$profissao/barbeiro
+            ls$residencia/soure, rua do pedrogal
+            ls$residencia/soure
+            ls$idade/38
+            ls$assina/b
+
+            acusa$d1692-c13b/alcov/literal=diz que foi ela a culpada do caso de madalena vargas. Nao denunciou o antonio cordeiro/id=d1692-2128-obj161-20
+
+            acusa$d1692-c13c/alcouc/id=d1692-2128-obj162-20
+
+            acusa$7d1692-c13a/dev/id=d1692-2128-obj163-20
+
+         testo$antonio madeira/id=d1692-2129/obs=diz que tem algum parentesco com os madeiras
+            ls$profissao/lavrador
+            ls$residencia/areias
+            ls$idade/50
+            ls$assina/+
+
+            acusa$c1692-manuel-rodrigues-maria-joao/amanci/literal=diz que ela diz que o denunciado a desflorara. Pariu. 3.o ou 4.o grau/id=d1692-2129-obj164-20
+
+            referido$manuel goncalves/id=d1692-2071a
+               rel$parentesco/pai/isabel joao/d1692-2072c
+
+            referido$maria madeira/id=d1692-2071d
+               ls$morta/antes
+               rel$parentesco/mae/catarina madeira/d1692-2071c
+
+            referida$catarina madeira/f/id=d1692-2071c
+               ls$morta/antes
+               rel$parentesco/mae/isabel jorge/d1692-2072b
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/id=d1692-2129-obj165-20
+
+         testo$manuel rodrigues feijao/id=d1692-2139
+            ls$residencia/casais de s.mateus
+            ls$idade/40
+            ls$assina/VERIFICAR
+
+            acusa$c1692-baptista-moura-domingas-carvalho/amanci/literal=ela era criada dele e saiu gravida de sua casa. Pariu uma crianca que ainda hoje vive. Parentesco em terceiro grau de cons. e 2.o de afinidade/id=d1692-2139-obj166-20
+
+               caso$c1692-baptista-moura-domingas-carvalho/amanci/obs=baptista de moura e isabel, 2140 e 2141 2.o grau de afinidade
+
+                  acusado$baptista de moura/m/id=d1692-2140
+                     ls$ec/v
+                     ls$residencia/casais de s.mateus
+                     rel$parentesco/foi marido/domingas carvalho/d1692-2140a
+                     rel$profissional/patrao/isabel/d1692-2141
+
+                     referida$domingas carvalho/f/id=d1692-2140a
+                        ls$morta/antes
+                        rel$parentesco/filha/manuel carvalho/d1692-2140b
+
+                     referido$manuel carvalho/id=d1692-2140b
+                        ls$morto/antes
+                        rel$parentesco/irmao/antonio carvalho/d1692-2141b
+
+                  acusada$isabel/f/id=d1692-2141
+                     ls$ec/s
+                     rel$parentesco/filha/manuel rodrigues/d1692-2141a
+
+                     referido$manuel rodrigues/id=d1692-2141a
+                        ls$alcunha/benzedor/obs=ver a testemunha luis rodrigues (82)
+                        ls$morto/antes/obs=ha mais de um ano
+                        rel$parentesco/filho/antonio carvalho/d1692-2141b
+
+                     referido$antonio carvalho/id=d1692-2141b
+                        ls$morto/antes
+
+         testa$isabel domingues/id=d1692-2142
+            ls$residencia/casal do leonel
+            ls$idade/60
+            rel$parentesco/mulher/manuel goncalves/d1692-2142a
+            rel$parentesco/irma/filipa goncalves/d1692-2116
+
+            referido$manuel goncalves/id=d1692-2142a
+               ls$residencia/casal do leonel
+
+            acusa$c1692-ana-simoes-feiticeira/feitic/id=d1692-2142-obj167-20
+
+         testo$jose gaspar/id=d1692-2143
+            ls$profissao/lavrador
+            ls$residencia/simoes
+            ls$idade/18
+            ls$assina/+
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal="""
+            
+               vindo ele testemunha havera tres ou quatro anos com eles da 
+               Nossa Senhora da Nazare, em o lugar de Cavalinhos, em 
+               uma noite que ai dormiram, viu ele testemunha que o 
+               denunciado dormio ao redor de um valado junto com a 
+               cumplice, cobertos com um manto estando ambos juntos 
+               como se foram casados o que ele testemunha estranhara muito...
+               """ . Ela esta gravida/id=d1692-2143-obj168-20
+
+         testo$joao/id=d1692-2144
+            ls$ec/s
+            ls$residencia/simoes
+            ls$idade/25
+            ls$assina/+
+            rel$parentesco/filho/joao lourenco/d1692-2144a
+
+            referido$joao lourenco/id=d1692-2144a
+
+            acusa$c1692-antonio-simoes-raposo-maria/amanc/literal="""
+            havera tres anos em dia de que nao esta lembrado viu 
+            os denunciados estarem ambos metidos em uma barraca no 
+            sitio que chamam ribeira da barrosa, aonde se detiveram 
+            por espaco de tres ou quatro horas
+            """ """ e noutras ocasioes, estando ja os trigos crescidos e 
+            espigados os viu ambos andarem a apanhar erva sos
+            
+            """. Ela gravida/id=d1692-2144-obj169-20
+
+         testo$luis rodrigues/id=d1692-2145
+            ls$profissao/lavrador
+            ls$residencia/casais de s.mateus
+            ls$idade/37
+            ls$assina/+
+
+            acusa$c1692-baptista-moura-domingas-carvalho/amanci/literal="""
+            que foi para casa do denunciado em fama de honrada e virtuosa 
+            e de casa do denunciado saiu prenha
+            [...]
+            e que a cumplice dizia publicamente que o denunciado a desflorara a 
+            titulo de casar com ela
+            """/id=d1692-2145-obj170-20
+
+         testo$antonio rodrigues feijao/id=d1692-2146
+            ls$profissao/lavrador
+            ls$residencia/casais de s.mateus
+            ls$idade/35
+            ls$assina/+
+
+            acusa$c1692-baptista-moura-domingas-carvalho/amanci/literal="havera um ano, pouco mais ou menos, fora o juis desta vila a casa do denunciado para tomar conta da barriga da complice" Ela tem madrasta e irmaos e voltou a casa depois de engravidar./id=d1692-2146-obj171-20
+
+         testo$manuel gomes/id=d1692-2147
+            ls$alcunha/calham
+            ls$profissao/mestre do ?
+            ls$residencia/moinhos novos
+            ls$idade/45
+            ls$assina/b
+
+            acusa$8d1692-c1/alcouc/literal="""
+                        
+            foi fama publica que quando o denunciado entregara a dita sua cunhada 
+            ao dito manuel fernandes nogueira, proprietario do escrivao dos orfaos 
+            desta vila ela a levara para fora da terra e a trouxera por la alguns 
+            meses recebeu do dito manuel fernandes o dito denunciado um capote de 
+            que fizera um vestido a um filho
+
+            [vem gente de fora. Entregou sua cunhada domingas nunes a 
+            manuel fernandes nogueira, proprietario do oficio de escrivao dos 
+            orfaos e tambem madalena vargas a manuel homem de quadros]
+            """/id=d1692-2147-obj172-20
+
+            referido$manuel fernandes nogueira/id=d1692-2147a
+               ls$cargo/escrivao dos orfaos/obs=proprietario do oficio
+
+            acusa$c1692-maria-esteva/dev/id=d1692-2147-obj173-20
+
+            acusa$c1692-maria-silva/dev/id=d1692-2147-obj174-20
+
+         testo$antonio dos santos/id=d1692-2148
+            ls$ec/s
+            ls$residencia/soure, requeixo
+            ls$residencia/soure
+            ls$idade/21
+            ls$assina/+
+
+            acusa$c1692-manuel-oliveira-pascoa/amanc, ciume?/id=d1692-2148-obj175-20
+
+            acusa$d1692-c23/dev, ciume?/id=d1692-2148-obj176-20
+
+               caso$c1692-manuel-oliveira-pascoa/amanc/obs=manuel de oliveira e pascoa, 2149 e 2150
+
+                  acusado$manuel de oliveira/m/id=d1692-2149
+                     ls$alcunha/nozes
+                     ls$ec/c
+
+                  acusada$pascoa/f/id=d1692-2150
+                     ls$ec/s
+                     ls$residencia/soure, requeixo/obs=vive com a mae e a irma
+                     ls$residencia/soure
+                     rel$parentesco/filha/maria ferreira/d1692-2150b
+
+                     referida$maria ferreira/f/id=d1692-2150b
+                        ls$residencia/soure, requeixo
+                        ls$residencia/soure
+
+               caso$d1692-c23/dev/obs=pascoa, 2150
+
+                  acusada$pascoa/f/mesmo_que=d1692-2150/id=d1692-c23-per1-16
+
+         testo$joao luis/id=d1692-2151
+            ls$residencia/casais de s.mateus
+            ls$profissao/lavrador
+            ls$idade/33
+            ls$assina/b
+
+            acusa$c1692-baptista-moura-domingas-carvalho/amanci/literal=reconta a historia que a justica da vila mais uma parteira foram tomar conta da barriga./id=d1692-2151-obj177-20
+
+         testo$manuel de oliveira/id=d1692-2152
+            ls$residencia/soure, requeixo
+            ls$residencia/soure
+            ls$idade/46
+            ls$assina/m
+
+            acusa$c1692-manuel-oliveira-pascoa/amanc/literal=diz que a rapariga ja teve filhos/id=d1692-2152-obj178-20
