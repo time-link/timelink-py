@@ -5,7 +5,8 @@ MIT License, no warranties.
 """
 import pytest
 
-from timelink.kleio.groups import KElement, KPerson, KLs, KAbstraction, KAtr
+from timelink.kleio.groups import KElement, KPerson, KLs, KAbstraction, KAtr, \
+    KDate, KDay, KMonth, KYear
 from timelink.kleio.utilities import quote_long_text
 from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
@@ -64,6 +65,99 @@ def test_kelement():
     assert e.core == '0001', "Failed single core value"
 
 
+def test_kelement_subclasses():
+    classes = KElement.all_subclasses()
+    assert len(classes) > 0
+
+def test_kelement_subclasses2():
+    classes = KElement.all_subclasses()
+    element_names = [el.name for el in classes]
+    assert len(classes) > 0
+
+def test_kelement_extend():
+    KAno: KYear = KYear.extend('ano')
+    KAno.set_limits((1114,2021))
+    annus_horribilis = KAno(1580)
+    assert annus_horribilis.core+1 == 1581
+
+
+def test_kelement_extend_2():
+    KAno: KYear = KYear.extend('ano')
+    assert KAno._element_class == 'year'
+    assert KAno.name == 'ano'
+
+
+def test_kdate():
+    d = KDate('2021-12-10')
+    assert d.name == 'date'
+
+
+def test_kdate2():
+    d = KDate('2021-12-10')
+    assert d.name == 'date'
+
+
+def test_kday1():
+    day = KDay(24)
+    assert day.name == 'day'
+
+def test_kday1b():
+    day = KDay(0)
+    assert day.core == 0
+
+def test_kday2():
+    day = KDay('24', comment='it is a nice day', original='twenty-four')
+    assert day.name == 'day'
+    assert day.comment == 'it is a nice day'
+    assert day.original == 'twenty-four'
+
+def test_kday2b():
+    day = KDay(('24', 'it is a nice day', 'twenty-four'))
+    assert day.name == 'day'
+    assert day.core + 1 == 25
+    assert day.comment == 'it is a nice day'
+    assert day.original == 'twenty-four'
+
+
+def test_kday3():
+    with pytest.raises(ValueError):
+        day = KDay('32')
+
+
+def test_kday4():
+    with pytest.raises(ValueError):
+        day = KDay('31x')
+
+def test_month1():
+    month = KMonth(('05', 'it is a nice month', 'May'))
+    assert month.name == 'month'
+    assert month.core + 1 == 6
+    assert month.comment == 'it is a nice month'
+    assert month.original == 'May'
+
+def test_month2():
+    month = KMonth('12')
+    assert month.core + 1 == 13
+
+def test_month3():
+    with pytest.raises(ValueError):
+        month = KMonth(14)
+
+def test_month4():
+    month = KMonth(0)
+    assert month.core == 0, "Did not accept zero value"
+
+def test_year_1():
+    year = KYear(2021)
+    assert year.core == 2021
+
+def test_year_2():
+    KYear.set_limits((1958,2021))
+    with pytest.raises(ValueError):
+        year = KYear(1945)
+    year = KYear(1968)
+    assert year.core + 1 == 1969
+
 def test_kelement_tuple():
     e = KElement('name',
                  ('Joaquim Carvalho',
@@ -116,9 +210,11 @@ def test_kelement_to_str_1():
     e = KElement('name', 'Joaquim Carvalho')
     assert str(e) == 'Joaquim Carvalho'
 
+
 def test_kelement_to_int():
     e = KElement('line', '254')
     assert int(e) + 1 == 255
+
 
 def test_kelement_to_kleio():
     e = KElement('name', 'Joaquim \nCarvalho')
@@ -135,7 +231,8 @@ def test_kelement_kleio_2():
 def test_kelement_kleio_3():
     e = KElement('name', 'Joaquim Carvalho',
                  comment="Family name added in the margin")
-    assert e.to_kleio(name=True) == 'name=Joaquim Carvalho#Family name added in the margin', \
+    assert e.to_kleio(
+        name=True) == 'name=Joaquim Carvalho#Family name added in the margin', \
         "str() failed with optional comment"
 
 
@@ -173,34 +270,39 @@ def test_kgroup_extend():
     afonte = kfonte('f001', ano=2021, tipo='teste')
     assert afonte.id.core == 'f001', 'could not extend group and instantiate'
 
+
 def test_kroup_elements_allowed():
     my_group: KGroup = KGroup.extend('mygrou',
                                      position='id',
-                                     also=['nome','genero','telefone'])
+                                     also=['nome', 'genero', 'telefone'])
     selements = sorted(my_group.elements_allowed())
-    assert selements == ['genero', 'id','nome','telefone'], "wrong element list"
+    assert selements == ['genero', 'id', 'nome',
+                         'telefone'], "wrong element list"
 
 
 def test_kroup_allow_as_element():
     my_group: KGroup = KGroup.extend('mygroup',
                                      position='id',
-                                     also=['nome','genero','telefone'])
+                                     also=['nome', 'genero', 'telefone'])
     selements = sorted(my_group.elements_allowed())
-    assert selements == ['genero', 'id','nome','telefone'], "wrong element list"
+    assert selements == ['genero', 'id', 'nome',
+                         'telefone'], "wrong element list"
 
-    my_group.allow_as_element('profissao',also=True)
+    my_group.allow_as_element('profissao', also=True)
     selements = sorted(my_group.elements_allowed())
-    assert selements == ['genero', 'id','nome','profissao','telefone'], \
+    assert selements == ['genero', 'id', 'nome', 'profissao', 'telefone'], \
         "wrong element list after allow_as_element"
 
     my_group.allow_as_element('idade', guaranteed=True)
     selements = sorted(my_group.elements_allowed())
-    assert selements == ['genero', 'id','idade', 'nome', 'profissao', 'telefone'], \
+    assert selements == ['genero', 'id', 'idade', 'nome', 'profissao',
+                         'telefone'], \
         "wrong element list after allow_as_element"
     assert my_group._guaranteed == ['idade']
 
     my_group.allow_as_element('nome', position=0)
-    assert my_group._position == ['nome','id']
+    assert my_group._position == ['nome', 'id']
+
 
 def test_kgroup_include():
     p = KPerson('joaquim', 'm', 'jrc')
@@ -237,8 +339,8 @@ def test_allow_as_part_1():
     x = Kx(id='x001')
     y = Ky('y001')
 
-    #print(x.to_kleio())
-    #print(y.to_kleio())
+    # print(x.to_kleio())
+    # print(y.to_kleio())
 
     with pytest.raises(ValueError):
         x.include(y), "include should have failed"
@@ -419,6 +521,7 @@ def test_kgroup_line_seq_level():
     assert person.level == 4, " Failed level update"
     assert person.order == 4, " Failed sequence update"
 
+
 def test_kgroup_line_seq_level():
     kk = KKleio('gacto2.str')
     ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
@@ -439,6 +542,7 @@ def test_kgroup_inside():
     ks.include(ka1)
     assert ks.inside is kk, "Failed inside builtin"
     assert ka1.inside is ks, "Failed inside builtin"
+
 
 def test_kgroup_get_nested_dict_get(kgroup_nested):
     kgroup_nested
@@ -550,13 +654,13 @@ def test_kleio_stru():
     f.include(l)
     a = auc('alumni-record', 'archeevo-record', id='xpto')
     l.include(a)
-    j: KGroup = n('joaquim', 'm', obs='em macau',id='jrc')
+    j: KGroup = n('joaquim', 'm', obs='em macau', id='jrc')
     j.include(ls('uc', 'início', data=2021))
     j.include(atr('xauc', 'dsd'))
     l.include(j)
     l2 = lista('l003', 18, 2, 2021, data='1537-1913', tipo='auc-list', loc='B')
     f.include(l2)
-    m = n('manuel', 'm', obs='em Berlin',id='mrc')
+    m = n('manuel', 'm', obs='em Berlin', id='mrc')
     m.include(ls('uc', 'fim', data=2021))
     l2.include(m)
     json_string = j.to_json()

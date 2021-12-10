@@ -6,7 +6,6 @@ from sqlalchemy.orm import Session, sessionmaker
 from timelink.kleio.groups import KElement,KGroup, KSource,KAct,KPerson
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
-from timelink.mhk.models.person import Person
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.db import TimelinkDB

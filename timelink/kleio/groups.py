@@ -112,30 +112,36 @@ class KElement:
     core: Any  # must have a str representation.
     comment: str = None
     original: str = None
-    _element_class: str = None  # class
+    _element_class: str = None  # class of element if different from name
 
-    def __init__(self, name: str, val: Any, comment=None, original=None,
-        element_class=None):
+    def get_class(self):
+        return self._element_class
+
+    def __init__(self, name: str = None, core: Any = None, comment=None,
+                 original=None,
+                 element_class=None):
         """
         Args:
-            name: name of the Element. A string.
-            val: the core aspect of the Element. Must have __str__
+            name: name of the Element. If None then self._name is used.
+            core: the core aspect of the Element. Must have __str__
                     or a tuple (core,comment,original). If a tuple
                     optional arguments are disregarded.
             comment: Optional; The comment aspect of the Element.
             original: Optional; The original aspect of the Element.
-            element_class: Optional; the class of this element if defined
-                in the str file with the source=parameter. If absent set
+            element_class: Optional; in groups generated from kleio translations
+                this is set by the translator based on the the source=parameter.
+                of the str file. If absent it is set here
                 equal to the name of the element.
         """
+        if name is not None:
+            self.name = name
 
-        self.name = name
-        if type(val) is tuple and len(val) == 3:
-            self.core = val[0]
-            self.comment = val[1]
-            self.original = val[2]
+        if type(core) is tuple and len(core) == 3:
+            self.core = core[0]
+            self.comment = core[1]
+            self.original = core[2]
         else:
-            self.core = val
+            self.core = core
             if comment is not None:
                 self.comment = comment
             if original is not None:
@@ -149,6 +155,43 @@ class KElement:
 
     def __int__(self):
         return int(str(self))
+
+    @classmethod
+    def extend(cls, name: str):
+        """
+        Creates a new KElement class that extends this one.
+        By creating specialized classes it is possible to
+        customize behaviour for certain type of values,
+        like dates. Also it is possible to create new KElement
+        names for different languages and keep the behaviour of
+        a specific element type (e.g. mapping "data" elements
+        behave like "date" elements).
+
+        When an element of a group is set with a atomic value
+        or a tuple, a new KElement of the class with the same
+        name of the element in the group is used to store the
+        group.
+
+        :param name:
+        :return:
+        """
+        new_kelement = type(name, (cls,), {})
+        new_kelement.name = name
+        new_kelement._element_class = cls.name
+
+        return new_kelement
+
+    @classmethod
+    def get_subclasses(cls):
+        """ Generator for subclasses of this KElement"""
+        for subclass in cls.__subclasses__():
+            yield from subclass.get_subclasses()
+            yield subclass
+
+    @classmethod
+    def all_subclasses(cls):
+        """ List of all the subclasses of this KElement"""
+        return list(cls.get_subclasses())
 
     def is_empty(self):
         """True if all aspects of the element are None or empty string"""
@@ -204,6 +247,139 @@ class KElement:
 
     def to_dots(self):
         return Box(self.to_dict())
+
+
+# Default KElement classes.
+class KDate(KElement):
+    name = 'date'
+
+    def __init__(self, date: Any = None, comment=None,
+                 original=None,
+                 element_class=None):
+        super().__init__(self.name, date, comment, original, element_class)
+
+
+class KDay(KElement):
+    name = 'day'
+
+    def __init__(self, day: Any = None, comment=None,
+                 original=None,
+                 element_class=None):
+        super().__init__(self.name, day, comment, original, element_class)
+        if type(self.core) is str:
+            self.core = int(self.core)
+        if self.core != 0 and (self.core < 1 or self.core > 31):
+            raise ValueError("Day value must be between 1 and 31")
+
+
+class KMonth(KElement):
+    name = 'month'
+
+    def __init__(self, month: Any = None, comment=None,
+                 original=None,
+                 element_class=None):
+        super().__init__(self.name, month, comment, original, element_class)
+        if type(self.core) is str:
+            self.core = int(self.core)
+        if self.core != 0 and (self.core < 1 or self.core > 12):
+            raise ValueError("Month value must be between 1 and 12")
+
+
+class KYear(KElement):
+    """
+    Represents a year.
+
+    To have value checking do KYear.set_limits((lower,upper))
+
+    """
+    name = 'year'
+    _keep_between = None
+
+    def __init__(self, month: Any = None, comment=None,
+                 original=None,
+                 element_class=None):
+        super().__init__(self.name, month, comment, original, element_class)
+        if self._keep_between is not None:
+            try:
+                keep_between = self._keep_between
+                lower, upper = keep_between
+            except ValueError as e:
+                raise ValueError(
+                    "keep_between parameter must contain "
+                    "two values in a tuple, e.g. (1114,2021)") from e
+            if type(self.core) is str:
+                self.core = int(self.core)
+            if (self.core != 0 and self.core < lower) \
+                or (self.core != 0 and self.core > upper):
+                raise ValueError("Year value must be between {lower}"
+                                 " and {upper} or 0 if unknown")
+
+    @classmethod
+    def set_limits(cls, keep_between=None):
+        """
+        :param keep_between: a tuple (lower year, upper year)
+                             set to None for no checking of year values
+        :return: None
+        """
+        cls._keep_between = keep_between
+
+
+class KType(KElement):
+    """
+    Represents a type of object or abstraction
+    """
+    name = 'type'
+
+
+class KId(KElement):
+    """
+    Represents an unique id for a group.
+
+    """
+    name = 'id'
+
+
+class KReplace(KElement):
+    """
+    Represents the id of a group to be replaced.
+
+    Example:
+
+        source$new-id/replace=old-id
+    """
+    name = 'replace'
+
+
+class KSameAs(KElement):
+    """
+    Represents the id of a group that describes the
+    same real world entity has the one with this element.
+
+    Used in the same file. Translators should check if
+    the id corresponds to a group in the same file and
+    file an error otherwise
+
+    Example:
+        person$Bob Dylan/id=bob-dylan
+        .....
+        person$Robert Allan Zimmerman/sameas=bob-dylan
+    """
+    name = 'sameas'
+
+
+class KXSameAs(KElement):
+    """
+    Same meaning as KSameAs used when id is not
+    in the file.
+
+    The difference between KSameAs and KXSameAs is
+    just for error checking during translation.
+    Translators will raise error if a KSameAs id
+    is not found in the same file, but only a warning
+    for KXSameAs.
+
+    """
+    name = 'xsameas'
 
 
 class KGroup:
@@ -281,7 +457,7 @@ class KGroup:
         if KGroup.is_kgroup(value):
             self._inside = value
         else:
-            self._inside = KGroup(id=str(value),element_check=False)
+            self._inside = KGroup(id=str(value), element_check=False)
 
     @property
     def line(self):
@@ -317,11 +493,11 @@ class KGroup:
 
     @classmethod
     def extend(cls,
-        name: str,
-        position: Union[list, str, None] = None,
-        guaranteed: Union[list, str, None] = None,
-        also: Union[list, str, None] = None,
-        part: Union[list, str, None] = None):
+               name: str,
+               position: Union[list, str, None] = None,
+               guaranteed: Union[list, str, None] = None,
+               also: Union[list, str, None] = None,
+               part: Union[list, str, None] = None):
         """
         Create a new group definition by extending this one
         :param name:  name of the new group
@@ -362,12 +538,14 @@ class KGroup:
 
     @classmethod
     def get_subclasses(cls):
+        """ Generator for subclasses of this group"""
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
 
     @classmethod
     def all_subclasses(cls):
+        """ List of all the subclasses of this group"""
         return list(cls.get_subclasses())
 
     @classmethod
@@ -383,7 +561,7 @@ class KGroup:
 
     @classmethod
     def allow_as_element(cls, ename: Union[str, List[str]], guaranteed=False,
-        also=True, position=None):
+                         also=True, position=None):
         """
         Add element or list to list of allowed elements for this group.
         Optionally define if element(s) is positional, required (guaranteed) or optional
@@ -597,10 +775,10 @@ class KGroup:
             return inc_by_part_order
 
     def attr(self,
-        the_type: Union[str, KElement, Tuple[str, str, str]],
-        value: Union[str, KElement, Tuple[str, str, str]],
-        date: Union[str, KElement, Tuple[str, str, str]],
-        obs=None):
+             the_type: Union[str, KElement, Tuple[str, str, str]],
+             value: Union[str, KElement, Tuple[str, str, str]],
+             date: Union[str, KElement, Tuple[str, str, str]],
+             obs=None):
         """ Utility function to include a KAttribute in this KGroup
 
         The call::
@@ -624,12 +802,12 @@ class KGroup:
         return self
 
     def rel(self,
-        the_type: Union[str, tuple],
-        value: Union[str, tuple],
-        destname: Union[str, tuple],
-        destination: Union[str, tuple],
-        date: Union[str, tuple],
-        obs: str = None):
+            the_type: Union[str, tuple],
+            value: Union[str, tuple],
+            destname: Union[str, tuple],
+            destination: Union[str, tuple],
+            date: Union[str, tuple],
+            obs: str = None):
         """ include a relation in this KGroup"""
         kr = globals()['KRelation']
         self.include(kr(the_type, value, destname, destination, date, obs))
@@ -639,9 +817,9 @@ class KGroup:
         return self.__str__(indent=indent, recurse=True)
 
     def to_dict(self, allow_none: bool = False,
-        include_str: bool = False,
-        include_kleio: bool = False,
-        redundant_keys: bool = True):
+                include_str: bool = False,
+                include_kleio: bool = False,
+                redundant_keys: bool = True):
         """ Return group information as a dict.
 
         Params:
@@ -860,12 +1038,6 @@ class KGroup:
             return default
         else:
             return core
-
-
-
-
-
-
 
     def get_id(self):
         """Return the id of the group"""
