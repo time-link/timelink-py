@@ -6,7 +6,7 @@ MIT License, no warranties.
 import pytest
 
 from timelink.kleio.groups import KElement, KPerson, KLs, KAbstraction, KAtr, \
-    KDate, KDay, KMonth, KYear
+    KDate, KDay, KMonth, KYear, KType, KReplace
 from timelink.kleio.utilities import quote_long_text
 from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
@@ -84,6 +84,22 @@ def test_kelement_extend():
 def test_kelement_extend_2():
     KAno: KYear = KYear.extend('ano')
     assert KAno._element_class == 'year'
+    assert KAno.name == 'ano'
+
+
+def test_kelement_extend_3():
+    KAno: KYear = KYear.extend('ano')
+    assert issubclass(KAno,KYear)
+    assert issubclass(KAno,KElement)
+    annus_horribilis = KAno(1580)
+    assert isinstance(annus_horribilis,KAno)
+    assert isinstance(annus_horribilis,KYear)
+    assert isinstance(annus_horribilis,KElement)
+
+
+def test_kelement_extend_4():
+    KAno: KYear = KYear.extend('ano')
+    assert KElement.get_class_for('ano') is KAno
     assert KAno.name == 'ano'
 
 
@@ -271,6 +287,25 @@ def test_kgroup_extend():
     assert afonte.id.core == 'f001', 'could not extend group and instantiate'
 
 
+def test_kgroup_extend2():
+    # these create localized version of original elements
+    KData = KDate.extend('data')
+    KAno = KYear.extend('ano')
+    KTipo = KType.extend('tipo')
+    KSubstitui = KReplace.extend('substitui')
+    kfonte: KGroup = KGroup.extend('fonte',
+                                   position=['id'],
+                                   also=['tipo',
+                                         'data',
+                                         'ano',
+                                         'obs',
+                                         'substitui'])
+    afonte = kfonte('f001', data='2021-12-09',
+                    ano=2021, tipo='teste',
+                    substitui='f001')
+    assert afonte.data.get_class() == 'date'
+
+
 def test_kroup_elements_allowed():
     my_group: KGroup = KGroup.extend('mygrou',
                                      position='id',
@@ -455,7 +490,8 @@ def test_kgroup_to_kleio(kgroup_source_dev):
     s = 'source$dev-1718/date=1721-10-10:1723-07-09/loc=AUC/' \
         'ref="III/D,1,4,4,55"/replace=visita-1718/type=Episcopal visitation' \
         '/obs=Transcrition available, manuscript.'
-    assert kgroup_source_dev.to_kleio() == s, "Bad group representation"
+    kleio = kgroup_source_dev.to_kleio()
+    assert kleio == s, "Bad group representation"
 
 
 def test_kgroup_to_kleio_empty_1():
@@ -546,7 +582,8 @@ def test_kgroup_inside():
 
 def test_kgroup_get_nested_dict_get(kgroup_nested):
     kgroup_nested
-    assert kgroup_nested.get["act"]['a1']['date'] == '2021-07-16', \
+    act = kgroup_nested.get["act"]
+    assert act['a1']['date'] == '2021-07-16', \
         "Failed nested dictionary"
 
 

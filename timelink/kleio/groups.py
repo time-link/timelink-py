@@ -146,9 +146,10 @@ class KElement:
                 self.comment = comment
             if original is not None:
                 self.original = original
-        self._element_class = element_class
+        if element_class is not None:
+            self._element_class = element_class
         if self._element_class is None:
-            self._element_class = name
+            self._element_class = self.name
 
     def __str__(self):
         return self.core
@@ -192,6 +193,19 @@ class KElement:
     def all_subclasses(cls):
         """ List of all the subclasses of this KElement"""
         return list(cls.get_subclasses())
+
+    @classmethod
+    def get_class_for(cls, name: str):
+        """
+        Search in KElement subclasses and return the one
+        with the same element name as the argument. If
+        none return KElement
+
+        :param name: name of an element
+        :return: KElement or a subclass
+        """
+        subclasses_as_dict = {el.name: el for el in cls.all_subclasses()}
+        return subclasses_as_dict.get(name, cls)
 
     def is_empty(self):
         """True if all aspects of the element are None or empty string"""
@@ -253,18 +267,22 @@ class KElement:
 class KDate(KElement):
     name = 'date'
 
-    def __init__(self, date: Any = None, comment=None,
+    def __init__(self, date: Any = None, core=None, comment=None,
                  original=None,
                  element_class=None):
+        if core is not None:
+            date = core  # to allow core setting in generic code
         super().__init__(self.name, date, comment, original, element_class)
 
 
 class KDay(KElement):
     name = 'day'
 
-    def __init__(self, day: Any = None, comment=None,
+    def __init__(self, day: Any = None, core=None, comment=None,
                  original=None,
                  element_class=None):
+        if core is not None:
+            day = core  # to allow core setting in generic code
         super().__init__(self.name, day, comment, original, element_class)
         if type(self.core) is str:
             self.core = int(self.core)
@@ -275,10 +293,15 @@ class KDay(KElement):
 class KMonth(KElement):
     name = 'month'
 
-    def __init__(self, month: Any = None, comment=None,
+    def __init__(self, month: Any = None, core= None, comment=None,
                  original=None,
                  element_class=None):
+        if core is not None:
+            month = core  # to allow core
         super().__init__(self.name, month, comment, original, element_class)
+
+        self.core = int(self.core)
+
         if type(self.core) is str:
             self.core = int(self.core)
         if self.core != 0 and (self.core < 1 or self.core > 12):
@@ -295,10 +318,17 @@ class KYear(KElement):
     name = 'year'
     _keep_between = None
 
-    def __init__(self, month: Any = None, comment=None,
+    def __init__(self, year: Any = None, core=None, comment=None,
                  original=None,
                  element_class=None):
-        super().__init__(self.name, month, comment, original, element_class)
+
+        if core is not None:
+            year = core
+
+        super().__init__(self.name, year, comment, original, element_class)
+
+        self.core = int(self.core)
+
         if self._keep_between is not None:
             try:
                 keep_between = self._keep_between
@@ -691,8 +721,9 @@ class KGroup:
         group.order = KGroup.inc_sequence()
         if group.id is None:
             if self.id is None:
-                raise ValueError(f"A group with no id cannot include other groups"
-                                 "set the id of enclosing group first}")
+                raise ValueError(
+                    f"A group with no id cannot include other groups"
+                    "set the id of enclosing group first}")
             gid = f"{self.id}-{group.order}-{group.kname[0:3]}"
             group.id = gid
 
@@ -842,7 +873,7 @@ class KGroup:
 
         Format of keys:
             group[element]: core value of element
-
+                            also group[element_core]
             group[element_comment]: comment aspect of element
 
             group[element_original]: original aspect of element
@@ -873,9 +904,10 @@ class KGroup:
         for e in self.elements_allowed():
             v: KElement = getattr(self, e, None)
             if v is not None:
-                if type(v) is KElement:
+                if issubclass(type(v),KElement):
                     core, comment, original = v.to_tuple()
                     kd[e] = core
+                    kd[e + '_core'] = core
                     kd[e + '_comment'] = comment
                     kd[e + '_original'] = original
                     if include_str:
@@ -1011,8 +1043,23 @@ class KGroup:
 
     def pack_as_kelement(self, arg, value):
         if not isinstance(value, KElement):  # we did not get a KElement
-            el = KElement(arg, value)  # we make one
+            # we get KElement class that matches the name
+            # this is how we handle localized name of elements that
+            # have a builtin meaning or are referred to by standard names
+            # in PomSomMapping
+            kelement_class = KElement.get_class_for(arg)
+            core = None
+            comment = None
+            original = None
+            if type(value) is tuple and len(value)==3:
+                core, comment, original = value
+            else:
+                core = value
+            el = kelement_class(arg, core=core,
+                                comment=comment,
+                                original=original)
         else:  # we got a KElement object
+
             el = value
             el.name = arg  # we override the element name with the arg name
         return el
