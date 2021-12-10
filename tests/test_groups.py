@@ -389,7 +389,7 @@ def test_allow_as_part_3():
 def test_allow_as_part_4():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm')
+    j = n('joaquim', 'm',id='jrc')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
@@ -399,7 +399,7 @@ def test_allow_as_part_4():
 def test_includes_group():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm')
+    j = n('joaquim', 'm',id='jrc')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
@@ -414,7 +414,7 @@ def test_includes_group():
 def test_includes_by_part_order():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm')
+    j = n('joaquim', 'm',id='jrc')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
@@ -445,7 +445,7 @@ def test_includes_no_arg():
 
 
 def test_kgroup_attr():
-    p = KPerson('joaquim', 'm')
+    p = KPerson('joaquim', 'm',id='joaq')
     p.attr('location', 'macau', '2021')
     attrs = list(p.includes())
     assert len(attrs) > 0, "attribute not included in KGroup"

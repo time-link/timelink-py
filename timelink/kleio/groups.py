@@ -689,6 +689,12 @@ class KGroup:
         group.level = self.level + 1
         group.line = KGroup.inc_line()
         group.order = KGroup.inc_sequence()
+        if group.id is None:
+            if self.id is None:
+                raise ValueError(f"A group with no id cannot include other groups"
+                                 "set the id of enclosing group first}")
+            gid = f"{self.id}-{group.order}-{group.kname[0:3]}"
+            group.id = gid
 
         # new style, dictionary based
         k = self._containsd.keys()
