@@ -3,7 +3,8 @@ from typing import Type
 import pytest
 from sqlalchemy.orm import Session, sessionmaker
 
-from timelink.kleio.groups import KElement,KGroup, KSource,KAct,KPerson
+from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson, \
+    KAttribute
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
@@ -26,6 +27,23 @@ def dbsystem():
         db.drop_db(session)
 
 @pytest.fixture
+def kgroup_person_attr_rel() -> KSource:
+        """Returns a group wtih attr and rel"""
+        ks = KSource('s2', type='test', loc='auc', ref='attr-rel', obs='difficult')
+        ka1 = KAct('a2-1', 'test-act', date='2021-07-16',
+                   day=16, month=7, year=2021,
+                   loc='macau', ref='p.1', obs='Test Act')
+        ks.include(ka1)
+        p1 = KPerson('Joaquim', 'm', 'p01-2')
+        p1.attr('residencia', 'Macau', date='2021-12-11')
+        p2 = KPerson('Margarida', 'f', 'p02-2')
+        p2.attr('residencia', 'Trouxemil', date='2020-10-18')
+        p1.rel('parentesco','marido','Margarida Gomes',p2,
+               date='2006-01-4',obs='Ilha Terceira')
+        ka1.include(p2)
+        ka1.include(p1)
+
+@pytest.fixture
 def kgroup_nested() -> KSource:
     """Returns a nested structure"""
     ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
@@ -36,12 +54,16 @@ def kgroup_nested() -> KSource:
     ka2 = KAct('a2', 'test-act', date='2021-07-17',
                                      day=17, month=7, year=2021,
                                      loc='auc', ref='p.2', obs='Test Act')
+
+
     ks.include(ka2)
     p1 = KPerson('Joaquim', 'm', 'p01')
+    p1.attr('residencia','Macau',date='2021-12-11')
     p2 = KPerson('Margarida', 'f', 'p02')
+    p2.attr('residencia','Trouxemil', date='2020-10-18')
     p3 = KPerson('Pedro', 'm', 'p03')
-    ka1.include(p1)
-    ka1.include(p2)
+    p3.attr("residencia","Rua Arménio RC",date='2021-10-21')
+
     ka1.include(p3)
     p4 = KPerson('Maria', 'f', 'p04')
     p5 = KPerson('Manuel', 'm', 'p05')
@@ -127,6 +149,15 @@ def test_ensure_mapping(dbsystem):
 
 
 def test_insert_entities_nested_groups(dbsystem,kgroup_nested):
+    ks = kgroup_nested
+    source_id = ks.get_id()
+    with Session() as session:
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+        source_from_db = Entity.get_entity(source_id,session)
+        assert source_from_db.id == ks.get_id()
+
+def test_insert_entities_attr_rel(dbsystem,kgroup_person_attr_rel):
     ks = kgroup_nested
     source_id = ks.get_id()
     with Session() as session:

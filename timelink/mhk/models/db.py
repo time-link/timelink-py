@@ -7,7 +7,7 @@ from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
 
 
-SQLALCHEMY_ECHO=True
+SQLALCHEMY_ECHO=False
 
 class TimelinkDB:
     """

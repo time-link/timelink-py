@@ -21,8 +21,8 @@ class PomSomMapper(Entity):
     two tables describe a Som-Pom mapping, that define how
     Kleio groups are stored in the relational database.
 
-    This class can generate tables and ORM objects and can
-    store a Kleio group in the database.
+    This class can generate tables and ORM objects that can
+    store a Kleio Group in the database.
 
     Fields:
         * id - name of this PomSomMapper, singular form
@@ -185,11 +185,11 @@ class PomSomMapper(Entity):
                     PyType = Float
                 else:
                     PyType = String
-                print(f"Inferred python type for {cattr.colname}: ", PyType)
+                #print(f"Inferred python type for {cattr.colname}: ", PyType)
 
                 if cattr.pkey != 0:
                     if self.super_class not in ['root', 'base']:
-                        print("Getting super class " + self.super_class)
+                        #print("Getting super class " + self.super_class)
                         pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
                             self.super_class, session)
                         if pom_super_class is not None:
@@ -352,7 +352,7 @@ class PomSomMapper(Entity):
         columns = inspect(ormClass).columns
 
         for cattr in pom_class.class_attributes:
-            element: KElement = group.get_element_by_class(cattr.colclass)
+            element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
                     setattr(entity_from_group, cattr.colname, str(element))

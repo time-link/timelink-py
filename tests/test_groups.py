@@ -3,10 +3,12 @@ Test for timelink.kleio package
 (c) Joaquim Carvalho 2021.
 MIT License, no warranties.
 """
+import logging
+
 import pytest
 
 from timelink.kleio.groups import KElement, KPerson, KLs, KAbstraction, KAtr, \
-    KDate, KDay, KMonth, KYear, KType, KReplace
+    KDate, KDay, KMonth, KYear, KType, KReplace, KId
 from timelink.kleio.utilities import quote_long_text
 from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
@@ -24,8 +26,13 @@ def kgroup_nested() -> KSource:
                loc='auc', ref='p.2', obs='Test Act')
     ks.include(ka2)
     p1 = KPerson('Joaquim', 'm', 'p01')
+    p1.attr('residencia', 'Macau', date='2021-12-11')
     p2 = KPerson('Margarida', 'f', 'p02')
+    p2.attr('residencia', 'Trouxemil', date='2020-10-18')
+    p1.rel('parentesco', 'marido', p2.name, p2.id,
+           date='2006-01-4', obs='Ilha Terceira')
     p3 = KPerson('Pedro', 'm', 'p03')
+    p3.attr("residencia", "Rua Arménio RC", date='2021-10-21')
     ka1.include(p1)
     ka1.include(p2)
     ka1.include(p3)
@@ -65,36 +72,86 @@ def test_kelement():
     assert e.core == '0001', "Failed single core value"
 
 
+def test_element_class():
+    e = KElement('id', '01')
+    assert e.element_class is None
+
+def test_element_class2():
+    e = KId('id', '01')
+    assert e.element_class is 'id'
+
+
+
+def test_element_class_extend():
+    # extend date to have a synonym in another language
+    kdata_pt = KDate.extend('data')
+    data_class = kdata_pt
+    data_class_name = data_class.__name__
+    data_class_kname = data_class.name
+    assert data_class_name == data_class_kname == 'data'
+    data_mro = data_class.__mro__
+    assert data_mro
+    all_element_types = KElement.all_subclasses()
+    inherited_names = [ke.name for ke in data_mro if ke is not object
+                       and ke.name is not None]
+    assert len(all_element_types) > 0
+    assert len(inherited_names) > 0
+    date_class = data_class.__base__
+    d = kdata_pt(core='2021-12-12')
+    assert d.name == 'data'
+    # new KElement type should keep original class
+    assert d.extends(date_class.name)
+    # we use a different name for the date
+    fda = kdata_pt.extend('fim_de_ano')
+    nd = fda('2021-12-31')
+    assert nd.name == 'fim_de_ano'
+    assert nd.core == '2021-12-31'
+    # but still is as date
+    fds_names = nd.inherited_names()
+    assert 'date' in fds_names
+    assert nd.extends(date_class.name)
+
+
+def test_element_class_extend2():
+    KC = KDate
+    date_class = KDate.name
+    group_with_date = KGroup.extend('gdate', position='date')
+    gd = group_with_date('2021-12-12')
+    assert gd.date.core == '2021-12-12'
+    assert gd.date.element_class == date_class
+
+
 def test_kelement_subclasses():
     classes = KElement.all_subclasses()
     assert len(classes) > 0
+
 
 def test_kelement_subclasses2():
     classes = KElement.all_subclasses()
     element_names = [el.name for el in classes]
     assert len(classes) > 0
 
+
 def test_kelement_extend():
     KAno: KYear = KYear.extend('ano')
-    KAno.set_limits((1114,2021))
+    KAno.set_limits((1114, 2021))
     annus_horribilis = KAno(1580)
-    assert annus_horribilis.core+1 == 1581
+    assert annus_horribilis.core + 1 == 1581
 
 
 def test_kelement_extend_2():
     KAno: KYear = KYear.extend('ano')
-    assert KAno._element_class == 'year'
     assert KAno.name == 'ano'
 
 
 def test_kelement_extend_3():
     KAno: KYear = KYear.extend('ano')
-    assert issubclass(KAno,KYear)
-    assert issubclass(KAno,KElement)
+    assert issubclass(KAno, KYear)
+    assert issubclass(KAno, KElement)
     annus_horribilis = KAno(1580)
-    assert isinstance(annus_horribilis,KAno)
-    assert isinstance(annus_horribilis,KYear)
-    assert isinstance(annus_horribilis,KElement)
+    assert isinstance(annus_horribilis, KAno)
+    assert isinstance(annus_horribilis, KYear)
+    assert isinstance(annus_horribilis, KElement)
 
 
 def test_kelement_extend_4():
@@ -117,15 +174,18 @@ def test_kday1():
     day = KDay(24)
     assert day.name == 'day'
 
+
 def test_kday1b():
     day = KDay(0)
     assert day.core == 0
+
 
 def test_kday2():
     day = KDay('24', comment='it is a nice day', original='twenty-four')
     assert day.name == 'day'
     assert day.comment == 'it is a nice day'
     assert day.original == 'twenty-four'
+
 
 def test_kday2b():
     day = KDay(('24', 'it is a nice day', 'twenty-four'))
@@ -144,6 +204,7 @@ def test_kday4():
     with pytest.raises(ValueError):
         day = KDay('31x')
 
+
 def test_month1():
     month = KMonth(('05', 'it is a nice month', 'May'))
     assert month.name == 'month'
@@ -151,28 +212,34 @@ def test_month1():
     assert month.comment == 'it is a nice month'
     assert month.original == 'May'
 
+
 def test_month2():
     month = KMonth('12')
     assert month.core + 1 == 13
+
 
 def test_month3():
     with pytest.raises(ValueError):
         month = KMonth(14)
 
+
 def test_month4():
     month = KMonth(0)
     assert month.core == 0, "Did not accept zero value"
+
 
 def test_year_1():
     year = KYear(2021)
     assert year.core == 2021
 
+
 def test_year_2():
-    KYear.set_limits((1958,2021))
+    KYear.set_limits((1958, 2021))
     with pytest.raises(ValueError):
         year = KYear(1945)
     year = KYear(1968)
     assert year.core + 1 == 1969
+
 
 def test_kelement_tuple():
     e = KElement('name',
@@ -303,7 +370,9 @@ def test_kgroup_extend2():
     afonte = kfonte('f001', data='2021-12-09',
                     ano=2021, tipo='teste',
                     substitui='f001')
-    assert afonte.data.get_class() == 'date'
+    assert afonte.data.extends('date')
+    year_value = afonte.get_element_for_column('year')
+    assert 2021 == year_value.core
 
 
 def test_kroup_elements_allowed():
@@ -424,7 +493,7 @@ def test_allow_as_part_3():
 def test_allow_as_part_4():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm',id='jrc')
+    j = n('joaquim', 'm', id='jrc')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
@@ -434,7 +503,7 @@ def test_allow_as_part_4():
 def test_includes_group():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm',id='jrc')
+    j = n('joaquim', 'm', id='jrc')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
@@ -449,7 +518,7 @@ def test_includes_group():
 def test_includes_by_part_order():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm',id='jrc')
+    j = n('joaquim', 'm', id='jrc')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
@@ -480,7 +549,7 @@ def test_includes_no_arg():
 
 
 def test_kgroup_attr():
-    p = KPerson('joaquim', 'm',id='joaq')
+    p = KPerson('joaquim', 'm', id='joaq')
     p.attr('location', 'macau', '2021')
     attrs = list(p.includes())
     assert len(attrs) > 0, "attribute not included in KGroup"
@@ -625,9 +694,25 @@ def test_kgroup_dots_id(kgroup_nested):
     assert kgroup_nested.dots.act.a1.person.p01.name == 'Joaquim', \
         "Failed dots retrieval"
 
+def test_KPerson_to_json():
+    p1 = KPerson('Joaquim', 'm', 'p01')
+    p1.attr('residencia', 'Macau', date='2021-12-11')
+    p2 = KPerson('Margarida', 'f', 'p02')
+    json_string = p1.to_json()
+    assert json_string
+    json_string = p2.to_json()
+    assert json_string
+    p1.rel('parentesco', 'marido', p2.name, p2.id,
+           date='2006-01-4', obs='Ilha Terceira')
+    json_string = p1.to_json()
+    assert json_string
 
 def test_kgroup_to_json(kgroup_nested):
+    for inner in kgroup_nested.includes():
+        logging.log(logging.DEBUG,f"json for {inner.kname}")
+        logging.log(logging.DEBUG,f"json {inner.to_json()}")
     json_string = kgroup_nested.to_json()
+
     assert json_string, "Could not produce json"
 
 
@@ -680,8 +765,12 @@ def test_kleio_stru():
                          also=['mesmo_que', 'obs'])
     n.allow_as_part(pai)
     n.allow_as_part(mae)
-    ls = KLs.extend('ls', position=['type', 'value'], also=['data', 'obs'])
-    atr = KAtr.extend('atr', position=['type', 'value'], also=['data', 'obs'])
+    ls = KLs.extend('ls',
+                    position=['type', 'value'],
+                    also=['data', 'obs','entity'])
+    atr = KAtr.extend('atr',
+                      position=['type', 'value'],
+                      also=['data', 'obs','entity'])
 
     kf = KKleio()
     f = fonte('f001', tipo='auc-tests')

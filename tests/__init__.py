@@ -12,3 +12,5 @@ skip_on_travis = pytest.mark.skipif(
     os.environ.get('TRAVIS') == 'true',
     reason="this test required file system access for sqlite"
 )
+
+TEST_DIR = os.path.dirname(os.path.abspath(__file__))

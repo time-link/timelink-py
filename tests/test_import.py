@@ -1,3 +1,6 @@
+from pathlib import Path
+from sys import path
+
 import pytest
 from sqlalchemy.orm import Session
 
@@ -9,12 +12,13 @@ from timelink.mhk.models.db import TimelinkDB
 from timelink.mhk.models.entity import Entity
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base import Source, Person
-from tests import Session, skip_on_travis
+from tests import Session, skip_on_travis,TEST_DIR
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
 
-conn_string = 'sqlite:///test_db?check_same_thread=False'
+sqlite_db = Path(TEST_DIR,"sqlite/test_db")
+conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 
 
 
@@ -28,7 +32,7 @@ def dbsystem():
 
 @skip_on_travis
 def test_import_xml(dbsystem):
-    file = "xml_data/b1685.xml"
+    file = Path(TEST_DIR,"xml_data/b1685.xml")
     with Session() as session:
 
         stats = import_from_xml(file, session, options={'return_stats': True})
@@ -40,7 +44,7 @@ def test_import_xml(dbsystem):
 
 @skip_on_travis
 def test_import_with_custom_mapping(dbsystem):
-    file = "xml_data/dev1692.xml"
+    file = Path(TEST_DIR,"xml_data/dev1692.xml")
     with Session() as session:
         stats = import_from_xml(file, session, options={'return_stats': True})
 
@@ -54,7 +58,7 @@ def test_import_with_custom_mapping(dbsystem):
 
 @skip_on_travis
 def test_import_with_many(dbsystem):
-    file = "xml_data/test-auc-alunos-264605-A-140337-140771.xml"
+    file = Path(TEST_DIR,"xml_data/test-auc-alunos-264605-A-140337-140771.xml")
     with Session() as session:
         stats = import_from_xml(file, session, options={'return_stats': True})
         estudante = session.get(Entity, '140771')
