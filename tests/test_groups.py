@@ -146,19 +146,27 @@ def test_kelement_extend_2():
 
 def test_kelement_extend_3():
     KAno: KYear = KYear.extend('ano')
-    assert issubclass(KAno, KYear)
-    assert issubclass(KAno, KElement)
     annus_horribilis = KAno(1580)
-    assert isinstance(annus_horribilis, KAno)
-    assert isinstance(annus_horribilis, KYear)
-    assert isinstance(annus_horribilis, KElement)
+    assert annus_horribilis.extends('ano')
+    assert annus_horribilis.extends('year')
+
 
 
 def test_kelement_extend_4():
     KAno: KYear = KYear.extend('ano')
-    assert KElement.get_class_for('ano') is KAno
+    assert KAno in KElement.get_classes_for('ano')
     assert KAno.name == 'ano'
 
+def test_kelement_extend_6():
+    """ many competing classes for element get the one that matches column """
+    KAno: KYear = KYear.extend('ano')
+    KAno2 = KElement.extend('ano')
+    KAno3 = KAno2.extend('ano')
+    KAno4 = KAno3.extend('ano')
+    gano = KGroup.extend('gano',position=['ano'])
+    testing: KGroup = gano(2021)
+    ano = testing.get_element_for_column(KYear.name)
+    assert ano.core is 2021 # get the more specialized
 
 def test_kdate():
     d = KDate('2021-12-10')

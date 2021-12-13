@@ -198,13 +198,34 @@ class KElement:
         """
         Search in KElement subclasses and return the one
         with the same element name as the argument.
+
+        if more than one apply return the more specialized (longer __mro__)
+
         If not found return None
 
         :param name: name of an element
         :return: KElement or a subclass
         """
-        subclasses_as_dict = {el.name: el for el in KElement.all_subclasses()}
-        return subclasses_as_dict.get(name, None)
+        search_list =sorted([(a,len(a.__mro__))
+                             for a in cls.all_subclasses()],
+                            key=lambda mro: -mro[1])
+        for eclass, mro in search_list:
+            if eclass.name == name:
+                return eclass
+        return None
+
+    @classmethod
+    def inherits_from(cls):
+        return [ke for ke in cls.__mro__ if ke is not object
+                and ke is not None]
+
+    @classmethod
+    def get_classes_for(cls, name: str):
+        """ Search in Element subclass and return all that
+        have the same element name as the argument
+
+        see KElement.get_class_for(name) for getting the more specialized"""
+        return [sc for sc in KElement.all_subclasses() if sc.name==name]
 
     def inherited_names(self):
         """ Return the list of names in the KElement subclasses
@@ -723,8 +744,7 @@ class KGroup:
             if self._element_check and \
                 not self.is_allowed_as_element(k):
                 raise ValueError(f'Element not allowed: {k}')
-            el = self.pack_as_kelement(k, v)
-            self[k] = el
+            self[k] = v
         # test if the compulsory (guaranteed) elements are present
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
@@ -780,7 +800,7 @@ class KGroup:
             gid = f"{container_group.id}-{self.order:02d}-{self.kname[0:3]}"
             self.id = gid
             return True
-        return False
+        return True
 
     def after_include(self, group):
         """ Method called after a new group is included in this one
@@ -807,7 +827,7 @@ class KGroup:
             if len(r) == 0:
                 allowed = None
             else:
-                allowed = r[0]
+                allowed = r[0]  # kname?
         else:
             allowed = group.kname
 
@@ -1176,9 +1196,22 @@ class KGroup:
 
         """
         el: KElement
-        for el in self._element_list:
+        for el in self._element_list: # same name as column or in ancestors
             if el.name == colspec or colspec in el.inherited_names():
                 return el
+        for el in self._element_list: # check if there are alternative classes
+            # all classes for colspec
+            targets = KElement.get_classes_for(colspec)
+            # other classes for el
+            alternatives = KElement.get_classes_for(el.name)
+            # now check if there is a common path
+            #   collect all the ancestors of all the classes for this el
+            alt_ancestors = [(sc, sc.inherits_from()) for sc in alternatives]
+            #   check if any of colspec classes are there
+            for alternative, ancestors in alt_ancestors:
+                common = set(ancestors).intersection(set(targets))
+                if len(common) > 0:
+                    return el
         return default
 
 
