@@ -352,6 +352,8 @@ class PomSomMapper(Entity):
         columns = inspect(ormClass).columns
 
         for cattr in pom_class.class_attributes:
+            if cattr.colclass == 'id':
+                pass
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:

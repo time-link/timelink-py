@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Type
 
 import pytest
@@ -11,16 +12,16 @@ from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.db import TimelinkDB
 # Session is shared by all tests
-from tests import Session, skip_on_travis
+from tests import Session, skip_on_travis, TEST_DIR
 
 
-TimelinkDB.conn_string = 'sqlite:///test_db?check_same_thread=False'
-
+sqlite_db = Path(TEST_DIR,"sqlite/test_db")
+conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 pytestmark = skip_on_travis
 
 @pytest.fixture(scope="module")
 def dbsystem():
-    db = TimelinkDB(TimelinkDB.conn_string)
+    db = TimelinkDB(conn_string)
     Session.configure(bind=db.engine())
     yield db
     with Session() as session:
@@ -38,10 +39,11 @@ def kgroup_person_attr_rel() -> KSource:
         p1.attr('residencia', 'Macau', date='2021-12-11')
         p2 = KPerson('Margarida', 'f', 'p02-2')
         p2.attr('residencia', 'Trouxemil', date='2020-10-18')
-        p1.rel('parentesco','marido','Margarida Gomes',p2,
+        p1.rel('parentesco','marido',p2.name,p2.id,
                date='2006-01-4',obs='Ilha Terceira')
         ka1.include(p2)
         ka1.include(p1)
+        return ks
 
 @pytest.fixture
 def kgroup_nested() -> KSource:
@@ -158,7 +160,7 @@ def test_insert_entities_nested_groups(dbsystem,kgroup_nested):
         assert source_from_db.id == ks.get_id()
 
 def test_insert_entities_attr_rel(dbsystem,kgroup_person_attr_rel):
-    ks = kgroup_nested
+    ks = kgroup_person_attr_rel
     source_id = ks.get_id()
     with Session() as session:
         PomSomMapper.store_KGroup(ks, session)

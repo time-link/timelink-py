@@ -798,8 +798,9 @@ class KGroup:
                     f"group also without id"
                       )
             gid = f"{container_group.id}-{self.order:02d}-{self.kname[0:3]}"
-            self.id = gid
+            self['id'] = gid
             return True
+
         return True
 
     def after_include(self, group):
@@ -1197,8 +1198,13 @@ class KGroup:
         """
         el: KElement
         for el in self._element_list: # same name as column or in ancestors
-            if el.name == colspec or colspec in el.inherited_names():
+            if el.name == colspec:
                 return el
+        # Handles synonyms created by subclassing core KElements
+        for el in self._element_list: # if name in inherited names
+            if colspec in el.inherited_names():
+                return el
+        # handles multiple subclassing of core KElements
         for el in self._element_list: # check if there are alternative classes
             # all classes for colspec
             targets = KElement.get_classes_for(colspec)
@@ -1472,6 +1478,7 @@ class KRelation(KGroup):
     Elements:
         type: the type of the relation. A String
         value: the value of the relation. A string.
+        origin: the id of the origin of the destination. A string
         destination: the id of the destination of the relation. A string.
         destname: the name of the destination of the relation. A string
         date: the date of relation. A string in Timelink format, optional.
@@ -1486,14 +1493,14 @@ class KRelation(KGroup):
     _name = 'rel'
     _position = ['type', 'value', 'destname', 'destination']
     _guaranteed = ['type', 'value', 'destname', 'destination']
-    _also = ['obs', 'date']
+    _also = ['obs', 'date','origin']
     _pom_class_id: str = 'relation'
 
     def before_include(self, container_group):
         """ Method called before a new group is included in this one
         through KGroup.include(KGroup)."""
         KGroup.before_include(self,container_group)
-        self.origin = container_group.id
+        self['origin'] = container_group.id
         return True
 
     def after_include(self, group):
