@@ -134,7 +134,6 @@ def test_kelement_subclasses2():
 
 def test_kelement_extend():
     KAno: KYear = KYear.extend('ano')
-    KAno.set_limits((1114, 2021))
     annus_horribilis = KAno(1580)
     assert annus_horribilis.core + 1 == 1581
 
@@ -240,13 +239,6 @@ def test_year_1():
     year = KYear(2021)
     assert year.core == 2021
 
-
-def test_year_2():
-    KYear.set_limits((1958, 2021))
-    with pytest.raises(ValueError):
-        year = KYear(1945)
-    year = KYear(1968)
-    assert year.core + 1 == 1969
 
 
 def test_kelement_tuple():
