@@ -374,42 +374,16 @@ class KYear(KElement):
 
     """
     name = 'year'
-    _keep_between = None
 
     def __init__(self, year: Any = None, core=None, comment=None,
-        original=None,
-        element_class=None):
+        original=None):
 
         if core is not None:
             year = core
 
-        super().__init__(self.name, year, comment, original, element_class)
+        super().__init__(self.name, year, comment, original)
 
         self.core = int(self.core)
-
-        if self._keep_between is not None:
-            try:
-                keep_between = self._keep_between
-                lower, upper = keep_between
-            except ValueError as e:
-                raise ValueError(
-                    "keep_between parameter must contain "
-                    "two values in a tuple, e.g. (1114,2021)") from e
-            if type(self.core) is str:
-                self.core = int(self.core)
-            if (self.core != 0 and self.core < lower) \
-                or (self.core != 0 and self.core > upper):
-                raise ValueError("Year value must be between {lower}"
-                                 " and {upper} or 0 if unknown")
-
-    @classmethod
-    def set_limits(cls, keep_between=None):
-        """
-        :param keep_between: a tuple (lower year, upper year)
-                             set to None for no checking of year values
-        :return: None
-        """
-        cls._keep_between = keep_between
 
 
 class KType(KElement):
@@ -477,6 +451,15 @@ class KXSameAs(KElement):
     """
     name = 'xsameas'
 
+class KName(KElement):
+    """
+    Name of person
+    """
+
+class KDescription(KElement):
+    """
+    Similar to name, for objects
+    """
 
 class KGroup:
     """
@@ -973,7 +956,8 @@ class KGroup:
                     [p for p in group['includes']['persons']
                     if p.id='id1'][0]
 
-
+            TODO add first(), last() where includes is allowed:
+                 group['first']['person'] = group['includes']['person'][0]
         """
         kd = dict()
         kd['kleio_group'] = self._name
