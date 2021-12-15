@@ -106,3 +106,4 @@ ENV/
 timelink/.DS_Store
 .DS_Store
 .idea
+/tests/sqlite/test_db
