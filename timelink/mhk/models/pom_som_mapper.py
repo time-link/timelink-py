@@ -357,7 +357,7 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname, str(element))
+                    setattr(entity_from_group, cattr.colname, str(element.core))
                 except Exception as e:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
