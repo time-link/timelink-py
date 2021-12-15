@@ -393,6 +393,8 @@ class KType(KElement):
     name = 'type'
 
 
+
+
 class KId(KElement):
     """
     Represents an unique id for a group.
@@ -455,11 +457,22 @@ class KName(KElement):
     """
     Name of person
     """
+    name='name'
+
+
+class KSex(KElement):
+    """
+    male / female ...
+    """
+    name='sex'
 
 class KDescription(KElement):
     """
     Similar to name, for objects
     """
+    name='description'
+
+
 
 class KGroup:
     """
