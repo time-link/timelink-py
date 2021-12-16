@@ -864,12 +864,18 @@ class KGroup:
             if group in self._containsd.keys():
                 return self._containsd[group]
             else:
+                if type(group) is str:
+                    gname = group
+                elif KGroup.is_kgroup(group):
+                    gname=group.kname
+
                 inc_by_part_order = []
                 classes_in_contains = [c for c in self._containsd.keys()
                                        if hasattr(c, 'kname')]
                 for class_in_contains in classes_in_contains:
-                    inc_by_part_order.extend(
-                        self._containsd[class_in_contains])
+                    if class_in_contains._name == gname:
+                        inc_by_part_order.extend(
+                            self._containsd[class_in_contains])
                 return inc_by_part_order
         else:  # no specific subgroup, we return by pars order
             inc_by_part_order = []

@@ -503,13 +503,19 @@ def test_allow_as_part_4():
 def test_includes_group():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
-    j = n('joaquim', 'm', id='jrc')
+    j: n = n('joaquim', 'm', id='jrc')
+    j.attr('residencia','macau',date='2021-12-16')
+    atr1 = KAtr('residencia','Coimbra','2020-09-20')
+    atr2 = KAtr('hobby','caligrafia','2020-09-20')
+    j.include(atr1)
+    j.include(atr2)
+    j.attr('idade', '63', date='2021-08-08', obs='Taipa')
     pn = KPerson.extend('pn', position=['name'], guaranteed=['name'])
     n.allow_as_part(pn)
     j.include(pn('Arménio'))
-    j.attr('residencia', 'Macau', date='2021-08-08', obs='Taipa')
+    j.attr('profissao', 'professor', date='2021-08-08', obs='Taipa')
 
-    lpn = list(j.includes(group=pn))
+    lpn = list(j.includes(group='pn'))
     pai = lpn[0]
     np = pai.name.core
     assert np == 'Arménio', "Could not retrieve group by name"
