@@ -871,7 +871,7 @@ class KGroup:
 
                 inc_by_part_order = []
                 classes_in_contains = [c for c in self._containsd.keys()
-                                       if hasattr(c, 'kname')]
+                                       if hasattr(c, '_name')]
                 for class_in_contains in classes_in_contains:
                     if class_in_contains._name == gname:
                         inc_by_part_order.extend(
