@@ -643,6 +643,13 @@ def test_kgroup_line_seq_level():
     ks.include(ka1)
 
 
+def test_kgroup_set_element_more_than_once():
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    assert ks.id.core == 's1'
+    ks['id'] = 's1-changed'
+    assert ks.id.core == 's1-changed'
+
+
 def test_kgroup_inside():
     kk = KKleio('gacto2.str')
     ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')

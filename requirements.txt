@@ -4,3 +4,4 @@ python-dotenv~=0.18.0
 SQLAlchemy~=1.4.27
 docker~=5.0.0
 typer~=0.4.0
+py-markdown-table

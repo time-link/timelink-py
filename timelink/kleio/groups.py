@@ -75,7 +75,7 @@ import json
 import textwrap
 import warnings
 from os import linesep as nl
-from typing import Any, Union, Type, Tuple, List
+from typing import Any, Union, Type, Tuple, List, Dict
 
 from box import Box
 
@@ -206,9 +206,9 @@ class KElement:
         :param name: name of an element
         :return: KElement or a subclass
         """
-        search_list =sorted([(a,len(a.__mro__))
-                             for a in cls.all_subclasses()],
-                            key=lambda mro: -mro[1])
+        search_list = sorted([(a, len(a.__mro__))
+                              for a in cls.all_subclasses()],
+                             key=lambda mro: -mro[1])
         for eclass, mro in search_list:
             if eclass.name == name:
                 return eclass
@@ -225,7 +225,7 @@ class KElement:
         have the same element name as the argument
 
         see KElement.get_class_for(name) for getting the more specialized"""
-        return [sc for sc in KElement.all_subclasses() if sc.name==name]
+        return [sc for sc in KElement.all_subclasses() if sc.name == name]
 
     def inherited_names(self):
         """ Return the list of names in the KElement subclasses
@@ -377,7 +377,6 @@ class KYear(KElement):
 
     def __init__(self, year: Any = None, core=None, comment=None,
         original=None):
-
         if core is not None:
             year = core
 
@@ -391,8 +390,6 @@ class KType(KElement):
     Represents a type of object or abstraction
     """
     name = 'type'
-
-
 
 
 class KId(KElement):
@@ -453,25 +450,26 @@ class KXSameAs(KElement):
     """
     name = 'xsameas'
 
+
 class KName(KElement):
     """
     Name of person
     """
-    name='name'
+    name = 'name'
 
 
 class KSex(KElement):
     """
     male / female ...
     """
-    name='sex'
+    name = 'sex'
+
 
 class KDescription(KElement):
     """
     Similar to name, for objects
     """
-    name='description'
-
+    name = 'description'
 
 
 class KGroup:
@@ -495,7 +493,7 @@ class KGroup:
     """
     # Class scoped list of reserved element names for system use
     _builtin_elements = ['line', 'level', 'order', 'inside', 'groupname',
-                         'pom_class_id','id']
+                         'pom_class_id', 'id']
 
     id = None
     _name: str = 'kgroup'
@@ -507,7 +505,7 @@ class KGroup:
     _extends: Type['KGroup']  # name of group this is based on
     _pom_class_id: str = 'entity'  # Id of PomSom mapper for this group
     _element_check = True  # if true validates element assignment
-    _element_list: List[KElement]  # Current elements
+    _element_list: Type[Dict[str, KElement]]  # Current elements
     _inside: Type["KGroup"]  # group that includes this
 
     # The following fields are generated during the translation process.
@@ -721,7 +719,7 @@ class KGroup:
         self.line = 1
         self.order = 1
         self._element_check = True
-        self._element_list = []
+        self._element_list = {}
         self._inside = None
 
         if len(args) > len(self._position):
@@ -788,11 +786,10 @@ class KGroup:
 
         if self.id is None:
             if container_group.id is None:
-
                 raise ValueError(
                     f"A group with no id cannot be included in another "
                     f"group also without id"
-                      )
+                )
             gid = f"{container_group.id}-{self.order:02d}-{self.kname[0:3]}"
             self['id'] = gid
             return True
@@ -867,7 +864,7 @@ class KGroup:
                 if type(group) is str:
                     gname = group
                 elif KGroup.is_kgroup(group):
-                    gname=group.kname
+                    gname = group.kname
 
                 inc_by_part_order = []
                 classes_in_contains = [c for c in self._containsd.keys()
@@ -982,8 +979,8 @@ class KGroup:
         kd['kleio_group'] = self._name
         elements_to_include = self.elements_allowed()
         if include_builtin:
-            els = elements_to_include.union(set(self._builtin_elements))\
-                  -set(['inside'])
+            els = elements_to_include.union(set(self._builtin_elements)) \
+                  - set(['inside'])
         for e in els:
             v: KElement = getattr(self, e, None)
             if v is not None:
@@ -1123,7 +1120,7 @@ class KGroup:
             raise ValueError(f'Element not allowed: {arg}')
         el = self.pack_as_kelement(arg, value)
         setattr(self, arg, el)
-        self._element_list.append(el)
+        self._element_list[arg] = el
 
     def pack_as_kelement(self, arg, value):
         kelement = KElement.get_class_for(arg)
@@ -1200,15 +1197,15 @@ class KGroup:
 
         """
         el: KElement
-        for el in self._element_list: # same name as column or in ancestors
-            if el.name == colspec:
+        for name, el in self._element_list.items():  # same name as column or in ancestors
+            if name == colspec:
                 return el
         # Handles synonyms created by subclassing core KElements
-        for el in self._element_list: # if name in inherited names
+        for el in self._element_list.values():  # if name in inherited names
             if colspec in el.inherited_names():
                 return el
         # handles multiple subclassing of core KElements
-        for el in self._element_list: # check if there are alternative classes
+        for el in self._element_list.values():  # check if there are alternative classes
             # all classes for colspec
             targets = KElement.get_classes_for(colspec)
             # other classes for el
@@ -1444,7 +1441,7 @@ class KAttribute(KGroup):
         """ Method called before a new group is included in this one
         through KGroup.include(KGroup).
         """
-        KGroup.before_include(self,container_group)
+        KGroup.before_include(self, container_group)
         self['entity'] = container_group.id
         return True
 
@@ -1496,13 +1493,13 @@ class KRelation(KGroup):
     _name = 'rel'
     _position = ['type', 'value', 'destname', 'destination']
     _guaranteed = ['type', 'value', 'destname', 'destination']
-    _also = ['obs', 'date','origin']
+    _also = ['obs', 'date', 'origin']
     _pom_class_id: str = 'relation'
 
     def before_include(self, container_group):
         """ Method called before a new group is included in this one
         through KGroup.include(KGroup)."""
-        KGroup.before_include(self,container_group)
+        KGroup.before_include(self, container_group)
         self['origin'] = container_group.id
         return True
 
