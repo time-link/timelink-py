@@ -505,7 +505,7 @@ class KGroup:
     _extends: Type['KGroup']  # name of group this is based on
     _pom_class_id: str = 'entity'  # Id of PomSom mapper for this group
     _element_check = True  # if true validates element assignment
-    _element_list: Type[Dict[str, KElement]]  # Current elements
+    _elementsd: Type[Dict[str, KElement]]  # Current elements
     _inside: Type["KGroup"]  # group that includes this
 
     # The following fields are generated during the translation process.
@@ -719,7 +719,7 @@ class KGroup:
         self.line = 1
         self.order = 1
         self._element_check = True
-        self._element_list = {}
+        self._elementsd = {}
         self._inside = None
 
         if len(args) > len(self._position):
@@ -1120,7 +1120,7 @@ class KGroup:
             raise ValueError(f'Element not allowed: {arg}')
         el = self.pack_as_kelement(arg, value)
         setattr(self, arg, el)
-        self._element_list[arg] = el
+        self._elementsd[arg] = el
 
     def pack_as_kelement(self, arg, value):
         kelement = KElement.get_class_for(arg)
@@ -1197,15 +1197,15 @@ class KGroup:
 
         """
         el: KElement
-        for name, el in self._element_list.items():  # same name as column or in ancestors
+        for name, el in self._elementsd.items():  # same name as column or in ancestors
             if name == colspec:
                 return el
         # Handles synonyms created by subclassing core KElements
-        for el in self._element_list.values():  # if name in inherited names
+        for el in self._elementsd.values():  # if name in inherited names
             if colspec in el.inherited_names():
                 return el
         # handles multiple subclassing of core KElements
-        for el in self._element_list.values():  # check if there are alternative classes
+        for el in self._elementsd.values():  # check if there are alternative classes
             # all classes for colspec
             targets = KElement.get_classes_for(colspec)
             # other classes for el
