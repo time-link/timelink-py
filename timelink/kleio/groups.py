@@ -1289,7 +1289,8 @@ class KSource(KGroup):
     """
     _name = 'source'
     _guaranteed = ['id']
-    _also = ['type', 'date', 'year', 'loc', 'ref', 'replace', 'obs']
+    _also = ['type', 'date', 'year', 'loc', 'ref',
+             'replace', 'obs','kleiofile']
     _position = ['id']
     _part = ['act', 'attr']
     _pom_class_id: str = 'source'
