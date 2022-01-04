@@ -1,7 +1,6 @@
-from typing import Optional, Type, List
+from typing import Type, List
 
-from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
-    select
+from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, select
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship
@@ -13,89 +12,90 @@ from timelink.mhk.models.entity import Entity
 
 class PomSomMapper(Entity):
     """
-    Represents a mapping between a Kleio Group in the
-    Source Oriented Model (Som) and a relational database entity
-    in the Person Oriented Model (Pom). This class corresponds
-    to the table "classes" in a Timelink-MHK database,
-    and the associated "class_attributes" table. Together the
-    two tables describe a Som-Pom mapping, that define how
-    Kleio groups are stored in the relational database.
+     Represents a mapping between a Kleio Group in the
+     Source Oriented Model (Som) and a relational database entity
+     in the Person Oriented Model (Pom). This class corresponds
+     to the table "classes" in a Timelink-MHK database,
+     and the associated "class_attributes" table. Together the
+     two tables describe a Som-Pom mapping, that define how
+     Kleio groups are stored in the relational database.
 
-    This class can generate tables and ORM objects that can
-    store a Kleio Group in the database.
+     This class can generate tables and ORM objects that can
+     store a Kleio Group in the database.
 
-    Fields:
-        * id - name of this PomSomMapper, singular form
-        * table_name - name of the table in Pom, plural form
-        * group_name - name of Som group that maps to this table
-        * super_class - name of PomSom class extended by this one
+     Fields:
+         * id - name of this PomSomMapper, singular form
+         * table_name - name of the table in Pom, plural form
+         * group_name - name of Som group that maps to this table
+         * super_class - name of PomSom class extended by this one
 
-    For the core kleio groups (source,act,person,object, relation,attribute)
-    the mapping information is predefined at database creation time and
-    the 'classes' and 'class_attributes' populated accordingly.
+     For the core kleio groups (source,act,person,object, relation,attribute)
+     the mapping information is predefined at database creation time and
+     the 'classes' and 'class_attributes' populated accordingly.
 
-    The Kleio translator can provide new mappings for new groups that are
-    created for specific sources. The mapping information between new groups
-    and the database is embedded in the translator output of new sources in the
-    form of data for the tables mapped to the PomSomMapper.
+     The Kleio translator can provide new mappings for new groups that are
+     created for specific sources. The mapping information between new groups
+     and the database is embedded in the translator output of new sources in the
+     form of data for the tables mapped to the PomSomMapper.
 
-    For a mapping between a Som Group and a Pom table
-    to be fully operational it is necessary that:
+     For a mapping between a Som Group and a Pom table
+     to be fully operational it is necessary that:
 
-    1. The tables "classes" and "class_attributes" contain the mapping
-    information, normally populated during the initialization process of
-    the database (DBSystem.db_init) and updated during import,
-    as new sources define new mappings dynamically.
+     1. The tables "classes" and "class_attributes" contain the mapping
+     information, normally populated during the initialization process of
+     the database (DBSystem.db_init) and updated during import,
+     as new sources define new mappings dynamically.
 
-    2. A table for storing the elements of the Som Group.
-    This is either a basic core table
-    (persons,objects,acts,sources,...) or a table that extends
-    a basic core table with extra columns.
+     2. A table for storing the elements of the Som Group.
+     This is either a basic core table
+     (persons,objects,acts,sources,...) or a table that extends
+     a basic core table with extra columns.
 
-    The name of the table for a given group and the correspondence between
-    group elements and table columns is handled by the PomSomMapper. If the
-    group adds extra information then a new table
-    is created  that "extends" an existing core table,
-    by what is called a "joined inheritance hierarchy"
-    (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
+     The name of the table for a given group and the correspondence between
+     group elements and table columns is handled by the PomSomMapper. If the
+     group adds extra information then a new table
+     is created  that "extends" an existing core table,
+     by what is called a "joined inheritance hierarchy"
+     (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
 
-    3. An ORM sqlalchemy model that represents the Pom model and joins
-    the information of the inheritance hierarchy, by mapping to the necessary
-    tables.
+     3. An ORM sqlalchemy model that represents the Pom model and joins
+     the information of the inheritance hierarchy, by mapping to the necessary
+     tables.
 
 
-    To ensure that all the three dimensions exist in a given context it
-    is necessary that:
+     To ensure that all the three dimensions exist in a given context it
+     is necessary that:
 
-    1. When creating a new database, the core Pom tables should be created
-    using sqlalchemy `metadata.create_all(bind=engine)`. Then the
-    tables "classes" and "class_attributes" must be populated with the mapping
-    of the core Som and Pom groups and entities. See timelink.models.base_mappings.py
-    for the core data for bootstrapping of the mapping information. Both steps
-    are ensured by DBSystem.init_db
+     1. When creating a new database, the core Pom tables should be created
+     using sqlalchemy `metadata.create_all(bind=engine)`. Then the
+     tables "classes" and "class_attributes" must be populated with the mapping
+     of the core Som and Pom groups and entities.
+     See timelink.models.base_mappings.py for the bootstrapping
+     mapping information. Both steps are ensured by DBSystem.init_db
 
-    2. When importing new sources, if a new mapping was generated at the
-   translation step, it is necessary first to populate "classes" and
-   "class_attributes" with the mapping information, included in the translation
-   source, then generate the table for the group information (if it
-   does not exist) and the ORM mapping. This step is done by the method
-   PomSomMapper.ensure_mapping(session).
+     2. When importing new sources, if a new mapping was generated at the
+    translation step, it is necessary first to populate "classes" and
+    "class_attributes" with the mapping information, included in the translation
+    source, then generate the table for the group information (if it
+    does not exist) and the ORM mapping. This step is done by the method
+    PomSomMapper.ensure_mapping(session).
 
-   3. When connecting to a database created by a legacy version of MHK, it is
-   necessary to ensure that all the ORM mappings are created, by examining the
-   information in the "classes" table and checking if the ORM mapping and
-   table representations exist.
-   This is also done by the pom_som_mapper.ensure_mapping(session) method.
+    3. When connecting to a database created by a legacy version of MHK, it is
+    necessary to ensure that all the ORM mappings are created, by examining the
+    information in the "classes" table and checking if the ORM mapping and
+    table representations exist.
+    This is also done by the pom_som_mapper.ensure_mapping(session) method.
     """
-    __tablename__ = 'classes'
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
+    __tablename__ = "classes"
+
+    id = Column(String, ForeignKey("entities.id"), primary_key=True)
     table_name = Column(String)
     group_name = Column("group_name", String(32))
     super_class = Column("super", String)
     __mapper_args__ = {
-        'polymorphic_identity': 'class',
-        'inherit_condition': id == Entity.id
+        "polymorphic_identity": "class",
+        "inherit_condition": id == Entity.id,
     }
     # stores the ORM mapper for this mapping (source, act,person...)
     orm_class: Entity
@@ -119,7 +119,7 @@ class PomSomMapper(Entity):
 
         """
 
-        if not hasattr(self, 'orm_class'):
+        if not hasattr(self, "orm_class"):
             self.orm_class = None
 
         # if we have ensured before return what we found then
@@ -158,8 +158,7 @@ class PomSomMapper(Entity):
             my_table = pytables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
-            my_table = Table(self.table_name, metadata_obj,
-                             autoload_with=dbengine)
+            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
         else:
             # Table is unknown to ORM mapper and does not exist in the database
             # This is the dynamic part, we create a table with
@@ -171,67 +170,68 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(self.table_name, metadata_obj,
-                             extend_existing=True)
+            my_table = Table(self.table_name, metadata_obj, extend_existing=True)
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:
                 PyType: str = None
                 pom_type = cattr.coltype.lower()
-                if pom_type == 'varchar':
+                if pom_type == "varchar":
                     PyType = String(cattr.colsize)
-                elif pom_type == 'numeric' and cattr.colprecision == 0:
+                elif pom_type == "numeric" and cattr.colprecision == 0:
                     PyType = Integer
-                elif pom_type == 'numeric' and cattr.colprecision > 0:
+                elif pom_type == "numeric" and cattr.colprecision > 0:
                     PyType = Float
                 else:
                     PyType = String
-                #print(f"Inferred python type for {cattr.colname}: ", PyType)
+                # print(f"Inferred python type for {cattr.colname}: ", PyType)
 
                 if cattr.pkey != 0:
-                    if self.super_class not in ['root', 'base']:
-                        #print("Getting super class " + self.super_class)
+                    if self.super_class not in ["root", "base"]:
+                        # print("Getting super class " + self.super_class)
                         pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                            self.super_class, session)
+                            self.super_class, session
+                        )
                         if pom_super_class is not None:
-                            super_class_table_id = pom_super_class.table_name + '.id'
+                            super_class_table_id = pom_super_class.table_name + ".id"
                         else:
-                            print("ERROR could not find superclass: ",
-                                  self.super_class)
-                            super_class_table_id = 'entities.id'
-                        my_table.append_column(Column(cattr.colname, PyType,
-                                                      ForeignKey(
-                                                          super_class_table_id),
-                                                      primary_key=True),
-                                               replace_existing=True)
+                            print("ERROR could not find superclass: ", self.super_class)
+                            super_class_table_id = "entities.id"
+                        my_table.append_column(
+                            Column(
+                                cattr.colname,
+                                PyType,
+                                ForeignKey(super_class_table_id),
+                                primary_key=True,
+                            ),
+                            replace_existing=True,
+                        )
                     else:
-                        my_table.append_column(Column(cattr.colname, PyType,
-                                                      primary_key=True),
-                                               replace_existing=True)
+                        my_table.append_column(
+                            Column(cattr.colname, PyType, primary_key=True),
+                            replace_existing=True,
+                        )
                 else:
                     my_table.append_column(
                         Column(cattr.colname, PyType, primary_key=False),
-                        replace_existing=True)
+                        replace_existing=True,
+                    )
             my_table.create(session.get_bind())
 
         # we know create a new ORM mapping for this PomSomMapper
         super_orm = Entity.get_orm_for_pom_class(self.super_class)
         props = {
-            '__table__': my_table,
-            '__mapper_args__': {'polymorphic_identity': self.id}
+            "__table__": my_table,
+            "__mapper_args__": {"polymorphic_identity": self.id},
         }
         try:
             my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except:
-            pass
+        except Exception:
+            raise TypeError("Could not create dynamic orm mapping")
         self.orm_class = my_orm
         return self.orm_class
-        # print("----")
-        # print(repr(NewTable))
-        # self.__table__= NewTable
 
     @classmethod
-    def get_pom_classes(cls, session) -> Optional[
-        List["PomSomMapper"]]:
+    def get_pom_classes(cls, session) -> List["PomSomMapper"]:
         """
         Get the pom_classes from database data in the current database.
 
@@ -280,7 +280,7 @@ class PomSomMapper(Entity):
     @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
         # TODO user property instead
-        pom_id = getattr(group, '_pom_class_id', None)
+        pom_id = getattr(group, "_pom_class_id", None)
         if pom_id is None:
             kname = group.kname
             for pom in cls.get_pom_classes(session):
@@ -314,12 +314,12 @@ class PomSomMapper(Entity):
         mapped table.
         """
         cattr: PomClassAttributes = self.class_attributes.filter(
-            PomClassAttributes.pom_class == eclass)
+            PomClassAttributes.pom_class == eclass
+        )
         return cattr.colname
 
     @classmethod
-    def kgroup_to_entity(cls, group: KGroup, session=None,
-        with_pom=None) -> Entity:
+    def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
 
@@ -343,16 +343,17 @@ class PomSomMapper(Entity):
 
         if pom_class is None:
             raise ValueError(
-                f"Could not determine PomSomMapper for this group: {group}")
+                f"Could not determine PomSomMapper for this group: {group}"
+            )
 
         pom_class.ensure_mapping(session)
         ormClass = Entity.get_orm_for_pom_class(pom_class.id)
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
-        columns = inspect(ormClass).columns
+        columns = inspect(ormClass).columns  # noqa
 
         for cattr in pom_class.class_attributes:
-            if cattr.colclass == 'id':
+            if cattr.colclass == "id":
                 pass
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
@@ -361,7 +362,7 @@ class PomSomMapper(Entity):
                 except Exception as e:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
-                        f""" of class {pom_class.id} with element {element.name}"""
+                        f""" of class {pom_class.id} with element {element.name}"""  # noqa
                         f""" of group {group.kname}:{group.id}: {e} """
                     )
 
@@ -374,7 +375,7 @@ class PomSomMapper(Entity):
 
         # check if this group is enclosed in another
         container_id = group.get_container_id()
-        if container_id not in ['root', 'None', '', None]:
+        if container_id not in ["root", "None", "", None]:
             entity_from_group.inside = container_id
         return entity_from_group
 
@@ -407,13 +408,20 @@ class PomSomMapper(Entity):
             f'table_name="{self.table_name}", '
             f'class_group="{self.group_name}", '
             f'super_class="{self.super_class}" '
-            f')'
+            f")"
         )
 
     def __str__(self):
-        r = f'{self.id} table {self.table_name} super {self.super_class}\n'
+        r = f"{self.id} table {self.table_name} super {self.super_class}\n"
         for cattr in self.class_attributes:
-            r = r + f'{cattr.the_class}.{cattr.name} \tclass {cattr.colclass} \tcol {cattr.colname} \ttype {cattr.coltype} size {cattr.colsize} precision {cattr.colprecision} primary key {cattr.pkey} \n'
+            r = (
+                r + f"{cattr.the_class}.{cattr.name} "
+                f"\tclass {cattr.colclass} "
+                f"\tcol {cattr.colname} "
+                f"\ttype {cattr.coltype} size {cattr.colsize}"
+                f" precision {cattr.colprecision}"
+                f" primary key {cattr.pkey} \n"
+            )
         return r
 
 
@@ -424,19 +432,21 @@ class PomClassAttributes(Base):
     the_class: id of the PomSomClass this attribute is attached to.
     name     : name of of the attribute
     colname  : name of the column in the corresponding table
-    colclass : class of the column (element source value if different from colname
+    colclass : class of the column (element source if different from colname)
     coltype  : type of the column
     colsize  : size of the column, int
     colprecision: precision of the column (if decimal), int
     pkey     : if > 0 order of this column in the primary key of the table
 
     """
-    __tablename__ = 'class_attributes'
 
-    the_class = Column(String, ForeignKey('classes.id'), primary_key=True)
+    __tablename__ = "class_attributes"
 
-    pom_class = relationship("PomSomMapper", foreign_keys=[the_class],
-                             backref='class_attributes')
+    the_class = Column(String, ForeignKey("classes.id"), primary_key=True)
+
+    pom_class = relationship(
+        "PomSomMapper", foreign_keys=[the_class], backref="class_attributes"
+    )
     name = Column(String(32), primary_key=True)
     colname = Column(String(32))
     colclass = Column(String(32))
@@ -455,5 +465,5 @@ class PomClassAttributes(Base):
             f'colsize="{self.colsize}", '
             f'colprecision="{self.colprecision}", '
             f'pkey="{self.pkey}" '
-            f')'
+            f")"
         )
