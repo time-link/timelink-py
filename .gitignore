@@ -51,17 +51,6 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
 # Sphinx documentation
 docs/_build/
 
@@ -106,4 +95,4 @@ ENV/
 timelink/.DS_Store
 .DS_Store
 .idea
-/tests/sqlite/test.db
+tests/sqlite/test.db
