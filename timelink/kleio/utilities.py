@@ -20,39 +20,14 @@ def kleio_escape(v: str) -> str:
 
     """
     s = str(v)
-    if any(i in s for i in '/;=$#%\n'):
+    if any(i in s for i in "/;=$#%\n"):
         return '"' + s + '"'
     else:
         return s
 
 
-def make_element(element, value, original=None, comment=None):
-    if element is None:
-        s = ''
-    else:
-        s = element + '='
-    if value is not None:
-        s = s + kleio_escape(value)
-        if original is not None:
-            s = s + '%' + kleio_escape(original)
-        if comment is not None:
-            s = s + '%' + kleio_escape(comment)
-    else:
-        s = s + ''
-    return s
-
-
-def make_kgroup(group_name, Entity):
-    s = ''
-    return s
-
-
-def quote_long_text(
-        txt,
-        initial_indent=' ' * 4,
-        indent=' ' * 2,
-        width=2048) -> str:
-    """ Surround long text with triple quotes,
+def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048) -> str:
+    """Surround long text with triple quotes,
     wraps and indents lines if needed.
     Some of the parameters are passed on to :py:func:`textwrap.fill`.
 
@@ -79,14 +54,4 @@ def quote_long_text(
         s = s + indent + '"""'
     else:
         s = kleio_escape(txt)
-    return s
-
-
-def format_obs(obs, initial_indent=' ' * 4, indent=' ' * 2):
-    """ Not used in current implemented"""
-    o = quote_long_text(obs)
-    if len(o) > 127:
-        s = nl + '   /obs=' + o
-    else:
-        s = '/obs=' + o + nl
     return s
