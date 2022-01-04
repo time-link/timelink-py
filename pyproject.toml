@@ -1,0 +1,8 @@
+# We use this just for the black code formater to prevent it from
+#  replacing single quotes with double quotes in timelink/__init__.py
+#  because it breaks bump2version
+#     see https://github.com/oceanprotocol/ocean.py/issues/194
+[tool.black]
+line-length = 88
+exclude = '__init__.py'
+
