@@ -106,14 +106,6 @@ Before you submit a pull request, check that it meets these guidelines:
    https://travis-ci.com/joaquimrcarvalho/timelink/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
-Tips
-----
-
-To run a subset of tests::
-
-$ pytest tests.test_timelink
-
-
 Deploying
 ---------
 
@@ -191,3 +183,56 @@ To release a new version:
    git push --tags                  # will trigger travis build and deploy
 
 Travis will then deploy to PyPI if tests pass.
+
+
+Tips
+----
+
+To run a subset of tests::
+
+$ pytest tests/test_mhk_utilities.py
+
+To run a subset of tests with tox::
+
+$ tox -- tests/test_mhk_utilities.py
+
+
+
+To pass code style check
+
+    `flake8` is used for code-style check,  with  the `flake8-bugbear`
+    extension for extra checks, and a line length of 88 chars.
+
+    We recommend using `black` (https://black.readthedocs.io/en/stable/index.html)
+    to reformat your code so that it passes the flake8 checks.
+
+    `flake8` settings in `setup.cfg` ensure compatibility with `black` code style.
+
+    To format and check the code::
+
+    $ black timelink
+    $ make lint
+
+
+Tests related to the existence of a MHK installation
+
+    Some tests are related to the existence of a MHK instalation on the same
+    machine. The tests check for the existence of the file `.mhk` in the
+    user home directory (~/.mhk).
+
+    If MHK is installed rename ~/.mhk to run tests as if MHK is not present::
+
+    $ mv ~/.mhk ~/.mhk_copy
+    $ make test-all
+
+    Once tests are run rename back to the original name::
+
+    $ mv ~/.mhk_copy ~/.mhk
+    $ make test-
+
+
+ List commits since the last version
+
+
+
+

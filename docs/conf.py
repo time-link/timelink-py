@@ -49,7 +49,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Timelink Python package'
-copyright = "2021, Joaquim Ramos de Carvalho"
+copyright = "2022, Joaquim Ramos de Carvalho"
 author = "Joaquim Ramos de Carvalho"
 
 # The version info for the project you're documenting, acts as replacement
