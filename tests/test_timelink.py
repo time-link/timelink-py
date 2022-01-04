@@ -6,6 +6,7 @@ import pytest
 from typer.testing import CliRunner
 
 from timelink.cli import app
+from tests import mhk_absent
 
 
 @pytest.fixture
@@ -27,7 +28,25 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(app,["--help"])
+    result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
     assert "Timelink and MHK manager" in result.output
 
+
+@mhk_absent
+def test_command_mhk_version():
+    """Test the CLI."""
+    runner = CliRunner()
+    result = runner.invoke(app, ["mhk", "version"])
+    print(f"Test result {result.exit_code}")
+    # assert result.exit_code == 0
+    assert "Portainer URL" in result.output or "not found" in result.output
+
+
+@mhk_absent
+def test_command_mhk_status():
+    """Test the CLI."""
+    runner = CliRunner()
+    result = runner.invoke(app, ["mhk", "status"])
+    assert result.exit_code == 0
+    assert "Stopped" in result.output
