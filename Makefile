@@ -62,10 +62,12 @@ coverage: ## check code coverage quickly with the default Python
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
+docs: export SPHINX_APIDOC_OPTIONS=no-undoc-members,no-show-inheritance
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/timelink.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ timelink
+
+	sphinx-apidoc --module-first --doc-project "Timelink source documentation" -o docs/ timelink
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
