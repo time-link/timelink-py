@@ -1,5 +1,6 @@
 """
 Utilities for interaction with and MHK installation.
+
 MHK is the name of Java Webapp that preceded Timelink.
 
 (c) Joaquim Carvalho, 2021. MIT Licence.
@@ -135,7 +136,7 @@ def get_dbnames():
 
 def get_db_pwd():
     """
-    Get the password of the database from the MHL environment
+    Get the password of the database from the MHK environment
     """
     app_env = get_mhk_app_env()
     if app_env:
@@ -189,6 +190,6 @@ def get_mhk_info():
 def is_mhk_installed() -> bool:
     """Returns true if a MHK instalation is found
 
-    Checks the existence of ~/.mhk and MHK_HOME/app/.env.
+    Checks the existence of ~/.mhk
     """
     return Path(Path.home(), ".mhk").is_file()

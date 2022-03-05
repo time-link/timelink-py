@@ -1,8 +1,11 @@
 """Timelink Python package.
 
+Timelink, formerly known as MHK (Micro History with Kleio) is an information system
+designed for processing person related information collected from historical sources.
+
 .. moduleauthor:: Joaquim Ramos de Carvalho
 
-This the top level __init__.py
+
 
 """
 
