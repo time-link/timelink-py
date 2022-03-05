@@ -178,6 +178,46 @@ def test_ensure_mapping(dbsystem):
         session.close()
 
 
+from timelink.mhk.utilities import get_dbnames, get_connection_string
+from random import randint
+
+
+def test_ensure_mapping_existing():
+    """
+    Tests the mapping with an existing database
+    Using this to test for compatibility with legacy
+    databases
+
+    """
+    mhk_dbs = get_dbnames()
+    how_many = len(mhk_dbs)
+    choose_one = randint(0, how_many - 1)
+    db_name = mhk_dbs[choose_one]
+    # override
+    db_name = 'santaclara'
+    conn_string = get_connection_string(db_name)
+    db = TimelinkDB(conn_string)
+    with Session(bind=db.engine()) as session:
+        pom_classes = PomSomMapper.get_pom_classes(session=session)
+        pom_ids = PomSomMapper.get_pom_class_ids(session=session)
+        pom_tables = [pom_class.table_name for pom_class in pom_classes]
+        pom_class: PomSomMapper
+        for pom_class in pom_classes:
+            pom_class.ensure_mapping(session=session)
+            # print(repr(pom_class))
+            # print(pom_class)
+        orm_mapped_classes = Entity.get_som_mapper_to_orm_as_dict()
+        non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
+        assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
+        orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
+        tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
+        assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
+        db_tables = db.table_names()
+        tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
+        assert len(tables_not_in_db) == 0, "Not all tables were created in the db"
+        session.close()
+
+
 def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
     ks = kgroup_nested
     source_id = ks.get_id()
