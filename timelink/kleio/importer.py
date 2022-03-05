@@ -257,34 +257,57 @@ class KleioHandler:
 def import_from_xml(
     filespec: Union[str, Path], session: Session, options: dict = None
 ) -> dict:
-    """
-    Import data from file or url into a timelink-mhk database.
-    Returns a dict with stats
+    """Import data from file or url into a timelink-mhk database.
+
+    The data file must be a XML file in the format exported by the ``kleio``
+    translator.
+
+    Arguments:
+        filespec (str,Path): a file path or URL of a data file.
+        conn_string (str): SQLAlchemy connection string to database.
+        options (dict): a dictionnary with options
+
+           - 'stats':  if True import stats will be returned
+           - 'kleio_url':  the url of kleio server;
+           - 'kleio_token':  the authorization token for the kleio server.
+
+    Returns:
+        If stats is True in options a dict with statistical information will be
+        returned.
+
+            - 'datetime': the time stamp of the start of the import
+            - 'machine':  local machine name
+            - 'file': path to imported file or url
+            - 'import_time_seconds':  elapsed time during import
+            - 'entities_processed': number of entities processed
+            - 'entity_rate': number of entities processed per second
+            - 'person_rate': number of persons (entities of class 'person')
+
+    Examples:
+        Returned statistical information when stats=True
+    ::
+
         {
-            'datetime': '2022-01-02 18:11:12',
-            'machine': 'joaquims-mbpr.local',
-            'file': 'https://...b1685.xml',
-            'import_time_seconds': 7.022288084030151,
-            'entities_processed': 747,
-            'entity_rate': 106.37558457603042,
-            'person_rate': 27.483919441999827
-            }
-    :rtype: object
-    :param filespec: file path or URL of data file.
-    :param conn_string: SQLAlchemy connection string to database.
-    :param options: a dictionnary with options, currently:
-            'kleio_url': the url of kleio server;
-            'kleio_token': the authorization token for the kleio server.
+        'datetime': '2022-01-02 18:11:12',
+        'machine': 'joaquims-mbpr.local',
+        'file': 'https://...b1685.xml',
+        'import_time_seconds': 7.022288084030151,
+        'entities_processed': 747,
+        'entity_rate': 106.37558457603042,
+        'person_rate': 27.483919441999827
+        }
 
-    :return: dict: a dict with stats
 
+    Warning:
+        The option to fetch the file from a ``kleio`` server with an
+        authorization token is not implemented.
 
     """
     collect_stats = False
     nentities_before = 0
     npersons_before = 0
     now = datetime.now()
-    if options is not None and options.get("return_stats", False):
+    if options is not None and options.get("stats", False):
         collect_stats = True
 
     sax_handler = SaxHandler(KleioHandler(session))
