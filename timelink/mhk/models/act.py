@@ -1,13 +1,26 @@
-"""
+""" Implementation of Acts in POM model
 (c) Joaquim Carvalho 2021.
 MIT License, no warranties.
 """
 from sqlalchemy import Column, String, ForeignKey
-
-from timelink.mhk.models.base import Entity
+from timelink.mhk.models.entity import Entity
 
 
 class Act(Entity):
+    """Represents an Act, i.e. a record of some event in a historical document.
+
+    Examples of acts are: baptisms, marriages, purchase deeds, wills, court records.
+
+    Attributes:
+        id (str): a string uniquely identifying the act.
+        the_type (str): the type of the act, e.g.the name of the kleio group that recorded the act.
+        the_date (str): the date of the act in Kleio format AAAAMMDD.
+        loc (str): location where the act took place (church, notary office,...).
+        ref (str): archival reference of the act (page number in the source or equivalent).
+        obs (str): any observations or comments on the act.
+
+    """
+
     __tablename__ = "acts"
 
     id = Column(String, ForeignKey("entities.id"), primary_key=True)
@@ -20,6 +33,7 @@ class Act(Entity):
     __mapper_args__ = {"polymorphic_identity": "act"}
 
     def __repr__(self):
+        """String can be used to instantiate an Act"""
         sr = super().__repr__()
         return (
             f"Act(id={sr}, "
@@ -27,7 +41,7 @@ class Act(Entity):
             f'the_date="{self.the_date}", '
             f'local="{self.loc}", '
             f'ref="{self.ref}", '
-            f"obs={self.obs}"
+            f'obs="{self.obs}"'
             f")"
         )
 

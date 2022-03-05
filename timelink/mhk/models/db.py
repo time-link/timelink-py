@@ -1,12 +1,11 @@
 from sqlalchemy import MetaData, engine, create_engine, select, inspect
-from sqlalchemy.orm import sessionmaker
-
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
+from tests import Session
 
-SQLALCHEMY_ECHO = False
+SQLALCHEMY_ECHO = True
 
 
 class TimelinkDB:
@@ -56,13 +55,16 @@ class TimelinkDB:
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
-        Session = sessionmaker(self.db_engine)
-        with Session() as session:
+
+        with Session(bind=self.db_engine) as session:
             self.create_tables()
             session.commit()
+            session.rollback()
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
+            1 + 1
             session.commit()
+            2+2
 
     def engine(self):
         return self.db_engine

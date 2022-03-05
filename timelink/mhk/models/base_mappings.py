@@ -1,7 +1,7 @@
 from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
 
 """
-These mappings are needed to boostap a new database.
+These mappings are needed to boostrap a new database.
 
 They are used by DBSystem to initialize a new database.
 

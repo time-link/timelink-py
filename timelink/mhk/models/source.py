@@ -4,7 +4,7 @@ MIT License, no warranties.
 """
 from sqlalchemy import Column, String, ForeignKey
 
-from timelink.mhk.models.base import Entity
+from timelink.mhk.models.entity import Entity
 from timelink.kleio.utilities import kleio_escape, quote_long_text
 
 

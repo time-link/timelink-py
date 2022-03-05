@@ -15,7 +15,7 @@ class Entity(Base):
         String,
         ForeignKey("classes.id", use_alter=True, name="fk_entities_class"),
     )
-    # TODo add relationship to PomSomMapper = pom_mapper
+    # TODO add relationship to PomSomMapper = pom_mapper
     inside = Column(String, ForeignKey("entities.id", ondelete="CASCADE"))
     the_order = Column(Integer)
     the_level = Column(Integer)

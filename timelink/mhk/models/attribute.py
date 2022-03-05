@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from timelink.mhk.models.base import Entity
+from timelink.mhk.models.entity import Entity
 
 
 class Attribute(Entity):
