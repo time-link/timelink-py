@@ -1,13 +1,11 @@
+from warnings import warn
+
 from sqlalchemy import MetaData, engine, create_engine, select, inspect
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
 from tests import Session
-
-SQLALCHEMY_ECHO = True
-
-
 class TimelinkDB:
     """
     Provide access to a Timelink-MHK database
@@ -21,10 +19,11 @@ class TimelinkDB:
     """
 
     db_engine: engine = None
+    db_name: str = None
     conn_string = None
     metadata: MetaData = None
 
-    def __init__(self, conn_string=None):
+    def __init__(self, conn_string=None,sql_echo=False):
         """
         For the interaction of "engine" and "session" alternative
         configurations see
@@ -33,9 +32,9 @@ class TimelinkDB:
         :param conn_string: a sqlalchemy connection URL, str.
         """
 
-        self.init_db(conn_string)
+        self.init_db(conn_string,sql_echo)
 
-    def init_db(self, conn_string):
+    def init_db(self, conn_string,sql_echo=False):
         """
         Create an engine from a connection string.
         Check if database is properly setup up
@@ -49,7 +48,7 @@ class TimelinkDB:
 
         if conn_string is not None:
             self.db_engine = create_engine(
-                conn_string or self.conn_string, future=True, echo=SQLALCHEMY_ECHO
+                conn_string or self.conn_string, future=True, echo=sql_echo
             )
             self.conn_string = conn_string
         if self.conn_string is None:
@@ -66,8 +65,20 @@ class TimelinkDB:
             session.commit()
             2+2
 
-    def engine(self):
+    def get_engine(self) -> engine:
+        """Return sqlalchemy engine"""
         return self.db_engine
+
+    def engine(self) -> engine:
+        """DEPRECATED use TimelinkDB.get_engine()"""
+        warn("This method is deprecated, use get_engine()",DeprecationWarning,stacklevel=2)
+        return self.get_engine()
+
+
+    def get_metadata(self)->MetaData:
+        """Return sqlalchemy metada"""
+        return self.metadata
+
 
     def create_tables(self):
         """
