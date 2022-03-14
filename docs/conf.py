@@ -31,8 +31,15 @@ import timelink
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.autodoc','sphinx.ext.viewcode','sphinx.ext.napoleon']
 
+# members: generate doc for members of an object with docstring
+# undoc-members: generate only for member without docstrings
+
+autodoc_default_options = {
+    'members':          True,
+    'undoc-members':    False,
+}
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
 
 # Add any paths that contain templates here, relative to this directory.
@@ -77,7 +84,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_include_todos = False
+todo_include_todos = True
 
 
 # -- Options for HTML output -------------------------------------------

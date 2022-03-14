@@ -15,6 +15,7 @@ Timelink Python package
 
 * Free software: MIT license
 * Documentation: https://timelink-py.readthedocs.io/
+* PiPY: https://pypi.org/project/timelink/
 
 
 Features
@@ -27,6 +28,10 @@ Features
   including database access.
 * CLI tool.
 
+Documentation of the package
+----------------------------
+
+Automatic documentation from source code :mod:`timelink`
 
 Credits
 -------

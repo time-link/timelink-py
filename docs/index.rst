@@ -9,6 +9,7 @@ Welcome to Timelink Python package's documentation!
    readme
    installation
    usage
+   som_pom_mapping
    modules
    contributing
    authors

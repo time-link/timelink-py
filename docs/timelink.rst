@@ -1,6 +1,10 @@
 timelink package
 ================
 
+.. automodule:: timelink
+   :no-undoc-members:
+   :no-show-inheritance:
+
 Subpackages
 -----------
 
@@ -18,22 +22,12 @@ timelink.cli module
 -------------------
 
 .. automodule:: timelink.cli
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   :no-undoc-members:
+   :no-show-inheritance:
 
 timelink.timelink module
 ------------------------
 
 .. automodule:: timelink.timelink
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: timelink
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   :no-undoc-members:
+   :no-show-inheritance:

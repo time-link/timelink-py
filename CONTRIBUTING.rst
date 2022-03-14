@@ -1,19 +1,20 @@
 .. highlight:: shell
 
-============
+############
 Contributing
-============
+############
 
 Contributions are welcome, and they are greatly appreciated! Every little bit
 helps, and credit will always be given.
 
 You can contribute in many ways:
 
+**********************
 Types of Contributions
-----------------------
+**********************
 
 Report Bugs
-~~~~~~~~~~~
+===========
 
 Report bugs at https://github.com/time-link/timelink-py/issues.
 
@@ -24,26 +25,26 @@ If you are reporting a bug, please include:
 * Detailed steps to reproduce the bug.
 
 Fix Bugs
-~~~~~~~~
+========
 
 Look through the GitHub issues for bugs. Anything tagged with "bug" and "help
 wanted" is open to whoever wants to implement it.
 
 Implement Features
-~~~~~~~~~~~~~~~~~~
+==================
 
 Look through the GitHub issues for features. Anything tagged with "enhancement"
 and "help wanted" is open to whoever wants to implement it.
 
 Write Documentation
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Timelink Python package could always use more documentation, whether as part of the
 official Timelink Python package docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
-~~~~~~~~~~~~~~~
+===============
 
 The best way to send feedback is to file an issue at https://github.com/time-link/timelink-py/issues.
 
@@ -54,8 +55,9 @@ If you are proposing a feature:
 * Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
+************
 Get Started!
-------------
+************
 
 Ready to contribute? Here's how to set up `timelink-py` for local development.
 
@@ -93,8 +95,9 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
 
 7. Submit a pull request through the GitHub website.
 
+***********************
 Pull Request Guidelines
------------------------
+***********************
 
 Before you submit a pull request, check that it meets these guidelines:
 
@@ -106,13 +109,14 @@ Before you submit a pull request, check that it meets these guidelines:
    https://travis-ci.com/joaquimrcarvalho/timelink/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
+**********
 Deploying
----------
+**********
 
 A reminder for the maintainers on how to deploy.
 
 Tool documentation
-^^^^^^^^^^^^^^^^^^
+==================
 
 The Timelink package used as a template the `cookiecutter-pypackage`.
 
@@ -122,7 +126,7 @@ on how to install various tools used.
 Check the release procedure documentation at https://cookiecutter-pypackage.readthedocs.io/en/latest/travis_pypi_setup.html
 
 Requirements
-^^^^^^^^^^^^
+============
 
 Install development requirements with
 
@@ -131,7 +135,7 @@ Install development requirements with
    pip install -r requirements_dev.txt
 
 Tox and multiple version of Python
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+==================================
 
 If using `tox` to test with different versions of Python then
 you need to have the various Python interpreters installed.
@@ -166,7 +170,7 @@ The target
 *test-all* triggers the test in the various versions.
 
 Release process
-^^^^^^^^^^^^^^^
+===============
 
 To release a new version:
 
@@ -185,8 +189,11 @@ To release a new version:
 Travis will then deploy to PyPI if tests pass.
 
 
-Tips
-----
+Tips for maintaners
+===================
+
+Testing
+-------
 
 To run a subset of tests::
 
@@ -195,24 +202,6 @@ $ pytest tests/test_mhk_utilities.py
 To run a subset of tests with tox::
 
 $ tox -- tests/test_mhk_utilities.py
-
-
-
-To pass code style check
-
-    `flake8` is used for code-style check,  with  the `flake8-bugbear`
-    extension for extra checks, and a line length of 88 chars.
-
-    We recommend using `black` (https://black.readthedocs.io/en/stable/index.html)
-    to reformat your code so that it passes the flake8 checks.
-
-    `flake8` settings in `setup.cfg` ensure compatibility with `black` code style.
-
-    To format and check the code::
-
-    $ black timelink
-    $ make lint
-
 
 Tests related to the existence of a MHK installation
 
@@ -228,10 +217,80 @@ Tests related to the existence of a MHK installation
     Once tests are run rename back to the original name::
 
     $ mv ~/.mhk_copy ~/.mhk
-    $ make test-
+    $ make test-all
+
+Code style (lint)
+-----------------
+
+To pass code style check
+
+    `flake8` is used for code-style check,  with  the `flake8-bugbear`
+    extension for extra checks, and a line length of 88 chars.
+
+    We recommend using `black <https://black.readthedocs.io/en/stable/index.html)>`_
+    to reformat your code so that it passes the flake8 checks.
+
+    `flake8` settings in `setup.cfg` ensure compatibility with `black` code style.
+
+    To format and check the code::
+
+    $ black timelink
+    $ make lint
 
 
- List commits since the last version
+Updating documention
+--------------------
+
+Generate documentation
+^^^^^^^^^^^^^^^^^^^^^^
+
+To generate updated documentation use ``make docs``.
+
+Reference for markup used
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Documentation is written *ReadTheDocs*, using the *reStructeredText* format
+and the *Sphinx* formatter.
+See:
+
+    - `A Guide for Authors <https://docs.readthedocs.io/en/stable/guides/authors.html>`_
+    - `Quick reference <https://docutils.sourceforge.io/docs/user/rst/quickref.html>`_
+    - `Complete reference <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
+
+Documentation from docstrings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For docstrings in source code we use the Google style guide, which is more
+legible during code editing than *ReStructured* text.
+
+See:
+    - `Examples of docstrings in Google style <https://www.sphinx-doc.org/en/master/usage/extensions/example_google.html#example-google>`_
+    - `Google style for Python, see section 3.8 <https://google.github.io/styleguide/pyguide.html>`_
+
+Source code docstring in the Google format will be automatically rendered by
+``make docs``. For details on how the docstring will be integrated with the
+rest of the documention see:
+
+    - `Napoleon extension to Sphinx <https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html>`_
+
+Getting a list of *target* for cross-ref
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After doing ``make docs`` type:
+
+    python -m sphinx.ext.intersphinx docs/_build/html/objects.inv
+
+
+Using commits to document version history
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+List commits since the last version::
+
+    $ git log $(git describe --tags --abbrev=0)..HEAD --oneline
+
+or, for specific versions::
+
+    $ git log v0.2.9..v0.3.0 --oneline
 
 
 

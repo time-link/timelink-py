@@ -1,5 +1,5 @@
-timelink
-========
+Timelink source documentation
+=============================
 
 .. toctree::
    :maxdepth: 4

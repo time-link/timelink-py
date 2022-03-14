@@ -1,6 +1,30 @@
 =======
 History
 =======
+0.3.1 (2022-03-05)
+------------------
+* Fixes bugs related to mapping legacy MHK databases
+
+
+0.3.0 (2022-01-04)
+------------------
+* All core ORM models for MHK databases
+* Dynamic generation of ORM models from XML
+  files produced by the Kleio translator.
+* Import from XML file to MHK database
+* CLI interface refactored with `Typer`
+* Improved documentation
+
+Developement related changes
+
+* `black` can be used to format code
+* Dropped compatibility with Python 3.7
+* More and better tests, handling of MHK
+  installation or lack of in CI tests
+
+0.2.9 (2021-09-30)
+------------------
+* Update requirements and docs
 
 0.2.8 (2021-09-30)
 -------------------------
