@@ -1,11 +1,15 @@
+import os
+
 import pytest
 
+from random import randint
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.db import TimelinkDB
+from timelink.mhk.utilities import get_dbnames, get_connection_string
 
 # Session is shared by all tests
 from tests import Session, skip_on_travis, conn_string
@@ -102,6 +106,9 @@ def kgroup_nested() -> KSource:
 
 
 @skip_on_travis
+def test_fail_if_not_in_travis():
+    assert os.getenv("TRAVIS") == 'true'
+
 def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
     metadata = Base.metadata
@@ -109,7 +116,6 @@ def test_create_db(dbsystem):
     assert len(tables) > 0, "tables where not created"
 
 
-@skip_on_travis
 def test_entity_contains(dbsystem):
     ent1: Entity = Entity(id="e001", groupname="entity")
     ent1.pom_class = "entity"
@@ -178,9 +184,6 @@ def test_ensure_mapping(dbsystem):
         session.close()
 
 
-from timelink.mhk.utilities import get_dbnames, get_connection_string
-from random import randint
-
 @skip_on_travis
 def test_ensure_mapping_existing():
     """
@@ -194,7 +197,7 @@ def test_ensure_mapping_existing():
     choose_one = randint(0, how_many - 1)
     db_name = mhk_dbs[choose_one]
     # override
-    db_name = 'santaclara'
+    db_name = 'soure'
     conn_string = get_connection_string(db_name)
     db = TimelinkDB(conn_string)
     with Session(bind=db.engine()) as session:

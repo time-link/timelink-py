@@ -15,7 +15,7 @@ TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # sqlite_db = Path(TEST_DIR, "/sqlite/test.db")
 # conn_string = f'sqlite://{sqlite_db}?check_same_thread=False'
 
-# con_string in memory version
+# con_string sqlite in memory version
 conn_string = "sqlite://?check_same_thread=False"
 
 Session = sessionmaker()
@@ -26,5 +26,5 @@ mhk_absent = pytest.mark.skipif(
 
 skip_on_travis = pytest.mark.skipif(
     os.environ.get("TRAVIS") == "true",
-    reason="this test required file system access for sqlite",
+    reason="this test required a MHK instalation"
 )
