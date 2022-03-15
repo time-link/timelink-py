@@ -31,7 +31,8 @@ def dbsystem():
 def kgroup_person_attr_rel() -> KSource:
     """Returns a group wtih attr and rel"""
     ks = KSource(
-        "s2", type="test", loc="auc", ref="attr-rel", date="2022-01-03", obs="difficult"
+        "s2", type="test", loc="auc", ref="attr-rel", date="2022-01-03",
+        obs="difficult"
     )
     ka1 = KAct(
         "a2-1",
@@ -50,7 +51,8 @@ def kgroup_person_attr_rel() -> KSource:
     p2 = KPerson("Margarida", "f", "p02-2")
     p2.attr("residencia", "Trouxemil", date="2020-10-18")
     p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira"
+        "parentesco", "marido", p2.name, p2.id, date="2006-01-4",
+        obs="Ilha Terceira"
     )
     ka1.include(p2)
     ka1.include(p1)
@@ -61,7 +63,8 @@ def kgroup_person_attr_rel() -> KSource:
 def kgroup_nested() -> KSource:
     """Returns a nested structure"""
     ks = KSource(
-        "s1", type="test", loc="auc", ref="alumni", date="2006-01-4", obs="Nested"
+        "s1", type="test", loc="auc", ref="alumni", date="2006-01-4",
+        obs="Nested"
     )
     ka1 = KAct(
         "a1",
@@ -108,6 +111,7 @@ def kgroup_nested() -> KSource:
 @skip_on_travis
 def test_fail_if_not_in_travis():
     assert os.getenv("TRAVIS") == 'true'
+
 
 def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
@@ -177,10 +181,12 @@ def test_ensure_mapping(dbsystem):
         assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
         orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
-        assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
+        assert len(
+            tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
         db_tables = dbsystem.table_names()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
-        assert len(tables_not_in_db) == 0, "Not all tables were created in the db"
+        assert len(
+            tables_not_in_db) == 0, "Not all tables were created in the db"
         session.close()
 
 
@@ -214,10 +220,12 @@ def test_ensure_mapping_existing():
         assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
         orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
-        assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
+        assert len(
+            tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
         db_tables = db.table_names()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
-        assert len(tables_not_in_db) == 0, "Not all tables were created in the db"
+        assert len(
+            tables_not_in_db) == 0, "Not all tables were created in the db"
         session.close()
 
 
@@ -290,7 +298,8 @@ def test_insert_delete_previous_source(dbsystem, kgroup_nested):
 
 def test_store_KGroup_1(dbsystem):
     kfonte: KGroup = KGroup.extend(
-        "fonte", position=["id", "data"], also=["tipo", "ano", "obs", "substitui"]
+        "fonte", position=["id", "data"],
+        also=["tipo", "ano", "obs", "substitui"]
     )
     afonte = kfonte(
         "f001",

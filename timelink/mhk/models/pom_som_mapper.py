@@ -1,6 +1,7 @@
 from typing import Type, List
 from logging import getLogger
-from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, select
+from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
+    select
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship
@@ -10,6 +11,7 @@ from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.entity import Entity
 
 logger = getLogger(__name__)
+
 
 class PomSomMapper(Entity):
     """
@@ -165,7 +167,8 @@ class PomSomMapper(Entity):
             my_table = pytables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
-            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
+            my_table = Table(self.table_name, metadata_obj,
+                             autoload_with=dbengine)
             # we need to ensure that the foreign key relation exists with super talbe
             # otherwise the ORM mapping further down will fail.
             if self.super_class not in ["root", "base"]:
@@ -176,8 +179,8 @@ class PomSomMapper(Entity):
                 if pom_super_class is not None:
                     super_class_table_id = pom_super_class.table_name + ".id"
                 else:
-                    message = "Creating mapping for %s super class %s not found"\
-                    " Default to entities as super class"
+                    message = "Creating mapping for %s super class %s not found" \
+                              " Default to entities as super class"
                     logger.warning(message, self.id, self.super_class)
                     super_class_table_id = "entities.id"
                 pytype = my_table.c.id.type
@@ -201,7 +204,8 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(self.table_name, metadata_obj, extend_existing=True)
+            my_table = Table(self.table_name, metadata_obj,
+                             extend_existing=True)
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:
                 PyType: str
@@ -225,9 +229,9 @@ class PomSomMapper(Entity):
                         if pom_super_class is not None:
                             super_class_table_id = pom_super_class.table_name + ".id"
                         else:
-                            message = "Creating mapping for %s super class %s not found"\
+                            message = "Creating mapping for %s super class %s not found" \
                                       " Default to entities as super class"
-                            logger.warning(message, self.id,self.super_class)
+                            logger.warning(message, self.id, self.super_class)
                             super_class_table_id = "entities.id"
                         my_table.append_column(
                             Column(
@@ -238,7 +242,7 @@ class PomSomMapper(Entity):
                             ),
                             replace_existing=True,
                         )
-                    else: # we are at the root of the entity hierarchy
+                    else:  # we are at the root of the entity hierarchy
                         my_table.append_column(
                             Column(cattr.colname, PyType, primary_key=True),
                             replace_existing=True,
@@ -357,7 +361,8 @@ class PomSomMapper(Entity):
         return cattr.colname
 
     @classmethod
-    def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
+    def kgroup_to_entity(cls, group: KGroup, session=None,
+                         with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
 
@@ -396,7 +401,8 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname, str(element.core))
+                    setattr(entity_from_group, cattr.colname,
+                            str(element.core))
                 except Exception as e:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""

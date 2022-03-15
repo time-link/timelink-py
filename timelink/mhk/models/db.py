@@ -6,6 +6,8 @@ from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
 from tests import Session
+
+
 class TimelinkDB:
     """
     Provide access to a Timelink-MHK database
@@ -23,7 +25,7 @@ class TimelinkDB:
     conn_string = None
     metadata: MetaData = None
 
-    def __init__(self, conn_string=None,sql_echo=False):
+    def __init__(self, conn_string=None, sql_echo=False):
         """
         For the interaction of "engine" and "session" alternative
         configurations see
@@ -32,9 +34,9 @@ class TimelinkDB:
         :param conn_string: a sqlalchemy connection URL, str.
         """
 
-        self.init_db(conn_string,sql_echo)
+        self.init_db(conn_string, sql_echo)
 
-    def init_db(self, conn_string,sql_echo=False):
+    def init_db(self, conn_string, sql_echo=False):
         """
         Create an engine from a connection string.
         Check if database is properly setup up
@@ -54,7 +56,6 @@ class TimelinkDB:
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
-
         with Session(bind=self.db_engine) as session:
             self.create_tables()
             session.commit()
@@ -63,7 +64,7 @@ class TimelinkDB:
             self.ensure_all_mappings(session)
             1 + 1
             session.commit()
-            2+2
+            2 + 2
 
     def get_engine(self) -> engine:
         """Return sqlalchemy engine"""
@@ -71,14 +72,13 @@ class TimelinkDB:
 
     def engine(self) -> engine:
         """DEPRECATED use TimelinkDB.get_engine()"""
-        warn("This method is deprecated, use get_engine()",DeprecationWarning,stacklevel=2)
+        warn("This method is deprecated, use get_engine()", DeprecationWarning,
+             stacklevel=2)
         return self.get_engine()
 
-
-    def get_metadata(self)->MetaData:
+    def get_metadata(self) -> MetaData:
         """Return sqlalchemy metada"""
         return self.metadata
-
 
     def create_tables(self):
         """
