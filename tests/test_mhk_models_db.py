@@ -181,7 +181,7 @@ def test_ensure_mapping(dbsystem):
 from timelink.mhk.utilities import get_dbnames, get_connection_string
 from random import randint
 
-
+@skip_on_travis
 def test_ensure_mapping_existing():
     """
     Tests the mapping with an existing database
