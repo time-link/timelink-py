@@ -12,7 +12,7 @@ class Act(Entity):
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
     the_type = Column(String(32))
-    the_date = Column(String)
+    the_date = Column(String, index=True)
     loc = Column(String)
     ref = Column(String)
     obs = Column(String)

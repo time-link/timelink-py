@@ -7,7 +7,7 @@ class Person(Entity):
     __tablename__ = 'persons'
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
-    name = Column(String)
+    name = Column(String, index=True)
     sex = Column(String(1))
     obs = Column(String)
 

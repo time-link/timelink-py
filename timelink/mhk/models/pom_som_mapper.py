@@ -1,3 +1,4 @@
+import warnings
 from typing import Optional, Type, List
 
 from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
@@ -5,6 +6,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship
+from sqlalchemy import exc as sa_exc
 
 from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.base_class import Base
@@ -220,7 +222,11 @@ class PomSomMapper(Entity):
             '__mapper_args__': {'polymorphic_identity': self.id}
         }
         try:
-            my_orm = type(self.id.capitalize(), (super_orm,), props)
+            with warnings.catch_warnings():
+                # We ignore warning related to duplicate fields in
+                # specialized classes (obs normally, but also the_type...)
+                warnings.simplefilter("ignore",category=sa_exc.SAWarning)
+                my_orm = type(self.id.capitalize(), (super_orm,), props)
         except:
             pass
         self.orm_class = my_orm

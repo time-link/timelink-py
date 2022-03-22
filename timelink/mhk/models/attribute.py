@@ -1,5 +1,5 @@
 
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
 from timelink.mhk.models.base import Entity
@@ -9,18 +9,19 @@ class Attribute(Entity):
     __tablename__ = 'attributes'
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
-    entity = Column(String,ForeignKey('entities.id'))
-    the_type = Column(String)
-    the_value = Column(String)
-    the_date = Column(String)
+    entity = Column(String,ForeignKey('entities.id'),index=True)
+    the_type = Column(String,index=True)
+    the_value = Column(String, index=True)
+    the_date = Column(String, index=True)
     obs = Column(String)
-
     the_entity = relationship("Entity",foreign_keys=[entity],back_populates="attributes",)
 
     __mapper_args__ = {
         'polymorphic_identity':'attribute',
         'inherit_condition': id == Entity.id
     }
+
+    __table_args__ = (Index('attributes_type_value','the_type','the_value'),)
 
     def __repr__(self):
         sr = super().__repr__()

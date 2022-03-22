@@ -11,8 +11,8 @@ class Object(Entity):
     __tablename__ = 'objects'
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
-    name = Column(String)
-    the_type = Column(String(32))
+    name = Column(String, index=True)
+    the_type = Column(String(32), index=True)
     obs = Column(String)
 
     __mapper_args__ = {

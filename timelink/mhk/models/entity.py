@@ -10,15 +10,15 @@ class Entity(Base):
     __tablename__ = 'entities'
 
     id = Column(String, primary_key=True)
-    pom_class = Column('class', String, ForeignKey('classes.id'))
+    pom_class = Column('class', String, ForeignKey('classes.id'), index=True)
     # TODo add relationship to PomSomMapper = pom_mapper
-    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'))
+    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'), index=True)
     the_order = Column(Integer)
     the_level = Column(Integer)
     the_line = Column(Integer)
-    groupname = Column(String)
-    updated = Column(DateTime,default=datetime.utcnow)
-    indexed = Column(DateTime)
+    groupname = Column(String, index=True)
+    updated = Column(DateTime,default=datetime.utcnow, index=True)
+    indexed = Column(DateTime, index=True)
 
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
