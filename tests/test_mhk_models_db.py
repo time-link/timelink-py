@@ -1,6 +1,4 @@
 from pathlib import Path
-from typing import Type
-
 import pytest
 from sqlalchemy.orm import Session, sessionmaker
 
