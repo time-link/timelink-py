@@ -1,3 +1,4 @@
+import logging
 import warnings
 from typing import Optional, Type, List
 
@@ -72,9 +73,12 @@ class PomSomMapper(Entity):
     1. When creating a new database, the core Pom tables should be created
     using sqlalchemy `metadata.create_all(bind=engine)`. Then the
     tables "classes" and "class_attributes" must be populated with the mapping
-    of the core Som and Pom groups and entities. See timelink.models.base_mappings.py
-    for the core data for bootstrapping of the mapping information. Both steps
-    are ensured by DBSystem.init_db
+    of the core Som and Pom groups and entities.
+
+    See timelink.models.base_mappings.py for the core data for
+    bootstrapping of the mapping information.
+
+    Both steps are ensured by DBSystem.init_db
 
     2. When importing new sources, if a new mapping was generated at the
    translation step, it is necessary first to populate "classes" and
@@ -187,24 +191,27 @@ class PomSomMapper(Entity):
                     PyType = Float
                 else:
                     PyType = String
-                #print(f"Inferred python type for {cattr.colname}: ", PyType)
+                # print(f"Inferred python type for {cattr.colname}: ", PyType)
 
                 if cattr.pkey != 0:
                     if self.super_class not in ['root', 'base']:
-                        #print("Getting super class " + self.super_class)
-                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                            self.super_class, session)
+                        # print("Getting super class " + self.super_class)
+                        pom_super_class: PomSomMapper = \
+                            PomSomMapper.get_pom_class(
+                                self.super_class, session)
                         if pom_super_class is not None:
-                            super_class_table_id = pom_super_class.table_name + '.id'
+                            super_class_table_id = \
+                                pom_super_class.table_name + '.id'
                         else:
                             print("ERROR could not find superclass: ",
                                   self.super_class)
                             super_class_table_id = 'entities.id'
-                        my_table.append_column(Column(cattr.colname, PyType,
-                                                      ForeignKey(
-                                                          super_class_table_id),
-                                                      primary_key=True),
-                                               replace_existing=True)
+                        my_table.append_column(
+                            Column(cattr.colname, PyType,
+                                   ForeignKey(
+                                       super_class_table_id),
+                                   primary_key=True),
+                            replace_existing=True)
                     else:
                         my_table.append_column(Column(cattr.colname, PyType,
                                                       primary_key=True),
@@ -225,19 +232,18 @@ class PomSomMapper(Entity):
             with warnings.catch_warnings():
                 # We ignore warning related to duplicate fields in
                 # specialized classes (obs normally, but also the_type...)
-                warnings.simplefilter("ignore",category=sa_exc.SAWarning)
+                warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except:
-            pass
+        except Exception as e:
+            logging.ERROR(
+                Exception(f"Could not create ORM mapping for {self.id}"), e)
+
         self.orm_class = my_orm
         return self.orm_class
-        # print("----")
-        # print(repr(NewTable))
-        # self.__table__= NewTable
 
     @classmethod
     def get_pom_classes(cls, session) -> Optional[
-        List["PomSomMapper"]]:
+                                                 List["PomSomMapper"]]:
         """
         Get the pom_classes from database data in the current database.
 
@@ -325,7 +331,7 @@ class PomSomMapper(Entity):
 
     @classmethod
     def kgroup_to_entity(cls, group: KGroup, session=None,
-        with_pom=None) -> Entity:
+                         with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
 
@@ -355,7 +361,7 @@ class PomSomMapper(Entity):
         ormClass = Entity.get_orm_for_pom_class(pom_class.id)
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
-        columns = inspect(ormClass).columns
+        # columns = inspect(ormClass).columns
 
         for cattr in pom_class.class_attributes:
             if cattr.colclass == 'id':
@@ -363,11 +369,13 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname, str(element.core))
+                    setattr(entity_from_group, cattr.colname,
+                            str(element.core))
                 except Exception as e:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
-                        f""" of class {pom_class.id} with element {element.name}"""
+                        f""" of class {pom_class.id} """
+                        f"""with element {element.name}"""
                         f""" of group {group.kname}:{group.id}: {e} """
                     )
 
@@ -419,7 +427,11 @@ class PomSomMapper(Entity):
     def __str__(self):
         r = f'{self.id} table {self.table_name} super {self.super_class}\n'
         for cattr in self.class_attributes:
-            r = r + f'{cattr.the_class}.{cattr.name} \tclass {cattr.colclass} \tcol {cattr.colname} \ttype {cattr.coltype} size {cattr.colsize} precision {cattr.colprecision} primary key {cattr.pkey} \n'
+            r = r + f'{cattr.the_class}.{cattr.name} \t'
+            r = r + f'class {cattr.colclass} \t'
+            r = r + f'col {cattr.colname} \ttype {cattr.coltype} '
+            r = r + f'size {cattr.colsize} precision {cattr.colprecision}'
+            r = r + f'primary key {cattr.pkey} \n'
         return r
 
 
@@ -430,7 +442,7 @@ class PomClassAttributes(Base):
     the_class: id of the PomSomClass this attribute is attached to.
     name     : name of of the attribute
     colname  : name of the column in the corresponding table
-    colclass : class of the column (element source value if different from colname
+    colclass : class of the column (el source if different from colname)
     coltype  : type of the column
     colsize  : size of the column, int
     colprecision: precision of the column (if decimal), int

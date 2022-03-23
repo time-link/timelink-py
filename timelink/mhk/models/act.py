@@ -7,6 +7,7 @@ from sqlalchemy import Column, String, ForeignKey
 from timelink.mhk.models.base import Entity
 from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
 
+
 class Act(Entity):
     __tablename__ = 'acts'
 
@@ -18,16 +19,15 @@ class Act(Entity):
     obs = Column(String)
 
     __mapper_args__ = {
-        'polymorphic_identity':'act'
+        'polymorphic_identity': 'act'
     }
-
 
     @classmethod
     def get_pom_som_data(cls):
         """
-        from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
+        from timelink.mhk.models.pom_som_mapper import PomSomMapper, \
+             PomClassAttributes
 
-        Not sure if I need to map the basic classes
         :return: List of PomSomMapper and PomClassAttributes
         """
         return [
@@ -56,7 +56,6 @@ class Act(Entity):
 
         ]
 
-
     def __repr__(self):
         sr = super().__repr__()
         return (
@@ -67,10 +66,11 @@ class Act(Entity):
             f'ref="{self.ref}", '
             f'obs={self.obs}'
             f')'
-            )
+        )
 
     def __str__(self):
-        r = f'{self.groupname}${self.id}/{self.the_date}/type={self.the_type}/ref={self.ref}/loc={self.loc}'
+        r = f'{self.groupname}${self.id}/{self.the_date}'
+        r += f'/type={self.the_type}/ref={self.ref}/loc={self.loc}'
         if self.obs is not None:
-                r = (f'{r}  /obs={self.obs}')
+            r = (f'{r}  /obs={self.obs}')
         return r

@@ -7,6 +7,7 @@ from sqlalchemy import Column, String, ForeignKey
 from timelink.mhk.models.base import Entity
 from timelink.kleio.utilities import kleio_escape, quote_long_text
 
+
 class Source(Entity):
     __tablename__ = 'sources'
 
@@ -20,7 +21,7 @@ class Source(Entity):
     obs = Column(String)
 
     __mapper_args__ = {
-        'polymorphic_identity':'source'
+        'polymorphic_identity': 'source'
     }
 
     def __repr__(self):
@@ -38,9 +39,11 @@ class Source(Entity):
         )
 
     def __str__(self):
-        r = f'{self.groupname}${self.id}/{self.the_date}/type={kleio_escape(self.the_type)}/ref={kleio_escape(self.ref)}/loc={kleio_escape(self.loc)}/kleiofile={kleio_escape(self.kleiofile)}"' \
-            f'/replaces={self.replaces}'
+        r = f'{self.groupname}${self.id}/{self.the_date}/' \
+             f'type={kleio_escape(self.the_type)}' \
+             f'/ref={kleio_escape(self.ref)}/loc={kleio_escape(self.loc)}' \
+             f'/kleiofile={kleio_escape(self.kleiofile)}"' \
+             f'/replaces={self.replaces}'
         if self.obs is not None:
-                r = (f'{r}  /obs={quote_long_text(self.obs)}')
+            r = (f'{r}  /obs={quote_long_text(self.obs)}')
         return r
-

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, func
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from timelink.mhk.models.base_class import Base
@@ -12,25 +12,29 @@ class Entity(Base):
     id = Column(String, primary_key=True)
     pom_class = Column('class', String, ForeignKey('classes.id'), index=True)
     # TODo add relationship to PomSomMapper = pom_mapper
-    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'), index=True)
+    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'),
+                    index=True)
     the_order = Column(Integer)
     the_level = Column(Integer)
     the_line = Column(Integer)
     groupname = Column(String, index=True)
-    updated = Column(DateTime,default=datetime.utcnow, index=True)
+    updated = Column(DateTime, default=datetime.utcnow, index=True)
     indexed = Column(DateTime, index=True)
 
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
 
-    # this based on https://stackoverflow.com/questions/28843254/deleting-from-self-referential-inherited-objects-does-not-cascade-in-sqlalchemy
+    # this based on
+    # https://stackoverflow.com/questions/28843254
     contains = relationship("Entity",
-                            backref=backref("contained_by",remote_side="Entity.id" ),
+                            backref=backref("contained_by",
+                                            remote_side="Entity.id"),
                             cascade="all")
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    # To handle non mapped pom_class see https://github.com/sqlalchemy/sqlalchemy/issues/5445
+    # To handle non mapped pom_class
+    #      see https://github.com/sqlalchemy/sqlalchemy/issues/5445
     #
     #    __mapper_args__ = {
     #       "polymorphic_identity": "entity",
@@ -39,7 +43,8 @@ class Entity(Base):
     #    ),
     #
     #  This defines what mappings do exist
-    # [aclass.__mapper_args__['polymorphic_identity'] for aclass in Entity.__subclasses__()]
+    # [aclass.__mapper_args__['polymorphic_identity']
+    #              for aclass in Entity.__subclasses__()]
 
     __mapper_args__ = {
         'polymorphic_identity': 'entity',
@@ -108,7 +113,6 @@ class Entity(Base):
         """
         return cls.get_som_mapper_to_orm_as_dict().get(pom_class, None)
 
-
     @classmethod
     def get_entity(cls, id: str, session=None):
         """
@@ -118,20 +122,18 @@ class Entity(Base):
         :param session: current session
         :return: an Entity object of the proper class for the mapping
         """
-        entity = session.get(Entity,id)
+        entity = session.get(Entity, id)
         if entity is not None:
             if entity.pom_class != 'entity':
                 orm_class = Entity.get_orm_for_pom_class(entity.pom_class)
-                object_for_id = session.get(orm_class,id)
+                object_for_id = session.get(orm_class, id)
                 return object_for_id
             else:
                 return entity
         else:
             return None
 
-
         return entity
-
 
     def __repr__(self):
         return (
@@ -153,7 +155,7 @@ class Entity(Base):
     def to_kleio(self, ident="", ident_inc="  "):
         s = f'{ident}{str(self)}'
         for inner in self.contains:
-            innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
+            innerk = inner.to_kleio(ident=ident + ident_inc,
+                                    ident_inc=ident_inc)
             s = f"{s}\n{innerk}"
         return s
-

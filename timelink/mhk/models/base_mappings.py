@@ -7,7 +7,8 @@ They are used by DBSystem to initialize a new database.
 
 Mapping as these can be generated from existing MHK databases with:
 
-        pom_classes = session.query(PomSomMapper).where(Entity.pom_class  == 'class').all()
+        pom_classes = session.query(PomSomMapper).\
+                          where(Entity.pom_clas == 'class').all()
         for pom_class in pom_classes:
             print(f"'{pom_class.id}': [")
             print(repr(pom_class),',')

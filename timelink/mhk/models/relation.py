@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Index
+from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
 from timelink.mhk.models.base import Entity
@@ -9,7 +9,8 @@ class Relation(Entity):  # should extend Entity but gives error
     __tablename__ = 'relations'
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
-    # rel_entity = relationship("Entity",foreign_keys='id',back_populates='rel')
+    # rel_entity = relationship("Entity",
+    #                   foreign_keys='id',back_populates='rel')
     origin = Column(String, ForeignKey('entities.id'), index=True)
     org = relationship(Entity, foreign_keys=[origin],
                        back_populates='rels_out')
@@ -44,11 +45,13 @@ class Relation(Entity):  # should extend Entity but gives error
 
     def __str__(self):
         if self.dest is not None and self.dest.pom_class == 'person':
-            r = f'rel${self.the_type}/{self.the_value}/{self.dest.name}/{self.destination}/{self.the_date}'
+            r = f'rel${self.the_type}/{self.the_value}/'
+            r += f'{self.dest.name}/{self.destination}/{self.the_date}'
         else:
-            r = f'rel${self.the_type}/{self.the_value}/{self.destination}/{self.the_date}'
+            r = f'rel${self.the_type}/{self.the_value}/'
+            r += f'{self.destination}/{self.the_date}'
         if self.obs is not None:
-            r = (f'{r}  /obs={self.obs}')
+            r = f'{r}  /obs={self.obs}'
         return r
 
 

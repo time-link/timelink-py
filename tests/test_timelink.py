@@ -27,7 +27,6 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(app,["--help"])
+    result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
     assert "Timelink and MHK manager" in result.output
-

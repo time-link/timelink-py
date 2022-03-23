@@ -16,12 +16,12 @@ class Object(Entity):
     obs = Column(String)
 
     __mapper_args__ = {
-        'polymorphic_identity':'object'
+        'polymorphic_identity': 'object'
     }
 
     def __repr__(self):
         sr = super().__repr__()
-        return(
+        return (
             f'Object(id={sr}, '
             f'name="{self.name}", '
             f'the_type="{self.the_type}", '
@@ -33,8 +33,8 @@ class Object(Entity):
         if self.name is None:
             name = ""
         else:
-            name = self.name+"/"
+            name = self.name + "/"
         r = f'{self.groupname}${name}{self.the_type}/id={self.id}'
         if self.obs is not None:
-                r = (f'{r}  /obs={self.obs}')
+            r = (f'{r}  /obs={self.obs}')
         return r

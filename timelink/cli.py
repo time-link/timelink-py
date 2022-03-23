@@ -14,7 +14,8 @@ import docker
 
 app = typer.Typer(help="Timelink and MHK manager")
 mhk_app = typer.Typer()
-app.add_typer(mhk_app,name="mhk", help="MHK legacy manager")
+app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
+
 
 @mhk_app.command(name='version')
 def mhk_version():
@@ -70,6 +71,7 @@ def mhk_status():
        Stopped  :{dinfo['ContainersStopped']}
     """)
     return 0
+
 
 @app.callback()
 def main():

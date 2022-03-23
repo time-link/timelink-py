@@ -9,4 +9,3 @@ from timelink.mhk.models.person import Person # noqa
 from timelink.mhk.models.object import Object # noqa
 from timelink.mhk.models.act import Act # noqa
 from timelink.mhk.models.source import Source # noqa
-

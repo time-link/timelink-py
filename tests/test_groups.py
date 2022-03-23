@@ -7,10 +7,18 @@ import logging
 
 import pytest
 
-from timelink.kleio.groups import KElement, KPerson, KLs, KAbstraction, KAtr, \
-    KDate, KDay, KMonth, KYear, KType, KReplace, KId
+from timelink.kleio.groups import (KElement,
+                                   KPerson,
+                                   KAbstraction,
+                                   KGroup,
+                                   KKleio,
+                                   KSource,
+                                   KAct, )
+from timelink.kleio.groups.katr import KAtr
+from timelink.kleio.groups.kls import KLs
+from timelink.kleio.groups.kelement import KDate, KDay, KMonth, KYear, KType, \
+    KId, KReplace
 from timelink.kleio.utilities import quote_long_text
-from timelink.kleio.groups import KGroup, KKleio, KSource, KAct
 
 
 @pytest.fixture
@@ -76,10 +84,10 @@ def test_element_class():
     e = KElement('id', '01')
     assert e.element_class is None
 
+
 def test_element_class2():
     e = KId('id', '01')
-    assert e.element_class is 'id'
-
+    assert e.element_class == 'id'
 
 
 def test_element_class_extend():
@@ -113,7 +121,6 @@ def test_element_class_extend():
 
 
 def test_element_class_extend2():
-    KC = KDate
     date_class = KDate.name
     group_with_date = KGroup.extend('gdate', position='date')
     gd = group_with_date('2021-12-12')
@@ -130,6 +137,7 @@ def test_kelement_subclasses2():
     classes = KElement.all_subclasses()
     element_names = [el.name for el in classes]
     assert len(classes) > 0
+    assert len(element_names) > 0
 
 
 def test_kelement_extend():
@@ -150,11 +158,11 @@ def test_kelement_extend_3():
     assert annus_horribilis.extends('year')
 
 
-
 def test_kelement_extend_4():
     KAno: KYear = KYear.extend('ano')
     assert KAno in KElement.get_classes_for('ano')
     assert KAno.name == 'ano'
+
 
 def test_kelement_extend_6():
     """ many competing classes for element get the one that matches column """
@@ -162,10 +170,12 @@ def test_kelement_extend_6():
     KAno2 = KElement.extend('ano')
     KAno3 = KAno2.extend('ano')
     KAno4 = KAno3.extend('ano')
-    gano = KGroup.extend('gano',position=['ano'])
+    gano = KGroup.extend('gano', position=['ano'])
     testing: KGroup = gano(2021)
     ano = testing.get_element_for_column(KYear.name)
-    assert ano.core is 2021 # get the more specialized
+    assert KAno.name == KAno4.name  # just to use the variables
+    assert ano.core == 2021  # get the more specialized
+
 
 def test_kdate():
     d = KDate('2021-12-10')
@@ -205,11 +215,13 @@ def test_kday2b():
 def test_kday3():
     with pytest.raises(ValueError):
         day = KDay('32')
+        assert day.core == '32'
 
 
 def test_kday4():
     with pytest.raises(ValueError):
         day = KDay('31x')
+        assert day.core == '31x'
 
 
 def test_month1():
@@ -228,6 +240,7 @@ def test_month2():
 def test_month3():
     with pytest.raises(ValueError):
         month = KMonth(14)
+        assert month.core == 14
 
 
 def test_month4():
@@ -238,7 +251,6 @@ def test_month4():
 def test_year_1():
     year = KYear(2021)
     assert year.core == 2021
-
 
 
 def test_kelement_tuple():
@@ -313,9 +325,9 @@ def test_kelement_kleio_2():
 
 def test_kelement_kleio_3():
     e = KElement('name', 'Joaquim Carvalho',
-                 comment="Family name added in the margin")
+                 comment="Family name in the margin")
     assert e.to_kleio(
-        name=True) == 'name=Joaquim Carvalho#Family name added in the margin', \
+        name=True) == 'name=Joaquim Carvalho#Family name in the margin', \
         "str() failed with optional comment"
 
 
@@ -334,12 +346,14 @@ def test_kelement_is_empty_3():
     assert not e.is_empty(), "Did not detect not empty element"
 
 
-def test_kelement_to_kleio():
-    e = KElement('name', 'Joaquim Carvalho', original='Joachim Carvº',
+def test_kelement_to_kleio_2():
+    e = KElement('name',
+                 'Joaquim Carvalho',
+                 original='Joachim Carvº',
                  comment="Carvº added in the margin")
     assert e.to_kleio() == \
            'name=Joaquim Carvalho#Carvº added in the margin%Joachim Carvº', \
-        "bad kleio representation of Element"
+           "bad kleio representation of Element"
 
 
 def test_kgroup_extend():
@@ -373,6 +387,10 @@ def test_kgroup_extend2():
     assert afonte.data.extends('date')
     year_value = afonte.get_element_for_column('year')
     assert 2021 == year_value.core
+    assert KData.__name__ == 'data'
+    assert KAno.__name__ == 'ano'
+    assert KTipo.__name__ == 'tipo'
+    assert KSubstitui.__name__ == 'substitui'
 
 
 def test_kroup_elements_allowed():
@@ -504,9 +522,9 @@ def test_includes_group():
     n: KPerson = KPerson.extend('n', position=['name', 'sex'],
                                 guaranteed=['name'])
     j: n = n('joaquim', 'm', id='jrc')
-    j.attr('residencia','macau',date='2021-12-16')
-    atr1 = KAtr('residencia','Coimbra','2020-09-20')
-    atr2 = KAtr('hobby','caligrafia','2020-09-20')
+    j.attr('residencia', 'macau', date='2021-12-16')
+    atr1 = KAtr('residencia', 'Coimbra', '2020-09-20')
+    atr2 = KAtr('hobby', 'caligrafia', '2020-09-20')
     j.include(atr1)
     j.include(atr2)
     j.attr('idade', '63', date='2021-08-08', obs='Taipa')
@@ -603,8 +621,8 @@ def test_kgroup_set_item():
 def test_kgroup_set_item_check_el():
     p = KPerson('joaquim', 'm', 'jrc', obs='')
     with pytest.raises(ValueError):
-        p[
-            'profissao'] = 'professor', "set illegal element should raise error"
+        p['profissao'] = 'professor', \
+             "set illegal element should raise error"
 
 
 def test_kgroup_get(kgroup_nested):
@@ -633,7 +651,7 @@ def test_kgroup_line_seq_level():
     assert person.order == 4, " Failed sequence update"
 
 
-def test_kgroup_line_seq_level():
+def test_kgroup_line_seq_level2():
     kk = KKleio('gacto2.str')
     ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
     kk.include(ks)
@@ -700,6 +718,7 @@ def test_kgroup_dots_id(kgroup_nested):
     assert kgroup_nested.dots.act.a1.person.p01.name == 'Joaquim', \
         "Failed dots retrieval"
 
+
 def test_KPerson_to_json():
     p1 = KPerson('Joaquim', 'm', 'p01')
     p1.attr('residencia', 'Macau', date='2021-12-11')
@@ -713,10 +732,11 @@ def test_KPerson_to_json():
     json_string = p1.to_json()
     assert json_string
 
+
 def test_kgroup_to_json(kgroup_nested):
     for inner in kgroup_nested.includes():
-        logging.log(logging.DEBUG,f"json for {inner.kname}")
-        logging.log(logging.DEBUG,f"json {inner.to_json()}")
+        logging.log(logging.DEBUG, f"json for {inner.kname}")
+        logging.log(logging.DEBUG, f"json {inner.to_json()}")
     json_string = kgroup_nested.to_json()
 
     assert json_string, "Could not produce json"
@@ -733,6 +753,7 @@ def test_kgroup_get_core(kgroup_source_dev):
 
 
 def test_kgroup_get_core2(kgroup_source_dev):
+    """ If element not present use default value"""
     assert kgroup_source_dev.get_core('year', 2021) == 2021, \
         "Failed to retrieve default for core value"
 
@@ -773,10 +794,10 @@ def test_kleio_stru():
     n.allow_as_part(mae)
     ls = KLs.extend('ls',
                     position=['type', 'value'],
-                    also=['data', 'obs','entity'])
+                    also=['data', 'obs', 'entity'])
     atr = KAtr.extend('atr',
                       position=['type', 'value'],
-                      also=['data', 'obs','entity'])
+                      also=['data', 'obs', 'entity'])
 
     kf = KKleio()
     f = fonte('f001', tipo='auc-tests')
@@ -797,3 +818,4 @@ def test_kleio_stru():
     l2.include(m)
     json_string = j.to_json()
     assert j.nome.core == 'joaquim'
+    assert len(json_string) > 0
