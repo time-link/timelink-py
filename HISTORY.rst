@@ -2,8 +2,19 @@
 History
 =======
 
+0.2.10 (2022-03-30)
+------------------
+* Adds indexes to models
+* Added sqlite test db
+* Better testing, travis integration improved
+* Replaced click with typer in cli interface
+
+0.2.9 (2021-09-30)
+-------------------
+* Update documentation.
+
 0.2.8 (2021-09-30)
--------------------------
+------------------
 
 * Add to_json() method to KGroup, enabling Kleio to JSon serialization.
 
