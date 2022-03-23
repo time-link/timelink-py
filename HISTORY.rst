@@ -3,7 +3,7 @@ History
 =======
 
 0.2.10 (2022-03-30)
-------------------
+-------------------
 * Adds indexes to models
 * Added sqlite test db
 * Better testing, travis integration improved

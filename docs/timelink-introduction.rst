@@ -314,9 +314,9 @@ to provide Timelink the following information:
 Currently three types of configuration files are used to provide this information:
 
 * str files: define new groups and their relation with core groups, as well
-as extra elements that the new groups might include
+  as extra elements that the new groups might include
 * mappings files: describe how information of the new groups and elements are
-stored in the database tables
+  stored in the database tables
 * inference files: contain rules for inference of attributes and relations
    from the groups in the transcriptions
 
@@ -351,7 +351,7 @@ For each attribute the following is specified:
 * column id: name of the column in the database for this element
 * baseclass id: the kleio reference class for this attribute
 * coltype, colsize, colprecision: information used to create the column in the database;
-    precision only applies if coltype is "DECIMAL"
+  precision only applies if coltype is "DECIMAL"
 * pkey: integer,if this attribute is part of the primary key of the table, this is the order
 
 The `baseclass` refers to certain attribute names that have special meaning.
