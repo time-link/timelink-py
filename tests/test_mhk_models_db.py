@@ -75,8 +75,8 @@ def kgroup_nested() -> KSource:
 
 
 @skip_on_travis
-def test_fail_if_not_in_travis():
-    assert os.getenv("TRAVIS") == 'true'
+def test_succeed_if_not_in_travis():
+    assert os.getenv("TRAVIS") != 'true'
 
 
 def test_create_db(dbsystem):
