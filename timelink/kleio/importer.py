@@ -312,7 +312,7 @@ def import_from_xml(
     nentities_before = 0
     npersons_before = 0
     now = datetime.now()
-    if options is not None and options.get("stats", False):
+    if options is not None and options.get("return_stats", False):
         collect_stats = True
 
     sax_handler = SaxHandler(KleioHandler(session))

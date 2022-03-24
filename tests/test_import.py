@@ -2,18 +2,15 @@ from pathlib import Path
 
 import pytest
 
+from tests import Session, skip_on_travis, TEST_DIR, conn_string
 from timelink.kleio.importer import import_from_xml
 from timelink.mhk.models import base  # noqa
+from timelink.mhk.models.base import Person
 from timelink.mhk.models.db import TimelinkDB
 from timelink.mhk.models.entity import Entity
-from timelink.mhk.models.base import Person
-from tests import Session, skip_on_travis, TEST_DIR
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
-
-sqlite_db = Path(TEST_DIR, "sqlite/test_db")
-conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 
 
 @pytest.fixture(scope="module")

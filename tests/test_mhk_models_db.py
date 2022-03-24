@@ -1,11 +1,10 @@
 import os
-from pathlib import Path
 
 import pytest
 
 # Session is shared by all tests
 from tests import Session
-from tests import skip_on_travis, TEST_DIR
+from tests import skip_on_travis, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.base_class import Base
@@ -14,8 +13,6 @@ from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.source import Source
 
-sqlite_db = Path(TEST_DIR, "sqlite/test_db")
-conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 pytestmark = skip_on_travis
 
 

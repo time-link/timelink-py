@@ -761,15 +761,15 @@ class KGroup:
 
         """
         el: KElement
-        for el in self._element_list:  # same name as column or in ancestors
-            if el.name == colspec:
+        for (name, el,) in self._elementsd.items():  # same name as column or in ancestors # noqa: E501
+            if name == colspec:
                 return el
         # Handles synonyms created by subclassing core KElements
-        for el in self._element_list:  # if name in inherited names
+        for el in self._elementsd.values():  # if name in inherited names
             if colspec in el.inherited_names():
                 return el
         # handles multiple subclassing of core KElements
-        for el in self._element_list:  # check if there are alternative classes
+        for el in self._elementsd.values():  # check if there are alternative classes # noqa: E501
             # all classes for colspec
             targets = KElement.get_classes_for(colspec)
             # other classes for el
