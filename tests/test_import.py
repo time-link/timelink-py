@@ -16,7 +16,7 @@ pytestmark = skip_on_travis
 @pytest.fixture(scope="module")
 def dbsystem():
     db = TimelinkDB(conn_string)
-    Session.configure(bind=db.engine())
+    Session.configure(bind=db.get_engine())
     yield db
     with Session() as session:
         db.drop_db(session)
