@@ -1,17 +1,23 @@
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 
 from timelink.mhk.models.entity import Entity
+
 
 
 class Person(Entity):
     __tablename__ = "persons"
 
+    id = Column(String, ForeignKey('entities.id'), primary_key=True)
+    name = Column(String, index=True)
     id = Column(String, ForeignKey("entities.id"), primary_key=True)
     name = Column(String)
     sex = Column(String(1))
     obs = Column(String)
 
-    __mapper_args__ = {"polymorphic_identity": "person"}
+    __mapper_args__ = {
+        'polymorphic_identity': 'person'
+    }
 
     def __repr__(self):
         sr = super().__repr__()

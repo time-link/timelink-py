@@ -5,7 +5,8 @@ from pathlib import Path
 from sqlalchemy.orm import sessionmaker
 import pytest
 
-# See https://docs.sqlalchemy.org/en/14/orm/session_basics.html#when-do-i-make-a-sessionmaker # noqa: E501
+# See https://docs.sqlalchemy.org/en/14
+#      /orm/session_basics.html#when-do-i-make-a-sessionmaker
 # Tests should import from here to access the session
 #
 
@@ -25,6 +26,6 @@ mhk_absent = pytest.mark.skipif(
 )
 
 skip_on_travis = pytest.mark.skipif(
-    os.environ.get("TRAVIS") == "true",
-    reason="this test required a MHK instalation"
+    os.environ.get('TRAVIS') == 'true',
+    reason="this test requires file system access for sqlite"
 )

@@ -13,14 +13,16 @@ class Source(Entity):
 
     id = Column(String, ForeignKey("entities.id"), primary_key=True)
     the_type = Column(String(32))
-    the_date = Column(String)
+    the_date = Column(String, index=True)
     loc = Column(String)
     ref = Column(String)
-    kleiofile = Column(String)
+    kleiofile = Column(String, index=True)
     replaces = Column(String)
     obs = Column(String)
 
-    __mapper_args__ = {"polymorphic_identity": "source"}
+    __mapper_args__ = {
+        'polymorphic_identity': 'source'
+    }
 
     def __repr__(self):
         sr = super().__repr__()

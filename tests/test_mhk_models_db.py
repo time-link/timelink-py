@@ -1,7 +1,8 @@
-import os
+from pathlib import Path
 
 import pytest
 
+from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
 from random import randint
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
 from timelink.mhk.models import base  # noqa
@@ -12,9 +13,11 @@ from timelink.mhk.models.db import TimelinkDB
 from timelink.mhk.utilities import get_dbnames, get_connection_string
 
 # Session is shared by all tests
-from tests import Session, skip_on_travis, conn_string
-from timelink.mhk.models.source import Source
+from tests import Session
+from tests import skip_on_travis, TEST_DIR
 
+sqlite_db = Path(TEST_DIR, "sqlite/test_db")
+conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 pytestmark = skip_on_travis
 
 
@@ -30,30 +33,17 @@ def dbsystem():
 @pytest.fixture
 def kgroup_person_attr_rel() -> KSource:
     """Returns a group wtih attr and rel"""
-    ks = KSource(
-        "s2", type="test", loc="auc", ref="attr-rel", date="2022-01-03",
-        obs="difficult"
-    )
-    ka1 = KAct(
-        "a2-1",
-        "test-act",
-        date="2021-07-16",
-        day=16,
-        month=7,
-        year=2021,
-        loc="macau",
-        ref="p.1",
-        obs="Test Act",
-    )
+    ks = KSource('s2', type='test', loc='auc', ref='attr-rel', obs='difficult')
+    ka1 = KAct('a2-1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='macau', ref='p.1', obs='Test Act')
     ks.include(ka1)
-    p1 = KPerson("Joaquim", "m", "p01-2")
-    p1.attr("residencia", "Macau", date="2021-12-11")
-    p2 = KPerson("Margarida", "f", "p02-2")
-    p2.attr("residencia", "Trouxemil", date="2020-10-18")
-    p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4",
-        obs="Ilha Terceira"
-    )
+    p1 = KPerson('Joaquim', 'm', 'p01-2')
+    p1.attr('residencia', 'Macau', date='2021-12-11')
+    p2 = KPerson('Margarida', 'f', 'p02-2')
+    p2.attr('residencia', 'Trouxemil', date='2020-10-18')
+    p1.rel('parentesco', 'marido', p2.name, p2.id,
+           date='2006-01-4', obs='Ilha Terceira')
     ka1.include(p2)
     ka1.include(p1)
     return ks
@@ -62,41 +52,22 @@ def kgroup_person_attr_rel() -> KSource:
 @pytest.fixture
 def kgroup_nested() -> KSource:
     """Returns a nested structure"""
-    ks = KSource(
-        "s1", type="test", loc="auc", ref="alumni", date="2006-01-4",
-        obs="Nested"
-    )
-    ka1 = KAct(
-        "a1",
-        "test-act",
-        date="2021-07-16",
-        day=16,
-        month=7,
-        year=2021,
-        loc="auc",
-        ref="p.1",
-        obs="Test Act",
-    )
+    ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
+    ka1 = KAct('a1', 'test-act', date='2021-07-16',
+               day=16, month=7, year=2021,
+               loc='auc', ref='p.1', obs='Test Act')
     ks.include(ka1)
-    ka2 = KAct(
-        "a2",
-        "test-act",
-        date="2021-07-17",
-        day=17,
-        month=7,
-        year=2021,
-        loc="auc",
-        ref="p.2",
-        obs="Test Act",
-    )
+    ka2 = KAct('a2', 'test-act', date='2021-07-17',
+               day=17, month=7, year=2021,
+               loc='auc', ref='p.2', obs='Test Act')
 
     ks.include(ka2)
-    p1 = KPerson("Joaquim", "m", "p01")
-    p1.attr("residencia", "Macau", date="2021-12-11")
-    p2 = KPerson("Margarida", "f", "p02")
-    p2.attr("residencia", "Trouxemil", date="2020-10-18")
-    p3 = KPerson("Pedro", "m", "p03")
-    p3.attr("residencia", "Rua Arménio RC", date="2021-10-21")
+    p1 = KPerson('Joaquim', 'm', 'p01')
+    p1.attr('residencia', 'Macau', date='2021-12-11')
+    p2 = KPerson('Margarida', 'f', 'p02')
+    p2.attr('residencia', 'Trouxemil', date='2020-10-18')
+    p3 = KPerson('Pedro', 'm', 'p03')
+    p3.attr("residencia", "Rua Arménio RC", date='2021-10-21')
 
     ka1.include(p3)
     p4 = KPerson("Maria", "f", "p04")
@@ -120,9 +91,10 @@ def test_create_db(dbsystem):
     assert len(tables) > 0, "tables where not created"
 
 
+@skip_on_travis
 def test_entity_contains(dbsystem):
-    ent1: Entity = Entity(id="e001", groupname="entity")
-    ent1.pom_class = "entity"
+    ent1: Entity = Entity(id='e001', groupname='entity')
+    ent1.pom_class = 'entity'
     ent1.line = 1
     ent1.level = 1
     ent1.sequence = 1
@@ -186,46 +158,8 @@ def test_ensure_mapping(dbsystem):
         db_tables = dbsystem.table_names()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
         assert len(
-            tables_not_in_db) == 0, "Not all tables were created in the db"
-        session.close()
-
-
-@skip_on_travis
-def test_ensure_mapping_existing():
-    """
-    Tests the mapping with an existing database
-    Using this to test for compatibility with legacy
-    databases
-
-    """
-    mhk_dbs = get_dbnames()
-    how_many = len(mhk_dbs)
-    choose_one = randint(0, how_many - 1)
-    db_name = mhk_dbs[choose_one]
-    # override
-    db_name = 'soure'
-    conn_string = get_connection_string(db_name)
-    db = TimelinkDB(conn_string)
-    with Session(bind=db.engine()) as session:
-        pom_classes = PomSomMapper.get_pom_classes(session=session)
-        pom_ids = PomSomMapper.get_pom_class_ids(session=session)
-        pom_tables = [pom_class.table_name for pom_class in pom_classes]
-        pom_class: PomSomMapper
-        for pom_class in pom_classes:
-            pom_class.ensure_mapping(session=session)
-            # print(repr(pom_class))
-            # print(pom_class)
-        orm_mapped_classes = Entity.get_som_mapper_to_orm_as_dict()
-        non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
-        assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
-        orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
-        tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
-        assert len(
-            tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
-        db_tables = db.table_names()
-        tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
-        assert len(
-            tables_not_in_db) == 0, "Not all tables were created in the db"
+            tables_not_in_db) == 0, \
+            "Not all mapped tables were created in the db"
         session.close()
 
 
@@ -248,6 +182,7 @@ def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
         person = act.contains[0]
         assert repr(person)
         assert str(person)
+
 
 
 def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
@@ -275,13 +210,10 @@ def test_insert_delete_previous_source(dbsystem, kgroup_nested):
         )
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
-        ks2 = KSource(
-            "s1",
-            type="test",
-            loc="auc",
-            ref="alumni",
-            obs="Empty should delete previous one",
-        )
+        ks2 = KSource('s1', type='test',
+                      loc='auc',
+                      ref='alumni',
+                      obs='Empty should delete previous one')
 
         print(
             """
@@ -297,19 +229,19 @@ def test_insert_delete_previous_source(dbsystem, kgroup_nested):
 
 
 def test_store_KGroup_1(dbsystem):
-    kfonte: KGroup = KGroup.extend(
-        "fonte", position=["id", "data"],
-        also=["tipo", "ano", "obs", "substitui"]
-    )
-    afonte = kfonte(
-        "f001",
-        data=KElement("data", "2021-12-02", element_class="date"),
-        tipo=KElement("tipo", "teste", element_class="type"),
-        obs="First group stored through ORM with non core group",
-    )
+    kfonte: KGroup = KGroup.extend('fonte',
+                                   position=['id', 'data'],
+                                   also=['tipo',
+                                         'ano',
+                                         'obs',
+                                         'substitui'])
+    afonte = kfonte('f001',
+                    data=KElement('data', '2021-12-02', element_class='date'),
+                    tipo=KElement('tipo', 'teste', element_class='type'),
+                    obs="First group stored through ORM with non core group")
     with Session() as session:
         session.commit()
-        afonte._pom_class_id = "source"  # need a set_mapper method
+        afonte._pom_class_id = 'source'  # need a set_mapper method
         # this converts a group to an database entity
         afonte_entity = PomSomMapper.kgroup_to_entity(afonte, session)
         assert afonte_entity is not None

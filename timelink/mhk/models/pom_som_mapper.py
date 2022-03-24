@@ -1,10 +1,13 @@
-from typing import Type, List
-from logging import getLogger
+import logging
+import warnings
+from typing import Optional, Type, List
+
 from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
     select
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship
+from sqlalchemy import exc as sa_exc
 
 from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.base_class import Base
@@ -73,12 +76,14 @@ class PomSomMapper(Entity):
     is necessary that:
 
     1. When creating a new database, the core Pom tables should be created
-        using sqlalchemy `metadata.create_all(bind=engine)`. Then the
-        tables "classes" and "class_attributes" must be populated with the mapping
-        of the core Som and Pom groups and entities.
-        See timelink.models.base_mappings.py for the bootstrapping
-        mapping information.
-        Both steps are ensured by timelink.mhk.models.db.DBSystem.init_db()
+    using sqlalchemy `metadata.create_all(bind=engine)`. Then the
+    tables "classes" and "class_attributes" must be populated with the mapping
+    of the core Som and Pom groups and entities.
+
+    See timelink.models.base_mappings.py for the core data for
+    bootstrapping of the mapping information.
+
+    Both steps are ensured by DBSystem.init_db
 
     2. When importing new sources, if a new mapping was generated at the
        translation step, it is necessary first to populate "classes" and
@@ -221,13 +226,14 @@ class PomSomMapper(Entity):
                 # print(f"Inferred python type for {cattr.colname}: ", PyType)
 
                 if cattr.pkey != 0:
-                    if self.super_class not in ["root", "base"]:
+                    if self.super_class not in ['root', 'base']:
                         # print("Getting super class " + self.super_class)
-                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                            self.super_class, session
-                        )
+                        pom_super_class: PomSomMapper = \
+                            PomSomMapper.get_pom_class(
+                                self.super_class, session)
                         if pom_super_class is not None:
-                            super_class_table_id = pom_super_class.table_name + ".id"
+                            super_class_table_id = \
+                                pom_super_class.table_name + '.id'
                         else:
                             message = "Creating mapping for %s super class %s not found" \
                                       " Default to entities as super class"
@@ -265,15 +271,22 @@ class PomSomMapper(Entity):
             "__mapper_args__": {"polymorphic_identity": self.id},
         }
         try:
-            my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except Exception:
-            raise TypeError("Could not create dynamic orm mapping")
+            with warnings.catch_warnings():
+                # We ignore warning related to duplicate fields in
+                # specialized classes (obs normally, but also the_type...)
+                warnings.simplefilter("ignore", category=sa_exc.SAWarning)
+                my_orm = type(self.id.capitalize(), (super_orm,), props)
+        except Exception as e:
+            logging.ERROR(
+                Exception(f"Could not create ORM mapping for {self.id}"), e)
+
         self.orm_class = my_orm
 
         return self.orm_class
 
     @classmethod
-    def get_pom_classes(cls, session) -> List["PomSomMapper"]:
+    def get_pom_classes(cls, session) -> Optional[
+                                                 List["PomSomMapper"]]:
         """
         Get the pom_classes from database data.
 
@@ -393,7 +406,7 @@ class PomSomMapper(Entity):
         ormClass = Entity.get_orm_for_pom_class(pom_class.id)
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
-        columns = inspect(ormClass).columns  # noqa
+        # columns = inspect(ormClass).columns
 
         for cattr in pom_class.class_attributes:
             if cattr.colclass == "id":
@@ -406,7 +419,8 @@ class PomSomMapper(Entity):
                 except Exception as e:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
-                        f""" of class {pom_class.id} with element {element.name}"""  # noqa
+                        f""" of class {pom_class.id} """
+                        f"""with element {element.name}"""
                         f""" of group {group.kname}:{group.id}: {e} """
                     )
 
@@ -458,14 +472,11 @@ class PomSomMapper(Entity):
     def __str__(self):
         r = f"{self.id} table {self.table_name} super {self.super_class}\n"
         for cattr in self.class_attributes:
-            r = (
-                r + f"{cattr.the_class}.{cattr.name} "
-                    f"\tclass {cattr.colclass} "
-                    f"\tcol {cattr.colname} "
-                    f"\ttype {cattr.coltype} size {cattr.colsize}"
-                    f" precision {cattr.colprecision}"
-                    f" primary key {cattr.pkey} \n"
-            )
+            r = r + f'{cattr.the_class}.{cattr.name} \t'
+            r = r + f'class {cattr.colclass} \t'
+            r = r + f'col {cattr.colname} \ttype {cattr.coltype} '
+            r = r + f'size {cattr.colsize} precision {cattr.colprecision}'
+            r = r + f'primary key {cattr.pkey} \n'
         return r
 
 

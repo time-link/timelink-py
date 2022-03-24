@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 from datetime import datetime
@@ -56,6 +57,8 @@ class SaxHandler(handler.ContentHandler):
             self._kleio_handler.newKleioFile(attrs)
             self._context = KleioContext.KLEIO
         elif ename == "CLASS":
+            # <CLASS NAME="source" SUPER="entity"
+            #       TABLE="sources" GROUP="fonte">
             if self._context != KleioContext.KLEIO:
                 raise SAXParseException(
                     "CLASS out of context, should be inside KLEIO element"
@@ -97,14 +100,15 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "GROUP":
             if self._context != KleioContext.KLEIO:
                 raise SAXParseException(
-                    "GROUP out of context, should be inside KLEIO element"
-                )
-            id = attrs["ID"]
-            name = attrs["NAME"]
-            the_class = attrs["CLASS"]
-            order = attrs["ORDER"]
-            level = attrs["LEVEL"]
-            line = attrs["LINE"]
+                    "GROUP out of context, should be inside KLEIO element")
+            # <GROUP ID="coja-rol-1841" NAME="fonte"
+            #        CLASS="source" ORDER="1" LEVEL="1" LINE="4">
+            id = attrs['ID']
+            name = attrs['NAME']
+            the_class = attrs['CLASS']
+            order = attrs['ORDER']
+            level = attrs['LEVEL']
+            line = attrs['LINE']
 
             # Mal
             self._current_group = KGroup()
@@ -119,9 +123,11 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "ELEMENT":
             if self._context != KleioContext.GROUP:
                 raise SAXParseException(
-                    "ELEMENT out of context, should be inside GROUP element"
-                )
-            elname = attrs["NAME"]
+                    "ELEMENT out of context, should be inside GROUP element")
+            # <ELEMENT NAME="id" CLASS="id">
+            #       <core>r1775-f1-per1</core></ELEMENT>
+
+            elname = attrs['NAME']
             self._current_group.allow_as_element(elname)
             self._current_element = KElement(elname, None)
             self._current_element._element_class = attrs["CLASS"]
@@ -146,8 +152,7 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "ORIGINAL":
             if self._context != KleioContext.ELEMENT:
                 raise SAXParseException(
-                    "ORIGINAL out of context, should be inside ELEMENT"
-                )
+                  "ORIGINAL out of context, should be inside ELEMENT element")
             self._context = KleioContext.ORIGINAL
             self._current_entry = ""
 
@@ -220,10 +225,10 @@ class KleioHandler:
         class_attr: PomClassAttributes
         # check if we have this class defined in the database.
         existing_psm: PomSomMapper = session.get(PomSomMapper, psm.id)
-        if existing_psm is not None:  # class exists delete it and insert again
-            existing_attrs: List[PomClassAttributes] = session.execute(
-                select(PomClassAttributes).filter_by(the_class=psm.id)
-            )
+        if existing_psm is not None:  # class exists: delete, insert again
+            existing_attrs: List[PomClassAttributes] = \
+                session.execute(
+                    select(PomClassAttributes).filter_by(the_class=psm.id))
             for class_attr in existing_attrs:
                 session.delete(class_attr)
             session.delete(existing_psm)
@@ -318,7 +323,12 @@ def import_from_xml(
         nentities_before = session.query(func.count(Entity.id)).scalar()
         npersons_before = session.query(func.count(Person.id)).scalar()
 
-    parser.parse(filespec)
+    if isinstance(filespec, os.PathLike):
+        source = os.fspath(filespec)
+    else:
+        source = filespec
+
+    parser.parse(source)
 
     end = time.time()
     if collect_stats:

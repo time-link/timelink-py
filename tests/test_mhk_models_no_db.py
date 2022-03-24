@@ -2,9 +2,9 @@
 Test models without requiring a db connection
 
 """
+
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
-from timelink.mhk.models.act import Act  # noqa
 
 
 def test_entity_subclasses():
