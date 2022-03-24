@@ -13,7 +13,7 @@ from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.entity import Entity
 
-logger = getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class PomSomMapper(Entity):

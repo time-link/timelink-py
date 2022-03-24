@@ -3,8 +3,8 @@
 MIT License, no warranties.
 """
 from sqlalchemy import Column, String, ForeignKey
-from timelink.mhk.models.entity import Entity
 
+from timelink.mhk.models.entity import Entity
 
 
 class Act(Entity):

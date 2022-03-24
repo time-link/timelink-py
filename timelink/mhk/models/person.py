@@ -1,8 +1,6 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, ForeignKey
 
 from timelink.mhk.models.entity import Entity
-
 
 
 class Person(Entity):

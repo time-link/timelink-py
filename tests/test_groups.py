@@ -15,9 +15,9 @@ from timelink.kleio.groups import (KElement,
                                    KSource,
                                    KAct, )
 from timelink.kleio.groups.katr import KAtr
-from timelink.kleio.groups.kls import KLs
 from timelink.kleio.groups.kelement import KDate, KDay, KMonth, KYear, KType, \
-    KId, KReplace
+    KReplace
+from timelink.kleio.groups.kls import KLs
 from timelink.kleio.utilities import quote_long_text
 
 
@@ -25,7 +25,8 @@ from timelink.kleio.utilities import quote_long_text
 def kgroup_nested() -> KSource:
     """Returns a nested structure"""
     ks = KSource(
-        "s1", type="test", loc="auc", date="2021-07-16", ref="alumni", obs="Nested"
+        "s1", type="test", loc="auc", date="2021-07-16", ref="alumni",
+        obs="Nested"
     )
     ka1 = KAct(
         "a1",
@@ -56,7 +57,8 @@ def kgroup_nested() -> KSource:
     p2 = KPerson("Margarida", "f", "p02")
     p2.attr("residencia", "Trouxemil", date="2020-10-18")
     p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira"
+        "parentesco", "marido", p2.name, p2.id, date="2006-01-4",
+        obs="Ilha Terceira"
     )
     p3 = KPerson("Pedro", "m", "p03")
     p3.attr("residencia", "Rua Arménio RC", date="2021-10-21")
@@ -186,11 +188,11 @@ def test_kelement_extend_3():
     assert annus_horribilis.extends("ano")
     assert annus_horribilis.extends("year")
 
+
 def test_kelement_extend_4():
     KAno: KYear = KYear.extend("ano")
     assert KAno in KElement.get_classes_for("ano")
     assert KAno.name == "ano"
-
 
 
 def test_kelement_extend_6():
@@ -397,12 +399,13 @@ def test_kelement_to_kleio_2():
                  comment="Carvº added in the margin")
     assert e.to_kleio() == \
            'name=Joaquim Carvalho#Carvº added in the margin%Joachim Carvº', \
-           "bad kleio representation of Element"
+           'bad kleio representation of Element'
 
 
 def test_kgroup_extend():
     kfonte: KGroup = KGroup.extend(
-        "fonte", position=["id"], also=["tipo", "data", "ano", "obs", "substitui"]
+        "fonte", position=["id"],
+        also=["tipo", "data", "ano", "obs", "substitui"]
     )
     afonte = kfonte("f001", ano=2021, tipo="teste")
     assert afonte.id.core == "f001", "could not extend group and instantiate"
@@ -415,9 +418,11 @@ def test_kgroup_extend2():
     KTipo = KType.extend("tipo")  # noqa: F841
     KSubstitui = KReplace.extend("substitui")  # noqa: F841
     kfonte: KGroup = KGroup.extend(
-        "fonte", position=["id"], also=["tipo", "data", "ano", "obs", "substitui"]
+        "fonte", position=["id"],
+        also=["tipo", "data", "ano", "obs", "substitui"]
     )
-    afonte = kfonte("f001", data="2021-12-09", ano=2021, tipo="teste", substitui="f001")
+    afonte = kfonte("f001", data="2021-12-09", ano=2021, tipo="teste",
+                    substitui="f001")
     assert afonte.data.extends("date")
     year_value = afonte.get_element_for_column("year")
     assert 2021 == year_value.core
@@ -432,7 +437,8 @@ def test_kroup_elements_allowed():
         "mygrou", position="id", also=["nome", "genero", "telefone"]
     )
     selements = sorted(my_group.elements_allowed())
-    assert selements == ["genero", "id", "nome", "telefone"], "wrong element list"
+    assert selements == ["genero", "id", "nome",
+                         "telefone"], "wrong element list"
 
 
 def test_kroup_allow_as_element():
@@ -440,7 +446,8 @@ def test_kroup_allow_as_element():
         "mygroup", position="id", also=["nome", "genero", "telefone"]
     )
     selements = sorted(my_group.elements_allowed())
-    assert selements == ["genero", "id", "nome", "telefone"], "wrong element list"
+    assert selements == ["genero", "id", "nome",
+                         "telefone"], "wrong element list"
 
     my_group.allow_as_element("profissao", also=True)
     selements = sorted(my_group.elements_allowed())
@@ -481,7 +488,8 @@ def test_kgroup_subclasses():
     sub_classes = (n, m, f)
     p = n("joaquim", "m", "01")
     sc = KPerson.all_subclasses()
-    assert len(sc) == 3 and len(sub_classes) == 3, "Failed to register subclasses"
+    assert len(sc) == 3 and len(
+        sub_classes) == 3, "Failed to register subclasses"
     assert KPerson.is_kgroup(p), "Failed is_kgroup test"
 
 
@@ -532,7 +540,8 @@ def test_allow_as_part_2():
 
     Kx.allow_as_part(Ky)
     x.include(y)
-    assert y in list(x.includes()), "include failed after class allowed as part"
+    assert y in list(
+        x.includes()), "include failed after class allowed as part"
 
 
 def test_allow_as_part_3():
@@ -549,7 +558,8 @@ def test_allow_as_part_3():
 
 
 def test_allow_as_part_4():
-    n: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
+    n: KPerson = KPerson.extend("n", position=["name", "sex"],
+                                guaranteed=["name"])
     j = n("joaquim", "m", id="jrc")
     pn = KPerson.extend("pn", position=["name"], guaranteed=["name"])
     n.allow_as_part(pn)
@@ -579,7 +589,8 @@ def test_includes_group():
 
 
 def test_includes_by_part_order():
-    n: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
+    n: KPerson = KPerson.extend("n", position=["name", "sex"],
+                                guaranteed=["name"])
     j = n("joaquim", "m", id="jrc")
     pn = KPerson.extend("pn", position=["name"], guaranteed=["name"])
     n.allow_as_part(pn)
@@ -670,7 +681,7 @@ def test_kgroup_set_item_check_el():
     p = KPerson("joaquim", "m", "jrc", obs="")
     with pytest.raises(ValueError):
         p['profissao'] = 'professor', \
-             "set illegal element should raise error"
+                         "set illegal element should raise error"
 
 
 def test_kgroup_get(kgroup_nested):
@@ -760,12 +771,14 @@ def test_kgroup_get_nested_dict_get(kgroup_nested):
 
 def test_kgroup_get_nested_dict_get2(kgroup_nested):
     kgroup_nested
-    assert kgroup_nested.get["acts"][0]["id"] == "a1", "Failed nested dictionary"
+    assert kgroup_nested.get["acts"][0][
+               "id"] == "a1", "Failed nested dictionary"
 
 
 def test_kgroup_dots(kgroup_nested):
     kgroup_nested
-    assert kgroup_nested.dots.includes.act[0].id == "a1", "Failed dots retrieval"
+    assert kgroup_nested.dots.includes.act[
+               0].id == "a1", "Failed dots retrieval"
 
 
 def test_kgroup_dots2(kgroup_nested):
@@ -796,7 +809,6 @@ def test_kgroup_dots_id(kgroup_nested):
     ), "Failed dots retrieval"
 
 
-
 def test_KPerson_to_json():
     p1 = KPerson("Joaquim", "m", "p01")
     p1.attr("residencia", "Macau", date="2021-12-11")
@@ -806,7 +818,8 @@ def test_KPerson_to_json():
     json_string = p2.to_json()
     assert json_string
     p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira"
+        "parentesco", "marido", p2.name, p2.id, date="2006-01-4",
+        obs="Ilha Terceira"
     )
     json_string = p1.to_json()
     assert json_string
@@ -873,10 +886,12 @@ def test_kleio_stru():
         also=["mesmo_que", "obs"],
     )
     pai = KPerson.extend(
-        "pai", position=["nome"], guaranteed=["nome"], also=["mesmo_que", "obs"]
+        "pai", position=["nome"], guaranteed=["nome"],
+        also=["mesmo_que", "obs"]
     )
     mae = KPerson.extend(
-        "mae", position=["nome"], guaranteed=["nome"], also=["mesmo_que", "obs"]
+        "mae", position=["nome"], guaranteed=["nome"],
+        also=["mesmo_que", "obs"]
     )
     n.allow_as_part(pai)
     n.allow_as_part(mae)
@@ -890,7 +905,8 @@ def test_kleio_stru():
     kf = KKleio()
     f = fonte("f001", tipo="auc-tests")
     kf.include(f)
-    l: KGroup = lista("l001", 11, 2, 2021, data="1537-1913", tipo="auc-list", loc="A")
+    l: KGroup = lista("l001", 11, 2, 2021, data="1537-1913", tipo="auc-list",
+                      loc="A")
     f.include(l)
     a = auc("alumni-record", "archeevo-record", id="xpto")
     l.include(a)

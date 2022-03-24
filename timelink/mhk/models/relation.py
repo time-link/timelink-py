@@ -4,7 +4,6 @@ from sqlalchemy.orm import relationship
 from timelink.mhk.models.entity import Entity
 
 
-
 class Relation(Entity):  # should extend Entity but gives error
 
     __tablename__ = "relations"

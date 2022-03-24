@@ -1,20 +1,18 @@
+import os
 from pathlib import Path
 
 import pytest
 
-from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
-from random import randint
-from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
-from timelink.mhk.models import base  # noqa
-from timelink.mhk.models.entity import Entity  # noqa
-from timelink.mhk.models.pom_som_mapper import PomSomMapper
-from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.db import TimelinkDB
-from timelink.mhk.utilities import get_dbnames, get_connection_string
-
 # Session is shared by all tests
 from tests import Session
 from tests import skip_on_travis, TEST_DIR
+from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
+from timelink.mhk.models import base  # noqa
+from timelink.mhk.models.base_class import Base
+from timelink.mhk.models.db import TimelinkDB
+from timelink.mhk.models.entity import Entity  # noqa
+from timelink.mhk.models.pom_som_mapper import PomSomMapper
+from timelink.mhk.models.source import Source
 
 sqlite_db = Path(TEST_DIR, "sqlite/test_db")
 conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
@@ -182,7 +180,6 @@ def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
         person = act.contains[0]
         assert repr(person)
         assert str(person)
-
 
 
 def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):

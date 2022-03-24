@@ -136,7 +136,7 @@ class KElement:
         search_list = sorted([(a, len(a.__mro__))
                               for a in cls.all_subclasses()],
                              key=lambda mro: -mro[1])
-        for eclass, mro in search_list:
+        for eclass, _mro in search_list:
             if eclass.name == name:
                 return eclass
         return None

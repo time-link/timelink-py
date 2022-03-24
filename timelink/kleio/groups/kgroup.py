@@ -2,7 +2,7 @@ import json
 import textwrap
 import warnings
 from os import linesep as nl
-from typing import Type, List, Union, Tuple
+from typing import Type, List, Union, Tuple, Dict
 
 from box import Box
 
