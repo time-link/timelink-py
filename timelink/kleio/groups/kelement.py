@@ -368,10 +368,12 @@ class KSameAs(KElement):
     the id corresponds to a group in the same file and
     file an error otherwise
 
-    Example:
-        person$Bob Dylan/id=bob-dylan
-        .....
-        person$Robert Allan Zimmerman/sameas=bob-dylan
+    Example
+
+    person\$Bob Dylan/id=bob-dylan
+
+    person\$Robert Allan Zimmerman/sameas=bob-dylan
+
     """
     name = 'same_as'
 

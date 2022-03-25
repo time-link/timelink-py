@@ -7,22 +7,39 @@ from timelink.mhk.models.base_class import Base
 
 
 class Entity(Base):
+    """ ORM Model root of the object hierarchy.
+
+     All entities in a Timelink/MHK database have an entry in this table.
+     Each entity is associated with a class that allow access to a
+     specialization table with more columns for that class.
+
+    This corresponds to the model described as "Joined Table Inheritance"
+    in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
+     """
     __tablename__ = "entities"
 
+    #: str: unique identifier for the entity
     id = Column(String, primary_key=True)
+    #: str: name of the class. Links to pom_som_mapper class
     pom_class = Column('class',
                        String,
                        ForeignKey('classes.id', use_alter=True),
                        index=True
                        )
-    # TODo add relationship to PomSomMapper = pom_mapper
+    #: str: id of the entity inside which this occurred.
     inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'),
                     index=True)
+    #: int: sequential order of this entity in the source
     the_order = Column(Integer)
+    #: int: the nesting level of this entity in the source
     the_level = Column(Integer)
+    #: int: line in which the entity occurred in the source
     the_line = Column(Integer)
+    #: str: name of the kleio group that produced this entity
     groupname = Column(String, index=True)
+    #: datetime: when this entity was updated in the database
     updated = Column(DateTime, default=datetime.utcnow, index=True)
+    #: datetime: when this entity was added to the full text index
     indexed = Column(DateTime, index=True)
 
     # These are defined in relation.py
@@ -31,6 +48,7 @@ class Entity(Base):
 
     # this based on
     # https://stackoverflow.com/questions/28843254
+    #: list(Entity): list of Entity objects contained in this entity
     contains = relationship("Entity",
                             backref=backref("contained_by",
                                             remote_side="Entity.id"),
@@ -57,16 +75,19 @@ class Entity(Base):
 
     @classmethod
     def get_subclasses(cls):
+        """ Get the subclasses of Entity """
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
 
     @classmethod
     def get_orm_entities_classes(cls):
-        """
-        Returns the currently defined ORM classes that extend Entity
+        """ Currently defined ORM classes that extend Entity
         (including Entity itself)
-        :return: List of ORM classes
+
+
+       Returns:
+            list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
         sc.append(Entity)
@@ -74,9 +95,10 @@ class Entity(Base):
 
     @classmethod
     def get_som_mapper_ids(cls):
-        """
-        Returns the ids of SomPomMapper references by orm classes
-        :return: List of strings
+        """ Ids of SomPomMapper references by orm classes
+
+        Returns:
+             List[str]: List of strings
         """
         return [
             aclass.__mapper_args__["polymorphic_identity"]

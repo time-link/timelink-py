@@ -227,7 +227,7 @@ To pass code style check
     `flake8` is used for code-style check,  with  the `flake8-bugbear`
     extension for extra checks, and a line length of 88 chars.
 
-    We recommend using `black <https://black.readthedocs.io/en/stable/index.html)>`_
+    We recommend using `black <https://black.readthedocs.io/en/stable/index.html>`_
     to reformat your code so that it passes the flake8 checks.
 
     `flake8` settings in `setup.cfg` ensure compatibility with `black` code style.

@@ -10,26 +10,22 @@ from timelink.mhk.models.entity import Entity
 class Act(Entity):
     """Represents an Act, i.e. a record of some event in a historical document.
 
-    Examples of acts are: baptisms, marriages, purchase deeds, wills, court records.
-
-    Attributes:
-        id (str): a string uniquely identifying the act.
-        the_type (str): the type of the act, e.g.the name of the kleio group that recorded the act.
-        the_date (str): the date of the act in Kleio format AAAAMMDD.
-        loc (str): location where the act took place (church, notary office,...).
-        ref (str): archival reference of the act (page number in the source or equivalent).
-        obs (str): any observations or comments on the act.
-
+    Examples of acts are: baptisms, marriages, purchase deeds, wills,
+    court records.
     """
 
     __tablename__ = "acts"
 
+    #: str:  a string uniquely identifying the act
     id = Column(String, ForeignKey("entities.id"), primary_key=True)
+    #: str: the type of the act
     the_type = Column(String(32))
+    #: str: the date of the act in Kleio format AAAAMMDD
     the_date = Column(String, index=True)
+    #: str: location of the act, eg church, notary office
     loc = Column(String)
-    ref = Column(String)
-    obs = Column(String)
+    ref = Column(String) #: str: archival reference
+    obs = Column(String) #: any observations or comments.
 
     __mapper_args__ = {"polymorphic_identity": "act"}
 
