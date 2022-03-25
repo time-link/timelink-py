@@ -5,7 +5,8 @@ Credits
 Development Lead
 ----------------
 
-* Joaquim Ramos de Carvalho <joaquimcarvalho@ipm.edu.mo>
+* Joaquim Ramos de Carvalho, Macao Polytechnic University
+  <joaquimcarvalho@ipm.edu.mo>
 
 Contributors
 ------------
