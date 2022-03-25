@@ -73,7 +73,8 @@ class KGroup:
 
     @kname.setter
     def kname(self, value):
-        self._name = self.pack_as_kelement("kname", value, element_class="name")
+        self._name = self.pack_as_kelement("kname", value,
+                                           element_class="name")
 
     @property
     def inside(self):
@@ -131,15 +132,23 @@ class KGroup:
                position: Union[list, str, None] = None,
                guaranteed: Union[list, str, None] = None,
                also: Union[list, str, None] = None,
-               part: Union[list, str, None] = None):
+               part: Union[list, str, None] = None,
+               synonyms: Union[Tuple[str, str], None] = None,
+               ):
         """
         Create a new group definition by extending this one
+
         :param name:  name of the new group
         :param position: list of positional elements
         :param guaranteed: list of required elements
         :param also:    list of optional elements
         :param part: list of groups that can be included in this one
+        :param synonyms: list of tuples defining synonym for elements
+                         e,g, [("ano","year"),...]
         :return: new group class
+
+
+
         """
         new_group = type(name, (cls,), {})
         new_group._name = name
@@ -166,6 +175,23 @@ class KGroup:
             new_group._part = part
         else:
             new_group._part = list(cls._part)
+        if synonyms is not None:
+            try:
+                for word, synonym in synonyms:
+                    sym_class = KElement.get_class_for(synonym)
+                    if sym_class is None:
+                        msg = f"synonym error {synonym} is unkown"
+                        raise ValueError(msg)
+                    else:
+                        # this creates a new KElement class
+                        # named "word" that inherits from the KElement
+                        # class of synonym
+                        sym_class.extend(word)
+            except ValueError:
+                msg = "synonyms must be list of tuples"
+                "e.g. [('ano','date').."
+                raise (ValueError(msg))
+
         new_group._extends = cls
 
         return new_group
@@ -274,9 +300,10 @@ class KGroup:
         for (k, v) in kwargs.items():
             if k == "element_check":
                 self._element_check = v
-            if self._element_check and not self.is_allowed_as_element(k):
-                raise ValueError(f'Element not allowed: {k}')
-            self[k] = v
+            else:
+                if self._element_check and not self.is_allowed_as_element(k):
+                    raise ValueError(f'Element not allowed: {k}')
+                self[k] = v
         # test if the compulsory (guaranteed) elements are present
         for g in self._guaranteed:
             if getattr(self, g, None) is None:
@@ -293,7 +320,8 @@ class KGroup:
 
         allowed = self.is_allowed_as_part(group)
         if allowed is None:
-            raise ValueError(f"Group {self.kname} cannot contain {group.kname}")
+            raise ValueError(
+                f"Group {self.kname} cannot contain {group.kname}")
 
         group.level = self.level + 1
         group.line = KGroup.inc_line()
@@ -414,7 +442,8 @@ class KGroup:
                 ]
                 for class_in_contains in classes_in_contains:
                     if class_in_contains._name == gname:
-                        inc_by_part_order.extend(self._containsd[class_in_contains])
+                        inc_by_part_order.extend(
+                            self._containsd[class_in_contains])
                 return inc_by_part_order
         else:  # no specific subgroup, we return by pars order
             inc_by_part_order = []
@@ -543,7 +572,8 @@ class KGroup:
                 else:
                     kd[e] = v
         if not allow_none:
-            kd = dict([(key, value) for key, value in kd.items() if value is not None])
+            kd = dict([(key, value) for key, value in kd.items() if
+                       value is not None])
         # we now includes subgroups
         ki = dict()
         # we now collect subgroups by name
@@ -640,13 +670,11 @@ class KGroup:
                     first = False
                 out.append(e)
         more = sorted(
-            list(
-                set(self._guaranteed)
-                .union(set(self._also))
-                .union(self._position)
-                .difference(out)
-            )
-        )
+                    list(
+                        set(self._guaranteed).union(set(self._also))
+                        .union(self._position).difference(out)
+                        )
+                    )
         # print(more)
         if "obs" in more:  # we like obs elements at the end
             more.remove("obs")
@@ -761,7 +789,8 @@ class KGroup:
 
         """
         el: KElement
-        for (name, el,) in self._elementsd.items():  # same name as column or in ancestors # noqa: E501
+        for (name,
+             el,) in self._elementsd.items():  # same name as column or in ancestors # noqa: E501
             if name == colspec:
                 return el
         # Handles synonyms created by subclassing core KElements

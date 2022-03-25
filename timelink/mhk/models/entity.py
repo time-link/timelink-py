@@ -10,7 +10,11 @@ class Entity(Base):
     __tablename__ = "entities"
 
     id = Column(String, primary_key=True)
-    pom_class = Column('class', String, ForeignKey('classes.id'), index=True)
+    pom_class = Column('class',
+                       String,
+                       ForeignKey('classes.id', use_alter=True),
+                       index=True
+                       )
     # TODo add relationship to PomSomMapper = pom_mapper
     inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'),
                     index=True)

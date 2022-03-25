@@ -405,7 +405,8 @@ def test_kelement_to_kleio_2():
 def test_kgroup_extend():
     kfonte: KGroup = KGroup.extend(
         "fonte", position=["id"],
-        also=["tipo", "data", "ano", "obs", "substitui"]
+        also=["tipo", "data", "ano", "obs", "substitui"],
+        synonyms=[("tipo", "type"), ("data", "date"), ("ano", "year")]
     )
     afonte = kfonte("f001", ano=2021, tipo="teste")
     assert afonte.id.core == "f001", "could not extend group and instantiate"
@@ -665,6 +666,7 @@ def test_kgroup_get_item_check_el():
 def test_kgroup_get_item_no_check_el():
     p: KPerson = KPerson("joaquim", "m", "jrc", obs="")
     p._element_check = False
+    KElement.extend("profissao")
     p["profissao"] = "Professor"
     assert p["profissao"], "Could not enter unchecked element"
 
@@ -862,45 +864,90 @@ def test_person_ls_rel():
     ), "ls failed to show in person"
 
 
+def test_synonyms_1():
+    # We can map new elements to existing ones in group creation
+    kleio = KKleio
+    assert kleio is not None
+    fonte: KSource = KSource.extend(
+        "fonte",
+        also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"],
+        synonyms=[("tipo", "type")]
+    )
+    assert fonte is not None
+    tipo = KElement.get_class_for("tipo")
+    assert tipo is not None
+
+
+def test_synonyms_2():
+    # We can map new elements to existing ones in group creation
+    kleio = KKleio
+    assert kleio is not None
+    with pytest.raises(ValueError):
+        fonte: KSource = KSource.extend(
+            "fonte",
+            also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"],
+            synonyms=[("tipo", "typer")]  # no KElement typer
+            )
+        assert fonte is not None  # this should never be reached
+
+
 def test_kleio_stru():
     # We specialize the kleio groups for this purpose,
     # using definitions already in gacto2.str
     kleio = KKleio
     assert kleio is not None
     fonte = KSource.extend(
-        "fonte", also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"]
+        "fonte",
+        also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"],
+        synonyms=[("tipo", "type"), ("data", "date"), ("ano", "year")]
     )
     lista = KAct.extend(
         "lista",
         position=["id", "dia", "mes", "ano"],
         guaranteed=["id", "ano", "mes", "dia"],
         also=["data", "tipo", "loc", "obs"],
-    )
+        synonyms=[("tipo", "type"),
+                  ("dia", "day"),
+                  ("mes", "month"),
+                  ("data", "date"),
+                  ("ano", "year")
+                  ]
+        )
     auc = KAbstraction.extend(
-        "auc", position=["name", ""], also=["level", "id"], guaranteed=["id"]
-    )
+                              "auc",
+                              position=["name", "type"],
+                              also=["level", "id"],
+                              guaranteed=["id"]
+                              )
     n = KPerson.extend(
         "n",
         position=["nome", "sexo"],
         guaranteed=["id", "nome", "sexo"],
         also=["mesmo_que", "obs"],
-    )
+        synonyms=[("nome", "name"), ("sexo", "sex"), ("mesmo_que", "same_as")]
+        )
     pai = KPerson.extend(
         "pai", position=["nome"], guaranteed=["nome"],
-        also=["mesmo_que", "obs"]
-    )
+        also=["mesmo_que", "obs"],
+        synonyms=[("nome", "name"), ("mesmo_que", "same_as")]
+        )
     mae = KPerson.extend(
         "mae", position=["nome"], guaranteed=["nome"],
-        also=["mesmo_que", "obs"]
-    )
+        also=["mesmo_que", "obs"],
+        synonyms=[("nome", "name"), ("mesmo_que", "same_as")]
+        )
     n.allow_as_part(pai)
     n.allow_as_part(mae)
     ls = KLs.extend('ls',
                     position=['type', 'value'],
-                    also=['data', 'obs', 'entity'])
+                    also=['data', 'obs', 'entity'],
+                    synonyms=[("data", "date")]
+                    )
     atr = KAtr.extend('atr',
                       position=['type', 'value'],
-                      also=['data', 'obs', 'entity'])
+                      also=['data', 'obs', 'entity'],
+                      synonyms=[("data", "date")]
+                      )
 
     kf = KKleio()
     f = fonte("f001", tipo="auc-tests")
