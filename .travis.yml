@@ -5,7 +5,7 @@ branches:
   only:
   - main
 python:
-- "3.10"
+- "3.10.2"
 - 3.9
 - 3.8
 - 3.7
@@ -21,4 +21,4 @@ deploy:
     tags: true
     repo: time-link/timelink-py
     branch: main
-    python: 3.9
+
