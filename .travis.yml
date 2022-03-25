@@ -4,8 +4,8 @@ branches:
   only:
   - main
 language: python
+# could not get 3.10 to work on travis
 python:
-- "3.10.1"
 - "3.9"
 - "3.8"
 - "3.7"
