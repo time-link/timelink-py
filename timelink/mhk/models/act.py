@@ -24,8 +24,8 @@ class Act(Entity):
     the_date = Column(String, index=True)
     #: str: location of the act, eg church, notary office
     loc = Column(String)
-    ref = Column(String) #: str: archival reference
-    obs = Column(String) #: any observations or comments.
+    ref = Column(String)  #: str: archival reference
+    obs = Column(String)  #: any observations or comments.
 
     __mapper_args__ = {"polymorphic_identity": "act"}
 

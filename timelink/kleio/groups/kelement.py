@@ -360,7 +360,7 @@ class KReplace(KElement):
 
 
 class KSameAs(KElement):
-    """
+    r"""
     Represents the id of a group that describes the
     same real world entity has the one with this element.
 
@@ -368,11 +368,11 @@ class KSameAs(KElement):
     the id corresponds to a group in the same file and
     file an error otherwise
 
-    Example
+    Examples:
 
-    person\$Bob Dylan/id=bob-dylan
+    person$Bob Dylan/id=bob-dylan
 
-    person\$Robert Allan Zimmerman/sameas=bob-dylan
+    person$Robert Allan Zimmerman/sameas=bob-dylan
 
     """
     name = 'same_as'
