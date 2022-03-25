@@ -6,7 +6,7 @@ Also provides basic mhk manager functionality.
 import typer
 import platform
 import docker
-from timelink.mhk.utilities import MHKInfo, get_mhk_info, is_mhk_installed
+from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 
 # We use Typer https://typer.tiangolo.com
 app = typer.Typer(help="Timelink and MHK manager")
@@ -22,19 +22,19 @@ def mhk_version():
     usage of Docker API
     """
     if is_mhk_installed():
-        mhk_info: MHKInfo = get_mhk_info()
+        mhk_info = get_mhk_info()
 
         client = docker.from_env()
         dv = client.version()
-        mhkv = f"""    Manager version:  {mhk_info['mhk_version']}
+        mhkv = f"""    Manager version:  {mhk_info.mhk_version}
         Docker version:   {dv["Version"]}
         Host OS:          {platform.system()} {platform.release()}
-        User home:        {mhk_info['user_home']}
-        mhk-home:         {mhk_info['mhk_home']}
-        mhk-home init:    {mhk_info['mhk_home_init']}
-        mhk-home update:  {mhk_info['mhk_home_update']}
-        mhk use-tag:      {mhk_info['mhk_app_env'].get("TAG", "*none*")}
-        mhk local host:   {mhk_info['mhk_host']}
+        User home:        {mhk_info.user_home}
+        mhk-home:         {mhk_info.mhk_home}
+        mhk-home init:    {mhk_info.mhk_home_init}
+        mhk-home update:  {mhk_info.mhk_home_update}
+        mhk use-tag:      {mhk_info.mhk_app_env.get("TAG", "*none*")}
+        mhk local host:   {mhk_info.mhk_host}
         MHK URL:          http://127.0.0.1:8080/mhk
         Kleio URL:        http://127.0.0.1:8088
         Portainer URL:    http://127.0.0.1:9000"""

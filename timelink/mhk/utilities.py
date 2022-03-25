@@ -8,9 +8,11 @@ MHK is the name of Java Webapp that preceded Timelink.
 """
 
 import warnings
-from pathlib import Path
-from typing import Type, Union, TypedDict
+from collections import namedtuple
 from configparser import ConfigParser
+from pathlib import Path
+from typing import Type, Union
+
 from sqlalchemy import create_engine, text
 
 
@@ -121,7 +123,8 @@ def get_dbnames():
     A search is made in the MySQL server running in the local host port 3307
     """
     pwd = get_db_pwd()
-    conn_string = "mysql+mysqlconnector://root:{p}@localhost:3307/mysql".format(p=pwd)
+    conn_string = "mysql+mysqlconnector://root:{p}@localhost:3307/mysql".format(
+        p=pwd)
     mysql = create_engine(conn_string, echo=False, future=True)
     with mysql.connect() as conn:
         databases = conn.execute(
@@ -142,24 +145,13 @@ def get_db_pwd():
     if app_env:
         pwd = app_env["MYSQL_ROOT_PASSWORD"]
         if pwd is None:
-            raise TypeError("Could not find MHK database password." "Is MHK installed?")
+            raise TypeError(
+                "Could not find MHK database password." "Is MHK installed?")
         else:
             return pwd
     else:
-        raise TypeError("Could not find MHK app information." "Is MHK installed?")
-
-
-class MHKInfo(TypedDict):
-    """Information on existing MHK installation"""
-
-    mhk_env: dict
-    user_home: str
-    mhk_home: str
-    mhk_version: str
-    mhk_home_update: str
-    mhk_home_init: str
-    mhk_app_env: dict
-    mhk_host: str
+        raise TypeError(
+            "Could not find MHK app information." "Is MHK installed?")
 
 
 def get_mhk_info():
@@ -175,15 +167,22 @@ def get_mhk_info():
     mhk_app_env = get_mhk_app_env()
     mhk_host = mhk_app_env.get("MHK_HOST", "localhost")
 
-    mhk_info: MHKInfo = {
-        "mhk_app_env": mhk_app_env,
-        "mhk_home": mhk_home,
-        "mhk_home_init": mhk_home_init,
-        "mhk_home_update": mhk_home_update,
-        "mhk_host": mhk_host,
-        "mhk_version": mv,
-        "user_home": user_home,
-    }
+    MHKInfo = namedtuple("MHKInfo", ["mhk_app_env",
+                                     "mhk_home",
+                                     "mhk_home_init",
+                                     "mhk_home_update",
+                                     "mhk_host",
+                                     "mhk_version",
+                                     "user_home"]
+                         )
+    mhk_info = MHKInfo(mhk_app_env,
+                       mhk_home,
+                       mhk_home_init,
+                       mhk_home_update,
+                       mhk_host,
+                       mv,
+                       user_home
+                       )
     return mhk_info
 
 

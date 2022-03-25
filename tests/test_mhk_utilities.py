@@ -90,14 +90,14 @@ def test_mhk_info():
     if is_mhk_installed():
         minfo = get_mhk_info()
         assert minfo is not None, "is_mhk_installed true but no mhk_app_env"
-        assert minfo["mhk_version"]
-        assert minfo["user_home"]
-        assert minfo["mhk_app_env"]
-        assert minfo["mhk_home"]
-        assert minfo["mhk_host"]
-        assert minfo["mhk_app_env"]
-        assert minfo["mhk_home_init"]
-        assert minfo["mhk_home_update"]
+        assert minfo.mhk_version
+        assert minfo.user_home
+        assert minfo.mhk_app_env
+        assert minfo.mhk_home
+        assert minfo.mhk_host
+        assert minfo.mhk_app_env
+        assert minfo.mhk_home_init
+        assert minfo.mhk_home_update
     else:
         warnings.warn("MHK not installed test skipped")
 
