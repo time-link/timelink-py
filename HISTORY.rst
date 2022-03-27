@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.2 (2022-03-27)
+------------------
+* Fixes bug in package descrition preventing release in Pypi.
+
 0.3.1 (2022-03-25)
 ------------------
 * All core ORM models for MHK databases
