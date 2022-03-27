@@ -20,11 +20,10 @@ Timelink Python package
    :maxdepth: 1
    :caption: Contents:
 
-   timelink-introduction
    readme
    installation
    usage
-   som_pom_mapping
+   documentation
    modules
    contributing
    authors

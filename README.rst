@@ -14,10 +14,3 @@ The package includes:
 * ORM models for the Timelink database
 * Utility functions for acessing a Timelink/MHK instalation.
 * CLI tool.
-
-Source documentation:
-
-Source documentation
----------------------
-
-:doc:`/timelink`

@@ -184,7 +184,7 @@ To release a new version:
    git status                       # check if everything is commited
    bump2version [major|minor|patch] # update version
    git push
-   git push origin <version_number> # will trigger travis build and deploy
+   git push --tags                  # will trigger travis build and deploy
 
 Travis will then deploy to PyPI if tests pass.
 
@@ -245,6 +245,9 @@ Generate documentation
 ^^^^^^^^^^^^^^^^^^^^^^
 
 To generate updated documentation use ``make docs``.
+
+The generation is available at https://timelink-py.readthedocs.io/
+
 
 Reference for markup used
 ^^^^^^^^^^^^^^^^^^^^^^^^^
