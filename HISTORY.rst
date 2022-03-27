@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.3 (2022-03-27)
+------------------
+* Fix building on Travis
+
 0.3.2 (2022-03-27)
 ------------------
 * Fixes bug in package descrition preventing release in Pypi.
