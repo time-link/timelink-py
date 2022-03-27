@@ -1,8 +1,8 @@
 env: TRAVIS=true
 # safelist
-branches:
-  only:
-  - main
+# branches:
+#  only:
+#  - main
 language: python
 # could not get 3.10 to work on travis
 python:
