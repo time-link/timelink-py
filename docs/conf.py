@@ -117,7 +117,7 @@ htmlhelp_basename = 'timelinkdoc'
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
-    # 'papersize': 'letterpaper',
+    # 'papersize': 'a4paper',
 
     # The font size ('10pt', '11pt' or '12pt').
     #
@@ -159,12 +159,12 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'timelink',
+    (master_doc, 'Timelink',
      'Timelink Python package Documentation',
      author,
      'timelink',
-     'One line description of project.',
-     'Miscellaneous'),
+     'Timelink, formerly known as MHK (Micro History with Kleio) is an information system designed for processing person related information collected from historical sources.',  # noqa
+     copyright),
 ]
 
 

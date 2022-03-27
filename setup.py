@@ -14,6 +14,8 @@ requirements = ['typer~=0.4.0', ]
 
 test_requirements = ['pytest>=3', ]
 
+description = "Timelink is an information system for person related information collected from historical sources. "  # noqa
+
 setup(
     author="Joaquim Ramos de Carvalho",
     author_email='joaquimcarvalho@ipm.edu.mo',
@@ -27,9 +29,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
     ],
-    description="Timelink is an information system for "
-                "person related information collected "
-                "from historical sources. ",
+    description=description,
     entry_points={
         'console_scripts': [
             'timelink=timelink.cli:app',
@@ -40,7 +40,8 @@ setup(
     },
     install_requires=requirements,
     license="MIT license",
-    long_description=readme + '\n\n' + history,
+    long_description= description + '\n\n' + history,
+    long_description_content_type = 'text/x-rst',
     include_package_data=True,
     keywords='timelink',
     name='timelink',

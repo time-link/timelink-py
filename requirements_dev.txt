@@ -18,5 +18,5 @@ argh
 mysql-connector-python~=8.0.25
 black
 flake8-bugbear
-
+sphinx_rtd_theme
 

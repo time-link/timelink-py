@@ -2,8 +2,6 @@
 History
 =======
 
-
-
 0.3.1 (2022-03-25)
 ------------------
 * All core ORM models for MHK databases
@@ -44,7 +42,6 @@ Developement related changes
 ------------------
 
 * Add to_json() method to KGroup, enabling Kleio to JSon serialization.
-
 
 0.2.7 (2021-08-29)
 ------------------
