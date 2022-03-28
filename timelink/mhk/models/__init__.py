@@ -15,3 +15,6 @@ Also check  :class:`timelink.mhk.models.pom_som_mapper.PomSomMapper`
 MIT License, no warranties.
 
 """
+from sqlalchemy.orm import sessionmaker
+#: sqlalchemy.orm.sessionmaker: shared session factory
+Session = sessionmaker()

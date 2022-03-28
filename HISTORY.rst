@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.8 (2022-03-28)
+------------------
+* Fix bug with Session import in mhk.models.db
+
 0.3.3 to 0.3.7 (2022-03-27)
 ---------------------------
 * Fix build on travis with auto deployment

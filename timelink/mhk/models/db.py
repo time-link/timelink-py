@@ -1,11 +1,10 @@
 from warnings import warn
 
 from sqlalchemy import MetaData, engine, create_engine, select, inspect
-from timelink.mhk.models import base  # noqa
+from timelink.mhk.models import base, Session  # noqa
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
-from tests import Session
 
 SQLALCHEMY_ECHO = False
 
@@ -14,9 +13,12 @@ class TimelinkDB:
     """
     Provide access to a Timelink-MHK database
 
-    Usage
+    Example:
 
-    dbsys = TimelinkDB("sql alchemy connection string")
+        from timelink.mhk.models import Session
+        from timelink.mhk.model.db import TimelinkDB
+
+        dbsys = TimelinkDB("sql alchemy connection string")
 
 
 
