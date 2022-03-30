@@ -159,6 +159,7 @@ class PomSomMapper(Entity):
         # Note that non core PomSomMappings and corresponding ORM classes,
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
+        # This is done automatically here, during import.
         metadata_obj = type(self).metadata
         pytables = metadata_obj.tables  # these are the tables known to ORM
 
@@ -174,7 +175,8 @@ class PomSomMapper(Entity):
             # the table exists in the database, we introspect
             my_table = Table(self.table_name, metadata_obj,
                              autoload_with=dbengine)
-            # we need to ensure that the foreign key relation exists with super talbe
+            # we need to ensure that the foreign key relation
+            # exists with super table
             # otherwise the ORM mapping further down will fail.
             if self.super_class not in ["root", "base"]:
                 # print("Getting super class " + self.super_class)

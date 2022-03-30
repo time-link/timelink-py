@@ -12,14 +12,15 @@ import pytest
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # conn_string local file version
-# from pathlib import Path
-# sqlite_db = Path(TEST_DIR, "/sqlite/test.db")
-# conn_string = f'sqlite://{sqlite_db}?check_same_thread=False'
-
+sqlite_db = os.path.join(TEST_DIR, "/sqlite/test.db")
+conn_string = f'sqlite://{sqlite_db}?check_same_thread=False'
 # con_string sqlite in memory version
-conn_string = "sqlite://?check_same_thread=False"
+# conn_string = "sqlite://?check_same_thread=False"
 
 Session = sessionmaker()
+
+# MHk database if available
+
 
 mhk_absent = pytest.mark.skipif(
     not Path(Path.home(), ".mhk").is_file(), reason="MHK not present"
@@ -27,5 +28,5 @@ mhk_absent = pytest.mark.skipif(
 
 skip_on_travis = pytest.mark.skipif(
     os.environ.get('TRAVIS') == 'true',
-    reason="this test requires file system access for sqlite"
+    reason="this test requires MHK access"
 )

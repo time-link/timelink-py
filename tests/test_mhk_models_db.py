@@ -86,7 +86,6 @@ def test_create_db(dbsystem):
     assert len(tables) > 0, "tables where not created"
 
 
-@skip_on_travis
 def test_entity_contains(dbsystem):
     ent1: Entity = Entity(id='e001', groupname='entity')
     ent1.pom_class = 'entity'
@@ -134,7 +133,7 @@ def test_entity_contains(dbsystem):
 
 
 def test_ensure_mapping(dbsystem):
-    with Session() as session:
+    with dbsystem.get_session() as session:
         pom_classes = PomSomMapper.get_pom_classes(session=session)
         pom_ids = PomSomMapper.get_pom_class_ids(session=session)
         pom_tables = [pom_class.table_name for pom_class in pom_classes]
@@ -150,7 +149,7 @@ def test_ensure_mapping(dbsystem):
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
         assert len(
             tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
-        db_tables = dbsystem.table_names()
+        db_tables = dbsystem.table_names_in_db()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
         assert len(
             tables_not_in_db) == 0, \
@@ -161,7 +160,7 @@ def test_ensure_mapping(dbsystem):
 def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
     ks = kgroup_nested
     source_id = ks.get_id()
-    with Session() as session:
+    with dbsystem.get_session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db: Source = Entity.get_entity(source_id, session)
@@ -182,7 +181,7 @@ def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
 def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
     ks = kgroup_person_attr_rel
     source_id = ks.get_id()
-    with Session() as session:
+    with dbsystem.get_session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)

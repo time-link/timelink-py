@@ -1,10 +1,12 @@
 from warnings import warn
 
-from sqlalchemy import MetaData, engine, create_engine, select, inspect
-from timelink.mhk.models import base, Session  # noqa
+from sqlalchemy import engine, create_engine, select, inspect, MetaData
+from sqlalchemy.orm import sessionmaker
+
+from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
+from timelink.mhk.models.pom_som_mapper import PomSomMapper
 
 SQLALCHEMY_ECHO = False
 
@@ -49,6 +51,7 @@ class TimelinkDB:
         for import after this method is called.
 
         :param conn_string: SQLAlchemy connection string
+        :param sql_echo: bool if True echo sql statements
         :return:
         """
 
@@ -57,18 +60,17 @@ class TimelinkDB:
                 conn_string or self.conn_string, future=True, echo=sql_echo
             )
             self.conn_string = conn_string
+
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
-        with Session(bind=self.db_engine) as session:
-            self.create_tables()
-            session.commit()
-            session.rollback()
+        self.metadata = Base.metadata
+        self.metadata.bind = self.db_engine
+
+        with self.get_session() as session:
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
-            1 + 1
             session.commit()
-            2 + 2
 
     def get_engine(self) -> engine:
         """Return sqlalchemy engine"""
@@ -80,8 +82,31 @@ class TimelinkDB:
              stacklevel=2)
         return self.get_engine()
 
-    def get_metadata(self) -> MetaData:
-        """Return sqlalchemy metada"""
+    def get_session(self):
+        """Get a session maker binded to this engine
+
+        Example:
+
+            with db.get_sesssionmaker() as session:
+
+        """
+        Session = sessionmaker(bind=self.db_engine)  # noqa
+        return Session()
+
+    def get_metadata(self):
+        """ Get the metadata associated with this engine
+
+        Not sure this is done right. We probably need to create the models
+        without inheriting from Base and instead use imperative_mapping
+        https://docs.sqlalchemy.org/en/14/orm/mapping_styles.html#imperative-a-k-a-classical-mappings  # noqa
+        and
+        https://docs.sqlalchemy.org/en/14/tutorial/metadata.html#setting-up-the-registry # noqa
+
+        See Also:
+            * https://gist.github.com/pawl/9935333
+            * https://www.oreilly.com/library/view/essential-sqlalchemy/9780596516147/ch01.html  # noqa
+            * https://stackoverflow.com/questions/58598098
+            """
         return self.metadata
 
     def create_tables(self):
@@ -90,8 +115,7 @@ class TimelinkDB:
 
         :return: None
         """
-        self.metadata = Base.metadata
-        self.metadata.create_all(self.db_engine)  # only creates if missing
+        self.get_metadata().create_all(self.db_engine)  # only creates if missing
 
     def load_database_classes(self, session):
         """
@@ -101,7 +125,7 @@ class TimelinkDB:
         """
 
         # Check if the core tables are there
-        existing_tables = self.table_names()
+        existing_tables = self.table_names_in_db()
         base_tables = [v[0].table_name for v in pom_som_base_mappings.values()]
         missing = set(base_tables) - set(existing_tables)
         if len(missing) > 0:
@@ -123,7 +147,7 @@ class TimelinkDB:
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session)
 
-    def table_names(self):
+    def table_names_in_db(self):
         """Current tables in the current database"""
         insp = inspect(self.db_engine)
         db_tables = insp.get_table_names()  # tables in the database
@@ -139,5 +163,4 @@ class TimelinkDB:
         session.rollback()
         self.load_database_classes(session)
         self.ensure_all_mappings(session)
-        self.metadata = Base.metadata
-        self.metadata.drop_all(self.db_engine)
+        Base.metadata.drop_all(self.db_engine)

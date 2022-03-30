@@ -8,8 +8,6 @@ class Person(Entity):
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
     name = Column(String, index=True)
-    id = Column(String, ForeignKey("entities.id"), primary_key=True)
-    name = Column(String)
     sex = Column(String(1))
     obs = Column(String)
 
