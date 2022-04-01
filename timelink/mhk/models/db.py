@@ -1,10 +1,13 @@
+from typing import List
 from warnings import warn
 
-from sqlalchemy import MetaData, engine, create_engine, select, inspect
+from sqlalchemy import MetaData, engine, create_engine, select, inspect, Table
+
 from timelink.mhk.models import base, Session  # noqa
 from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
+from timelink.mhk.models.entity import Entity
+from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
 
 SQLALCHEMY_ECHO = False
 
@@ -48,8 +51,14 @@ class TimelinkDB:
         and ORM classes. Database should be ready
         for import after this method is called.
 
-        :param conn_string: SQLAlchemy connection string
-        :return:
+        Args:
+            conn_string: SQLAlchemy connection string
+            sql_echo: if true ask sqlalchemy to echo statements
+
+        Returns:
+            None
+
+
         """
 
         if conn_string is not None:
@@ -57,11 +66,13 @@ class TimelinkDB:
                 conn_string or self.conn_string, future=True, echo=sql_echo
             )
             self.conn_string = conn_string
+            self.metadata = Base.metadata
+
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
         with Session(bind=self.db_engine) as session:
-            self.create_tables()
+            self.create_tables(self.db_engine)
             session.commit()
             session.rollback()
             self.load_database_classes(session)
@@ -81,31 +92,31 @@ class TimelinkDB:
         return self.get_engine()
 
     def get_metadata(self) -> MetaData:
-        """Return sqlalchemy metada"""
+        """Return sqlalchemy metadata"""
         return self.metadata
 
-    def create_tables(self):
+    def create_tables(self, bind, tables: List[Table] = []):
         """
         Creates the tables from the current ORM metadata if needed
 
         :return: None
         """
-        self.metadata = Base.metadata
-        self.metadata.create_all(self.db_engine)  # only creates if missing
+        meta_tables = self.get_metadata().tables
+        core_tables = [
+            meta_tables[Entity.__tablename__],
+            meta_tables[PomSomMapper.__tablename__],
+            meta_tables[PomClassAttributes.__tablename__]
+        ]
+        self.metadata.create_all(bind, tables=core_tables)  # creates if missing
 
-    def load_database_classes(self, session):
+    @staticmethod
+    def load_database_classes(session):
         """
         Populates database with core Database classes
-        :param session:
-        :return:
-        """
 
-        # Check if the core tables are there
-        existing_tables = self.table_names()
-        base_tables = [v[0].table_name for v in pom_som_base_mappings.values()]
-        missing = set(base_tables) - set(existing_tables)
-        if len(missing) > 0:
-            self.create_tables()
+        :param session: a session to the database
+        :return: None
+        """
 
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
@@ -117,13 +128,14 @@ class TimelinkDB:
         # this will cache the pomsom mapper objects
         session.commit()
 
-    def ensure_all_mappings(self, session):
+    @staticmethod
+    def ensure_all_mappings(session):
         """Ensure that all database classes have a table and ORM class"""
         pom_classes = PomSomMapper.get_pom_classes(session)
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session)
 
-    def table_names(self):
+    def db_tables(self):
         """Current tables in the current database"""
         insp = inspect(self.db_engine)
         db_tables = insp.get_table_names()  # tables in the database

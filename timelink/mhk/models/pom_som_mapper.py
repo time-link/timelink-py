@@ -4,10 +4,10 @@ from typing import Optional, Type, List
 
 from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
     select
+from sqlalchemy import exc as sa_exc
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship
-from sqlalchemy import exc as sa_exc
 
 from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.base_class import Base
@@ -144,6 +144,9 @@ class PomSomMapper(Entity):
         # if so return it and save for next time
         my_orm = Entity.get_orm_for_pom_class(self.id)
         if my_orm is not None:
+            # ensure that table exists
+            my_table = self.metadata.tables[self.table_name]
+            self.metadata.create_all(session.get_bind(), tables=[my_table])
             self.orm_class = my_orm
             return self.orm_class
 
@@ -286,7 +289,7 @@ class PomSomMapper(Entity):
 
     @classmethod
     def get_pom_classes(cls, session) -> Optional[
-                                                 List["PomSomMapper"]]:
+        List["PomSomMapper"]]:
         """
         Get the pom_classes from database data.
 

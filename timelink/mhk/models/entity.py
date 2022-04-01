@@ -116,12 +116,23 @@ class Entity(Base):
         }
 
     @classmethod
+    def get_orm_tables_as_dict(cls):
+        """
+        Return a dict with table name as key and ORM class as value
+        """
+        return {
+            ormclass.__mapper__.local_table.name: ormclass
+            for ormclass in Entity.get_orm_entities_classes()
+        }
+
+    @classmethod
     def get_som_mapper_to_orm_as_dict(cls):
         """
         Return a dict with pom_class id as key and ORM class as value
         """
         sc = Entity.get_orm_entities_classes()
-        return {ormclass.__mapper__.polymorphic_identity: ormclass for ormclass in sc}
+        return {ormclass.__mapper__.polymorphic_identity: ormclass for ormclass
+                in sc}
 
     @classmethod
     def get_orm_for_table(cls, table: String):
@@ -130,7 +141,7 @@ class Entity(Base):
 
         will return the ORM class handling the "acts" table
         """
-        return cls.get_tables_to_orm_as_dict().get(table, None)
+        return cls.get_orm_tables_as_dict().get(table, None)
 
     @classmethod
     def get_orm_for_pom_class(cls, pom_class: str):

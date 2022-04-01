@@ -14,7 +14,7 @@ pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
-def dbsystem():
+def db_system():
     db = TimelinkDB(conn_string)
     Session.configure(bind=db.get_engine())
     yield db
@@ -23,7 +23,7 @@ def dbsystem():
 
 
 @skip_on_travis
-def test_import_xml(dbsystem):
+def test_import_xml(db_system):
     file: Path = Path(TEST_DIR, "xml_data/b1685.xml")
     with Session() as session:
         stats = import_from_xml(file, session, options={'return_stats': True})
@@ -36,7 +36,7 @@ def test_import_xml(dbsystem):
 
 
 @skip_on_travis
-def test_import_with_custom_mapping(dbsystem):
+def test_import_with_custom_mapping(db_system):
     file = Path(TEST_DIR, "xml_data/dev1692.xml")
     with Session() as session:
         stats = import_from_xml(file, session, options={'return_stats': True})
@@ -55,7 +55,7 @@ def test_import_with_custom_mapping(dbsystem):
 
 
 @skip_on_travis
-def test_import_with_many(dbsystem):
+def test_import_with_many(db_system):
     file = Path(TEST_DIR,
                 "xml_data/test-auc-alunos-264605-A-140337-140771.xml")
     with Session() as session:
@@ -69,7 +69,7 @@ def test_import_with_many(dbsystem):
 
 
 @skip_on_travis
-def test_import_git_hub(dbsystem):
+def test_import_git_hub(db_system):
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa
     with Session() as session:
         stats = import_from_xml(file, session, options={'return_stats': True})

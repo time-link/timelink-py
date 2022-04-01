@@ -17,7 +17,7 @@ pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
-def dbsystem():
+def db_system():
     db = TimelinkDB(conn_string)
     Session.configure(bind=db.get_engine())
     yield db
@@ -79,7 +79,7 @@ def test_succeed_if_not_in_travis():
     assert os.getenv("TRAVIS") != 'true'
 
 
-def test_create_db(dbsystem):
+def test_create_db(db_system):
     # Database is created and initialized in the fixture
     metadata = Base.metadata
     tables = list(metadata.tables.keys())
@@ -87,7 +87,7 @@ def test_create_db(dbsystem):
 
 
 @skip_on_travis
-def test_entity_contains(dbsystem):
+def test_entity_contains(db_system):
     ent1: Entity = Entity(id='e001', groupname='entity')
     ent1.pom_class = 'entity'
     ent1.line = 1
@@ -133,7 +133,7 @@ def test_entity_contains(dbsystem):
         assert deleted is None, "Should have deleted orphan"
 
 
-def test_ensure_mapping(dbsystem):
+def test_ensure_mapping(db_system):
     with Session() as session:
         pom_classes = PomSomMapper.get_pom_classes(session=session)
         pom_ids = PomSomMapper.get_pom_class_ids(session=session)
@@ -146,11 +146,11 @@ def test_ensure_mapping(dbsystem):
         orm_mapped_classes = Entity.get_som_mapper_to_orm_as_dict()
         non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
         assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
-        orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
+        orm_mapped_tables = Entity.get_orm_tables_as_dict()
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
         assert len(
             tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
-        db_tables = dbsystem.table_names()
+        db_tables = db_system.db_tables()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
         assert len(
             tables_not_in_db) == 0, \
@@ -158,7 +158,7 @@ def test_ensure_mapping(dbsystem):
         session.close()
 
 
-def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
+def test_insert_entities_nested_groups(db_system, kgroup_nested):
     ks = kgroup_nested
     source_id = ks.get_id()
     with Session() as session:
@@ -179,7 +179,7 @@ def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
         assert str(person)
 
 
-def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
+def test_insert_entities_attr_rel(db_system, kgroup_person_attr_rel):
     ks = kgroup_person_attr_rel
     source_id = ks.get_id()
     with Session() as session:
@@ -189,7 +189,7 @@ def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
         assert source_from_db.id == ks.get_id()
 
 
-def test_insert_delete_previous_source(dbsystem, kgroup_nested):
+def test_insert_delete_previous_source(db_system, kgroup_nested):
     ks = kgroup_nested
     source_id = ks.get_id()
     with Session() as session:
@@ -222,7 +222,7 @@ def test_insert_delete_previous_source(dbsystem, kgroup_nested):
         assert len(contains) == 0, "import did not delete contained entities"
 
 
-def test_store_KGroup_1(dbsystem):
+def test_store_KGroup_1(db_system):
     kfonte: KGroup = KGroup.extend('fonte',
                                    position=['id', 'data'],
                                    also=['tipo',
