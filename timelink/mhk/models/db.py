@@ -1,8 +1,6 @@
-from typing import List
 from warnings import warn
 
-from sqlalchemy import MetaData, engine, create_engine, select, inspect, Table
-
+from sqlalchemy import MetaData, engine, create_engine, select, inspect
 from timelink.mhk.models import base, Session  # noqa
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
@@ -98,7 +96,7 @@ class TimelinkDB:
         """Return sqlalchemy metadata"""
         return self.metadata
 
-    def create_tables(self, bind, tables: List[Table] = []):
+    def create_tables(self, bind):
         """
         Creates the tables from the current ORM metadata if needed
 

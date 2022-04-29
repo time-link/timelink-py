@@ -288,8 +288,7 @@ class PomSomMapper(Entity):
         return self.orm_class
 
     @classmethod
-    def get_pom_classes(cls, session) -> Optional[
-        List["PomSomMapper"]]:
+    def get_pom_classes(cls, session) -> Optional[List["PomSomMapper"]]:
         """
         Get the pom_classes from database data.
 

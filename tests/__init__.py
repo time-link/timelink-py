@@ -1,9 +1,9 @@
 """Unit test package for timelink."""
 import os
 from pathlib import Path
+import pytest
 
 from sqlalchemy.orm import sessionmaker
-import pytest
 
 # See https://docs.sqlalchemy.org/en/14
 #      /orm/session_basics.html#when-do-i-make-a-sessionmaker
@@ -12,10 +12,9 @@ import pytest
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # conn_string local file version
-from pathlib import Path
 
-sqlite_db = Path(TEST_DIR, "/sqlite/test.db")
-conn_string = f'sqlite://{sqlite_db}?check_same_thread=False'
+sqlite_db = Path(TEST_DIR+ "/sqlite/test.db").absolute()
+conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 
 # con_string sqlite in memory version
 # conn_string = "sqlite://?check_same_thread=False"
