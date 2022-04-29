@@ -32,18 +32,21 @@ class TimelinkDB:
     conn_string = None
     metadata: MetaData = None
 
-    def __init__(self, conn_string=None, sql_echo=False):
+    def __init__(self, conn_string=None, **extra_args):
         """
         For the interaction of "engine" and "session" alternative
         configurations see
         https://docs.sqlalchemy.org/en/14/orm/session_basics.html
 
-        :param conn_string: a sqlalchemy connection URL, str.
+
+        Args:
+            conn_string: sqllchemy connection string
+            **extra_args: passed on to sqlalchemy create engine
         """
 
-        self.init_db(conn_string, sql_echo)
+        self.init_db(conn_string, **extra_args)
 
-    def init_db(self, conn_string, sql_echo=False):
+    def init_db(self, conn_string, **extra_args):
         """
         Create an engine from a connection string.
         Check if database is properly setup up
@@ -53,7 +56,7 @@ class TimelinkDB:
 
         Args:
             conn_string: SQLAlchemy connection string
-            sql_echo: if true ask sqlalchemy to echo statements
+            **extra_args: arguments passed to create_engine
 
         Returns:
             None
@@ -63,7 +66,7 @@ class TimelinkDB:
 
         if conn_string is not None:
             self.db_engine = create_engine(
-                conn_string or self.conn_string, future=True, echo=sql_echo
+                conn_string or self.conn_string, future=True, **extra_args
             )
             self.conn_string = conn_string
             self.metadata = Base.metadata
