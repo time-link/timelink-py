@@ -2,6 +2,10 @@
 History
 =======
 
+0.3.9 (2022-05-26)
+------------------
+*  Fix missing import in kleio.groups
+
 0.3.8 (2022-03-28)
 ------------------
 * Fix bug with Session import in mhk.models.db
