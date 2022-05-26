@@ -11,4 +11,4 @@ designed for processing person related information collected from historical sou
 
 __author__ = """Joaquim Ramos de Carvalho"""
 __email__ = 'joaquim@uc.pt'
-__version__ = '0.3.8'
+__version__ = '0.3.9'
