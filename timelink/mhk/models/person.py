@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.mhk.models.entity import Entity
+from timelink.kleio.utilities import quote_long_text
 
 
 class Person(Entity):
@@ -28,7 +29,7 @@ class Person(Entity):
         )
 
     def __str__(self):
-        r = f"{self.groupname}${self.name}/{self.sex}/id={self.id}"
+        r = f"{self.groupname}${quote_long_text(self.name)}/{quote_long_text(self.sex)}/id={quote_long_text(self.id)}"
         if self.obs is not None:
-            r = f"{r}/obs={self.obs}"
+            r = f"{r}/obs={quote_long_text(self.obs)}"
         return r

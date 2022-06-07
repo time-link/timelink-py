@@ -3,6 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
+from timelink.kleio.utilities import kleio_escape
 from timelink.mhk.models.base_class import Base
 
 
@@ -178,7 +179,7 @@ class Entity(Base):
         )
 
     def __str__(self):
-        return f"{self.groupname}${self.id}/type={self.pom_class}"
+        return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def to_kleio(self, ident="", ident_inc="  "):
         s = f"{ident}{str(self)}"

@@ -4,6 +4,7 @@ MIT License, no warranties.
 """
 from sqlalchemy import Column, String, ForeignKey
 
+from timelink.kleio.utilities import quote_long_text
 from timelink.mhk.models.entity import Entity
 
 
@@ -34,7 +35,7 @@ class Object(Entity):
             name = ""
         else:
             name = self.name + "/"
-        r = f'{self.groupname}${name}{self.the_type}/id={self.id}'
+        r = f'{self.groupname}${name}{quote_long_text(self.the_type)}/id={self.id}'
         if self.obs is not None:
-            r = (f'{r}  /obs={self.obs}')
+            r = (f'{r}  /obs={quote_long_text(self.obs)}')
         return r

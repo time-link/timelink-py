@@ -28,14 +28,20 @@ def dbsystem():
 @pytest.fixture
 def kgroup_person_attr_rel() -> KSource:
     """Returns a group wtih attr and rel"""
-    ks = KSource('s2', type='test', loc='auc', ref='attr-rel', obs='difficult')
+    ks = KSource('s2', type='test', loc='auc', ref='attr-rel', obs="""
+        This is a multiline obs with special characteres like /,= and $
+        """)
     ka1 = KAct('a2-1', 'test-act', date='2021-07-16',
                day=16, month=7, year=2021,
                loc='macau', ref='p.1', obs='Test Act')
     ks.include(ka1)
-    p1 = KPerson('Joaquim', 'm', 'p01-2')
+    p1 = KPerson('Joaquim', 'm', 'p01-2', obs="Living in Macau/China")
     p1.attr('residencia', 'Macau', date='2021-12-11')
-    p2 = KPerson('Margarida', 'f', 'p02-2')
+    mobs = """
+    Moving from Portugal
+    to Macau in 2022
+    """
+    p2 = KPerson('Margarida', 'f', 'p02-2', obs=mobs)
     p2.attr('residencia', 'Trouxemil', date='2020-10-18')
     p1.rel('parentesco', 'marido', p2.name, p2.id,
            date='2006-01-4', obs='Ilha Terceira')
@@ -62,7 +68,7 @@ def kgroup_nested() -> KSource:
     p2 = KPerson('Margarida', 'f', 'p02')
     p2.attr('residencia', 'Trouxemil', date='2020-10-18')
     p3 = KPerson('Pedro', 'm', 'p03')
-    p3.attr("residencia", "Rua Arménio RC", date='2021-10-21')
+    p3.attr("residencia", "Coimbra", date='2021-10-21')
 
     ka1.include(p3)
     p4 = KPerson("Maria", "f", "p04")
@@ -187,6 +193,12 @@ def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)
         assert source_from_db.id == ks.get_id()
+
+
+def test_quote_and_long_test(dbsystem, kgroup_person_attr_rel):
+    ks = kgroup_person_attr_rel
+    kleio = ks.to_kleio()
+    assert '"""' in kleio, "Bad handling of long text"
 
 
 def test_insert_delete_previous_source(dbsystem, kgroup_nested):

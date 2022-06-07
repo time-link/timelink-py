@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
+from timelink.kleio.utilities import quote_long_text
 from timelink.mhk.models.entity import Entity
 
 
@@ -36,10 +37,10 @@ class Attribute(Entity):
         )
 
     def __str__(self):
-        r = f'{self.groupname}${self.the_type}/{self.the_value}/'
+        r = f'{self.groupname}${quote_long_text(self.the_type)}/{quote_long_text(self.the_value)}/'
         r += f'{self.the_date}'
         if self.obs is not None:
-            r = f'{r}/obs={self.obs}'
+            r = f'{r}/obs={quote_long_text(self.obs)}'
         return r
 
 

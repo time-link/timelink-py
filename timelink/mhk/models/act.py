@@ -5,6 +5,7 @@ MIT License, no warranties.
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.mhk.models.entity import Entity
+from timelink.kleio.utilities import quote_long_text, kleio_escape
 
 
 class Act(Entity):
@@ -34,11 +35,11 @@ class Act(Entity):
         sr = super().__repr__()
         return (
             f"Act(id={sr}, "
-            f'the_type="{self.the_type}", '
+            f'the_type="{kleio_escape(self.the_type)}", '
             f'the_date="{self.the_date}", '
-            f'local="{self.loc}", '
-            f'ref="{self.ref}", '
-            f'obs="{self.obs}"'
+            f'local="{kleio_escape(self.loc)}", '
+            f'ref="{kleio_escape(self.ref)}", '
+            f'obs="{quote_long_text(self.obs)}"'
             f")"
         )
 
@@ -46,10 +47,10 @@ class Act(Entity):
         r = (
             f"{self.groupname}${self.id}"
             f"/{self.the_date}"
-            f"/type={self.the_type}"
-            f"/ref={self.ref}"
-            f"/loc={self.loc}"
+            f"/type={kleio_escape(self.the_type)}"
+            f"/ref={quote_long_text(self.ref)}"
+            f"/loc={quote_long_text(self.loc)}"
         )
         if self.obs is not None:
-            r = f"{r}/obs={self.obs}"
+            r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
