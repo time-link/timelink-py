@@ -2,6 +2,11 @@
 History
 =======
 
+0.3.10 (2022-06-07)
+-------------------
+* Fix to_kleio() in models: now generates quotes and
+  triple quotes when necessary.
+
 0.3.9 (2022-05-26)
 ------------------
 *  Fix missing import in kleio.groups
