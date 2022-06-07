@@ -19,6 +19,8 @@ def kleio_escape(v: str) -> str:
          "oops we have a / in the middle"
 
     """
+    if v is None:
+        return None
     s = str(v)
     if any(i in s for i in "/;=$#%\n"):
         return '"' + s + '"'
@@ -46,6 +48,8 @@ def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048) -> 
     :type width: int
     :rtype: str
     """
+    if txt is None:
+        return None
     if len(txt) > 127 or len(txt.splitlines()) > 1:
         s = '"""' + nl
         for line in txt.splitlines():
