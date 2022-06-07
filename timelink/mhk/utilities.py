@@ -72,7 +72,7 @@ def get_mhk_env() -> Type[Union[str, None]]:
     if is_mhk_installed():
         home_dir = str(Path.home())
         if home_dir is None:
-            warnings.warn("Could not bet a home directory")
+            warnings.warn("Could not get a home directory")
             return None
         else:
             env = get_env_as_dict(home_dir + "/.mhk")
