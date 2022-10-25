@@ -97,3 +97,7 @@ timelink/.DS_Store
 .DS_Store
 .idea
 tests/sqlite/test.db
+/tests/sqlite/database.db
+/tests/sqlite/sqlmodel.db
+/tests/sqlite/sqlmodel.db-journal
+/tests/sqlite/sqlmodel.sqbpro
