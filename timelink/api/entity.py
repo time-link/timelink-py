@@ -25,18 +25,24 @@ def create_db_and_tables():
 
 
 def create_root_entity():
-    root = Entity(id="*ROOT*")
+    root = Entity(id="*ROOT*", description="Root container for all entities")
 
-    session = Session(engine)
-    session.add(root)
+    with Session(engine) as session:
+        session.add(root)
 
-    session.commit()
+        session.commit()
+        print("After commit")
+        print("Root:", root)
+
+        print("Root description", root.description)
+    
+    print("Root description after session closes", root.description)
 
 
 def main():
     create_db_and_tables()
     create_root_entity()
-
+    
 
 if __name__ == "__main__":
     main()
