@@ -1,7 +1,6 @@
 from typing import Optional
 from sqlmodel import Field, Session, SQLModel, create_engine
 
-# set the table name to "classes" to match the Timelink-MHK database
 class PomSomMapper(SQLModel, table=True):
     """
 
@@ -16,4 +15,7 @@ class PomSomMapper(SQLModel, table=True):
     This class can generate tables and ORM objects that can
     store a Kleio Group in the database.
 """
+    # set the table name to "classes" to match the Timelink-MHK database
     __tablename__ = "classes"
+
+    
