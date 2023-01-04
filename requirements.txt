@@ -6,3 +6,4 @@ docker~=5.0.0
 typer~=0.4.0
 py-markdown-table
 mysql-connector-python~=8.0.25
+fastapi[all]~=0.88.0
