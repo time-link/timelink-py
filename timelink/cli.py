@@ -4,36 +4,38 @@ Also provides basic mhk manager functionality.
 
 Run with  python -m timelink.cli
 
-
 """
+import platform
 import uvicorn
 import typer
-import platform
 import docker
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
-from timelink.api import main as api_server
 
-server: uvicorn.Server = None # uvicorn server instance
+server: uvicorn.Server = None  # uvicorn server instance
 
 # We use Typer https://typer.tiangolo.com
 app = typer.Typer(help="Timelink and MHK manager")
 mhk_app = typer.Typer()
 app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
 
-@app.command("start")
-# see alternative methods 
+
+# Start server
+# see alternative methods
 # https://github.com/miguelgrinberg/python-socketio/issues/332#issuecomment-712928157
 # https://stackoverflow.com/questions/68603658/how-to-terminate-a-uvicorn-fastapi-application-cleanly-with-workers-2-when
 
+
+@app.command("start")
 def start():
     """Starts timelink with uvicorn"""
     typer.echo("Starting Timelink")
     config = uvicorn.Config("timelink.api.main:app", port=8000, reload=True)
-    
+
     global server
     server = uvicorn.Server(config)
     server.run()
     return 0
+
 
 @mhk_app.command(name="version")
 def mhk_version():
