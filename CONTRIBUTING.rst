@@ -141,7 +141,7 @@ If using `tox` to test with different versions of Python then
 you need to have the various Python interpreters installed.
 
 The `tox.ini` file specifies which version of Python will be used for
-tests. `pyenv` is used to install the different version.
+tests. `pyenv` is used to install the different versions.
 
 On MacOS you may get a zlib related error while installing Python versions with pyenv.
 Check  https://stackoverflow.com/questions/50036091/pyenv-zlib-error-on-macos
@@ -163,7 +163,7 @@ Example:
 
 .. code-block:: bash
 
-   pyenv local 3.6.0 3.7.0 3.8.0
+   pyenv local 3.8.16 3.9.0 3.10.0
    pip install tox
 
 The target
