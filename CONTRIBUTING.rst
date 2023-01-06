@@ -166,6 +166,14 @@ Example:
    pyenv local 3.8.16 3.9.0 3.10.0
    pip install tox
 
+Also, if tox complains of not finding the various Python versions then
+try to run `tox` with the `-e` option to specify the environment.  
+
+.. code-block:: bash
+
+   tox -e py39 # run tests with Python 3.9
+
+
 The target
 *test-all* triggers the test in the various versions.
 
