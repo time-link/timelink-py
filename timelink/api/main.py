@@ -64,14 +64,14 @@ async def search(search_request: SearchRequest):
     Returns:
         Search results
     """
-    result1 = SearchResults(id="jrc", 
-                            the_class="person", 
+    result1 = SearchResults(id="jrc",
+                            the_class="person",
                             description="Joaquim Carvalho: "+repr(search_request),
                             start_date=date(1958, 5, 24), end_date=date(2023, 1, 4))
-    result2 = SearchResults(id="mag",  
-                            the_class="person", 
+    result2 = SearchResults(id="mag",
+                            the_class="person",
                             description="Magda Carvalho: "+repr(search_request),
-                            start_date=date(1960, 1, 1), end_date=date(2023, 1, 4)) 
+                            start_date=date(1960, 1, 1), end_date=date(2023, 1, 4))
     return [result1, result2]
 
 
@@ -107,12 +107,6 @@ async def read_file(file_path: str):
 async def read_item(skip: int = 0, limit: int = 10):
     """Example of query parameters"""
     return fake_items_db[skip: skip + limit]
-
-
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    """Example of path parameters with type conversion"""
-    return {"item_id": item_id}
 
 
 @app.get("/items2/{item_id}")
