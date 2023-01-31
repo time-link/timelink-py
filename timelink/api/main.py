@@ -3,15 +3,20 @@ FastAPI app for timelink
 
 Following the tutorial at https://fastapi.tiangolo.com/tutorial/
 
-Currently at: https://fastapi.tiangolo.com/tutorial/body/
-Next: try to link to real database. See notebooks for examples.
+Finished: https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
+... jumped a few chapters
+Currently starting with: https://fastapi.tiangolo.com/tutorial/sql-databases/
 
+To Run
+    source venv/bin/activate
+    cd timelink/api/
+    uvicorn main:app --reload
 """
 from typing import List
 from enum import Enum
-from fastapi import FastAPI
-from pydantic import BaseModel
 from datetime import date
+from fastapi import FastAPI, Query
+from pydantic import BaseModel, Required
 
 
 class SearchRequest(BaseModel):
@@ -31,6 +36,41 @@ class SearchRequest(BaseModel):
     skip: int | None = 0
     limit: int | None = 100
 
+
+class ParType(str,Enum):
+
+    """Parameter type
+
+    Fields:
+        string: string
+        integer: integer
+        float: float
+        date: date
+        boolean: boolean
+        list: list
+    """
+    string = "string"
+    integer = "integer"
+    float = "float"
+    date = "date"
+    boolean = "boolean"
+    list = "list"
+
+
+class SysPar(BaseModel):
+    """System parameters in the Timelink app
+    
+    Fields:
+        pname: parameter name
+        pvalue: parameter value
+        ptype: parameter type
+        obs: parameter description
+    """
+
+    pname: str
+    pvalue: str
+    ptype: ParType
+    obs: str
 
 class SearchResults(BaseModel):
     """Search results
@@ -72,8 +112,45 @@ async def search(search_request: SearchRequest):
                             the_class="person",
                             description="Magda Carvalho: "+repr(search_request),
                             start_date=date(1960, 1, 1), end_date=date(2023, 1, 4))
-    return [result1, result2]
+    if search_request.q == "jrc":
+        return [result1]
+    elif search_request.q == "mag":
+        return [result2]
+    elif search_request.q == "both":
+        return [result1, result2]
+    return []
 
+@app.post("/syspars/")
+async def set_syspars(syspar: SysPar):
+    """Set system parameters
+
+    Args:
+        syspar: SysPar object
+
+    Returns:
+        SysPar object
+    """
+    return syspar
+
+@app.get("/syspars/")
+async def get_syspars(
+    q: list[str] 
+    | None = Query(
+        default = None,
+        title="Name of system parameter",
+        description="Multiple values allowed")):
+    """Get system parameters
+    
+    Args:
+        q: query string, multiple values allowed
+    
+    """
+    
+    results = {"syspars": [{"timeout": 10, "type": "integer", "obs": "Timeout in seconds"},
+                           {"localhost": "dev.timelink-mhk.net", "type": "string", "obs": "Local host name"}]}
+    if q:
+        results.update({"q": q})
+    return results
 
 # Tutorial
 class ModelName(str, Enum):
