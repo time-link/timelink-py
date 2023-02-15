@@ -3,7 +3,7 @@ FastAPI app for timelink
 
 Following the tutorial at https://fastapi.tiangolo.com/tutorial/
 
-Finished: https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
+Finished: Query Parameters and String Validations  https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
 ... jumped a few chapters
 Currently starting with: https://fastapi.tiangolo.com/tutorial/sql-databases/
 
@@ -59,7 +59,7 @@ class ParType(str,Enum):
 
 class SysPar(BaseModel):
     """System parameters in the Timelink app
-    
+
     Fields:
         pname: parameter name
         pvalue: parameter value
@@ -134,18 +134,18 @@ async def set_syspars(syspar: SysPar):
 
 @app.get("/syspars/")
 async def get_syspars(
-    q: list[str] 
+    q: list[str]
     | None = Query(
         default = None,
         title="Name of system parameter",
         description="Multiple values allowed")):
     """Get system parameters
-    
+
     Args:
         q: query string, multiple values allowed
-    
+
     """
-    
+
     results = {"syspars": [{"timeout": 10, "type": "integer", "obs": "Timeout in seconds"},
                            {"localhost": "dev.timelink-mhk.net", "type": "string", "obs": "Local host name"}]}
     if q:
