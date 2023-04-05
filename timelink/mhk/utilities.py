@@ -137,7 +137,7 @@ def get_dbnames():
     return result
 
 
-def get_db_pwd():
+def get_mhk_db_pwd():
     """
     Get the password of the database from the MHK environment
     """

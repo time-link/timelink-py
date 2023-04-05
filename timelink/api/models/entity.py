@@ -4,8 +4,7 @@ from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from timelink.kleio.utilities import kleio_escape
-from ..database import Base
-
+from .base_class import Base
 
 class Entity(Base):
     """ ORM Model root of the object hierarchy.

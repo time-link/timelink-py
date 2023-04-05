@@ -3,89 +3,48 @@ FastAPI app for timelink
 
 Following the tutorial at https://fastapi.tiangolo.com/tutorial/
 
-Finished: Query Parameters and String Validations  https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
+Finished: Query Parameters and String Validations
+* https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
+
 ... jumped a few chapters
-Currently starting with: https://fastapi.tiangolo.com/tutorial/sql-databases/
+Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
+* did set and get syspar, 
+* next is get and set syslog
 
 To Run
     source venv/bin/activate
     cd timelink/api/
     uvicorn main:app --reload
+
+To Test
+* http://127.0.0.1:8000/docs
+* http://127.0.0.1:8000/redoc
+
+To debug
+* https://fastapi.tiangolo.com/tutorial/debugging/
 """
-from typing import List
 from enum import Enum
+from typing import List
 from datetime import date
-from fastapi import FastAPI, Query
-from pydantic import BaseModel, Required
 
+import uvicorn # pylint: disable=import-error
+from fastapi import FastAPI, Query, Depends, HTTPException # pylint: disable=import-error
+from sqlalchemy.orm import Session # pylint: disable=import-error
+from timelink.api import models, crud, schemas
+from timelink.api.database import SessionLocal, engine
 
-class SearchRequest(BaseModel):
-    """Search request
-
-    Fields:
-        q: search query
-        after: date after which to search, possibly None
-        until: date until which to search, possibly None
-        skip: number of items to skip, default 0
-        limit: number of items to return, default 100
-
-    """
-    q: str
-    after: date | None = None  # see https://docs.pydantic.dev/usage/types/#datetime-types
-    until: date | None = None
-    skip: int | None = 0
-    limit: int | None = 100
-
-
-class ParType(str,Enum):
-
-    """Parameter type
-
-    Fields:
-        string: string
-        integer: integer
-        float: float
-        date: date
-        boolean: boolean
-        list: list
-    """
-    string = "string"
-    integer = "integer"
-    float = "float"
-    date = "date"
-    boolean = "boolean"
-    list = "list"
-
-
-class SysPar(BaseModel):
-    """System parameters in the Timelink app
-
-    Fields:
-        pname: parameter name
-        pvalue: parameter value
-        ptype: parameter type
-        obs: parameter description
-    """
-
-    pname: str
-    pvalue: str
-    ptype: ParType
-    obs: str
-
-class SearchResults(BaseModel):
-    """Search results
-
-    Fields:
-        results: list of search results
-    """
-    id: str
-    the_class: str
-    description: str
-    start_date: date
-    end_date: date
-
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @app.get("/")
@@ -94,8 +53,8 @@ async def root():
     return {"message": "Welcome to Timelink API"}
 
 
-@app.post("/search/", response_model=List[SearchResults])
-async def search(search_request: SearchRequest):
+@app.post("/search/", response_model=List[schemas.SearchResults])
+async def search(search_request: schemas.SearchRequest):
     """Search for items in the database.
 
     Args:
@@ -104,24 +63,25 @@ async def search(search_request: SearchRequest):
     Returns:
         Search results
     """
-    result1 = SearchResults(id="jrc",
+    result1 = schemas.SearchResults(id="jrc",
                             the_class="person",
                             description="Joaquim Carvalho: "+repr(search_request),
                             start_date=date(1958, 5, 24), end_date=date(2023, 1, 4))
-    result2 = SearchResults(id="mag",
+    result2 = schemas.SearchResults(id="mag",
                             the_class="person",
                             description="Magda Carvalho: "+repr(search_request),
                             start_date=date(1960, 1, 1), end_date=date(2023, 1, 4))
     if search_request.q == "jrc":
         return [result1]
-    elif search_request.q == "mag":
+    if search_request.q == "mag":
         return [result2]
-    elif search_request.q == "both":
+    if search_request.q == "both":
         return [result1, result2]
     return []
 
-@app.post("/syspars/")
-async def set_syspars(syspar: SysPar):
+@app.post("/syspar/", response_model=models.SysParSchema)
+async def set_syspar(syspar: models.SysParSchema, 
+                     db:Session = Depends(get_db)):
     """Set system parameters
 
     Args:
@@ -130,30 +90,28 @@ async def set_syspars(syspar: SysPar):
     Returns:
         SysPar object
     """
-    return syspar
+    return crud.set_syspar(db, syspar)
 
-@app.get("/syspars/")
+@app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
     q: list[str]
     | None = Query(
         default = None,
         title="Name of system parameter",
-        description="Multiple values allowed")):
+        description="Multiple values allowed, if empty return all"),
+        db: Session = Depends(get_db)):
     """Get system parameters
 
     Args:
-        q: query string, multiple values allowed
+        q: query string, multiple values allowed, if empty return all
 
     """
 
-    results = {"syspars": [{"timeout": 10, "type": "integer", "obs": "Timeout in seconds"},
-                           {"localhost": "dev.timelink-mhk.net", "type": "string", "obs": "Local host name"}]}
-    if q:
-        results.update({"q": q})
-    return results
+    return crud.get_syspar(db, q)
 
 # Tutorial
 class ModelName(str, Enum):
+    """Enum for model names"""
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
@@ -195,3 +153,6 @@ async def read_item2(item_id: str, q: str | None = None):
     if q:
         return {"item_id": item_id, "q": q}
     return {"item_id": item_id}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
