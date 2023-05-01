@@ -6,7 +6,7 @@ including for the classes that are used for database access.
 Another file, called models.py, is used in the tutorial 
 for the SQLAlchemy models.
 
-Here we use a module called "models" for the SQLAlchemy models and
+We use a module called "models" for the SQLAlchemy models and
 pydantic models for the API, and we put them together in each file
 of the "models" module.
 
