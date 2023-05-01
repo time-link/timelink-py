@@ -11,11 +11,12 @@ Tables defined here:
 from typing import List
 from enum import Enum
 from datetime import date, datetime
-from pydantic import BaseModel # pylint: disable=import-error
+from pydantic import BaseModel  # pylint: disable=import-error
 
-from sqlalchemy import Column, String, Integer, DateTime # pylint: disable=import-error
-from sqlalchemy.sql import func # pylint: disable=import-error
+from sqlalchemy import Column, String, Integer, DateTime  # pylint: disable=import-error
+from sqlalchemy.sql import func  # pylint: disable=import-error
 from .base_class import Base
+
 
 class SysPar(Base):
     """System parameters table"""
@@ -25,15 +26,8 @@ class SysPar(Base):
     ptype = Column(String)
     obs = Column(String)
 
-class SysLog(Base):
-    """System log table"""
-    seq = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    time = Column(DateTime, default=func.now())
-    level = Column(Integer)
-    origin = Column(String)
-    message = Column(String)
 
-class ParTypeSchema(str,Enum):
+class ParTypeSchema(str, Enum):
 
     """Parameter type
 
@@ -71,6 +65,40 @@ class SysParSchema(BaseModel):
     class Config:
         orm_mode = True
 
+
+class LogLevel(str, Enum):
+    """Log level
+
+    Fields:
+        debug: debug
+        info: info
+        warning: warning
+        error: error
+        critical: critical
+    """
+    debug = "debug"
+    info = "info"
+    warning = "warning"
+    error = "error"
+    critical = "critical"
+
+class SysLog(Base):
+    """System log table
+    
+    Fields:
+        seq: sequence number
+        time: time of log entry
+        level: log level
+        origin: origin of log entry
+        message: log message
+    """
+    seq = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    time = Column(DateTime, default=func.now())
+    level = Column(Integer)
+    origin = Column(String)
+    message = Column(String)
+
+
 class SysLogSchema(BaseModel):
     """System log in the Timelink app
 
@@ -84,7 +112,24 @@ class SysLogSchema(BaseModel):
 
     seq: int
     time: datetime
-    level: int
+    level: LogLevel
+    origin: str
+    message: str
+
+    class Config:
+        orm_mode = True
+
+
+class SysLogCreateSchema(BaseModel):
+    """System log create in the Timelink app
+
+    Fields:
+        level: log level
+        origin: origin of log entry
+        message: log message
+    """
+
+    level: LogLevel
     origin: str
     message: str
 
