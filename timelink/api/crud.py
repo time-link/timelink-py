@@ -27,7 +27,7 @@ def get_syspar(db: Session, q: list[str] | None = None):
         return db.query(models.SysPar).filter(models.SysPar.pname.in_(q)).all()
     return db.query(models.SysPar).all()
 
-def set_syspar(db: Session, syspar: models.SysParSchema):
+def set_syspar(db: Session, syspar: models.SysParSchema): # pylint: disable=invalid-name
     """Set system parameters
     Args:
         db: database session
@@ -50,7 +50,7 @@ def set_syspar(db: Session, syspar: models.SysParSchema):
     db.refresh(db_syspar)
     return db_syspar    
 
-def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]:
+def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]: # pylint: disable=invalid-name
     """Get last n system logs last one first
     Args:
         db: database session
@@ -58,10 +58,12 @@ def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]:
     Returns:
         List of SysLog objects
     """
-    return db.query(models.SysLog).order_by(models.SysLog.seq.desc()).limit(nlogs)
+    return db.query(models.SysLog).order_by(models.SysLog.seq.desc()).limit(nlogs).all()
+ 
 
-
-def get_syslog_by_time(db: Session, start_time: datetime, end_time: datetime) -> list[models.SysLog]:
+def get_syslog_by_time(db: Session, # pylint: disable=invalid-name
+                        start_time: datetime, 
+                        end_time: datetime) -> list[models.SysLog]:
     """Get system logs between start_time and end_time
     Args:
         db: database session
@@ -72,17 +74,15 @@ def get_syslog_by_time(db: Session, start_time: datetime, end_time: datetime) ->
     """
     return db.query(models.SysLog).filter(models.SysLog.time >= start_time).filter(models.system.SysLog.time <= end_time).all()
 
-def set_syslog(db: Session, origin: str, message: str, level: int) -> models.system.SysLog:
+def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.system.SysLog: # pylint: disable=invalid-name
     """Set system log
     Args:
         db: database session
-        origin: origin of the log message
-        message: log message
-        level: log level
+        log: SysLogCreateSchema object with level, origin and message
     Returns:
         SysLog object
     """
-    db_syslog = models.SysLog(origin=origin, message=message, level=level)
+    db_syslog = models.SysLog(origin=log.origin, message=log.message, level=log.level)
     db.add(db_syslog)
     db.commit()
     db.refresh(db_syslog)
