@@ -1,3 +1,5 @@
+# pylint: disable=import-error
+
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
@@ -5,20 +7,22 @@ from timelink.kleio.utilities import kleio_escape, quote_long_text
 from timelink.mhk.models.entity import Entity
 
 
-class Relation(Entity):  # should extend Entity but gives error
-
+class Relation(Entity):
+    """Represents a relation between two entities."""
+    __allow_unmapped__ = True
     __tablename__ = "relations"
+    __table_args__ = {'extend_existing': True}
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)
     # rel_entity = relationship("Entity",
     #                   foreign_keys='id',back_populates='rel')
     origin = Column(String, ForeignKey('entities.id'), index=True)
-    org = relationship(Entity, foreign_keys=[origin],
-                       back_populates='rels_out')
+    # org = relationship(Entity, foreign_keys=[origin],
+    #                   back_populates='rels_out')
 
     destination = Column(String, ForeignKey('entities.id'), index=True)
-    dest = relationship("Entity", foreign_keys=[destination],
-                        back_populates="rels_in")
+    # dest = relationship("Entity", foreign_keys=[destination],
+    #                    back_populates="rels_in")
     the_type = Column(String, index=True)
     the_value = Column(String, index=True)
     the_date = Column(String, index=True)
@@ -45,9 +49,9 @@ class Relation(Entity):  # should extend Entity but gives error
         )
 
     def __str__(self):
-        if self.dest is not None and self.dest.pom_class == "person":
+        if self.dest is not None and self.dest.pom_class == "person":  # pylint: disable=no-member
             r = (
-                f"rel${kleio_escape(self.the_type)}/{quote_long_text(self.the_value)}/{kleio_escape(self.dest.name)}"
+                f"rel${kleio_escape(self.the_type)}/{quote_long_text(self.the_value)}/{kleio_escape(self.dest.name)}"  # pylint: disable=no-member
                 f"/{self.destination}/{self.the_date}"
             )
         else:
@@ -61,7 +65,7 @@ class Relation(Entity):  # should extend Entity but gives error
 
 
 Entity.rels_out = relationship("Relation", foreign_keys=[Relation.origin],
-                               back_populates="dest")
+                               backref="dest")
 
 Entity.rels_in = relationship("Relation", foreign_keys=[Relation.destination],
-                              back_populates="org")
+                              backref="org")

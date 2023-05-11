@@ -1,3 +1,6 @@
+
+# pylint: disable=import-error
+
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 

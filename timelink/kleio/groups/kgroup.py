@@ -124,7 +124,7 @@ class KGroup:
 
     @pom_class_id.setter
     def pom_class_id(self, pcid):
-        self._pom_class_id = self.pack_as_kelement("pom_class_id")
+        self._pom_class_id = self.pack_as_kelement("pom_class_id", pcid)
 
     @classmethod
     def extend(cls,
@@ -555,7 +555,7 @@ class KGroup:
         elements_to_include = self.elements_allowed()
         if include_builtin:
             els = elements_to_include.union(set(self._builtin_elements)) \
-                  - set(['inside'])
+                - set(['inside'])
         for e in els:
             v: KElement = getattr(self, e, None)
             if v is not None:
@@ -657,7 +657,7 @@ class KGroup:
 
     def __str__(self, indent="", recurse=False):
         sname = getattr(self, "_name", self.__class__.__name__)
-        s = sname + "$"
+        s = str(sname) + "$"
         first = True
         out = []
         for e in self._position:
@@ -670,11 +670,11 @@ class KGroup:
                     first = False
                 out.append(e)
         more = sorted(
-                    list(
-                        set(self._guaranteed).union(set(self._also))
-                        .union(self._position).difference(out)
-                        )
-                    )
+            list(
+                set(self._guaranteed).union(set(self._also))
+                .union(self._position).difference(out)
+            )
+        )
         # print(more)
         if "obs" in more:  # we like obs elements at the end
             more.remove("obs")
@@ -682,15 +682,19 @@ class KGroup:
         for e in more:
             m: Union[KElement, str] = getattr(self, e, None)
             if m is not None and (
-                type(m) is str
-                and m > ""
-                or (issubclass(type(m), KElement) and m.to_kleio() > "")
+                type(m) is str and
+                m > "" or
+                (issubclass(type(m), KElement) and m.to_kleio() > "")
             ):
                 # m contains data, lets output
-                if not first:
-                    s = s + f"/{m.to_kleio()}"
+                if issubclass(type(m), KElement):
+                    v = m.to_kleio()
                 else:
-                    s = s + f"{m.to_kleio()}"
+                    v = KElement(e, m).to_kleio()
+                if not first:
+                    s = s + f"/{v}"
+                else:
+                    s = s + f"{v}"
                     first = False
 
         if recurse:
@@ -710,10 +714,28 @@ class KGroup:
         setattr(self, arg, el)
         self._elementsd[arg] = el
 
-    def pack_as_kelement(self, arg, value):
-        kelement = KElement.get_class_for(arg)
+    def pack_as_kelement(self, arg, value, element_class=None):
+        """ Packs value as a KElement with name arg
+
+        :param arg: name of element
+        :param value: value of element; can be a KElement, a tuple
+                      (core, cooment, original) or a value
+        :param element_class: class of element as string; if none arg is used to find class
+
+        TODO: the question is what is the class of the KElement to be stored
+        if value is a KElement then it already has a class
+       """
+        # TODO: this is wrong. if value is a KElement it should be stored as such
+
+        if element_class is None:
+            kelement = KElement.get_class_for(arg)
+        else:
+            kelement = KElement.get_class_for(element_class)
         if kelement is None and isinstance(value, KElement):
-            kelement = KElement.get_class_for(value.element_class)
+            if isinstance(value.element_class, KElement):
+                kelement = value.element_class
+            else:
+                kelement = KElement.get_class_for(value.element_class)
         if kelement is None:  # if there is no KElement class we create it
             kelement = KElement.extend(arg)
             warnings.warn(f"Created a KElement class for {arg}. "
@@ -729,7 +751,6 @@ class KGroup:
                           original=value.original
                           )
         else:
-            kelement = KElement.get_class_for(arg)
             comment = None
             original = None
             if type(value) is tuple and len(value) == 3:

@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey  # pylint: disable=import-error
+from sqlalchemy.orm import relationship, backref  # pylint: disable=import-error
 
 from timelink.kleio.utilities import kleio_escape
 from timelink.mhk.models.base_class import Base
@@ -46,7 +46,6 @@ class Entity(Base):
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
-
     # this based on
     # https://stackoverflow.com/questions/28843254
     #: list(Entity): list of Entity objects contained in this entity

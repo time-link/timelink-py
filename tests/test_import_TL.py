@@ -1,13 +1,15 @@
+# pylint: disable=import-error
+
 from pathlib import Path
 
 import pytest
 
 from tests import Session, skip_on_travis, TEST_DIR, conn_string
 from timelink.kleio.importer import import_from_xml
-from timelink.mhk.models import base  # noqa
-from timelink.mhk.models.base import Person
-from timelink.mhk.models.db import TimelinkDB
-from timelink.mhk.models.entity import Entity
+from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
+from timelink.api.models.base import Person
+from timelink.api.database import TimelinkDatabase
+from timelink.api.models.entity import Entity
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
@@ -15,7 +17,7 @@ pytestmark = skip_on_travis
 
 @pytest.fixture(scope="module")
 def dbsystem():
-    db = TimelinkDB(conn_string)
+    db = TimelinkDatabase(db_url=conn_string)
     Session.configure(bind=db.get_engine())
     yield db
     with Session() as session:

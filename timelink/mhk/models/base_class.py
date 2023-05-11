@@ -1,7 +1,10 @@
 # Base class, all modules must import this to share Metadata
-from typing import Any
 
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
+# pylint: disable=import-error
+
+from typing import Any
+from sqlalchemy.orm import as_declarative
+from sqlalchemy.orm import declared_attr
 
 
 @as_declarative()
@@ -11,5 +14,5 @@ class Base:
 
     # Generate __tablename__ automatically
     @declared_attr
-    def __tablename__(cls) -> str:
+    def __tablename__(cls) -> str:  # pylint: disable=no-self-argument
         return cls.__name__.lower()

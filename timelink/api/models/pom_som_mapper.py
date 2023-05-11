@@ -1,13 +1,23 @@
+""" Mapping between Kleio Groups and relational database tables"""
+
 import logging
 import warnings
 from typing import Optional, Type, List
 
-from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
-    select
-from sqlalchemy import inspect
-from sqlalchemy.engine import Engine
-from sqlalchemy.orm import relationship
-from sqlalchemy import exc as sa_exc
+from sqlalchemy import Table            # pylint: disable=import-error
+from sqlalchemy import Column           # pylint: disable=import-error
+from sqlalchemy import ForeignKey       # pylint: disable=import-error
+from sqlalchemy import String           # pylint: disable=import-error
+from sqlalchemy import Integer          # pylint: disable=import-error
+from sqlalchemy import Float            # pylint: disable=import-error
+
+from sqlalchemy import inspect              # pylint: disable=import-error
+from sqlalchemy.engine import Engine        # pylint: disable=import-error
+from sqlalchemy.orm import Mapped           # pylint: disable=import-error
+from sqlalchemy.orm import mapped_column    # pylint: disable=import-error
+from sqlalchemy.orm import relationship     # pylint: disable=import-error
+from sqlalchemy import exc as sa_exc        # pylint: disable=import-error
+from sqlalchemy import select               # pylint: disable=import-error
 
 from ...kleio.groups import KGroup, KElement
 from .base_class import Base
@@ -52,7 +62,7 @@ class PomSomMapper(Entity):
 
     1. The tables "classes" and "class_attributes" contain the mapping
        information, normally populated during the initialization process of
-       the database (DBSystem.db_init) and updated during import,
+       the database (timelink.api.models.basemappings.py) and updated during import,
        as new sources define new mappings dynamically.
 
     2. A table for storing the elements of the Som Group.
@@ -80,10 +90,10 @@ class PomSomMapper(Entity):
     tables "classes" and "class_attributes" must be populated with the mapping
     of the core Som and Pom groups and entities.
 
-    See timelink.models.base_mappings.py for the core data for
+    See timelink.api.models.base_mappings.py for the core data for
     bootstrapping of the mapping information.
 
-    Both steps are ensured by DBSystem.init_db
+    Both steps are ensured by TimelinkDatabase.__init__ method.
 
     2. When importing new sources, if a new mapping was generated at the
        translation step, it is necessary first to populate "classes" and
@@ -103,10 +113,11 @@ class PomSomMapper(Entity):
 
     __tablename__ = "classes"
 
-    id = Column(String, ForeignKey("entities.id"), primary_key=True)
-    table_name = Column(String)
-    group_name = Column("group_name", String(32))
-    super_class = Column("super", String)
+    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id"), primary_key=True)
+    table_name: Mapped[str] = mapped_column(String, nullable=False)
+    group_name: Mapped[Optional[str]] = mapped_column("group_name", String(32))
+    super_class: Mapped[Optional[str]] = mapped_column("super", String)
+
     __mapper_args__ = {
         "polymorphic_identity": "class",
         "inherit_condition": id == Entity.id,
@@ -276,8 +287,8 @@ class PomSomMapper(Entity):
                 # specialized classes (obs normally, but also the_type...)
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except Exception as e:
-            logging.ERROR(
+        except Exception as e:          #pylint: disable=broad-except
+            logger.ERROR(
                 Exception(f"Could not create ORM mapping for {self.id}"), e)
 
         self.orm_class = my_orm
@@ -318,7 +329,7 @@ class PomSomMapper(Entity):
         if cls.pom_classes and len(cls.pom_classes) > 0:
             pass
         else:
-            cls.get_pom_classes()
+            cls.get_pom_classes(session)
         return list(cls.pom_classes.keys())
 
     @classmethod
@@ -334,6 +345,7 @@ class PomSomMapper(Entity):
 
     @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
+        """ Returns the PomSomMapper for a given group"""
         # TODO use property instead
         pom_id = getattr(group, "_pom_class_id", None)
         if pom_id is None:
@@ -345,8 +357,7 @@ class PomSomMapper(Entity):
                     break
         if pom_id:
             return cls.get_pom_class(pom_id, session)
-        else:
-            return None
+        return None
 
     @classmethod
     def ensure_all_mappings(cls, session):
@@ -422,7 +433,7 @@ class PomSomMapper(Entity):
                         f""" of class {pom_class.id} """
                         f"""with element {element.name}"""
                         f""" of group {group.kname}:{group.id}: {e} """
-                    )
+                    ) from e
 
         # positional information in the original file
         entity_from_group.the_line = group.line
@@ -438,9 +449,19 @@ class PomSomMapper(Entity):
         return entity_from_group
 
     @classmethod
-    def store_KGroup(cls, group: KGroup, session, with_pom=None):
+    def store_KGroup(cls, group: KGroup, session, with_pom = None):
+        """ Store a Kleio Group in the database
+        
+        Will recursively store all the groups included in this group.
+        
+        If the group is already in the database it will be deleted, as well
+        as all included groups.
+
+        This is the main method that import Kleio transcripts into the database.
+        """
         entity_from_group: Entity = cls.kgroup_to_entity(group, session)
         exists = session.get(entity_from_group.__class__, entity_from_group.id)
+
         if exists is not None:
             session.delete(exists)
             session.commit()
@@ -448,7 +469,7 @@ class PomSomMapper(Entity):
         try:
             session.add(entity_from_group)
             session.commit()
-        except Exception as e:
+        except Exception as e:      # pylint: disable=broad-except
             print(e)
 
         in_group: KGroup
@@ -457,7 +478,7 @@ class PomSomMapper(Entity):
 
         try:
             session.commit()
-        except Exception as e:
+        except Exception as e:      # pylint: disable=broad-except
             print(e)
 
     def __repr__(self):
@@ -480,7 +501,7 @@ class PomSomMapper(Entity):
         return r
 
 
-class PomClassAttributes(Base):
+class PomClassAttributes(Base):     # pylint: disable=too-few-public-methods
     """
     Attribute of a PomClass. Maps kleio group element to table columns
 

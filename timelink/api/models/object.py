@@ -2,13 +2,10 @@
 (c) Joaquim Carvalho 2021.
 MIT License, no warranties.
 """
-# pylint: disable=import-error
-
-
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.kleio.utilities import quote_long_text
-from timelink.mhk.models.entity import Entity
+from timelink.api.models.entity import Entity
 
 
 class Object(Entity):

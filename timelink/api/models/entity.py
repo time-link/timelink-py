@@ -1,10 +1,22 @@
+from typing import List, Optional
 from datetime import datetime
 
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship, backref
+# for sqlalchemy 2.0 ORM
+# see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
+# and https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table
+
+from sqlalchemy import ForeignKey       # pylint: disable=import-error
+from sqlalchemy import String           # pylint: disable=import-error
+from sqlalchemy import Integer          # pylint: disable=import-error
+from sqlalchemy import DateTime         # pylint: disable=import-error
+from sqlalchemy.orm import backref  # pylint: disable=import-error
+from sqlalchemy.orm import Mapped        # pylint: disable=import-error
+from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
+from sqlalchemy.orm import relationship  # pylint: disable=import-error
 
 from timelink.kleio.utilities import kleio_escape
 from .base_class import Base
+
 
 class Entity(Base):
     """ ORM Model root of the object hierarchy.
@@ -15,32 +27,38 @@ class Entity(Base):
 
     This corresponds to the model described as "Joined Table Inheritance"
     in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
+
+    TODO: specialize in TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
+         Acts, Sources, Attributes and Relations are TemporalEntities
      """
     __tablename__ = "entities"
+    __allow_unmapped__ = True
 
     #: str: unique identifier for the entity
-    id = Column(String, primary_key=True)
+    id: Mapped[str] = mapped_column(primary_key=True)
     #: str: name of the class. Links to pom_som_mapper class
-    pom_class = Column('class',
-                       String,
-                       ForeignKey('classes.id', use_alter=True),
-                       index=True
-                       )
+    # TODO: https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
+    pom_class: Mapped[str] = mapped_column('class',
+                                           String,
+                                           ForeignKey('classes.id', use_alter=True),
+                                           index=True
+                                           )
     #: str: id of the entity inside which this occurred.
-    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'),
-                    index=True)
+    inside: Mapped[Optional[str]] = mapped_column(String,
+                                        ForeignKey('entities.id', ondelete='CASCADE'),
+                                        index=True)
     #: int: sequential order of this entity in the source
-    the_order = Column(Integer)
+    the_order = mapped_column(Integer, nullable=True)
     #: int: the nesting level of this entity in the source
-    the_level = Column(Integer)
+    the_level = mapped_column(Integer, nullable=True)
     #: int: line in which the entity occurred in the source
-    the_line = Column(Integer)
+    the_line = mapped_column(Integer, nullable=True)
     #: str: name of the kleio group that produced this entity
-    groupname = Column(String, index=True)
+    groupname = mapped_column(String, index=True, nullable=True)
     #: datetime: when this entity was updated in the database
-    updated = Column(DateTime, default=datetime.utcnow, index=True)
+    updated = mapped_column(DateTime, default=datetime.utcnow, index=True)
     #: datetime: when this entity was added to the full text index
-    indexed = Column(DateTime, index=True)
+    indexed = mapped_column(DateTime, index=True, nullable=True)
 
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
@@ -49,10 +67,10 @@ class Entity(Base):
     # this based on
     # https://stackoverflow.com/questions/28843254
     #: list(Entity): list of Entity objects contained in this entity
-    contains = relationship("Entity",
-                            backref=backref("contained_by",
-                                            remote_side="Entity.id"),
-                            cascade="all")
+    contains: Mapped[List["Entity"]] = relationship("Entity",
+                                                    backref=backref("contained_by",
+                                                                    remote_side="Entity.id"),
+                                                    cascade="all")
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class

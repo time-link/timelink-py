@@ -1,21 +1,20 @@
-# pylint: disable=import-error
+from typing import Optional
 
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import String, ForeignKey
+from sqlalchemy.orm import mapped_column, Mapped
 
-from timelink.mhk.models.entity import Entity
+from timelink.api.models.entity import Entity
 from timelink.kleio.utilities import quote_long_text
 
 
 class Person(Entity):
-    """Represents a person."""
+    """Represents a person in a historical source"""
     __tablename__ = "persons"
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
-    name = Column(String, index=True)
-    id = Column(String, ForeignKey("entities.id"), primary_key=True)
-    name = Column(String)
-    sex = Column(String(1))
-    obs = Column(String)
+    id: Mapped[str] = mapped_column(String, ForeignKey('entities.id'), primary_key=True)
+    name: Mapped[Optional[str]]= mapped_column(String, index=True)
+    sex: Mapped[Optional[str]] = mapped_column(String(1))
+    obs: Mapped[Optional[str]] = mapped_column(String)
 
     __mapper_args__ = {
         'polymorphic_identity': 'person'

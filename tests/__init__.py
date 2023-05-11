@@ -1,4 +1,5 @@
 """Unit test package for timelink."""
+# pylint: disable=unused-import, import-error
 import os
 from pathlib import Path
 

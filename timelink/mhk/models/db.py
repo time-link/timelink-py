@@ -1,7 +1,10 @@
-from warnings import warn
+# pylint: disable=import-error
+# pylint: disable=no-member
 
-from sqlalchemy import MetaData, engine, create_engine, select, inspect
-from timelink.mhk.models import base, Session  # noqa
+from warnings import warn
+from sqlalchemy import MetaData, engine, create_engine, select, inspect  # pylint: disable=unused-import
+
+from timelink.mhk.models import Session  # noqa
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
@@ -9,7 +12,7 @@ from timelink.mhk.models.base_mappings import pom_som_base_mappings
 SQLALCHEMY_ECHO = False
 
 
-class TimelinkDB:
+class TimelinkMHK:
     """
     Provide access to a Timelink-MHK database
 
@@ -19,8 +22,6 @@ class TimelinkDB:
         from timelink.mhk.model.db import TimelinkDB
 
         dbsys = TimelinkDB("sql alchemy connection string")
-
-
 
     """
 
@@ -66,9 +67,7 @@ class TimelinkDB:
             session.rollback()
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
-            1 + 1
             session.commit()
-            2 + 2
 
     def get_engine(self) -> engine:
         """Return sqlalchemy engine"""
@@ -90,7 +89,7 @@ class TimelinkDB:
 
         :return: None
         """
-        self.metadata = Base.metadata
+        self.metadata = Base.metadata  # pylint: disable=
         self.metadata.create_all(self.db_engine)  # only creates if missing
 
     def load_database_classes(self, session):
@@ -110,8 +109,8 @@ class TimelinkDB:
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for k in pom_som_base_mappings.keys():
-            if k not in available_mappings:
+        for k in pom_som_base_mappings.keys():  # pylint: disable=consider-iterating-dictionary, consider-using-dict-items
+            if k not in available_mappings:     # pylint: disable=consider-using-dict-items
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)
         # this will cache the pomsom mapper objects
@@ -139,5 +138,5 @@ class TimelinkDB:
         session.rollback()
         self.load_database_classes(session)
         self.ensure_all_mappings(session)
-        self.metadata = Base.metadata
+        self.metadata = Base.metadata  # pylint: disable=ignore-no-member
         self.metadata.drop_all(self.db_engine)

@@ -2,6 +2,8 @@ import logging
 import warnings
 from typing import Optional, Type, List
 
+# pylint: disable=import-error
+
 from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
     select
 from sqlalchemy import inspect
@@ -102,6 +104,7 @@ class PomSomMapper(Entity):
     """
 
     __tablename__ = "classes"
+    __allow_unmapped__ = True
 
     id = Column(String, ForeignKey("entities.id"), primary_key=True)
     table_name = Column(String)
@@ -159,7 +162,7 @@ class PomSomMapper(Entity):
         # Note that non core PomSomMappings and corresponding ORM classes,
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
-        metadata_obj = type(self).metadata
+        metadata_obj = type(self).metadata  # pylint: disable=no-member
         pytables = metadata_obj.tables  # these are the tables known to ORM
 
         dbengine: Engine = session.get_bind()
@@ -212,7 +215,7 @@ class PomSomMapper(Entity):
             my_table = Table(self.table_name, metadata_obj,
                              extend_existing=True)
             cattr: Type["PomClassAttributes"]
-            for cattr in self.class_attributes:
+            for cattr in self.class_attributes:  # pylint: disable=no-member
                 PyType: str
                 pom_type = cattr.coltype.lower()
                 if pom_type == "varchar":
@@ -276,17 +279,16 @@ class PomSomMapper(Entity):
                 # specialized classes (obs normally, but also the_type...)
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except Exception as e:
-            logging.ERROR(
-                Exception(f"Could not create ORM mapping for {self.id}"), e)
+        except Exception as exc:
+            logger.ERROR(
+                Exception(f"Could not create ORM mapping for {self.id}"), exc)
 
         self.orm_class = my_orm
 
         return self.orm_class
 
     @classmethod
-    def get_pom_classes(cls, session) -> Optional[
-                                                 List["PomSomMapper"]]:
+    def get_pom_classes(cls, session) -> Optional[List["PomSomMapper"]]:
         """
         Get the pom_classes from database data.
 
@@ -318,7 +320,7 @@ class PomSomMapper(Entity):
         if cls.pom_classes and len(cls.pom_classes) > 0:
             pass
         else:
-            cls.get_pom_classes()
+            cls.get_pom_classes(session)
         return list(cls.pom_classes.keys())
 
     @classmethod
@@ -368,7 +370,7 @@ class PomSomMapper(Entity):
         :return: the name of the column corresponding to this element in the
         mapped table.
         """
-        cattr: PomClassAttributes = self.class_attributes.filter(
+        cattr: PomClassAttributes = self.class_attributes.filter(  # pylint: disable=no-member
             PomClassAttributes.pom_class == eclass
         )
         return cattr.colname
@@ -416,13 +418,13 @@ class PomSomMapper(Entity):
                 try:
                     setattr(entity_from_group, cattr.colname,
                             str(element.core))
-                except Exception as e:
+                except Exception as exc:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
                         f""" of class {pom_class.id} """
                         f"""with element {element.name}"""
-                        f""" of group {group.kname}:{group.id}: {e} """
-                    )
+                        f""" of group {group.kname}:{group.id}: {exc} """
+                    ) from exc
 
         # positional information in the original file
         entity_from_group.the_line = group.line
@@ -448,8 +450,8 @@ class PomSomMapper(Entity):
         try:
             session.add(entity_from_group)
             session.commit()
-        except Exception as e:
-            print(e)
+        except Exception as exc:
+            print(exc)
 
         in_group: KGroup
         for in_group in group.includes():
@@ -457,8 +459,8 @@ class PomSomMapper(Entity):
 
         try:
             session.commit()
-        except Exception as e:
-            print(e)
+        except Exception as exc:
+            print(exc)
 
     def __repr__(self):
         return (
@@ -471,7 +473,7 @@ class PomSomMapper(Entity):
 
     def __str__(self):
         r = f"{self.id} table {self.table_name} super {self.super_class}\n"
-        for cattr in self.class_attributes:
+        for cattr in self.class_attributes:  # pylint: disable=no-member
             r = r + f'{cattr.the_class}.{cattr.name} \t'
             r = r + f'class {cattr.colclass} \t'
             r = r + f'col {cattr.colname} \ttype {cattr.coltype} '

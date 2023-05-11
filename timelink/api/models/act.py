@@ -1,12 +1,19 @@
 """ Implementation of Acts in POM model
-(c) Joaquim Carvalho 2021.
+(c) Joaquim Carvalho 2023.
 MIT License, no warranties.
 """
-# pylint: disable=import-error
-from sqlalchemy import Column, String, ForeignKey
+# for sqlalchemy 2.0 ORM
+# see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
+# and https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table
 
-from timelink.mhk.models.entity import Entity
+from sqlalchemy import ForeignKey       # pylint: disable=import-error
+from sqlalchemy import String           # pylint: disable=import-error
+from sqlalchemy.orm import Mapped        # pylint: disable=import-error
+from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
+
 from timelink.kleio.utilities import quote_long_text, kleio_escape
+
+from .entity import Entity
 
 
 class Act(Entity):
@@ -14,25 +21,27 @@ class Act(Entity):
 
     Examples of acts are: baptisms, marriages, purchase deeds, wills,
     court records.
+
+    TODO: implement https://github.com/time-link/timelink-kleio/issues/1
     """
 
     __tablename__ = "acts"
 
     #: str:  a string uniquely identifying the act
-    id = Column(String, ForeignKey("entities.id"), primary_key=True)
-    #: str: the type of the act
-    the_type = Column(String(32))
+    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id"), primary_key=True)
+    the_type: Mapped[str] = mapped_column(String(32), comment="type of act")
     #: str: the date of the act in Kleio format AAAAMMDD
-    the_date = Column(String, index=True)
+    the_date: Mapped[str] = mapped_column(String, index=True, 
+                                          comment="the date of the act in Kleio format AAAAMMDD")
     #: str: location of the act, eg church, notary office
-    loc = Column(String)
-    ref = Column(String)  #: str: archival reference
-    obs = Column(String)  #: any observations or comments.
+    loc: Mapped[str] = mapped_column(String, nullable=True)
+    ref: Mapped[str] = mapped_column(String, nullable=True)  #: str: archival reference
+    obs: Mapped[str] = mapped_column(String,nullable=True)  #: any observations or comments.
 
     __mapper_args__ = {"polymorphic_identity": "act"}
 
     def __repr__(self):
-        """String can be used to instantiate an Act"""
+        """Expression that can be used to instantiate an Act"""
         sr = super().__repr__()
         return (
             f"Act(id={sr}, "

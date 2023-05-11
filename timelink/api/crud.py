@@ -1,17 +1,8 @@
 """ CRUD operations for the timelink API. """
 from datetime import datetime
 from sqlalchemy.orm import Session # pylint: disable=import-error
-from timelink.api import models, schemas
+from timelink.api import models
 
-def get_syspar(db: Session, pname: str):
-    """Get system parameter
-    Args:
-        db: database session
-        pname: parameter name
-    Returns:
-        SysPar object
-    """
-    return db.query(models.SysPar).filter(models.SysPar.pname == pname).first()
 
 def get_syspar(db: Session, q: list[str] | None = None):
     """Get system parameters
@@ -26,6 +17,7 @@ def get_syspar(db: Session, q: list[str] | None = None):
             q = [q]
         return db.query(models.SysPar).filter(models.SysPar.pname.in_(q)).all()
     return db.query(models.SysPar).all()
+
 
 def set_syspar(db: Session, syspar: models.SysParSchema): # pylint: disable=invalid-name
     """Set system parameters
@@ -50,6 +42,7 @@ def set_syspar(db: Session, syspar: models.SysParSchema): # pylint: disable=inva
     db.refresh(db_syspar)
     return db_syspar    
 
+
 def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]: # pylint: disable=invalid-name
     """Get last n system logs last one first
     Args:
@@ -59,7 +52,7 @@ def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]: # pylint: disabl
         List of SysLog objects
     """
     return db.query(models.SysLog).order_by(models.SysLog.seq.desc()).limit(nlogs).all()
- 
+
 
 def get_syslog_by_time(db: Session, # pylint: disable=invalid-name
                         start_time: datetime, 
@@ -73,6 +66,7 @@ def get_syslog_by_time(db: Session, # pylint: disable=invalid-name
         List of SysLog objects
     """
     return db.query(models.SysLog).filter(models.SysLog.time >= start_time).filter(models.system.SysLog.time <= end_time).all()
+
 
 def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.system.SysLog: # pylint: disable=invalid-name
     """Set system log

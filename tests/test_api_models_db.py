@@ -1,30 +1,30 @@
 import os
 
-# pylint: disable=import-error
-
-import pytest
+import pytest           # pylint: disable=import-error
 
 # Session is shared by all tests
 from tests import Session
 from tests import skip_on_travis, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
-from timelink.mhk.models import base  # pylint: disable=unused-import. # noqa: F401
-from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.db import TimelinkMHK
-from timelink.mhk.models.entity import Entity  # noqa
-from timelink.mhk.models.pom_som_mapper import PomSomMapper
-from timelink.mhk.models.source import Source
+from timelink.api.models import base  # noqa
+from timelink.api.models.base_class import Base
+from timelink.api.database import TimelinkDatabase
+from timelink.api.models.entity import Entity  # noqa
+from timelink.api.models.pom_som_mapper import PomSomMapper
+from timelink.api.models.source import Source
 
 pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
-def dbsystem():
-    db = TimelinkMHK(conn_string)
-    Session.configure(bind=db.get_engine())
-    yield db
-    with Session() as session:
-        db.drop_db(session)
+def get_db() -> TimelinkDatabase:
+    """Returns a database connection"""
+    database = TimelinkDatabase(db_url=conn_string)
+    try:
+        yield database
+    finally:
+        with database.session() as db:
+            database.drop_db(db)
 
 
 @pytest.fixture
@@ -45,7 +45,7 @@ def kgroup_person_attr_rel() -> KSource:
     """
     p2 = KPerson('Margarida', 'f', 'p02-2', obs=mobs)
     p2.attr('residencia', 'Trouxemil', date='2020-10-18')
-    p1.rel('parentesco', 'marido', p2.name, p2.id,  # pylint: disable=no-member
+    p1.rel('parentesco', 'marido', p2.name, p2.id,
            date='2006-01-4', obs='Ilha Terceira')
     ka1.include(p2)
     ka1.include(p1)
@@ -54,7 +54,10 @@ def kgroup_person_attr_rel() -> KSource:
 
 @pytest.fixture
 def kgroup_nested() -> KSource:
-    """Returns a nested structure"""
+    """Returns a nested Kleio structure
+
+    This is a nested Kleio Group Source/Act/Person/Attribute
+    """
     ks = KSource('s1', type='test', loc='auc', ref='alumni', obs='Nested')
     ka1 = KAct('a1', 'test-act', date='2021-07-16',
                day=16, month=7, year=2021,
@@ -72,6 +75,8 @@ def kgroup_nested() -> KSource:
     p3 = KPerson('Pedro', 'm', 'p03')
     p3.attr("residencia", "Coimbra", date='2021-10-21')
 
+    ka1.include(p1)
+    ka1.include(p2)
     ka1.include(p3)
     p4 = KPerson("Maria", "f", "p04")
     p5 = KPerson("Manuel", "m", "p05")
@@ -87,15 +92,26 @@ def test_succeed_if_not_in_travis():
     assert os.getenv("TRAVIS") != 'true'
 
 
-def test_create_db(dbsystem):
+def test_create_db(get_db):
     # Database is created and initialized in the fixture
-    metadata = Base.metadata  # pylint: disable=no-member
+    metadata = Base.metadata
     tables = list(metadata.tables.keys())
     assert len(tables) > 0, "tables where not created"
 
 
 @skip_on_travis
-def test_entity_contains(dbsystem):
+def test_entity_contains(get_db):
+    """Test entity contains relationship
+
+    In this test four entities are created 
+    with one containing two others and one of the contained
+    entities containing the fourth entity.
+
+    Note that adding the top level entity 
+    to the session will add all entities to the session
+    and deleting the top level entity will delete all entities.
+
+    """
     ent1: Entity = Entity(id='e001', groupname='entity')
     ent1.pom_class = 'entity'
     ent1.line = 1
@@ -126,12 +142,10 @@ def test_entity_contains(dbsystem):
     ent4.sequence = 4
     ent2.contains.append(ent4)
 
-    with Session() as session:
-        session.add(ent1)
-        session.add(ent2)
-        session.add(ent3)
+    with get_db.session() as session:
+        session.add(ent1)           # this adds the four entities to the database
         session.commit()
-        ent4 = ent2.contained_by  # pylint: disable=no-member
+        ent4 = ent2.contained_by    # pylint: disable=no-member
         assert ent4 is ent1
         ent5 = ent1.contains[1]
         assert ent5 is ent3
@@ -141,8 +155,16 @@ def test_entity_contains(dbsystem):
         assert deleted is None, "Should have deleted orphan"
 
 
-def test_ensure_mapping(dbsystem):
-    with Session() as session:
+def test_ensure_mapping(get_db):
+    """Test that all classes registered in the classes table are mapped to ORM
+
+    During database initialization, the classes and class_attributes tables
+    is populated with definitions of base classes. Also in the timelink.api.models
+    package, the base classes are defined as ORM classes. This test checks that
+    all classes in the classes table are mapped to ORM classes.
+
+    """
+    with get_db.session() as session:
         pom_classes = PomSomMapper.get_pom_classes(session=session)
         pom_ids = PomSomMapper.get_pom_class_ids(session=session)
         pom_tables = [pom_class.table_name for pom_class in pom_classes]
@@ -158,7 +180,7 @@ def test_ensure_mapping(dbsystem):
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
         assert len(
             tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
-        db_tables = dbsystem.table_names()
+        db_tables = get_db.table_names()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
         assert len(
             tables_not_in_db) == 0, \
@@ -166,10 +188,11 @@ def test_ensure_mapping(dbsystem):
         session.close()
 
 
-def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
+def test_insert_nested_groups(get_db, kgroup_nested):
+    """Test inserting a nested Kleio group"""
     ks = kgroup_nested
     source_id = ks.get_id()
-    with Session() as session:
+    with get_db.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db: Source = Entity.get_entity(source_id, session)
@@ -187,26 +210,27 @@ def test_insert_entities_nested_groups(dbsystem, kgroup_nested):
         assert str(person)
 
 
-def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
+def test_insert_entities_attr_rel(get_db, kgroup_person_attr_rel):
+    """ Test inserting a group with attributes and relationships"""
     ks = kgroup_person_attr_rel
     source_id = ks.get_id()
-    with Session() as session:
+    with get_db.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)
         assert source_from_db.id == ks.get_id()
 
 
-def test_quote_and_long_test(dbsystem, kgroup_person_attr_rel):
+def test_quote_and_long_test(kgroup_person_attr_rel):
     ks = kgroup_person_attr_rel
     kleio = ks.to_kleio()
     assert '"""' in kleio, "Bad handling of long text"
 
 
-def test_insert_delete_previous_source(dbsystem, kgroup_nested):
+def test_insert_delete_previous_source(get_db, kgroup_nested):
     ks = kgroup_nested
     source_id = ks.get_id()
-    with Session() as session:
+    with get_db.session() as session:
         print(
             f"""
 
@@ -236,20 +260,24 @@ def test_insert_delete_previous_source(dbsystem, kgroup_nested):
         assert len(contains) == 0, "import did not delete contained entities"
 
 
-def test_store_KGroup_1(dbsystem):
-    kfonte: KGroup = KGroup.extend('fonte',
-                                   position=['id', 'data'],
-                                   also=['tipo',
-                                         'ano',
-                                         'obs',
-                                         'substitui'])
+def test_store_KGroup_1(get_db):
+    """Test storing a group with non core group"""
+    kfonte: KGroup = KSource.extend('fonte',
+                                    position=['id', 'data'],
+                                    also=['tipo',
+                                          'ano',
+                                          'obs',
+                                          'substitui'],
+                                    synonyms=[('tipo', 'type'),
+                                              ('ano', 'year'),
+                                              ('data', 'date'),
+                                              ('substitui', 'replace')])
     afonte = kfonte('f001',
                     data=KElement('data', '2021-12-02', element_class='date'),
                     tipo=KElement('tipo', 'teste', element_class='type'),
                     obs="First group stored through ORM with non core group")
-    with Session() as session:
+    with get_db.session() as session:
         session.commit()
-        afonte._pom_class_id = 'source'  # need a set_mapper method
         # this converts a group to an database entity
         afonte_entity = PomSomMapper.kgroup_to_entity(afonte, session)
         assert afonte_entity is not None
@@ -257,5 +285,6 @@ def test_store_KGroup_1(dbsystem):
         session.commit()
         source_orm = Entity.get_orm_for_pom_class(afonte.pom_class_id)
         same_fonte = session.get(source_orm, afonte.id.core)
-        assert str(afonte.obs) == str(same_fonte.obs)  # pylint: disable=no-member
+        assert str(afonte.obs) == str(same_fonte.obs)  # noqa
+        assert str(afonte.data) == str(same_fonte.the_date)  # noqa
         session.close()

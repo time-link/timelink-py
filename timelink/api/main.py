@@ -8,8 +8,8 @@ Finished: Query Parameters and String Validations
 
 ... jumped a few chapters
 Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
-* did set and get syspar, 
-* next is get and set syslog
+* test TimelinkDatabase create database and mappings 
+* currently at tests/test_api_models_db.py refactoring to use TimelinkDatabase
 
 To Run
     source venv/bin/activate
@@ -24,23 +24,28 @@ To debug
 * https://fastapi.tiangolo.com/tutorial/debugging/
 """
 from enum import Enum
-from typing import List
+from typing import List, Annotated
 from datetime import date
 
-import uvicorn # pylint: disable=import-error
-from fastapi import FastAPI, Query, Depends, HTTPException # pylint: disable=import-error
-from sqlalchemy.orm import Session # pylint: disable=import-error
+import uvicorn  # pylint: disable=import-error
+from fastapi import FastAPI, Request, Query, Depends, HTTPException  # pylint: disable=unused-import, import-error
+from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models, crud, schemas
-from timelink.api.database import SessionLocal, engine
-
-models.Base.metadata.create_all(bind=engine)
+from timelink.api.database import TimelinkDatabase
 
 app = FastAPI()
 
 
-# Dependency
-def get_db():
-    db = SessionLocal()
+
+
+# Dependency to get a connection to the database
+def get_db(dbname: str = "timelink", dbtype: str = "sqlite",
+           db_user: str = None, db_pwd: str = None):
+    """Get a connection to the database
+    
+    Uses timelink.api.database.TimelinkDatabase to get a connection to the database."""
+    database = TimelinkDatabase(dbname, dbtype, db_user, db_pwd)
+    db = database.session()
     try:
         yield db
     finally:
@@ -48,9 +53,10 @@ def get_db():
 
 
 @app.get("/")
-async def root():
+async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
-    return {"message": "Welcome to Timelink API"}
+    return {"message": "Welcome to Timelink API",
+             "host": request.headers["host"]}
 
 
 @app.post("/search/", response_model=List[schemas.SearchResults])
@@ -64,13 +70,15 @@ async def search(search_request: schemas.SearchRequest):
         Search results
     """
     result1 = schemas.SearchResults(id="jrc",
-                            the_class="person",
-                            description="Joaquim Carvalho: "+repr(search_request),
-                            start_date=date(1958, 5, 24), end_date=date(2023, 1, 4))
+                                    the_class="person",
+                                    description="Joaquim Carvalho: " +
+                                    repr(search_request),
+                                    start_date=date(1958, 5, 24), end_date=date(2023, 1, 4))
     result2 = schemas.SearchResults(id="mag",
-                            the_class="person",
-                            description="Magda Carvalho: "+repr(search_request),
-                            start_date=date(1960, 1, 1), end_date=date(2023, 1, 4))
+                                    the_class="person",
+                                    description="Magda Carvalho: " +
+                                    repr(search_request),
+                                    start_date=date(1960, 1, 1), end_date=date(2023, 1, 4))
     if search_request.q == "jrc":
         return [result1]
     if search_request.q == "mag":
@@ -79,9 +87,10 @@ async def search(search_request: schemas.SearchRequest):
         return [result1, result2]
     return []
 
+
 @app.post("/syspar/", response_model=models.SysParSchema)
 async def set_syspar(syspar: models.SysParSchema, 
-                     db:Session = Depends(get_db)):
+                     db: Annotated[Session,Depends(get_db)]):
     """Set system parameters
 
     Args:
@@ -92,14 +101,17 @@ async def set_syspar(syspar: models.SysParSchema,
     """
     return crud.set_syspar(db, syspar)
 
+
 @app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
-    q: list[str]
-    | None = Query(
-        default = None,
-        title="Name of system parameter",
-        description="Multiple values allowed, if empty return all"),
-        db: Session = Depends(get_db)):
+                    q: list[str] | None =
+                        Query(
+                                default=None,
+                                title="Name of system parameter",
+                                description="Multiple values allowed,"
+                                            "if empty return all"),
+                                db: Session = Depends(get_db)
+                    ):
     """Get system parameters
 
     Args:
@@ -109,7 +121,37 @@ async def get_syspars(
 
     return crud.get_syspar(db, q)
 
+
+@app.post("/syslog", response_model=models.SysLogSchema)
+async def set_syslog(syslog: models.SysLogCreateSchema,
+                    db: Session = Depends(get_db)):
+    """Set a system log entry
+    """
+    return crud.set_syslog(db, syslog)
+
+
+@app.get("/syslog", response_model=list[models.SysLogSchema])
+async def get_syslog(
+                    nlines: int | None =
+                        Query(
+                            default=10,
+                            title="Get last N lines of log",
+                            description="If number of lines not specified"
+                                        "return last 10"),
+                            db: Session = Depends(get_db)
+                            ):
+    """Get log lines
+
+    Args:
+        nlines: number of most recent lines to return
+
+    TODO: add fitler since (minutes, seconds)
+    """
+    result = crud.get_syslog(db, nlines)
+    return result
+
 # Tutorial
+
 class ModelName(str, Enum):
     """Enum for model names"""
     alexnet = "alexnet"
@@ -153,6 +195,25 @@ async def read_item2(item_id: str, q: str | None = None):
     if q:
         return {"item_id": item_id, "q": q}
     return {"item_id": item_id}
+
+
+
+# Sandbox
+
+# testing specifying the database in the path
+@app.get("/{dbname}/id/{id}", response_model=dict)
+async def get_id(eid: str,
+                 dbname: str,
+                 db: Session = Depends(get_db)
+                ):
+    """ get entity with id from database
+
+    This will pass the name of the database in the path
+    to the get_db() function
+    """
+    result = {'database': dbname, 'id': f"info for id {eid}", 'url': repr(db.get_bind().url)}
+    return result
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

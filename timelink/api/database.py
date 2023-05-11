@@ -1,29 +1,45 @@
-""" Database connection and setup """
+""" Database connection and setup 
+
+TODO
+    - migrate postgres functions to TimelinkDatabase
+    - create metadata and engine in TimelinkDatabase
+    - create tables in TimelinkDatabase
+    - create database classes in TimelinkDatabase
+    - create mappings in TimelinkDatabase
+    - use logging to database functions.
+
+"""
 
 import random
 import string
-from sqlalchemy import create_engine # pylint: disable=import-error
-from sqlalchemy.orm import sessionmaker # pylint: disable=import-error
-import docker # pylint: disable=import-error
-import timelink.mhk.utilities as utilities
+from sqlalchemy import create_engine, inspect, select  # pylint: disable=import-error
+from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
+import docker  # pylint: disable=import-error
+from timelink.mhk import utilities
+from timelink.api import models # pylint: disable=unused-import
+from timelink.api.models import PomSomMapper, PomClassAttributes, pom_som_base_mappings
+
 
 # container for postgres
-postgres_container : docker.models.containers.Container = None
+postgres_container: docker.models.containers.Container = None
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+# SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = f"postgresql://timelink:db_password@postgresserver/db"
 # SQLALCHEMY_DATABASE_URL="mysql://username:password@14.41.50.12/dbname"
+
 
 def is_postgres_running():
     """Check if postgres is running in docker"""
     client = docker.from_env()
 
     postgres_containers: list[docker.models.containers.Container]\
-          = client.containers.list(filters={'ancestor': 'postgres'})
+        = client.containers.list(filters={'ancestor': 'postgres'})
     return len(postgres_containers) > 0
 
 # get the postgres container
-def get_postgres_container()-> docker.models.containers.Container:
+
+
+def get_postgres_container() -> docker.models.containers.Container:
     """Get the postgres container
     Returns:
         docker.models.containers.Container: the postgres container
@@ -31,7 +47,7 @@ def get_postgres_container()-> docker.models.containers.Container:
 
     client: docker.DockerClient = docker.from_env()
     postgres_containers: docker.models.container.Container\
-          = client.containers.list(filters={'ancestor': 'postgres'})
+        = client.containers.list(filters={'ancestor': 'postgres'})
     return postgres_containers[0]
 
 
@@ -60,6 +76,7 @@ def start_postgres_server(dbpass: str | None = None, version: str | None = "late
     )
     return psql_container
 
+
 def random_password():
     """Generate a random password"""
 
@@ -67,25 +84,176 @@ def random_password():
     result_str = ''.join(random.choice(letters) for i in range(10))
     return result_str
 
-# create a docker server
-# get db password from MHK installation
-# TODO: define method of getting db password
+
+class TimelinkDatabase:
+    """Database connection and setup
+
+    Creates a database connection and session. If the database does not exist,
+      it is created.
+    db_type determines the type of database. 
+
+    Currently, only sqlite, postgres, and mysql are supported.
+
+    If db_type is sqlite, the database is created in the current directory. 
+    If db_type is postgres or mysql,
+    the database is created in a docker container. 
+    If the database is postgres, the container is named
+    timelink-postgres. 
+    If the database is mysql, the container is named timelink-mysql.
+
+    Args:
+        db_name (str, optional): database name. Defaults to "timelink".
+        db_type (str, optional): database type. Defaults to "sqlite".
+        db_url (str, optional): database url. If None, a url is generated. Defaults to None
+        db_user (str, optional): database user. Defaults to None.
+        db_pwd (str, optional): database password. Defaults to None.
+        connect_args (dict, optional): database connection arguments. Defaults to None.
+        
+    Fields:
+        db_url (str): database url
+        db_name (str): database name
+        db_user (str): database user
+        db_pwd (str): database password
+        engine (Engine): database engine
+        session (Session): database session factory
+        metadata (MetaData): database metadata
+        db_container: database container
+
+    Example:
+        db = TimelinkDatabase('timelink', 'sqlite')
+        with db.session() as session:
+            # do something with the session
+    """
+
+    def __init__(self,
+                 db_name: str = "timelink",
+                 db_type: str = "sqlite",
+                 db_url=None,
+                 db_user=None,
+                 db_pwd=None,
+                 **connect_args):
+        """Initialize the database connection and setup"""
+        if db_url is not None:
+            self.db_url = db_url
+        else:
+            if db_type == "sqlite":
+                self.db_url = f"sqlite:///./{db_name}.db"
+                # TODO: allow for path to be specified
+                connect_args = {"check_same_thread": False}
+            elif db_type == "postgres":
+                self.db_url = f"postgresql://{db_user}:{db_pwd}@postgresserver/{db_name}"
+                # TODO Start a postgres server in docker
+                if db_pwd is None:
+                    self.db_pwd = random_password()
+                self.db_container = start_postgres_server(self.db_pwd)
+            elif db_type == "mysql":
+                self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
+                if db_pwd is None:
+                    try:
+                        self.db_pwd = utilities.get_mhk_db_pwd()
+                    except TypeError:
+                        self.db_pwd = None
+                if db_pwd is None:
+                    self.db_pwd = random_password()
+                # TODO Start a mysql server in docker
+            else:
+                raise ValueError(f"Unknown database type: {db_type}")
+        
+        self.engine = create_engine(self.db_url, connect_args=connect_args)
+        self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+        self.metadata = models.Base.metadata
+        self.create_tables()
+        with self.session() as session:
+            session.commit()
+            session.rollback()
+            self.load_database_classes(session)
+            self.ensure_all_mappings(session)
 
 
+    def create_tables(self):
+            """
+            Creates the tables from the current ORM metadata if needed
 
-if "postgres" in SQLALCHEMY_DATABASE_URL:
-    try:
-        db_password = utilities.get_mhk_db_pwd()
-    except TypeError:
-      db_password = None
+            :return: None
+            """
+            self.metadata.create_all(self.engine)  # only creates if missing
 
-    if db_password is None:
-      db_password = random_password()
-   
-    postgres_container = start_postgres_server(db_password)
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+    def table_names(self):
+        """Current tables in the database"""
+        insp = inspect(self.engine)
+        db_tables = insp.get_table_names()  # tables in the database
+        return db_tables
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+    def load_database_classes(self, session):
+        """
+        Populates database with core Database classes
+        :param session:
+        :return:
+        """
+
+        # Check if the core tables are there
+        existing_tables = self.table_names()
+        base_tables = [v[0].table_name for v in pom_som_base_mappings.values()]
+        missing = set(base_tables) - set(existing_tables)
+        if len(missing) > 0:
+            self.create_tables()
+
+        # check if we have the data for the core database entity classes
+        stmt = select(PomSomMapper.id)
+        available_mappings = session.execute(stmt).scalars().all()
+        for k in pom_som_base_mappings.keys(): # pylint: disable=consider-iterating-dictionary
+            if k not in available_mappings:
+                data = pom_som_base_mappings[k]
+                session.bulk_save_objects(data)
+        # this will cache the pomsom mapper objects
+        session.commit()
+
+
+    def ensure_all_mappings(self, session):
+        """Ensure that all database classes have a table and ORM class"""
+        pom_classes = PomSomMapper.get_pom_classes(session)
+        for pom_class in pom_classes:
+            pom_class.ensure_mapping(session)
+
+
+    def __enter__(self):
+        return self.session()
+
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        pass
+
+
+    def get_db(self):
+        """Get a database session
+        Returns:
+            Session: database session
+        """
+        db = self.session()
+        try:
+            yield db
+        finally:
+            db.close()
+
+
+    def get_engine(self):
+        """Get the database engine
+        Returns:
+            Engine: database engine
+        """
+        return self.engine
+
+    def drop_db(self, session):
+        """
+        This will drop all timelink related tables from the database.
+        It will not touch non timelink tables that might exist.
+        :param session:
+        :return:
+        """
+        session.rollback()
+        self.load_database_classes(session)
+        self.ensure_all_mappings(session)
+        self.metadata = models.Base.metadata
+        self.metadata.drop_all(self.engine)

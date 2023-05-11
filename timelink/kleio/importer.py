@@ -8,16 +8,24 @@ from typing import List, Optional, Union
 import platform
 from xml.sax import handler, make_parser, SAXParseException
 
-from sqlalchemy import select, func
-from sqlalchemy.orm import Session
+from sqlalchemy import select, func  # pylint: disable=import-error
+from sqlalchemy.orm import Session   # pylint: disable=import-error
 
 from timelink.kleio.groups import KGroup, KElement
-from timelink.mhk.models.db import pom_som_base_mappings
-from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes
-from timelink.mhk.models.base import Entity, Person
+from timelink.mhk.models.db import pom_som_base_mappings as pom_som_base_mappingsMHK
+from timelink.mhk.models.pom_som_mapper import (PomSomMapper as PomSomMapperMHK,
+                                                PomClassAttributes as PomClassAttributesMHK)
+from timelink.mhk.models.entity import Entity as EntityMHK
+from timelink.mhk.models.person import Person as PersonMHK
+
+from timelink.api.models.base_mappings import pom_som_base_mappings as pom_som_base_mappingsTL
+from timelink.api.models.pom_som_mapper import (PomSomMapper as PomSomMapperTL,
+                                                PomClassAttributes as PomClassAttributesTL)
+from timelink.api.models.base import Entity as EntityTL, Person as PersonTL
 
 
 class KleioContext(Enum):
+    """Kleio context enumeration"""
     START = (1,)
     KLEIO = (2,)
     CLASS = (3,)
@@ -29,9 +37,10 @@ class KleioContext(Enum):
 
 
 class SaxHandler(handler.ContentHandler):
+    """SAX Handler for Kleio XML files """
     _context: KleioContext
-    _current_class: Optional[PomSomMapper]
-    _current_class_attrs: List[PomClassAttributes]
+    _current_class: Optional[PomSomMapperTL | PomSomMapperMHK]
+    _current_class_attrs: List[PomClassAttributesTL | PomClassAttributesMHK]
     _current_group: Optional[KGroup]
     _current_element: Optional[KElement]
     _current_entry: str
@@ -52,6 +61,8 @@ class SaxHandler(handler.ContentHandler):
         self._kleio_handler.endKleioFile()
 
     def startElement(self, name: str, attrs):
+        #  https://stackoverflow.com/questions/15477363/xml-sax-parser-and-line-numbers-etc
+        loc = self._locator
         ename = name.upper()
         if ename == "KLEIO":
             self._kleio_handler.newKleioFile(attrs)
@@ -61,9 +72,11 @@ class SaxHandler(handler.ContentHandler):
             #       TABLE="sources" GROUP="fonte">
             if self._context != KleioContext.KLEIO:
                 raise SAXParseException(
-                    "CLASS out of context, should be inside KLEIO element"
+                    exception=None,
+                    locator=loc,
+                    msg="CLASS out of context, should be inside KLEIO element"
                 )
-            self._current_class = PomSomMapper(
+            self._current_class = self._kleio_handler.pom_som_mapper(
                 id=attrs["NAME"],
                 super_class=attrs["SUPER"],
                 table_name=attrs["TABLE"],
@@ -83,9 +96,11 @@ class SaxHandler(handler.ContentHandler):
             #   </ATTRIBUTE>
             if self._context != KleioContext.CLASS:
                 raise SAXParseException(
-                    "ATTRIBUTE out of context, should be inside CLASS element"
+                    "ATTRIBUTE out of context, should be inside CLASS element",
+                    None,
+                    loc
                 )
-            new_attribute = PomClassAttributes()
+            new_attribute = self._kleio_handler.pom_class_attributes()
             new_attribute.the_class = self._current_class.id
             new_attribute.name = attrs["NAME"]
             new_attribute.colname = attrs["COLUMN"]
@@ -100,7 +115,9 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "GROUP":
             if self._context != KleioContext.KLEIO:
                 raise SAXParseException(
-                    "GROUP out of context, should be inside KLEIO element")
+                    "GROUP out of context, should be inside KLEIO element",
+                    None,
+                    loc)
             # <GROUP ID="coja-rol-1841" NAME="fonte"
             #        CLASS="source" ORDER="1" LEVEL="1" LINE="4">
             id = attrs['ID']
@@ -110,7 +127,7 @@ class SaxHandler(handler.ContentHandler):
             level = attrs['LEVEL']
             line = attrs['LINE']
 
-            # Mal
+            # Mal [? porquê?]
             self._current_group = KGroup()
             self._current_group.id = id
             self._current_group._name = name
@@ -123,20 +140,24 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "ELEMENT":
             if self._context != KleioContext.GROUP:
                 raise SAXParseException(
-                    "ELEMENT out of context, should be inside GROUP element")
+                    "ELEMENT out of context, should be inside GROUP element",
+                    exception=None,
+                    locator=loc)
             # <ELEMENT NAME="id" CLASS="id">
             #       <core>r1775-f1-per1</core></ELEMENT>
 
             elname = attrs['NAME']
             self._current_group.allow_as_element(elname)
             self._current_element = KElement(elname, None)
-            self._current_element._element_class = attrs["CLASS"]
+            self._current_element.element_class = attrs["CLASS"]
             self._context = KleioContext.ELEMENT
 
         elif ename == "CORE":
             if self._context != KleioContext.ELEMENT:
                 raise SAXParseException(
-                    "CORE out of context, should be inside ELEMENT element"
+                    "CORE out of context, should be inside ELEMENT element",
+                    exception=None,
+                    locator=loc
                 )
             self._context = KleioContext.CORE
             self._current_entry = ""
@@ -144,7 +165,9 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "COMMENT":
             if self._context != KleioContext.ELEMENT:
                 raise SAXParseException(
-                    "COMMENT out of context, should be inside ELEMENT element"
+                    "COMMENT out of context, should be inside ELEMENT element",
+                    exception=None,
+                    locator=loc
                 )
             self._context = KleioContext.COMMENT
             self._current_entry = ""
@@ -152,18 +175,25 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "ORIGINAL":
             if self._context != KleioContext.ELEMENT:
                 raise SAXParseException(
-                  "ORIGINAL out of context, should be inside ELEMENT element")
+                    "ORIGINAL out of context, should be inside ELEMENT element",
+                    exception=None,
+                    locator=loc)
             self._context = KleioContext.ORIGINAL
             self._current_entry = ""
 
         elif ename == "RELATION":
             if self._context != KleioContext.KLEIO:
                 raise SAXParseException(
-                    "GROUP out of context, should be inside KLEIO element"
+                    "GROUP out of context, should be inside KLEIO element",
+                    exception=None,
+                    locator=loc
                 )
             self._kleio_handler.newRelation(attrs)
         else:
-            raise SAXParseException(f"Unexpected element in Kleio file: {ename}")
+            raise SAXParseException(
+                f"Unexpected element in Kleio file: {ename}",
+                exception=None,
+                locator=loc)
 
     def endElement(self, name):
         ename = name.upper()
@@ -201,7 +231,7 @@ class SaxHandler(handler.ContentHandler):
     def characters(self, content):
         self._current_entry = self._current_entry + content
 
-    def ignorableWhitespace(self, content):
+    def ignorableWhitespace(self, whitespace):
         pass
 
     def processingInstruction(self, target, data):
@@ -209,26 +239,53 @@ class SaxHandler(handler.ContentHandler):
 
 
 class KleioHandler:
-    def __init__(self, session):
+
+    pom_som_base_mappings = None
+    pom_som_mapper = None
+    pom_class_attributes = None
+    entity_model = None
+    person_model = None
+    model_tpye: str = None
+
+    def __init__(self, session, mode="TL"):
         self.session = session
+        if mode == "TL":
+            self.pom_som_base_mappings = pom_som_base_mappingsTL
+            self.pom_som_mapper = PomSomMapperTL
+            self.pom_class_attributes = PomClassAttributesTL
+            self.pom_class_attributes = PomClassAttributesTL
+            self.entity_model = EntityTL
+            self.person_model = PersonTL
+            self.model_tpye = "TL"
+        elif mode == "MHK":
+            self.pom_som_base_mappings = pom_som_base_mappingsMHK
+            self.pom_som_mapper = PomSomMapperMHK
+            self.pom_class_attributes = PomClassAttributesMHK
+            self.entity_model = EntityMHK
+            self.person_model = PersonMHK
+            self.model_tpye = "MHK"
+        else:
+            raise ValueError(f"Unknown mode {mode}")
 
     def newKleioFile(self, attrs):
         self.session.commit()
 
-    def newClass(self, psm: PomSomMapper, attrs: List[PomClassAttributes]):
-        if psm.id in pom_som_base_mappings.keys():
+    def newClass(self, psm: PomSomMapperTL | PomSomMapperMHK,
+                 attrs: List[PomClassAttributesTL | PomClassAttributesMHK]):
+        if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
             return
 
         session = self.session
 
-        class_attr: PomClassAttributes
+        class_attr: self.pom_class_attributes
         # check if we have this class defined in the database.
-        existing_psm: PomSomMapper = session.get(PomSomMapper, psm.id)
+        existing_psm: PomSomMapperTL | PomSomMapperMHK = session.get(
+            self.pom_som_mapper, psm.id)
         if existing_psm is not None:  # class exists: delete, insert again
-            existing_attrs: List[PomClassAttributes] = \
+            existing_attrs: list = \
                 session.execute(
-                    select(PomClassAttributes).filter_by(the_class=psm.id))
+                    select(self.pom_class_attributes).filter_by(the_class=psm.id))
             for class_attr in existing_attrs:
                 session.delete(class_attr)
             session.delete(existing_psm)
@@ -246,10 +303,10 @@ class KleioHandler:
     def newGroup(self, group: KGroup):
         # get the PomSomMapper
         # pass storeKGroup
-        pom_mapper_for_group = PomSomMapper.get_pom_class(
-            group._pom_class_id, self.session
+        str(group)  # for debugging
+        pom_mapper_for_group = self.pom_som_mapper.get_pom_class(
+            group.pom_class_id, self.session
         )
-
         pom_mapper_for_group.store_KGroup(group, self.session)
 
     def newRelation(self, attrs):
@@ -275,6 +332,7 @@ def import_from_xml(
            - 'stats':  if True import stats will be returned
            - 'kleio_url':  the url of kleio server;
            - 'kleio_token':  the authorization token for the kleio server.
+           - 'mode':  the mode of the import, either 'TL'(Timelink) or 'MHK'
 
     Returns:
         If stats is True in options a dict with statistical information will be
@@ -309,19 +367,23 @@ def import_from_xml(
 
     """
     collect_stats = False
+    mode = "TL"  # determines the database model TL=Timelink, MHK=MHK
     nentities_before = 0
     npersons_before = 0
     now = datetime.now()
     if options is not None and options.get("return_stats", False):
         collect_stats = True
+    if options is not None and options.get("mode", None) is not None:
+        mode = options.get("mode")
 
-    sax_handler = SaxHandler(KleioHandler(session))
+    kh = KleioHandler(session, mode=mode)
+    sax_handler = SaxHandler(kh)
     parser = make_parser()
     parser.setContentHandler(sax_handler)
     start = time.time()
     if collect_stats:
-        nentities_before = session.query(func.count(Entity.id)).scalar()
-        npersons_before = session.query(func.count(Person.id)).scalar()
+        nentities_before = session.query(func.count(kh.entity_model.id)).scalar()
+        npersons_before = session.query(func.count(kh.person_model.id)).scalar()
 
     if isinstance(filespec, os.PathLike):
         source = os.fspath(filespec)
@@ -333,8 +395,8 @@ def import_from_xml(
     end = time.time()
     if collect_stats:
         machine = platform.node()
-        nentities = session.query(func.count(Entity.id)).scalar()
-        npersons = session.query(func.count(Person.id)).scalar()
+        nentities = session.query(func.count(kh.entity_model.id)).scalar()
+        npersons = session.query(func.count(kh.person_model.id)).scalar()
         erate = (nentities - nentities_before) / (end - start)
         prate = (npersons - npersons_before) / (end - start)
         stats = {
@@ -349,7 +411,8 @@ def import_from_xml(
         return stats
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # Not sure this works, where is the session for KleioHandler?
     parser = make_parser()
-    parser.setContentHandler(SaxHandler())
+    kh = KleioHandler(None, mode="TL")
+    parser.setContentHandler(SaxHandler(kh))
     parser.parse(sys.argv[1])

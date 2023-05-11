@@ -81,9 +81,13 @@ class KElement:
             if original is not None:
                 self.original = original
         if element_class is not None:
+            # if element_class is not None then check if exists and store
             kclass = self.__class__.get_class_for(element_class)
             if kclass is not None:
-                self.__class__.extend(name)
+                self._element_class = kclass
+            else:
+                # if element_class does not exist create a new class
+                self._element_class = self.__class__.extend(name)
 
     def __str__(self):
         return self.core
