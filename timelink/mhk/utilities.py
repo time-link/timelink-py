@@ -122,7 +122,7 @@ def get_dbnames():
 
     A search is made in the MySQL server running in the local host port 3307
     """
-    pwd = get_db_pwd()
+    pwd = get_mhk_db_pwd()
     conn_string = "mysql+mysqlconnector://root:{p}@localhost:3307/mysql".format(
         p=pwd)
     mysql = create_engine(conn_string, echo=False, future=True)

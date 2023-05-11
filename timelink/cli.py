@@ -47,7 +47,8 @@ def mhk_version():
     if is_mhk_installed():
         mhk_info = get_mhk_info()
 
-        client = docker.from_env()
+    try:
+        client = docker.from_env(version="auto")
         dv = client.version()
         mhkv = f"""    Manager version:  {mhk_info.mhk_version}
         Docker version:   {dv["Version"]}
@@ -62,6 +63,8 @@ def mhk_version():
         Kleio URL:        http://127.0.0.1:8088
         Portainer URL:    http://127.0.0.1:9000"""
         typer.echo(mhkv)
+    except Exception as e:
+        typer.echo(f"Could not access docker: {e}")
     else:
         type.echo("Could not find a MHK instalation")
     return 0
