@@ -8,3 +8,4 @@ py-markdown-table
 mysql-connector-python~=8.0.0
 fastapi[all]~=0.68.0
 uvicorn~=0.20.0
+urllib3<2
