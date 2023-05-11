@@ -21,4 +21,5 @@ black
 flake8-bugbear
 sphinx_rtd_theme
 requests
+urllib3<2
 
