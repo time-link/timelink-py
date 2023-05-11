@@ -385,6 +385,7 @@ def import_from_xml(
         nentities_before = session.query(func.count(kh.entity_model.id)).scalar()
         npersons_before = session.query(func.count(kh.person_model.id)).scalar()
 
+    # TODO implement fetching from kleio server
     if isinstance(filespec, os.PathLike):
         source = os.fspath(filespec)
     else:

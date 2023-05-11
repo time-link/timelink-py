@@ -52,3 +52,23 @@ class SearchResults(BaseModel):
     start_date: date
     end_date: date
 
+class ImportStats(BaseModel):
+    """Import statistics
+
+    Fields:
+        datetime: date and time of import
+        machine: machine where import was done
+        file: file that was imported
+        import_time_seconds: time in seconds that import took
+        entities_processed: number of entities processed
+        entity_rate: number of entities processed per second
+        person_rate: number of persons processed per second
+    """
+    
+    datetime: date
+    machine: str
+    file: str
+    import_time_seconds: float
+    entities_processed: int
+    entity_rate: float
+    person_rate: float

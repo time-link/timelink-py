@@ -8,9 +8,11 @@ Finished: Query Parameters and String Validations
 
 ... jumped a few chapters
 Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
-* test TimelinkDatabase create database and mappings 
-* currently at tests/test_api_models_db.py refactoring to use TimelinkDatabase
+* √ test TimelinkDatabase create database and mappings 
+* √ currently at tests/test_api_models_db.py refactoring to use TimelinkDatabase
 
+Next:
+* implement import from file and from url kleio_server with token
 To Run
     source venv/bin/activate
     cd timelink/api/
@@ -32,11 +34,10 @@ from fastapi import FastAPI, Request, Query, Depends, HTTPException  # pylint: d
 from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
+from timelink.kleio.importer import import_from_xml
+from timelink.api.schemas import ImportStats
 
 app = FastAPI()
-
-
-
 
 # Dependency to get a connection to the database
 def get_db(dbname: str = "timelink", dbtype: str = "sqlite",
@@ -149,6 +150,17 @@ async def get_syslog(
     """
     result = crud.get_syslog(db, nlines)
     return result
+
+@app.get("/import/file/{file_path:path}", response_model=ImportStats)
+async def import_file(file_path: str):
+    """Import from file """
+    result = import_from_xml(file_path,
+                             {'stats': True,
+                              'mode': 'TL'}
+                              )
+    response = ImportStats(**result)
+
+    return {"file_path": file_path}
 
 # Tutorial
 
