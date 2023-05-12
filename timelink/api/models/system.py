@@ -5,17 +5,18 @@ Tables defined here:
     - syspar: system parameters
     - syslog: system log
 
-
 """
 
-from typing import List
 from enum import Enum
-from datetime import date, datetime
+from typing import Optional
+
+from datetime import datetime
 from pydantic import BaseModel  # pylint: disable=import-error
 
 from sqlalchemy import Column, String, Integer, DateTime  # pylint: disable=import-error
 from sqlalchemy.sql import func  # pylint: disable=import-error
-from .base_class import Base
+from timelink.api.models.base_class import Base
+
 
 
 class SysPar(Base):
@@ -135,3 +136,5 @@ class SysLogCreateSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+
