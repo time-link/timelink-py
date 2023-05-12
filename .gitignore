@@ -99,3 +99,6 @@ timelink/.DS_Store
 tests/sqlite/test.db
 sql_app.db
 timelink.db
+timelink/api/soure.db
+timelink/api/timelink.sqlite
+timelink.sqlite
