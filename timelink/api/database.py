@@ -137,7 +137,7 @@ class TimelinkDatabase:
             self.db_url = db_url
         else:
             if db_type == "sqlite":
-                self.db_url = f"sqlite:///./{db_name}.db"
+                self.db_url = f"sqlite:///./{db_name}.sqlite"
                 # TODO: allow for path to be specified
                 connect_args = {"check_same_thread": False}
             elif db_type == "postgres":
