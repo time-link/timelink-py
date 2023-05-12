@@ -152,15 +152,15 @@ async def get_syslog(
     return result
 
 @app.get("/import/file/{file_path:path}", response_model=ImportStats)
-async def import_file(file_path: str):
+async def import_file(file_path: str, db: Session = Depends(get_db)):
     """Import from file """
-    result = import_from_xml(file_path,
-                             {'stats': True,
+    result = import_from_xml(file_path,db,
+                             {'return_stats': True,
                               'mode': 'TL'}
                               )
     response = ImportStats(**result)
 
-    return {"file_path": file_path}
+    return response
 
 # Tutorial
 
