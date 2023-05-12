@@ -49,6 +49,7 @@ class KElement:
 
     @element_class.setter
     def element_class(self, value):
+        self._element_class = value
         pass
 
     def __init__(self, name: str = None, core: Any = None, comment=None,
