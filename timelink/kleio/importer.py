@@ -401,7 +401,7 @@ def import_from_xml(
         erate = (nentities - nentities_before) / (end - start)
         prate = (npersons - npersons_before) / (end - start)
         stats = {
-            "datetime": now.strftime("%Y-%m-%d %H:%M:%S"),
+            "datetime": now.timestamp(),
             "machine": machine,
             "file": filespec,
             "import_time_seconds": end - start,
