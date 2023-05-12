@@ -1,3 +1,5 @@
+# pylint: disable=import-error
+
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 from .entity import Entity
@@ -45,3 +47,4 @@ class Attribute(Entity):
 
 Entity.attributes = relationship("Attribute", foreign_keys=[Attribute.entity],
                                  back_populates="the_entity")
+

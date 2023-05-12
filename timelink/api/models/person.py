@@ -1,5 +1,6 @@
 from typing import Optional
 
+# pylint: disable=import-error
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped
 
@@ -12,7 +13,7 @@ class Person(Entity):
     __tablename__ = "persons"
 
     id: Mapped[str] = mapped_column(String, ForeignKey('entities.id'), primary_key=True)
-    name: Mapped[Optional[str]]= mapped_column(String, index=True)
+    name: Mapped[Optional[str]] = mapped_column(String, index=True)
     sex: Mapped[Optional[str]] = mapped_column(String(1))
     obs: Mapped[Optional[str]] = mapped_column(String)
 

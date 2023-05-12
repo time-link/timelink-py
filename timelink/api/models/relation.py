@@ -1,3 +1,4 @@
+# pylint: disable=import-error
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
@@ -65,3 +66,4 @@ Entity.rels_out = relationship("Relation", foreign_keys=[Relation.origin],
 
 Entity.rels_in = relationship("Relation", foreign_keys=[Relation.destination],
                               back_populates="org")
+
