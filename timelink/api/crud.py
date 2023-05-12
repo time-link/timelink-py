@@ -1,7 +1,16 @@
 """ CRUD operations for the timelink API. """
 from datetime import datetime
-from sqlalchemy.orm import Session # pylint: disable=import-error
+from sqlalchemy.orm import Session  # pylint: disable=import-error
+from sqlalchemy import select, inspect  # pylint: disable=import-error
 from timelink.api import models
+from timelink.api.schemas import EntityAttrRelSchema
+from timelink.api.schemas import EntitySchema
+from timelink.api.schemas import EntityAttrRelSchema
+from timelink.api.schemas import AttributeSchema
+from timelink.api.schemas import RelationSchema
+from timelink.api.schemas import RelationOutSchema
+from timelink.api.schemas import RelationInSchema
+from timelink.api.schemas import ImportStats
 
 
 def get_syspar(db: Session, q: list[str] | None = None):
@@ -68,7 +77,7 @@ def get_syslog_by_time(db: Session, # pylint: disable=invalid-name
     return db.query(models.SysLog).filter(models.SysLog.time >= start_time).filter(models.system.SysLog.time <= end_time).all()
 
 
-def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.system.SysLog: # pylint: disable=invalid-name
+def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.system.SysLog:  # pylint: disable=invalid-name
     """Set system log
     Args:
         db: database session
@@ -82,3 +91,24 @@ def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.sys
     db.refresh(db_syslog)
     return db_syslog
    
+
+def get(db: Session, id: str) -> EntityAttrRelSchema:  # pylint: disable=invalid-name
+    """Get entity by id
+    Args:
+        db: database session
+        id: entity id
+    Returns:
+        Entity object
+    """
+    entity = models.Entity.get_entity(id, db)
+    # get the columns of this entity
+    pentity = EntityAttrRelSchema.from_orm(entity)
+    # get the relations of this entity
+
+    # TODO return the entity as a dictionary with rels in and out
+    #       and contains
+
+
+
+
+    return pentity

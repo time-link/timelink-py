@@ -6,22 +6,104 @@ including for the classes that are used for database access.
 Another file, called models.py, is used in the tutorial 
 for the SQLAlchemy models.
 
-We use a module called "models" for the SQLAlchemy models and
-pydantic models for the API, and we put them together in each file
-of the "models" module.
+We use a module called "models" for the SQLAlchemy models 
 
 Here we put the pydantic models that are not related to database models
 like search requests and search results.
 
 """
 
-from typing import List
-from enum import Enum
+from typing import List, Optional
+from datetime import datetime
 from datetime import date
-from pydantic import BaseModel # pylint: disable=import-error
+from pydantic import BaseModel  # pylint: disable=import-error
 
-class EntityBase(BaseModel):
-    name: str
+
+class EntitySchema(BaseModel):
+    """ Pydantic Schema for Entity """
+    id: str
+    pom_class: str
+    inside: str
+    the_order: Optional[int]
+    the_level: Optional[int]
+    the_line: Optional[int]
+    groupname: Optional[str]
+    updated: Optional[datetime]
+    indexed: Optional[datetime]
+    contains: Optional[List["EntitySchema"]]
+
+    class Config:
+        orm_mode = True
+
+
+class EntityBriefSchema(BaseModel):
+    """ Pydantic Schema for Entity brief
+    
+    No links to other entities
+    """
+    id: str
+    pom_class: str
+    inside: str
+    the_order: Optional[int]
+    the_level: Optional[int]
+    the_line: Optional[int]
+    groupname: Optional[str]
+    updated: Optional[datetime]
+    indexed: Optional[datetime]
+
+    class Config:
+        orm_mode = True
+
+
+class RelationSchema(BaseModel):
+    id: str
+    origin: str
+    destination: str
+    the_type: str
+    the_value: str
+    the_date: str
+    obs: Optional[str]
+
+    class Config:
+        orm_mode = True
+
+
+class RelationOutSchema(RelationSchema):
+    dest_name: Optional[str] 
+
+class RelationInSchema(RelationSchema):
+    org_name: Optional[str]
+
+class AttributeSchema(BaseModel):
+    entity: str
+    the_type: str
+    the_value: str
+    the_date: str
+    obs: Optional[str]
+    groupname: str = None
+
+    class Config:
+        orm_mode = True
+
+
+class EntityAttrRelSchema(BaseModel):
+    """ Pydantic Schema for Entity with attributes and relations """
+    id: str
+    pom_class: str
+    inside: str
+    the_order: Optional[int]
+    the_level: Optional[int]
+    the_line: Optional[int]
+    groupname: Optional[str]
+    updated: Optional[datetime]
+    indexed: Optional[datetime]
+    attributes: Optional[List["AttributeSchema"]]
+    rels_in: Optional[List["RelationInSchema"]]
+    rels_out: Optional[List["RelationOutSchema"]]
+    contains: Optional[List["EntityBriefSchema"]]
+
+    class Config:
+        orm_mode = True
 
 class SearchRequest(BaseModel):
     """Search request

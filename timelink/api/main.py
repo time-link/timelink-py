@@ -36,6 +36,7 @@ from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
 from timelink.kleio.importer import import_from_xml
 from timelink.api.schemas import ImportStats
+from timelink.api.schemas import EntityAttrRelSchema
 
 app = FastAPI()
 
@@ -153,14 +154,21 @@ async def get_syslog(
 
 @app.get("/import/file/{file_path:path}", response_model=ImportStats)
 async def import_file(file_path: str, db: Session = Depends(get_db)):
-    """Import from file """
-    result = import_from_xml(file_path,db,
+    """Import kleio data from xml file """
+    result = import_from_xml(file_path,
+                             db,
                              {'return_stats': True,
                               'mode': 'TL'}
                               )
     response = ImportStats(**result)
 
     return response
+
+
+@app.get("/get/{id}", response_model=EntityAttrRelSchema)
+async def get(id: str, db: Session = Depends(get_db)):
+    """Get entity by id"""
+    return crud.get(db, id)
 
 # Tutorial
 
