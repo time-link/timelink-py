@@ -6,6 +6,7 @@ docker~=6.0.0
 typer~=0.4.0
 py-markdown-table
 mysql-connector-python~=8.0.0
-fastapi[all]~=0.68.0
+fastapi[all]
 uvicorn~=0.20.0
 urllib3<2
+psycopg2-binary
