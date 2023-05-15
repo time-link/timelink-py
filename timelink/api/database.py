@@ -167,7 +167,7 @@ class TimelinkDatabase:
                 else:
                     self.db_user = db_user
                 self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
-                self.db_container = start_postgres_server(db_name,self.db_user,self.db_pwd)
+                self.db_container = start_postgres_server(db_name, self.db_user, self.db_pwd)
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
                 if db_pwd is None:
@@ -191,7 +191,6 @@ class TimelinkDatabase:
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
 
-
     def create_tables(self):
             """
             Creates the tables from the current ORM metadata if needed
@@ -200,13 +199,11 @@ class TimelinkDatabase:
             """
             self.metadata.create_all(self.engine)  # only creates if missing
 
-
     def table_names(self):
         """Current tables in the database"""
         insp = inspect(self.engine)
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
-
 
     def load_database_classes(self, session):
         """
@@ -232,21 +229,17 @@ class TimelinkDatabase:
         # this will cache the pomsom mapper objects
         session.commit()
 
-
     def ensure_all_mappings(self, session):
         """Ensure that all database classes have a table and ORM class"""
         pom_classes = PomSomMapper.get_pom_classes(session)
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session)
 
-
     def __enter__(self):
         return self.session()
 
-
     def __exit__(self, exc_type, exc_value, traceback):
         pass
-
 
     def get_db(self):
         """Get a database session
@@ -258,7 +251,6 @@ class TimelinkDatabase:
             yield db
         finally:
             db.close()
-
 
     def get_engine(self):
         """Get the database engine
