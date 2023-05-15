@@ -118,6 +118,7 @@ class PomSomMapper(Entity):
     group_name: Mapped[Optional[str]] = mapped_column("group_name", String(32))
     super_class: Mapped[Optional[str]] = mapped_column("super", String)
 
+
     __mapper_args__ = {
         "polymorphic_identity": "class",
         "inherit_condition": id == Entity.id,
@@ -470,7 +471,7 @@ class PomSomMapper(Entity):
             session.add(entity_from_group)
             session.commit()
         except Exception as e:      # pylint: disable=broad-except
-            print(e)
+            raise e
 
         in_group: KGroup
         for in_group in group.includes():
@@ -479,7 +480,7 @@ class PomSomMapper(Entity):
         try:
             session.commit()
         except Exception as e:      # pylint: disable=broad-except
-            print(e)
+            raise e
 
     def __repr__(self):
         return (
