@@ -407,6 +407,7 @@ class KGroup:
             4. part of also list
 
         Note that this function is unaffected by self._element_check
+        
         :param element_name: name of element to check
 
         :return: True if element allowed False otherwise
