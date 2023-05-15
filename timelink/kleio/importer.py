@@ -524,6 +524,7 @@ def import_from_xml(
         stats = {
             "datetime": now.timestamp(),
             "machine": machine,
+            "database": session.bind.url,
             "file": filespec,
             "import_time_seconds": end - start,
             "entities_processed": nentities - nentities_before,

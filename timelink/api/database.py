@@ -16,7 +16,7 @@ from sqlalchemy import create_engine, inspect, select  # pylint: disable=import-
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 import docker  # pylint: disable=import-error
 from timelink.mhk import utilities
-from timelink.api import models # pylint: disable=unused-import
+from timelink.api import models  # pylint: disable=unused-import
 from timelink.api.models import PomSomMapper, pom_som_base_mappings
 
 
@@ -53,7 +53,7 @@ def get_postgres_container() -> docker.models.containers.Container:
 
 def start_postgres_server(dbname: str | None = 'timelink',
                           dbuser: str | None = 'timelink',
-                          dbpass: str | None = None, 
+                          dbpass: str | None = None,
                           version: str | None = "latest"):
     """Starts a postgres server in docker
     Args:
@@ -98,6 +98,7 @@ def get_db_password():
         os.environ['TIMELINK_DB_PASSWORD'] = db_passord
     return db_passord
 
+
 class TimelinkDatabase:
     """Database connection and setup
 
@@ -121,7 +122,7 @@ class TimelinkDatabase:
         db_user (str, optional): database user. Defaults to None.
         db_pwd (str, optional): database password. Defaults to None.
         connect_args (dict, optional): database connection arguments. Defaults to None.
-        
+
     Fields:
         db_url (str): database url
         db_name (str): database name
@@ -151,7 +152,7 @@ class TimelinkDatabase:
         else:
             if db_type == "sqlite":
                 if db_name == ':memory:':
-                    self.db_url = "sqlite:///:memory:" 
+                    self.db_url = "sqlite:///:memory:"
                 else:
                     self.db_url = f"sqlite:///./{db_name}.sqlite"
                 # TODO: allow for path to be specified
@@ -167,7 +168,8 @@ class TimelinkDatabase:
                 else:
                     self.db_user = db_user
                 self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
-                self.db_container = start_postgres_server(db_name, self.db_user, self.db_pwd)
+                self.db_container = start_postgres_server(
+                    db_name, self.db_user, self.db_pwd)
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
                 if db_pwd is None:
@@ -180,7 +182,7 @@ class TimelinkDatabase:
                 # TODO Start a mysql server in docker
             else:
                 raise ValueError(f"Unknown database type: {db_type}")
-        
+
         self.engine = create_engine(self.db_url, connect_args=connect_args)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.metadata = models.Base.metadata
@@ -192,12 +194,11 @@ class TimelinkDatabase:
             self.ensure_all_mappings(session)
 
     def create_tables(self):
-            """
-            Creates the tables from the current ORM metadata if needed
+        """Creates the tables from the current ORM metadata if needed
 
-            :return: None
-            """
-            self.metadata.create_all(self.engine)  # only creates if missing
+        :return: None
+        """
+        self.metadata.create_all(self.engine)  # only creates if missing
 
     def table_names(self):
         """Current tables in the database"""
@@ -222,7 +223,7 @@ class TimelinkDatabase:
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for k in pom_som_base_mappings.keys(): # pylint: disable=consider-iterating-dictionary
+        for k in pom_som_base_mappings.keys():  # pylint: disable=consider-iterating-dictionary
             if k not in available_mappings:
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)

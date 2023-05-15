@@ -69,7 +69,6 @@ class RelationSchema(BaseModel):
         orm_mode = True
 
 
-
 class RelationOutSchema(RelationSchema):
     dest_name: Optional[str] 
 
@@ -147,6 +146,7 @@ class ImportStats(BaseModel):
     Fields:
         datetime: date and time of import
         machine: machine where import was done
+        database: specific database where import was done
         file: file that was imported
         import_time_seconds: time in seconds that import took
         entities_processed: number of entities processed
@@ -158,6 +158,7 @@ class ImportStats(BaseModel):
 
     datetime: date
     machine: str
+    database: str
     file: str
     import_time_seconds: float
     entities_processed: int

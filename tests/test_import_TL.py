@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from tests import Session, skip_on_travis, TEST_DIR, conn_string
+from tests import skip_on_travis, TEST_DIR
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
@@ -43,6 +43,7 @@ def dbsystem(request):
     indirect=True,
 )
 def test_import_xml(dbsystem):
+    """Test the import of a Kleio file into the Timelink database"""
     file: Path = Path(TEST_DIR, "xml_data/b1685.xml")
     session = dbsystem
     try:
@@ -69,6 +70,7 @@ def test_import_xml(dbsystem):
     indirect=True,
 )
 def test_import_with_custom_mapping(dbsystem):
+    """Test the import of a Kleio file into the Timelink database with a custom mapping"""
     file = Path(TEST_DIR, "xml_data/dev1692.xml")
     session = dbsystem
     try:
@@ -101,6 +103,7 @@ def test_import_with_custom_mapping(dbsystem):
     indirect=True,
 )
 def test_import_with_many(dbsystem):
+    """Test the import of a long Kleio file into the Timelink database"""
     file = Path(TEST_DIR, "xml_data/test-auc-alunos-264605-A-140337-140771.xml")
     session = dbsystem
     try:
@@ -129,6 +132,7 @@ def test_import_with_many(dbsystem):
     indirect=True,
 )
 def test_import_git_hub(dbsystem):
+    """Test the import of a Kleio file from github into the Timelink database"""
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa
     session = dbsystem
     try:
