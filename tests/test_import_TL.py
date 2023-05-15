@@ -47,8 +47,8 @@ def test_import_xml(dbsystem):
     session = dbsystem
     try:
         stats = import_from_xml(file, session, options={"return_stats": True})
-    except Exception as e:
-        print(e)
+    except Exception as exc:
+        print(exc)
         raise
     sfile: Path = stats["file"]
     assert sfile.name == file.name
@@ -71,7 +71,11 @@ def test_import_xml(dbsystem):
 def test_import_with_custom_mapping(dbsystem):
     file = Path(TEST_DIR, "xml_data/dev1692.xml")
     session = dbsystem
-    stats = import_from_xml(file, session, options={"return_stats": True})
+    try:
+        stats = import_from_xml(file, session, options={"return_stats": True})
+    except Exception as exc:
+        print(exc)
+        raise
     sfile = stats["file"]
     assert "dev1692" in sfile.name
     caso = session.get(Entity, "c1692-antonio-cordeiro-alcouc")
@@ -101,8 +105,8 @@ def test_import_with_many(dbsystem):
     session = dbsystem
     try:
         stats = import_from_xml(file, session, options={"return_stats": True})
-    except Exception as e:
-        print(e)
+    except Exception as exc:
+        print(exc)
         raise
     sfile = stats["file"]
     assert "alunos" in sfile.name
@@ -127,8 +131,11 @@ def test_import_with_many(dbsystem):
 def test_import_git_hub(dbsystem):
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa
     session = dbsystem
-    stats = import_from_xml(file, session, options={"return_stats": True})
-
+    try:
+        stats = import_from_xml(file, session, options={"return_stats": True})
+    except Exception as exc:
+        print(exc)
+        raise
     domingos_vargas = session.get(Person, "b1685.33-per6")
     assert domingos_vargas is not None, "could not get a person from file"
     kleio = domingos_vargas.to_kleio()
