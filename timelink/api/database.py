@@ -9,7 +9,7 @@ TODO
     - use logging to database functions.
 
 """
-
+import os
 import random
 import string
 from sqlalchemy import create_engine, inspect, select  # pylint: disable=import-error
@@ -51,9 +51,14 @@ def get_postgres_container() -> docker.models.containers.Container:
     return postgres_containers[0]
 
 
-def start_postgres_server(dbpass: str | None = None, version: str | None = "latest"):
+def start_postgres_server(dbname: str | None = 'timelink',
+                          dbuser: str | None = 'timelink',
+                          dbpass: str | None = None, 
+                          version: str | None = "latest"):
     """Starts a postgres server in docker
     Args:
+        dbname (str): database name
+        dbuser (str): database user
         dbpass (str): database password
         version (str | None, optional): postgres version. Defaults to "latest".
 
@@ -69,9 +74,9 @@ def start_postgres_server(dbpass: str | None = None, version: str | None = "late
         detach=True,
         ports={'5432/tcp': 5432},
         environment={
-            'POSTGRES_USER': 'timelink',
+            'POSTGRES_USER': dbuser,
             'POSTGRES_PASSWORD': dbpass,
-            'POSTGRES_DB': 'db'
+            'POSTGRES_DB': dbname
         }
     )
     return psql_container
@@ -84,6 +89,14 @@ def random_password():
     result_str = ''.join(random.choice(letters) for i in range(10))
     return result_str
 
+
+def get_db_password():
+    # get password from environment
+    db_passord = os.environ.get('TIMELINK_DB_PASSWORD')
+    if db_passord is None:
+        db_passord = random_password()
+        os.environ['TIMELINK_DB_PASSWORD'] = db_passord
+    return db_passord
 
 class TimelinkDatabase:
     """Database connection and setup
@@ -137,15 +150,24 @@ class TimelinkDatabase:
             self.db_url = db_url
         else:
             if db_type == "sqlite":
-                self.db_url = f"sqlite:///./{db_name}.sqlite"
+                if db_name == ':memory:':
+                    self.db_url = "sqlite:///:memory:" 
+                else:
+                    self.db_url = f"sqlite:///./{db_name}.sqlite"
                 # TODO: allow for path to be specified
                 connect_args = {"check_same_thread": False}
             elif db_type == "postgres":
-                self.db_url = f"postgresql://{db_user}:{db_pwd}@postgresserver/{db_name}"
                 # TODO Start a postgres server in docker
                 if db_pwd is None:
-                    self.db_pwd = random_password()
-                self.db_container = start_postgres_server(self.db_pwd)
+                    self.db_pwd = get_db_password()
+                else:
+                    self.db_pwd = db_pwd
+                if db_user is None:
+                    self.db_user = "postgres"
+                else:
+                    self.db_user = db_user
+                self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
+                self.db_container = start_postgres_server(db_name,self.db_user,self.db_pwd)
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
                 if db_pwd is None:
@@ -255,5 +277,7 @@ class TimelinkDatabase:
         session.rollback()
         self.load_database_classes(session)
         self.ensure_all_mappings(session)
+        session.commit()
+        session.close()
         self.metadata = models.Base.metadata
         self.metadata.drop_all(self.engine)
