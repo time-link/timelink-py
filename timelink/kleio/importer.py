@@ -1,6 +1,8 @@
 import os
 import sys
 import time
+import copy
+
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
@@ -8,24 +10,31 @@ from typing import List, Optional, Union
 import platform
 from xml.sax import handler, make_parser, SAXParseException
 
-from sqlalchemy import select, func  # pylint: disable=import-error
-from sqlalchemy.orm import Session   # pylint: disable=import-error
+from sqlalchemy import select, func, delete  # pylint: disable=import-error
+from sqlalchemy.orm import Session  # pylint: disable=import-error
 
 from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.db import pom_som_base_mappings as pom_som_base_mappingsMHK
-from timelink.mhk.models.pom_som_mapper import (PomSomMapper as PomSomMapperMHK,
-                                                PomClassAttributes as PomClassAttributesMHK)
+from timelink.mhk.models.pom_som_mapper import (
+    PomSomMapper as PomSomMapperMHK,
+    PomClassAttributes as PomClassAttributesMHK,
+)
 from timelink.mhk.models.entity import Entity as EntityMHK
 from timelink.mhk.models.person import Person as PersonMHK
 
-from timelink.api.models.base_mappings import pom_som_base_mappings as pom_som_base_mappingsTL
-from timelink.api.models.pom_som_mapper import (PomSomMapper as PomSomMapperTL,
-                                                PomClassAttributes as PomClassAttributesTL)
+from timelink.api.models.base_mappings import (
+    pom_som_base_mappings as pom_som_base_mappingsTL,
+)
+from timelink.api.models.pom_som_mapper import (
+    PomSomMapper as PomSomMapperTL,
+    PomClassAttributes as PomClassAttributesTL,
+)
 from timelink.api.models.base import Entity as EntityTL, Person as PersonTL
 
 
 class KleioContext(Enum):
     """Kleio context enumeration"""
+
     START = (1,)
     KLEIO = (2,)
     CLASS = (3,)
@@ -37,7 +46,8 @@ class KleioContext(Enum):
 
 
 class SaxHandler(handler.ContentHandler):
-    """SAX Handler for Kleio XML files """
+    """SAX Handler for Kleio XML files"""
+
     _context: KleioContext
     _current_class: Optional[PomSomMapperTL | PomSomMapperMHK]
     _current_class_attrs: List[PomClassAttributesTL | PomClassAttributesMHK]
@@ -74,7 +84,7 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     exception=None,
                     locator=loc,
-                    msg="CLASS out of context, should be inside KLEIO element"
+                    msg="CLASS out of context, should be inside KLEIO element",
                 )
             self._current_class = self._kleio_handler.pom_som_mapper(
                 id=attrs["NAME"],
@@ -98,7 +108,7 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "ATTRIBUTE out of context, should be inside CLASS element",
                     None,
-                    loc
+                    loc,
                 )
             new_attribute = self._kleio_handler.pom_class_attributes()
             new_attribute.the_class = self._current_class.id
@@ -115,17 +125,16 @@ class SaxHandler(handler.ContentHandler):
         elif ename == "GROUP":
             if self._context != KleioContext.KLEIO:
                 raise SAXParseException(
-                    "GROUP out of context, should be inside KLEIO element",
-                    None,
-                    loc)
+                    "GROUP out of context, should be inside KLEIO element", None, loc
+                )
             # <GROUP ID="coja-rol-1841" NAME="fonte"
             #        CLASS="source" ORDER="1" LEVEL="1" LINE="4">
-            id = attrs['ID']
-            name = attrs['NAME']
-            the_class = attrs['CLASS']
-            order = attrs['ORDER']
-            level = attrs['LEVEL']
-            line = attrs['LINE']
+            id = attrs["ID"]
+            name = attrs["NAME"]
+            the_class = attrs["CLASS"]
+            order = attrs["ORDER"]
+            level = attrs["LEVEL"]
+            line = attrs["LINE"]
 
             # Mal [? porquê?]
             self._current_group = KGroup()
@@ -142,11 +151,12 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "ELEMENT out of context, should be inside GROUP element",
                     exception=None,
-                    locator=loc)
+                    locator=loc,
+                )
             # <ELEMENT NAME="id" CLASS="id">
             #       <core>r1775-f1-per1</core></ELEMENT>
 
-            elname = attrs['NAME']
+            elname = attrs["NAME"]
             self._current_group.allow_as_element(elname)
             self._current_element = KElement(elname, None)
             self._current_element.element_class = attrs["CLASS"]
@@ -157,7 +167,7 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "CORE out of context, should be inside ELEMENT element",
                     exception=None,
-                    locator=loc
+                    locator=loc,
                 )
             self._context = KleioContext.CORE
             self._current_entry = ""
@@ -167,7 +177,7 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "COMMENT out of context, should be inside ELEMENT element",
                     exception=None,
-                    locator=loc
+                    locator=loc,
                 )
             self._context = KleioContext.COMMENT
             self._current_entry = ""
@@ -177,7 +187,8 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "ORIGINAL out of context, should be inside ELEMENT element",
                     exception=None,
-                    locator=loc)
+                    locator=loc,
+                )
             self._context = KleioContext.ORIGINAL
             self._current_entry = ""
 
@@ -186,20 +197,20 @@ class SaxHandler(handler.ContentHandler):
                 raise SAXParseException(
                     "GROUP out of context, should be inside KLEIO element",
                     exception=None,
-                    locator=loc
+                    locator=loc,
                 )
             self._kleio_handler.newRelation(attrs)
         else:
             raise SAXParseException(
                 f"Unexpected element in Kleio file: {ename}",
                 exception=None,
-                locator=loc)
+                locator=loc,
+            )
 
     def endElement(self, name):
         ename = name.upper()
 
         if ename == "GROUP":
-
             self._kleio_handler.newGroup(self._current_group)
             self._context = KleioContext.KLEIO
             self._current_group = None
@@ -239,13 +250,15 @@ class SaxHandler(handler.ContentHandler):
 
 
 class KleioHandler:
-
     pom_som_base_mappings = None
     pom_som_mapper = None
     pom_class_attributes = None
     entity_model = None
     person_model = None
-    model_tpye: str = None
+    model_type: str = None
+    postponed_relations = []
+    errors = []
+    kleio_file = None
 
     def __init__(self, session, mode="TL"):
         self.session = session
@@ -256,64 +269,146 @@ class KleioHandler:
             self.pom_class_attributes = PomClassAttributesTL
             self.entity_model = EntityTL
             self.person_model = PersonTL
-            self.model_tpye = "TL"
+            self.model_type = "TL"
         elif mode == "MHK":
             self.pom_som_base_mappings = pom_som_base_mappingsMHK
             self.pom_som_mapper = PomSomMapperMHK
             self.pom_class_attributes = PomClassAttributesMHK
             self.entity_model = EntityMHK
             self.person_model = PersonMHK
-            self.model_tpye = "MHK"
+            self.model_type = "MHK"
         else:
             raise ValueError(f"Unknown mode {mode}")
 
     def newKleioFile(self, attrs):
-        self.session.commit()
+        # <KLEIO STRUCTURE="/kleio-home/system/conf/kleio/stru/gacto2.str" 
+        # SOURCE="/kleio-home/sources/soure-fontes/sources/1685-1720/baptismos/b1685.cli" 
+        # TRANSLATOR="gactoxml2.str" 
+        # WHEN="2020-8-18 17:10:32" 
+        # OBS="" SPACE="">
 
-    def newClass(self, psm: PomSomMapperTL | PomSomMapperMHK,
-                 attrs: List[PomClassAttributesTL | PomClassAttributesMHK]):
+        self.session.commit()
+        self.postponed_relations = []
+        self.errors = []
+        self.kleio_file = attrs["SOURCE"]
+        self.kleio_structure = attrs["STRUCTURE"]
+        self.kleio_translator = attrs["TRANSLATOR"]
+        self.kleio_when = attrs["WHEN"]
+
+    def newClass(
+        self,
+        psm: PomSomMapperTL | PomSomMapperMHK,
+        attrs: List[PomClassAttributesTL | PomClassAttributesMHK],
+    ):
         if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
             return
 
         session = self.session
 
-        class_attr: self.pom_class_attributes
         # check if we have this class defined in the database.
         existing_psm: PomSomMapperTL | PomSomMapperMHK = session.get(
-            self.pom_som_mapper, psm.id)
+            self.pom_som_mapper, psm.id
+        )
         if existing_psm is not None:  # class exists: delete, insert again
-            existing_attrs: list = \
-                session.execute(
-                    select(self.pom_class_attributes).filter_by(the_class=psm.id))
-            for class_attr in existing_attrs:
-                session.delete(class_attr)
-            session.delete(existing_psm)
+            try:
+                session.commit()
+                stmt = delete(self.pom_class_attributes).where(self.pom_class_attributes.the_class==psm.id)
+                session.execute(stmt)
+                session.delete(existing_psm)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                self.errors.append(
+                    f"Error deleting class {psm.id}: {e.__class__.__name__}: {e}"
+                )
 
         # now we add the new mapping
-        session.add(psm)
-        for class_attr in attrs:
-            session.add(class_attr)
-
-        session.commit()
+        try:
+            session.add(psm)
+            for class_attr in attrs:
+                session.add(class_attr)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            self.errors.append(
+                f"Error adding class {psm.id}: {e.__class__.__name__}: {e}"
+            )
         # ensure that the table and ORM classes are created
-        psm.ensure_mapping(session)
-        session.commit()
+        try:
+            psm.ensure_mapping(session)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            self.errors.append(
+                f"Error creating ORM mapping for class {psm.id}: {e.__class__.__name__}: {e}"
+            )
 
     def newGroup(self, group: KGroup):
         # get the PomSomMapper
         # pass storeKGroup
-        str(group)  # for debugging
-        pom_mapper_for_group = self.pom_som_mapper.get_pom_class(
-            group.pom_class_id, self.session
-        )
-        pom_mapper_for_group.store_KGroup(group, self.session)
+        try:
+            pom_mapper_for_group = self.pom_som_mapper.get_pom_class(
+                group.pom_class_id, self.session
+            )
+            if pom_mapper_for_group is None:
+                raise ValueError(
+                    f"Could not find PomSomMapper for class {group.pom_class_id}"
+                )
+        except Exception as e:
+            self.errors.append(
+                f"Error finding PomSomMapper for class {group.pom_class_id}: {e.__class__.__name__}: {e}"
+            )
+            return
+
+        if pom_mapper_for_group.id == "relation":
+            # it can happen that the destination of a relation
+            #  is not yet in the database (forward reference in relation)
+            #  In this case we postpone the storing of the relation
+            # until the end of file
+            exits_dest_rel = self.session.get(
+                self.entity_model, group.get_element_for_column("destination").core
+            )
+            if exits_dest_rel is None:
+                self.postponed_relations.append(
+                    (pom_mapper_for_group.id, copy.deepcopy(group))
+                )
+            else:
+                try:
+                    pom_mapper_for_group.store_KGroup(group, self.session)
+                except Exception as e:
+                    self.errors.append(
+                        f"Error storing group {group.kname}${group.id}: {e.__class__.__name__}: {e}"
+                    )
+        else:
+            try:
+                pom_mapper_for_group.store_KGroup(group, self.session)
+            except Exception as e:
+                self.errors.append(
+                    f"Error storing group {group.kname}${group.id}: {e.__class__.__name__}: {e}"
+                )
 
     def newRelation(self, attrs):
         pass
 
     def endKleioFile(self):
-        self.session.close()
+        # store postponed relations
+        postponed = len(self.postponed_relations)
+        if postponed > 0:
+            log = f"Storing {postponed} postponed relations"
+            print(log)
+        for pom_mapper_id, group in self.postponed_relations:
+            pom_mapper = self.pom_som_mapper.get_pom_class(pom_mapper_id, self.session)
+            try:
+                pom_mapper.store_KGroup(group, self.session)
+                self.session.commit()
+            except Exception as e:
+                self.errors.append(
+                    f"Error {self.kleio_file}:{group.line} storing {group.kname}${group.id}: {e.__class__.__name__}: {e}"
+                )
+                self.session.rollback()
+        self.postponed_relations = []
+        
 
 
 def import_from_xml(
@@ -408,11 +503,15 @@ def import_from_xml(
             "entities_processed": nentities - nentities_before,
             "entity_rate": erate,
             "person_rate": prate,
+            "nerrors": len(kh.errors),
+            "errors": kh.errors,
         }
         return stats
 
 
-if __name__ == "__main__":  # Not sure this works, where is the session for KleioHandler?
+if (
+    __name__ == "__main__"
+):  # Not sure this works, where is the session for KleioHandler?
     parser = make_parser()
     kh = KleioHandler(None, mode="TL")
     parser.setContentHandler(SaxHandler(kh))
