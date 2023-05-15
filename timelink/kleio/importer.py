@@ -10,8 +10,9 @@ from typing import List, Optional, Union
 import platform
 from xml.sax import handler, make_parser, SAXParseException
 
-from sqlalchemy import select, func, delete  # pylint: disable=import-error
+from sqlalchemy import func, delete  # pylint: disable=import-error
 from sqlalchemy.orm import Session  # pylint: disable=import-error
+from sqlalchemy.exc import IntegrityError  # pylint: disable=import-error
 
 from timelink.kleio.groups import KGroup, KElement
 from timelink.mhk.models.db import pom_som_base_mappings as pom_som_base_mappingsMHK
@@ -259,6 +260,12 @@ class KleioHandler:
     postponed_relations = []
     errors = []
     kleio_file = None
+    kleio_file_name = None
+    kleio_structure = None
+    kleio_translator = None
+    kleio_when = None
+    kleio_context = None
+    pom_som_cache = dict()
 
     def __init__(self, session, mode="TL"):
         self.session = session
@@ -281,19 +288,22 @@ class KleioHandler:
             raise ValueError(f"Unknown mode {mode}")
 
     def newKleioFile(self, attrs):
-        # <KLEIO STRUCTURE="/kleio-home/system/conf/kleio/stru/gacto2.str" 
-        # SOURCE="/kleio-home/sources/soure-fontes/sources/1685-1720/baptismos/b1685.cli" 
-        # TRANSLATOR="gactoxml2.str" 
-        # WHEN="2020-8-18 17:10:32" 
+        # <KLEIO STRUCTURE="/kleio-home/system/conf/kleio/stru/gacto2.str"
+        # SOURCE="/kleio-home/sources/soure-fontes/sources/1685-1720/baptismos/b1685.cli"
+        # TRANSLATOR="gactoxml2.str"
+        # WHEN="2020-8-18 17:10:32"
         # OBS="" SPACE="">
 
         self.session.commit()
         self.postponed_relations = []
         self.errors = []
         self.kleio_file = attrs["SOURCE"]
+        # extract name of file from path
+        self.kleio_file_name = self.kleio_file.split("/")[-1]
         self.kleio_structure = attrs["STRUCTURE"]
         self.kleio_translator = attrs["TRANSLATOR"]
         self.kleio_when = attrs["WHEN"]
+        self.pom_som_cache = dict()
 
     def newClass(
         self,
@@ -313,14 +323,15 @@ class KleioHandler:
         if existing_psm is not None:  # class exists: delete, insert again
             try:
                 session.commit()
-                stmt = delete(self.pom_class_attributes).where(self.pom_class_attributes.the_class==psm.id)
+                stmt = delete(self.pom_class_attributes).where(
+                    self.pom_class_attributes.the_class == psm.id)
                 session.execute(stmt)
                 session.delete(existing_psm)
                 session.commit()
             except Exception as e:
                 session.rollback()
                 self.errors.append(
-                    f"Error deleting class {psm.id}: {e.__class__.__name__}: {e}"
+                    f"ERROR: deleting class {psm.id}: {e.__class__.__name__}: {e}"
                 )
 
         # now we add the new mapping
@@ -332,7 +343,7 @@ class KleioHandler:
         except Exception as e:
             session.rollback()
             self.errors.append(
-                f"Error adding class {psm.id}: {e.__class__.__name__}: {e}"
+                f"ERROR: adding class {psm.id}: {e.__class__.__name__}: {e}"
             )
         # ensure that the table and ORM classes are created
         try:
@@ -341,23 +352,27 @@ class KleioHandler:
         except Exception as e:
             session.rollback()
             self.errors.append(
-                f"Error creating ORM mapping for class {psm.id}: {e.__class__.__name__}: {e}"
+                f"ERROR: creating ORM mapping for class {psm.id}: {e.__class__.__name__}: {e}"
             )
 
     def newGroup(self, group: KGroup):
         # get the PomSomMapper
         # pass storeKGroup
         try:
-            pom_mapper_for_group = self.pom_som_mapper.get_pom_class(
-                group.pom_class_id, self.session
-            )
+            if group.pom_class_id in self.pom_som_cache.keys():
+                pom_mapper_for_group = self.pom_som_cache[group.pom_class_id]
+            else:
+                pom_mapper_for_group = self.pom_som_mapper.get_pom_class(
+                    group.pom_class_id, self.session
+                )
             if pom_mapper_for_group is None:
                 raise ValueError(
                     f"Could not find PomSomMapper for class {group.pom_class_id}"
                 )
-        except Exception as e:
+            self.pom_som_cache[group.pom_class_id] = pom_mapper_for_group
+        except Exception as exc:
             self.errors.append(
-                f"Error finding PomSomMapper for class {group.pom_class_id}: {e.__class__.__name__}: {e}"
+                f"ERROR: {self.kleio_file_name} {str(group.line)} finding PomSomMapper for class {group.pom_class_id}: {exc.__class__.__name__}: {exc}"
             )
             return
 
@@ -376,22 +391,23 @@ class KleioHandler:
             else:
                 try:
                     pom_mapper_for_group.store_KGroup(group, self.session)
-                except Exception as e:
+                except Exception as exc:
                     self.errors.append(
-                        f"Error storing group {group.kname}${group.id}: {e.__class__.__name__}: {e}"
+                        f"ERROR: {self.kleio_file_name} {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
                     )
         else:
             try:
                 pom_mapper_for_group.store_KGroup(group, self.session)
-            except Exception as e:
+            except Exception as exc:
                 self.errors.append(
-                    f"Error storing group {group.kname}${group.id}: {e.__class__.__name__}: {e}"
+                    f"ERROR: {self.kleio_file_name} {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
                 )
 
     def newRelation(self, attrs):
         pass
 
     def endKleioFile(self):
+        """Process end of file: process postponed relations"""
         # store postponed relations
         postponed = len(self.postponed_relations)
         if postponed > 0:
@@ -402,13 +418,17 @@ class KleioHandler:
             try:
                 pom_mapper.store_KGroup(group, self.session)
                 self.session.commit()
-            except Exception as e:
+            except IntegrityError as ierror:
                 self.errors.append(
-                    f"Error {self.kleio_file}:{group.line} storing {group.kname}${group.id}: {e.__class__.__name__}: {e}"
+                    f"ERROR: {self.kleio_file_name} {str(group.line)} storing {group.to_kleio()}\n {ierror}"
+                )
+                self.session.rollback()
+            except Exception as exc:
+                self.errors.append(
+                    f"ERROR: {self.kleio_file_name} {str(group.line)} storing {group.to_kleio()}\n {exc.__class__.__name__}: {exc}"
                 )
                 self.session.rollback()
         self.postponed_relations = []
-        
 
 
 def import_from_xml(
@@ -440,6 +460,8 @@ def import_from_xml(
             - 'entities_processed': number of entities processed
             - 'entity_rate': number of entities processed per second
             - 'person_rate': number of persons (entities of class 'person')
+            - 'nerrors': number of errors during import
+            - 'errors': list of error messages
 
     Examples:
         Returned statistical information when stats=True
@@ -453,6 +475,8 @@ def import_from_xml(
         'entities_processed': 747,
         'entity_rate': 106.37558457603042,
         'person_rate': 27.483919441999827
+        'nerrors': 0
+        'errors': []
         }
 
 
@@ -471,14 +495,16 @@ def import_from_xml(
     if options is not None and options.get("mode", None) is not None:
         mode = options.get("mode")
 
-    kh = KleioHandler(session, mode=mode)
-    sax_handler = SaxHandler(kh)
+    kleio_handler = KleioHandler(session, mode=mode)
+    sax_handler = SaxHandler(kleio_handler)
     parser = make_parser()
     parser.setContentHandler(sax_handler)
     start = time.time()
     if collect_stats:
-        nentities_before = session.query(func.count(kh.entity_model.id)).scalar()
-        npersons_before = session.query(func.count(kh.person_model.id)).scalar()
+        nentities_before = session.query(func.count(
+            kleio_handler.entity_model.id)).scalar()
+        npersons_before = session.query(func.count(
+            kleio_handler.person_model.id)).scalar()
 
     # TODO implement fetching from kleio server
     if isinstance(filespec, os.PathLike):
@@ -491,8 +517,8 @@ def import_from_xml(
     end = time.time()
     if collect_stats:
         machine = platform.node()
-        nentities = session.query(func.count(kh.entity_model.id)).scalar()
-        npersons = session.query(func.count(kh.person_model.id)).scalar()
+        nentities = session.query(func.count(kleio_handler.entity_model.id)).scalar()
+        npersons = session.query(func.count(kleio_handler.person_model.id)).scalar()
         erate = (nentities - nentities_before) / (end - start)
         prate = (npersons - npersons_before) / (end - start)
         stats = {
@@ -503,8 +529,8 @@ def import_from_xml(
             "entities_processed": nentities - nentities_before,
             "entity_rate": erate,
             "person_rate": prate,
-            "nerrors": len(kh.errors),
-            "errors": kh.errors,
+            "nerrors": len(kleio_handler.errors),
+            "errors": kleio_handler.errors,
         }
         return stats
 
@@ -512,7 +538,7 @@ def import_from_xml(
 if (
     __name__ == "__main__"
 ):  # Not sure this works, where is the session for KleioHandler?
-    parser = make_parser()
-    kh = KleioHandler(None, mode="TL")
-    parser.setContentHandler(SaxHandler(kh))
-    parser.parse(sys.argv[1])
+    saxParser = make_parser()
+    kleioHandler = KleioHandler(None, mode="TL")
+    saxParser.setContentHandler(SaxHandler(kleioHandler))
+    saxParser.parse(sys.argv[1])
