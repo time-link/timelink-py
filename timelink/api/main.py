@@ -40,13 +40,16 @@ from timelink.api.schemas import EntityAttrRelSchema
 
 app = FastAPI()
 
+
+
 # Dependency to get a connection to the database
-def get_db(dbname: str = "timelink", dbtype: str = "sqlite",
-           db_user: str = None, db_pwd: str = None):
+def get_db(db_name: str = "timelink", db_type: str = "postgres",
+           db_url: str = None, db_user: str = None, db_pwd: str = None):
     """Get a connection to the database
     
     Uses timelink.api.database.TimelinkDatabase to get a connection to the database."""
-    database = TimelinkDatabase(dbname, dbtype, db_user, db_pwd)
+    db_pwd = 'TCGllaFBFy'
+    database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
     db = database.session()
     try:
         yield db
