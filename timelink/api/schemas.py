@@ -23,7 +23,7 @@ class EntitySchema(BaseModel):
     """ Pydantic Schema for Entity """
     id: str
     pom_class: str
-    inside: str
+    inside: Optional[str]
     the_order: Optional[int]
     the_level: Optional[int]
     the_line: Optional[int]
@@ -43,7 +43,7 @@ class EntityBriefSchema(BaseModel):
     """
     id: str
     pom_class: str
-    inside: str
+    inside: Optional[str]
     the_order: Optional[int]
     the_level: Optional[int]
     the_line: Optional[int]
@@ -90,7 +90,7 @@ class EntityAttrRelSchema(BaseModel):
     """ Pydantic Schema for Entity with attributes and relations """
     id: str
     pom_class: str
-    inside: str
+    inside: Optional[str]
     the_order: Optional[int]
     the_level: Optional[int]
     the_line: Optional[int]
