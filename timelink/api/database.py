@@ -17,7 +17,7 @@ from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 import docker  # pylint: disable=import-error
 from timelink.mhk import utilities
 from timelink.api import models # pylint: disable=unused-import
-from timelink.api.models import PomSomMapper, PomClassAttributes, pom_som_base_mappings
+from timelink.api.models import PomSomMapper, pom_som_base_mappings
 
 
 # container for postgres

@@ -12,6 +12,7 @@ Here we put the pydantic models that are not related to database models
 like search requests and search results.
 
 """
+# pylint: disable=too-few-public-methods
 
 from typing import List, Optional
 from datetime import datetime
@@ -68,11 +69,14 @@ class RelationSchema(BaseModel):
         orm_mode = True
 
 
+
 class RelationOutSchema(RelationSchema):
     dest_name: Optional[str] 
 
+
 class RelationInSchema(RelationSchema):
     org_name: Optional[str]
+
 
 class AttributeSchema(BaseModel):
     entity: str
@@ -105,6 +109,7 @@ class EntityAttrRelSchema(BaseModel):
     class Config:
         orm_mode = True
 
+
 class SearchRequest(BaseModel):
     """Search request
 
@@ -122,6 +127,7 @@ class SearchRequest(BaseModel):
     skip: int | None = 0
     limit: int | None = 100
 
+
 class SearchResults(BaseModel):
     """Search results
 
@@ -134,6 +140,7 @@ class SearchResults(BaseModel):
     start_date: date
     end_date: date
 
+
 class ImportStats(BaseModel):
     """Import statistics
 
@@ -145,8 +152,10 @@ class ImportStats(BaseModel):
         entities_processed: number of entities processed
         entity_rate: number of entities processed per second
         person_rate: number of persons processed per second
+        nerrors: number of errors
+        errors: list of errors
     """
-    
+
     datetime: date
     machine: str
     file: str
@@ -154,3 +163,5 @@ class ImportStats(BaseModel):
     entities_processed: int
     entity_rate: float
     person_rate: float
+    nerrors: int
+    errors: List[str]

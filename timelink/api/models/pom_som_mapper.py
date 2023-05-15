@@ -118,7 +118,6 @@ class PomSomMapper(Entity):
     group_name: Mapped[Optional[str]] = mapped_column("group_name", String(32))
     super_class: Mapped[Optional[str]] = mapped_column("super", String)
 
-
     __mapper_args__ = {
         "polymorphic_identity": "class",
         "inherit_condition": id == Entity.id,
