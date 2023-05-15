@@ -40,10 +40,10 @@ class Entity(Base):
     # TODO: https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
     pom_class: Mapped[str] = mapped_column('class',
                                            String,
-                                           ForeignKey('classes.id', use_alter=True),
+                                           # ForeignKey('classes.id', name='fk_entity_class', use_alter=True),
                                            index=True
                                            )
-    #: str: id of the entity inside which this occurred.
+     #: str: id of the entity inside which this occurred.
     inside: Mapped[Optional[str]] = mapped_column(String,
                                         ForeignKey('entities.id', ondelete='CASCADE'),
                                         index=True)
