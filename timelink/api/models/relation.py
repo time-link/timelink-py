@@ -32,6 +32,30 @@ class Relation(Entity):
 
     __table_args__ = (Index('relations_type_value', 'the_type', 'the_value'),)
 
+
+    @property
+    def dest_class(self):
+        return self.dest.pom_class
+
+    
+    @property
+    def org_class(self):
+        return self.org.pom_class
+
+    @property
+    def dest_name(self):
+        if self.dest_class == "person" or self.dest_class == "object":
+            return self.dest.name
+        else:
+            return self.dest.groupname
+        
+    @property
+    def org_name(self):
+        if self.org_class == "person" or self.org_class == "object":
+            return self.org.name
+        else:
+            return self.org.groupname
+
     def __repr__(self):
         sr = super().__repr__()
         return (
