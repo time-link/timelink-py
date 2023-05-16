@@ -31,6 +31,7 @@ from timelink.api.models.pom_som_mapper import (
     PomClassAttributes as PomClassAttributesTL,
 )
 from timelink.api.models.base import Entity as EntityTL, Person as PersonTL
+from timelink.api.models.system import KleioFile
 
 
 class KleioContext(Enum):
@@ -259,6 +260,7 @@ class KleioHandler:
     model_type: str = None
     postponed_relations = []
     errors = []
+    warnings = []
     kleio_file = None
     kleio_file_name = None
     kleio_structure = None
@@ -297,6 +299,7 @@ class KleioHandler:
         self.session.commit()
         self.postponed_relations = []
         self.errors = []
+        self.warnings = []
         self.kleio_file = attrs["SOURCE"]
         # extract name of file from path
         self.kleio_file_name = self.kleio_file.split("/")[-1]
@@ -429,7 +432,33 @@ class KleioHandler:
                 )
                 self.session.rollback()
         self.postponed_relations = []
-
+        # store information on kleio file import
+        kfile = KleioFile(
+            path=self.kleio_file,
+            name=self.kleio_file_name,
+            structure=self.kleio_structure,
+            translator=self.kleio_translator,
+            # convert date from "2020-8-18 17:10:32" format
+            # to datetime object
+            translation_date = datetime.strptime(self.kleio_when, "%Y-%m-%d %H:%M:%S"),
+            nerrors=len(self.errors),
+            nwarnings=len(self.warnings)
+        )
+        if len(self.errors) > 0:
+            s = "\n\n".join(self.errors)
+        else:
+            s = "No errors"
+        kfile.error_rpt = s
+        if len(self.warnings) > 0:
+            s = "\n\n".join(self.warnings)
+        else:
+            s = "No warnings"
+        kfile.warning_rpt = s
+        kfile_exists = self.session.get(KleioFile, kfile.path)
+        if kfile_exists is not None:
+            self.session.delete(kfile_exists)
+        self.session.add(kfile)
+        self.session.commit()
 
 def import_from_xml(
     filespec: Union[str, Path], session: Session, options: dict = None

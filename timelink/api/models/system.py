@@ -15,6 +15,8 @@ from pydantic import BaseModel  # pylint: disable=import-error
 
 from sqlalchemy import Column, String, Integer, DateTime  # pylint: disable=import-error
 from sqlalchemy.sql import func  # pylint: disable=import-error
+from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
+from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from timelink.api.models.base_class import Base
 
 
@@ -136,5 +138,30 @@ class SysLogCreateSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+class KleioFile(Base):
+    """Represents a Kleio file imported in the database
+    
+    Fields:
+        path: path of the file
+        name: name of the file
+        structure: structure name
+        translator: translator name
+        translation_date: date of translation
+        nerrors: number of errors
+        nwarnings: number of warnings
+        error_rpt: error report
+        warning_rpt: warning report"""
+
+    path: Mapped[str] = mapped_column(String(1024), primary_key=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(255), nullable=False)
+    structure: Mapped[str] = mapped_column(String(255), nullable=False)
+    translator: Mapped[str] = mapped_column(String(255), nullable=False)
+    translation_date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    nerrors: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    nwarnings: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    error_rpt: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    warning_rpt: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+
 
 
