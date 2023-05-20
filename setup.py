@@ -38,7 +38,16 @@ setup(
     project_urls={
          'Documentation': 'https://timelink-py.readthedocs.io/',
     },
-    install_requires=requirements,
+    install_requires=[
+        'typer~=0.4.0',
+        'sqlalchemy~=1.4.0',
+        'pydantic~=1.8.0',
+        'python-dotenv~=0.17.0',
+        'python-box~=5.3.0',
+        'psycopg2-binary==2.9.6',
+        'py-markdown-table==0.3.3',
+
+    ],
     license="MIT license",
     long_description= description + '\n\n' + history,
     long_description_content_type = 'text/x-rst',
