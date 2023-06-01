@@ -40,7 +40,7 @@ setup(
     },
     install_requires=[
         'typer~=0.4.0',
-        'sqlalchemy~=1.4.0',
+        'sqlalchemy~=2.0.0',
         'pydantic~=1.8.0',
         'python-dotenv~=0.17.0',
         'python-box~=5.3.0',
@@ -58,6 +58,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/time-link/timelink-py',
-    version='0.3.10',
+    version='0.3.11b',
     zip_safe=False,
 )
