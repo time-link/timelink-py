@@ -9,6 +9,7 @@ from timelink.mhk.models.entity import Entity
 
 
 class Attribute(Entity):
+    __table_args__ = {'extend_existing': True}
     __tablename__ = "attributes"
 
     id = Column(String, ForeignKey('entities.id'), primary_key=True)

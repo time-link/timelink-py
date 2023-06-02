@@ -259,6 +259,13 @@ class TimelinkDatabase:
             Engine: database engine
         """
         return self.engine
+    
+    def get_metadata(self):
+        """Get the database metadata
+        Returns:
+            MetaData: database metadata
+        """
+        return self.metadata
 
     def drop_db(self, session):
         """

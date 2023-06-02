@@ -12,3 +12,4 @@ SQLAlchemy~=2.0.0
 typer~=0.4.0
 urllib3<2
 uvicorn~=0.20.0
+pandas~=2.0.0

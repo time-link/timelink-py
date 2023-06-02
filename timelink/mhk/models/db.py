@@ -5,7 +5,6 @@ from warnings import warn
 from sqlalchemy import MetaData, engine, create_engine, select, inspect  # pylint: disable=unused-import
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 
-from timelink.mhk.models import Session  # noqa
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
@@ -19,10 +18,9 @@ class TimelinkMHK:
 
     Example:
 
-        from timelink.mhk.models import Session
-        from timelink.mhk.model.db import TimelinkDB
+        from timelink.mhk.model.db import TimelinkMHK
 
-        dbsys = TimelinkDB("sql alchemy connection string")
+        dbsys = TimelinkMHK("sql alchemy connection string")
 
     """
 
@@ -64,7 +62,7 @@ class TimelinkMHK:
 
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
-        with Session(bind=self.engine) as session:
+        with self.session(bind=self.engine) as session:
             self.create_tables()
             session.commit()
             session.rollback()
@@ -75,6 +73,10 @@ class TimelinkMHK:
     def get_engine(self) -> engine:
         """Return sqlalchemy engine"""
         return self.engine
+
+    def get_session(self) -> sessionmaker:
+        """Return sqlalchemy session"""
+        return self.session
 
     def engine(self) -> engine:
         """DEPRECATED use TimelinkDB.get_engine()"""
@@ -92,7 +94,7 @@ class TimelinkMHK:
 
         :return: None
         """
-        self.metadata = Base.metadata  # pylint: disable=
+        self.metadata = Base.metadata # pylint: disable=ignore-no-member
         self.metadata.create_all(self.engine)  # only creates if missing
 
     def load_database_classes(self, session):
@@ -143,3 +145,6 @@ class TimelinkMHK:
         self.ensure_all_mappings(session)
         self.metadata = Base.metadata  # pylint: disable=ignore-no-member
         self.metadata.drop_all(self.engine)
+
+# for compatibility with old code
+TimelinkDB = TimelinkMHK

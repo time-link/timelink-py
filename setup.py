@@ -46,6 +46,8 @@ setup(
         'python-box~=5.3.0',
         'psycopg2-binary==2.9.6',
         'py-markdown-table==0.3.3',
+        'pandas~=2.0.0',
+        'docker~=6.0.0',
 
     ],
     license="MIT license",
@@ -58,6 +60,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/time-link/timelink-py',
-    version='0.3.11b',
+    version='0.3.11b7',
     zip_safe=False,
 )
