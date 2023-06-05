@@ -51,6 +51,16 @@ def get_postgres_container() -> docker.models.containers.Container:
         = client.containers.list(filters={'ancestor': 'postgres'})
     return postgres_containers[0]
 
+def get_postgres_container_pwd() -> str:
+    """Get the postgres container password
+    Returns:
+        str: the postgres container password
+    """
+    if is_postgres_running():
+        container = get_postgres_container()
+        pwd = [env for env in container.attrs['Config']['Env'] 
+            if env.startswith('POSTGRES_PASSWORD')][0].split('=')[1]
+        return pwd
 
 def start_postgres_server(dbname: str | None = 'timelink',
                           dbuser: str | None = 'timelink',
@@ -70,6 +80,8 @@ def start_postgres_server(dbname: str | None = 'timelink',
         return get_postgres_container()
 
     client = docker.from_env()
+    if dbpass is None:
+        dbpass = get_db_password()
     psql_container = client.containers.run(
         image=f'postgres:{version}',
         detach=True,
@@ -171,6 +183,7 @@ class TimelinkDatabase:
                 self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
                 self.db_container = start_postgres_server(
                     db_name, self.db_user, self.db_pwd)
+                self.db_pwd = get_postgres_container_pwd()
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
                 if db_pwd is None:
