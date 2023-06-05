@@ -14,6 +14,7 @@ import random
 import string
 from sqlalchemy import create_engine, inspect, select  # pylint: disable=import-error
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
+from sqlalchemy_utils import database_exists, create_database  # pylint: disable=import-error
 import docker  # pylint: disable=import-error
 from timelink.mhk import utilities
 from timelink.api import models  # pylint: disable=unused-import
@@ -184,6 +185,8 @@ class TimelinkDatabase:
                 raise ValueError(f"Unknown database type: {db_type}")
 
         self.engine = create_engine(self.db_url, connect_args=connect_args)
+        if not database_exists(self.engine.url):
+            create_database(self.engine.url)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.metadata = models.Base.metadata
         self.create_tables()

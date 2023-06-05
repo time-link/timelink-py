@@ -28,7 +28,8 @@ def dbsystem(request):
     try:
         yield db
     finally:
-        database.drop_db(db)
+        # database.drop_db(db)
+
         db.close()
 
 
@@ -39,6 +40,8 @@ def dbsystem(request):
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
         ("postgres", "timelink", None, "postgres", "TCGllaFBFy"),
+        ("postgres", "soure", None, "postgres", "TCGllaFBFy"),
+        ("postgres", "china", None, "postgres", "TCGllaFBFy"),
     ],
     indirect=True,
 )
