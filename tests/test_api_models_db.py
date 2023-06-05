@@ -12,6 +12,7 @@ from timelink.api.database import TimelinkDatabase
 from timelink.api.models.entity import Entity  # noqa
 from timelink.api.models.pom_som_mapper import PomSomMapper
 from timelink.api.models.source import Source
+from timelink.api.database import get_dbnames
 
 pytestmark = skip_on_travis
 
@@ -98,6 +99,9 @@ def test_create_db(get_db):
     tables = list(metadata.tables.keys())
     assert len(tables) > 0, "tables where not created"
 
+def test_get_dbnames():
+    dbnames = get_dbnames()
+    assert len(dbnames) > 0, "No databases found"
 
 @skip_on_travis
 def test_entity_contains(get_db):
