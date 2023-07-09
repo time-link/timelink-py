@@ -28,7 +28,8 @@ def dbsystem(request):
     try:
         yield db
     finally:
-        database.drop_db(db)
+        # database.drop_db(db)
+
         db.close()
 
 

@@ -104,6 +104,21 @@ def get_mhk_app_env() -> Type[Union[str, None]]:
         warnings.warn("Could not get MHK env variables")
         return None
 
+def get_db_pwd() -> str:
+    """
+    Get the password of the database from the MHK environment
+    """
+    app_env = get_mhk_app_env()
+    if app_env:
+        pwd = app_env["MYSQL_ROOT_PASSWORD"]
+        if pwd is None:
+            raise TypeError(
+                "Could not find MHK database password." "Is MHK installed?")
+        else:
+            return pwd
+    else:
+        raise TypeError(
+            "Could not find MHK app information." "Is MHK installed?")  # noqa: E501
 
 def get_connection_string(db: str, host="localhost", port="3307") -> str:
     pwd = get_db_pwd()

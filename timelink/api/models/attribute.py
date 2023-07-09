@@ -2,8 +2,8 @@
 
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
-from .entity import Entity
-from ...kleio.utilities import quote_long_text
+from timelink.api.models.entity import Entity
+from timelink.kleio.utilities import quote_long_text
 
 
 class Attribute(Entity):

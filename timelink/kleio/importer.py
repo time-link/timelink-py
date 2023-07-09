@@ -22,6 +22,7 @@ from timelink.mhk.models.pom_som_mapper import (
 )
 from timelink.mhk.models.entity import Entity as EntityMHK
 from timelink.mhk.models.person import Person as PersonMHK
+from timelink.mhk.models.system import KleioFile as KleioFileMHK
 
 from timelink.api.models.base_mappings import (
     pom_som_base_mappings as pom_som_base_mappingsTL,
@@ -31,7 +32,7 @@ from timelink.api.models.pom_som_mapper import (
     PomClassAttributes as PomClassAttributesTL,
 )
 from timelink.api.models.base import Entity as EntityTL, Person as PersonTL
-from timelink.api.models.system import KleioFile
+from timelink.api.models.system import KleioFile as KleioFileTL
 
 
 class KleioContext(Enum):
@@ -257,6 +258,7 @@ class KleioHandler:
     pom_class_attributes = None
     entity_model = None
     person_model = None
+    kleio_file_model = None
     model_type: str = None
     postponed_relations = []
     errors = []
@@ -278,6 +280,7 @@ class KleioHandler:
             self.pom_class_attributes = PomClassAttributesTL
             self.entity_model = EntityTL
             self.person_model = PersonTL
+            self.kleio_file_model = KleioFileTL
             self.model_type = "TL"
         elif mode == "MHK":
             self.pom_som_base_mappings = pom_som_base_mappingsMHK
@@ -285,6 +288,7 @@ class KleioHandler:
             self.pom_class_attributes = PomClassAttributesMHK
             self.entity_model = EntityMHK
             self.person_model = PersonMHK
+            self.kleio_file_model = KleioFileMHK
             self.model_type = "MHK"
         else:
             raise ValueError(f"Unknown mode {mode}")
@@ -433,7 +437,7 @@ class KleioHandler:
                 self.session.rollback()
         self.postponed_relations = []
         # store information on kleio file import
-        kfile = KleioFile(
+        kfile = self.kleio_file_model(
             path=self.kleio_file,
             name=self.kleio_file_name,
             structure=self.kleio_structure,
@@ -454,7 +458,7 @@ class KleioHandler:
         else:
             s = "No warnings"
         kfile.warning_rpt = s
-        kfile_exists = self.session.get(KleioFile, kfile.path)
+        kfile_exists = self.session.get(self.kleio_file_model, kfile.path)
         if kfile_exists is not None:
             self.session.delete(kfile_exists)
         self.session.add(kfile)

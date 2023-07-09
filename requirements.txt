@@ -9,6 +9,8 @@ pyYAML==6.0
 requests==2.30.0
 setuptools~=57.1.0
 SQLAlchemy~=2.0.0
+sqlalchemy-utils
 typer~=0.4.0
 urllib3<2
 uvicorn~=0.20.0
+pandas~=2.0.0
