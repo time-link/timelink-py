@@ -158,7 +158,6 @@ class TimelinkDatabase:
                 # TODO: allow for path to be specified
                 connect_args = {"check_same_thread": False}
             elif db_type == "postgres":
-                # TODO Start a postgres server in docker
                 if db_pwd is None:
                     self.db_pwd = get_db_password()
                 else:
@@ -167,9 +166,18 @@ class TimelinkDatabase:
                     self.db_user = "postgres"
                 else:
                     self.db_user = db_user
+                if is_postgres_running():
+                    self.db_container = get_postgres_container()
+                    # if it it is running, we need the password
+                    container_vars = self.db_container.attrs['Config']['Env']
+                    pwd = [var for var in container_vars if 'POSTGRES_PASSWORD' in var][0]
+                    self.db_pwd = pwd.split('=')[1]
+                else:
+                    self.db_container = start_postgres_server(db_name, 
+                                                              self.db_user, 
+                                                              self.db_pwd)
                 self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
-                self.db_container = start_postgres_server(
-                    db_name, self.db_user, self.db_pwd)
+
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
                 if db_pwd is None:
