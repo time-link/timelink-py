@@ -38,7 +38,7 @@ def dbsystem(request):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, "postgres", "TCGllaFBFy"),
+        ("postgres", "timelink", None, "postgres", None),
     ],
     indirect=True,
 )
