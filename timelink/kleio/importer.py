@@ -440,7 +440,7 @@ class KleioHandler:
             translator=self.kleio_translator,
             # convert date from "2020-8-18 17:10:32" format
             # to datetime object
-            translation_date = datetime.strptime(self.kleio_when, "%Y-%m-%d %H:%M:%S"),
+            translation_date=datetime.strptime(self.kleio_when, "%Y-%m-%d %H:%M:%S"),
             nerrors=len(self.errors),
             nwarnings=len(self.warnings)
         )
