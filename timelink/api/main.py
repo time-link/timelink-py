@@ -30,7 +30,12 @@ from typing import List, Annotated
 from datetime import date
 
 import uvicorn  # pylint: disable=import-error
-from fastapi import FastAPI, Request, Query, Depends, HTTPException  # pylint: disable=unused-import, import-error
+from fastapi import (
+    FastAPI,
+    Request,
+    Query,
+    Depends,
+)  # pylint: disable=unused-import, import-error
 from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
@@ -41,14 +46,18 @@ from timelink.api.schemas import EntityAttrRelSchema
 app = FastAPI()
 
 
-
 # Dependency to get a connection to the database
-def get_db(db_name: str = "timelink", db_type: str = "postgres",
-           db_url: str = None, db_user: str = None, db_pwd: str = None):
+def get_db(
+    db_name: str = "timelink",
+    db_type: str = "postgres",
+    db_url: str = None,
+    db_user: str = None,
+    db_pwd: str = None,
+):
     """Get a connection to the database
-    
+
     Uses timelink.api.database.TimelinkDatabase to get a connection to the database."""
-    db_pwd = 'TCGllaFBFy'
+    db_pwd = "TCGllaFBFy"
     database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
     db = database.session()
     try:
@@ -60,8 +69,7 @@ def get_db(db_name: str = "timelink", db_type: str = "postgres",
 @app.get("/")
 async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
-    return {"message": "Welcome to Timelink API",
-             "host": request.headers["host"]}
+    return {"message": "Welcome to Timelink API", "host": request.headers["host"]}
 
 
 @app.post("/search/", response_model=List[schemas.SearchResults])
@@ -74,16 +82,20 @@ async def search(search_request: schemas.SearchRequest):
     Returns:
         Search results
     """
-    result1 = schemas.SearchResults(id="jrc",
-                                    the_class="person",
-                                    description="Joaquim Carvalho: " +
-                                    repr(search_request),
-                                    start_date=date(1958, 5, 24), end_date=date(2023, 1, 4))
-    result2 = schemas.SearchResults(id="mag",
-                                    the_class="person",
-                                    description="Magda Carvalho: " +
-                                    repr(search_request),
-                                    start_date=date(1960, 1, 1), end_date=date(2023, 1, 4))
+    result1 = schemas.SearchResults(
+        id="jrc",
+        the_class="person",
+        description="Joaquim Carvalho: " + repr(search_request),
+        start_date=date(1958, 5, 24),
+        end_date=date(2023, 1, 4),
+    )
+    result2 = schemas.SearchResults(
+        id="mag",
+        the_class="person",
+        description="Magda Carvalho: " + repr(search_request),
+        start_date=date(1960, 1, 1),
+        end_date=date(2023, 1, 4),
+    )
     if search_request.q == "jrc":
         return [result1]
     if search_request.q == "mag":
@@ -94,8 +106,9 @@ async def search(search_request: schemas.SearchRequest):
 
 
 @app.post("/syspar/", response_model=models.SysParSchema)
-async def set_syspar(syspar: models.SysParSchema, 
-                     db: Annotated[Session,Depends(get_db)]):
+async def set_syspar(
+    syspar: models.SysParSchema, db: Annotated[Session, Depends(get_db)]
+):
     """Set system parameters
 
     Args:
@@ -109,14 +122,14 @@ async def set_syspar(syspar: models.SysParSchema,
 
 @app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
-                    q: list[str] | None =
-                        Query(
-                                default=None,
-                                title="Name of system parameter",
-                                description="Multiple values allowed,"
-                                            "if empty return all"),
-                                db: Session = Depends(get_db)
-                    ):
+    q: list[str]
+    | None = Query(
+        default=None,
+        title="Name of system parameter",
+        description="Multiple values allowed," "if empty return all",
+    ),
+    db: Session = Depends(get_db),
+):
     """Get system parameters
 
     Args:
@@ -128,23 +141,21 @@ async def get_syspars(
 
 
 @app.post("/syslog", response_model=models.SysLogSchema)
-async def set_syslog(syslog: models.SysLogCreateSchema,
-                    db: Session = Depends(get_db)):
-    """Set a system log entry
-    """
+async def set_syslog(syslog: models.SysLogCreateSchema, db: Session = Depends(get_db)):
+    """Set a system log entry"""
     return crud.set_syslog(db, syslog)
 
 
 @app.get("/syslog", response_model=list[models.SysLogSchema])
 async def get_syslog(
-                    nlines: int | None =
-                        Query(
-                            default=10,
-                            title="Get last N lines of log",
-                            description="If number of lines not specified"
-                                        "return last 10"),
-                            db: Session = Depends(get_db)
-                            ):
+    nlines: int
+    | None = Query(
+        default=10,
+        title="Get last N lines of log",
+        description="If number of lines not specified" "return last 10",
+    ),
+    db: Session = Depends(get_db),
+):
     """Get log lines
 
     Args:
@@ -155,14 +166,11 @@ async def get_syslog(
     result = crud.get_syslog(db, nlines)
     return result
 
+
 @app.get("/import/file/{file_path:path}", response_model=ImportStats)
 async def import_file(file_path: str, db: Session = Depends(get_db)):
-    """Import kleio data from xml file """
-    result = import_from_xml(file_path,
-                             db,
-                             {'return_stats': True,
-                              'mode': 'TL'}
-                              )
+    """Import kleio data from xml file"""
+    result = import_from_xml(file_path, db, {"return_stats": True, "mode": "TL"})
     response = ImportStats(**result)
 
     return response
@@ -173,10 +181,13 @@ async def get(id: str, db: Session = Depends(get_db)):
     """Get entity by id"""
     return crud.get(db, id)
 
+
 # Tutorial
+
 
 class ModelName(str, Enum):
     """Enum for model names"""
+
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"
@@ -206,7 +217,7 @@ async def read_file(file_path: str):
 @app.get("/items/")
 async def read_item(skip: int = 0, limit: int = 10):
     """Example of query parameters"""
-    return fake_items_db[skip: skip + limit]
+    return fake_items_db[skip : skip + limit]
 
 
 @app.get("/items2/{item_id}")
@@ -220,21 +231,22 @@ async def read_item2(item_id: str, q: str | None = None):
     return {"item_id": item_id}
 
 
-
 # Sandbox
+
 
 # testing specifying the database in the path
 @app.get("/{dbname}/id/{id}", response_model=dict)
-async def get_id(eid: str,
-                 dbname: str,
-                 db: Session = Depends(get_db)
-                ):
-    """ get entity with id from database
+async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):
+    """get entity with id from database
 
     This will pass the name of the database in the path
     to the get_db() function
     """
-    result = {'database': dbname, 'id': f"info for id {eid}", 'url': repr(db.get_bind().url)}
+    result = {
+        "database": dbname,
+        "id": f"info for id {eid}",
+        "url": repr(db.get_bind().url),
+    }
     return result
 
 

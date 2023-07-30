@@ -21,7 +21,8 @@ from pydantic import BaseModel  # pylint: disable=import-error
 
 
 class EntitySchema(BaseModel):
-    """ Pydantic Schema for Entity """
+    """Pydantic Schema for Entity"""
+
     id: str
     pom_class: str
     inside: Optional[str]
@@ -38,10 +39,11 @@ class EntitySchema(BaseModel):
 
 
 class EntityBriefSchema(BaseModel):
-    """ Pydantic Schema for Entity brief
-    
+    """Pydantic Schema for Entity brief
+
     No links to other entities
     """
+
     id: str
     pom_class: str
     inside: Optional[str]
@@ -70,7 +72,7 @@ class RelationSchema(BaseModel):
 
 
 class RelationOutSchema(RelationSchema):
-    dest_name: Optional[str] 
+    dest_name: Optional[str]
 
 
 class RelationInSchema(RelationSchema):
@@ -90,7 +92,8 @@ class AttributeSchema(BaseModel):
 
 
 class EntityAttrRelSchema(BaseModel):
-    """ Pydantic Schema for Entity with attributes and relations """
+    """Pydantic Schema for Entity with attributes and relations"""
+
     id: str
     pom_class: str
     inside: Optional[str]
@@ -120,8 +123,11 @@ class SearchRequest(BaseModel):
         limit: number of items to return, default 100
 
     """
+
     q: str
-    after: date | None = None  # see https://docs.pydantic.dev/usage/types/#datetime-types
+    after: date | None = (
+        None  # see https://docs.pydantic.dev/usage/types/#datetime-types
+    )
     until: date | None = None
     skip: int | None = 0
     limit: int | None = 100
@@ -133,6 +139,7 @@ class SearchResults(BaseModel):
     Fields:
         results: list of search results
     """
+
     id: str
     the_class: str
     description: str

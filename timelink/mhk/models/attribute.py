@@ -1,4 +1,3 @@
-
 # pylint: disable=import-error
 
 from sqlalchemy import Column, String, ForeignKey, Index
@@ -9,24 +8,27 @@ from timelink.mhk.models.entity import Entity
 
 
 class Attribute(Entity):
-    __table_args__ = {'extend_existing': True}
+    __table_args__ = {"extend_existing": True}
     __tablename__ = "attributes"
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
-    entity = Column(String, ForeignKey('entities.id'), index=True)
+    id = Column(String, ForeignKey("entities.id"), primary_key=True)
+    entity = Column(String, ForeignKey("entities.id"), index=True)
     the_type = Column(String, index=True)
     the_value = Column(String, index=True)
     the_date = Column(String, index=True)
     obs = Column(String)
-    the_entity = relationship("Entity", foreign_keys=[entity],
-                              back_populates="attributes", )
+    the_entity = relationship(
+        "Entity",
+        foreign_keys=[entity],
+        back_populates="attributes",
+    )
 
     __mapper_args__ = {
-        'polymorphic_identity': 'attribute',
-        'inherit_condition': id == Entity.id
+        "polymorphic_identity": "attribute",
+        "inherit_condition": id == Entity.id,
     }
 
-    __table_args__ = (Index('attributes_type_value', 'the_type', 'the_value'),)
+    __table_args__ = (Index("attributes_type_value", "the_type", "the_value"),)
 
     def __repr__(self):
         sr = super().__repr__()
@@ -41,12 +43,13 @@ class Attribute(Entity):
         )
 
     def __str__(self):
-        r = f'{self.groupname}${quote_long_text(self.the_type)}/{quote_long_text(self.the_value)}/'
-        r += f'{self.the_date}'
+        r = f"{self.groupname}${quote_long_text(self.the_type)}/{quote_long_text(self.the_value)}/"
+        r += f"{self.the_date}"
         if self.obs is not None:
-            r = f'{r}/obs={quote_long_text(self.obs)}'
+            r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
 
 
-Entity.attributes = relationship("Attribute", foreign_keys=[Attribute.entity],
-                                 back_populates="the_entity")
+Entity.attributes = relationship(
+    "Attribute", foreign_keys=[Attribute.entity], back_populates="the_entity"
+)

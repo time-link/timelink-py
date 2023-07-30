@@ -10,15 +10,18 @@ from timelink.api.database import TimelinkDatabase
 from timelink.api.models import Person, Attribute, Relation
 from timelink.notebooks import config as conf
 
-def attribute_values(attr_type,
-                     db: TimelinkDatabase = None,
-                     session: sessionmaker = None,
-                     dates_between = None,
-                     sql_echo = False):
+
+def attribute_values(
+    attr_type,
+    db: TimelinkDatabase = None,
+    session: sessionmaker = None,
+    dates_between=None,
+    sql_echo=False,
+):
     """Return the vocabulary of an attribute
 
-    The returned dataframe has a row for each unique value 
-    a 'count' with the number of different entities, and 
+    The returned dataframe has a row for each unique value
+    a 'count' with the number of different entities, and
     the the first and last date for that row
 
     Args:
@@ -29,14 +32,13 @@ def attribute_values(attr_type,
         sql_echo = if true will print the sql statement
 
 
-    To filter by dates: dates_in = (from_date,to_date) 
-    with dates in format yyyy-mm-dd 
-    will return attributes with 
+    To filter by dates: dates_in = (from_date,to_date)
+    with dates in format yyyy-mm-dd
+    will return attributes with
     from_date < date < to_date
 
     """
-    
-    
+
     #  We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
     dbsystem: TimelinkDatabase = None
@@ -57,28 +59,35 @@ def attribute_values(attr_type,
 
     if dates_between is not None:
         first_date, last_date = dates_between
-        stmt = select(
-                    attr_table.c.the_value.label('value'),
-                    func.count(attr_table.c.entity.distinct()).label('count'),
-                    func.min(attr_table.c.the_date).label('date_min'),
-                    func.max(attr_table.c.the_date).label('date_max'),
-                    ).\
-                    where(
-                        and_(
-                            attr_table.c.the_type == attr_type,
-                            attr_table.c.the_date > first_date.strip("-"),
-                            attr_table.c.the_date < last_date.strip("-")
-                            )).\
-                group_by("the_value").order_by(desc("count"))     
+        stmt = (
+            select(
+                attr_table.c.the_value.label("value"),
+                func.count(attr_table.c.entity.distinct()).label("count"),
+                func.min(attr_table.c.the_date).label("date_min"),
+                func.max(attr_table.c.the_date).label("date_max"),
+            )
+            .where(
+                and_(
+                    attr_table.c.the_type == attr_type,
+                    attr_table.c.the_date > first_date.strip("-"),
+                    attr_table.c.the_date < last_date.strip("-"),
+                )
+            )
+            .group_by("the_value")
+            .order_by(desc("count"))
+        )
     else:
-        stmt = select(
-                    attr_table.c.the_value.label('value'),
-                    func.count(attr_table.c.entity.distinct()).label('count'),
-                    func.min(attr_table.c.the_date).label('date_min'),
-                    func.max(attr_table.c.the_date).label('date_max'),
-                    ).\
-                    where(attr_table.c.the_type == attr_type).\
-                group_by("the_value").order_by(desc("count"))
+        stmt = (
+            select(
+                attr_table.c.the_value.label("value"),
+                func.count(attr_table.c.entity.distinct()).label("count"),
+                func.min(attr_table.c.the_date).label("date_min"),
+                func.max(attr_table.c.the_date).label("date_max"),
+            )
+            .where(attr_table.c.the_type == attr_type)
+            .group_by("the_value")
+            .order_by(desc("count"))
+        )
 
     if sql_echo:
         print(stmt)
@@ -89,6 +98,8 @@ def attribute_values(attr_type,
     else:
         with dbsystem.session() as session:
             records = session.execute(stmt)
-    df =  pd.DataFrame.from_records(records,index=['value'],columns=['value','count','date_min','date_max'])
-    
+    df = pd.DataFrame.from_records(
+        records, index=["value"], columns=["value", "count", "date_min", "date_max"]
+    )
+
     return df

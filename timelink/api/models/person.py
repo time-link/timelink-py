@@ -10,16 +10,15 @@ from timelink.kleio.utilities import quote_long_text
 
 class Person(Entity):
     """Represents a person in a historical source"""
+
     __tablename__ = "persons"
 
-    id: Mapped[str] = mapped_column(String, ForeignKey('entities.id'), primary_key=True)
+    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id"), primary_key=True)
     name: Mapped[Optional[str]] = mapped_column(String, index=True)
     sex: Mapped[Optional[str]] = mapped_column(String(1))
     obs: Mapped[Optional[str]] = mapped_column(String)
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'person'
-    }
+    __mapper_args__ = {"polymorphic_identity": "person"}
 
     def __repr__(self):
         sr = super().__repr__()

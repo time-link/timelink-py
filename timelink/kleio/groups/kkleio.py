@@ -15,11 +15,12 @@ class KKleio(KGroup):
 
     TODO: Could keep a list of the name of the groups included, at all levels
     """
-    _name = 'kleio'
-    _position = ['structure']
-    _also = ['prefix', 'translations', 'translator', 'obs']
-    _part = ['source', 'aregister']
-    _pom_class_id: str = 'entity'
+
+    _name = "kleio"
+    _position = ["structure"]
+    _also = ["prefix", "translations", "translator", "obs"]
+    _part = ["source", "aregister"]
+    _pom_class_id: str = "entity"
 
     def __init__(self, *args, **kwargs):
         KGroup._global_line = 1

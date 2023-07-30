@@ -3,7 +3,7 @@ from timelink.kleio.groups.kact import KAct
 
 
 class KObject(KGroup):
-    """ KObject(name,type,id=,obs=,same_as=,xsame_as=)
+    """KObject(name,type,id=,obs=,same_as=,xsame_as=)
 
     An object in a historical source.
     Object groups represent physical entities like
@@ -25,12 +25,13 @@ class KObject(KGroup):
              also=obs,id,same_as,xsame_as;
              arbitrary=atr,ls,rel
     """
-    _name = 'object'
-    _guaranteed = ['name']
-    _also = ['id', 'obs', 'same_as']
-    _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
-    _part = ['rel', 'attr']
-    _pom_class_id: str = 'object'
+
+    _name = "object"
+    _guaranteed = ["name"]
+    _also = ["id", "obs", "same_as"]
+    _position = ["name", "sex", "id", "same_as", "xsame_as"]
+    _part = ["rel", "attr"]
+    _pom_class_id: str = "object"
 
 
 KAct.allow_as_part(KObject)

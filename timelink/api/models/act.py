@@ -6,9 +6,9 @@ MIT License, no warranties.
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
 # and https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table
 
-from sqlalchemy import ForeignKey       # pylint: disable=import-error
-from sqlalchemy import String           # pylint: disable=import-error
-from sqlalchemy.orm import Mapped        # pylint: disable=import-error
+from sqlalchemy import ForeignKey  # pylint: disable=import-error
+from sqlalchemy import String  # pylint: disable=import-error
+from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 
 from timelink.kleio.utilities import quote_long_text, kleio_escape
@@ -31,12 +31,15 @@ class Act(Entity):
     id: Mapped[str] = mapped_column(String, ForeignKey("entities.id"), primary_key=True)
     the_type: Mapped[str] = mapped_column(String(32), comment="type of act")
     #: str: the date of the act in Kleio format AAAAMMDD
-    the_date: Mapped[str] = mapped_column(String, index=True, 
-                                          comment="the date of the act in Kleio format AAAAMMDD")
+    the_date: Mapped[str] = mapped_column(
+        String, index=True, comment="the date of the act in Kleio format AAAAMMDD"
+    )
     #: str: location of the act, eg church, notary office
     loc: Mapped[str] = mapped_column(String, nullable=True)
     ref: Mapped[str] = mapped_column(String, nullable=True)  #: str: archival reference
-    obs: Mapped[str] = mapped_column(String,nullable=True)  #: any observations or comments.
+    obs: Mapped[str] = mapped_column(
+        String, nullable=True
+    )  #: any observations or comments.
 
     __mapper_args__ = {"polymorphic_identity": "act"}
 

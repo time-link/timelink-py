@@ -4,20 +4,20 @@ import logging
 import warnings
 from typing import Optional, Type, List
 
-from sqlalchemy import Table            # pylint: disable=import-error
-from sqlalchemy import Column           # pylint: disable=import-error
-from sqlalchemy import ForeignKey       # pylint: disable=import-error
-from sqlalchemy import String           # pylint: disable=import-error
-from sqlalchemy import Integer          # pylint: disable=import-error
-from sqlalchemy import Float            # pylint: disable=import-error
+from sqlalchemy import Table  # pylint: disable=import-error
+from sqlalchemy import Column  # pylint: disable=import-error
+from sqlalchemy import ForeignKey  # pylint: disable=import-error
+from sqlalchemy import String  # pylint: disable=import-error
+from sqlalchemy import Integer  # pylint: disable=import-error
+from sqlalchemy import Float  # pylint: disable=import-error
 
-from sqlalchemy import inspect              # pylint: disable=import-error
-from sqlalchemy.engine import Engine        # pylint: disable=import-error
-from sqlalchemy.orm import Mapped           # pylint: disable=import-error
-from sqlalchemy.orm import mapped_column    # pylint: disable=import-error
-from sqlalchemy.orm import relationship     # pylint: disable=import-error
-from sqlalchemy import exc as sa_exc        # pylint: disable=import-error
-from sqlalchemy import select               # pylint: disable=import-error
+from sqlalchemy import inspect  # pylint: disable=import-error
+from sqlalchemy.engine import Engine  # pylint: disable=import-error
+from sqlalchemy.orm import Mapped  # pylint: disable=import-error
+from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
+from sqlalchemy.orm import relationship  # pylint: disable=import-error
+from sqlalchemy import exc as sa_exc  # pylint: disable=import-error
+from sqlalchemy import select  # pylint: disable=import-error
 
 from ...kleio.groups import KGroup, KElement
 from .base_class import Base
@@ -183,8 +183,7 @@ class PomSomMapper(Entity):
             my_table = pytables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
-            my_table = Table(self.table_name, metadata_obj,
-                             autoload_with=dbengine)
+            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
             # we need to ensure that the foreign key relation exists with super talbe
             # otherwise the ORM mapping further down will fail.
             if self.super_class not in ["root", "base"]:
@@ -195,14 +194,16 @@ class PomSomMapper(Entity):
                 if pom_super_class is not None:
                     super_class_table_id = pom_super_class.table_name + ".id"
                 else:
-                    message = "Creating mapping for %s super class %s not found" \
-                              " Default to entities as super class"
+                    message = (
+                        "Creating mapping for %s super class %s not found"
+                        " Default to entities as super class"
+                    )
                     logger.warning(message, self.id, self.super_class)
                     super_class_table_id = "entities.id"
                 pytype = my_table.c.id.type
                 my_table.append_column(
                     Column(
-                        'id',
+                        "id",
                         pytype,
                         ForeignKey(super_class_table_id),
                         primary_key=True,
@@ -220,8 +221,7 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(self.table_name, metadata_obj,
-                             extend_existing=True)
+            my_table = Table(self.table_name, metadata_obj, extend_existing=True)
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:
                 PyType: str
@@ -237,17 +237,18 @@ class PomSomMapper(Entity):
                 # print(f"Inferred python type for {cattr.colname}: ", PyType)
 
                 if cattr.pkey != 0:
-                    if self.super_class not in ['root', 'base']:
+                    if self.super_class not in ["root", "base"]:
                         # print("Getting super class " + self.super_class)
-                        pom_super_class: PomSomMapper = \
-                            PomSomMapper.get_pom_class(
-                                self.super_class, session)
+                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
+                            self.super_class, session
+                        )
                         if pom_super_class is not None:
-                            super_class_table_id = \
-                                pom_super_class.table_name + '.id'
+                            super_class_table_id = pom_super_class.table_name + ".id"
                         else:
-                            message = "Creating mapping for %s super class %s not found" \
-                                      " Default to entities as super class"
+                            message = (
+                                "Creating mapping for %s super class %s not found"
+                                " Default to entities as super class"
+                            )
                             logger.warning(message, self.id, self.super_class)
                             super_class_table_id = "entities.id"
                         my_table.append_column(
@@ -287,17 +288,15 @@ class PomSomMapper(Entity):
                 # specialized classes (obs normally, but also the_type...)
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except Exception as e:          #pylint: disable=broad-except
-            logger.ERROR(
-                Exception(f"Could not create ORM mapping for {self.id}"), e)
+        except Exception as e:  # pylint: disable=broad-except
+            logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), e)
 
         self.orm_class = my_orm
 
         return self.orm_class
 
     @classmethod
-    def get_pom_classes(cls, session) -> Optional[
-                                                 List["PomSomMapper"]]:
+    def get_pom_classes(cls, session) -> Optional[List["PomSomMapper"]]:
         """
         Get the pom_classes from database data.
 
@@ -345,7 +344,7 @@ class PomSomMapper(Entity):
 
     @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
-        """ Returns the PomSomMapper for a given group"""
+        """Returns the PomSomMapper for a given group"""
         # TODO use property instead
         pom_id = getattr(group, "_pom_class_id", None)
         if pom_id is None:
@@ -385,8 +384,7 @@ class PomSomMapper(Entity):
         return cattr.colname
 
     @classmethod
-    def kgroup_to_entity(cls, group: KGroup, session=None,
-                         with_pom=None) -> Entity:
+    def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
 
@@ -425,8 +423,7 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname,
-                            str(element.core))
+                    setattr(entity_from_group, cattr.colname, str(element.core))
                 except Exception as e:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
@@ -449,11 +446,11 @@ class PomSomMapper(Entity):
         return entity_from_group
 
     @classmethod
-    def store_KGroup(cls, group: KGroup, session, with_pom = None):
-        """ Store a Kleio Group in the database
-        
+    def store_KGroup(cls, group: KGroup, session, with_pom=None):
+        """Store a Kleio Group in the database
+
         Will recursively store all the groups included in this group.
-        
+
         If the group is already in the database it will be deleted, as well
         as all included groups.
 
@@ -469,7 +466,7 @@ class PomSomMapper(Entity):
         try:
             session.add(entity_from_group)
             session.commit()
-        except Exception as e:      # pylint: disable=broad-except
+        except Exception as e:  # pylint: disable=broad-except
             raise e
 
         in_group: KGroup
@@ -478,7 +475,7 @@ class PomSomMapper(Entity):
 
         try:
             session.commit()
-        except Exception as e:      # pylint: disable=broad-except
+        except Exception as e:  # pylint: disable=broad-except
             raise e
 
     def __repr__(self):
@@ -493,15 +490,15 @@ class PomSomMapper(Entity):
     def __str__(self):
         r = f"{self.id} table {self.table_name} super {self.super_class}\n"
         for cattr in self.class_attributes:
-            r = r + f'{cattr.the_class}.{cattr.name} \t'
-            r = r + f'class {cattr.colclass} \t'
-            r = r + f'col {cattr.colname} \ttype {cattr.coltype} '
-            r = r + f'size {cattr.colsize} precision {cattr.colprecision}'
-            r = r + f'primary key {cattr.pkey} \n'
+            r = r + f"{cattr.the_class}.{cattr.name} \t"
+            r = r + f"class {cattr.colclass} \t"
+            r = r + f"col {cattr.colname} \ttype {cattr.coltype} "
+            r = r + f"size {cattr.colsize} precision {cattr.colprecision}"
+            r = r + f"primary key {cattr.pkey} \n"
         return r
 
 
-class PomClassAttributes(Base):     # pylint: disable=too-few-public-methods
+class PomClassAttributes(Base):  # pylint: disable=too-few-public-methods
     """
     Attribute of a PomClass. Maps kleio group element to table columns
 

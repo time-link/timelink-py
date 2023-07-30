@@ -24,7 +24,7 @@ TIMELINK_SESSION = None
 #        a.obs AS aobs
 #      FROM attributes a, persons p
 #      WHERE a.entity = p.id;
-# 
+#
 # This is dynamically set by functions and kept here to avoid duplication
 TIMELINK_NATTRIBUTES = None
 
@@ -39,5 +39,3 @@ TIMELINK_RELATIONS = None
 
 # This is the named functions view
 TIMELINK_NFUNCS = None
-
-

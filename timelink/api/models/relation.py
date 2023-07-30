@@ -7,19 +7,16 @@ from .entity import Entity
 
 
 class Relation(Entity):
-
     __tablename__ = "relations"
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
+    id = Column(String, ForeignKey("entities.id"), primary_key=True)
     # rel_entity = relationship("Entity",
     #                   foreign_keys='id',back_populates='rel')
-    origin = Column(String, ForeignKey('entities.id'), index=True)
-    org = relationship(Entity, foreign_keys=[origin],
-                       back_populates='rels_out')
+    origin = Column(String, ForeignKey("entities.id"), index=True)
+    org = relationship(Entity, foreign_keys=[origin], back_populates="rels_out")
 
-    destination = Column(String, ForeignKey('entities.id'), index=True)
-    dest = relationship("Entity", foreign_keys=[destination],
-                        back_populates="rels_in")
+    destination = Column(String, ForeignKey("entities.id"), index=True)
+    dest = relationship("Entity", foreign_keys=[destination], back_populates="rels_in")
     the_type = Column(String, index=True)
     the_value = Column(String, index=True)
     the_date = Column(String, index=True)
@@ -30,14 +27,12 @@ class Relation(Entity):
         "inherit_condition": id == Entity.id,
     }
 
-    __table_args__ = (Index('relations_type_value', 'the_type', 'the_value'),)
-
+    __table_args__ = (Index("relations_type_value", "the_type", "the_value"),)
 
     @property
     def dest_class(self):
         return self.dest.pom_class
 
-    
     @property
     def org_class(self):
         return self.org.pom_class
@@ -48,7 +43,7 @@ class Relation(Entity):
             return self.dest.name
         else:
             return self.dest.groupname
-        
+
     @property
     def org_name(self):
         if self.org_class == "person" or self.org_class == "object":
@@ -85,9 +80,10 @@ class Relation(Entity):
         return r
 
 
-Entity.rels_out = relationship("Relation", foreign_keys=[Relation.origin],
-                               back_populates="dest")
+Entity.rels_out = relationship(
+    "Relation", foreign_keys=[Relation.origin], back_populates="dest"
+)
 
-Entity.rels_in = relationship("Relation", foreign_keys=[Relation.destination],
-                              back_populates="org")
-
+Entity.rels_in = relationship(
+    "Relation", foreign_keys=[Relation.destination], back_populates="org"
+)

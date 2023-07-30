@@ -12,9 +12,17 @@ TODO
 import os
 import random
 import string
-from sqlalchemy import create_engine, inspect, select, text  # pylint: disable=import-error
+from sqlalchemy import (
+    create_engine,
+    inspect,
+    select,
+    text,
+)  # pylint: disable=import-error
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
-from sqlalchemy_utils import database_exists, create_database  # pylint: disable=import-error
+from sqlalchemy_utils import (
+    database_exists,
+    create_database,
+)  # pylint: disable=import-error
 import docker  # pylint: disable=import-error
 from timelink.mhk import utilities
 from timelink.api import models  # pylint: disable=unused-import
@@ -33,9 +41,11 @@ def is_postgres_running():
     """Check if postgres is running in docker"""
     client = docker.from_env()
 
-    postgres_containers: list[docker.models.containers.Container]\
-        = client.containers.list(filters={'ancestor': 'postgres'})
+    postgres_containers: list[
+        docker.models.containers.Container
+    ] = client.containers.list(filters={"ancestor": "postgres"})
     return len(postgres_containers) > 0
+
 
 # get the postgres container
 
@@ -47,9 +57,11 @@ def get_postgres_container() -> docker.models.containers.Container:
     """
 
     client: docker.DockerClient = docker.from_env()
-    postgres_containers: docker.models.container.Container\
-        = client.containers.list(filters={'ancestor': 'postgres'})
+    postgres_containers: docker.models.container.Container = client.containers.list(
+        filters={"ancestor": "postgres"}
+    )
     return postgres_containers[0]
+
 
 def get_postgres_container_pwd() -> str:
     """Get the postgres container password
@@ -58,14 +70,20 @@ def get_postgres_container_pwd() -> str:
     """
     if is_postgres_running():
         container = get_postgres_container()
-        pwd = [env for env in container.attrs['Config']['Env'] 
-            if env.startswith('POSTGRES_PASSWORD')][0].split('=')[1]
+        pwd = [
+            env
+            for env in container.attrs["Config"]["Env"]
+            if env.startswith("POSTGRES_PASSWORD")
+        ][0].split("=")[1]
         return pwd
 
-def start_postgres_server(dbname: str | None = 'timelink',
-                          dbuser: str | None = 'timelink',
-                          dbpass: str | None = None,
-                          version: str | None = "latest"):
+
+def start_postgres_server(
+    dbname: str | None = "timelink",
+    dbuser: str | None = "timelink",
+    dbpass: str | None = None,
+    version: str | None = "latest",
+):
     """Starts a postgres server in docker
     Args:
         dbname (str): database name
@@ -83,14 +101,14 @@ def start_postgres_server(dbname: str | None = 'timelink',
     if dbpass is None:
         dbpass = get_db_password()
     psql_container = client.containers.run(
-        image=f'postgres:{version}',
+        image=f"postgres:{version}",
         detach=True,
-        ports={'5432/tcp': 5432},
+        ports={"5432/tcp": 5432},
         environment={
-            'POSTGRES_USER': dbuser,
-            'POSTGRES_PASSWORD': dbpass,
-            'POSTGRES_DB': dbname
-        }
+            "POSTGRES_USER": dbuser,
+            "POSTGRES_PASSWORD": dbpass,
+            "POSTGRES_DB": dbname,
+        },
     )
     return psql_container
 
@@ -99,16 +117,16 @@ def random_password():
     """Generate a random password"""
 
     letters = string.ascii_letters
-    result_str = ''.join(random.choice(letters) for i in range(10))
+    result_str = "".join(random.choice(letters) for i in range(10))
     return result_str
 
 
 def get_db_password():
     # get password from environment
-    db_passord = os.environ.get('TIMELINK_DB_PASSWORD')
+    db_passord = os.environ.get("TIMELINK_DB_PASSWORD")
     if db_passord is None:
         db_passord = random_password()
-        os.environ['TIMELINK_DB_PASSWORD'] = db_passord
+        os.environ["TIMELINK_DB_PASSWORD"] = db_passord
     return db_passord
 
 
@@ -116,7 +134,7 @@ def get_dbnames():
     """Get the database names
     Returns:
         list[str]: list of database names
-    
+
     SELECT datname
         FROM pg_database
     WHERE NOT datistemplate
@@ -126,31 +144,35 @@ def get_dbnames():
     start_postgres_server()
     if is_postgres_running():
         container = get_postgres_container()
-        engine = create_engine(f'postgresql://postgres:{get_postgres_container_pwd()}@localhost:5432/postgres')
+        engine = create_engine(
+            f"postgresql://postgres:{get_postgres_container_pwd()}@localhost:5432/postgres"
+        )
         with engine.connect() as conn:
             dbnames = conn.execute(
                 text(
-                    "SELECT datname FROM pg_database WHERE NOT datistemplate AND datallowconn AND datname <> 'postgres';")
-                    )
+                    "SELECT datname FROM pg_database WHERE NOT datistemplate AND datallowconn AND datname <> 'postgres';"
+                )
+            )
             result = [dbname[0] for dbname in dbnames]
         return result
     else:
         return []
-    
+
+
 class TimelinkDatabase:
     """Database connection and setup
 
     Creates a database connection and session. If the database does not exist,
       it is created.
-    db_type determines the type of database. 
+    db_type determines the type of database.
 
     Currently, only sqlite, postgres, and mysql are supported.
 
-    If db_type is sqlite, the database is created in the current directory. 
+    If db_type is sqlite, the database is created in the current directory.
     If db_type is postgres or mysql,
-    the database is created in a docker container. 
+    the database is created in a docker container.
     If the database is postgres, the container is named
-    timelink-postgres. 
+    timelink-postgres.
     If the database is mysql, the container is named timelink-mysql.
 
     Args:
@@ -177,19 +199,21 @@ class TimelinkDatabase:
             # do something with the session
     """
 
-    def __init__(self,
-                 db_name: str = "timelink",
-                 db_type: str = "sqlite",
-                 db_url=None,
-                 db_user=None,
-                 db_pwd=None,
-                 **connect_args):
+    def __init__(
+        self,
+        db_name: str = "timelink",
+        db_type: str = "sqlite",
+        db_url=None,
+        db_user=None,
+        db_pwd=None,
+        **connect_args,
+    ):
         """Initialize the database connection and setup"""
         if db_url is not None:
             self.db_url = db_url
         else:
             if db_type == "sqlite":
-                if db_name == ':memory:':
+                if db_name == ":memory:":
                     self.db_url = "sqlite:///:memory:"
                 else:
                     self.db_url = f"sqlite:///./{db_name}.sqlite"
@@ -207,16 +231,21 @@ class TimelinkDatabase:
                 if is_postgres_running():
                     self.db_container = get_postgres_container()
                     # if it it is running, we need the password
-                    container_vars = self.db_container.attrs['Config']['Env']
-                    pwd = [var for var in container_vars if 'POSTGRES_PASSWORD' in var][0]
-                    self.db_pwd = pwd.split('=')[1]
+                    container_vars = self.db_container.attrs["Config"]["Env"]
+                    pwd = [var for var in container_vars if "POSTGRES_PASSWORD" in var][
+                        0
+                    ]
+                    self.db_pwd = pwd.split("=")[1]
                 else:
-                    self.db_container = start_postgres_server(db_name, 
-                                                              self.db_user, 
-                                                              self.db_pwd)
-                self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
+                    self.db_container = start_postgres_server(
+                        db_name, self.db_user, self.db_pwd
+                    )
+                self.db_url = (
+                    f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
+                )
                 self.db_container = start_postgres_server(
-                    db_name, self.db_user, self.db_pwd)
+                    db_name, self.db_user, self.db_pwd
+                )
                 self.db_pwd = get_postgres_container_pwd()
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
@@ -273,7 +302,11 @@ class TimelinkDatabase:
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for k in pom_som_base_mappings.keys():  # pylint: disable=consider-iterating-dictionary
+        for (
+            k
+        ) in (
+            pom_som_base_mappings.keys()
+        ):  # pylint: disable=consider-iterating-dictionary
             if k not in available_mappings:
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)
@@ -309,7 +342,7 @@ class TimelinkDatabase:
             Engine: database engine
         """
         return self.engine
-    
+
     def get_metadata(self):
         """Get the database metadata
         Returns:

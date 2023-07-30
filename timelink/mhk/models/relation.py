@@ -9,18 +9,19 @@ from timelink.mhk.models.entity import Entity
 
 class Relation(Entity):
     """Represents a relation between two entities."""
+
     __allow_unmapped__ = True
     __tablename__ = "relations"
-    __table_args__ = {'extend_existing': True}
+    __table_args__ = {"extend_existing": True}
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
+    id = Column(String, ForeignKey("entities.id"), primary_key=True)
     # rel_entity = relationship("Entity",
     #                   foreign_keys='id',back_populates='rel')
-    origin = Column(String, ForeignKey('entities.id'), index=True)
+    origin = Column(String, ForeignKey("entities.id"), index=True)
     # org = relationship(Entity, foreign_keys=[origin],
     #                   back_populates='rels_out')
 
-    destination = Column(String, ForeignKey('entities.id'), index=True)
+    destination = Column(String, ForeignKey("entities.id"), index=True)
     # dest = relationship("Entity", foreign_keys=[destination],
     #                    back_populates="rels_in")
     the_type = Column(String, index=True)
@@ -33,7 +34,7 @@ class Relation(Entity):
         "inherit_condition": id == Entity.id,
     }
 
-    __table_args__ = (Index('relations_type_value', 'the_type', 'the_value'),)
+    __table_args__ = (Index("relations_type_value", "the_type", "the_value"),)
 
     def __repr__(self):
         sr = super().__repr__()
@@ -49,7 +50,9 @@ class Relation(Entity):
         )
 
     def __str__(self):
-        if self.dest is not None and self.dest.pom_class == "person":  # pylint: disable=no-member
+        if (
+            self.dest is not None and self.dest.pom_class == "person"
+        ):  # pylint: disable=no-member
             r = (
                 f"rel${kleio_escape(self.the_type)}/{quote_long_text(self.the_value)}/{kleio_escape(self.dest.name)}"  # pylint: disable=no-member
                 f"/{self.destination}/{self.the_date}"
@@ -64,8 +67,10 @@ class Relation(Entity):
         return r
 
 
-Entity.rels_out = relationship("Relation", foreign_keys=[Relation.origin],
-                               backref="dest")
+Entity.rels_out = relationship(
+    "Relation", foreign_keys=[Relation.origin], backref="dest"
+)
 
-Entity.rels_in = relationship("Relation", foreign_keys=[Relation.destination],
-                              backref="org")
+Entity.rels_in = relationship(
+    "Relation", foreign_keys=[Relation.destination], backref="org"
+)

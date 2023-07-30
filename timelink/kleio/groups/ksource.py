@@ -3,7 +3,7 @@ from timelink.kleio.groups.kkleio import KKleio
 
 
 class KSource(KGroup):
-    """  Represents an Historical Source. Sources contain :class:`KAct` and
+    """Represents an Historical Source. Sources contain :class:`KAct` and
     may contain :class:`KAttribute`.
 
     Elements
@@ -42,12 +42,13 @@ class KSource(KGroup):
 
 
     """
-    _name = 'source'
-    _guaranteed = ['id']
-    _also = ['type', 'date', 'year', 'loc', 'ref', 'replace', 'obs']
-    _position = ['id']
-    _part = ['act', 'attr']
-    _pom_class_id: str = 'source'
+
+    _name = "source"
+    _guaranteed = ["id"]
+    _also = ["type", "date", "year", "loc", "ref", "replace", "obs"]
+    _position = ["id"]
+    _part = ["act", "attr"]
+    _pom_class_id: str = "source"
 
 
 KKleio.allow_as_part(KSource)

@@ -28,7 +28,9 @@ def get_syspar(db: Session, q: list[str] | None = None):
     return db.query(models.SysPar).all()
 
 
-def set_syspar(db: Session, syspar: models.SysParSchema): # pylint: disable=invalid-name
+def set_syspar(
+    db: Session, syspar: models.SysParSchema
+):  # pylint: disable=invalid-name
     """Set system parameters
     Args:
         db: database session
@@ -42,17 +44,18 @@ def set_syspar(db: Session, syspar: models.SysParSchema): # pylint: disable=inva
         db_syspar.ptype = syspar.ptype
         db_syspar.obs = syspar.obs
     else:
-        db_syspar = models.SysPar(pname=syspar.pname,
-                                  pvalue=syspar.pvalue,
-                                  ptype=syspar.ptype,
-                                  obs=syspar.obs)
+        db_syspar = models.SysPar(
+            pname=syspar.pname, pvalue=syspar.pvalue, ptype=syspar.ptype, obs=syspar.obs
+        )
         db.add(db_syspar)
     db.commit()
     db.refresh(db_syspar)
-    return db_syspar    
+    return db_syspar
 
 
-def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]: # pylint: disable=invalid-name
+def get_syslog(
+    db: Session, nlogs: int
+) -> list[models.SysLog]:  # pylint: disable=invalid-name
     """Get last n system logs last one first
     Args:
         db: database session
@@ -63,9 +66,11 @@ def get_syslog(db: Session, nlogs: int) -> list[models.SysLog]: # pylint: disabl
     return db.query(models.SysLog).order_by(models.SysLog.seq.desc()).limit(nlogs).all()
 
 
-def get_syslog_by_time(db: Session, # pylint: disable=invalid-name
-                        start_time: datetime, 
-                        end_time: datetime) -> list[models.SysLog]:
+def get_syslog_by_time(
+    db: Session,  # pylint: disable=invalid-name
+    start_time: datetime,
+    end_time: datetime,
+) -> list[models.SysLog]:
     """Get system logs between start_time and end_time
     Args:
         db: database session
@@ -74,10 +79,17 @@ def get_syslog_by_time(db: Session, # pylint: disable=invalid-name
     Returns:
         List of SysLog objects
     """
-    return db.query(models.SysLog).filter(models.SysLog.time >= start_time).filter(models.system.SysLog.time <= end_time).all()
+    return (
+        db.query(models.SysLog)
+        .filter(models.SysLog.time >= start_time)
+        .filter(models.system.SysLog.time <= end_time)
+        .all()
+    )
 
 
-def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.system.SysLog:  # pylint: disable=invalid-name
+def set_syslog(
+    db: Session, log: models.system.SysLogCreateSchema
+) -> models.system.SysLog:  # pylint: disable=invalid-name
     """Set system log
     Args:
         db: database session
@@ -90,7 +102,7 @@ def set_syslog(db: Session, log: models.system.SysLogCreateSchema) -> models.sys
     db.commit()
     db.refresh(db_syslog)
     return db_syslog
-   
+
 
 def get(db: Session, id: str) -> EntityAttrRelSchema:  # pylint: disable=invalid-name
     """Get entity by id
@@ -107,8 +119,5 @@ def get(db: Session, id: str) -> EntityAttrRelSchema:  # pylint: disable=invalid
 
     # TODO return the entity as a dictionary with rels in and out
     #       and contains
-
-
-
 
     return pentity

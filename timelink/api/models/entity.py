@@ -5,12 +5,12 @@ from datetime import datetime
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
 # and https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table
 
-from sqlalchemy import ForeignKey       # pylint: disable=import-error
-from sqlalchemy import String           # pylint: disable=import-error
-from sqlalchemy import Integer          # pylint: disable=import-error
-from sqlalchemy import DateTime         # pylint: disable=import-error
+from sqlalchemy import ForeignKey  # pylint: disable=import-error
+from sqlalchemy import String  # pylint: disable=import-error
+from sqlalchemy import Integer  # pylint: disable=import-error
+from sqlalchemy import DateTime  # pylint: disable=import-error
 from sqlalchemy.orm import backref  # pylint: disable=import-error
-from sqlalchemy.orm import Mapped        # pylint: disable=import-error
+from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 from sqlalchemy.orm import relationship  # pylint: disable=import-error
 
@@ -19,7 +19,7 @@ from .base_class import Base
 
 
 class Entity(Base):
-    """ ORM Model root of the object hierarchy.
+    """ORM Model root of the object hierarchy.
 
      All entities in a Timelink/MHK database have an entry in this table.
      Each entity is associated with a class that allow access to a
@@ -30,7 +30,8 @@ class Entity(Base):
 
     TODO: specialize in TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
          Acts, Sources, Attributes and Relations are TemporalEntities
-     """
+    """
+
     __tablename__ = "entities"
     __allow_unmapped__ = True
 
@@ -38,15 +39,16 @@ class Entity(Base):
     id: Mapped[str] = mapped_column(primary_key=True)
     #: str: name of the class. Links to pom_som_mapper class
     # TODO: https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
-    pom_class: Mapped[str] = mapped_column('class',
-                                           String,
-                                           # ForeignKey('classes.id', name='fk_entity_class', use_alter=True),
-                                           index=True
-                                           )
-     #: str: id of the entity inside which this occurred.
-    inside: Mapped[Optional[str]] = mapped_column(String,
-                                        ForeignKey('entities.id', ondelete='CASCADE'),
-                                        index=True)
+    pom_class: Mapped[str] = mapped_column(
+        "class",
+        String,
+        # ForeignKey('classes.id', name='fk_entity_class', use_alter=True),
+        index=True,
+    )
+    #: str: id of the entity inside which this occurred.
+    inside: Mapped[Optional[str]] = mapped_column(
+        String, ForeignKey("entities.id", ondelete="CASCADE"), index=True
+    )
     #: int: sequential order of this entity in the source
     the_order = mapped_column(Integer, nullable=True)
     #: int: the nesting level of this entity in the source
@@ -67,10 +69,11 @@ class Entity(Base):
     # this based on
     # https://stackoverflow.com/questions/28843254
     #: list(Entity): list of Entity objects contained in this entity
-    contains: Mapped[List["Entity"]] = relationship("Entity",
-                                                    backref=backref("contained_by",
-                                                                    remote_side="Entity.id"),
-                                                    cascade="all")
+    contains: Mapped[List["Entity"]] = relationship(
+        "Entity",
+        backref=backref("contained_by", remote_side="Entity.id"),
+        cascade="all",
+    )
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
@@ -93,19 +96,19 @@ class Entity(Base):
 
     @classmethod
     def get_subclasses(cls):
-        """ Get the subclasses of Entity """
+        """Get the subclasses of Entity"""
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
 
     @classmethod
     def get_orm_entities_classes(cls):
-        """ Currently defined ORM classes that extend Entity
-        (including Entity itself)
+        """Currently defined ORM classes that extend Entity
+         (including Entity itself)
 
 
-       Returns:
-            list: List of ORM classes
+        Returns:
+             list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
         sc.append(Entity)
@@ -113,7 +116,7 @@ class Entity(Base):
 
     @classmethod
     def get_som_mapper_ids(cls):
-        """ Ids of SomPomMapper references by orm classes
+        """Ids of SomPomMapper references by orm classes
 
         Returns:
              List[str]: List of strings
@@ -201,7 +204,6 @@ class Entity(Base):
     def to_kleio(self, ident="", ident_inc="  "):
         s = f"{ident}{str(self)}"
         for inner in self.contains:
-            innerk = inner.to_kleio(ident=ident + ident_inc,
-                                    ident_inc=ident_inc)
+            innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
             s = f"{s}\n{innerk}"
         return s

@@ -8,18 +8,17 @@ from timelink.kleio.utilities import quote_long_text
 
 class Person(Entity):
     """Represents a person."""
+
     __tablename__ = "persons"
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
+    id = Column(String, ForeignKey("entities.id"), primary_key=True)
     name = Column(String, index=True)
     id = Column(String, ForeignKey("entities.id"), primary_key=True)
     name = Column(String)
     sex = Column(String(1))
     obs = Column(String)
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'person'
-    }
+    __mapper_args__ = {"polymorphic_identity": "person"}
 
     def __repr__(self):
         sr = super().__repr__()

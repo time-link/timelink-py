@@ -2,7 +2,13 @@
 # pylint: disable=no-member
 
 from warnings import warn
-from sqlalchemy import MetaData, engine, create_engine, select, inspect  # pylint: disable=unused-import
+from sqlalchemy import (
+    MetaData,
+    engine,
+    create_engine,
+    select,
+    inspect,
+)  # pylint: disable=unused-import
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 
 from timelink.mhk.models.base_class import Base
@@ -80,8 +86,11 @@ class TimelinkMHK:
 
     def engine(self) -> engine:
         """DEPRECATED use TimelinkDB.get_engine()"""
-        warn("This method is deprecated, use get_engine()", DeprecationWarning,
-             stacklevel=2)
+        warn(
+            "This method is deprecated, use get_engine()",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return self.get_engine()
 
     def get_metadata(self) -> MetaData:
@@ -94,7 +103,7 @@ class TimelinkMHK:
 
         :return: None
         """
-        self.metadata = Base.metadata # pylint: disable=ignore-no-member
+        self.metadata = Base.metadata  # pylint: disable=ignore-no-member
         self.metadata.create_all(self.engine)  # only creates if missing
 
     def load_database_classes(self, session):
@@ -114,8 +123,12 @@ class TimelinkMHK:
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for k in pom_som_base_mappings.keys():  # pylint: disable=consider-iterating-dictionary, consider-using-dict-items
-            if k not in available_mappings:     # pylint: disable=consider-using-dict-items
+        for (
+            k
+        ) in (
+            pom_som_base_mappings.keys()
+        ):  # pylint: disable=consider-iterating-dictionary, consider-using-dict-items
+            if k not in available_mappings:  # pylint: disable=consider-using-dict-items
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)
         # this will cache the pomsom mapper objects
@@ -145,6 +158,7 @@ class TimelinkMHK:
         self.ensure_all_mappings(session)
         self.metadata = Base.metadata  # pylint: disable=ignore-no-member
         self.metadata.drop_all(self.engine)
+
 
 # for compatibility with old code
 TimelinkDB = TimelinkMHK

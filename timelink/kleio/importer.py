@@ -331,7 +331,8 @@ class KleioHandler:
             try:
                 session.commit()
                 stmt = delete(self.pom_class_attributes).where(
-                    self.pom_class_attributes.the_class == psm.id)
+                    self.pom_class_attributes.the_class == psm.id
+                )
                 session.execute(stmt)
                 session.delete(existing_psm)
                 session.commit()
@@ -446,7 +447,7 @@ class KleioHandler:
             # to datetime object
             translation_date=datetime.strptime(self.kleio_when, "%Y-%m-%d %H:%M:%S"),
             nerrors=len(self.errors),
-            nwarnings=len(self.warnings)
+            nwarnings=len(self.warnings),
         )
         if len(self.errors) > 0:
             s = "\n\n".join(self.errors)
@@ -463,6 +464,7 @@ class KleioHandler:
             self.session.delete(kfile_exists)
         self.session.add(kfile)
         self.session.commit()
+
 
 def import_from_xml(
     filespec: Union[str, Path], session: Session, options: dict = None
@@ -534,10 +536,12 @@ def import_from_xml(
     parser.setContentHandler(sax_handler)
     start = time.time()
     if collect_stats:
-        nentities_before = session.query(func.count(
-            kleio_handler.entity_model.id)).scalar()
-        npersons_before = session.query(func.count(
-            kleio_handler.person_model.id)).scalar()
+        nentities_before = session.query(
+            func.count(kleio_handler.entity_model.id)
+        ).scalar()
+        npersons_before = session.query(
+            func.count(kleio_handler.person_model.id)
+        ).scalar()
 
     # TODO implement fetching from kleio server
     if isinstance(filespec, os.PathLike):

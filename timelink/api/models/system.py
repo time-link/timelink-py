@@ -20,9 +20,9 @@ from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from timelink.api.models.base_class import Base
 
 
-
 class SysPar(Base):
     """System parameters table"""
+
     __tablename__ = "syspar"
     pname = Column(String, primary_key=True, index=True)
     pvalue = Column(String)
@@ -42,6 +42,7 @@ class ParTypeSchema(str, Enum):
         boolean: boolean
         list: list
     """
+
     string = "string"
     integer = "integer"
     float = "float"
@@ -79,15 +80,17 @@ class LogLevel(str, Enum):
         error: error
         critical: critical
     """
+
     debug = "debug"
     info = "info"
     warning = "warning"
     error = "error"
     critical = "critical"
 
+
 class SysLog(Base):
     """System log table
-    
+
     Fields:
         seq: sequence number
         time: time of log entry
@@ -95,6 +98,7 @@ class SysLog(Base):
         origin: origin of log entry
         message: log message
     """
+
     seq = Column(Integer, primary_key=True, index=True, autoincrement=True)
     time = Column(DateTime, default=func.now())
     level = Column(Integer)
@@ -139,9 +143,10 @@ class SysLogCreateSchema(BaseModel):
     class Config:
         orm_mode = True
 
+
 class KleioFile(Base):
     """Represents a Kleio file imported in the database
-    
+
     Fields:
         path: path of the file
         name: name of the file
@@ -162,6 +167,3 @@ class KleioFile(Base):
     nwarnings: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     error_rpt: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     warning_rpt: Mapped[Optional[str]] = mapped_column(String, nullable=True)
-
-
-

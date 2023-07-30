@@ -4,8 +4,7 @@ from typing import Optional, Type, List
 
 # pylint: disable=import-error
 
-from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, \
-    select
+from sqlalchemy import Column, String, Integer, ForeignKey, Table, Float, select
 from sqlalchemy import inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import relationship
@@ -175,8 +174,7 @@ class PomSomMapper(Entity):
             my_table = pytables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
-            my_table = Table(self.table_name, metadata_obj,
-                             autoload_with=dbengine)
+            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
             # we need to ensure that the foreign key relation exists with super talbe
             # otherwise the ORM mapping further down will fail.
             if self.super_class not in ["root", "base"]:
@@ -187,14 +185,16 @@ class PomSomMapper(Entity):
                 if pom_super_class is not None:
                     super_class_table_id = pom_super_class.table_name + ".id"
                 else:
-                    message = "Creating mapping for %s super class %s not found" \
-                              " Default to entities as super class"
+                    message = (
+                        "Creating mapping for %s super class %s not found"
+                        " Default to entities as super class"
+                    )
                     logger.warning(message, self.id, self.super_class)
                     super_class_table_id = "entities.id"
                 pytype = my_table.c.id.type
                 my_table.append_column(
                     Column(
-                        'id',
+                        "id",
                         pytype,
                         ForeignKey(super_class_table_id),
                         primary_key=True,
@@ -212,8 +212,7 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(self.table_name, metadata_obj,
-                             extend_existing=True)
+            my_table = Table(self.table_name, metadata_obj, extend_existing=True)
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:  # pylint: disable=no-member
                 PyType: str
@@ -229,17 +228,18 @@ class PomSomMapper(Entity):
                 # print(f"Inferred python type for {cattr.colname}: ", PyType)
 
                 if cattr.pkey != 0:
-                    if self.super_class not in ['root', 'base']:
+                    if self.super_class not in ["root", "base"]:
                         # print("Getting super class " + self.super_class)
-                        pom_super_class: PomSomMapper = \
-                            PomSomMapper.get_pom_class(
-                                self.super_class, session)
+                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
+                            self.super_class, session
+                        )
                         if pom_super_class is not None:
-                            super_class_table_id = \
-                                pom_super_class.table_name + '.id'
+                            super_class_table_id = pom_super_class.table_name + ".id"
                         else:
-                            message = "Creating mapping for %s super class %s not found" \
-                                      " Default to entities as super class"
+                            message = (
+                                "Creating mapping for %s super class %s not found"
+                                " Default to entities as super class"
+                            )
                             logger.warning(message, self.id, self.super_class)
                             super_class_table_id = "entities.id"
                         my_table.append_column(
@@ -280,8 +280,7 @@ class PomSomMapper(Entity):
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
         except Exception as exc:
-            logger.ERROR(
-                Exception(f"Could not create ORM mapping for {self.id}"), exc)
+            logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), exc)
 
         self.orm_class = my_orm
 
@@ -370,14 +369,15 @@ class PomSomMapper(Entity):
         :return: the name of the column corresponding to this element in the
         mapped table.
         """
-        cattr: PomClassAttributes = self.class_attributes.filter(  # pylint: disable=no-member
-            PomClassAttributes.pom_class == eclass
+        cattr: PomClassAttributes = (
+            self.class_attributes.filter(  # pylint: disable=no-member
+                PomClassAttributes.pom_class == eclass
+            )
         )
         return cattr.colname
 
     @classmethod
-    def kgroup_to_entity(cls, group: KGroup, session=None,
-                         with_pom=None) -> Entity:
+    def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
 
@@ -416,8 +416,7 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname,
-                            str(element.core))
+                    setattr(entity_from_group, cattr.colname, str(element.core))
                 except Exception as exc:
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
@@ -474,11 +473,11 @@ class PomSomMapper(Entity):
     def __str__(self):
         r = f"{self.id} table {self.table_name} super {self.super_class}\n"
         for cattr in self.class_attributes:  # pylint: disable=no-member
-            r = r + f'{cattr.the_class}.{cattr.name} \t'
-            r = r + f'class {cattr.colclass} \t'
-            r = r + f'col {cattr.colname} \ttype {cattr.coltype} '
-            r = r + f'size {cattr.colsize} precision {cattr.colprecision}'
-            r = r + f'primary key {cattr.pkey} \n'
+            r = r + f"{cattr.the_class}.{cattr.name} \t"
+            r = r + f"class {cattr.colclass} \t"
+            r = r + f"col {cattr.colname} \ttype {cattr.coltype} "
+            r = r + f"size {cattr.colsize} precision {cattr.colprecision}"
+            r = r + f"primary key {cattr.pkey} \n"
         return r
 
 

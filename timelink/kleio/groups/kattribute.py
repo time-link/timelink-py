@@ -7,7 +7,7 @@ from timelink.kleio.groups.kelement import KEntityInAttribute
 
 
 class KAttribute(KGroup):
-    """ KAttribute(type,value,[date, obs=])
+    """KAttribute(type,value,[date, obs=])
 
     Time varying attribute of a person, object, or other
 
@@ -28,18 +28,19 @@ class KAttribute(KGroup):
                 position=type,value,date
 
     """
-    _name = 'attr'
-    _guaranteed = ['type', 'value']
-    _also = ['date', 'obs', 'entity']  # entity is automatically set
-    _position = ['type', 'value', 'date']
-    _pom_class_id: str = 'attribute'
+
+    _name = "attr"
+    _guaranteed = ["type", "value"]
+    _also = ["date", "obs", "entity"]  # entity is automatically set
+    _position = ["type", "value", "date"]
+    _pom_class_id: str = "attribute"
 
     def before_include(self, container_group):
-        """ Method called before a new group is included in this one
+        """Method called before a new group is included in this one
         through KGroup.include(KGroup).
         """
         KGroup.before_include(self, container_group)
-        self['entity'] = KEntityInAttribute('entity', container_group.id.core)
+        self["entity"] = KEntityInAttribute("entity", container_group.id.core)
         return True
 
     def after_include(self, group):

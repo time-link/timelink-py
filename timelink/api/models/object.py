@@ -11,19 +11,17 @@ from timelink.api.models.entity import Entity
 class Object(Entity):
     __tablename__ = "objects"
 
-    id = Column(String, ForeignKey('entities.id'), primary_key=True)
+    id = Column(String, ForeignKey("entities.id"), primary_key=True)
     name = Column(String, index=True)
     the_type = Column(String(32), index=True)
     obs = Column(String)
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'object'
-    }
+    __mapper_args__ = {"polymorphic_identity": "object"}
 
     def __repr__(self):
         sr = super().__repr__()
         return (
-            f'Object(id={sr}, '
+            f"Object(id={sr}, "
             f'name="{self.name}", '
             f'the_type="{self.the_type}", '
             f"obs={self.obs}"
@@ -35,7 +33,7 @@ class Object(Entity):
             name = ""
         else:
             name = self.name + "/"
-        r = f'{self.groupname}${name}{quote_long_text(self.the_type)}/id={self.id}'
+        r = f"{self.groupname}${name}{quote_long_text(self.the_type)}/id={self.id}"
         if self.obs is not None:
-            r = (f'{r}  /obs={quote_long_text(self.obs)}')
+            r = f"{r}  /obs={quote_long_text(self.obs)}"
         return r

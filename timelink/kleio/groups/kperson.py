@@ -3,7 +3,7 @@ from timelink.kleio.groups.kact import KAct
 
 
 class KPerson(KGroup):
-    """ KPerson(name,sex,id,obs=,same_as=,xsame_as=)
+    """KPerson(name,sex,id,obs=,same_as=,xsame_as=)
 
     Person in a historical source
 
@@ -23,12 +23,13 @@ class KPerson(KGroup):
             position=name,sex,id,same_as;
             arbitrary=atr,rel,ls
     """
-    _name = 'person'
-    _guaranteed = ['name', 'sex']
-    _also = ['id', 'obs', 'same_as']
-    _position = ['name', 'sex', 'id', 'same_as', 'xsame_as']
-    _part = ['rel', 'attr']
-    _pom_class_id: str = 'person'
+
+    _name = "person"
+    _guaranteed = ["name", "sex"]
+    _also = ["id", "obs", "same_as"]
+    _position = ["name", "sex", "id", "same_as", "xsame_as"]
+    _part = ["rel", "attr"]
+    _pom_class_id: str = "person"
 
 
 KAct.allow_as_part(KPerson)
