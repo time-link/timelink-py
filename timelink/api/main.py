@@ -232,8 +232,6 @@ async def read_item2(item_id: str, q: str | None = None):
 
 
 # Sandbox
-
-
 # testing specifying the database in the path
 @app.get("/{dbname}/id/{id}", response_model=dict)
 async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):

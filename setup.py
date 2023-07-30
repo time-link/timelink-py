@@ -41,7 +41,7 @@ setup(
     install_requires=[
         'typer~=0.4.0',
         'sqlalchemy~=2.0.0',
-        'pydantic~=1.8.0',
+        'pydantic~=2.0.0',
         'python-dotenv~=0.17.0',
         'python-box~=5.3.0',
         'psycopg2-binary==2.9.6',
