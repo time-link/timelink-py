@@ -13,6 +13,7 @@ Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
 
 Next:
 * implement import from file and from url kleio_server with token
+   * kleio start server not working
 To Run
     source venv/bin/activate
     cd timelink/api/
