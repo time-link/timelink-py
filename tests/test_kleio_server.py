@@ -30,5 +30,11 @@ def test_gen_token():
 @skip_on_travis
 def test_start_kleio_server():
     """Test if kleio server is started"""
-    kleio_server.start_kleio_server()
+    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
     assert kleio_server.is_kserver_running() is True
+
+@skip_on_travis
+def test_get_kleio_server_token():
+    """Test if kleio server token is available"""
+    assert kleio_server.get_kserver_token() is not None
+    
