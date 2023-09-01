@@ -10,7 +10,7 @@ def is_kserver_running():
 
     containers: list[
         docker.models.containers.Container
-    ] = client.containers.list(filters={"ancestor": "time-link/kleio-server"})
+    ] = client.containers.list(filters={"ancestor": "timelinkserver/kleio-server"})
     if len(containers) == 0:  # check for kleio-server as part of a MHK instalation (different image)
         containers = client.containers.list(filters={"ancestor": "joaquimrcarvalho/kleio-server"})
 
@@ -25,7 +25,7 @@ def get_kserver_container() -> docker.models.containers.Container:
     client: docker.DockerClient = docker.from_env()
     containers: list[
         docker.models.containers.Container
-    ] = client.containers.list(filters={"ancestor": "time-link/kleio-server"})
+    ] = client.containers.list(filters={"ancestor": "timelinkserver/kleio-server"})
     if len(containers) == 0:  # check for kleio-server as part of a MHK instalation (different image)
         containers = client.containers.list(filters={"ancestor": "joaquimrcarvalho/kleio-server"})
     if len(containers) > 0:    
@@ -86,7 +86,7 @@ def start_kleio_server(
                                 },
                                 volumes={kleio_home: {"bind": "/kleio-home", "mode": "rw"}},
                             )
-    kleio_container.start()
+    kleio_container.start()  # redundant?
     return kleio_container
 
 def gen_token():
