@@ -2,6 +2,8 @@
 import os
 import docker
 import secrets
+import requests
+from jsonrpcclient import request, request_json, parse 
 
 
 def is_kserver_running():
@@ -71,6 +73,11 @@ def start_kleio_server(
     # if kleio_home is None, use current directory
     if kleio_home is None:
         kleio_home = os.getcwd()
+    else:
+        os.makedirs(kleio_home, exist_ok=True)
+
+    # ensure that kleio_home/system/conf/kleio exists
+    os.makedirs(f"{kleio_home}/system/conf/kleio", exist_ok=True)
 
     if token is None:
         token = gen_token()
@@ -101,3 +108,24 @@ def random_token(length=32):
     """Generate a random token"""
     alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return "".join(secrets.choice(alphabet) for i in range(length))
+
+def stop_kleio_server():
+    """Stop kleio server"""
+    if is_kserver_running():
+        container = get_kserver_container()
+        container.stop()
+        container.remove()
+
+def kleio_tokens_generate(user:str,info: dict, token:str, url:str = "http://localhost:8088/json/"):
+    """Generate a token for a user"""
+    if is_kserver_running():
+        container = get_kserver_container()
+        if url is None:
+            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
+        pars={"user": user, "info": info, "token": token}  
+        rpc=request("tokens_generate", params=pars)
+        response = requests.post(url,json=rpc,
+                                  headers={"Content-Type": "application/json"}, )
+        return response
+    else:
+        return None
