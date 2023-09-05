@@ -58,6 +58,35 @@ def test_generate_limited_token():
             "sources": "sources/test_translations"
         }
     token = kleio_server.get_kserver_token()
+    invalidate = kleio_server.kleio_invalidate_user(user, token)
+    assert invalidate.status_code == 200
     response: requests.Response = kleio_server.kleio_tokens_generate(user, info, token)    
-    
     assert response.status_code == 200
+
+@skip_on_travis
+def test_generate_normal_token():
+    """Generate a token for normal user"""
+    user: str = "normal_user"
+    info = {
+        	"comment": "An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
+            "api": [
+                "sources",
+                "kleioset",
+                "files",
+                "structures",
+                "translations",
+                "upload",
+                "delete",
+                "mkdir",
+                "rmdir"
+            ],
+            "structures": "users/tester/stru",
+            "sources": "sources/api_tests"
+        }
+    
+    token = kleio_server.get_kserver_token()
+    invalidate = kleio_server.kleio_invalidate_user(user, token)
+    assert invalidate.status_code == 200
+    response: requests.Response = kleio_server.kleio_tokens_generate(user, info, token)    
+    assert response.status_code == 200
+

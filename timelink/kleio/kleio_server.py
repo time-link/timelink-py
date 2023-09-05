@@ -116,6 +116,22 @@ def stop_kleio_server():
         container.stop()
         container.remove()
 
+
+def kleio_invalidate_user(user:str, token:str, url:str = "http://localhost:8088/json/"):
+    """Invalidate a user"""
+    if is_kserver_running():
+        container = get_kserver_container()
+        if url is None:
+            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
+        pars={"user": user, "token": token}  
+        rpc=request("users_invalidate", params=pars)
+        response = requests.post(url,json=rpc,
+                                  headers={"Content-Type": "application/json"}, )
+        return response
+    else:
+        return None
+
+
 def kleio_tokens_generate(user:str,info: dict, token:str, url:str = "http://localhost:8088/json/"):
     """Generate a token for a user"""
     if is_kserver_running():
