@@ -1,0 +1,68 @@
+ClioInput - version 2.3 - build 1590 21/06/2018 12:00 
+24-3-2023 3-39
+
+Processing data file:/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.cli
+-------------------------------------------
+Generic Act translation module with geoentities (XML).
+     Joaquim Ramos de Carvalho (joaquim@uc.pt) 
+** New document: kleio
+=========================
+kleio translation started
+=========================
+Structure: obidos-vila
+Prefix: 
+Autorel: 
+Translation count: 
+Obs: 
+Translation count not set or invalid, counting as zero: 
+** Processing source fonte$perdoes
+6: cartaperdao$14g61
+41: cartaperdao$14e16-1
+75: cartaperdao$14e16-2
+102: cartaperdao$14d57-1
+153: cartaperdao$14d57-2
+192: cartaperdao$14e21-1
+230: cartaperdao$14e21-2
+255: cartaperdao$14e21-3
+309: cartaperdao$14e21-4
+336: cartaperdao$14e21-5
+377: cartaperdao$14e18
+409: cartaperdao$14e27
+439: cartaperdao$14e19-1
+466: cartaperdao$14e19-2
+499: cartaperdao$14e19-3
+539: cartaperdao$14e19-4
+595: cartaperdao$14e12-1
+638: cartaperdao$14e12-2
+666: cartaperdao$14e11
+715: cartaperdao$14e29-1
+748: cartaperdao$14e29-2
+789: cartaperdao$14e29-3
+839: cartaperdao$14e13-1
+876: cartaperdao$14e13-2
+917: cartaperdao$14e13-3
+981: cartaperdao$14e38-1
+1016: cartaperdao$14e38-2
+1042: cartaperdao$14e38-3
+1078: cartaperdao$14e24
+1131: cartaperdao$14e38-4
+1218: cartaperdao$14e38-5
+1253: cartaperdao$14e9-1
+1289: cartaperdao$14e9-2
+1319: cartaperdao$14e28-1
+1352: cartaperdao$14e10-1
+1388: cartaperdao$14e28-2
+1430: cartaperdao$14e10-2
+1457: cartaperdao$14e7-1
+1494: cartaperdao$14e35-1
+1521: cartaperdao$14e35-2
+*** End of File
+
+
+** Processed file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.cli
+** Original file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.org
+** Previous version- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.old
+** Temp file with ids- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.ids
+0  errors. 
+0  warnings.
+Translation finished.

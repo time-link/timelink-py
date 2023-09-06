@@ -1,0 +1,162 @@
+ClioInput - version 2.3 - build 1590 21/06/2018 12:00 
+24-3-2023 3-39
+
+Processing data file:/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notlousa1.cli
+-------------------------------------------
+Generic Act translation module with geoentities (XML).
+     Joaquim Ramos de Carvalho (joaquim@uc.pt) 
+** New document: kleio
+=========================
+kleio translation started
+=========================
+Structure: gacto2.str
+Prefix: 
+Autorel: 
+Translation count: 
+Obs: 
+Translation count not set or invalid, counting as zero: 
+** Processing source fonte$notlousa1
+6: escritura$lnot95-1
+16: escritura$lnot95-2
+23: escritura$lnot95-3
+32: escritura$lnot95-4
+43: escritura$lnot95-5
+80: escritura$lnot95-6
+93: escritura$lnot95-7
+103: escritura$lnot95-8
+111: escritura$lnot95-9
+122: escritura$lnot95-10
+133: escritura$lnot95-11
+143: escritura$lnot95-12
+157: escritura$lnot95-13
+167: escritura$lnot95-14
+181: escritura$lnot95-15
+189: escritura$lnot95-16
+199: escritura$lnot95-17
+212: escritura$lnot95-18
+225: escritura$lnot95-19
+236: escritura$lnot95-20
+248: escritura$lnot95-21
+261: escritura$lnot95-22
+273: escritura$lnot95-23
+283: escritura$lnot95-24
+307: escritura$lnot95-25
+346: escritura$lnot95-26
+359: escritura$lnot95-27
+371: escritura$lnot95-28
+387: escritura$lnot95-29
+398: escritura$lnot95-30
+406: escritura$lnot95-31
+417: escritura$lnot95-32
+459: escritura$lnot95-33
+473: escritura$lnot95-34
+487: escritura$lnot95-35
+540: escritura$lnot95-36
+551: escritura$lnot95-37
+562: escritura$lnot95-38
+572: escritura$lnot95-39
+579: escritura$lnot95-40
+597: escritura$lnot95-41
+608: escritura$lnot35-42
+618: cartaperdao$lnot35-43
+629: escritura$lnot95-44
+643: escritura$lnot95-45
+657: escritura$lnot95-46
+669: escritura$lnot95-47
+679: escritura$lnot95-48
+697: escritura$lnot95-49
+717: escritura$lnot95-50
+739: escritura$lnot95-51
+762: escritura$lnot95-52
+770: escritura$lnot95-53
+781: escritura$lnot95-54
+789: escritura$lnot95-55
+799: escritura$lnot95-56
+807: escritura$lnot95-57
+829: escritura$lnot95-58
+841: cartaperdao$lnot95-59
+855: cartaperdao$lnot95-60
+878: escritura$lnot95-61
+892: cartaperdao$lnot95-62
+906: cartaperdao$lnot95-63
+931: escritura$lnot95-64
+940: escritura$lnot95-65
+950: escritura$lnot95-66
+955: escritura$lnot95-67
+961: escritura$lnot95-68
+997: escritura$lnot95-69
+1004: escritura$lnot95-70
+1013: escritura$lnot95-71
+1028: escritura$lnot95-72
+1039: escritura$lnot95-73
+1053: escritura$lnot95-74
+1069: escritura$lnot95-75
+1080: escritura$lnot95-76
+1088: escritura$lnot95-77
+1093: escritura$lnot95-78
+1110: escritura$lnot95-79
+1120: escritura$lnot95-80
+1133: escritura$lnot95-81
+1148: escritura$lnot95-82
+1166: escritura$lnot95-83
+1182: escritura$lnot95-84
+1193: escritura$lnot95-85
+1205: escritura$lnot95-86
+1216: escritura$lnot95-87
+1229: escritura$lnot95-88
+1243: escritura$lnot95-89
+1256: escritura$lnot95-90
+1266: escritura$lnot95-91
+1273: escritura$lnot95-92
+1281: escritura$lnot95-93
+1294: escritura$lnot95-94
+1302: escritura$lnot95-95
+1315: escritura$lnot95-96
+1324: escritura$lnot95-97
+1333: escritura$lnot05-98
+1343: escritura$lnot95-99
+1360: escritura$lnot95-100
+1367: escritura$lnot95-101
+1377: escritura$lnot95-102
+1394: escritura$lnot95-103
+1405: escritura$lnot95-104
+1414: escritura$lnot95-105
+1426: escritura$lnot95-106
+1436: escritura$lnot96-107
+1446: escritura$lnot95-108
+1458: escritura$lnot95-109
+1482: escritura$lnot95-110
+1492: escritura$lnot95-111
+1502: escritura$lnot95-112
+1514: escritura$lnot95-113
+1532: escritura$lnot95-114
+1540: escritura$lnot95-115
+1552: escritura$lnot95-116
+1562: escritura$lnot95-117
+1573: escritura$lnot95-118
+1583: escritura$lnot95-119
+1597: escritura$lnot95-120
+1612: escritura$lnot95-121
+1623: escritura$lnot05-122
+1633: escritura$lnot95-123
+1649: escritura$lnot95-124
+1663: escritura$lnot95-125
+1681: escritura$lnot95-126
+1695: escritura$lnot95-127
+1707: escritura$lnot95-128
+1722: escritura$lnot95-129
+1742: escritura$lnot95-130
+1754: escritura$lnot95-131
+1764: escritura$lnot95-132
+1781: escritura$lnot95-133
+1791: escritura$lnot95-134
+*** End of File
+
+
+** Processed file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notlousa1.cli
+** Original file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notlousa1.org
+** Previous version- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notlousa1.old
+** Temp file with ids- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notlousa1.ids
+0  errors. 
+0  warnings.
+Translation finished.

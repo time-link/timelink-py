@@ -1,0 +1,32 @@
+ClioInput - version 2.3 - build 1590 21/06/2018 12:00 
+24-3-2023 3-38
+
+Processing data file:/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.cli
+-------------------------------------------
+Generic Act translation module with geoentities (XML).
+     Joaquim Ramos de Carvalho (joaquim@uc.pt) 
+** New document: kleio
+=========================
+kleio translation started
+=========================
+Structure: gacto2.str
+Prefix: 
+Autorel: 
+Translation count: 2
+Obs: """ This is a text for quoting attributes in xml output
+   Generated from Archeevo export file ../database/other_exports/ficheiro-alunos-auc/PT-AUC-ELU-UC-AUC-B-001-001.CSV in 2023-03-20 04:22
+"""
+** Processing source fonte$docsregiospontepisc
+9: docregio$docreg-1
+23: docpontificio$docpapal-1
+39: docepiscopal$docepis-1
+*** End of File
+
+
+** Processed file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.cli
+** Original file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.org
+** Previous version- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.old
+** Temp file with ids- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.ids
+0  errors. 
+0  warnings.
+Translation finished.

@@ -1,0 +1,719 @@
+kleio$gacto2.str
+   fonte$ob1688/tipo=reg paroquiais/localizacao=nao se le/data=1688/obs=cuidado com a expressao "mulher que foi" em relacao 'as defuntas porque nao parece ser legitimo inferir que era viuva, ao contrario do que acontece nas fontes em que a mulher esta "viva" no momento do registo. padre manuel cordeiro
+
+      o$1/1/1688/id=obitos 1688-his1
+
+         n$antonia francisca/f/id=obitos 1688-his1-per1
+            ls$ec/v
+            ls$residencia/mogadouro
+
+            marido$joao rodrigues/id=obitos 1688-his1-per1-per2
+               ls$residencia/mogadouro
+               ls$morto/antes
+
+         locs$igreja de s.tiago
+
+      o$1/1/1688/id=obitos 1688-his2
+
+         n$simao rodrigues marnoto?/m/id=obitos 1688-his2-per1
+            ls$residencia/soure
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$1 de 9 nao tinha para mais
+
+      o$3/1/1688/id=obitos 1688-his3
+
+         n$mariva?/f/id=obitos 1688-his3-per1
+            ls$residencia/alencarce
+
+         sacr$sim
+
+         locs$adro
+
+      o$5/1/1688/id=obitos 1688-his4
+
+         n$francisco rodrigues monteiro/m/id=obitos 1688-his4-per1
+            ls$residencia/porto panelas
+
+         sacr$sim
+
+         locs$igreja de s.tiago
+
+         oficios$1 de 9
+
+      o$5/1/1688/id=obitos 1688-his5
+
+         n$joao de seabra jaques/m/id=obitos 1688-his5-per1
+            ls$cargo/capitao
+
+         sacr$sim
+
+         locs$igreja de s.tiago, nao sei se tinha cova sua
+
+         oficios$3 de 9
+
+         testamento$sim
+
+      o$17/1/1688/id=obitos 1688-his6
+
+         n$manuel rodrigues maravilhoso/m/obs=este aparece referido na documentacao camararia como o "maravilhoso"/id=obitos 1688-his6-per1
+            ls$residencia/alencarce de cima
+
+         sacr$sim
+
+         locs$igreja de s.tiago
+
+         oficios$1 de 9
+
+      o$25/1/1688/id=obitos 1688-his7
+
+         n$jorge rodrigues/m/id=obitos 1688-his7-per1
+            ls$residencia/barril
+
+         sacr$sim
+
+         locs$adro
+
+      o$31/3/1688/obs=este assento devia de ir adiante/id=obitos 1688-his8
+
+         n$maria colaco/f/id=obitos 1688-his8-per1
+            ls$ec/s
+
+            pai$gaspar coelho dos reis/id=obitos 1688-his8-per1-per2
+               ls$cargo/capitao
+
+         sacr$sim
+
+      o$30/1/1688/id=obitos 1688-his9
+
+         n$isabel/f/id=obitos 1688-his9-per1
+            ls$ec/s
+            ls$idade_aprox/mais de 16
+
+            pai$manuel ramos/id=obitos 1688-his9-per1-per2
+               ls$residencia/cavaleiros
+
+         sacr$sim
+
+         locs$adro
+
+      o$3/2/1688/id=obitos 1688-his10
+
+         n$maria/f/id=obitos 1688-his10-per1
+
+            pai$manuel gomes pasinha/id=obitos 1688-his10-per1-per2
+               ls$residencia/barril
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$2 de 3
+
+      o$3/2/1688/id=obitos 1688-his11
+
+         n$maria?/f/id=obitos 1688-his11-per1
+
+            pai$luis rodrigues/id=ro03021688
+
+            mae$maria simoes/id=obitos 1688-his11-per1-per2
+               rel$parentesco/mulher/luis rodrigues/ro03021688
+
+         sacr$sim
+
+         locs$igreja de s.mateus, por haver cheias
+
+      o$16/2/1688/id=obitos 1688-his12
+
+         n$esperanca/f/id=obitos 1688-his12-per1
+            ls$idade/3
+
+            pai$manuel rodrigues/id=obitos 1688-his12-per1-per2
+
+            mae$maria cordeiro/id=obitos 1688-his12-per1-per3
+
+         locs$adro
+
+      o$20/2/1688/id=obitos 1688-his13
+
+         n$andreia da gante/f/id=obitos 1688-his13-per1
+            ls$ec/v
+
+            marido$manuel fernandes/id=obitos 1688-his13-per1-per2
+               ls$alcunha/recolhas
+               ls$morto/antes
+
+         locs$ermida de s.francisco
+
+      o$25/2/1688/id=obitos 1688-his14
+
+         n$maria/f/id=obitos 1688-his14-per1
+            ls$ec/s
+
+            pai$manuel mateus/id=obitos 1688-his14-per1-per2
+               ls$residencia/soure
+
+            mae$madalena dos santos/id=obitos 1688-his14-per1-per3
+
+         sacr$sim
+
+         locs$ermida de s.francisco
+
+      o$25/2/1688/id=obitos 1688-his15
+
+         n$manuel fernandes/m/id=obitos 1688-his15-per1
+            ls$residencia/casal novo
+
+         sacr$sim
+
+         locs$ermida de s.to andre, por razao das passagens
+
+      o$26/2/1688/id=obitos 1688-his16
+
+         n$felix fernandes/m/id=obitos 1688-his16-per1
+
+         sacr$sim
+
+         locs$adro
+
+      o$1/3/1688/id=obitos 1688-his17
+
+         n$antonia madeira/f/id=obitos 1688-his17-per1
+            ls$ec/s
+            ls$idade_aprox/maior
+
+         sacr$sim
+
+         locs$adro
+
+      o$3/3/1688/id=obitos 1688-his18
+
+         n$maria/f/id=obitos 1688-his18-per1
+            ls$idade_aprox/mais de 6 menos de 7
+
+            pai$manuel dos santos/id=obitos 1688-his18-per1-per2
+
+            mae$maria cordeiro/id=obitos 1688-his18-per1-per3
+
+         locs$ermida de s.to andre, por nao se poder passar
+
+      o$9/3/1688/id=obitos 1688-his19
+
+         n$manuel gomes pasinha?/m/id=obitos 1688-his19-per1
+            ls$ec/v
+
+         sacr$sim
+
+         locs$adro
+
+         testamento$sim$dizem que fez...
+
+      o$16/3/1688/obs= e' um viuvo e dao o nome do pai/id=obitos 1688-his20
+
+         n$joao gomes/m/id=obitos 1688-his20-per1
+            ls$ec/v
+            ls$residencia/barril
+
+            pai$pedro gomes/id=obitos 1688-his20-per1-per2
+               ls$residencia/barril
+
+         sacr$sim
+
+         locs$igreja de s.mateus, por nao haver comunidade para o trazer ao adro por  respeito das cheias
+
+      o$14/3/1688/obs=data sic/id=obitos 1688-his21
+
+         n$domingos lourenco/m/id=obitos 1688-his21-per1
+            ls$residencia/quinta da cruz
+
+         sacr$sim
+
+         locs$adro
+
+      o$30/3/1688/obs=data sic/id=obitos 1688-his22
+
+         n$maria esteves/f/id=obitos 1688-his22-per1
+            ls$ec/v#mulher que foi...
+            ls$residencia/barril
+
+            marido$manuel rodrigues formigo/m/id=obitos 1688-his22-per1-per2
+               ls$morto/antes
+               ls$residencia/barril
+
+         oficios$1 de 9, nao tinha para mais
+
+         locs$ermida de s.mateus, por nao haver comunidade...
+
+      o$20/3/1688/obs=data sic/id=obitos 1688-his23
+
+         n$brites simoes/f/id=obitos 1688-his23-per1
+            ls$residencia/casal de sebastiao soares
+
+         sacr$sim
+
+         locs$adro
+
+      o$24/3/1688/id=obitos 1688-his24
+
+         n$manuel goncalves/m/id=obitos 1688-his24-per1
+            ls$residencia/casal dos corcoris
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$1 de 9
+
+      o$24/3/1688/id=obitos 1688-his25
+
+         n$maria francisca/f/id=obitos 1688-his25-per1
+            ls$ec/v
+            ls$residencia/casal do vinagre
+            ls$pobre/sim
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$2 de 3
+
+      o$0/3/1688/obs=no dia de pascoa/id=obitos 1688-his26
+
+         n$manuel mateus/m/id=obitos 1688-his26-per1
+            ls$residencia/soure
+
+         sacr$sim
+
+         locs$igreja de s.francisco
+
+      o$0/3/1688/obs=no dia de pascoa/id=obitos 1688-his27
+
+         n$leonor francisca/f/id=obitos 1688-his27-per1
+            ls$residencia/lage
+
+         sacr$sim
+
+         locs$igreja de nossa senhora de finiterra
+
+         oficios$2 de 3, nao podia fazer mais
+
+      o$19/4/1688/id=obitos 1688-his28
+
+         n$maria/f/id=obitos 1688-his28-per1
+            ls$idade_aprox/mais de 20
+
+            pai$pedro gomes/id=obitos 1688-his28-per1-per2
+               ls$residencia/barril
+
+         sacr$sim
+
+         locs$nossa senhora de finisterra
+
+      o$28/3/1688/obs=data sic/id=obitos 1688-his29
+
+         n$pedro gomes/m/id=obitos 1688-his29-per1
+            ls$residencia/barril
+
+         sacr$sim
+
+         locs$s.mateus, por nao se poder trazer ao adro
+
+      o$22/4/1688/id=obitos 1688-his30
+
+         n$antonio/m/id=obitos 1688-his30-per1
+            ls$idade_aprox/menor de 7
+
+            pai$mateus goncalves/id=obitos 1688-his30-per1-per2
+               ls$residencia/alencarce de baixo
+
+         sacr$sim
+
+         locs$adro
+
+      o$29/4/1688/id=obitos 1688-his31
+
+         n$domingas goncalves/f/id=obitos 1688-his31-per1
+
+            pai$simao jorge/id=obitos 1688-his31-per1-per2
+               ls$residencia/paleao
+
+         sacr$sim
+
+         locs$adro
+
+      o$11/5/1688/id=obitos 1688-his32
+
+         n$luisa/f/id=obitos 1688-his32-per1
+            ls$ec/s
+            ls$idade_aprox/mais de 25
+
+            pai$manuel gomes carvasco#deve ser erro do paroco, provavelmente ravasco/id=obitos 1688-his32-per1-per2
+
+         sacr$sim
+
+         locs$igreja de s.tiago
+
+      o$14/5/1688/id=obitos 1688-his33
+
+         n$diogo rodrigues/m/id=obitos 1688-his33-per1
+            ls$residencia/vale da borra
+
+         sacr$sim
+
+         locs$adro
+
+      o$20/5/1688/id=obitos 1688-his34
+
+         n$manuel rodrigues fuseiro/m/id=obitos 1688-his34-per1
+
+         locs$igreja de s.mateus, por nao haver quem atravessasse ao adro
+
+         sacr$sim
+
+         oficios$1 de 9 que nao tinha para mais
+
+      o$21/5/1688/id=obitos 1688-his35
+
+         n$domingas henriques/f/id=obitos 1688-his35-per1
+            ls$cargo/foi ermitoa de s.mateus
+
+            marido$baptista de moura/id=obitos 1688-his35-per1-per2
+
+         sacr$sim
+
+         locs$ermida de s.mateus
+
+         oficios$1 de 9 de corpo presente que nao tinha para mais
+
+      o$31/5/1688/id=obitos 1688-his36
+
+         n$catarina/f/id=obitos 1688-his36-per1
+            ls$ec/s
+            ls$idade/15
+
+            pai$domingos goncalves vargas/id=obitos 1688-his36-per1-per2
+               ls$residencia/vale da borra
+
+         sacr$sim
+
+         locs$adro
+
+      o$1/6/1688/id=obitos 1688-his37
+
+         n$francisco rodrigues/m/id=obitos 1688-his37-per1
+            ls$residencia/casal da lage
+
+         sacr$sim
+
+         locs$adro
+
+      o$9/6/1688/id=obitos 1688-his38
+
+         n$manuel rodrigues navarro/m/id=ro12061688
+
+         sacr$sim
+
+         locs$adro
+
+      o$12/6/1688/id=obitos 1688-his39
+
+         n$mateus/m/id=obitos 1688-his39-per1
+
+            pai$mateus goncalves/id=obitos 1688-his39-per1-per2
+               ls$residencia/alencarce de baixo
+
+         sacr$sim
+
+         locs$adro
+
+      o$14/6/1688/id=obitos 1688-his40
+
+         n$isabel/f/id=obitos 1688-his40-per1
+
+            pai$manuel rodrigues navarro/m/mesmo_que=ro12061688/id=obitos 1688-his40-per1-per2
+               ls$morto/antes
+
+         sacr$sim
+
+         locs$sim
+
+      o$25/6/1688/id=obitos 1688-his41
+
+         n$antonia alves/f/id=obitos 1688-his41-per1
+
+            marido$joao rodrigues ruivo/id=obitos 1688-his41-per1-per2
+               ls$residencia/beltroes
+
+         sacr$sim
+
+         locs$adro
+
+      o$26/6/1688/id=obitos 1688-his42
+
+         n$isabel/f/id=obitos 1688-his42-per1
+            ls$idade/7
+            ls$ec/s
+
+            pai$joao gomes/m/id=obitos 1688-his42-per1-per2
+               ls$residencia/porto panelas
+
+         sacr$sim
+
+         locs$igreja de nossa senhora de finisterra
+
+      o$29/6/1688/id=obitos 1688-his43
+
+         n$isabel/f/id=obitos 1688-his43-per1
+            ls$ec/s
+            ls$idade_aprox/mais de 20
+
+         sacr$sim
+
+         locs$adro
+
+      o$30/6/1688/id=obitos 1688-his44
+
+         n$maria goncalves/f/id=obitos 1688-his44-per1
+            ls$ec/v
+            ls$residencia/casal da lage
+
+         sacr$sim
+
+         locs$adro
+
+      o$8/7/1688/id=obitos 1688-his45
+
+         n$isabel rodrigues/f/id=obitos 1688-his45-per1
+            ls$ec/v
+            ls$residencia/alencarce de cima
+
+         sacr$sim
+
+         locs$adro
+
+      o$8/7/1688/id=obitos 1688-his46
+
+         n$maria francisca/f/id=obitos 1688-his46-per1
+            ls$ec/v/obs=mulher que foi....
+
+            marido$francisco lopes labias/id=obitos 1688-his46-per1-per2
+               ls$morto/antes
+
+         sacr$sim
+
+         locs$adro
+
+      o$10/7/1688/id=obitos 1688-his47
+
+         n$manuel goncalves/m/id=obitos 1688-his47-per1
+            ls$residencia/casal da lage
+            ls$alcunha/sintaixa
+
+         sacr$sim
+
+         locs$igreja de s.francisco
+
+         testamento$deixou 6 missas, tres por sua alma e tres por alma de sua irma, ao que deixou uma terra obrigada
+
+         oficios$1 de 9
+
+      o$6/8/1688/id=obitos 1688-his48
+
+         n$manuel goncalves? ruivo/m/id=obitos 1688-his48-per1
+            ls$residencia/alencarce de cima
+
+         sacr$sim
+
+         locs$adro
+
+      o$11/8/1688/id=obitos 1688-his49
+
+         n$domingos/m/id=obitos 1688-his49-per1
+            ls$idade/4
+
+            pai$manuel leao/id=obitos 1688-his49-per1-per2
+
+         locs$adro
+
+      o$30/8/1688/id=obitos 1688-his50
+
+         n$manuel mateus/m/id=obitos 1688-his50-per1
+            ls$profissao/padre
+            ls$cargo/benefeciado na igreja de soure
+            ls$titulo/frei
+
+         oficios$1 de corpo presente de 9 licoes
+
+         sacr$sim
+
+         locs$alpendre da igreja de s.tiago diante da porta principal
+
+         testamento$sim
+
+      o$1/9/1688/id=obitos 1688-his51
+
+         n$antonia goncalves/f/id=obitos 1688-his51-per1
+            ls$ec/v?/obs=mulher que foi
+            ls$residencia/casais do soares
+
+            marido$manuel de figueiredo/m/id=obitos 1688-his51-per1-per2
+               ls$residencia/casais do soares
+               ls$morto/antes
+
+         sacr$sim
+
+         locs$sim
+
+      o$2/9/1688/id=obitos 1688-his52
+
+         n$leonor/f/id=obitos 1688-his52-per1
+            ls$ec/s
+            ls$idade/15
+
+         sacr$sim
+
+         locs$adro
+
+      o$7/9/1688/obs=nao da lugar de sepultura/id=obitos 1688-his53
+
+         n$jose/m/id=obitos 1688-his53-per1
+            ls$idade/12
+
+            pai$bento gomes da costa/id=obitos 1688-his53-per1-per2
+               ls$residencia/soure
+
+         sacr$absoluto sub conditione
+
+      o$12/9/1688/id=obitos 1688-his54
+
+         n$manuel jorge soeiro/m/id=obitos 1688-his54-per1
+            ls$alcunha/moco
+            ls$residencia/casa velha
+
+         sacr$sim
+
+         locs$adro
+
+      o$23/9/1688/id=obitos 1688-his55
+
+         n$maria joao/f/id=obitos 1688-his55-per1
+            ls$ec/v?/obs=mulher que foi...
+            ls$residencia/casal do mau
+
+            marido$domingos gomes/m/id=obitos 1688-his55-per1-per2
+               ls$residencia/casal do mau
+               ls$morto/antes
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$1 de 9
+
+      o$23/9/1688/id=obitos 1688-his56
+
+         n$francisca joao/f/id=obitos 1688-his56-per1
+            ls$residencia/casal das estercadas
+            ls$pobre/sim/obs=muito pobre
+
+            marido$nome desconhecido/m/id=obitos 1688-his56-per1-per2
+               ls$alcunha/palaio
+               ls$residencia/casal das estercadas
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$1 de 3 por ser muito pobre
+
+      o$27/9/1688/id=obitos 1688-his57
+
+         n$manuel goncalves/m/id=obitos 1688-his57-per1
+            ls$residencia/casal das brancas
+
+         sacr$sim
+
+         locs$igreja de s.tiago
+
+      o$30/9/1688/id=obitos 1688-his58
+
+         n$miguel/m/id=obitos 1688-his58-per1
+            ls$idade/18
+
+            pai$domingos antunes/m/id=obitos 1688-his58-per1-per2
+               ls$residencia/casal das brancas
+
+         sacr$sim
+
+         locs$igreja de s.tome, por nao haver quem o trouxesse ao adro
+
+      o$19/10/1688/id=obitos 1688-his59
+
+         n$maria serrana/f/obs=conheco esta de algum lado/id=obitos 1688-his59-per1
+
+         sacr$sim
+
+         locs$adro
+
+      o$23/10/1688/id=obitos 1688-his60
+
+         n$joao/m/id=obitos 1688-his60-per1
+            ls$ec/s
+            ls$idade/4
+
+            pai$joao francisco/m/id=obitos 1688-his60-per1-per2
+               ls$residencia/bechos
+
+         locs$adro
+
+      o$5/11/1688/id=obitos 1688-his61
+
+         n$joao rodrigues palaio/m/obs=ver obito de 23/9/1688/id=obitos 1688-his61-per1
+
+         sacr$sim
+
+         locs$adro
+
+         oficios$tem satisfeito com meios oficios
+
+      o$6/11/1688/id=obitos 1688-his62
+
+         n$manuel rebelo/m/id=obitos 1688-his62-per1
+            ls$pobre/sim
+
+         sacr$sim
+
+         locs$adro
+
+      o$23/11/1688/id=obitos 1688-his63
+
+         n$manuel figueiredo/m/id=obitos 1688-his63-per1
+            ls$profissao/lavrador
+            ls$residencia/casais da quinta da cruz
+
+         sacr$sim
+
+         locs$adro
+
+      o$29/11/1688/id=obitos 1688-his64
+
+         n$esperanca/f/id=obitos 1688-his64-per1
+            ls$idade/0.25#3 ou 4 meses
+
+            pai$manuel joao/m/id=obitos 1688-his64-per1-per2
+               ls$residencia/casa velha
+
+            mae$maria francisca/f/id=obitos 1688-his64-per1-per3
+
+         locs$adro
+
+      o$10/12/1688/id=obitos 1688-his65
+
+         n$maria de miranda/f/id=obitos 1688-his65-per1
+
+         sacr$sim
+
+         locs$s.francisco

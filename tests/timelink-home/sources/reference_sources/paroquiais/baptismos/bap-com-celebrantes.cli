@@ -1,0 +1,78 @@
+kleio$gacto2.str/prefix=lousa
+   fonte$bap-com-celebrantes/localizacao-a.u.c./type=bapt/obs=freguesia de sao silvestre da lousalousa
+
+      bap$b1714-1/6/1/1714/fl.117v./igreja de sao silvestre/joao lopes serra(padre)/obs=com licenca do padre manuel lopes serra, assina joao lopes serra
+
+         celebrante$joao lopes serra/id=b1714-1-per1
+            ls$profissao/padre
+
+         n$filipa/f/id=b1714-1-per1b
+            ls$nome/constanca/obs="""
+            segundo um assento na margem do baptismo: 
+            a mae da baptizada mudou no santo crisma o nome
+            de Filipa em Constancia e que justificou ante 
+            o vigario gheral desta vila por cujo despacho 
+            fiz esta declaração. assina: Padre Tavares"""
+
+            pn$joao de almeida/id=b1714-1-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria antonia/id=b1714-1-per3
+
+            pad$joao de arruda? frazao/id=b1714-1-per4
+               ls$morada/vila da lousa
+                ls$freguesia/lousa
+
+            mad$escolastica monteira/id=b1714-1-per5
+               ls$titulo/licenciado
+               ls$morada/vila da lousa%lousa vila
+               ls$freguesia/lousa
+
+      bap$b1714-2/12/11714/fl.117v./igreja de sao silvestre/manuel lopes serra (padre)
+
+         celebrante$manuel lopes serra/id=b1714-2-per1
+            ls$profissao/padre
+
+         n$francisca/f/id=b1714-2-per1b
+
+            pn$antonio ferreira/id=b1714-2-per2
+               ls$morada/espinheiro
+               ls$freguesia/lousa
+
+            mn$leonarda francisca/id=b1714-2-per3
+
+            pad$ joao fernandes ramalheiro/id=b1714-2-per4
+               ls$morada/moita
+               ls$freguesia/lousa
+
+            mad$francisa/id=b1714-2-per5
+               ls$ec/solteira
+
+               pmad$joao goncalves/id=b1714-2-per6
+                  ls$morada/espinheiro
+                  ls$freguesia/lousa
+
+      bap$b1714-3/17/1/1714/fl.118/igreja de sao silvestre/manuel manuel da fonseca(padre)/obs=o padre e morador na vila da lousaassina o termo o padre manuel llopes serra
+
+         celebrante$manuel manuel da fonseca/id=b1714-3-per1
+            ls$residencia/lousa
+            ls$profissao/padre
+
+         n$manuel/m/id=b1714-3-n
+
+            pn$luis fernandes/id=b1714-3-per1b
+               ls$morada/cova de lobo
+               ls$freguesia/lousa
+
+            mn$fernanda neta/id=b1714-3-per2
+
+            pad$manuel rodrigues/id=b1714-3-per3
+               ls$morada/espinheiro
+               ls$freguesia/lousa
+
+            mad$maria francisca/id=b1714-3-mad
+
+               mrmad$antonio fernandes/id=b1714-3-per4
+                  ls$morada/cova de lobo
+                  ls$freguesia/lousa
