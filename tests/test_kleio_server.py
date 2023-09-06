@@ -7,6 +7,11 @@ https://github.com/time-link/timelink-kleio-server
 import requests
 import timelink.kleio.kleio_server as kleio_server
 from tests import skip_on_travis, TEST_DIR
+from jsonrpcclient import request, request_json, parse
+
+KLEIO_ADMIN_TOKEN: str = None
+KLEIO_LIMITED_TOKEN: str = None
+KLEIO_NORMAL_TOKEN: str = None
 
 @skip_on_travis
 def test_is_kleio_server_running():
@@ -55,7 +60,7 @@ def test_generate_limited_token():
                 "nothing"
             ],
             "structures": "sources/structures",
-            "sources": "sources/test_translations"
+            "sources": "sources/reference_sources"
         }
     token = kleio_server.get_kserver_token()
     invalidate = kleio_server.kleio_invalidate_user(user, token)
@@ -80,13 +85,42 @@ def test_generate_normal_token():
                 "mkdir",
                 "rmdir"
             ],
-            "structures": "users/tester/stru",
-            "sources": "sources/api_tests"
+            "structures": "structures/reference_sources",
+            "sources": "sources/reference_sources"
         }
     
     token = kleio_server.get_kserver_token()
     invalidate = kleio_server.kleio_invalidate_user(user, token)
     assert invalidate.status_code == 200
-    response: requests.Response = kleio_server.kleio_tokens_generate(user, info, token)    
-    assert response.status_code == 200
 
+    global KLEIO_NORMAL_TOKEN
+    KLEIO_NORMAL_TOKEN = kleio_server.kleio_tokens_generate(user, info, token)
+    assert KLEIO_NORMAL_TOKEN is not None
+
+
+@skip_on_travis
+def test_translations_get():
+    """Test if translations are retrieved"""
+    path: str = "sources/reference_sources"
+    recurse: str = "yes"
+    status: str = None
+    
+    global KLEIO_NORMAL_TOKEN
+    if KLEIO_NORMAL_TOKEN is None:
+
+        KLEIO_NORMAL_TOKEN = kleio_server.get_kserver_token()
+    translations = kleio_server.kleio_translations_get(path, recurse, status, KLEIO_NORMAL_TOKEN)
+    assert len(translations) > 0
+
+@skip_on_travis
+def test_sources_get():
+    """Test if sources are retrieved"""
+    path: str = ""
+    recurse: str = "yes"
+
+    global KLEIO_NORMAL_TOKEN
+    if KLEIO_NORMAL_TOKEN is None:
+        KLEIO_NORMAL_TOKEN = kleio_server.get_kserver_token()
+
+    sources = kleio_server.kleio_sources_get(path, recurse, KLEIO_NORMAL_TOKEN)
+    assert sources is not None

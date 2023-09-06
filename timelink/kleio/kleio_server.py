@@ -3,7 +3,7 @@ import os
 import docker
 import secrets
 import requests
-from jsonrpcclient import request, request_json, parse 
+from jsonrpcclient import request, Error, Ok, parse 
 
 
 def is_kserver_running():
@@ -142,6 +142,54 @@ def kleio_tokens_generate(user:str,info: dict, token:str, url:str = "http://loca
         rpc=request("tokens_generate", params=pars)
         response = requests.post(url,json=rpc,
                                   headers={"Content-Type": "application/json"}, )
+        parsed = parse(response.json())
+        if isinstance(parsed, Ok):
+            return parsed.result
+        elif isinstance(parsed, Error):
+            code, message, data, id = parsed
+            raise Exception(f"Error {code}: {message} ({data} id:{id})")
+        return response
+    else:
+        return None
+    
+
+def kleio_translations_get(path:str, recurse:str, status:str, token:str, url:str = "http://localhost:8088/json/"):
+    """Get translations from kleio server"""
+    if is_kserver_running():
+        container = get_kserver_container()
+        if url is None:
+            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
+        pars={"path": path, "recurse": recurse, "status": status, "token": token}  
+        rpc=request("translations_get", params=pars)
+        response = requests.post(url,json=rpc,
+                                  headers={"Content-Type": "application/json"}, )
+        parsed = parse(response.json())
+        if isinstance(parsed, Ok):
+            return parsed.result
+        elif isinstance(parsed, Error):
+            code, message, data, id = parsed
+            raise Exception(f"Error {code}: {message} ({data} id:{id})")
+        return response
+    else:
+        return None
+    
+
+def kleio_sources_get(path:str, recurse:str, token:str, url:str = "http://localhost:8088/json/"):
+    """Get sources from kleio server"""
+    if is_kserver_running():
+        container = get_kserver_container()
+        if url is None:
+            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
+        pars={"path": path, "recurse": recurse, "token": token}  
+        rpc=request("sources_get", params=pars)
+        response = requests.post(url,json=rpc,
+                                  headers={"Content-Type": "application/json"}, )
+        parsed = parse(response.json())
+        if isinstance(parsed, Ok):
+            return parsed.result
+        elif isinstance(parsed, Error):
+            code, message, data, id = parsed
+            raise Exception(f"Error {code}: {message} ({data} id:{id})")
         return response
     else:
         return None
