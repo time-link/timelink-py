@@ -116,80 +116,64 @@ def stop_kleio_server():
         container.stop()
         container.remove()
 
-
-def kleio_invalidate_user(user:str, token:str, url:str = "http://localhost:8088/json/"):
-    """Invalidate a user"""
+def kleio_get_url():
+    """Get the url of the kleio server"""
     if is_kserver_running():
         container = get_kserver_container()
-        if url is None:
-            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
-        pars={"user": user, "token": token}  
-        rpc=request("users_invalidate", params=pars)
-        response = requests.post(url,json=rpc,
-                                  headers={"Content-Type": "application/json"}, )
-        return response
+        return f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
     else:
         return None
+    
+def kleio_call_api(method:str, params:dict, url:str):
+    """Call kleio server API"""
+    if url is None and is_kserver_running():
+        url = kleio_get_url()
+    rpc=request(method, params=params)
+    response = requests.post(url,json=rpc,
+                                headers={"Content-Type": "application/json"}, )
+    parsed = parse(response.json())
+    if isinstance(parsed, Ok):
+        return parsed.result
+    elif isinstance(parsed, Error):
+        code, message, data, id = parsed
+        raise Exception(f"Error {code}: {message} ({data} id:{id})")
+    return response
+    
+def kleio_invalidate_user(user:str, token:str, url:str):
+    """Invalidate a user"""    
+    pars={"user": user, "token": token}  
+    return kleio_call_api("users_invalidate", pars, url)
 
 
-def kleio_tokens_generate(user:str,info: dict, token:str, url:str = "http://localhost:8088/json/"):
+def kleio_tokens_generate(user:str,info: dict, token:str, url:str):
     """Generate a token for a user"""
-    if is_kserver_running():
-        container = get_kserver_container()
-        if url is None:
-            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
-        pars={"user": user, "info": info, "token": token}  
-        rpc=request("tokens_generate", params=pars)
-        response = requests.post(url,json=rpc,
-                                  headers={"Content-Type": "application/json"}, )
-        parsed = parse(response.json())
-        if isinstance(parsed, Ok):
-            return parsed.result
-        elif isinstance(parsed, Error):
-            code, message, data, id = parsed
-            raise Exception(f"Error {code}: {message} ({data} id:{id})")
-        return response
-    else:
-        return None
+    pars={"user": user, "info": info, "token": token}  
+    return kleio_call_api("tokens_generate", pars, url)
     
 
 def kleio_translations_get(path:str, recurse:str, status:str, token:str, url:str = "http://localhost:8088/json/"):
-    """Get translations from kleio server"""
-    if is_kserver_running():
-        container = get_kserver_container()
-        if url is None:
-            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
-        pars={"path": path, "recurse": recurse, "status": status, "token": token}  
-        rpc=request("translations_get", params=pars)
-        response = requests.post(url,json=rpc,
-                                  headers={"Content-Type": "application/json"}, )
-        parsed = parse(response.json())
-        if isinstance(parsed, Ok):
-            return parsed.result
-        elif isinstance(parsed, Error):
-            code, message, data, id = parsed
-            raise Exception(f"Error {code}: {message} ({data} id:{id})")
-        return response
+    """Get translations from kleio server
+    
+    Args:
+        path (str): path to the directory in sources
+        recurse (str): if "yes" recurse in subdirectories
+        status (str): filter by translation status
+                        V = valid translations
+                        T = need translation (source more recent than translation)
+                        E = translation with errors
+                        W = translation with warnings
+                        P = translation being processed
+                        Q = file queued for translation
+        token (str): kleio server token
+    """
+    if status is None:
+        pars={"path": path, "recurse": recurse, "token": token}  
     else:
-        return None
+        pars={"path": path, "recurse": recurse, "status": status, "token": token}  
+    return kleio_call_api("translations_get", pars, url)
     
 
-def kleio_sources_get(path:str, recurse:str, token:str, url:str = "http://localhost:8088/json/"):
+def kleio_sources_get(path:str, recurse:str, token:str, url:str):
     """Get sources from kleio server"""
-    if is_kserver_running():
-        container = get_kserver_container()
-        if url is None:
-            url = f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
-        pars={"path": path, "recurse": recurse, "token": token}  
-        rpc=request("sources_get", params=pars)
-        response = requests.post(url,json=rpc,
-                                  headers={"Content-Type": "application/json"}, )
-        parsed = parse(response.json())
-        if isinstance(parsed, Ok):
-            return parsed.result
-        elif isinstance(parsed, Error):
-            code, message, data, id = parsed
-            raise Exception(f"Error {code}: {message} ({data} id:{id})")
-        return response
-    else:
-        return None
+    pars={"path": path, "recurse": recurse, "token": token}  
+    return kleio_call_api("sources_get", pars, url)
