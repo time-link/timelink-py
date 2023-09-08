@@ -78,6 +78,21 @@ def get_postgres_container_pwd() -> str:
         return pwd
 
 
+def get_postgres_container_user() -> str:
+    """Get the postgres container user
+    Returns:
+        str: the postgres container user
+    """
+    if is_postgres_running():
+        container = get_postgres_container()
+        user = [
+            env
+            for env in container.attrs["Config"]["Env"]
+            if env.startswith("POSTGRES_USER")
+        ][0].split("=")[1]
+        return user
+
+
 def start_postgres_server(
     dbname: str | None = "timelink",
     dbuser: str | None = "timelink",
@@ -141,11 +156,11 @@ def get_dbnames():
             AND datallowconn
             AND datname <> 'postgres';
     """
-    start_postgres_server()
-    if is_postgres_running():
-        container = get_postgres_container()
+    
+    container = get_postgres_container()
+    if container is not None:
         engine = create_engine(
-            f"postgresql://postgres:{get_postgres_container_pwd()}@localhost:5432/postgres"
+            f"postgresql://{get_postgres_container_user()}:{get_postgres_container_pwd()}@localhost:5432"
         )
         with engine.connect() as conn:
             dbnames = conn.execute(
