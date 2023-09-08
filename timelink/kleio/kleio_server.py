@@ -3,7 +3,31 @@ import os
 import docker
 import secrets
 import requests
+from datetime import datetime
 from jsonrpcclient import request, Error, Ok, parse 
+from pydantic import BaseModel
+from typing import Optional
+
+class KleioFile(BaseModel):
+    path: str
+    name: str
+    size: int
+    directory: str
+    modified: datetime
+    modified_iso: datetime
+    modified_string: str
+    qtime: datetime
+    qtime_string: str
+    source_url: str
+    status: str
+    translated: Optional[datetime]
+    translated_string: Optional[str]
+    errors: Optional[int]
+    warnings: Optional[int]
+    version: Optional[str]
+    rpt_url: Optional[str]
+    xml_url: Optional[str]
+
 
 
 def is_kserver_running():
@@ -64,7 +88,6 @@ def start_kleio_server(
         kleio_home (str | None, optional): kleio home directory. Defaults to None -> current directory.
         token (str | None, optional): kleio server token. Defaults to None -> generate a random token.
 
-    TODO: if token is None, get a token from the environment
     """
     # check if kleio server is already running in docker
     if is_kserver_running():
