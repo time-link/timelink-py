@@ -20,13 +20,13 @@ class KleioFile(BaseModel):
     qtime_string: str
     source_url: str
     status: str
-    translated: Optional[datetime]
-    translated_string: Optional[str]
-    errors: Optional[int]
-    warnings: Optional[int]
-    version: Optional[str]
-    rpt_url: Optional[str]
-    xml_url: Optional[str]
+    translated: Optional[datetime] = None
+    translated_string: Optional[str] = None
+    errors: Optional[int] = None
+    warnings: Optional[int] = None
+    version: Optional[str] = None
+    rpt_url: Optional[str] = None
+    xml_url: Optional[str] = None
 
 
 
