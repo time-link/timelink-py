@@ -151,10 +151,8 @@ def test_translations_get(setup):
                                                        token=token,
                                                        url=url)
     assert len(translations) > 0
-    for t in translations:
-        print(json.dumps(t, indent=4))
-        kfile = kleio_server.KleioFile(**t)
-        print(f"{kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+    for kfile in translations:
+        print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
 
 
 @skip_on_travis

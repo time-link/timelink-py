@@ -193,7 +193,12 @@ def kleio_translations_get(path:str, recurse:str, status:str, token:str, url:str
         pars={"path": path, "recurse": recurse, "token": token}  
     else:
         pars={"path": path, "recurse": recurse, "status": status, "token": token}  
-    return kleio_call_api("translations_get", pars, url)
+    translations = kleio_call_api("translations_get", pars, url)
+    result = []
+    for t in translations:
+        kfile = KleioFile(**t)
+        result.append(kfile)
+    return result
     
 
 def kleio_sources_get(path:str, recurse:str, token:str, url:str):
