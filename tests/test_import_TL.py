@@ -12,7 +12,9 @@ from tests import skip_on_travis, TEST_DIR
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
-from timelink.api.database import TimelinkDatabase
+from timelink.api.database import (TimelinkDatabase,
+                                   get_postgres_container_user, 
+                                   get_postgres_container_pwd)
 from timelink.api.models.entity import Entity
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
@@ -23,6 +25,10 @@ pytestmark = skip_on_travis
 def dbsystem(request):
     """Create a database for testing"""
     db_type, db_name, db_url, db_user, db_pwd = request.param
+    if db_type == "postgres":
+        db_user = get_postgres_container_user()
+        db_pwd = get_postgres_container_pwd()
+
     database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
     db = database.session()
     try:
