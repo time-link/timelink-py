@@ -18,7 +18,7 @@ class TestMode(Enum):
     LOCAL = "local"
     DOCKER = "docker"
 
-mode = TestMode.LOCAL
+mode = TestMode.DOCKER
 
 @pytest.fixture(scope="module", autouse=True)
 def setup():
@@ -27,6 +27,8 @@ def setup():
         url='http://localhost:8089/json/'
     else:
         """Setup kleio server for tests"""
+        if not kleio_server.is_kserver_running():
+            kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
         token=kleio_server.get_kserver_token()
         url=kleio_server.kleio_get_url()
     return(token,url)
@@ -64,12 +66,17 @@ def test_get_kleio_server_token():
     assert kleio_server.get_kserver_token() is not None
     
 @skip_on_travis
-def test_stop_kleio_server():
+def test_stop_kleio_server(setup):
     """Test if kleio server is stopped"""
+
+    token,url = setup
     kleio_server.stop_kleio_server()
     assert kleio_server.is_kserver_running() is False
-    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
+    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home",token=token)
     assert kleio_server.is_kserver_running() is True
+    # wait for server to start
+    import time
+    time.sleep(5)
 
 @skip_on_travis
 def test_kleio_get_url():
@@ -146,6 +153,8 @@ def test_translations_get(setup):
     assert len(translations) > 0
     for t in translations:
         print(json.dumps(t, indent=4))
+        kfile = kleio_server.KleioFile(**t)
+        print(f"{kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
 
 
 @skip_on_travis
