@@ -3,31 +3,8 @@ import os
 import docker
 import secrets
 import requests
-from datetime import datetime
 from jsonrpcclient import request, Error, Ok, parse 
-from pydantic import BaseModel
-from typing import Optional
-
-class KleioFile(BaseModel):
-    path: str
-    name: str
-    size: int
-    directory: str
-    modified: datetime
-    modified_iso: datetime
-    modified_string: str
-    qtime: datetime
-    qtime_string: str
-    source_url: str
-    status: str
-    translated: Optional[datetime] = None
-    translated_string: Optional[str] = None
-    errors: Optional[int] = None
-    warnings: Optional[int] = None
-    version: Optional[str] = None
-    rpt_url: Optional[str] = None
-    xml_url: Optional[str] = None
-
+from .schemas import KleioFile
 
 
 def is_kserver_running():
