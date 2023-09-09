@@ -1,37 +1,39 @@
 """ tests for interfacing to kleio server
 
-Teste
-
 https://github.com/time-link/timelink-kleio-server
 """
 from enum import Enum
-import json
 import pytest
-import timelink.kleio.kleio_server as kleio_server
-from tests import skip_on_travis, TEST_DIR
 from jsonrpcclient import request, request_json, parse
+
+from tests import skip_on_travis, TEST_DIR
+import timelink.kleio.kleio_server as kleio_server
+from timelink.kleio.schemas import KleioFile
+from timelink.kleio.kleio_server import KleioServer
 
 KLEIO_ADMIN_TOKEN: str = None
 KLEIO_LIMITED_TOKEN: str = None
 KLEIO_NORMAL_TOKEN: str = None
+
+KLEIO_SERVER: KleioServer = None
 class TestMode(Enum):
     LOCAL = "local"
     DOCKER = "docker"
 
 mode = TestMode.DOCKER
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def setup():
     if mode == TestMode.LOCAL:
         token='mytoken'
-        url='http://localhost:8089/json/'
+        url='http://localhost:8089'
     else:
         """Setup kleio server for tests"""
         if not kleio_server.is_kserver_running():
             kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
         token=kleio_server.get_kserver_token()
         url=kleio_server.kleio_get_url()
-    return(token,url)
+    return KleioServer(url=url, token=token)
 
 
 @skip_on_travis
@@ -66,13 +68,12 @@ def test_get_kleio_server_token():
     assert kleio_server.get_kserver_token() is not None
     
 @skip_on_travis
-def test_stop_kleio_server(setup):
+def test_stop_kleio_server():
     """Test if kleio server is stopped"""
 
-    token,url = setup
     kleio_server.stop_kleio_server()
     assert kleio_server.is_kserver_running() is False
-    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home",token=token)
+    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
     assert kleio_server.is_kserver_running() is True
     # wait for server to start
     import time
@@ -86,7 +87,7 @@ def test_kleio_get_url():
 
 @skip_on_travis
 def test_generate_limited_token(setup):
-    token,url=setup
+    kserver: KleioServer = setup
     """Generate a token with limited privileges"""
     user: str = "limited_user"
     info = {
@@ -99,11 +100,11 @@ def test_generate_limited_token(setup):
         }
 
     try:  # we try to invalidade first
-        kleio_server.kleio_invalidate_user(user=user, token=token,url=url)
+        kserver.invalidate_user(user)
     except:
         pass
 
-    limited_token = kleio_server.kleio_tokens_generate(user, info, token,url=url)    
+    limited_token = kserver.generate_token(user, info)    
     assert limited_token is not None
 
 
@@ -128,14 +129,14 @@ def test_generate_normal_token(setup):
             "sources": "sources/reference_sources"
         }
     
-    token, url = setup
+    kserver:KleioServer = setup
 
     try:
-        invalidate = kleio_server.kleio_invalidate_user(user=user, token=token,url=url)
+        invalidated = kserver.invalidate_user(user)
     except:
         pass
 
-    KLEIO_NORMAL_TOKEN = kleio_server.kleio_tokens_generate(user, info, token, url)
+    KLEIO_NORMAL_TOKEN = kserver.generate_token(user, info)
     assert KLEIO_NORMAL_TOKEN is not None
 
 
@@ -146,11 +147,11 @@ def test_translations_get(setup):
     recurse: str = "yes"
     status: str = None
     
-    token,url = setup
-    translations = kleio_server.kleio_translations_get(path, recurse, status, 
-                                                       token=token,
-                                                       url=url)
+    kserver:KleioServer = setup
+    translations = kserver.translation_status(path, recurse, status)
     assert len(translations) > 0
+
+    kfile: KleioFile
     for kfile in translations:
         print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
 
@@ -161,6 +162,6 @@ def test_sources_get(setup):
     path: str = ""
     recurse: str = "yes"
 
-    token, url = setup
-    sources = kleio_server.kleio_sources_get(path, recurse, token=token,url=url)
+    kserver: KleioServer = setup
+    sources = kserver.get_sources(path, recurse)
     assert sources is not None

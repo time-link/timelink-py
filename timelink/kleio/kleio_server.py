@@ -7,6 +7,81 @@ from jsonrpcclient import request, Error, Ok, parse
 from .schemas import KleioFile
 
 
+class KleioServer:
+    url: str
+    token: str
+
+    def __init__(self, url: str, token: str):
+        self.url = url
+        self.token = token
+
+
+    def call(self, method:str, params:dict):
+        """Call kleio server API"""
+
+        url = f"{self.url}/json/"
+        headers = {"Content-Type": "application/json",
+                   "Authorization": f"Bearer {self.token}"}
+        # we add the token to the params
+        params["token"] = self.token
+        rpc=request(method, params=params)
+        response = requests.post(url,json=rpc,
+                                    headers=headers )
+        parsed = parse(response.json())
+        if isinstance(parsed, Ok):
+            return parsed.result
+        elif isinstance(parsed, Error):
+            code, message, data, id = parsed
+            raise Exception(f"Error {code}: {message} ({data} id:{id})")
+        return response
+    
+    def invalidate_user(self, user:str):
+        """Invalidate a user"""    
+        pars={"user": user}  
+        return self.call("users_invalidate", pars)
+
+
+    def generate_token(self, user:str,info: dict):
+        """Generate a token for a user"""
+        pars={"user": user, "info": info}  
+        return self.call("tokens_generate", pars)
+    
+
+    def translation_status(self,
+                           path:str, 
+                           recurse:str, 
+                           status:str):
+        """Get translations from kleio server
+        
+        Args:
+            path (str): path to the directory in sources
+            recurse (str): if "yes" recurse in subdirectories
+            status (str): filter by translation status
+                            V = valid translations
+                            T = need translation (source more recent than translation)
+                            E = translation with errors
+                            W = translation with warnings
+                            P = translation being processed
+                            Q = file queued for translation
+            token (str): kleio server token
+        """
+        if status is None:
+            pars={"path": path, "recurse": recurse}  
+        else:
+            pars={"path": path, "recurse": recurse, "status": status}  
+        translations = self.call("translations_get", pars)
+        result = []
+        for t in translations:
+            kfile = KleioFile(**t)
+            result.append(kfile)
+        return result
+
+    def get_sources(self, path:str, recurse:str):
+        """Get sources from kleio server"""
+        pars={"path": path, "recurse": recurse}  
+        return self.call("sources_get", pars)
+
+
 def is_kserver_running():
     """Check if kleio server is running in docker"""
     client = docker.from_env()
@@ -124,64 +199,3 @@ def kleio_get_url():
     else:
         return None
     
-def kleio_call_api(method:str, params:dict, url:str):
-    """Call kleio server API"""
-    if url is None and is_kserver_running():
-        url = kleio_get_url()
-        url = f"{url}/json/"
-    else:
-        url = f"{url}/json/"
-    rpc=request(method, params=params)
-    response = requests.post(url,json=rpc,
-                                headers={"Content-Type": "application/json"}, )
-    parsed = parse(response.json())
-    if isinstance(parsed, Ok):
-        return parsed.result
-    elif isinstance(parsed, Error):
-        code, message, data, id = parsed
-        raise Exception(f"Error {code}: {message} ({data} id:{id})")
-    return response
-    
-def kleio_invalidate_user(user:str, token:str, url:str):
-    """Invalidate a user"""    
-    pars={"user": user, "token": token}  
-    return kleio_call_api("users_invalidate", pars, url)
-
-
-def kleio_tokens_generate(user:str,info: dict, token:str, url:str):
-    """Generate a token for a user"""
-    pars={"user": user, "info": info, "token": token}  
-    return kleio_call_api("tokens_generate", pars, url)
-    
-
-def kleio_translations_get(path:str, recurse:str, status:str, token:str, url:str = "http://localhost:8088/json/"):
-    """Get translations from kleio server
-    
-    Args:
-        path (str): path to the directory in sources
-        recurse (str): if "yes" recurse in subdirectories
-        status (str): filter by translation status
-                        V = valid translations
-                        T = need translation (source more recent than translation)
-                        E = translation with errors
-                        W = translation with warnings
-                        P = translation being processed
-                        Q = file queued for translation
-        token (str): kleio server token
-    """
-    if status is None:
-        pars={"path": path, "recurse": recurse, "token": token}  
-    else:
-        pars={"path": path, "recurse": recurse, "status": status, "token": token}  
-    translations = kleio_call_api("translations_get", pars, url)
-    result = []
-    for t in translations:
-        kfile = KleioFile(**t)
-        result.append(kfile)
-    return result
-    
-
-def kleio_sources_get(path:str, recurse:str, token:str, url:str):
-    """Get sources from kleio server"""
-    pars={"path": path, "recurse": recurse, "token": token}  
-    return kleio_call_api("sources_get", pars, url)
