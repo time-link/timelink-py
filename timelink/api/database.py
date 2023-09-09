@@ -12,6 +12,7 @@ TODO
 import os
 import random
 import string
+import time
 from sqlalchemy import (
     create_engine,
     inspect,
@@ -125,6 +126,12 @@ def start_postgres_server(
             "POSTGRES_DB": dbname,
         },
     )
+    # wait for the container to start
+    psql_container.reload()
+    while psql_container.status != "running":
+        psql_container.reload()
+        # wait one second
+        time.sleep(1)
     return psql_container
 
 
