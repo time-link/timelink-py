@@ -105,3 +105,5 @@ timelink.sqlite
 tests/timelink-home/system/logs/kleio/kleio_service.log
 tests/timelink-home/system/conf/kleio/token_db
 tests/timelink-home/system/conf/kleio/.bootstrap_token
+tests/timelink-home/.kleio/logs/kleio_service.log
+tests/timelink-home/.kleio.json
