@@ -12,8 +12,10 @@ Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
 * √ currently at tests/test_api_models_db.py refactoring to use TimelinkDatabase
 
 Next:
-* implement import from file and from url kleio_server with token
-   * kleio start server not working
+* √ implement import from file and from url kleio_server with token
+* implement do translations, get dirs
+* implement interface in fastApi for kleio_server
+   
 To Run
     source venv/bin/activate
     cd timelink/api/
@@ -41,6 +43,7 @@ from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
 from timelink.kleio.importer import import_from_xml
+from timelink.kleio import kleio_server as kserver
 from timelink.api.schemas import ImportStats
 from timelink.api.schemas import EntityAttrRelSchema
 
@@ -168,7 +171,7 @@ async def get_syslog(
     return result
 
 
-@app.get("/import/file/{file_path:path}", response_model=ImportStats)
+@app.get("/sources/import-file/{file_path:path}", response_model=ImportStats)
 async def import_file(file_path: str, db: Session = Depends(get_db)):
     """Import kleio data from xml file"""
     result = import_from_xml(file_path, db, {"return_stats": True, "mode": "TL"})
