@@ -7,6 +7,7 @@ from timelink.api.models.attribute import (
 from timelink.api.models.relation import Relation  # noqa pylint: disable=unused-import
 from timelink.api.models.person import Person
 from timelink.api.models.object import Object
+from timelink.api.models.source import Source
 from timelink.api.models.pom_som_mapper import (
     PomSomMapper,
     PomClassAttributes,

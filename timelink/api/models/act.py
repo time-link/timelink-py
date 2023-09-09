@@ -32,7 +32,10 @@ class Act(Entity):
     the_type: Mapped[str] = mapped_column(String(32), comment="type of act")
     #: str: the date of the act in Kleio format AAAAMMDD
     the_date: Mapped[str] = mapped_column(
-        String, index=True, comment="the date of the act in Kleio format AAAAMMDD"
+        String, 
+        index=True,
+        nullable=True, 
+        comment="the date of the act in Kleio format AAAAMMDD"
     )
     #: str: location of the act, eg church, notary office
     loc: Mapped[str] = mapped_column(String, nullable=True)
