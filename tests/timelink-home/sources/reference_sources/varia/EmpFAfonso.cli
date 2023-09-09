@@ -1,4 +1,4 @@
-kleio$gacto2.str/prefix=sj
+kleio$gacto2.str/prefix=sj/translations=1
    fonte$avexplorfa/1322-1348/emprazamentos/1322-1348/loc=cx.5, mc.27, n.620;cx.4, mc.23, n.462;cx.2, mc.9, n.172;cx.1, mc.5, n.121;cx.1, mc.5, n.123;cx.4, mc.23, n.459;cx.1, mc.5, n.124;cx.4, mc.25, n.519;cx.6, mc.33, n.755;cx.4, mc.25, n.498;cx.1, mc.6, n.140;
 
       escritura$cex1322.1/18/6/1322/emprazamento/fol=cx.6, mc.27, n.620/loc=coimbra, igreja de santa justa/sumario=martim peres, procurador do prior de santa justa, empraza a joao anes, albardeiro, e a maria simoes sua mulher, uma casa na rua de oleiros, por 4 libras/obs=perg., bom, gotico cursivo, sinal notarial.
@@ -39,7 +39,7 @@ kleio$gacto2.str/prefix=sj
             referido$nome desconhecido/id=1322.e1.alcacova
                ls$cargo/prior de alcacova
 
-         prazo$1 casa
+         prazo$1 casa/id=sj-cex1322.1-obj1
             atr$localizacao/rua de oleiros/obs=a cima da rua de oleiros
             atr$confrontacoes/?
             rel$posse/pertenceu/prior de alcacova/1322.e1.alcacova/obs=mandou-a a colegiada de santa justa
@@ -59,7 +59,7 @@ kleio$gacto2.str/prefix=sj
                ls$cargo/prior de santa justa
 
          enfiteuta$estevao da marmeleira/id=1324.e1.estevao
-         	ls$alcunha/da marmeleira
+            ls$alcunha/da marmeleira
 
          enfiteutaf$domingas martins/id=1324.e1.domingas
             rel$parentesco/mulher/estevao da marmeleira/1324.e1.estevao
@@ -78,7 +78,7 @@ kleio$gacto2.str/prefix=sj
          tabeliao$martim anes/id=cex1324.1-per5
             ls$intitulacao/publico tabeliao/obs=intitulacao incompleta
 
-         prazo$1 olival com vinha
+         prazo$1 olival com vinha/id=sj-cex1324.1-obj1
             atr$localizacao/vale de figueira/obs=termo de coimbra
             atr$confrontacoes/?/obs=ilegivel
             rel$posse/pertence/colegiada de santa justa/1324.e1.colsj
@@ -124,7 +124,7 @@ kleio$gacto2.str/prefix=sj
 
             referida$dona mendonza/obs=duvidas de leitura/id=cex1324.2-per7-per3
 
-         prazo$1 olival
+         prazo$1 olival/id=sj-cex1324.2-obj1
             atr$localizacao/gemil/obs=termo de coimbra
             atr$confrontacoes/parte de uma parte com domingos prestes
             atr$confrontacoes/da outra parte com dona mendonza/obs=duvidas de leitura
@@ -156,7 +156,7 @@ kleio$gacto2.str/prefix=sj
             referido$domingos peres/id=cex1325.1-per4-per1
                ls$titulo/clerigo
 
-         prazo$pardieiros
+         prazo$pardieiros/id=sj-cex1325.1-obj1
             atr$localizacao/rua de quatro cantos
             atr$confrontacoes/a par do cortinhal que foi de domingos peres, clerigo
             rel$posse/pertence/colegiada de santa justa/1325.e1.colsj
@@ -204,7 +204,7 @@ kleio$gacto2.str/prefix=sj
             referida$marinha martins/id=1329.e1.marinhamartins
                rel$parentesco/mulher/vasco velho/1329.e1.vasco
 
-         prazo$sotao de casa
+         prazo$sotao de casa/id=sj-cex1329.1-obj1
             atr$localizacao/rua de quatro cantos/obs=freguesia de santa justa
             rel$posse/pertenceu/marinha martins/1329.e1.marinhamartins
             rel$posse/pertence/colegiada de santa justa/1329.e1.colsj
@@ -240,7 +240,7 @@ kleio$gacto2.str/prefix=sj
             referido$pero/id=1330.e1.pero
                ls$titulo/conego de coimbra
 
-         prazo$casas com sobrado
+         prazo$casas com sobrado/id=sj-cex1330.1-obj1
             atr$localizacao/rua de quatro cantos
             rel$posse/pertenceu/pero/1330.e1.pero/obs=aniversario
             rel$posse/pertence/colegiada de santa justa/1330.e1.colsj
@@ -282,7 +282,7 @@ kleio$gacto2.str/prefix=sj
 
             referido$mem/id=1335.e1.mem
 
-         prazo$casas com sobrado e com cortinhal
+         prazo$casas com sobrado e com cortinhal/id=sj-cex1335.1-obj1
             atr$localizacao/rua de quatro cantos
             atr$confrontacoes/?/obs=nao explicita
             rel$posse/pertenceu/pero francisco/1335.e1.pero
@@ -331,7 +331,7 @@ kleio$gacto2.str/prefix=sj
 
             referido$goncalo peres/id=1340.e1.goncalo
 
-         prazo$terra
+         prazo$terra/id=sj-cex1340.1-obj1
             atr$localizacao/porto da barca/obs=em riba de mondego
             atr$confrontacoes/1 parte com terra de constanca alvares
             rel$posse/pertenceu/goncalo peres/1340.e1.goncalo/obs=aniversarios
@@ -384,7 +384,7 @@ kleio$gacto2.str/prefix=sj
             ls$intitulacao/publico tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
-         prazo$1 casa
+         prazo$1 casa/id=sj-cex1344.1-obj1
             atr$localizacao/quintal dos fuseiros
             rel$posse/pertenceu/margarida rodrigues/1344.e1.margarida/obs=aniversarios
             rel$posse/pertence/colegiada de santa justa/1344.e1.colsj
@@ -419,7 +419,7 @@ kleio$gacto2.str/prefix=sj
             referido$pedro martins/id=cex1347.1-per4-per3
                ls$alcunha/alcoforado
 
-         prazo$lombo de santa justa/obs=uma grande peca de terra que he chamada o lombo de santa justa que sao 12 jeiras de terras de vassadoiro
+         prazo$lombo de santa justa/obs=uma grande peca de terra que he chamada o lombo de santa justa que sao 12 jeiras de terras de vassadoiro/id=sj-cex1347.1-obj1
             atr$localizacao/campo do mondego
             atr$confrontacoes/agiao, parte com terras do mosteiro de arouca
             atr$confrontacoes/soao, parte com terras do mosteiro de celas da ponte
@@ -440,7 +440,7 @@ kleio$gacto2.str/prefix=sj
          referido$rasca velhas/id=cex1347.1-per8
             ls$alcunha/rasca velhas
 
-         prazo$duas jeiras de terra de vessadoiro/obs=partidas por aguilhadas
+         prazo$duas jeiras de terra de vessadoiro/obs=partidas por aguilhadas/id=sj-cex1347.1-obj2
             atr$localizacao/campo do mondego/obs=lugar que chamam valadas
             atr$confrontacoes/partem com afonso peres cavaleiro
             atr$confrontacoes/outra parte com terra que foi de rasca velhas
@@ -505,7 +505,7 @@ kleio$gacto2.str/prefix=sj
                ls$residencia/coimbra
                rel$parentesco/mulher/martim coxo/1348.e1.martim
 
-         prazo$duas courelas e uma quarta de terra/obs=mede 18 varas pela vara de coimbra com que se mede o pano de burel e do linho
+         prazo$duas courelas e uma quarta de terra/obs=mede 18 varas pela vara de coimbra com que se mede o pano de burel e do linho/id=sj-cex1348.1-obj1
             atr$localizacao/campo do bolao
             atr$confrontacoes/parte contra a ponte de cidreira
             rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
@@ -516,7 +516,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$1 courela e meia
+         prazo$1 courela e meia/id=sj-cex1348.1-obj2
             atr$localizacao/campo do bolao
             atr$confrontacoes/parte contra a ponte de cidreira
             atr$confrontacoes/ante a carreira velha de contra o rio mondego
@@ -529,7 +529,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$4 courelas de terra
+         prazo$4 courelas de terra/id=sj-cex1348.1-obj3
             atr$localizacao/campo do bolao
             atr$confrontacoes/contra a ponte de cidreira
             atr$confrontacoes/desde a carreira velha de contra o rio mondego
@@ -543,7 +543,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a fregusia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$4 courelas e meia de terra
+         prazo$4 courelas e meia de terra/id=sj-cex1348.1-obj4
             atr$localizacao/campo do bolao
             atr$confrontacoes/contra a ponte de cidreira
             atr$confrontacoes/desde a carreira nova
@@ -560,7 +560,7 @@ kleio$gacto2.str/prefix=sj
          referido$afonso peres/id=cex1348.1-per9
             ls$alcunha/colaco
 
-         prazo$1 courela e uma oitava de terra
+         prazo$1 courela e uma oitava de terra/id=sj-cex1348.1-obj5
             atr$localizacao/porto da barca
             atr$confrontacoes/parte com terra que foi de afonso peres colaco
             atr$confrontacoes/contra a ponte de cidreira
@@ -572,7 +572,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$duas courelas e uma braca de terra
+         prazo$duas courelas e uma braca de terra/id=sj-cex1348.1-obj6
             atr$localizacao/porto da barca
             atr$confrontacoes/contra a ponte de cidreira
             atr$confrontacoes/partem com as terras que foram de afonso peres colaco
@@ -584,7 +584,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$1 courela e quarta de terra
+         prazo$1 courela e quarta de terra/id=sj-cex1348.1-obj7
             atr$localizacao/campo do bolao
             atr$confrontacoes/a par das terras da madalena
             atr$confrontacoes/contra a cidreira
@@ -596,7 +596,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$3 courelas de terra
+         prazo$3 courelas de terra/id=sj-cex1348.1-obj8
             atr$localizacao/porto da barca
             atr$confrontacoes/contra o paul
             atr$confrontacoes/vem contra a cidreira
@@ -610,7 +610,7 @@ kleio$gacto2.str/prefix=sj
 
          referido$estevao martins/id=1348.e1.estevao
 
-         prazo$terca parte das terras de estevao martins
+         prazo$terca parte das terras de estevao martins/id=sj-cex1348.1-obj9
             atr$localizacao/campo do bolao
             rel$posse/pertenceu/estevao martins/1348.e1.estevao
             rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
@@ -629,7 +629,7 @@ kleio$gacto2.str/prefix=sj
 
          referida$dona sol/id=1348.e1.sol
 
-         prazo$3 leiras de terra/obs=sao 4 jeiras de terra e partem com outras 4 jeiras que sao da igreja de s. silvestre que trouxe muito tempo vasco gil, racoeiro que foi de santiago de coimbra
+         prazo$3 leiras de terra/obs=sao 4 jeiras de terra e partem com outras 4 jeiras que sao da igreja de s. silvestre que trouxe muito tempo vasco gil, racoeiro que foi de santiago de coimbra/id=sj-cex1348.1-obj10
             atr$localizacao/campo do bolao
             atr$confrontacoes/1 leira esta entre duas leiras da se de coimbra contra a ponte de cidreira que partem com terras da igreja de s. silvestre do campo
             atr$confrontacoes/outra leira esta no lombo do bolao a par da terra que foi de salvador domingues, tabeliao de coimbra
@@ -644,7 +644,7 @@ kleio$gacto2.str/prefix=sj
          referido$afonso peres/id=cex1348.1-per12
             ls$titulo/cavaleiro
 
-         prazo$duas jeiras de terras de pao
+         prazo$duas jeiras de terras de pao/id=sj-cex1348.1-obj11
             atr$localizacao/campo do bolao/obs=lugar chamado famadas
             atr$confrontacoes/a par das terras do mosteiro de s paulo
             atr$confrontacoes/parte com as terras das antas que sao da igreja de ?/obs=ilegivel
@@ -659,7 +659,7 @@ kleio$gacto2.str/prefix=sj
          referido$soeiro/id=cex1348.1-per13
             ls$alcunha/gago
 
-         prazo$terra
+         prazo$terra/id=sj-cex1348.1-obj12
             atr$localizacao/campo do bolao
             atr$confrontacoes/a par da terra de santa cruz que trazem os moradores de antuzede
             atr$confrontacoes/com outra terra de afonso
@@ -677,7 +677,7 @@ kleio$gacto2.str/prefix=sj
          referido$pascoal domingues/id=cex1348.1-per15
             ls$residencia/rio frio
 
-         prazo$1 talho de terra
+         prazo$1 talho de terra/id=sj-cex1348.1-obj13
             atr$localizacao/campo do bolao
             atr$confrontacoes/parte com terra de antuzede que e do mosteiro de santa cruz
             atr$confrontacoes/com terra de lourenco anes pao e agua
@@ -703,7 +703,7 @@ kleio$gacto2.str/prefix=sj
          referida$dona elvira mura/id=1348.e1.donaelvira
             rel$parentesco/mulher/martim fernandes/1348.e1.mfernandes
 
-         prazo$1 talho de terra
+         prazo$1 talho de terra/id=sj-cex1348.1-obj14
             atr$localizacao/campo do bolao
             atr$confrontacoes/parte com a terra que foi de domingos
             atr$confrontacoes/entesta na terra de longara de vasco goncalves
@@ -715,7 +715,7 @@ kleio$gacto2.str/prefix=sj
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         prazo$todas as terras de santa justa no campo do bolao
+         prazo$todas as terras de santa justa no campo do bolao/id=sj-cex1348.1-obj15
             atr$localizacao/campo do bolao
             rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
             rel$posse/por emprazamento/vasco domingues/1348.e1.vasco

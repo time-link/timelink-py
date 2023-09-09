@@ -1,7 +1,7 @@
 ClioInput - version 2.3 - build 1590 21/06/2018 12:00 
-24-3-2023 3-38
+9-9-2023 14-44
 
-Processing data file:/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.cli
+Processing data file:/Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/docsregiospontepisc.cli
 -------------------------------------------
 Generic Act translation module with geoentities (XML).
      Joaquim Ramos de Carvalho (joaquim@uc.pt) 
@@ -23,10 +23,10 @@ Obs: """ This is a text for quoting attributes in xml output
 *** End of File
 
 
-** Processed file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.cli
-** Original file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.org
-** Previous version- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.old
-** Temp file with ids- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/docsregiospontepisc.ids
+** Processed file- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/docsregiospontepisc.cli
+** Original file- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/docsregiospontepisc.org
+** Previous version- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/docsregiospontepisc.old
+** Temp file with ids- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/docsregiospontepisc.ids
 0  errors. 
 0  warnings.
 Translation finished.

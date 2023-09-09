@@ -1,6 +1,5 @@
-kleio$gacto2.str/translations=1
-   fonte$ivcc/tipo=fonte-jesuita/ano=1719
-      /obs=""" 
+kleio$gacto2.str/translations=2
+   fonte$ivcc/tipo=fonte-jesuita/ano=1719/obs=""" 
       Franco (S.I.), Antonio, Imagem da virtude em o noviciado da Companhia de
       Jesus no Real Collegio de Jesus de Coimbra em Portugal
       (Évora: na Officina da Universidade, 1719)
@@ -9,12 +8,9 @@ kleio$gacto2.str/translations=1
       com a vida de Gonçalo da Silveira.
 
       Depois focamos nos missionários para a China."""
-      
 
-      lista$ivc-c1/0/0/1719/obs=
-      Dá-se sumária notícia do Real Colégio de Jesus de Coimbra. 
-         Descreve o espaço da alta onde está localizaddo o colégio e a organização interna do edifício.
-      
+      lista$ivc-c1/0/0/1719/obs= Dá-se sumária notícia do Real Colégio de Jesus de Coimbra.  Descreve o espaço da alta onde está localizaddo o colégio e a organização interna do edifício.
+
          n$Colégio de Coimbra/id=colegio-coimbra/obs=Notas sobre a História do Colégio
             ls$construction/start/15470414/obs=p.3
             ls$regulations/Constituições do Colégio de Coimbra 1547/15531100/obs="""
@@ -405,15 +401,9 @@ kleio$gacto2.str/translations=1
                   ]
                   """
 
-
-
-
-
             viagem$Chaul, defender de ataque/0/0/1558#inferido/id=ivc-goncalo-da-silveira-his1-85
 
-               referido$Gonçalo da Silveira/id=ivc-goncalo-da-silveira-his1-85-per1-85/mesmo_que=ivc-goncalo-da-silveira
-               /obs=""" With Chaul menaced by the 'Melique', the Governor could not  prepare a defense army and asked Gonçalo to preach the danger, which he  did, gathering great number of people and donations to pay soldiers. "E  em breve tempo se achou o governador em Chaul com três mil portugueses,  que é o maior poder de gente Portuguesa, que ajunta o Vice-Rei, agora a  gente da terra". Surprised, the atacker made peace"""
-               /id=ivc-goncalo-da-silveira-his1-per1
+               referido$Gonçalo da Silveira/id=ivc-goncalo-da-silveira-his1-85-per1-85/id=ivc-goncalo-da-silveira-his1-per1/mesmo_que=ivc-goncalo-da-silveira/obs=""" With Chaul menaced by the 'Melique', the Governor could not  prepare a defense army and asked Gonçalo to preach the danger, which he  did, gathering great number of people and donations to pay soldiers. "E  em breve tempo se achou o governador em Chaul com três mil portugueses,  que é o maior poder de gente Portuguesa, que ajunta o Vice-Rei, agora a  gente da terra". Surprised, the atacker made peace"""
 
                referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his1-85-per2-85
 

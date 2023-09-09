@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<KLEIO STRUCTURE="/workspaces/timelink-kleio/tests/stable/gacto2.str" SOURCE="/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notarial80.cli" TRANSLATOR="gactoxml2.str" WHEN="2023-3-24 3:38:56" OBS="" SPACE="">
+<KLEIO STRUCTURE="/Users/jrc/develop/timelink-kleio/tests/stable/gacto2.str" SOURCE="/Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/notarial80.cli" TRANSLATOR="gactoxml2.str" WHEN="2023-9-9 14:44:51" OBS="" SPACE="">
 <CLASS NAME="source" SUPER="entity" TABLE="sources" GROUP="fonte">
      <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
      <ATTRIBUTE NAME="date" COLUMN="the_date" CLASS="date" TYPE="varchar" SIZE="24" PRECISION="0" PKEY="0" ></ATTRIBUTE>
@@ -29,7 +29,7 @@
    <ELEMENT NAME="date" CLASS="date">
          <core><![CDATA[1780]]></core>   </ELEMENT>
    <ELEMENT NAME="kleiofile" CLASS="kleiofile">
-         <core><![CDATA[/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/notarial80.cli]]></core>   </ELEMENT>
+         <core><![CDATA[/Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/notarial80.cli]]></core>   </ELEMENT>
 </GROUP>
 <CLASS NAME="act" SUPER="entity" TABLE="acts" GROUP="historical-act">
      <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>

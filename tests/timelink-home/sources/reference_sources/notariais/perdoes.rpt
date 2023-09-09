@@ -1,7 +1,7 @@
 ClioInput - version 2.3 - build 1590 21/06/2018 12:00 
-24-3-2023 3-39
+9-9-2023 14-44
 
-Processing data file:/workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.cli
+Processing data file:/Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/perdoes.cli
 -------------------------------------------
 Generic Act translation module with geoentities (XML).
      Joaquim Ramos de Carvalho (joaquim@uc.pt) 
@@ -59,10 +59,10 @@ Translation count not set or invalid, counting as zero:
 *** End of File
 
 
-** Processed file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.cli
-** Original file- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.org
-** Previous version- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.old
-** Temp file with ids- /workspaces/timelink-kleio/tests/kleio-home/sources/reference_translations/reference_sources/notariais/perdoes.ids
+** Processed file- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/perdoes.cli
+** Original file- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/perdoes.org
+** Previous version- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/perdoes.old
+** Temp file with ids- /Users/jrc/develop/timelink-kleio/tests/kleio-home/sources/reference_translations/notariais/perdoes.ids
 0  errors. 
 0  warnings.
 Translation finished.

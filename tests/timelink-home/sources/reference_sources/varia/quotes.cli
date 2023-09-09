@@ -1,6 +1,6 @@
 kleio$gacto2.str/obs="""
     Generated from Archeevo export file:  database/other_exports/ficheiro-alunos-auc/PT-AUC-ELU-UC-AUC-B-001-001.CSV dated 2022-02-03 14:43
-"""/translations=7
+"""/translations=8
    fonte$quotes/data=20200000
 
       lista$quotesl/04/02/2022
@@ -20,8 +20,4 @@ kleio$gacto2.str/obs="""
 
         
     """/id=quotesl-per1
-            ls$profession/tester/obs="a
-            multi 
-            line
-            double 
-            (returns should be removed)"
+            ls$profession/tester/obs="a            multi             line            double             (returns should be removed)"
