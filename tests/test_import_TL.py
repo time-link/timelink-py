@@ -3,8 +3,9 @@ Check tests.__init__.py for parameters
 
 """
 # pylint: disable=import-error
-
+import os
 from pathlib import Path
+import random
 
 import pytest
 
@@ -12,10 +13,15 @@ from tests import skip_on_travis, TEST_DIR
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
+from timelink.api.models.base import Source
 from timelink.api.database import (TimelinkDatabase,
+                                   start_postgres_server,
                                    get_postgres_container_user, 
                                    get_postgres_container_pwd)
 from timelink.api.models.entity import Entity
+
+from timelink.kleio import kleio_server as kserver
+from timelink.kleio.schemas import KleioFile
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
@@ -26,6 +32,7 @@ def dbsystem(request):
     """Create a database for testing"""
     db_type, db_name, db_url, db_user, db_pwd = request.param
     if db_type == "postgres":
+        start_postgres_server()
         db_user = get_postgres_container_user()
         db_pwd = get_postgres_container_pwd()
 
@@ -45,7 +52,7 @@ def dbsystem(request):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, "postgres", None),
+        ("postgres", "timelink", None, None, None),
     ],
     indirect=True,
 )
@@ -134,7 +141,7 @@ def test_import_with_many(dbsystem):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, "postgres", "TCGllaFBFy"),
+        ("postgres", "timelink", None, None, None),
     ],
     indirect=True,
 )
@@ -154,3 +161,55 @@ def test_import_git_hub(dbsystem):
     sfile: Path = stats["file"]
     assert "b1685.xml" in sfile
     pass
+
+
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "timelink", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_from_kleio_server(dbsystem):
+    """Test the import of a Kleio file from kleio server into the Timelink database"""
+    kserver.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
+    kleio_url = kserver.kleio_get_url()
+    kleio_token = kserver.get_kserver_token()
+    translations = kserver.kleio_translations_get(path="",
+                                                  recurse="yes", 
+                                                  status="V", 
+                                                  token=kleio_token, 
+                                                  url=kleio_url)
+    assert len(translations) > 0, "no valid translations found in Kleio Server"
+    if len(translations) > 0:
+        kleio_file: KleioFile = random.choice(translations)
+        file = kleio_file.xml_url
+        session = dbsystem
+        try:
+            stats = import_from_xml(file, session, 
+                                    options={"return_stats": True,
+                                             "kleio_token": kleio_token,
+                                             "kleio_url": kleio_url,
+                                             "mode":"TL"})
+        except Exception as exc:
+            print(exc)
+        
+        # check if the file was imported
+        filename_with_extension = os.path.basename(file)
+        filename, extension = os.path.splitext(filename_with_extension)
+        sources = session.query(Source).filter_by().all()
+        imported = False
+        for source in sources:
+            kfilename_with_extension = os.path.basename(source.kleiofile)
+            kfile, kextention = os.path.splitext(kfilename_with_extension)
+            if kfile == filename:
+                imported = True
+                break
+        
+        assert imported, "file not imported"
+    else:
+        assert False, "no valid translations found in Kleio Server"
+
