@@ -120,7 +120,7 @@ def kleio_get_url():
     """Get the url of the kleio server"""
     if is_kserver_running():
         container = get_kserver_container()
-        return f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}/json/"
+        return f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}"
     else:
         return None
     
@@ -128,6 +128,9 @@ def kleio_call_api(method:str, params:dict, url:str):
     """Call kleio server API"""
     if url is None and is_kserver_running():
         url = kleio_get_url()
+        url = f"{url}/json/"
+    else:
+        url = f"{url}/json/"
     rpc=request(method, params=params)
     response = requests.post(url,json=rpc,
                                 headers={"Content-Type": "application/json"}, )

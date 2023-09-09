@@ -8,8 +8,8 @@ for the SQLAlchemy models.
 
 We use a module called "models" for the SQLAlchemy models 
 
-Here we put the pydantic models that are not related to database models
-like search requests and search results.
+Here we put the pydantic models that are not related to 
+database models like search requests and search results.
 
 """
 # pylint: disable=too-few-public-methods

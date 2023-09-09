@@ -8,6 +8,9 @@ from enum import Enum
 from pathlib import Path
 from typing import List, Optional, Union
 import platform
+
+import urllib.request
+
 from xml.sax import handler, make_parser, SAXParseException
 
 from sqlalchemy import func, delete  # pylint: disable=import-error
@@ -263,6 +266,7 @@ class KleioHandler:
     postponed_relations = []
     errors = []
     warnings = []
+    kleio_file_origin = None
     kleio_file = None
     kleio_file_name = None
     kleio_structure = None
@@ -271,7 +275,14 @@ class KleioHandler:
     kleio_context = None
     pom_som_cache = dict()
 
-    def __init__(self, session, mode="TL"):
+    def __init__(self, session, mode="TL",file_origin=None):
+        """
+        Arguments:
+            session: a SQLAlchemy session
+            mode: the mode of the import, either 'TL'(Timelink) or 'MHK'
+            file_origin: the origin of the import (file name, url, etc.)
+        
+        """
         self.session = session
         if mode == "TL":
             self.pom_som_base_mappings = pom_som_base_mappingsTL
@@ -403,6 +414,7 @@ class KleioHandler:
                     self.errors.append(
                         f"ERROR: {self.kleio_file_name} {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
                     )
+                    self.session.rollback()
         else:
             try:
                 pom_mapper_for_group.store_KGroup(group, self.session)
@@ -467,7 +479,9 @@ class KleioHandler:
 
 
 def import_from_xml(
-    filespec: Union[str, Path], session: Session, options: dict = None
+    filespec: Union[str, Path], 
+    session: Session, 
+    options: dict = None
 ) -> dict:
     """Import data from file or url into a timelink-mhk database.
 
@@ -479,7 +493,7 @@ def import_from_xml(
         conn_string (str): SQLAlchemy connection string to database.
         options (dict): a dictionnary with options
 
-           - 'stats':  if True import stats will be returned
+           - 'return_stats':  if True import stats will be returned
            - 'kleio_url':  the url of kleio server;
            - 'kleio_token':  the authorization token for the kleio server.
            - 'mode':  the mode of the import, either 'TL'(Timelink) or 'MHK'
@@ -521,6 +535,8 @@ def import_from_xml(
 
     """
     collect_stats = False
+    kleio_url = None
+    kleio_token = None
     mode = "TL"  # determines the database model TL=Timelink, MHK=MHK
     nentities_before = 0
     npersons_before = 0
@@ -529,6 +545,10 @@ def import_from_xml(
         collect_stats = True
     if options is not None and options.get("mode", None) is not None:
         mode = options.get("mode")
+    if options is not None and options.get("kleio_url", None) is not None:
+        kleio_url = options.get("kleio_url")
+    if options is not None and options.get("kleio_token", None) is not None:
+        kleio_token = options.get("kleio_token")
 
     kleio_handler = KleioHandler(session, mode=mode)
     sax_handler = SaxHandler(kleio_handler)
@@ -544,13 +564,24 @@ def import_from_xml(
         ).scalar()
 
     # TODO implement fetching from kleio server
-    if isinstance(filespec, os.PathLike):
+    if kleio_url is not None and kleio_token is not None:
+        headers={"Authorization": f"Bearer {kleio_token}"}
+        server_url = f"{kleio_url}{filespec}"
+        req = urllib.request.Request(server_url, headers=headers)
+        with urllib.request.urlopen(req) as source:
+            parser.parse(source)
+    elif kleio_token is not None or kleio_url is not None:
+        # this means that one of the options is missing
+        raise ValueError(
+            "Both kleio_url and kleio_token must be specified to fetch from kleio server"
+        )
+    elif isinstance(filespec, os.PathLike):
         source = os.fspath(filespec)
+        parser.parse(source)
     else:
         source = filespec
-
-    parser.parse(source)
-
+        parser.parse(source)
+    
     end = time.time()
     if collect_stats:
         machine = platform.node()
