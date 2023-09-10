@@ -67,7 +67,7 @@ class SysParSchema(BaseModel):
     obs: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class LogLevel(str, Enum):
@@ -124,7 +124,7 @@ class SysLogSchema(BaseModel):
     message: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class SysLogCreateSchema(BaseModel):
@@ -141,7 +141,7 @@ class SysLogCreateSchema(BaseModel):
     message: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class KleioFile(Base):
