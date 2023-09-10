@@ -75,6 +75,21 @@ class KleioServer:
             kfile = KleioFile(**t)
             result.append(kfile)
         return result
+    
+    def translate(self, path:str, recurse:str, spawn:str):
+        """Translate sources from kleio server
+        
+        Args:
+            path (str): path to the directory in sources
+            recurse (str): if "yes" recurse in subdirectories
+            spawn (str): if "yes" spawn a translation process for each file"""
+        pars={"path": path}  
+        if recurse is not None:
+            pars["recurse"] = recurse
+        if spawn is not None:
+            pars["spawn"] = spawn
+            
+        return self.call("translations_translate", pars)
 
     def get_sources(self, path:str, recurse:str):
         """Get sources from kleio server"""
