@@ -40,6 +40,7 @@ setup(
     },
     install_requires=[
         'typer~=0.4.0',
+        'fastapi~=0.103.0',
         'sqlalchemy~=2.0.0',
         'pydantic~=2.0.0',
         'python-dotenv~=0.21.0',

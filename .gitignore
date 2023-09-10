@@ -107,3 +107,4 @@ tests/timelink-home/system/conf/kleio/token_db
 tests/timelink-home/system/conf/kleio/.bootstrap_token
 tests/timelink-home/.kleio/logs/kleio_service.log
 tests/timelink-home/.kleio.json
+tests/timelink-home/sources/**/*.err
