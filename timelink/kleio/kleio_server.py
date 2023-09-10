@@ -4,7 +4,7 @@ import docker
 import secrets
 import requests
 from jsonrpcclient import request, Error, Ok, parse 
-from .schemas import KleioFile
+from .schemas import KleioFile, TokenInfo
 
 
 class KleioServer:
@@ -41,9 +41,9 @@ class KleioServer:
         return self.call("users_invalidate", pars)
 
 
-    def generate_token(self, user:str,info: dict):
+    def generate_token(self, user:str,info: TokenInfo):
         """Generate a token for a user"""
-        pars={"user": user, "info": info}  
+        pars={"user": user, "info": info.model_dump()}  
         return self.call("tokens_generate", pars)
     
 
@@ -80,6 +80,36 @@ class KleioServer:
         """Get sources from kleio server"""
         pars={"path": path, "recurse": recurse}  
         return self.call("sources_get", pars)
+
+
+def find_kleio_home(path:str=None):
+    """Find kleio home directory
+    
+    Kleio home directory is the directory where kleio server is running.
+    It can be in the current directory, parent directory, or tests directory.
+    It can be named "kleio-home", "timelink-home", or "mhk-home".
+    
+    """
+    kleio_home = None
+    if path is None:
+        # get the current directory
+        current_dir = os.getcwd()
+    else:
+        current_dir = path
+
+    # get the user home directory
+    user_home = os.path.expanduser("~")
+
+    # check if kleio-home exists in current directory, parent directory, or tests directory
+    for dir_path in [current_dir, os.path.dirname(current_dir), f"{current_dir}/tests", user_home]:
+        for home_dir in ["kleio-home", "timelink-home", "mhk-home"]:
+            if os.path.isdir(f"{dir_path}/{home_dir}"):
+                kleio_home = f"{dir_path}/{home_dir}"
+                break
+        if kleio_home:
+            break
+    return kleio_home
+
 
 
 def is_kserver_running():
