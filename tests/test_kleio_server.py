@@ -7,8 +7,9 @@ import pytest
 from jsonrpcclient import request, request_json, parse
 
 from tests import skip_on_travis, TEST_DIR
+import os
 import timelink.kleio.kleio_server as kleio_server
-from timelink.kleio.schemas import KleioFile
+from timelink.kleio.schemas import KleioFile, TokenInfo
 from timelink.kleio.kleio_server import KleioServer
 
 KLEIO_ADMIN_TOKEN: str = None
@@ -34,6 +35,13 @@ def setup():
         token=kleio_server.get_kserver_token()
         url=kleio_server.kleio_get_url()
     return KleioServer(url=url, token=token)
+
+
+def test_find_kleio_home() -> str:
+    """Test if kleio home is found"""
+    kleio_home = kleio_server.find_kleio_home()
+
+    assert kleio_home is not None
 
 
 @skip_on_travis
@@ -90,14 +98,14 @@ def test_generate_limited_token(setup):
     kserver: KleioServer = setup
     """Generate a token with limited privileges"""
     user: str = "limited_user"
-    info = {
-        	"comment": "An user that has no privilegis, used to test authorization errors",
+    info: TokenInfo = TokenInfo(**{
+        	"comment": "An user that has no privileges, used to test authorization errors",
             "api": [
-                "nothing"
+         
             ],
             "structures": "sources/structures",
             "sources": "sources/reference_sources"
-        }
+        })
 
     try:  # we try to invalidade first
         kserver.invalidate_user(user)
@@ -112,7 +120,7 @@ def test_generate_limited_token(setup):
 def test_generate_normal_token(setup):
     """Generate a token for normal user"""
     user: str = "normal_user"
-    info = {
+    info:TokenInfo = TokenInfo(**{
         	"comment": "An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
             "api": [
                 "sources",
@@ -127,7 +135,7 @@ def test_generate_normal_token(setup):
             ],
             "structures": "structures/reference_sources",
             "sources": "sources/reference_sources"
-        }
+        })
     
     kserver:KleioServer = setup
 

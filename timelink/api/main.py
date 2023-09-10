@@ -17,9 +17,7 @@ Next:
 * implement interface in fastApi for kleio_server
    
 To Run
-    source venv/bin/activate
-    cd timelink/api/
-    uvicorn main:app --reload
+    source .venv/bin/activate; cd timelink/api/; uvicorn main:app --reload
 
 To Test
 * http://127.0.0.1:8000/docs
@@ -42,10 +40,33 @@ from fastapi import (
 from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
+
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio import kleio_server as kserver
+from timelink.kleio.kleio_server import KleioServer
+from timelink.kleio.schemas import KleioFile, ApiPermissions, TokenInfo
+
 from timelink.api.schemas import ImportStats
 from timelink.api.schemas import EntityAttrRelSchema
+
+api_permissions_normal: List[ApiPermissions] = [
+                "sources",
+                "kleioset",
+                "files",
+                "structures",
+                "translations",
+                "upload",
+                "delete",
+                "mkdir",
+                "rmdir"
+            ]
+
+token_info_normal: TokenInfo = TokenInfo(
+        	comment="An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
+            api=api_permissions_normal,
+            structures="structures/reference_sources",
+            sources="sources/reference_sources"
+        )
 
 app = FastAPI()
 
@@ -68,6 +89,19 @@ def get_db(
         yield db
     finally:
         db.close()
+
+# dependency to get a connection to the kleio server
+def get_kleio_server():
+    """Get a connection to the kleio server
+
+    Uses timelink.kleio.kleio_server.KleioServer to get a connection to the kleio server."""
+
+    kleio_home = kserver.find_kleio_home()
+    if not kserver.is_kserver_running():
+        kserver.start_kleio_server(kleio_home=kleio_home)
+    token=kserver.get_kserver_token()
+    url=kserver.kleio_get_url()
+    return KleioServer(url=url, token=token)
 
 
 @app.get("/")
@@ -184,6 +218,25 @@ async def import_file(file_path: str, db: Session = Depends(get_db)):
 async def get(id: str, db: Session = Depends(get_db)):
     """Get entity by id"""
     return crud.get(db, id)
+
+
+# Kleio server interface
+@app.get("/kleio/is-running", response_model=bool)
+async def is_kleio_server_running():
+    """Check if kleio server is running"""
+    return kserver.is_kserver_running()
+
+# invalidate user
+@app.get("/kleio/invalidate-user/{user}", response_model=str)
+async def invalidate_user(user: str, kserver: KleioServer = Depends(get_kleio_server)):
+    """Invalidate a user"""
+    return kserver.invalidate_user(user)
+
+# generate token for user
+@app.get("/kleio/generate-normal-token/{user}", response_model=str)
+async def generate_norma_token(user: str, kserver: KleioServer = Depends(get_kleio_server)):
+    """Generate a token for a user"""
+    return kserver.generate_token(user,token_info_normal) 
 
 
 # Tutorial
