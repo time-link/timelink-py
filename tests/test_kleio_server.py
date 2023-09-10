@@ -151,7 +151,7 @@ def test_generate_normal_token(setup):
 @skip_on_travis
 def test_translations_get(setup):
     """Test if translations are retrieved"""
-    path: str = "sources/reference_sources"
+    path: str = "sources/reference_sources/"
     recurse: str = "yes"
     status: str = None
     
@@ -162,6 +162,18 @@ def test_translations_get(setup):
     kfile: KleioFile
     for kfile in translations:
         print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+
+
+@skip_on_travis
+def test_translations_translate(setup):
+    """Test if translations are translated"""
+    path: str = "sources/reference_sources/varia/dehergne-a.cli"
+    recurse: str = "yes"
+    spawn: str = "no"
+
+    kserver: KleioServer = setup
+    translations = kserver.translate(path, recurse, spawn)
+    assert translations is not None
 
 
 @skip_on_travis
