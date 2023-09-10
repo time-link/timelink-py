@@ -13,8 +13,11 @@ Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
 
 Next:
 * √ implement import from file and from url kleio_server with token
-* implement do translations, get dirs
-* implement interface in fastApi for kleio_server
+* implement do translations
+* implement get sources
+* implement clear translations
+* get dirs
+* √ implement interface in fastApi for kleio_server
    
 To Run
     source .venv/bin/activate; cd timelink/api/; uvicorn main:app --reload
@@ -68,8 +71,15 @@ token_info_normal: TokenInfo = TokenInfo(
             sources="sources/reference_sources"
         )
 
-app = FastAPI()
+class KleioServerType(Enum):
+    LOCAL = "local"  # swipl running locally the code, for debugging the Prolog code
+    DOCKER = "docker" # kleio server running in a local docker container
+    REMOTE = "remote" # kleio server running in a remote server
 
+KSERVER_REMOTE_URL = "http://timelink.uc.pt/kleio"
+KSERVER_REMOTE_TOKEN = "whatevertoken"
+
+app = FastAPI()
 
 # Dependency to get a connection to the database
 def get_db(
@@ -238,7 +248,42 @@ async def generate_norma_token(user: str, kserver: KleioServer = Depends(get_kle
     """Generate a token for a user"""
     return kserver.generate_token(user,token_info_normal) 
 
+# get translation status
+@app.get("/kleio/translation-status/{path:path}", response_model=list[KleioFile])
+async def translation_status(path: str, recurse: str, 
+                             status: str, 
+                             kserver: KleioServer = Depends(get_kleio_server)):
+    """Get translations from kleio server
+    
+    Args:
+        path (str): path to the directory in sources.
+        recurse (str): if "yes" recurse in subdirectories.
+        status (str): filter by translation status:
+                        V = valid translations;
+                        T = need translation (source more recent than translation);
+                        E = translation with errors;
+                        W = translation with warnings;
+                        P = translation being processed;
+                        Q = file queued for translation;
+                        * = all
+    """
+    if status == "*":
+        status = None
+    return kserver.translation_status(path, recurse, status)
 
+
+# translate
+@app.get("/kleio/translate/{path:path}", response_model=str)
+async def translate(path: str, recurse: str, spawn: str,
+                    kserver: KleioServer = Depends(get_kleio_server)):
+    """Translate sources from kleio server
+    
+    Args:
+        path (str): path to the file or directory in sources.
+        recurse (str): if "yes" recurse in subdirectories.
+        spawn (str): if "yes" spawn a translation process for each file.
+    """
+    return kserver.translate(path, recurse, spawn)
 # Tutorial
 
 
