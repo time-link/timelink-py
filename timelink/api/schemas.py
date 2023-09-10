@@ -35,7 +35,7 @@ class EntitySchema(BaseModel):
     contains: Optional[List["EntitySchema"]]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class EntityBriefSchema(BaseModel):
@@ -55,7 +55,7 @@ class EntityBriefSchema(BaseModel):
     indexed: Optional[datetime]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class RelationSchema(BaseModel):
@@ -68,7 +68,7 @@ class RelationSchema(BaseModel):
     obs: Optional[str]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class RelationOutSchema(RelationSchema):
@@ -88,7 +88,7 @@ class AttributeSchema(BaseModel):
     groupname: str = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class EntityAttrRelSchema(BaseModel):
@@ -109,7 +109,7 @@ class EntityAttrRelSchema(BaseModel):
     contains: Optional[List["EntityBriefSchema"]]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class SearchRequest(BaseModel):
