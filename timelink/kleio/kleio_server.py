@@ -83,6 +83,7 @@ class KleioServer:
             path (str): path to the directory in sources
             recurse (str): if "yes" recurse in subdirectories
             spawn (str): if "yes" spawn a translation process for each file"""
+        
         pars={"path": path}  
         if recurse is not None:
             pars["recurse"] = recurse
@@ -90,6 +91,18 @@ class KleioServer:
             pars["spawn"] = spawn
             
         return self.call("translations_translate", pars)
+
+
+    def translation_delete(self, path:str, recurse:str):
+        """Delete translations from kleio server
+        
+        Args:
+            path (str): path to the directory in sources
+            recurse (str): if "yes" recurse in subdirectories
+        """
+        pars={"path": path, "recurse": recurse}  
+        return self.call("translations_delete", pars)
+
 
     def get_sources(self, path:str, recurse:str):
         """Get sources from kleio server"""
@@ -136,6 +149,8 @@ def is_kserver_running():
     ] = client.containers.list(filters={"ancestor": "timelinkserver/kleio-server"})
     if len(containers) == 0:  # check for kleio-server as part of a MHK instalation (different image)
         containers = client.containers.list(filters={"ancestor": "joaquimrcarvalho/kleio-server"})
+    if len(containers) == 0:  # check for kleio-server as standalone local image
+        containers = client.containers.list(filters={"ancestor": "kleio-server"})
 
     return len(containers) > 0
 
@@ -151,6 +166,8 @@ def get_kserver_container() -> docker.models.containers.Container:
     ] = client.containers.list(filters={"ancestor": "timelinkserver/kleio-server"})
     if len(containers) == 0:  # check for kleio-server as part of a MHK instalation (different image)
         containers = client.containers.list(filters={"ancestor": "joaquimrcarvalho/kleio-server"})
+    if len(containers) == 0:  # check for kleio-server as standalone local image
+        containers = client.containers.list(filters={"ancestor": "kleio-server"})
     if len(containers) > 0:    
         return containers[0]
     else:

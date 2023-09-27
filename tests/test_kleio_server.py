@@ -25,6 +25,15 @@ mode = TestMode.DOCKER
 
 @pytest.fixture(scope="function", autouse=True)
 def setup():
+    """ setup kleio server for tests
+    
+    To run tests locally, set mode to TestMode.LOCAL
+    Run the server in Prolog loading serverStart.pl and then:
+
+        setenv('KLEIO_ADMIN_TOKEN','mytoken').    
+        setup_and_run_server(run_debug_server,[port(8089)]).
+    
+    """
     if mode == TestMode.LOCAL:
         token='mytoken'
         url='http://localhost:8089'
@@ -160,19 +169,79 @@ def test_translations_get(setup):
     assert len(translations) > 0
 
     kfile: KleioFile
+    print()
     for kfile in translations:
         print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
-
+    print()
 
 @skip_on_travis
 def test_translations_translate(setup):
     """Test if translations are translated"""
-    path: str = "sources/reference_sources/varia/dehergne-a.cli"
+    path: str = "sources/reference_sources/varia/"
     recurse: str = "yes"
     spawn: str = "no"
 
     kserver: KleioServer = setup
     translations = kserver.translate(path, recurse, spawn)
+    assert translations is not None
+
+
+@skip_on_travis
+def test_translations_processing(setup):
+    """Test translations in process"""
+    path: str = "sources/reference_sources/"
+    recurse: str = "yes"
+    status: str = 'P'
+    
+    kserver:KleioServer = setup
+    translations = kserver.translation_status(path, recurse, status)
+    assert len(translations) > 0
+
+    kfile: KleioFile
+    for kfile in translations:
+        print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+
+@skip_on_travis
+def test_translations_queued(setup):
+    """Test translation queued"""
+    path: str = "sources/reference_sources/"
+    recurse: str = "yes"
+    status: str = 'Q'
+    
+    kserver:KleioServer = setup
+    translations = kserver.translation_status(path, recurse, status)
+    assert len(translations) > 0
+
+    kfile: KleioFile
+    for kfile in translations:
+        print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+
+
+@skip_on_travis
+def test_translations_delete(setup):
+    """Test if translations results are deleted"""
+    path: str = "sources/reference_sources/varia/"
+    recurse: str = "yes"
+
+
+
+    kserver: KleioServer = setup
+
+    queued = kserver.translation_status(path, recurse, 'Q')
+    while len(queued) > 0:
+        print(f"Waiting for {len(queued)} queued translations to finish")
+        import time
+        time.sleep(5)
+        queued = kserver.translation_status(path, recurse, 'Q')
+
+    processing = kserver.translation_status(path, recurse, 'P')
+    while len(processing) > 0:
+        print(f"Waiting for {len(processing)} processing translations to finish")
+        import time
+        time.sleep(5)
+        processing = kserver.translation_status(path, recurse, 'P')
+
+    translations = kserver.translation_delete(path, recurse)
     assert translations is not None
 
 
