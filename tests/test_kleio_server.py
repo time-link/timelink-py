@@ -62,7 +62,7 @@ def test_is_kleio_server_running():
 @skip_on_travis
 def test_start_kleio_server():
     """Test if kleio server is started"""
-    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
+    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home",update=True)
     assert kleio_server.is_kserver_running() is True
 
 @skip_on_travis
@@ -228,7 +228,7 @@ def test_translations_queued(setup):
 @skip_on_travis
 def test_translations_clean(setup):
     """Test if translations results are deleted"""
-    path: str = "sources/reference_sources/"
+    path: str = "sources/reference_sources/linked_data"
     recurse: str = "yes"
 
 

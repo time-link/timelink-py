@@ -209,6 +209,7 @@ def start_kleio_server(
         version: str | None = "latest",
         kleio_home: str | None = None,
         token: str | None = None,
+        consistency: str = "cached",
         update: bool = False,
 ):
     """Starts a kleio server in docker
@@ -251,7 +252,15 @@ def start_kleio_server(
                                     "KLEIO_ADMIN_TOKEN": token,
                                     # TODO ports, workers and DEBUG
                                 },
-                                volumes={kleio_home: {"bind": "/kleio-home", "mode": "rw"}},
+                                mounts=[
+                                    docker.types.Mount(
+                                        target="/kleio-home",
+                                        source=kleio_home,
+                                        type="bind",
+                                        read_only=False,
+                                        consistency=consistency,
+                                    )
+                                ],
                             )
     kleio_container.start()  # redundant?
     return kleio_container
