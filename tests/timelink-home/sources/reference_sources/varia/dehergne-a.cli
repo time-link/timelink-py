@@ -1,4 +1,6 @@
-kleio$gacto2.str/translations=171
+kleio$gacto2.str
+   
+   link$wikidata/"https://www.wikidata.org/wiki/$1"
    fonte$dehergne-a/1973/Dicionário Biográfico/loc=Online archive.org:details:bhsi37/obs=Dehergne, Joseph, Répertoire des Jésuites de Chine, de 1542 à 1800, 1973. Letra A - Entradas relacionadas com Coimbra.
 
       lista$dehergne-notices-a/0/0/0
@@ -27,3 +29,5 @@ kleio$gacto2.str/translations=171
                ls$nacionalidade/Portugal
                ls$morte/Coulam, Malabar#Naufrágio @wikidata:Q321475/16111031
                ls$dehergne/1-ref2/obs=Un P. de ce nom meurt dans un naufrage le 31 oct. 1611, mais à Coulam, sur la côte malabare (Goa 24 II). HS 43a, 2v parle, semble-t-il, de ce dernier qu'il reporte à l'an 1612.
+
+

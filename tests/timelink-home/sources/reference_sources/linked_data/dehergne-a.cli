@@ -1,10 +1,9 @@
-kleio$gacto2.str/translations=170
-   link$wikidata/"https://www.wikidata.org/wiki/$1"
-   
+kleio$gacto2.str/translations=171
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-171
    fonte$dehergne-a/1973/Dicionário Biográfico/loc=Online archive.org:details:bhsi37/obs=Dehergne, Joseph, Répertoire des Jésuites de Chine, de 1542 à 1800, 1973. Letra A - Entradas relacionadas com Coimbra.
 
       lista$dehergne-notices-a/0/0/0
-
+     
          n$António de Abreu/id=deh-antonio-de-abreu
             ls$nacionalidade/Portugal
             ls$jesuita-estatuto/Padre
@@ -35,7 +34,7 @@ kleio$gacto2.str/translations=170
             ls$embarque/[Para a China]/17250000
             ls$wicky/1694/17250000
             ls$wicky-viagem/146/17250000
-            ls$morte/Batávia# @wikidata:Q1199713 (Jakarta), Indonésia#em viagem/17250000#cerca de
+            ls$morte/Batávia# @wikidata:Q1199713 (Jakarta), Indonésiaem viagem/17250000#cerca de
             ls$dehergne/2/obs=Emb. 1725, destiné à la Chine, non prêtre (W 1694). M. à Batavia (Jakarta) durant le voyage. En fait, les catalogues de 1720 et de 1726 (Lus. 47, 264 et 294) ne connaissent qu'un P. Bernardus (et non Benedictus) de Abreu, N. à Elgaçao, d. de Braga, 16 mars 1665, M. A.., E. 9 août 1684., V. 24 février 1692, qui fut recteur du collège de Funchal, et, en 1720, substitut à Rome., en 1725, procureur du Malabar (Lus. 47, 210v et 325).
 
             referido$Bernardo de Abreu/id=deh-bento-de-abreu-ref1/obs=Catálogos de 1720 Lus. 47, 210v. 264.294 e 325
@@ -65,7 +64,7 @@ kleio$gacto2.str/translations=170
          n$João de Abreu/id=deh-joao-de-abreu
             ls$nacionalidade/Portugal
             ls$jesuita-estatuto/Padre
-            ls$nascimento/Elvas# @wikidata:Q243849%elvensis/16350000
+            ls$nascimento/Elvas%elvensis# @wikidata:Q243849/16350000
             ls$jesuita-entrada/?/16480000
             ls$embarque/Bom Jesus do Carmo/16560330
             ls$wicky/1014/16560330
@@ -77,7 +76,7 @@ kleio$gacto2.str/translations=170
 
             referido$João de Abreu/id=deh-joao-de-abreu-ref1
                ls$nacionalidade/Portugal
-               ls$nascimento/Santarém%Scalabis # @wikidata:Q273877/16341104
+               ls$nascimento/Santarém%Scalabis# @wikidata:Q273877/16341104
                ls$jesuita-entrada/?/16531012
                ls$dehergne/4-ref/obs=N. 1635, « Elvensis », Elvas -E. 1648 (Lus. 45, 61v). Emb. 30 mars 1656 sur le Bom Jésus do Carmo (W 1014)., en 1660 était à Goa, mais sujet de la vice-province de Chine (JS 134, 344). P. avant le 30 mars 1656. M. 24 juin 1663, Macao (JS 134, 346 et 352., AHU ms 1659, 108). Pf. 329 le dit mort en 1656. HS 48 le fait mourir: en Chine, 20 oct. 1654 f° 69v., 28 nov. 1663 (P 82v)., à Macao en 1622 (P 82)! Il y a un autre Joao d'ABREU (port.) N. à Scalabis 4 nov. 1634, E. 12 oct. 1653 (Lus. 45, 290v), qui n'est pas venu en Chine.
 
@@ -126,7 +125,7 @@ kleio$gacto2.str/translations=170
             ls$dehergne/7/obs=Aguiar, Manuel de (port.) P. 7 Fang (M 443, 678: Fam). N. 1 nov. 1704, Setûbal, près de Lisbonne -E. non 20 nov. 1740 (?) (JS 134, 446), mais à Evora en 1723 (Goa 26, 209). Emb. pour Goa, 4 avril 1730 (W 1736). En Chine en 1743 (JS 134, 446)., arrêté à Macao 5 juill. 1762., Emprisonné au Fort St Julien du 19 oct. 1764 au 9 juill. 1767 (ou au 6 sept. 1767, selon Lus. 41, 100). -P. 1732. V. Nanfeng (Nan^fong: « Nan Fum »), Kiangsi 23 mai 1754, pr. (Lus. 17, 147): ses V. nous révèlent son lieu de mission. M. 8 janv. 1773 à Urbino, Italie (si l'on ne confond pas avec son homonyme né le 17 janv. 1729 à Carraredo, d. de Braga). Pf. 808.
 
             referido$Manuel de Aguiar/id=deh-manuel-de-aguiar-ref1
-               ls$nascimento/Carraredo, diocese de Braga # ILOC/17290117
+               ls$nascimento/Carraredo, diocese de Braga# ILOC/17290117
                ls$dehergne/7-ref/obs=son homonyme né le 17 janv. 1729 à Carraredo, d. de Braga
 
          n$Joseph de Aguiar Souen/id=deh-joseph-de-aguiar-souen
@@ -220,8 +219,8 @@ kleio$gacto2.str/translations=170
             ls$wicky/1621/17170417
             ls$wicky-viagem/140/17170417
             ls$estadia/Macau# @wikidata:Q14773/17180527
-            ls$estadia/China%missions en Chine # @wikidata:Q148/17220000
-            ls$estadia/China%missions en Chine # @wikidata:Q148/17320000
+            ls$estadia/China%missions en Chine# @wikidata:Q148/17220000
+            ls$estadia/China%missions en Chine# @wikidata:Q148/17320000
             ls$estadia/Limchow, Kwangtung%Limchow (Lien-tcheou, actuel Hopu) au Kwangtung/17240000
             ls$estadia/Kweilin, Kwangsi%Kweilin, (Kouei-lin) Kwangsi/17280000
             ls$estadia/China# @wikidata:Q148/17340000
@@ -231,7 +230,7 @@ kleio$gacto2.str/translations=170
             ls$estadia/Portugal# @wikidata:Q45/17590000#depois de, feito prisioneiro e deportado
             ls$jesuita-votos/4V/17280815
             ls$jesuita-votos-local/Fatshan, Fo-chan-tchen, sudeste de Cantão%« Foxan » = Fatshan, Fo-chan-tchen, au sud-est de Canton/17280815
-            ls$morte/Azeitão (Palácio dos duques de Aveiro# @wikidata:Q10296111)#convertido pelo Marquês de Pombal em risão/17610623
+            ls$morte/Azeitão (Palácio dos duques de Aveiro# @wikidata:Q10296111)convertido pelo Marquês de Pombal em risão/17610623
             ls$dehergne/12/obs=Alberto, Francisco (port.) P. 12 Albertus., JS 25, 281v: Albert. Nang (M 443, 677., AHU ms 1659, f 23)., Tô Kl-Jen (JA 49-IV-66, 120v: Té Ki-Gin). N. 24 avril 1695, Bragança -E. 1 mars 1710 {JS 25, 281v). Emb. non prêtre, 17 avril 1717 (W 1621). A. 27 mai 1718, Macao., missions en Chine 1722-1732 , {JS 134, 434) Limchow (Lien-tcheou, actuel Hopu) au Kwangtung, 1724., Kweilin, (Kouei-lin) Kwangsi, 1728 (JA 49-V-28 f° 327v)., en 1734 en Chine (JS 25, 281v)., en 1746, secrétaire de la province du Japon (Schutte, 299)., procureur à Goa en 1751 (JS 25, 287). Emprisonné en 1759 et déporté au Portugal. V. 15 août 1728, pr., « Foxan » = Fatshan, Fo-chan-tchen, au sud-est de Canton (Lus. 15, 4). M. 23 juin 1761, Azeitâo, palais des ducs d'Aveiro converti par Pombal en prison (HS 53a n'en parle pas). Pf. 657., [encyclop.l Verbo (art. d'A. Casimiro). — AHSI 31 (1962), 335.
 
          n$João Alberto/id=deh-joao-alberto
@@ -253,14 +252,14 @@ kleio$gacto2.str/translations=170
             ls$nascimento/Limousin# @wikidata:Q1190/16200000
             ls$jesuita-entrada/?/16440000
             ls$embarque/?#para Lisboa?/16540830
-            ls$estadia/# @wikidata:Q1479/16540830
+            ls$estadia# @wikidata:Q1479/16540830
             ls$estadia/Lisboa# @wikidata:Q597/16553023#antes de
             ls$embarque/S. Francisco%Capitaina#corrigido segundo Wicky/16553023
             ls$wicky/1002/16553023
             ls$wicky-viagem/87/16550323
             ls$estadia/Macau# @wikidata:Q14773/16570200
-            ls$estadia/Tonquim# @wikitada:Q622778/16580000
-            ls$estadia/Tonquim# @wikitada:Q622778/16630000
+            ls$estadia/Tonquim# @wikidata:Q622778/16580000
+            ls$estadia/Tonquim# @wikidata:Q622778/16630000
             ls$estadia/Sião (Tailândia)# @wikidata:Q869/16640729
             ls$jesuita-votos/4V/16540712
             ls$jesuita-votos-local/Agen/16540712
@@ -327,7 +326,7 @@ kleio$gacto2.str/translations=170
             ls$embarque/Nossa Senhora da Piedade/16090323
             ls$wicky/550/16090323
             ls$wicky-viagem/50/16090323
-            ls$estadia/Salcete, Índia# @wikidata:Q117196 %Salsette/16100100
+            ls$estadia/Salcete, Índia%Salsette# @wikidata:Q117196/16100100
             ls$tarefa/Observa um eclipse/16100100
             ls$estadia/Macau# @wikidata:Q14773/16100000#tenta em vão ir a Cantão
             ls$tarefa/Observa um eclipse/16110000
@@ -675,7 +674,7 @@ kleio$gacto2.str/translations=170
          n$Gaspar do Amaral/id=deh-gaspar-do-amaral
             ls$nacionalidade/Portugal
             ls$jesuita-estatuto/Padre
-            ls$nascimento/Corvaceira, diocese de Viseu%« Covaceira », Curvaceira (Carvalheira?) d. Vizeu # Aldeia da freguesia de Tavares, em Mangualde, @wikidata:Q74384/15920000
+            ls$nascimento/Corvaceira, diocese de Viseu%« Covaceira », Curvaceira (Carvalheira?) d. Vizeu# Aldeia da freguesia de Tavares, em Mangualde, @wikidata:Q74384/15920000
             ls$jesuita-entrada/?/16080601#Entrou em Coimbra segundo Dicionário Temático de Macau, Volume I, Universidade de Macau, 2010, p. 87-88. ISBN: 979-99937-1-009-6
             ls$idade/14/16080601
             ls$embarque/?/16230324
@@ -881,7 +880,7 @@ kleio$gacto2.str/translations=170
          n$António de Andrade/id=deh-antonio-de-andrade
             ls$nacionalidade/Portugal
             ls$jesuita-estatuto/Padre
-            ls$nascimento/Oleiros, diocese de Portalegre%Vila de Oleiros, priorado do Crato de Castelo Branco # @wikidata:Q1012719/15800000
+            ls$nascimento/Oleiros, diocese de Portalegre%Vila de Oleiros, priorado do Crato de Castelo Branco# @wikidata:Q1012719/15800000
             ls$jesuita-entrada/Coimbra# @wikidata:Q45412/15961216
             ls$embarque/S. Valentim/16000404#não padre
             ls$wicky/408/16000404
@@ -1079,7 +1078,7 @@ kleio$gacto2.str/translations=170
             ls$wicky/1234/16840401
             ls$wicky-viagem/107/161840000#16840401 segundo Dehergne
             rel$sociabilidade/Companheiro/Juan Antonio Arnedo/deh-jose-ramon-arxo-ref1/data=16840401
-            ls$estadia/Guangzhou%Canton#@wikipedia:Q16572/16841100
+            ls$estadia/Guangzhou%Canton#@wikidata:Q16572/16841100
             ls$estadia/Shansi/16870000
             ls$estadia/Hukwang/16910000
             ls$estadia/Kweilin/16980403
