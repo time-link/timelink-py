@@ -1,11 +1,11 @@
 """ Interface to Kleio server"""
+import logging
 import os
 import docker
 import secrets
 import requests
 from jsonrpcclient import request, Error, Ok, parse 
 from .schemas import KleioFile, TokenInfo
-
 
 class KleioServer:
     url: str
@@ -93,8 +93,10 @@ class KleioServer:
         return self.call("translations_translate", pars)
 
 
-    def translation_delete(self, path:str, recurse:str):
-        """Delete translations from kleio server
+    def translation_clean(self, path:str, recurse:str):
+        """clean translations from kleio server
+
+        Removes translation results from kleio server.
         
         Args:
             path (str): path to the directory in sources
@@ -110,8 +112,8 @@ class KleioServer:
         return self.call("sources_get", pars)
 
 
-def find_kleio_home(path:str=None):
-    """Find kleio home directory
+def find_local_kleio_home(path:str=None):
+    """Find kleio home directory in the current directory, parent directory, or tests directory.
     
     Kleio home directory is the directory where kleio server is running.
     It can be in the current directory, parent directory, or tests directory.
@@ -138,6 +140,19 @@ def find_kleio_home(path:str=None):
             break
     return kleio_home
 
+
+def get_kserver_home():
+    """Get the kleio server home directory
+    
+    Returns the volume mapped to /kleio-home in the kleio server container"""
+    if is_kserver_running():
+        container = get_kserver_container()
+        kleio_home_mount = [mount['Source'] for mount in container.attrs["Mounts"] if mount['Destination'] == '/kleio-home']
+        if len(kleio_home_mount) > 0:
+            kleio_home = kleio_home_mount[0]
+        else:
+            kleio_home = None
+    return kleio_home
 
 
 def is_kserver_running():
@@ -194,13 +209,15 @@ def start_kleio_server(
         version: str | None = "latest",
         kleio_home: str | None = None,
         token: str | None = None,
+        update: bool = False,
 ):
     """Starts a kleio server in docker
     Args:
         image (str, optional): kleio server image. Defaults to "time-link/kleio-server".
-        version (str | None, optional): postgres version. Defaults to "latest".
+        version (str | None, optional): kleio-server version. Defaults to "latest".
         kleio_home (str | None, optional): kleio home directory. Defaults to None -> current directory.
         token (str | None, optional): kleio server token. Defaults to None -> generate a random token.
+        update (bool, optional): update kleio server image. Defaults to False.
 
     """
     # check if kleio server is already running in docker
@@ -220,6 +237,12 @@ def start_kleio_server(
         token = gen_token()
 
     client = docker.from_env()
+
+    if update:
+        logging.info(f"Pulling {image}:{version}")
+        client.images.pull(f"{image}:{version}")
+
+
     kleio_container = client.containers.run(
                                 image=f"{image}:{version}",
                                 detach=True,

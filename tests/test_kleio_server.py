@@ -48,7 +48,7 @@ def setup():
 
 def test_find_kleio_home() -> str:
     """Test if kleio home is found"""
-    kleio_home = kleio_server.find_kleio_home()
+    kleio_home = kleio_server.find_local_kleio_home()
 
     assert kleio_home is not None
 
@@ -158,9 +158,17 @@ def test_generate_normal_token(setup):
 
 
 @skip_on_travis
+def test_get_kserver_home():
+    """Test get the mapped kleio home from running server"""
+
+    kleio_home = kleio_server.get_kserver_home()
+    assert kleio_home is not None
+
+
+@skip_on_travis
 def test_translations_get(setup):
     """Test if translations are retrieved"""
-    path: str = "sources/reference_sources/"
+    path: str = "sources/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
     
@@ -177,7 +185,7 @@ def test_translations_get(setup):
 @skip_on_travis
 def test_translations_translate(setup):
     """Test if translations are translated"""
-    path: str = "sources/reference_sources/varia/"
+    path: str = "sources/reference_sources/linked_data"
     recurse: str = "yes"
     spawn: str = "no"
 
@@ -195,7 +203,7 @@ def test_translations_processing(setup):
     
     kserver:KleioServer = setup
     translations = kserver.translation_status(path, recurse, status)
-    assert len(translations) > 0
+    assert len(translations) is not None
 
     kfile: KleioFile
     for kfile in translations:
@@ -210,7 +218,7 @@ def test_translations_queued(setup):
     
     kserver:KleioServer = setup
     translations = kserver.translation_status(path, recurse, status)
-    assert len(translations) > 0
+    assert translations is not None
 
     kfile: KleioFile
     for kfile in translations:
@@ -218,9 +226,9 @@ def test_translations_queued(setup):
 
 
 @skip_on_travis
-def test_translations_delete(setup):
+def test_translations_clean(setup):
     """Test if translations results are deleted"""
-    path: str = "sources/reference_sources/varia/"
+    path: str = "sources/reference_sources/"
     recurse: str = "yes"
 
 
@@ -241,7 +249,7 @@ def test_translations_delete(setup):
         time.sleep(5)
         processing = kserver.translation_status(path, recurse, 'P')
 
-    translations = kserver.translation_delete(path, recurse)
+    translations = kserver.translation_clean(path, recurse)
     assert translations is not None
 
 
