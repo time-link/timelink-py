@@ -229,6 +229,7 @@ def start_kleio_server(
     if kleio_home is None:
         kleio_home = os.getcwd()
     else:
+        kleio_home = os.path.abspath(kleio_home)
         os.makedirs(kleio_home, exist_ok=True)
 
     # ensure that kleio_home/system/conf/kleio exists
