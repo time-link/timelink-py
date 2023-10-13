@@ -18,3 +18,5 @@ urllib3<2
 uvicorn~=0.20.0
 pydantic~=2.0.0
 jsonrpcclient
+networkx~=2.0.0
+bokeh
