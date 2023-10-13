@@ -17,32 +17,36 @@ KLEIO_LIMITED_TOKEN: str = None
 KLEIO_NORMAL_TOKEN: str = None
 
 KLEIO_SERVER: KleioServer = None
+
+
 class TestMode(Enum):
     LOCAL = "local"
     DOCKER = "docker"
 
+
 mode = TestMode.DOCKER
+
 
 @pytest.fixture(scope="function", autouse=True)
 def setup():
-    """ setup kleio server for tests
-    
+    """setup kleio server for tests
+
     To run tests locally, set mode to TestMode.LOCAL
     Run the server in Prolog loading serverStart.pl and then:
 
-        setenv('KLEIO_ADMIN_TOKEN','mytoken').    
+        setenv('KLEIO_ADMIN_TOKEN','mytoken').
         setup_and_run_server(run_debug_server,[port(8089)]).
-    
+
     """
     if mode == TestMode.LOCAL:
-        token='mytoken'
-        url='http://localhost:8089'
+        token = "mytoken"
+        url = "http://localhost:8089"
     else:
         """Setup kleio server for tests"""
         if not kleio_server.is_kserver_running():
             kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
-        token=kleio_server.get_kserver_token()
-        url=kleio_server.kleio_get_url()
+        token = kleio_server.get_kserver_token()
+        url = kleio_server.kleio_get_url()
     return KleioServer(url=url, token=token)
 
 
@@ -57,7 +61,8 @@ def test_find_kleio_home() -> str:
 def test_is_kleio_server_running():
     """Test if kleio server is running"""
     running = kleio_server.is_kserver_running()
-    assert  running == True or running == False
+    assert running == True or running == False
+
 
 @skip_on_travis
 def test_start_kleio_server():
@@ -65,25 +70,30 @@ def test_start_kleio_server():
     kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
     assert kleio_server.is_kserver_running() is True
 
+
 @skip_on_travis
 def test_get_kleio_server_container():
     """Test if kleio server container is running"""
     assert kleio_server.get_kserver_container() is not None
 
+
 @skip_on_travis
 def test_get_kleio_server_token():
     """Test if kleio server token is available"""
     assert kleio_server.get_kserver_token() is not None
+
 
 def test_gen_token():
     """Test if a token is generated"""
     assert kleio_server.gen_token() is not None
 
+
 @skip_on_travis
 def test_get_kleio_server_token():
     """Test if kleio server token is available"""
     assert kleio_server.get_kserver_token() is not None
-    
+
+
 @skip_on_travis
 def test_stop_kleio_server():
     """Test if kleio server is stopped"""
@@ -94,7 +104,9 @@ def test_stop_kleio_server():
     assert kleio_server.is_kserver_running() is True
     # wait for server to start
     import time
+
     time.sleep(5)
+
 
 @skip_on_travis
 def test_kleio_get_url():
@@ -102,26 +114,27 @@ def test_kleio_get_url():
     KLEIO_URL = kleio_server.kleio_get_url()
     assert KLEIO_URL is not None
 
+
 @skip_on_travis
 def test_generate_limited_token(setup):
     kserver: KleioServer = setup
     """Generate a token with limited privileges"""
     user: str = "limited_user"
-    info: TokenInfo = TokenInfo(**{
-        	"comment": "An user that has no privileges, used to test authorization errors",
-            "api": [
-         
-            ],
+    info: TokenInfo = TokenInfo(
+        **{
+            "comment": "An user that has no privileges, used to test authorization errors",
+            "api": [],
             "structures": "sources/structures",
-            "sources": "sources/reference_sources"
-        })
+            "sources": "sources/reference_sources",
+        }
+    )
 
     try:  # we try to invalidade first
         kserver.invalidate_user(user)
     except:
         pass
 
-    limited_token = kserver.generate_token(user, info)    
+    limited_token = kserver.generate_token(user, info)
     assert limited_token is not None
 
 
@@ -129,8 +142,9 @@ def test_generate_limited_token(setup):
 def test_generate_normal_token(setup):
     """Generate a token for normal user"""
     user: str = "normal_user"
-    info:TokenInfo = TokenInfo(**{
-        	"comment": "An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
+    info: TokenInfo = TokenInfo(
+        **{
+            "comment": "An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
             "api": [
                 "sources",
                 "kleioset",
@@ -140,13 +154,14 @@ def test_generate_normal_token(setup):
                 "upload",
                 "delete",
                 "mkdir",
-                "rmdir"
+                "rmdir",
             ],
             "structures": "structures/reference_sources",
-            "sources": "sources/reference_sources"
-        })
-    
-    kserver:KleioServer = setup
+            "sources": "sources/reference_sources",
+        }
+    )
+
+    kserver: KleioServer = setup
 
     try:
         invalidated = kserver.invalidate_user(user)
@@ -171,16 +186,19 @@ def test_translations_get(setup):
     path: str = "sources/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
-    
-    kserver:KleioServer = setup
+
+    kserver: KleioServer = setup
     translations = kserver.translation_status(path, recurse, status)
     assert len(translations) > 0
 
     kfile: KleioFile
     print()
     for kfile in translations:
-        print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+        print(
+            f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
+        )
     print()
+
 
 @skip_on_travis
 def test_translations_translate(setup):
@@ -199,30 +217,35 @@ def test_translations_processing(setup):
     """Test translations in process"""
     path: str = "sources/reference_sources/"
     recurse: str = "yes"
-    status: str = 'P'
-    
-    kserver:KleioServer = setup
+    status: str = "P"
+
+    kserver: KleioServer = setup
     translations = kserver.translation_status(path, recurse, status)
     assert len(translations) is not None
 
     kfile: KleioFile
     for kfile in translations:
-        print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+        print(
+            f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
+        )
+
 
 @skip_on_travis
 def test_translations_queued(setup):
     """Test translation queued"""
     path: str = "sources/reference_sources/"
     recurse: str = "yes"
-    status: str = 'Q'
-    
-    kserver:KleioServer = setup
+    status: str = "Q"
+
+    kserver: KleioServer = setup
     translations = kserver.translation_status(path, recurse, status)
     assert translations is not None
 
     kfile: KleioFile
     for kfile in translations:
-        print(f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}")
+        print(
+            f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
+        )
 
 
 @skip_on_travis
@@ -231,23 +254,23 @@ def test_translations_clean(setup):
     path: str = "sources/reference_sources/"
     recurse: str = "yes"
 
-
-
     kserver: KleioServer = setup
 
-    queued = kserver.translation_status(path, recurse, 'Q')
+    queued = kserver.translation_status(path, recurse, "Q")
     while len(queued) > 0:
         print(f"Waiting for {len(queued)} queued translations to finish")
         import time
-        time.sleep(5)
-        queued = kserver.translation_status(path, recurse, 'Q')
 
-    processing = kserver.translation_status(path, recurse, 'P')
+        time.sleep(5)
+        queued = kserver.translation_status(path, recurse, "Q")
+
+    processing = kserver.translation_status(path, recurse, "P")
     while len(processing) > 0:
         print(f"Waiting for {len(processing)} processing translations to finish")
         import time
+
         time.sleep(5)
-        processing = kserver.translation_status(path, recurse, 'P')
+        processing = kserver.translation_status(path, recurse, "P")
 
     translations = kserver.translation_clean(path, recurse)
     assert translations is not None

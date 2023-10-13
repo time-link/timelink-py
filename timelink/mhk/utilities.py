@@ -72,15 +72,15 @@ def get_mhk_env() -> Type[Union[str, None]]:
     if is_mhk_installed():
         home_dir = str(Path.home())
         if home_dir is None:
-            warnings.warn("Could not get a home directory")
+            warnings.warn("Could not get a home directory", stacklevel=2)
             return None
         else:
             env = get_env_as_dict(home_dir + "/.mhk")
             if env is None:
-                warnings.warn("Could not read .mhk env from user home")
+                warnings.warn("Could not read .mhk env from user home", stacklevel=2)
             return env
     else:
-        warnings.warn("MHK is not installed")
+        warnings.warn("MHK is not installed", stacklevel=2)
         return None
 
 
@@ -101,7 +101,7 @@ def get_mhk_app_env() -> Type[Union[str, None]]:
         app_env = get_env_as_dict(mhk_home_dir + "/app/.env")
         return app_env
     else:
-        warnings.warn("Could not get MHK env variables")
+        warnings.warn("Could not get MHK env variables", stacklevel=2)
         return None
 
 

@@ -4,9 +4,10 @@ TODO: pass DB object instead of Engine
 """
 from itertools import combinations
 import networkx as nx
+from sqlalchemy import text
 
 
-def network_from_attribute(e, a: str, mode="cliques", user="*none*"):
+def network_from_attribute(engine, a: str, mode="cliques", user="*none*"):
     """Generate a network from common attribute values.
 
     This function will generate a network connecting the
@@ -15,7 +16,7 @@ def network_from_attribute(e, a: str, mode="cliques", user="*none*"):
 
     Parameters
     ----------
-    e : sqlalchemy Engine
+    engine : sqlalchemy Engine
         An SQLAlchemy engine connected to the target database.
     a : str
         The name (type) of the attribute used for generating the graph.
@@ -60,7 +61,7 @@ def network_from_attribute(e, a: str, mode="cliques", user="*none*"):
 
     sql = "select distinct the_value from attributes where the_type = :the_type and the_value <> '?'"
     G = nx.Graph()
-    with e.connect() as conn:
+    with engine.connect() as conn:
         result = conn.execute(text(sql), [{"the_type": a}])
         values = result.all()
         for (avalue,) in values:
@@ -68,10 +69,10 @@ def network_from_attribute(e, a: str, mode="cliques", user="*none*"):
                 sql = "select id,name,the_date from nattributes where the_type=:the_type and the_value = :the_value"
             else:
                 sql = "SELECT IFNULL( (select rid from rlinks where instance=n.id and user=:user),id) as id, name, the_date  from nattributes n where the_type=:the_type and the_value = :the_value"
-            ## TODO also fetch the instance SELECT IFNULL( (select rid from rlinks where instance=n.id and user=:user),id) as id, id as instance, name,...
-            ## TODO then test if id=instance. If not add attribute to node is_real=yes otherwise "no"
-            ## TODO do the same with the first select.
-            ## TODO add to nodes a url attribute if host and dbase are present is present https://joaquims-mbpr.local/mhk/toliveira/id/rp-1
+            # TODO also fetch the instance SELECT IFNULL( (select rid from rlinks where instance=n.id and user=:user),id) as id, id as instance, name,...
+            # TODO then test if id=instance. If not add attribute to node is_real=yes otherwise "no"
+            # TODO do the same with the first select.
+            # TODO add to nodes a url attribute if host and dbase are present is present https://joaquims-mbpr.local/mhk/toliveira/id/rp-1
             result = conn.execute(
                 text(sql), [{"the_type": a, "the_value": avalue, "user": user}]
             )
@@ -85,13 +86,13 @@ def network_from_attribute(e, a: str, mode="cliques", user="*none*"):
                         avalue, id, date1=date, date2=date, attribute=a, value=avalue
                     )
             elif len(entities) > 1:
-                for id, name, date in entities:
+                for id, name, _date in entities:
                     G.add_node(
                         id, desc=name, type="person"
                     )  # this should come from the entity class
                 pairs = list(combinations(entities, 2))
                 # TODO: optional date range filtering
-                for (e1, n1, d1), (e2, n1, d2) in pairs:
+                for (e1, _n1, d1), (e2, _n1, d2) in pairs:
                     G.add_edges_from(
                         [
                             (

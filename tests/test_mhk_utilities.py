@@ -24,7 +24,7 @@ def test_get_mhk_env_exists():
         assert mhk_env is not None, "is_mhk_installed true but no mhk_env"
         assert len(mhk_env) > 0, "could not get any values from ~.mhk"
     else:
-        warnings.warn("MHK not installed test skipped")
+        warnings.warn("MHK not installed test skipped", stacklevel=2)
 
 
 @mhk_absent
@@ -52,7 +52,7 @@ def test_get_mhk_env_vars_ok():
         for v in should_contain:
             assert v in mhk_env.keys(), f'no "{v}" in  ~.mhk'
     else:
-        warnings.warn("MHK not installed test skipped")
+        warnings.warn("MHK not installed test skipped", stacklevel=2)
 
 
 @mhk_absent
@@ -64,7 +64,7 @@ def test_get_mhk_app_env_exists():
             len(mhk_app_env) > 0
         ), "could not get any values from mhk-home/app/.env"  # noqa
     else:
-        warnings.warn("MHK not installed test skipped")
+        warnings.warn("MHK not installed test skipped", stacklevel=2)
 
 
 @mhk_absent
@@ -83,7 +83,7 @@ def test_get_app_env_vars_ok():
         for v in should_contain:
             assert v in mhk_app_env.keys(), f'no "{v}" in  ~.mhk'
     else:
-        warnings.warn("MHK not installed test skipped")
+        warnings.warn("MHK not installed test skipped", stacklevel=2)
 
 
 @mhk_absent
@@ -100,7 +100,7 @@ def test_mhk_info():
         assert minfo.mhk_home_init
         assert minfo.mhk_home_update
     else:
-        warnings.warn("MHK not installed test skipped")
+        warnings.warn("MHK not installed test skipped", stacklevel=2)
 
 
 @mhk_absent
@@ -109,4 +109,4 @@ def test_get_dbnames():
         ns = get_dbnames()
         assert len(ns) > 0, "Could not get database names. Is Mysql running?"
     else:
-        warnings.warn("MHK not installed test skipped")
+        warnings.warn("MHK not installed test skipped", stacklevel=2)

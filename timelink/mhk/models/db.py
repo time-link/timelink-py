@@ -4,11 +4,11 @@
 from warnings import warn
 from sqlalchemy import (
     MetaData,
-    engine,
     create_engine,
     select,
     inspect,
-)  # pylint: disable=unused-import
+    engine,
+)
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 
 from timelink.mhk.models.base_class import Base
@@ -30,7 +30,7 @@ class TimelinkMHK:
 
     """
 
-    engine: engine = None
+    sa_engine: engine = None
     db_name: str = None
     conn_string = None
     metadata: MetaData = None
@@ -59,16 +59,16 @@ class TimelinkMHK:
         """
 
         if conn_string is not None:
-            self.engine = create_engine(
+            self.sa_engine = create_engine(
                 conn_string or self.conn_string, future=True, echo=sql_echo
             )
             self.conn_string = conn_string
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
-        self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+        self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.sa_engine)
 
-        with self.session(bind=self.engine) as session:
+        with self.session(bind=self.sa_engine) as session:
             self.create_tables()
             session.commit()
             session.rollback()
@@ -76,15 +76,15 @@ class TimelinkMHK:
             self.ensure_all_mappings(session)
             session.commit()
 
-    def get_engine(self) -> engine:
+    def get_engine(self) -> sa_engine:
         """Return sqlalchemy engine"""
-        return self.engine
+        return self.sa_engine
 
     def get_session(self) -> sessionmaker:
         """Return sqlalchemy session"""
         return self.session
 
-    def engine(self) -> engine:
+    def sa_engine(self) -> sa_engine:
         """DEPRECATED use TimelinkDB.get_engine()"""
         warn(
             "This method is deprecated, use get_engine()",
@@ -104,7 +104,7 @@ class TimelinkMHK:
         :return: None
         """
         self.metadata = Base.metadata  # pylint: disable=ignore-no-member
-        self.metadata.create_all(self.engine)  # only creates if missing
+        self.metadata.create_all(self.sa_engine)  # only creates if missing
 
     def load_database_classes(self, session):
         """
@@ -142,7 +142,7 @@ class TimelinkMHK:
 
     def table_names(self):
         """Current tables in the current database"""
-        insp = inspect(self.engine)
+        insp = inspect(self.sa_engine)
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
 
@@ -157,7 +157,7 @@ class TimelinkMHK:
         self.load_database_classes(session)
         self.ensure_all_mappings(session)
         self.metadata = Base.metadata  # pylint: disable=ignore-no-member
-        self.metadata.drop_all(self.engine)
+        self.metadata.drop_all(self.sa_engine)
 
 
 # for compatibility with old code

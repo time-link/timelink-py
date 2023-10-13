@@ -1,3 +1,4 @@
+# flake8: noqa:F401
 """ Handling of Database persistence for the Person Oriented Model (POM).
 
 The classes on this module represent the core entities in the POM: entities,sources,
@@ -15,6 +16,7 @@ Also check  :class:`timelink.mhk.models.pom_som_mapper.PomSomMapper`
 MIT License, no warranties.
 
 """
+
 
 from .base_class import Base  # noqa pylint: disable=unused-import
 from .entity import Entity  # noqa pylint: disable=unused-import

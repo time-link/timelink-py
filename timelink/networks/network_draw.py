@@ -1,14 +1,10 @@
 from bokeh.models import (
     Range1d,
     Circle,
-    ColumnDataSource,
     MultiLine,
-    NodesAndLinkedEdges,
-    EdgesAndLinkedNodes,
 )
 from bokeh.plotting import figure
 from bokeh.plotting import from_networkx
-from bokeh.palettes import Spectral4
 from bokeh.io import show, save
 import networkx as nx
 
