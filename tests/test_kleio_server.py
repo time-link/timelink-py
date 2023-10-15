@@ -43,16 +43,15 @@ def setup():
         url = "http://localhost:8089"
     else:
         """Setup kleio server for tests"""
-        if not kleio_server.is_kserver_running():
-            kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
-        token = kleio_server.get_kserver_token()
-        url = kleio_server.kleio_get_url()
-    return KleioServer(url=url, token=token)
+        khome = f"{TEST_DIR}/timelink-home"
+        ks = KleioServer.start(kleio_home=khome, reuse=True, update=True)
+
+    return ks
 
 
 def test_find_kleio_home() -> str:
     """Test if kleio home is found"""
-    kleio_home = kleio_server.find_local_kleio_home()
+    kleio_home = KleioServer.find_local_kleio_home()
 
     assert kleio_home is not None
 
@@ -60,59 +59,62 @@ def test_find_kleio_home() -> str:
 @skip_on_travis
 def test_is_kleio_server_running():
     """Test if kleio server is running"""
-    running = kleio_server.is_kserver_running()
-    assert running == True or running == False
+    ks = KleioServer.get_server()
+    assert ks is not None or ks is None
 
 
 @skip_on_travis
 def test_start_kleio_server():
     """Test if kleio server is started"""
-    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home",update=True)
-    assert kleio_server.is_kserver_running() is True
+    ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home",update=True)
+    assert ks is not None
 
 
 @skip_on_travis
-def test_get_kleio_server_container():
-    """Test if kleio server container is running"""
-    assert kleio_server.get_kserver_container() is not None
+def test_get_kleio_server_container(setup):
+    kserver: KleioServer = setup
+    """Test get the container of the running kleio server"""
+    container = kserver.get_container()
+    assert container is not None
 
 
 @skip_on_travis
-def test_get_kleio_server_token():
+def test_get_kleio_server_token(setup):
+    kserver: KleioServer = setup
     """Test if kleio server token is available"""
-    assert kleio_server.get_kserver_token() is not None
+    assert kserver.get_token() is not None
 
+@skip_on_travis
+def test_kleio_get_url(setup):
+    kserver: KleioServer = setup
+    """Test if kleio server url is available"""
+    KLEIO_URL = kserver.get_url()
+    assert KLEIO_URL is not None
+    
 
 def test_gen_token():
     """Test if a token is generated"""
-    assert kleio_server.gen_token() is not None
+    assert KleioServer.gen_token() is not None
 
 
 @skip_on_travis
-def test_get_kleio_server_token():
-    """Test if kleio server token is available"""
-    assert kleio_server.get_kserver_token() is not None
+def test_stop_kleio_server(setup):
+    kserver: KleioServer = setup
 
-
-@skip_on_travis
-def test_stop_kleio_server():
     """Test if kleio server is stopped"""
 
-    kleio_server.stop_kleio_server()
-    assert kleio_server.is_kserver_running() is False
-    kleio_server.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
-    assert kleio_server.is_kserver_running() is True
+    kserver.stop()
+    assert KleioServer.get_server() is None
+    kleio_home=f"{TEST_DIR}/timelink-home"
+    kserver.start(kleio_home=kleio_home,update=True)
     # wait for server to start
     import time
 
     time.sleep(5)
+    assert KleioServer.is_server_running(kleio_home=kleio_home) is True
 
 
-@skip_on_travis
-def test_kleio_get_url():
-    """Test if kleio server url is available"""
-    KLEIO_URL = kleio_server.kleio_get_url()
-    assert KLEIO_URL is not None
+
 
 
 @skip_on_travis
@@ -124,8 +126,8 @@ def test_generate_limited_token(setup):
         **{
             "comment": "An user that has no privileges, used to test authorization errors",
             "api": [],
-            "structures": "sources/structures",
-            "sources": "sources/reference_sources",
+            "structures": "sources/test-project/structures",
+            "sources": "sources/test-project/sources",
         }
     )
 
@@ -156,8 +158,8 @@ def test_generate_normal_token(setup):
                 "mkdir",
                 "rmdir",
             ],
-            "structures": "structures/reference_sources",
-            "sources": "sources/reference_sources",
+            "structures": "sources/test-project/structures",
+            "sources": "sources/test-project/sources",
         }
     )
 
@@ -183,7 +185,7 @@ def test_get_kserver_home():
 @skip_on_travis
 def test_translations_get(setup):
     """Test if translations are retrieved"""
-    path: str = "sources/reference_sources/linked_data"
+    path: str = "sources/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
 
@@ -203,7 +205,7 @@ def test_translations_get(setup):
 @skip_on_travis
 def test_translations_translate(setup):
     """Test if translations are translated"""
-    path: str = "sources/reference_sources/linked_data"
+    path: str = "sources/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
     spawn: str = "no"
 
@@ -215,7 +217,7 @@ def test_translations_translate(setup):
 @skip_on_travis
 def test_translations_processing(setup):
     """Test translations in process"""
-    path: str = "sources/reference_sources/"
+    path: str = "sources/test_project/"
     recurse: str = "yes"
     status: str = "P"
 
@@ -233,7 +235,7 @@ def test_translations_processing(setup):
 @skip_on_travis
 def test_translations_queued(setup):
     """Test translation queued"""
-    path: str = "sources/reference_sources/"
+    path: str = "sources/test-project/"
     recurse: str = "yes"
     status: str = "Q"
 
@@ -251,7 +253,7 @@ def test_translations_queued(setup):
 @skip_on_travis
 def test_translations_clean(setup):
     """Test if translations results are deleted"""
-    path: str = "sources/reference_sources/linked_data"
+    path: str = "sources/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
 
     kserver: KleioServer = setup
