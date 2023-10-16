@@ -1,32 +1,168 @@
 """ Interface to Kleio server"""
 import logging
+import socket
 import os
+from typing import List
+import warnings
 import docker
 import secrets
 import requests
-from jsonrpcclient import request, Error, Ok, parse 
+from jsonrpcclient import request, Error, Ok, parse
 from .schemas import KleioFile, TokenInfo
+
 
 class KleioServer:
     url: str
     token: str
+    kleio_home: str
+    container: docker.models.containers.Container
 
-    def __init__(self, url: str, token: str):
-        self.url = url
-        self.token = token
+    @staticmethod
+    def start(
+        image: str = "timelinkserver/kleio-server",
+        version: str | None = "latest",
+        kleio_home: str | None = None,
+        token: str | None = None,
+        consistency: str = "cached",
+        port: int = None,
+        update: bool = False,
+        reuse: bool = True,
+    ):
+        """Starts a kleio server in docker
+
+        Args:
+        image: kleio server image, defaults to "timelinkserver/kleio-server"
+        version: kleio-server version, defaults to "latest"
+        kleio_home: kleio home directory, defaults to None -> current directory
+        token: kleio server token, defaults to None -> generate a random token
+        consistency: consistency of the volume mount, defaults to "cached"
+        port: port to map to 8088, defaults to None -> find a free port starting at 8088
+        update: update kleio server image, defaults to False
+        reuse: if True, reuse an existing kleio server container with same keio_home, defaults to True
+
+        """
+        container: docker.models.containers.Container = start_kleio_server(
+            image=image,
+            version=version,
+            kleio_home=kleio_home,
+            token=token,
+            consistency=consistency,
+            port=port,
+            update=update,
+            reuse=reuse,
+        )
+        return KleioServer(container)
+
+    @staticmethod
+    def get_server(kleio_home: str = None):
+        """Check if a kleio server is running in docker mapped to
+         a given kleio home directory.
+
+         If yes return a KleioServer object, otherwise return None
+        Args:
+            kleio_home (str, optional): kleio home directory. Defaults to None -> any kleio home.
+        """
+        container = get_kserver_container(kleio_home=kleio_home)
+        if container is not None:
+            return KleioServer(container)
+        else:
+            return None
+        
+    @staticmethod
+    def is_server_running(kleio_home: str = None):
+        """Check if a kleio server is running in docker mapped to
+         a given kleio home directory.
+
+         Return True of False
+
+        Args:
+            kleio_home (str, optional): kleio home directory. Defaults to None -> any kleio home.
+        """
+        container = get_kserver_container(kleio_home=kleio_home)
+        return container is not None
+
+    @staticmethod
+    def find_local_kleio_home(path: str = None):
+        """Find kleio home directory in the current directory, parent directory, or tests directory.
+
+        Kleio home directory is the directory where kleio server is running.
+        It can be in the current directory, parent directory, or tests directory.
+        It can be named "kleio-home", "timelink-home", or "mhk-home".
+
+        """
+        return find_local_kleio_home(path=path)
+
+    @staticmethod
+    def make_token():
+        # get token from environment
+        token = os.environ.get("KLEIO_ADMIN_TOKEN")
+        if token is None:
+            token = random_token()
+            os.environ["KLEIO_ADMIN_TOKEN"] = token
+        return token
+
+    def __init__(self, container: docker.models.containers.Container):
+        """Interface to kleio server
+        Creates an interface to kleio server running in docker.
+        To start a kleio server in docker use KleioServer.start_kleio_server()
+
+        Args:
+            container (docker.models.containers.Container): kleio server container
 
 
-    def call(self, method:str, params:dict):
+        """
+        self.container = container
+        port = None
+        try:
+            port = container.attrs["NetworkSettings"]["Ports"]["8088/tcp"][0]["HostPort"]
+        except KeyError:
+            pass
+        if port is None:
+            port = container.attrs['HostConfig']['PortBindings']["8088/tcp"][0]["HostPort"]
+
+        self.url = f"http://localhost:{port}"
+        self.kleio_home = [
+            mount["Source"]
+            for mount in container.attrs["Mounts"]
+            if mount["Destination"] == "/kleio-home"
+        ][0]
+        self.token = [
+            env
+            for env in container.attrs["Config"]["Env"]
+            if env.startswith("KLEIO_ADMIN_TOKEN")
+        ][0].split("=")[1]
+
+    def get_token(self):
+        """Get the kleio server token"""
+        return self.token
+
+    def get_kleio_home(self):
+        """Get the kleio server home directory"""
+        return self.kleio_home
+
+    def get_container(self):
+        """Get the kleio server container"""
+        return self.container
+    
+    def get_url(self):
+        """Get the kleio server url"""
+        return self.url
+
+    def __str__(self):
+        return f"KleioServer(url={self.url}, kleio_home={self.kleio_home})"
+
+    def call(self, method: str, params: dict):
         """Call kleio server API"""
 
         url = f"{self.url}/json/"
-        headers = {"Content-Type": "application/json",
-                   "Authorization": f"Bearer {self.token}"}
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.token}",
+        }
         # we add the token to the params
         params["token"] = self.token
-        rpc=request(method, params=params)
-        response = requests.post(url,json=rpc,
-                                    headers=headers )
+        rpc = request(method, params=params)
+        response = requests.post(url, json=rpc, headers=headers)
         parsed = parse(response.json())
         if isinstance(parsed, Ok):
             return parsed.result
@@ -35,24 +171,23 @@ class KleioServer:
             raise Exception(f"Error {code}: {message} ({data} id:{id})")
         return response
     
-    def invalidate_user(self, user:str):
-        """Invalidate a user"""    
-        pars={"user": user}  
+    def stop(self):
+        self.container.stop()
+        self.container.remove()
+
+    def invalidate_user(self, user: str):
+        """Invalidate a user"""
+        pars = {"user": user}
         return self.call("users_invalidate", pars)
 
-
-    def generate_token(self, user:str,info: TokenInfo):
+    def generate_token(self, user: str, info: TokenInfo):
         """Generate a token for a user"""
-        pars={"user": user, "info": info.model_dump()}  
+        pars = {"user": user, "info": info.model_dump()}
         return self.call("tokens_generate", pars)
-    
 
-    def translation_status(self,
-                           path:str, 
-                           recurse:str, 
-                           status:str):
+    def translation_status(self, path: str, recurse: str, status: str):
         """Get translations from kleio server
-        
+
         Args:
             path (str): path to the directory in sources
             recurse (str): if "yes" recurse in subdirectories
@@ -66,59 +201,57 @@ class KleioServer:
             token (str): kleio server token
         """
         if status is None:
-            pars={"path": path, "recurse": recurse}  
+            pars = {"path": path, "recurse": recurse}
         else:
-            pars={"path": path, "recurse": recurse, "status": status}  
+            pars = {"path": path, "recurse": recurse, "status": status}
         translations = self.call("translations_get", pars)
         result = []
         for t in translations:
             kfile = KleioFile(**t)
             result.append(kfile)
         return result
-    
-    def translate(self, path:str, recurse:str, spawn:str):
+
+    def translate(self, path: str, recurse: str, spawn: str):
         """Translate sources from kleio server
-        
+
         Args:
             path (str): path to the directory in sources
             recurse (str): if "yes" recurse in subdirectories
             spawn (str): if "yes" spawn a translation process for each file"""
-        
-        pars={"path": path}  
+
+        pars = {"path": path}
         if recurse is not None:
             pars["recurse"] = recurse
         if spawn is not None:
             pars["spawn"] = spawn
-            
+
         return self.call("translations_translate", pars)
 
-
-    def translation_clean(self, path:str, recurse:str):
+    def translation_clean(self, path: str, recurse: str):
         """clean translations from kleio server
 
         Removes translation results from kleio server.
-        
+
         Args:
             path (str): path to the directory in sources
             recurse (str): if "yes" recurse in subdirectories
         """
-        pars={"path": path, "recurse": recurse}  
+        pars = {"path": path, "recurse": recurse}
         return self.call("translations_delete", pars)
 
-
-    def get_sources(self, path:str, recurse:str):
+    def get_sources(self, path: str, recurse: str):
         """Get sources from kleio server"""
-        pars={"path": path, "recurse": recurse}  
+        pars = {"path": path, "recurse": recurse}
         return self.call("sources_get", pars)
 
 
-def find_local_kleio_home(path:str=None):
+def find_local_kleio_home(path: str = None):
     """Find kleio home directory in the current directory, parent directory, or tests directory.
-    
+
     Kleio home directory is the directory where kleio server is running.
     It can be in the current directory, parent directory, or tests directory.
     It can be named "kleio-home", "timelink-home", or "mhk-home".
-    
+
     """
     kleio_home = None
     if path is None:
@@ -131,7 +264,12 @@ def find_local_kleio_home(path:str=None):
     user_home = os.path.expanduser("~")
 
     # check if kleio-home exists in current directory, parent directory, or tests directory
-    for dir_path in [current_dir, os.path.dirname(current_dir), f"{current_dir}/tests", user_home]:
+    for dir_path in [
+        current_dir,
+        os.path.dirname(current_dir),
+        f"{current_dir}/tests",
+        user_home,
+    ]:
         for home_dir in ["kleio-home", "timelink-home", "mhk-home"]:
             if os.path.isdir(f"{dir_path}/{home_dir}"):
                 kleio_home = f"{dir_path}/{home_dir}"
@@ -141,13 +279,26 @@ def find_local_kleio_home(path:str=None):
     return kleio_home
 
 
-def get_kserver_home():
+def get_kserver_home(
+    container: docker.models.containers.Container = None, container_number: int = 0
+):
     """Get the kleio server home directory
-    
+
+    Args:
+        container (docker.models.containers.Container, optional): kleio server container. Defaults to None -> get by number.
+        container_number (int, optional): container number. Defaults to 0.
+
     Returns the volume mapped to /kleio-home in the kleio server container"""
-    if is_kserver_running():
-        container = get_kserver_container()
-        kleio_home_mount = [mount['Source'] for mount in container.attrs["Mounts"] if mount['Destination'] == '/kleio-home']
+    if container is None:
+        container = get_kserver_container_list()[container_number]
+
+    kleio_home = None
+    if container is not None:
+        kleio_home_mount = [
+            mount["Source"]
+            for mount in container.attrs["Mounts"]
+            if mount["Destination"] == "/kleio-home"
+        ]
         if len(kleio_home_mount) > 0:
             kleio_home = kleio_home_mount[0]
         else:
@@ -155,62 +306,97 @@ def get_kserver_home():
     return kleio_home
 
 
-def is_kserver_running():
-    """Check if kleio server is running in docker"""
+def get_kserver_container(kleio_home: str = None):
+    """Check if a kleio server is running in docker, possibly mapped to
+    a given kleio home directory."""
+
     client = docker.from_env()
 
-    containers: list[
-        docker.models.containers.Container
-    ] = client.containers.list(filters={"ancestor": "timelinkserver/kleio-server"})
-    if len(containers) == 0:  # check for kleio-server as part of a MHK instalation (different image)
-        containers = client.containers.list(filters={"ancestor": "joaquimrcarvalho/kleio-server"})
-    if len(containers) == 0:  # check for kleio-server as standalone local image
-        containers = client.containers.list(filters={"ancestor": "kleio-server"})
+    containers: list[docker.models.containers.Container] = get_kserver_container_list()
 
-    return len(containers) > 0
+    if containers is None:
+        return None
+    elif kleio_home is not None:
+        for container in containers:
+            kleio_home_mount = [
+                mount["Source"]
+                for mount in container.attrs["Mounts"]
+                if mount["Destination"] == "/kleio-home"
+            ]
+            if kleio_home_mount[0] == kleio_home:
+                return container
+        return None
+    else:
+        return containers[0]
 
-def get_kserver_container() -> docker.models.containers.Container:
+
+def get_kserver_container_list() -> None | List[docker.models.containers.Container]:
     """Get the Kleio server container
     Returns:
         docker.models.containers.Container: the Kleio server container
     """
 
     client: docker.DockerClient = docker.from_env()
-    containers: list[
-        docker.models.containers.Container
-    ] = client.containers.list(filters={"ancestor": "timelinkserver/kleio-server"})
-    if len(containers) == 0:  # check for kleio-server as part of a MHK instalation (different image)
-        containers = client.containers.list(filters={"ancestor": "joaquimrcarvalho/kleio-server"})
+    containers: list[docker.models.containers.Container] = client.containers.list(
+        filters={"ancestor": "timelinkserver/kleio-server"}
+    )
+    if (
+        len(containers) == 0
+    ):  # check for kleio-server as part of a MHK instalation (different image)
+        containers = client.containers.list(
+            filters={"ancestor": "joaquimrcarvalho/kleio-server"}
+        )
     if len(containers) == 0:  # check for kleio-server as standalone local image
         containers = client.containers.list(filters={"ancestor": "kleio-server"})
-    if len(containers) > 0:    
-        return containers[0]
+    if len(containers) > 0:
+        return containers
     else:
         return None
 
 
-def get_kserver_token() -> str:
+def get_kserver_token(
+    container: docker.models.containers.Container = None, container_number: int = 0
+) -> str:
     """Get the Kleio server container admin token
+
+    Args:
+        container (docker.models.containers.Container, optional): kleio server container. Defaults to None -> get the first container.
+        container_number (int, optional): container number. Defaults to 0.
+
     Returns:
         str: the kleio server container token
     """
-    if is_kserver_running():
-        container = get_kserver_container()
-        token = [
-            env
-            for env in container.attrs["Config"]["Env"]
-            if env.startswith("KLEIO_ADMIN_TOKEN")
-        ][0].split("=")[1]
-        return token
+    if container is None:
+        container = get_kserver_container_list()[container_number]
+
+    token = [
+        env
+        for env in container.attrs["Config"]["Env"]
+        if env.startswith("KLEIO_ADMIN_TOKEN")
+    ][0].split("=")[1]
+    return token
+
+
+def find_free_port(from_port: int = 8088, to_port: int = 8099):
+    for port in range(from_port, to_port + 1):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(("localhost", port))
+                return port
+            except OSError:
+                pass
+    raise OSError("No free ports available in the range 8088-8099")
 
 
 def start_kleio_server(
-        image:str = "timelinkserver/kleio-server",
-        version: str | None = "latest",
-        kleio_home: str | None = None,
-        token: str | None = None,
-        consistency: str = "cached",
-        update: bool = False,
+    image: str = "timelinkserver/kleio-server",
+    version: str | None = "latest",
+    kleio_home: str | None = None,
+    token: str | None = None,
+    consistency: str = "cached",
+    port: int = None,
+    update: bool = False,
+    reuse: bool = True,
 ):
     """Starts a kleio server in docker
     Args:
@@ -218,12 +404,22 @@ def start_kleio_server(
         version (str | None, optional): kleio-server version. Defaults to "latest".
         kleio_home (str | None, optional): kleio home directory. Defaults to None -> current directory.
         token (str | None, optional): kleio server token. Defaults to None -> generate a random token.
+        consistency (str, optional): consistency of the volume mount. Defaults to "cached".
+        port (int, optional): port to map to 8088. Defaults to None -> find a free port starting at 8088.
         update (bool, optional): update kleio server image. Defaults to False.
+        reuse (bool, optional): if True, reuse an existing kleio server container with same keio_home. Defaults to True.
 
     """
     # check if kleio server is already running in docker
-    if is_kserver_running():
-        return get_kserver_container()
+    exists = get_kserver_container(kleio_home=kleio_home)
+    if exists is not None:
+        if reuse:
+            return exists
+        else:
+            warnings.warn(
+                f"Kleio server is already running in docker mapped to {kleio_home}",
+                stacklevel=2,
+            )
 
     # if kleio_home is None, use current directory
     if kleio_home is None:
@@ -233,10 +429,14 @@ def start_kleio_server(
         os.makedirs(kleio_home, exist_ok=True)
 
     # ensure that kleio_home/system/conf/kleio exists
+    # TODo a bug in kleio server requires this directory to exist
     os.makedirs(f"{kleio_home}/system/conf/kleio", exist_ok=True)
 
     if token is None:
-        token = gen_token()
+        token = random_token()
+
+    if port is None:
+        port = find_free_port(8088, 8099)
 
     client = docker.from_env()
 
@@ -244,53 +444,42 @@ def start_kleio_server(
         logging.info(f"Pulling {image}:{version}")
         client.images.pull(f"{image}:{version}")
 
-
     kleio_container = client.containers.run(
-                                image=f"{image}:{version}",
-                                detach=True,
-                                ports={"8088/tcp": 8088},
-                                environment={
-                                    "KLEIO_ADMIN_TOKEN": token,
-                                    # TODO ports, workers and DEBUG
-                                },
-                                mounts=[
-                                    docker.types.Mount(
-                                        target="/kleio-home",
-                                        source=kleio_home,
-                                        type="bind",
-                                        read_only=False,
-                                        consistency=consistency,
-                                    )
-                                ],
-                            )
+        image=f"{image}:{version}",
+        detach=True,
+        ports={"8088/tcp": port},
+        environment={
+            "KLEIO_ADMIN_TOKEN": token,
+            # TODO ports, workers and DEBUG
+        },
+        mounts=[
+            docker.types.Mount(
+                target="/kleio-home",
+                source=kleio_home,
+                type="bind",
+                read_only=False,
+                consistency=consistency,
+            )
+        ],
+    )
     kleio_container.start()  # redundant?
     return kleio_container
 
-def gen_token():
-    # get token from environment
-    token = os.environ.get("KLEIO_ADMIN_TOKEN")
-    if token is None:
-        token = random_token()
-        os.environ["KLEIO_ADMIN_TOKEN"] = token
-    return token
 
 def random_token(length=32):
     """Generate a random token"""
     alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return "".join(secrets.choice(alphabet) for i in range(length))
 
-def stop_kleio_server():
-    """Stop kleio server"""
-    if is_kserver_running():
-        container = get_kserver_container()
-        container.stop()
-        container.remove()
 
-def kleio_get_url():
-    """Get the url of the kleio server"""
-    if is_kserver_running():
+def stop_kleio_server(container: docker.models.containers.Container = None):
+    """Stop kleio server"""
+    if container is None:
         container = get_kserver_container()
-        return f"http://localhost:{container.attrs['NetworkSettings']['Ports']['8088/tcp'][0]['HostPort']}"
-    else:
-        return None
-    
+
+    container = get_kserver_container()
+    container.stop()
+    container.remove()
+
+
+
