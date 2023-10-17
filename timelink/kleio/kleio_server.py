@@ -62,12 +62,15 @@ class KleioServer:
         Args:
             kleio_home (str, optional): kleio home directory. Defaults to None -> any kleio home.
         """
+        if is_docker_running() is False:
+            raise Exception("Docker is not running")
+
         container = get_kserver_container(kleio_home=kleio_home)
         if container is not None:
             return KleioServer(container)
         else:
             return None
-        
+
     @staticmethod
     def is_server_running(kleio_home: str = None):
         """Check if a kleio server is running in docker mapped to
@@ -78,6 +81,9 @@ class KleioServer:
         Args:
             kleio_home (str, optional): kleio home directory. Defaults to None -> any kleio home.
         """
+        if is_docker_running() is False:
+            raise Exception("Docker is not running")
+
         container = get_kserver_container(kleio_home=kleio_home)
         return container is not None
 
@@ -111,14 +117,21 @@ class KleioServer:
 
 
         """
+        if is_docker_running() is False:
+            raise Exception("Docker is not running")
+
         self.container = container
         port = None
         try:
-            port = container.attrs["NetworkSettings"]["Ports"]["8088/tcp"][0]["HostPort"]
+            port = container.attrs["NetworkSettings"]["Ports"]["8088/tcp"][0][
+                "HostPort"
+            ]
         except KeyError:
             pass
         if port is None:
-            port = container.attrs['HostConfig']['PortBindings']["8088/tcp"][0]["HostPort"]
+            port = container.attrs["HostConfig"]["PortBindings"]["8088/tcp"][0][
+                "HostPort"
+            ]
 
         self.url = f"http://localhost:{port}"
         self.kleio_home = [
@@ -143,7 +156,7 @@ class KleioServer:
     def get_container(self):
         """Get the kleio server container"""
         return self.container
-    
+
     def get_url(self):
         """Get the kleio server url"""
         return self.url
@@ -170,7 +183,7 @@ class KleioServer:
             code, message, data, id = parsed
             raise Exception(f"Error {code}: {message} ({data} id:{id})")
         return response
-    
+
     def stop(self):
         self.container.stop()
         self.container.remove()
@@ -245,6 +258,16 @@ class KleioServer:
         return self.call("sources_get", pars)
 
 
+def is_docker_running():
+    """Check if docker is running"""
+    try:
+        client = docker.from_env()
+        client.ping()
+        return True
+    except Exception:
+        return False
+
+
 def find_local_kleio_home(path: str = None):
     """Find kleio home directory in the current directory, parent directory, or tests directory.
 
@@ -289,6 +312,8 @@ def get_kserver_home(
         container_number (int, optional): container number. Defaults to 0.
 
     Returns the volume mapped to /kleio-home in the kleio server container"""
+
+
     if container is None:
         container = get_kserver_container_list()[container_number]
 
@@ -310,7 +335,6 @@ def get_kserver_container(kleio_home: str = None):
     """Check if a kleio server is running in docker, possibly mapped to
     a given kleio home directory."""
 
-    client = docker.from_env()
 
     containers: list[docker.models.containers.Container] = get_kserver_container_list()
 
@@ -336,7 +360,9 @@ def get_kserver_container_list() -> None | List[docker.models.containers.Contain
     Returns:
         docker.models.containers.Container: the Kleio server container
     """
-
+    if is_docker_running() is False:
+        raise Exception("Docker is not running")
+    
     client: docker.DockerClient = docker.from_env()
     containers: list[docker.models.containers.Container] = client.containers.list(
         filters={"ancestor": "timelinkserver/kleio-server"}
@@ -412,6 +438,9 @@ def start_kleio_server(
 
     """
     # check if kleio server is already running in docker
+    if is_docker_running() is False:
+        raise Exception("Docker is not running")
+
     exists = get_kserver_container(kleio_home=kleio_home)
     if exists is not None:
         if reuse:
@@ -475,12 +504,12 @@ def random_token(length=32):
 
 def stop_kleio_server(container: docker.models.containers.Container = None):
     """Stop kleio server"""
+    if is_docker_running() is False:
+        raise Exception("Docker is not running")
+    
     if container is None:
         container = get_kserver_container()
 
     container = get_kserver_container()
     container.stop()
     container.remove()
-
-
-

@@ -18,7 +18,8 @@ Now being integrated in the timelink-py package
 from timelink.pandas.name_to_df import pname_to_df
 from timelink.pandas.attribute_values import attribute_values
 
-from timelink.mhk.models.db import TimelinkMHK
+from timelink.api.database import TimelinkDatabase
+
 
 # TODO: move to separate files
 
@@ -32,7 +33,7 @@ def attribute_to_df(
     name_like=None,
     filter_by=None,
     more_cols=None,
-    db: TimelinkMHK = None,
+    db: TimelinkDatabase = None,
     sql_echo=False,
 ):
     """Generate a pandas dataframe with people with a given attribute
@@ -60,15 +61,11 @@ def attribute_to_df(
     """
     # We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
-    dbsystem: TimelinkMHK = None
-    if db is not None:
-        dbsystem = db
-    elif conf.TIMELINK_DBSYSTEM is not None:
-        dbsystem = conf.TIMELINK_DBSYSTEM
-    else:
+    dbsystem: TimelinkDatabase = db
+    if dbsystem is None:
         raise (
             Exception(
-                "must call get_mhk_db(conn_string) to set up a database connection before or specify previously openned database with db="
+                "db: TimelinkDatabase required. Must call timelink.api.database to set up a database connection"
             )
         )
 

@@ -221,6 +221,12 @@ class TimelinkDatabase:
             # do something with the session
     """
 
+    db_url: str
+    db_name: str
+    db_user: str
+    db_pwd: str
+    db_type: str
+
     def __init__(
         self,
         db_name: str = "timelink",
@@ -228,9 +234,21 @@ class TimelinkDatabase:
         db_url=None,
         db_user=None,
         db_pwd=None,
+        db_path=None,
         **connect_args,
     ):
-        """Initialize the database connection and setup"""
+        """Initialize the database connection and setup
+        
+        Args:
+            db_name (str, optional): database name. Defaults to "timelink".
+            db_type (str, optional): database type. Defaults to "sqlite".
+            db_url (str, optional): database url. If None, a url is generated. Defaults to None
+            db_user (str, optional): database user. Defaults to None.
+            db_pwd (str, optional): database password. Defaults to None.
+            db_path (str, optional): database path (for sqlite databases). Defaults to None.
+            connect_args (dict, optional): SQLAlchemy database connection arguments. Defaults to None.
+                        
+        """
         if db_url is not None:
             self.db_url = db_url
         else:
@@ -238,9 +256,13 @@ class TimelinkDatabase:
                 if db_name == ":memory:":
                     self.db_url = "sqlite:///:memory:"
                 else:
-                    self.db_url = f"sqlite:///./{db_name}.sqlite"
-                # TODO: allow for path to be specified
-                connect_args = {"check_same_thread": False}
+                    if db_path is None:
+                        db_path = os.getcwd()
+                    if connect_args is None:
+                        connect_args = {"check_same_thread": False}
+                    db_path = os.path.abspath(db_path) 
+                    os.makedirs(db_path, exist_ok=True)
+                    self.db_url = f"sqlite:///{db_path}/{db_name}.sqlite"
             elif db_type == "postgres":
                 if db_pwd is None:
                     self.db_pwd = get_db_password()
