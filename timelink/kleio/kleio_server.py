@@ -317,6 +317,7 @@ def get_kserver_container(kleio_home: str = None):
     if containers is None:
         return None
     elif kleio_home is not None:
+        kleio_home = os.path.abspath(kleio_home)
         for container in containers:
             kleio_home_mount = [
                 mount["Source"]
