@@ -110,3 +110,5 @@ tests/timelink-home/.kleio.json
 tests/timelink-home/sources/**/*.err
 tests/timelink-home/structures/reference_sources/paroquiais/sources.srpt
 tests/timelink-home/structures/reference_sources/paroquiais/sources.str.json
+tests/timelink-home/sources/test-project/notebooks/sources/.kleio/logs/kleio_service.log
+tests/timelink-home/sources/test-project/sources/.kleio/logs/kleio_service.log
