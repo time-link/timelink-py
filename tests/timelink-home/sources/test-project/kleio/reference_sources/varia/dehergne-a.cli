@@ -1,0 +1,30 @@
+kleio$gacto2.str/translations=1
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1
+   fonte$dehergne-a/1973/Dicionário Biográfico/loc=Online archive.org:details:bhsi37/obs=Dehergne, Joseph, Répertoire des Jésuites de Chine, de 1542 à 1800, 1973. Letra A - Entradas relacionadas com Coimbra.
+
+      lista$dehergne-notices-a/0/0/0
+
+         n$António de Abreu/id=deh-antonio-de-abreu
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$jesuita-entrada/Goa, Índia# @wikidata:Q1171/15791200
+            ls$embarque/S. Valentim/16020325#não padre
+            ls$wicky/486/16020325
+            ls$wicky-viagem/44/16020325
+            ls$jesuita-votos/4V/16040106
+            ls$jesuita-votos-local/Negapattinam, Índia%Negapatami (Négapatam)# @wikidata:Q695585/16040106
+            ls$morte/Changchow, China#no rio, a caminho do Japão @wikidata:Q57970/16110000
+            ls$dehergne/1/obs=E. Goa, déc. 1579 (DI XII, 612 n. 54). Emb. non prêtre, le 25 mars 1602, sur le S. Valentim (W 486). | V. « Negapatami » (Négapatam), 6 janv. 1604, pr. (Lus. 3, 82). Il signe Antonius Dabreu. M. dans la rivière de « Chincheo »,m.q. Changchow (Tchang-tcheou), ou peut-être Chuanchow (Ts'iuen-tcheou), au Fou-kien, en 1611, en route vers le Japon (Schûtte 343., HS 43, 57 dit 1612). Pf. 125. (Distinct du Provincial de Portugal de ce nom, 1627-1629 N. Lisbonne 1561, E. à Coïmbre 1576 (Lus. 43 II, 509v). Un P. de ce nom meurt dans un naufrage le 31 oct. 1611, mais à Coulam, sur la côte malabare (Goa 24 II). HS 43a, 2v parle, semble-t-il, de ce dernier qu'il reporte à l'an 1612.
+
+            referido$António de Abreu/id=deh-antonio-de-abreu-ref1
+               ls$nacionalidade/Portugal
+               ls$jesuita-cargo/Provincial de Portugal/16270000
+               ls$jesuita-cargo/Provincial de Portugal/16290000
+               ls$nascimento/Lisboa# @wikidata:Q597/15610000
+               ls$jesuita-entrada/Coimbra# @wikidata:Q45412/15760000
+               ls$dehergne/1-ref1/obs=(Distinct du Provincial de Portugal de ce nom, 1627-1629 N. Lisbonne 1561, E. à Coïmbre 1576 (Lus. 43 II, 509v).
+
+            referido$António de Abreu/id=deh-antonio-de-abreu-ref2
+               ls$nacionalidade/Portugal
+               ls$morte/Coulam, Malabar#Naufrágio @wikidata:Q321475/16111031
+               ls$dehergne/1-ref2/obs=Un P. de ce nom meurt dans un naufrage le 31 oct. 1611, mais à Coulam, sur la côte malabare (Goa 24 II). HS 43a, 2v parle, semble-t-il, de ce dernier qu'il reporte à l'an 1612.

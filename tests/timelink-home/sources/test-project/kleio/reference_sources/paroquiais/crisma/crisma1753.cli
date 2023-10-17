@@ -1,0 +1,49 @@
+kleio$gacto.str/prefix=quelfes/translations=2
+   fonte$crisma1753/data=17531228/tipo=crisma/loc=livro XXXXXX/obs=Lembrança das pessoas que se crismaram na visita que fez oExcellentissimo e Reverendissimo Senhor D. Fernandes Lourenço de Santa Maria em 28 de Dezembro de 1753
+
+      crisma$cr1753/28/12/1753
+
+         n$joana/id=cr1753-per1
+
+            pai$domingos gomes/id=cr1753-per1-per2
+               ls$residencia/quelfes
+
+            mae$maria de jesus/id=cr1753-per1-per3
+
+            mad$juliana palermo/id=cr1753-per4
+
+               mrmad$manuel rodrigues correia/id=cr1753-per5
+
+         n$antónio/id=cr1753-per6
+
+            pai$francisco de sousa de figueiredo/id=cr1753-per6-per7
+               ls$residencia/peares
+
+            mae$sebastiana rodrigues/id=cr1753-per6-per8
+
+            pad$josé gomes/id=cr1753-per9
+               ls$ec/c
+               ls$residencia/praia de olhÂo
+
+         n$joaquim/id=cr1753-per10
+
+            pai$manuel gonçalves/id=cr1753-per10-per11
+               ls$residencia/peares
+
+            mae$maria da conceição, do sitio/id=cr1753-per10-per12
+
+            pad$josé da rocha/id=cr1753-pad-1
+               ls$residencia/praria de olhao
+
+            referida$inês da rosa/id=cr1753-per13
+               rel$parentesco/mulher/josé da rocha/cr1753-pad1
+
+         n$antonio/id=cr1753-per14
+
+            pai$jose pinto/id=cr1753-per14-per15
+               ls$residencia/quelfes
+
+            mae$isabel de faria/id=cr1753-per14-per16
+
+            pad$marcos de brito de faria/id=cr1753-per17
+               ls$residencia/boavista

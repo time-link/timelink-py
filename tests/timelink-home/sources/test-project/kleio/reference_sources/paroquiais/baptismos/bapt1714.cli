@@ -1,0 +1,1352 @@
+kleio$gacto2.str/prefix=lousa/translations=1
+   fonte$bapt1714/localizacao-a.u.c./tipo=bapt/obs=freguesia de sao silvestre da lousalousa
+
+      bap$b1714-1/6/1/1714/fl.117v./igreja de sao silvestre/joao lopes serra(padre)/obs=com licenca do padre manuel lopes serraassina joao lopes serra
+
+         celebrante$joao lopes serra/id=b1714-1-per1-2
+            ls$profissao/padre
+
+         n$filipa/f/id=b1714-1-per1
+            ls$nome/constanca/obs=segundo um assento na margem do baptismo: "a mae da baptizada mudou no santo crisma o nome de Filipa em Constancia e que justifocou ante o vigario gheral desta vila por cujo despacho fiz esta declaraÂÂo. assina: Padre Tavares"
+
+            pn$joao de almeida/id=b1714-1-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria antonia/id=b1714-1-per3
+
+            pad$joao de arruda? frazao/id=b1714-1-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$escolastica monteira/id=b1714-1-per5
+               ls$titulo/licenciado
+               ls$morada/vila da lousa%lousa vila
+               ls$freguesia/lousa
+
+      bap$b1714-2/12/11714/fl.117v./igreja de sao silvestre/manuel lopes serra (padre)
+
+         celebrante$manuel lopes serra/id=b1714-2-per1-2
+            ls$profissao/padre
+
+         n$francisca/f/id=b1714-2-per1
+
+            pn$antonio ferreira/id=b1714-2-per2
+               ls$morada/espinheiro
+               ls$freguesia/lousa
+
+            mn$leonarda francisca/id=b1714-2-per3
+
+            pad$ joao fernandes ramalheiro/id=b1714-2-per4
+               ls$morada/moita
+               ls$freguesia/lousa
+
+            mad$francisa/id=b1714-2-per5
+               ls$ec/solteira
+
+               pmad$joao goncalves/id=b1714-2-per6
+                  ls$morada/espinheiro
+                  ls$freguesia/lousa
+
+      bap$b1714-3/17/1/1714/fl.118/igreja de sao silvestre/manuel manuel da fonseca(padre)/obs=o padre e morador na vila da lousaassina o termo o padre manuel llopes serra
+
+         celebrante$manuel manuel da fonseca/id=b1714-3-per1-2
+            ls$residencia/lousa
+            ls$profissao/padre
+
+         n$manuel/m/id=b1714-3-n
+
+            pn$luis fernandes/id=b1714-3-per1
+               ls$morada/cova de lobo
+               ls$freguesia/lousa
+
+            mn$fernanda neta/id=b1714-3-per2
+
+            pad$manuel rodrigues/id=b1714-3-per3
+               ls$morada/espinheiro
+               ls$freguesia/lousa
+
+            mad$maria francisca/id=b1714-3-mad
+
+               mrmad$antonio fernandes/id=b1714-3-per4
+                  ls$morada/cova de lobo
+                  ls$freguesia/lousa
+
+      bap$b1714-4/28/1/1714/fl.118/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$maria/f/id=b1714-4-per1
+
+            pn$jose rodrigues/id=b1714-4-per2
+               ls$morada/lousa
+               ls$freguesia/lousa
+
+            mn$maria francisca/id=b1714-4-per3
+
+            pad$joao rodrigues/id=b1714-4-per4
+               ls$morada/porto da pedra
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-4-per5
+
+               pmad$luis rodrigues/id=b1714-4-pmad/id=b1714-4-pmad
+                  ls$morada/pegos
+                  ls$freguesia/lousa
+
+      bap$b1714-5/28/1/1714/fl.118v./igreja de sao silvestre/manuel da fonseca(padre)/obs=com licenca do padre maneul lopes serra que assina o termo
+
+         n$jose/m/id=b1714-5-per1
+
+            pn$manuel rodrigues/id=b1714-5-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$mariagomes/id=b1714-5-per3
+
+            pad$jose arnaut cortez/id=b1714-5-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$teresa/id=b1714-5-per5
+               ls$ec/solteira
+
+               mmad$isabel rodrigues/id=b1714-5-per6
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-6/4/2/1714/fl.118v./igreja de sao silvestre/joao lopes serra(padre)/obs=assina o padre manuel lopes serra
+
+         n$feliciano/m/id=b1714-6-per1
+
+            pn$joao fernandes/id=b1714-6-per2
+               ls$morada/vale de neira
+               ls$freguesia/lousa
+
+            mn$domingas simoes/id=b1714-6-per3
+
+            pad$manuel carvalho/id=b1714-6-per4
+               ls$morada/cova de lobo
+               ls$freguesia/lousa
+
+            mad$maria francisca/id=b1714-6-per5
+
+               mrmad$manuel fernandes/id=b1714-6-per6
+                  ls$morada/vale de lobo
+                  ls$freguesia/lousa
+
+      bap$b1714-7/6/2/1714/fl.118v./igreja de sao silvestre/bebiano nunes(economo na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$maria/f/id=b1714-7-per1
+
+            pn$jose dias/id=b1714-7-per2
+               ls$morada/cova de lobo
+               ls$freguesia/lousa
+
+            mn$francisca rodrigues/id=b1714-7-per3
+
+            pad$joao neto arnaut/id=b1714-p1
+               ls$morada/espinhal
+               ls$titulo/doutor
+
+            referido$manuel da costa/id=b1714-7-per4
+               ls$morada/vila
+               ls$profissao/padre
+               rel$sociabilidade/procurador/joao neto arnaut/b1714-p1
+
+            mad$maria/id=b1714-7-per5
+               ls$ec/solteira
+
+               pmad$mateus fernandes/id=b1714-7-per6
+                  ls$morada/alfafar
+                  ls$freguesia/podentes
+
+      bap$b1714-8/14/1/1714/fl.119/igreja de sao silvestre/manuel da fonseca(padre)/obs=com autorizacao do padre maneul lopes serra que assina o termo
+
+         n$francisco/m/id=b1714-8-per1
+
+            pn$manuel cortes novo/id=b1714-8-per2
+               ls$morada/ribeira
+               ls$freguesia/lousa
+
+            mn$ana francisca/id=b1714-8-per3
+
+            pad$francisco goncalves/id=b1714-8-per4
+               ls$ec/solteiro
+               ls$morada/?
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-8-per5
+               ls$ec/solteira
+
+               pmad$francisco lopes/id=b1714-8-per6
+                  ls$morada/ribeira
+                  ls$freguesia/lousa
+
+      bap$b1714-9/18/1/1714/fl.119/igreja de sao silvestre/manuel da fonceca(padre)/obs=com licenca do padre manuel lopes serra que assina o termo
+
+         n$teresa/f/id=b1714-9-per1
+
+            pn$gaspar correia/id=b1714-9-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$bernarda tomas/id=b1714-9-per3
+
+            pad$gaspar do rego/id=b1714-9-per4
+               ls$morada/vilarinho
+               ls$freguesia/vilarinho
+
+            mad$teresa/id=b1714-9-per5
+               ls$ec/solteira
+
+               pmad$manuel moreira/id=b1714-9-per6
+                  ls$morada/alfocheira
+                  ls$freguesia/lousa
+
+      bap$b1714-10/20/1/1714/fl.119v./igreja de sao silvestre/manuel da fonseca(padre)/obs=com autorizacao do padre manuel lopes serra que assina o termo
+
+         n$gabriel/m/id=b1714-10-per1
+
+            pn$manuel goncalves/id=b1714-10-per2
+               ls$morada/papanata
+               ls$freguesia/lousa
+
+            mn$~maria fernandes/id=b1714-10-per3
+
+            pad$gabriel correia/id=b1714-10-per4
+               ls$morada/vale de neira
+               ls$freguesia/lousa
+
+            mad$ana/id=b1714-10-per5
+               ls$ec/solteira
+
+               pmad$andre luis/id=b1714-10-per6
+                  ls$morada/moita
+                  ls$freguesia/lousa
+
+      bap$b1714-11/25/1/1714/fl.119v./igreja de sao silvestre/manuel da fonseca(padre)/obs=com autorizacao do padre manuel lopes serra que assina o temro
+
+         n$antonio/m/id=b1714-11-per1
+
+            pn$manuel luis/id=b1714-11-per2
+               ls$morada/espinheiro
+               ls$freguesia/lousa
+
+            mn$luisa simoes/id=b1714-11-per3
+
+            pad$tomas galvao/id=b1714-11-per4
+               ls$morada/vila da liusa
+               ls$freguesia/lousa
+
+            mad$maria borges/id=b1714-11-per5
+
+               mrmad$manuel simoes/id=b1714-11-per6
+                  ls$morada/favarica
+                  ls$freguesia/lousa
+
+      bap$b1714-12/4/3/1714/fl.119v./igreja de sao silvestre/manuel da fonseca(padre)/obs=assina o padre manuel lopes serra
+
+         n$manuel/m/id=b1714-12-per1
+
+            pn$antonio pires/obs="diz se ser filho de hum antonio pires solteiro"/id=b1714-12-per2
+               ls$ec/solteiro
+               ls$morada/covilha
+
+            mn$luisa da silva/id=b1714-12-per3
+               ls$ec/solteira
+               ls$morada/vila da lousa
+
+               pmn$manuel da silva/id=b1714-12-per4
+                  ls$morada/povoa
+                  ls$freguesia/lousa
+
+               mmn$isabel simoes/id=b1714-12-per5
+
+            pad$manuel alvares/id=b1714-12-per6
+               ls$morada/povoa
+               ls$freguesia/lousa
+
+            mad$antonia francisca/id=b1714-12-per7
+
+               mmad$tome luis/id=b1714-12-per8
+                  ls$morada/olival
+                  ls$freguesia/lousa
+
+      bap$b1714-13/4/3/1714/fl.110/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$feliciano/m/id=b1714-13-per1
+
+            pn$anotnio de mendonca/id=b1714-13-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$escolastica monteira/id=b1714-13-per3
+
+            pad$feliciano monteiro/id=b1714-13-per4
+               ls$profissao/alferes
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$ana/id=b1714-p2
+               ls$titulo/dona
+
+            referido$joao de salazar/id=b1714-13-per5
+               ls$morada/penela
+               rel$sociabilidade/procurador/ana/b1714-p2
+               rel$parentesco/irmao/ana/b1714-p2
+
+      bap$b1714-14/6/3/1714/fl.120/igreja de sao silvestre/manuelda da fonsecapadre)/obs=com autorizacao do padre manuel lopes serra que assina o temro
+
+         n$teodosio/m/id=b1714-14-per1
+
+            pn$domingos simoes/id=b1714-14-per2
+               ls$morada/papanata
+               ls$freguesia/lousa
+
+            mn$maria francisca/id=b1714-14-mn
+
+            pad$teodosio negrao/id=b1714-14-per3
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$francisca/id=b1714-14-per4
+               ls$ec/solteira
+
+               pmad$joao negrao arnaut/id=b1714-14-per5
+                  ls$profissao/capitao mor
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-15/6/3/1714/fl.120/igreja de sao silvestre/manuel da fonseca(padre)/obs=morador na vilaassina o padre manuel lopes serra
+
+         n$manuel/m/id=b1714-15-per1
+
+            pn$jose martins/id=b1714-15-per2
+               ls$morada/moita
+               ls$freguesia/lousa
+
+            mn$maria ferreira/id=b1714-15-per3
+
+            pad$manuel goncalves/id=b1714-15-per4
+               ls$morada/reguengo
+               ls$freguesia/lousa
+
+            mad$maria francisca/id=b1714-15-per5
+
+               mrmad$domingos goncalves/id=b1714-15-per6
+                  ls$morada/lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-16/10/3/1714/fl.120v./igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$joao/m/id=b1714-16-per1
+
+            pn$manuel lopes pereira/id=b1714-16-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$anonia barreta/id=b1714-16-per3
+
+            pad$joao barreto/id=b1714-16-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$ana bacelar/id=b1714-16-per5
+               ls$titulo/dona
+               ls$morada/coimbra
+
+      bap$b1714-17/18/3/1714/fl.120v/igreja de sao silvestre/joao lopes serra(padre)/obs=com outorizacao do padre ma nuel lopes serra que assina o termo
+
+         n$teodosio/m/id=b1714-17-per1
+
+            pn$joao antunes/id=b1714-17-per2
+               ls$morada/?
+               ls$freguesia/lousa
+
+            mn$maria inacia/id=b1714-17-per3
+
+            pad$teodosio arnaut/id=b1714-17-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$angela/id=b1714-17-per5
+               ls$ec/solteira
+
+               pmad$manuel antunes/id=b1714-17-per6
+                  ls$morada/casal
+                  ls$freguesia/lousa
+
+      bap$b1714-18/28/3/1714/fl.120v./igreja de sao silvestre/joao lopes serra(padre)/obs=assina o padre manuel lopes serra
+
+         n$manuel/m/id=b1714-18-per1
+
+            pn$manuel leal/id=b1714-18-per2
+               ls$morada/comoro
+               ls$freguesia/lousa
+
+            mn$maria simoes/id=b1714-18-per3
+
+            pad$manuel cabral/id=b1714-18-per4
+               ls$alcunha/novo/obs=o novo
+               ls$morada/rios
+               ls$freguesia/lousa
+
+            mad$isabel francisca/id=b1714-18-per5
+               ls$ec/solteira
+
+               pmad$francisco mendes/id=b1714-18-per6
+                  ls$morada/rios
+                  ls$freguesia/lousa
+
+      bap$b1714-19/28/3/1714/fl.120v/igreja de sao silvestre/joao lopes serra(padre)/obs=com autorizacao do padre manuel lopes serra que assina o termo
+
+         n$maria/f/id=b1714-19-per1
+
+            pn$manuel goncalves neto/id=b1714-19-per2
+               ls$ec/solteiro/obs="e contratados para casarem"
+               ls$morada/olival
+               ls$freguesia/lousa
+
+            mn$isabel brancisca/id=b1714-19-per3
+               ls$morada/olival
+               ls$feguesia/lousa
+               ls$ec/solteira/obs="e contratados para casarem"
+
+            pad$francisco goncalves/id=b1714-19-per4
+               ls$ec/solteiro
+
+               ppad$maneul goncalves/id=b1714-19-per5
+                  ls$morada/moita
+                  ls$freguesia/lousa
+
+            mad$luisa lopes/id=b1714-19-per6
+
+               mrmad$manuel alvares/id=b1714-19-per7
+                  ls$morada/povoa
+                  ls$freguesia/lousa
+
+      bap$b1714-20/29/4/1714/fl.121/igreja de sao silvestre/manuel da fonseca(padre)/obs=a data devera ser do mes de marco e nao de abrilmaneul da fonseca baptiza com autorizacao do padre manuel lopes serra que assina o termo
+
+         n$antoinio/m/id=b1714-20-per1
+
+            pn$joao pires/id=b1714-20-per2
+               ls$morada/eira de calva
+               ls$freguesia/lousa
+
+            mn$sebastiana rodrigues/id=b1714-20-per3
+
+            pad$antonio negrao/id=b1714-20-per4
+               ls$ec/solteiro
+               ls$morada/nao refere
+
+            mad$maria/id=b1714-20-per5
+               ls$ec/solteira
+
+               pmad$galvao? correira/id=b1714-20-per6
+                  ls$morada/vale de neira
+                  ls$freguesia/lousa
+
+      bap$b1714-21/4/4/1714/fl.121/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$luisa/f/id=b1714-21-per1
+
+            pn$manuel goncalves/id=b1714-21-per2
+               ls$morada/fontainhas
+               ls$freguesia/lousa
+
+            mn$antonia francisca/id=b1714-21-per3
+
+            pad$ antonio luis/id=b1714-21-per4
+               ls$morada/reguengo
+               ls$freguesia/lousa
+
+            mad$luisa/id=b1714-21-per5
+               ls$ec/solteira
+
+               pmad$manuel goncalves vigario/id=b1714-21-per6
+                  ls$morada/ribeira
+                  ls$freguesia/lousa
+
+      bap$b1714-22/10/4/1714/fl.121/igreja de sao silvestre/manuel da fonseca(padre)/obs=com autorizacao do padre manuel lopes serra que assina o termo
+
+         n$francisca/f/id=b1714-22-per1
+
+            pn$domingos quaresma/id=b1714-22-per2
+               ls$morada/fontainhas
+               ls$freguesia/lousa
+
+            mn$ana francisca/id=b1714-22-per3
+
+            pad$ antonio luis/id=b1714-22-per4
+               ls$morada/reguengo
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-22-per5
+               ls$ec/solteira
+
+               pmad$francisco lopes/id=b1714-22-per6
+                  ls$morada/ribeira
+                  ls$freguesia/lousa
+
+      bap$b1714-23/12/4/1714/fl.121v./igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$brigida/f/id=b1714-23-per1
+
+            pn$manuel sioes/id=b1714-23-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$luisa simoes/id=b1714-23-per3
+
+            pad$teodosio negrao/id=b1714-23-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$joana/id=b1714-23-per5
+
+               pmad$manuel francisco/id=b1714-23-per6
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-24/19/4/1714/fl.121v./igreja de sao silvestre/manuel da fonseca(padre)/obs=assina o padre joao lopes serra
+
+         n$manuel/m/id=b1714-24-per1
+
+            pn$antonio simoes/id=b1714-24-per2
+               ls$morada/ramalhais
+               ls$freguesia/lousa
+
+            mn$francisca carvalha/id=b1714-24-per3
+
+            pad$joaquim duarte/id=b1714-24-per4
+               ls$morada/reguengo
+               ls$freguesia/lousa
+
+            mad$brigida simoes/id=b1714-24-per5
+
+               mrmad$antonio ferreira/id=b1714-24-per6
+                  ls$morada/ramalhais
+                  ls$freguesia/lousa
+
+      bap$b1714-25/21/4/1714/fl.121v./igreja de sao silvestre/joao lopes serra(padre)/obs=com licenca do prior manuel lopes serrassina o padre joao lopes serra
+
+         n$jose/m/id=b1714-25-per1
+
+            pn$antonio cordeiro/id=b1714-25-per2
+               ls$titulo/licenciado
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$josefa de almeida/id=b1714-25-per3
+
+            pad$sebastiao lopes de miranda/id=b1714-25-per4
+               ls$profissao/padre/obs="reverendo prior de vilarinho"
+               ls$morada/vilarinho
+
+            mad$luzia de sao jose/id=b1714 p3/obs="assistente no convento real de santa clara de coimbra"
+               ls$morada/coimbra
+
+            referido$antonio rodrigues/id=b1714-25-per5
+               ls$morada/meas
+               ls$freguesia/miranda/obs=termo da vila de miranda
+               rel$sociailidade/procurador/luzia de sao jose/b1714-p3
+
+      bap$b1714-26/3/5/1714/fl.122/igreja de sao silvestre/manuel da fonseca(padre)/obs=com autorizacao do padre manuel lopes serra que assina o termo
+
+         n$marcelina/f/id=b1714-26-per1
+
+            pn$gaspar henriques/id=b1714-26-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria marques/id=b1714-26-per3
+
+            pad$raimundo de macedo/id=b1714-26-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$rosa maria/obs=irma de raimundo de macedo/id=b1714-26-per5
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+      bap$b1714-27/10/5/1714/fl.122/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$antonio/id=b1714-27-per1
+
+            pn$simao correia/id=b1714-27-per2
+               ls$morada/ribeira
+               ls$freguesia/lousa
+
+            mn$antonia borges/id=b1714-27-per3
+
+            pad$antonio gomes/id=b1714-27-per4
+               ls$morada/bera
+               ls$freguesia/nao refere
+
+            mad$maria/id=b1714-27-per5
+               ls$ec/solteira
+
+               pmad$francisco lopes/id=b1714-27-per6
+                  ls$morada/ribeira
+                  ls$freguesia/lousa
+
+      bap$b1714-28/12/5/1714/fl.122/igreja de sao silvestre/bebiano nunes (economo na igreja de soa silvestre)/obs=com licenca do padre manuel lopes serra que assina o termo
+
+         n$maria/f/id=b1714-28-per1
+
+            pn$manuel duarte/id=b1714-28-per2
+               ls$morada/casal
+               ls$freguesia/lousa
+
+            mn$isabel francisca/id=b1714-28-per3
+
+            pad$manuel fernandes/id=b1714-28-per4
+               ls$alcunha/novo/obs=o novo
+               ls$morada/casal
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-28-per5
+               ls$ec/solteira
+               ls$morada/vilarinho
+               ls$freguesia/vilarinho
+
+      bap$b1714-29/13/5/1714/fl.122v./igreja de sao silvestre/joao lopes serra (padre)/obs=assina o padre joao lopes serra
+
+         n$isabel/f/id=b1714-29-per1
+
+            pn$ antonio de barros/obs="antonio de bairros"/id=b1714-29-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria correia/id=b1714-29-per3
+
+            pad$antonio de mendonca serrao/id=b1714-29-per4
+               ls$morada/nao refere
+
+            mad$isabel joao/id=b1714-p4
+               ls$ec/solteira
+               ls$morada/granja de facelemim/obs="assistente em"
+               ls$freguesia/coimbra/obs="termo de coimbra"
+
+            referido$jose arnaut/id=b1714-29-per5
+               ls$profissao/capitao
+               rel$sociabilidade/procurador/isabel joao/b1714-p4
+
+      bap$b1714-30/16/5/1714/fl.122v./igreja de sao silvestre/joao lopes serra(padre)/obs=com autorizacao do padre manuel lopes serra assina o adre joao lopes serra
+
+         n$ascenso/m/id=b1714-30-per1
+
+            pn$inacio filipe/id=b1714-30-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$antonia jorge/id=b1714-30-per3
+
+            pad$teodozio arnaut de rivo/id=b1714-30-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$maria inacia/id=b1714-30-per5
+
+               mrmad$joao antunes/id=b1714-30-per6
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-31/19/5/1714/fl.122v./igreja de sao silvestre/joao lopes serra(padre)/obs=com licenca do padre manuel lopes serra que assna o termo
+
+         n$teresa/f/id=b1714-31-per1
+
+            pn$antonio francisco/id=b1714-31-per2
+               ls$morada/povoa
+               ls$freguesia/lousa
+
+            mn$luisa seca/id=b1714-31-per3
+
+            pad$antonio de sequeira/id=b1714-31-per4
+               ls$morada/covelos
+               ls$freguesia/foz de arouce
+
+            mad$teresa/id=b1714-31-per5
+               ls$ec/solteira
+
+               pmad$miguel marques/id=b1714-31-per6
+                  ls$morada/ponte de foz de arouce
+                  ls$freguesia/foz de arouce
+
+      bap$b1714-32/19/5/1714/fl.122v./igreja de sao silvestre/joao lopes serra (padre)/obs=de licenca do padre manuel lopes serraassina o padre joao lopes serra
+
+         n$antonio/m/id=b1714-32-per1
+
+            pn$francisco simoes/id=b1714-32-per2
+               ls$morada/?
+               ls$freguesia/lousa
+
+            mn$maria leal/id=b1714-32-per3
+
+            pad$manuel vaz/id=b1714-32-per4
+               ls$morada/favarica
+               ls$freguesia/lousa
+
+            mad$cecilia/id=b1714-32-per5
+               ls$ec/solteira
+
+               pmad$manuel leal/id=b1714-32-per6
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-33/22/5/1714/fl.123/igreja de sao silvestre/manuel lopes serra (padre)
+
+         n$maria/f/id=b1714-33-per1
+
+            pn$pais incertos/obs="filha de pais incertos"/id=b1714-33-per2
+
+            mn$pais incertos/id=b1714-33-per3
+
+            pad$jose freire/id=b1714-33-per4
+               ls$morada/fornea
+               ls$freguesia/lousa
+
+            mad$maria rodrigues/id=b1714-33-per5
+
+               mrmad$manuel duarte/id=b1714-33-per6
+                  ls$morada/vale de maceira
+                  ls$freguesia/lousa
+
+      bap$b1714-34/1/6/1714/fl.123/igreja de sao silvestre/manuel lopes serra (padre)
+
+         n$maria/f/id=b1714-34-per1
+
+            pn$nao refere/id=b1714-34-per2
+
+            mn$maria/id=b1714-34-per3
+               ls$ec/solteira
+
+               mmn$manuel de oliveira/id=b1714-34-per4
+                  ls$morada/rua nova
+                  ls$freguesia/lousa
+
+            pad$joao da costa/id=b1714-34-per5
+               ls$profissao/sapateiro
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-34-per6
+               ls$ec/solteira
+
+               pmad$domingos afonso/id=b1714-34-per7
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-35/8/6/1714/fl.123/igreja de sao silvestre/manuel da fonseca (padre)/obs=padre "asssistente nesta vila"assina o termo o padre manuel lopes serra
+
+         n$jose/m/id=b1714-35-per1
+
+            pn$manuel simoes/id=b1714-35-per2
+               ls$morada/papanata
+               ls$freguesia/lousa
+
+            mn$maria fernandes/id=b1714-35-per3
+
+            pad$jose de macedo/id=b1714-35-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$teodora/id=b1714-35-per5
+
+               pmad$manuel neto/id=b1714-35-per6
+                  ls$morada/papanata
+                  ls$freguesia/lousa
+
+      bap$b1714-36/18/6/1714/fl.123v./igreja de sao silvestre/manuel da fonseca (padre)/obs=co licenca do padre manuel lopes serra que assina o termo
+
+         n$antonio/m/id=b1714-36-per1
+
+            pn$diogo simoes/id=b1714-36-per2
+               ls$morada/reguengo
+               ls$freguesia/lousa
+
+            mn$antonia duarte/id=b1714-36-per3
+
+            pad$manuel simoes/id=b1714-36-per4
+               ls$morada/moita
+               ls$freguesia/lousa
+
+            mad$joana/id=b1714-36-per5
+               ls$ec/solteira
+
+               pmad$miguel francisco/id=b1714-36-per6
+                  ls$morada/ribeira
+                  ls$freguesia/lousa
+
+      bap$b1714-37/25/6/1714/fl.123v./igreja de sao silvestre/padre antonio de almeida de foz de arouce (padre)/obs=assina o padre manuel lopes serra
+
+         n$manuel/m/id=b1714-37-per1
+
+            pn$manuel fernandes/id=b1714-37-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria de almeida/id=b1714-37-per3
+
+            pad$antonio de araujo coelho/id=b1714-37-per4
+               ls$morada/nao refere
+
+            mad$maria/id=b1714-37-per5
+               ls$ec/solteira
+
+               pmad$joao de almeida/id=b1714-37-per6
+                  ls$morada/vilarinho
+                  ls$freguesia/sao pedro de vilarinho
+
+      bap$b1714-38/26/6/1714/fl.123v./igreja de sao silvestre/joao lopes serra (padre)/obs=assina o padre joao lopes serra
+
+         n$antonia/f/id=b1714-38-per1
+
+            pn$joao simoes/id=b1714-38-per2
+               ls$profissao/barbeiro
+               ls$morada/ribeira
+               ls$freguesia/lousa
+
+            mn$luisa francisca/id=b1714-38-per3
+
+            pad$antonio fernandes/id=b1714-38-per4
+               ls$morada/olival
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-38-per5
+               ls$ec/solteira
+
+               pmad$domingos simoes/id=b1714-38-per6
+                  ls$morada/papanata
+                  ls$freguesia/lousa
+
+      bap$b1714-39/15/7/1714/fl.124/igreja de sao silvestre/joao lopes serra irmao do padre manuel lopes serra/obs=assina o padre manuel lopes serra
+
+         n$isabel/f/id=b1714-39-per1
+
+            pn$joao negrao/id=b1714-39-per2
+               ls$alcunha/novo/obs="o novo"
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria teresa/id=b1714-39-per3
+               ls$titulo/dona
+
+            pad$ascenso de paiva/id=b1714-39-per4
+               ls$morada/foz de arouce
+               ls$freguesia/foz de arouce
+
+            mad$luisa micaela antonia/id=b1714-p5/obs="irmÃ£ de dona maria teresa" mÃ£e do neofito
+
+            referido$teodozio arnaut/id=b1714-39-per5
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+               rel$sociabilidade/procurador/luisa micaela antonia/b1714-p5
+
+      bap$b1714-40/29/6/1714/fl.124/igreja de sao silvestre/joao lopes serra(padre)/obs=assina o padre manuel lopes serra
+
+         n$luisa/f/id=b1714-40-per1
+
+            pn$tome fernandes/id=b1714-40-per2
+               ls$morada/vale pereira das vinhas
+               ls$freguesia/?
+
+            mn$maria joao/id=b1714-40-per3
+
+            pad$jose fernandes/id=b1714-40-per4
+               ls$morada/pedrogao grande
+
+            mad$luisa rodrigues/id=b1714-40-per5
+               ls$ec/solteira
+               ls$morada/casal/obs=limite desta vila
+               ls$freguesia/lousa
+
+      bap$b1714-41/30/7/1714/fl.124/igreja de sao silvestre/joao lopes serra(padre)/obs=de licenca do prior manuel lopes serraassina o padre joao lopes serra
+
+         n$joao/m/id=b1714-41-per1
+
+            pn$joao lopes/id=b1714-41-per2
+               ls$morada/chiqueiro
+               ls$freguesia/lousa
+
+            mn$maria henriques/id=b1714-41-per3
+
+            pad$joao lopes serra/id=b1714-41-per4
+               ls$morada/nao refere
+
+            mad$joana lopes/id=b1714-41-per5
+
+               mrmad$manuel antonio/id=b1714-41-per6
+                  ls$morada/vidual
+                  ls$freguesia/lousa
+
+      bap$b1714-42/9/8/1714/fl.124v./igreja de sao silvestre/manuel lopes serra (padre)
+
+         n$maria/f/id=b1714-42-per1
+
+            pn$manuel do rego/id=b1714-42-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$helena rodrigues/id=b1714-42-per3
+
+            pad$joao arnaut/id=b1714-42-per4
+               ls$titulo/licenciado
+               ls$profissao/padre
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-42-per5
+               ls$ec/solteira
+
+               pmad$jose/id=b1714-42-per6
+                  ls$profissao/capitao
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-43/13/8/1714/fl.124v./igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$francisca/f/id=b1714-43-per1
+
+            pn$tome luis/id=b1714-43-per2
+               ls$morada/olival
+               ls$freguesia/lousa
+
+            mn$antonia francisca/id=b1714-43-per3
+
+            pad$manuel luis/id=b1714-43-per4
+               ls$morada/ribeira
+               ls$freguesia/lousa
+
+            mad$francisca/id=b1714-43-per5
+               ls$ec/solteira pmad/manuel ferreira
+               ls$morada/gandara
+               ls$freguesia/lousa
+
+      bap$b1714-44/18/8/1714/fl. 124v./igreja de sao silvestre/manuel da fonseca (padre cura na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$jose/m/id=b1714-44-per1
+
+            pn$manuel luis/id=b1714-44-per2
+               ls$morada/ceira dos vales
+               ls$freguesia/lousa
+
+            mn$brazia dias/id=b1714-44-per3
+
+            pad$antonio furtado de morais/id=b1714-44-per4
+               ls$morada/casal de ermio
+               ls$freguesia/casal de ermio
+
+            mad$maria luis/id=b1714-44-per5
+
+               mrmad$manuel carvalho/id=b1714-44-per6
+                  ls$morada/papanata
+                  ls$freguesia/lousa
+
+      bap$b1714-45/8/9/1714/fl.125/igreja de sao silvestre/padre bebiano nunes economo na igreja de sao silvestre/obs=assina o padre manuel lopes serra
+
+         n$maria/f/id=b1714-45-per1
+
+            pn$manuel goncalves/id=b1714-45-per2
+               ls$morada/rios
+               ls$freguesia/lousa
+
+            mn$antonia fernandes/id=b1714-45-per3
+
+            pad$jose maria/obs="assistentes nesta vila e naturais de genova"/id=b1714-45-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$maria nicolletta/obs="assistentes nesta vila e naturais de genova"/id=b1714-45-per5
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+      bap$b1714-46/22/9/1714/fl.125/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$teresa/f/id=b1714-46-per1
+
+            pn$luis simoes/id=b1714-46-per2
+               ls$morada/reguengo
+               ls$freguesia/lousa
+
+            mn$maria fernandes/id=b1714-46-per3
+
+            pad$manuel simoes/id=b1714-46-per4
+               ls$morada/fontainhas
+               ls$freguesia/lousa
+
+            mad$maria rodrigues/id=b1714-46-per5
+
+               mrmad$antonio fernandes/id=b1714-46-per6
+                  ls$morada/cume
+                  ls$freguesia/lousa
+
+      bap$b1714-47/29/9/1714/fl.125/igreja de sao silvestre/manuel da fonseca(cura na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$teresa/f/id=b1714-47-per1
+
+            pn$antonio seco/id=b1714-47-per2
+               ls$morada/favarica
+               ls$freguesia/lousa
+
+            mn$maria duarte/id=b1714-47-per3
+
+            pad$raimunde de macedo/id=b1714-47-per4
+               ls$morada/?
+               ls$freguesia/?
+
+            mad$luisa/id=b1714-47-per5
+               ls$ec/solteira
+
+               pmad$manuel rodrigues/id=b1714-47-per6
+                  ls$morada/favarica
+                  ls$freguesia/lousa
+
+      bap$b1714-48/6/10/1714/fl.125v./igreja de sao silvestre/manuel da fonseca (cura na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$maria/f/id=b1714-48-per1
+
+            pn$antonio mateus/id=b1714-48-per2
+               ls$morada/era de calva
+               ls$freguesia/lousa
+
+            mn$maria francisca/id=b1714-48-per3
+
+            pad$francisco de freitas/id=b1714-48-per4
+               ls$morada/cova de lobo
+               ls$freguesia/lousa
+
+            mad$teresa francisca/id=b1714-48-per5
+
+               mrmad$antonio nunes/id=b1714-48-per6
+                  ls$morada/cova de lobo
+                  ls$freguesia/lousa
+
+      bap$b1714-49/20/10/1714/fl.125v./igreja de sao silvestre/manuel da fonseca (cura em sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$teresa/f/id=b1714-49-per1
+
+            pn$manuel francisco/id=b1714-49-per2
+               ls$morada/ponte do areal
+               ls$freguesia/lousa
+
+            mn$joana francisca/id=b1714-49-per3
+
+            pad$jose freire/id=b1714-49-per4
+               ls$morada/fornea
+               ls$freguesia/lousa
+
+            mad$teresa/id=b1714-49-per5
+               ls$ec/solteira
+
+               mmad$joana freire/id=b1714-49-per6
+                  ls$morada/fornea
+                  ls$freguesia/lousa
+
+      bap$b1714-50/28/10/1714/fl.125v./igreja de sao silvestre/joao lopes serra (padre)/obs=com licenca do padre manuel lopes serraassina o padre manuel lopes serra
+
+         n$jose/m/id=b1714-50-per1
+
+            pn$manuel rodrigues/id=b1714-50-per2
+               ls$morada/cume
+               ls$freguesia/lousa
+
+            mn$ana rodrigues/id=b1714-50-per3
+
+            pad$manuel rodrigues/id=b1714-50-per4
+               ls$morada/rio de vide
+               ls$freguesia/rio de vide
+
+            mad$ teresa/id=b1714-50-per5
+               ls$ec/solteira
+
+               pmad$manuel fernandes/id=b1714-50-per6
+                  ls$morada/vale da silva
+                  ls$freguesia/lousa
+
+      bap$b1714-51/30/10/1714/fl.126/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$josefa/f/id=b1714-51-per1
+
+            pn$jose rodrigues/id=b1714-51-per2
+               ls$morada/casal/obs="limite da vila"
+               ls$freguesia/lousa
+
+            mn$antonia francisca/id=b1714-51-per3
+
+            pad$tome lopes serra/id=b1714-51-per4
+               ls$ec/solteiro
+               ls$morada/casal
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-51-per5
+               ls$ec/solteira
+
+               pmad$manuel seco/id=b1714-51-per6
+                  ls$morada/casal
+                  ls$freguesia/lousa
+
+      bap$b1714-52/1/11/1714/fl.126/igreja de sao silvestre/joao lopes serra (padre)/obs=assina o padre manuel lopes serra
+
+         n$maria/f/id=b1714-52-per1
+
+            pn$manuel francisco/id=b1714-52-per2
+               ls$morada/cume
+               ls$freguesia/lousa
+
+            mn$ursula fernandes/id=b1714-52-per3
+
+            pad$antonio fernandes/id=b1714-52-per4
+               ls$morada/olival
+               ls$freguesia/lousa
+
+            mad$isabel de araujo/id=b1714-52-per5
+               ls$ec/viuva
+               ls$morada/cume
+               ls$freguesia/lousa
+
+      bap$b1714-53/12/11/1714/fl.126v./igreja de sao silvestre/manuel da fonseca(padre cura)/obs=assina o padre
+
+         n$luisa/f/id=b1714-53-per1
+
+            pn$manuel goncalves/id=b1714-53-per2
+               ls$morada/rios/obs="moradores no cimo dos rios limitte da villa"
+               ls$freguesia/lousa
+
+            mn$maria rodrigues/id=b1714-53-per3
+
+            pad$joao arnaut/id=b1714-53-per4
+               ls$profissao/padre
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$maria arnaut/obs=sobrinha do padre joao arnaut/id=b1714-53-per5
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+      bap$b1714-54/13/11/1714/fl.126v./igreja de sao silvestre/joao lopes serra (padre)/obs=assina o padre joao lopes serra
+
+         n$maria/f/id=b1714-54-per1
+
+            pn$tome francisco/id=b1714-54-per2
+               ls$morada/vale domingos
+               ls$freguesia/lousa
+
+            mn$isabel francisca/id=b1714-54-per3
+
+            pad$manuel correia/id=b1714-54-per4
+               ls$morada/vale nogueira
+               ls$freguesia/lousa
+
+            mad$maria marques/id=b1714-54-per5
+               ls$morada/casal dos rios
+               ls$freguesia/lousa
+
+      bap$b1714-55/15/11/1714/fl.126v./igreja de sao silvestre/manuel da fonseca (coadjutor na igreja de sao silvestre)/obs=assina o padre joao lopes serra
+
+         n$flora/f/id=b1714-55-per1
+
+            pn$manuel rodrigues/id=b1714-55-per2
+               ls$alcunha/paravana?
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$joana simoes/id=b1714-55-per3
+
+            pad$joao negrao arnaut/id=b1714-55-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$flora/id=b1714-55-per5
+               ls$ec/solteira
+
+               pmad$jose de almeida/id=b1714-55-per6
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-56/16/11/1714/fl.127/igreja de sao silvestre/bebiano nunes (economo na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$joana/f/id=b1714-56-per1
+
+            pn$joao rodrigues/id=b1714-56-per2
+               ls$morada/casal
+               ls$freguesia/lousa
+
+            mn$ana francisca/id=b1714-56-per3
+
+            pad$gregorio de bacelar/id=b1714-56-per4
+               ls$morada/lousa/obs="da cidade de coimbra e de momento asitente nesta villa"
+               ls$freguesia/lousa
+
+            mad$joana da serra/id=b1714-56-per5
+               ls$ec/solteira
+
+               pmad$luis simoes/id=b1714-56-per6
+                  ls$morada/casal
+                  ls$freguesia/lousa
+
+      bap$b1714-57/18/11/1714/fl.127/igreja de sao silvestre/joao lopes serra (padre)/obs=com licenca do padre manuuel lopes serra assina o termo o padre joao lopes serra
+
+         n$teresa/f/id=b1714-57-per1
+
+            pn$manuel francisco/id=b1714-57-per2
+               ls$morada/povoa
+               ls$freguesia/lousa
+
+            mn$ana francisca/id=b1714-57-per3
+
+            pad$francisco fernandes/id=b1714-57-per4
+               ls$morada/casal da povoa
+               ls$freguesia/lousa
+
+            mad$joana/id=b1714-57-per5
+               ls$ec/solteira
+
+               pmad$manuel francisco/id=b1714-57-per6
+                  ls$morada/ribeira
+                  ls$freguesia/lousa
+
+      bap$b1714-58/24/11/1714/fl.127/igreja de sao silvestre/manuel lopes serra(padre)/obs=assina o padre joao lopes serra
+
+         n$maria/f/id=b1714-58-per1
+
+            pn$ventura domingues/id=b1714-58-per2
+               ls$morada/serdeiras
+               ls$freguesia/lousa
+
+            mn$flora simoes/id=b1714-58-per3
+
+            pad$joao rodrigues/id=b1714-58-per4
+               ls$morada/silveira
+               ls$freguesia/lousa
+
+            mad$maria/id=b1714-58-per5
+
+               pmad$lourenco simoes/id=b1714-58-per6
+                  ls$morada/silveira
+                  ls$freguesia/lousa
+
+      bap$b1714-59/1/12/1714/fl.127v./igreja de sao silvestre/manuel da fonseca(cura da igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$isabel/f/id=b1714-59-per1
+
+            pn$antonio fernnandes/id=b1714-59-per2
+               ls$morada/porto da pedra
+               ls$freguesia/lousa
+
+            mn$esperanca dias/id=b1714-59-per3
+
+            pad$gabriel correia/id=b1714-59-per4
+               ls$morada/porto da pedra
+               ls$freguesia/lousa
+
+            mad$isabel francisca/id=b1714-59-per5
+
+               mrmad$lourenco dias/id=b1714-59-per6
+                  ls$morada/troia
+                  ls$freguesia/miranda
+
+      bap$b1714-60/5/12/1714/fl.127v./igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$andre/m/id=b1714-60-per1
+
+            pn$manuel rodrigues/id=b1714-60-per2
+               ls$morada/vale
+               ls$freguesia/lousa
+
+            mn$maria francisca/id=b1714-60-per3
+
+            pad$luis/id=b1714-60-per4
+               ls$ec/solteiro
+
+               ppad$luis rodrigues/id=b1714-60-per5
+                  ls$morada/pegos
+                  ls$freguesia/lousa
+
+            mad$ana/id=b1714-60-per6
+               ls$ec/solteira
+
+               pmad$manuel francisco/id=b1714-60-per7
+                  ls$morada/pegos
+                  ls$freguesia/lousa
+
+      bap$b1714-61/12/12/1714/fl.127v./igreja de sao silvestre/manuel fonseca(cura)/obs=assina o padre manuel lopes serra
+
+         n$maria/f/id=b1714-61-per1
+
+            pn$antonio simoes/id=b1714-61-per2
+               ls$morada/vale de neira
+               ls$freguesia/lousa
+
+            mn$antonia francisca/id=b1714-61-per3
+
+            pad$gabriel correia/id=b1714-61-per4
+               ls$morada/vale de neira
+               ls$freguesia/lousa
+
+            mad$maria francisca/id=b1714-61-per5
+
+               mrmad$manuel fernandes/id=b1714-61-per6
+                  ls$morada/vale de neira
+                  ls$freguesia/lousa
+
+      bap$b1714-62/20/12/1714/fl.128/igreja de sao silvestre/manuel da costa(economo na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
+
+         n$jeronimo/m/id=b1714-62-per1
+
+            pn$bartolomeu simoes/id=b1714-62-per2
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mn$maria simoes/id=b1714-62-per3
+
+            pad$jeronimo henriques arnaut/id=b1714-62-per4
+               ls$morada/vila da lousa
+               ls$freguesia/lousa
+
+            mad$francisca/id=b1714-62-per5
+               ls$ec/solteira
+
+               pmad$tome simoes/id=b1714-62-per6
+                  ls$morada/vila da lousa
+                  ls$freguesia/lousa
+
+      bap$b1714-63/23/12/1714/fl.128/igreja de sao silvestre/manuel lopes serra(padre)
+
+         n$maria/f/id=b1714-63-per1
+
+            pn$manuel fernandes/id=b1714-63-per2
+               ls$morada/vaqueirinho
+               ls$freguesia/lousa
+
+            mn$maria simoes/id=b1714-63-per3
+
+            pad$joao fernandes/id=b1714-63-per4
+               ls$morada/catarredor
+               ls$freguesia/lousa
+
+            mad$simoa lopes/id=b1714-63-per5
+
+               mrmad$afonso simoes/id=b1714-63-per6
+                  ls$morada/chiqueiro
+                  ls$freguesia/lousa
+
+      bap$b1714-64/30/12/1714/fl.128/igreja de sao silvestre/manuel da fonseca(padre cura)/obs=assina o padre manuel lopes serra
+
+         n$maria/f/id=b1714-64-per1
+
+            pn$manuel tome/id=b1714-64-per2
+               ls$morada/moita
+               ls$freguesia/lousa
+
+            mn$maria joao/id=b1714-64-per3
+
+            pad$manuel cabral/id=b1714-64-per4
+               ls$alcunha/novo/obs="o novo"
+               ls$morada/rios
+               ls$freguesia/lousa
+
+            mad$joana simoes/id=b1714-64-per5
+
+               mrmad$manuel dias/id=b1714-64-per6
+                  ls$morada/rios
+                  ls$freguesia/lousa

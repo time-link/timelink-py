@@ -1,0 +1,4154 @@
+kleio$gacto.str/translations=1
+   fonte$bapteirasproblem2/registos paroquiais/1752-1753/loc=Auc/obs= o livro inicia-se em 1623
+
+      b$b1759.512/25/1/1759/vigario luis barreto de figueiredo castilho
+
+         n$ana/f/obs=diz a margem eiras/id=b1759.512-per1
+
+            pai$francisco da cunha pedrais/id=b1759.512-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$joao de pedrais/id=b1759.512-per1-per3
+                  ls$naturalidade/couto do mosteiro
+
+               mpai$marta leite/id=b1759.512-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$luisa maria fernandes/id=b1759.512-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao francisco barriga/id=b1759.512-per1-per6
+                  ls$naturalidade/palmazes
+
+               mmae$maria fernandes/id=b1759.512-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$luis seco ferrreira/id=b1759.512-per8
+               ls$residencia/coimbra
+
+            mad$ana joaquina/id=1759-b510-ana
+               ls$residencia/eiras
+
+               mrmad$joao ferreira pessoa/id=b1759.512-per9
+                  rel$sociabilidade/procurador/ana joaquina/1759-b510-ana
+
+         test$domingos jose dias/m/id=b1759.512-per10
+            ls$assina/sim
+
+         test$jeronimo fernandes prata/m/id=b1759.512-per11
+            ls$assina/sim
+
+      b$b1759.513/31/1/1759/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1759.513-per1
+            ls$datanasc/17590121
+
+            pai$jose carlos peixoto/id=b1759.513-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$manuel fernandes valente/id=b1759.513-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$isabel teresa/id=b1759.513-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$maria do rosario de matos/id=b1759.513-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao de matos/id=b1759.513-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$luisa do espirito santo/obs=primeira mulher de joao de matos/id=b1759.513-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jose antonio conceicao e silva/id=b1759.513-per8
+               ls$residencia/eiras
+
+            mad$luisa da cunha do espirito santo/id=b1759.513-per9
+               ls$residencia/eiras
+
+         test$joao de matos/m/id=b1759.513-per10
+            ls$assina/sim
+
+         test$jose antonio conceicao da silva/m/id=b1759.513-per11
+            ls$assina/sim
+
+      b$b1759.514/13/2/1759/vigario luis barreto de figueiredo castilho
+
+         n$joaquim/m/obs=diz a margem eiras/id=b1759.514-per1
+            ls$datanasc/17590205
+
+            pai$simao pedro marques/id=b1759.514-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$manuel marques carrasco/xmesmo_que=ten-carrasco/id=b1759.514-per1-per3
+                  ls$naturalidade/eiras
+                  ls$profissao/tenente de infantaria
+
+               mpai$maria luisa/id=b1759.514-per1-per4
+                  ls$naturalidade/lamego
+
+            mae$maria branca/id=b1759.514-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao de campos branco/xmesmo_que=cap-jcb/id=b1759.514-per1-per6
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+                  ls$cargo/capitao
+
+               mmae$josefa maria/id=b1759.514-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de almeida furtado/id=1759-b514-antonio
+               ls$residencia/eiras
+
+            mad$maria violante da cunha/id=b1759.514-per8
+
+               mrmad$antonio de almeida furtado/mesmo_que=1759-b514-antonio/id=b1759.514-per9
+
+         test$jeronimo fernandes prata/m/id=b1759.514-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.514-per11
+            ls$assina/sim
+
+      b$b1759.515/22/2/1759/vigario luis barreto de figueiredo castilho
+
+         n$rita/f/obs=diz a margem eiras/id=b1759.515-per1
+            ls$datanasc/17590214
+
+            pai$antonio lopes da silva/id=b1759.515-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel joao padrasto/id=b1759.515-per1-per3
+                  ls$naturalidade/murtal
+
+               mpai$ana da silva/id=b1759.515-per1-per4
+                  ls$naturalidade/murtal
+
+            mae$arcangela maria/id=b1759.515-per1-per5
+
+               pmae$manuel fernandes capela/id=b1759.515-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$josefa maria/id=b1759.515-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$luis barreto de figueiredo castilho/id=b1759.515-per8
+               ls$cargo/vigario de eiras
+
+            mad$maria rita de quadros/id=b1759.515-per9
+               ls$titulo/dona
+
+               pmad$antonio xavier zuzarte/id=b1759.515-per10
+                  ls$titulo/correio mor
+
+            referido$antonio de quadros/id=b1759.515-per11
+               ls$titulo/frei
+               ls$titulo/religioso de santo agostinho
+
+         test$simao marques/m/id=b1759.515-per12
+            ls$assina/sim
+
+         test$jeronimo fernandes prata/m/id=b1759.515-per13
+            ls$assina/sim
+
+      b$b1759.516/25/2/175/vigario luis barretode figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1759.516-per1
+            ls$datanasc/17590214
+
+            pai$manuel marques de matos/id=b1759.516-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$bento marques do salvador/id=b1759.516-per1-per3
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mpai$ana maria/id=b1759.516-per1-per4
+                  ls$naturalidade/mortagua
+
+            mae$mariana cardosa/id=b1759.516-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao cardoso bruxeiro/id=b1759.516-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria francisca/id=b1759.516-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel gomes/id=b1759.516-per8
+
+               mpad$maria marques de jesus/id=b1759.516-per9
+                  ls$ec/v
+                  ls$residencia/eiras
+
+            mad$rosa clara/id=b1759.516-per10
+
+               pmad$manuel de barros mesquita/id=b1759.516-per11
+                  ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1759.516-per12
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.516-per13
+            ls$assina/sim
+
+      b$b1759.517/14/3/1759/vigario luis barreto de figueiredo castilho
+
+         n$joana/f/obs=diz a margem casais/id=b1759.517-per1
+
+            pai$jeronimo correia/id=b1759.517-per1-per2
+               ls$naturalidade/casais de eiras
+
+               ppai$manuel correia da conceicao/id=b1759.517-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria da ascencao/id=b1759.517-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$maria das neves/id=b1759.517-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$manuel carvalho/id=b1759.517-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$joana das neves/id=b1759.517-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$joao carneiro fontoura/id=b1759.517-per8
+               ls$titulo/padre
+               ls$residencia/eiras
+
+            mad$joana correira da conceicao/id=b1759.517-per9
+
+               mrmad$joao correia saldanha/id=b1759.517-per10
+                  ls$resisencia/coimbra, freguesia de santa justa
+
+         test$jeronimo fernandes prata/m/id=b1759.517-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.517-per12
+            ls$assina/sim
+
+      b$b1759.518/18/3/1759/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=1759-b518-antonio
+            ls$datanasc/17590310
+
+            pai$antonio jose/id=1759-b518-antonio-per1
+               ls$naturalidade/eiras
+
+               ppai$joao gomes/id=1759-b518-antonio-per2
+                  ls$naturalidade/eiras
+
+               mpai$josefa maria/id=1759-b518-antonio-per3
+                  ls$naturalidade/eiras
+
+            mae$bernarda monteira/id=1759-b518-antonio-per4
+               ls$naturalidade/casais de eiras
+
+               pmae$joao francisco da costa/id=1759-b518-antonio-per5
+                  ls$naturalidade/casais de eiras
+
+               mmae$mariana monteira/id=1759-b518-antonio-per6
+                  ls$naturalidade/casais de eiras
+
+            pad$antonio de miranda/id=b1759.518-per7
+               ls$residencia/casais de eiras
+
+            mad$maria/id=b1759.518-per8
+               rel$parentesco/tia/antonio/1759-b515-antonio
+
+               mmad$josefa maria/id=b1759.518-per9
+                  rel$parentesco/avo/antonio/1759-b518-antonio
+
+         test$fabiao camelo/m/id=b1759.518-per10
+            ls$assina/sim
+
+         test$jeronimo fernandes prata/m/id=b1759.518-per11
+            ls$assina/sim
+
+      b$b1759.519/26/3/1759/vigario luis barreto de figueiredo castilho
+
+         n$conceicao/f/obs=diz a margem eiras/id=b1759.519-per1
+            ls$datanasc/17590318
+
+            pai$joao camelo de mendonca/id=b1759.519-per1-per2
+               ls$naturalidade/s. vicente de guim
+               ls$residencia/eiras
+
+               ppai$feliciano camelo/id=b1759.519-per1-per3
+                  ls$naturalidade/s. vicente de guim
+
+               mpai$ursula mendonca/id=b1759.519-per1-per4
+                  ls$naturalidade/s. vicente de guim
+
+            mae$mariana cardosa/id=b1759.519-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao pereira/id=b1759.519-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$ana cardosa/id=b1759.519-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$tomas caetano/id=b1759.519-per8
+               ls$residencia/loureiro
+               ls$titulo/doutor
+
+            mad$nossa senhora da conceicao/id=b1759.519-per9
+
+         test$jeronimo fernandes prata/m/id=b1759.519-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.519-per11
+            ls$assina/sim
+
+      b$b1759.520/22/4/1759/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1759.520-per1
+            ls$datanasc/17590318
+
+            pai$manuel cardoso botas/id=b1759.520-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$manuel simoes botas/id=b1759.520-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria cardosa/id=b1759.520-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$jeronima marques/id=b1759.520-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$manuel gomes leal/id=b1759.520-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria marques/id=b1759.520-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de campos branco/id=b1759.520-per8
+               ls$titulo/conego
+               ls$naturalidade/eiras
+
+            mad$nossa senhora do rosario de eiras/id=b1759.520-per9
+
+         test$jeronimo fernandes prata/m/id=b1759.520-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.520-per11
+            ls$assina/sim
+
+      b$b1759.521/22/4/1759/vigario luis barreto de figueiredo castilho
+
+         n$antonia/f/obs=diz a margem eiras/id=1759-b521-antonia
+            ls$datanasc/17590414
+
+            pai$francisco de campos branco/id=1759-b521-antonia-per1
+               ls$naturalidade/eiras
+
+               ppai$joao de campos branco/id=1759-b521-antonia-per2
+                  ls$cargo/capitao
+                  ls$naturalidade/eiras
+
+               mpai$josefa maria/id=1759-b521-antonia-per3
+                  ls$naturalidade/eiras
+
+            mae$maria de santa rosa carvalho/id=1759-b521-antonia-per4
+               ls$naturalidade/eiras
+
+               pmae$luis carvalho/id=1759-b521-antonia-per5
+                  ls$naturalidade/sernelha, freguesia de figueira do lorvao
+
+               mmae$nataria maria/id=1759-b521-antonia-per6
+                  ls$naturalidade/eiras
+
+            pad$bernardo da silva/id=b1759.521-per7
+               ls$titulo/conego da se de coimbra
+
+            mad$antonia de campos/id=b1759.521-per8
+               rel$parentesco/tia/antonia/1759-b521-antonia
+
+         test$jeronimo fernandes prata/m/id=b1759.521-per9
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.521-per10
+            ls$assina/sim
+
+      b$b1759.522/2/5/1759/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1759.522-per1
+            ls$datanasc/17590423
+
+            pai$antonio cardoso natalio/id=b1759.522-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel cardoso natalio/id=b1759.522-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria cardosa/id=b1759.522-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$rosa maria da encarnacao/id=b1759.522-per1-per5
+
+               pmae$manuel da cunha pedrais/id=b1759.522-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria simoes pequena/id=b1759.522-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jose/id=b1759.522-per8
+
+               ppad$bernardo nogueira/id=b1759.522-per9
+                  ls$residencia/coimbra, rua do quebra costas
+
+            mad$perpetua cardosa/id=b1759.522-per10
+               ls$ec/v
+               ls$residencia/coimbra
+
+         test$jeronimo fernandes prata/m/id=b1759.522-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.522-per12
+            ls$assina/sim
+
+      b$b1759.523/10/6/1759/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem eiras/id=b1759.523-per1
+            ls$datanasc/17590602
+
+            pai$bernardo jose/id=b1759.523-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$antonio da cunha leite/id=b1759.523-per1-per3
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mpai$luisa cardosa/id=b1759.523-per1-per4
+                  ls$naturalidade/s. paulo de frades
+
+            mae$mariana cardosa/id=b1759.523-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao francisco de bastos/id=b1759.523-per1-per6
+                  ls$naturalidade/vacarica
+
+               mmae$isabel cardosa/id=b1759.523-per1-per7
+                  ls$naturalidade/s. paulo de frades
+
+            pad$ivo jose/id=b1759.523-per8
+               ls$titulo/doutor
+               ls$residencia/coimbra, freguesia de santa justa
+
+            mad$teresa maria/id=b1759.523-per9
+               ls$ec/s
+
+               mmad$maria de araujo/id=b1759.523-per10
+                  ls$residencia/coimbra, freguesia de s. bartolomeu
+
+         test$jeronimo fernandes prata/m/id=b1759.523-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.523-per12
+            ls$assina/sim
+
+      b$b1759.524/10/7/1759/vigario luis barreto de figueiredo castilho
+
+         n$joao/m/obs=diz a margem casais/id=b1759.524-per1
+            ls$datanasc/17590625
+
+            pai$julio marques/id=b1759.524-per1-per2
+               ls$naturalidade/casais de eiras
+               ls$residencia/casais de eiras
+
+               ppai$antonio marques cesar/id=b1759.524-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$luisa da silva/id=b1759.524-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$francisca do sacramento/id=b1759.524-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$antonio simoes pequeno/id=b1759.524-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$luisa cunha/id=b1759.524-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$joao da rocha/id=b1759.524-per8
+               ls$profissao/mercador
+               ls$residencia/coimbra
+
+            mad$joana/id=b1759.524-per9
+               ls$ec/s
+
+               mmad$maria maques/id=b1759.524-per10
+                  ls$residencia/coimbra
+
+         test$jeronimo fernandes prata/m/id=b1759.524-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.524-per12
+            ls$assina/sim
+
+      b$b1759.525/13/10/1759/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1759.525-per1
+            ls$datanasc/17591006
+
+            pai$joaquim marques moco/id=b1759.525-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$joao marques moco/id=b1759.525-per1-per3
+                  ls$naturalidade/cacemes
+
+               mpai$luisa da cunha adoa/id=b1759.525-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$josefa pereira/id=b1759.525-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$jeronimo de sousa/id=b1759.525-per1-per6
+                  ls$naturalidade/penacova
+
+               mmae$isabel pereira/id=b1759.525-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jose antonio da conceicao/id=b1759.525-per8
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras/id=b1759.525-per9
+
+         test$jeronimo fernandes prata/m/id=b1759.525-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.525-per11
+            ls$assina/sim
+
+      b$b1759.526/15/10/1759/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1759.526-per1
+            ls$datanasc/17591004
+
+            pai$joao da cunha/id=b1759.526-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$francisco da cunha/id=b1759.526-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$sebastiana pereira/id=b1759.526-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$josefa maria de s. bernardo/id=b1759.526-per1-per5
+               ls$naturalidade/bordalo, isento de santa cruz
+
+               pmae$alexandre fernandes/id=b1759.526-per1-per6
+                  ls$naturalidade/bordalo, isento de santa cruz
+
+               mmae$maria rodrigues/id=b1759.526-per1-per7
+                  ls$naturalidade/bordalo, isento de santa cruz
+
+            pad$manuel boto da costa/id=b1759.526-per8
+               ls$titulo/doutor
+               ls$residencia/eiras
+
+            mad$josefa maria/id=b1759.526-per9
+
+               mrmad$joao de campos branco/xmesmo_que=cap-jcb/id=b1759.526-per10
+                  ls$cargo/capitao
+                  ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1759.526-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.526-per12
+            ls$assina/sim
+
+      b$b1759.527/25/11/1759/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1759.527-per1
+            ls$datanasc/17591118
+
+            pai$filipe cardoso/id=b1759.527-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$manuel simoes botas/id=b1759.527-per1-per3
+                  ls$naturalidade/carvalho
+
+               mpai$maria cardosa/id=b1759.527-per1-per4
+                  ls$naturalidade/brasfemes
+
+            mae$maria gomes/id=b1759.527-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao gomes/id=b1759.527-per1-per6
+                  ls$naturalidade/setubal
+
+               mmae$luisa marques de agueda/id=b1759.527-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de almeida/id=b1759.527-per8
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras/id=b1759.527-per9
+
+         test$jeronimo fernandes prata/m/id=b1759.527-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.527-per11
+            ls$assina/sim
+
+      b$b1759.528/2/12/1759/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem vilarinho/id=b1759.528-per1
+            ls$datanasc/17591124
+
+            pai$antonio nunes/id=b1759.528-per1-per2
+               ls$naturalidade/vila nova de ancos
+               ls$residencia/vilarinho
+
+               ppai$jose nunes/id=b1759.528-per1-per3
+                  ls$naturalidade/vila nova de ancos
+                  ls$residencia/vila nova de ancos
+
+               mpai$maria goncalves/id=b1759.528-per1-per4
+                  ls$naturalidade/vila nova de ancos
+
+            mae$antonia joao/id=b1759.528-per1-per5
+               ls$naturalidade/redinha
+
+               pmae$joao rodrigues penedo/id=b1759.528-per1-per6
+                  ls$naturalidade/soure
+                  ls$residencia/soure
+
+               mmae$maria joao/id=b1759.528-per1-per7
+                  ls$naturalidade/soure
+
+            pad$antonio dias/id=b1759.528-per8
+               ls$residencia/ademia de baixo
+
+            mad$mariana/id=b1759.528-per9
+
+               pmad$manuel de abrantes/id=b1759.528-per10
+                  ls$residencia/murtal
+
+         test$bernardo fernandes/m/id=b1759.528-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.528-per12
+            ls$assina/sim
+
+      b$b1759.529/3/12/1759/vigario luis barreto de figueiredo castilho
+
+         n$fabiao/m/obs=diz a margem casais/id=b1759.529-per1
+            ls$datanasc/17591127
+
+            pai$francisoc jose pereira/id=b1759.529-per1-per2
+               ls$naturalidade/casais de eiras
+               ls$residencia/casais de eiras
+
+               ppai$jose rodrigues pereira/id=b1759.529-per1-per3
+                  ls$naturalidade/casais de eiras
+                  ls$residencia/casais de eiras
+
+               mpai$maria da cunha/id=b1759.529-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$maria francisca/id=b1759.529-per1-per5
+               ls$naturalidade/adeouce, s. pedro de vila seca
+
+               pmae$antonio francisco/id=b1759.529-per1-per6
+                  ls$naturalidade/adeouce, s. pedro de vila seca
+
+               mmae$ana maria/id=b1759.529-per1-per7
+                  ls$naturalidade/adeouca, s. pedro de vila seca
+
+            pad$fabiao/id=b1759.529-per8
+
+               ppad$joao camelo/id=1759-b529-joao
+                  ls$residencia/eiras
+
+            mad$teresa/id=b1759.529-per9
+
+               pmad$joao camelo/mesmo_que=1759-b529-joao/id=b1759.529-per10
+
+         test$jeronimo fernandes prata/m/id=b1759.529-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.529-per12
+            ls$assina/sim
+
+      b$b1759.530/9/12/1759/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1759.530-per1
+            ls$datanasc/17591130
+
+            pai$manuel alvares da cruz/xmesmo_que=dr-mac/id=b1759.530-per1-per2
+               ls$naturalidade/mainca
+               ls$titulo/doutor
+
+               ppai$jose francisco/id=b1759.530-per1-per3
+                  ls$naturalidade/mocela
+
+               mpai$sebatiana francisca/id=b1759.530-per1-per4
+                  ls$naturalidade/ribeira de coselhas
+
+            mae$rita josefa do amaral/id=b1759.530-per1-per5
+               ls$naturalidade/souselas
+
+               pmae$bernardo do amaral/id=b1759.530-per1-per6
+                  ls$naturalidade/arouca
+
+               mmae$josefa da costa/id=b1759.530-per1-per7
+                  ls$naturalidade/souselas
+
+            pad$antonio de campos branco/xmesmo_que=con-acb/id=b1759.530-per8
+               ls$titulo/meio conego da se de coimbra
+
+            mad$antonia/id=b1759.530-per9
+               ls$titulo/dona
+
+               mrmad$manuel monteiro/id=b1759.530-per10
+                  ls$titulo/doutor
+                  ls$residencia/vilarinho
+
+         test$jeronimo fernandes prata/m/id=b1759.530-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1759.530-per12
+            ls$assina/sim
+
+      b$b1760.531/6/1/1760/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem casais/id=b1760.531-per1
+            ls$datanasc/17591229
+
+            pai$joao pereira lopes/id=b1760.531-per1-per2
+               ls$naturalidade/casais de eiras
+
+               ppai$antonio pereira lopes/id=b1760.531-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$isabel esteves/id=b1760.531-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$maria da silva/id=b1760.531-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$manuel da silva ferreira/id=b1760.531-per1-per6
+                  ls$naturalidade/pampilhosa
+                  ls$residencia/casais de eiras
+
+               mmae$mariana da silva/id=b1760.531-per1-per7
+                  ls$naturalidade/s. paulo de frades
+
+            pad$jose rodrigues rato/id=b1760.531-per8
+               ls$residencia/casais de eiras
+
+            mad$maria rosaria/id=b1760.531-per9
+               ls$residencia/pedrulha
+
+         test$joao correia da fonseca/m/id=b1760.531-per10
+            ls$assina/sim
+
+      b$b1760.532/21/1/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1760.532-per1
+            ls$datanasc/17600111
+
+            pai$manuel ferreira/id=b1760.532-per1-per2
+               ls$naturalidade/casais de eiras
+
+               ppai$antonio ferreira/id=b1760.532-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$helena maria da conceicao/id=b1760.532-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$esperanca da cunha/id=b1760.532-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$antonio rodrigues giao velho/id=b1760.532-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$escolastica da cunha/id=b1760.532-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$jose maria pessoa/id=b1760.532-per8
+               ls$titulo/beneficiado
+               ls$residencia/lordemao, s. paulo de frades
+
+            mad$catarina/id=b1760.532-per9
+
+               mrmad$antonio ferreira/id=b1760.532-per10
+                  ls$residencia/lordemao, s. paulo de frades
+
+         test$bernardo de carvalho/m/id=b1760.532-per11
+            ls$assina/sim
+
+         test$joao rodrigues giao/m/id=b1760.532-per12
+            ls$assina/cruz
+
+      b$b1760.533/23/1/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1760.533-per1
+            ls$datanasc/17600115
+
+            pai$antonio jose de oliveira/id=b1760.533-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$paulo bernardes/id=b1760.533-per1-per3
+                  ls$naturalidade/figueira de lorvao
+
+               mpai$bernarda rodrigues/id=b1760.533-per1-per4
+                  ls$naturalidade/figueira de lorvao
+
+            mae$maria josefa/id=b1760.533-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$antonio bernardes/id=b1760.533-per1-per6
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mmae$josefa cardosa/id=b1760.533-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de almeida furtado/id=b1760.533-per8
+               ls$cargo/ajudante
+
+            mad$antonia joaquina/id=b1760.533-per9
+               rel$parentesco/sobrinha/luis seco/1760-b533-luis
+               ls$residencia/coimbra, casa de luis seco
+
+            referido$luis seco/id=1760-b533-luis
+               ls$profissao/livreiro
+               ls$residencia/coimbra
+
+         test$francisco marques da cunha/m/id=b1760.533-per10
+            ls$assina/sim
+
+      b$b1760.534/2/2/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1760.534-per1
+            ls$datanasc/17600124
+
+            pai$jose da cunha/id=b1760.534-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$bento da cunha/id=b1760.534-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria do espirito santo/id=b1760.534-per1-per4
+                  ls$naturalidade/espinho
+
+            mae$mariana da silva/id=b1760.534-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$bernardo cardoso do murta/id=b1760.534-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$rosaria da silva/id=b1760.534-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de campos branco/id=b1760.534-per8
+               ls$titulo/conego
+               ls$naturalidade/eiras
+
+            mad$mariana cardosa/id=b1760.534-per9
+
+               mrmad$joao camelo mendonca/id=b1760.534-per10
+                  ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1760.534-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.534-per12
+            ls$assina/sim
+
+      b$b1760.535/3/2/1760/vigario luis barreto de figueiredo castilho
+
+         n$mariana/f/obs=diz a margem casais/id=b1760.535-per1
+            ls$datanasc/17600125
+
+            pai$bernardo rodrigues pereira/id=b1760.535-per1-per2
+               ls$naturalidade/casais de eiras
+
+               ppai$manuel rodrigues giao/id=b1760.535-per1-per3
+                  ls$naturalidade/casais de eiras
+                  ls$residencia/casais de eiras
+
+               mpai$escolastica pereira/id=b1760.535-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$perpetua maria de jesus/id=b1760.535-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$jose luis/id=b1760.535-per1-per6
+                  ls$naturalidade/penacova
+                  ls$residencia/casais de eiras
+
+               mmae$josefa dos santos/id=b1760.535-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$jose marques da cunha/id=b1760.535-per8
+
+            mad$mariana gomes/id=b1760.535-per9
+
+               mrmad$jose rodrigues rato/id=b1760.535-per10
+                  ls$residencia/casais de eiras
+
+         test$jose rodrigues pereira/m/id=b1760.535-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.535-per12
+            ls$assina/sim
+
+      b$b1760.536/11/2/1760/vigario luis barreto de figueiredo castilho
+
+         n$jacinto/m/obs=diz a margem eiras/id=b1760.536-per1
+            ls$datanasc/17600131
+
+            pai$dionisio rodrigues/id=b1760.536-per1-per2
+               ls$naturalidade/sobral, freguesia de carvalho
+               ls$residencia/eiras
+
+               ppai$domingos rodrigues/id=b1760.536-per1-per3
+                  ls$naturalidade/carvalho
+
+               mpai$bernarda duarte/id=b1760.536-per1-per4
+                  ls$naturalidade/carvalho
+
+            mae$teresa de jesus/id=b1760.536-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$antonio da cunha leita/id=b1760.536-per1-per6
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mmae$luisa cardosa/id=b1760.536-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jacinto de moura coelho/id=b1760.536-per8
+               ls$profissao/mercador
+               ls$residencia/coimbra
+
+            referido$luis seco ferreira/id=1760-b536-luis
+               ls$profissao/livreiro
+               ls$residencia/coimbra
+
+            mad$antonia joaquina rosa/id=b1760.536-per9
+               rel$parentesco/sobrinha/luis seco ferreira/1760-b536-luis
+               ls$residencia/coimbra, casa de luis seco
+
+         test$jeronimo fernandes prata/m/id=b1760.536-per10
+            ls$assina/sim
+
+         test$antonio de sousa e cunha/m/id=b1760.536-per11
+            ls$assina/sim
+
+      b$b1760.537/13/3/1760/vigario luis barreto de figueiredo castilho
+
+         n$feliano/m/obs=diz a margem casais/id=b1760.537-per1
+            ls$datanasc/17600306
+
+            pai$bento marques nunes/id=b1760.537-per1-per2
+               ls$naturalidade/miranda do corvo
+               ls$residencia/casais de eiras
+
+               ppai$joao nunes/id=b1760.537-per1-per3
+                  ls$naturalidade/miranda do corvo
+
+               mpai$josefa maria/id=b1760.537-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$esperanca maria/id=b1760.537-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao francisco do rego/id=b1760.537-per1-per6
+                  ls$naturalidade/tamengos
+                  ls$residencia/eiras
+
+               mmae$margarida gomes/id=b1760.537-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$feliciano marques/id=b1760.537-per8
+
+               ppad$manuel marques carrasco/xmesmo_que=ten-carrasco/id=b1760.537-per9
+                  ls$profissao/tenente
+                  ls$residencia/eiras
+
+            mad$caetana/id=b1760.537-per10
+
+               mrmad$manuel de figueiredo/id=b1760.537-per11
+                  ls$residencia/murtal
+
+         test$jeronimo fernandes prata/m/id=b1760.537-per12
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.537-per13
+            ls$assina/sim
+
+      b$b1760.538/30/4/1760/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem casais; so foram postos os oleos, visto ter sido baptizada em necessidade aos 21 de abril/id=b1760.538-per1
+            ls$datanasc/17600420
+
+            pai$antonio da silva ferreira/id=b1760.538-per1-per2
+               ls$naturalidade/casais de eiras
+
+               ppai$manuel da silva ferreira/id=b1760.538-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$mariana pereira/id=b1760.538-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$joaquina cardosa/id=b1760.538-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$jose francisco claro/id=b1760.538-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$clara cardosa/id=b1760.538-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$manuel de brito/id=b1760.538-per8
+
+               ppad$luis marques cardoso/id=b1760.538-per9
+                  ls$residencia/eiras
+
+            mad$teresa/id=b1760.538-per10
+
+               pmad$joao camelo/id=b1760.538-per11
+                  ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1760.538-per12
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.538-per13
+            ls$assina/sim
+
+      b$b1760.539/12/5/1760/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=1760-b539-maria
+            ls$datanasc/17600504
+
+            pai$manuel marques de carvalho/id=1760-b539-maria-per1
+               ls$naturalidade/eiras
+
+               ppai$manuel marques luzeiro/id=1760-b539-maria-per2
+                  ls$naturalidade/eiras
+
+               mpai$josefa da murta/id=1760-b539-maria-per3
+                  ls$naturalidade/eiras
+
+            mae$antonia gomes/id=1760-b539-maria-per4
+               ls$naturalidade/eiras
+
+               pmae$antonio gomes leao/id=1760-b539-maria-per5
+                  ls$naturalidade/eiras
+
+               mmae$maria dos santos/id=1760-b539-maria-per6
+                  ls$naturalidade/eiras
+
+            pad$joaquim vimieiro lopes/id=b1760.539-per7
+               ls$titulo/reverendo doutor
+               ls$cargo/vigario de brasfemes
+
+            mad$maria/id=b1760.539-per8
+               rel$parentesco/tia/maria/1760-b539-maria
+               ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1760.539-per9
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.539-per10
+            ls$assina/sim
+
+      b$b1760.540/14/5/1760/vigario luis barreto de figueiredo castilho
+
+         n$joaquim/m/obs=diz a margem casais/id=1760-b540-joaquim
+            ls$datanasc/17600505
+
+            pai$manuel marques cesar/id=1760-b540-joaquim-per1
+               ls$naturalidade/casais de eiras
+
+               ppai$antonio marques cesar/id=1760-b540-joaquim-per2
+                  ls$naturalidade/casais d eieras
+
+               mpai$luisa da silva/id=1760-b540-joaquim-per3
+                  ls$naturalidade/casais de eiras
+
+            mae$helena maria/id=1760-b540-joaquim-per4
+
+               pmae$joao francisco do rego/id=1760-b540-joaquim-per5
+                  ls$naturalidade/eiras
+
+               mmae$margarida bernardes/id=1760-b540-joaquim-per6
+                  ls$naturalidade/eiras
+
+            pad$joaquim/id=b1760.540-per7
+               rel$parentesco/tio/joaquim/1760-b540-joaquim
+
+            mad$bernarda monteira/id=b1760.540-per8
+
+               mrmad$antonio jose bernardes/id=b1760.540-per9
+                  ls$residencia/casais de eiras
+
+         test$jeronimo fernandes prata/m/id=b1760.540-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.540-per11
+            ls$assina/sim
+
+      b$b1760.541/15/5/1760/vigario luis barreto de figueiredo castilho
+
+         n$francisco/m/obs=diz a margem eiras/id=b1760.541-per1
+            ls$datanasc/17600514
+
+            pai$manuel carvalho das almuinhas/id=b1760.541-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$bernardo cardoso das almuinhas/id=b1760.541-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$marta francisca/id=b1760.541-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$urbana pereira/id=b1760.541-per1-per5
+
+               pmae$antonio pereira/id=b1760.541-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$josefa cardosa/id=b1760.541-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$francisco ribeiro/id=b1760.541-per8
+               ls$profissao/alfaiate
+               ls$residencia/coimbra
+
+            mad$maria branca/id=b1760.541-per9
+
+               mrmad$simao pedro marques/id=b1760.541-per10
+                  ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1760.541-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.541-per12
+            ls$assina/sim
+
+      b$b1760.542/30/5/1760/vigario luis barreto de figueiredo castilho; este assento so foi registado em 1781
+
+         n$teresa/f/obs=diz a margem eiras/id=b1760.542-per1
+
+            pai$bernardo jose da cunha leite/id=b1760.542-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$antonio da cunha leite/id=b1760.542-per1-per3
+
+               mpai$luisa cardosa/id=b1760.542-per1-per4
+
+            mae$mariana cardosa/id=b1760.542-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$joao francisco de bastos/id=b1760.542-per1-per6
+
+               mmae$isabel cardosa/id=b1760.542-per1-per7
+
+            pad$ivo jose de almeida/id=b1760.542-per8
+               ls$titulo/doutor
+               ls$residencia/coimbra
+
+            mad$teresa de araujo/id=b1760.542-per9
+               ls$residencia/coimbra, freguesia de s. bartolomeu
+
+      b$b1760.543/1/6/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1760.543-per1
+            ls$datanasc/17600524
+
+            pai$antonio marques valenca/id=b1760.543-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$manuel marques valenca/id=b1760.543-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria leite/id=b1760.543-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$bernarda de almeida/id=b1760.543-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$manuel gomes de almeida/id=b1760.543-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$marta monteira/id=b1760.543-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$simao pedro/id=b1760.543-per8
+               ls$residencia/eiras
+
+            mad$arcangela maria/id=b1760.543-per9
+
+               mrmad$antonio lopes da silva/id=b1760.543-per10
+                  ls$residencia/eiras
+
+         test$jeronimo fernandes prata/m/id=b1760.543-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.543-per12
+            ls$assina/sim
+
+      b$b1760.544/8/6/1760/vigario luis barreto de figueiredo castilho
+
+         n$joao/m/obs=diz a margem casais/id=b1760.544-per1
+            ls$datanasc/17600603
+
+            pai$manuel simoes/id=b1760.544-per1-per2
+               ls$residencia/casais d eiras
+
+               ppai$jose simoes/id=b1760.544-per1-per3
+                  ls$naturalidade/vilarinho, freguesia de santo andre de poiares
+
+               mpai$mariana ferreira/id=b1760.544-per1-per4
+
+            mae$maria de s. jose/id=b1760.544-per1-per5
+
+               pmae$jose francisco/id=b1760.544-per1-per6
+                  ls$naturalidade/carvalho
+                  ls$residencia/casais de eiras
+
+               mmae$maria lourenca/id=b1760.544-per1-per7
+                  ls$naturalidade/miranda do corvo
+
+            pad$joao pereira lopes/id=b1760.544-per8
+               ls$residencia/casais de eiras
+
+            mad$sebastiana/id=b1760.544-per9
+
+               mrmad$domingos dos santos/id=b1760.544-per10
+                  ls$profissao/carpinteiro
+                  ls$residencia/coimbra
+
+         test$manuel gomes da costa cardosa/m/id=b1760.544-per11
+            ls$assina/sim
+
+         test$jose rodrigues pereira/m/id=b1760.544-per12
+            ls$assina/sim
+
+      b$b1760.545/14/6/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1760.545-per1
+            ls$datanasc/17690605
+
+            pai$manuel marques gregorio/id=b1760.545-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$manuelmarques gregorio/id=b1760.545-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$luisa d acunha/id=b1760.545-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$antonia maria de oliveira/id=b1760.545-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$manuel marques carrasco/xmesmo_que=ten-carrasco/id=b1760.545-per1-per6
+                  ls$profissao/tenente
+                  ls$naturalidade/eiras
+
+               mmae$maria marques/id=b1760.545-per1-per7
+
+            pad$antonio jose de oliveira/id=b1760.545-per8
+               ls$titulo/padre
+               ls$residencia/eiras
+
+            mad$joana correia/id=b1760.545-per9
+               rel$parentesco/irma/bento correia fonseca/dr-bento
+               ls$residencia/eiras
+
+            referido$bento fonseca correia/id=dr-bento
+
+         test$manuel gomes da costa cardoso/m/id=b1760.545-per10
+            ls$assina/sim
+
+         test$jose rodrigues pereira/m/id=b1760.545-per11
+            ls$assina/sim
+
+      b$b1760.546/15/6/1760/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais/id=b1760.546-per1
+            ls$datanasc/17600609
+
+            pai$simao lopes/id=b1760.546-per1-per2
+               ls$naturalidade/casais de eiras
+               ls$residencia/casais de eiras
+
+               ppai$antonio lopes/id=b1760.546-per1-per3
+                  ls$naturalidade/penamacor
+                  ls$residencia/casais de eiras
+
+               mpai$luisa rodrigues/id=b1760.546-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$joana teresa/id=b1760.546-per1-per5
+
+               pmae$manuel fernandes valenca/id=b1760.546-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$isabel teresa/id=b1760.546-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$joao de abreu/id=b1760.546-per8
+               ls$titulo/clerigo in minoribus
+
+               ppad$jose de abreu/id=b1760.546-per9
+                  ls$residencia/vilarinho
+
+            mad$maria/id=b1760.546-per10
+
+               pmad$raimundo da cunha/id=b1760.546-per11
+                  ls$residencia/combra, santa ana
+
+         test$manuel gomes da costa cardoso/m/id=b1760.546-per12
+            ls$assina/sim
+
+         test$jose rodrigues pereira/m/id=b1760.546-per13
+            ls$assina/sim
+
+      b$b1760.547/22/6/1760/vigario luis barreto de figueiredo castilho
+
+         n$sebastiao/m/obs=diz a margem murtal/id=b1760.547-per1
+            ls$datanasc/17600614
+
+            pai$manuel de figueiredo/id=b1760.547-per1-per2
+               ls$residencia/murtal
+
+               ppai$manuel de figueiredo/id=b1760.547-per1-per3
+                  ls$residencia/murtal
+
+               mpai$maria rodrigues serrana/id=b1760.547-per1-per4
+
+            mae$caetana francisca/id=b1760.547-per1-per5
+
+               pmae$antonio rodrigues/id=b1760.547-per1-per6
+                  ls$naturalidade/logo de deus
+
+               mmae$ana da murta/id=b1760.547-per1-per7
+                  ls$naturalidade/logo de deus
+
+            pad$sebastiao rodrigues/id=b1760.547-per8
+               ls$residencia/coimbra, terreiro de sansao
+
+            mad$maria de carvalho santa rosa/id=b1760.547-per9
+
+               mrmad$francisco de campos/id=b1760.547-per10
+                  ls$residencia/eiras
+
+         test$manuel gomes da costa cardoso/m/id=b1760.547-per11
+            ls$assina/sim
+
+         test$antonio rodrigues pereira/m/id=b1760.547-per12
+            ls$assina/sim
+
+      b$b1760.548/24/6/1760/vigario luis barreto de figueiredo castilho
+
+         n$joao/m/obs=diz a margem eiras/id=b1760.548-per1
+            ls$datanasc/17600616
+
+            pai$joao francisco sereijo/id=b1760.548-per1-per2
+               ls$naturalidade/eiras
+               ls$residencia/eiras
+
+               ppai$manuel francisco sereijo/id=b1760.548-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$mariana dos santos/id=b1760.548-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$margarida da conceicao/id=b1760.548-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$francisco da cunha lambeiro/id=b1760.548-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$mariana carvalho/id=b1760.548-per1-per7
+                  ls$naturalidade/poiares
+
+            pad$francisco dos reis/id=b1760.548-per8
+               ls$residencia/coimbra
+
+            mad$rosa/id=b1760.548-per9
+
+               pmad$joao de matos/id=b1760.548-per10
+                  ls$residencia/eiras
+
+         test$manuel gomes da costa cardoso/m/id=b1760.548-per11
+            ls$assina/sim
+
+         test$jose rodrigues pereira/m/id=b1760.548-per12
+            ls$assina/sim
+
+      b$b1760.549/6/7/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1760.549-per1
+            ls$datanasc/17600630
+
+            pai$constantino ferreira/id=b1760.549-per1-per2
+
+               ppai$manuel ferreira/id=b1760.549-per1-per3
+                  ls$naturalidade/semide
+                  ls$residencia/casais de eiras
+
+               mpai$maria dos santos/id=b1760.549-per1-per4
+                  ls$naturalidade/rivela
+
+            mae$bernarda lopes/id=b1760.549-per1-per5
+
+               pmae$antonio francisco das neves/id=b1760.549-per1-per6
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mmae$escolastica lopes/id=b1760.549-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio fernandes/id=b1760.549-per8
+               ls$residencia/escravote
+
+            mad$teresa/id=b1760.549-per9
+
+               pmad$francisco ribeiro/id=b1760.549-per10
+                  ls$residencia/coimbra, junto a s. bartolomeu
+
+         test$jeronimo fernandes prata/m/id=b1760.549-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.549-per12
+            ls$assina/sim
+
+      b$b1760.550/20/7/1760/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1760.550-per1
+            ls$datanasc/17600712
+
+            pai$antonio marques castanheira/id=b1760.550-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel castanheira/id=b1760.550-per1-per3
+                  ls$naturalidade/torres
+
+               mpai$ana francisca/id=b1760.550-per1-per4
+                  ls$naturalidade/cordinha
+
+            mae$ana de jesus/id=b1760.550-per1-per5
+
+               pmae$antonio da silva/id=b1760.550-per1-per6
+                  ls$naturalidade/cordinha
+
+               mmae$teresa de jesus/id=b1760.550-per1-per7
+                  ls$naturalidade/cordinha
+
+            pad$manuel boto da costa/id=b1760.550-per8
+               ls$titulo/doutor
+
+            mad$luisa pereira lombeira/id=b1760.550-per9
+               ls$residencia/eiras
+
+         test$manuel gomes da costa cardoso/m/id=b1760.550-per10
+            ls$assina/sim
+
+         test$manuel rodrigues pereira/m/id=b1760.550-per11
+            ls$assina/sim
+
+      b$b1760.551/27/7/1760/vigario luis barreto de figueiredo castilho
+
+         n$fabiao/m/obs=diz a margem eiras/id=b1760.551-per1
+            ls$datanasc/17600720
+
+            pai$manuel jose bernardes/id=b1760.551-per1-per2
+
+               ppai$joao francisco do rego/id=b1760.551-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$margarida gomes bernardes/id=b1760.551-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$joana teresa das neves/id=b1760.551-per1-per5
+
+               pmae$antonio rodrigues pedro/id=b1760.551-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria das neves/id=b1760.551-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$fabiao/id=b1760.551-per8
+
+               ppad$joao camelo/id=b1760.551-per9
+
+            mad$jacinta lopes/id=b1760.551-per10
+               ls$residencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1760.551-per11
+            ls$assina/sim
+
+         test$manuel gomes da costa cardoso/m/id=b1760.551-per12
+            ls$assina/sim
+
+      b$b1760.552/27/7/1760/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1760.552-per1
+            ls$datanasc/17600719
+
+            pai$manuel de matos/id=b1760.552-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao de matos/id=b1760.552-per1-per3
+                  ls$naturalidade/?
+
+               mpai$maria francisca/id=b1760.552-per1-per4
+                  ls$naturalidade/?
+
+            mae$luisa da cunha/id=b1760.552-per1-per5
+
+               pmae$bento da cunha/id=b1760.552-per1-per6
+                  ls$alcunha/gaio
+                  ls$naturalidade/eiras
+
+               mmae$maria do espirito santo/id=b1760.552-per1-per7
+                  ls$naturalidade/espinho
+
+            pad$jose de campos/id=b1760.552-per8
+               ls$titulo/padre
+
+               ppad$joao de campos branco/xmesmo_que=cap-jcb/id=b1760.552-per9
+                  ls$cargo/capitao
+
+            mad$maria carvalha/id=b1760.552-per10
+
+               mrmad$francisco de campos/id=b1760.552-per11
+                  ls$residencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1760.552-per12
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.552-per13
+            ls$assina/sim
+
+      b$b1760.553/1/9/1760/vigario luis barreto de figueiredo castilho
+
+         n$mariana/f/obs=diz a margem eiras/id=b1760.553-per1
+            ls$datanasc/17600823
+
+            pai$bernardo lopes/id=b1760.553-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel joao/id=b1760.553-per1-per3
+                  ls$naturalidade/murtal
+
+               mpai$ana da silva/id=b1760.553-per1-per4
+                  ls$naturalidade/murtal
+
+            mae$rosa maria/id=b1760.553-per1-per5
+
+               pmae$luis carvalho/id=b1760.553-per1-per6
+                  ls$naturalidade/sernelha, freguesia de figueira do lorvao
+
+               mmae$nataria maria/id=b1760.553-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de almeida furtado/id=b1760.553-per8
+               ls$residencia/eiras
+
+            mad$mariana cardosa/id=b1760.553-per9
+
+               mrmad$joao camelo/id=b1760.553-per10
+                  ls$residencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1760.553-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.553-per12
+            ls$assina/sim
+
+      b$b1760.554/10/10/1760/vigario luis barreto de figueiredo castilho
+
+         n$fabiao/m/obs=diz a margem casais/id=b1760.554-per1
+            ls$datanasc/17600930
+
+            pai$julio marques/id=b1760.554-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio marques cesar/id=b1760.554-per1-per3
+                  ls$residencia/casais de eiras
+
+               mpai$luisa da silva/id=b1760.554-per1-per4
+
+            mae$francisca do sacramento/id=b1760.554-per1-per5
+
+               pmae$antonio simoes pequeno/id=b1760.554-per1-per6
+                  ls$residencia/casais de eiras
+
+               mmae$luisa da cunha/id=b1760.554-per1-per7
+
+            pad$fabiao/id=b1760.554-per8
+
+               ppad$joao camelo de mendonca/id=b1760.554-per9
+                  ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras/id=b1760.554-per10
+
+         test$antonio rodrigues pereira/m/id=b1760.554-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.554-per12
+            ls$assina/sim
+
+      b$b1760.555/29/10/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonia/f/obs=diz a margem eiras/id=b1760.555-per1
+            ls$datanasc/17601020
+
+            pai$antonio lopes da silva/id=b1760.555-per1-per2
+               ls$naturalidade/eiras
+
+               ppai$manuel joao/id=b1760.555-per1-per3
+                  ls$residencia/murtal
+
+               mpai$ana da silva/id=b1760.555-per1-per4
+
+            mae$arcangela maria/id=b1760.555-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$manuel fernandes capela/id=b1760.555-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$josefa maria/id=b1760.555-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$joao de campos branco/xmesmo_que=cap-jcb/id=b1760.555-per8
+               ls$residencia/eiras
+               ls$cargo/capitao
+
+            mad$antonia/id=b1760.555-per9
+               ls$titulo/dona
+               ls$residencia/vilarinho
+
+         test$antonio rodrigues pereira/m/id=b1760.555-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.555-per11
+            ls$assina/sim
+
+      b$b1760.556/21/11/1760/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1760.556-per1
+            ls$datanasc/17601108
+
+            pai$antonio de almeida furtado/id=b1760.556-per1-per2
+               ls$naturalidade/penamacor
+               ls$cargo/ajudante da comarca
+               ls$residencia/eiras
+
+               ppai$domingos de almeida furtado/id=b1760.556-per1-per3
+                  ls$naturalidade/penamacor, bispado da guarda
+
+               mpai$isabel lopes/id=b1760.556-per1-per4
+                  ls$naturalidade/penamacor, bispado da guarda
+
+            mae$maria violante/id=b1760.556-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$francisco marques da cunha/id=b1760.556-per1-per6
+                  ls$cargo/capitao
+                  ls$naturalidade/eiras
+
+               mmae$francisca maria/id=b1760.556-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$santo antonio dos olivais/id=b1760.556-per8
+
+            mad$bernarda da cunha/id=b1760.556-per9
+               ls$ec/s
+               ls$residencia/vilarinho
+
+         test$antonio rodrigues pereira/m/id=b1760.556-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.556-per11
+            ls$assina/sim
+
+      b$b1760.557/24/11/1760/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1760.557-per1
+            ls$datanasc/17601117
+
+            pai$francisco jose castor/id=b1760.557-per1-per2
+               ls$naturalidade/coimbra
+               ls$residencia/eiras
+
+               ppai$jeronimo rodrigues de castor/id=b1760.557-per1-per3
+                  ls$naturalidade/coimbra
+
+               mpai$joana maria da rainha santa/id=b1760.557-per1-per4
+                  ls$naturalidade/coimbra
+
+            mae$ana maria da murta/id=b1760.557-per1-per5
+               ls$naturalidade/eiras
+
+               pmae$manuel marque luzeiro/id=b1760.557-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$josefa da murta/id=b1760.557-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jose antonio da conceicao/id=b1760.557-per8
+
+            mad$maria rita/id=b1760.557-per9
+
+               pmad$antonio da fonseca/id=b1760.557-per10
+                  ls$profissao/mercador
+                  ls$residencia/coimbra, rua de coruche
+
+         test$antonio rodrigues pereira/m/id=b1760.557-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1760.557-per12
+            ls$assina/sim
+
+      b$b1761.558/13/1/1761/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1761.558-per1
+            ls$datanasc/17611225
+
+            pai$caetano de gouveia/id=b1761.558-per1-per2
+               ls$profissao/criado do mosteiro de celas
+
+            mae$maria/id=b1761.558-per1-per3
+               ls$ec/s
+               ls$naturalidade/casais de eiras
+
+               pmae$joao de sousa soares/id=b1761.558-per1-per4
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria da cunha/id=b1761.558-per1-per5
+                  ls$naturalidade/casais de eiras
+
+            pad$santo antonio/id=b1761.558-per6
+
+            mad$maria francisca/id=b1761.558-per7
+
+               mrmad$francisco rodrigues bartolo/id=b1761.558-per8
+                  ls$residencia/casais de eiras
+
+         test$antonio rodrigues pereira/m/id=b1761.558-per9
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.558-per10
+            ls$assina/sim
+
+      b$b1761.559/5/2/1761/vigario luis barreto de figueiredo castilho
+
+         n$francisco/m/obs=diz a margem eiras/id=b1761.559-per1
+            ls$datanasc/17610129
+
+            pai$jose carlos peixoto/id=b1761.559-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel fernandes valente/id=b1761.559-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$isabel teresa/id=b1761.559-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$maria do rosario de matos/id=b1761.559-per1-per5
+
+               pmae$joao de matos/id=b1761.559-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$catarina dos santos/id=b1761.559-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$francisco gomes bernardes/id=b1761.559-per8
+               ls$residencia/eiras
+
+            mad$teresa/id=b1761.559-per9
+
+               pmad$joao de camelo/id=b1761.559-per10
+                  ls$residencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1761.559-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.559-per12
+            ls$assina/sim
+
+      b$b1761.560/8/3/1761/vigario luis barreto de figueiredo castilho
+
+         n$francisco/m/obs=diz a margem eiras/id=b1761.560-per1
+            ls$datanasc/17610228
+
+            pai$lourenco marques botas/id=b1761.560-per1-per2
+
+               ppai$manuel gomes leal/id=b1761.560-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria marques/id=b1761.560-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$ursula de almeida/id=b1761.560-per1-per5
+
+               pmae$manuel gomes de almeida/id=b1761.560-per1-per6
+
+               mmae$marta monteira/id=b1761.560-per1-per7
+                  ls$naturalidade/palmazes
+
+            pad$francisco dos reis e sousa/id=b1761.560-per8
+
+            mad$teresa maria de jesus/id=b1761.560-per9
+
+               mrmad$miguel francisco gavarra/id=b1761.560-per10
+                  ls$residencia/quinta do ingote
+
+         test$antonio rodrigues pereira/m/id=b1761.560-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.560-per12
+            ls$assina/sim
+
+      b$b1761.561/8/3/1761/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem casais/id=b1761.561-per1
+            ls$datanasc/17610228
+
+            pai$jose da cunha/id=b1761.561-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio rodrigues giao/id=b1761.561-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$escolastica da cunha/id=b1761.561-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$luisa teresa de sousa/id=b1761.561-per1-per5
+
+               pmae$joao de sousa soares/id=b1761.561-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria da cunha/id=b1761.561-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$manuel lourenco/id=b1761.561-per8
+
+            mad$maria de abrantes/id=b1761.561-per9
+
+               mrmad$manuel fernandes/id=b1761.561-per10
+                  ls$residencia/vilarinho
+
+         test$antonio rodrigues pereira/m/id=b1761.561-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.561-per12
+            ls$assina/sim
+
+      b$b1761.562/14/3/1761/vigario luis barreto de figueiredo castilho
+
+         n$bernardo/m/obs=diz a margem casais/id=b1761.562-per1
+            ls$datanasc/17610306
+
+            pai$valerio jose/id=b1761.562-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio rodrigues pereira/id=b1761.562-per1-per3
+                  ls$residencia/casais de eiras
+
+               mpai$josefa cardosa/id=b1761.562-per1-per4
+
+            mae$joana cardosa/id=b1761.562-per1-per5
+
+               pmae$bernardo cardoso/id=b1761.562-per1-per6
+                  ls$residencia/eiras
+
+               mmae$marta francisca/id=b1761.562-per1-per7
+
+            pad$bernardo lopes da silva/id=b1761.562-per8
+               ls$residencia/eiras
+
+            mad$ana/id=b1761.562-per9
+
+               pmad$joao lopes/id=b1761.562-per10
+                  ls$residencia/pedrulha
+
+         test$antonio rodrigues pereira/m/id=b1761.562-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.562-per12
+            ls$assina/sim
+
+      b$b1761.563/17/3/1761/vigario luis barreto de figueiredo castilho
+
+         n$rosa/f/obs=diz a margem eiras/id=b1761.563-per1
+            ls$datanasc/17610311
+
+            pai$francisco gomes bernardes/id=b1761.563-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao francisco do rego/id=b1761.563-per1-per3
+                  ls$naturalidade/tamengos
+                  ls$residencia/eiras
+
+               mpai$margarida gomes/id=b1761.563-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$teresa das neves/id=b1761.563-per1-per5
+
+               pmae$antonio rodrigues/id=b1761.563-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria das neves/id=b1761.563-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$francisco de campos branco/id=b1761.563-per8
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras/id=b1761.563-per9
+
+         test$antonio rodrigues pereira/m/id=b1761.563-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.563-per11
+            ls$assina/sim
+
+      b$b1761.564/29/3/1761/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais/id=b1761.564-per1
+            ls$datanasc/17610315
+
+            pai$joao da silva ferreiro/id=b1761.564-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$manuel da silva ferreiro/id=b1761.564-per1-per3
+                  ls$residencia/casais de eiras
+
+               mpai$mariana pereira/id=b1761.564-per1-per4
+
+            mae$joana maria da costa/id=b1761.564-per1-per5
+
+               pmae$antonio rodrigues da costa/id=b1761.564-per1-per6
+                  ls$residencia/casais de eiras
+
+               mmae$maria da silva/id=b1761.564-per1-per7
+
+            pad$manuel de figueiredo/id=b1761.564-per8
+               ls$residencia/murtal
+
+            mad$teresa/id=b1761.564-per9
+
+               pmad$bento de oliveira/id=b1761.564-per10
+                  ls$residencia/coimbra, rua do quebra costas
+
+         test$antonio rodrigues pereira/m/id=b1761.564-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.564-per12
+            ls$assina/sim
+
+      b$b1761.565/19/4/1761/vigario luis barreto de figueiredo castilho
+
+         n$luis/m/obs=diz a margem eiras/id=b1761.565-per1
+            ls$datanasc/17610405
+
+            pai$bernardo jose/id=b1761.565-per1-per2
+               ls$residencia/eiras
+
+               ppai$antonio da cunha leite/id=b1761.565-per1-per3
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mpai$luisa cardosa/id=b1761.565-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$marina cardosa/id=b1761.565-per1-per5
+
+               pmae$joao francisco de bastos/id=b1761.565-per1-per6
+                  ls$naturalidade/eiras
+                  ls$residencia/eiras
+
+               mmae$isabel cardosa/id=b1761.565-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$ivo jose/id=b1761.565-per8
+               ls$residencia/coimbra
+               ls$titulo/doutor
+
+            mad$maria teresa/id=b1761.565-per9
+
+               mrmad$joao baptista/id=b1761.565-per10
+                  ls$profissao/marchante
+                  ls$residencia/coimbra
+
+         test$antonio rodrigues pereira/m/id=b1761.565-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.565-per12
+            ls$assina/sim
+
+      b$b1761.566/3/5/1761/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem eiras/id=b1761.566-per1
+            ls$datanasc/17610423
+
+            pai$nuno do vale/id=b1761.566-per1-per2
+               ls$residencia/eiras
+
+               ppai$incerto/id=b1761.566-per1-per3
+
+               mpai$mariana gomes/id=b1761.566-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$luisa de jesus/id=b1761.566-per1-per5
+
+               pmae$joao francisco rainho/id=b1761.566-per1-per6
+                  ls$naturalidade/oureta
+
+               mmae$margarida ribeira/id=b1761.566-per1-per7
+                  ls$naturalidade/oureta
+
+            pad$bernardo nogueira/id=b1761.566-per8
+               ls$residencia/coimbra, rua do quebra costas
+
+            mad$teresa/id=b1761.566-per9
+
+               pmad$joao camelo mendonca/id=b1761.566-per10
+                  ls$reisencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1761.566-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.566-per12
+            ls$assina/sim
+
+      b$b1761.567/24/5/1761/vigario luis barreto de figueiredo castilho
+
+         n$joaquim/m/obs=diz a margem eiras/id=b1761.567-per1
+            ls$datanasc/17610423
+
+            pai$bento marques dos reis/id=b1761.567-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel marques luzeiro/id=b1761.567-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$josefa da murta/id=b1761.567-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$catarina da silva/id=b1761.567-per1-per5
+
+               pmae$manuel joao/id=b1761.567-per1-per6
+                  ls$naturalidade/murtal
+
+               mmae$ana da silva/id=b1761.567-per1-per7
+                  ls$naturalidade/murtal
+
+            pad$antonio lopes da silva/id=b1761.567-per8
+               ls$residencia/eiras
+
+            mad$antonia gomes/id=b1761.567-per9
+
+               mrmad$manuel marques de carvalho/id=b1761.567-per10
+                  ls$cargo/alferes
+                  ls$residencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1761.567-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.567-per12
+            ls$assina/sim
+
+      b$b1761.568/5/6/1761/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=1761-b568-maria
+            ls$datanasc/17610527
+
+            pai$manuel marques de matos/id=1761-b568-maria-per1
+               ls$residencia/eiras
+
+               ppai$bento marques alfaiate/id=1761-b568-maria-per2
+                  ls$residencia/eiras
+
+               mpai$ana dos santos/id=1761-b568-maria-per3
+                  ls$naturalidade/eiras
+
+            mae$mariana cardosa/id=1761-b568-maria-per4
+
+               pmae$joao cardoso bruxeiro/id=1761-b568-maria-per5
+                  ls$naturalidade/eiras
+
+               mmae$maria francisca/id=1761-b568-maria-per6
+                  ls$naturalidade/eiras
+
+            pad$joao camelo de mendonca/id=b1761.568-per7
+               ls$residencia/eiras
+
+            mad$maria francisca/id=b1761.568-per8
+               rel$parentesco/tia/maria/1761-b568-maria
+
+         test$antonio rodrigues pereira/m/id=b1761.568-per9
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.568-per10
+            ls$assina/sim
+
+      b$b1761.569/21/6/1761/vigario luis barreto de figueiredo castilho
+
+         n$joao/m/obs=diz a margem eiras/id=b1761.569-per1
+            ls$datanasc/17610613
+
+            pai$sebastiao da costa rebelo/id=b1761.569-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel francisco/id=b1761.569-per1-per3
+                  ls$naturalidade/murtede
+
+               mpai$maria da costa/id=b1761.569-per1-per4
+                  ls$naturalidade/murtede
+
+            mae$josefa da cunha/id=b1761.569-per1-per5
+
+               pmae$bento da cunha inacio/id=b1761.569-per1-per6
+
+               mmae$maria josefa/id=b1761.569-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$francisco de campos/id=b1761.569-per8
+
+            mad$maria josefa/id=b1761.569-per9
+
+               mrmad$francisco da costa/id=b1761.569-per10
+                  ls$residencia/nazare da ribeira
+
+         test$antonio rodrigues pereira/m/id=b1761.569-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.569-per12
+            ls$assina/sim
+
+      b$b1761.570/27/6/1761/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1761.570-per1
+            ls$datanasc/17610613
+
+            pai$simao pedro/id=b1761.570-per1-per2
+
+               ppai$manuel marques carrasco/xmesmo_que=ten-carrasco/id=b1761.570-per1-per3
+                  ls$profissao/tenente de infantaria
+                  ls$residencia/eiras
+
+               mpai$maria luisa/id=b1761.570-per1-per4
+
+            mae$maria branca/id=b1761.570-per1-per5
+
+               pmae$joao de campos branco/xmesmo_que=cap-jcb/id=b1761.570-per1-per6
+                  ls$cargo/capitao
+                  ls$residencia/eiras
+
+               mmae$josefa maria/id=b1761.570-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$feliciano marques de oliveira/id=b1761.570-per8
+               rel$parentesco/filho/manuel marques carrasco/ten-carrasco
+               ls$residencia/eiras
+
+            mad$maria/id=b1761.570-per9
+               ls$titulo/dona
+
+               mrmad$manuel boto da costa/id=b1761.570-per10
+                  ls$titulo/doutor
+                  ls$residencia/eiras
+
+         test$antonio rodrigues pereira/m/id=b1761.570-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.570-per12
+            ls$assina/sim
+
+      b$b1761.571/9/8/1761/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1761.571-per1
+            ls$datanasc/17610731
+
+            pai$vitorio rodrigues da costa/id=b1761.571-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$berbardo rodrigues bartolo/id=b1761.571-per1-per3
+                  ls$naturalidade/casais de eiras
+                  ls$residencia/casais deiras
+
+               mpai$maria da cunha/id=b1761.571-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$joaquina carvalha/id=b1761.571-per1-per5
+
+               pmae$bento cardoso/id=b1761.571-per1-per6
+                  ls$naturalidade/casais de eiras
+                  ls$residencia/casais de eiras
+
+               mmae$josefa marques/id=b1761.571-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$antonio da silva ferreiro/id=b1761.571-per8
+               ls$residencia/casais de eiras
+
+            mad$ana francisca/id=1761-b571-ana
+
+               mrmad$custodio pereira/id=b1761.571-per9
+                  rel$sociabilidade/procurador/ana francisca/1761-b571-ana
+                  ls$residencia/casais de eiras
+
+         test$manuel gomes da costa cardoso/m/id=b1761.571-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.571-per11
+            ls$assina/sim
+
+      b$b1761.572/2/9/1761/vigario luis barreto de figueiredo castilho
+
+         n$escolastica/f/obs=diz a margem eiras/id=b1761.572-per1
+            ls$datanasc/17610826
+
+            pai$luis bernardes/id=b1761.572-per1-per2
+               ls$residencia/eiras
+
+               ppai$antonio bernardes/id=b1761.572-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$josefa cardosa/id=b1761.572-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$joana teresa/id=b1761.572-per1-per5
+
+               pmae$bernardo da costa/id=b1761.572-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$teresa maria/id=b1761.572-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$isidoro de almeida/id=b1761.572-per8
+               ls$residencia/vilela, freguesia da torre
+
+            mad$teresa franca/id=b1761.572-per9
+               ls$residencia/coimbra, terreiro do sansao
+
+         test$manuel gomes da costa cardoso/m/id=b1761.572-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.572-per11
+            ls$assina/sim
+
+      b$b1761.573/5/10/1761/vigario luis barreto de figueiredo castilho
+
+         n$tomas/m/obs=diz a margem eiras/id=b1761.573-per1
+            ls$datanasc/17610928
+
+            pai$joao de camelo mendonca/id=b1761.573-per1-per2
+               ls$residencia/eiras
+
+               ppai$feliciano camelo/id=b1761.573-per1-per3
+                  ls$naturalidade/s. vicente de guim, bispado do porto
+
+               mpai$ursula de mendonca/id=b1761.573-per1-per4
+                  ls$naturalidade/s. vicente de guim, bispado do porto
+
+            mae$mariana cardosa/id=b1761.573-per1-per5
+
+               pmae$joao pereira/id=b1761.573-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$ana cardosa/id=b1761.573-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$tomas caetano de loureiro/id=b1761.573-per8
+
+            mad$nossa senhora do rosario de eiras/id=b1761.573-per9
+
+         test$manuel gomes da costa cardoso/m/id=b1761.573-per10
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.573-per11
+            ls$assina/sim
+
+      b$b1761.574/25/10/1761/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem casais/id=b1761.574-per1
+            ls$datanasc/17611009
+
+            pai$jeronimo correia/id=b1761.574-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$manuel correia da conceicao/id=b1761.574-per1-per3
+
+               mpai$maria dos santos/id=b1761.574-per1-per4
+
+            mae$teresa maria das neves/id=b1761.574-per1-per5
+
+               pmae$manuel carvalho/id=b1761.574-per1-per6
+
+               mmae$joana das neves/id=b1761.574-per1-per7
+
+            pad$manuel fernandes da capela novo/id=b1761.574-per8
+               ls$residencia/eiras
+
+            mad$maria/id=b1761.574-per9
+
+               pmad$manuel marques carpinteiro/id=b1761.574-per10
+                  ls$residencia/eiras
+
+         test$manuel gomes da costa pacheco/m/id=b1761.574-per11
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.574-per12
+            ls$assina/sim
+
+      b$b1761.575/20/12/1761/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1761.575-per1
+            ls$datanasc/17611213
+
+            pai$antonio de sousa lopes/id=b1761.575-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio lopes/id=b1761.575-per1-per3
+                  ls$naturalidade/penamacor
+                  ls$residencia/casais de eiras
+
+               mpai$luisa rodrigues/id=b1761.575-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$barbara de jesus/id=b1761.575-per1-per5
+
+               pmae$manuel francisco/id=b1761.575-per1-per6
+                  ls$naturalidade/brasfemes
+
+               mmae$maria dos santos/id=b1761.575-per1-per7
+                  ls$naturalidade/brasfemes
+
+            pad$antonio/id=b1761.575-per8
+
+               ppad$pascoal luis/id=b1761.575-per9
+                  ls$titulo/doutor
+                  ls$residencia/coimbra
+
+            mad$maria/id=b1761.575-per10
+
+               pmad$joaquim marques moco/id=b1761.575-per11
+
+         test$manuel gomes da costa pacheco/m/id=b1761.575-per12
+            ls$assina/sim
+
+         test$fabiao camelo/m/id=b1761.575-per13
+            ls$assina/sim
+
+      b$b1762.576/17/1/1762/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1762.576-per1
+            ls$datanasc/17620109
+
+            pai$antonio marques valenca/id=b1762.576-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel marques valenca/id=b1762.576-per1-per3
+                  ls$residencia/eiras
+
+               mpai$maria valenca/id=b1762.576-per1-per4
+
+            mae$bernarda monteira de almeida/id=b1762.576-per1-per5
+
+               pmae$manuel gomes de almeida/id=b1762.576-per1-per6
+                  ls$residencia/casais de eiras
+
+               mmae$marta monteira/id=b1762.576-per1-per7
+
+            pad$francisco dos reis e sousa/id=b1762.576-per8
+               ls$residencia/quinta do vale da figueira, junto a coimbra
+
+            mad$bernarda/id=b1762.576-per9
+
+               pmad$francisco marques carpinteiro/id=b1762.576-per10
+                  ls$residencia/eiras
+
+         test$jose abreu grilo/m/id=b1762.576-per11
+            ls$assina/sim
+
+         test$bento da cunha/m/id=b1762.576-per12
+            ls$assina/sim
+
+      b$b1762.577/10/2/1762/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem casais/id=b1762.577-per1
+            ls$datanasc/17620204
+
+            pai$manuel de santiago/id=b1762.577-per1-per2
+               ls$residencia/eiras
+
+               ppai$bento da cunha inacio/id=b1762.577-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria josefa/id=b1762.577-per1-per4
+                  ls$naturalidade/lordemao, freguesia de s. paulo de frades
+
+            mae$margarida da cunha/id=b1762.577-per1-per5
+
+               pmae$joao de sousa soares/id=b1762.577-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria da cunha/id=b1762.577-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$manuel gomes da costa/id=b1762.577-per8
+               ls$residencia/eiras
+
+            mad$luisa maria da veiga/id=b1762.577-per9
+               ls$ec/v
+               ls$residencia/ponte de agua de maias
+
+         test$manuel marques de carvalho/m/id=b1762.577-per10
+            ls$assina/sim
+
+         test$joao da silva/m/id=b1762.577-per11
+            ls$assina/sim
+
+      b$b1762.578/11/2/1762/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1762.578-per1
+            ls$datanasc/17620211
+
+            pai$manuel rodrigues rato/id=b1762.578-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$manuel rodrigues rato/id=b1762.578-per1-per3
+                  ls$residencia/casais de eiras
+
+               mpai$sebastiana rodrigues/id=b1762.578-per1-per4
+                  ls$naturalidade/cerquedo, freguesia de carvalho
+
+            mae$madalena da silva/id=b1762.578-per1-per5
+
+               pmae$manuel rodrigues cernelha/id=b1762.578-per1-per6
+                  ls$naturalidade/sernelha, freguesia de lorvao
+
+               mmae$maria da silva/id=b1762.578-per1-per7
+                  ls$naturalidade/palma, freguesia de sazes
+
+            pad$joao de abreu grilo/id=b1762.578-per8
+               ls$residencia/vilarinho
+
+            mad$josefa joaquina/id=b1762.578-per9
+
+               mmad$josefa maria/id=b1762.578-per10
+                  ls$residencia/casais de eiras
+
+         test$manuel marques de carvalho/m/id=b1762.578-per11
+            ls$assina/sim
+
+      b$b1762.579/24/2/1762/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais/id=b1762.579-per1
+            ls$datanasc/17620215
+
+            pai$antonio de almeida/id=b1762.579-per1-per2
+
+               ppai$manuel carvalho/id=b1762.579-per1-per3
+                  ls$residencia/casais de eiras
+
+               mpai$luisa de almeida/id=b1762.579-per1-per4
+
+            mae$maria marques moca/id=b1762.579-per1-per5
+
+               pmae$joao marques moco/id=b1762.579-per1-per6
+                  ls$naturalidade/cacemes
+
+               mmae$maria da assuncao/id=b1762.579-per1-per7
+                  ls$naturalidade/cordinha
+
+            pad$joao ferreira pessoa/id=b1762.579-per8
+
+            mad$maria/id=b1762.579-per9
+
+               mmad$maria de sousa/id=b1762.579-per10
+                  ls$residencia/eiras
+
+         test$manuel marques de carvalho/m/id=b1762.579-per11
+            ls$assina/sim
+
+         test$manuel joao/m/id=b1762.579-per12
+            ls$assina/sim
+
+      b$b1762.580/6/4/1762/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais/id=b1762.580-per1
+            ls$datanasc/17620325
+
+            pai$joao pereira sibrana/id=b1762.580-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$manuel pereira sibrana/id=b1762.580-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$bernarda do espirito santo/id=b1762.580-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$teresa joaquina/id=b1762.580-per1-per5
+
+               pmae$bento cardoso/id=b1762.580-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$josefa marques/id=b1762.580-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$? antunes/id=b1762.580-per8
+               ls$residencia/coimbra, quinta das lagrimas
+
+            mad$maria caetana/id=b1762.580-per9
+
+               mrmad$antonio da silva/id=b1762.580-per10
+                  ls$residencia/coimbra, quinta das lagrimas
+
+         test$manuel marques de carvalho/m/id=b1762.580-per11
+            ls$assina/sim
+
+         test$manuel joao/m/id=b1762.580-per12
+            ls$assina/sim
+
+      b$b1762.581/17/4/1762/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1762.581-per1
+            ls$datanasc/17620411
+
+            pai$manuel marques de carvalho/id=b1762.581-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel marques luzeiro/id=b1762.581-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$josefa da murta/id=b1762.581-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$antonia maria/id=b1762.581-per1-per5
+
+               pmae$antonio gomes leao/id=b1762.581-per1-per6
+                  ls$residencia/eiras
+
+               mmae$maria dos santos/id=b1762.581-per1-per7
+
+            pad$antonio de campos branco/id=b1762.581-per8
+               ls$titulo/meio conego da se de coimbra
+
+            mad$nossa senhora do rosario de eiras/id=b1762.581-per9
+
+         test$manuel joao/m/id=b1762.581-per10
+            ls$assina/sim
+
+         test$manuel fernandes/m/id=b1762.581-per11
+            ls$assina/cruz
+
+      b$b1762.582/25/4/1762/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem casais/id=b1762.582-per1
+            ls$datanasc/17620418
+
+            pai$manuel da cunha velho/id=b1762.582-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio francisco velho/id=b1762.582-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$luisa da cunha/id=b1762.582-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$joaquina maria/id=b1762.582-per1-per5
+
+               pmae$antonio lopes/id=b1762.582-per1-per6
+                  ls$naturalidade/penamacor
+                  ls$residencia/casais de eiras
+
+               mmae$luisa rodrigues/id=b1762.582-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$manuel fernandes/id=b1762.582-per8
+               ls$residencia/escravote
+
+            mad$rosa maria/id=b1762.582-per9
+
+               mrmad$luis lopes/id=b1762.582-per10
+                  ls$residencia/vilarinho
+
+         test$bernardo de carvalho/m/id=b1762.582-per11
+            ls$assina/sim
+
+         test$jose rodrigues/m/id=b1762.582-per12
+            ls$assina/sim
+
+      b$b1762.583/2/5/1762/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1762.583-per1
+            ls$datanasc/17620425
+
+            pai$antonio nunes/id=b1762.583-per1-per2
+               ls$profissao/moleiro
+               ls$residencia/eiras, azenhas das religiosas de celas
+               ls$naturalidade/vila nova de ancos
+
+               ppai$jose nunes/id=b1762.583-per1-per3
+                  ls$naturalidade/vila nova de ancos
+
+               mpai$maria goncalves/id=b1762.583-per1-per4
+                  ls$naturalidade/vila nova de ancos
+
+            mae$antonia joao/id=b1762.583-per1-per5
+               ls$naturalidade/redinha
+
+               pmae$joao rodrigues penedo/id=b1762.583-per1-per6
+                  ls$naturalidade/soure
+                  ls$residencia/soure
+
+               mmae$maria joao/id=b1762.583-per1-per7
+                  ls$naturalidade/soure
+
+            pad$manuel da cunha/id=b1762.583-per8
+               ls$residencia/fornos
+               ls$profissao/ferrador
+
+            mad$sebastina francisca/id=b1762.583-per9
+
+               mrmad$jose antonio/id=b1762.583-per10
+                  ls$profissao/moleiro
+                  ls$residencia/vilarinho
+
+         test$bernardo de carvalho/m/id=b1762.583-per11
+            ls$assina/sim
+
+         test$jose fernandes/m/id=b1762.583-per12
+            ls$assina/sim
+
+      b$b1762.584/31/5/1762/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1762.584-per1
+            ls$datanasc/17620524
+
+            pai$antonio pereira da serra/id=b1762.584-per1-per2
+               ls$residencia/eiras
+
+               ppai$jose rodrigues de oliveira/id=b1762.584-per1-per3
+                  ls$naturalidade/agrelo, freguesia de s. joao de pereira do lorvao
+
+               mpai$josefa pereira/id=b1762.584-per1-per4
+                  ls$naturalidade/agrelo
+
+            mae$marta cardosa de jesus/id=b1762.584-per1-per5
+
+               pmae$antonio da cunha leite/id=b1762.584-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$luisa cardosa/id=b1762.584-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$santo antonio/id=b1762.584-per8
+
+            mad$maria de jesus/id=b1762.584-per9
+
+               pmad$manuel fernandes/id=b1762.584-per10
+                  ls$residencia/val de linhares, freguesia da se de coimbra
+
+         test$domingos francisco/m/id=b1762.584-per11
+            ls$assina/sim
+
+         test$manuel marques/m/id=b1762.584-per12
+            ls$assina/sim/obs=mal
+
+      b$b1762.585/15/6/1762/vigario luis barreto de figueiredo castilho
+
+         n$angela/f/obs=diz a margem escravote/id=b1762.585-per1
+            ls$datanasc/17620524
+
+            pai$antonio fernandes/id=b1762.585-per1-per2
+               ls$residencia/escravote
+               ls$naturalidade/s. paulo de frades
+
+               ppai$francisco fernandes/id=b1762.585-per1-per3
+                  ls$naturalidade/s. paulo de frades
+
+               mpai$joana fernandes/id=b1762.585-per1-per4
+                  ls$naturalidade/s. paulo de frades
+
+            mae$benta pereira/id=b1762.585-per1-per5
+               ls$naturalidade/s. paulo de frades
+
+               pmae$manuel pereira jacob/id=b1762.585-per1-per6
+                  ls$naturalidade/rocha nova, freguesia de s. paulo de frades
+
+               mmae$marina rodrigues/id=b1762.585-per1-per7
+                  ls$naturalidade/rodcha nova, s. paulo de frades
+
+            pad$luis barreto de figueiredo castilho/id=b1762.585-per8
+               ls$cargo/vigario de eiras
+
+            mad$angela maria de macedo/id=b1762.585-per9
+               ls$residencia/escravote
+
+         test$antonio lopes da silva/m/id=b1762.585-per10
+            ls$assina/cruz
+
+         test$joaquim marques/m/id=b1762.585-per11
+            ls$assina/cruz
+
+      b$b1762.586/6/6/1762/vigario luis barreto de figueiredo castilho
+
+         n$rosa/f/obs=diz a margem eiras/id=b1762.586-per1
+            ls$datanasc/17620529
+
+            pai$antonio lopes das silva/id=b1762.586-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel joao/id=b1762.586-per1-per3
+                  ls$naturalidade/murtal
+
+               mpai$ana da silva/id=b1762.586-per1-per4
+                  ls$naturalidade/murtal
+
+            mae$arcangela maria/id=b1762.586-per1-per5
+
+               pmae$manuel fernandes da capela/id=b1762.586-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$josefa maria/id=b1762.586-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$joao camelo/id=b1762.586-per8
+               ls$residencia/eiras
+
+            mad$rosa maria de oliveira/id=b1762.586-per9
+
+               mrmad$antonio de sousa/id=b1762.586-per10
+                  ls$residencia/casais de eiras
+
+         test$jose de campos/m/id=b1762.586-per11
+            ls$assina/sim
+
+         test$manuel marques de carvalho/m/id=b1762.586-per12
+            ls$assina/sim
+
+         test$jose marques da cunha/m/id=b1762.586-per13
+            ls$assina/sim
+
+      b$b1762.587/13/6/1762/vigario luis barreto de figueiredo castilho
+
+         n$rosaria/f/obs=diz a margem eiras/id=b1762.587-per1
+            ls$datanasc/17620605
+
+            pai$manuel de matos/id=b1762.587-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao de matos/id=b1762.587-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria francisca/id=b1762.587-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$luisa das cunha/id=b1762.587-per1-per5
+
+               pmae$bento da cunha gaio/id=b1762.587-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria do espirito santo/id=b1762.587-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$francisco de campos/id=b1762.587-per8
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras/id=b1762.587-per9
+
+         test$manuel marques/m/id=b1762.587-per10
+            ls$assina/sim
+
+         test$jose marques da cunha/m/id=b1762.587-per11
+            ls$assina/sim
+
+      b$b1762.588/16/9/1762/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1762.588-per1
+            ls$datanasc/17620916
+
+            pai$manuel jose bernardes/id=b1762.588-per1-per2
+
+               ppai$joao francisco do rego/id=b1762.588-per1-per3
+
+               mpai$margarida gomes bernardes/id=b1762.588-per1-per4
+
+            mae$joana teresa da sneves/id=b1762.588-per1-per5
+
+               pmae$antonio rodrigues pereira/id=b1762.588-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$mari ada sneves/id=b1762.588-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de campos branco/id=b1762.588-per8
+               ls$titulo/meio conego da se de coimbra
+
+            mad$nossa senhora do rosario de eiras/id=b1762.588-per9
+
+         test$manuel rodrigues moco/m/id=b1762.588-per10
+            ls$assina/sim/obs=mal
+
+         test$jose marques da cunha/id=b1762.588-per11
+            ls$assina/sim
+
+      b$b1762.589/16/8/1762/vigario luis barreto de figueiredo castilho e o vigario de brasfemes joaquim vimieiro lopes
+
+         n$joaquim/m/obs=diz a margem casais/id=b1762.589-per1
+
+            pai$sebastiao de aguiar/id=b1762.589-per1-per2
+               ls$naturalidade/lorvao
+               ls$residencia/lorvao
+
+               ppai$sebatiao fernandes/id=b1762.589-per1-per3
+                  ls$naturalidade/lorvao
+
+               mpai$maria marques/id=b1762.589-per1-per4
+                  ls$naturalidade/lorvao
+
+            mae$ana angelica de brito/id=b1762.589-per1-per5
+               ls$naturalidade/casais de eiraa
+
+               pmae$manuel dos reis/id=b1762.589-per1-per6
+                  ls$residencia/casais de eiras
+
+               mmae$isabel brandao/id=b1762.589-per1-per7
+
+            pad$joaquim vimieiro lopes/id=b1762.589-per8
+
+            mad$maria de serpa castel branco/id=1762-b589-maria
+
+               mrmad$joaquim antonio de lemos e brito/id=b1762.589-per9
+                  ls$residencia/s. joao de areias
+
+            referido$bento fonseca correia/id=b1762.589-per10
+               ls$titulo/reverendo doutor
+               rel$sociabilidade/procurador/maria de serpa castel branco/1762-b589-maria
+
+         test$manuel rodrigues mosso/m/id=b1762.589-per11
+            ls$assina/sim
+
+         test$jose marques da cunha/m/id=b1762.589-per12
+            ls$assina/sim
+
+      b$b1762.590/24/8/1762/vigario luis barreto de figueiredo castilho/obs=assento fora da ordem junto com os de 1765
+
+         n$joaquim/m/obs=diz a margem eiras/id=b1762.590-per1
+            ls$datanasc/17620816
+
+            pai$luis marques de matos/id=b1762.590-per1-per2
+               ls$residencia/eiras
+
+               ppai$salvador marques/id=b1762.590-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$mariana rodrigues/id=b1762.590-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$luis lopes/id=b1762.590-per1-per5
+
+               pmae$joao francisco de oliveira/id=b1762.590-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria lopes da paula/id=b1762.590-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jose alvares/id=b1762.590-per8
+               ls$titulo/padre cura
+
+            mad$teresa/id=1762-b590-teresa
+
+               pmad$joao camelo/id=b1762.590-per9
+
+            referido$jeronimo fenandes prata/id=b1762.590-per10
+               ls$titulo/padre
+               rel$sociabilidade/procurador/teresa/1762-b590-teresa
+
+         test$luis marques de matos/m/id=b1762.590-per11
+            ls$assina/sim
+
+         test$jose marques/m/id=b1762.590-per12
+            ls$assina/sim
+
+      b$b1762.591/21/11/1762/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais/id=b1762.591-per1
+            ls$datanasc/17621112
+
+            pai$bento marques nunes/id=b1762.591-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$joao nunes/id=b1762.591-per1-per3
+                  ls$naturalidade/miranda do corvo
+                  ls$residencia/casais de eiras
+
+               mpai$josefa maria/id=b1762.591-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$esperanca maria/id=b1762.591-per1-per5
+
+               pmae$joao francisco do rego/id=b1762.591-per1-per6
+                  ls$naturalidade/tamengos
+
+               mmae$margarida gomes bernardes/id=b1762.591-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$luis da silva/id=b1762.591-per8
+               ls$residencia/coimbra
+
+            mad$rosa/id=b1762.591-per9
+               ls$ec/s
+
+               pmad$joao francisco do rego/id=b1762.591-per10
+
+         test$jose marques da cunha/m/id=b1762.591-per11
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1762.591-per12
+            ls$assina/sim
+
+      b$b1762.592/24/11/1762/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1762.592-per1
+            ls$datanasc/17621116
+
+            pai$francisco da cunha pedrais/id=b1762.592-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao de pedrais/id=b1762.592-per1-per3
+                  ls$naturalidade/couto do mosteiro
+
+               mpai$maria pedrais/id=b1762.592-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$luisa maria fernandes/id=b1762.592-per1-per5
+
+               pmae$joao francisco barriga/id=b1762.592-per1-per6
+                  ls$naturalidade/palmazes
+
+               mmae$maria fernandes/id=b1762.592-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel da estrela/id=b1762.592-per8
+               ls$titulo/frei
+               ls$titulo/religioso da ordem terceira de s. pedro
+
+            mad$nossa senhora do rosario de eiras/id=b1762.592-per9
+
+         test$antonio jose da cunha/m/id=b1762.592-per10
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1762.592-per11
+            ls$assina/sim
+
+      b$b1762.593/5/12/1762/vigario luis barreto de figueiredo castilho
+
+         n$bernarda/f/obs=diz a margem eiras/id=b1762.593-per1
+            ls$datanasc/17621125
+
+            pai$joaquim marques moco/id=b1762.593-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao marques moco/id=b1762.593-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$luisa da cunha/id=b1762.593-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$josefa pereira/id=b1762.593-per1-per5
+
+               pmae$jeronimo de sousa/id=b1762.593-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$isabel pereira/id=b1762.593-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio jose/id=1762-b593-antonio
+               ls$residencia/celas
+
+            mad$bernarda/id=b1762.593-per8
+
+               pmad$antonio jose/mesmo_que=1762-b593-antonio/id=b1762.593-per9
+
+         test$antonijose marques da cunha/m/id=b1762.593-per10
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1762.593-per11
+            ls$assina/sim
+
+      b$b1762.594/24/12/1762/vigario luis barreto de figueiredo castilho
+
+         n$bernardo/m/obs=diz a margem casais/id=b1762.594-per1
+            ls$datanasc/17621216
+
+            pai$joao pereira lopes/id=b1762.594-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio pereira lopes/id=b1762.594-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$isabel dos santos/id=b1762.594-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$maria da silva/id=b1762.594-per1-per5
+
+               pmae$manuel da silva ferreiro/id=b1762.594-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$mariana da silva/id=b1762.594-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$bernardo/id=b1762.594-per8
+               ls$ec/s
+
+               ppad$filipe luis da costa/id=b1762.594-per9
+                  ls$residencia/casais de eiras
+
+            mad$ana/id=b1762.594-per10
+
+               pmad$antonio pereira lopes/id=b1762.594-per11
+                  ls$residencia/casais de eiras
+
+         test$jose marques da cunha/m/id=b1762.594-per12
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1762.594-per13
+            ls$assina/sim
+
+      b$b1762.595/30/12/1762/vigario luis barreto de figueiredo castilho/obs=assento fora de ordem junto aos de 1765
+
+         n$luis/m/obs=diz a margem casais/id=b1762.595-per1
+            ls$datanasc/17621220
+
+            pai$antonio de sousa e cunha/id=b1762.595-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$joao de sousa soares/id=b1762.595-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$maria da cunha/id=b1762.595-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$rosa maria/id=b1762.595-per1-per5
+
+               pmae$manuel da silva/id=b1762.595-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$mariana de oliveira/id=b1762.595-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$luis barreto de figueiredo castilho/id=b1762.595-per8
+               ls$cargo/vigario de eiras
+
+            mad$maria angelica/id=b1762.595-per9
+
+               pmad$jose antonio conceicao/id=b1762.595-per10
+                  ls$cargo/capitao
+                  ls$residencia/eiras
+
+         test$jose rodrigues moreira/m/id=b1762.595-per11
+            ls$assina/sim
+
+         test$bento da costa/m/id=b1762.595-per12
+            ls$assina/sim
+
+      b$b1763.596/20/1/1763/vigario luis barreto de figueiredo castilho
+
+         n$francisco/m/obs=diz a margem casais/id=b1763.596-per1
+            ls$datanasc/17630110
+
+            pai$jose da cunha/id=b1763.596-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio rodrigues giao/id=b1763.596-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$escolastica da cunha/id=b1763.596-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$luisa teresa/id=b1763.596-per1-per5
+
+               pmae$joao de sousa soares/id=b1763.596-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria da cunha/id=b1763.596-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$francisco gomes da costa/id=b1763.596-per8
+               ls$residencia/eiras
+
+            mad$maria da trindade/id=b1763.596-per9
+
+               mrmad$antonio fernandes/id=b1763.596-per10
+                  ls$residencia/mainca
+
+         test$jose marques da cunha/m/id=b1763.596-per11
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1763.596-per12
+            ls$assina/sim
+
+      b$b1763.597/13/2/1763/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem eiras/id=b1763.597-per1
+            ls$datanasc/17630206
+
+            pai$cristivao pereira cardoso/id=b1763.597-per1-per2
+               ls$residencia/eiras
+
+               ppai$urbano jose pereira cardoso/id=b1763.597-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$inacia maria/id=b1763.597-per1-per4
+                  ls$naturalidade/ademia
+
+            mae$josefa marques/id=b1763.597-per1-per5
+
+               pmae$salvador marques/id=b1763.597-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$mariana marques/id=b1763.597-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$francisco de campos branco/id=b1763.597-per8
+               ls$residencia/eiras
+
+            mad$teresa/id=b1763.597-per9
+
+               pmad$joao camelo/id=b1763.597-per10
+                  ls$residencia/eiras
+
+         test$antonio jose/m/id=b1763.597-per11
+            ls$assina/sim/obs=mal
+
+      b$b1763.598/6/3/1763/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem casais/id=b1763.598-per1
+            ls$datanasc/17630224
+
+            pai$jose rodrigues pereira/id=b1763.598-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$manuel rodrigues giao/id=b1763.598-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$escolastica pereira/id=b1763.598-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$maria da cunha/id=b1763.598-per1-per5
+
+               pmae$antonio francisco velho/id=b1763.598-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$luisa da cunha/id=b1763.598-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$manuel fernandes/id=b1763.598-per8
+               ls$residencia/escravote
+
+            mad$teresa/id=b1763.598-per9
+
+               pmad$joao camelo/id=b1763.598-per10
+                  ls$residencia/eiras
+
+         test$manuel marques moco/m/id=b1763.598-per11
+            ls$assina/sim
+
+         test$manuel bernardes/m/id=b1763.598-per12
+            ls$assina/sim
+
+      b$b1763.599/26/2/1763/vigario luis barreto de figueiredo castilho
+
+         n$felicia/m/obs=diz a margem casais/id=b1763.599-per1
+            ls$datanasc/17630216
+
+            pai$manuel marques cesar/id=b1763.599-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio marques cesar/id=b1763.599-per1-per3
+                  ls$residencia/casais de eiras
+
+               mpai$luisa da silva/id=b1763.599-per1-per4
+
+            mae$helena maria/id=b1763.599-per1-per5
+
+               pmae$joao francisco do rego/id=b1763.599-per1-per6
+                  ls$residencia/eiras
+
+               mmae$margarida gomes bernardes/id=b1763.599-per1-per7
+
+            pad$jose de jesus/id=b1763.599-per8
+               ls$residencia/coimbra
+
+            mad$rosa/id=b1763.599-per9
+               ls$titulo/dona
+
+               mmad$antonia/id=b1763.599-per10
+                  ls$titulo/dona
+                  ls$residencia/coimbra
+
+         test$manuel rodrigues moco/m/id=b1763.599-per11
+            ls$assina/sim
+
+         test$antonio jose/m/id=b1763.599-per12
+            ls$assina/sim
+
+      b$b1763.600/27/3/1763/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras/id=b1763.600-per1
+            ls$datanasc/17630320
+
+            pai$jeronimo marques luzeiro/id=b1763.600-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel marques luzeiro/id=b1763.600-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$josefa da murta/id=b1763.600-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$rosa de abreu grilo/id=b1763.600-per1-per5
+
+               pmae$jose de abreu grilo/id=b1763.600-per1-per6
+                  ls$naturalidade/vilarinho
+
+               mmae$antonia maria/id=b1763.600-per1-per7
+                  ls$naturalidade/vilarinho
+
+            pad$manuel marques/id=b1763.600-per8
+               ls$residencia/brasfemes
+
+            mad$maria/id=b1763.600-per9
+               ls$residencia/coimbra, rua do quebra costas
+
+         test$manuel rodrigues moco/m/id=b1763.600-per10
+            ls$assina/sim
+
+         test$antonio jose/m/id=b1763.600-per11
+            ls$assina/sim
+
+      b$b1763.601/5/4/1763/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1763.601-per1
+            ls$datanasc/17630327
+
+            pai$antonio cardoso natalio/id=b1763.601-per1-per2
+
+               ppai$manuel cardoso natalio/id=b1763.601-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria cardosa/id=b1763.601-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$maria da encarnacao/id=b1763.601-per1-per5
+
+               pmae$manuel da cunha pedrais/id=b1763.601-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria simoes pequena/id=b1763.601-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio de campos branco/xmesmo_que=con-acb/id=b1763.601-per8
+               ls$cargo/meio conego da se de coimbra
+
+            mad$joana/id=b1763.601-per9
+
+               pmad$luis barreto/id=b1763.601-per10
+                  ls$residencia/coimbra, montarroio
+
+         test$manuel marques/m/id=b1763.601-per11
+            ls$assina/sim/obs=mal
+
+         test$manuel rodrigues moco/m/id=b1763.601-per12
+            ls$assina/sim
+
+      b$b1763.602/5/4/1763/vigario luis barreto de figueiredo castilho
+
+         n$mariana/f/obs=diz a margem casais/id=b1763.602-per1
+            ls$datanasc/17630325
+
+            pai$alberto rodrigues pereira/id=b1763.602-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$manuel rodrigues mamede/id=b1763.602-per1-per3
+                  ls$naturalidade/casais de eiras
+
+               mpai$maria pereira/id=b1763.602-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$escolastica maria/id=b1763.602-per1-per5
+
+               pmae$joao marcos dias/id=b1763.602-per1-per6
+                  ls$residencia/segonheira
+
+               mmae$luisa francisca/id=b1763.602-per1-per7
+
+            pad$manuel da rocha pereira/id=b1763.602-per8
+               ls$residencia/coimbra
+               ls$profissao/mercador
+
+            mad$?/id=b1763.602-per9
+
+               pmad$joao da rocha pereira/id=b1763.602-per10
+                  ls$residencia/coimbra
+                  ls$profissao/mercador
+
+         test$manuel marques/m/id=b1763.602-per11
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1763.602-per12
+            ls$assina/sim
+
+      b$b1763.603/12/4/1763/vigario luis barreto de figueiredo castilho
+
+         n$mariana/f/obs=diz a margem eiras/id=b1763.603-per1
+            ls$datanasc/17630404
+
+            pai$jose bernardes/id=b1763.603-per1-per2
+               ls$residencia/eiras
+
+               ppai$paulo bernardes/id=b1763.603-per1-per3
+                  ls$naturalidade/telhado, freguesia de figueira de lorvao
+
+               mpai$bernarda rodrigues/id=b1763.603-per1-per4
+                  ls$naturalidade/granja de espinho, freguesia de figueira de lorvao
+
+            mae$maria josefa bernardes/id=b1763.603-per1-per5
+
+               pmae$antonio bernardes/id=b1763.603-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$josefa cardosa/id=b1763.603-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel de brito/id=b1763.603-per8
+
+               ppad$luis marques/id=b1763.603-per9
+                  ls$residencia/eiras
+
+            mad$mariana/id=b1763.603-per10
+
+               pmad$joao de campos branco/xmesmo_que=cap-jcb/id=b1763.603-per11
+                  ls$cargo/capitao
+                  ls$residencia/eiras
+
+         test$manuelmarques/m/id=b1763.603-per12
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1763.603-per13
+            ls$assina/sim
+
+      b$b1763.604/17/4/1763/vigario luis barreto de figueiredo castilho
+
+         n$joao/m/obs=diz a margem quinta da ribeira/id=b1763.604-per1
+            ls$datanasc/1763
+
+            pai$estevao ferreira/id=b1763.604-per1-per2
+               ls$naturalidade/alvarim, bispado de viseu
+               ls$residencia/eiras, quinta da ribeira/obs=diz que a quinta e do medico da vila
+
+               ppai$manuel esteves/id=b1763.604-per1-per3
+                  ls$naturalidade/alvarim, bispado de viseu
+
+               mpai$ana antunes/id=b1763.604-per1-per4
+                  ls$naturalidade/alvarim, bispado de viseu
+
+            mae$maria josefa/id=b1763.604-per1-per5
+               ls$naturalidade/alvarim, bispado de viseu
+
+               pmae$joao de moura/id=b1763.604-per1-per6
+                  ls$naturalidade/alvarim, bispado de viseu
+
+               mmae$josefa goncalves/id=b1763.604-per1-per7
+
+            pad$joao/id=b1763.604-per8
+
+               ppad$manuel alvares da cruz/xmesmo_que=dr-mac/id=b1763.604-per9
+                  ls$titulo/doutor
+                  ls$profissao/medico em eiras
+
+            mad$josefa/id=b1763.604-per10
+
+               pmad$manuel da cunha/id=b1763.604-per11
+                  ls$residencia/fornos
+                  ls$profissao/ferrador
+
+         test$bento da costa/m/id=b1763.604-per12
+            ls$assina/sim
+
+         test$jose rodrigues/m/id=b1763.604-per13
+            ls$assina/cruz
+
+      b$b1763.605/24/4/1763/vigario luis barreto de figueiredo castilho
+
+         n$luis/m/obs=diz a margem casais/id=b1763.605-per1
+            ls$datanasc/17630406
+
+            pai$jose gaspar/id=b1763.605-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$joao gomes de quadros/id=b1763.605-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$josefa maria/id=b1763.605-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$bernarda monteira/id=b1763.605-per1-per5
+
+               pmae$joao francisco da costa/id=b1763.605-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$mariana monteira/id=b1763.605-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$luis barreto de figueiredo castilho/id=b1763.605-per8
+               ls$cargo/vigario de eiras
+
+            mad$mariana/id=b1763.605-per9
+               ls$titulo/dona
+               ls$residencia/coimbra
+
+         test$joao marques moco/m/id=b1763.605-per10
+            ls$assina/cruz
+
+         test$manuel da silva/m/id=b1763.605-per11
+            ls$assina/sim
+
+      b$b1763.606/24/5/1763/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1763.606-per1
+            ls$datanasc/17630514
+
+            pai$manuel marques de matos/id=b1763.606-per1-per2
+
+               ppai$bento marques/id=b1763.606-per1-per3
+                  ls$profissao/alfaiate
+                  ls$naturalidade/eiras
+
+               mpai$ana dos santos/id=b1763.606-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$mariana cardosa/id=b1763.606-per1-per5
+
+               pmae$jose cardoso bruxeiro/id=b1763.606-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria francisca/id=b1763.606-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel de oliveira/id=b1763.606-per8
+               ls$residencia/pedrulha
+
+            mad$barbara/id=b1763.606-per9
+
+               pmad$simao leite/id=b1763.606-per10
+                  ls$residencia/ademia de cima
+
+         test$antonio jose/m/id=b1763.606-per11
+            ls$assina/sim
+
+         test$joao marques moco/m/id=b1763.606-per12
+            ls$assina/cruz
+
+      b$b1763.607/2/6/1763/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem/id=b1763.607-per1
+            ls$datanasc/17630522
+
+            pai$jose carlos peixoto/id=b1763.607-per1-per2
+               ls$residencia/eiras
+
+               ppai$manuel fernandes valente/id=b1763.607-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$isabel teresa/id=b1763.607-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$maria do rosario matos/id=b1763.607-per1-per5
+
+               pmae$joao de matos/id=b1763.607-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$luisa cardosa/obs=primeira mulher de joao de matos/id=b1763.607-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel jose/id=b1763.607-per8
+               ls$residencia/celas
+
+            mad$rosa maria grila/id=b1763.607-per9
+               ls$residencia/eiras
+
+         test$antonio jose/m/id=b1763.607-per10
+            ls$assina/sim
+
+         test$manuel bernardes/m/id=b1763.607-per11
+            ls$assina/sim
+
+      b$b1763.608/4/6/1763/vigario luis barreto de figueiredo castilho
+
+         n$teresa/m/obs=diz a margem eiras/id=b1763.608-per1
+            ls$datanasc/17630525
+
+            pai$bernardo lopes/id=b1763.608-per1-per2
+
+               ppai$manuel joao/id=b1763.608-per1-per3
+                  ls$naturalidade/murtal
+
+               mpai$ana da silva/id=b1763.608-per1-per4
+                  ls$naturalidade/murtal
+
+            mae$rosa maria/id=b1763.608-per1-per5
+
+               pmae$luis carvalho/id=b1763.608-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$natalia maria/id=b1763.608-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$jose pessoa/id=b1763.608-per8
+               ls$naturalidade/lordemao
+               ls$residencia/coimbra
+               ls$titulo/benficiado
+
+         test$antonio jose/m/id=b1763.608-per9
+            ls$assina/sim
+
+         test$manuel bernardes/m/id=b1763.608-per10
+            ls$assina/sim
+
+      b$b1763.609/15/7/1763/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras/id=b1763.609-per1
+            ls$datanasc/17630709
+
+            pai$bernardo jose/id=b1763.609-per1-per2
+
+               ppai$antonio da cunha leite/id=b1763.609-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$luisa cardosa/id=b1763.609-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$mariana cardosa/id=b1763.609-per1-per5
+
+               pmae$joao francisco de bastos/id=b1763.609-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$isabel cardosa/id=b1763.609-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$antonio matias/id=1763-b606-antonio
+               ls$residencia/eiras
+
+            mad$?/id=b1763.609-per8
+
+               mrmad$antonio matias/mesmo_que=1763-b606-antonio/id=b1763.609-per9
+
+         test$manuel bernardes/m/id=b1763.609-per10
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1763.609-per11
+            ls$assina/cruz
+
+      b$b1763.610/15/8/1763/vigario luis barreto de figueiredo castilho
+
+         n$antonia/f/obs=diz a margem eiras/id=b1763.610-per1
+            ls$datanasc/17630809
+
+            pai$antonio bernardes novo/id=b1763.610-per1-per2
+               ls$residencia/eiras
+
+               ppai$antonio bernardes/id=b1763.610-per1-per3
+
+               mpai$josefa cardosa/id=b1763.610-per1-per4
+
+            mae$teresa de jesus/id=b1763.610-per1-per5
+
+               pmae$jose rodrigues ruivo/id=b1763.610-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$joana maria/id=b1763.610-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$fabiao/id=b1763.610-per8
+               ls$titulo/padre
+
+            mad$joaquina/id=b1763.610-per9
+               ls$ec/s
+
+               pmad$luis seco ferreira/id=b1763.610-per10
+                  ls$residencia/coimbra
+
+         test$manuel bernardes/m/id=b1763.610-per11
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1763.610-per12
+            ls$assina/cruz
+
+      b$b1763.611/16/10/1763/vigario luis barreto de figueiredo castilho
+
+         n$bernarda/f/obs=diz a margem azenhas/id=b1763.611-per1
+            ls$datanasc/17631010
+
+            pai$joao ferreira/id=b1763.611-per1-per2
+               ls$profissao/moleiro
+
+               ppai$constantino ferreira/id=b1763.611-per1-per3
+
+               mpai$maria da silva/obs=primeira mulher de constantino ferreira/id=b1763.611-per1-per4
+
+            mae$teresa rosa/id=b1763.611-per1-per5
+
+               pmae$luis lopes/id=b1763.611-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$rosa teresa/id=b1763.611-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$jose antonio/id=b1763.611-per8
+               ls$residencia/casais de eiras
+
+            mad$bernarda/id=b1763.611-per9
+               ls$residncia/casais de eiras
+
+         test$manuel bernardes/m/id=b1763.611-per10
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1763.611-per11
+            ls$assina/cruz
+
+      b$b1763.612/27/9/1763/vigario luis barreto de figueiredo castilho e frei paulo de santo antonio dos olivais
+
+         n$antonio/m/obs=diz a margem eiras/id=b1763.612-per1
+            ls$datanasc/17630920
+
+            pai$manuel pereira/id=b1763.612-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao pereira/id=b1763.612-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria cardosa/id=b1763.612-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$maria da assuncao/id=b1763.612-per1-per5
+
+               pmae$manuel da rocha/id=b1763.612-per1-per6
+                  ls$naturalidade/serquedo, freguesia de carvalho
+
+               mmae$maria da assuncao/id=b1763.612-per1-per7
+                  ls$naturalidade/serquedo, freguesia de carvalho
+
+            pad$antonio camelo/id=b1763.612-per8
+
+               ppad$joao camelo/id=1763-b612-joao
+
+            mad$teresa/id=b1763.612-per9
+
+               pmad$ joao camelo/mesmo_que=1763-b612-joao/id=b1763.612-per10
+
+         test$manuel bernardes/m/id=b1763.612-per11
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1763.612-per12
+            ls$assina/cruz
+
+      b$b1763.613/13/11/1763/vigario luis barreto de figueiredo castilho
+
+         n$luis/m/obs=diz a margem casais/id=b1763.613-per1
+            ls$datanasc/17631105
+
+            pai$vitorio rodrigues da costa/id=b1763.613-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$bernardo rodrigues bartolo/id=b1763.613-per1-per3
+
+               mpai$maria da cunha/id=b1763.613-per1-per4
+
+            mae$joaquina cardosa/id=b1763.613-per1-per5
+
+               pmae$bento cardoso/id=b1763.613-per1-per6
+
+               mmae$josefa carvalha/id=b1763.613-per1-per7
+
+            pad$antonio jose/id=b1763.613-per8
+
+            mad$maria/id=b1763.613-per9
+
+               mrmad$jose antonio/id=b1763.613-per10
+                  ls$residencia/penedos
+
+         test$jose duarte/m/id=b1763.613-per11
+            ls$assina/cruz
+
+         test$manuel marques cesar/m/id=b1763.613-per12
+            ls$assina/cruz
+
+      b$b1763.614/30/11/1763/vigario luis barreto de figueiredo castilho
+
+         n$jacinta/f/obs=diz a margem casais/id=b1763.614-per1
+            ls$datanasc/17631122
+
+            pai$valerio jose/id=b1763.614-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$antonio rodrigues pereira/id=b1763.614-per1-per3
+
+               mpai$josefa cardosa/id=b1763.614-per1-per4
+
+            mae$joana cardosa/id=b1763.614-per1-per5
+
+               pmae$bernardo cardoso/id=b1763.614-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$marta francisca/id=b1763.614-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$jeronimo fernandes prata/id=b1763.614-per8
+               ls$titulo/padre
+               ls$residencia/eiras
+
+            mad$jacinta teresa/id=b1763.614-per9
+
+               mrmad$caetano monteiro/id=b1763.614-per10
+                  ls$titulo/doutor
+                  ls$residencia/brasfemes
+
+         test$manuel marques cesar/m/id=b1763.614-per11
+            ls$assina/cruz
+
+         test$jose duarte/m/id=b1763.614-per12
+            ls$assina/cruz
+
+      b$b1764.615/23/1/1764/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras/id=b1764.615-per1
+            ls$datanasc/17640115
+
+            pai$bento marques dos reis/id=b1764.615-per1-per2
+
+               ppai$manuel marques luzeiro/id=b1764.615-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$josefa da murta/id=b1764.615-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$catarina da silva/id=b1764.615-per1-per5
+
+               pmae$manuel joao padrasto/id=b1764.615-per1-per6
+                  ls$naturalidade/murtal
+
+            pad$antonio de almeida furtado/id=b1764.615-per7
+               ls$cargo/ajudante
+               ls$residencia/eiras
+
+         test$manuel marques cesar/m/id=b1764.615-per8
+            ls$assina/cruz
+
+         test$jose duarte/m/id=b1764.615-per9
+            ls$assina/cruz
+
+      b$b1764.616/29/1/1764/vigario luis barreto de figueiredo castilho
+
+         n$manuel/m/obs=diz a margem eiras/id=b1764.616-per1
+            ls$datanasc/17640123
+
+            pai$antonio marques moco/id=b1764.616-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao marques moco/id=b1764.616-per1-per3
+
+               mpai$maria da assuncao/id=b1764.616-per1-per4
+
+            mae$rosa cardosa/id=b1764.616-per1-per5
+
+               pmae$joao francisco de bastos/id=b1764.616-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$isabel cardosa/id=b1764.616-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel marques de carvalho/id=b1764.616-per8
+               ls$cargo/ajudante
+
+            mad$nossa senhora do rosario de eiras/id=b1764.616-per9
+
+         test$manuel marques cesar/m/id=b1764.616-per10
+            ls$assina/cruz
+
+         test$jose duarte/m/id=b1764.616-per11
+            ls$assina/cruz
+
+      b$b1764.617/5/2/1764/vigario luis barreto de figueiredo castilho
+
+         n$bento/m/obs=diz a margem casais/id=b1764.617-per1
+            ls$datanasc/17640130
+
+            pai$antonio nunes/id=b1764.617-per1-per2
+               ls$naturalidade/carvalho
+               ls$residencia/casais de eiras
+
+               ppai$manuel rodrigues/id=b1764.617-per1-per3
+                  ls$naturalidade/carvalho
+
+               mpai$clara maria/id=b1764.617-per1-per4
+                  ls$naturalidade/carvalho
+
+            mae$teresa monteira/id=b1764.617-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$bento da fonseca/id=b1764.617-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$ursula monteira/id=b1764.617-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$bento jose monteiro/id=b1764.617-per8
+               ls$residencia/coimbra
+
+            mad$mariana da conceicao/id=b1764.617-per9
+
+               mrmad$jose nunes/id=b1764.617-per10
+                  ls$residencia/coimbra, rua dos sapateiros
+
+         test$antonio jose/m/id=b1764.617-per11
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1764.617-per12
+            ls$assina/cruz
+
+      b$b1764.618/12/2/1764/vigario luis barreto de figueiredo castilho
+
+         n$francisca/f/obs=diz a margem casais/id=b1764.618-per1
+            ls$datanasc/17640201
+
+            pai$jose antonio da costa/id=b1764.618-per1-per2
+               ls$residencia/casais de eiras
+               ls$naturalidade/murtede
+
+               ppai$antonio rodrigues costa/id=b1764.618-per1-per3
+                  ls$naturalidade/murtede
+
+               mpai$maria da silva/id=b1764.618-per1-per4
+                  ls$naturalidade/casais de eiras
+
+            mae$maria da costa/id=b1764.618-per1-per5
+
+               pmae$goncalo da costa/id=b1764.618-per1-per6
+                  ls$naturalidade/murtede
+
+               mmae$ana da silva/id=b1764.618-per1-per7
+                  ls$naturalidade/murtede
+
+            pad$pedro paulo/id=b1764.618-per8
+               ls$residencia/s. romao
+
+            mad$francisca maria/id=b1764.618-per9
+
+               pmad$joao da silva/id=b1764.618-per10
+                  ls$residencia/casais de eiras
+
+         test$antonio jose/m/id=b1764.618-per11
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1764.618-per12
+            ls$assina/cruz
+
+      b$b1764.619/26/2/1764/vigario luis barreto de figueiredo castilho
+
+         n$rosa/f/obs=diz a margem eiras/id=b1764.619-per1
+            ls$datanasc/17640219
+
+            pai$nuno do vale/id=b1764.619-per1-per2
+
+               ppai$incerto/id=b1764.619-per1-per3
+
+               mpai$maria gomes/id=b1764.619-per1-per4
+
+            mae$luisa jesus/id=b1764.619-per1-per5
+
+               pmae$joao francisco primor/id=b1764.619-per1-per6
+                  ls$naturalidade/oureta
+
+               mmae$margarida ribeira/id=b1764.619-per1-per7
+                  ls$naturalidade/oureta
+
+            pad$luis seco ferreira/id=b1764.619-per8
+               ls$residencia/coimbra
+
+            mad$maria violante/id=b1764.619-per9
+               ls$ec/s
+               ls$residencia/eiras
+
+         test$antonio jose/m/id=b1764.619-per10
+            ls$assina/sim
+
+         test$manuel marques cesar/m/id=b1764.619-per11
+            ls$assina/cruz
+
+      b$b1764.620/26/2/1764/vigario luis barreto de figueiredo castilho
+
+         n$rosa/f/obs=diz a margem eiras/id=b1764.620-per1
+            ls$datanasc/17640219
+
+            pai$antonio nunes/id=b1764.620-per1-per2
+               ls$profissao/moleiro
+               ls$residencia/eiras
+
+               ppai$jose nunes/id=b1764.620-per1-per3
+                  ls$naturalidade/vila nova de ancos
+                  ls$residencia/vila nova de ancos
+
+               mpai$maria goncalves/id=b1764.620-per1-per4
+                  ls$naturalidade/vila nova de ancos
+
+            mae$antonia joao/id=b1764.620-per1-per5
+
+               pmae$joao rodrigues penedo/id=b1764.620-per1-per6
+                  ls$naturalidade/soure
+                  ls$residencia/soure
+
+               mmae$maria joao/id=b1764.620-per1-per7
+                  ls$naturalidade/soure
+
+            pad$manuel rodrigues moco/id=b1764.620-per8
+
+            mad$rosa/id=b1764.620-per9
+
+               mrmad$antonio dias/id=b1764.620-per10
+                  ls$residencia/ademia
+
+         test$manuel rodrigues moco/m/id=b1764.620-per11
+            ls$assina/sim
+
+         test$jose duarte/m/id=b1764.620-per12
+            ls$assina/cruz
+
+      b$b1764.621/22/3/1764/vigario luis barreto de figueiredo castilho
+
+         n$bento/m/obs=diz a margem casais/id=b1764.621-per1
+            ls$datanasc/17640311
+
+            pai$jose duarte/id=b1764.621-per1-per2
+               ls$naturalidade/verride
+               ls$residencia/casais de eiras
+
+               ppai$antonio duarte/id=b1764.621-per1-per3
+                  ls$naturalidade/verride
+
+               mpai$maria fernandes/id=b1764.621-per1-per4
+                  ls$naturalidade/verride
+
+            mae$felizarda maria/id=b1764.621-per1-per5
+               ls$naturalidade/casais de eiras
+
+               pmae$manuel rodrigues mamede/id=b1764.621-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria pereira/id=b1764.621-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$antonio rodrigues/id=b1764.621-per8
+
+            mad$maria francisca/id=b1764.621-per9
+
+               mrmad$francisco de oliveira/id=b1764.621-per10
+                  ls$residencia/vilarinho
+
+         test$jose campos/m/id=b1764.621-per11
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1764.621-per12
+            ls$assina/sim
+
+      b$b1764.622/19/3/1764/vigario luis barreto de figueiredo castilho/obs=assento fora de ordem
+
+         n$jose/m/id=b1764.622-per1
+            ls$datanasc/17640311
+
+            pai$manuel jose bernardes/id=b1764.622-per1-per2
+               ls$residencia/eiras
+
+               ppai$joao francisco do rego/id=b1764.622-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$margarida gomes/id=b1764.622-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$joana das neves/id=b1764.622-per1-per5
+
+               pmae$antonio rodrigues pedro/id=b1764.622-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$maria das neves/id=b1764.622-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$manuel de figueiredo/id=b1764.622-per8
+               ls$residencia/murtal
+
+            mad$rosa maria margalha/id=b1764.622-per9
+
+               mrmad$manuel jorge/id=b1764.622-per10
+                  ls$residencia/fala
+
+      b$b1764.623/1/4/1764/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais/id=b1764.623-per1
+            ls$datanasc/17640321
+
+            pai$manuel simoes/id=b1764.623-per1-per2
+               ls$residencia/casais de eiras
+
+               ppai$jose simoes/id=b1764.623-per1-per3
+                  ls$naturalidade/vilar, freguesia de santo andre de poiares
+
+               mpai$mariana francisca/id=b1764.623-per1-per4
+                  ls$naturalidade/ vilar, freguesia de santo andre de poiares
+
+            mae$maria de s. jose/id=b1764.623-per1-per5
+
+               pmae$jose francisco/id=b1764.623-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria lourenca/id=b1764.623-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$antonio jose gaspar/id=b1764.623-per8
+               ls$residencia/casais de eiras
+
+            mad$francisca/id=b1764.623-per9
+
+               mrmad$jose ferreira/id=b1764.623-per10
+                  ls$residencia/vilarinho
+
+         test$jose rodrigues moreira/m/id=b1764.623-per11
+            ls$assina/sim
+
+         test$manuel rodrigues moco/m/id=b1764.623-per12
+            ls$assina/sim
+
+      b$b1764.624/18/5/1764/vigario luis barreto de figueiredo castilho
+
+         n$baptista/m/obs=diz a margem eiras/id=b1764.624-per1
+            ls$datanasc/17640509
+
+            pai$francisco jose castor/id=b1764.624-per1-per2
+               ls$residencia/eiras
+
+               ppai$jeronimo rodrigues castor/id=b1764.624-per1-per3
+                  ls$naturalidade/coimbra
+
+               mpai$joana maria da rainha santa/id=b1764.624-per1-per4
+                  ls$naturalidade/coimbra
+
+            mae$ana marques da murta/id=b1764.624-per1-per5
+
+               pmae$manuel marque luzeiro/id=b1764.624-per1-per6
+                  ls$naturalidade/eiras
+
+               mmae$josefa da murta/id=b1764.624-per1-per7
+                  ls$naturalidade/eiras
+
+            pad$baptista pereira da cunha/id=b1764.624-per8
+               ls$titulo/dom
+               ls$residencia/quinta da geria% jaria
+
+            referido$ luis barreto de figueiredo castilho/id=1764-b624-luis
+
+            mad$teresa rosa de castilho/id=b1764.624-per9
+               rel$parentesco/irma/luis barreto de figueiredo castilho/1764-b624-luis
+
+         test$manuel rodrigues moco/m/id=b1764.624-per10
+            ls$assina/sim
+
+         test$jose rodrigues moreira/m/id=b1764.624-per11
+            ls$assina/sim
+
+      b$b1764.625/7/6/1764/vigario luis barreto de figueiredo castilho
+
+         n$fabiao/m/obs=diz a margem eiras/id=b1764.625-per1
+            ls$datanasc/17640530
+
+            pai$manuel de santiago/id=b1764.625-per1-per2
+               ls$residencia/eiras
+
+               ppai$bento da cunha inacio/id=b1764.625-per1-per3
+                  ls$naturalidade/eiras
+
+               mpai$maria josefa/id=b1764.625-per1-per4
+                  ls$naturalidade/eiras
+
+            mae$margarida da cunha/id=b1764.625-per1-per5
+
+               pmae$joao de sousa soares/id=b1764.625-per1-per6
+                  ls$naturalidade/casais de eiras
+
+               mmae$maria da cunha da silveira/id=b1764.625-per1-per7
+                  ls$naturalidade/casais de eiras
+
+            pad$fabiao camelo/id=b1764.625-per8
+
+               ppad$joao de camelo/id=b1764.625-per9
+                  ls$residencia/eiras
+
+            mad$genoveva galinheira/id=b1764.625-per10
+               ls$residencia/coimbra
+
+         test$manuel rodrigues moco/m/id=b1764.625-per11
+            ls$assina/sim
+
+         test$jose rodrigues moreira/m/id=b1764.625-per12
+            ls$assina/sim
+
+      b$b1764.626/20/6/17604/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais/id=1764-b626-maria
+            ls$datanasc/17640610
+
+            pai$manuel marques cesar/id=1764-b626-maria-per1
+               ls$residencia/casais de eiras
+
+               ppai$manuel marques cesar/id=1764-b626-maria-per2
+                  ls$naturalidade/casais de eiras
+
+               mpai$luisa da silva/id=1764-b626-maria-per3
+                  ls$naturalidade/casais de eiras
+
+            mae$helena maria/id=1764-b626-maria-per4
+
+               pmae$joao francisco do rego/id=1764-b626-maria-per5
+                  ls$residencia/eiras
+
+               mmae$margarida gomes bernardes/id=1764-b626-maria-per6
+                  ls$naturalidade/eiras
+
+            pad$santo antonio/id=b1764.626-per7
+
+            mad$nossa senhora das dores/id=b1764.626-per8
+
+            referido$francisco gomes bernardes/obs=toca na crianca/id=b1764.626-per9
+               rel$parentesco/tio/maria/1764-b626-maria
+
+         test$jose rodrigues moreira/m/id=b1764.626-per10
+            ls$assina/sim
+
+         test$manuel marques moco/m/id=b1764.626-per11
+            ls$assina/sim[KleioImporter] ERROR newKleioGroup: b1759.523-per1-per6 Kleio file line: 325 [Microsoft][Controlador Microsoft Access de ODBC] A chave de pesquisa nÃÂ£o foi localizada em nenhum registo.

@@ -1,0 +1,337 @@
+kleio$gacto.str/translations=1
+   fonte$obit1714/localizacao-A.U.C./loc=igreja paroquial da lousa
+
+      obito$o1714-1/30/1/1714/fl.40v./manuel lopes serra (prior)
+
+         n$manuel quaresma/m/id=o1714-1-per1
+            ls$morada/ribeira
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-2/5/2/1714/fl.41/manuel lopes serra (prior)
+
+         n$jose freire/m/id=o1714-2-per1
+            ls$morada/ponte do areal
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-3/6/2/1714/fl.41/manuel lopes serra (prior)
+
+         n$maria madalena/f/id=o1714-3-per1
+            ls$morada/vila da lousa
+
+            marido$bartolomeu pereira/id=o1714-3-per1-per2
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-4/15/2/1714/fl.41/manuel lopes serra (prior)
+
+         n$maria/f/id=o1714-p1
+            ls$ec/solteira
+            ls$morada/vila da lousa
+
+            referido$antonio seco/id=o1714-p1-per1
+               rel$parentesco/irmao/maria/o1714-p1
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-5/26/3/1714/fl.41 v./manuel lopes serra (prior)
+
+         n$francisca/f/id=o1714-5-per1
+            ls$ec/solteira
+
+            pai$manuel rodrigues/id=o1714-5-per1-per2
+               ls$alcunha/caravana/obs="o caravana"
+               ls$morada/vila da lousa
+
+         sacr$nao refere
+
+         testamento$nao refere
+
+         locs$nao refere
+
+      obito$o1714-6/27/3/1714/fl.41 v./manuel lopes serra (prior)
+
+         n$joao/m/id=o1714-6-per1
+
+            pai$manuel rodrigues/id=o1714-6-per1-per2
+               ls$morada/reguengo
+
+         sacr$nao refere
+
+         testamento$nao refere
+
+         locs$nao refere
+
+      obito$o1714-7/6/4/1714/fl41v./manuel lopes serra (prior)
+
+         n$antonio da serra/m/id=o1714-7-per1
+            ls$morada/favarica
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-8/3/4/1714/fl.41v./manuel lopes serra (prior)
+
+         n$joao domingues/m/id=o1714-8-per1
+            ls$morada/alfocheira
+
+         sacr$nao refere
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-9/4/4/1714/fl.42/manuel lopes serra (prior)
+
+         n$matias francisco/m/id=o1714-9-per1
+            ls$morada/cova de lobo
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-10/5/4/1714/fl.42/manuel lopes serra (prior)
+
+         n$antonio goncalves/m/id=o1714-10-per1
+            ls$profissao/padre
+            ls$morada/vale de neira
+
+         sacr$sim
+
+         testamento$sim
+
+         locs$nao refere
+
+      obito$o1714-11/9/4/1714/fl.42/manuel lopes serra (prior)
+
+         n$pascoa/f/id=o1714-11-per1
+            ls$ec/solteira
+            ls$morada/vale pereira
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-12/10/4/1714/fl.42v./manuel lopes serra (prior)
+
+         n$manuel simoes/m/id=o1714-12-per1
+            ls$morada/vale de maceira
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-13/19/4/1714/fl.42v./manuel lopes serra (prior)
+
+         n$leonor lopes/f/id=o1714-13-per1
+
+            marido$antonio simoes/id=o1714-13-per1-per2
+               ls$morada/vale de maceira
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-14/26/4/1714/fl.42v./manuel lopes serra (prior)/obs=a defunta era criada do padre manuel lopes serra
+
+         n$maria baioa/f/id=o1714-14-per1
+            ls$ec/solteira
+
+            pai$manuel jorge/id=o1714-14-per1-per2
+               ls$morada/vila da lousa
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-15/27/4/1714/fl.42v./manuel lopes serra (prior)
+
+         n$maria fernandes/f/obs="pobre"escrito na margem/id=o1714-15-per1
+            ls$ec/viuva
+
+            marido$domingos jorge/id=o1714-15-per1-per2
+               ls$morada/vale de pereira
+
+         sacr$nao refere
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-16/2/5/1714/fl.43/manuel lopes serra (prior)
+
+         n$maria gaspar/f/obs="pobre" escrito na margem/id=o1714-16-per1
+            ls$ec/solteira
+            ls$morada/casal
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-17/24/5/1714/fl.43/manuel lopes serra (prior)
+
+         n$inacio das neves/m/id=o1714-17-per1
+            ls$morada/pau/obs="desta freguesia"
+
+         sacr$nao refere
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-18/12/6/1714/fl.43/manuel lopes serra (prior)
+
+         n$ascenca henriques/f/id=o1714-18-per1
+
+            marido$joao fernandes/id=o1714-18-per1-per2
+               ls$morada/candal
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o17141-19/16/7/1714/fl.43v./manuel lopes serra (prior)
+
+         n$martinho negrao/m/id=o17141-19-per1
+            ls$profissao/capitao mor
+            ls$morada/vila da lousa
+
+         sacr$sim
+
+         testamento$sim
+
+         locs$nao refere
+
+      obito$o1714-20/26/8/1714/fl.43v./manuel lopes serra (prior)
+
+         n$manuel jorge/m/id=o1714-20-per1
+            ls$morada/vale de pereira
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-21/30/8/1714/fl.43v./manuel lopes serra (prior)
+
+         n$manuel luis/m/id=o1714-21-per1
+            ls$morada/papanata
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-22/8/9/1714/fl.44/manuel lopes serra (prior)
+
+         n$sebastiana rodrigues/f/id=o1714-22-per1
+
+            marido$joao rodrigues/id=o1714-22-per1-per2
+               ls$morada/casal
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-23/26/10/1714/fl.44/manuel lopes serra (prior)
+
+         n$gaspar simoes/m/id=o1714-23-per1
+            ls$morada/cova de lobo
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-24/12/11/1714/fl.44/manuel lopes serra (prior)
+
+         n$maria fernandes/f/id=o1714-24-per1
+
+            marido$sebastiao fenrnandes/id=o1714-24-per1-per2
+               ls$morada/vale de neira
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-25/2/12/1714/fl.44v./manuel lopes serra (prior)
+
+         n$manuel/m/id=o1714-p2
+            ls$ec/solteiro
+
+            referido$gaspar henriques/id=o1714-p2-per1
+               rel$parentesco/cunhado/manuel/o1714-p2
+               ls$morada/vila da lousa
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-26/15/12/1714/fl.44v./manuel lopes serra (prior)
+
+         n$manuel goncalves/m/id=o1714-26-per1
+            ls$ec/solteiro
+            ls$morada/olival
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere
+
+      obito$o1714-27/15/12/1714/fl.44v./manuel lopes serra (prior)
+
+         n$joana francisca/f/obs="pobre"escrito na margem/id=o1714-27-per1
+
+            marido$manuel rodrigues/id=o1714-27-per1-per2
+               ls$alcunha/caravana
+               ls$morada/vila da lousa
+
+         sacr$sim
+
+         testamento$nao
+
+         locs$nao refere

@@ -1,0 +1,728 @@
+kleio$gacto2.str/prefix=sj/translations=2
+   fonte$avexplorfa/1322-1348/emprazamentos/1322-1348/loc=cx.5, mc.27, n.620;cx.4, mc.23, n.462;cx.2, mc.9, n.172;cx.1, mc.5, n.121;cx.1, mc.5, n.123;cx.4, mc.23, n.459;cx.1, mc.5, n.124;cx.4, mc.25, n.519;cx.6, mc.33, n.755;cx.4, mc.25, n.498;cx.1, mc.6, n.140;
+
+      escritura$cex1322.1/18/6/1322/emprazamento/fol=cx.6, mc.27, n.620/loc=coimbra, igreja de santa justa/sumario=martim peres, procurador do prior de santa justa, empraza a joao anes, albardeiro, e a maria simoes sua mulher, uma casa na rua de oleiros, por 4 libras/obs=perg., bom, gotico cursivo, sinal notarial.
+
+         senhorio$prior e cabido de santa justa/id=1322.e1.colsj
+
+            referido$francisco afonso/id=1322.e1.priorfafonso
+               ls$cargo/prior de santa justa
+
+         procurador$martim peres/id=1322.e1.martim
+            ls$cargo/racoeiro de santa justa
+            rel$sociabilidade/procurador/francisco afonso/1322.e1.priorfafonso
+
+         enfiteuta$joao anes/id=1322.e1.joao
+            ls$residencia/coimbra
+            ls$profissao/albardeiro
+
+         enfiteutaf$maria simoes/id=1322.e1.maria
+            ls$residencia/coimbra
+            rel$parentesco/mulher/joao anes/1322.e1.joao
+
+         test$gomes domingues/id=cex1322.1-per2
+            ls$cargo/racoeiro de santo estevao
+
+         test$domingos francisco/id=cex1322.1-per3
+            ls$profissao/alfaiate
+
+         test$estevao anes/id=cex1322.1-per4
+            ls$profissao/?/obs=ilegivel
+
+         test$fernandes/id=cex1322.1-per5
+            ls$cargo/procurador
+
+         tabeliao$martim goncalves/id=cex1322.1-per6
+            ls$intitulacao/publico tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+            referido$nome desconhecido/id=1322.e1.alcacova
+               ls$cargo/prior de alcacova
+
+         prazo$1 casa/id=sj-cex1322.1-obj1
+            atr$localizacao/rua de oleiros/obs=a cima da rua de oleiros
+            atr$confrontacoes/?
+            rel$posse/pertenceu/prior de alcacova/1322.e1.alcacova/obs=mandou-a a colegiada de santa justa
+            rel$posse/pertence/colegiada de santa justa/1322.e1.colsj
+            rel$posse/por emprazamento/joao anes/1322.e1.joao
+            atr$duracao/2 vidas/obs=casal
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/4 libras
+            atr$pagamento da renda principal/2 de novembro e 2 marco/obs=metade
+            atr$caucao/25 libras
+
+      escritura$cex1324.1/22/9/1324/emprazamento/fol=cx.4, mc.23, n.462/loc=coimbra/sumario=fancisco afonso, prior da colegiada de santa justa, empraza a estevao da marmeleira e a sua mulher domingas martins, um olival com vinha no termos de coimbra, no lugar de vale figueira por uma renda anual de 4,5 libras a colegiada de santa justa e 20 soldos a confraria dos moozinhos/obs=perg., manchado, gotico cursivo, sinal notarial, partido por abc
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1324.e1.colsj
+
+            referido$francisco afonso/id=1324.e1.francisco
+               ls$cargo/prior de santa justa
+
+         enfiteuta$estevao da marmeleira/id=1324.e1.estevao
+            ls$alcunha/da marmeleira
+
+         enfiteutaf$domingas martins/id=1324.e1.domingas
+            rel$parentesco/mulher/estevao da marmeleira/1324.e1.estevao
+
+         test$nome desconhecido/id=cex1324.1-per2
+            ls$profissao/alfaiate
+
+         test$domings goncalves/id=cex1324.1-per3
+            ls$profissao/alfaiate
+
+         test$joao ramos/id=cex1324.1-per4
+
+         test$joao afonso/id=1324.e1.joao
+            rel$parentesco/irmao/francisco afonso/1324.e1.francisco
+
+         tabeliao$martim anes/id=cex1324.1-per5
+            ls$intitulacao/publico tabeliao/obs=intitulacao incompleta
+
+         prazo$1 olival com vinha/id=sj-cex1324.1-obj1
+            atr$localizacao/vale de figueira/obs=termo de coimbra
+            atr$confrontacoes/?/obs=ilegivel
+            rel$posse/pertence/colegiada de santa justa/1324.e1.colsj
+            rel$posse/por emprazamento/estevao da marmeleira/1324.e1.estevao
+            atr$duracao/3 vidas/obs=casal mais um filho ou filha
+            atr$condicoes/podar, empar, amergulhar, rendar
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/4,5 libras
+            atr$renda acessoria/20 soldos/obs=a confraria dos moozinhos
+            atr$pagamento da renda principal/s joao baptista
+            atr$caucao/25 libras
+
+      escritura$cex1324.2/5/11/1324/emprazamento/fol=cx.2, mc.9, n.172/loc=coimbra, igreja de santa justa/sumario=francisco afonso, prior da colegiada de santa justa de coimbra, empraza a martim domingues e a sua mulher aldonca peres, vizinhos de coimbra, um olival em gemil, termo de coimbra, por 40 soldos/obs=perg., razoavel, gotico cursivo, sinal notarial
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1324.e2.colsj
+
+            referido$francisco afonso/id=1324.e2.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteuta$martim domingues/id=1324.e2.martim
+            ls$residencia/coimbra
+
+         enfiteutaf$aldonca peres/id=1324.e2.aldonca
+            ls$residencia/coimbra
+            rel$parentesco/mulher/martim domingues/1324.e2.martim
+
+         test$domingos peres/id=cex1324.2-per3
+
+         test$domingos martins/id=cex1324.2-per4
+            ls$cargo/tesoureiro
+
+         test$nicolau anes/obs=duvida de leitura do patronimico/id=cex1324.2-per5
+            ls$cargo/capelao de santa justa
+
+         test$mateus peres/id=cex1324.2-per6
+            ls$cargo/capelao de santa justa
+
+         tabeliao$miguel lourenco/id=cex1324.2-per7
+            ls$intitulacao/publico tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+            referido$domingos prestes/id=cex1324.2-per7-per2
+
+            referida$dona mendonza/obs=duvidas de leitura/id=cex1324.2-per7-per3
+
+         prazo$1 olival/id=sj-cex1324.2-obj1
+            atr$localizacao/gemil/obs=termo de coimbra
+            atr$confrontacoes/parte de uma parte com domingos prestes
+            atr$confrontacoes/da outra parte com dona mendonza/obs=duvidas de leitura
+            rel$posse/pertence/colegiada de santa justa/1324.e2.colsj
+            rel$posse/por emprazamento/martim domingues/1324.e2.martim
+            atr$condicoes/cavar todos os anos e estercar de dois em dois anos
+            atr$duracao/2 vidas/obs=casal
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/40 soldos
+            atr$pagamento da renda principal/dia do aniversario
+            atr$caucao/25 libras
+
+      escritura$cex1325.1/8/7/1325/emprazamento/fol=cx.1, mc.5, n.121/loc=coimbra/sumario=a colegiada de santa justa de coimbra empraza a bartolomeu martins, prior de oliveira, uns pardieiros acima rua de quatro cantos, por 10 soldos/obs=perg., bom, got., sinal notarial
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1325.e1.colsj
+
+         enfiteuta$bartolomeu martins/id=1325.e1.bartolomeu
+            ls$cargo/prior de oliveira
+
+         test$domingos martins/id=cex1325.1-per2
+            ls$cargo/capelao
+
+         test$leonardo esteves/id=cex1325.1-per3
+            ls$cargo/porteiro da se
+
+         tabeliao$martim anes/id=cex1325.1-per4
+            ls$intitulacao/publico tabeliao do rei na cidade de coimbra
+
+            referido$domingos peres/id=cex1325.1-per4-per1
+               ls$titulo/clerigo
+
+         prazo$pardieiros/id=sj-cex1325.1-obj1
+            atr$localizacao/rua de quatro cantos
+            atr$confrontacoes/a par do cortinhal que foi de domingos peres, clerigo
+            rel$posse/pertence/colegiada de santa justa/1325.e1.colsj
+            rel$posse/por emprazamento/bartolomeu martins/1325.e1.bartolomeu
+            atr$condicoes/chantar figueiras ou outras arvores
+            atr$duracao/1 vida
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/10 soldos
+            atr$pagamento da renda principal/dia do aniversario/obs=nao se explica que aniversarios
+            atr$caucao/25 libras
+
+      escritura$cex1329.1/2/8/1329/emprazamento/fol=cx.1, mc.5, n.123/loc=coimbra, igreja de santa justa/sumario=a colegiada de santa justa empraza a joao martinho, dicto cavaleiro, e a sua mulher marinha martins, um sotao de casa em rua de quatro cantos, na freguesia de santa justa, por 55 soldos/obs=perg., bom, got. cursivo, sinal notarial
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1329.e1.colsj
+
+            referido$frutuoso martins/id=1329.e1.colsj-per1
+               ls$cargo/racoeiro de santa justa
+
+         enfiteuta$joao martinho/id=1329.e1.joao
+            ls$residencia/coimbra
+            ls$alcunha/cavaleiro
+
+         enfiteutaf$marinha martins/id=1329.e1.marinha
+            ls$residencia/coimbra
+            rel$parentesco/mulher/joao martinho/1329.e1.joao
+
+         test$domingos martins/id=cex1329.1-per3
+            ls$cargo/capelao
+
+         referido$domingos lagareiro/id=1329.e1.domingos
+            ls$cargo/chantre
+
+         test$andre domingues/id=1329.e1.andre
+            rel$profissional/criado/domingos lagareiro/1329.e1.domingos
+
+         test$bras peres/id=cex1329.1-per4
+            ls$cargo/capelao de santa justa
+
+         tabeliao$joao domingues/id=cex1329.1-per5
+            ls$intitulacao/tabeliao da cidade de coimbra
+            ls$sinal/sim
+
+            referido$vasco velho/id=1329.e1.vasco
+
+            referida$marinha martins/id=1329.e1.marinhamartins
+               rel$parentesco/mulher/vasco velho/1329.e1.vasco
+
+         prazo$sotao de casa/id=sj-cex1329.1-obj1
+            atr$localizacao/rua de quatro cantos/obs=freguesia de santa justa
+            rel$posse/pertenceu/marinha martins/1329.e1.marinhamartins
+            rel$posse/pertence/colegiada de santa justa/1329.e1.colsj
+            rel$posse/por emprazamento/joao martinho/1329.e1.joao
+            atr$duracao/2 vidas
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/55 soldos
+            atr$pagamento da renda principal/20 julho e santa maria de setembro/obs=27,5 mais 27,5 libras
+            atr$caucao/25 libras
+
+      escritura$cex1330.1/24/1/1330/emprazamento/fol=cx.4, mc.23, n.459/loc=coimbra, igreja de santa justa/sumario=francisco afonso, prior da colegiada de santa justa, empraza a francisco anes e a sua mulher, uma casa com sobrado na rua de quatro cantos, por uma renda anual de 3 libras e 15 soldos/obs=perg., mau, got. cursivo, sinal notarial
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1330.e1.colsj
+
+            referido$francisco afonso/id=1330.e1.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteuta$francisco anes/id=1330.e1.francisco
+
+         enfiteutaf$nome desconhecido/id=1330.e1.enfiteutaf
+            rel$parentesco/mulher/francisco anes/1330.e1.francisco
+
+         test$bartolomeu martins/id=cex1330.1-per3
+            ls$cargo/prior de oliveira
+
+         test$domingos martins/id=cex1330.1-per4
+            ls$cargo/tesoureiro
+
+         tabeliao$pero salvadores/id=cex1330.1-per5
+            ls$intitulacao/tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+            referido$pero/id=1330.e1.pero
+               ls$titulo/conego de coimbra
+
+         prazo$casas com sobrado/id=sj-cex1330.1-obj1
+            atr$localizacao/rua de quatro cantos
+            rel$posse/pertenceu/pero/1330.e1.pero/obs=aniversario
+            rel$posse/pertence/colegiada de santa justa/1330.e1.colsj
+            rel$posse/por emprazamento/francisco anes/1330.e1.francisco
+            atr$duracao/?/obs=ilegivel
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/3 libras e 15 soldos
+            atr$pagamento da renda principal/7 marco
+            atr$caucao/?/obs=ilegivel
+
+      escritura$cex1335.1/28/12/1335/emprazamento/fol=cx.1, mc.5, n.124/loc=coimbra, igreja de santa justa/sumario=francisco afonso, prior da colegiada de santa justa de coimbra, empraza a joao martins e a sua mulher domingas valadeira, umas casas com sobrado e com cortinhal na rua de quatro cantos/obs=perg., bom, gotico, sinal notarial
+
+         senhorio$prior e colegiada de santa justa/id=1335.e1.colsj
+
+            referido$francisco afonso/id=1335.e1.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteuta$joao domingues/id=1335.e1.joao
+
+         enfiteutaf$domingas valadeira/id=1335.e1.domingas
+            ls$alcunha/valadeira
+            rel$parentesco/mulher/joao domingues/1335.e1.joao
+
+         test$bartolomeu martins/id=cex1335.1-per3
+            ls$cargo/prior de oliveira
+
+         test$vasco dias/id=cex1335.1-per4
+            ls$cargo/capelao de santa justa
+
+         test$domingos martins/id=cex1335.1-per5
+            ls$cargo/capelao de santa justa
+
+         tabeliao$miguel lourenco/id=cex1335.1-per6
+            ls$intitulacao/publico tabelaio do rei em coimbra
+            ls$sinal/sim
+
+            referido$pero francisco/id=1335.e1.pero
+               ls$cargo/conego de coimbra
+
+            referido$mem/id=1335.e1.mem
+
+         prazo$casas com sobrado e com cortinhal/id=sj-cex1335.1-obj1
+            atr$localizacao/rua de quatro cantos
+            atr$confrontacoes/?/obs=nao explicita
+            rel$posse/pertenceu/pero francisco/1335.e1.pero
+            rel$posse/pertenceu/mem/1335.e1.mem/obs=usufruto
+            rel$posse/pertence/colegiada de santa justa/1335.e1.colsj
+            rel$posse/por emprazamento/joao domingues/1335.e1.joao
+            atr$duracao/2 vidas/obs=casal
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/3 libras e 15 soldos
+            atr$pagamento da renda principal/dia do aniversario/obs=7 marco
+            atr$renda acessoria/1 capao
+            atr$pagamento da renda acessoria/s miguel de setembro
+            atr$caucao/25 libras
+
+      escritura$cex1340.1/15/11/1340/emprazamento/fol=cx.4, mc.25, n.519/loc=coimbra, coro da igreja de santa justa/sumario=francisco afonso, prior da colegiada de santa justa, empraza a rodrigo anes, cordoeiro, e a sua mulher, senhorinha domingues, uma terra na riba do mondego, por 25 soldos/obs=perg., bom, gotico, sinal notarial, partida por abc
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1340.e1.colsj
+
+            referido$francisco afonso/id=1340.e1.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteuta$rodrigo anes/id=1340.e1.rodrigo
+            ls$residencia/coimbra
+            ls$profissao/cordoeiro
+
+         enfiteutaf$senhorinha domingues/id=1340.e1.senhorinha
+            ls$residencia/coimbra
+            rel$parentesco/mulher/rodrigo anes/1340.e1.rodrigo
+
+         test$domingos fernandes/id=cex1340.1-per3
+
+         test$joao d'eiras auxela/id=cex1340.1-per4
+            ls$naturalidade/eiras
+
+         test$mateus peres/id=cex1340.1-per5
+            ls$titulo/clerigo
+
+         test$bras peres/id=cex1340.1-per6
+            ls$titulo/clerigo
+
+         tabeliao$martim goncalves/id=cex1340.1-per7
+            ls$intitulacao/tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+            referida$constanca alvares/id=cex1340.1-per7-per2
+
+            referido$goncalo peres/id=1340.e1.goncalo
+
+         prazo$terra/id=sj-cex1340.1-obj1
+            atr$localizacao/porto da barca/obs=em riba de mondego
+            atr$confrontacoes/1 parte com terra de constanca alvares
+            rel$posse/pertenceu/goncalo peres/1340.e1.goncalo/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1340.e1.colsj
+            rel$posse/por emprazamento/rodrigo anes/1340.e1.rodrigo
+            atr$duracao/2 vidas/obs=casal
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/25 soldos/obs=mais o dizimo
+            atr$pagamento da renda principal/18 de marco/obs=dia do aniversario
+            atr$caucao/25 libras
+
+      escritura$cex1344.1/10/11/1344/emprazamento/fol=cx.6, mc.33, n.755/loc=coimbra, igreja de santa justa/sumario=francisco afonso, prior da colegiada de santa justa, empraza uma casa na rua dos fuseiros a maria martins pequena, moradora na freguesia de santa justa, por 30 soldos de renda anual/obs=perg., bom, got.cursivo, sinal notarial
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1344.e1.colsj
+
+            referido$francisco afonso/id=1344.e1.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteutaf$maria martins/id=1344.e1.maria
+            ls$residencia/freguesia de santa justa
+            ls$alcunha/pequena
+
+            referido$vasco martins/id=1344.e1.vasco
+               ls$residencia/coimbra
+               ls$alcunha/cortegaca
+
+            referida$margarida rodrigues/id=1344.e1.margarida
+               ls$morta/antes
+               ls$residencia/coimbra
+               rel$parentesco/mulher/vasco martins/1344.e1.vasco
+
+            referido$estevao de espada/id=1344.e1.estevao
+               ls$alcunha/de espada
+               ls$profissao/almoinheiro
+
+         test$angelo esteves/id=1344.e1.angelo
+            ls$titulo/clerigo
+            rel$parentesco/filho/estevao de espada/1344.e1.estevao
+
+         test$joao martins/id=cex1344.1-per3
+            ls$cargo/capelao de santa clara
+
+         referido$domingos de eiras/id=1344.e1.domingos
+            ls$naturalidade/eiras
+
+         test$ildo domingues/id=1344.e1.ildo
+            rel$parentesco/filho/domingos de eiras/1344.e1.domingos
+
+         tabeliao$afonso martins/id=cex1344.1-per4
+            ls$intitulacao/publico tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+         prazo$1 casa/id=sj-cex1344.1-obj1
+            atr$localizacao/quintal dos fuseiros
+            rel$posse/pertenceu/margarida rodrigues/1344.e1.margarida/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1344.e1.colsj
+            rel$posse/por emprazamento/maria martins/1344.e1.maria
+            atr$duracao/1 vida
+            atr$renda principal tipo/fixa em dinheiro
+            atr$renda principal valor/30 soldos
+            atr$pagamento da renda principal/s martinho
+            atr$caucao/25 libras
+
+      escritura$cex1347.1/0/0/1347/emprazamento/fol=cx.4, mc.25, n.498/loc=coimbra, coro da igreja de santa justa/sumario=francisco afonso, prior da colegiada de santa justa, empraza a domingos esteves 12 jeiras em campo de mondego no lugar que chamam lombo de santa justa e 2 jeiras no mesmo lugar devendo este pagar um quarto da producao e 6 quarteiros de pao pelo primeiro/obs=perg., danificado, gotico, sinal notarial, pagou 8 soldos.
+
+         senhorio$prior e cabido de santa justa/id=1347.e1.colsj
+
+            referido$francisco afonso/id=1347.e1.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteuta$domingos esteves/id=1347.e1.domingos
+            ls$alcunha/magro
+            ls$residencia/coimbra
+            ls$profissao/lavrador
+
+         test$domingos andre/id=cex1347.1-per3
+            ls$cargo/capelao de santa justa
+
+         tabeliao$afonso martins/id=cex1347.1-per4
+            ls$intitulacao/tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+            referida$urraca sanches/id=cex1347.1-per4-per2
+
+            referido$pedro martins/id=cex1347.1-per4-per3
+               ls$alcunha/alcoforado
+
+         prazo$lombo de santa justa/obs=uma grande peca de terra que he chamada o lombo de santa justa que sao 12 jeiras de terras de vassadoiro/id=sj-cex1347.1-obj1
+            atr$localizacao/campo do mondego
+            atr$confrontacoes/agiao, parte com terras do mosteiro de arouca
+            atr$confrontacoes/soao, parte com terras do mosteiro de celas da ponte
+            atr$confrontacoes/travessia,partem com terras do mosteiro de santa cruz que foram de urraca sanches
+            atr$confrontacoes/avrego, partem com terras de pedro martins alcoforado e com terra da capela de s. joao do mosteiro de santa cruz
+            atr$condicoes/lavrar, estercar afruitar em cada ano nas alturas convenientes
+            rel$posse/pertence/colegiada de santa justa/1347.e1.colsj
+            rel$posse/por emprazamento/ domingos esteves/1347.e1.domingos
+            atr$duracao/1 vida
+            atr$renda principal tipo/parciaria
+            atr$renda principal valor/1 quarto do fruto mais 6 quarteiros de pao medidos pelo alqueire de coimbra proprio da alca/obs=toda a producao, mais o dizimo
+            atr$pagamento da renda principal/?/obs=nao especifica apenas diz que e um pagamento anual e as despesas do enfiteuta
+            atr$caucao/50 libras
+
+         referido$afonso peres/id=cex1347.1-per7
+            ls$titulo/cavaleiro
+
+         referido$rasca velhas/id=cex1347.1-per8
+            ls$alcunha/rasca velhas
+
+         prazo$duas jeiras de terra de vessadoiro/obs=partidas por aguilhadas/id=sj-cex1347.1-obj2
+            atr$localizacao/campo do mondego/obs=lugar que chamam valadas
+            atr$confrontacoes/partem com afonso peres cavaleiro
+            atr$confrontacoes/outra parte com terra que foi de rasca velhas
+            atr$confrontacoes/outra parte com 2 jeiras de terras que de santiago de coimbra/obs=que tambem sao partidas por aguilhadas
+            rel$posse/pertence/colegiada de santa justa/1347.e1.colsj
+            rel$posse/por emprazamento/domingos esteves/1347.e1.domingos
+            atr$duracao/1 vida
+            atr$condicoes/lavrar, estrumar, afruitar em cada ano nas alturas convenientes
+            atr$renda principal tipo/parciaria
+            atr$renda principal valor/1 quarto do fruto
+            atr$pagamento da renda principal/?/obs=nao explicita
+            atr$caucao/50 libras
+
+      escritura$cex1348.1/29/8/1348/emprazamento/fol=cx.1, mc.6, n.140/loc=coimbra, igreja de santa justa ante o altar de s. salvador/sumario=francisco afonso, prior e cabido da colegiada de santa justa, empraza a vasco domingues, almoxarife de coimbra, e a sua mulher marinha nogueira todas as terras que a colegiada tem em campo do bolao, por quatro moios de pao/obs=perg., bom, gotico, sinal notarial
+
+         senhorio$prior e cabido da colegiada de santa justa/id=1348.e1.colsj
+
+            referido$francisco afonso/id=1348.e1.colsj-per1
+               ls$cargo/prior de santa justa
+
+         enfiteuta$vasco domingues/id=1348.e1.vasco
+            ls$residencia/coimbra
+            ls$profissao/almoxarife
+
+         enfiteutaf$marinha nogueira/id=1348.e1.marinha
+            ls$residencia/coimbra
+            rel$parentesco/mulher/vasco domingues/1348.e1.vasco
+
+         test$pedro andre/id=cex1348.1-per3
+            ls$profissao/vogado
+
+         referido$d afonso/id=1348.e1.dafonso/obs=no documento so rei
+            ls$cargo/rei de portugal
+
+         test$marco/id=cex1348.1-per4
+            rel$profissional/homem/d afonso/1348.e1.dafonso
+
+         test$joao de coimbra/id=cex1348.1-per5
+
+         test$vasco peres/obs=marido de graca/id=cex1348.1-per6
+
+         test$lourenco anes/id=cex1348.1-per7
+            ls$alcunha/garca
+
+         tabeliao$afonso martins/id=cex1348.1-per8
+            ls$intitulacao/tabeliao do rei na cidade de coimbra
+            ls$sinal/sim
+
+            referido$dom bartolomeu/id=1348.e1.bartolomeu
+               ls$residencia/coimbra
+               ls$profissao/lavrador
+
+            referida$dona teresa/id=1348.e1.teresa
+               ls$residencia/coimbra
+               rel$parentesco/mulher/dom bartolomeu/1348.e1.teresa
+
+            referido$martim coxo/id=1348.e1.martim
+               ls$residencia/coimbra
+               ls$alcunha/coxo
+
+            referida$dona margarida/id=1348.e1.margarida
+               ls$residencia/coimbra
+               rel$parentesco/mulher/martim coxo/1348.e1.martim
+
+         prazo$duas courelas e uma quarta de terra/obs=mede 18 varas pela vara de coimbra com que se mede o pano de burel e do linho/id=sj-cex1348.1-obj1
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/parte contra a ponte de cidreira
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$1 courela e meia/id=sj-cex1348.1-obj2
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/parte contra a ponte de cidreira
+            atr$confrontacoes/ante a carreira velha de contra o rio mondego
+            atr$confrontacoes/e a carreira nova que vem de coimbra e vai para a ponte da cidreira
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$4 courelas de terra/id=sj-cex1348.1-obj3
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/contra a ponte de cidreira
+            atr$confrontacoes/desde a carreira velha de contra o rio mondego
+            atr$confrontacoes/ate a carreira nova que vai de coimbra para a ponte de cidreira
+            atr$confrontacoes/parte com a terras do casal de cidreira que e do mosteiro de s. paulo
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a fregusia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$4 courelas e meia de terra/id=sj-cex1348.1-obj4
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/contra a ponte de cidreira
+            atr$confrontacoes/desde a carreira nova
+            atr$confrontacoes/ate a carreira velha que vem de aldeia de eiras e vai para a ponte da cidreira
+            atr$confrontacoes/parte com as terras do monte de s paulo
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$afonso peres/id=cex1348.1-per9
+            ls$alcunha/colaco
+
+         prazo$1 courela e uma oitava de terra/id=sj-cex1348.1-obj5
+            atr$localizacao/porto da barca
+            atr$confrontacoes/parte com terra que foi de afonso peres colaco
+            atr$confrontacoes/contra a ponte de cidreira
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$duas courelas e uma braca de terra/id=sj-cex1348.1-obj6
+            atr$localizacao/porto da barca
+            atr$confrontacoes/contra a ponte de cidreira
+            atr$confrontacoes/partem com as terras que foram de afonso peres colaco
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$1 courela e quarta de terra/id=sj-cex1348.1-obj7
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/a par das terras da madalena
+            atr$confrontacoes/contra a cidreira
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$3 courelas de terra/id=sj-cex1348.1-obj8
+            atr$localizacao/porto da barca
+            atr$confrontacoes/contra o paul
+            atr$confrontacoes/vem contra a cidreira
+            rel$posse/pertenceu/dona teresa/1348.e1.teresa/obs=deixou a terca parte das suas terras no campo do bolao para os aniversarios
+            rel$posse/pertenceu/martim coxo/1348.e1.martim/obs=deixou a terca parte das suas terras no campo do bolao para os aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$estevao martins/id=1348.e1.estevao
+
+         prazo$terca parte das terras de estevao martins/id=sj-cex1348.1-obj9
+            atr$localizacao/campo do bolao
+            rel$posse/pertenceu/estevao martins/1348.e1.estevao
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$vasco gil/id=cex1348.1-per10
+            ls$cargo/racoeiro de santiago
+            ls$morto/antes
+
+         referido$salvador domingues/id=cex1348.1-per11
+            ls$profissao/tabeliao de coimbra
+            ls$morto/antes
+
+         referida$dona sol/id=1348.e1.sol
+
+         prazo$3 leiras de terra/obs=sao 4 jeiras de terra e partem com outras 4 jeiras que sao da igreja de s. silvestre que trouxe muito tempo vasco gil, racoeiro que foi de santiago de coimbra/id=sj-cex1348.1-obj10
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/1 leira esta entre duas leiras da se de coimbra contra a ponte de cidreira que partem com terras da igreja de s. silvestre do campo
+            atr$confrontacoes/outra leira esta no lombo do bolao a par da terra que foi de salvador domingues, tabeliao de coimbra
+            atr$confrontacoes/outra leira esta ao pe do salao que foi de martim coxo
+            rel$posse/pertenceu/dona sol/1348.e1.sol/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a fregusia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$afonso peres/id=cex1348.1-per12
+            ls$titulo/cavaleiro
+
+         prazo$duas jeiras de terras de pao/id=sj-cex1348.1-obj11
+            atr$localizacao/campo do bolao/obs=lugar chamado famadas
+            atr$confrontacoes/a par das terras do mosteiro de s paulo
+            atr$confrontacoes/parte com as terras das antas que sao da igreja de ?/obs=ilegivel
+            atr$confrontacoes/entesta com terras do mosteiro do lorvao
+            atr$confrontacoes/partem com terra de afonso peres contra o carreiro peres
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$soeiro/id=cex1348.1-per13
+            ls$alcunha/gago
+
+         prazo$terra/id=sj-cex1348.1-obj12
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/a par da terra de santa cruz que trazem os moradores de antuzede
+            atr$confrontacoes/com outra terra de afonso
+            atr$confrontacoes/entesta nas valadas
+            atr$confrontacoes/parte com terras de soeiro gago
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$lourenco anes/id=cex1348.1-per14
+            ls$alcunha/pao e agua
+
+         referido$pascoal domingues/id=cex1348.1-per15
+            ls$residencia/rio frio
+
+         prazo$1 talho de terra/id=sj-cex1348.1-obj13
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/parte com terra de antuzede que e do mosteiro de santa cruz
+            atr$confrontacoes/com terra de lourenco anes pao e agua
+            atr$confrontacoes/entesta com longara de pascoal domingues de rio frio
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         referido$domingos/id=1348.e1.domingos
+
+         referido$britacampos/id=1348.e1.britacampos
+
+         referido$vasco goncalves/id=1348.e1.vgoncalves
+            rel$parentesco/genro/britacampos/1348.e1.britacampos
+
+         referido$domingos geraldes/id=cex1348.1-per16
+            ls$residencia/eiras
+
+         referido$martim fernandes/id=1348.e1.mfernandes
+
+         referida$dona elvira mura/id=1348.e1.donaelvira
+            rel$parentesco/mulher/martim fernandes/1348.e1.mfernandes
+
+         prazo$1 talho de terra/id=sj-cex1348.1-obj14
+            atr$localizacao/campo do bolao
+            atr$confrontacoes/parte com a terra que foi de domingos
+            atr$confrontacoes/entesta na terra de longara de vasco goncalves
+            atr$confrontacoes/da outra parte com terras que foram de domingos geraldes
+            rel$posse/pertenceu/martim fernandes/1348.e1.mfernandes/obs=aniversarios
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+
+         prazo$todas as terras de santa justa no campo do bolao/id=sj-cex1348.1-obj15
+            atr$localizacao/campo do bolao
+            rel$posse/pertence/colegiada de santa justa/1348.e1.colsj
+            rel$posse/por emprazamento/vasco domingues/1348.e1.vasco
+            atr$condicoes/fazer lavrar e sentar todos os anos
+            atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
+            atr$duracao/2 vidas/obs=casal
+            atr$renda principal tipo/parciaria
+            atr$renda principal valor/4 moios de pao/obs=2 moios de trigo e 2 moios de segunda, milho ou cevada, pelo alqueire de coimbra, mais o dizimo
+            atr$pagamento da renda principal/santa maria de setembro/obs=a comecar no ano seguinte
+            atr$caucao/50 libras

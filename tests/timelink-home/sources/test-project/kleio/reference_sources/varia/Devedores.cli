@@ -1,0 +1,71 @@
+kleio$/translations=2
+   fonte$Devedores/1770/ano=1785/tipo=inventario orfanologico/obs=escritos de dividas registados no inventario post mortem do patrimonio do meio conego antonio de campos branco de eiras, falecido em 1786
+
+      lista$orf-acb-devedores-eiras/0/0/1785
+
+         n$antonio de campos branco/id=acb-eiras
+            ls$cargo/meio conego da se de coimbra
+            ls$residencia/eiras
+            ls$residencia/coimbra
+
+         n$agostinho gomes/id=orf-acb-devedores-eiras-per1
+            ls$residencia/miranda/17781208
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17781208
+
+         n$alexandre jose de carvalho/id=orf-alex
+            ls$residencia/coimbra/1773-11-24
+            ls$titulo/reverendo
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=1773-11-24/obs=divida inicial de 150000 reis
+
+         n$alexandre jose de carvalho/mesmo_que=orf-alex/id=orf-acb-devedores-eiras-per2
+            ls$residencia/coimbra/17721127
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17721127
+
+         n$alexandre ribeiro leite/id=orf-acb-devedores-eiras-per3
+            ls$residencia/coimbra/17850614
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17850614/obs=obrigacao
+
+         n$amaro francisco/id=orf-acb-devedores-eiras-per4
+            ls$residencia/monte redondo/17850905
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17850905
+
+         n$ana joaquina saraiva/id=orf-acb-devedores-eiras-per5
+            ls$residencia/coimbra/17730430
+            ls$titulo/dona
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17730430
+
+         n$ana joaquina vicencia saraiva/id=orf-acb-devedores-eiras-per6
+            ls$residencia/coimbra/17841130
+            ls$titulo/dona
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17841130
+
+         n$ana maria/id=orf-acb-devedores-eiras-per7
+            ls$residencia/coimbra/17840204
+            ls$ec/viuva
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17840204
+
+         n$andre rodrigues dos santos/id=orf-acb-devedores-eiras-per8
+            ls$ec/casado
+            ls$residencia/vila nova de outil/17780508
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17780508
+
+         n$antonia/id=orf-antonia
+            ls$residencia/vilarinho de eiras
+            ls$titulo/dona
+            rel$economica/devedor/antonio de campos branco/acb-eiras
+
+            referido$joao felix/id=orf-antonia-per9
+               rel$parentesco/sobrinho/antonia/orf-antonia
+
+         n$antonia joaquina da costa/id=orf-acb-devedores-eiras-per10
+            ls$residencia/17830102
+            ls$ec/viuva
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17830102
+
+         n$antonio bernardes/id=orf-acb-devedores-eiras-per11
+            ls$residencia/agrelo/17770907
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=17770907
+
+         n$antonio bras/id=orf-acb-devedores-eiras-per12
+            ls$residencia/logo de deus/1775-4-24
+            rel$economica/devedor/antonio de campos branco/acb-eiras/data=1775-4-24

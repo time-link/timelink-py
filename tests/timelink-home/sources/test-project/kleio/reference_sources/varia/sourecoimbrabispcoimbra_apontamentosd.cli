@@ -1,0 +1,31 @@
+kleio$gacto2.str/translations=2
+   fonte$sourecoimbrabispcoimbra_apontamentosd/sd/apontamentos sem data/antt
+
+      apontamentosd$apsd-soure-coimbra-bispcoimbra/0/0/0/obs=Fonte: ANTT, MemoriasParoquiais, Vol42, N424, P271aP272: apontamentos paroquias entre 1722 e 1732
+
+         freguesia$soure/id=apsd-soure-coimbra-bispcoimbra-geo1
+            atr$tipo/vila/obs=titulo de um condado
+            atr$misericordia/sim
+            atr$camara/sim
+            atr$fogos/1125
+            atr$almas/3650
+            rel$distancia/30 leguas/lisboa/apsd-soure-lisboa
+
+            gref$lisboa/id=apsd-soure-lisboa
+
+            bispado$coimbra/obs=a fonte nao refere informacao mas confirmamos atraves de cartografia validada/id=apsd-soure-coimbra-bispcoimbra-geo1-geo2
+
+            termoc$soure/obs=informacao inferida atraves da fonte por indicacao de camara/id=apsd-soure-coimbra-bispcoimbra-geo1-geo3
+               atr$cargo/juiz de fora/obs=presidencia
+               atr$mestres/mestres de ler e latim
+
+            lugar$almagreira/id=apsd-soure-coimbra-bispcoimbra-geo1-geo4
+               atr$orago/n. sra. da graca
+               atr$freguesia/sim
+
+            comarca$leiria/id=apsd-soure-coimbra-bispcoimbra-geo1-geo5
+
+            igreja$s.tiago/paroquial/id=apsd-soure-coimbra-bispcoimbra-geo1-obj1
+               atr$tituloparoco/vigario
+               atr$apresentacao/rei, mesa da consciencia
+               atr$renda/120 mil reis
