@@ -92,9 +92,9 @@ def test_kleio_get_url(setup):
     assert KLEIO_URL is not None
     
 
-def test_gen_token():
+def test_make_token():
     """Test if a token is generated"""
-    assert KleioServer.gen_token() is not None
+    assert KleioServer.make_token() is not None
 
 
 @skip_on_travis
@@ -185,7 +185,7 @@ def test_get_kserver_home():
 @skip_on_travis
 def test_translations_get(setup):
     """Test if translations are retrieved"""
-    path: str = "sources/test-project/sources/reference_sources/linked_data"
+    path: str = "sources/test-project/kleio/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
 
@@ -205,7 +205,7 @@ def test_translations_get(setup):
 @skip_on_travis
 def test_translations_translate(setup):
     """Test if translations are translated"""
-    path: str = "sources/test-project/sources/reference_sources/linked_data"
+    path: str = "sources/test-project/kleio/reference_sources/linked_data"
     recurse: str = "yes"
     spawn: str = "no"
 
