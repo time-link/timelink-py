@@ -177,7 +177,7 @@ def group_attributes(
     include_attributes=None,
     exclude_attributes=None,
     person_info=True,
-    db: TimelinkMHK = None,
+    db: TimelinkDatabase = None,
     sql_echo=False,
 ):
     """Return the attributes of a group of people in a dataframe.
@@ -192,7 +192,7 @@ def group_attributes(
         warn("No list of ids specified")
         return None
 
-    dbsystem: TimelinkMHK = None
+    dbsystem: TimelinkDatabase = None
     if db is not None:
         dbsystem = db
     elif conf.TIMELINK_DBSYSTEM is not None:
@@ -332,7 +332,7 @@ def display_group_attributes(
     include_attributes=None,
     exclude_attributes=None,
     person_info=True,
-    db: TimelinkMHK = None,
+    db: TimelinkDatabase = None,
 ):
     """Display attributes of a group with header and colored rows"""
 
