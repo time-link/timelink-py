@@ -275,12 +275,11 @@ class KleioHandler:
     kleio_context = None
     pom_som_cache = dict()
 
-    def __init__(self, session, mode="TL",file_origin=None):
+    def __init__(self, session, mode="TL"):
         """
         Arguments:
             session: a SQLAlchemy session
             mode: the mode of the import, either 'TL'(Timelink) or 'MHK'
-            file_origin: the origin of the import (file name, url, etc.)
         
         """
         self.session = session
@@ -489,7 +488,7 @@ def import_from_xml(
     translator.
 
     Arguments:
-        filespec (str,Path): a file path or URL of a data file.
+        filespec (str,Path): a file path, URL of a data file or path in a Kleio Server.
         conn_string (str): SQLAlchemy connection string to database.
         options (dict): a dictionnary with options
 
@@ -497,6 +496,11 @@ def import_from_xml(
            - 'kleio_url':  the url of kleio server;
            - 'kleio_token':  the authorization token for the kleio server.
            - 'mode':  the mode of the import, either 'TL'(Timelink) or 'MHK'
+
+        If kleio_url and kleio_token are specified the data will be fetched from 
+        a KleioServer and the filespec should contain the "xml_path" of the file
+        in the server (e.g. /rest/exports/reference_sources/varia/vereacao.xml) and
+        the kleio_token will be inserted in the header for autentication
 
     Returns:
         If stats is True in options a dict with statistical information will be
@@ -528,11 +532,7 @@ def import_from_xml(
         'errors': []
         }
 
-
-    Warning:
-        The option to fetch the file from a ``kleio`` server with an
-        authorization token is not implemented.
-
+        TODO: should use https when the kleio_url not local. 
     """
     collect_stats = False
     kleio_url = None
@@ -563,7 +563,6 @@ def import_from_xml(
             func.count(kleio_handler.person_model.id)
         ).scalar()
 
-    # TODO implement fetching from kleio server
     if kleio_url is not None and kleio_token is not None:
         headers={"Authorization": f"Bearer {kleio_token}"}
         server_url = f"{kleio_url}{filespec}"
