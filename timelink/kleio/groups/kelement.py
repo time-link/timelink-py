@@ -338,7 +338,7 @@ class KYear(KElement):
     """
     Represents a year.
 
-    To have value checking do KYear.set_limits((lower,upper))
+    To have value checking do KYear.set_limits((lower,upper)) !!!! 
 
     """
 
@@ -350,7 +350,13 @@ class KYear(KElement):
 
         super().__init__(self.name, year, comment, original)
 
-        self.core = int(self.core)
+        try:
+            self.core = int(self.core)
+        except ValueError:
+            # warn of value error
+            # this is a hack because many sources do not use the second position as year, and
+            # all sort of data gets there
+            self.core = core
 
 
 class KType(KElement):
