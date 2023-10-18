@@ -20,7 +20,7 @@ from timelink.api.database import (TimelinkDatabase,
                                    get_postgres_container_pwd)
 from timelink.api.models.entity import Entity
 
-from timelink.kleio import kleio_server as kserver
+from timelink.kleio import KleioServer
 from timelink.kleio.schemas import KleioFile
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
@@ -175,14 +175,12 @@ def test_import_git_hub(dbsystem):
 )
 def test_import_from_kleio_server(dbsystem):
     """Test the import of a Kleio file from kleio server into the Timelink database"""
-    kserver.start_kleio_server(kleio_home=f"{TEST_DIR}/timelink-home")
-    kleio_url = kserver.kleio_get_url()
-    kleio_token = kserver.get_kserver_token()
-    translations = kserver.kleio_translations_get(path="",
+    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
+    kleio_url = kserver.get_url()
+    kleio_token = kserver.get_token()
+    translations = kserver.translation_status(path="",
                                                   recurse="yes", 
-                                                  status="V", 
-                                                  token=kleio_token, 
-                                                  url=kleio_url)
+                                                  status="V")
     assert len(translations) > 0, "no valid translations found in Kleio Server"
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
@@ -213,3 +211,53 @@ def test_import_from_kleio_server(dbsystem):
     else:
         assert False, "no valid translations found in Kleio Server"
 
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "timelink", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_sources_with_no_year(dbsystem):
+    """Test the import of a Kleio file from kleio server into the Timelink database"""
+    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
+    kleio_url = kserver.get_url()
+    kleio_token = kserver.get_token()
+    translations = kserver.translation_status(path="",
+                                                  recurse="yes", 
+                                                  status="V")
+    assert len(translations) > 0, "no valid translations found in Kleio Server"
+    if len(translations) > 0:
+        #kleio_file: KleioFile = random.choice(translations)
+        #file = kleio_file.xml_url
+        file: KleioFile
+        temp = [kfile.xml_url for kfile in translations if kfile.name=='auc-alunos-264605-A-140337-140771.cli']
+        file = temp[0]
+        session = dbsystem
+        try:
+            stats = import_from_xml(file, session, 
+                                    options={"return_stats": True,
+                                             "kleio_token": kleio_token,
+                                             "kleio_url": kleio_url,
+                                             "mode":"TL"})
+        except Exception as exc:
+            print(exc)
+        
+        # check if the file was imported
+        filename_with_extension = os.path.basename(file)
+        filename, extension = os.path.splitext(filename_with_extension)
+        sources = session.query(Source).filter_by().all()
+        imported = False
+        for source in sources:
+            kfilename_with_extension = os.path.basename(source.kleiofile)
+            kfile, kextention = os.path.splitext(kfilename_with_extension)
+            if kfile == filename:
+                imported = True
+                break
+        
+        assert imported, "file not imported"
+    else:
+        assert False, "no valid translations found in Kleio Server"
