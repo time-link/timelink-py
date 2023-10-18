@@ -133,7 +133,7 @@ class KleioServer:
                 "HostPort"
             ]
 
-        self.url = f"http://localhost:{port}"
+        self.url = f"http://127.0.0.1:{port}"
         self.kleio_home = [
             mount["Source"]
             for mount in container.attrs["Mounts"]
