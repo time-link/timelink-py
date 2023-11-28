@@ -259,6 +259,7 @@ def test_kday5():
     day = KDay(None)
     assert day.core == 0
 
+
 def test_month1():
     month = KMonth(("05", "it is a nice month", "May"))
     assert month.name == "month"
