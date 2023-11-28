@@ -2,33 +2,37 @@
 
 TODO
     - migrate postgres functions to TimelinkDatabase
-    - create metadata and engine in TimelinkDatabase
-    - create tables in TimelinkDatabase
-    - create database classes in TimelinkDatabase
-    - create mappings in TimelinkDatabase
     - use logging to database functions.
 
 """
+from datetime import timezone
 import os
 import random
 import string
 import time
-from sqlalchemy import (
-    create_engine,
-    inspect,
-    select,
-    text,
-)  # pylint: disable=import-error
+from typing import List
+import warnings
+from sqlalchemy import Engine
+from sqlalchemy import MetaData
+from sqlalchemy import Table
+from sqlalchemy import create_engine
+from sqlalchemy import inspect
+from sqlalchemy import select
+from sqlalchemy import text
+from sqlalchemy.sql import table # pylint: disable=import-error see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
-from sqlalchemy_utils import (
-    database_exists,
-    create_database,
-)  # pylint: disable=import-error
+from sqlalchemy_utils import database_exists
+from sqlalchemy_utils import create_database
 import docker  # pylint: disable=import-error
 from timelink.mhk import utilities
 from timelink.api import models  # pylint: disable=unused-import
-from timelink.api.models import PomSomMapper, pom_som_base_mappings
-
+from timelink.api.models import Entity, PomSomMapper
+from timelink.api.models import pom_som_base_mappings
+from timelink.api.models import Person
+from timelink.api.models import Attribute
+from timelink.api.models import KleioImportedFile
+from timelink.kleio import KleioFile, KleioServer, import_status_enum
+from . import views
 
 # container for postgres
 postgres_container: docker.models.containers.Container = None
@@ -36,7 +40,6 @@ postgres_container: docker.models.containers.Container = None
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = f"postgresql://timelink:db_password@postgresserver/db"
 # SQLALCHEMY_DATABASE_URL="mysql://username:password@14.41.50.12/dbname"
-
 
 def is_postgres_running():
     """Check if postgres is running in docker"""
@@ -162,6 +165,8 @@ def get_dbnames():
     WHERE NOT datistemplate
             AND datallowconn
             AND datname <> 'postgres';
+
+    TODO: equivalent in sqlLite and mysql
     """
     
     container = get_postgres_container()
@@ -179,6 +184,7 @@ def get_dbnames():
         return result
     else:
         return []
+
 
 
 class TimelinkDatabase:
@@ -226,6 +232,8 @@ class TimelinkDatabase:
     db_user: str
     db_pwd: str
     db_type: str
+    nattributes: Table | None = None
+    nfuncs: Table | None = None
 
     def __init__(
         self,
@@ -323,6 +331,14 @@ class TimelinkDatabase:
         """
         self.metadata.create_all(self.engine)  # only creates if missing
 
+    def create_views(self):
+        """Creates the views 
+
+
+        :return: None
+        """
+        self.nattributes = self.get_nattribute_view()
+
     def table_names(self):
         """Current tables in the database"""
         insp = inspect(self.engine)
@@ -367,7 +383,7 @@ class TimelinkDatabase:
         return self.session()
 
     def __exit__(self, exc_type, exc_value, traceback):
-        pass
+        self.session().close()
 
     def get_db(self):
         """Get a database session
@@ -407,4 +423,143 @@ class TimelinkDatabase:
         session.commit()
         session.close()
         self.metadata = models.Base.metadata
-        self.metadata.drop_all(self.engine)
+        try:
+            with self.engine.begin() as con:
+                self.metadata.drop_all(con)
+        except Exception as exc:
+            warnings.warn("Dropping tables problem " + str(exc), stacklevel=2)
+
+    def get_imported_files(self):
+        """Returns the list of imported files"""
+        return self.session().query(KleioImportedFile).all()
+    
+    def get_import_status(self, kleio_files: List[KleioFile], match_path=False) -> List[KleioFile]:
+        """Get the import status of the kleio files
+
+        The status in returned in KleioFile.import_status
+
+        Args:
+            kleio_files (List[KleioFile]): list of kleio files with extra field import_status
+            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
+
+        Returns:
+            List[KleioFile]: list of kleio files with field import_status
+        """
+        return get_import_status(self, kleio_files, match_path)
+
+    def query(self, query_spec):
+        """ Executes a query in the database
+        
+        Args:
+            query: sqlAlchemy query"""
+        
+        with self.session() as session:
+            result = session.query(query_spec)
+        return result
+    
+    def get_models_ids(self):
+        """Get the ORM model classes as a list of ids
+
+        Returns:
+            list: list of ORM classes as string ids
+        """
+        return Entity.get_som_mapper_ids()
+    
+
+    def get_model(self, class_id: str): 
+        """Get the ORM class for a entity type
+
+        Returns:
+            ORM class
+        """
+        return Entity.get_orm_for_pom_class(class_id)
+
+
+    def get_nattribute_view(self):
+        """ Return the nattribute view.
+
+        Returns a sqlalchemy table linked to the nattributes view of timelink/MHK databases
+        This views joins the table "persons" and the table "attributes" providing attribute
+        values with person names and sex.
+
+        The column id contains the id of the person/object, not of the attribute
+
+        Returns:
+                A table object with the nattribute view
+        """
+
+        # TODO View creation should go to timelink-py
+        nattribute_sql = """
+            SELECT p.id        AS id,
+                p.name      AS name,
+                p.sex       AS sex,
+                a.the_type  AS the_type,
+                a.the_value AS the_value,
+                a.the_date  AS the_date,
+                p.obs       AS pobs,
+                a.obs       AS aobs
+            FROM attributes a, persons p
+            WHERE (a.entity = p.id)
+            """
+        if self.nattributes is None:
+            eng: Engine = self.engine
+            metadata: MetaData = self.metadata
+            texists = inspect(eng).has_table('nattributes')
+            
+            person = Person.__table__
+            attribute = Attribute.__table__
+            attr = views.view(
+                "nattributes", metadata, 
+                select(
+                    person.c.id.label("id"),
+                    person.c.name.label("name"),
+                    person.c.sex.label("sex"),
+                    attribute.c.the_type.label("the_type"),
+                    attribute.c.the_value.label("the_value"),
+                    attribute.c.the_date.label("the_date"),
+                    person.c.obs.label("pobs"),
+                    attribute.c.obs.label("aobs")
+                ).select_from(person.join(attribute, person.c.id == attribute.c.entity))
+            )
+            self.nattributes = attr
+            with eng.begin() as con:
+                metadata.create_all(con)  
+        return self.nattributes   
+
+
+def get_import_status(db: TimelinkDatabase, kleio_files: List[KleioFile], match_path=False) -> List[KleioFile]:
+    """Get the import status of the kleio files
+
+        The status in returned in KleioFile.import_status
+
+    Args:
+        db (TimelinkDatabase): timelink database
+        kleio_files (List[KleioFile]): list of kleio files with extra field import_status
+        match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
+
+    Returns:
+        List[KleioFile]: list of kleio files with field import_status
+    """
+
+
+    previous_imports: List[KleioImportedFile] = db.get_imported_files()
+    if match_path:
+        imported_files_dict = {imported.path:imported for imported in previous_imports}
+        valid_files_dict = {file.path: file for file in kleio_files}
+    else:
+        imported_files_dict = {imported.name:imported for imported in previous_imports}
+        valid_files_dict = {file.name: file for file in kleio_files}
+    
+    for path,file in valid_files_dict.items():
+        if path not in imported_files_dict:
+            file.import_status = import_status_enum.N
+        elif file.translated > imported_files_dict[path].imported.replace(tzinfo=timezone.utc):
+            file.import_status = import_status_enum.U
+        else:
+            if imported_files_dict[path].nerrors >  0:
+                file.import_status = import_status_enum.E
+            elif imported_files_dict[path].nwarnings > 0:
+                file.import_status = import_status_enum.W
+            else:
+                file.import_status = import_status_enum.I
+    return kleio_files
