@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=45
+kleio$gacto2.str/translations=48
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-44
    link$geonames/"https://www.geonames.org/$1"/id=root-lin2-45
    fonte$dehergne-locations-1644/1644/geoinformation/substitui=dehergne-map-1644/obs="""
@@ -299,7 +299,7 @@ kleio$gacto2.str/translations=45
                geo3$Kilung#Ki-long, Jilong, hoje:Keelung, 基隆, @wikidata:Q249996/tchou-hien/deh-r1644-kilung/obs=bourg de Cabaran hoje:Yilan, 葛子兰(宜兰), @wikidata:Q680842 Now it is called 宜兰
                   atr$residencia-missao/Dominicanos/1626
 
-               geo3$Tamsui#@wikidata:Q570509/deh-r1644-tamsui/id=deh-r1644-taiwan-geo2-45
+               geo3$Tamsui#@wikidata:Q570509/deh-r1644-tamsui/deh-r1644-taiwan-geo2-45
                   atr$residencia-missao/Dominicanos/1629
 
                geo3$Taparri#hoje：大包里/tchou-hien/deh-r1644-taparri/obs="""In the Chinese translation it is recognized as “塔巴里”, in Dehergne(1957) it is noted as "大包里", which cannot be found in the map. As Dehergne(1957) said it is at "Peninsule de Masu, à 1 lieue nord-ouest de San Salvador (社寮)", I gave the cordingate of Peninsule Masu: 25.201218764354735N, 121.68618375811317E"""
@@ -526,7 +526,7 @@ kleio$gacto2.str/translations=45
                geo3$Lampacao#Lampacau,Lampacão, hoje: 浪白滘, 浪白澳, @wikidata: Qiongzhou is the ancient name of Hainan Island. Wikidata code same as Hainan Island./burgo%bourg/deh-r1644-lampacao
                   atr$activa/sim/1535
 
-            geo2$Kiungchow%Kiungchow (île de Hainan)#K'iong-tcheou,Chiungchou, hoje: Qiongzhou, 琼州, @wikidata: Q1081204/fou/deh-r1644-kiungchow/obs=Qiongzhou is the ancient name of Hainan Island.  Wikidata code same as Hainan Island.
+            geo2$Kiungchow%Kiungchow (île de Hainan)#K'iong-tcheou,Chiungchou, hoje: Qiongzhou, 琼州, @wikidata: Q1081204/fou/deh-r1644-kiungchow/obs=Qiongzhou is the ancient name of Hainan Island. Wikidata code same as Hainan Island.
                atr$activa/sim/1560
                atr$activa/sim/1632
                atr$residencia-missao/Jesuíta/1635
