@@ -97,3 +97,6 @@ timelink/.DS_Store
 .DS_Store
 .idea
 tests/sqlite/test.db
+tests/timelink-home/sources/test-project/database/sqlite/timelink.sqlite
+tests/timelink-home/.kleio/logs/kleio_service.log
+.gitignore
