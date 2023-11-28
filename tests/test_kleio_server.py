@@ -41,6 +41,7 @@ def setup():
     if mode == TestMode.LOCAL:
         token = "mytoken"
         url = "http://localhost:8089"
+        ks = KleioServer(token, url)
     else:
         """Setup kleio server for tests"""
         khome = f"{TEST_DIR}/timelink-home"
@@ -100,11 +101,12 @@ def test_make_token():
 @skip_on_travis
 def test_stop_kleio_server(setup):
     kserver: KleioServer = setup
+    kome: str = kserver.get_kleio_home()
 
     """Test if kleio server is stopped"""
 
     kserver.stop()
-    assert KleioServer.get_server() is None
+    assert KleioServer.get_server(kome) is None
     kleio_home=f"{TEST_DIR}/timelink-home"
     kserver.start(kleio_home=kleio_home,update=True)
     # wait for server to start
@@ -253,7 +255,7 @@ def test_translations_queued(setup):
 @skip_on_travis
 def test_translations_clean(setup):
     """Test if translations results are deleted"""
-    path: str = "sources/test-project/sources/reference_sources/linked_data"
+    path: str = "sources/test-project/kleio/reference_sources/linked_data"
     recurse: str = "yes"
 
     kserver: KleioServer = setup
