@@ -9,7 +9,7 @@ from timelink.kleio.utilities import quote_long_text
 class Attribute(Entity):
     __tablename__ = "attributes"
 
-    id = Column(String, ForeignKey("entities.id"), primary_key=True)
+    id = Column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
     entity = Column(String, ForeignKey("entities.id"), index=True)
     the_type = Column(String, index=True)
     the_value = Column(String, index=True)

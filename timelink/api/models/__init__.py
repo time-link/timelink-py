@@ -15,5 +15,9 @@ from .person import Person  # noqa pylint: disable=unused-import
 from .object import Object  # noqa pylint: disable=unused-import
 from .pom_som_mapper import PomSomMapper, PomClassAttributes  # noqa pylint: disable=unused-import
 from .base_mappings import pom_som_base_mappings  # noqa pylint: disable=unused-import
-from .system import (SysPar, SysParSchema, 
-                    SysLog, SysLogSchema, SysLogCreateSchema)  # noqa pylint: disable=unused-import
+from .system import SysPar  # noqa pylint: disable=unused-import
+from .system import SysParSchema  # noqa pylint: disable=unused-import  
+from .system import SysLog  # noqa pylint: disable=unused-import
+from .system import SysLogSchema  #  noqa pylint: disable=unused-import
+from .system import SysLogCreateSchema # noqa pylint: disable=unused-import
+from .system import KleioImportedFile  # noqa pylint: disable=unused-import
