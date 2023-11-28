@@ -3,7 +3,7 @@ import sys
 import time
 import copy
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
 from typing import List, Optional, Union
@@ -25,17 +25,13 @@ from timelink.mhk.models.pom_som_mapper import (
 )
 from timelink.mhk.models.entity import Entity as EntityMHK
 from timelink.mhk.models.person import Person as PersonMHK
-from timelink.mhk.models.system import KleioFile as KleioFileMHK
+from timelink.mhk.models.system import KleioImportedFile as KleioFileMHK
 
-from timelink.api.models.base_mappings import (
-    pom_som_base_mappings as pom_som_base_mappingsTL,
-)
-from timelink.api.models.pom_som_mapper import (
-    PomSomMapper as PomSomMapperTL,
-    PomClassAttributes as PomClassAttributesTL,
-)
+from timelink.api.models.base_mappings import pom_som_base_mappings as pom_som_base_mappingsTL
+from timelink.api.models.pom_som_mapper import PomSomMapper as PomSomMapperTL
+from timelink.api.models.pom_som_mapper import PomClassAttributes as PomClassAttributesTL
 from timelink.api.models.base import Entity as EntityTL, Person as PersonTL
-from timelink.api.models.system import KleioFile as KleioFileTL
+from timelink.api.models.system import KleioImportedFile as KleioFileTL
 
 
 class KleioContext(Enum):
@@ -376,6 +372,7 @@ class KleioHandler:
     def newGroup(self, group: KGroup):
         # get the PomSomMapper
         # pass storeKGroup
+        pom_mapper_for_group: PomSomMapperTL | PomSomMapperMHK
         try:
             if group.pom_class_id in self.pom_som_cache.keys():
                 pom_mapper_for_group = self.pom_som_cache[group.pom_class_id]
@@ -410,6 +407,7 @@ class KleioHandler:
                 try:
                     pom_mapper_for_group.store_KGroup(group, self.session)
                 except Exception as exc:
+                    self.session.rollback()
                     self.errors.append(
                         f"ERROR: {self.kleio_file_name} {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
                     )
@@ -417,9 +415,16 @@ class KleioHandler:
         else:
             try:
                 pom_mapper_for_group.store_KGroup(group, self.session)
-            except Exception as exc:
+            except IntegrityError as ierror:
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} ** integrity error {group.kname}${group.id}: {ierror}"
+                )
+                self.session.rollback()
+
+            except Exception as exc:
+                self.session.rollback()
+                self.errors.append(
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
                 )
 
     def newRelation(self, attrs):
@@ -470,6 +475,8 @@ class KleioHandler:
         else:
             s = "No warnings"
         kfile.warning_rpt = s
+        kfile.imported = datetime.now(timezone.utc)
+        kfile.imported_string = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %Z")    
         kfile_exists = self.session.get(self.kleio_file_model, kfile.path)
         if kfile_exists is not None:
             self.session.delete(kfile_exists)
