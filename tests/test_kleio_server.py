@@ -19,28 +19,30 @@ KLEIO_NORMAL_TOKEN: str = None
 KLEIO_SERVER: KleioServer = None
 
 
-class TestMode(Enum):
+class KleioServerTestMode(Enum):
     LOCAL = "local"
     DOCKER = "docker"
 
 
-mode = TestMode.DOCKER
+mode = KleioServerTestMode.DOCKER
 
 
 @pytest.fixture(scope="function", autouse=True)
 def setup():
     """setup kleio server for tests
 
-    To run tests locally, set mode to TestMode.LOCAL
-    Run the server in Prolog loading serverStart.pl and then:
+    To run tests with a local Kleio Server outside docker:
+    1) set "mode" abose to KleioServerTestMode.LOCAL
+    2)Run the server in Prolog loading serverStart.pl and then:
 
         setenv('KLEIO_ADMIN_TOKEN','mytoken').
         setup_and_run_server(run_debug_server,[port(8089)]).
 
     """
-    if mode == TestMode.LOCAL:
+    if mode == KleioServerTestMode.LOCAL:
         token = "mytoken"
         url = "http://localhost:8089"
+        ks = KleioServer.attach(url, token)
     else:
         """Setup kleio server for tests"""
         khome = f"{TEST_DIR}/timelink-home"
@@ -69,6 +71,16 @@ def test_start_kleio_server():
     ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home",update=True)
     assert ks is not None
 
+@skip_on_travis
+def test_attach_kleio_server(setup):
+    """Test attach to a running kleio server"""
+    kserver: KleioServer = setup
+    token = kserver.get_token()
+    url = kserver.get_url()
+    kleio_home = kserver.get_kleio_home()
+
+    ks = KleioServer.attach(url, token, kleio_home)
+    assert ks is not None
 
 @skip_on_travis
 def test_get_kleio_server_container(setup):
@@ -104,8 +116,8 @@ def test_stop_kleio_server(setup):
     """Test if kleio server is stopped"""
 
     kserver.stop()
-    assert KleioServer.get_server() is None
     kleio_home=f"{TEST_DIR}/timelink-home"
+    assert KleioServer.get_server(kleio_home) is None
     kserver.start(kleio_home=kleio_home,update=True)
     # wait for server to start
     import time
@@ -287,3 +299,4 @@ def test_sources_get(setup):
     kserver: KleioServer = setup
     sources = kserver.get_sources(path, recurse)
     assert sources is not None
+
