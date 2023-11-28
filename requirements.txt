@@ -9,7 +9,6 @@ pytest~=6.2.4
 python-box~=5.3.0
 python-dotenv~=0.21.0
 pyYAML==6.0
-sphinx-console
 requests==2.30.0
 setuptools>=65.5.1
 sqlalchemy-views
@@ -22,3 +21,4 @@ pydantic~=2.0.0
 jsonrpcclient
 networkx~=2.0.0
 bokeh
+wheel>=0.38.1
