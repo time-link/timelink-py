@@ -144,7 +144,7 @@ class SysLogCreateSchema(BaseModel):
         from_attributes = True
 
 
-class KleioFile(Base):
+class KleioImportedFile(Base):
     """Represents a Kleio file imported in the database
 
     Fields:
@@ -158,6 +158,8 @@ class KleioFile(Base):
         error_rpt: error report
         warning_rpt: warning report"""
 
+    __tablename__ = "kleiofiles"
+    
     path: Mapped[str] = mapped_column(String(1024), primary_key=True, nullable=False)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     structure: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -167,3 +169,6 @@ class KleioFile(Base):
     nwarnings: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     error_rpt: Mapped[Optional[str]] = mapped_column(String(10000), nullable=True)
     warning_rpt: Mapped[Optional[str]] = mapped_column(String(10000), nullable=True)
+    imported: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    imported_string: Mapped[str] = mapped_column(String(255), nullable=False)
+
