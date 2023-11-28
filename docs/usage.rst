@@ -6,5 +6,5 @@ To use Timelink Python package in a project::
 
     import timelink
 
-See
+See the documentation for more details: 
 :doc:`/documentation`

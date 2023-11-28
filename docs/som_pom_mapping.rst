@@ -1,5 +1,5 @@
-Timelink data models
-====================
+Timelink data concepts and models
+=================================
 
 .. contents:: Summary
     :depth: 2
@@ -212,10 +212,12 @@ use the terminology defined by the `Entity-Relationship-Model
     of people participating in acts
 * Attribute: items of information that describe entities and relations
     (names, dates, kinship terms, prices of transactions)
-* Entity-class or entity-type: a category of Entities that are described
-    by the same type of attributes
-    `Person` is a entity class, `Building` is
-    another entity class and so is "acts". Each is described by different attributes.
+* Entity-class or entity-type: 
+
+    a category of Entities that are described
+    by the same attributes
+    `person` is a entity class, `building` is
+    another entity class and so is `acts`. Each is described by different attributes.
 * Entity instance: a specific entity of a specific class
     (the person named Galileo Galillei, the building named 'Tower of Pisa',
     the baptism that occurred in 8/7/1685 in the church of Soure, Portugal ).
