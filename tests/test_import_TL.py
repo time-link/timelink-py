@@ -17,7 +17,8 @@ from timelink.api.models.base import Source
 from timelink.api.database import (TimelinkDatabase,
                                    start_postgres_server,
                                    get_postgres_container_user, 
-                                   get_postgres_container_pwd)
+                                   get_postgres_container_pwd,
+                                   get_import_status)
 from timelink.api.models.entity import Entity
 
 from timelink.kleio import KleioServer
@@ -37,13 +38,11 @@ def dbsystem(request):
         db_pwd = get_postgres_container_pwd()
 
     database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
-    db = database.session()
     try:
-        yield db
+        yield database 
     finally:
-        # database.drop_db(db)
-
-        db.close()
+        # database.drop_db
+        database.session().close()
 
 
 @skip_on_travis
@@ -52,14 +51,14 @@ def dbsystem(request):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, None, None),
+        ("postgres", "tests", None, None, None),
     ],
     indirect=True,
 )
 def test_import_xml(dbsystem):
     """Test the import of a Kleio file into the Timelink database"""
     file: Path = Path(TEST_DIR, "xml_data/b1685.xml")
-    session = dbsystem
+    session = dbsystem.session()
     try:
         stats = import_from_xml(file, session, options={"return_stats": True})
     except Exception as exc:
@@ -79,31 +78,31 @@ def test_import_xml(dbsystem):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, "postgres", "TCGllaFBFy"),
+        ("postgres", "tests", None, None, None),
     ],
     indirect=True,
 )
 def test_import_with_custom_mapping(dbsystem):
     """Test the import of a Kleio file into the Timelink database with a custom mapping"""
     file = Path(TEST_DIR, "xml_data/dev1692.xml")
-    session = dbsystem
-    try:
-        stats = import_from_xml(file, session, options={"return_stats": True})
-    except Exception as exc:
-        print(exc)
-        raise
-    sfile = stats["file"]
-    assert "dev1692" in sfile.name
-    caso = session.get(Entity, "c1692-antonio-cordeiro-alcouc")
-    caso_kleio = caso.to_kleio()
-    assert len(caso_kleio) > 0
-    assert caso is not None, "could not get an entity from special mapping"
-    caso_kleio = caso.to_kleio()
-    assert len(caso_kleio) > 0
-    test = session.get(Entity, "dev1692-per5")
-    assert test is not None
-    test_kleio = test.to_kleio()
-    assert len(test_kleio) > 0
+    with dbsystem.session() as session:
+        try:
+            stats = import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+        sfile = stats["file"]
+        assert "dev1692" in sfile.name
+        caso = session.get(Entity, "c1692-antonio-cordeiro-alcouc")
+        caso_kleio = caso.to_kleio()
+        assert len(caso_kleio) > 0
+        assert caso is not None, "could not get an entity from special mapping"
+        caso_kleio = caso.to_kleio()
+        assert len(caso_kleio) > 0
+        test = session.get(Entity, "dev1692-per5")
+        assert test is not None
+        test_kleio = test.to_kleio()
+        assert len(test_kleio) > 0
 
 
 @skip_on_travis
@@ -112,27 +111,27 @@ def test_import_with_custom_mapping(dbsystem):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, "postgres", "TCGllaFBFy"),
+        ("postgres", "tests", None, None, None),
     ],
     indirect=True,
 )
 def test_import_with_many(dbsystem):
     """Test the import of a long Kleio file into the Timelink database"""
     file = Path(TEST_DIR, "xml_data/test-auc-alunos-264605-A-140337-140771.xml")
-    session = dbsystem
-    try:
-        stats = import_from_xml(file, session, options={"return_stats": True})
-    except Exception as exc:
-        print(exc)
-        raise
-    sfile = stats["file"]
-    assert "alunos" in sfile.name
-    estudante = session.get(Entity, "140771")
-    kleio = estudante.to_kleio()
-    assert len(kleio) > 0
-    assert estudante is not None, (
-        "could not get an entity from big import" @ skip_on_travis
-    )  # noqa
+    with dbsystem.session() as session:
+        try:
+            stats = import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+        sfile = stats["file"]
+        assert "alunos" in sfile.name
+        estudante = session.get(Entity, "140771")
+        kleio = estudante.to_kleio()
+        assert len(kleio) > 0
+        assert estudante is not None, (
+            "could not get an entity from big import" @ skip_on_travis
+        )  # noqa
 
 
 @skip_on_travis
@@ -141,26 +140,26 @@ def test_import_with_many(dbsystem):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, None, None),
+        ("postgres", "tests", None, None, None),
     ],
     indirect=True,
 )
 def test_import_git_hub(dbsystem):
     """Test the import of a Kleio file from github into the Timelink database"""
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa
-    session = dbsystem
-    try:
-        stats = import_from_xml(file, session, options={"return_stats": True})
-    except Exception as exc:
-        print(exc)
-        raise
-    domingos_vargas = session.get(Person, "b1685.33-per6")
-    assert domingos_vargas is not None, "could not get a person from file"
-    kleio = domingos_vargas.to_kleio()
-    assert len(kleio) > 0
-    sfile: Path = stats["file"]
-    assert "b1685.xml" in sfile
-    pass
+    with dbsystem.session() as session:
+        try:
+            stats = import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+        domingos_vargas = session.get(Person, "b1685.33-per6")
+        assert domingos_vargas is not None, "could not get a person from file"
+        kleio = domingos_vargas.to_kleio()
+        assert len(kleio) > 0
+        sfile: Path = stats["file"]
+        assert "b1685.xml" in sfile
+        pass
 
 
 @skip_on_travis
@@ -169,7 +168,7 @@ def test_import_git_hub(dbsystem):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, None, None),
+        ("postgres", "tests", None, None, None),
     ],
     indirect=True,
 )
@@ -185,31 +184,32 @@ def test_import_from_kleio_server(dbsystem):
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
         file = kleio_file.xml_url
-        session = dbsystem
-        try:
-            stats = import_from_xml(file, session, 
-                                    options={"return_stats": True,
-                                             "kleio_token": kleio_token,
-                                             "kleio_url": kleio_url,
-                                             "mode":"TL"})
-        except Exception as exc:
-            print(exc)
-        
-        # check if the file was imported
-        filename_with_extension = os.path.basename(file)
-        filename, extension = os.path.splitext(filename_with_extension)
-        sources = session.query(Source).filter_by().all()
-        imported = False
-        for source in sources:
-            kfilename_with_extension = os.path.basename(source.kleiofile)
-            kfile, kextention = os.path.splitext(kfilename_with_extension)
-            if kfile == filename:
-                imported = True
-                break
-        
-        assert imported, "file not imported"
+        with dbsystem.session() as session:
+            try:
+                stats = import_from_xml(file, session, 
+                                        options={"return_stats": True,
+                                                 "kleio_token": kleio_token,
+                                                 "kleio_url": kleio_url,
+                                                 "mode":"TL"})
+            except Exception as exc:
+                print(exc)
+            
+            # check if the file was imported
+            filename_with_extension = os.path.basename(file)
+            filename, extension = os.path.splitext(filename_with_extension)
+            sources = session.query(Source).filter_by().all()
+            imported = False
+            for source in sources:
+                kfilename_with_extension = os.path.basename(source.kleiofile)
+                kfile, kextention = os.path.splitext(kfilename_with_extension)
+                if kfile == filename:
+                    imported = True
+                    break
+            
+            assert imported, "file not imported"
     else:
         assert False, "no valid translations found in Kleio Server"
+
 
 @skip_on_travis
 @pytest.mark.parametrize(
@@ -217,7 +217,27 @@ def test_import_from_kleio_server(dbsystem):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
-        ("postgres", "timelink", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_status_1(dbsystem):
+    """Test if import status is retrieved"""
+    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
+    translations = kserver.translation_status(path="",
+                                                  recurse="yes", 
+                                                  status="V")
+
+    import_status = get_import_status(dbsystem, translations)
+    assert import_status is not None
+
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
     ],
     indirect=True,
 )
@@ -236,28 +256,28 @@ def test_import_sources_with_no_year(dbsystem):
         file: KleioFile
         temp = [kfile.xml_url for kfile in translations if kfile.name=='auc-alunos-264605-A-140337-140771.cli']
         file = temp[0]
-        session = dbsystem
-        try:
-            stats = import_from_xml(file, session, 
-                                    options={"return_stats": True,
-                                             "kleio_token": kleio_token,
-                                             "kleio_url": kleio_url,
-                                             "mode":"TL"})
-        except Exception as exc:
-            print(exc)
-        
-        # check if the file was imported
-        filename_with_extension = os.path.basename(file)
-        filename, extension = os.path.splitext(filename_with_extension)
-        sources = session.query(Source).filter_by().all()
-        imported = False
-        for source in sources:
-            kfilename_with_extension = os.path.basename(source.kleiofile)
-            kfile, kextention = os.path.splitext(kfilename_with_extension)
-            if kfile == filename:
-                imported = True
-                break
-        
-        assert imported, "file not imported"
+        with dbsystem.session() as session:
+            try:
+                stats = import_from_xml(file, session, 
+                                        options={"return_stats": True,
+                                                 "kleio_token": kleio_token,
+                                                 "kleio_url": kleio_url,
+                                                 "mode":"TL"})
+            except Exception as exc:
+                print(exc)
+            
+            # check if the file was imported
+            filename_with_extension = os.path.basename(file)
+            filename, extension = os.path.splitext(filename_with_extension)
+            sources = session.query(Source).filter_by().all()
+            imported = False
+            for source in sources:
+                kfilename_with_extension = os.path.basename(source.kleiofile)
+                kfile, kextention = os.path.splitext(kfilename_with_extension)
+                if kfile == filename:
+                    imported = True
+                    break
+            
+            assert imported, "file not imported"
     else:
         assert False, "no valid translations found in Kleio Server"

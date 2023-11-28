@@ -13,6 +13,7 @@ https://timelink-py.readthedocs.io
    :caption: About Timelink:
 
    timelink-introduction
+   timelink-python-usage
    som_pom_mapping
 
 Source code docs

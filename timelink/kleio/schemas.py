@@ -11,7 +11,15 @@ class translation_status_enum(str, Enum):
     P = "P" # translation being processed
     Q = "Q" # file queued for translation
 
+class import_status_enum(str, Enum):
+    I = "I" # imported
+    E = "E" # imported with error
+    W = "W" # imported with warnings no errors
+    N = "N" # not imported
+    U = "U" # translation updated need to reimport
+
 class KleioFile(BaseModel):
+    """ Represent the information about kleio file and its translation status"""
     path: str = Field(..., description="The path of the file")
     name: str = Field(..., description="The name of the file")
     size: int = Field(..., description="The size of the file in bytes")
@@ -36,7 +44,30 @@ class KleioFile(BaseModel):
     version: Optional[str] = Field(None, description="The version of the kleio translator")
     rpt_url: Optional[str] = Field(None, description="The URL of the report file")
     xml_url: Optional[str] = Field(None, description="The URL of the XML file")
+    import_status: Optional[import_status_enum] = Field(None, description="""The status of the file import:
+                            I = imported
+                            E = imported with error
+                            W = imported with warnings no errors
+                            N = not imported
+                            U = translation updated need to reimport""")
+    
+    def needs_translation(self):
+        """Return True if the file needs translation"""
+        return self.status == translation_status_enum.T
 
+    def needs_import(self):
+        """Return True if the file needs import
+        
+        A file needs import if it has not been imported before
+            or if it has been translated again since the last import
+        """
+        if self.import_status is None:
+            raise ValueError("import_status is None. Call TimelinkDatabase.get_import_status() first.")  
+        
+        return self.import_status == import_status_enum.N\
+                or self.import_status == import_status_enum.U
+
+ 
 class ApiPermissions(str,Enum):
     sources = "sources"
     kleioset = "kleioset"

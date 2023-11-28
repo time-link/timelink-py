@@ -11,9 +11,12 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   timelink.api
    timelink.kleio
    timelink.mhk
    timelink.networks
+   timelink.notebooks
+   timelink.pandas
 
 Submodules
 ----------

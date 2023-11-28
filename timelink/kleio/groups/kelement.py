@@ -77,6 +77,10 @@ class KElement:
         if name is not None:
             self.name = name
 
+        self.core = None
+        self.comment = None
+        self.original = None
+        
         if type(core) is tuple and len(core) == 3:
             self.core = core[0]
             self.comment = core[1]
@@ -247,11 +251,12 @@ class KElement:
     def to_dots(self):
         return Box(self.to_dict())
 
-
+# use this for mixins to mark this should show in Kleio
+# still can override with KElement.to_kleio(force_show=True
 KleioNoShow = KElement.extend("invisible_")
 
 
-# Default KElement classes.
+# Default KElement classes gacto2.str
 # element name=id; identification=yes
 # element name=type
 # element name=loc
@@ -271,8 +276,7 @@ KleioNoShow = KElement.extend("invisible_")
 # element name=description;
 # element name=replace;
 
-# use this for mixins to mark this should show in Kleio
-# still can override with KElement.to_kleio(force_show=True
+
 
 
 class KDate(KElement):
@@ -304,7 +308,11 @@ class KDay(KElement):
     ):
         if core is not None:
             day = core  # to allow core setting in generic code
+        if day is None:
+            day = 0
+
         super().__init__(self.name, day, comment, original, element_class)
+
         if type(self.core) is str:
             self.core = int(self.core)
         if self.core != 0 and (self.core < 1 or self.core > 31):
@@ -324,6 +332,10 @@ class KMonth(KElement):
     ):
         if core is not None:
             month = core  # to allow core
+
+        if month is None:
+            month = 0
+
         super().__init__(self.name, month, comment, original, element_class)
 
         self.core = int(self.core)
@@ -347,6 +359,9 @@ class KYear(KElement):
     def __init__(self, year: Any = None, core=None, comment=None, original=None):
         if core is not None:
             year = core
+
+        if year is None:
+            year = 0
 
         super().__init__(self.name, year, comment, original)
 

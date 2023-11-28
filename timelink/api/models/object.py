@@ -11,7 +11,7 @@ from timelink.api.models.entity import Entity
 class Object(Entity):
     __tablename__ = "objects"
 
-    id = Column(String, ForeignKey("entities.id"), primary_key=True)
+    id = Column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
     name = Column(String, index=True)
     the_type = Column(String(32), index=True)
     obs = Column(String)

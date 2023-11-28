@@ -2,6 +2,7 @@
 import logging
 import socket
 import os
+from time import sleep
 from typing import List
 import warnings
 import docker
@@ -12,6 +13,26 @@ from .schemas import KleioFile, TokenInfo
 
 
 class KleioServer:
+    """This class interfaces to a Kleio server through its JSON-RPC api. It also provides convenience methods
+    to start a server in Docker locally.
+
+    Args:
+        container (docker.models.containers.Container): runing kleio server container
+        url (str): kleio server url if running in a different machine (container=None)
+        token (str): kleio server token if running in a different machine (container=None)
+        kleio_home (str): kleio server home directory. If None and container is not None then kleio_home is obtained
+                           from the container. If not none
+
+    Attributes:
+        host (str): kleio server host
+        url (str): kleio server url
+        token (str): kleio server token
+        kleio_home (str): kleio server home directory
+        container (docker.models.containers.Container): kleio server container
+
+    """
+
+    host: str
     url: str
     token: str
     kleio_home: str
@@ -31,15 +52,17 @@ class KleioServer:
         """Starts a kleio server in docker
 
         Args:
-        image: kleio server image, defaults to "timelinkserver/kleio-server"
-        version: kleio-server version, defaults to "latest"
-        kleio_home: kleio home directory, defaults to None -> current directory
-        token: kleio server token, defaults to None -> generate a random token
-        consistency: consistency of the volume mount, defaults to "cached"
-        port: port to map to 8088, defaults to None -> find a free port starting at 8088
-        update: update kleio server image, defaults to False
-        reuse: if True, reuse an existing kleio server container with same keio_home, defaults to True
+            image (str): kleio server image, defaults to "timelinkserver/kleio-server"
+            version (str, optional): kleio-server version, defaults to "latest"
+            kleio_home (str, optional): kleio home directory, defaults to None -> current directory
+            token (str, optional): kleio server token, defaults to None -> generate a random token
+            consistency (str, optional): consistency of the volume mount, defaults to "cached"
+            port (int, optional): port to map to 8088, defaults to None -> find a free port starting at 8088
+            update (bool, optional): update kleio server image, defaults to False
+            reuse (bool, optional): if True, reuse an existing kleio server container with same keio_home, defaults to True
 
+        Returns:
+            KleioServer: KleioServer object
         """
         container: docker.models.containers.Container = start_kleio_server(
             image=image,
@@ -51,16 +74,39 @@ class KleioServer:
             update=update,
             reuse=reuse,
         )
+        
         return KleioServer(container)
+    
+    @staticmethod
+    def attach(url: str, token: str, kleio_home: str = None):
+        """Attach to a already running Kleio Server.
+
+        Use this either to attach to a running server
+        outside docker (for instance in a Prolog session)
+        or to a server running in another machine (should use
+        htpps url in that case)
+
+        Args:
+            url (str): kleio server url
+            token (str): kleio server token
+            kleio_home (str, optional): kleio server home directory
+
+        Returns:
+            KleioServer: KleioServer object
+        """
+        return KleioServer(url=url, token=token, kleio_home=kleio_home)   
 
     @staticmethod
     def get_server(kleio_home: str = None):
-        """Check if a kleio server is running in docker mapped to
-         a given kleio home directory.
+        """Check if a kleio server is running in docker mapped to a given kleio home directory.
 
-         If yes return a KleioServer object, otherwise return None
+        If yes return a KleioServer object, otherwise return None
+
         Args:
             kleio_home (str, optional): kleio home directory. Defaults to None -> any kleio home.
+
+        Returns:
+            KleioServer or None: KleioServer object or None
         """
         if is_docker_running() is False:
             raise Exception("Docker is not running")
@@ -73,13 +119,15 @@ class KleioServer:
 
     @staticmethod
     def is_server_running(kleio_home: str = None):
-        """Check if a kleio server is running in docker mapped to
-         a given kleio home directory.
+        """Check if a kleio server is running in docker mapped to a given kleio home directory.
 
-         Return True of False
+        Return True of False
 
         Args:
             kleio_home (str, optional): kleio home directory. Defaults to None -> any kleio home.
+
+        Returns:
+            bool: True if server is running, False otherwise
         """
         if is_docker_running() is False:
             raise Exception("Docker is not running")
@@ -95,28 +143,56 @@ class KleioServer:
         It can be in the current directory, parent directory, or tests directory.
         It can be named "kleio-home", "timelink-home", or "mhk-home".
 
+        Args:
+            path (str, optional): path to start searching from. Defaults to None -> current directory.
+
+        Returns:
+            str: kleio home directory
         """
         return find_local_kleio_home(path=path)
 
     @staticmethod
     def make_token():
-        # get token from environment
+        """Get the kleio server token from environment or generate a new one if not set.
+
+        Returns:
+            str: kleio server token
+        """
         token = os.environ.get("KLEIO_ADMIN_TOKEN")
         if token is None:
             token = random_token()
             os.environ["KLEIO_ADMIN_TOKEN"] = token
         return token
 
-    def __init__(self, container: docker.models.containers.Container):
+    def __init__(self, container: docker.models.containers.Container=None,
+                 url: str=None, token: str=None, kleio_home: str=None):
         """Interface to kleio server
-        Creates an interface to kleio server running in docker.
-        To start a kleio server in docker use KleioServer.start_kleio_server()
+        Creates an interface to kleio server either running in docker or in another machine.
+        To start a kleio server locally in docker use KleioServer.start_kleio_server()
+
+        If container is None, then url, token and kleio_home must be provided.  
 
         Args:
-            container (docker.models.containers.Container): kleio server container
-
-
+            container (docker.models.containers.Container): runing kleio server container
+            url (str): kleio server url if running in a different machine (container=None)
+            token (str): kleio server token if running in a different machine (container=None)
+            kleio_home (str): kleio server home directory. If None and container is not None
+                                    then kleio_home is obtained from the container. 
+                                    If not none
         """
+        if container is None:
+            if url is None:
+                raise ValueError("url must be provided if container is None")
+            if token is None:
+                raise ValueError("token must be provided if container is None")
+            if kleio_home is None:
+                raise ValueError("kleio_home must be provided if container is None")
+            self.url = url
+            self.token = token
+            self.kleio_home = kleio_home
+            self.container = None
+            return
+        
         if is_docker_running() is False:
             raise Exception("Docker is not running")
 
@@ -146,27 +222,50 @@ class KleioServer:
         ][0].split("=")[1]
 
     def get_token(self):
-        """Get the kleio server token"""
+        """Get the kleio server token
+
+        Returns:
+            str: kleio server token
+        """
         return self.token
 
     def get_kleio_home(self):
-        """Get the kleio server home directory"""
+        """Get the kleio server home directory
+
+        Returns:
+            str: kleio server home directory
+        """
         return self.kleio_home
 
     def get_container(self):
-        """Get the kleio server container"""
+        """Get the kleio server container
+
+        Returns:
+            docker.models.containers.Container: kleio server container
+        """
         return self.container
 
     def get_url(self):
-        """Get the kleio server url"""
+        """Get the kleio server url
+
+        Returns:
+            str: kleio server url
+        """
         return self.url
 
     def __str__(self):
         return f"KleioServer(url={self.url}, kleio_home={self.kleio_home})"
 
     def call(self, method: str, params: dict):
-        """Call kleio server API"""
+        """Call kleio server API
 
+        Args:
+            method (str): kleio server API method
+            params (dict): kleio server API method parameters
+
+        Returns:
+            dict: kleio server API response
+        """
         url = f"{self.url}/json/"
         headers = {
             "Content-Type": "application/json",
@@ -185,33 +284,53 @@ class KleioServer:
         return response
 
     def stop(self):
+        """Stop the kleio server container"""
         self.container.stop()
         self.container.remove()
 
     def invalidate_user(self, user: str):
-        """Invalidate a user"""
+        """Invalidate a user
+
+        Args:
+            user (str): user to invalidate
+
+        Returns:
+            dict: kleio server API response
+        """
         pars = {"user": user}
         return self.call("users_invalidate", pars)
 
     def generate_token(self, user: str, info: TokenInfo):
-        """Generate a token for a user"""
+        """Generate a token for a user
+
+        Args:
+            user (str): user to generate token for
+            info (TokenInfo): token information
+
+        Returns:
+            dict: kleio server API response
+        """
         pars = {"user": user, "info": info.model_dump()}
         return self.call("tokens_generate", pars)
 
-    def translation_status(self, path: str, recurse: str, status: str):
+    def translation_status(self, path: str, recurse: str, status: str=None):
         """Get translations from kleio server
 
-        Args:
-            path (str): path to the directory in sources
-            recurse (str): if "yes" recurse in subdirectories
-            status (str): filter by translation status
+        :param path: path to the directory in sources
+        :type path: str
+        :param recurse: if "yes" recurse in subdirectories
+        :type recurse: str
+        :param status: filter by translation status
                             V = valid translations
                             T = need translation (source more recent than translation)
                             E = translation with errors
                             W = translation with warnings
                             P = translation being processed
                             Q = file queued for translation
-            token (str): kleio server token
+        :type status: str, optional
+
+        :return: list of KleioFile objects
+        :rtype: list[KleioFile]
         """
         if status is None:
             pars = {"path": path, "recurse": recurse}
@@ -224,14 +343,19 @@ class KleioServer:
             result.append(kfile)
         return result
 
-    def translate(self, path: str, recurse: str, spawn: str):
+    def translate(self, path: str, recurse: str='yes', spawn: str='yes'):
         """Translate sources from kleio server
 
-        Args:
-            path (str): path to the directory in sources
-            recurse (str): if "yes" recurse in subdirectories
-            spawn (str): if "yes" spawn a translation process for each file"""
+        :param path: path to the directory in sources
+        :type path: str
+        :param recurse: if "yes" recurse in subdirectories
+        :type recurse: str, optional
+        :param spawn: if "yes" spawn a translation process for each file
+        :type spawn: str, optional
 
+        :return: kleio server API response
+        :rtype: dict
+        """
         pars = {"path": path}
         if recurse is not None:
             pars["recurse"] = recurse
@@ -245,15 +369,28 @@ class KleioServer:
 
         Removes translation results from kleio server.
 
-        Args:
-            path (str): path to the directory in sources
-            recurse (str): if "yes" recurse in subdirectories
+        :param path: path to the directory in sources
+        :type path: str
+        :param recurse: if "yes" recurse in subdirectories
+        :type recurse: str
+
+        :return: kleio server API response
+        :rtype: dict
         """
         pars = {"path": path, "recurse": recurse}
         return self.call("translations_delete", pars)
 
     def get_sources(self, path: str, recurse: str):
-        """Get sources from kleio server"""
+        """Get sources from kleio server
+
+        :param path: path to the directory in sources
+        :type path: str
+        :param recurse: if "yes" recurse in subdirectories
+        :type recurse: str
+
+        :return: kleio server API response
+        :rtype: dict
+        """
         pars = {"path": path, "recurse": recurse}
         return self.call("sources_get", pars)
 
@@ -264,27 +401,39 @@ def is_docker_running():
         client = docker.from_env()
         client.ping()
         return True
-    except Exception:
+    except Exception as exc:
+        warnings.warn(exc,stacklevel=3)
         return False
 
 
 def find_local_kleio_home(path: str = None):
     """Find kleio home directory in the current directory, parent directory, or tests directory.
 
-    Kleio home directory is the directory where kleio server is running.
+    Kleio home directory is the directory where Kleio Server finds sources and auxiliary
+    files like structures, mappings and inferences.
     It can be in the current directory, parent directory, or tests directory.
     It can be named "kleio-home", "timelink-home", or "mhk-home".
+
+    A special case is when the current directory is "notebooks".
+    In this case, kleio-home is assumed to be the parent directory of "notebooks"
+    and thus set up as the timelink-project template.
 
     """
     kleio_home = None
     if path is None:
         # get the current directory
         current_dir = os.getcwd()
+        # check if current_dir is "notebooks"
+        if os.path.basename(current_dir) == "notebooks":
+            kleio_home = os.path.dirname(current_dir)
+            return kleio_home
     else:
         current_dir = path
 
     # get the user home directory
     user_home = os.path.expanduser("~")
+
+
 
     # check if kleio-home exists in current directory, parent directory, or tests directory
     for dir_path in [
@@ -456,7 +605,9 @@ def start_kleio_server(
         kleio_home = os.getcwd()
     else:
         kleio_home = os.path.abspath(kleio_home)
-        os.makedirs(kleio_home, exist_ok=True)
+        # check if dir exists
+        if not os.path.exists(kleio_home):
+            raise Exception(f"Directory {kleio_home} does not exist")
 
     # ensure that kleio_home/system/conf/kleio exists
     # TODo a bug in kleio server requires this directory to exist
@@ -493,6 +644,15 @@ def start_kleio_server(
         ],
     )
     kleio_container.start()  # redundant?
+
+    timeout = 120
+    stop_time = 3
+    elapsed_time = 0
+    while kleio_container.status != 'running' and elapsed_time < timeout:
+        sleep(stop_time)
+        elapsed_time += stop_time
+        continue
+
     return kleio_container
 
 

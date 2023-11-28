@@ -1,0 +1,748 @@
+kleio$gacto2.str/translations=48
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-44
+   link$geonames/"https://www.geonames.org/$1"/id=root-lin2-45
+   fonte$dehergne-locations-1644/1644/geoinformation/substitui=dehergne-map-1644/obs="""
+      Planche: Carte des Chrétientés Chinoises de la fin des Ming (1644).p. 353
+      
+      _Diocèse_
+      Depuis 1514, l'évêché de Funchal (île de Madère) 
+      s'étend jusqu'aux extrémi-
+      tés de l'Asie. Depuis le 3 nov. 1534 est
+      créé l'évêché de Goa, dont est déta-
+      ché, le 23 janv. 1576, le diocèse de
+      Macao, qui sera amputé, 14 février 
+      1588, du Japon (évêché de Funai):
+      l'évêché de Macao comprend théori-
+      quement tout l'empire de Chine.
+
+      _Provinces Jésuites_
+
+      la vice-province du Japon (province en 
+      1611); en 1623, la vice-province de Chine
+      indépendante du Japon en est déta-
+      chée; mais un visiteur jésuite contrôle
+      l'une et l'autre.
+
+      La Chine impériale distingue dans chaque province civile les _fou_, préfec-
+      tures ou villes de premier ordre, dont dépendent les _tcheou_ et les _hien_. D'au- 
+      tres agglomérations importantes comme Tientsin (alors wei) ou encore Amoy
+      et Fatshan n'ont pas reçu le titre de hien. Dans notre tableau, les villes autres
+      que les fou sont mises en italiques, et la capitale de chaque province, en 
+      majuscule. Sur la carte, nous mettons en lettres majuscules les seuls fou et 
+      tcheou possédant une chrétienté (pour les tcheou, majuscules penchées); les 
+      hien, en lettres ordinaires, et nous n'inscrivons (en petites lettres) que les 
+      bourgs et demeures chrétiennes antérieures à la persécution de 1615.
+         Pour les jésuites de l'époque, le mot collège désigne une résidence prin- 
+      cipale d'où dépendent (d'un point de vue économique beaucoup plus que juri- 
+      dique), un certain nombre de petites résidences qui lui sont rattachées. La 
+      carte, qui accompagne ces pages comme celle des résidences en 1701, est due au 
+      Père Pierre Moreau, SJ., et nous lui exprimons ici nos remerciements.
+         Une résidence est une maison propriété de la mission: elle est soit occupée 
+      par un ou plusieurs missionnaire (ici: R) ou cette anné-là, sans prêtre 
+      à demeure (R'); tandis que le mot église s'applique à une chapelle, un oratoire 
+      ou un temple plus important ; d'autres fois, le prêtre dit la messe chez des fidè- 
+      les, dans leur propre maison. Toute résidence possède une église ou oratoire. 
+      Sur la carte, les Résidences sont marquées par un cercle. Résidences et chré- 
+      tientés sont, à l'époque, presque toutes aux Jésuites. Dans le cas contraire, 
+      nous faisons suivre le nom de la localité de la mention de l'Ordre qui les pos- 
+      sède: (OP), Dominicains; (OFM), Franciscains; (OESA), Augustins.
+         On observera que le cours du Fleuve Jaune n'était pas le même qu'actuel- 
+      lement, et que les chrétientés se sont développées le long des grandes routes 
+      (le fait est frappant pour la région du Kiangnan). Pour les chrétientés an-
+      ciennes des Ming voir aussi MS XVI, 1957 (avec carte en couleurs).
+
+      N.B. N.B. Pour compléter ce tableau des antiquités chrétiennes de la Chine, rap-
+      pelons qu'en Mongolie à Olon-Sume, ancienne capitale des Ongiit nestoriens,
+      il y eut, outre une église nestorienne, une église catholique de Giovanni de Mon-
+      tecorvino (1247-1328) « le plus ancien exemple de sanctuaire catholique en Ex-
+      trême-Orient » Egami, Namio dans Journal Asiatique, CCXL 1952, 155-167 cf NZM
+      1954, p. 56); du même, Découverte 'l'église romaine' établie au XIII' siècle
+      en Mongolie, Conferenze, Rome, 1955, 41-55; cf BernahdC-Maitrb], Henri, La dé-
+      couverte des Nestoriens Mongols aux Ordos et l'Histoire ancienne du Christia-
+      nisme en Extrême-Orient, Tientsin, 1935. — Les ruines de l'église franciscaine
+      de Nankin au XIV* siècle ont été décrites par Prip-Molleb dans la revue
+      danoise Artes; résumé dans Chinese Recorder, 1935, 654-656 et hors-texte 641.
+      Etc.
+   
+      NOTA TRANSCRIÇÃO
+
+      "geo1$ = Provincia"
+      "geo2$ = fou (perfeitura ou cidade de 1ª ordem)"
+      "geo3$ = tcheou-hien"
+
+      Em cada entrada o formato é 
+      
+         "geoN$Nome geográfico/Tipo (província, fou, tcheou-hien)/id=deh-r1644-nome"
+
+      Exº 
+         "geo1$Chekiang#Zhejiang/província/deh-r1644-chekiang"
+         "geo2$Hangchou#Hangzhou/capital provincial/deh-r1644-hangzhou"
+         "geo3$Fuyang/tchou-hien/deh-r1644-fuyang" 
+
+      Nos locais onde há presença de missionários:
+
+         "atr$residencia-missao/Jesuíta/16110000 (onde aparece R)"
+         "atr$residencia-missao/Dominicanos%OP/16560000"
+                        (quando passa a residência de outra ordem
+                         ver abreviaturas na legenda do mapa, exº p.354 em Kinhua)
+         "atr$activa/sim/16110000"         (onde só aparece uma data)
+
+      edited by Skye
+      and Joaquim Carvalho
+      and Alicia
+      """
+
+      geodesc$deh-chre-1644/0/0/1644
+
+         geo1$Chekiang#Tche-kiang, hoje:Zhejiang, 浙江, @wikidata:Q16967/província/deh-r1644-chekiang
+
+            geo2$Hangchou#Hang-tcheou, hoje: Hangzhou, 杭州, @wikidata:Q4970/capital provincial/deh-r1644-hangchou
+               atr$activa/sim/16110000
+               atr$residencia-missao/Jesuíta/16110000
+
+               geo3$Fuyang#Fou-yang, hoje:Fuyang, 富阳, @wikidata:Q1011103/tchou-hien/deh-r1644-fuyang
+                  atr$activa/sim/16420000
+
+               geo3$Jenho#Jen-houo, hoje: Renhe, 仁和县, Historical county name. coordinate: 30.448897N, 120.307504E/tchou-hien/deh-r1644-jenho/obs=no wikidata.
+                  atr$activa/sim/16080000
+
+            geo2$Chüchow#K'iu-tcheou, hoje:Quzhou, 衢州, @wikidata:Q58235, in the Chinese translation it is recognized as “遂州”, which is wrong, both phonetically and geographically. In Dehergne(1957), it is noted as "衢州"./fou/deh-r1644-chuchow/obs=in the Chinese translation it is recognized as “遂州”, which is wrong, both phonetically and geographically. In Dehergne(1957), it is noted as "衢州".
+               atr$activa/sim/16130000
+
+            geo2$Huchow#Hou-tcheou, hoje: Huzhou, 湖州, @wikidata:Q42664/fou/deh-r1644-huchow
+
+               geo3$Tehtsing%Tehtsing du Huchow, Té-ts'ing,Teching, hoje: Deqing, 德清, @wikidata:Q1191987/deh-r1644-tehtsing/deh-r1644-tehtsing
+                  atr$activa/sim/1620
+
+            geo2$Kashing#Kia-hing, hoje:Jiaxing, 嘉兴, @widata:Q58178/fou/deh-r1644-kashing
+
+               geo3$Kashan%Kaosham#Kia-chan, hoje: Jiashan, 嘉善, @wikidata:Q1361347/tchou-hien/deh-r1644-kaosham/obs="""
+               The place name in the book Dehergne(1973) is "Kaoshan", and in the Chinese translation it is recognized as “高山”. But this place cannot be found. According to Dehergne(1957), it probably shoud be "Kashan 嘉善", which means in the 1973 book, this place is wrongly spelled by mistake."""
+                  atr$activa/sim/1640
+
+               geo3$Tangsi#"T'ang-k'i Tangchi", hoje:Tangqi, 塘栖 @wikidata:Q10931032, in the Chinese translation it is recognized as “塘拪”/tchou-hien/deh-r1644-tangsi
+                  atr$activa/sim/1642
+
+               geo3$Tsungteh%Tsungteh (Shihmen)#Tch'ong-té,hoje: Chongde, 崇德县 @wikidata:Q10270889, Historical county name, located in the present Chongfu 崇福镇/tchou-hien/deh-r1644-tsungteh
+                  atr$activa/1629
+                  atr$alternative-name/Shimen
+
+               geo3$Tungsiang#T'ong-hiang, hoje:Tongxiang, 桐乡, @wikidata:Q1204548/tchou-hien/deh-r1644-tungsiang
+                  atr$activa/sim/1615%?
+
+            geo2$Kinhwa#Kin-hoa,Chinhua,hoje:Jinhua, 金华, @wikidata:Q58210/fou/deh-r1644-kinhwa
+               atr$activa/sim/<1644%avant 1644
+               atr$residencia-missao/Jesuíta/<1644%pas citée em 1645
+
+               geo3$Lanchi%(qui deviendra em 1656 R des OP)Lan-k'i， hoje:Lanxi, 兰溪, @wikidata:Q1023793/tchou-hien/deh-r1644-lanchi
+                  atr$activa/sim/1642
+                  atr$residencia-missao/Dominicanos/>1656#a partir desta data
+
+               geo3$Tungyang#Tong-yang, hoje:Dongyang, 东阳, @wikidata:Q1023774/tchou-hien/deh-r1644-tungyang
+                  atr$activa/sim/1628
+
+            geo2$Ningpo%(v. 1540?)Ning-pouo,hoje: Ningbo, 宁波, @wikidata:Q42780/fou/deh-r1644-ningpo
+               atr$activa/sim/1638
+
+               geo3$Wuking/burgo%bourg de Wuking#Uchim,Ou kin, hoje:? Dehergne(1957) did not give its Chinese name. In the Chinese translation it is recognized as “五井村”, which cannot be found./deh-r1644-wuking
+                  atr$activa/sim/1628
+
+               geo3$Tinghai#T'ing-hai, hoje:Dinghai, 定海, @wikidata:Q1226419/tchou-hien/deh-r1644-tinghai
+                  atr$activa/sim/1642
+
+               geo3$Tzeki#Ts'e-k'i,Tsuchi, hoje:Cixi, 慈溪, @wikidata:Q706161/tchou-hien/deh-r1644-tzeki
+                  atr$activa/sim/1637
+
+            geo2$Shaoshing#Chao-hing,Shaohsing, hoje:Shaoxing, 绍兴, @wikidata:Q706161/fou/deh-r1644-shaoshing
+               atr$activa/sim/1586
+
+            geo2$Wenchow#Wen-tcheou, hoje:Wenzhou, 温州, @wikidata:Q42635/fou/deh-r1644-wenchow
+
+               geo3$Juian#Joei-ngan, hoje:Rui'an, 瑞安, @wikidata:Q713357/tchou-hien/deh-r1644-juian
+                  atr$activa/sim/1638
+
+         geo1$Fukien#Fou-kien, hoje: Fujian, 福建, @wikidata:Q41705/província/deh-r1644-fukien
+
+            geo2$Foochow#Fuzhou，Fou-tcheou,Fuchou，hoje: Fuzhou, 福州, @wikidata: Q68481/capital provincial/deh-r1644-foochow
+               atr$activa/sim/1617%en 1636 23 chrétientés., en 1638 17 églises
+               atr$residencia-missao/Jesuíta/<1645%avant 1645
+
+               geo3$Hungtang/burgo%bourg de Hungtang, hoje: Hongtang, 洪塘, @wikidata: Q11146687, in the Chinese translation it is written as “宏塘”, and in Dehergne(1957) it is "洪堂". But actually this place is written with the characters "洪塘"./deh-r1644-hungtang
+                  atr$activa/sim/1636
+
+               geo3$Machang/burgo%bourg de Machang, Machang, hoje: Machang, 马厂村, @wikidata:Q17033140, The Wikidata code is that of "马厂街基督教堂" Machang Street Christian Church/deh-r1644-machang
+                  atr$activa/sim/1636
+
+               geo3$Diongloh%Diongloh (Tch'ang-lo), Tch'ang-lo,Changlo, hoje: Changle,长乐, @wikidata:Q766619/tchou-hien/deh-r1644-diongloh
+                  atr$activa/sim/1637
+
+               geo3$Hoihow/burgo%bourg de Hoihow (Haikeu)#Haikeu, hoje: Haikou, 海口镇, @wikidata:Q5639130/deh-r1644-hoihow
+                  atr$activa/sim/1636/obs=in the Chinese translation it has another name “水口”, which probably is wrong.
+
+               geo3$Niensien/burgo%bourg de Niensien#Dehergne(1957, p30): "A côté de Hai keu on cite, en 1639, une chrétienté " Nien sien ", dont nous ignorons tout."/deh-r1644-niensien
+                  atr$activa/sim/1636
+
+               geo3$Futsing#Fou-ts'ing, Fuching, hoje:Fuqing, 福清, @wikidata:Q262208/tchou-hien/deh-r1644-futsing
+                  atr$activa/sim/1631
+
+               geo3$Kutien#Kou-t'ien, hoje:Gutian, 古田, @wikidata: Q1168209/tchou-hien/deh-r1644-kutien
+                  atr$activa/sim/1639
+
+               geo3$Lienkong#Lien-kiang,Lienchiang, hoje:Lianjiang, 连江, @wikidata:Q204827/tchou-hien/deh-r1644-lienkong
+                  atr$activa/sim/1636
+
+            geo2$Changchow%Changchow (Lungki)#Zhangzhou, hoje:Zhangzhou, 漳州, @wikidata: Q68814/fou/deh-r1644-changchow/obs=et la baie d'Amoy entre Changchow et Chüanchow v. 1616
+
+               geo3$Aupua#Au-poa,Heupuen, hoje: Houban, 后坂, (geonames: 1977135)/tchou-hien/deh-r1644-aupua/obs="""
+               in the Chinese translation it is recognized as “章浦”（漳浦）, which is wrong. It should be "后坂", because "Aupua" corresponds to the prinunciation of "后坂" in the southern Fujian dialect, and in Dehergne(1957), it has another transcription "Heupuen", which proves it coordinate：24.50213852506329N, 117.6917197408656E"""
+
+            geo2$Chüanchow#Quanzhou, Ts'iuen-tcheou, hoje:Quanzhou, 泉州, @wikidata:Q68695/fou/deh-r1644-chuanchow
+               atr$activa/sim/1625#cerca de
+               atr$residencia-missao/Dominicanos/1632
+               atr$residencia-missao/Jesuíta/<1645#antes de
+
+               geo3$Amoy%Amoy (Szeming)#Hia-men,Shamen, hoje:Xiamen, 厦门, @wikidata:Q68744,/burgo%principaux bourgs/deh-r1644-amoy
+                  atr$residencia-missao/Dominicanos/1594%tentatives OP 1594
+                  atr$alternative-name/Siming#hoje: 思明, @wikidata:Q1374907, Siming is the historical name and the current central district of Xiamen in the Chinese translation it is written as“四明” (wrong character)
+
+               geo3$Anhai/burgo%principaux bourgs#Ngan-hai,hoje:Anhai,安海, @wikidata:Q4764330/deh-r1644-anhai
+                  atr$activa/sim/1634
+
+               geo3$Hweian#Hoei-ngan, hoje:Hui'an, 惠安, @wikidata:Q1374978/tchou-hien/deh-r1644-hweian
+                  atr$activa/sim/1636
+
+               geo3$Tsingkiang%Tsinkiang#Chingchiang ,Tsin-kiang, hoje: Jingjiang, 靖江, Q428587. In the original book (Dehergne, 1973), it is written as "Tsinkiang" (without g), which is wrongly spelled, because from both phonetic and geographical points of view, it should be Tsingkiang 靖江. In Dehergne(1973), it is written as Tsingjiang. And in the Chinese translation, it is also recognized as "靖江"./tchou-hien/deh-r1644-tsinkiang
+                  atr$activa/sim/1635
+
+               geo3$Yungchun#Yong-tch'oen,Yungchin, hoje:Yongchun, 永春, @wikidata:Q1337868/tchou-hien/deh-r1644-yungchun
+                  atr$activa/sim/1635
+
+            geo2$Funing%Funing (tcheou indép.)#Fou-ning, hoje:Funing, 福宁,@wikidata:Q241877, historical administrative division. The Wikidata code is of its administrative center Xiapu 霞浦/tcheou independente/deh-r1644-funing
+               atr$activa/sim/1638
+               atr$residencia-missao/Dominicanos/1638
+
+               geo3$Fuan#Fou-ngan, hoje:Fu'an, 福安, @wikidata:Q1374581/tchou-hien/deh-r1644-fuan
+                  atr$activa/sim/<1632#antes de
+                  atr$residencia-missao/Dominicanos/1632
+
+               geo3$Hiapoey%Hiapoey (Apuy)#Apuy, hoje: Xiapi, 下邳, in the Chinese translation, it is recognized as "霞浦", but actually it is not. In Dehergne(1957), it is noted as "下邳". Coordinate: 26.832013826263175N, 119.77591087254943E/burgo%principaux bourgs/deh-r1644-hiapoey
+                  atr$activa/sim/1634
+
+               geo3$Lokia/burgo%principaux bourgs#Lukiahsiang,Lokahoeng, hoje:Luojiaxiang, 罗家巷, in the Chinese translation, it is recognized as "闾峡", but in Dehergne(1957), it is noted as "罗家巷". "罗家巷" now is in 罗江.coordinate: 26.971131830911116N, 119.67270683499889E/deh-r1644-lokia
+                  atr$activa/sim/1634
+                  atr$residencia-missao/Franciscanos/1634
+
+               geo3$Muyang/burgo%principaux bourgs, Mou-yang, hoje:Muyang, 穆阳, @wikidata:Q14471971/deh-r1644-muyang
+                  atr$activa/sim/1634
+                  atr$residencia-missao/Dominicanos/1634
+
+               geo3$Tingteo/burgo%principaux bourgs/deh-r1644-tingteo
+                  atr$activa/sim/1633
+                  atr$residencia-missao/Dominicanos/1633
+
+               geo3$Ningteh#Ning-té,Ningte, hoje: Ningde, 宁德, @wikidata:Q68919/tchou-hien/deh-r1644-ningteh
+                  atr$activa/sim/1634
+                  atr$residencia-missao/Franciscanos/1634
+
+               geo3$Showning#Cheou-ning, hoje:Shouning, 寿宁, @wikidata: Q1149660/tchou-hien/deh-r1644-showning
+                  atr$activa/sim/1642
+                  atr$residencia-missao/Dominicanos/1642
+
+            geo2$Hinghwa#Hing-hoa,Hsinghua, hoje:Xinghua, 兴化, @wikidata:Q17498990/fou/deh-r1644-hinghwa
+               atr$activa/sim/1626
+
+               geo3$Putien#P'ou-t'ien, hoje:Putian, 莆田, @wikidata:Q17031936/tchou-hien/deh-r1644-putien
+                  atr$activa/sim/1636
+
+               geo3$Sienyu#Sien-yeou, hoje:Xianyou, 仙游, @wikidata:Q1337926/tchou-hien/deh-r1644-sienyu
+                  atr$activa/sim/1631
+
+            geo2$Kienning%Kienning (Kienow), Kien-yang, hoje:Jianyang, 建阳, @wikidata:Q639862/fou/deh-r1644-kienning
+               atr$activa/sim/1629
+               atr$residencia-missao/Jesuíta/<1645#antes de
+
+               geo3$Kienyang#Kien-yang, hoje:Jianyang, 建阳, @wikidata:Q639862/tchou-hien/deh-r1644-kienyang
+                  atr$activa/sim/1636
+
+               geo3$Chungan#Tch'ong-ngan, hoje:Chong'an, 崇安, @wikidata:Q94945, Today the city's name changed to be Wuyishan 武夷山市, and the wikidata code is that of Wuyishan/tchou-hien/deh-r1644-chungan
+                  atr$activa/sim/1635#cerca de
+
+            geo2$Shaowu#Chao-ou, hoje:Shaowu, 邵武, @wikidata:Q1025451/fou/deh-r1644-shaowu
+               atr$activa/sim/1631
+               atr$residencia-missao/Jesuíta/<1645#antes de
+
+               geo3$Kienning hien#Kien-ning,Chienning, hoje:Jianning Xian, 建宁县, @wikidata:Q781559/tchou-hien/deh-r1644-kienning-hien
+                  atr$activa/sim/1644
+                  atr$residencia-missao/Jesuíta/1644
+
+               geo3$Taining#T'ai-ning, hoje:Taining, 泰宁, @wikidata:Q1375194/tchou-hien/deh-r1644-taining
+                  atr$activa/sim/1644
+
+            geo2$Tingchow#T'ing-tcheou, hoje:Tingzhou, 汀州, @wikidata:Q7808213/fou/deh-r1644-tingchow2
+               atr$activa/sim/1641
+
+               geo3$Ninghwa#Ning-hoa, hoje:Ninghua, 宁化, @wikidata:Q1198091/tchou-hien/deh-r1644-ninghwa
+                  atr$activa/sim/1641
+
+               geo3$Tsingliu#Tsing-lowou,Chingliu, hoje:Qingliu, 清流, @wikidata:Q1198324/tchou-hien/deh-r1644-tsingliu
+                  atr$activa/sim/1644
+
+            geo2$Yenping#Yen-p'ing, hoje:Yanping, 延平, @wikidata:Q1337959/fou/deh-r1644-yenping
+               atr$activa/sim/1637
+               atr$residencia-missao/Jesuíta/<1645#antes de
+
+               geo3$Shahsien#Cha, hoje: Shaxian, 沙县/tchou-hien/deh-r1644-shahsien
+                  atr$activa/sim/1637
+
+            geo2$Taiwan%Formose (Taiwan), Formosa,#hoje:Taiwan, 台湾, @wikidata:Q22502/fou/deh-r1644-taiwan
+
+               geo3$Kilung#Ki-long, Jilong, hoje:Keelung, 基隆, @wikidata:Q249996/tchou-hien/deh-r1644-kilung/obs=bourg de Cabaran hoje:Yilan, 葛子兰(宜兰), @wikidata:Q680842 Now it is called 宜兰
+                  atr$residencia-missao/Dominicanos/1626
+
+               geo3$Tamsui#@wikidata:Q570509/deh-r1644-tamsui/deh-r1644-taiwan-geo2-45
+                  atr$residencia-missao/Dominicanos/1629
+
+               geo3$Taparri#hoje：大包里/tchou-hien/deh-r1644-taparri/obs="""In the Chinese translation it is recognized as “塔巴里”, in Dehergne(1957) it is noted as "大包里", which cannot be found in the map. As Dehergne(1957) said it is at "Peninsule de Masu, à 1 lieue nord-ouest de San Salvador (社寮)", I gave the cordingate of Peninsule Masu: 25.201218764354735N, 121.68618375811317E"""
+                  atr$residencia-missao/Dominicanos/1630
+
+               geo3$Camarri#Quimauri， hoje:Jinbaoli, 金包里, in the Chinese translation it is recognized as “噶玛兰”, but in Dehergne(1957) it is noted as "金包里". It is an area in the Northern Taiwan. coordinate: 25.22189808588497N, 121.6382892794898E/tchou-hien/deh-r1644-camarri
+                  atr$residencia-missao/Dominicanos/1633
+
+               geo3$Santiago#Kakinauan, Samitiao, hoje:Cape Santiago, 三貂角, @wikidata:Q31106/tchou-hien/deh-r1644-santiago
+                  atr$residencia-missao/Dominicanos/1635
+
+         geo1$Honan#hoje:Henan, 河南, @wikidata:Q43684/província/deh-r1644-honan/obs=(12 ou 13 chrétientés en 1641)
+
+            geo2$Kaifeng%Kaifeng (Pienleang) «chrétiens de la Croix» (D'Elu II 319 sq) v. 1550., chrétienté v. 1623, K'ai-fong, hoje:Kaifeng, 开封, @wikidata:Q208471/capital provincial/deh-r1644-kaifeng
+               atr$activa/sim/1550#cerca de
+               atr$activa/sim/1623#cerca de
+
+               geo3$Yüanwu#Yuen-ou, hoje:Yuanwu, 原武, @wikidata:/tchou-hien/deh-r1644-yuanwu
+                  atr$activa/sim/1622
+
+            geo2$Kweiteh#Koei-té,Kueite, hoje: Guide, 归德, @wikidata:Q404817/fou/deh-r1644-kweiteh/obs=Today it is named 商丘 Shanqiu. Wikidata code is that of Shangqiu
+               atr$activa/sim/<1637#antes de
+
+         geo1$Hukwang#Huguang?, Hou-Quang, hoje:Huguang,湖广, @wikidata:Q2235155/região/deh-r1644-hukwang/obs=Former province of China, corresponding to modern-day Hubei and Hunan provinces
+            rel$geografica/pertence região/Hukwang/deh-r1644-hukwang
+            atr$alternative-name/Houpeh#Hou-pe, hoje:Hubei,湖北， @wikidata:Q46862
+
+            geo2$Wuchang#do Hupei?, Ou-tch'ang, hoje:Wuchang, 武昌, @wikidata:Q1014420/capital provincial/deh-r1644-wuchang
+               atr$activa/sim/1637
+
+               geo3$Tungshan#T'ong-chan, hoje:Tongshan, 通山, @wikidata:Q1356703/tchou-hien/deh-r1644-tungshan
+                  atr$activa/sim/1629
+
+            geo2$Anlu#do Hupei?, Ngan-lou, hoje:Anlu, 安陆, @wikidata:Q557934/fou/deh-r1644-anlu
+
+               geo3$Kingmen#Kingmen, King-men,Chingmen, hoje:Jingmen, 荆门, @wikidata:Q71323/tchou-hien/deh-r1644-kingmen
+                  atr$activa/sim/1644#cerca de
+
+            geo2$Hwangchow#do Hupei?, Hoang-tcheou, hoje:Huangzhou, 黄州, @wikidata:Q927929/fou/deh-r1644-hwangchow
+
+               geo3$Kichow%Kichow (Kichun), King-men,Chingmen, hoje:Jingmen, 荆门, @wikidata:Q71323/tchou-hien/deh-r1644-kichow
+                  atr$activa/sim/1639
+
+            geo2$Kingchow#do Hupei?, K'i-tcheou,Chichou, hoje: Qizhou, 蕲州, @wikidata:Q14135188/fou/deh-r1644-kingchow/obs=In the Chinese translation it is recogniazed as “蕲水”, which is also a place at that area, but according to the phonetic, it should be "蕲州", which is also noted in Dehergne(1957).
+
+               geo3$Kungan#Kong-ngan, hoje:Gong'an, 公安, @wikidata:Q1198857/tchou-hien/deh-r1644-kungan
+
+               geo3$Meng kia k'i/burgo%au bourg de Meng kia k'i/deh-r1644-meng-kia-ki
+                  atr$activa/sim/1644#cerca de
+
+               geo3$Shihshow#Che-cheou, hoje:Shishou, 石首, @wikidata:Q1359319/tchou-hien/deh-r1644-shihshow
+                  atr$activa/sim/1640
+
+         geo1$Hunan#Hou-nan, hoje:Hunan, 湖南, @wikidata:Q45761/província/deh-r1644-hunan
+            rel$geografica/pertence região/Hukwang/deh-r1644-hukwang
+
+            geo2$Yungchow#do Hunan?, Yong-tcheou, hoje:Yongzhou, 永州, @wikidata:Q266014/fou/deh-r1644-yungchow
+
+               geo3$Kiyang#K'i-yang,Chiyang, hoje:Qiyang, 祁阳, @wikidata:Q1199641/tchou-hien/deh-r1644-kiyang
+
+               geo3$Paishui/tchou-hien/deh-r1644-paishui
+                  atr$activa/sim/1587/obs=tentative de Ruggieri à Paishui 1587
+
+         geo1$Kiangnan%KIANGNAN ou NANKING#Jiangnan?hoje:Jiangnan, 江南, @wikidata:Q11133842, former province of China, corresponding to modern-day Jiangsu and Anhui provinces/região/deh-r1644-kiangnan
+
+         geo1$Anhwei#Anhui, Ngon-hoei, hoje:Anhui, 安徽, @wikidata:Q40956/província/deh-r1644-anhwei
+            rel$geografica/pertence região/Kiangnan/deh-r1644-kiangnan
+
+            geo2$Chuchow%Chuchow, hoje:Chuzhou, 滁州, @wikidata:Q114045/tcheou independente%(tcheou indépendant)/deh-r1644-chuchow-tcheou
+               atr$activa/sim/1616
+
+            geo2$Hweichow#Hoei-tcheou, hoje:Huizhou, 徽州, @wikidata:Q4358404/fou/deh-r1644-hweichow
+
+               geo3$Wuyan hien#Ou-yuen, hoje:Wuyuan Xian, 婺源县, @wikidata:Q1357710, Wuyuan historically was in Anhui province, but now it is in the present-day Jiangxi province/tchou-hien/deh-r1644-wuyan-hien
+
+               geo3$Tungmen/burgo%Wuyuän hien le bourg de Tungmen/deh-r1644-tungment
+                  atr$activa/sim/1644#cerca de
+
+         geo1$Kiangsu#Jiangju, hoje: Jiangsu, 江苏, @wikidata:Q16963/província/deh-r1644-kiangsu
+            rel$geografica/pertence região/Kiangnan/deh-r1644-kiangnan
+
+            geo2$Nanking#Nanjing, Nan-king,Nanching, hoje: Nanjing, 南京, @wikidata: Q16666/capital provincial/deh-r1644-nanking
+               atr$activa/sim/1595#Ricci
+               atr$residencia-missao/Jesuíta/1599
+
+               geo3$Siaolingwei#Hiao-ling-wei,Hsiaolingwei, hoje: Xiaolingwei, 孝陵卫, @wikidata:Q8044278/burgo%bourg/deh-r1644-siaolingwei
+                  atr$activa/sim/1610#cerca de
+
+               geo3$Kaowang#hoje: Gaowang, 高旺, @wikidata: Q13721719, in the Chinese translation, it is written as “高望”, which should be “高旺”./burgo%bourg/deh-r1644-kaowang
+                  atr$activa/sim/1633
+
+               geo3$Lungtan#hoje:Longtan, 龙潭, @wikidata: Q31853195/burgo%bourg/deh-r1644-lungtan
+                  atr$activa/sim/1643
+
+            geo2$Changchow%Changchow (Wutsin)#hoje:Changzhou, 常州, @wikidata: Q57970/fou/deh-r1644-changchow-fou
+               atr$activa/sim/1643
+
+               geo3$Ihing#I-hing,Ihsing, hoje:Yixing, 宜兴, @wikidata:Q1015788/tchou-hien/deh-r1644-ihing
+                  atr$activa/sim/1623
+
+               geo3$Tsinkiang#Chingchiang, hoje:Jingjiang, 靖江, @wikidata:Q428587, In the original book (Dehergne, 1973), it is written as "Tsinkiang" (without g), which is wrongly spelled, because from both phonetic and geographical points of view, it should be Tsingkiang 靖江. In Dehergne(1973), it is written as Tsingjiang. And in the Chinese translation, it is also recognized as "靖江"./tchou-hien/deh-r1644-tsinkiang-tchou
+                  atr$activa/sim/1635
+
+               geo3$Wusih#Ou-si,Wuhsi, hoje:Wuxi, 无锡, @wikidata: Q42651/tchou-hien/deh-r1644-wusih
+                  atr$activa/sim/<1625#antes de
+
+               geo3$Wutsin%?/tchou-hien/deh-r1644-wutsin
+                  atr$activa/sim/1625
+
+            geo2$Chinkiang#Tchen-kiang,Chenchiang, hoje:Zhenjiang, 镇江, @wikidata:Q57958/fou/deh-r1644-chinkiang
+               atr$activa/sim/1611#cerca de
+
+               geo3$Tanyang#Tan-yang, hoje:Danyang, 丹阳, @wikidata: Q925293/tchou-hien/deh-r1644-tanyang
+                  atr$activa/sim/1620
+
+            geo2$Hwaian#Hoai-ngan, hoje:Huai'an, 淮安, @wikidata: Q57818/fou/deh-r1644-hwaian
+               atr$activa/sim/1638
+
+            geo2$Soochow%Soochow (Wuhsien)#Sou-tcheou, Suchou, hoje:Suzhou, 苏州, @wikidata:Q42622/fou/deh-r1644-soochow
+               atr$activa/sim/1614
+
+               geo3$Changshu#hoje:Wuxian, 吴县, @wikidata:Q113497198, fomer city in Jiangsu/tchou-hien/deh-r1644-changshu
+                  atr$activa/sim/1623
+                  atr$residencia-missao/Jesuíta/1635/obs=R 1635 «Cham Xo», cf AHSI 28 (1951) 311-312
+
+               geo3$Kiating#Kia-ting,Chiating, hoje:Jiading, 嘉定, @wikidata:Q662101/tchou-hien/deh-r1644-kiating
+                  atr$activa/sim/1617
+                  atr$residencia-missao/Jesuíta/1621
+
+               geo3$Tsungming%Tsungming (île)#Tch'ong-ming,Chungming, hoje: Chongming, 崇明, @wikidata:Q788812/tchou-hien#é uma ilha/deh-r1644-tsungming
+                  atr$activa/sim/1639
+
+            geo2$Sungkiang#Song-kiang,Sungching, hoje: Songjiang, 松江, @wikidata: Q11104671/fou/deh-r1644-sungkiang/obs= 松江府 is an ancient superior prefecture of china
+               atr$residencia-missao/Jesuíta/1624
+
+               geo3$Kaokia#hoje: Gaojia, 高家, in the Chinese translation it is recognized as “高家岗”, which actually is not in that area. It should be “高家”. Dehergne(1957, p60) said "'Cao kia' près de Cié pao (=Tsipao) est citée dans l'annuelle de 1643 (JS 122 185). Il y a un 高家 plus près de Sungkiang, à l'est."/burgo%bourg/deh-r1644-kaokia
+
+               geo3$Mo ka pang#Ma kia pim, hoje: Majiabang, 马家浜, in the Chinese translation it is recognized as “穆喀榜”, which is wrong. Dehergne(1957, p60) said it is "马家滨" at "sud de Sung-kiang". In the present day it might be "马家浜" to the south Songjiang. coordinate: 30.845691234919308N, 121.3179093082612E/burgo%bourg/deh-r1644-mo-ka-pang
+
+               geo3$Chwansha#Tch'oan-cha, hoje:Chuansha, 川沙, @wikidata: Q11055382/tchou-hien/deh-r1644-chwansha
+                  atr$activa/sim/1630#cerca de
+
+               geo3$Fenghsien%Fenghsien (Vongtsié)#Fong-hien,Fenghsien, hoje:Fengxian, 奉贤, @wikidata: Q662694/tchou-hien/deh-r1644-fenghsien
+                  atr$activa/sim/1625%?
+
+               geo3$Kinshan#Kin-chan,Chinshan, hoje: Jinshan, 金山, @wikidata: Q662241/tchou-hien/deh-r1644-kinshan
+
+               geo3$Chuking#Tchou-king,Chuching, hoje:Zhujing, 朱泾, @wikidata: Q11094342, in the Chinese traslation it is written as “诸泾”, which should be “朱泾”/burgo%bourg/deh-r1644-chuking
+                  atr$activa/sim/1642
+
+               geo3$Shanghai#Chang-hai, hoje: Shanghai, 上海, @wikidata: Q8686/tchou-hien/deh-r1644-shanghai/obs=nombreux bourgs
+                  atr$activa/sim/1608
+                  atr$residencia-missao/Jesuíta/1622
+
+               geo3$Tsingpu#Ts'ing-p'ou,Chingpu, hoje: Qingpu, 青浦, @wikidata: Q46536920/tchou-hien/deh-r1644-tsingpu
+
+               geo3$Tsipao#Tsi-pao,Chipao, hoje: Qibao, 七宝, @wikidata: Q1875153/burgo%bourg/deh-r1644-tsipao/obs=In the Chinses translation it is written as “七堡”, which should be “七宝”
+                  atr$activa/sim/1643
+
+            geo2$Yangchow#Yang-tcheou, hoje: Yangzhou, 扬州, @wikidata: Q57906/fou/deh-r1644-yangchow
+               atr$activa/sim/1620
+
+               geo3$Kaoyu#Kao-yeou, hoje: Gaoyou, 高邮, @wikidata: Q1253949/tchou-hien/deh-r1644-kaoyu
+                  atr$activa/sim/1618
+
+               geo3$Paoshan#Pao-chan, hoje: Baoshan, 宝山, @wikidata: Q661828/tchou-hien/deh-r1644-paoshan
+
+               geo3$Fushan#hoje: Fushan, 福山村, 31.800210981845982N, 120.7617947082488E/burgo%bourg/deh-r1644-fushan
+                  atr$activa/sim/1638
+
+         geo1$Kiangsi#Jiangxi, Kiang-si, hoje: Jiangxi, 江西, @wikidata: Q57052/província/deh-r1644-kiangsi
+
+            geo2$Nanchang#Nan-tch'ang, hoje:Nanchang, 南昌, @wikidata: Q171943/capital provincial/deh-r1644-nanchang
+               atr$residencia-missao/Jesuíta/1595
+               atr$residencia-missao/Jesuíta/1607
+
+            geo2$Kienchang#Kien-tch'ang,Chienchang, hoje:Jianchang, 建昌, @wikidata: Q11065388/fou/deh-r1644-kienchang
+               atr$activa/sim/1618
+               atr$residencia-missao/Jesuíta/1636
+
+            geo2$Nanan#Nan-ngan, hoje: Nan'an, 南安, @wikidata: Q10907402/fou/deh-r1644-nanan
+               atr$activa/sim/1628%?
+
+               geo3$Nancheng#Nan-tch'eng, hoje:Nancheng, 南城, @wikidata: Q521512/tchou-hien/deh-r1644-nancheng
+                  atr$activa/sim/1619%?
+
+               geo3$Nanfeng#Nan-fong, hoje: Nanfeng, 南丰, @wikidata: Q1356725/tchou-hien/deh-r1644-nanfeng
+                  atr$activa/sim/1625
+
+         geo1$Kwangsi#Guangxi, Koang-si, hoje: Guangxi, 广西, @wikidata: Q15176/província/deh-r1644-kwangsi
+
+            geo2$Kweilin#Koei-lin, hoje: Guilin, 桂林, @wikidata: Q189633/capital provincial/deh-r1644-kweilin
+               atr$activa/sim/1597/obs=passagem de Ruggieri
+
+            geo2$Wuchow#Ou-tcheou, hoje: Wuzhou, 梧州, @wikidata: Q571652/fou/deh-r1644-wuchow
+               atr$activa/sim/1639
+
+         geo1$Kwangtung#Guangdong, hoje:Guangdong, 广东, @wikidata: Q15175/província/deh-r1644-kwangtung
+
+            geo2$Macau#Macau, hoje: Macao, 澳门, @wikidata: Q14773/Macau%à part/deh-r1644-macau
+               atr$residencia-missao/Jesuíta/1565/obs=la R de 1565 devient en 1694 Collège St Paul
+               atr$residencia-missao/Franciscanos/1579
+               atr$residencia-missao/Agostinhos/1586
+               atr$residencia-missao/Dominicanos/1587
+               atr$residencia-missao/Clarissas/1633
+
+               geo3$Tsingchow%Ilha Verde (Tsingchow)#Tsingchow,Ts'ing-tcheou, hoje: Ilha Verde, 青州, @wikidata: Q3319473/tchou-hien/deh-r1644-tsingchow
+                  atr$activa/sim/1603
+
+               geo3$Wantchai%Lappa (Wantchai)#Lapa,Wantchai, hoje: Wanzai, 湾仔, @wikidata: Q14342082/tchou-hien/deh-r1644-wantchai/obs=, In the Chinese translation, Lappa is recognized as “浪白”, acutuallythe Portugese people called “湾仔 Wanzai” as Lappa. 湾仔 is now a place in Zhuhai.
+                  atr$activa/sim/1644
+
+            geo2$Cantão#Koang-tcheou, hoje:Guangzhou, 广州, @wikidata: Q16572/capital provincial/deh-r1644-cantao
+               atr$activa/sim/1555
+               atr$residencia-missao/Jesuíta/1580
+               atr$residencia-missao/Franciscanos/0000
+               atr$residencia-missao/Dominicanos/0000
+
+               geo3$Tungkun#Tong-koan,Tungkuan, hoje:Dongguan, 东莞, @wikidata: Q59218/tchou-hien/deh-r1644-tungkun
+
+               geo3$Quon yao#hoje: Guanyao, 官窑, In the Chinses translation it is recognized as “高要村”，which is wrong. in Dehergne(1957), it is noted as "官窑". coordinate: 23.314954073028765N, 113.22132587290358E/burgo%bourg/deh-r1644-quon-yao
+                  atr$activa/sim/1621
+
+               geo3$Lampacao#Lampacau,Lampacão, hoje: 浪白滘, 浪白澳, @wikidata: Qiongzhou is the ancient name of Hainan Island. Wikidata code same as Hainan Island./burgo%bourg/deh-r1644-lampacao
+                  atr$activa/sim/1535
+
+            geo2$Kiungchow%Kiungchow (île de Hainan)#K'iong-tcheou,Chiungchou, hoje: Qiongzhou, 琼州, @wikidata: Q1081204/fou/deh-r1644-kiungchow/obs=Qiongzhou is the ancient name of Hainan Island. Wikidata code same as Hainan Island.
+               atr$activa/sim/1560
+               atr$activa/sim/1632
+               atr$residencia-missao/Jesuíta/1635
+               atr$alternative-name/Hainan#hoje: Hainan Island, 海南岛, @wikidata:Q1081204
+
+               geo3$Tingan#Ting-ngan, hoje: Ding'an, 定安, @wikidata: Q1022249/tchou-hien/deh-r1644-tingan
+                  atr$activa/sim/1636
+
+               geo3$Bankao#hoje:Xiangou, 仙沟, In the Chinese translation it is recognized as "板桥", but in Dehergne (1957), it is noted as "仙沟". Coordinate: 19.678430033709233N, 110.3760945797476E/tchou-hien/deh-r1644-bankao
+                  atr$activa/sim/1636
+
+               geo3$Lungmo#Lummo, hoje: Longmen, 龙门, @wikidata: Q11181853, in the Chinese translation it is written as “龙末”, but but in Dehergne (1957), it is noted as "龙门"/tchou-hien/deh-r1644-lungmo
+                  atr$activa/sim/1636
+
+            geo2$Luichow#Lei-tcheou, hoje: Leizhou, 雷州, @wikidata: Q1209167/fou/deh-r1644-luichow
+               atr$activa/sim/1644#cerca de
+
+            geo2$Namyung%Namyung (alors fou)#Nan-hiong, hoje: Nanxiong, 南雄, @wikidata: Q934465/fou/deh-r1644-namyung
+               atr$activa/sim/1585
+               atr$activa/sim/1592
+               atr$residencia-missao/Jesuíta/1612
+
+            geo2$Schiuchow%Shiuchow (Chao-tcheou)#Chao-tcheou, hoje: Shaozhou, 韶州, @wikidata: Q1346617, historical administrative division. The Wikidata code is of its administrative center Qujiang 曲江, which is in the present-day City of Shaoguan 韶关./fou/deh-r1644-shiuchow
+
+               geo3$Makia#Machia, hoje: Majia, 马家, Dehergne(1957) said Makia"马家" is "à 15 kilomètres au sud de la ville" (de shiuchow), which should be to the south of Shiuchow, but I only found one "马家" in that area, but it is to the west of the city (24.75569541392557, 113.15960996554436), which might not be the right place./burgo%bourg/deh-r1644-makia
+
+               geo3$Tsintsun#Cinçun, hoje: Jingcun, 靖村, coordinate:24.840448198893206N, 113.54394322209676E. In the original book (Dehergne, 1973), it is written as "Tsintsun" (without g), which is wrongly spelled. In Dehergne(1973), it is written as Tsingtsun, with the Chinese name 靖村 noted. It is "à une heure et demie de marche au nord-ouest de Siuchow." In the Chinese traslation, it is recognized as "青村", which is wrong./burgo%bourg/deh-r1644-tsintsun/obs=où première église bâtie hors de Macao, en 1603
+                  atr$activa/sim/1603
+
+               geo3$Hwangtsun#Vançun, hoje: Huangcun, 黄村, coordinate: 24.900778941203768N, 113.60398607001083E Dehergne(1957): "à une heure de chemin au nord de Shiuchow"./burgo%bourg/deh-r1644-hwangtsun/obs=tous bourgs évangélisés avant 1603
+
+               geo3$Hwanghsiaping#Hwanghsiaping, hoje: Vankaxen, 黄下坪？, In the Chinese translation, it is recognized as "黄下坪". Dehergne(1957):"Hwanghsiaping (" Vankaxen ") à 15 li à l'ouest de Shiuchow." But it cannot be found in the map./burgo%bourg/deh-r1644-hwanghsiaping/obs=tous bourgs évangélisés avant 1603
+
+               geo3$Motikang#Mochi, hoje: Madigang, 麻地岗, In the Chinese translation, it is recognized as “末岗”, but in Dehergne(1957), it is noted as “麻地岗”. coordinate: 24.68899887552694N, 113.57599418283718E/burgo%bourg/deh-r1644-motikang/obs=tous bourgs évangélisés avant 1603
+
+               geo3$Yangsiang#Yang-hiang, hoje: 杨姓村/burgo%bourg/deh-r1644-yangsiang/obs=tous bourgs évangélisés avant 1603
+
+            geo2$Shiuhing%Shiuhing (Tchao-k'ing, actuel Hoyiu)#Tchao-k'ing, Chaoching, hoje: Zhaoqing, 肇庆, @wikidata: Q59164/fou/deh-r1644-shiuhing
+               atr$activa/sim/1583
+               atr$residencia-missao/Jesuíta/1585:1589
+
+         geo1$Kwichow#Koei-Tcheou, hoje: Guizhou, 贵州, @wikidata: Q47097/província/deh-r1644-kwichow/obs=nada
+
+         geo1$Pequim/província/deh-r1644-pequim-provincia
+
+            geo2$Pequim,%Peking (Shuntien) (1598), 1601#hoje: 北京, @wikidata: Q956/capital provincial/deh-r1644-pequim/obs=En 1637 16 chrétientés et 14 oratoires autour de Pékin
+               atr$activa/sim/1610
+               atr$residencia-missao/Jesuíta/1605/obs=em Nan-t'ang
+
+               geo3$Chala%Chala (cimetière et chapelle)/tchou-hien/deh-r1644-chala
+                  atr$activa/sim/1610
+
+               geo3$Tacheng#Ta-tch'eng,hoje: Dacheng, 大城县. @wikidata: Q1156678/tchou-hien/deh-r1644-tacheng
+                  atr$activa/sim/1633#cerca de
+
+               geo3$Tientsin%Tientsin#T'ien-tsin,Tienchin, hoje: Tianjin, 天津, @wikidata: Q11736/wei%(alors simple wei)/deh-r1644-tientsin
+                  atr$activa/sim/1620
+
+               geo3$Tungchow%?#T'ong-tcheou, hoje: Tongzhou, 通州, @wikidata:Q393836/tchou-hien/deh-r1644-tungchou
+                  atr$activa/sim/1620
+
+            geo2$Chengting#Tcheng-ting, hoje: Zhengding, 正定, @wikidata: Q197678/fou/deh-r1644-chengting
+               atr$activa/sim/1621
+
+               geo3$Tingchow#Ting tcheou, hoje: Dingzhou, 定州, @wikidata: Q64518/tchou-hien/deh-r1644-tingchow
+                  atr$activa/sim/1641
+
+            geo2$Hokien#Ho-kien, hoje: Hejian, 河间, @wikidata: Q1601618/fou/deh-r1644-hokien
+               atr$activa/sim/1637
+
+               geo3$Ningtsin#Ning-tsin,Ningchin, hoje: Ningjin, 宁津, @wikidata: Q1197955/tchou-hien/deh-r1644-ningtsin
+                  atr$activa/sim/1621
+
+               geo3$Wukiao#Ou-k'iao,Wuchiao,hoje: Wuqiao, 吴桥,/tchou-hien/deh-r1644-wukiao
+                  atr$activa/sim/1621
+
+            geo2$Paoting%Paoting (Tsingyüan), hoje: Baoding, 保定, @wikidata: Q58584/fou/deh-r1644-paoting
+               atr$activa/sim/1605
+
+               geo3$Kaoyang#Kao-yang, hoje: Gaoyang, 高阳, @wikidata: Q1196631/tchou-hien/deh-r1644-kaoyang
+                  atr$activa/sim/1641#cerca de
+
+               geo3$Shulu#Chou-lou, hoje: Shulu, 束鹿, @wikidata: Q1015480, Now the city name is Xinji 辛集. Wikidata code is that of Xinji/tchou-hien/deh-r1644-shulu
+                  atr$activa/sim/1644#cerca de
+
+         geo1$Shansi#Chan-si, hoje: Shanxi, 山西, @wikidata: Q46913/província/deh-r1644-shansi
+
+            geo2$Taiyuan#T'ai-yuen, hoje: Taiyuan, 太原, @wikidata: Q72778/capital provincial/deh-r1644-taiyuan
+               atr$activa/sim/1635#cerca de
+
+               geo3$Pingting%Pingting tcheou#P'ing-ting, hoje: Pingding, 平定州, @wikidata: Q1196978, Now it is Pingding County 平定县/tchou-hien/deh-r1644-pingting
+                  atr$activa/sim/1631#cerca de
+
+            geo2$Pingyang%Pingyang (Linfen)#P'ing-yang, hoje: Pingyang Fu, 平阳府, @wikidata: Q15905472, Q73156, historical administrative division. Now it is in Linfen 临汾. Wikidatacoede also refer to that of Linfen: Q73156/fou/deh-r1644-pingyang
+               atr$activa/sim/1639
+
+               geo3$Kiangchow#Chiangchou, hoje: Jiangzhou, 绛州, @wikidata: Q1197219, historical administrative division. Now it is Xinjiang 新绛. Wikidata code is that of 新绛/tchou-hien/deh-r1644-kiangchow
+                  atr$activa/sim/1620
+                  atr$residencia-missao/Jesuíta/1625
+                  atr$activa/sim/1631#cerca de/obs=30 igrejas por esta data
+
+               geo3$Kianghsien%Kianghsien (au Sud de Kiangchow)#Kiang hien, hoje: Jiangxian, 绛县, @wikidata: Q1197307/tchou-hien/deh-r1644-kianghsien
+                  atr$activa/sim/1638
+
+               geo3$Kuwo#K'iu-wo,Chüwu, Quwo, 曲沃, @wikidata: Q1332080/tchou-hien/deh-r1644-kuwo
+                  atr$activa/sim/1636
+
+               geo3$Puchow%pas encore fou#P'ou-tcheou, hoje: Puzhou, 蒲州, hoje: Q14105968, @wikidata:Q14105968/tchou-hien/deh-r1644-puchow
+                  atr$activa/sim/1631
+                  atr$residencia-missao/Jesuíta/1637
+
+               geo3$Siahsien#Hia hien, hoje: Xiaxian, 夏县, @wikidata: Q612136, Dehergne(1957) noted it as “夏县”. In the Chinese translation, it is recognized as "隰县",which is wrong./tchou-hien/deh-r1644-siahsien
+                  atr$activa/sim/1625#cerca de
+
+               geo3$Taiping%Taiping (Fencheng)#hoje: Taiping, 太平, @wikidata: Q18111423, Q1113750, historical administrative division. Now its administrative center is Fencheng 汾城, Wikidata also refer to that of Fencheng: Q1113750/deh-r1644-taiping/deh-r1644-taiping
+                  atr$activa/sim/1642
+
+            geo2$Tsechow#hoje: Fencheng, 汾城, @wikidata: Q1113750/tcheou independente%tcheou independente/deh-r1644-tsechow
+               atr$activa/sim/1624
+
+               geo3$Tsishan#hoje: Zezhou, 泽州, @wikidata: Q197104/tchou-hien/deh-r1644-tsishan
+                  atr$activa/sim/1639
+
+               geo3$Yungtsi#Tsi-chan,Chishan, hoje: Jishan, 稷山, @wikidata: Q473451/tchou-hien/deh-r1644-yungtsi
+                  atr$activa/sim/1630#cerca de
+
+         geo1$Shangtung#Chan-tong, Shandong, 山东, @wikidata: Q43407/província/deh-r1644-shangtung
+
+            geo2$Tsinan#Tsi-nan, hoje: Jinan, 济南, @wikidata: Q170247/capital provincial/deh-r1644-tsinan
+               atr$activa/sim/1636
+               atr$residencia-missao/Jesuíta/1640
+
+               geo3$Taian%Taian tcheou#T'ai-ngan, hoje: Tai'an, 泰安, @wikidata: Q217681/tchou-hien/deh-r1644-taian
+                  atr$activa/sim/1636
+
+               geo3$Kwanchang/burgo%bourg/deh-r1644-kwanchang
+                  atr$activa/sim/1640
+
+               geo3$Manchwang#Muon choam, hoje: Manzhuang, 满庄, @wikidata: Q14782428/burgo%bourg/deh-r1644-manchwang
+                  atr$activa/sim/1642
+
+               geo3$Tsiho#hoje: Qihe, 齐河, @wikidata: Q1198234/burgo%bourg/deh-r1644-tsiho
+                  atr$activa/sim/1642
+
+               geo3$Wuting%[Wuting, alors tcheou, Hweimin]#Ou-ting, hoje: Wuding, 武定, @wikidata: Q17008118/tchou-hien/deh-r1644-wuting
+
+               geo3$Pinchow/tchou-hien/deh-r1644-pinchow
+                  atr$activa/sim/1641#cerca de
+
+               geo3$Yucheng#Pin-tcheou, hoje: Binzhou, 滨州, @wikidata: Q373687/tchou-hien/deh-r1644-yucheng
+                  atr$activa/sim/1627#?
+
+            geo2$Tengchow%Tengchow (Penglai)#Teng-tcheou, hoje: Dengzhou, 登州, @wikidata:Q10428329/fou/deh-r1644-tengchow
+               atr$activa/sim/1630
+
+            geo2$Tsingchow%Tsingchow (Yitu)#Ts'ing-tcheou, Chingchou, hoje: Qingzhou, 青州, @wikidata: Q1360781/fou/deh-r1644-tsingchow-yitu
+               atr$activa/sim/1641
+
+            geo2$Tungchang#Tong-tch'ang, hoje: Dungchang, 东昌, @wikidata: Q10870440/fou/deh-r1644-tungchang
+
+               geo3$Peichingtien#Dehergne(1957)did not give the Chinese name of Peichingtien.In the Chinese translation, it is recognized as “北辛店村”，but the pronunciation dose not match. In addition, the “北辛店村”of Shandong is far from Dongchang./burgo%bourg/deh-r1644-peichingtien/obs=?
+                  atr$activa/sim/1636
+
+               geo3$Lintsing%Lintsing tcheou#Lin-ts'ing,Linching, hoje: Linqing, 临清, @wikidata: Q1207099/tchou-hien/deh-r1644-lintsing
+                  atr$activa/sim/1621
+
+         geo1$Shensi#Chen-si, hoje: Shaanxi, 陕西, hoje: Q47974, @wikidata:Q47974/província/deh-r1644-shensi
+
+            geo2$Sian%Sun (Changan)#Hsian, hoje: Xi'an, 西安, @wikidata: Q5826/capital provincial/deh-r1644-sian
+               atr$activa/sim/1625
+               atr$residencia-missao/Jesuíta/1631/obs=avec 15 chrétientés en 1638
+               atr$activa/sim/1638
+
+               geo3$Chowchih#hoje: Zhouzhi, 周至, @wikidata: Q198072, In the Chinese translation, it is written as “盩厔”. Before 1964, 周至was written as “盩厔”./tchou-hien/deh-r1644-chowchih
+                  atr$activa/sim/1633
+
+               geo3$Kaoling#Kao-ling, hoje: Gaoling, 高陵, @wikidata: Q280060/tchou-hien/deh-r1644-kaoling
+
+               geo3$Kiao-tou$Kiao-tou (ou Tungyiianfang)/burgo%bourg/deh-r1644-kiao-tou
+                  atr$activa/sim/1644#cerca de
+
+               geo3$Hwachow#How-tcheou, hoje: Huazhou, 华州, @wikidata: Q727188/tchou-hien/deh-r1644-hwachow
+                  atr$activa/sim/1633
+
+               geo3$Sanyuan#Sanyuan, 三原, @wikidata: Q1201362/tchou-hien/deh-r1644-sanyuan
+                  atr$activa/sim/1624
+
+               geo3$Shangchow#Changtcheou, hoje: Shangzhou, 商州, @wikidata: Q1339355/tchou-hien/deh-r1644-shangchow
+                  atr$activa/sim/1620
+
+            geo2$Hanchung%Hanchung (Nancheng)#How-tcheou, hoje: Huazhou, 华州, @wikidata: Q727188/fou/deh-r1644-hanchung
+               atr$activa/sim/1635
+               atr$residencia-missao/Jesuíta/1644
+
+               geo3$Chengku#Tch'eng-kou, hoje: Chenggu, 城固, @wikidata: Q1069968/tchou-hien/deh-r1644-chenku
+                  atr$residencia-missao/Jesuíta/1642
+
+               geo3$Siao tchai tse/burgo%bourg/deh-r1644-siao-tchai-tse
+                  atr$activa/sim/1635#cerca de
+
+               geo3$Yanghsien#Yang Hien, hoje: Yangxian, 洋县, @wikidata: Q1201504/tchou-hien/deh-r1644-yanghsien
+                  atr$activa/sim/1639
+
+         geo1$Szechwan#Se-tch'oan, hoje: Sichuan, 四川, @wikidata: Q19770/província/deh-r1644-szechwan
+
+            geo2$Chengtu%Chengtu (Hwayang)#Tch'eng-tou, hoje: Chengdu, 成都, hoje: Q30002/capital provincial/deh-r1644-chengtu
+               atr$residencia-missao/Jesuíta/1640
+
+               geo3$Mienchow#Mien tcheou, hoje: Mianzhou, 绵州, hoje: Q10475921 Q426130/tchou-hien/deh-r1644-mienchow/obs=Mienchow is an historical administrative division, now it is located in the city of Mianyang.The Wikidata code also refers to that of Mianyang: Q426130
+                  atr$activa/sim/1643
+
+            geo2$Chungking%Chungking (Pahsien)#Tch'ong-K'ing,Chungching, hoje: Chongqing, 重庆, @wikidata: Q11725/fou/deh-r1644-chungking
+               atr$activa/sim/1642#cerca de
+
+            geo2$Paoning%Paoning (Langchung)#Pao-ning, hoje: Baoning, 保宁, @wikidata: Q10887586, Q1200170, 保宁府historical administrative division of China, where 阆中 was in, Wikidata code also refer to that of Langzhong: Q1200170/fou/deh-r1644-paoning
+               atr$activa/sim/1643
+
+         geo1$Yunnan#hoje: Yunnan, 云南, @wikidata: Q43194/província/deh-r1644-yunnan
+            atr$activa/sim/<1638#antes desta data havia lá cristãos

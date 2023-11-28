@@ -17,7 +17,7 @@ class Source(Entity):
 
     __tablename__ = "sources"
 
-    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id"), primary_key=True)
+    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
     the_type: Mapped[Optional[str]] = mapped_column(
         String(32),
         nullable=True,

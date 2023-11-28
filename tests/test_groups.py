@@ -255,6 +255,10 @@ def test_kday4():
         assert day.core == '31x'
 
 
+def test_kday5():
+    day = KDay(None)
+    assert day.core == 0
+
 def test_month1():
     month = KMonth(("05", "it is a nice month", "May"))
     assert month.name == "month"
@@ -276,6 +280,12 @@ def test_month3():
 
 def test_month4():
     month = KMonth(0)
+    assert month.core == 0, "Did not accept zero value"
+
+
+def test_month5():
+
+    month = KMonth(None)
     assert month.core == 0, "Did not accept zero value"
 
 

@@ -15,6 +15,8 @@ Now being integrated in the timelink-py package
 #                               name_like = name of person with function
 #                               more_funcs=['pn','mn','ppn','mpn','pmn','mmn'],....)
 
+from sqlalchemy import select
+import pandas as pd
 from timelink.pandas.name_to_df import pname_to_df
 from timelink.pandas.attribute_values import attribute_values
 
@@ -81,7 +83,7 @@ def attribute_to_df(
         person_info = True
 
     if person_info:  # to fetch person info we need nattributes view
-        attr = get_nattribute_table(db=dbsystem)
+        attr = db.get_nattribute_view()
         id_col = attr.c.id
         stmt = select(
             attr.c.id,
@@ -93,7 +95,7 @@ def attribute_to_df(
         ).where(attr.c.the_type.like(the_type))
         cols = ["id", "name", "sex", column_name, date_column_name, obs_column_name]
     else:  # no person information required we use the attributes table
-        attr = get_attribute_table(db=dbsystem)
+        attr = db.get_nattribute_table()
         id_col = attr.c.entity
         stmt = select(
             attr.c.entity,
@@ -131,7 +133,7 @@ def attribute_to_df(
     if sql_echo:
         print(f"Query for {the_type}:\n", stmt)
 
-    with Session(bind=dbsystem.get_engine()) as session:
+    with db.session() as session:
         records = session.execute(stmt)
         df = pd.DataFrame.from_records(records, index=["id"], columns=cols)
 
@@ -144,23 +146,23 @@ def attribute_to_df(
         more_columns = more_cols
 
     if len(more_columns) > 0:
-        attr = get_attribute_table(db=db)
-        id_col = attr.c.entity
+        attr = db.get_nattribute_view()
+        id_col = attr.c.id
 
         for mcol in more_columns:
             column_name = mcol
             date_column_name = f"{column_name}.date"
             obs_column_name = f"{column_name}.obs"
             stmt = select(
-                attr.c.entity,
+                attr.c.id,
                 attr.c.the_value.label(column_name),
                 attr.c.the_date.label(date_column_name),
-                attr.c.obs.label(obs_column_name),
+                attr.c.aobs.label(obs_column_name),
             ).where(attr.c.the_type == mcol)
             stmt = stmt.where(id_col.in_(df.index))
             cols = ["id", column_name, date_column_name, obs_column_name]
 
-            with Session(bind=dbsystem.get_engine()) as session:
+            with db.session() as session:
                 records = session.execute(stmt)
                 df2 = pd.DataFrame.from_records(records, index=["id"], columns=cols)
 
