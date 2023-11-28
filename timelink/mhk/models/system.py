@@ -159,7 +159,7 @@ class KleioImportedFile(Base):
         warning_rpt: warning report"""
 
     __tablename__ = "kleiofiles"
-    
+
     path: Mapped[str] = mapped_column(String(1024), primary_key=True, nullable=False)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     structure: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -171,4 +171,3 @@ class KleioImportedFile(Base):
     warning_rpt: Mapped[Optional[str]] = mapped_column(String(10000), nullable=True)
     imported: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     imported_string: Mapped[str] = mapped_column(String(255), nullable=False)
-

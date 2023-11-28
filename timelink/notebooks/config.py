@@ -1,6 +1,4 @@
 # Configuration values related to notebooks-timelink integration
-from sqlalchemy.orm import sessionmaker
-
 
 # Connection string for Timelink database
 TIMELINK_CONNSTRING = None

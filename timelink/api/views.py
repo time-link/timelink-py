@@ -1,4 +1,4 @@
-# Handling views from 
+# Handling views from
 # view utilities from https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 import sqlalchemy as sa
 from sqlalchemy.ext import compiler
@@ -41,7 +41,7 @@ def view_doesnt_exist(ddl, target, connection, **kw):
 def view(name, metadata, selectable):
     """Create a view with the given name from the given selectable.
     The view is created when the metadata is first bound to an engine.
-    
+
     Example:
 
         stuff_view = view(
@@ -55,7 +55,7 @@ def view(name, metadata, selectable):
         .select_from(stuff.join(more_stuff))
         .where(stuff.c.data.like(("%orange%"))),
         )
-        
+
         with engine.connect() as conn:
             conn.execute(
                 sa.select(stuff_view.c.data, stuff_view.c.moredata)

@@ -1,6 +1,6 @@
 """ Utilities to support
 Notebook integration of
-Timelink data 
+Timelink data
 
 Utilities and shared variables for using timelink inside notebooks
 
@@ -22,20 +22,19 @@ from sqlalchemy import MetaData, Table, engine, inspect, text
 from timelink.mhk.utilities import get_connection_string
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.person import Person
-from timelink.mhk.models.db import TimelinkMHK
+from timelink.mhk.models.db import TimelinkMHK, DBSystem
 
 import timelink.notebooks.config as conf
 
 current_time = datetime.datetime.now()
 current_machine = socket.gethostname()
-sqlite_databases = [f.stem for f in list(Path('../database/sqlite3/').rglob('*.db'))]
+sqlite_databases = [f.stem for f in list(Path("../database/sqlite3/").rglob("*.db"))]
 mhk_databases = []
 
 
-
 def get_db(db_spec, **extra_args):
-    """ get a TimelinkMHK Database
-    
+    """get a TimelinkMHK Database
+
     db_spec can be a connection string or a tuple.
     if a tuple:
         ('mhk','mhk_db_name') or
@@ -46,46 +45,49 @@ def get_db(db_spec, **extra_args):
         name = db_spec
     else:
         try:
-            db,name = db_spec
+            db, name = db_spec
         except Exception:
-            logging.exception("Database specification must either be a string of a tuple (db,name)")
+            logging.exception(
+                "Database specification must either be a string of a tuple (db,name)"
+            )
 
-    if db == 'mhk':
+    if db == "mhk":
         tlink_db = get_mhk_db(name, **extra_args)
-    elif db == 'sqlite':
-        tlink_db =get_sqlite_db(name, **extra_args)
-    elif db == 'string':
+    elif db == "sqlite":
+        tlink_db = get_sqlite_db(name, **extra_args)
+    elif db == "string":
         con_string = name
-        conf.TIMELINK_CONNSTRING = con_string # share it with other modules
-        tlink_db =TimelinkMHK(con_string,**extra_args)
-        conf.TIMELINK_DBSYSTEM = db # share it
+        conf.TIMELINK_CONNSTRING = con_string  # share it with other modules
+        tlink_db = TimelinkMHK(con_string, **extra_args)
+        conf.TIMELINK_DBSYSTEM = db  # share it
         conf.Session.configure(bind=db.get_engine())
     else:
         logging.error(f"Unrecognized database specification. Type: {db} name: {name}")
         return None
 
     return tlink_db
-    
 
 
-def get_sqlite_db(db_name,**extra_args):
-    """ Create a connection to a Timelink/Sqlite database
-    
+def get_sqlite_db(db_name, **extra_args):
+    """Create a connection to a Timelink/Sqlite database
+
     Assumes the database is in the directory ../database/sqlite3/
 
     """
-    connection_string = f"sqlite:///../database/sqlite3/{db_name}?check_same_thread=False"
-    conf.TIMELINK_CONNSTRING = connection_string # share it with other modules
-    db = TimelinkMHK(connection_string,**extra_args)
-    conf.TIMELINK_DBSYSTEM = db # share it
+    connection_string = (
+        f"sqlite:///../database/sqlite3/{db_name}?check_same_thread=False"
+    )
+    conf.TIMELINK_CONNSTRING = connection_string  # share it with other modules
+    db = TimelinkMHK(connection_string, **extra_args)
+    conf.TIMELINK_DBSYSTEM = db  # share it
     conf.Session.configure(bind=db.get_engine())
     return db
 
 
-def get_mhk_db(db_name,**extra_args) -> TimelinkMHK: 
-    """ Create a connection to a Timelink/MHK database
-    
-    Creates a connection to the database db_name, 
+def get_mhk_db(db_name, **extra_args) -> TimelinkMHK:
+    """Create a connection to a Timelink/MHK database
+
+    Creates a connection to the database db_name,
     using the parameters of the current MHK instalation.
 
     The resulting dbsystem oject is stored in global variable
@@ -94,15 +96,15 @@ def get_mhk_db(db_name,**extra_args) -> TimelinkMHK:
     """
 
     connection_string = get_connection_string(db_name)
-    conf.TIMELINK_CONNSTRING = connection_string # share it with other modules
-    db = TimelinkMHK(connection_string,**extra_args)
-    conf.TIMELINK_DBSYSTEM = db # share it
+    conf.TIMELINK_CONNSTRING = connection_string  # share it with other modules
+    db = TimelinkMHK(connection_string, **extra_args)
+    conf.TIMELINK_DBSYSTEM = db  # share it
     conf.Session.configure(bind=db.get_engine())
     return db
 
 
-def get_nattribute_table(db: TimelinkMHK=None):
-    """ Return the nattribute view.
+def get_nattribute_table(db: TimelinkMHK = None):
+    """Return the nattribute view.
 
     Returns a sqlalchemy table linked to the nattributes view of MHK databases
     This views joins the table "persons" and the table "attributes" providing attribute
@@ -131,28 +133,29 @@ def get_nattribute_table(db: TimelinkMHK=None):
     elif conf.TIMELINK_DBSYSTEM is not None:
         dbsystem = conf.TIMELINK_DBSYSTEM
     else:
-        raise(Exception("must specify database with db="))
+        raise (Exception("must specify database with db="))
     if conf.TIMELINK_NATTRIBUTES is None:
         eng: engine = dbsystem.get_engine()
         metadata: MetaData = dbsystem.get_metadata()
         insp = inspect(eng)
-        if 'nattributes' in insp.get_view_names() or \
-            'nattributes' in insp.get_table_names():
+        if (
+            "nattributes" in insp.get_view_names()
+            or "nattributes" in insp.get_table_names()
+        ):
             pass
         else:
             with eng.connect() as con:
                 con.execute(text(nattribute_sql))
 
-        attr = Table('nattributes', metadata, autoload_with=eng)
+        attr = Table("nattributes", metadata, autoload_with=eng)
         conf.TIMELINK_NATTRIBUTES = attr
     else:
-        attr = conf.TIMELINK_NATTRIBUTES   
-    return attr   
+        attr = conf.TIMELINK_NATTRIBUTES
+    return attr
 
 
-
-def get_attribute_table(db: TimelinkMHK=None):
-    """ Return the attribute table.
+def get_attribute_table(db: TimelinkMHK = None):
+    """Return the attribute table.
 
     Returns a sqlalchemy table linked to the attributes table of MHK databases
 
@@ -171,19 +174,19 @@ def get_attribute_table(db: TimelinkMHK=None):
     elif conf.TIMELINK_DBSYSTEM is not None:
         dbsystem = conf.TIMELINK_DBSYSTEM
     else:
-        raise(Exception("must specify database with db="))
+        raise (Exception("must specify database with db="))
     if conf.TIMELINK_ATTRIBUTES is None:
         eng: engine = dbsystem.get_engine()
         metadata: MetaData = dbsystem.get_metadata()
-        attr=Table('attributes', metadata, autoload_with=eng)
+        attr = Table("attributes", metadata, autoload_with=eng)
         conf.TIMELINK_ATTRIBUTES = attr
     else:
-        attr = conf.TIMELINK_ATTRIBUTES  
+        attr = conf.TIMELINK_ATTRIBUTES
     return attr
 
 
-def get_person_table(db: TimelinkMHK=None):
-    """ Return the person table.
+def get_person_table(db: TimelinkMHK = None):
+    """Return the person table.
 
     Returns a sqlalchemy table linked to the persons table of MHK databases
 
@@ -194,19 +197,19 @@ def get_person_table(db: TimelinkMHK=None):
     elif conf.TIMELINK_DBSYSTEM is not None:
         dbsystem = conf.TIMELINK_DBSYSTEM
     else:
-        raise(Exception("must specify database with db="))
+        raise (Exception("must specify database with db="))
     if conf.TIMELINK_PERSONS is None:
         eng: engine = dbsystem.get_engine()
         metadata: MetaData = dbsystem.get_metadata()
-        pers=Table('persons', metadata, autoload_with=eng)
+        pers = Table("persons", metadata, autoload_with=eng)
         conf.TIMELINK_PERSONS = pers
     else:
-        pers = conf.TIMELINK_PERSONS  
+        pers = conf.TIMELINK_PERSONS
     return pers
 
 
-def get_relations_table(db: TimelinkMHK=None):
-    """ Return the relations table.
+def get_relations_table(db: TimelinkMHK = None):
+    """Return the relations table.
 
     Returns a sqlalchemy table linked to the relations table of MHK databases
 
@@ -225,20 +228,19 @@ def get_relations_table(db: TimelinkMHK=None):
     elif conf.TIMELINK_DBSYSTEM is not None:
         dbsystem = conf.TIMELINK_DBSYSTEM
     else:
-        raise(Exception("must specify database with db="))
+        raise (Exception("must specify database with db="))
     if conf.TIMELINK_RELATIONS is None:
         eng: engine = dbsystem.get_engine()
         metadata: MetaData = dbsystem.get_metadata()
-        rels=Table('relations', metadata, autoload_with=eng)
+        rels = Table("relations", metadata, autoload_with=eng)
         conf.TIMELINK_RELATIONS = rels
     else:
-        rels = conf.TIMELINK_RELATIONS  
+        rels = conf.TIMELINK_RELATIONS
     return rels
 
 
-
-def get_nfuncs_view(db: TimelinkMHK=None):
-    """ Return the nfuncs (named functions) table.
+def get_nfuncs_view(db: TimelinkMHK = None):
+    """Return the nfuncs (named functions) table.
 
     Returns a sqlalchemy table linked to the nfuncs view of MHK databases
 
@@ -263,37 +265,34 @@ def get_nfuncs_view(db: TimelinkMHK=None):
     elif conf.TIMELINK_DBSYSTEM is not None:
         dbsystem = conf.TIMELINK_DBSYSTEM
     else:
-        raise(Exception("must specify database with db="))
+        raise (Exception("must specify database with db="))
     if conf.TIMELINK_NFUNCS is None:
         eng: engine = dbsystem.get_engine()
         metadata: MetaData = dbsystem.get_metadata()
         insp = inspect(eng)
-        if 'nfuncs' in insp.get_view_names() or \
-            'nfuncs' in insp.get_table_names():
+        if "nfuncs" in insp.get_view_names() or "nfuncs" in insp.get_table_names():
             pass
         else:
             with eng.connect() as con:
                 con.execute(text(nfuncs_sql))
 
-        nfuncs = Table('nfuncs', metadata, autoload_with=eng)
+        nfuncs = Table("nfuncs", metadata, autoload_with=eng)
         conf.TIMELINK_NFUNCS = nfuncs
     else:
-        nfuncs = conf.TIMELINK_NFUNCS  
+        nfuncs = conf.TIMELINK_NFUNCS
     return nfuncs
-    """
-    
-    """
 
-def get_person(id:str=None, sql_echo:bool=False)-> Person:
+
+def get_person(id: str = None, db: DBSystem = None, sql_echo: bool = False) -> Person:
     """
     Fetch a person from the database
     """
     if id is None:
-        raise(Exception("Error, id needed"))
-    p:Person = Session().get(Person,id)
+        raise (Exception("Error, id needed"))
+    p: Person = db.session().get(Person, id)
     return p
 
-def pperson(id:str):
+
+def pperson(id: str):
     """Prints a person in kleio notation"""
     print(get_person(id=id).to_kleio())
-

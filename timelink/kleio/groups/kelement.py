@@ -80,7 +80,7 @@ class KElement:
         self.core = None
         self.comment = None
         self.original = None
-        
+
         if type(core) is tuple and len(core) == 3:
             self.core = core[0]
             self.comment = core[1]
@@ -251,6 +251,7 @@ class KElement:
     def to_dots(self):
         return Box(self.to_dict())
 
+
 # use this for mixins to mark this should show in Kleio
 # still can override with KElement.to_kleio(force_show=True
 KleioNoShow = KElement.extend("invisible_")
@@ -275,8 +276,6 @@ KleioNoShow = KElement.extend("invisible_")
 # element name=summary;
 # element name=description;
 # element name=replace;
-
-
 
 
 class KDate(KElement):
@@ -350,7 +349,7 @@ class KYear(KElement):
     """
     Represents a year.
 
-    To have value checking do KYear.set_limits((lower,upper)) !!!! 
+    To have value checking do KYear.set_limits((lower,upper)) !!!!
 
     """
 

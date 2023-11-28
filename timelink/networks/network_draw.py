@@ -12,22 +12,26 @@ import networkx as nx
 def draw_network(
     G,
     title="Timelink network",
-    hover_tooltips=[("desc", "@desc"), ("type", "@type")],
+    hover_tooltips=None,
     iterations=50,
-    node_colors=(
-        "type",  # TODO this should be generic maybe bokeh has builtin
-        {
-            "person": "green",
-            "wicky-viagem": "red",
-            "jesuita-entrada": "blue",
-            "*default*": "gray",
-        },
-    ),
+    node_colors=None,
     width=500,
     height=500,
 ):
     """draws a network using Bokeh and networkx layout"""
 
+    if hover_tooltips is None:
+        hover_tooltips = [("desc", "@desc"), ("type", "@type")]
+    if node_colors is None:
+        node_colors = (
+            "type",  # TODO this should be generic maybe bokeh has builtin
+            {
+                "person": "green",
+                "wicky-viagem": "red",
+                "jesuita-entrada": "blue",
+                "*default*": "gray",
+            },
+        )
     # Establish which categories will appear when hovering over each node
     HOVER_TOOLTIPS = hover_tooltips
 

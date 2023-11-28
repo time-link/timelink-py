@@ -1,16 +1,8 @@
 """ CRUD operations for the timelink API. """
 from datetime import datetime
 from sqlalchemy.orm import Session  # pylint: disable=import-error
-from sqlalchemy import select, inspect  # pylint: disable=import-error
 from timelink.api import models
 from timelink.api.schemas import EntityAttrRelSchema
-from timelink.api.schemas import EntitySchema
-from timelink.api.schemas import EntityAttrRelSchema
-from timelink.api.schemas import AttributeSchema
-from timelink.api.schemas import RelationSchema
-from timelink.api.schemas import RelationOutSchema
-from timelink.api.schemas import RelationInSchema
-from timelink.api.schemas import ImportStats
 
 
 def get_syspar(db: Session, q: list[str] | None = None):

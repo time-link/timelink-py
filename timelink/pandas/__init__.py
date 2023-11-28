@@ -15,13 +15,13 @@ Now being integrated in the timelink-py package
 #                               name_like = name of person with function
 #                               more_funcs=['pn','mn','ppn','mpn','pmn','mmn'],....)
 
-from sqlalchemy import select
+import warnings
+from sqlalchemy import not_, select
 import pandas as pd
-from timelink.pandas.name_to_df import pname_to_df
-from timelink.pandas.attribute_values import attribute_values
 
 from timelink.api.database import TimelinkDatabase
-
+from IPython.display import display
+from matplotlib import cm, colors
 
 # TODO: move to separate files
 
@@ -138,7 +138,7 @@ def attribute_to_df(
         df = pd.DataFrame.from_records(records, index=["id"], columns=cols)
 
     if df.iloc[0].count() == 0:
-        return None  #  nothing found we
+        return None  # nothing found we
 
     if more_cols is None:
         more_columns = []
@@ -167,7 +167,7 @@ def attribute_to_df(
                 df2 = pd.DataFrame.from_records(records, index=["id"], columns=cols)
 
             if df2.iloc[0].count() == 0:
-                df[mcol] = None  #  nothing found we set the column to nulls
+                df[mcol] = None  # nothing found we set the column to nulls
             else:
                 df = df.join(df2)
 
@@ -191,14 +191,12 @@ def group_attributes(
 
     if group is None:
         group = []
-        warn("No list of ids specified")
+        warnings.warn("No list of ids specified", stacklevel=2)
         return None
 
     dbsystem: TimelinkDatabase = None
     if db is not None:
         dbsystem = db
-    elif conf.TIMELINK_DBSYSTEM is not None:
-        dbsystem = conf.TIMELINK_DBSYSTEM
     else:
         raise (
             Exception(
@@ -207,7 +205,7 @@ def group_attributes(
         )
 
     if person_info:  # to fetch person info we need nattributes view
-        attr = get_nattribute_table(db=dbsystem)
+        attr = db.get_nattribute_view()
         id_col = attr.c.id
         stmt = select(
             attr.c.id,
@@ -221,7 +219,7 @@ def group_attributes(
         )
         cols = ["id", "name", "sex", "persons_obs", "type", "value", "date", "attr_obs"]
     else:  # no person information required we use the attributes table
-        attr = get_attribute_table(db=dbsystem)
+        attr = db.get_model("attribute")
         id_col = attr.c.entity
         stmt = select(
             attr.c.entity,
@@ -244,7 +242,7 @@ def group_attributes(
     if sql_echo:
         print(stmt)
 
-    with Session(bind=dbsystem.get_engine()) as session:
+    with dbsystem.session() as session:
         records = session.execute(stmt)
         df = pd.DataFrame.from_records(records, index=["id"], columns=cols)
 
@@ -323,9 +321,9 @@ def styler_row_colors(df, category="id", columns=None, cmap_name="Pastel2"):
 
 def display_group_attributes(
     ids,
-    header_cols=[],
+    header_cols=None,
     sort_header=None,
-    table_cols=["date", "id", "type", "value", "attr_obs"],
+    table_cols=None,
     sort_attributes=None,
     # These go to de_row_colors
     category="id",
@@ -338,7 +336,12 @@ def display_group_attributes(
 ):
     """Display attributes of a group with header and colored rows"""
 
-    if person_info == True:
+    if header_cols is None:
+        header_cols = []
+    if table_cols is None:
+        table_cols = ["type", "value", "date", "attr_obs"]
+
+    if person_info is True:
         # the cols of persons are inserted automatically by attribute to df
         hcols_clean = [col for col in header_cols if col not in ["name", "sex", "obs"]]
     else:

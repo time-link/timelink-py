@@ -66,7 +66,9 @@ class TimelinkMHK:
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
-        self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.sa_engine)
+        self.session = sessionmaker(
+            autocommit=False, autoflush=False, bind=self.sa_engine
+        )
 
         with self.session(bind=self.sa_engine) as session:
             self.create_tables()

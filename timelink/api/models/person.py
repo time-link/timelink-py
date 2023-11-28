@@ -13,7 +13,9 @@ class Person(Entity):
 
     __tablename__ = "persons"
 
-    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
+    id: Mapped[str] = mapped_column(
+        String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True
+    )
     name: Mapped[Optional[str]] = mapped_column(String, index=True)
     sex: Mapped[Optional[str]] = mapped_column(String(1))
     obs: Mapped[Optional[str]] = mapped_column(String)
