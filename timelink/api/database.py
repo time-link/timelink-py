@@ -447,12 +447,13 @@ class TimelinkDatabase:
             List[KleioFile]: list of kleio files with field import_status
         """
         return get_import_status(self, kleio_files, match_path)
-    
 
-    def get_need_import(self, kleio_files: List[KleioFile], match_path=False) -> List[KleioFile]:
+    def get_need_import(
+        self, kleio_files: List[KleioFile], match_path=False
+    ) -> List[KleioFile]:
         """Get the kleio files that need import.
 
-        Those are all the file with import_status different from I (imported)   
+        Those are all the file with import_status different from I (imported)
         Including those with import_status U (translation updated need to reimport)
         and those with import_status N (not imported)
         and those with import_status E (imported with error)
@@ -467,7 +468,9 @@ class TimelinkDatabase:
         """
 
         kleio_files = get_import_status(self, kleio_files, match_path)
-        return [file for file in kleio_files if file.import_status != import_status_enum.I]
+        return [
+            file for file in kleio_files if file.import_status != import_status_enum.I
+        ]
 
     def query(self, query_spec):
         """Executes a query in the database
@@ -520,7 +523,7 @@ class TimelinkDatabase:
                 a.obs       AS aobs
             FROM attributes a, persons p
             WHERE (a.entity = p.id)
-            """
+        """
         if self.nattributes is None:
             eng: Engine = self.engine
             metadata: MetaData = self.metadata
@@ -562,7 +565,7 @@ def get_import_status(
             W = "W" # imported with warnings no errors
             N = "N" # not imported
             U = "U" # translation updated need to reimport
-    
+
     Args:
         db (TimelinkDatabase): timelink database
         kleio_files (List[KleioFile]): list of kleio files with extra field import_status
@@ -580,12 +583,12 @@ def get_import_status(
         imported_files_dict = {imported.name: imported for imported in previous_imports}
         valid_files_dict = {file.name: file for file in kleio_files}
         if len(valid_files_dict) != len(kleio_files):
-            raise ValueError("Some kleio files have the same name."
-                                "Use match_path=True to match the path of the kleio file with the path of the imported file."
-                             
-                             )
-    
-    for path,file in valid_files_dict.items():
+            raise ValueError(
+                "Some kleio files have the same name."
+                "Use match_path=True to match the path of the kleio file with the path of the imported file."
+            )
+
+    for path, file in valid_files_dict.items():
         if path not in imported_files_dict:
             file.import_status = import_status_enum.N
         elif file.translated > imported_files_dict[path].imported.replace(
