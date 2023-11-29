@@ -532,6 +532,12 @@ def get_import_status(db: TimelinkDatabase, kleio_files: List[KleioFile], match_
 
         The status in returned in KleioFile.import_status
 
+            I = "I" # imported
+            E = "E" # imported with error
+            W = "W" # imported with warnings no errors
+            N = "N" # not imported
+            U = "U" # translation updated need to reimport
+    
     Args:
         db (TimelinkDatabase): timelink database
         kleio_files (List[KleioFile]): list of kleio files with extra field import_status
