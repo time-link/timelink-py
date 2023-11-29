@@ -3,6 +3,7 @@ docker~=6.0.0
 fastapi~=0.103.0
 mysql-connector-python~=8.0.0
 pandas~=2.0.0
+matplotlib
 psycopg2-binary==2.9.6
 py-markdown-table==0.3.3
 pytest~=6.2.4
