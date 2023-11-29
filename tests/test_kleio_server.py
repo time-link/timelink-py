@@ -4,10 +4,8 @@ https://github.com/time-link/timelink-kleio-server
 """
 from enum import Enum
 import pytest
-from jsonrpcclient import request, request_json, parse
 
 from tests import skip_on_travis, TEST_DIR
-import os
 import timelink.kleio.kleio_server as kleio_server
 from timelink.kleio.schemas import KleioFile, TokenInfo
 from timelink.kleio.kleio_server import KleioServer
@@ -68,8 +66,9 @@ def test_is_kleio_server_running():
 @skip_on_travis
 def test_start_kleio_server():
     """Test if kleio server is started"""
-    ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home",update=True)
+    ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home", update=True)
     assert ks is not None
+
 
 @skip_on_travis
 def test_attach_kleio_server(setup):
@@ -81,6 +80,7 @@ def test_attach_kleio_server(setup):
 
     ks = KleioServer.attach(url, token, kleio_home)
     assert ks is not None
+
 
 @skip_on_travis
 def test_get_kleio_server_container(setup):
@@ -96,13 +96,14 @@ def test_get_kleio_server_token(setup):
     """Test if kleio server token is available"""
     assert kserver.get_token() is not None
 
+
 @skip_on_travis
 def test_kleio_get_url(setup):
     kserver: KleioServer = setup
     """Test if kleio server url is available"""
     KLEIO_URL = kserver.get_url()
     assert KLEIO_URL is not None
-    
+
 
 def test_make_token():
     """Test if a token is generated"""
@@ -118,17 +119,14 @@ def test_stop_kleio_server(setup):
 
     kserver.stop()
     assert KleioServer.get_server(kome) is None
-    kleio_home=f"{TEST_DIR}/timelink-home"
+    kleio_home = f"{TEST_DIR}/timelink-home"
     assert KleioServer.get_server(kleio_home) is None
-    kserver.start(kleio_home=kleio_home,update=True)
+    kserver.start(kleio_home=kleio_home, update=True)
     # wait for server to start
     import time
 
     time.sleep(5)
     assert KleioServer.is_server_running(kleio_home=kleio_home) is True
-
-
-
 
 
 @skip_on_travis
@@ -147,7 +145,7 @@ def test_generate_limited_token(setup):
 
     try:  # we try to invalidade first
         kserver.invalidate_user(user)
-    except:
+    except Exception:
         pass
 
     limited_token = kserver.generate_token(user, info)
@@ -181,7 +179,9 @@ def test_generate_normal_token(setup):
 
     try:
         invalidated = kserver.invalidate_user(user)
-    except:
+        if invalidated is None:
+            print("User not invalidated")
+    except Exception:
         pass
 
     KLEIO_NORMAL_TOKEN = kserver.generate_token(user, info)
@@ -301,4 +301,3 @@ def test_sources_get(setup):
     kserver: KleioServer = setup
     sources = kserver.get_sources(path, recurse)
     assert sources is not None
-

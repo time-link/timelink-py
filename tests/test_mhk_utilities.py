@@ -10,7 +10,6 @@ from timelink.mhk.utilities import (
     get_mhk_env,
     get_mhk_app_env,
     get_dbnames,
-    get_mhk_db_pwd,
     is_mhk_installed,
     get_mhk_info,
 )

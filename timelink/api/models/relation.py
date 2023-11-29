@@ -9,7 +9,7 @@ from .entity import Entity
 class Relation(Entity):
     __tablename__ = "relations"
 
-    id = Column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
+    id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
     # rel_entity = relationship("Entity",
     #                   foreign_keys='id',back_populates='rel')
     origin = Column(String, ForeignKey("entities.id"), index=True)

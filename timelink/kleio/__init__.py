@@ -1,3 +1,4 @@
+# flake8: noqa: F401
 from .kleio_server import KleioServer
 from .schemas import KleioFile
 from .schemas import ApiPermissions

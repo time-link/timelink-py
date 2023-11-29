@@ -14,11 +14,13 @@ from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
 from timelink.api.models.base import Source
-from timelink.api.database import (TimelinkDatabase,
-                                   start_postgres_server,
-                                   get_postgres_container_user, 
-                                   get_postgres_container_pwd,
-                                   get_import_status)
+from timelink.api.database import (
+    TimelinkDatabase,
+    start_postgres_server,
+    get_postgres_container_user,
+    get_postgres_container_pwd,
+    get_import_status,
+)
 from timelink.api.models.entity import Entity
 
 from timelink.kleio import KleioServer
@@ -39,7 +41,7 @@ def dbsystem(request):
 
     database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
     try:
-        yield database 
+        yield database
     finally:
         # database.drop_db
         database.session().close()
@@ -177,23 +179,26 @@ def test_import_from_kleio_server(dbsystem):
     kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
-    translations = kserver.translation_status(path="",
-                                                  recurse="yes", 
-                                                  status="V")
+    translations = kserver.translation_status(path="", recurse="yes", status="V")
     assert len(translations) > 0, "no valid translations found in Kleio Server"
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
         file = kleio_file.xml_url
         with dbsystem.session() as session:
             try:
-                stats = import_from_xml(file, session, 
-                                        options={"return_stats": True,
-                                                 "kleio_token": kleio_token,
-                                                 "kleio_url": kleio_url,
-                                                 "mode":"TL"})
+                import_from_xml(
+                    file,
+                    session,
+                    options={
+                        "return_stats": True,
+                        "kleio_token": kleio_token,
+                        "kleio_url": kleio_url,
+                        "mode": "TL",
+                    },
+                )
             except Exception as exc:
                 print(exc)
-            
+
             # check if the file was imported
             filename_with_extension = os.path.basename(file)
             filename, extension = os.path.splitext(filename_with_extension)
@@ -205,10 +210,10 @@ def test_import_from_kleio_server(dbsystem):
                 if kfile == filename:
                     imported = True
                     break
-            
+
             assert imported, "file not imported"
     else:
-        assert False, "no valid translations found in Kleio Server"
+        raise AssertionError("no valid translations found in Kleio Server")
 
 
 @skip_on_travis
@@ -224,12 +229,11 @@ def test_import_from_kleio_server(dbsystem):
 def test_import_status_1(dbsystem):
     """Test if import status is retrieved"""
     kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
-    translations = kserver.translation_status(path="",
-                                                  recurse="yes", 
-                                                  status="V")
+    translations = kserver.translation_status(path="", recurse="yes", status="V")
 
     import_status = get_import_status(dbsystem, translations)
     assert import_status is not None
+
 
 @skip_on_travis
 @pytest.mark.parametrize(
@@ -246,26 +250,33 @@ def test_import_sources_with_no_year(dbsystem):
     kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
-    translations = kserver.translation_status(path="",
-                                                  recurse="yes", 
-                                                  status="V")
+    translations = kserver.translation_status(path="", recurse="yes", status="V")
     assert len(translations) > 0, "no valid translations found in Kleio Server"
     if len(translations) > 0:
-        #kleio_file: KleioFile = random.choice(translations)
-        #file = kleio_file.xml_url
+        # kleio_file: KleioFile = random.choice(translations)
+        # file = kleio_file.xml_url
         file: KleioFile
-        temp = [kfile.xml_url for kfile in translations if kfile.name=='auc-alunos-264605-A-140337-140771.cli']
+        temp = [
+            kfile.xml_url
+            for kfile in translations
+            if kfile.name == "auc-alunos-264605-A-140337-140771.cli"
+        ]
         file = temp[0]
         with dbsystem.session() as session:
             try:
-                stats = import_from_xml(file, session, 
-                                        options={"return_stats": True,
-                                                 "kleio_token": kleio_token,
-                                                 "kleio_url": kleio_url,
-                                                 "mode":"TL"})
+                import_from_xml(
+                    file,
+                    session,
+                    options={
+                        "return_stats": True,
+                        "kleio_token": kleio_token,
+                        "kleio_url": kleio_url,
+                        "mode": "TL",
+                    },
+                )
             except Exception as exc:
                 print(exc)
-            
+
             # check if the file was imported
             filename_with_extension = os.path.basename(file)
             filename, extension = os.path.splitext(filename_with_extension)
@@ -277,7 +288,7 @@ def test_import_sources_with_no_year(dbsystem):
                 if kfile == filename:
                     imported = True
                     break
-            
+
             assert imported, "file not imported"
     else:
-        assert False, "no valid translations found in Kleio Server"
+        raise AssertionError("no valid translations found in Kleio Server")

@@ -113,7 +113,9 @@ class PomSomMapper(Entity):
 
     __tablename__ = "classes"
 
-    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
+    id: Mapped[str] = mapped_column(
+        String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True
+    )
     table_name: Mapped[str] = mapped_column(String, nullable=False)
     group_name: Mapped[Optional[str]] = mapped_column("group_name", String(32))
     super_class: Mapped[Optional[str]] = mapped_column("super", String)

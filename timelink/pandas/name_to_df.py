@@ -2,8 +2,6 @@
 
 """
 from sqlalchemy import select
-from sqlalchemy.orm import sessionmaker
-
 import pandas as pd
 
 from timelink.api.database import TimelinkDatabase
@@ -33,16 +31,13 @@ def pname_to_df(
     # We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
     dbsystem: TimelinkDatabase = None
-    dbsession: sessionmaker = None
     if session is None:  # if session is none we need to open a new one
         if db is not None:  # try if we have a db connection in the parameters
             dbsystem = db
-            dbsession = db.session
         elif (
             conf.TIMELINK_DBSYSTEM is not None
         ):  # try if we have a global db connection
             dbsystem = conf.TIMELINK_DBSYSTEM
-            dbsession = dbsystem.session
         else:  # no session or db connection specified
             raise (
                 Exception(
@@ -78,7 +73,7 @@ def pname_to_df(
         columns=["id", "name", "sex", "obs"],
     )
     if df.iloc[0].count() == 0:
-        df = None  #  nothing found we
+        df = None  # nothing found we
     else:
         df.reset_index(inplace=True)
     return df

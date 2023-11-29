@@ -4,10 +4,10 @@ Create a dataframe with the values of an attribute
 import pandas as pd
 
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import select, func, and_, or_, not_, desc, asc, distinct
+from sqlalchemy import select, func, and_, desc
 
 from timelink.api.database import TimelinkDatabase
-from timelink.api.models import Person, Attribute, Relation
+from timelink.api.models import Attribute
 from timelink.notebooks import config as conf
 
 

@@ -28,14 +28,18 @@ class Act(Entity):
     __tablename__ = "acts"
 
     #: str:  a string uniquely identifying the act
-    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id" , ondelete='CASCADE'), primary_key=True)
-    the_type: Mapped[str] = mapped_column(String(32), nullable=True, comment="type of act")
+    id: Mapped[str] = mapped_column(
+        String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True
+    )
+    the_type: Mapped[str] = mapped_column(
+        String(32), nullable=True, comment="type of act"
+    )
     #: str: the date of the act in Kleio format AAAAMMDD
     the_date: Mapped[str] = mapped_column(
-        String, 
+        String,
         index=True,
-        nullable=True, 
-        comment="the date of the act in Kleio format AAAAMMDD"
+        nullable=True,
+        comment="the date of the act in Kleio format AAAAMMDD",
     )
     #: str: location of the act, eg church, notary office
     loc: Mapped[str] = mapped_column(String, nullable=True)

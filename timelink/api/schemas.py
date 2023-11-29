@@ -3,12 +3,12 @@
 In the FastAPi tutorial this file
 is used for the pydantic models for the API,
 including for the classes that are used for database access.
-Another file, called models.py, is used in the tutorial 
+Another file, called models.py, is used in the tutorial
 for the SQLAlchemy models.
 
-We use a module called "models" for the SQLAlchemy models 
+We use a module called "models" for the SQLAlchemy models
 
-Here we put the pydantic models that are not related to 
+Here we put the pydantic models that are not related to
 database models like search requests and search results.
 
 """

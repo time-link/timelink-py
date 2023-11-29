@@ -17,7 +17,9 @@ class Source(Entity):
 
     __tablename__ = "sources"
 
-    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id", ondelete='CASCADE'), primary_key=True)
+    id: Mapped[str] = mapped_column(
+        String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True
+    )
     the_type: Mapped[Optional[str]] = mapped_column(
         String(32),
         nullable=True,
@@ -28,20 +30,17 @@ class Source(Entity):
         String, nullable=True, comment="location of the source"
     )
     ref: Mapped[Optional[str]] = mapped_column(
-        String, 
-        nullable=True,
-        comment="call number of the source"
+        String, nullable=True, comment="call number of the source"
     )
     kleiofile: Mapped[Optional[str]] = mapped_column(
         String, index=True, comment="path of the kleio file"
     )
     replaces: Mapped[Optional[str]] = mapped_column(
-        String, 
-        nullable=True,
-        comment="id of the source this one replaces"
+        String, nullable=True, comment="id of the source this one replaces"
     )
-    obs: Mapped[Optional[str]] = mapped_column(String,nullable=True, 
-                                               comment="observations" )
+    obs: Mapped[Optional[str]] = mapped_column(
+        String, nullable=True, comment="observations"
+    )
 
     __mapper_args__ = {"polymorphic_identity": "source"}
 

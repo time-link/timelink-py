@@ -1,3 +1,5 @@
+# flake8: noqa: B008
+
 """
 FastAPI app for timelink
 
@@ -53,33 +55,36 @@ from timelink.api.schemas import ImportStats
 from timelink.api.schemas import EntityAttrRelSchema
 
 api_permissions_normal: List[ApiPermissions] = [
-                "sources",
-                "kleioset",
-                "files",
-                "structures",
-                "translations",
-                "upload",
-                "delete",
-                "mkdir",
-                "rmdir"
-            ]
+    "sources",
+    "kleioset",
+    "files",
+    "structures",
+    "translations",
+    "upload",
+    "delete",
+    "mkdir",
+    "rmdir",
+]
 
 token_info_normal: TokenInfo = TokenInfo(
-        	comment="An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
-            api=api_permissions_normal,
-            structures="structures/reference_sources",
-            sources="sources/reference_sources"
-        )
+    comment="An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
+    api=api_permissions_normal,
+    structures="structures/reference_sources",
+    sources="sources/reference_sources",
+)
+
 
 class KleioServerType(Enum):
     LOCAL = "local"  # swipl running locally the code, for debugging the Prolog code
-    DOCKER = "docker" # kleio server running in a local docker container
-    REMOTE = "remote" # kleio server running in a remote server
+    DOCKER = "docker"  # kleio server running in a local docker container
+    REMOTE = "remote"  # kleio server running in a remote server
+
 
 KSERVER_REMOTE_URL = "http://timelink.uc.pt/kleio"
 KSERVER_REMOTE_TOKEN = "whatevertoken"
 
 app = FastAPI()
+
 
 # Dependency to get a connection to the database
 def get_db(
@@ -100,17 +105,19 @@ def get_db(
     finally:
         db.close()
 
+
 # dependency to get a connection to the kleio server
 def get_kleio_server():
     """Get a connection to the kleio server
 
-    Uses timelink.kleio.kleio_server.KleioServer to get a connection to the kleio server."""
+    Uses timelink.kleio.kleio_server.KleioServer to get a connection to the kleio server.
+    """
 
     kleio_home = kserver.find_kleio_home()
     if not kserver.is_kserver_running():
         kserver.start_kleio_server(kleio_home=kleio_home)
-    token=kserver.get_kserver_token()
-    url=kserver.kleio_get_url()
+    token = kserver.get_kserver_token()
+    url = kserver.kleio_get_url()
     return KleioServer(url=url, token=token)
 
 
@@ -236,25 +243,33 @@ async def is_kleio_server_running():
     """Check if kleio server is running"""
     return kserver.is_kserver_running()
 
+
 # invalidate user
 @app.get("/kleio/invalidate-user/{user}", response_model=str)
-async def invalidate_user(user: str, kserver: KleioServer = Depends(get_kleio_server)):
+async def invalidate_user(user: str, kserver: KleioServer = Depends(get_kleio_server)): # noqa: B008
     """Invalidate a user"""
     return kserver.invalidate_user(user)
 
+
 # generate token for user
 @app.get("/kleio/generate-normal-token/{user}", response_model=str)
-async def generate_norma_token(user: str, kserver: KleioServer = Depends(get_kleio_server)):
+async def generate_norma_token(
+    user: str, kserver: KleioServer = Depends(get_kleio_server)  # noqa: B008
+):
     """Generate a token for a user"""
-    return kserver.generate_token(user,token_info_normal) 
+    return kserver.generate_token(user, token_info_normal)
+
 
 # get translation status
 @app.get("/kleio/translation-status/{path:path}", response_model=list[KleioFile])
-async def translation_status(path: str, recurse: str, 
-                             status: str, 
-                             kserver: KleioServer = Depends(get_kleio_server)):
+async def translation_status(
+    path: str,
+    recurse: str,
+    status: str,
+    kserver: KleioServer = Depends(get_kleio_server),  # noqa: B008
+):
     """Get translations from kleio server
-    
+
     Args:
         path (str): path to the directory in sources.
         recurse (str): if "yes" recurse in subdirectories.
@@ -274,16 +289,22 @@ async def translation_status(path: str, recurse: str,
 
 # translate
 @app.get("/kleio/translate/{path:path}", response_model=str)
-async def translate(path: str, recurse: str, spawn: str,
-                    kserver: KleioServer = Depends(get_kleio_server)):
+async def translate(
+    path: str,
+    recurse: str,
+    spawn: str,
+    kserver: KleioServer = Depends(get_kleio_server),  # noqa: B008
+):
     """Translate sources from kleio server
-    
+
     Args:
         path (str): path to the file or directory in sources.
         recurse (str): if "yes" recurse in subdirectories.
         spawn (str): if "yes" spawn a translation process for each file.
     """
     return kserver.translate(path, recurse, spawn)
+
+
 # Tutorial
 
 
@@ -336,7 +357,7 @@ async def read_item2(item_id: str, q: str | None = None):
 # Sandbox
 # testing specifying the database in the path
 @app.get("/{dbname}/id/{id}", response_model=dict)
-async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):
+async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):  # noqa: B008
     """get entity with id from database
 
     This will pass the name of the database in the path

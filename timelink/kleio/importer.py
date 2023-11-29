@@ -27,9 +27,13 @@ from timelink.mhk.models.entity import Entity as EntityMHK
 from timelink.mhk.models.person import Person as PersonMHK
 from timelink.mhk.models.system import KleioImportedFile as KleioFileMHK
 
-from timelink.api.models.base_mappings import pom_som_base_mappings as pom_som_base_mappingsTL
+from timelink.api.models.base_mappings import (
+    pom_som_base_mappings as pom_som_base_mappingsTL,
+)
 from timelink.api.models.pom_som_mapper import PomSomMapper as PomSomMapperTL
-from timelink.api.models.pom_som_mapper import PomClassAttributes as PomClassAttributesTL
+from timelink.api.models.pom_som_mapper import (
+    PomClassAttributes as PomClassAttributesTL,
+)
 from timelink.api.models.base import Entity as EntityTL, Person as PersonTL
 from timelink.api.models.system import KleioImportedFile as KleioFileTL
 
@@ -276,7 +280,7 @@ class KleioHandler:
         Arguments:
             session: a SQLAlchemy session
             mode: the mode of the import, either 'TL'(Timelink) or 'MHK'
-        
+
         """
         self.session = session
         if mode == "TL":
@@ -476,7 +480,9 @@ class KleioHandler:
             s = "No warnings"
         kfile.warning_rpt = s
         kfile.imported = datetime.now(timezone.utc)
-        kfile.imported_string = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S %Z")    
+        kfile.imported_string = datetime.now(timezone.utc).strftime(
+            "%Y-%m-%d %H:%M:%S %Z"
+        )
         kfile_exists = self.session.get(self.kleio_file_model, kfile.path)
         if kfile_exists is not None:
             self.session.delete(kfile_exists)
@@ -485,9 +491,7 @@ class KleioHandler:
 
 
 def import_from_xml(
-    filespec: Union[str, Path], 
-    session: Session, 
-    options: dict = None
+    filespec: Union[str, Path], session: Session, options: dict = None
 ) -> dict:
     """Import data from file or url into a timelink-mhk database.
 
@@ -504,7 +508,7 @@ def import_from_xml(
            - 'kleio_token':  the authorization token for the kleio server.
            - 'mode':  the mode of the import, either 'TL'(Timelink) or 'MHK'
 
-        If kleio_url and kleio_token are specified the data will be fetched from 
+        If kleio_url and kleio_token are specified the data will be fetched from
         a KleioServer and the filespec should contain the "xml_path" of the file
         in the server (e.g. /rest/exports/reference_sources/varia/vereacao.xml) and
         the kleio_token will be inserted in the header for autentication
@@ -539,7 +543,7 @@ def import_from_xml(
         'errors': []
         }
 
-        TODO: should use https when the kleio_url not local. 
+        TODO: should use https when the kleio_url not local.
     """
     collect_stats = False
     kleio_url = None
@@ -571,7 +575,7 @@ def import_from_xml(
         ).scalar()
 
     if kleio_url is not None and kleio_token is not None:
-        headers={"Authorization": f"Bearer {kleio_token}"}
+        headers = {"Authorization": f"Bearer {kleio_token}"}
         server_url = f"{kleio_url}{filespec}"
         req = urllib.request.Request(server_url, headers=headers)
         with urllib.request.urlopen(req) as source:
@@ -587,7 +591,7 @@ def import_from_xml(
     else:
         source = filespec
         parser.parse(source)
-    
+
     end = time.time()
     if collect_stats:
         machine = platform.node()

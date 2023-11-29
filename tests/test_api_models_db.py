@@ -1,8 +1,7 @@
 import os
 
 import pytest  # pylint: disable=import-error
-from sqlalchemy import Column, String, inspect, Table, select, Engine, MetaData, text
-from sqlalchemy_views import CreateView, DropView
+from sqlalchemy import inspect  # noqa
 
 from tests import skip_on_travis, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
@@ -12,9 +11,6 @@ from timelink.api.database import TimelinkDatabase
 from timelink.api.models.entity import Entity  # noqa
 from timelink.api.models.pom_som_mapper import PomSomMapper
 from timelink.api.models.source import Source
-from timelink.api.models.person import Person
-from timelink.api.models.attribute import Attribute
-
 
 pytestmark = skip_on_travis
 
@@ -141,12 +137,11 @@ def test_create_nattribute(get_db, kgroup_nested):
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
 
-    views = inspect(db.get_engine()).get_view_names()
-    l1 = len(views)
+    # views = inspect(db.get_engine()).get_view_names()
+    # l1 = len(views)
     nattr = db.get_nattribute_view()
-    l2 = len(inspect(get_db.get_engine()).get_view_names())
+    # l2 = len(inspect(get_db.get_engine()).get_view_names())
     assert nattr is not None
-
 
 
 @skip_on_travis

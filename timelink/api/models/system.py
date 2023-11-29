@@ -157,6 +157,7 @@ class KleioImportedFile(Base):
         nwarnings: number of warnings
         error_rpt: error report
         warning_rpt: warning report"""
+
     __tablename__ = "kleiofiles"
 
     path: Mapped[str] = mapped_column(String(1024), primary_key=True, nullable=False)
@@ -171,14 +172,15 @@ class KleioImportedFile(Base):
     imported: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     imported_string: Mapped[str] = mapped_column(String(255), nullable=False)
 
-    
     def __str__(self):
         return f"{self.name} ({self.path})"
-    
+
     def __repr__(self):
-        return (f"KleioImportedFile(path={self.path!r}, name={self.name!r}, "
-                f"structure={self.structure!r}, translator={self.translator!r}, "
-                f"translation_date={self.translation_date!r}, nerrors={self.nerrors!r}, "
-                f"nwarnings={self.nwarnings!r}, error_rpt={self.error_rpt!r}, "
-                f"warning_rpt={self.warning_rpt!r}, imported={self.imported!r}, "
-                f"imported_string={self.imported_string!r})")
+        return (
+            f"KleioImportedFile(path={self.path!r}, name={self.name!r}, "
+            f"structure={self.structure!r}, translator={self.translator!r}, "
+            f"translation_date={self.translation_date!r}, nerrors={self.nerrors!r}, "
+            f"nwarnings={self.nwarnings!r}, error_rpt={self.error_rpt!r}, "
+            f"warning_rpt={self.warning_rpt!r}, imported={self.imported!r}, "
+            f"imported_string={self.imported_string!r})"
+        )

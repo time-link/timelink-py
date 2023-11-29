@@ -755,7 +755,8 @@ class KGroup:
             warnings.warn(
                 f"Created a KElement class for {arg}. "
                 f"Better to create explicit or provide "
-                f" synonyms= in group creation."
+                f" synonyms= in group creation.",
+                stacklevel=2,
             )
             # we get KElement class that matches the name
             # this is how we handle localized name of elements that
