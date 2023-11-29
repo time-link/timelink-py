@@ -20,6 +20,9 @@ from sqlalchemy import not_, select
 import pandas as pd
 
 from timelink.api.database import TimelinkDatabase
+from .name_to_df import pname_to_df  # noqa: F401
+from .attribute_values import attribute_values  # noqa: F401
+
 from IPython.display import display
 from matplotlib import cm, colors
 

@@ -22,7 +22,8 @@ from sqlalchemy import MetaData, Table, engine, inspect, text
 from timelink.mhk.utilities import get_connection_string
 from timelink.mhk.models import base  # noqa
 from timelink.mhk.models.person import Person
-from timelink.mhk.models.db import TimelinkMHK, DBSystem
+from timelink.mhk.models.db import TimelinkMHK
+
 
 import timelink.notebooks.config as conf
 
@@ -283,7 +284,7 @@ def get_nfuncs_view(db: TimelinkMHK = None):
     return nfuncs
 
 
-def get_person(id: str = None, db: DBSystem = None, sql_echo: bool = False) -> Person:
+def get_person(id: str = None, db=None, sql_echo: bool = False) -> Person:
     """
     Fetch a person from the database
     """
