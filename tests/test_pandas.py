@@ -13,7 +13,7 @@ from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from tests import skip_on_travis, TEST_DIR
 
-from timelink.pandas import pname_to_df, attribute_values, attribute_to_df
+from timelink.pandas import pname_to_df, attribute_to_df, attribute_values
 
 pytestmark = skip_on_travis
 
