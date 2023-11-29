@@ -446,6 +446,27 @@ class TimelinkDatabase:
             List[KleioFile]: list of kleio files with field import_status
         """
         return get_import_status(self, kleio_files, match_path)
+    
+
+    def get_need_import(self, kleio_files: List[KleioFile], match_path=False) -> List[KleioFile]:
+        """Get the kleio files that need import.
+
+        Those are all the file with import_status different from I (imported)   
+        Including those with import_status U (translation updated need to reimport)
+        and those with import_status N (not imported)
+        and those with import_status E (imported with error)
+        and those with import_status W (imported with warnings no errors)
+
+        Args:
+            kleio_files (List[KleioFile]): list of kleio files
+            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
+
+        Returns:
+            List[KleioFile]: list of kleio files with field import_status
+        """
+
+        kleio_files = get_import_status(self, kleio_files, match_path)
+        return [file for file in kleio_files if file.import_status != import_status_enum.I]
 
     def query(self, query_spec):
         """ Executes a query in the database
@@ -555,6 +576,11 @@ def get_import_status(db: TimelinkDatabase, kleio_files: List[KleioFile], match_
     else:
         imported_files_dict = {imported.name:imported for imported in previous_imports}
         valid_files_dict = {file.name: file for file in kleio_files}
+        if len(valid_files_dict) != len(kleio_files):
+            raise ValueError("Some kleio files have the same name."
+                                "Use match_path=True to match the path of the kleio file with the path of the imported file."
+                             
+                             )
     
     for path,file in valid_files_dict.items():
         if path not in imported_files_dict:
