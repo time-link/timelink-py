@@ -141,7 +141,7 @@ class KleioServer:
 
         Kleio home directory is the directory where Kleio Server finds sources and auxiliary
         files like structures, mappings and inferences.
-            
+
         It can be in the current directory, parent directory, or tests directory.
         It can be named "kleio-home", "timelink-home", or "mhk-home".
 
