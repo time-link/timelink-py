@@ -139,9 +139,15 @@ class KleioServer:
     def find_local_kleio_home(path: str = None):
         """Find kleio home directory in the current directory, parent directory, or tests directory.
 
-        Kleio home directory is the directory where kleio server is running.
+        Kleio home directory is the directory where Kleio Server finds sources and auxiliary
+        files like structures, mappings and inferences.
+            
         It can be in the current directory, parent directory, or tests directory.
         It can be named "kleio-home", "timelink-home", or "mhk-home".
+
+        A special case is when the current directory is "notebooks".
+        In this case, kleio-home is assumed to be the parent directory of "notebooks"
+        and thus set up as the timelink-project template.
 
         Args:
             path (str, optional): path to start searching from. Defaults to None -> current directory.
@@ -416,6 +422,7 @@ def find_local_kleio_home(path: str = None):
 
     Kleio home directory is the directory where Kleio Server finds sources and auxiliary
     files like structures, mappings and inferences.
+
     It can be in the current directory, parent directory, or tests directory.
     It can be named "kleio-home", "timelink-home", or "mhk-home".
 
