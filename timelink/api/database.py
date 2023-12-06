@@ -31,6 +31,7 @@ from timelink.api.models import Person
 from timelink.api.models import Attribute
 from timelink.api.models import KleioImportedFile
 from timelink.kleio import KleioFile, import_status_enum
+
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 
 # container for postgres
@@ -148,15 +149,15 @@ def random_password():
 
 def get_db_password():
     # get password from environment
-    db_passord = os.environ.get("TIMELINK_DB_PASSWORD")
-    if db_passord is None:
-        db_passord = random_password()
-        os.environ["TIMELINK_DB_PASSWORD"] = db_passord
-    return db_passord
+    db_password = os.environ.get("TIMELINK_DB_PASSWORD")
+    if db_password is None:
+        db_password = random_password()
+        os.environ["TIMELINK_DB_PASSWORD"] = db_password
+    return db_password
 
 
-def get_dbnames():
-    """Get the database names
+def get_postgres_dbnames():
+    """Get the database names from a postgres server
     Returns:
         list[str]: list of database names
 
@@ -184,6 +185,21 @@ def get_dbnames():
         return result
     else:
         return []
+
+
+def get_sqlite_databases(directory_path: str) -> list[str]:
+    """Get the sqlite databases in a directory
+    Args:
+        directory_path (str): directory path
+    Returns:
+        list[str]: list of sqlite databases
+    """
+    sqlite_databases = []
+    for root, _dirs, files in os.walk(directory_path):
+        for file_name in files:
+            if file_name.endswith(".sqlite"):
+                sqlite_databases.append(os.path.join(root, file_name))
+    return sqlite_databases
 
 
 class TimelinkDatabase:
