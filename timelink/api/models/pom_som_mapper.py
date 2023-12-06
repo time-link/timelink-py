@@ -425,14 +425,27 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_for_column(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname, str(element.core))
+                        if len(element.core) > cattr.colsize:
+                            warnings.warn(
+                                f"""Element {element.name} of group {group.kname}:{group.id}"""
+                                f""" is too long for column {cattr.colname}"""
+                                f""" of class {pom_class.id}"""
+                                f""" truncating to {cattr.colsize} characters"""
+                            )
+                            core_value = element.core[:cattr.colsize]
+
+                        else:
+                            core_value = element.core
+                        setattr(entity_from_group, cattr.colname, str(core_value))
                 except Exception as e:
+                    session.rollback()
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
                         f""" of class {pom_class.id} """
                         f"""with element {element.name}"""
                         f""" of group {group.kname}:{group.id}: {e} """
                     ) from e
+                
 
         # positional information in the original file
         entity_from_group.the_line = group.line
