@@ -167,8 +167,8 @@ class KleioImportedFile(Base):
     translation_date: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     nerrors: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     nwarnings: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
-    error_rpt: Mapped[Optional[str]] = mapped_column(String(10000), nullable=True)
-    warning_rpt: Mapped[Optional[str]] = mapped_column(String(10000), nullable=True)
+    error_rpt: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    warning_rpt: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     imported: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     imported_string: Mapped[str] = mapped_column(String(255), nullable=False)
 
