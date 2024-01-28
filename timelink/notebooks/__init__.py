@@ -11,13 +11,21 @@ Utilities and shared variables for using timelink inside notebooks
 
 """
 
-
+import os
 import logging
 import datetime
 import socket
 from pathlib import Path
 
 from sqlalchemy import MetaData, Table, engine, inspect, text
+
+from .timelink_notebook import TimelinkNotebook
+
+from timelink.api.database import get_postgres_dbnames
+from timelink.api.database import get_sqlite_databases
+from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
+
+from timelink.kleio import KleioServer
 
 from timelink.mhk.utilities import get_connection_string
 from timelink.mhk.models import base  # noqa
@@ -29,7 +37,7 @@ import timelink.notebooks.config as conf
 
 current_time = datetime.datetime.now()
 current_machine = socket.gethostname()
-sqlite_databases = [f.stem for f in list(Path("../database/sqlite3/").rglob("*.db"))]
+
 mhk_databases = []
 
 
