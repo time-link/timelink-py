@@ -187,7 +187,14 @@ def group_attributes(
 ):
     """Return the attributes of a group of people in a dataframe.
 
-    Produces a sort of group biography
+    Args:
+    group: list of ids
+    include_attributes: list of attribute types to include
+    exclude_attributes: list of attribute types to exclude
+    person_info: include person information (name, sex, obs)
+    db: a TimelinkDatabase object
+    sql_echo: if True echo the sql generated
+
 
 
     """
