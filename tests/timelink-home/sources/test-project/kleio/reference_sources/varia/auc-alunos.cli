@@ -1,7 +1,7 @@
 kleio$gacto2.str/"""
       Generated from Archeevo export file:  database/other_exports/ficheiro-alunos-auc/PT-AUC-ELU-UC-AUC-B-001-001.CSV dated 2022-02-03 14:43
-  """/translations=3
-   fonte$auc-alunos-264605-A-140337-140771/"PT/AUC/ELU/UC-AUC/B/001-001"/data=1537-00-00:1919-11-14/loc=Arquivo da Universidade de Coimbra/substitui=test-auc-alunos-264605/tipo=UC-AUC-ficheiro-alunos/obs="""
+  """/translations=5
+   fonte$auc-alunos/"PT/AUC/ELU/UC-AUC/B/001-001"/data=1537-00-00:1919-11-14/loc=Arquivo da Universidade de Coimbra/substitui=test-auc-alunos-264605/substitui=auc-alunos-264605-A-140337-140771/tipo=UC-AUC-ficheiro-alunos/obs="""
        Âmbito e conteúdo
 
        O índice de alunos da Universidade de Coimbra, também conhecido, apenas, como ficheiro de alunos, foi elaborado entre 1940 e 1950, pelos funcionários do Arquivo, por decisão do doutor Mário Brandão, então diretor do Arquivo da Universidade, como o atestam os relatórios de atividades enviados anualmente ao reitor da Universidade (v. Correspondência expedida do Arquivo (SR), cx.2 (1942-1947) e cx. 3 (1948-1951) – cota AUC-IV-2.ªE-10-2-18 e 19).
