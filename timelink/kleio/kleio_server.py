@@ -40,10 +40,10 @@ class KleioServer:
 
     @staticmethod
     def start(
-        image: str = "timelinkserver/kleio-server",
-        version: str | None = "latest",
+        kleio_image: str = "timelinkserver/kleio-server",
+        kleio_version: str | None = "latest",
         kleio_home: str | None = None,
-        token: str | None = None,
+        kleio_token: str | None = None,
         consistency: str = "cached",
         port: int = None,
         update: bool = False,
@@ -64,11 +64,15 @@ class KleioServer:
         Returns:
             KleioServer: KleioServer object
         """
+        if kleio_image is None:
+            kleio_image = "timelinkserver/kleio-server"
+        if kleio_version is None:
+            kleio_version = "latest"
         container: docker.models.containers.Container = start_kleio_server(
-            image=image,
-            version=version,
+            image=kleio_image,
+            version=kleio_version,
             kleio_home=kleio_home,
-            token=token,
+            token=kleio_token,
             consistency=consistency,
             port=port,
             update=update,
@@ -178,9 +182,10 @@ class KleioServer:
         kleio_home: str = None,
     ):
         """Interface to kleio server
-        Creates an interface to kleio server either running in docker or in another machine.
-        To start a kleio server locally in docker use KleioServer.start_kleio_server()
-
+        Initializes a KleioServer instance. Not to be used directly. see KleioServer.start() and KleioServer.attach() 
+        
+        To start a kleio server locally in docker use KleioServer.start()
+        To attach to a running kleio server, local or remote, use KleioServer.attach()  
         If container is None, then url, token and kleio_home must be provided.
 
         Args:
@@ -418,7 +423,7 @@ def is_docker_running():
 
 
 def find_local_kleio_home(path: str = None):
-    """Find kleio home directory in the current directory, parent directory, or tests directory.
+    """Find kleio home directory in the current directory, parent directories, or tests directory.
 
     Kleio home directory is the directory where Kleio Server finds sources and auxiliary
     files like structures, mappings and inferences.
@@ -426,38 +431,51 @@ def find_local_kleio_home(path: str = None):
     It can be in the current directory, parent directory, or tests directory.
     It can be named "kleio-home", "timelink-home", or "mhk-home".
 
-    A special case is when the current directory is "notebooks".
-    In this case, kleio-home is assumed to be the parent directory of "notebooks"
-    and thus set up as the timelink-project template.
+    Special cases:
+        the current directory is "notebooks", kleio-home is assumed to be the parent directory of "notebooks"
+        there is a "tests" subdirectory, kleio-home is searched in childs of "tests"
+
 
     """
     kleio_home = None
+    timelink_home_names = ["kleio-home", "timelink-home", "mhk-home"]
+
     if path is None:
         # get the current directory
         current_dir = os.getcwd()
-        # check if current_dir is "notebooks"
-        if os.path.basename(current_dir) == "notebooks":
-            kleio_home = os.path.dirname(current_dir)
-            return kleio_home
     else:
         current_dir = path
 
     # get the user home directory
     user_home = os.path.expanduser("~")
 
-    # check if kleio-home exists in current directory, parent directory, or tests directory
-    for dir_path in [
-        current_dir,
-        os.path.dirname(current_dir),
-        f"{current_dir}/tests",
-        user_home,
-    ]:
-        for home_dir in ["kleio-home", "timelink-home", "mhk-home"]:
-            if os.path.isdir(f"{dir_path}/{home_dir}"):
-                kleio_home = f"{dir_path}/{home_dir}"
+    # check if current_dir is "notebooks"
+    if os.path.basename(current_dir) == "notebooks":
+        kleio_home = os.path.dirname(current_dir)
+    else:
+        # check if kleio-home exists in current directory, 
+        # parents of current directory up to user_home,
+        # or tests sub directory of current directory
+        dir_path = current_dir
+        while dir_path != user_home:
+            for home_dir in timelink_home_names:
+                if os.path.isdir(f"{dir_path}/{home_dir}"):
+                    kleio_home = f"{dir_path}/{home_dir}"
+                    break
+            if kleio_home:
                 break
-        if kleio_home:
-            break
+            dir_path = os.path.dirname(dir_path)
+        if kleio_home is None:
+            # check if current_dir is "tests"
+            if os.path.isdir(f"{current_dir}/tests"):
+                dir_path = f"{current_dir}/tests"
+                # check if kleio-home exists in tests directory
+                for home_dir in timelink_home_names:
+                    if os.path.isdir(f"{dir_path}/{home_dir}"):
+                        kleio_home = f"{dir_path}/{home_dir}"
+                        break
+    if kleio_home is None:
+        kleio_home = current_dir
     return kleio_home
 
 
