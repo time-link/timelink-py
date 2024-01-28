@@ -1,0 +1,513 @@
+kleio$gacto2.str/authorities/Generated from database toliveira_china by user toliveira, file date: +2021-06-18 Timestamp:2021-06-18T02:43:33.674Z/translations=2
+
+   identifications$real-entities-toliveira/Real entities, including real persons and real objects/dbase=toliveira_china/user=toliveira/date=20210618/mode=backup
+
+      rperson$rp-46/Agostinho de Barros/m/status=N
+
+         occ$deh-joao-de-barros-ref1/id=rp-46-occ1
+
+         occ$deh-agostinho-de-barros/id=rp-46-occ2
+
+      rperson$rp-40/Alessandro Cicero/m/status=N
+
+         occ$deh-antonio-da-silva-ref1/id=rp-40-occ1
+
+         occ$deh-alessandro-cicero/id=rp-40-occ2
+
+         occ$deh-pierre-amys-ref1/id=rp-40-occ3
+
+         occ$deh-pietro-balemonte-ref1/id=rp-40-occ4
+
+      rperson$rp-22/Alessandro Valignano/m/status=N/obs=Wikipedia
+
+         occ$ivc-bio-antonio-de-almeida-per1-130-his1-131-per1-131/id=rp-22-occ1
+
+         occ$bio-alessandro-valignano/id=rp-22-occ2
+
+         occ$deh-luis-cerqueira-ref1/id=rp-22-occ3
+
+         occ$deh-alessandro-valignano/id=rp-22-occ4
+
+      rperson$rp-1/Álvaro da Silveira/m/status=N/obs=[ Brother of Gonçalo Silveira, Jesuit. |cit.:| À morte de D. Álvaro da Silveira, filho do conde da Sortelha, e irmão de outro seu amigo o jesuita Gonçalo da Silveira., ambos regaram com o seu sangue os dominios portuguezes, este obtendo a palma do martyrio nas terras da Africa oriental, e aquelle no desastrado conflicto do Baharem. D. Alvaro da Silveira militou com muita distincção na India., e acabou ás mãos dos turcos, que lhe cortaram a cabeça, tendo-o primeiro ferido em uma verilha, e depois mortalmente no pescoço, Este fidalgo era não só intimo amigo de Camões, mas até julgo que parente por seu avô Vasco Pires de Camões., estava despachado com a capitania de Ormuz: assim a sua morte devia ser fatal a Camões, pois o poderia melhorar de fortuna, levando-o em sua companhia, e assim ficaram derrubados aquelles castellos de vento a que allude nesta poesia: Não tenho ja rasão de vos fazer Meus castellos de vento sobre o mar, etc.|fim cit.| Obras de Luiz de Camões, ed. by Visconde de Juromenha (1862), III, p.5
+
+         occ$bio-alvaro-silveira-his3-4-per1-5/id=rp-1-occ1
+
+         occ$bio-alvaro-silveira/id=rp-1-occ2
+
+         occ$ivc-goncalo-da-silveira-per1-114/id=rp-1-occ3
+
+         occ$ivc-goncalo-da-silveira-his4-117-per1-125/id=rp-1-occ4
+
+      rperson$rp-14/André da Costa/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his1-92-per3-92/id=rp-14-occ1
+
+         occ$ivc-andre-da-costa/id=rp-14-occ2
+
+         occ$ivc-goncalo-da-silveira-his3-118-per3-118/id=rp-14-occ3
+
+      rperson$rp-13/André Fernandes/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his1-92-per2-92/id=rp-13-occ1
+
+         occ$ivc-andre-fernandes/id=rp-13-occ2
+
+         occ$ivc-goncalo-da-silveira-his3-118-per2-118/id=rp-13-occ3
+
+      rperson$rp-61/Antoine Thomas/m/status=N/obs=Dehergne 843
+
+         occ$deh-adam-weidenfied-ref1/id=rp-61-occ1
+
+         occ$deh-antoine-thomas/id=rp-61-occ2
+
+         occ$deh-tome-pereira-ref1/id=rp-61-occ3
+
+      rperson$rp-41/António de Abreu/m/status=N
+
+         occ$deh-joao-alberto-ref1/id=rp-41-occ1
+
+         occ$deh-antonio-de-abreu/id=rp-41-occ2
+
+         occ$deh-rui-barreto-ref1/id=rp-41-occ3
+
+      rperson$rp-26/Antonio Ferronus/m/status=N/obs=Dehergne considera que são o mesmo porque ambos morreram na mesma data
+
+         occ$deh-antonio-ferronus/id=rp-26-occ1
+
+         occ$deh-andre-ferrao/id=rp-26-occ2
+
+      rperson$rp-24/António Francisco Cardim/m/status=N
+
+         occ$deh-joao-cardoso-ref1/id=rp-24-occ1
+
+         occ$deh-antonio-francisco-cardim/id=rp-24-occ2
+
+      rperson$rp-11/António Quadros/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his1-78-per5-79/id=rp-11-occ1
+
+         occ$ivc-antonio-quadros/id=rp-11-occ2
+
+         occ$ivc-goncalo-da-silveira-his2-85-per2-85/id=rp-11-occ3
+
+         occ$ivc-doc4-per2-92/id=rp-11-occ4
+
+      rperson$rp-18/Baltazar Limpo/m/status=N/obs="Andamos largo espaço, dando-me conta de conceitos seus, e pareceia depois, que tudo nascia da nova edificação, e gosto, que tinha de ter ouvido ofruto que Deus fazia com as doutrinas e mais serviço da Companhia na sua cidade."
+
+         occ$ivc-doc1-per2-56-per3-56/id=rp-18-occ1
+
+         occ$ivc-baltazar-limpo/id=rp-18-occ2
+
+      rperson$rp-36/Bartolomeo Tudeschini/m/status=N
+
+         occ$deh-bartolomeo-tudeschini/id=rp-36-occ1
+
+         occ$deh-bartolomeo-tedeschi/id=rp-36-occ2
+
+      rperson$rp-8/Belchior Carneiro/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his7-69-per2-69/id=rp-8-occ1
+
+         occ$ivc-belchior-carneiro/id=rp-8-occ2
+
+         occ$ivc-goncalo-da-silveira-his1-78-per1-86/id=rp-8-occ3
+
+      rperson$rp-43/Belchior Miguel Carneiro Leitão/m/status=N
+
+         occ$deh-luis-de-almeida-ref2/id=rp-43-occ1
+
+         occ$deh-belchior-miguel-carneiro-leitao/id=rp-43-occ2
+
+         occ$deh-pedro-martins-ref4/id=rp-43-occ3
+
+      rperson$rp-51/Belchior Nunes Barreto/m/status=N
+
+         occ$deh-antonio-diaz-ref2/id=rp-51-occ1
+
+         occ$deh-belchior-nunes-barreto/id=rp-51-occ2
+
+      rperson$rp-53/Charles de Belleville/m/status=N
+
+         occ$dehjean-de-fontaney-ref2/id=rp-53-occ1
+
+         occ$deh-charles-de-belleville/id=rp-53-occ2
+
+      rperson$rp-30/Christian Wolfgang Henriques Herdtrich/m/status=N/obs=mesmo que Dehergne 404
+
+         occ$deh-christian-wolfgang-henriques-herdtrich/id=rp-30-occ1
+
+         occ$deh-christian-henricus/id=rp-30-occ2
+
+      rperson$rp-21/Constantino de Bragança/m/status=N
+
+         occ$ivc-constantino-de-braganca/id=rp-21-occ1
+
+         occ$bio-constantino-de-braganca/id=rp-21-occ2
+
+         occ$ivc-goncalo-da-silveira-his4-117-per2-117/id=rp-21-occ3
+
+      rperson$rp-7/Diogo Mirão/m/status=N
+
+         occ$imagem-virtude-v2-his1-22-per1-51/id=rp-7-occ1
+
+         occ$ivc-diogo-mirao/id=rp-7-occ2
+
+      rperson$rp-64/Emmanuel Tchang/m/status=N
+
+         occ$deh-emmanuel-tchang-ii/id=rp-64-occ1
+
+         occ$deh-emmanuel-de-silva-tchang/id=rp-64-occ2
+
+      rperson$rp-39/Francesco Maria Spinola/m/status=N/obs=Dehergne 814
+
+         occ$deh-manuel-de-sa-ref1/id=rp-39-occ1
+
+         occ$deh-francesco-maria-spinola/id=rp-39-occ2
+
+         occ$deh-jean-baptiste-charandy-ref1/id=rp-39-occ3
+
+      rperson$rp-9/Francisco Barreto/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his1-78-per1-79/id=rp-9-occ1
+
+         occ$ivc-francisco-barreto/id=rp-9-occ2
+
+         occ$ivc-goncalo-da-silveira-his1-85-per2-85/id=rp-9-occ3
+
+         occ$ivc-goncalo-da-silveira-his2-101-per2-101/id=rp-9-occ4
+
+      rperson$rp-25/Francisco Cabral/m/status=N
+
+         occ$deh-gaspar-coelho-ref1/id=rp-25-occ1
+
+         occ$deh-francisco-cabral/id=rp-25-occ2
+
+      rperson$rp-6/Francisco de Borja/m/status=N
+
+         occ$imagem-virtude-v2-his2-21-per1-43/id=rp-6-occ1
+
+         occ$ivc-francisco-de-borja/id=rp-6-occ2
+
+         occ$ivc-doc2-his6-61-per2-61/id=rp-6-occ3
+
+      rperson$rp-38/Francisco Toleris/m/status=N
+
+         occ$deh-francisco-toleris/id=rp-38-occ1
+
+         occ$deh-francesco-folleri/id=rp-38-occ2
+
+      rperson$rp-12/Francisco Xavier/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his1-91-per2-91/id=rp-12-occ1
+
+         occ$ivc-francisco-xavier/id=rp-12-occ2
+
+      rperson$rp-45/Gabriel Baborier/m/status=N
+
+         occ$deh-jean-baborier-irmao/id=rp-45-occ1
+
+         occ$deh-gabriel-baborier/id=rp-45-occ2
+
+      rperson$rp-32/Gabriel de Magalhães/m/status=N
+
+         occ$deh-goncalo-de-oliveira-ref1/id=rp-32-occ1
+
+         occ$deh-gabriel-de-magalhaes/id=rp-32-occ2
+
+      rperson$rp-63/Gabriel Roussel/m/status=N/obs=confusão com Gabriel Boussel
+
+         occ$deh-gabriel-roussel/id=rp-63-occ1
+
+         occ$deh-gabriel-boussel/id=rp-63-occ2
+
+      rperson$rp-29/Giandomenico Gabiani/m/status=N
+
+         occ$deh-jean-francois-gerbillon-ref3/id=rp-29-occ1
+
+         occ$deh-giandomenico-gabiani/id=rp-29-occ2
+
+      rperson$rp-35/Giovanni Laureati/m/status=N/obs=erro
+
+         occ$deh-de-zea/id=rp-35-occ1
+
+         occ$deh-giovanni-laureati/id=rp-35-occ2
+
+      rperson$rp-62/Gonçalo Álvares/m/status=N/obs=Dehergne 30
+
+         occ$deh-francisco-perez-ref3/id=rp-62-occ1
+
+         occ$deh-goncalo-alvares/id=rp-62-occ2
+
+      rperson$rp-4/Gonçalo Silveira/m/status=N/obs=Volume 2, p.1
+
+         occ$imagem-virtude-v2-his1-18-per1-19/id=rp-4-occ1
+
+         occ$ivc-goncalo-da-silveira/id=rp-4-occ2
+
+         occ$imagem-virtude-v2-his2-21-per1-21/id=rp-4-occ3
+
+         occ$imagem-virtude-v2-his1-22-per2-22/id=rp-4-occ4
+
+         occ$ivc-goncalo-da-silveira-his2-56-per1-56/id=rp-4-occ5
+
+         occ$ivc-goncalo-da-silveira-his3-57-per1-57/id=rp-4-occ6
+
+         occ$ivc-goncalo-da-silveira-his4-63-per1-63/id=rp-4-occ7
+
+         occ$ivc-goncalo-da-silveira-his5-64-per1-65/id=rp-4-occ8
+
+         occ$ivc-goncalo-da-silveira-his6-64-per1-64/id=rp-4-occ9
+
+         occ$ivc-goncalo-da-silveira-his7-67-per1-67/id=rp-4-occ10
+
+         occ$ivc-goncalo-da-silveira-his6-68-per1-68/id=rp-4-occ11
+
+         occ$ivc-goncalo-da-silveira-his7-69-per1-69/id=rp-4-occ12
+
+         occ$ivc-goncalo-da-silveira-his1-78-per4-79/id=rp-4-occ13
+
+         occ$ivc-goncalo-da-silveira-his2-80-per1-82/id=rp-4-occ14
+
+         occ$ivc-goncalo-da-silveira-his1-85-per1-85/id=rp-4-occ15
+
+         occ$ivc-goncalo-da-silveira-his2-85-per1-85/id=rp-4-occ16
+
+         occ$ivc-goncalo-da-silveira-his1-91-per1-91/id=rp-4-occ17
+
+         occ$ivc-goncalo-da-silveira-his1-92-per1-92/id=rp-4-occ18
+
+         occ$ivc-goncalo-da-silveira-his2-101-per1-101/id=rp-4-occ19
+
+         occ$ivc-goncalo-da-silveira-his4-117-per1-117/id=rp-4-occ20
+
+         occ$ivc-goncalo-da-silveira-his3-118-per1-118/id=rp-4-occ21
+
+         occ$ivc-goncalo-da-silveira-his5-123-per1-123/id=rp-4-occ22
+
+         occ$ivc-goncalo-da-silveira-his10-124-per1-124/id=rp-4-occ23
+
+         occ$ivc-bio-goncalo-da-silveira-his2-107-per1-107/id=rp-4-occ24
+
+         occ$ivc-doc1-per1-56/id=rp-4-occ25
+
+         occ$ivc-doc2-per1-57/id=rp-4-occ26
+
+         occ$ivc-doc3-per1-66/id=rp-4-occ27
+
+         occ$ivc-doc4-per1-92/id=rp-4-occ28
+
+         occ$bio-notes-list-1-gds/id=rp-4-occ29
+
+      rperson$rp-19/Gonçalo Vaz de Melo/m/status=N
+
+         occ$ivc-doc3-per2-66/id=rp-19-occ1
+
+         occ$ivc-goncalo-vaz-de-melo/id=rp-19-occ2
+
+      rperson$rp-55/Heinrich Van Vlierden/m/status=N/obs=mesmo que Dehergne 868
+
+         occ$deh-heinrich-henriques/id=rp-55-occ1
+
+         occ$deh-heinrich-van-vlierden/id=rp-55-occ2
+
+      rperson$rp-56/Houo/m/status=N/obs=Dehergne diz que deve 722
+
+         occ$deh-houo/id=rp-56-occ1
+
+         occ$deh-francisco-xavier-rosario-ho/id=rp-56-occ2
+
+      rperson$rp-47/Jacques Brocard/m/status=N
+
+         occ$deh-louis-brouet-ref13/id=rp-47-occ1
+
+         occ$deh-jacques-brocard/id=rp-47-occ2
+
+      rperson$rp-34/Jacques Madeira Pao/m/status=N/obs=mesmo que Jacques Madeira Pao, Dehergne considera suprimir a notícia
+
+         occ$deh-inacio-xavier-pao/id=rp-34-occ1
+
+         occ$deh-jacques-madeira-pao/id=rp-34-occ2
+
+      rperson$rp-44/Jean-Régis-Lieou/m/status=N
+
+         occ$deh-jean-joseph-marie-amiot-ref1/id=rp-44-occ1
+
+         occ$deh-jean-regis-lieou/id=rp-44-occ2
+
+      rperson$rp-16/Jerónimo Nadal/m/status=N
+
+         occ$ivc-doc2-his6-61-per1-61/id=rp-16-occ1
+
+         occ$ivc-jeronimo-nadal/id=rp-16-occ2
+
+      rperson$rp-54/Joachim Bouvet/m/status=N
+
+         occ$deh-jean-francois-foucquet-ref1/id=rp-54-occ1
+
+         occ$deh-joachim-bouvet/id=rp-54-occ2
+
+      rperson$rp-5/João Dício Flamengo/m/status=N
+
+         occ$imagem-virtude-v2-his2-21-per2-21/id=rp-5-occ1
+
+         occ$imagem-virtude-v2-his1-18-per2-19/id=rp-5-occ2
+
+      rperson$rp-17/João III/m/status=N
+
+         occ$ivc-doc2-his6-61-per3-61/id=rp-17-occ1
+
+         occ$joao-iii/id=rp-17-occ2
+
+      rperson$rp-10/João Nunes Barreto/m/status=N
+
+         occ$ivc-goncalo-da-silveira-his1-78-per2-79/id=rp-10-occ1
+
+         occ$ivc-joao-nunes-barreto/id=rp-10-occ2
+
+      rperson$rp-58/Joseph-Olivier Lamy/m/status=N
+
+         occ$deh-gabriel-leon-lamy-ref2/id=rp-58-occ1
+
+         occ$deh-gabriel-leonard-de-brossard/id=rp-58-occ2
+
+      rperson$rp-42/Juan Antonio Arnedo/m/status=N
+
+         occ$deh-jose-ramon-arxo-ref1/id=rp-42-occ1
+
+         occ$deh-juan-antonio-arnedo/id=rp-42-occ2
+
+      rperson$rp-50/Louis Barnabé/m/status=N/obs=suponho que seja o mesmo
+
+         occ$deh-phil-deturil-ref1/id=rp-50-occ1
+
+         occ$deh-louis-barnabe/id=rp-50-occ2
+
+      rperson$rp-48/Louis Porquet/m/status=N
+
+         occ$deh-louis-brouet/id=rp-48-occ1
+
+         occ$deh-louis-porquet/id=rp-48-occ2
+
+      rperson$rp-20/Luísa/f/status=N/obs=See https:||www.geni.com|people|Luisa-de-Vasconcelos|6000000017017436413
+
+         occ$ivc-doc4-per2-92-per2-102/id=rp-20-occ1
+
+         occ$ivc-doc4-per2-92-per1-96/id=rp-20-occ2
+
+      rperson$rp-27/Manuel de Figueiredo/m/status=N
+
+         occ$deh-rui-figueiredo-ref1/id=rp-27-occ1
+
+         occ$deh-manuel-de-figueiredo/id=rp-27-occ2
+
+      rperson$rp-59/Manuel Mendes/m/status=N/obs=Dehergne pensa que será uma confusão com Manuel Mendes
+
+         occ$deh-manuel-lopes-ref4/id=rp-59-occ1
+
+         occ$deh-manuel-mendes/id=rp-59-occ2
+
+      rperson$rp-66/Matteo Ricci/m/status=N
+
+         occ$bio-michele-ruggieri-his4-19-per1-21/id=rp-66-occ1
+
+         occ$bio-matteo-ricci/id=rp-66-occ2
+
+         occ$bio-michele-ruggieri-his4-20-per1-21/id=rp-66-occ3
+
+         occ$ivc-bio-antonio-de-almeida-per1-130-his5-137-per1-137/id=rp-66-occ4
+
+         occ$deh-joao-barradas-ref1/id=rp-66-occ5
+
+         occ$deh-giovanni-cola-niccolo-ref1/id=rp-66-occ6
+
+         occ$deh-bento-de-gois-ref2/id=rp-66-occ7
+
+         occ$deh-sebastien-fernandes-tchong-ref2/id=rp-66-occ8
+
+         occ$deh-sabatino-de-ursis-ref1/id=rp-66-occ9
+
+         occ$deh-michele-ruggiere-ref4/id=rp-66-occ10
+
+         occ$deh-matteo-ricci/id=rp-66-occ11
+
+         occ$deh-manuel-pereira-yeou-ref1/id=rp-66-occ12
+
+         occ$deh-lazzaro-cattaneo-ref1/id=rp-66-occ13
+
+         occ$deh-jean-fernandes-tchong-ref1/id=rp-66-occ14
+
+      rperson$rp-23/Michele Ruggieri/m/status=N/obs= Michela Catto - Dizionario Biografico degli Italiani - Volume 89 (2017)[Com muita informação adicional datada e localizada e extensa bibliografia - ocorreu uma exposição no Museu de Macau, deve existir catálogo], "Nesse tempo o Padre Miguel Rodgerio da nossa Companhia, que vivia dentro da China, tendo licença pera fundar casa em uma das metrópoles [Zhaoqing desde 1583] veio à cidade de Cantão para se refazer de algumas coisas necessárias"
+
+         occ$ivc-bio-antonio-de-almeida-per1-130-his2-131-per1-131v/id=rp-23-occ1
+
+         occ$bio-michele-ruggieri/id=rp-23-occ2
+
+         occ$ivc-bio-antonio-de-almeida-per1-130-his5-135-per1-135/id=rp-23-occ3
+
+      rperson$rp-60/Miguel do Amaral/m/status=N/obs=Dehergne 33
+
+         occ$deh-manuel-osorio-i-ref1/id=rp-60-occ1
+
+         occ$deh-miguel-do-amaral/id=rp-60-occ2
+
+      rperson$rp-28/Nicolas Dufour/m/status=N/obs=Dehergne supõe que deve ser o mesmo que Nicolas Dufour, Dehergne 272
+
+         occ$deh-nicolas-de-fur/id=rp-28-occ1
+
+         occ$deh-nicolas-dufour/id=rp-28-occ2
+
+      rperson$rp-15/Pantaleão de Sá/m/status=N/obs=See https:||www.geni.com|people|Pantaleão-de-Sá-de-Menezes-capitão-de-Sofala|6000000017017918072
+
+         occ$ivc-goncalo-da-silveira-his2-101-per1-103/id=rp-15-occ1
+
+         occ$ivc-pantaleao-de-sa/id=rp-15-occ2
+
+         occ$ivc-doc4-per2-92-per1-102/id=rp-15-occ3
+
+      rperson$rp-3/Paulo Camarte/m/status=N
+
+         occ$ivc-simao-rodrigues-his7-35-per2-35/id=rp-3-occ1
+
+         occ$ivc-paulo-camarte/id=rp-3-occ2
+
+      rperson$rp-49/Philippe Avril/m/status=N/obs=erro de leitura
+
+         occ$deh-phil-deturil/id=rp-49-occ1
+
+         occ$deh-philippe-avril/id=rp-49-occ2
+
+      rperson$rp-33/Philippe Couplet/m/status=N/obs=Dehergne 221
+
+         occ$deh-ferdinand-verbiest-ref1/id=rp-33-occ1
+
+         occ$deh-philippe-couplet/id=rp-33-occ2
+
+      rperson$rp-57/Pierre T'chen/m/status=N/obs=Mesmo que Dehergne 830
+
+         occ$deh-pierre-kieou-ref2/id=rp-57-occ1
+
+         occ$deh-pierre-tchen/id=rp-57-occ2
+
+      rperson$rp-52/Pierre Van Spiere/m/status=N/obs=trata-se de Pierre van Spiere, Dehergne 867
+
+         occ$deh-pedro-espira/id=rp-52-occ1
+
+         occ$deh-pierre-van-spiere/id=rp-52-occ2
+
+      rperson$rp-31/Pierre-Martial Cibot/m/status=N
+
+         occ$deh-paul-lieou/id=rp-31-occ1
+
+         occ$deh-pierre-martial-cibot/id=rp-31-occ2
+
+      rperson$rp-65/Ramón Arjó/m/status=N
+
+         occ$deh-jose-ramon-arxo/id=rp-65-occ1
+
+         occ$deh-francois-noel-ref2/id=rp-65-occ2
+
+      rperson$rp-37/Tchou/m/status=N
+
+         occ$deh-tchou/id=rp-37-occ1
+
+         occ$deh-philippe-cazier/id=rp-37-occ2
