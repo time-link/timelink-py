@@ -125,7 +125,7 @@ def test_stop_kleio_server(setup):
     # wait for server to start
     import time
 
-    time.sleep(5)
+    time.sleep(1)
     assert KleioServer.is_server_running(kleio_home=kleio_home) is True
 
 
@@ -277,7 +277,7 @@ def test_translations_clean(setup):
         print(f"Waiting for {len(queued)} queued translations to finish")
         import time
 
-        time.sleep(5)
+        time.sleep(1)
         queued = kserver.translation_status(path, recurse, "Q")
 
     processing = kserver.translation_status(path, recurse, "P")
@@ -285,7 +285,7 @@ def test_translations_clean(setup):
         print(f"Waiting for {len(processing)} processing translations to finish")
         import time
 
-        time.sleep(5)
+        time.sleep(1)
         processing = kserver.translation_status(path, recurse, "P")
 
     translations = kserver.translation_clean(path, recurse)
