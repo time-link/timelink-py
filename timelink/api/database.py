@@ -10,8 +10,13 @@ import os
 import random
 import string
 import time
-from typing import List
+import re
 import warnings
+import logging
+
+from typing import List
+from pydantic import TypeAdapter
+
 from sqlalchemy import Engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -30,12 +35,15 @@ from timelink.api.models import pom_som_base_mappings
 from timelink.api.models import Person
 from timelink.api.models import Attribute
 from timelink.api.models import KleioImportedFile
-from timelink.kleio import KleioFile, import_status_enum
+from timelink.api.models.system import KleioImportedFileSchema
+from timelink.kleio import KleioServer, KleioFile, import_status_enum
+from timelink.kleio.importer import import_from_xml
 
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 
 # container for postgres
 postgres_container: docker.models.containers.Container = None
+
 
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = f"postgresql://timelink:db_password@postgresserver/db"
@@ -102,6 +110,7 @@ def start_postgres_server(
     dbname: str | None = "timelink",
     dbuser: str | None = "timelink",
     dbpass: str | None = None,
+    image: str | None = "postgres",
     version: str | None = "latest",
 ):
     """Starts a postgres server in docker
@@ -110,18 +119,24 @@ def start_postgres_server(
         dbuser (str): database user
         dbpass (str): database password
         version (str | None, optional): postgres version. Defaults to "latest".
-
-    TODO: if dbpass is None, get a password from the environment
     """
     # check if postgres is already running in docker
     if is_postgres_running():
         return get_postgres_container()
 
+    if dbname is None:
+        dbname = "timelink"
+    if dbuser is None:
+        dbuser = "timelink"
     client = docker.from_env()
     if dbpass is None:
         dbpass = get_db_password()
+    if image is None:
+        image = "postgres"
+    if version is None:
+        version = "latest"
     psql_container = client.containers.run(
-        image=f"postgres:{version}",
+        image=f"{image}:{version}",
         detach=True,
         ports={"5432/tcp": 5432},
         environment={
@@ -131,11 +146,11 @@ def start_postgres_server(
         },
     )
     # wait for the container to start
-    psql_container.reload()
-    while psql_container.status != "running":
+    time.sleep(1)
+    if psql_container.status != "running":
         psql_container.reload()
-        # wait one second
-        time.sleep(1)
+        # wait a bit more
+        time.sleep(3)
     return psql_container
 
 
@@ -166,11 +181,9 @@ def get_postgres_dbnames():
     WHERE NOT datistemplate
             AND datallowconn
             AND datname <> 'postgres';
-
-    TODO: equivalent in sqlLite and mysql
     """
 
-    container = get_postgres_container()
+    container = start_postgres_server()
     if container is not None:
         engine = create_engine(
             f"postgresql://{get_postgres_container_user()}:{get_postgres_container_pwd()}@localhost:5432"
@@ -202,6 +215,23 @@ def get_sqlite_databases(directory_path: str) -> list[str]:
     return sqlite_databases
 
 
+def is_valid_postgres_db_name(db_name):
+    # Check if the name is less than 64 characters long
+    if len(db_name) >= 64:
+        return False
+
+    # Check if the name starts with a letter or underscore
+    if not re.match(r'^[a-zA-Z_]', db_name):
+        return False
+
+    # Check if the name contains only letters, digits, and underscores
+    if not re.match(r'^\w+$', db_name):
+        return False
+
+    # If all checks pass, the name is valid
+    return True
+
+
 class TimelinkDatabase:
     """Database connection and setup
 
@@ -224,6 +254,9 @@ class TimelinkDatabase:
         db_url (str, optional): database url. If None, a url is generated. Defaults to None
         db_user (str, optional): database user. Defaults to None.
         db_pwd (str, optional): database password. Defaults to None.
+        kleio_server (KleioServer, optional): kleio server for imports. Defaults to None.
+        kleio_home (str, optional): kleio home directory. Defaults to None. If present and
+                                    kleio_server is None will start new kleio server, which
         connect_args (dict, optional): database connection arguments. Defaults to None.
 
     Fields:
@@ -235,6 +268,7 @@ class TimelinkDatabase:
         session (Session): database session factory
         metadata (MetaData): database metadata
         db_container: database container
+        kserver: kleio server attached to this database, used for imports
 
     Example:
         db = TimelinkDatabase('timelink', 'sqlite')
@@ -249,6 +283,7 @@ class TimelinkDatabase:
     db_type: str
     nattributes: Table | None = None
     nfuncs: Table | None = None
+    kserver: KleioServer | None = None
 
     def __init__(
         self,
@@ -258,6 +293,12 @@ class TimelinkDatabase:
         db_user=None,
         db_pwd=None,
         db_path=None,
+        kleio_server=None,
+        kleio_home=None,
+        kleio_image=None,
+        kleio_version=None,
+        postgres_image=None,
+        postgres_version=None,
         **connect_args,
     ):
         """Initialize the database connection and setup
@@ -269,11 +310,25 @@ class TimelinkDatabase:
             db_user (str, optional): database user. Defaults to None.
             db_pwd (str, optional): database password. Defaults to None.
             db_path (str, optional): database path (for sqlite databases). Defaults to None.
+            kleio_server (KleioServer, optional): kleio server for imports. Defaults to None.
+            kleio_home (str, optional): kleio home directory. Defaults to None. If present and
+                                        kleio_server is None will start new kleio server, which
+                                        can be fetched with get_kleio_server()
+            kleio_image (str, optional): kleio docker image. Passed to KleioServer().
+            kleio_version (str, optional): kleio version. Passed to KleioServer().
+            postgres_image (str, optional): postgres docker image. Defaults to None.
+            postgres_version (str, optional): postgres version. Defaults to None.
             connect_args (dict, optional): SQLAlchemy database connection arguments. Defaults to None.
 
         """
+        if db_name is None:
+            db_name = "timelink"
+        self.db_name = db_name
+
+        # if we received a url, use it to connect
         if db_url is not None:
             self.db_url = db_url
+        # if not, generate a url from other parameter
         else:
             if db_type == "sqlite":
                 if db_name == ":memory:":
@@ -285,7 +340,7 @@ class TimelinkDatabase:
                         connect_args = {"check_same_thread": False}
                     db_path = os.path.abspath(db_path)
                     os.makedirs(db_path, exist_ok=True)
-                    self.db_url = f"sqlite:///{db_path}/{db_name}.sqlite"
+                    self.db_url = f"sqlite:///{db_path}/{self.db_name}.sqlite"
             elif db_type == "postgres":
                 if db_pwd is None:
                     self.db_pwd = get_db_password()
@@ -303,15 +358,16 @@ class TimelinkDatabase:
                         0
                     ]
                     self.db_pwd = pwd.split("=")[1]
+                    usr = [var for var in container_vars if "POSTGRES_USER" in var][0]
+                    self.db_user = usr.split("=")[1]
                 else:
                     self.db_container = start_postgres_server(
-                        db_name, self.db_user, self.db_pwd
+                        self.db_name, self.db_user, self.db_pwd,
+                        image=postgres_image, version=postgres_version
                     )
-                self.db_url = (
-                    f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{db_name}"
-                )
+                self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{self.db_name}"
                 self.db_container = start_postgres_server(
-                    db_name, self.db_user, self.db_pwd
+                    self.db_name, self.db_user, self.db_pwd
                 )
                 self.db_pwd = get_postgres_container_pwd()
             elif db_type == "mysql":
@@ -338,6 +394,26 @@ class TimelinkDatabase:
             session.rollback()
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
+
+        if kleio_server is not None:
+            self.set_kleio_server(kleio_server)
+        else:
+            if kleio_home is not None:
+                self.kserver: KleioServer = KleioServer.start(kleio_home=kleio_home,
+                                                              kleio_image=kleio_image,
+                                                              kleio_version=kleio_version)
+
+    def set_kleio_server(self, kleio_server: KleioServer):
+        """Set the kleio server for imports
+
+        Args:
+            kleio_server (KleioServer): kleio server
+        """
+        self.kserver = kleio_server
+
+    def get_kleio_server(self):
+        """Return the kleio server associated with this database"""
+        return self.kserver
 
     def create_tables(self):
         """Creates the tables from the current ORM metadata if needed
@@ -446,47 +522,147 @@ class TimelinkDatabase:
 
     def get_imported_files(self):
         """Returns the list of imported files"""
-        return self.session().query(KleioImportedFile).all()
+        result = self.session().query(KleioImportedFile).all()
+        # https://stackoverflow.com/questions/55762673/how-to-parse-list-of-models-with-pydantic
+        ta = TypeAdapter(List[KleioImportedFileSchema])
+        result_pydantic = ta.validate_python(result)
+        return result_pydantic
 
     def get_import_status(
-        self, kleio_files: List[KleioFile], match_path=False
+        self, kleio_files: List[KleioFile] = None, status=None, match_path=False
     ) -> List[KleioFile]:
         """Get the import status of the kleio files
 
-        The status in returned in KleioFile.import_status
+        The status is returned in KleioFile.import_status
 
         Args:
-            kleio_files (List[KleioFile]): list of kleio files with extra field import_status
-            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
-
+            kleio_files (List[KleioFile]): list of kleio files, if None get all from the kleio server, defaults to None
+            status (str, optional): if not None, filter the kleio files by status. Defaults to None.
+                                I = imported
+                                E = imported with error
+                                W = imported with warnings no errors
+                                N = not imported
+                                U = translation updated need to reimport
+            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file.
+                                        Defaults to False, only file name is matched.
         Returns:
             List[KleioFile]: list of kleio files with field import_status
         """
-        return get_import_status(self, kleio_files, match_path)
+        if kleio_files is None:
+            if self.get_kleio_server() is None:
+                raise ValueError(
+                    "Empty list of files. \n"
+                    "Either provide list of files or attache database to Kleio server."
+                )
+            else:
+                kleio_files = self.get_kleio_server().translation_status(
+                    path="", recurse="yes"
+                )
+        files: List[KleioFile] = get_import_status(self, kleio_files, match_path)
+        if status is not None:
+            files = [file for file in files if file.import_status.value == status]
+        return files
 
     def get_need_import(
-        self, kleio_files: List[KleioFile], match_path=False
+        self,
+        kleio_files: List[KleioFile],
+        include_errors=False,
+        include_warnings=False,
+        match_path=False,
     ) -> List[KleioFile]:
-        """Get the kleio files that need import.
+        """Get the kleio files that need import
 
-        Those are all the file with import_status different from I (imported)
-        Including those with import_status U (translation updated need to reimport)
-        and those with import_status N (not imported)
-        and those with import_status E (imported with error)
-        and those with import_status W (imported with warnings no errors)
+        These are the files that were never imported or that were updated
+        after import (status N and U). Use include_errors and include_warnings set
+        to true to also include files previously imported with errors and warnings.
 
         Args:
             kleio_files (List[KleioFile]): list of kleio files
+            include_errors (bool, optional): if True, include files with errors. Defaults to False.
+            include_warnings (bool, optional): if True, include files with warnings. Defaults to False.
             match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
 
         Returns:
             List[KleioFile]: list of kleio files with field import_status
         """
 
-        kleio_files = get_import_status(self, kleio_files, match_path)
+        kleio_files: List[KleioFile] = get_import_status(self, kleio_files, match_path)
         return [
-            file for file in kleio_files if file.import_status != import_status_enum.I
+            file for file in kleio_files
+            if (file.import_status == import_status_enum.N
+                or file.import_status == import_status_enum.U)
+               or (include_errors and file.import_status == import_status_enum.E)
+               or (include_warnings and file.import_status == import_status_enum.W)
         ]
+
+    def update_from_sources(
+        self, with_warnings=True, with_errors=False, match_path=False
+    ):
+        """Update the database from the sources.
+
+        Needs an attached KleioServer.
+
+        Args:
+            with_warnings (bool, optional): if True, import files with warnings. Defaults to True.
+            with_errors (bool, optional): if True, import files with errors. Defaults to False.
+            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file.
+                                        if False just match the file name. Defaults to False.
+        """
+        if self.kserver is None:
+            raise ValueError("No kleio server attached to this database")
+        else:
+            for kfile in self.kserver.translation_status(
+                path="", recurse="yes", status="T"
+            ):
+                logging.info(f"{kfile.status.value} {kfile.path}")
+                self.kserver.translate(kfile.path, recurse="no", spawn="no")
+            # wait for translation to finish
+            pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
+
+            qfiles = self.kserver.translation_status(path="", recurse="yes", status="Q")
+            while len(pfiles) > 0 or len(qfiles) > 0:
+                time.sleep(3)
+                pfiles = self.kserver.translation_status(
+                    path="", recurse="yes", status="P"
+                )
+                qfiles = self.kserver.translation_status(
+                    path="", recurse="yes", status="Q"
+                )
+            # import the files
+            to_import = self.kserver.translation_status(
+                path="", recurse="yes", status="V"
+            )
+            if with_warnings:
+                to_import += self.kserver.translation_status(
+                    path="", recurse="yes", status="W"
+                )
+            if with_errors:
+                to_import += self.kserver.translation_status(
+                    path="", recurse="yes", status="E"
+                )
+            import_needed = self.get_need_import(to_import, match_path=match_path)
+
+            for kfile in import_needed:
+                kfile: KleioFile
+
+                with self.session() as session:
+                    try:
+                        logging.info(f"Importing {kfile.path}")
+                        stats = import_from_xml(
+                            kfile.xml_url,
+                            session=session,
+                            options={
+                                "return_stats": True,
+                                "kleio_token": self.kserver.get_token(),
+                                "kleio_url": self.kserver.get_url(),
+                                "mode": "TL",
+                            },
+                        )
+                        time.sleep(1)
+                    except Exception as e:
+                        logging.error("Unexpected error:")
+                        logging.error(f"Error: {e}")
+                        continue
 
     def query(self, query_spec):
         """Executes a query in the database
@@ -571,7 +747,7 @@ class TimelinkDatabase:
 
 def get_import_status(
     db: TimelinkDatabase, kleio_files: List[KleioFile], match_path=False
-) -> List[KleioFile]:
+) -> List[KleioImportedFileSchema]:
     """Get the import status of the kleio files
 
         The status in returned in KleioFile.import_status
@@ -588,10 +764,12 @@ def get_import_status(
         match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
 
     Returns:
-        List[KleioFile]: list of kleio files with field import_status
+        List[KleioImportedFileSchema]: list of kleio files with field import_status
+
+    TODO: KleioFile should also receive the import_errors and import_warnings
     """
 
-    previous_imports: List[KleioImportedFile] = db.get_imported_files()
+    previous_imports: List[KleioImportedFileSchema] = db.get_imported_files()
     if match_path:
         imported_files_dict = {imported.path: imported for imported in previous_imports}
         valid_files_dict = {file.path: file for file in kleio_files}
@@ -603,8 +781,9 @@ def get_import_status(
                 "Some kleio files have the same name."
                 "Use match_path=True to match the path of the kleio file with the path of the imported file."
             )
-
+    
     for path, file in valid_files_dict.items():
+        not_imported = False
         if path not in imported_files_dict:
             file.import_status = import_status_enum.N
         elif file.translated > imported_files_dict[path].imported.replace(
@@ -612,6 +791,10 @@ def get_import_status(
         ):
             file.import_status = import_status_enum.U
         else:
+            file.import_errors = imported_files_dict[path].nerrors
+            file.import_warnings = imported_files_dict[path].nwarnings
+            file.import_error_rpt = imported_files_dict[path].error_rpt
+            file.import_warning_rpt = imported_files_dict[path].warning_rpt
             if imported_files_dict[path].nerrors > 0:
                 file.import_status = import_status_enum.E
             elif imported_files_dict[path].nwarnings > 0:
