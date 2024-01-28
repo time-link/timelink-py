@@ -73,6 +73,86 @@ def test_import_xml(dbsystem):
     kleio = domingos_vargas.to_kleio()
     assert len(kleio) > 0
 
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_linked_data_attributes(dbsystem):
+    """Test the import of a translation with linked_data in attributes"""
+    file: Path = Path(TEST_DIR, "xml_data/dehergne-a.xml")
+    session = dbsystem.session()
+    try:
+        stats = import_from_xml(file, session, options={"return_stats": True})
+    except Exception as exc:
+        print(exc)
+        raise
+    sfile: Path = stats["file"]
+    assert sfile.name == file.name
+    per = session.get(Person, "deh-antonio-de-abreu")
+    assert per is not None, "could not get a group with linked data from file"
+    kleio = per.to_kleio()
+    assert len(kleio) > 0
+
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_linked_data_geoentites(dbsystem):
+    """Test the import of a translation with linked_data"""
+    file: Path = Path(TEST_DIR, "xml_data/dehergne-locations-1644.xml")
+    session = dbsystem.session()
+    try:
+        stats = import_from_xml(file, session, options={"return_stats": True})
+    except Exception as exc:
+        print(exc)
+        raise
+    sfile: Path = stats["file"]
+    assert sfile.name == file.name
+    geo1 = session.get(Entity, "deh-r1644-chekiang")
+    assert geo1 is not None, "could not get a group with linked data from file"
+    kleio = geo1.to_kleio()
+    assert len(kleio) > 0
+
+
+
+
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_atr_date(dbsystem):
+    """Test the import of a Kleio file with explicit attribute dates"""
+    file: Path = Path(TEST_DIR, "xml_data/test-atr-date.xml")
+    session = dbsystem.session()
+    try:
+        stats = import_from_xml(file, session, options={"return_stats": True})
+    except Exception as exc:
+        print(exc)
+        raise
+    sfile: Path = stats["file"]
+    assert sfile.name == file.name
+    domingos_vargas = session.get(Person, "b1685.33-per6")
+    assert domingos_vargas is not None, "could not get a person from file"
+    kleio = domingos_vargas.to_kleio()
+    assert len(kleio) > 0
 
 @skip_on_travis
 @pytest.mark.parametrize(
