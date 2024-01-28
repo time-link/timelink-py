@@ -15,7 +15,7 @@ class translation_status_enum(str, Enum):
 
 
 class import_status_enum(str, Enum):
-    I = "I"  # imported 
+    I = "I"  # imported
     E = "E"  # imported with error
     W = "W"  # imported with warnings no errors
     N = "N"  # not imported
@@ -23,7 +23,8 @@ class import_status_enum(str, Enum):
 
 
 class KleioFile(BaseModel):
-    """Represent the information about kleio file and its translation status"""
+    """Represents the information about kleio file and its
+    translation and import status"""
 
     path: str = Field(..., description="The path of the file")
     name: str = Field(..., description="The name of the file")
@@ -78,6 +79,24 @@ class KleioFile(BaseModel):
                             W = imported with warnings no errors
                             N = not imported
                             U = translation updated need to reimport""",
+    )
+    import_errors: Optional[int] = Field(
+        None, description="The number of errors encountered during import"
+    )
+    import_warnings: Optional[int] = Field(
+        None, description="The number of warnings encountered during import"
+    )
+    import_error_rpt: Optional[str] = Field(
+        None, description="Error report from import"
+    )
+    import_warning_rpt: Optional[str] = Field(
+        None, description="Warning report from import"
+    )
+    imported: Optional[datetime] = Field(
+        None, description="Date of import of the file"
+    )
+    imported_string: Optional[str] = Field(
+        None, description="Date of import of the file as a string"
     )
 
     def needs_translation(self):
