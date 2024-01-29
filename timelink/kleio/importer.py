@@ -486,6 +486,7 @@ class KleioHandler:
         kfile_exists = self.session.get(self.kleio_file_model, kfile.path)
         if kfile_exists is not None:
             self.session.delete(kfile_exists)
+            self.session.commit()
         self.session.add(kfile)
         self.session.commit()
 

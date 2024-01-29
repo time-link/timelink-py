@@ -10,6 +10,7 @@ import random
 import pytest
 
 from tests import skip_on_travis, TEST_DIR
+from timelink.api.models.system import KleioImportedFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
@@ -73,6 +74,7 @@ def test_import_xml(dbsystem):
     kleio = domingos_vargas.to_kleio()
     assert len(kleio) > 0
 
+
 @skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
@@ -98,6 +100,7 @@ def test_import_linked_data_attributes(dbsystem):
     assert per is not None, "could not get a group with linked data from file"
     kleio = per.to_kleio()
     assert len(kleio) > 0
+
 
 @skip_on_travis
 @pytest.mark.parametrize(
@@ -126,8 +129,6 @@ def test_import_linked_data_geoentites(dbsystem):
     assert len(kleio) > 0
 
 
-
-
 @skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
@@ -153,6 +154,7 @@ def test_import_atr_date(dbsystem):
     assert domingos_vargas is not None, "could not get a person from file"
     kleio = domingos_vargas.to_kleio()
     assert len(kleio) > 0
+
 
 @skip_on_travis
 @pytest.mark.parametrize(
@@ -226,6 +228,35 @@ def test_import_with_many(dbsystem):
     ],
     indirect=True,
 )
+def test_import_identifications(dbsystem):
+    """Test the import a identifications file"""
+    file = Path(TEST_DIR, "xml_data/mhk_identification_toliveira.xml")
+    with dbsystem.session() as session:
+        try:
+            stats = import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+        sfile = stats["file"]
+        assert "identification" in sfile.name
+        real_peron = session.get(Entity, "rp-46")
+        kleio = real_peron.to_kleio()
+        assert len(kleio) > 0
+        assert real_peron is not None, (
+            "could not get a real person from identifications import" @ skip_on_travis
+        )  # noqa
+
+
+@skip_on_travis
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
 def test_import_git_hub(dbsystem):
     """Test the import of a Kleio file from github into the Timelink database"""
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa
@@ -282,10 +313,10 @@ def test_import_from_kleio_server(dbsystem):
             # check if the file was imported
             filename_with_extension = os.path.basename(file)
             filename, extension = os.path.splitext(filename_with_extension)
-            sources = session.query(Source).filter_by().all()
+            sources = session.query(KleioImportedFile).all()
             imported = False
             for source in sources:
-                kfilename_with_extension = os.path.basename(source.kleiofile)
+                kfilename_with_extension = os.path.basename(source.path)
                 kfile, kextention = os.path.splitext(kfilename_with_extension)
                 if kfile == filename:
                     imported = True
@@ -333,15 +364,15 @@ def test_import_sources_with_no_year(dbsystem):
     translations = kserver.translation_status(path="", recurse="yes", status="V")
     assert len(translations) > 0, "no valid translations found in Kleio Server"
     if len(translations) > 0:
-        # kleio_file: KleioFile = random.choice(translations)
-        # file = kleio_file.xml_url
-        file: KleioFile
-        temp = [
-            kfile.xml_url
-            for kfile in translations
-            if kfile.name == "auc-alunos-264605-A-140337-140771.cli"
-        ]
-        file = temp[0]
+        kleio_file: KleioFile = random.choice(translations)
+        file = kleio_file.xml_url
+        # file: KleioFile
+        # temp = [
+        #   kfile.xml_url
+        #    for kfile in translations
+        #   if kfile.name == "auc-alunos.cli"
+        # ]
+        # file = temp[0]
         with dbsystem.session() as session:
             try:
                 import_from_xml(
