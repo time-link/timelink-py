@@ -11,21 +11,20 @@ Utilities and shared variables for using timelink inside notebooks
 
 """
 
-import os
 import logging
 import datetime
 import socket
-from pathlib import Path
 
 from sqlalchemy import MetaData, Table, engine, inspect, text
 
-from .timelink_notebook import TimelinkNotebook
+# import to expose to notebooks
+from .timelink_notebook import TimelinkNotebook   # noqa
+from timelink.api.database import get_postgres_dbnames  # noqa
+from timelink.api.database import get_sqlite_databases  # noqa
+from timelink.api.database import TimelinkDatabase  # noqa
+from timelink.api.database import is_valid_postgres_db_name  # noqa
 
-from timelink.api.database import get_postgres_dbnames
-from timelink.api.database import get_sqlite_databases
-from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
-
-from timelink.kleio import KleioServer
+from timelink.kleio import KleioServer  # noqa
 
 from timelink.mhk.utilities import get_connection_string
 from timelink.mhk.models import base  # noqa
