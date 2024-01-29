@@ -68,6 +68,8 @@ class KleioServer:
             kleio_image = "timelinkserver/kleio-server"
         if kleio_version is None:
             kleio_version = "latest"
+        if not is_docker_running():
+            raise Exception("Docker is not running")
         container: docker.models.containers.Container = start_kleio_server(
             image=kleio_image,
             version=kleio_version,
