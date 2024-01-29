@@ -221,11 +221,11 @@ def is_valid_postgres_db_name(db_name):
         return False
 
     # Check if the name starts with a letter or underscore
-    if not re.match(r'^[a-zA-Z_]', db_name):
+    if not re.match(r"^[a-zA-Z_]", db_name):
         return False
 
     # Check if the name contains only letters, digits, and underscores
-    if not re.match(r'^\w+$', db_name):
+    if not re.match(r"^\w+$", db_name):
         return False
 
     # If all checks pass, the name is valid
@@ -362,8 +362,11 @@ class TimelinkDatabase:
                     self.db_user = usr.split("=")[1]
                 else:
                     self.db_container = start_postgres_server(
-                        self.db_name, self.db_user, self.db_pwd,
-                        image=postgres_image, version=postgres_version
+                        self.db_name,
+                        self.db_user,
+                        self.db_pwd,
+                        image=postgres_image,
+                        version=postgres_version,
                     )
                 self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{self.db_name}"
                 self.db_container = start_postgres_server(
@@ -399,9 +402,11 @@ class TimelinkDatabase:
             self.set_kleio_server(kleio_server)
         else:
             if kleio_home is not None:
-                self.kserver: KleioServer = KleioServer.start(kleio_home=kleio_home,
-                                                              kleio_image=kleio_image,
-                                                              kleio_version=kleio_version)
+                self.kserver: KleioServer = KleioServer.start(
+                    kleio_home=kleio_home,
+                    kleio_image=kleio_image,
+                    kleio_version=kleio_version,
+                )
 
     def set_kleio_server(self, kleio_server: KleioServer):
         """Set the kleio server for imports
@@ -588,11 +593,14 @@ class TimelinkDatabase:
 
         kleio_files: List[KleioFile] = get_import_status(self, kleio_files, match_path)
         return [
-            file for file in kleio_files
-            if (file.import_status == import_status_enum.N
-                or file.import_status == import_status_enum.U)
-               or (include_errors and file.import_status == import_status_enum.E)
-               or (include_warnings and file.import_status == import_status_enum.W)
+            file
+            for file in kleio_files
+            if (
+                file.import_status == import_status_enum.N
+                or file.import_status == import_status_enum.U
+            )
+            or (include_errors and file.import_status == import_status_enum.E)
+            or (include_warnings and file.import_status == import_status_enum.W)
         ]
 
     def update_from_sources(
@@ -658,6 +666,7 @@ class TimelinkDatabase:
                                 "mode": "TL",
                             },
                         )
+                        logging.debug(f"Imported {kfile.path}: {stats}")
                         time.sleep(1)
                     except Exception as e:
                         logging.error("Unexpected error:")
@@ -781,9 +790,8 @@ def get_import_status(
                 "Some kleio files have the same name."
                 "Use match_path=True to match the path of the kleio file with the path of the imported file."
             )
-    
+
     for path, file in valid_files_dict.items():
-        not_imported = False
         if path not in imported_files_dict:
             file.import_status = import_status_enum.N
         elif file.translated > imported_files_dict[path].imported.replace(

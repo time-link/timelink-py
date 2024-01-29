@@ -172,7 +172,6 @@ class KleioImportedFile(Base):
     imported: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     imported_string: Mapped[str] = mapped_column(String(255), nullable=False)
 
-
     def __str__(self):
         return f"{self.name} ({self.path})"
 
@@ -186,12 +185,13 @@ class KleioImportedFile(Base):
             f"imported_string={self.imported_string!r})"
         )
 
+
 class KleioImportedFileSchema(BaseModel):
     """Represents a Kleio file imported in the database
 
     Objects of this class contain the same fields as the KleioImportedFile class.
 
-    
+
 
     Fields:
         path: path of the file
@@ -209,7 +209,7 @@ class KleioImportedFileSchema(BaseModel):
     structure: str
     translator: str
     translation_date: datetime
-    nerrors: int    
+    nerrors: int
     nwarnings: int
     error_rpt: Optional[str]
     warning_rpt: Optional[str]
