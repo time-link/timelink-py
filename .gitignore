@@ -118,3 +118,5 @@ tests/timelink-home/sources/test-project/database/sqlite/timelink.db.sqlite
 tests/timelink-home/sources/sources/.kleio/logs/kleio_service.log
 tests/timelink-home/sources/test-project/.kleio/logs/kleio_service.log
 tests/timelink-home/sources/test-project/database/sqlite/test_project.sqlite
+.idea/misc.xml
+.idea/timelink.iml
