@@ -111,7 +111,7 @@ class TimelinkNotebook:
         print(self.__repr__())
 
     def get_import_status(self, data_frame=True, **kwargs):
-        """Get the status of files imported ]}
+        """Get the status of files imported
 
         Returns:
             A dictionary with the status of the import process
@@ -124,7 +124,7 @@ class TimelinkNotebook:
             ifiles_df["status"] = ifiles_df["status"].apply(lambda x: x.value)
             ifiles_df["import_status"] = ifiles_df["import_status"].apply(lambda x: x.value)
             # convert the column "import_errors" to int with NA as 0
-            #https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
+            # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
             ifiles_df["import_errors"] = ifiles_df["import_errors"].astype('Int64')
             ifiles_df["import_warnings"] = ifiles_df["import_errors"].astype('Int64')
             return ifiles_df
