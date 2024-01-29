@@ -184,10 +184,10 @@ class KleioServer:
         kleio_home: str = None,
     ):
         """Interface to kleio server
-        Initializes a KleioServer instance. Not to be used directly. see KleioServer.start() and KleioServer.attach() 
-        
+        Initializes a KleioServer instance. Not to be used directly. see KleioServer.start() and KleioServer.attach()
+
         To start a kleio server locally in docker use KleioServer.start()
-        To attach to a running kleio server, local or remote, use KleioServer.attach()  
+        To attach to a running kleio server, local or remote, use KleioServer.attach()
         If container is None, then url, token and kleio_home must be provided.
 
         Args:
@@ -455,7 +455,7 @@ def find_local_kleio_home(path: str = None):
     if os.path.basename(current_dir) == "notebooks":
         kleio_home = os.path.dirname(current_dir)
     else:
-        # check if kleio-home exists in current directory, 
+        # check if kleio-home exists in current directory,
         # parents of current directory up to user_home,
         # or tests sub directory of current directory
         dir_path = current_dir
