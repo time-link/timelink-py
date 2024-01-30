@@ -34,7 +34,6 @@ import timelink
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinxcontrib.console',
     'sphinx.ext.napoleon']
 
 # members: generate doc for members of an object with docstring
