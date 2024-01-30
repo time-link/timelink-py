@@ -23,3 +23,4 @@ jsonrpcclient
 networkx~=2.0.0
 bokeh
 wheel>=0.38.1
+IPython

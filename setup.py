@@ -19,13 +19,12 @@ description = "Timelink is an information system for person related information 
 setup(
     author="Joaquim Ramos de Carvalho",
     author_email='joaquimcarvalho@ipm.edu.mo',
-    python_requires='>=3.7',
+    python_requires='>=3.10',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
     ],
@@ -50,6 +49,8 @@ setup(
         'pandas~=2.0.0',
         'docker~=6.0.0',
         'jsonrpcclient~=4.0.0',
+        'ipython~=8.0.0'
+        
 
     ],
     license="MIT license",
