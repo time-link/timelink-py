@@ -6,9 +6,8 @@ env: TRAVIS=true
 language: python
 # could not get 3.10 to work on travis
 python:
-- "3.11"
-- "3.10"
-- "3.9"
+- 3.10
+- 3.11
 script: pytest
 jobs:
     include:
