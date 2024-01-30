@@ -56,10 +56,10 @@ A baptism::
     baptism$17/9/1685/parish church
         n$manuel/m
             father$jose luis
-                atr$residence/casal da corujeira
+                attr$residence/casal da corujeira
             mother$domingas jorge
             gfather$francisco rodrigues/id=b1685.9.17.gf
-                atr$residence/moinhos do paleao
+                attr$residence/moinhos do paleao
             gmother$maria pereira
                 rel$kin/wife/francisco rodrigues/b1685.9.17.gf
 
@@ -175,10 +175,10 @@ The same applies to objects, when they appear in acts.
 How translation between SOM and POM works
 -----------------------------------------
 
-Timelink contains a set of basic entities: sources, acts, persons,
-objects, attributes and relations. For an example such as the previous
+Timelink contains a set of basic entities: *sources*, *acts*, *persons*,
+*objects*, *attributes* and *relations*. For an example such as the previous
 one to work, Timelink needs to know the correspondence between the Kleio
-notation and the relational database tables as well as how to infer values
+notation and the relational database tables, as well as how to infer values
 like gender and kin relations.
 
 Terminology note
@@ -187,17 +187,18 @@ Terminology note
 When describing both the Source Oriented Model and the Person Oriented Model
 different terms are used to describe concepts that are similar.
 
-In both models we have concepts for entities that existed
-(sources, transcriptions of acts, people, objects),
-for the attributes of those entities (names, dates, archival locations),
-and for the relations between them (person X is father of Y, person Z bought
-property W).
+In both the Source Oriented Model (SOM) and the Person Oriented Model (POM), 
+we have concepts for entities that existed, such as *sources*, *transcriptions of acts*, *people*, and *objects*. 
+
+These entities have *attributes* that provide information about them, such as names, dates, and archival locations. 
+
+Additionally, both models include the concept of *relations*, which describe the connections between entities. For example, in the relations, we can specify that person X is the father of person Y or that person Z bought property W.
 
 But each model uses different terms for refer to the same things. For
 instance in the Kleio notation "groups" are used to record entities, and
-"elements" to record their attributes. In database terminology different
-entities are stored in rows of database tables (persons, objects, acts, sources)
-and table columns store the attributes of those entities.
+"elements" to record their attributes.
+
+In the context of a database, entities such as *persons*, *objects*, *acts*, and *sources* are represented as rows in different database tables. Each table column corresponds to an attribute of the entities of the same type, storing information such as names, dates, and other relevant data.
 
 At a higher level, when describing the structure of information, we will
 use the terminology defined by the `Entity-Relationship-Model
@@ -212,12 +213,9 @@ use the terminology defined by the `Entity-Relationship-Model
     of people participating in acts
 * Attribute: items of information that describe entities and relations
     (names, dates, kinship terms, prices of transactions)
-* Entity-class or entity-type: 
-
-    a category of Entities that are described
-    by the same attributes
+* Entity-class or entity-type: a category of Entities described by the same attributes
     `person` is a entity class, `building` is
-    another entity class and so is `acts`. Each is described by different attributes.
+    another entity class and so is `acts`; each is described by different attributes.
 * Entity instance: a specific entity of a specific class
     (the person named Galileo Galillei, the building named 'Tower of Pisa',
     the baptism that occurred in 8/7/1685 in the church of Soure, Portugal ).
@@ -228,15 +226,18 @@ to the SOM and POM models.
 For the SOM the main terms are Group,Element and Aspect used by Manfred Thaller
 in the Kleio notation.
 
-- Group: corresponds to entities.
-- Element: corresponds to attributes.
+- Group: corresponds to *entities*.
+
+- Element: corresponds to *attributes*.
 - Aspect: represent extra information about attributes.
     The Kleio notation allows to register not only the core value of an
     attribute but also a comment and the original wording in the document.
 
 
 In Timelink Kleio groups are used also to record attributes of entities
-that vary with time, like residence or profession. These attributes have
+that vary with time, like residence or profession. 
+
+These attributes have
 not just a value ("Abbey Road", "Musician") but also have associated a
 date. So they have their own attributes (dates for one), like entities.
 In the ER Model this type of information is called a "weak entity": they

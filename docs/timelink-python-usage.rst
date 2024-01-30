@@ -17,15 +17,14 @@ using pip:
 
 Interfacing with a Kleio Server
 -------------------------------
-
-The Timelink Python package provides 
-a :class:`timelink.kleio.kleio_server.KleioServer` class 
-that can be used to interface with a Kleio server.
-
 A Kleio server is a separate application
 that processes source files in the Kleio
 notation and produces data that can be
 imported into the Timelink database.
+
+The Timelink Python package provides 
+a :class:`timelink.kleio.kleio_server.KleioServer` class 
+that can be used to interface with a Kleio server.
 
 For more information on the Kleio notation,
 and how it is used to produce data for the
