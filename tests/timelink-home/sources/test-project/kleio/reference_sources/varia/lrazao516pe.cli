@@ -1,0 +1,3779 @@
+kleio$gacto2.str/translations=2
+   fonte$lrazao516pe/tipo=livro razao/loc=antt 516/data=17660610-17690811/obs=livro razao escriturado pela direcao de pernambuco da cgpp
+
+      lcc$livrz516-1/10/6/1766/obs=fechou em 17690811
+
+         n$caetana isabel de melo/f/obs=f.1/id=livrz516-1-per1
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$ec/viuva
+            ls$titulo/senhora de engenho
+            ls$patrimonio/engenho ramos e cureahy
+
+            marido$alexandre correa de crasto/id=livrz516-1-per1-per1
+               ls$cargo/capitao
+               ls$morto/antes/17660610
+
+            referido$antonio ferreira cristovao/id=livrz516-1-per1-per2
+               rel$contabil/fiador/caetana isabel de melo/livrz516-1-per1
+
+         n$jose pinto de abreu mendonca/obs=f.1/id=livrz516-1-per3
+            ls$profissao/padre
+            ls$profissao/lavrador de acucar/obs=engenho araiba de baixo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco neto ferreira/obs=f.1/id=liv516-per1
+            ls$profissao/lavrador de acucar/obs=engenho sao bras
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel neto carneiro leao/id=liv516-per1-per4
+               ls$cargo/capitao mor
+               rel$contabil/fiador/francisco neto ferreira/liv516-per1
+
+         n$jose alves de oliveira/obs=f.2/id=livrz516-1-per5
+            ls$profissao/lavrador de acucar/obs=engenho da guerra freguesia do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio ferreira da costa/obs=f.2/id=livrz516-1-per6
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel nunes barbosa/obs=f.2/id=livrz516-1-per7
+            ls$profissao/lavrador de acucar/obs=engenho do cumbe
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$cosme jose bezerra/obs=f.3/id=liv516-per2
+            ls$profissao/lavrador de acucar/obs=engenho pedregulho freguesia de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao da silva cruz/id=liv516-per2-per8
+               rel$contabil/fiador/cosme jose bezerra/liv516-per2
+
+         n$jeronimo de carvalho/obs=f.3/xmesmo_que=livrz515-1-per194/id=livrz516-1-per9
+            ls$residencia/boavista
+            ls$produto_fornecido/couro em cabelo
+
+         n$martinho teixeira de albuquerque/obs=f.4/id=liv516-per3
+            ls$profissao/lavrador de acucar/obs=engenho agua fria freguesia de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$agostinho da silva guimaraes/id=liv516-per3-per10
+               rel$contabil/fiador/martinho teixeira de albuquerque/liv516-per3
+
+         n$jose camelo pessoa/obs=f.4/id=livrz516-1-per11
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho tanhenga
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.33
+            ls$produto_fornecido/acucar
+
+         n$junta de lisboa/obs=f.5, 49, 87, 140, 166, 212, 247, 275/xmesmo_que=livrz515-1-per27/id=livrz516-1-per12
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.7
+
+         n$manoel ferreira pinto/obs=f.6/id=livrz516-1-per13
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho muribara freguesia de sao lourenco
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$lourenco francisco bastos/obs=f.6, 267/id=livrz516-1-per14
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.2, sup3 f.108
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+
+         n$jose teixeira da silva/obs=f.7/id=livrz516-1-per15
+            ls$residencia/arco de santo antonio
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$fazendas gerais/obs=f.7, 19, 50, 73, 113, 146, 179, 190, 223, 250, 262/xmesmo_que=livrz515-1-per97/id=livrz516-1-per16
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.5
+
+         n$letras de remessa/obs=f.8/xmesmo_que=livrz515-1-per12/id=livrz516-1-per17
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel pereira da silva/obs=f.9, 228/id=livrz516-1-per18
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.400, sup3 f.114
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/atanados
+
+         n$francisco velho do avilar/obs=f.9/id=liv516-per4
+            ls$profissao/padre
+            ls$cargo/administrador/obs=do engenho nossa senhora da conceicao de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao salgado de castro acioli/id=liv516-per4-per19
+               rel$contabil/fiador/francisco velho do avilar/liv516-per4
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho nossa senhora da conceicao de ipojuca
+
+         n$jose da silva de oliveira/obs=f.10/id=livrz516-1-per20
+            ls$profissao/rendeiro de acucar/obs=engenho genipapo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.366
+            ls$produto_fornecido/acucar
+
+         n$amaro soares mariz/obs=f.10, 187/xmesmo_que=livrz515-1-per313/id=livrz516-1-per21
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+
+         n$caixa/obs=f.11, 48, 82, 115, 159, 202, 242/xmesmo_que=livrz515-1-per95/id=livrz516-1-per22
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.3
+
+         n$manoel de pontes do rego/obs=f.12/xmesmo_que=liv515pe-per100/id=livrz516-1-per23
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$manoel da rosa de avila/obs=f.12/id=livrz516-1-per24
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.120, sup3 f.60
+
+         n$manoel de barros vanderlei/obs=f.13/id=livrz516-1-per25
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho sao braz de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.114
+            ls$produto_fornecido/acucar
+
+         n$luis rodrigues pereira/obs=f.13/id=livrz516-1-per26
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.234, sup3 f.166
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+
+         n$juros/obs=f.14, 167, 238, 279/xmesmo_que=livrz515-1-per282/id=livrz516-1-per27
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.52
+
+         n$joao rabelo da costa/obs=f.15, 222/xmesmo_que=liv515pe-per106/id=livrz516-1-per28
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.266
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+
+         n$manoel carvalho guimaraes/obs=f.16/id=liv516-per5
+            ls$residencia/morador na ponte
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$cipriano lopes da fonseca/id=liv516-per5-per29
+               ls$titulo/reverendo doutor
+               rel$contabil/fiador/manoel carvalho guimaraes/liv516-per5
+
+         n$manoel alves de sa/obs=f.16, 238/id=livrz516-1-per30
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.258, sup3 f.93
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$jose francisco campos/obs=f.17/id=livrz516-1-per31
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose vaz salgado/obs=f.17/id=livrz516-1-per32
+            ls$cargo/sargento mor
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.64, sup3 f.139
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$joao marques barbosa/obs=f.18/id=liv516-per6
+            ls$profissao/lavrador de acucar/obs=engenho pitiribu freguesia de de nossa senhora da luz
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao rebelo da costa/id=liv516-per6-per33
+               rel$contabil/fiador/joao marques barbosa/liv516-per6
+
+         n$francisco ribeiro maio/obs=f.18, 209/id=livrz516-1-per34
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.242, sup3 f.166
+            ls$produto_fornecido/acucar
+
+         n$manoel da rocha cruz/obs=f.20/id=livrz516-1-per35
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.368
+            ls$produto_fornecido/acucar
+
+         n$geraldo do templo de sousa/obs=f.20/id=liv516-per7
+            ls$profissao/lavrador de acucar/obs=engenho giquinha
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$jose pereira lima/id=liv516-per7-per36
+               rel$contabil/fiador/geraldo do templo de sousa/liv516-per7
+
+         n$serafim da silva/obs=f.21/id=liv516-per8
+            ls$profissao/lavrador de acucar/obs=engenho martapagipe freguesia de do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao cavalcante de albuquerque/id=liv516-per8-per37
+               rel$contabil/fiador/serafim da silva/liv516-per8
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho martagipe/obs=freguesia do cabo
+
+         n$matias goncalves lima/obs=f.21/id=liv516-per9
+            ls$profissao/oficial de pedreiro
+            ls$residencia/freguesia de una
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose luis paes de melo/id=liv516-per9-per38
+               rel$contabil/fiador/matias goncalves lima/liv516-per9
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho mambucava
+
+         n$manoel francisco seixas/obs=f.22, 278/xmesmo_que=livrz515-1-per128/id=livrz516-1-per39
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$inspetor da marinha/obs=f.23, 114, 224/xmesmo_que=livrz515-1-per101/id=livrz516-1-per40
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.45
+
+         n$francisco jose da fonseca/obs=f.24, 230, 261/xmesmo_que=livrz515-1-per114/id=livrz516-1-per41
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.40
+            ls$produto_fornecido/acucar
+
+         n$jose da silva braga/obs=f.25/xmesmo_que=livrz515-1-per143/id=livrz516-1-per42
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.21
+
+         n$bento dias de carvalho landim/obs=f.26/id=livrz516-1-per43
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.432
+            ls$produto_fornecido/acucar
+
+         n$henrique martins/obs=f.27/xmesmo_que=livrz515-1-per579/id=livrz516-1-per44
+            ls$cargo/capitao
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/ipapacoanha
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$acucar confiscado/obs=f.28/id=livrz516-1-per45
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$teotonio ferreira dos reis/obs=f.28/id=livrz516-1-per46
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de barros cavalcante/obs=f.29/id=liv516-per10
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho novo santa cruz freguesia de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$cristovao de olanda cavalcante/id=liv516-per10-per47
+               rel$contabil/fiador/jose de barros cavalcante/liv516-per10
+
+         n$jose da silva monteiro/obs=f.29, 248/id=livrz516-1-per48
+            ls$produto_fornecido/madeiras
+            ls$profissao/mestre da ribeira
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joaquim pereira da silva/obs=f.30/id=livrz516-1-per49
+            ls$residencia/coxim
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            pai$antonio pereira da rocha/id=livrz516-1-per49-per50
+               ls$cargo/feitos do pau brasil
+
+         n$agostinho lucas da silva guimaraes/obs=f.30/id=livrz516-1-per51
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio francisco monteiro/obs=f.31/id=livrz516-1-per52
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.436, sup3 f.120
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/atanados
+
+         n$reinaldo dias dos reis/obs=f.31/id=liv516-per11
+            ls$profissao/padre
+            ls$profissao/lavrador de acucar/obs=engenho de una
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$alexandre da costa monteiro/id=liv516-per11-per53
+               rel$contabil/fiador/reinaldo dias dos reis/liv516-per11
+               ls$cargo/capitao
+
+         n$manoel francisco dos prazeres/obs=f.32/id=liv516-per12
+            ls$profissao/lavrador de acucar/obs=engenho sao bartolomeu freguesia da muribeca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$joao rodrigues pereira viana/id=liv516-per12-per54
+               ls$profissao/padre
+               rel$contabil/fiador/manoel francisco dos prazeres/liv516-per12
+
+         n$francisco da costa nogueira/obs=f.32/id=liv516-per13
+            ls$profissao/lavrador de acucar/obs=engenho tabatinga
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao nogueira da costa/id=liv516-per13-per55
+               rel$contabil/fiador/francisco da costa nogueira/liv516-per13
+
+         n$manoel esteves de abreu/obs=f.33/id=livrz516-1-per56
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.362
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+
+         n$jose fernandes de araujo/obs=f.33/id=liv516-per14
+            ls$profissao/lavrador de acucar/obs=engenho cachoeira freguesia de serinhaem
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$agostinho da silva guimaraes/id=liv516-per14-per57
+               rel$contabil/fiador/jose fernandes de araujo/liv516-per14
+
+         n$antonio jose cavalcante/obs=f.34/id=livrz516-1-per58
+            ls$profissao/lavrador de acucar/obs=engenho canavieira de goiana
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$carregacao para a costa da africa/obs=f.34, 153/xmesmo_que=liv515pe-per158/id=livrz516-1-per59
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$embarcacoes desmanchadas/obs=f.35/id=livrz516-1-per60
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio caminha de amorim/obs=f.36/id=liv516-per15
+            ls$profissao/lavrador de acucar/obs=engenho pantorra
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio carvalho cavalcante/id=liv516-per15-per61
+               rel$contabil/fiador/antonio caminha de amorim/liv516-per15
+
+         n$despesas gerais/obs=f.36, 55, 144, 225/xmesmo_que=livrz515-1-per98/id=livrz516-1-per62
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=seup3 f.84
+
+         n$fazenda real do ceara/obs=f.37/id=livrz516-1-per63
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco soares neiva/obs=f.37/id=liv516-per16
+            ls$residencia/paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao braga/id=liv516-per16-per64
+               ls$profissao/padre frei
+               rel$contabil/fiador/francisco soares neiva/liv516-per16
+
+         n$manoel fernandes de sousa/obs=f.38/id=liv516-per17
+            ls$profissao/lavrador de acucar/obs=engenho sibiro freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao da rocha vieira cavalcante/id=liv516-per17-per65
+               rel$contabil/fiador/manoel fernandes de sousa/liv516-per17
+
+         n$comissoes de remessa pertencentes ao provedor e deputados da junta de lisboa/obs=f.38/id=livrz516-1-per66
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.35
+
+         n$antonio pereira/obs=f.39/id=liv516-per18
+            ls$cargo/sargento mor
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$bernardo pereira de vasconcelos/id=liv516-per18-per67
+               rel$contabil/fiador/antonio pereira/liv516-per18
+
+         n$jose coelho da paz/obs=f.39/id=livrz516-1-per68
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bento francisco alves/obs=f.40/id=liv516-per19
+            ls$residencia/vila de porto calvo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel alves de sa/id=liv516-per19-per69
+               rel$contabil/fiador/bento francisco alves/liv516-per19
+
+         n$manoel alves de pugas/obs=f.40/id=liv516-per20
+            ls$residencia/alagoas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel pereira de azevedo fajardo/id=liv516-per20-per70
+               rel$contabil/fiador/manoel alves de pugas/liv516-per20
+
+         n$simao fernandes lopes/obs=f.41/id=livrz516-1-per71
+            ls$profissao/cirurgiao/obs=da misericordia de olinda
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$dizima/obs=f.41, 98/xmesmo_que=livrz515-1-per108/id=livrz516-1-per72
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco furtado de mendonca/obs=f.42/id=livrz516-1-per73
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao machado freire/obs=f.42/id=livrz516-1-per74
+            ls$profissao/padre
+            ls$cargo/vigario de itamaraca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$cosme bernardo/obs=f.42/id=livrz516-1-per75
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao da silva ferreira/obs=f.43, conta particular/id=livrz516-1-per76
+            ls$cargo/administrador da cgpp na paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$acucar de que se ignora o dono/obs=f.43, 171, 266/xmesmo_que=livrz515-1-per590/id=livrz516-1-per77
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.57
+
+         n$cabedal/obs=f.44, 193, 271 entrada e saida de carregacoes/xmesmo_que=livrz515-1-per561/id=livrz516-1-per78
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.133
+
+         n$fretes/obs=f.45, 243/xmesmo_que=livrz515-1-per220/id=livrz516-1-per79
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.49
+
+         n$agostinho fernandes de castro/obs=f.46/id=livrz516-1-per80
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.323
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/sola
+
+         n$antonio da cunha vieira/obs=f.47/id=livrz516-1-per81
+            ls$cargo/sargento mor
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel francisco dos santos seixas/obs=f.47/xmesmo_que=liv515pe-per141/id=livrz516-1-per82
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose vicente monteiro da franca/obs=f.48/id=livrz516-1-per83
+            ls$residencia/paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bento ferreira de azevedo/obs=f.51/id=liv516-per21
+            ls$profissao/lavrador de acucar/obs=engenho velho do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$alberto da costa nogueira/id=liv516-per21-per84
+               ls$cargo/capitao
+               rel$contabil/fiador/bento ferreira de azevedo/liv516-per21
+
+         n$joao velho de melo/obs=f.51/id=liv516-per22
+            ls$produto_fornecido/acucar
+            ls$profissao/lavrador de acucar/obs=engenho terra nova
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao rabelo da costa/id=liv516-per22-per85
+               rel$contabil/fiador/joao velho de melo/liv516-per22
+
+         n$tome ribeiro fernandes/obs=f.51/id=liv516-per23
+            ls$residencia/cariri
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio pinto/id=liv516-per23-per86
+               rel$contabil/fiador/tome ribeiro fernandes/liv516-per23
+
+         n$alexandre ribeiro/obs=f.52/id=livrz516-1-per87
+            ls$profissao/lavrador de acucar/obs=engenho da guerra de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$manoel soares de albuquerque/obs=f.52/id=liv516-per24
+            ls$profissao/lavrador de acucar/obs=engenho da boca de cima freguesia de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao rebelo da costa/id=liv516-per24-per88
+               rel$contabil/fiador/manoel soares de albuquerque/liv516-per24
+
+         n$manoel de sousa marinho/obs=f.53/id=livrz516-1-per89
+            ls$cargo/sargento de infantaria do regimento de olinda
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$baltezar correa de queiroga/obs=f.53/id=livrz516-1-per90
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho velho de santo amaro jabatao
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.127
+
+         n$antonio de oliveira barreto/obs=f.54/id=livrz516-1-per91
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$ventura afonso guimaraes/obs=f.54/id=liv516-per25
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio francisco lesa/id=liv516-per25-per92
+               rel$contabil/fiador/ventura afonso guimaraes/liv516-per25
+
+         n$antonio ferreira cristovao/obs=f.56/xmesmo_que=livrz515-1-per283/id=livrz516-1-per93
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$francisco lopes porto/obs=f.57/id=livrz516-1-per94
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.15
+
+         n$baetas por lembranca/obs=f.58, 154, 239/xmesmo_que=livrz515-1-per382/id=livrz516-1-per95
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$comissoes pertencentes ao intendente e deputados desta direcao/obs=f.59, 207/xmesmo_que=livrz515-1-per174/id=livrz516-1-per96
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.86
+
+         n$domingos rodrigues dos santos/obs=f.60/id=livrz516-1-per97
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.96
+
+         n$acucar/obs=f.61/xmesmo_que=livrz515-1-per203/id=livrz516-1-per98
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.24
+
+         n$francisco de sousa viveiros/obs=f.62/id=livrz516-1-per99
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.160
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/sola
+
+         n$joao coelho bastos/obs=f.63/id=livrz516-1-per100
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.34
+            ls$produto_fornecido/acucar
+
+         n$joao crisostimo de oliveira/obs=f.64/xmesmo_que=livrz515-1-per105/id=livrz516-1-per101
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/carne seca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco pinheiro guimaraes/obs=f.65/xmesmo_que=livrz515-1-per404/id=livrz516-1-per102
+            ls$residencia/rio de janeiro
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$fazenda real de angola/obs=f.66/id=livrz516-1-per103
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de sousa da cunha/obs=f.66/id=livrz516-1-per104
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.252
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+
+         n$joao da silva da cruz/obs=f.67, 184/xmesmo_que=livrz515-1-per290/id=livrz516-1-per105
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel da silva guimaraes/obs=f.67/id=livrz516-1-per106
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.13
+
+         n$convento do carmo da paraiba/obs=f.68/id=livrz516-1-per107
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$diogo dos santos fabela/obs=f.68/id=liv516-per26
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$custodio de santo tomas/id=liv516-per26-per108
+               ls$profissao/padre fei
+               ls$profissao/procurador geral
+               rel$contabil/fiador/diogo dos santos fabela/liv516-per26
+
+         n$geraldo seraiba de moura/obs=f.68/id=liv516-per27
+            ls$residencia/morador na fazenda manicoba do apodi
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose de oliveira mariz/id=liv516-per27-per109
+               rel$contabil/fiador/geraldo seraiba de moura/liv516-per27
+
+         n$jose antonio ferreira/obs=f.69/id=livrz516-1-per110
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao teixeira/obs=f.69/id=livrz516-1-per111
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio fagundes/obs=f.69/id=livrz516-1-per112
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pereira/obs=f.70/id=livrz516-1-per113
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao de barros/obs=f.70/id=livrz516-1-per114
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel gomes da cunha/obs=f.70/id=livrz516-1-per115
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$donativo/obs=f.71, 253/xmesmo_que=livrz515-1-per109/id=livrz516-1-per116
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.126
+
+         n$antonio correa vieira/obs=f.72/id=livrz516-1-per117
+            ls$profissao/lavrador de acucar/obs=engenho bujari de goiana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao barroso de carvalho/obs=f.72/id=liv516-per28
+            ls$profissao/lavrador de acucar/obs=engenho das barreiras na paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose da silva braga/id=liv516-per28-per118
+               rel$contabil/fiador/joao barroso de carvalho/liv516-per28
+
+         n$joao garcia velho do amaral/obs=f.72/id=livrz516-1-per119
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.96
+            ls$produto_fornecido/acucar
+
+         n$ventura coelho/obs=f.74/id=livrz516-1-per120
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.90
+
+         n$inacio de medeiros/obs=f.74/id=livrz516-1-per121
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.407
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+
+         n$jose de matos couto/obs=f.75/id=livrz516-1-per122
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.117
+            ls$produto_fornecido/acucar
+
+         n$juliao lumachi/obs=f.75/id=liv516pe-per75
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.374, sup3 f.59
+            ls$cargo/capitao
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/sola
+            ls$produto_comprado/molhados
+            ls$ordenado/1000.0 reis/17671230/obs=ordenado que venceu este ano
+
+            referido$jacomo lumachi/id=liv516pe-per75-per123
+               rel$contabil/conta razao credito/juliao lumachi/liv516pe-per75/data=17681230
+
+         n$manoel jorge nogueira/obs=f.76/id=livrz516-1-per124
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose amaro da silva/obs=f.76/xmesmo_que=livrz515-1-per51/id=livrz516-1-per125
+            ls$profissao/lavrador de acucar/obs=engenho do mascate
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$estevao da percingula/obs=f.76/id=livrz516-1-per126
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis nunes da silva/obs=f.77/id=livrz516-1-per127
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho ilhetas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.174, sup3 f.60
+
+         n$manoel do rego tavares/obs=f.77/id=livrz516-1-per128
+            ls$profissao/mascate
+            ls$residencia/freguesia de nossa senhora do o em ipojuca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose duarte palheiros/obs=f.78/id=livrz516-1-per129
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.6
+            ls$produto_fornecido/acucar
+
+         n$manoel rorim de moura/obs=f.78/id=livrz516-1-per130
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio gomes pinto/obs=f.79/id=livrz516-1-per131
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$couros em cabelo/obs=f.79/id=livrz516-1-per132
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.134
+
+         n$antonio de sousa marinho/obs=f.80/id=livrz516-1-per133
+            ls$cargo/capitao/obs=do regimento de olinda
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose fernandes quintela/obs=f.80, de casa do secretario/id=livrz516-1-per134
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose da fonseca silva/obs=f.81/id=livrz516-1-per135
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.263
+            ls$produto_fornecido/acucar
+
+         n$julio cesar paes barreto/obs=f.81/id=livrz516-1-per136
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho do sousa/obs=freguesia da tacuara
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.239
+            ls$produto_fornecido/acucar
+
+         n$joao feijo pimentel/obs=f.82, duvida nos sobrenomes/id=liv516-per29
+            ls$residencia/morador na ponte
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/atanados
+
+            referido$jose de sousa rangel/id=liv516-per29-per137
+               rel$contabil/fiador/joao feijo pimentel/liv516-per29
+
+         n$manoel francisco dos santos/obs=f.83/id=livrz516-1-per138
+            ls$residencia/fora de portas
+            ls$patrimonio/barco marimba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$tabaco de que se ignora o dono/obs=f.83/id=livrz516-1-per139
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$subsidio do acucar/obs=f.84/id=livrz516-1-per140
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.46
+
+         n$comissoes de caixas/obs=f.85/id=livrz516-1-per141
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.65
+
+         n$antonio jorge guerra/obs=f.86/id=livrz516-1-per142
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco rodrigues seixas/obs=f.86/id=liv516pe-per86
+            ls$profissao/oficial de sapateiro
+            ls$residencia/forte do matos
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jacomo lumachi/id=liv516pe-per86-per143
+               rel$contabil/conta razao credito/francisco rodrigues seixas/liv516pe-per86/data=17681230
+
+         n$fatura da carregacao para o rio de janeiro/obs=f.88/xmesmo_que=livrz515-1-per26/id=livrz516-1-per144
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jeronimo bezerra cavalcante/obs=f.88/id=livrz516-1-per145
+            ls$profissao/padre
+            ls$cargo/capelao/obs=do engenho dos bulhoes freguesia de santo amaro
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel coelho moniz/obs=f.89/id=livrz516-1-per146
+            ls$profissao/lavrador de acucar/obs=engenho terrinha
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bernardino rodrigues de sena/obs=f.89/xmesmo_que=livrz515-1-per460/id=livrz516-1-per147
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.8
+
+         n$jose de sousa e melo/obs=f.90/id=livrz516-1-per148
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao alves viegas/obs=f.90/id=livrz516-1-per149
+            ls$residencia/pindoba de cima
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$miguel de moura daltro/obs=f.90/id=livrz516-1-per150
+            ls$profissao/lavrador de acucar/obs=engenho aguiar freguesia de igaracu
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$alberto da costa nogueira/obs=f.91/id=livrz516-1-per151
+            ls$profissao/lavrador de acucar/obs=engenho garapu
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.33
+
+         n$manoel luis da franca/obs=f.91/id=livrz516-1-per152
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+            rel$parentesco/sobrinho/francisco xavier correa de lira/liv515pe-per91
+
+            referido$francisco xavier correa de lira/id=liv515pe-per91
+
+         n$jose de barros silva/obs=f.92/id=livrz516-1-per153
+            ls$profissao/lavrador de acucar/obs=engenho das cacimbas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose bernardes lira/obs=f.92/id=livrz516-1-per154
+            ls$profissao/lavrador de acucar/obs=engenho das cacimbas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$antonio da cunha/obs=f.92/id=livrz516-1-per155
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose antonio serpa/obs=f.93/id=livrz516-1-per156
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao do rego falcao/obs=f.93/xmesmo_que=liv515pe-per217/id=livrz516-1-per157
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel gomes dos santos/obs=f.94/xmesmo_que=livrz515-1-per556/id=livrz516-1-per158
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.4
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/couro em cabelo
+
+         n$francisco machado de oliveira barros junior/obs=f.95/id=livrz516-1-per159
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pereira de castro/obs=f.95/id=livrz516-1-per160
+            ls$cargo/deao/obs=da se de olinda
+            ls$titulo/reverendo doutor
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel rodrigues de sena/obs=f.95/id=liv516-per30
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.109
+
+            referido$bernardino rodrigues de sena/id=liv516-per30-per161
+               rel$contabil/fiador/manoel rodrigues de sena/liv516-per30
+
+         n$caterina jose de melo/f/obs=f.96/id=liv516-per31
+            ls$titulo/dona
+            ls$titulo/senhora de engenho
+            ls$patrimonio/engenho pantorra do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao cavalcante de albuquerque/id=liv516-per31-per162
+               rel$contabil/fiador/caterina jose de melo/liv516-per31
+
+         n$domingos ramos de vasconcelos/obs=f.96/id=liv516-per32
+            ls$profissao/lavrador de acucar/obs=engenho de aguiar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$francisco gomes de araujo/id=liv516-per32-per163
+               rel$contabil/fiador/domingos ramos de vasconcelos/liv516-per32
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho de aguiar
+
+         n$cristovao de olanda cavalcante/obs=f.96/id=livrz516-1-per164
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho goyti
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.23
+            ls$produto_fornecido/acucar
+
+         n$tome correa de araujo/obs=f.97/id=livrz516-1-per165
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho abica/obs=duvida no nome
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.68
+            ls$produto_fornecido/acucar
+
+         n$luis antonio de almeida/obs=f.97/id=livrz516-1-per166
+            ls$cargo/sargento mor
+            ls$residencia/ilha de sao tome
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel jose ferreira/obs=f.99/id=livrz516-1-per167
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.254, sup3 f.102
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/couro em cabelo
+
+         n$goncalo pereira delgado/obs=f.99/id=livrz516-1-per168
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose alves nantes/obs=f.100/id=livrz516-1-per169
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco da costa e vasconcelos/obs=f.100/id=livrz516-1-per170
+            ls$cargo/coronel
+            ls$residencia/rio grande
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$lourenco da costa meireles/obs=f.100/id=livrz516-1-per171
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pimentel de mendonca/obs=f.101/id=livrz516-1-per172
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.205
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$jose alves de castro/obs=f.101/id=livrz516-1-per173
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho mulinote
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.269
+            ls$produto_fornecido/acucar
+
+         n$antonio furtado de mendonca/obs=f.102/id=livrz516-1-per174
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.222
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$pedro de melo falcao/obs=f.102/id=livrz516-1-per175
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel vaz da silva/obs=f.103/id=livrz516-1-per176
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio ferreira de sousa vale/obs=f.103/id=livrz516-1-per177
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$pedro correa/obs=f.103/id=livrz516-1-per178
+            ls$cor/homem preto
+            ls$produto_fornecido/acucar
+            ls$fato_contabil/compra escravo/17680825/obs=um escravo por 78.0 reis
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao felix de melo/obs=f.104/id=livrz516-1-per179
+            ls$residencia/engenho gararapes
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$pascoal da silva serrao/obs=f.104/id=livrz516-1-per180
+            ls$residencia/engenho do tabu freguesia da tacuara
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$albano dias/obs=f.104/id=livrz516-1-per181
+            ls$residencia/engenho das mambucas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao dias da silva coutinho/obs=f.105/id=livrz516-1-per182
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho conceicao freguesia de tracunhaem
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis lobo barreto/obs=f.105/id=livrz516-1-per183
+            ls$profissao/lavrador de acucar/obs=engenho do ramos
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$apolinario gomes de araujo/obs=f.105/id=liv516-per33
+            ls$profissao/lavrador de acucar/obs=engenho prado freguesia de santo antonio de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$francisco gomes de araujo/id=liv516-per33-per184
+               rel$contabil/fiador/apolinario gomes de araujo/liv516-per33
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho aguiar
+
+         n$eusebio da costa moreira/obs=f.106/id=livrz516-1-per185
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco de albuquerque maranhao/obs=f.106/id=livrz516-1-per186
+            ls$profissao/lavrador de acucar/obs=engenho diamante
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$cresprim barbosa de amorim/obs=f.106/id=liv516-per34
+            ls$profissao/lavrador de acucar/obs=engenho pandorama
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$silvestre antonio de laje/id=liv516-per34-per187
+               rel$contabil/fiador/cresprim barbosa de amorim/liv516-per34
+
+         n$antonio de andrade bezerra/obs=f.107/id=livrz516-1-per188
+            ls$cargo/administrador/obs=da balanca de olinda
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$eusebio paz de melo/obs=f.107/id=liv516-per35
+            ls$profissao/lavrador de acucar/obs=engenho pindoba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose goncalves da silva/id=liv516-per35-per189
+               rel$contabil/fiador/eusebio paz de melo/liv516-per35
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho pindoba
+
+         n$joao de oliveira gouvim/obs=f.108/xmesmo_que=livrz515-1-per512/id=livrz516-1-per190
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.2
+            ls$produto_fornecido/acucar
+
+         n$antonio jose de sequeira/obs=f.108, duvida ultimo sobrenome/id=liv516pe-per108
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.229
+
+            referido$luis antonio de paiva/id=liv516pe-per108-per191
+               rel$contabil/conta razao conjunta/antonio jose de sequeira/liv516pe-per108
+
+         n$luis moreira de carvalho/obs=f.109/id=livrz516-1-per192
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.65, sup3 f.31
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+
+         n$luis da costa monteiro/obs=f.109/id=liv516pe-per109
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.229
+
+            referido$joao da costa monteiro/id=liv516pe-per109-per193
+               rel$contabil/conta razao conjunta/luis da costa monteiro/liv516pe-per109
+
+         n$matias ferreira valtar/obs=f.110/id=livrz516-1-per194
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel tome da silva e camera/obs=f.110/id=livrz516-1-per195
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bernardo da silva do amaral/obs=f.110/id=livrz516-1-per196
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$estevao machado de abreu/obs=f.111/id=livrz516-1-per197
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/madeiras
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.117
+
+         n$jose rodrigues mariz/obs=f.111/id=liv516-per38
+            ls$residencia/alagoa danta
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$amaro soares mariz/id=liv516-per38-per198
+               rel$contabil/fiador/jose rodrigues mariz/liv516-per38
+
+         n$antonio alves monteiro/obs=f.112/id=livrz516-1-per199
+            ls$produto_fornecido/acucar
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose francisco vieira/obs=f.112/id=livrz516-1-per200
+            ls$residencia/goiana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$mosteiro de sao bento de olinda/obs=f.116/xmesmo_que=livrz515-1-per326/id=livrz516-1-per201
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose ferreira barret/obs=f.117/id=liv516-per39
+            ls$profissao/lavrador de acucar/obs=engenho tirapoha freguesia de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$laurentino antonio moreira de carvalho/id=liv516-per39-per202
+               rel$contabil/fiador/jose ferreira barret/liv516-per39
+
+         n$antonio pereira lobo/obs=f.117/id=liv516-per40
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel pereira lobo/id=liv516-per40-per203
+               rel$contabil/fiador/antonio pereira lobo/liv516-per40
+
+         n$antonio de quadros do sacramento/obs=f.118/id=liv516-per41
+            ls$residencia/praia do janga freguesia de mamanguape
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$nicolau de lira sarmento/id=liv516-per41-per204
+               ls$profissao/padre
+               rel$contabil/fiador/antonio de quadros do sacramento/liv516-per41
+               ls$residencia/olinda
+
+         n$amaro gomes coutinho junior/obs=f.118/id=livrz516-1-per205
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho morere
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.30
+            ls$produto_fornecido/acucar
+
+         n$manoel cavalcante/obs=f.119/id=livrz516-1-per206
+            ls$profissao/lavrador de acucar/obs=engenho masangano
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose alves felgueira/obs=f.119/id=livrz516-1-per207
+            ls$profissao/lavrador de acucar/obs=engenho caite
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio monis tavares/obs=f.119/xmesmo_que=livrz515-1-per280/id=livrz516-1-per208
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.119
+
+         n$manoel alves garcia/obs=f.120/id=livrz516-1-per209
+            ls$residencia/recife
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.455
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$manoel campelo de oliveira/obs=f.120/id=livrz516-1-per210
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$gregorio jose da silva coutinho/obs=f.121/xmesmo_que=livrz515-1-per179/id=livrz516-1-per211
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose antonio da costa/obs=f.121/id=livrz516-1-per212
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.363
+            ls$produto_fornecido/acucar
+
+         n$joao do rego barros/obs=f.122/id=livrz516-1-per213
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho das marrecas/obs=freguesia de porto calvo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$paulo caetano de melo/obs=f.122/id=livrz516-1-per214
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio tavares da silva/obs=f.122/id=livrz516-1-per215
+            ls$residencia/morador do engenho das tabocas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco gomes da fonseca/obs=f.123/id=livrz516-1-per216
+            ls$profissao/lavrador de acucar/obs=engenho de sao joao freguesia de varge
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao da silva tavares/obs=f.123/id=livrz516-1-per217
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao batista de almeida/obs=f.123/id=livrz516-1-per218
+            ls$residencia/porto calvo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio da costa leitao de durmonte/obs=f.124/id=livrz516-1-per219
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio martins toledo/obs=f.124/id=livrz516-1-per220
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio vieira pinto/obs=f.124/id=livrz516-1-per221
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco rodrigues ataide/obs=f.125/id=livrz516-1-per222
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$maria da conceicao/f/obs=f.125/id=livrz516-1-per223
+            ls$titulo/dona
+            ls$ec/viuva
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            marido$domingos de sa peixoto/id=livrz516-1-per223-per224
+               ls$morto/antes/17670423
+
+         n$manoel pereira dos santos magalhaes/obs=f.125/id=livrz516-1-per225
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio de sousa de oliveira/obs=f.126/id=livrz516-1-per226
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio da costa cabral/obs=f.126/id=livrz516-1-per227
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$lino barbosa de araujo/obs=f.126/id=livrz516-1-per228
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$pedro manoel de lira/obs=f.127/id=livrz516-1-per229
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$junta da real fazenda/obs=f.127/id=livrz516-1-per230
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel jose martins/obs=f.128/id=liv516-per42
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$joao francisco rocha/id=liv516-per42-per231
+               rel$contabil/fiador/manoel jose martins/liv516-per42
+
+         n$jose de matos silva/obs=f.128/id=liv516-per43
+            ls$residencia/aracati
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/carne seca
+            ls$produto_fornecido/couro em cabelo
+
+            referido$jose da costa/id=liv516-per43-per232
+               ls$profissao/mestre da ribeira
+               rel$contabil/fiador/jose de matos silva/liv516-per43
+
+         n$domingos pereira da silva/obs=f.129/id=livrz516-1-per233
+            ls$produto_fornecido/acucar
+            ls$residencia/nossa senhora do o
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao pedro teodoro huydecoper amaral/obs=f.129/id=livrz516-1-per234
+            ls$residencia/castelo de sao jorge da mina
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco de oliveira novais/obs=f.129/id=liv516-per44
+            ls$residencia/ipojuca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao lopes salgado/id=liv516-per44-per235
+               rel$contabil/fiador/francisco de oliveira novais/liv516-per44
+
+         n$despesa com o corte do pau brasil/obs=f.130, 252/xmesmo_que=livrz515-1-per266/id=livrz516-1-per236
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.72
+
+         n$pedro jose de azevedo/obs=f.131/id=livrz516-1-per237
+            ls$profissao/contramestre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio cavalcante de albuquerque/obs=f.131/id=livrz516-1-per238
+            ls$profissao/lavrador de acucar/obs=engenho pantorra
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio borges barbosa/obs=f.131/id=liv516-per45
+            ls$profissao/lavrador de acucar/obs=engenho suassuna
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$bento fernandes lima/id=liv516-per45-per239
+               rel$contabil/fiador/antonio borges barbosa/liv516-per45
+
+         n$jose bento leitao/obs=f.132/xmesmo_que=livrz515-1-per600/id=livrz516-1-per240
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/madeiras
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio mendes da rocha/obs=f.133/id=livrz516-1-per241
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho sipo da mata
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.230
+
+         n$jose machado pimentel/obs=f.133, 168/xmesmo_que=livrz515-1-per304/id=livrz516-1-per242
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/atanados
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.168
+
+         n$felipe angelo ribeiro/obs=f.134/id=livrz516-1-per243
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel de almeida henriques/obs=f.134/xmesmo_que=livrz515-1-per226/id=livrz516-1-per244
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$marcelino rodrigues colaco/obs=f.135/id=livrz516-1-per245
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.84
+            ls$produto_fornecido/acucar
+
+         n$antonio pires de azevedo/obs=f.135/id=livrz516-1-per246
+            ls$profissao/lavrador de acucar/obs=engenho conceicao freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose ferreira da rocha/obs=f.136/id=liv516-per46
+            ls$profissao/lavrador de acucar/obs=engenho dos ramos freguesia de sao lourenco da mata
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$luis antonio marques/id=liv516-per46-per247
+               rel$contabil/fiador/jose ferreira da rocha/liv516-per46
+
+         n$antonio bezerra monteiro/obs=f.136/id=livrz516-1-per248
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho novo santo amaro de jabatao
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pinheiro salgado/obs=f.136, 194/xmesmo_que=livrz515-1-per100/id=livrz516-1-per249
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.101
+
+         n$luis ferreira de oliveira/obs=f.137/id=liv516-per47
+            ls$profissao/lavrador de acucar/obs=engenho martagipe freguesia do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao cavalcante de albuquerque/id=liv516-per47-per250
+               rel$contabil/fiador/luis ferreira de oliveira/liv516-per47
+
+         n$manoel cavalcante de albuquerque/obs=f.137/id=liv516-per48
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel alves monteiro/id=liv516-per48-per251
+               rel$contabil/fiador/manoel cavalcante de albuquerque/liv516-per48
+
+         n$manoel borges rios/obs=f.138/id=livrz516-1-per252
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$felix de sousa pontes/obs=f.138/id=livrz516-1-per253
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco alves da cruz/obs=f.139/id=livrz516-1-per254
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.41
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$eusebio paes varela/obs=f.139/id=liv516-per49
+            ls$profissao/lavrador de acucar/obs=engenho penamduba freguesia da muribeca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$antonio carvalho cavalcante/id=liv516-per49-per255
+               rel$contabil/fiador/eusebio paes varela/liv516-per49
+
+         n$eusebio rodrigues/obs=f.140/id=livrz516-1-per256
+            ls$residencia/beberibe
+            ls$cargo/administrador do contrato das carnes
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel caetano de lima/obs=f.141/id=liv516-per50
+            ls$profissao/lavrador de acucar/obs=engenho duas bocas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio ferreira chaves/id=liv516-per50-per257
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho duas bocas
+               rel$contabil/fiador/manoel caetano de lima/liv516-per50
+
+         n$luis pereira viana/obs=f.141/xmesmo_que=livrz515-1-per271/id=livrz516-1-per258
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.21
+
+         n$goncalo machado da silva/obs=f.142/id=liv516-per51
+            ls$produto_fornecido/acucar
+            ls$profissao/lavrador de acucar/obs=engenho marrecas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$luis do rego barros/id=liv516-per51-per259
+               ls$titulo/reverendo
+               ls$profissao/padre
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho marrecas
+               rel$contabil/fiador/goncalo machado da silva/liv516-per51
+
+         n$antonio de sousa faria/obs=f.142/id=livrz516-1-per260
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.265
+            ls$divida_falida/sim/17681230/obs=1284.49 reis
+
+         n$sola/obs=f.143/id=livrz516-1-per261
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.101
+
+         n$feliciana da cunha silva/f/obs=f.145/id=livrz516-1-per262
+            ls$titulo/dona
+            ls$ec/viuva
+            ls$profissao/rendeiro de acucar/obs=engenho trapixe de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            marido$joao mauricio vanderlei/id=livrz516-1-per262-per263
+               ls$cargo/capitao mor
+               ls$morto/antes/17670703
+
+         n$nicolau coelho de albuquerque/obs=f.145/id=liv516-per52
+            ls$profissao/lavrador de acucar/obs=engenho pantorra
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao paes barreto/id=liv516-per52-per264
+               rel$contabil/fiador/nicolau coelho de albuquerque/liv516-per52
+
+         n$jose joaquim de santa ana/obs=f.147/id=livrz516-1-per265
+            ls$profissao/padre fei
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao pacheco de melo/obs=f.147/xmesmo_que=liv515pe-per225/id=livrz516-1-per266
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/tabaco
+
+         n$meios pesos/obs=f.148/id=livrz516-1-per267
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$tome fernandes afonso/obs=f.148/id=livrz516-1-per268
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$maria da conceicao/f/obs=f.149/id=livrz516-1-per269
+            ls$titulo/dona
+            ls$ec/viuva
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            marido$domingos de sa peixoto/id=livrz516-1-per269-per270
+               ls$morto/antes/17670423
+
+         n$francisco pedro de viveiros/obs=f.149/id=liv516-per53
+            ls$residencia/paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/sola
+
+            referido$bento dias de carvalho landim/id=liv516-per53-per271
+               rel$contabil/fiador/francisco pedro de viveiros/liv516-per53
+
+         n$francisco xavier cavalcante de albuquerque/obs=f.149/id=livrz516-1-per272
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho suassuna
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bras ferreira maciel/obs=f.150/xmesmo_que=livrz515-1-per102/id=livrz516-1-per273
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bento leite cavalcante e albuquerque/obs=f.150/id=liv516-per54
+            ls$profissao/lavrador de acucar/obs=engenho arariba de cima
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$antonio carvalho cavalcante/id=liv516-per54-per274
+               rel$contabil/fiador/bento leite cavalcante e albuquerque/liv516-per54
+               ls$profissao/lavrador de acucar/obs=engenho pantorra
+
+         n$manoel de sousa pontes/obs=f.151/id=livrz516-1-per275
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.419
+
+         n$jose da cunha bezerra/obs=f.151/id=livrz516-1-per276
+            ls$profissao/lavrador de acucar/obs=engenho gararapes
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio bzerra da silva/obs=f.152/id=liv516-per55
+            ls$profissao/lavrador de acucar/obs=engenho brunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            pai$francisco ferreira da costa/id=liv516-per55-per277
+               rel$contabil/fiador/antonio bzerra da silva/liv516-per55
+
+         n$antonio de sampaio correa/obs=f.152/id=livrz516-1-per278
+            ls$residencia/goiana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco alves de melo/obs=f.152/id=livrz516-1-per279
+            ls$residencia/goiana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis teixeira de lima/obs=f.155/xmesmo_que=livrz515-1-per34/id=livrz516-1-per280
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho boa vista/obs=de serianhaem
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel xavier de brito/obs=f.155/id=livrz516-1-per281
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$mateus de freitas barbosa/obs=f.156/xmesmo_que=livrz515-1-per554/id=livrz516-1-per282
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco gomes pereira/obs=f.156/id=livrz516-1-per283
+            ls$residencia/boavista
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis antonio da costa sueiro/obs=f.157/xmesmo_que=liv515pe-per88/id=livrz516-1-per284
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$francisco xavier fetal/obs=f.157/id=livrz516-1-per285
+            ls$cargo/capitao mor
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco enez de freitas/obs=f.158/id=livrz516-1-per286
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.163
+            ls$produto_fornecido/acucar
+
+         n$luis antonio marques/obs=f.158/id=livrz516-1-per287
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.118, sup3 f.112
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$joao marinho vanderlei/obs=f.160/id=liv516-per56
+            ls$profissao/lavrador de acucar/obs=engenho maranhao freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$francisco xavier dos reis/id=liv516-per56-per288
+               rel$contabil/fiador/joao marinho vanderlei/liv516-per56
+
+         n$jose pinto de almeida/obs=f.160/id=liv516-per57
+            ls$profissao/lavrador de acucar/obs=engenho de ubaia freguesia de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$joao rebelo da costa/id=liv516-per57-per289
+               rel$contabil/fiador/jose pinto de almeida/liv516-per57
+
+         n$antonio rodrigues dos santos/obs=f.160/id=livrz516-1-per290
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$florencia de castro/f/obs=f.161/id=livrz516-1-per291
+            ls$titulo/dona
+            ls$produto_fornecido/acucar
+            ls$residencia/olinda
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$tome teixeira ribeiro/obs=f.161/xmesmo_que=livrz515-1-per518/id=livrz516-1-per292
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho goicana
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$adriano ribeiro leitao/obs=f.162/id=livrz516-1-per293
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$manoel luis veloz/obs=f.162/id=livrz516-1-per294
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao rodrigues ferreira/obs=f.162/id=livrz516-1-per295
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joaquim ribeiro dos santos/obs=f.163/xmesmo_que=liv515pe-per115/id=livrz516-1-per296
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.244
+
+         n$manoel gomes vanderlei/obs=f.164/id=liv516-per58
+            ls$profissao/lavrador de acucar/obs=engenho jacoara
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel de barros vanderlei/id=liv516-per58-per297
+               rel$contabil/fiador/manoel gomes vanderlei/liv516-per58
+
+         n$sebastiao da costa calado/obs=f.164/id=liv516-per59
+            ls$profissao/lavrador de acucar/obs=engenho massagano
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose antonio pereira/id=liv516-per59-per298
+               rel$contabil/fiador/sebastiao da costa calado/liv516-per59
+
+         n$jose antonio pereira/obs=f.165/xmesmo_que=livrz515-1-per169/id=livrz516-1-per299
+            ls$cargo/escrivao dos orfaos
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$caetano ferreira de melo/obs=f.167/id=liv516-per60
+            ls$profissao/lavrador de acucar/obs=engenho do brandao freguesia de tacuara
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$ricardo freire pedrosa/id=liv516-per60-per300
+               rel$contabil/fiador/caetano ferreira de melo/liv516-per60
+
+         n$manoel goncalves aroso/obs=f.168/id=livrz516-1-per301
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.51
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/couro em cabelo
+
+         n$administrador dos dizimos/obs=f.168/id=livrz516-1-per302
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$henrique martins/id=livrz516-1-per302-per303
+               ls$cargo/capitao
+               ls$cargo/administrador dos dizimos
+
+         n$jose inacio da cunha/obs=f.169/xmesmo_que=livrz515-1-per385/id=livrz516-1-per304
+            ls$titulo/doutor
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$angelo custodio machado gaio/obs=f.169/id=livrz516-1-per305
+            ls$profissao/padre
+            ls$cargo/escrivao da irmandade de sao pedro do recife
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio dos santos lisboa/obs=f.170/id=livrz516-1-per306
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel garcia velho do amaral/obs=f.170/id=livrz516-1-per307
+            ls$titulo/reverendo doutor
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose pinheiro salgado/obs=f.171/id=livrz516-1-per308
+            ls$profissao/lavrador de acucar/obs=engenho jaceru freguesia de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco alves xavier/obs=f.171/id=liv516-per61
+            ls$profissao/lavrador de acucar/obs=engenho da guerra do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$pantaleao vieira de azevedo/id=liv516-per61-per309
+               rel$contabil/fiador/francisco alves xavier/liv516-per61
+
+         n$antonio bernardo de moura/obs=f.172/id=liv516-per62
+            ls$profissao/padre
+            ls$profissao/lavrador de acucar/obs=engenho santa rita
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose ribeiro de moura/id=liv516-per62-per310
+               rel$contabil/fiador/antonio bernardo de moura/liv516-per62
+               ls$residencia/terra vermelha
+
+         n$manoel ferreira de melo/obs=f.173/id=liv516-per63
+            ls$residencia/boavista
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/sola
+
+            referido$manoel de pugaz/id=liv516-per63-per311
+               rel$contabil/fiador/manoel ferreira de melo/liv516-per63
+
+         n$joao rodrigues pereira junior/obs=f.173/id=liv516-per64
+            ls$profissao/lavrador de acucar/obs=engenho de sibiro do cavalcante
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao da rocha cavalcante/id=liv516-per64-per312
+               rel$contabil/fiador/joao rodrigues pereira junior/liv516-per64
+
+         n$manoel jose dias/obs=f.173/id=livrz516-1-per313
+            ls$profissao/lavrador de acucar/obs=engenho mambucava
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel gomes da cunha/obs=f.174/id=liv516-per65
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho japaramduba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$joao da silva cruz/id=liv516-per65-per314
+               rel$contabil/fiador/manoel gomes da cunha/liv516-per65
+
+         n$jose de oliveira maris/obs=f.174/id=livrz516-1-per315
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.19
+
+         n$jose barbosa pereira/obs=f.175/id=liv516-per66
+            ls$profissao/lavrador de acucar/obs=engenho do amparo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel mauricio tavares/id=liv516-per66-per316
+               rel$contabil/fiador/jose barbosa pereira/liv516-per66
+
+         n$joao dourado de azevedo/obs=f.175/id=liv516-per67
+            ls$profissao/lavrador de acucar/obs=engenho gararapes
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose gomes pacheco da costa/id=liv516-per67-per317
+               ls$profissao/padre
+               rel$contabil/fiador/joao dourado de azevedo/liv516-per67
+
+         n$jose coelho de araujo/obs=f.175/id=liv516-per68
+            ls$cargo/purgador/obs=do engenho araripe do meio
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$lourenco gomes pacheco ferraz/id=liv516-per68-per318
+               ls$cargo/mestre de campo
+               rel$contabil/fiador/jose coelho de araujo/liv516-per68
+               ls$residencia/goiana
+
+         n$jose antonio de melo/obs=f.176/id=liv516-per69
+            ls$profissao/lavrador de acucar/obs=engenho santo andre freguesia de muribeca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao rabelo da costa/id=liv516-per69-per319
+               rel$contabil/fiador/jose antonio de melo/liv516-per69
+
+         n$afonso jose de albuquerque/obs=f.176/id=livrz516-1-per320
+            ls$cargo/sargento mor
+            ls$profissao/lavrador de acucar/obs=engenho cunhau
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio jose souto/obs=f.177/xmesmo_que=livrz515-1-per370/id=livrz516-1-per321
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.156
+
+         n$fernando rodrigues da costa/obs=f.178/id=liv516-per70
+            ls$profissao/lavrador de acucar/obs=engenho da guerra freguesia do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$francisco do rego bezerra/id=liv516-per70-per322
+               rel$contabil/fiador/fernando rodrigues da costa/liv516-per70
+               ls$cargo/sargento mor
+
+         n$manoel pacheco pimentel/obs=f.178/id=livrz516-1-per323
+            ls$residencia/morador na sanzala
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco tavares de lira/obs=f.179/id=liv516-per71
+            ls$profissao/lavrador de acucar/obs=engenho do brejo freguesia de una
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao marques da cruz/id=liv516-per71-per324
+               rel$contabil/fiador/francisco tavares de lira/liv516-per71
+
+         n$manoel dos santos santiago/obs=f.180/id=livrz516-1-per325
+            ls$cargo/contramestre/obs=barcos da cgpp
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$inacio francisco/obs=f.180/id=livrz516-1-per326
+            ls$cargo/marinheiro
+            ls$residencia/praca da pole
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco bruno de lemos/obs=f.180/id=livrz516-1-per327
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao da cunha pereira de andrade/obs=f.181/id=liv516-per72
+            ls$profissao/lavrador de acucar/obs=engenho muribequinha freguesia da muribeca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$paulo leitao de albuquerque/id=liv516-per72-per328
+               rel$contabil/fiador/joao da cunha pereira de andrade/liv516-per72
+
+         n$manoel do o de azevedo/obs=f.181/id=liv516-per73
+            ls$profissao/lavrador de acucar/obs=engenho maranhao freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel de barros vanderlei/id=liv516-per73-per329
+               rel$contabil/fiador/manoel do o de azevedo/liv516-per73
+
+         n$jose pereira lobato/obs=f.181/id=livrz516-1-per330
+            ls$titulo/reverendo doutor
+            ls$cargo/vigario/obs=do apodi no sertao
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$francisco xavier da costa/obs=f.182/id=liv516-per74
+            ls$profissao/lavrador de acucar/obs=engenho novo da muribeca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao coelho bastos/id=liv516-per74-per331
+               rel$contabil/fiador/francisco xavier da costa/liv516-per74
+
+         n$manoel da silva costa/obs=f.182/xmesmo_que=liv515pe-per98/id=livrz516-1-per332
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$residencia/morador na ponte
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose da costa/obs=f.183/xmesmo_que=livrz515-1-per451/id=livrz516-1-per333
+            ls$profissao/mestre da ribeira
+            ls$produto_fornecido/madeiras
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose ferreira da silva/obs=f.185/id=liv516-per76
+            ls$profissao/lavrador de acucar/obs=engenho pantorra
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao paes barreto/id=liv516-per76-per334
+               rel$contabil/fiador/jose ferreira da silva/liv516-per76
+
+         n$andre de barros cavalcante/obs=f.185/id=liv516-per77
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho sao felix da patativa/obs=paraiba
+
+            referido$alberto de sequeira castro/id=liv516-per77-per335
+               rel$contabil/conta razao conjunta/andre de barros cavalcante/liv516-per77
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho sao felix da patativa/obs=paraiba
+
+            referido$jose rodrigues chaves/id=liv516-per77-per336
+
+         n$francisco pacheco/obs=f.185/id=liv516-per78
+            ls$profissao/lavrador de acucar/obs=engenho brunhaem freguesia de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel de barros vanderlei/id=liv516-per78-per337
+               rel$contabil/fiador/francisco pacheco/liv516-per78
+
+         n$agostinho bezerra da silva/obs=f.186/id=livrz516-1-per338
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho muguaipe
+            ls$patrimonio/engenho sao borreo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.113
+            ls$produto_fornecido/acucar
+
+         n$pedro paulo de faria/obs=f.186/id=livrz516-1-per339
+            ls$cargo/meirinho da consevatoria
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose correia lima/obs=f.188/id=liv516pe-per1
+            ls$residencia/boavista
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$luis antonio marques/id=liv516pe-per1-per1
+               rel$contabil/fiador/jose correia lima/liv516pe-per1
+
+         n$jose ales de moraes/obs=f.188/id=livrz516-1-per2
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$residencia/rua do livramento
+
+         n$rodrigo alves rico/obs=f.188/id=livrz516-1-per4
+            ls$profissao/lavrador de acucar/obs=engenho do curado
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel nunes leite/obs=f.189/id=liv516pe-per2
+            ls$profissao/lavrador de acucar/obs=engenho gargahu freguesia da paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose rodrigues chaves/id=liv516pe-per2-per5
+               rel$contabil/fiador/manoel nunes leite/liv516pe-per2
+
+         n$joao afonso rigueira/obs=f.189/id=livrz516-1-per8
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao da rocha cavalcante/obs=f.189/id=liv516pe-per3
+            ls$profissao/lavrador de acucar/obs=engenho goycana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$tome teixeira tibeiro/id=liv516pe-per3-per9
+               rel$contabil/fiador/joao da rocha cavalcante/liv516pe-per3
+
+         n$jose camelo de freitas/obs=f.191/id=liv516pe-per4
+            ls$profissao/lavrador de acucar/obs=engenho caiara freguesia de sao lourenco da mata
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio de sousa ferreira/id=liv516pe-per4-per10
+               rel$contabil/fiador/jose camelo de freitas/liv516pe-per4
+
+         n$matias leal de lemos/obs=f.191/id=liv516pe-per5
+            ls$profissao/lavrador de acucar/obs=engenho das barreiras distrito da paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$amaro de barros lima/id=liv516pe-per5-per11
+               rel$contabil/fiador/matias leal de lemos/liv516pe-per5
+
+         n$antonio pires/obs=f.191/id=livrz516-1-per19
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de sousa couceiro/obs=f.192/id=livrz516-1-per29
+            ls$cargo/tenente coronel
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao da silva pereira/obs=f.192/id=livrz516-1-per33
+            ls$cargo/piloto/obs=da curveta rosario
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$vicente borges gurjao/obs=f.192/id=liv516pe-per6
+            ls$residencia/rua da praia
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel de soares lima/id=liv516pe-per6-per34
+               rel$contabil/fiador/vicente borges gurjao/liv516pe-per6
+
+         n$antonio cardoso da silva/obs=f.193/id=livrz516-1-per36
+            ls$profissao/mestre alfaiate
+            ls$produto_fornecido/acucar
+            ls$residencia/morador na senzala
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de araujo gondim/obs=f.194/id=livrz516-1-per37
+            ls$residencia/olinda
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luisa de brito teles/f/obs=f.195/id=livrz516-1-per38
+            ls$titulo/dona
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose ribeiro de queiros/obs=f.195/id=livrz516-1-per47
+            ls$profissao/lavrador de acucar/obs=engenho do meio freguesia de santo amaro de jabatao
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joaquim jose da silva/obs=f.195/id=liv516pe-per7
+            ls$cargo/escrevente/obs=de joao martins viana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao martins viana/id=liv516pe-per7-per48
+               rel$sociabilidade/patrao/joaquim jose da silva/liv516pe-per7
+
+         n$luis nogueira de figueiredo/obs=f.196/id=livrz516-1-per50
+            ls$residencia/rua da praia
+            ls$cargo/mestre de campos
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio de oliveira cardoso/obs=f.196/id=livrz516-1-per53
+            ls$cargo/piloto
+            ls$residencia/rua da praia
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio jose lopes/obs=f.196/id=livrz516-1-per54
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$fidelis da penha/obs=f.197/id=livrz516-1-per55
+            ls$profissao/padre fei
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao carneiro de sampaio/obs=f.197/xmesmo_que=livrz515-1-per478/id=livrz516-1-per57
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel alves esteves/obs=f.198/id=livrz516-1-per61
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.88
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$pedro pereira da silva/obs=f.198/id=livrz516-1-per64
+            ls$profissao/lavrador de acucar/obs=engenho carau freguesia de itamaraca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao rodrigues lima/obs=f.199/id=livrz516-1-per65
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose antonio de sousa da cunha/obs=f.199/id=liv516pe-per8
+            ls$profissao/lavrador de acucar/obs=engenho do curado
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$jose de sousa da cunha/id=liv516pe-per8-per66
+               rel$contabil/fiador/jose antonio de sousa da cunha/liv516pe-per8
+
+         n$jose da rocha cruz/obs=f.199/id=liv516pe-per9
+            ls$profissao/lavrador de acucar/obs=engenho sao joao do cabo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel da rocha cruz/id=liv516pe-per9-per67
+               rel$contabil/fiador/jose da rocha cruz/liv516pe-per9
+
+         n$joao barbosa da silva/obs=f.200/id=liv516pe-per10
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$profissao/lavrador de acucar/obs=engenho para freguesia de ipojuca
+
+            referido$jose inacio barbosa/id=liv516pe-per10-per68
+               rel$contabil/conta razao conjunta/joao barbosa da silva/liv516pe-per10
+
+            referido$jose vaz salgado/id=liv516pe-per10-per69
+               rel$contabil/fiador/joao barbosa da silva/liv516pe-per10
+
+         n$atestos de aguardente por lembranca/obs=f.200/id=livrz516-1-per70
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$raimundo de jesus/obs=f.201/id=livrz516-1-per84
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            rel$parentesco/sobrinho/jose antonio da costa/liv516pe-per11
+
+            referido$jose antonio da costa/id=liv516pe-per11
+               ls$residencia/rua da cadeia
+
+         n$feliciano pereira de lira/obs=f.201/id=liv516pe-per12
+            ls$profissao/padre
+            ls$profissao/lavrador de acucar/obs=engenho de aldeia freguesia de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel jose ferreira/id=liv516pe-per12-per85
+               rel$contabil/fiador/feliciano pereira de lira/liv516pe-per12
+
+         n$francisco gomes pereira/obs=f.201/id=liv516pe-per13
+            ls$profissao/lavrador de acucar/obs=engenho da aldeia
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel jose ferreira/id=liv516pe-per13-per86
+               rel$contabil/fiador/francisco gomes pereira/liv516pe-per13
+
+         n$jose antonio da silva braga/obs=f.203/id=livrz516-1-per88
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.121
+            ls$produto_fornecido/acucar
+
+         n$faustino jose garcia de carvalho/obs=f.203/id=livrz516-1-per92
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.452
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$matias manoel de sousa/obs=f.204/id=livrz516-1-per108
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de sousa de almeida/obs=f.204/id=livrz516-1-per109
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.128
+            ls$produto_fornecido/acucar
+
+         n$joao francisco dos santos/obs=f.204/id=livrz516-1-per118
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$tomas ferreira ramos/obs=f.205/id=livrz516-1-per123
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$aleixo de oliveira faria/obs=f.205/id=livrz516-1-per137
+            ls$profissao/oficial serralheiro/obs=em ipojuca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos francisco de medeiros/obs=f.205/id=livrz516-1-per143
+            ls$profissao/mestre sapateiro
+            ls$residencia/rua do rosario
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco de lemos/obs=f.206/id=livrz516-1-per161
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao correia picanco/obs=f.206/id=livrz516-1-per162
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio gomes de assuncao/obs=f.2206/id=livrz516-1-per163
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$atestos/obs=f.208/id=livrz516-1-per184
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.42
+
+         n$manoel bernardo valente/obs=f.208/xmesmo_que=livrz515-1-per284/id=livrz516-1-per187
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.83
+            ls$titulo/reverendo doutor
+
+         n$manoel goncalves teixeira/obs=f.209/id=livrz516-1-per189
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$pedro de morais magalhaes/obs=f.209/xmesmo_que=livrz515-1-per94/id=livrz516-1-per191
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco carneiro de sampaio/obs=f.210/id=livrz516-1-per193
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.17
+            ls$produto_fornecido/acucar
+
+         n$antonio xavier da veiga tavares/obs=f.210/id=livrz516-1-per198
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.405
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/acucar
+
+         n$eugenia de sao mateus/f/obs=f.210/id=livrz516-1-per202
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$almoxarife da fazenda real/obs=f.211/id=livrz516-1-per203
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.87
+
+         n$josefa ribeira/f/obs=f.211/id=livrz516-1-per204
+            ls$ec/viuva
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            marido$manoel de figueiredo/id=livrz516-1-per204-per205
+               ls$morto/antes/17680113
+
+         n$antonio gomes vieira/obs=f.212/id=livrz516-1-per224
+            ls$residencia/tapera/obs=freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$belchior de castro lima/obs=f.213/id=livrz516-1-per231
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$manoel da cunha/obs=f.213/id=liv516pe-per14
+            ls$residencia/rua da cadeia com lege
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio pinheiro salgado/id=liv516pe-per14-per232
+               rel$contabil/fiador/manoel da cunha/liv516pe-per14
+
+         n$convento de sao francisco/obs=f.213/xmesmo_que=livrz515-1-per1/id=livrz516-1-per235
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+         n$domingos pires ferreira/obs=f.214/xmesmo_que=livrz515-1-per412/id=livrz516-1-per239
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.16
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+
+         n$antonio francisco lessa/obs=f.214/id=livrz516-1-per247
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.152
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$jose de araujo lima/obs=f.215/id=livrz516-1-per250
+            ls$condicao/com loja na ponte
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pereira rego/obs=f.215/id=livrz516-1-per251
+            ls$profissao/mestre purgador de acucar/obs=engenho conceicao de ipojuca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose lopes dos santos/obs=f.215/id=livrz516-1-per255
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio ferreira de melo/obs=f.215/xmesmo_que=livrz515-1-per574/id=livrz516-1-per257
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho una
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis pereira goncalves/obs=f.216/id=livrz516-1-per259
+            ls$residencia/alagoa danta
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$felix jose tavares lima/obs=f.216/id=livrz516-1-per263
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho do brejo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao bb f.357
+            ls$produto_fornecido/acucar
+
+         n$agostinho cavalcante gadelha/obs=f.216/id=livrz516-1-per264
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bento da silva de faria/obs=f.216/id=livrz516-1-per270
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco gomes da silva/obs=f.217/id=livrz516-1-per271
+            ls$profissao/mascate/obs=de gado em santo antao da mata
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bartolomeu vieira/obs=f.217/id=livrz516-1-per274
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis ferreira ribeiro/obs=f.217/id=liv516pe-per15
+            ls$profissao/lavrador de acucar/obs=engenho das lovas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$jose martins leitao/obs=duvida primeiro sobrenome/id=liv516pe-per15-per275
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho das lovas
+               rel$contabil/fiador/luis ferreira ribeiro/liv516pe-per15
+
+         n$zacarias de jesus maria/obs=f.217/id=livrz516-1-per277
+            ls$profissao/padre fei
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao correia de sa/obs=f.218/id=livrz516-1-per288
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos machado correa/obs=f.218/id=livrz516-1-per289
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel freire de sousa/obs=f.218/id=livrz516-1-per297
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio jose de mira/obs=f.218/id=liv516pe-per16
+            ls$profissao/lavrador de acucar/obs=engenho crevacu freguesia de una
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$felix jose tavares lima/id=liv516pe-per16-per298
+               rel$contabil/fiador/antonio jose de mira/liv516pe-per16
+
+         n$manoel soares simoens/obs=f.219/id=livrz516-1-per300
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao mauricio vanderlei junior/obs=f.219/id=livrz516-1-per303
+            ls$residencia/engenho boacica/obs=freguesia de ipojuca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao marcos bacalhau junior/obs=f.219/id=livrz516-1-per309
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio dias da costa/obs=f.219/id=liv516pe-per17
+            ls$profissao/lavrador de acucar/obs=engenho alagoa danta freguesia de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel alves ferreira/id=liv516pe-per17-per310
+               rel$contabil/fiador/antonio dias da costa/liv516pe-per17
+
+         n$antonio jose ciara/obs=f.220/id=liv516pe-per18
+            ls$profissao/lavrador de acucar/obs=engenho cravacu freguesia de una
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$felix jose tavares/id=liv516pe-per18-per311
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho cravacu
+               rel$contabil/fiador/antonio jose ciara/liv516pe-per18
+
+         n$eusebio paes barreto/obs=f.220/id=livrz516-1-per312
+            ls$profissao/lavrador de acucar/obs=engenho penanduva
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose mendes ribeiro/obs=f.220/id=livrz516-1-per314
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho boenos aires/obs=freguesia de una
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio neto de sousa/obs=f.220/id=livrz516-1-per316
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose bezerra de abreu/obs=f.221/id=livrz516-1-per317
+            ls$profissao/lavrador de acucar/obs=engenho penanduva
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.122
+            ls$produto_fornecido/acucar
+
+         n$joao da cunha cavalcante/obs=f.221/id=livrz516-1-per318
+            ls$cargo/sargento/obs=que conduz o pau brasil
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose vieira de melo/obs=f.221/id=livrz516-1-per319
+            ls$profissao/lavrador de acucar/obs=engenho arariba
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco de oliveira de miranda/obs=f.221/id=livrz516-1-per322
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio vieira de carvalho/obs=f.222/id=livrz516-1-per324
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos de oliveira marques/obs=f.226/id=livrz516-1-per328
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de sousa rangel/obs=f.226/id=livrz516-1-per329
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.36
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto_fornecido/couro em cabelo
+
+         n$jose da silva da fonseca/obs=f.226/id=livrz516-1-per331
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$atanados/obs=f.227/id=livrz516-1-per334
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.102
+
+         n$francisco do vale/obs=f.227/id=livrz516-1-per335
+            ls$cargo/administrador/obs=engenho araripe
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.199
+            ls$produto_fornecido/acucar
+
+         n$manoel teixeira de morais/obs=f.228/xmesmo_que=livrz515-1-per242/id=livrz516-1-per336
+            ls$titulo/doutor
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$miguel acioli/id=liv516pe-per19/obs=f.228
+            ls$profissao/lavrador de acucar/obs=engenho sao bras de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel de barros vanderlei/id=livrz516-1-per337-per338
+               ls$cargo/capitao mor
+               rel$contabil/fiador/miguel acioli/liv516pe-per19
+
+         n$manoel bezerra montenegro/obs=f.229/id=livrz516-1-per340
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis da costa ferreira/obs=f.229/id=livrz516-1-per341
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$saque de letras/obs=f.229/xmesmo_que=livrz515-1-per18/id=livrz516-1-per342
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco rodrigues lima/obs=f.230/id=liv516pe-per20
+            ls$residencia/rua da cruz
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose rodrigues lima/id=liv516pe-per20-per343
+               rel$contabil/conta razao conjunta/francisco rodrigues lima/liv516pe-per20
+               ls$residencia/rua da cruz
+
+         n$joao batista ribeiro/obs=f.230/id=liv516pe-per21
+            ls$profissao/lavrador de acucar/obs=engenho figipicho freguesia da varge
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$domingos da mota nunes/id=liv516pe-per21-per344
+               rel$contabil/fiador/joao batista ribeiro/liv516pe-per21
+
+         n$congregacao/obs=f.231/id=livrz516-1-per345
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.416
+            ls$produto_fornecido/acucar
+
+         n$capela de nossa senhora do pilar/obs=f.231/id=livrz516-1-per346
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose martins leitao/obs=f.231/id=livrz516-1-per347
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho do covas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.158
+            ls$produto_fornecido/acucar
+
+         n$joao batista gomes/obs=f.232/id=livrz516-1-per348
+            ls$residencia/lugar do vermelho/obs=freguesia de ipojuca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$leandro de sousa viveiros/obs=f.232/id=livrz516-1-per349
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joaquimm pereira rego/obs=f.232/id=livrz516-1-per350
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel francisco de azevedo/obs=f.232/xmesmo_que=livrz515-1-per123/id=livrz516-1-per351
+            ls$residencia/livramento
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/carne seca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel gomes barros/obs=f.233/id=livrz516-1-per352
+            ls$profissao/lavrador de acucar/obs=engenho pitiba freguesia do cabo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao mauricio pimentel/obs=f.233/xmesmo_que=livrz515-1-per274/id=livrz516-1-per353
+            ls$profissao/lavrador de acucar/obs=engenho velho do cabo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$cosme da silva costa/obs=f.233/id=livrz516-1-per354
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$mateus fernandes coelho/obs=f.233/id=livrz516-1-per355
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luciano da fonseca teles/obs=f.234/id=livrz516-1-per356
+            ls$residencia/alagoas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joaquim isidoro freire de mendonca/obs=f.234/id=livrz516-1-per357
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$verissimo de mendonca e vasconcelos/obs=f.234/id=livrz516-1-per358
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho santo antonio dos prazeres/obs=porto calvo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao carvalho de oliveira/obs=f.234/id=livrz516-1-per359
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel jose ferreira/obs=f.235/id=livrz516-1-per360
+            ls$profissao/lavrador de acucar/obs=engenho duas bocas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose francisco maia/obs=f.235/id=livrz516-1-per361
+            ls$profissao/lavrador de acucar/obs=engenho mascate
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco pereira lopes/obs=f.235/id=livrz516-1-per362
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jeronimo goncalves de ataide/obs=f.235/id=livrz516-1-per363
+            ls$produto_fornecido/acucar
+            ls$profissao/lavrador de acucar/obs=engenho novo de porto calvo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio buarque lisboa/obs=f.236/id=livrz516-1-per364
+            ls$profissao/padre
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho do samba/obs=freguesia de sao bento de porto calvo
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio goncalves leira/obs=f.236/id=livrz516-1-per365
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao teixeira lima/obs=f.236/id=livrz516-1-per366
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$madeiras/obs=f.236/id=livrz516-1-per367
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.97, sup3 f.54
+
+         n$sebo/obs=f.237/id=livrz516-1-per368
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$maria teresa salgada/f/obs=f.237/id=livrz516-1-per369
+            ls$titulo/dona
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel lopes de santiago correa/obs=f.237/id=livrz516-1-per370
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.100, sup3 f.142
+
+         n$suterio da silva brandao/obs=f.240/id=liv516pe-per22
+            ls$produto_fornecido/acucar
+            ls$profissao/lavrador de acucar/obs=engenho santo antonio grande
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$joao de rego falcao/id=liv516pe-per22-per371
+               rel$contabil/fiador/suterio da silva brandao/liv516pe-per22
+
+         n$antonio teixeira pinto/obs=f.240/id=livrz516-1-per372
+            ls$profissao/lavrador de acucar/obs=engenho do ramos
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.426
+
+         n$tomas de aquino/obs=f.240/id=livrz516-1-per373
+            ls$residencia/soledade
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos dos santos valadares/obs=f.241/xmesmo_que=livrz515-1-per448/id=livrz516-1-per374
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.271
+
+         n$alexandre correa de castro/obs=f.233, 241/xmesmo_que=livrz515-1-per517/id=livrz516-1-per375
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$simao dos santos maia/obs=f.243/id=livrz516-1-per376
+            ls$condicao/negocio no sertao
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/carne seca
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de sousa pereira/obs=f.244/id=livrz516-1-per377
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose maria caldas/obs=f.244/id=liv516pe-per23
+            ls$profissao/lavrador de acucar/obs=engenho goicana de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$domingos de arujo lima/id=liv516pe-per23-per378
+               rel$contabil/fiador/jose maria caldas/liv516pe-per23
+
+         n$antonio alves rodrigues/obs=f.244/id=livrz516-1-per379
+            ls$profissao/lavrador de acucar/obs=engenho carauna
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.21
+
+         n$manoel de pontes martins/obs=f.244/id=livrz516-1-per380
+            ls$profissao/lavrador de acucar/obs=engenho pindoba
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel alves monteiro/obs=f.245/xmesmo_que=livrz515-1-per270/id=livrz516-1-per381
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/couro em cabelo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.105
+
+         n$manoel lourenco souto/obs=f.245/id=livrz516-1-per382
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.106
+            ls$produto_fornecido/acucar
+
+         n$felix de moura e melo/obs=f.245/id=livrz516-1-per383
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pereira de matos/obs=f.246/id=livrz516-1-per384
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos afonso da silva/obs=f.246/id=livrz516-1-per385
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco inacio de andrade/obs=f.246/id=livrz516-1-per386
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel martins de sousa/obs=f.246/id=liv516pe-per24
+            ls$residencia/pau do alho
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$joao marques da cruz/id=liv516pe-per24-per387
+               rel$contabil/fiador/manoel martins de sousa/liv516pe-per24
+
+         n$jose de abreu marques/obs=f.248/id=livrz516-1-per388
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel mendes de vasconcelos/obs=f.248/id=liv516pe-per25
+            ls$profissao/lavrador de acucar/obs=engenhos tanhenga, pitiriba e sipo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio de araujo de vasconcelos/id=liv516pe-per25-per389
+               ls$cargo/capitao
+               rel$contabil/fiador/manoel mendes de vasconcelos/liv516pe-per25
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho mesupinho
+
+         n$manoel alves ferreira/obs=f.249/xmesmo_que=livrz515-1-per578/id=livrz516-1-per390
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.90
+
+         n$despesas de remessas do rio de janeiro/obs=f.249/id=livrz516-1-per391
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.446
+
+         n$jacome lumachi/obs=f.249/id=liv516-per249
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/carne seca
+
+            referido$juliao lumachi/id=liv516-per249-per392
+               rel$contabil/fiador/jacome lumachi/liv516-per249
+
+            referido$manoel antonio ribeiro/obs=rz.74/id=liv516-per249-per393
+               rel$contabil/conta razao credito/jacome lumachi/liv516-per249/data=17690325
+
+            referido$silvestre batista de moura/obs=rz.31/id=liv516-per249-per394
+               rel$contabil/conta razao credito/jacome lumachi/liv516-per249/data=17690608
+
+            referido$joao ferreira/obs=rz.124t/id=liv516-per249-per395
+               rel$contabil/conta razao credito/jacome lumachi/liv516-per249/data=17690811
+
+            referido$francisco rodrigues seixas/obs=rz.86/id=liv516-per249-per396
+               rel$contabil/conta razao debito/jacome lumachi/liv516-per249/data=17681230
+
+            referido$manoel de almeida henriques/obs=rz.134s/id=liv516-per249-per397
+               rel$contabil/conta razao debito/jacome lumachi/liv516-per249/data=17690525
+
+            referido$manoel da costa henriques/obs=rz.76l/id=liv516-per249-per398
+               rel$contabil/conta razao debito/jacome lumachi/liv516-per249/data=17690811
+
+            referido$jose pereira de matos/obs=rz.57t, duvida nome/id=liv516-per249-per399
+               rel$contabil/conta razao debito/jacome lumachi/liv516-per249/data=17690301
+
+         n$luis pereira brandao/obs=f.250/xmesmo_que=liv515pe-per204/id=livrz516-1-per400
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao tavares da fonseca/obs=f.251/id=livrz516-1-per401
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.5
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_fornecido/acucar
+
+         n$inacio de barros/obs=f.251/id=livrz515-1-per447b
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho macuge e nossa senhora do carmo e santa cruz/obs=freguesia de santo amaro da jabatao
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$francisco jose da fonseca/id=livrz515-1-per447b-per402
+               rel$contabil/conta razao debito/inacio de barros/livrz515-1-per447b/data=17680530
+               rel$contabil/conta razao debito/inacio de barros/livrz515-1-per447b/data=17690109
+               rel$contabil/conta razao debito/inacio de barros/livrz515-1-per447b/data=17690306
+               rel$contabil/conta razao debito/inacio de barros/livrz515-1-per447b/data=17690404
+               rel$contabil/conta razao debito/inacio de barros/livrz515-1-per447b/data=17690601
+               rel$contabil/conta razao debito/inacio de barros/livrz515-1-per447b/data=17690630
+
+         n$jose lopes guimaraes/obs=f.251/id=livrz516-1-per403
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.40
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+            ls$produto_comprado/molhados
+
+         n$irmaos gomes da fonseca/obs=f.252/id=livrz516-1-per404
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel gomes da fonseca/obs=f.252/id=liv516-per252
+            ls$cargo/administrador/obs=engenho carauna
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$irmaos gomes da fonseca/id=liv516-per252-per405
+               rel$contabil/conta razao credito/manoel gomes da fonseca/liv516-per252/data=17680528
+
+         n$jose maria de albuquerque/obs=f.253/id=liv516pe-per26
+            ls$profissao/lavrador de acucar/obs=engenho duas bocas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio ferreira chaves/id=liv516pe-per26-per406
+               rel$contabil/fiador/jose maria de albuquerque/liv516pe-per26
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho duas bocas
+
+         n$manoel diniz pessoa/obs=f.253/id=livrz516-1-per407
+            ls$profissao/lavrador de acucar/obs=engenho apipucos
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$anastacio jose da silveira/obs=f.254/id=livrz516-1-per408
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.457
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+         n$luis soares de sousa/obs=f.254/id=livrz516-1-per409
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel de jesus carvalho/obs=f.254/id=livrz516-1-per410
+            ls$profissao/lavrador de acucar/obs=engenho do brum
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel goncalves da cruz/obs=f.254/id=livrz516-1-per411
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$aleixo manoel do carmo/obs=f.255/id=livrz516-1-per412
+            ls$produto_fornecido/acucar
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$felipe barbosa pereira/obs=f.255/id=livrz516-1-per413
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.423
+            ls$produto_fornecido/acucar
+
+         n$antonio da costa nogueira/obs=f.255/id=livrz516-1-per414
+            ls$profissao/padre
+            ls$profissao/rendeiro de acucar/obs=engenho pitimbu
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$irmandade do santissimo sacramento/obs=f.255/id=livrz516-1-per415
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.277
+
+         n$antonio de sousa barjao/obs=f.256/id=livrz516-1-per416
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio pereira rebelo/obs=f.256/id=livrz516-1-per417
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.12
+
+         n$joao pereira lima/obs=f.256/id=livrz516-1-per418
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos pereira de melo/obs=f.256/id=livrz516-1-per419
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio camelo de amorim/obs=f.257/id=livrz516-1-per420
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao batista morato/obs=f.257/id=livrz516-1-per421
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio jose de barros/obs=f.257/id=livrz516-1-per422
+            ls$profissao/lavrador de acucar/obs=engenho duas bocas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao da costa de andrade/obs=f.257/id=livrz516-1-per423
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.113
+
+         n$margarida da silva da fonseca/f/obs=f.258/id=livrz516-1-per424
+            ls$residencia/rua dos tanoeiros
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            marido$luis dos santos/id=livrz516-1-per424-per425
+
+         n$jose rodrigues chaves/obs=f.258/id=livrz516-1-per426
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.104
+            ls$produto_fornecido/acucar
+
+         n$jose rodrigues chaves/obs=f.258/id=livrz516-1-per427
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/sola
+
+         n$jose mauricio vanderlei/obs=f.258/id=liv516pe-per27
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho boaesca/obs=freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$agostinho fernandes de crasto/id=liv516pe-per27-per428
+               rel$contabil/fiador/jose mauricio vanderlei/liv516pe-per27
+
+         n$jose da silva santos/obs=f.259/id=liv516pe-per28
+            ls$profissao/lavrador de acucar/obs=engenho jurisaca
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose paes barreto/id=liv516pe-per28-per429
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho jurisaca
+               rel$contabil/fiador/jose da silva santos/liv516pe-per28
+
+         n$jose de melo cavalcante de albuquerque/obs=f.259/id=liv516pe-per29
+            ls$profissao/lavrador de acucar/obs=engenho giguica
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel de brito da silveira/id=liv516pe-per29-per430
+               ls$profissao/padre
+               ls$titulo/senhor de engenho
+               ls$patrimonio/engenho giguica
+               rel$contabil/fiador/jose de melo cavalcante de albuquerque/liv516pe-per29
+
+         n$antonio alves pereira/obs=f.259/id=livrz516-1-per431
+            ls$profissao/padre
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$mateus da cunha/obs=f.259/id=livrz516-1-per432
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            rel$parentesco/genro/jeronimo de carvalho/liv516-per259
+
+            referido$jeronimo de carvalho/id=liv516-per259
+
+         n$inacio coelho de sousa/obs=f.260/id=liv516pe-per30
+            ls$residencia/cariris novos
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose rodrigues chaves/id=liv516pe-per30-per433
+               rel$contabil/fiador/inacio coelho de sousa/liv516pe-per30
+
+         n$joao de pinho borges/obs=f.260/xmesmo_que=livrz515-1-per459/id=livrz516-1-per434
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/atanados
+            ls$produto/acucar branco
+            ls$produto_fornecido/sola
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$carne seca/obs=f.260/id=livrz516-1-per435
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.345
+
+         n$convento do carmo de olinda/obs=f.261/id=livrz516-1-per436
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao c f.280
+
+         n$jose antonio de figueiredo/obs=f.261/id=livrz516-1-per437
+            ls$condicao/loja em santo antao da mata
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio da costa de araujo/obs=f.263/id=livrz516-1-per438
+            ls$profissao/rendeiro de acucar/obs=engenho macangano de porto calvo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$matias da costa de meneses/obs=f.263/id=livrz516-1-per439
+            ls$profissao/rendeiro de acucar/obs=engenho macangano de porto calvo
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$tome calado galvao/obs=f.263/id=livrz516-1-per440
+            ls$profissao/lavrador de acucar/obs=engenho das ilhetas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.376
+            ls$produto_fornecido/acucar
+
+         n$bernardo jose lopes/obs=f.263/id=livrz516-1-per441
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$manoel clemente parroso/obs=f.264/id=livrz516-1-per442
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.86
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/couro em cabelo
+
+         n$antonio ferreira coimbra/obs=f.264/id=livrz516-1-per443
+            ls$profissao/lavrador de acucar/obs=engenho tabatinga
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.293
+            ls$produto_fornecido/acucar
+
+         n$marcos bezerra cavalcante/obs=f.264/id=livrz516-1-per444
+            ls$profissao/lavrador de acucar/obs=engenho sao francisco da varge
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos jose de mesquita/obs=f.264/id=livrz516-1-per445
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose da costa afonso/obs=f.265/id=livrz516-1-per446
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose martins da cruz/obs=f.265/id=liv515pe-per190b
+            ls$residencia/morador na ponte
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$manoel alves de sa/id=liv515pe-per190b-per447
+               rel$contabil/fiador/jose martins da cruz/liv515pe-per190b
+
+         n$joao rodrigues cardoso/obs=f.265/id=livrz516-1-per448
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao pereira de sousa/obs=f.265/xmesmo_que=livrz515-1-per307/id=livrz516-1-per449
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio da cunha barros/obs=f.266/id=liv516pe-per32
+            ls$profissao/lavrador de acucar/obs=engenho santo estevao
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$pedro marinho falcao/id=liv516pe-per32-per450
+               rel$contabil/fiador/antonio da cunha barros/liv516pe-per32
+
+         n$bento rodrigues chaves e melo/obs=f.267/id=liv516pe-per33
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$marcelino rodrigues colaco/id=liv516pe-per33-per451
+               rel$contabil/conta razao debito/bento rodrigues chaves e melo/liv516pe-per33/data=17680813
+
+         n$joao lins vanderlei/obs=f.267/id=liv516pe-per34
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho fentuga/obs=freguesia de una
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel de barros vanderlei/id=liv516pe-per34-per452
+               rel$contabil/fiador/joao lins vanderlei/liv516pe-per34
+
+         n$manoel freire maris/obs=f.267/id=liv516pe-per35
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+            ls$produto_fornecido/sola
+
+            pai$jose de oliveira maris/id=liv516pe-per35-per453
+               rel$contabil/fiador/manoel freire maris/liv516pe-per35
+
+         n$bernardo goncalves laje barroso/obs=f.268/id=liv516pe-per36
+            ls$profissao/lavrador de acucar/obs=engenho gararapes
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose de oliveira maciel/id=liv516pe-per36-per454
+               rel$contabil/fiador/bernardo goncalves laje barroso/liv516pe-per36
+               ls$residencia/afogados
+
+         n$jose nunes de sousa/obs=f.268/id=liv516pe-per37
+            ls$residencia/olinda
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$antonio pinto/id=liv516pe-per37-per455
+               rel$contabil/fiador/jose nunes de sousa/liv516pe-per37
+
+         n$lourenco antono de gouvea/obs=f.268/id=livrz516-1-per456
+            ls$cargo/juiz conservador da cgpp em pernambuco
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao borges da costa/obs=f.268/id=livrz516-1-per457
+            ls$produto_fornecido/sola
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose lopes da costa/obs=f.268/id=livrz516-1-per458
+            ls$residencia/paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose alexandre/obs=f.269/id=liv516pe-per38
+            ls$profissao/lavrador de acucar/obs=engenho sao paulo freguesia de ipojuca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$francisco rodrigues flores/id=liv516pe-per38-per459
+               rel$contabil/fiador/jose alexandre/liv516pe-per38
+               ls$profissao/padre
+
+         n$antonio alvino do amaral/obs=f.269/id=livrz516-1-per460
+            ls$cargo/tenente do forte do senhor bom jesus das portas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio de olanda cavalcante de albuquerque/obs=f.269/id=livrz516-1-per461
+            ls$profissao/lavrador de acucar/obs=engenho da torre freguesia da varge
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$felix gomes de jesus/obs=f.269/id=livrz516-1-per462
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.264
+
+         n$manoel de torres bandeira junior/obs=f.269/id=liv516pe-per39
+            ls$profissao/lavrador de acucar/obs=engenho jacare
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$agostinho bezerra da silva/id=liv516pe-per39-per463
+               rel$contabil/fiador/manoel de torres bandeira junior/liv516pe-per39
+
+         n$manoel de araujo cavalcante/obs=f.270/id=livrz516-1-per464
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho pedreiras de goiana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao alves pimentel/obs=f.270/id=liv516pe-per40
+            ls$profissao/padre
+            ls$cargo/vigario em comendado da freguesia de santo amaro de jabatao
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$manoel tome da silva/id=liv516pe-per40-per465
+               rel$contabil/fiador/joao alves pimentel/liv516pe-per40
+
+         n$manoel de azevedo do nascimento/obs=f.270/id=livrz516-1-per466
+            ls$residencia/rua das ortas
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis barbosa da veiga/obs=f.270/id=liv516pe-per41
+            ls$residencia/muribeca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$inacio de barros/id=liv516pe-per41-per467
+               rel$contabil/fiador/luis barbosa da veiga/liv516pe-per41
+               ls$cargo/capitao
+
+         n$despesas com aguardente por lembranca/obs=f.270/id=livrz516-1-per468
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose rodrigues chaves/obs=f.271/id=liv515pe-per86b
+            ls$cargo/administrador da cgpp na paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.13
+
+            referido$joao da silva ferreira/id=liv515pe-per86b-per469
+               ls$cargo/administrador da cgpp na paraiba
+               ls$local_registro/direcao de pernambuco da cgpp
+               ls$posicao/conta razao/obs=sup3 f.13
+               rel$contabil/conta razao conjunta/jose rodrigues chaves/liv515pe-per86b
+
+         n$jose de sousa geraldes/obs=f.272/id=liv516pe-per42
+            ls$residencia/pau do alho
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao da silva cruz/id=liv516pe-per42-per470
+               rel$contabil/fiador/jose de sousa geraldes/liv516pe-per42
+
+         n$joao caetano paes da silva/obs=f.272/id=livrz516-1-per471
+            ls$residencia/engenho catende
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$domingos afonso junior/obs=f.272/xmesmo_que=liv515pe-per188/id=livrz516-1-per472
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.108
+            ls$produto_fornecido/acucar
+
+            pai$domingos afonso torres/id=livrz516-1-per472-per473
+
+         n$inacio de faria andrade/obs=f.272/id=livrz516-1-per474
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.462, razao c f.7
+
+         n$taboado de tapinhao naufragado/obs=f.273/id=livrz516-1-per475
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco xavier correa/obs=f.273/id=livrz516-1-per476
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de santa coleta/obs=f.273/id=livrz516-1-per477
+            ls$profissao/padre fei
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose felix de sousa/obs=f.273/id=livrz516-1-per478
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose severiano moreira/obs=f.273/id=livrz516-1-per479
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio jose goncalves/obs=f.273/id=livrz516-1-per480
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio jose dos santos/obs=f.274/id=livrz516-1-per481
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao francisco de almeida/obs=f.274/id=livrz516-1-per482
+            ls$residencia/ilha de sao tome
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio vaz carvalho/obs=f.274/id=livrz516-1-per483
+            ls$residencia/bahia
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose correia botelho guedes do amaral/obs=f.274/id=livrz516-1-per484
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho gargahuda/obs=paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao de freitas barbosa/obs=f.274/id=liv516pe-per43
+            ls$profissao/lavrador de acucar/obs=engenho giquiha
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose pereira lima/id=liv516pe-per43-per485
+               rel$contabil/fiador/joao de freitas barbosa/liv516pe-per43
+
+         n$maderias do corte a cargo de jose da costa/obs=f.275/xmesmo_que=livrz515-1-per182/id=livrz516-1-per486
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=sup3 f.85
+
+         n$jose goncalves da fonseca/obs=f.275/id=livrz516-1-per487
+            ls$cargo/mestre de campos
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$bartolomeu afonso rigueira/obs=f.276/id=liv516pe-per44
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            irmao$joao afonso rigueira/id=liv516pe-per44-per488
+               rel$contabil/fiador/bartolomeu afonso rigueira/liv516pe-per44
+
+         n$elias paes/obs=f.276/id=livrz516-1-per489
+            ls$profissao/lavrador de acucar/obs=engenho juricaca
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$francisco alves da costa/obs=f.276/id=livrz516-1-per490
+            ls$residencia/goiana
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.424, sup3 f.114
+
+         n$jose cardoso de bargas/obs=f.276/id=livrz516-1-per491
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio de pontes rego/obs=f.276/id=livrz516-1-per492
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$sebastiao de oliveira/obs=f.277/id=livrz516-1-per493
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$marcal coelho lopes de crasto/obs=f.277/id=livrz516-1-per494
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao barbosa de sousa/obs=f.277/id=liv516pe-per45
+            ls$profissao/lavrador de acucar/obs=engenho quileva freguesia de serinhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+            ls$produto_fornecido/acucar
+
+            referido$agostinho da silva guimaraes/id=liv516pe-per45-per495
+               rel$contabil/fiador/joao barbosa de sousa/liv516pe-per45
+
+         n$luis vicente de melo/obs=f.277/id=liv516pe-per46
+            ls$profissao/lavrador de acucar/obs=engenho tiberi da paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose rodrigues chaves/id=liv516pe-per46-per496
+               rel$contabil/fiador/luis vicente de melo/liv516pe-per46
+
+         n$joao batista barreto/obs=f.277/id=liv516pe-per47
+            ls$profissao/padre
+            ls$profissao/lavrador de acucar/obs=engenho poxi da paraiba
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$jose rodrigues chaves/id=liv516pe-per47-per497
+               rel$contabil/fiador/joao batista barreto/liv516pe-per47
+
+         n$manoel luis de sousa/obs=f.277/id=livrz516-1-per498
+            ls$profissao/lavrador de acucar/obs=engenho araripe de cima em igaracu
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao de barros correa/obs=f.278/id=livrz516-1-per499
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose de barros rego/obs=f.278/id=liv516pe-per48
+            ls$titulo/senhor de engenho
+            ls$patrimonio/engenho novo do poco de una/obs=freguesia de santo amaro
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$joao vieira de melo/id=liv516pe-per48-per500
+               ls$profissao/rendeiro de acucar/obs=engenho dos pinto da mesma freguesia
+               rel$contabil/fiador/jose de barros rego/liv516pe-per48
+
+         n$francisco do rego e melo/obs=f.279/id=livrz516-1-per501
+            ls$profissao/lavrador de acucar/obs=engenho duas bocas
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$feliciano ferreira ribeiro/obs=f.279/id=livrz516-1-per502
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.246
+
+         n$lucas coelho pereira/obs=f.279/id=livrz516-1-per503
+            ls$titulo/reverendo douto
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis antonio portela/obs=f.280/id=livrz516-1-per504
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$antonio ferreira dias/obs=f.280/id=liv516pe-per49
+            ls$residencia/paraiba
+            ls$profissao/lavrador de acucar/obs=engenho do meio
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$domingos da mota nunes/id=liv516pe-per49-per505
+               rel$contabil/fiador/antonio ferreira dias/liv516pe-per49
+
+         n$jose pereira do rosario/obs=f.280/id=livrz516-1-per506
+            ls$profissao/padre
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$miguel ferreira guimaraes/obs=f.280/id=livrz516-1-per507
+            ls$titulo/doutor
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$inacio correa de lira/obs=f.280/id=liv516pe-per50
+            ls$profissao/lavrador de acucar/obs=engenho madalena
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+            referido$domingos da mota nunes/id=liv516pe-per50-per508
+               rel$contabil/fiador/inacio correa de lira/liv516pe-per50
+
+         n$jose ciabra de andrade/obs=f.281/id=livrz516-1-per509
+            ls$profissao/lavrador de acucar/obs=engenho guabirava freguesia de tracunhaem
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose goncalves/obs=f.281/id=livrz516-1-per510
+            ls$profissao/cirurgiao
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao furtado da costa/obs=f.281/id=livrz516-1-per511
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$joao de sousa de carvalho/obs=f.281/id=livrz516-1-per512
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$jose monteiro/obs=f.281/id=livrz516-1-per513
+            ls$produto_fornecido/acucar
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao
+
+         n$luis antonio dos santos/obs=f.281/id=livrz516-1-per514
+            ls$local_registro/direcao de pernambuco da cgpp
+            ls$posicao/conta razao/obs=razao b f.272
+            ls$produto_fornecido/acucar
+
+      lc$llc-516-1/17/8/1758/pernambuco/obs=fl.129
+         atr$valor/562.4
+         atr$local de pagamento/pernambuco
+
+         dador$manoel antunes da luz/id=llc-516-1-per1
+            ls$cargo/capitao/obs=da sumaca sao miguel santo antonio e almas
+
+         tomador$direcao do pernambuco da cgpp/id=llc-516-1-per2
+
+         pagador$joao crisostimo de oliveira/id=llc-516-1-per3
+
+         beneficiario$joao pedro teodoro huydecoper amaral/id=llc-516-1-per4

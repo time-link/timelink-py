@@ -1,0 +1,4762 @@
+kleio$gacto.str
+
+fonte$nommiz/obs=Misericordia mis termos de aceitacao de Irmaos (1724-1829) 
+
+
+
+nom$nom1a/3/7/1729/2 
+
+	n$leonardo de sa/id=nom1a-r1 
+
+		ls$titulo/irmao de maior condicao/obs=o termo esta riscado nao se dizendo a razao porque foi riscado 
+
+	referido$diogo vaz de sa 
+
+		ls$residencia/figueiro dos vinhos 
+
+		rel$parentesco/pai/leonardo de sa/nom1a-r1
+
+
+
+nom$nom1/3 /7/1729/2v. 
+
+	/obs= "termo por que se derriscou e por elles desriscado o irmam o padre philipe leal franco" 
+
+	(por ser dezobediente ao provedor do anno antecedente "por nao querer tomar juramento para o 
+
+	cargo de escrivao para o que foi eleito para o prezente anno e alem disso proferindo contrahicoes 
+
+	e outras palavras menos soantesque cauzaram escandalo nao so aos ditos oficiais mas ainda atoda a 
+
+	irmandade".,era provedor o padre thome leal cortez).
+
+	referido$philipe leal franco 
+
+		ls$profissao/padre 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+
+
+nom$nom2/2/7/1730/3 
+
+	n$antonio arnaut de rivo 
+
+		ls$filiacao/filho de hieronimo henriques
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$titulo/cristao velho 
+
+		rel$parentesco/filho/hieronimo henriques/nom2-p1 
+
+	referido$hieronimo henriques/id=nom2-p1 
+
+	referido$manuel de almeida serra 
+
+		ls$cargo/provedor 
+
+		ls$titulo/licenciado 
+
+
+
+nom$nom3/29/8/1734/3v. 
+
+		/obs="termo em que a mesa elege por mordomos das demandas na forma do compromisso" 
+
+				-sao eleitos:o irmao de maior condicao, 
+
+				o doutor manuel de almeida serra e o de 
+
+				menor antonio francisco. ,oficial 
+
+	referido$manuel de almeida serra 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$cargo/mordomo das demandas 
+
+	referido$antonio francisco 
+
+		ls$titulo/oficial 
+
+		ls$cargo/mordomo das demandas  
+
+
+
+nom$nom4/2/7/1736/4 
+
+	n$jose antonio monteiro de tavora/id=nom4-p1 
+
+		ls$titulo/licenciado%doutor 
+
+		ls$titulo/irmao de maior condi?ao 
+
+	referido$antonio arnaut cortez/id=nom4-p2 
+
+		ls$cargo/provedor 
+
+	
+
+nom$nom5/2/3/1737/4v 
+
+	n$antonio joze madeira netto/id=nom5-p1 
+
+			ls$profissao/padre/obs=nao especificado 
+
+			ls$titulo/reverendo 
+
+			ls$titulo/irmao 
+
+	referido$antonio arnaut cortez 
+
+			ls$cargo/provedor 
+
+ 
+
+
+
+nom$nom6/13/4/1737/5 
+
+			/obs="termo por que se riscou de irmao o licenciado manoel vas cortez" 
+
+				"por nao vir a procissao dos santos passos que se fez no anno 
+
+				 prezente nem vir a esta meza dar razao por que nao veio a dita procissao" 
+
+	referido$manoel vaz cortez 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto)
+
+		
+
+		
+
+
+
+nom$nom7/1/7/1738/5v 
+
+	n$joze coelho cortez/id=nom7-p1 
+
+		ls$profissao/padre/obs=nao especificado 
+
+		ls$titulo/licenciado 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$titulo/cristao velho 
+
+	referido$jozeantonio monteiro de tavora 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom8/26/3/1739/6 
+
+	n$joaquim furtado de mesquita/id=nom8-p1 
+
+		ls$titulo/irmao 
+
+	referido$joze miguel macedo magalhaes mexia 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom9/2/4/1740/6 
+
+/obs="termo em como a meza ha por derriscado jose miguel de macedo" 
+
+-por "ter dito repetidas vezes nao querer continuar em servir esta santa caza e ter faltado a procissao do senhor dos passos que se fez em este prezente anno tendo obrigacam de assistir e vindo a procissam sem veste a portanto e o haviao por desriscado e por imbuido nas penas do compromisso (...)"., era provedor martinho nagrao arnaut 
+
+	referido$jose miguel de macedo 
+
+		ls$titulo/irmao/obs=riscado nesta data(ver acto) 
+
+	referido$martinho negrao arnaut 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom9a/2/7/1740/6v 
+
+	n$joze antonio quaresma/id=nom9a-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/licenciado 
+
+		ls$titulo/irmao de maior condicao/obs=o termo encontra-se riscado nao se dando qualquer jstificacao para o efeito
+
+
+
+nom$nom10/3/9/1742/7 
+
+/obs="termo em que se riscarao martinho negrao arnaut e o doutor jose antonio quaresma por dispozi?ao da meza"
+
+"visto martinho negrao arnaut e o doutor joze antonio quaresma desta vila nam quererem ser irmaons desta mesma irmandade e requererem ao dito provedor (o reverendo thome leal cortez) e mais irmaons da meza della que os mandassem riscar do livro dos irmaons., sem embargo do que os ditos provedor e irmaons da meza intendendo que o seo requerimento seria movido de paxam deferiram o mandar fazer este termo the se lhe dar tempo a que mudassem de rezolucao., e como persistem na mesma sem embargo de serem por mim escrivao varias vezes avizados ao responderem com dicterios e injurias com que esta santa caza se da por muito offendida ., os hao por riscado de irmaons della determinando que (fl. 6v) nunca mais uzassem dos previllegios de irmaons da mesma e que incorressem nas penas do compromisso., e que nenhum provedor e meza futura os podera aceitar novamente para irmaons da dita santa caza e aceytando-os serao obrigados a pagar qutrocento mil reis a mesma santa caza (...)" 
+
+	referido$jose antonio quaresma 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+	referido$tome leal cortez 
+
+		ls$cargo/provedor 
+
+ 
+
+
+
+nom$nom11/23/12/1742/7v 
+
+/obs="termo em como foy riscado de irmao desta santa caza leonardo de sa cabral" 
+
+"porquanto leonardo de sa cabral irmaos desta santa caza sem cauza que para isso tivesse disse o nao queria ser sem embargo de se lhe esperar muito tempo para que mudasse de rezolu?ao sendo avizado por mim escrivam por mais de huma vez sempre persistiu na mesma teyma e houverao por riscado de irmao desta santa caza e que de hoje em diante elle nem couza sua gozasse de previlegio de tal., nem que possa ser novamente admitido a isso, so dado para a santa caza quatrocentos mil reis e no cazo que algum provedor ou meza admitirem ao sobredito serao obrigados a pagar a sobredita quantia da sua bol?a(...)" 
+
+	referido$leonardo de sa cabral 
+
+		ls$titulo/irmao/obs= riscado nestra data(ver acto) 
+
+	referido$tome leal cortez 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom12/7/4/1743/8 
+
+	n$joao monteiro de tavora/id=nom12-p1 
+
+		ls$titulo/licenciado 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$titulo/cristao velho%sem raca de judeu ou outra alguma infecta nacao 
+
+	referido$tome leal cortez 
+
+		ls$cargo/provedor 
+
+ 
+
+
+
+nom$nom13/7/7/1743/8v 
+
+	n$joao xavier de almeida/id=nom13-p1 
+
+		ls$titulo/licenciado 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$titulo/cristao velho 
+
+	referido$joze madeira neto 
+
+		ls$titulo/reverendo 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom14/13/2/1746/9 
+
+/obs="termo de como se dispensou pella junta da irmandade na penna do compromisso no tocante ao enterro de martinho negrao arnaut de rivo"
+
+estando"prezente o reverendo prior joze coelho cortez e a mayor parte da irmandade da mesma santa caza por elle reverendo prior foy proposto a dita irmandade que porquanto por parte do dito martinho negrao arnaut morrendo este se requereo a meza fosse enterrado com pompa nao obstante o capitulo 15 da addic?ao do compromisso e que se sujeitaria a penna estabelecida no mesmo compromisso esperando comtudo se houvesse comisera?ao na execucao da dita pena., o que visto pella dita junta da irmandade votou unanime que da dita pena de vinte mil reis que determina o referido compromisso se lhe abatesse a meya metade e que so se pagassem do dito enterro dez mil reis e que fazia por nao faltar ao titulo que tem da misericordia observando esta com o sobredito., determinando porem a junta que este abatimento e absolvi?ao nao podesse para o futuro servir de exemplo., nem para os que ja estavao riscados., nem para os irmaons que pello tempo sdiante se riscassem porque queriao que nao obstante esta absolvicao(...) o dito capitulo sempre ficasse em sua for?a e vigor como se nao houvesse tal dispensa (..)" 
+
+Era nesse ano provedor o reverendo prior joze coelho cortez
+
+	referido$martinho negrao arnaut de rivo 
+
+		ls$morto/antes 
+
+	referido$joze coelho cortez 
+
+		ls$profissao/prior 
+
+		ls$titulo/reverendo 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom15/23/12/1746/9v 
+
+	n$joao barreto cabral/id=nom15-p1 
+
+		ls$profissao/padre 
+
+		ls$titulo/irmao de maior condicao 
+
+	referido$joao xavier de almeida serra 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom16/30/3/1749/10 
+
+	n$boaventura de aguiar de carvalho/id=nom16-p1 
+
+		ls$profissao/padre%prior da (da colegiada) igreja desta villa(da lousa) 
+
+		ls$titulo/reverendo 
+
+		ls$titulo/irmao 
+
+	referido$joao barreto bacelar 
+
+		ls$titulo/doutor 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom17/4/4/1749/10v 
+
+	n$alexandre de britto e franca/id=nom17-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$residencia/vila da lousa 
+
+
+
+nom$nom18/25/3/1750/11/obs=no mesmo termo se aceita joao de fran?a 
+
+	n$alexandre de britto/id=nom18-p1 
+
+		ls$titulo/irmao de maior condicao
+
+		ls$residencia/vila da lousa 
+
+
+
+nom$nom18a/25/3/1750/10v/obs=no mesmo termo se aceitam alexandre de britto 
+
+	n$joao de fran?a/id=nom18a-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$residencia/vila da lousa 
+
+
+
+nom$nom19/9/1/1752/11v 
+
+	n$damazo joze de sa cabral/id=nom19-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$residencia/vila da lousa 
+
+
+
+nom$nom20/30/3/1752/12 
+
+	n$diamantino arnaut de almeida/id=nom20-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+
+
+nom$nom21/22/8/1756/12v 
+
+/obs= "elei?ao e aceita?ao do novo capelao"(o reverendo aquilino jose da gama) 
+
+- estando"prezente o escrivam della que prezidia a meza em abzencia do excellentissimo provedor da mesma o illustrissimo e excelentissimo senhor duque de aveyro e os mays irmaons da meza abaxo assignado., que este prezente anno servem: pello dito escrivam prezidente antonio arnaut cortez foy proposto a meza que porquanto se escuzava de cappelao., o reverendo doutor joze antonio monteiro de tavora ., irmao da mesma santa caza que ha anos servia., se fazia necessario eleger e aceytar novo cappelao que servisse daqui em diante e foy proposto o reverendo accyllino jose da gama para servir a ditta cappellaniavisto os reverendos sacerdotes que sao ao prezente irmaons estarem ocuppadoscom missas pois conforme o estatuto que se fez no livro de addi?ao do compromisso a fl.16 sobre as missas da caza deviao estes preferir., e uniformemente foy aceyto pello dito prezidente e mais irmaons para servir a cappellania (...) o reverendo cappellao e o aceyou na forma que em elle se declara(...)" 
+
+	referido$aquilino jose da gama 
+
+		ls$cargo/capelao da misericordia/obs=nomeado em 22-8-1756 
+
+
+
+nom$nom21/5/11/1758/13 
+
+/obs="aceyta?am do cappellao desta santa caza da mizericordia"(o padre diogo pinto cabral) 
+
+"(...) pelo dito provedor(antonio arnao cotez foi proposto que por nam haver de prezente cappellam na dita santa caza em rezam de seer deminuto o pre?o da esmola doutenta reis pello qual the agora se diziam as missas da santa caza parecia racionavel que por verem dita a hora certa e local determinado se aumentasse esta esmola em cem reis o que parecendo aos ditos irmaons ser justo assim o votataram e por estar prezente o padre diogo pnto cabral disse que elle se obrigava a dizer as missas da obrigassam desta santa caza pella esmola referida as horas competentes(...)" 
+
+	referido$diogo pinto cabral 
+
+		ls$cargo/capelao da misericordia/obs=nomeado em 5-11-1758 
+
+ 
+
+
+
+nom$nom22/5/11/1758/13v/obs=no termo figura simultaneamente a aceitacao de pedro cotta bandeira ottone 
+
+	n$agostinho ottone cotta bandeira/id=nom22-p1 
+
+		ls$titulo/beneficiado
+
+		ls$cargo/irmao de maior condicao 
+
+
+
+nom$nom23/5/11/1758/13v/obs=no mesmo termo se aceita agostinho ottone cotta bandeira 
+
+	n$pedro cotta bandeira ottone/id=nom23-p1 
+
+		ls$cargo/irmao de maior condicao 
+
+
+
+nom$nom24/14/3/1770/14 
+
+	n$joseph raymundo de sa cabral/id=nom24-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+nom$nom25/15/12/1761/14v 
+
+	n$matheus barreto cabral/id=nom25-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$residencia/vila da lousa 
+
+
+
+nom$nom26/10/8/1755/15 
+
+/obs="termo por que foi derriscado de irmao alexandre de britto e franca"(o termo tem a data de 1755 mas deve ser engano., devendo ler-se 1765) 
+
+-"(...) ahi pello ditro provedor foi proposto que sendo alexandre de britto e franca irmao desta caza e tendo obrigacam de assistir as funcoens della o nao fizera em todo anno proximo passado nem huma so vez viera assistir aos enterros sendo irmao da meza., e por essa razao no dia da festa que se fez em dois de julho perterito., fora acordado em meza que este fora avizado para vir declarar a mesma meza ficara ou nao continuar em servir esta caza mandando-se logo avizo., pello irmao de azul veio com resposta dizendo que estava para hir para fora que na primeira meza responderia e por nao vir em a primeira por ordem desta meza foi avizado por mim escrivao para que viesse na primeira meza dar a razao por que nao tinha comprido com a sua obrigacam e aparecendo nella aprezentou uma resposta por escrito (...) e porque as rezoens que nella expoe nao exc leum de ser de riscado de irmao., entes injuriam esta caza mandava o dito provedor que esta meza votasse sobre o que se devia fazerno prezente cazo e sendo todos reonidos por mais votos se rezolveo que fosse derriscado e que o papel que expoe as suas razoens se guardasse no cartorio desta caza para se usar quando for necessario(...)" 
+
+	referido$alexandre de brito e franca 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto). 
+
+
+
+nom$nom27/24/3/1766/15v 
+
+	n$feliciano monteiro vellozo da silva/id=nom27-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+nom$nom28/24/3/1766/16 
+
+	n$joao negrao arnaut/id=nom28-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+nom$nom29/2/7/1766/16v/obs=no mesmo termo se aceitou francisco xavier de almeida serra 
+
+	n$joze arnaut de almeida/id=nom29-p1 
+
+		ls$titulo/irmao de maior condicao 
+
+		ls$residencia/vila da lousa 
+
+ 
+
+
+
+nom$nom30/2/7/1766/16v/obs= no mesmo termo se aceita joze arnaut de almeida 
+
+	n$francisco xavier de almeida serra/id=nom30-p1 
+
+		ls$residencia/lugar de alfucheira 
+
+		ls$titulo/irmao de maior condicao/obs=no final do termo escreve-se "Por justos motivos que me assistem de risco-me de irmam desta santa caza. francisco xavier de almeida serra (assinatura autografa) nao esta datado "
+
+ 
+
+
+
+nom$nom31/16/4/1772/17/obs=no mesmo termo aceitam-se juliao antonio e antonio jose da vila da louza 
+
+	n$joze freire/id=nom31-p1 
+
+		ls$residencia/ponte coudiz 
+
+		ls$titulo/irmao de menor condicao%irmao/obs=aparece na lista de irmaos de menor condicao fl.141v 
+
+		ls$assinatura/de cruz -nivel 1 
+
+ 
+
+
+
+nom$nom32/16/4/1772/17/obs=no mesmo termo se aceitam joze freire e antonio joze 
+
+	n$juliao antonio/id=nom32-p1
+
+		ls$residencia/vila da lousa/obs=aparece na lista de irmaos de menor condicao fl. 141v. 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/assinatura autografa-nivel 2 
+
+
+
+nom$nom33/16/4/1772/17/obs=no mesmo termo se aceitam joze freire e juliao antonio 
+
+	n$antonio joze/id=nom33-p1 
+
+		ls$residencia/vila da lousa/obs=aparece na lista de irmaos de menor condicao fl.141v 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel 1 
+
+
+
+nom$nom34/12/4/1778/17v 
+
+	n$joze de magalhaens mexia de macedo/id=nom34-p1 
+
+		ls$titulo/irmao 
+
+		ls$residencia/na sua quinta de santa rita 
+
+
+
+nom$nom35/12/4/1778/18 
+
+	n$joze da silva galvao/id=nom35-p1 
+
+		ls$titulo/irmao 
+
+		ls$residencia/vila da lousa/obs=assina jose joaquim da silva galvao 
+
+
+
+nom$nom36/12/4/1778/19 
+
+	n$manoel lopes caetano cortez serra/id=nom36-p1 
+
+		ls$titulo/capitao mor%capitao mor da vila lousa 
+
+		ls$titulo/irmao 
+
+
+
+nom$nom37/2/7/1781/19v 
+
+	n$miguel denis pereira/id=nom37-p1 
+
+		ls$titulo/irmao 
+
+		ls$profissao/padre%prior de vilarinho 
+
+		ls$titulo/reverendo 
+
+
+
+nom$nom38/2/7/1752/20 
+
+	n$luis joze de macedo/id=nom38-p1 
+
+		ls$titulo/irmao 
+
+
+
+nom$mon39/2/7/1783/20 
+
+	n$manoel caetano de arantes/id=nom39-p1 
+
+		ls$titulo/irmao 
+
+		ls$residencia/na sua quinta de "traz da fonte" 
+
+
+
+nom$nom40/2/7/1784/20v 
+
+	n$leonardo de sa cabral/id=nom40-p1 
+
+		ls$profissao/padre/obs=nao especificado 
+
+		ls$titulo/dom 
+
+		ls$titulo/reverendo 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+
+
+nom$nom41/27/4/1788/22 
+
+/obs="termo que se ouve por derriscado luis joze de macedo" 
+
+estando "prezente o provedor joze arnaut de almeyda e mais irmaons da meza abaixo assgnados, por elles foy assentado uniformemente que o dito luis joze de macedo era incapaz de ser irmao desta santa caza por motivos muito inocentes (sic) que tinha expressado na prezenca do provedor e meza pellos quais o haviao por de riscadoe excluido deta corporacao para nunca nella mais entrar nem gozar dos previlegios de irmao "
+
+(a paginacao tem um erro do fl.20 passa para fl.22) 
+
+	referido$luiz joze de macedo 
+
+		ls$titulo/irmao/obs=riscado nesta data(ver acto) 
+
+ 
+
+
+
+nom$nom42/2/6/1796/22v 
+
+	n$leonardo cortez serra 
+
+		ls$profissao/padre/obs=nao especificado 
+
+		ls$titulo/reverendo 
+
+		ls$titulo/irmao 
+
+
+
+nom$nom43/0/0/1729/59 
+
+/obs="titulo dos irmaos de mayor condicao que actualmente estam servindo a stacasa da mizericordia desta villa da lousaa o prezente anno de 1729" 
+
+- (nota- entre os fls 23 e 26 ha assentos do seculo XIX.,os folios 26 a 58 estao em branco., no foilio 58v ha um assento do seculo XIX) 
+
+ 
+
+	referido$jom negrao arnaut%capitao mor joam negram arnaut - morto
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+	referido$francisco leal pinto%francisco leal pinto- morto 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+	referido$joam arnaut cortez%o cappitam joam arnaut cortez-morto  
+
+		ls$cargo/capitao 
+
+		ls$titulo/irmao demaior condicao 
+
+
+
+	referido$joam arnaut%o reverendo padre joam arnaut morto 
+
+		ls$profissqo/padre 
+
+		ls$titulo/irmao de maior condicao 
+
+	referido$antonio da serra%o reverendo padre antonio da serra-morto 
+
+		ls$profissao/padre 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+	referido$luis cabral coelho% luis cabral coelho- morto 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+	referido$teodozio arnaut de rivo% theodozio arnaut de rivo- morto 
+
+		ls$cargo/irmao de maior condicao 
+
+
+
+	referido$bebiano nunes da gama% o reverendo padre bebiano nunes da gama- morto 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+ 
+
+	referido$ascenco de paiva pinto%ascenco de payva pinto  morto 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+	referido$belchior henriques arnaut %o reverendo padre belchior henriques arnaut morto 
+
+		ls$profissao/padre 
+
+		ls$titulo/irmao de maior condicao 
+
+
+
+	referido$joao barreto bacelar%o doutor joao barreto bacellar morto  
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+
+
+	referido$alexandre da costa quaresma%alexandre da costa quaresma morto  
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+	referido$philipe leal franco%o reverendo padre philippe leal franco-de riscado 
+
+								pello termo que se acha no livro das contas digo neste
+
+								 livro a fl. 2v (fl59) 
+
+		ls$titulo/irmao de maior condicao/obs=riscado a 17290703 por nao querer aceitar o lugar 
+
+												de escrivao e por ter usado "palavras menos sonantes"(ver acto) 
+
+
+
+	referido$feliciano monteiro de tavora% feliciano monteiro de tavora-auzente a annos-morto 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+
+
+	referido$thome leal cortez%o reverendo padre thome leal cortez 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+
+
+	referido$silverio jose cortez%o doutor sylverio joseph cortez- prezo por crime grave a annos morto 
+
+		ls$titulo/irmao de maior condicao
+
+		
+
+	referido$antonio de alfonseca%o doutor antonio de alfonceca-aubzente a annos
+
+									 e morador em outra parte  
+
+		ls$cargo/irmao de maior condicao 
+
+		
+
+	referido$antonio de almeida de magalhaens%antonio de almeyda de magalhaens- morto 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+	referido$manoel de almeida serra%o doutor manoel de almeyda serra  morto 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+	referido$manoel vaz cortez/obs=o doutor manoel vaz cortez- de riscado por um 
+
+									termo que se acha a fl.5 deste livro 
+
+                                    riscado a 17370413 por nao ter ido a processao 
+
+                                   	dos "santos passos" e nao ter dado qualquer 
+
+                                   	justificacao(ver acto) 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+	referido$leonardo de sa cabral/obs=riscado a 17420903 por nao querer se-lo(ver acto) 
+
+										leonardo de sa cabral- de riscado pello termo a fl7 
+
+		ls$titulo/irmao de maior condicao/data=17290703 
+
+		
+
+
+
+	referido$antonio arnaut cortes/obs=ha um termo de aceitacao de um antonio arnaut de rivo antonio arnaut cortez-morto 
+
+		ls$titulo/irmao de maior condicao 
+
+		
+
+	referido$jose antonio monteiro de tavora%o doutor joseph antonio monteiro de tavora/mesmo_que=nom4-p1 
+
+		ls$titulo/irmao de maior condicao/data=17360702 
+
+		
+
+
+
+	referido$antonio jose madeira neto/mesmo_que=nom5-p1/obs=o padre antonio jozeph madeira netto- morto 
+
+		ls$profissao/padre 
+
+		ls$titulo/irmao de maior condicao/data=17370302 
+
+
+
+	referido$jose miguel de macedo%jose miguel de macedo de magalhaes mexia joze miguel de macedo de riscado a fl. 68v. 
+
+						/mesmo_que=nom63a-p1/obs=riscado a 17400402 
+
+						
+
+		ls$titulo/irmao de maior condicao/data=17380404/obs=o termo de aceitacao foi riscado
+
+		
+
+ 
+
+	referido$martinho negrao arnaut%martinho negrao arnaut  de riscado a fl. 69
+
+		 /mesmo_que=nom63b-p1
+
+	     /obs=riscado a 17420903 por nao querer ser irmao usando de palavras menos proprias (ver acto) 
+
+		ls$titulo/irmao de maior condicao/data=17380404/obs=o termo de aceitacao foi riscado 
+
+		
+
+
+
+	referido$luis botelho de macedo/xmesmo_que=nom64-p1
+
+					/obs=luis botelho de macedo-de riscado a fl. 70, riscado a
+
+							 417390412 por nao querer aceitar os cargos que 
+
+							 lhe foram dados durante a semans santa e faltar 
+
+							 a varios enterros(ver acto) 
+
+							 
+
+		ls$titulo/irmao de maior condicao/data=17380404/obs=o termo de aceitacao foi riscado 
+
+
+
+	referido$joze coelho cortez/xmesmo_que=nom7-p1/obs= o padre joze coelho cortez- de riscado a fl. 5 
+
+		ls$titulo/irmao de maior condicao/data=17380701 
+
+		ls$profissao/padre 
+
+
+
+	referido$joze antonio quaresma/mesmo_que=nom9a-p1
+
+		/obs=o licenciado joze antonio quaresma- de riscado a fl.7 
+
+				riscado a 17420903 por ano querer ser irmao e 
+
+				proferir palavras menos proprias (ver acto) 
+
+		ls$titulo/irmao de maior condicao/data=17400702 
+
+		ls$tiulo/licenciado
+
+		
+
+
+
+	referido$joachim furtado de mesquita/mesmo_que=nom8-p1/obs=joachim furtado de mesquita- ... a fl.6-morto 
+
+		ls$titulo/irmao /data=17390326
+
+		
+
+	referido$joao monteiro de tavora/mesmo_que=nom12-p1/obs=o licenciado joao monteiro de tavora  
+
+		ls$titulo/irmao de maior condicao/data=17430407 
+
+		ls$titulo/licenciado 
+
+
+
+	referido$joao xavier de almeida serra/mesmo_que=nom13-p1
+
+			/obs=o licenciado joao xavier de almeyda serra- fl.8v. 
+
+		ls$titulo/irmao de maior condicao/data=17430707 
+
+		ls$titulo/licenciado 
+
+		
+
+	referido$joao barreto cabral/mesmo_que=nom15-p1/obs=o padre joao barreto cabral  fl.9v. 
+
+		ls$titulo/irmao de maior condicao/data=17461223 
+
+		ls$profissao/padre 
+
+		
+
+
+
+	referido$boaventura de aguiar e carvalho/mesmo_que=nom16-p1
+
+	   		/obs=o reverendo prior boaventura de aguiar e carvalho- morto- fl. 10 
+
+		ls$titulo/irmao/data=17490330 
+
+		ls$titulo/reverendo 
+
+		ls$ profissao/padre%prior 
+
+		
+
+ 
+
+	referido$alexandre de britto e fran?a/mesmo_que=nom17-p1
+
+				/obs=alexandre de britto e franca- de riscado fl 10v (fl.60)
+
+		ls$titulo/irmao de maior condicao/data=17490404 
+
+ 
+
+
+
+	referido$joao de franca/mesmo_que=nom18a- p1/obs=joao de franca- a fl.10  
+
+		ls$titulo/irmao de maior condicao/data=17500325 
+
+ 
+
+	referido$alexandre de britto/mesmo_que=nom18-p1
+
+			/obs=alexandre de britto o velho- morto- a fl.11 (fl. 59v)
+
+		ls$alcunha/o velho 
+
+		ls$titulo/irmao de maior condicao/data=17500325
+
+		
+
+
+
+	referido$damazo joze de as cabral/mesmo_que=nom19-p1/obs=damazo joze de sa cabral- tem o assento a fl. 11-morto 
+
+		ls$titulo/irmao de maior condicao/data=17520109 
+
+
+
+	referido$diamantino arnaut de almeida/mesmo_que=nom20-p1/obs=diamantino arnaut de almeyda- a fl.12  
+
+		ls$titulo/irmao/data=17520330 
+
+
+
+	referido$joze raymundo de as cabral/mesmo_que=nom24-p1/obs=joze raymundo de sa cabral- morto- fl.14 
+
+		ls$titulo/irmao de maior condicao/data=17700314
+
+		
+
+
+
+	referido$mateus barreto cabral/mesmo_que=nom25-p1
+
+	          /obs=matheus barreto cabral- a fl.14  
+
+		ls$titulo/irmao de maior condicao/data=17611215 
+
+
+
+	referido$pedro cota bandeira/mesmo_que=nom23-p1
+
+		/obs=pedro cota bandeira-aubzente- a fl.13 
+
+ 
+
+		ls$titulo/irmao de maior condicao/data=17581105 
+
+		
+
+		
+
+
+
+	referido$agostinho ottone bandeira/mesmo_que=nom22-p1
+
+				/obs=agostinho ottone bandeira- aubzente- a fl.13.,
+
+				      no termo de aceitacao agostinho otone cota bandeira				      
+
+		ls$titulo/irmao de maior condicao/data=17581105
+
+		 
+
+ 
+
+	referido$joao negrao arnaut/mesmo_que=nom28-p1/obs=joao negrao arnaut- morto-a fl.16
+
+		ls$titulo/irmao de maior condicao/data=17660324
+
+		
+
+	referido$joze arnaut de almeida serra/xmesmo_que=nom29
+
+			/obs=no termo de aceitacao escreve-se joze arnaut de almeida - joze arnaut de almeida serra- ambos a fl.17 
+
+		ls$titulo/irmao de maior condicao/data=17660702
+
+		
+
+	referido$francisco xavier de almeida/mesmo_que=nom30-p1/obs=no termo de aceitacao joao 
+
+				xavier de almeida serra., ai escreveu por sua mao que se havia riscado
+
+				 "por justos motivos que me assistem" francisco xavier de almeyda - " " 
+
+
+
+		ls$titulo/irmao de maior condicao/data=17660702 
+
+		
+
+ 
+
+	referido$feliciano monteiro velozo da silva/mesmo_que=nom27-p1/obs=feliciano monteyro vellozo da silva- morto-a fl 15
+
+		ls$titulo/irmao de maior condicao/data=17660324
+
+		
+
+	referido$joze de magalhaes mexia/mesmo_que=nom34-p1
+
+				/obs=no termo de aceitacao escreve-se jose de magalhaes mexia de 
+
+							macedo joze de magalhaens mexia- a fl.14 
+
+		ls$titulo/irmao/data=17780412
+
+		
+
+	referido$joze joaquim da silva galvao/mesmo_que=nom54-p1
+
+			/obs=joze joaquim da silva galvao- a fl. 14? 
+
+
+
+		ls$titulo/irmao/data=17780412
+
+		
+
+	referido$manoel lopes caetano serra/ mesmo_que=nom36-p1
+
+			/obs=manoel lopes caetano serra- a fl.19 .no termo de aceitacao escreve-se manoel lopes caetano cortez serra/ 
+
+		ls$titulo/irmao de maior condicao/data=17780412 
+
+
+
+	referido$miguel dinis pereira/mesmo_que=nom37-p1/obs=o reverendo prior de villarinho
+
+													 miguel denis pereira- a fl. 19v 
+
+		ls$profissao/padre%prior 
+
+		ls$titulo/reverendo 
+
+		ls$titulo/irmao /data=17810702 
+
+
+
+	referido$leonardo de as cabral/xmesmo_que=nom179-p1
+
+				/obs=o conego dom leonardo de sa cabral 
+
+					riscado a 17930106 por enquanto provedor ter
+
+					 atitudes nao aceites pela irmandade(ver acto) 
+
+		ls$titulo/conego%conego dom leonardo de as cabral 
+
+		ls$titulo/irmao de maior condicao/data=17840702 
+
+ 
+
+
+
+nom$nom44/2/6/1728/61 
+
+	n$antonio francisco 
+
+		ls$profissao/sapateiro 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$residencia/vila da lousa 
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$manoel de almeida serra 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom45/19/3/1729/61v 
+
+	n$manoel antunes/ id=nom45-r1 
+
+		ls$estado civil/solteiro 
+
+		ls$tiutlo/irmao de menor condicao 
+
+		ls$titulo/cristao velho 
+
+		ls$residencia/lugar do casal 
+
+		ls$assinatura/de cruz-nivel 1 
+
+	referido$manoel simoes 
+
+		rel$parentesco/pai/manoel antunes /nom45-r1
+
+	referido$manoel de almeida serra 
+
+		ls$cargo/provedor
+
+		
+
+nom$nom46/19/3/1729/62 
+
+	n$joam francisco/id=nom46-p1 
+
+		ls$alcunha/o bruxo 
+
+		ls$residencia/penedo "dos rios"/obs=devera ser erro., no mesmo termo e aceite antonio simoes do cazal (aqui e que deveria figurar "casal dos rios")
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/de cruz/nivel 1 
+
+
+
+nom$nom47/19/3/1729/62/obs=no mesmo termo aceita-se joam francisco-o bruxo 
+
+	n$antonio simoes 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/mal-nivel 2 
+
+
+
+nom$nom48/2/6/1730/62v 
+
+	n$thomas galvam 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho 
+
+		ls$profissao/barbeiro 
+
+		ls$assinatura/mal-nivel 2
+
+	referido$manoel de almeida serra 
+
+		ls$titulo/licenciado 
+
+		ls$cargo/provedor 
+
+ 
+
+
+
+nom$nom49/2/7/1731/63 
+
+	n$francisco soares/id=nom49-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/cruz-nivel 1 
+
+	referido$manoel de almeida serra 
+
+		ls$tiulo/licenciado 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom50/2/7/1731/63v 
+
+	n$joseph francisco/id=nom50-p1 
+
+		ls$residencia/alfucheira 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/bem-nivel 3 
+
+	referido$leonardo de as cabral 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom51/11/4/1732/64 
+
+	n$pascoal simoes ferreira/id=nom51-p1 
+
+		ls$residencia/lugar de "seira" 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/mal-nivel 2 
+
+	referido$joao arnaut 
+
+		ls$profissao/padre 
+
+		ls$titulo/reverendo 
+
+		ls$titulo/provedor 
+
+
+
+nom$nom52/11/4/1732/64 
+
+	n$antonio rodrigues/id=nom52-p1 
+
+		ls$residencia/rua de palhais na vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom53/19/3/1733/64v 
+
+	n$joao simoes cabasso/id=nom53-p1 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$duque de aveiro 
+
+		ls$cargo/provedor%excelentissimo e ilustrissino duque de aveiro 
+
+	referido$theodozio arnaut de rivo 
+
+		ls$cargo/escrivao/obs=a exerce as fun?oes de provedor na sua ausencia 
+
+
+
+nom$nom53a/19/3/1733/64v 
+
+	n$theodozio duarte/id=nom53a-p1 
+
+		ls$residencia/porto da reguenga 
+
+		ls$titulo/irmao de menor condicao/obs=o termo encontra-se riscado escrevendo-se na margem: "riscado por circunstancias que a meza achou para nao ser irmao por ter alguma vileza(sic) "
+
+		ls$assinatura/de cruz-nivel 1/obs=a assinatura esta riscada 
+
+
+
+nom$nom54/26/4/1733/65 
+
+	n$manoel seco/id=nom54-p1 
+
+		ls$residencia/casal dos rios/obs=do termo da vila da lousa., no mesmo assento se aceitarao joao soares do cazal dos rios e manoel fernandes da levada do mesmo lugar
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho%cristaos velhos sem raca de judeus 
+
+		ls$assiantura/mal-nivel 2 
+
+
+
+nom$nom55/26/4/1733/65/obs= sao aceites no mesmo termo manoel seco e manoel fernandes do mesmo lugar 
+
+	n$joao soares/id=nom55-p1
+
+		ls$residencia/cazal dos rios 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$titulo/cristao velho%cristaos velhos sem raca de judeus
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom56/26/4/1733/65/obs= sao aceites no mesmo termo joam soares e manoel seco 
+
+	n$manoel fernandes/id=nom56-p1 
+
+		ls$residencia/levada%da levada do dito lugar do casal dos rios 
+
+		ls$titulo/cristao velho%cristaos velhos sem raca de judeus-
+
+		ls$assinatura/de cruz -nivel 1 
+
+ 
+
+
+
+nom$nom57/9/4/1733/66 
+
+	n$manoel luis macio/id=nom57-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom58/16/1/1735/66v/obs=no mesmo assentoe aceite caietano simoes do mesmo lugar 
+
+	n$theodozio antunes/id=nom58-p1 
+
+		ls$residencia/rios%do limitte dos rios 
+
+		ls$titulo/irmao
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/bem-nivel 3 
+
+	referido$joao barreto cabral 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom59/16/1/1735/66v/obs=no mesmo assento se aceita como irmao theodozio simoes 
+
+	n$caietano simoes/id=nom59-p1 
+
+		ls$residencia/rios%do limitte dos rios 
+
+		ls$titulo/irmao 
+
+		ls$titulo/cristao velho 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$60/3/4/1735/67 
+
+	n$celestino fernandes/id=nom60-p1 
+
+		ls$residencia/ponte do areal 
+
+		ls$titulo/irmao 
+
+		ls$assiantura/nao ha qualquer referencia 
+
+
+
+nom$61/25/3/1736/67v/obs=no mesmo termo e aceite marcelino dos santos 
+
+	n$mathias seco/id=nom61-p1 
+
+		ls$residencia/casal dos rios 
+
+		ls$titulo/irmao
+
+		ls$titulo/cristao velho 
+
+		ls$assiantura/de cruz-nivel1 
+
+	referido$antonio arnaut cortez 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom62/25/3/1736/fol?
+
+	n$marcelino dos santos/id=nom62-r1 
+
+		ls$residencia/vila da louza 
+
+		ls$estado civil/solteiro 
+
+		ls$titulo/irmao 
+
+		ls$titulo/christao velho 
+
+		ls$assintura/uma cruz-nivel 1 
+
+	referido$manoel dos santos 
+
+		ls$residencia/vila da louza 
+
+		rel$parentesco/pai/marcelino dos santos/nom62-r1 
+
+ 
+
+
+
+nom$nom63/13/4/1737/68 
+
+	n$francisco seco/id=nom63-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$titulo/cristao velho%cristao velho sem raca de judeu 
+
+		ls$assinatura/uma cruz-nivel1 
+
+
+
+nom$nom63a/4/4/1738/68v 
+
+	n$joze miguel de macedo de magalhaes mexia/id=nom63a-p1 
+
+		ls$titulo/irmao de maior condicao/obs=o termo esta riscado., ha algo escrito a margem que tambem foi riscado de modo a que nao fosse possivel ler-se o que foi escrito., a assinatura de joze migel tem um risco por cima 
+
+
+
+nom$nom63b/4/4/1738/69 
+
+		n$martinho negrao arnaut/id=nom63b-p1 
+
+		ls$titulo/irmao de maior condicao/obs=o termo esta riscado., ha algo escrito a margem que tambem foi riscado de modo a que nao fosse possivel ler-se o que esta escrito., a assinatura de martinho negrao esta tambem riscada 
+
+
+
+nom$nom64/4/4/1738/69v 
+
+	n$manoel borges/id=nom6-p1
+
+		ls$residencia/povoa%do lugar da povoa 
+
+		ls$titulo/irmao de menor condicao
+
+		ls$tiulo/cristao velho%cristao velho sem raca de judeu 
+
+		ls$assinatura/mal-nivel 2 
+
+
+
+nom$nom64a/4/4/1738/70 
+
+	n$luis botelho de macedo/id=nom64a-p1 
+
+		ls$titulo/irmao de maior condicao/obs=o termo foi riscado., foi escrito algo na margem que foi riscado de modo a que nao fosse possivel ler-se o que fora escrito-a assinatura de luis botelho tem tambem um traco por cima 
+
+ 
+
+
+
+nom$nom65/12/4/1739/70v 
+
+/obs= estando "prezente o provedor e mais irmaos da meza por elles foy ditto que visto luis botelho de macedo escrivao actual da dita santo caza o prezente anno repugnar levar os cargos que lhe forao destribuidos pella mesma meza na semana santa e outrossi faltar a varios interros que tem havido., dizendo que nao queria ser irmao da dita santa caza o haviao elles ditto provedor e mais irmaos da meza por derriscado de irmao da dita santa caza " (foram-lhe aplicadas as penas determinadas no compromisso relativas aos irmaos que se riscassem) 
+
+	referido$luis botelho de macedo 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+
+
+nom$nom66/2/7/1739/71 
+
+	n$manoel joseph de figueiredo/id=nom66-r1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$asinatura/bem-nivel 3 
+
+	referido$gaspar correa 
+
+		ls$residencia/vila da lousa 
+
+		rel$parentesco/pai/manoel joseph de figueiredo/nom66-r1 
+
+ 
+
+
+
+nom$nom67/11/4/1740/71v/obs= nomesmo termo aceita-se bebiano joze 
+
+	n$joze rodrigues/id=nom67-p1 
+
+		ls$alcunha/marrafao 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao
+
+		ls$assinatura/mal-nivel 2 
+
+	referido$martinho negrao arnaut 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom68/11/4/1740/71v/obs=no mesmo termo e aceite joze rodrigues marrafao 
+
+	n$bebiano joze/id=nom68-r1 
+
+		ls$titulo/irmao 
+
+		ls$residencia/vila da louza 
+
+		ls$assinatura/uma cruz-nivel2 
+
+	referido$manoel rodrigues braz 
+
+		rel$parentesco/pai/bebiano joze/nom68-r1 
+
+ 
+
+
+
+nom$nom69/30/10/1740/72 
+
+	n$joao antunes/id=nom69-rl 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/mal-nivel2 
+
+	referido$antonio fernandes 
+
+		ls$residencia/casal dos rios 
+
+		rel$parentesco/pai/joao antunes/nom69-r1
+
+	referido$leonardo de as cabral 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom70/18/3/1741/72 
+
+	n$manoel francisco/id=nom70-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$profissao/pizoeiro 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$leonardo de as cabral 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom71/30/3/1741/72v 
+
+	n$antonio simoens/id=nom71-p1 
+
+		ls$residencia/casal% do casal lemitte desta villa 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/bem-nivel 3 
+
+
+
+nom$nom72/18/3/1742/73 
+
+	n$alexandre rodrigues/id=nom72-rl 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$joze antonio quaresma 
+
+		ls$titulo/licencenciado 
+
+		ls$cargo/provedor 
+
+ 
+
+
+
+nom$nom73/22/3/1742/73v 
+
+	n$joao rodrigues/id=nom73-p1 
+
+		ls$estado civil/solteiro 
+
+		ls$residencia/vila da lousa 
+
+		ls$filiacao/filho de manoel rodrigues marrafao 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assintura/mal-nivel2 
+
+	referido$thome leal cortez 
+
+		ls$titulo/reverendo 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom74/11/4/1745/74 
+
+	n$constantino jose/id=nom74-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assiantura/bem-nivel 3 
+
+	referido$joao monteiro de tavora 
+
+		ls$titulo/licenciado%doutor 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom75/15/4/1745/74v 
+
+	n$joze sequo mathias/id=nom75-p1 
+
+		ls$residencia/casal dos rios%casal dos rios "deste termo" 
+
+		ls$tiulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$joao monteiro de tavora 
+
+		ls$titulo/licenciado%doutor 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom76/9/7/1745/75 
+
+	n$antonio rodrigues/id=nom76-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$profissao/pedreiro 
+
+		ls$titulo/irmao 
+
+		ls$titulo/cristao velho 
+
+		ls$assiantura/de cruz-nivel 1 
+
+	referido$joze coelho cortez 
+
+		ls$titulo/reverendo 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom77/10/9/1746/75v 
+
+	n$joao rodrigues pinheiro/id=nom77-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+	referido$joao xavier de almeida serra 
+
+		ls$titulo/licenciado%doutor 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom78/16/10/1746/76 
+
+	n$francisco joze de almeida/id=nom78-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$joao xavier de almeida serra 
+
+		ls$titulo/licenciado%doutor 
+
+		ls$cargo/provedor 
+
+
+
+nom$nom79/1/12/1748/77 
+
+/obs="termo em que a meza determinou se riscassem os irmaos joao rodrigues jorge e theodozio rodrigues ambos desta villa"
+
+"(...)aonde estava prezidindo o provedor o doutor joao barreto bacellar e junta a meza foy proposto que se tinha mandado avizar pello sachristao da sta caza aos irmaos thodozio rodrigues e joao rodrigues jorge tanto para virem dar rezao em meza das faltas sucessivas que tinhao feito a varios enterros., e para aprezentarem as suas vestia., na forma do compromisso., e porque nao vieram fazer nem huma nem outra couza., determinou a meza que na forma da pena que lhe impoem os capitullos do compromisso fossem riscados de irmaons (fl. 77)e nunca mais gozassem do previllegio de tais e incorressem nas mais penas que o compromisso dispoem incorram os irmaons que forem riscados do servico da dita stacaza(...)" 
+
+	referido$joao rodrigues jorge 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+		ls$residenca/vila da louza 
+
+	referido$theodozio rodrigues 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+		ls$residencia/vila da louza 
+
+ 
+
+
+
+nom$nom80/12/1/1749/77v 
+
+/obs="termo em que a meza riscou de irmao a celestino fernandes da ponte do areal" 
+
+" (...) prezidindo o provedor joao barreto bacellar e os irmaons da meza que servem este prezente anno e por elles se rezolveo que porquanto se tinha determinado a celestino fernandes da ponte do areal que aprezentasse a sua veste dentro em tempo limitado., conforme ao compromisso por annos que hera irmao e a nao tinha e fazer assim muita falta na obrigacao de irmao., que o dito fosse riscado de irmao desta santa caza e assim nunca mais gozasse do provimento de tal e incorresse nas mais penas que o compromisso dispoem (...)" 
+
+	referido$celestino fernandes 
+
+		ls$residencia/ponte do areal 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+
+
+nom$nom81/22/3/1750/78/obs= no mesmo termo se aceita joao lopes do lugar da favari?a 
+
+	n$bernardo dos reis/id=nom81-r1 
+
+		ls$estado civil/solteiro 
+
+		ls$filiacao/filho de mateus dos reis%mateus dos reis desta vila 
+
+		ls$titulo/irmao
+
+		ls$assinatura/mal-nivel2 
+
+	referido$joze coelho cortez 
+
+		ls$titulo/reverendo 
+
+		ls$cargo/provedor 
+
+	referido$mateus dos reis 
+
+		ls$residencia/vila 
+
+		rel$parentesco/pai/bernardo dos reis /nom81-r1 
+
+
+
+nom$nom82/22/3/1750/78/obs=no mesmo termo se aceita bernardo dos reis 
+
+	n$joao lopes/id=nom82-p1 
+
+		ls$residencia/favarica 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom83/26/3/1750/78v 
+
+	n$raymundo antonio de jesus 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assiantura/nao figura qualquer referencia 
+
+
+
+nom$nom84/9/1/1752/79 
+
+	n$manoel rodrigues/id=nom84-p1 
+
+		ls$residencia/val da velha%val da velha "lemitte desta villa" 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assianatura/mal-nivel2 
+
+
+
+nom$nom85/2/7/1752/79v 
+
+	n$manoel seco/id=nom85-p1 
+
+		ls$residencia/casal%do "cazal lemitte desta villa" 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel 3/obs=aparece um assinatura de um "manoel seco mas como ja aparece no termo anterior pensamos que nao devera ser do irmao neste dia admitido., um outro manoel seco do cazal ja admitido assina de outro modo "
+
+
+
+nom$nom86/31/3/1752/80/obs=sao aceites no mesmo termo joaquim luis filho de manoel luis macio da vila da lousa 
+
+	n$joze dias/id=nom86-p1 
+
+		ls$filiacao/filho de manoel dias%filho de manoel dias desta vila 
+
+		ls$titulo/irmao
+
+		ls$assiantura/mal-nivel2 
+
+
+
+nom$nom87/31/3/1752/80/obs=neste mesmo termo e aceite joze dias 
+
+	n$joachim luis/id=nom87-p1 
+
+		ls$filiacao/filho de manoel luis macio%filho de manoel luis macio desta vila 
+
+		ls$titulo/irmao 
+
+		ls$assiantura/bem-nivel3 
+
+
+
+nom$nom88/2/7/1752/80v 
+
+	n$manoel carvalho/id=nom88-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom89/2/7/1752/81 
+
+/obs= "(...) em esta stacaza da mizericordia aonde estava o reverendo provedor joze antonio monteiro de tavora e mais irmaons da meza abaixo assignados pello dito provedor e irmaos da meza(...) foi dito haviao por derriscado de irmao desta stacaza a paschoal simoes ferreira do lugar de ceyra por ha annos nao vir assistir as funcoens desta santa caza de sorte que o anno passado de setecentos e cinquenta e hum fazendo-se prossi?ao dos passos assestiu o dito irmao a procissao sem vestia e juntamente porque sendo avizado por mim escrivao no dia vinte e nove do m?s de junho passado para servir a esta sta caza em a propria funssao della que he a prezente da eleycao nao apreceo e por isso e pello mais o ham por derriscado de irmao (...)" 
+
+	referido$pascoal simoes ferreira 
+
+		ls$residencia/ceira%lugar de ceira 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+
+
+nom$nom90/1/4/1753/81v 
+
+	n$domingos simois/id=nom90-p1 
+
+		ls$residencia/ papanata%lugar da papanata 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom91/18/9/1752/81v 
+
+/obs="termo de aceytacao do irmao do azul joachim dias desta villa" 
+
+"""(...) aonde estava prezente o provedor (...) e os irmans da meza que o prezente anno 
+servem apareceo joachim dias filho de manoel dias da rua direyta desta villa e por elle 
+foy dito ao dito provedor e meza que porquanto hera falecido o irmao do azul desta sta 
+caza(fl. 81v) joao de almeyda elle dezejava servir a mesma em a ditta ocupacao e 
+ministerio e visto pello provedor e meza o seu requerimento., depois de proceder 
+informacao da capacidade do dito joachim dias por em elle concorrerem limpeza de sangue., 
+bom procedimento., fidelidade e os mais requizitos que para semelhante emprego se 
+requerem., o houverao por aceyto por irmao do azul para servir a dita stacaza assistindo 
+a todos os enterros., funcoens., festividades e mais ocupacoens da mesma com o vestido 
+azul., como e estilo em as cazas de mizericordia deste reyno., e com aobrigacao de 
+assistir as missas dos domingos e dias sanctosna mesma forma composto., preparando tudo o 
+que necessario for para a celebracao dellas., tendo cuidadado da lampada., compozicao do 
+altar e tribuna e assistindo em a semana sancta., funcoens de Passos., festa de visitacao 
+e outra qualquer que na dita caza se celebre., preparando e accomodando tudo o que 
+precizofor para as ditas e quaesquer outrqs funcoens antes e depois dellas., avizando a 
+irmandade com o estipendio que para isso esta determinado e convocando os irmaons que o 
+provedor e a meza lhe determinarem e em fim executar tudo o que a este emprego he anexo., 
+conforme o uso., estilo e costume desta stacaza., dando-se-lhe o ordenado costumado que 
+consta do \$24 da reformacao do compromisso da mesma sta caza com as obrigacoens que no 
+mesmo alem das sobreditas se relatao., e assim lhe houverao por entragues as chaves da 
+mesma sta caza e os moveis e bens della que constam do inventario que se acha no cartorio 
+da mesma o qual sobredicto assinou e disse se obrigava a servir a sata caza na dorma 
+sobredicta(...., porem que como o dito joachim dias hera menor(fl.82) de vinte e cinco 
+annos e estava debaxo do patrio poder., era precizo se obrigasse a satisfacao do referido 
+e a todas as perdas e damnos que por comissao ou omissao delle nos bens da sta caza da 
+mizericordia houvesse o pay do dito novo irmao joachim dias., e por estar prezente o 
+assima nomeado manoel dias desta villa por elle foy dito em prezenca do dito provedor e 
+meza e das testemunhas abaixo nomeadas que elle se obrigava a dar inteira e total conta e 
+satisfacao de todos os bens que por inventario se entregassem ao dito seo filho o qual 
+com elle assignava (...)., ao que tudo disse obrigava seos bens prezentes e futuros e 
+queria que este termo tivesse toda a validade(...)feyto este termo assim de aceytacao 
+delle como de abonacao e fianca do dito seo pay"""
+
+(- foram testemunhas- joseph francisco do "lugar da rogella e termo desta villa" e cladio joseph de sousa do lugar de "val de maceyra do mesmo termo" de manoel dias uma cruz-nivel1., de joachim dias assinatura autografa-nivel 3) 
+
+	referido$joachim dias/id=nom91-r1 
+
+		ls$residencia/vila da louza 
+
+		ls$cargo/irmao de azul
+
+	referido$manoel dias 
+
+		ls$residencia/vila%rua direita 
+
+		rel$parentesco/pai/joachim dias /nom91-r1
+
+	referido$joao de almeida 
+
+		ls$cargo/irmao de azul
+
+		ls$morto/antes 
+
+
+
+nom$nom92/20/4/1753/83 
+
+	n$manoel fernandes/id=nom92-p1 
+
+		ls$residencia/cazal dos rios%lemitte da villa da lousa 
+
+		ls$titulo/irmao/obs=na peticao que aprezenta por ela fez"justificacao por seos pais e avos serem do termo da villa de miranda do corvo" 
+
+		ls$assinatura/de cruz-nivel1 
+
+ 
+
+
+
+nom$nom93/19/3/1755/83 
+
+	n$antonio dos reis/id=nom93-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom94/19/3/1755/83v 
+
+	n$joze sequo mathias/id=nom94-p1 
+
+		ls$residencia/cazal 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom95/12/7/1756/84 
+
+	n$manoel simoens/id=nom95-p1 
+
+		ls$residencia/lugar dasilveira 
+
+		ls$titulo/irmao de menor condicao/obs=de sangue limpo 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom96/8/4/1759/84v 
+
+	n$joao rodrigues coartao/id=nom96-p1 
+
+		ls$residencia/lugar do penedo 
+
+		ls$titulo/irmao de menor condicao/obs=a meza informou-se da sua limpeza de sangue e costumes
+
+		ls$assinatura/de cruz-nivel1/obs=assina apenas "joao rodrigues" 
+
+ 
+
+
+
+nom$nom97/12/4/1759/85/obs=foi admitido pelo mesmo termo manoel fernandes da levada 
+
+	n$joao de oliveira neves/id=nom97-p1 
+
+		ls$residencia/porto da reguenga 
+
+		ls$tiulo/irmao 
+
+		ls$assinatura/bem-nivel 3 
+
+
+
+nom$nom98/12/4/1759/85/obs=pelo mesmo termo se aceita joao de oliveira neves da levada 
+
+	n$manoel fernandes/id=nom98-p1 
+
+		ls$residencia/levada 
+
+		ls$titulo/irmao 
+
+		ls$assintaura/de cruz-nivel1 
+
+
+
+nom$nom99/12/4/1759/85 
+
+	n$antonio fernandes/id=nom99-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$profissao/sapateiro%sapateiro desta vila 
+
+		ls$titulo/irmao/obs=limpo de sangue 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom100/23/3/1760/85v/obs=pelo mesmo termo se admitem joze antono soares., francisco rodrigues correia., thome coelho-de todos constou "limpeza de sangue" e joze duarte relativamente ao qual foram feitas as deligencias necessarias para atestar limpeza de sangue. 
+
+	n$manoel luiz sopico 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom101/23/3/1760/85v/obs=pelo mesmo termo se admitem manoel luiz sopico., francisco rodrigues correia., thome coelho-de todos constou "limpeza de sangue" e joze duarte relativamente ao qual foram feitas as deligencias necessarias para atestar limpeza de sangue 
+
+	n$joze antonio soares/id=nom101-p1 
+
+		ls$residencia/vila da lousa/obs=na peticao que endereca a meza joze antunes diz viver naquele momento na ribeira mas que pretendia viver na "villa" pedindo que o admitissem como da vila.,o seu pedido foi deferido sendo admitido como da vila e pagando o que "costumao pagar os da villa"., se no prazo de um ano nao estivesse efectivamente a viver na vila teria de pagar o que estava estipulado para os lugares da freguesia 
+
+		ls$titulo/irmao
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom102/23/3/1760/85v/obs=pelo mesmo termo se aceitam manoel luiz sopico., jozre antonio soares.,thome coelho-de todos constou "limpeza de sangue"e joze duarte relativamente ao qual foram feitas as deligencias necessarias para atestar limpeza de sangue 
+
+	n$francisco rodrigues carreira/id=nom102-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao
+
+		ls$assinatura/nao consta do termo 
+
+ 
+
+
+
+nom$nom103/23/3/1760/85v/obs=pelo mesmo termo se aceitam manoel luiz sopico., joze antonio soares.,francisco rodrigues correia-de todos constou "limpeza de sangue" e joze duarte relativamente ao qual foram feitas as deligencias neessarias para atestar limpeza de sangue 
+
+	n$thome coelho/id=nom103-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom104/23/3/1760/85v/obs=para a sua admissao como irmao foram feitas as deligencias necessarias para atestar limpeza de sangue., pelo mesmo termo de aceitaram manoel luiz sopico., joze antonio soares., francisco rodrigues correia, thome coelho-de todos constou "limpeza de sangue" nao se afirmando que hajam sido feitas dilligencias para o efeito 
+
+	n$joze duarte/id=nom104-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao
+
+		ls$assinatura/de cruz-nivel1 
+
+ 
+
+
+
+nom$nom105/3/4/1770/86v 
+
+	n$felix correia/id=nom105-p1 
+
+		ls$residencia/lugar do penedo%"lemitte desta villa" 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom106/2/7/1760/87/obs=no mesmo termo se aceita antonio soares tambem do casal 
+
+	n$martinho francisco/id=nom106-p1 
+
+		ls$residencia/casal%"lemitte desta mesma villa" 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom107/2/7/1760/87/obs=no mesmo termo de aceita martinho francisco 
+
+	n$antonio soares/id=nom107-p1 
+
+		ls$residencia/casal%"lemitte desta villa" 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel 1 
+
+
+
+nom$nom108/2/7/1760/87/obs=pelo mesmo termo se aceitam leonardo saores e caetano de almeida ambos do casal 
+
+	n$joze cabral/id=nom108-p1 
+
+		ls$residencia/possas 
+
+		ls$titulo/irmao
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom109/2/7/1760/87/obs=pelo mesmo termo se aceitam antonio soares e caetano de almeida 
+
+	n$leonardo soares/id=nom109-p1 
+
+		ls$residencia/casal/obs=ao mesmo lugar se da o nome de "rios" e de "casal dos rios" assim o atesta a listagem de irmaos de menor condicao inserta neste livro e datada de 1729(ver fl. 139) 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+ 
+
+
+
+nom$nom110/2/7/1760/87/obs=pelo mesmo termo se aceitam joze cabral e leonardo soares 
+
+	n$caetano de almeida/id=nom110-p1 
+
+		ls$residencia/casal%lemite desta vila 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom111/19/3/1761/88/obs=pelo mesmo termo se aceita bartolomeu cabral 
+
+	n$joao soares/id=nom111-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom112/19/3/1761/88/obs=pelo mesmo termo se aceita joao soares 
+
+	n$bartolomeu cabral/id=nom112-p1 
+
+		ls$residencia/possas 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom113/3/5/1771/88v 
+
+/obs="termo de aceytacao do irmao de azul anastasio dias" 
+
+"aos tres dias (...) em meza a que preside o provedor actual (...)por elle foy proposto a meza que esta caza se achava mal servida com hum so irmao do azul., em rezao de serem as funcoens da caza muytas., o que actualmente serve., per si so nao pode accudir a ellase juntamente porque em outro tempo haviao quatro mamposteyros em esta caza que ajudavao as funcoens da semana santa e sta izabel ao irmao do azul., cujos todos hoje faltao e nao ha algum que supra as suas faltas, se fazia muito precizo a vista de nao haver mamposteyros o fazer-se elleicao de outro irmao do azul para com elle cumprirem as obrigacoens da caza(...) e porque lhe constava que anastasio dias filho de manoel dias desta villa., irmao de joachim dias actual irmao do azul nesta stacaza queria servir com o dito seo irmao parecia a elle provedor que se fizesse aceytacao do dito anastasio dias para como segundo irmao do azul ou como mamposteyro (...)mandou o dito provedor prezidente se chamasse o dito anastasio dias o qual aparecendo disse tinha grande desejo de servir esta santa caza ou como irmao do azul ou como mamposteyro e que assim rogava o aceytassem como tal., o que aceytarao., e o mesmo (fl.88v)se obrigou a bem satisfazer e cumprir com a sua obrigacao na mesma forma que se tinha obrigado seo irmao joachim dias pello termo que se achava neste livro a folhas outenta e hum verso e seguintes e que nomeava por seo fiador a todo o prejuzo seo pay manoel dias., o qual por estar prezente disse que elle como fiador e como principal pagador de todo o prejuizo que cauzasse o dito so filho nesta santa caza se obrigava por sua pessoa e bens., a que forao testemunhas que prezente estavao e tao bem assignarao os reverendos manoel ribeyro serrao e manoel de jesus monteyro todos da mesma villa(...)" 
+
+(de manoel dias uma cruz., anastacio dias nao aparece nas assinaturas) 
+
+	referido$anastacio dias 
+
+		ls$cargo/irmao de azul/obs=eleito como segundo irmao do azul 
+
+
+
+nom$nom114/30/3/1773/89v/obs=pelo mesmo termo se aceita como irmao acellino soares do mesmo lugar 
+
+	n$joze soares/id=nom114-p1 
+
+		ls$alcunha/novo%joze soares o novo 
+
+		ls$residencia/casal dos rios 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel 
+
+
+
+nom$nom115/30/3/1773/89v/obs=pelo mesmo termo se aceita joze soares do mesmo lugar 
+
+	n$acellino soares/id=nom115-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel 1 
+
+
+
+nom$nom116/14/4/171764/90 
+
+	n$joze simoes/id=nom116-p1 
+
+		ls$residencia/rios%do lugar dos rios lemitte desta villa da lousaa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom117/10/11/1765/90v 
+
+	n$joaquim rodrigues/id=nom117-p1 
+
+		ls$residencia/penedo%lemitte desta villa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom118/27/3/1766/90v 
+
+	n$manoel baiao 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/noa figura no termo 
+
+
+
+nom$nom119/24/8/1766/91 
+
+/obs="termo de elleiccam que se fez em meza na forma do compromisso" 
+
+"aos vinte e quatro dias do mez de agosto de mil settecentos e setenta e seis annos nesta villa da louzam(...)aonde estava prezente o provedor o doutor joao monteyro leite ferraz e os mais irmaons da meza (...) pellos quais foy determinado a sua elleicao canonica que estes por pauta em dia de sta(fl.91)izabel do dito anno sahiram eleytos por irmaos da meza pedro cotta bandeyra da fabrica do papel., o reverendo prior boaventura de aguiar e carvalho., o reverendo padre joze coelho cortez e por o sobredicto pedro cotta bandeyra se achar aubzente em esta villa e termo e os outros dous irmaos., hum por ser parocho e outro por ser iconomo na collegiada de s.silvestre da dita villa se acharem todos legitimamente empedidos para comprirem com a sua obriga?am de irmaos e o compromicio(sic) desta stacaza da faculdade ao dito pocurador e mais irmaos da meza para (...) fazer elleicao de outros tres irmaos em logar daquelles empedidos para que emquanto durace o seo impedimento servissem com a sua obrigacam e irmaos da meza desta stacaza e votando a dita meza uniformemente sahiram com mais votos joao rodrigues quartam dos rios do penedo., e antonio soares do cazal e leonardo soares do cazal e nesta forma houveram o dito provedor e mais irmaos da meza esta elleicam por feita e acabado e mandaram o sachristam desta santa caza os avizasse para exercerem a dita ocupacam (...)" 
+
+	referido$pedro cotta bandeira%pedro cota bandeira da fabrica do papel 
+
+		ls$cargo/irmao da mesa/obs=impedido de exercer o cargo por estar ausente 
+
+	referido$boabentura de aguiar e carvalho 
+
+		ls$titulo/reverendo/obs=paroco na igreja de s.silvestre da vila da louza 
+
+		ls$cargo/irmao da mesa/obs=impedido de exercer o cargo pelas fun?oes na igreja 
+
+	referido$joze coelho cortez 
+
+		ls$profissao/padre 
+
+		ls$titulo/reverendo 
+
+		ls$cargo/irmao da mesa/obs=impedido de exercer o cargo por ser iconomo na colegiada de s.silvestre da vila da louza
+
+	referido$joao rodrigues quartam 
+
+		ls$residencia/penedo 
+
+		ls$cargo/irmao da mesa/obs=eleito em substitui?ao de irmao com impedimento 
+
+	referido$antonio soares 
+
+		ls$residencia/casal 
+
+		ls$cargo/irmao da mesa/obs=eleito em substituicao de irmao com impedimento 
+
+	referido$leonardo soares 
+
+		ls$residencia/casa 
+
+		ls$cargo/irmao da mesa/obs=eleito em substituicao de irmao com impedimento 
+
+
+
+nom$nom120/12/4/1777/92 
+
+	n$joze francisco/id=nom120-p1 
+
+		ls$alcunha/bruxo%joze francisco bruxo 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinarura/nao aparece no termo 
+
+
+
+nom$nom121/31/3/1778/92v 
+
+	n$martinho correa/id=nom121-p1 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom122/23/3/1769/93 
+
+	n$leonardo soares/id=nom122-p1 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom123/2/7/1770/93v 
+
+	n$manoel duarte/id=nom123-r1 
+
+		ls$filiacao/filho de theodozio duarte%filho de theodozio duarte de porto da reguenga 
+
+		ls$residencia/porto da reguenga 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+	referido$theodozio duarte 
+
+		ls$residencia/porto da reguenga 
+
+		rel$parentesco/pai/manoel duarte/nom123-r1 
+
+
+
+nom$nom124/16/4/1700/94 
+
+	n$joam seco/id=nom124-p1 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao/obs=na peticao que apresenta afirma que seu pai e sogro tambem eram irmaos da miseruicordia 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom125/4/4/1773/94v 
+
+	n$joao netto/id=nom125-p1 
+
+		ls$residencia/porto da reguenga 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom126/2/7/1774/95 
+
+	n$bartolomeu joze buzano 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom127/2/7/1777/95v 
+
+	n$simao caneva 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao ha/obs=o termo nao apresenta nenhuma assinatura 
+
+
+
+nom$nom128/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joze lopes serra/id=nom128-p1 
+
+		ls$residencia/val de maceira 
+
+		ls$titulo/irmao
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom128a/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$antonio pires 
+
+		ls$residencia/fontainhas 
+
+		ls$profissao/alferes 
+
+		ls$titulo/irmao/obs=o nome deste individuo esta sublinhado e esta escrito ao lado "foi engano"
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom129/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$antonio dos reys correa/id=nom129-p1 
+
+		ls$residencia/espinheiro 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom130/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joze duarte/id=nom130-p1 
+
+		ls$residecna/favarica 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel 1 
+
+
+
+nom$nom131/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$bernardo vaz/id=nom131-p1 
+
+		ls$residencia/favarica 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom132/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joao travacos/id=nom132-p1 
+
+		ls$residencia/alfucheira 
+
+		ls$titulo/irmao 
+
+		ls$assintaura/bem-nivel3/obs=este nivel corresponde a assinatura de "joao travassos soarinho"que nao temos a certeza se e o mesmo 
+
+
+
+nom$nom133/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$matheus nunes/id=nom133-p1 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao 
+
+		ls$assiantura/bem-nivel3 
+
+
+
+nom$nom134/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joze luis supico/id=nom134-p1 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom135/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joao simoes pinheiro/id=nom135-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2/obs=nesta assinatura so se escreveu "joam simois" 
+
+
+
+nom$nom136/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joao ferreira/id=nom136-p1 
+
+		ls$residencia/possas 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom137/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joze cabral/id=nom137-p1 
+
+		ls$residencia/ponte coudiz 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom137a/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$manoel fernandes catalao/id=nom137a-p1 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao/obs=o nome deste individuo esta sublinado., escrevendo-se ao lado "foi engano"
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom138/12/4/1178/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joao francisco seco/id=nom138-p1 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom139/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joao de almeida ferreira/id=nom139-p1 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom140/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$antonio simoens/id=nom140-p1 
+
+		ls$residencia/picoto 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom141/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joao francisco/id=nom141-p1 
+
+		ls$residencia/serdeiras 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/decruz-nivel1 
+
+
+
+nom$nom142/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$simao borges/id=nom142-p1 
+
+		ls$residencia/papanata 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom143/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$francisco correa/id=nom143-p1 
+
+		ls$residencia/ribeira 
+
+		ls$tutulo/irmao 
+
+		ls$assinatura/bem-nivel3/obs=este nivel corresponde a assinatura de "francisco lopes correa"-nao ha nenhuma assinatura com o nome "francisco correa" 
+
+
+
+nom$nom144/12/4/1/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$bernardo dos reis/id=nom144-p1 
+
+		ls$residencia/ribeira 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom145/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$ignacio lopes/id=nom145-p1 
+
+		ls$residencia/fontainhas 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom146/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos 
+
+	n$joze borges/id=nom146-p1 
+
+		ls$residencia/povoa 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom147/2/7/1778/97v/obs=pelo mesmo termo foi aceite o seu irmao joze rodrigues 
+
+	n$bartholomeo rodrigues/id=nom147-p1 
+
+		ls$residencia/cavada/obs="arrabalde desta villa" 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2/obs=este nivel corresponde ao nome "bartholomo joze do sacramento" que julgamos que se reporta a mesma pessoa na medida que assim e identificado na listagem de irmaos que se encontra neste livro fl. catorze verso 
+
+
+
+nom$nom148/2/7/1778/97v/obs=pelo mesmo termo se aceita o seu irmao bartholomeo rodrigues 
+
+	n$joze rodrigues/id=nom148-p1 
+
+		ls$residencia/cavada 
+
+		ls$titulo/irmao 
+
+		ls$assiantura/de cruz-nivel1 
+
+
+
+nom$nom149/2/7/1778/98 
+
+/obs="termo em que a meza determinou riscar antonio pires das fontainhas" 
+
+"(...) e por elles foi dito (provedor e mais irmaos da meza)que antonio pires do lugar das fontainhas (...)se lhe lavrou o termo de aceita?ao juntamente com outros e por que agora nos expunha rezois que nam convinha ser irmam desta caza por dizer nam hera compativel com ocupacam (...) de alferes dos auxuliares(?) que exercitava (...) por cuja rezam o havemos por desarriscado(...)" 
+
+	referido$antonio pires 
+
+		ls$residencia/fontainhas 
+
+		ls$profissoa/alferes%alferes dos auxuliares 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+
+
+nom$nom150/10/1/1779/98 
+
+	n$joze rodrigues%joze rodrigues do cazal novo deste termo/id=nom150-r1 
+
+		ls$filiacao/filho de manoel rodrigues%filho de manoel rodrigues do cazal novo 
+
+		ls$residencia/casal novo 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+	referido$manoel rodrigues 
+
+		ls$residencia/casal novo 
+
+		rel$parentesco/pai/joze rodrigues /nom150-r1 
+
+
+
+nom$nom151/12/4/1781/112/obs=pelo mesmo assento se aceitam joze cortes e joze francisco do cazal 
+
+	n$joze correa/id=nom151-r1 
+
+		ls$residencia/vila da louza/obs=ha um erro na paginacao- em vez de fl.112 deveria estar fl. 99
+
+		ls$estado civil/casado com bernarda maria 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+	referido$bernarda maria 
+
+		rel$parentesco/mulher/joze correa /nom151-r1 
+
+
+
+nom$nom152/12/4/1781/112/obs=pelo mesmo termo se aceitam "joze correa" da vila da louza e joze francisco do casal 
+
+	n$joze cortes/id=nom152-p1 
+
+		ls$residencia/vila da louza/obs=ha um erro na pagina?ao: em vez de fl.112 deveria estar fl.99
+
+		ls$filia?ao/filho de constantino joze 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom153/12/4/1781/112/obs=pelo mesmo termo se aceitam joze correia e joze cortes ambos da vila da louza 
+
+	n$joze francisco/id=nom153-p1 
+
+		ls$residencia/casal/obs=ha um erro na paginacao- em vez de folio 112 deveria esta fl.99 
+
+		ls$filia?ao/filho de martinho francisco
+
+		ls$residencia/casal 
+
+		ls$assinartura/de cruz-nivel1 
+
+
+
+nom$nom154/2/4/1783/112v/obs=aceitaram-se mais tres irmaos 
+
+	n$manuel fernandes/id=nom154-p1 
+
+		ls$residencia/val de neira 
+
+		ls$termo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom155/2/4/1783/112v/obs=aceitaram-se mais tres irmaos no mesmo termo 
+
+	n$joaquim luis/id=nom155-p1 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom156/2/4/1783/112v/obs=aceitaram-se mais tres irmaos no mesmo termo 
+
+	n$antono de almeida/id=nom156-p1 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom157/2/4/1783/112v/obs=aceitaram-se mais tres irmaos no mesmo termo 
+
+	n$joze de almeida/id=nom157-p1 
+
+		ls$residencia/casal novo 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom158/2/4/1784/99 
+
+	n$joao das neves de figueiredo/id=nom158-p1 
+
+		ls$residencia/gevim 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+ 
+
+
+
+nom$nom159/2/4/1784/99 
+
+	n$manoel dias/id=nom159-p1 
+
+		ls$residencia/val da velha 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3 
+
+ 
+
+
+
+nom$nom160/5/4/1789/99v/obs=sao aceites pelo mesmo termo "simao jose rodrigues" dos rios e "goncalo lopes serra" da vila da lousa 
+
+	n$lourenco thomate/id=nom160-p1 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom161/5/4/1789/99v/obs=pelo mesmo termo se aceitam "louren?o thomate" e "goncalo lopes serra" 
+
+	n$simao joze rodrigues/id=nom161-p1 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao
+
+		ls$assinaura/de cruz-nivel 1 
+
+
+
+nom$nom162/5/4/1789/99v/obs=pelo mesmo termo mse aceitam "louren?o thomate" e "simao joze rodrigues" 
+
+	n$gon?alo lopes serra/id=nom162-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom163/5/4/1789/100/obs=no mesmo termo foi aceite como irmao seu filho paulo francisco thomate ambos da fabrica do papel 
+
+	n$joze maria thomate/ id=nom163-r1 
+
+		ls$residencia/rios%termo de aceitacao dos irmaons joze maria thomate e seo filho paulo francisco tomate da fabrica do papel (na listagem de irmaos de 1729 fl. cento e quarenta e dois afirma-se serem 'dos rios') 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/bem-nivel3/obs=assina "thomati"
+
+	referido$paulo francisco tomate%paulo francisco tomate da fabrica do papel 
+
+		ls$residencia/rios/obs=na listagem de irmaos de 1729 fl.cento e quarenta e dois afirma-se serem "dos rios"
+
+		rel$parentesco/filho/joze maria thomate/nom163-r1
+
+
+
+nom$nom164/5/4/1789/100/obs=no mesmo termo se aceita seu pai joze maria thomate da fabrica do papel 
+
+	n$paulo francisco thomate/id=nom164 -rl 
+
+		ls$residencia/rios/obs=na listagem de irmaos de 1729 fl. cento e quarenta e dois deste livro afirma-se serem "dos rios" 
+
+		ls$titulo/imao 
+
+		ls$assinatura/bem-nivel3/obs=assina "thomati"
+
+	referido$joze maria thomate 
+
+		ls$residencia/rios 
+
+		rel$parentesco/pai/paulo francisco thomate/nom164-rl 
+
+
+
+nom$nom165/2/7/1790/100v/obs=no mesmo termo figuram:custodio herse., joze simoens., joaquim pedrozo e joze lopes 
+
+	n$amaro joze rodrigues/id=nom165-p1 
+
+		ls$residencia/vila da louza%da rua da fonte 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom166/2/7/1790/100v/obs=pelo mesmo termo se aceitam: amaro joze rodrigues., joze simoens., joaquim pedrozo e joze lopes 
+
+	n$custodio herse/id=nom166-p1 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom167/2/7/1790/100v/obs=pelo mesmo tgermo se aceitam: amaro joze rodrigues., custodio herse., joaquim pedrozo e joze lopes 
+
+	n$joze simoens/id=nom167-p1 
+
+		ls$residencia/vila da louza%rua da fonte 
+
+		ls$titulo/irmao
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom168/2/7/1790/100v/obs=pelo mesmo termo se aceitam:amaro joze rodrigues., custodio herse., joze simoes e joze lopes 
+
+	n$joaquim pedrozo/id=nom168-p1 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom169/2/7/1790/100v/obs=pelo mesmo termo se aceitam:amaro joze rodrigues., custodio herse., joze simoens., joquim pedrozo 
+
+	n$joze lopes/id=nom169-p1 
+
+		ls$residencia/vila da louza%no "fundo de vila" 
+
+		ls$titulo/irmao 
+
+		ls$assinarura/de crus-nivel1 
+
+ 
+
+
+
+nom$nom179/6/1/1793/101 
+
+/obs=termo pelo qual se riscou o reverendo dom leonardo de sa cabral entao provedor da santa caza (designado "termo galante" no fl.cento e quarenta e dois)-
+
+em reuniao do escrivao joze da silva galvao e demais irmaos da meza "por elles foi dito que o nosso provedor o reverendo dom lionardo de sa cabral (...) tem obrado factos estranhos da nossa religiao como era o de prohibir ao sachristao desta santa caza o toque do sino para o povo se juntar a missa que na dita igreja se costumava dizer privando ao povo deste bem., lancando fora da mesma igreja as pessoas que nelle se achavao para ouvir missa., tratando a alguns irmaons desta irmandade com menos prodencia., sendo advertido no interro que se fez no dia 3 do referido mez ele mostrou a meza querer insistir nos mesmos projectos largando a veste da irmandade., retirando-se para sua propria caza sem querer assistir aquele acto de mizericordia que era da sua inspesao dizendo se dava por derriscadode irmao desta santa caza de que rezultou convocar-se a irmandade que assentou., por querer exercitar actos de humildade o escrivao desta santa caza., foi por ordem desta irmandade convocar ao dito provedor para continuar no exercicio da sua ocupasao ou ser ouvido sobre a resolucao da irmandade., ao que respondeo nao querer ser irmao della e para mais se justificar a procedencia da irmandade para conciliar (...) e evitar o escandalo segunda vez convocarao o irmao o doutor francisco xavier de almeida serra a quem deo a mesma resposta alem de lha ter dado por escrito., a vista do ponderado lancaram votos por escortinio lancando seo voto oculto cada hum de per si sahirao com vinte e sete para se despor (sic)da ocupasao de provedor e irmao desta santa caza e sete que nao., o que visto havemos (fl.101) por desposto ao reverendo dom leonardo de sa cabral da ocupasao de provedor e irmao desta santa caza e elegemos para provedor desta joze da silva galvao e para escrivao della a joze arnao de almeida serra ., ficando servindo a meza ja eleita(...)" 
+
+	referido$leonardo de sa cabral 
+
+		ls$titulo/reverendo%dom 
+
+		ls$cargo/provedor 
+
+		ls$titulo/irmao/obs=riscado nesta data (ver acto) 
+
+	referido$joze da silva galvao 
+
+		ls$cargo/provedor/obs=eleito nesta data(ver acto) 
+
+	referido$joze arnao de almeida serra 
+
+		ls$cargo/escrivao/obs=eleito nesta data (ver acto) 
+
+ 
+
+
+
+nom$nom180/2/7/1765/102/obs=a data deve estar incorrecta-deveria estar escrito 1795.,no mesmo termo se aceitam: diogo de barros., antonio do rego., manoel dias., joaquim dos reis 
+
+	n$joze de oliveira/id=nom180-p1 
+
+		ls$residencia/engenho 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom181/2/7/1765/102/obs=a data deve estar incorrecta-deveria estar escrito 1795.,foram aceites tambem:joze de oliveira do engenho., antonio do rego., manoel dias e joaquim dos reis-"todos desta vila" 
+
+	n$diogo de barros/id=nom181-p1 
+
+		ls$residencia/da vila da louza 
+
+		ls$titulo/irmao/ 
+
+		ls$assinatura/bem-nivel 3/obs=assina"diogo joze de barros" 
+
+
+
+nom$nom182/2/7/1765/102/obs=a data deve estar incorrecta-deveria estar escrito 1795., do memo assento consta:joze de oliveira do engenho.,diogo de barros., manoel dias., joaquim dos reis"todos desta vila" 
+
+	n$antonio do rego/id=nom182-p1 
+
+		ls$residencia /?
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+ 
+
+
+
+nom$nom183/2/7/1765/102/obs=a data deve estar incorrecta-deveria estar escrito 1795., nesse mesmo assento figuram:joze de oliveira do engenho., diogo de barros.,antonio do rego., joaquim dos reis"todos desta vila" 
+
+	n$manoel dias/id=nom183-p1 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao 
+
+		ls$assinatrura/bem-nivel3 
+
+
+
+nom$nom184/2/7/1765/102/obs=a data deve estar incorrecta-deveria estar escrito 1795., no mesmo assento figuram:joze de oliveira do engenho.,diogo de barros.,antonio do rego., manoel dias "todos desta vila" 
+
+	n$joaquim dos reis/id=nom184-p1 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom185/2/7/1797/102v 
+
+	n$luis joze antunes/id=nom185-p1 
+
+		ls$residencia/alfucheira/obs=informacao retirada do fl.cento e quarenta e dois-nao consta deste assento
+
+		ls$profissao/padre 
+
+		ls$titulo/reverendo 
+
+		ls$titulo/irmao/obs=este irmao consta da listagem dos irmaos de menor condicao mas a frente do seu nome fl.cento e quarenta e dois esta escrito "retirado"
+
+		ls$assinatura/bem-nivel3 
+
+
+
+nom$nom186/2/7/1797/102v/obs=no mesmo assento figuram:joze fernandes o novo.,bartholomeo fernandes., manoel duarte o novo e joze buzano 
+
+	n$joze soares/id=nom186-p1 
+
+		ls$alcunha/o novo%joze soares o novo 
+
+		ls$residencia/porto da reguenga/obs=nao temos a certeza 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/nao figura 
+
+
+
+nom$nom186a/2/7/1797/102v/obs=no mesmo assento figuram:joze soares., joze fernandes o novo., s., manoel duarte o novo e joze buzano 
+
+	n$bartolomeu fernandes/id=nom186a-p1 
+
+		ls$residencia/porto da reguenga
+
+		ls$titulo/irmao
+
+		ls$assinatura/cruz
+
+
+
+nom$nom187/2/7/1797/102v/obs=no mesmo assento figuram:joze soares o novo.,bartholomeo fernandes.,manoel duarte o novo e joze buzano 
+
+	n$joze fernandes/id=nom187-p1 
+
+		ls$residencia/porto da reguenga/obs=nao temos a certeza 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/mal-nivel2 
+
+
+
+nom$nom188/2/7/1797/102v/obs=no mesmo assento figuram os nomes de:joze soares o novo.,bartholomeo fernandes, joze fernandes o novo.,joze buzano 
+
+	n$manoel duarte/id=nom188-p1 
+
+		ls$alcunha/o novo%manoel duarte o novo 
+
+		ls$residencia/porto da reguenga/obs=temos a certeza do local de residencia 
+
+		ls$titulo/irmao
+
+		ls$assinatura/de crus-nivel1 
+
+
+
+nom$nom189/1/7/1797/102v/obs=no mesmo assento figuram os nomes de: joze soares o novo.,bartholomeo fernandes., joze fernandes o novo., manoel duarte o novo"do lugar do porto da reguenga" 
+
+	n$joze buzano 
+
+		ls$titulo/irmao 
+
+		ls$assinatura/de cruz-nivel1 
+
+
+
+nom$nom190/4/4/1813/108v 
+
+/obs=termo pelo qual se identificam os irmaos cujo termo de aceitacao nao consta deste livro 
+
+-"achao-se servindo aceitos nesta irmandade alguns individuos de cuja aceitacao nao aparecem neste livro os termos ou isto fosse porque se nao lavrarao logo que elles forao aceitos e ao depois veio a ficar por aprever digo e ao depois vierao a ficar por escrever ou fosse porque se perdesse a folha em que elles estavao posto que nao parece verosimil esta causa: fosse pello que fosse aqui se escrevem seos nomes para constar e sao os seguintes: joao fernandes dos rios., jeronimo mathias do porto da reguenga., joaquim joze supico dos rios., joao ferreira da fornia., joaquim de almeida de val de neira., joze antonio do fundo da villa., joaquim rodrigues do sacramento.,antonio guilherme.,jeronimo do rego., joze antonio do rego.,joao pinheiro., todos desta villa., de que se fez este termo que o provedor e mais irmaons de que todos da meza assignarao aqui (por se achar em branco esta pagina(sic.) aos dous dias do mez de abril de 1813"
+
+o provedor joze coelho de souza da gama (assinatura autografa) 
+
+(nao aparecem mais assinaturas) 
+
+	referido$joao fernandes 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$jeronimo mathias 
+
+		ls$residencia/porto da reguenga 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$joaquim joze supico 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$jao ferreira 
+
+		ls$residencia/fornea 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$joaquim de almeida 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$joze antonio 
+
+		ls$residencia/funda da vila 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$joaquim rodrigues do sacramento 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$antonio guilherme 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$jeronimo do rego 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+	referido$joao pinheiro 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto) 
+
+
+
+nom$nom191/0/0/0/136v 
+
+/obs="termo com que se ha-de de dispor o interro do senhor quinta feira santa" 
+
+"""o procurador ha para esse dia ser normal., dois irmaons agentes os quais disporam a 
+procissam em toda a necessaria veneracam 
+
+
+em primeiro luguar 
+
+ira o pendam que levara hum irmam seguir-se-ha outro com huma cruz em que ira dependurada 
+huma vara 
+
+logo seguiram os irmaons dois ahi em forma que nam vam mais de huma parte que da outra 
+nem muito juntos., nem suparados., e dispostos em boa ordem e pello meyo delles 
+seguir-se-ham os 
+
+anjos sem mais adorno que as tunicas roxas, descalcos e huma capella de silvas na 
+cabessa: o primeiro levara a varonica do senhor., o segundo hum calix., o terceiro huma 
+salva de prata com huns dados(?., o quarto hum martello e arquos(?)., o quinto os cravos.
+, o sexto o titollo., o septimo ...., o outavo a lanssa., teram muito cuidado em que nam 
+vam juntos mas apartados pello meyo da prossicam em distancia conveneniente huns dos 
+outros., cada hum levara em huma mao a insignia e na outra hum lensso branco., 
+
+junto ao palio seguir-se-am os padres tantos de huma como da outra parte todos com as 
+sobrepolicas(?) com as quais cobrirao as cabessas e peguado ao palio iram imparelhados ..
+. de huma parte com hum lenco na mam derecta e na esquerda hum livro., da outra parte 
+(fl. 137) ira hum mosso bem vestido que reprezente a magdalena que levara na mao esquerda 
+hum vaso de vidro redondo e na directa hum len?o., logo seguira o palio debaixo do qual 
+ira o esquife que levaram quatro sacardotes vestido de alvas estollaas atravassadas aos 
+ombros ... pellas cabessas e nellas humas croas de ... de esparto com que os sustentam e 
+sahiram com muita pauza e todos quatro cantaram os ...em hum coro e atras logo dos que 
+ali eram dois anjos com as ... logo as tres marias cobertas todas., as quais faram outro 
+coro cantando os hinos(?).logo seguira a senhora no andor que levam quatro irmaons., a 
+senhora levara nas maons o santo sudario aberto naquella altura em que ella vai. Atras 
+ira entre dois irmaons o procurador advertindo junto as primeiras e ultimas varas do 
+palio iram quatro irmaons com quatro lanternas e sempre a rezar. 
+
+Desta forma se dispora o interro tendo os irmaons que o governam muito cuidado em que 
+tudo va em boa ordem e muito devaguar pois assim o pede o piedoso desta accao para o que 
+ha de parar toda a prossicam em que se cantarem os hinos(?) fazendo se tres coros o 
+procurador., os sassardotes que levam o senhor que para isto escolheram os de milhores 
+vozes. Logo o segundo cantaram as marias ., ao terceiro os mais padres e nao se intrometa 
+mais que os dois irmaons no governo da prossicam que de serem muitos segue muita desordem 
+em este acto., sempre se requer toda a modestia. Declaro que tambem ira a bandeira da 
+irmandade nesta prossicam. (fl. 137) 
+"""
+
+
+
+nom$nom192/2/7/1731/137v 
+
+/obs="termo que se fez em meza a respeito do ornamento novo" 
+
+"""aos dois dias do m?s de julho de mil settecentos e trinta e hum nesta santa caza da 
+mizericordia foi acordado pella meza della que como se achava completo o ornamento que 
+consta de cazula., duas almaticas e hum pano de pulpito., que o provedor nem irmaons da 
+meza empresta sem o devido ornamento a pessoa alguma e so o podessem alugar para as 
+funcois que o quizerem nesta villa e seos limites com declaracao que sendo irmao desta 
+santa caza so pagava por cada huma das ditas couzas outenta reis e nao sendo irmao cento 
+e cinquenta e no cazo que algum provedor ofecial ou irmao desta santa caza o emprestar 
+pagara da sua bolsa o dito aluguer e porque tambem se acha hum pano de pulpito digo de 
+estante este por ser couza tenue entrava no dito aluguer e por verdade eu antonio arnaut 
+cortez escrivao da dita santa caza o escrevi """
+
+antonio arnaut cortez(assinatura autografa) 
+
+joao barreto bacellar (assinatura autografa) 
+
+alexandre da costa quaresma(assinatura autografa)(...) 
+
+
+
+nom$nom193/0/0/1729/139 
+
+/obs="titulo do irmaos de menor condicao que actualmente estam servindo a santa caza da mizericordia desta villa da louza o przente anno de 1729" (esta riscado"menor condicao") 
+
+	referido$antonio jorge/obs=antonio jorge dos rios- morto 
+
+		ls$rsidencia/rios 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$antonio de sequeira/obs=antonio de sequeira barbeiro de seyra-morto 
+
+		ls$profissao/barbeiro 
+
+		ls$residencia/ceira dos vales 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$lourenco simoes/obs=lourenco simoes alfaiate- morto 
+
+		ls$profissao/alfaiates 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel coelho cabral/obs=manoel coelho cabral-morto 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$francisco jorge/obs=francisco jorge dos rios-morto 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel fernandes/obs=manoel fernandes pedreiro do cazal-de riscado 
+
+		ls$profissao/pedreiro 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$pedro simoes/obs=pedro simoes de val de maceira-morto 
+
+		ls$residencia/val de maceira 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel goncalves%manoel goncalves rey do reguengo/obs=manoel goncalves rey do reguengo-morto 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+
+
+	referido$manoel rodrigues/obs=manoel rodrigues do reguengo-morto 
+
+		ls$residencia/reguengo 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+
+
+	referido$francisco arantes/obs=francisco de arantes da villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+		
+
+
+
+	referido$luis goncalves/obs=luiz goncalves de cova de lobo-morto 
+
+		ls$residencia/cova de lobo 
+
+		ls$titulo/irmao de menor condicao
+
+		 
+
+
+
+referido/manoel moreira/obs=manoel moreira de alfucheira-morto 
+
+		ls$residencia/alfucheira 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel francisco maygo(sic)/obs=manoel francisco maygo(sic) da villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$joao rodrigues trincalho/obs=joao rodrigues trincalho dahi-morto(fl.139) 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel francisco rapozo/obs=manoel francisco rapozo dahi-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel correa/obs=manoel correa de cova de lobo-morto 
+
+		ls$residencia/cova de lobo 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$brz francisco/obs=braz francisco da villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel alvares/obs=manoel alvares da povoa-morto 
+
+		ls$residencia/povoa 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel dos santos/obs=manoel dos santos da villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$martinho lopes/obs=martinho lopes dahi 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$bartolomeu simoes da larangeyra/obs=bartholomeo simoes da lanrangeyra dahi-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$gabriel correa/obs=gabriel correa de val de neira-morto 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel jorge/obs=manoel jorge de val de maceyra-morto 
+
+		ls$residencia/val de maceira 
+
+		ls$titulo/irmao de emnor condicao 
+
+
+
+	referido$francisco fernandes de carvalho/obs=francisco fernandes de carvalho da villa-morto 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$joao francisco/obs=joao francisco de val domingos morto 
+
+		ls$residencia/val domingos 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$thome francisco/obs=thome francisco dahi-morto 
+
+		ls$residencia/val domingos 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel vicente(?)/obs=manoel vicente(?) da villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$jose simoes%jose simoes barqueiro/obs=jozeph simois barqueiro dahi-morto 
+
+		ls$profissao/ barqueiro 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$jose da costa%jose da costa sapateiro/obs=joseph de costa sapaterio da villa-morto 
+
+		ls$profissao/sapateiro 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$antonio francisco musgo/obs=antonio francisco musgo dahi-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel rodrigues braz/obs=manoel rodrigues braz dahi-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$sebastiao rodrigues carreira/obs=sebastiam rodrigues carreyra morto 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$joao rodrigues soares/obs=joao rodrigues soares-morto 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$martinho jorge/obs=martinho jorge(?) do cazal-morto(fl.139v) 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$antonio simoes/id=nom193-r1/obs=antonio simoes filho que ficou do bruxo, o qual de prezente assiste na villa-aubzente 
+
+		ls$residente/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$nome desconhecido
+
+		ls$alcunha/bruxo 
+
+		rel$parentesco/pai/antonio simoes/nom193-r1 
+
+
+
+
+
+	referido$manoel simoes pote/obs=manoel simoes potte dos rios-morto 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$antono caneva/obs=antonio caneva dahi-morto 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel goncalves%manoel goncalves moleiro/obs=manoel goncalves moleyro dahi-morto 
+
+		ls$profissao/moleiro 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$joao francisco%joao francisco bruxo/mesmo_que=nom46-p1/obs=joao francisco bruxo dahi-morto 
+
+		ls$alcunha/o bruxo 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17290319 
+
+
+
+	referido$manoel antunes/xmesmo_que=nom45-p1/obs=manoel antunes solteiro dahi filho que ficou de manoel simois do mesmo lugar-morto 
+
+		ls$estado civil/solteiro 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17290319 
+
+
+
+	referido$manoel dos reys/obs=manoel dos reys do cazal-morto 
+
+		ls$residencia/cazal 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$martinho freire/obs=martinho freyre dahi-morto 
+
+		ls$residencia/cazal 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel luis/obs=manoel luis de ponte coudiz-morto 
+
+		ls$residencia/ponte coudisz 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel rodriges/obs=luis rodrigues de val da velha-morto 
+
+		ls$titulo/residencia/val da velha 
+
+		ls$titulo/irmao demenor condicao 
+
+
+
+	referido$francisco curado/obs=francisco curado solteiro da favarica-morto 
+
+		ls$estado civil/solteiro 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel correa %manoel correa ferreiro/obs=manoel correa ferreiro(?) da val de nugueira-morto em 3 de agosto de 1752 
+
+		ls$profisso/ferreiro/obs=morrreu a tres de agosto de 1752 
+
+		ls$tiutlo/irmao de menor condicao 
+
+
+
+	referido$manoel francisco cabessudo/obs=manoel francisco cabessudo da villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$joze francisco/mesmo_que=nom50-p1/obs=jozeph francisco de alfucheira-derriscado 
+
+		ls$residencia/alfucheira 
+
+		ls$titulo/irmao de menor condicao/data=17310702 
+
+
+
+	referido$antonio rodrigues/mesmo_que=nom52-p1/obs=antonio rodrigues de palhais desta villa-morto 
+
+		ls$residencias/palhais%de palhais dsta vila 
+
+		ls$titulo/irmao de menor condicao/data=17320411 
+
+
+
+	referido$paschoal simoes ferreira/mesmo_que=nom51-p1/obs=paschoal simois ferreira de ceyra-morto 
+
+		ls$residencia/ceyra 
+
+		ls$titulo/irmao de menor condicao/data=17320411 
+
+
+
+	referido$jose simoes cabasso/mesmo_que=nom53-p1/obs=joao simois cabasso do lugar dos rios-morto 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17330319 
+
+
+
+	referido$manoel seco/mesmo_que=54-p1/obs=manoel seco do lugar do cazal dos rios-morto 
+
+		ls$residencia/casal dos rios 
+
+		ls$titulo/irmao de menor condicao/data=17330426 
+
+
+
+	referido$joao soares/mesmo_que=nom55-p1/obs=joao soares do dito lugar do cazal-morto 
+
+		ls$residncia/casal 
+
+		ls$titulo/irmao de menor condicao/data=17330426 
+
+
+
+	referido$manoel fernandes/mesmo_que=nom56-p1/obs=manoel fernandes da levada do cazal dos rios-morto(fl. 140) 
+
+		ls$residencia/levada do casal dos rios 
+
+		ls$titulo/irmao de menor condicao/data=17330426 
+
+
+
+	referido$francisco soares/mesmo_que=nom49-p1/obs=francisco soares da villa-morto 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de manor condicao/data=17310702 
+
+
+
+	referido$thiodozio antunes/mesmo_que=nom58-p1/obs=thiodozio antunes da villa-morto 
+
+		ls$residencia/vila da lousa/obs=no assento de aceita?ao indica-se "rios" 
+
+		ls$titulo/irmao de menor condicao/data=17350116 
+
+
+
+	referido$caitano simoes/mesmo_que=nom59-p1/obs=caetano simois dos rios-morto 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17350116 
+
+
+
+	referido$celestino fernandes/mesmo_que=nom60-p1/obs=riscado a 17490112 por nao apresentar veste dentro do tempo determinado(ver acto)/obs=cilistino fernandes do arial-riscado 
+
+		ls$residencia/ponte do areal 
+
+		ls$titulo/irmao de menor condicao/data=17350403 
+
+
+
+	referido$mathias seco/mesmo_que=nom61-p1/obs=mathias seco do casal- morto 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao/data=17360325 
+
+
+
+	referido$marcelino dos santos/xmesmo_que=62-p1/obs=marcelino dos santos solteiro da villa-morto 
+
+		ls$estado cicvil/solteiro 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17360325 
+
+
+
+	referido$francisco seco/mesmo_que=nom63-p1/obs=francisco seco desta villa-morto 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=117370413 
+
+
+
+	referido$manoel borges/xmesmo_que=nom64-p1/obs=manoel borges da povoa-morto 
+
+		ls$residencia/povoa 
+
+		ls$titulo/irmao de menor condicao/data=17380404 
+
+
+
+	referido$jose rodrigues marrafao/mesmo_que=nom67-p1/obs=joze rodrigues marrafao da villa- morto 
+
+		ls$alcunha/marrafao 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17400411 
+
+
+
+	referido$bebiano jose/mesmo_que=nom68-r1/obs=bebiano joze filho de braz francisco da villa-morto 
+
+		ls$residencia/vila da louza%filho de braz francisco da vila 
+
+		ls$titulo/irmao de menor condicao/data=17400411 
+
+
+
+	referido$antonio simoes/mesmo_que=nom71-p1/obs=antonio simois o sego(sic) do cazal-morto 
+
+		ls$alcunha/o cego/obs=no termo de aceitacao noa figura "cego" 
+
+		ls$residncia/casal 
+
+		ls$tittulo/irmao de menor condicao/data=17410330 
+
+
+
+	referido$joao antunes/xmesmo_que=nom69-p1/obs=joao antunes do cazal filho de antonio fernandes morto 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao/data=17401030 
+
+
+
+	referido$manoel francisco/mesmo_que=nom70-p1/obs=manoel francisco pizoeiro desta villa-morto 
+
+		ls$profissao/pizoeiro 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17410318 
+
+
+
+	referido$alexandre rodrigues/mesmo_que=nom72-rl/obs=alexandre rodrigues filho de joao rodrigues freire coelho-aubzente- morto 
+
+		ls$titulo/irmao de meno condicao/data=17420318 
+
+		referido$joao rodrigues freire coelho
+
+			rel$parentesco/pai/alexandre rodrigues/nom72-rl
+
+
+
+	referido$joao rodrigues/mesmo_que=nom73-p1/obs=riscado a 1121748 por faltas sucessivas a enterros sem justificacao (ver acto)/obs=joao rodrigues filho de manoel rodrigues marrafao-riscado 
+
+		ls$titulo/irmao de menor condicao/data=17420322 
+
+
+
+	referido$matheus dos reis/obs=matheus dos reis da villa-morto 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$thomas galvao/obs=thomas galvao da villa-morto 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor conciao 
+
+
+
+	referido$gregorio simoes/obs=gregorio simoens da villa-morto 
+
+		ls$residncia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel joze de figueiredo/obs=manoel joze de figueiredo do gevim-morto 
+
+		ls$residencia/gevim 
+
+		ls$titulo/irmao de menor condicao/data=17390702/obs=no termo de aceitacao a residencia e na vila., pode nao ser o mesmo 
+
+
+
+	referido$theodozio rodrigues/id=nom192-r1/obs=theodozio rodrigues filho de joao braz trincalho riscado 
+
+		ls$titulo/irmao de menor condicao
+
+		 
+
+	referido$joao braz trincalho 
+
+		rel$parentesco/pai/theodozio rodrigues/nom192-r1 
+
+
+
+	referido$joao seco mathias/mesmo_que=nom75-p1/obs=joao seco mathias do lugar do cazal dos rios-aubzente 
+
+		ls$residencia/casal dos rios 
+
+		ls$titulo/irmao de menor condicao/data=17450415 
+
+
+
+	referido$antonio rodrigues/xmesmo_que=76/obs=antonio rodrigues pedreiro desta villa-aubzente "esta sego" 
+
+		ls$profissao/pedreiro 
+
+		ls$residncia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17450709 
+
+
+
+	referido$constantino joze/mesmo_que=nom74-p1/obs=costantino(sic)joze desta villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/rimao de menor condicao/data=17450411 
+
+
+
+	referido$joao rodrigues pinheiro/mesmo_que=nom77-p1/obs=joao rodrigues pinheiro desta villa-morto 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17460910 
+
+
+
+	referido$francisco joze de almeida/mesmo_que=nom78-p1/obs=francisco joze de almeida desta villa-morto(f1.140v) 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17461016 
+
+
+
+	referido$manoel rodrigues/mesmo_que=nom84-p1/obs=manoel rodrigues de val da velha- tem assento a fl. 79 
+
+		ls$residencia/val da velha 
+
+		ls$titulo/irmao de menor condicao/data=17520109 
+
+
+
+	referido$manoel seco/mesmo_que=nom85-p1/obs=manoel seco do cazal  a fl. 79v.-morto 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao/data=17520702 
+
+
+
+	referido$joze dias/mesmo_que=nom86-p1/obs=joze dias-morreo- a fl. 80 
+
+		ls$residencia/casal/obs=identificada no termo de aceitacao 
+
+		ls$titulo/irmao de menor condicao/data=17520331 
+
+
+
+	referido$joaquim luis/mesmo_que=nom87-p1/obs=joachim luis-morreo- a fl. 80 
+
+		ls$residencia/vila da lousa/obs=identificado no termo de aceitacao 
+
+		ls$titulo/irmao de menor condicao/data=17520331 
+
+
+
+	referido$domingos simoes/mesmo_que=nom90-p1/obs=domingos simoes da papanata- a fl. 83 
+
+		ls$residencia/papanata 
+
+		ls$titulo/irmao de menor condicao/data=17530401 
+
+
+
+	referido$antonio dos reis/mesmo_que=nom93-p1/obs=antonio dos reis da villa- morto- a fl. 83 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17530319 
+
+
+
+	referido$joze sequo mathias/mesmo_que=nom94-p1/obs=joze sequo mathias do cazal- morto- a fl. 83v 
+
+		ls$residencia/cazal 
+
+		ls$titulo/irmao de menor condicao/data=17550319 
+
+
+
+	referido$manoel simoes /mesmo_que=nom95-p1/obs=manoel simois da silveira-morreo- a fl. 84 
+
+		ls$residencia/silveira 
+
+		ls$titulo/irmao de menor condicao/data=17560712 
+
+
+
+	referido$joao rodrigues quartao/mesmo_que=nom96-p1/obs=joao rodrigues coartao do penedo- morreo-fl. 84v 
+
+		ls$residencia/penedo 
+
+		ls$titulo/irmao de menor condicao/data=17590408 
+
+
+
+	referido$joao de oliveira neves/mesmo_que=nom97-p1/obs=joao de oliveira neves do porto da reguenga- morto- a fl.85 
+
+		ls$residencia/porto da reguenga 
+
+		ls$titulo/irmao de menor condicao/data=17590412 
+
+
+
+	referido$antonio fernandes/mesmo_que=nom99-p1/obs=antonio fernandes sapateiro da villa-morto-a fl. 85 
+
+		ls$profissao/sapateiro 
+
+		ls$titulo/irmao de menor condicao/data=17590412 
+
+
+
+referido$manoel luis sopico/xmesmo_que=nom100-p1/obs=manoel luis sopico da villa-morreo-a fl.85v 
+
+		ls$residncia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17600323 
+
+
+
+	referido$joze antonio soares/mesmo_que=nom101-p1/obs=joze antonio soares da villa-morre-ibid. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17600323 
+
+
+
+	referido$francisco rodrigues carreira/mesmo_que=nom102-p1/obs=francisco rodrigues carreira da villa- morto- ibid. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17600323 
+
+
+
+	referido$thome coelho/mesmo_que=nom103-p1/obs=thome coelho da villa-morto-ibid. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=1760323 
+
+
+
+	referido$joze duarte/mesmo_que=nom104-p1/obs=joze duarte da villa-morto-ibid. 
+
+		ls$residencia/vila da louza 
+
+		ls$tutlo/irmao de menor condicao/data=17600323 
+
+
+
+	referido$joze antunes/obs=joze antunes da villa-aubzente-ibid. 
+
+		ls$residencia/vila da louzan 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$ancelmo ferreira/obs=ancelmo ferreira dos rios-morto-ibid. 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao 
+
+
+
+	referido$manoel fernandes/mesmo_que=nom98-p1/obs=manoel fernandes da levada que morava na favarica-morto- fl85 
+
+		ls$residencia/levada 
+
+		ls$titulo/irmao de menor condicao/data=17590412 
+
+
+
+	referido$felix correia/xmesmo_que=nom1056-p1/obs=felix correa do penedo-morto- a fl. 86v 
+
+		ls$residencia/penedo 
+
+		ls$titulo/irmao de menor condicao/data=17700403 
+
+
+
+	referido$martinho francisco/mesmo_que=nom106-p1/obs=martinho francisco do cazal-morto- a fl87 
+
+		ls$residencia/cazal 
+
+		ls$titulo/irmao de menor condicao/data=17600702 
+
+
+
+	referido$antonio soares/mesmo_que=nom107-p1/obs=antonio soares dahi- morto- ibid. 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao/data=17600702 
+
+ 
+
+
+
+	referido$joze cabral/mesmo_que=nom108-p1/obs=joze cabral das possas-morto-ibid. 
+
+		ls$residencia/possas 
+
+		ls$titulo/irmao de menor condicao/data=17600702 
+
+
+
+	referido$leonardo soares/obs=leonardo soares dos rios-morto-ibid. 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17600702 
+
+
+
+	referido$caetano de alemeida/mesmo_que=nom110-p1/obs=caetano de almeida dos rios-aubzente-ibid. 
+
+		ls$residencia/rios/obs=no termo de aceitacao"casal" 
+
+		ls$titulo/irmao de menor condicao/data=17600702 
+
+
+
+	referido$joao soares/mesmo_que=nom111-p1/obs=-joao soares da villa-morreu-a fl.88 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17610319 
+
+
+
+	referido$bartholomeu cabral/mesmo_que=nom112-p1/obs=bartholomeu cabral das possas-morto-a fl.88 
+
+		ls$residncia/possas 
+
+		ls$titulo/irmao de menor condicao/data=17610319 
+
+
+
+	referido$joze soares/mesmo_que=nom114-p1/obs=joze soares o novo do cazal dos rios-morto-a fl.89 
+
+		ls$residencia/casal dos rios 
+
+		ls$titulo/irmao de menor condicao/data=17330330 
+
+
+
+	referido$accelino soares/mesmo_que=nom115-p1/obs=- accelino soares do cazal dos rios-morto-a fl.89 
+
+		ls$residencia/casal dos rios 
+
+		ls$titulo/irmao de menor co ndicao/17730330 
+
+
+
+	referido$joze francisco/mesmo_que=nom120-p1/obs=joze francisco bruxo da villa- morto-a fl-90 
+
+		ls$alcunha/bruxo 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17770412 
+
+
+
+	referido$joaquim rodrigues/mesmo_que=nom117-p1/obs=joaquim rodrigues do penedo-morto-a fl.90v 
+
+		ls$residencia/penedo 
+
+		ls$titulo/irmao de menor condicao/data=17651110 
+
+
+
+	referido$joze simoes /mesmo_que=nom116-p1/obs=joze simois potte dos rios-a fl.90(fl. 141) 
+
+		ls$alcunha/pote/obs=nao se refere no termo de aceitacao 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17640414 
+
+
+
+	referido$manoel baiao/obs=manoel bayao da villa-morreo-a fl.91 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17660327 
+
+
+
+	referido$martinho correia/mesmo_que=nom121-p1/obs=martinho correa dos rios- morto- a fl. 92 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17780331 
+
+
+
+	referido$leonardo soares/mesmo_que=nom122-p1/obs=leonardo soares da villa- morreu-a fl. 93 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=176900323 
+
+
+
+	referido$manoel duarte/xmesmo_que=nom123-p1/obs=manoel duarte do porto da reguenga-morto-a fl.93v 
+
+		ls$residnecia/porto da reguenga 
+
+		ls$titulo/irmao de menor condicao/data=17700702 
+
+
+
+	referido$joze freire/mesmo_que=nom31-p1/obs=joze freire da ponte coudiz-morto- a fl.17 
+
+		ls$residencia/ponte coudiz 
+
+		ls$titulo/irmao de menor condicao/data=17720416 
+
+
+
+	referido$juliao antonio/mesmo_que=nom32-p1/obs=juliao antonio desta villa-morto-a fl.17 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17720416 
+
+
+
+	referido$antonio joze/mesmo_que=nom33-p1/obs=antonio joze correa-morto- a fl.17 
+
+		ls$residencia/vila da lousa/obs=identificada no termo de aceitacao 
+
+		ls$titulo/irmao de menor condicao/data=17720416 
+
+
+
+	referido$joao seco/mesmo_que=nom124-p1/obs=joao seco do cazal-morto- a fl.44.(nota: nao ha nenhum assento neste folio., deve ser fl.94) 
+
+		ls$residencia/casal 
+
+		ls$titulo/irmao de menor condicao/data=17700416 
+
+
+
+	referido$joze lopes serra/mesmo_que=nom128-p1
+
+			/obs=(seguem-se tres nomes:" joze de magalhaes mexia-morto-lf.27 
+
+					joze joaquim da silva galvao-morto-a fl.28 
+
+					manoel lopes caetano serra- morto- a fl.29" escrevendo-se ao lado 
+
+					"ficao a fl60) joze lopes serra de val de maceira- morto- a fl.96V"
+
+ 
+
+		ls$residencia/val de maceira 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$antonio dos reis correa/mesmo_que=nom129-p1/obs=antonio dos reis correa do espinheiro-morto- ibid. 
+
+		ls$residencia/espeinheiro 
+
+		ls$titulo/irmao de menor condicao/17780412 
+
+
+
+	referido$joze duarte/mesmo_que=nom130-p1/obs=joze duarte da favari?a-morto-ibid. 
+
+		ls$residencia/favarica 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$bernardo vaz/mesmo_que=nom131-p1/obs=bernardo vaz dahi-morto-ibid 
+
+		ls$residencia/fravarica 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joao travasso/mesmo_que=nom132-p1/obs=no termo de aceitacao travacos/obs=joao travasso de alfucheira-morreo-ibid 
+
+		ls$residencia/alfucheira 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$mateus nunes/mesmo_que=nom133-p1/obs=matheus nunes da villa-morreo-ibid. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joze luis supico/mesmo_que=nom134-p1/obs=joze luis sopico dahi-morto-ibid 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joao simoes pinheiro/mesmo_que=nom135-p1/obs=joao simoens pinheiro dahi-ibid. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joao ferreira/mesmo_que=nom136-p1/obs=joao ferreira das po?as-morreo- ibid. 
+
+		ls$residencia/possas 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joze cabral/mesmo_que=nom137-p1/obs=joze cabral de ponte coudiz-morto-ibid. 
+
+		ls$residencia/ponte coudiz 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joao de almeida ferreira/mesmo_que=nom139-p1/obs=joao de almeida ferreira de val de neira-morreu-ibid. 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao de menor condicao/17780412 
+
+
+
+	referido$antonio simoes/mesmo_que=nom140-p1/obs=antonio simoens do picoto-morto-ibid. 
+
+		ls$residencia/picoto 
+
+		ls$titulo/irmao de menor codicao/data=17780412 
+
+
+
+	referido$joao francisco/mesmo_que=nom141-p1/obs=joao francisco das serdeiras-morto-ibid. 
+
+		ls$residencia/serdeiras 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$simao borges/mesmo_que=nom142-p1/obs=simao beorges da papanata-morto-ibid. 
+
+		ls$residencia/papanata 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$francisco correa/mesmo_que=nom143-p1/obs=francisco correa da ribeira-morto em 21 de maio de 1871-ibid. 
+
+		ls$residencia/ribeira 
+
+		ls$morte/2151871 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$bernardo dos reis/mesmo_que=nom144-p1/obs=baernardo dos reis dahi-morto-ibid. 
+
+		ls$residencia/papanata 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$ignacio lopes/mesmo_que=nom145-p1/obs=ignacio lopes das fontainhas-morto-ibid. 
+
+		ls$residencia/fontainhas 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$joze borges/mesmo_que=nom146-p1/obs=joze borges da povoa- todos a fl.96v. 
+
+		ls$residencia/povoa 
+
+		ls$titulo/irmao de menor condicao/data=17780412 
+
+
+
+	referido$bartholomeu do sacramento/mesmo_que=nom147-p1/obs=no termo de aceita?ao "bartholomeu rodrigues"., nao sei se sera o mesmo/obs=bartholomeo do sacramento da cavada-morto- a fl.97 
+
+		ls$residencia/cavada 
+
+		ls$titulo/irmao de menor condicao/data=17780702 
+
+
+
+	referido$joze rodrigues/mesmo_que=nom148-p1/obs=joze rodrigues dahi-morto-a fl.97 
+
+		ls$residencia/cavada 
+
+		ls$titulo/irmao de menor condicao/data=17780702 
+
+
+
+	referido$joze rodrigues/xmesmo_que=nom150-p1/obs=joze rodrigues do cazal novo-morto-a fl. 98 
+
+		ls$residencia/casal novo 
+
+		ls$titulo/irmao de menor condicao/data=17790110 
+
+
+
+	referido$joze correa/xmesmo_que=nom151-p1/obs=joze correa da villa- morto-a fl.99 (corresponde ao fl.112 que indevidamente se segue a fl.99) 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=177810412 
+
+
+
+	referido$joze cortes/mesmo_que=nom152-p1/obs=joze cortes dahi-"estao em huma folha entre 98 e 99"- reporta-se a afirma?ao a este nome e o anterior-corresponde ao fl.112) 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17810412 
+
+
+
+	referido$joze francisco/mesmo_que=nom153-p1/obs=joze francisco do cazal-morto-a fl.99 
+
+		ls$residencia/cazal 
+
+		ls$titulo/irmao de menor condicao/data=17810412 
+
+
+
+	referido$manoel fernandes/mesmo_que=nom154-p1/obs=manoel fernandes de val de neira- (esta no fl.112v.) (fl. 142) 
+
+		ls$reseidencia/val de neira 
+
+		ls$titulo/irmao de meor condicao/data=17830412 
+
+
+
+	referido$joquim luis/mesmo_que=nom155-p1/obs=joaquim luiz de val de neira-morto-(esta no fl. 112v.) 
+
+		ls$residencia/val de neira 
+
+		ls$titulo/irmao de menor condicao/data=17830402 
+
+
+
+	referido$antonio de almeida/mesmo_que=nom156-p1/obs=antonio de almeida-morto(esta na fl.112v.) 
+
+		ls$residencia/val de neira/obs=identificacao feita no termo de aceitacao 
+
+		ls$titulo/irmao de menor condicao/data=17830402 
+
+
+
+	referido$joze de almeida/mesmo_que=nom157-p1/obs=joze de almeida-morto(esta no fl.112v.) 
+
+		ls$residencia/casal novo/obs=referido no termo de aceitacao 
+
+		ls$titulo/irmao de menor condicao/data=17830402 
+
+
+
+	referido$joao das neves de figueiredo/mesmo_que=nom158-p1/obs=joao das neves de figueiredo do gevim  morto- a fl. 99 
+
+		ls$residencia/gevim 
+
+		ls$titulo/irmao de menor condicao/data=17840402 
+
+
+
+	referido$manoel dias/mesmo_que=nom159-p1/obs=manoel dias de val da velha-morto-a fl.99 
+
+		ls$residencia/val da velha 
+
+		ls$titulo/irmao de menor condicao/data=17840402 
+
+
+
+	referido$lourenco thomati//mesmo_que=nom160-p1/obs=no termo da aceitacao "thomate"/obs=lourenco thometi dos rios-morto-a fl.99v 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17890405 
+
+
+
+	referido$simao joze rodrigues/mesmo_que=nom161-p1/obs=simao joze rodrigues dos rios-morto- a fl.99v 
+
+		ls$residencia/rios 
+
+		ls$titulo/irmao de menor condicao/data=17890405 
+
+
+
+	referido$gon?alo lopes serra/mesmo_que=nom162-p1/obs=gon?alo lopes serra desta villa-morto- a fl.99v 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17890405 
+
+
+
+	referido$joze maria thomati/xmesmo_que=nom163-p1/obs=joze maria thomati-morto- a fl. 100 
+
+		ls$resiedencia/rios/obs=no termo de aceitacao diz ser "da fabrica do papel" 
+
+		ls$titulo/irmao de menor condicao/data=17890405 
+
+
+
+	referido$paulo francisco thomati/xmesmo_que=nom164-p1/obs=no termo de aceitacao "thomate"/obs=paulo francisco thomati ambos dos rios- morto- a fl.100 
+
+		ls$residencia/rios/obs=no termo de aceitacao diz ser "da fabrica do papel" 
+
+		ls$titulo/irmao de menor condicao/data=17890405 
+
+
+
+	referido$amaro rodrigues/mesmo_que=nom165-p1/obs=no termo de aceitacao de "manoel joze rodrigues"/obs=amaro rodrigues desta villa-morto- a fl.100v. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17900702 
+
+
+
+	referido$custodio herse/mesmo_que=nom166-p1/obs=custodio herse desta villa morto-fl.100v. 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17900702 
+
+
+
+	referido$joze somoens/mesmo_que=nom167-p1/obs=joze simoens desta villa-morto- a fl. 100 v 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17900702 
+
+
+
+	referido$joaquim pedrozo/mesmo_que=nom168-p1/obs=joaquim pedrozo desta villa-morto- a fl.100 v 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17900702 
+
+
+
+	referido$joze lopes/mesmo_que=nom169-p1/obs=joze lopes desta villa- morto- a fl. 100v 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17900702 
+
+ 
+
+
+
+	referido$joze de oliveira/mesmo_que=nom180-p1/obs=escreve-se em seguida "a fl.101 esta um termo galante" joze de oliveira do engenho-morto- a fl. 102 
+
+		ls$residencia/engenho 
+
+		ls$titulo/irmao de menor condicao/data=17650702/obs=pensamos haver erro., devera ler-se 1795 
+
+
+
+	referido$diogo barros/mesmo_que=nom181-p1/obs=diogo de barros desta villa-morto- a fl.102 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17950702/obs=pensamos haver erro., devera ler-se 1795 
+
+
+
+	referido$antonio do rego/mesmo_que=nom182-p1/obs=antonio do rego desta villa- morto-a 102 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de meor condicao/data=17650702/obs=pensamos haver erro.,devera ler-se 1795 
+
+
+
+	referido$manoel dias/mesmo_que=nom183-p1/obs=manoel dias desta villa-morto-a fl.102 
+
+		ls$residencia/vila da lousa 
+
+		ls$titulo/irmao de menor condicao/data=17650702/obs=pensamos haver erro., de vera ler-se 1795 
+
+
+
+	referido$joaquim dos reis/mesmo_que=nom184-p1/obs=joaquim dos reis desta villa-aubzente- a fl.102 
+
+		ls$residencia/vila da louza 
+
+		ls$titulo/irmao de menor condicao/data=17650702/obs=pensamos haver erro., devera ler-se 1795 
+
+
+
+	referido$joze soares/mesmo_que=nom186-p1/obs=joze soares o novo-a fl. 102v 
+
+		ls$alcunha/o novo 
+
+		ls$residencia/porto da reguenga/obs=nao temos a certeza de acordo com o termo de aceitacao 
+
+		ls$titulo/irmao de menor condicao/data=17970701 
+
+		
+
+	referido$luis jose antunes/mesmo_que=nom185-p1/obs=padre luis jose antunes de alfucheiro retirado fl.102v
+
+		ls$profissao/padre
+
+		ls$residencia/alfucheira
+
+		ls$titulo/irmao/obs=nao sabemos a condicao uma vez que se escreve "retirado"
+
+
+
+	referido$joze fernandes/mesmo_que=nom187-p1/obs=joze fernandes o novo- aubzente- a fl. 102v 
+
+		ls$residencia/porto da regenga/obs=nao temos a certeza 
+
+		ls$titulo/irmao de menor condicao/data=17970702 
+
+
+
+	referido$bartholomeu fernandes/mesmo_que=nom186a-p1/obs=bartholomeo fernandes- a fl.102v 
+
+		ls$titulo/irmao de menor condicao/data=17970702 
+
+
+
+	referido$manuel duarte/mesmo_que=nom188-p1/obs=manoel duarte o novo- a fl.102 v. (...) 
+
+		ls$acunha/o novo 
+
+		ls$rersidencia/porto da reguenga/obs=conforme listagem de 1729 
+
+		ls$titulo/irmao de menor condicao/data=17970702
+

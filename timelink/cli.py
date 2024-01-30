@@ -2,16 +2,39 @@
 
 Also provides basic mhk manager functionality.
 
+Run with  python -m timelink.cli
+
 """
-import typer
 import platform
+import uvicorn
+import typer
 import docker
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
+
+server: uvicorn.Server = None  # uvicorn server instance
 
 # We use Typer https://typer.tiangolo.com
 app = typer.Typer(help="Timelink and MHK manager")
 mhk_app = typer.Typer()
 app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
+
+
+# Start server
+# see alternative methods
+# https://github.com/miguelgrinberg/python-socketio/issues/332#issuecomment-712928157
+# https://stackoverflow.com/questions/68603658/how-to-terminate-a-uvicorn-fastapi-application-cleanly-with-workers-2-when
+
+
+@app.command("start")
+def start():
+    """Starts timelink with uvicorn"""
+    typer.echo("Starting Timelink")
+    config = uvicorn.Config("timelink.api.main:app", port=8000, reload=True)
+
+    global server
+    server = uvicorn.Server(config)
+    server.run()
+    return 0
 
 
 @mhk_app.command(name="version")
@@ -24,7 +47,8 @@ def mhk_version():
     if is_mhk_installed():
         mhk_info = get_mhk_info()
 
-        client = docker.from_env()
+    try:
+        client = docker.from_env(version="auto")
         dv = client.version()
         mhkv = f"""    Manager version:  {mhk_info.mhk_version}
         Docker version:   {dv["Version"]}
@@ -39,6 +63,8 @@ def mhk_version():
         Kleio URL:        http://127.0.0.1:8088
         Portainer URL:    http://127.0.0.1:9000"""
         typer.echo(mhkv)
+    except Exception as e:
+        typer.echo(f"Could not access docker: {e}")
     else:
         type.echo("Could not find a MHK instalation")
     return 0

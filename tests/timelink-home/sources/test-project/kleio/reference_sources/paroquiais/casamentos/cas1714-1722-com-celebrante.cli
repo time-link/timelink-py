@@ -1,0 +1,60 @@
+kleio$gacto.str/alterado no browser, duas vezes/translations=2
+   fonte$cas1714-1722-com-celebrante/localizacao-a.u.c./tipo=casamentos/obs=freguesia de sao silvestre da lousa
+
+      cas$c1714-1/8/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)/obs=licenca do prior manuel lopes serra que assina o termo nao se referem testemunhas
+
+         celebrante$manuel da fonseca/id=c1714-1-per1
+
+         noivo$pedro martins/id=c1714-1-per2
+
+            pnoivo$pedro martins/id=c1714-1-per3
+               ls$morto/antes
+               ls$morada/prilhao
+               ls$freguesia/vilarinho
+
+            mnoivo$antonia simoes/id=c1714-1-per4
+               ls$morta/antes
+
+         noiva$ana fernandes/id=c1714-1-per5
+
+            pnoiva$joana fernandes/id=c1714-1-per6
+               ls$morada/papanata
+               ls$freguesia/lousa
+
+            mnoiva$maria goncalves/id=c1714-1-per7
+
+      cas$c1714-2/10/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)morador na vila da lousa/obs=com licenca do prior manuel lopes serra que assina o termo
+
+         celebrante$manuel da fonseca/id=c1714-2-per1
+
+         noivo$antonio fernandes/id=c1714-2-per2
+            ls$ec/viuvo
+            ls$morada/olival
+            ls$freguesia/lousa
+
+            pnoivo$manuel fernandes/id=c1714-2-per3
+               ls$morada/povoa
+               ls$freguesia/lousa
+
+            mnoivo$maria francisca/id=c1714-2-per4
+
+         noiva$antonia francisca/id=c1714-2-per5
+
+            pnoiva$antonio goncalves/id=c1714-2-per6
+               ls$morada/oliva
+               ls$freguesia/lousa
+
+            mnoiva$ana francisca/id=c1714-2-per7
+
+         mulher1$maria rodrigues/id=c1714-2-per8
+
+            pmulher1$tome luis/id=c1714-2-per9
+               ls$morada/olival
+               ls$freguesia/lousa
+
+            mmulher1$catarina rodrigues/id=c1714-2-per10
+
+         test$joao negrao/id=c1714-2-per11
+            ls$profissao/capitao mor
+
+         test$joao negrao/obs=filho do capitao mor joao negrao/id=c1714-2-per12

@@ -1,0 +1,742 @@
+kleio$gacto2.str/translations=3
+   fonte$ivcc/tipo=fonte-jesuita/ano=1719/obs=""" 
+      Franco (S.I.), Antonio, Imagem da virtude em o noviciado da Companhia de
+      Jesus no Real Collegio de Jesus de Coimbra em Portugal
+      (Évora: na Officina da Universidade, 1719)
+      
+      Inicialmente fez-se uma experiência de descrição detalhada,
+      com a vida de Gonçalo da Silveira.
+
+      Depois focamos nos missionários para a China."""
+
+      lista$ivc-c1/0/0/1719/obs= Dá-se sumária notícia do Real Colégio de Jesus de Coimbra. Descreve o espaço da alta onde está localizaddo o colégio e a organização interna do edifício.
+
+         n$Colégio de Coimbra/id=colegio-coimbra/obs=Notas sobre a História do Colégio
+            ls$construction/start/15470414/obs=p.3
+            ls$regulations/Constituições do Colégio de Coimbra 1547/15531100/obs="""
+            Publication and start of application of the constitutions of the 
+            Coimbra College. 
+            Start of separation of the "noviços" from the other brothers."""
+            ls$regulations/Regras do Noviciado/15550400/obs="""
+            Modo de proceder dos noviços, enviadas a 
+            S.Francisco de Borja, que segundo o a. deram 
+            origem a todos as outras"""
+            ls$event/End of "noviciado" in Coimbra and Évora/16190000/obs="""
+            Se juntaram todos os noviços da província na casa do Monte Olivete e Lisboa, 
+            que então começou a ser habitada"""
+            ls$event/Restart of the "noviciado" at Coimbra and Évora/16300000
+            ls$event/"Noviciado" relocates to second floor Colégio das Artes/16380000/obs=8 or 9 years after restart of "noviciado" p. 6
+            ls$event/Placement of painting from Saint Inácio's cell/16780202/obs="""
+            An imagem of Our Lady that was in Saint Inácio Cell in Rome come to the 
+            Coimbra College 
+            'na Capela da Senhora do Bom Despacho, que é a que está no corredor, 
+            em um nicho, que está onde se reveste o sacerdote, uma imagemn com Nossa 
+            Senhora com um menino em pé, que tem um livro nas mãos, e a Senhora apontando 
+            nele com as mãos.'
+            The story is told in p.7-8"""
+
+            referido$Francisco de Borja/id=ivc-francisco-de-borja
+               ls$cargo/Comissário da Companhia em Espanha/15550400
+
+            referido$Jerónimo Nadal/id=ivc-jeronimo-nadal
+               ls$estadia/Colégio de Jesus, Coimbra/15531100
+
+            referido$Diogo Monteiro/id=ivc-diogo-monteiro
+               ls$cargo/Provincial dos Jesuítas/16300400
+               ls$jesuita-estatutos/provincial/16300400
+
+            referido$Álvaro/id=ivc-alvaro-duque-de-aveiro
+               ls$titulo/Dom
+               ls$titulo/Duque de Aveiro
+
+            referido$Pedro/id=ivc-pedro-duque-de-aveiro
+               ls$titulo/Dom
+               ls$cargo/Inquisidor Geral
+               ls$titulo/Duque de Aveiro
+               ls$estadia/Colégio de Jesus, Coimbra/163900/obs=data aprox. p. 6
+               ls$estadia/Colégio de Jesus, Coimbra/164100/obs=data aprox. p. 6
+               rel$kin/son/Álvaro/ivc-alvaro-duque-aveiro
+
+            referido$António/id=colegio-coimbra-per1-48
+               ls$titulo/Dom
+               ls$death-place/Castela
+               ls$estadia/Colégio de Jesus, Coimbra/163900/obs=data aprox. p. 6
+               ls$estadia/Colégio de Jesus, Coimbra/164100/obs=data aprox. p. 6
+               rel$kin/son/Álvaro/ivc-alvaro-duque-aveiro
+
+            referido$Diogo Mirão/id=ivc-diogo-mirao
+
+         n$José de Anchieta/id=ivc-jose-de-anchieta
+            ls$jesuita-estatutoa-entrada/Coimbra/15510501
+
+         n$Francisco Xavier/id=ivc-francisco-xavier
+
+            viagem$Itália Portugal (terra)/0/0/1540/id=ivc-francisco-xavier-his6-35
+
+               referido$Pedro de Mascarenhas/id=ivc-pedro-de-mascarenhas-emb
+                  ls$cargo/Embaixador de Portugal na Santa Sé
+
+            viagem$Portugal Índia/0/0/1541/id=ivc-francisco-xavier-his4-38
+
+         n$Paulo Camarte/id=ivc-paulo-camarte
+            ls$nacionalidade/Itália
+
+         n$Simão Rodrigues/id=ivc-simao-rodrigues/obs=Membro do grupo inicial de Jesuítas, primeiro em Portugal com Francisco Xavier.
+            ls$estadia/Mosteiro de Santo Antão-o-Velho/15410000/obs="Na raiz do monte do castelo de Lisboa"
+            ls$estadia/Mosteiro de Santa Cruz, Coimbra/15420613
+            ls$estadia/Casas na Rua Nova de El-Rei, Coimbra/15420702/obs="""
+            
+               Pouco distantes do muro da cidade, que caiu da parte Norte 
+               sobre a cerca de Santa Cruz. Estas casas ainda hoje estão de 
+               pé e servem de dispensas ao Colégio, enquanto naquele sítio se não fizer a 
+               obra que está traçada. cita Padre António Leite, 1640. Sobre isto ver 
+               Alarcão, Coimbra: a montagem do cenário urbano, fig. 96 p. 246 e texto."""
+
+            viagem$Itália para Portugal/0/0/1540/obs=Viagem dos primeiros Jesuítas para Portugal/id=ivc-simao-rodrigues-his7-35
+
+               referido$Paulo Camarte/mesmo_que=ivc-paulo-camarte/id=ivc-simao-rodrigues-his7-35-per2-35
+
+            viagem$Lisboa para Coimbra/9/6/1542/obs=chegou dia de Santo António, com 11 irmãos: um Valenciano, dois Franceses, dois Castelhanos, dois Italianos e três Portugueses (1 desistiu)/id=ivc-simao-rodrigues-his8-40
+               ls$inicio/Lisboa/15420609
+               ls$fim/Coimbra/15420613
+
+      lista$imagem-virtude-cap-2/0/0/1719/obs=Google-Books-ID: JDA2wD7ZRDEC
+
+      lista$ivc-bio-goncalo-da-silveira/0/0/1719
+
+         n$Gonçalo da Silveira/id=ivc-goncalo-da-silveira/obs=Volume 2, p.1
+            ls$titulo/Dom/obs="Padre Dom Gonçalo, que assim se nomeou por não ser ainda proibido entre nós, o chamar-se Dom, quem o tinha de seus pais"
+            ls$jesuita-estatutoa-estatuto/Padre
+            ls$nota/um dos primeiros padres desta nossa província de Portugal
+            ls$nascimento/Almeirim/15260223#sexta feira/obs=a mãe seria de Góis, e faleceu do parto, um Antão Saraiva, que teria sido estribeiro do pai de Gonçalo da Silveira teria dito que ele nascera nas "Casas do Sertório" em Évora. Franco pensa que estas reivindicações de naturalidade são posteriores à fama de Gonçalo. Nasceu em Almerim porque ali estava a cort e e o pai seguia a corte, por inerência do cargo. (último de 10 irmãos)s
+            ls$estadia/Convento de Santa Margarida, Ordem Francisca, Castela, Espanha#Além do Rio Douro, junto ao Mogadouro/0/obs=Quando sabia já ler e escrever, para aprender gramática.
+            ls$estadia/Coimbra/15430000/obs=O mandou o Conde D. Diogo da Silveira, seu irmão, a Coimbra
+            ls$study/Coimbra/1543/obs="Pouco antes tinham vindo a Coimbra os nossos religiosos, aos quais por serem os mais deles estrangeiros, tidos e havidos no povo por idiotas, chamavão por desprezo Franchinotes..."
+            ls$estadia/Mosteiro de Santa Cruz/15430000/obs=Os anos que estudou em Coimbra viveu no Real Mosteiro de Santa Cruz.
+            ls$jesuita-estatutoa-entrada/Coimbra/15430609/obs="Não havendo ainda um ano que a Companhia entrara em Coimbra", "Fez a entrada com tanto segredo, que assim desapareceu, com se a terra o engolira, por evitar os primeiros assaltos dos parentes, e a desinquietação que podia fazer aos nossos, quis ocultar-se em algum retiro" - Relata diligências da família em o convencer a desistir "que se queria ser religioso, não faltava religiões autorizadas"
+            rel$jesuit/fez noviciado com/Nuno Ribeiro/ivc-nuno-ribeiro
+            rel$jesuit/fez deslocação com/Belchior Carneiro/ivc-goncalo-da-silveira-per1-17/obs=foram a Góis ver a família de Gonçalo.
+            ls$jesuita-estatuto-vows/Votos/15441101#1544? "Depois de um ano de noviciado fez votos em dia de todos os Santos"
+            ls$clergy/Ordens de Epístola/15450815#Dia de Nossa Senhora de Agosto
+            ls$clergy/Ordens de Missa/15450908#Dia de Nossa Senhora de Setembro
+            ls$bibliography/Mia Couto, O Outro Pé da Sereia/20060000/obs=Romance em que Gonçalo da Silveira e a sua missão em África tem papel importante.
+
+            referido$João III/id=ivc-goncalo-da-silveira-per3-8
+               ls$estadia/Almeirim/obs=Estava a corte em Almeirim
+
+            referido$Nuno Ribeiro/id=ivc-goncalo-da-silveira-per1-16
+               ls$jesuita-estatuto/father
+
+            referido$Belchior Carneiro/id=ivc-belchior-carneiro
+               ls$cargo/Bispo de Nicea/0/obs=foi com Gonçalo Silveira a Góis, ver a a família de Gonçalo, quando ainda estavam ambos em Coimbra.
+
+            pai$Luis da Silveira/id=ivc-goncalo-da-silveira-per1/obs="dai a poucos anos [morreu] o Conde..." Referência de Carlos V à mercê de Conde de Sortelha a Luís de Silveira, nos Anais de D. João III, de Fr. Luís de Sousa, p.375, no anexo de "Memórias e Documentos", datada de Bruxelas 33 de outubro de 1531, e no texto p.10. D. João III teria enviado Luis da Silveira como embaixador a Carlos V para tratar do casamento da irmã, a infanta Isabel. Ver Frei Luis de Sousa p. 41.
+               ls$titulo/Dom
+               ls$titulo/Conde de Sortelha/obs=primeiro Conde
+               ls$cargo/Guarda Mor de D.João III
+               ls$cargo/Alcaide Mor de Alenquer
+               ls$mission/Embaixador para o casamento de D.Isabel com Carlos V.
+               ls$estadia/Almeirim/15260223/obs=Seguindo a Corte
+               ls$dead-tomb/Igreja de Góis/geral|view|70290/obs=Buried at the Igreja de Góis,see p.40 cap. XIII http:||www.patrimoniocultural.gov.pt|pt|patrimonio|patrimonio-imovel|pesquisa-do-patrimonio|classificado-ou-em-vias-de-classificacao
+               rel$parentesco/pai/Filipa de Vilhena/ivc-filipa-de-vilhena
+
+               ppai$Nuno Martins da Silveira/id=ivc-goncalo-da-silveira-per1-per1-5
+                  ls$titulo/Senhor de Góis
+                  ls$cargo/Mordomo da Rainha D. Catarina
+                  ls$cargo/Mordomo de D.Filipa de Vilhena
+
+            mae$Brites Coutinho/id=ivc-goncalo-da-silveira-per2
+               ls$name/Brites Noronha
+               ls$titulo/Dona
+               ls$titulo/Condessa
+               ls$death-date/15260226%ao terceiro dia [depois do parto] faleceu
+               rel$parentesco/mae/Filipa de Vilhena/ivc-filipa-vilhena
+
+               pmae$Fernando Coutinho/id=ivc-goncalo-da-silveira-per2-per1-8
+                  ls$cargo/Marechal do Reino
+                  ls$death-place/Koldata, India%Calicut/obs=note margin: "Corografia Potug., Tom. 2 pag.276". In the text "Quando o grande Afonso de Albuquerque quiz tomar ao Zamorim aquela cidade"
+
+               mmae$Maria de Noronha/id=ivc-goncalo-da-silveira-per2-per2-8
+                  ls$titulo/Dona
+
+            referido$Luís Alves de Távora/id=ivc-luis-alves-de-tavora/obs=Da família dos Marqueses de Távora/obs=Took Gonçalo and his brother Álvaro to his home to raise them when orphaned
+               ls$titulo/Senhor do Mogadouro
+               rel$kin/brother in law/Gonçalo da Silveira/ivc-goncalo-da-silveira
+
+            referido$Álvaro da Silveira/xmesmo_que=bio-alvaro-silveira/id=ivc-goncalo-da-silveira-per1-114/obs=Later capitam of Ormuz, dies in battle in the Persian Gulf
+               rel$kin/brother/Gonçalo da Silveira/ivc-goncalo-da-silveira
+
+            referida$Filipa de Vilhena/id=ivc-filipa-de-vilhena
+               rel$kin/wife/Luís Alves de Távora/ivc-luis-alves-de-tavora
+
+            referido$Álvaro da Silveira/id=ivc-goncalo-da-silveira-per3
+               ls$titulo/Dom
+               rel$parentesco/sobrinho/Gonçalo da Silveira/ivc-goncalo-da-silveira/obs=neto do pai de Gonçalo da Silveira
+
+            referido$Rodrigo de Menezes/obs=Colega./id=ivc-goncalo-da-silveira-per1-14
+               ls$titulo/Dom
+
+            pevent$First Jesuits in Coimbra/0/0/1543/id=ivc-goncalo-da-silveira-his3-115
+
+               referido$Luís Gonçalves da Câmara/obs=Colega/id=ivc-goncalo-da-silveira-per2-14
+
+               referido$Leão Henriques de Noronha/obs=Colega/id=ivc-goncalo-da-silveira-per3-14
+                  ls$titulo/Dom
+
+               referido$António Moniz/obs=Colega/id=ivc-goncalo-da-silveira-per4-14
+
+               referido$Teotónio/obs=Filho dos Duques de Bragança. Colega/id=ivc-goncalo-da-silveira-per1-15
+                  ls$cargo/Arcebispo de Évora/0/obs=mais tarde
+
+            viagem$Viagem a Roma 1550/5/1/1550%dia de reis/id=imagem-virtude-v2-his1-18/obs=Santo Inácio chamou a Roma Simão Rodrigues e mandou que com ele fossem alguns teólogos, dos que "dessem de si mais esperanças" para "verem a Companhia na sua fonte". Foram 3. No caminho deviam para em Gandia, para receberem o grau de Doutores em Teologia "assim para maior autoridade das suas letras, como por dar gosto ao Duque D. Francisco de Borja, que assim o pedia, e já naquele tempo era ocultamente da Companhia... p.10" Quando partiram vieram despedir-se 100 irmãos.
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=imagem-virtude-v2-his1-18-per1-19
+
+               referido$João Dício Flamengo/id=imagem-virtude-v2-his1-18-per2-19
+
+               referido$nome desconhecido/obs="O terceiro não ficou lembrança de como se chamava"/id=imagem-virtude-v2-his1-18-per3-19
+
+            estadia$Estadia em Gandia/0/1/1550/obs=sairam de Coimbra em 5 de Janeiro de 1550./id=imagem-virtude-v2-his2-21
+               ls$estadia/Gandia, Espanha
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=imagem-virtude-v2-his2-21-per1-21
+                  ls$academic/Doutor em Teologia, Universidade de Gandia, Espanha.
+
+               referido$Jão Dício Flamengo/mesmo_que=imagem-virtude-v2-his1-18-per2-19/id=imagem-virtude-v2-his2-21-per2-21
+
+               referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja/id=imagem-virtude-v2-his2-21-per1-43
+                  ls$titulo/Duque
+                  ls$titulo/Dom
+
+               referido$André de Oviedo/id=imagem-virtude-v2-his2-21-per4-21
+                  ls$cargo/Reitor do Colégio de Gândia
+
+            viagem$Viagem a Valência/0/1/1550/obs=Depois de estar em Gandia/obs=onde Diogo Mirão, que o tinha recebido na companhia, era Reitor. Pregou com grande sucesso O rei, sabendo que estava ali a pregar mandou recado por mestre Simão que o fizesse voltar ao reino o que ele obedeceu./id=imagem-virtude-v2-his1-22
+               ls$estadia/Valencia, Espanha
+
+               referido$Diogo Mirão/mesmo_que=ivc-diogo-mirao/id=imagem-virtude-v2-his1-22-per1-51
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=imagem-virtude-v2-his1-22-per2-22
+
+            viagem$Viagem de Valência a Portugal/obs="lhe chegou ordem do Padre Mestre Simão que voltasse a Portugal, porquanto El-Rey sabendo de sua detença em Valença, e fruto raro que nela fazia, significou ao Padre Mestre Simão, que lhe daria contentamento em mandar voltar pera o Reino ao Padre Dom Gonçalo" ... "No mesmo dia que recebeu a ordem se por logo a caminhoi, sem mais lhe lembrar o desejo de ir a Roma", p. 11./id=ivc-goncalo-da-silveira-his1-56
+
+            estadia$Missão na Província de Entre-Douro e Minho/0/0/1551/obs=p. 11/id=ivc-goncalo-da-silveira-his2-56
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-56-per1-56
+                  ls$estadia/Hospital de São Marcos, Braga
+
+               referido$Baltazar Limpo/id=ivc-baltazar-limpo
+                  ls$titulo/Frei
+                  ls$cargo/Arcebispo
+                  rel$social/offered stay at episcopal residence/Gonçalo Silveira/ivc-goncalo-da-silveira
+
+               referido$Leão Henriques/id=ivc-leao-henriques/obs=Tornando do Mosteiro de Sanfins para Coimbra, encontrou-se com Gonçalo Silveira em Braga p.12
+                  ls$order/jesuit
+                  ls$jesuita-estatuto/padre
+                  ls$estadia/Mosteiro de Sanfins
+
+            estadia$Missão no Porto/30/11/1551/obs="dia de Santo André"/id=ivc-goncalo-da-silveira-his3-57
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his3-57-per1-57
+                  ls$estadia/Santa Casa da Misericórdia, Porto
+
+               referido$Pedro de Santa Maria/id=ivc-goncalo-da-silveira-his3-57-per1-60
+                  ls$order/Congregação de S.João Evangelista/obs="Que neste Reino chamam Santo Elói"
+                  ls$order/Lóios/obs=same as S.João Evangelista
+
+               referido$Henrique Nunes/id=ivc-henrique-nunes/obs="devotissimo da nossa Companhia" p.15
+                  rel$parentesco/pai/Cristovão de Gouveia/ivc-cristovao-madureira
+                  rel$parentesco/pai/João de Madureira/ivc-joao-de-madireira
+
+               referido$Cristovão de Gouveia/id=ivc-goncalo-da-silveira-his3-57-per2-60
+                  ls$jesuita-estatuto/Padre
+
+               referido$João de Madureira/id=ivc-goncalo-da-silveira-his3-57-per3-60
+                  ls$jesuita-estatuto/Padre
+
+            estadia$Vila de Tomar/0/0/1552/obs=Inferred date > november 1551, remained 6 months./id=ivc-goncalo-da-silveira-his5-61
+
+            estadia$Lisboa, S.Roque e Corte/0/10/1553/obs="Tinha uma ou duas primas no paço..." p. 17/id=ivc-goncalo-da-silveira-his4-63
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his4-63-per1-63
+
+            viagem$Lisboa para a Índia/0/0/1556/obs="iam nesta viagem 13 da nossa companhia, repartidos em diversas naus". Arrival in Goa 6 september 1556/id=ivc-goncalo-da-silveira-his5-64
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his5-64-per1-65
+                  ls$estadia/Goa, Índia/15560906
+
+               referido$João Nunes Barreto/id=ivc-joao-nunes-barreto
+                  ls$cargo/Patriarca
+
+               referido$André de Ouviedo/id=ivc-andre-de-ouviedo
+                  ls$cargo/Bispo
+
+               referido$Francisco Rodrigues/id=ivc-goncalo-da-silveira-his5-64-per1-64
+                  ls$jesuita-estatuto/Padre
+                  ls$alcunha/Manquinho
+
+            estadia$Moçambique/25/7/1556/obs=dia de Santiago Maior até dia de S. Lourenço (10-Aug)/id=ivc-goncalo-da-silveira-his6-64
+               ls$estadia/Moçambique/15560810/obs="Dia de S. Lourenço"
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his6-64-per1-64
+
+            estadia$Goa/6/9/1556/id=ivc-goncalo-da-silveira-his7-67
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his7-67-per1-67
+                  ls$cargo/Provincial da Índia
+                  ls$estadia/Colégio de S. Paulo, Goa
+
+               referido$António Quadros/id=ivc-antonio-quadros
+                  ls$jesuita-estatuto/Padre
+                  ls$estadia/Colégio de S.Paulo, Goa
+
+               referido$Melchior Carneiro/id=ivc-melchior carneiro
+
+            viagem$Goa a Baçaim/0/9/1556/obs=date? he write from Cochim on January 1567/id=ivc-goncalo-da-silveira-his6-68
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his6-68-per1-68
+                  ls$estadia/Chaul/obs=Stayed 7 or 8 days. With the Dominicans
+                  ls$estadia/Tanã, India/obs="onde tinhamos casa"
+
+               referido$Francisco de Mascarenhas/obs=lead a "fusta" of the "armada" going to Baçaim/id=ivc-goncalo-da-silveira-his6-68-per2-68
+                  ls$titulo/Dom
+
+               referido$Paio Correira/obs="soldado muito nobre"/id=ivc-goncalo-da-silveira-his6-68-per1-69
+                  ls$profissao/soldier/obs=decides to join de Jesuits
+                  ls$estadia/Tanã, Índia
+                  ls$nascimento/Porto, Portugal
+
+               referido$Diogo de Noronha/obs=Gonçalo travels in his boat (Catur) from Tanã to Cochim/id=ivc-goncalo-da-silveira-his6-68-per2-69
+                  ls$titulo/Dom
+
+            estadia$Cochim/0/1/1557/obs=data de carte escrita de Cochim/obs=p. 24 e ss. Describes establishment of the Inquisition in Goa. Papers with menaces signed "O Povo de Israel" were left in the alms boxes, etc.. So the Jesuits required that the Vigário Geral takes action. Witnesses are questionned. Local capitan tries to dissuade the Vigário. At the end more than 20 were found guilty "e erão dos mais ricos da cidade". After winter they were sent to Goa and the fathers with them [the story is told as if the jesuits were the ones ensuring persecution of the "Cristãos Novos". In Goa they tried to free them with bail, but the fathers opposed and they were sent to Portugal, with other "Cristãos Novos" found in Goa. The Jesuits ask the King to bring the Inquisition to India./id=ivc-goncalo-da-silveira-his7-69
+
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his7-69-per1-69
+
+               referido$Belchior Carneiro/mesmo_que=ivc-belchior-carneiro/id=ivc-goncalo-da-silveira-his7-69-per2-69
+                  ls$cargo/Bispo Eleito de Niceia
+
+               referido$João de Albuquerque/id=ivc-joao-de-albuquerque
+                  ls$cargo/Bispo de Goa
+                  ls$morte-data/<1557-01
+
+               referido$Pedro Gonçalves/id=ivc-goncalo-da-silveira-his7-69-per1-72
+                  ls$cargo/Vigário Geral de Goa
+                  rel$social/friend/Francisco Xavier/ivc-francisco-xavier
+
+               referido$Francisco Barreto/id=ivc-francisco-barreto
+                  ls$cargo/Governador da Índia
+
+            pevent$Novas leis na Índia/0/0/1557/obs="""
+               Since they could not pass to Etiópia. Jesuits advise governor on new laws. These laws where later aproved by Queen Catarina as regent in the young age of King Sebastião.
+               
+               |cit:|
+               Seguiu-se disto que as conversões foram muitas em número. 
+               Ouve porém grandes dificuldades nos Brahames que vinham encapar as rendas, 
+               e faziam medo de aver el-Rei de ficar defraudado. A isto acordiram os padres 
+               dizendo ao Governador que eles lhes buscariam cristãos abonados que corressem 
+               os direitos reais, e que mandasse castigar as cabeças daquele motim
+               nenhum infiel vassalo de el-Rei de Portugal tivesse ou fizesse fazer pagodes, 
+               ou cerimónias gentílicas, nem festas públicas, sob pena de ser cativo e 
+               condenado a galés, e perder a fazenda, metade para o acusador e metade 
+               para as obras da ribueira.
+               
+               Que nenhum inifiel tivesse ofício público, por ser cousa absurda que o 
+               inimigo de Cristo tenha poder sobre os cristãos, e que com pretexto do 
+               ofício de el-Rei que tem, os moleste. Que nenhum oifical de justiça 
+               ou fazenda se servisse de algum infiel.
+               
+               Que os gentios, que tivessem semelhantes ofícios, fossem deles tirados, 
+               e se provessem em Cristãos novamente convertidos.
+               
+               Que as rendas, e terras de el-Rei tanto por tanto se arrendassem a cristãos e não aos gentios.
+               
+               Que os novamente convertidos herdassem aos gentios seus ascendentes e descendentes. 
+               
+               Que os gentios não herdassem aos cristãos [antigo esquema de concentração de propriedade por herança]. 
+               
+               Que as mulheres dos gentios fazendo-se cristãns fossem meeiras com seus maridos em toda a fazenda, 
+               conforme as leis de Portugal.
+
+               Que os orfãos filhos de gentios, que não tivessem uso de razão, fossem tomados e batizados, 
+               e postos nas casas dos religiosos, pera serem ensinados na nossa fé; e os que tivessem tutores, 
+               ou curadores critãos, até serem emancipados.
+               |fim cit.|
+                  """/id=ivc-goncalo-da-silveira-his1-146
+
+               referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his1-78-per1-79
+                  ls$cargo/Governador
+
+               referido$João Nunes Barreto/mesmo_que=ivc-joao-nunes-barreto/id=ivc-goncalo-da-silveira-his1-78-per2-79
+                  ls$cargo/Patriarca
+
+               referido$Belchior Carneiro%o bispo eleito/mesmo_que=ivc-belchior-carneiro/id=ivc-goncalo-da-silveira-his1-78-per1-86
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his1-78-per4-79
+
+               referido$António de Quadros/mesmo_que=ivc-antonio-quadros/id=ivc-goncalo-da-silveira-his1-78-per5-79
+                  ls$jesuita-estatuto/Padre
+
+               referido$Francisco Rodrigues/id=ivc-goncalo-da-silveira-his1-78-per6-79
+
+            pevent$New Vice-Rei Constantino de Bragança/0/0/1558/id=ivc-goncalo-da-silveira-his2-80/obs=see event bio-alvaro-silveira-his3-4
+
+               referido$Constantino de Bragança/id=ivc-constantino-de-braganca/xmesmo_que=bio-constantino-de-braganca
+                  ls$titulo/Dom
+                  ls$cargo/Vice-Rei da Índia
+                  ls$estadia/Goa, Índia
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-80-per1-82
+                  rel$institutional/advise/Constantino de Bragança/ivc-constantino-de-braganca/obs="""
+                  Construction of the Church of S. Tomé em Goa. Because the King of 
+                  Narsinga looted the city of Meliapor and took the relicts of the 
+                  Apostle S.Tomé kept in a silver ark. "Bem verdade é, que sabendo desta 
+                  arca, a fez logo restituir a seus lugar com o santo depósito que em si 
+                  guardava, tendo respeito àquelas santas memórias a quem seus 
+                  antepassados tiveram sempre veneração" 
+                  [There is a tradition linked to the "acts of Thomas" 
+                  aprocrifal text of the beggining of the 3rd 
+                  century that Thomas was the apostle of India. 
+                  See http://www.earlychristianwritings.com/actsthomas.html
+                  ]
+                  """
+
+            viagem$Chaul, defender de ataque/0/0/1558#inferido/id=ivc-goncalo-da-silveira-his1-85
+
+               referido$Gonçalo da Silveira/id=ivc-goncalo-da-silveira-his1-85-per1-85/id=ivc-goncalo-da-silveira-his1-per1/mesmo_que=ivc-goncalo-da-silveira/obs=""" With Chaul menaced by the 'Melique', the Governor could not  prepare a defense army and asked Gonçalo to preach the danger, which he  did, gathering great number of people and donations to pay soldiers. "E  em breve tempo se achou o governador em Chaul com três mil portugueses,  que é o maior poder de gente Portuguesa, que ajunta o Vice-Rei, agora a  gente da terra". Surprised, the atacker made peace"""
+
+               referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his1-85-per2-85
+
+            pevent$End of office as Provincial/0/0/1559%acabando de ser 3 anos provincial entregou a ocupação ao Padre António de Quadros/id=ivc-goncalo-da-silveira-his2-85
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-85-per1-85
+                  ls$cargo/Provincial#end of term
+
+               referido$António de Quadros/mesmo_que=ivc-antonio-quadros/id=ivc-goncalo-da-silveira-his2-85-per2-85
+                  ls$cargo/Provincial#start of term
+
+            pevent$Chegada das naus do reino a Moçambique/0/0/1559/id=ivc-goncalo-da-silveira-his3-85/obs="""
+            The king of Inhambane asks the portuguese capitan in Moçambique to provide 
+            some preachers to convert his people, inspired by the conversion of his 
+            nephew. The "armada" coming from Portugal stops at Moçambique and takes the 
+            request to Goa. Aboard the "armada" the first bishops of Malaca and Cochim. 
+            Upon arrival they forward the request to the Vice-Rei who in turn speaks to 
+            António Quadros, provincial of the Jesuits.p.27."""
+
+               referido$Sebastião de Sá/id=ivc-goncalo-da-silveira-his3-85-per1-85
+                  ls$cargo/Capitão da fortaleza de Moçambique
+
+               referido$Sebastiao de Sá/obs=sobrinho do rei de Inhambane e Oronge, afilhado do capitão Sebastião de Sá, de quem recebe o nome. Depois de convertido e batizado em Moçambique voltou junto do Rei que teria ficado encantado com o relato do sobrinho e manisfestou desejo de se converter, pediu ao sobrinho voltasse a Moçambique para pedir pregadores/id=ivc-goncalo-da-silveira-his3-85-per2-85
+                  rel$kin/nephew/Rei de Inhambane e Oronge/ivc-rei-de-inhambane
+                  rel$identification/not-same-as/Sebastião de Sá/ivc-goncalo-da-silveira-his3-85-per1-85/obs=têm o mesmo nome porque este foi aflihado de batismo do outro
+
+               referido$Rei de Inhambane e Oronge/id=ivc-rei-de-inhambane
+
+               referido$Jorge de Santa Luzia/id=ivc-jorge-de-santa-luzia
+                  ls$titulo/dom
+                  ls$cargo/Bispo de Malaca%primeiro bispo de Malaca/obs=First bishop of Malaca
+
+               referido$Jorge Temudo/id=ivc-jorge-temudo
+                  ls$titulo/dom
+                  ls$cargo/bispo de Cochim/obs=First bishop of Cochim
+
+               referido$António Pegado/id=ivc-goncalo-da-silveira-his3-85-per1-90
+                  ls$titulo/Frei
+                  ls$cargo/Vigário Geral dos Religiosos de São Domingos da Índia
+                  ls$order/Dominicanos
+
+            pevent$Nomeação para pregar em Monomotapa [Mutapa]/0/12/1559/id=ivc-goncalo-da-silveira-his1-91
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his1-91-per1-91
+
+               referido$André Fernandes/id=ivc-andre-fernandes
+                  ls$jesuita-estatuto/Padre
+                  ls$ordained/Missa/obs="que para esta missão foi ordenado de Missa"
+                  ls$cargo/Coadjutor temporal
+
+               referido$Francisco Xavier/mesmo_que=ivc-francisco-xavier/id=ivc-goncalo-da-silveira-his1-91-per2-91
+                  rel$institutional/send to Europe/André Fernandes/ivc-andre-fernandes
+
+               referido$André da Costa/id=ivc-andre-da-costa
+                  ls$jesuita-estatuto/irmão
+
+            viagem$Chaul para Moçambique/5/1/1560/obs="p.29 Letter from Gonçalo Silveira to António Quadros about the trip from Chaul to Moçambique january 1560". Saw land the 2nd february "dia da Purificação da Virgem". Arrival 5 feb 1560/id=ivc-goncalo-da-silveira-his1-92
+               ls$voyage/start/15600105
+               ls$voyage/end/15600205/obs=dia da Benaventurança de Santa Ágata
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his1-92-per1-92
+                  ls$estadia/Chaul/15591225/obs=according to letter to António Quadros ivc-doc4
+
+               referido$André Fernandes/mesmo_que=ivc-andre-fernandes/id=ivc-goncalo-da-silveira-his1-92-per2-92
+
+               referido$André da Costa/mesmo_que=ivc-andre-da-costa/id=ivc-goncalo-da-silveira-his1-92-per3-92
+
+               referido$Pantaleão de Sá/id=ivc-pantaleao-de-sa/obs=See https:||www.geni.com|people|Pantaleão-de-Sá-de-Menezes-capitão-de-Sofala|6000000017017918072
+                  ls$titulo/Senhor
+
+               referida$Luísa/id=ivc-doc4-per2-92-per1-96/obs=See https:||www.geni.com|people|Luisa-de-Vasconcelos|6000000017017436413
+                  ls$titulo/ls$titulo/dona
+                  rel$kin/wife/Pantaleão de Sá/ivc-pantaleao-de-sa
+
+            estadia$Ilha de Moçambique/0/2/1560/id=ivc-goncalo-da-silveira-his2-101
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-101-per1-101
+                  ls$estadia/Ilha de Moçambique
+                  rel$social/lived at the house of/Pantaleão de Sá/ivc-goncalo-da-silveira-his2-101-per1-103
+
+               referido$Francisco Barreto de Lima/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his2-101-per2-101
+                  ls$cargo/Governador da Índia/obs="fora Governador da Índia" [replaced Pedro de Mascarenhas 16-6-1555]
+                  ls$estadia/Ilha de Moçambique/obs=Coming from Índia to Portugal, the armada lost a "nau", and its own was overloaded with could be saved and had to stop at Moçambique. See "https://pt.wikipedia.org/wiki/Francisco_Barreto"
+
+               referido$Pantaleão de Sá/mesmo_que=ivc-pantaleao-de-sa/id=ivc-goncalo-da-silveira-his2-101-per1-103
+                  ls$estadia/Ilha de Moçambique/obs=Where he had a house with a tower
+
+            pevent$Visão da Batalha de Ormuz/0/0/1558#ano?/obs=Gonçalo da Silveira teria tido a visão que o irmão iria morrer no Golfo Pérsico e terá avisado o Vice-Rei Constantino de Bragança. Mas o Vice-Rei e o irmão ignoraram o aviso e o irmão morreu, na batalha de Bahrein./id=ivc-goncalo-da-silveira-his4-117
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his4-117-per1-117
+
+               referido$Álvaro da Silveira/xmesmo_que=bio-alvaro-silveira/id=ivc-goncalo-da-silveira-his4-117-per1-125
+
+               referido$Constantino de Bragança/xmesmo_que=bio-constantino-de-braganca/id=ivc-goncalo-da-silveira-his4-117-per2-117
+
+            estadia$Inhambane/12/2/1560/obs= """With presentes from Pantaleão de Sá and Francisco Barreto. Together with 
+            the two Jesuits brothers and two other portuguese, un-named. Sic on arrival, 
+            waited 17 days before going do Tonga the capital of the kingdom. Baptized the 
+            King, queen and her sister and 500 more people. Built church dedicated to 
+            Nossa Senhora da Assunção."""/id=ivc-goncalo-da-silveira-his3-118
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his3-118-per1-118
+                  ls$estadia/Tonga/obs=for seven weeks
+
+               referido$André Fernandes/mesmo_que=ivc-andre-fernandes/id=ivc-goncalo-da-silveira-his3-118-per2-118
+                  ls$estadia/Tonga/15600200/obs=was sic for a while, stayed for two years, local "feiticeiros" against him. After two years is expelled and returns to Índia
+
+               referido$André da Costa/mesmo_que=ivc-andre-da-costa/id=ivc-goncalo-da-silveira-his3-118-per3-118
+                  ls$estadia/Tonga/obs=After falling ill returned to Moçambique
+
+            viagem$Moçambique para Monomotapa/0/9/1560/obs=com seis Portugueses e nenhum Jesuíta/id=ivc-goncalo-da-silveira-his9-119
+               ls$step/Foz do Rio Mafuta/obs="Novanta léguas de Moçambique"
+               ls$step/Rio Colimane
+               ls$step/Migoaxante, Rei de Giloa#muslim friend of the Portuguese
+               ls$step/Rio Cuama/obs="Trinta léguas de Sofala". Great stormtook shelter in Linde
+               ls$step/Enseada de Linde/obs=Remained for 13 days, lost another ship that continued voyage
+               ls$step/Cuama
+               ls$step/Sena#final destination. Sent request to enter the kingdom to Monomotapa. Stayed for a month, with portuguese community and King of Inhamior, sbujsubjectect of Monomotapa, a christian.
+               ls$step/Aldeia de Quitumquim/obs=with António Caiado, close to the king of Monomotapa
+               ls$step/Monomotapa/15610101
+
+               referido$António Caiado/id=ivc-antonio-caiado
+                  ls$cargo/Capitãp-mor dos portos do Reino de Monomotapa/obs="""
+                  For the King of Monomotapa, close to the king. Send by the King of 
+                  Monomotapa to bring father Gonçalo Silveira"""
+
+            pevent$Encontro com o rei de Monomotapa/0/1/1561/obs="""
+            Meeting with the King and his mother. António Caiado translates. Refuses gold 
+            and other riches. Shows imagem of Our lady that greatly impresses King. 
+            Offers imagem to King, builds oratory in the King's chambers for the image."""/id=ivc-goncalo-da-silveira-his5-123
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his5-123-per1-123
+
+               referido$Rei de Monomotapa/id=ivc-goncalo-da-silveira-his5-123-per2-123
+                  ls$baptized/date/15610125/obs=Followed by 300 noble men.
+
+            pevent$Morte do Padre Gonçalo/15/3/1561/obs="""
+            Alguns mouros convencem o rei que o Padre é Grande Feiticeiro e vão virar o 
+            povo contra o rei. O Rei decide matá-lo. Tem pre monição, faz confissão 
+            pascal aos portugueses e batiza mais 50 pessoas."""/id=ivc-goncalo-da-silveira-his10-124
+
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his10-124-per1-124
+                  ls$death/date/15610315/obs="""Killed by 8 men at orders of the King of Monomotapa. Also que 50 recently converted christians were killed. God send locust to avenge his deadth and later Franisco Barreto de Lima to conquer the gold mines in 1571"""
+
+         evento$Recebimento da Infanta D. Isabel com Carlos V/20/1/1526/id=imagem-virtude-v2-his1-9/obs=v.2, p.3 Recebimento same as Marriage. But they will only meet in person later.
+            ls$estadia/Almeirim/obs=Onde estava a Corte.
+
+            referido$Carlos V/id=carlos-v-imperador
+               ls$titulo/Imperador
+
+            referida$Isabel/id=isabel-de-portugal
+               ls$titulo/Infanta
+               ls$titulo/Dona
+               rel$parentesco/irma/João III/joao-iii
+
+         evento$Nascimento do Infante D. Afonso/24/2/1526/id=imagem-virtude-v2-his2-10
+            ls$estadia/Almeirim/obs=Onde estava a corte
+
+            n$Afonso/id=imagem-virtude-v2-his2-10-per1-10
+               ls$titulo/Principe
+               ls$birth-date/15260224
+
+               pai$João III/id=joao-iii
+                  ls$titulo/rei
+
+               mae$Catarina de Aústria/id=catarina-de-austria
+                  ls$titulo/Dona
+                  ls$titulo/Rainha
+
+         evento$Arrival of first Inquisidores to Índia/0/0/1560/obs= """The Jesuits were targeted for this p.25 Barreto had an arrow 
+         pierce his cap, António de Quadros was poisoned, 
+         Gonçalo Silveira was targeted in the island of Chorão. All escaped."""/id=ivc-bio-goncalo-da-silveira-his8-76
+
+            referido$Gaspar/id=ivc-bio-goncalo-da-silveira-his8-76-per1-76/obs=Come to India with the first Inquisidores.
+               ls$titulo/Dom
+               ls$cargo/Arcebispo de Goa
+               ls$estadia/Goa/15600000
+
+         evento$Arrival of Vice-Rei Constantino de Bragança/0/0/1558/id=ivc-bio-goncalo-da-silveira-his1-81
+
+            referido$Constantino de Bragança/id=ivc-bio-goncalo-da-silveira-his1-81-per1-81
+               ls$titulo/Dom
+               ls$cargo/Vice-Rei
+               ls$estadia/Goa, Índia
+
+         evento$Início da Casa Professa de S.Roque/0/10/1553/obs="primeiro domingo de Outubro de 1553" p. 17./id=ivc-doc2-his6-61
+
+            referido$Jerónimo Nadal/mesmo_que=ivc-jeronimo-nadal/id=ivc-doc2-his6-61-per1-61
+               ls$cargo/Comissário
+
+            referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja/id=ivc-doc2-his6-61-per2-61
+
+            referido$João III/mesmo_que=joao-iii/id=ivc-doc2-his6-61-per3-61
+               rel$parentesco/pai/João/ivc-joao-principe
+
+            referido$João/id=ivc-joao-principe
+               ls$titulo/Príncipe
+
+            referido$Gonçalo%Padre Gonçalo Prepósito da Nova Caza Professa/id=iv-goncalo-de-sao-roque
+               ls$jesuita-estatuto/fez profissao de quatro votos
+               ls$cargo/Prepósito de S.Roque, Lisboa
+               ls$jesuita-estatuto/Padre
+
+            referido$Gonçalo Vaz de Melo/id=ivc-goncalo-vaz-de-melo
+               ls$jesuita-estatuto/Padre
+               ls$jesuita-estatuto/fez profissao de quatro votos
+
+            referido$António de Quadros/id=ivc-antonio-de-quadros
+               ls$jesuita-estatuto/Padre
+               ls$jesuita-estatuto/fez profissao de quatro votos
+
+         evento$Batalha de Bahraim/0/0/1555/id=ivc-bio-goncalo-da-silveira-his2-107
+
+            referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-bio-goncalo-da-silveira-his2-107-per1-107
+
+            referido$Alvaro de Silveira/id=ivc-bio-goncalo-da-silveira-his2-107-per2-107/obs="""
+            Foi nomeado Capitão de Ormuz e morreu numa batalha no Bahraim. Seria amigo de 
+            Camões que lhe dedicou uma elegia 
+            'Não tenho razão de vos fazer meus castelo de vento sobre o mar...' """
+               ls$titulo/dom
+               rel$kin/brother/Gonçalo da Silveira/ivc-bio-goncalo-da-silveira-his2-107-per1-107
+               rel$social/friend/Luís de Camões/bio-luis-de-camoes/obs=See Obras de Luiz de Camões, ed. by Visconde de Juromenha (Imprensa nacional, 1862), III, p.555
+
+      carta$ivc-doc1/0/0/1551/obs=transcrita parcialmente p.12-13/resumo= """Aknowledge letter from Superior Miguel Torres to go to Porto, but could not 
+      oblige due to the great number of people that came to hear him, to confess, and 
+      these people convinvced the archbishop to make him stay."""
+
+         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc1-per1-56
+
+         receptor$Miguel de Torres/id=ivc-doc1-per2-56
+            ls$jesuita-estatuto/Superior
+            ls$jesuita-estatuto/Padre
+
+            referido$Baltazar Limpo/mesmo_que=ivc-baltazar-limpo/id=ivc-doc1-per2-56-per3-56/obs="""
+                "Andamos largo espaço, dando-me conta de conceitos seus, e pareceia 
+                depois, que tudo nascia da nova edificação, e gosto, que tinha de ter 
+                ouvido ofruto que Deus fazia com as doutrinas e mais serviço da Companhia 
+                na sua cidade."
+            """
+
+      carta$ivc-doc2/0/11/1551/obs=transcrita parcialmente p.14-15/resumo=VERIFICAR CONTEÚDO.
+
+         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc2-per1-57
+
+         receptor$Manuel Godinho%e irmãos/id=ivc-manuel-godinho
+            ls$jesuita-estatuto/padre
+
+      carta$ivc-doc3/0/1/1557/obs=Written from Cochimtranscription p. 20-21. Narrates de horrors of the trip, in very vivid terms. Also trip from Goa to Bassaim
+
+         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc3-per1-66
+            ls$estadia/Cochim
+
+         receptor$Gonçalo Vaz de Melo/mesmo_que=ivc-goncalo-vaz-de-melo/id=ivc-doc3-per2-66
+            ls$jesuita-estatuto/Padre
+
+      carta$ivc-doc4/12/2/1560/obs="""
+      About the trip of the first Jesuit missionaries to Mutapa, January-February 1560.
+      Mostly about devotion activities the Jesuits promoted during the trip. Mentions 
+      that put some of the 'ladaínhas' in Portuguese 'em linguagem' so that the crew 
+      could benefit from them. Sends texts to António Quadros. [What does this means:] 
+      
+      "pela viagem metemos ao capitão e companheiros desde o Sábado oitava dos reis 
+      treze graus de altura, ou alturas dos replandores da sempre Santa e sempre Virgem 
+      Madre de Deus nossa Senhora, tomando cada dia um grau, deles depois do jantar; 
+      assim como o piloto ia tomando cada dia a altura do sol material, assim íamos nós 
+      tomando o sol Virginal.""
+      
+      Mentions the 'Senhora do Baluarte' as a landmark of the 
+      approach to Moçambique from the sea http://www.hpip.org/pt/heritage/details/38.
+      """
+
+         emissor$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc4-per1-92
+            ls$estadia/Chaul/15591225/obs=according to letter to António Quadros ivc-doc4
+
+         receptor$António de Quadros/mesmo_que=ivc-antonio-quadros/id=ivc-doc4-per2-92
+
+            referido$nome desconhecido/id=ivc-doc4-per2-92-per1-94
+               ls$cargo/Vigário de Sofala
+
+            referido$Pantaleão de Sá/mesmo_que=ivc-pantaleao-de-sa/id=ivc-doc4-per2-92-per1-102
+               ls$titulo/Senhor
+
+            referida$Luísa/mesmo_que=ivc-doc4-per2-92-per1-96/id=ivc-doc4-per2-92-per2-102
+               ls$titulo/ls$titulo/dona
+               rel$kin/wife/Pantaleão de Sá/ivc-pantaleao-de-sa
+
+      lista$ivc-bio-antonio-de-almeida/0/0/1719/obs=tom.2.liv.3.cap.30
+
+         n$António de Almeida/id=ivc-antonio-de-almeida/xmesmo_que=deh-antonio-de-almeida
+            ls$nascimento/Trancoso/15571100#Entrou na Companhia em Coimbra aos 4 de Janeiro de 1576 tendo dezoito anos e dois meses de idade
+            ls$nascimento.data/15571100
+            ls$morte/Xauceo#Shiuchow/15911017%O padre Juvenci tem que morrera aos 16 de setembro
+            ls$jesuita-estatutoa-entrada/Coimbra/15760104%tendo dezoito anos e dois meses de idade
+
+            pai$Fernão de Sequeira/id=ivc-bio-antonio-de-almeida-per1-130-per2-130
+
+            mae$Ana de Andrade/id=ivc-bio-antonio-de-almeida-per1-130-per3-130
+
+            viagem$Lisboa-Índia/0/0/1584/obs=com outros oito da Companhia referido/id=ivc-bio-antonio-de-almeida-per1-130-his1-130
+
+            estadia$Macau/0/0/0/obs=Valignano o enviou para Macau com o Padre Duarte de Sande/id=ivc-bio-antonio-de-almeida-per1-130-his1-131
+
+               referido$Alessandro Valignano/xmesmo_que=bio-alessandro-valignano/id=ivc-bio-antonio-de-almeida-per1-130-his1-131-per1-131
+
+               referido$Duarte de Sande/id=ivc-bio-antonio-de-almeida-per1-130-his1-131-per2-131
+
+            estadia$Cantão/0/0/0/obs=Onde estava com mercadores portugueses/id=ivc-bio-antonio-de-almeida-per1-130-his2-131
+
+               referido$Michele Ruggieri%Miguel Rogerio/obs="Nesse tempo o Padre Miguel Rodgerio da nossa Companhia, que vivia dentro da China, tendo licença pera fundar casa em uma das metrópoles [Zhaoqing desde 1583] veio à cidade de Cantão para se refazer de algumas coisas necessárias"/xmesmo_que=bio-michele-ruggieri/id=ivc-bio-antonio-de-almeida-per1-130-his2-131-per1-131v
+
+            estadia$Sequiam (Shaoxing?)/23/1/1586%?/id=ivc-bio-antonio-de-almeida-per1-130-his5-135/obs=data em Michela Catto - Michele Ruggieri, Dizionario Biografico degli Italiani - Volume 89 (2017)
+
+               referido$Michele Ruggieri/xmesmo_que=bio-michele-ruggieri/id=ivc-bio-antonio-de-almeida-per1-130-his5-135-per1-135
+
+            estadia$Xauceo (?)/0/8/1589/obs=Voltou a Macau mais do que uma vez por doença, faleceu em Xauceo [Shiuchow] p.392/id=ivc-bio-antonio-de-almeida-per1-130-his5-137
+
+               referido$Matteo Ricci/xmesmo_que=bio-matteo-ricci/id=ivc-bio-antonio-de-almeida-per1-130-his5-137-per1-137
+
+      carta$carta-antonio-almeida-1586/10/2/1586/resumo="""
+      Feito já china, por amor daquele, que por mim se fez homem, sendo Deus,lhe dou 
+      muitas graças, porque em tão breve tempo me concedeu, o que outros em muito não 
+      puderam conseguir, isto é uma paz, e quietação do meu coração, de modo que já não 
+      tenho neste mundo, que desejar outra cousa mais, que a minha salvação e a dos 
+      chinas, e morrer nesta empresa. [Parágrafo] Confesso a Vossa Reverência que 
+      começando a escrever esta carta, não pude reprimir as lágrimas, considerando-me 
+      estar no meio dos chinas. Isto que passa em verdade, me parece imaginação e 
+      sonho, do qual sonho quero, que Vossa Reverência me desperte, e me faça sabedor, 
+      de que estou naquele mundo porquem tanto supirou o Santo Padre Francisco Xavier; 
+      no qual possa sofrer trabalhos, e padecer a morte, que é só o que desejo, estimo 
+      tanto a conversão deste grande reino, que uma vida, que tenho, me parece nada, e 
+      das mil, que tivera, as dera por ella""" p.393-394
+
+         emissor$António de Almeida/mesmo_que=ivc-antonio-de-almeida/id=carta-antonio-almeida-1586-per1-152
+
+         receptor$nome desconhecido/id=carta-antonio-almeida-1586-per1-153
+            ls$jesuita-estatutoa-cargo/Superior da residência de Macau%superior da nossa caza de Macao

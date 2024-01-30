@@ -1,0 +1,45 @@
+kleio$gacto2.str/obs=""" This is a text for quoting attributes in xml output
+   Generated from Archeevo export file ../database/other_exports/ficheiro-alunos-auc/PT-AUC-ELU-UC-AUC-B-001-001.CSV in 2023-03-20 04:22
+"""/translations=4
+   fonte$docsregiospontepisc/data=1780/loc=V, 1e, 8, 3, 204,205,206/obs=notario pascoal gavino
+
+      docregio$docreg-1/1/1/1780/obs=carta de merce às monjas de Santa Clara/fol=?/loc=?/tipo=carta de mercê/sumario=o rei concede as monjas de santa clara isencao de jugada nas terras do vale da belavista
+
+         item$carta de merce sobre a jugada do vale da belavista/resumo=o rei concede as monjas de santa clara isencao de jugada nas terras do vale da belavista/id=docreg-1-obj1
+
+         autor$d.pedro I/id=docreg-1-per1
+
+         destinatario$abadessa/id=docreg-1-per2
+
+         beneficiario$mosteiro de santa clara/id=docreg-1-per3
+
+         bem$quinta do vale da belavista/id=docreg-1-obj1-3
+
+      docpontificio$docpapal-1/1/1/1340/obs=privilegio de terem um boeiro em permanencia no mosteiro/fol=?/loc=?/tipo=breve/sumario=o papa concede às monjas terem um boeiro residence no mostreiro
+
+         item$breve de bonifacio IX/resumo=o papa concede às monjas terem um boeiro residence no mostreiro/id=docpapal-1-obj1
+
+         autor$bonifacio IX/id=docpapal-1-per1
+            ls$cargo/papa
+
+         destinatario$abadessa/id=docpapal-1-per2
+
+         beneficiario$mosteiro de santa clara/id=docpapal-1-per3
+
+            referido$manuel rodrigues/id=docpapal-1-per3-per4
+               ls$cargo/boeiro de santa clara
+
+      docepiscopal$docepis-1/1/1/1768/obs=nomeacao de confessor/fol=?/loc=?/tipo=carta episcopal/sumario=bispo nomeia novo confessor para o mosteiro
+
+         item$carta de d.miguel da anunciacao/resumo=bispo nomeia novo confessor para o mosteiro/id=docepis-1-obj1
+
+         autor$miguel da anunciacao/id=docepis-1-per1
+            ls$cargo/bispo de coimbra
+
+         destinatario$abadessa/id=docepis-1-per2
+
+         beneficiario$mosteiro de santa clara/id=docepis-1-per3
+
+            referido$manuel rodrigues/id=docepis-1-per3-per4
+               ls$cargo/confessor do mosteiro
+               ls$profissao/padre

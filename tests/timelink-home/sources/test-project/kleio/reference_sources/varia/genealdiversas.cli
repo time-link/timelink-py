@@ -1,0 +1,1467 @@
+kleio$gacto2.str/translations=3
+   fonte$genealdiversas/data=0/loc=diversas
+
+      familia$diversas-his1/id=diversas-his1
+
+         linha$linha/id=diversas-his1-obj1
+
+            n$jose da costa ribeiro/id=jcstrib/obs=dicionario aristocratico 1840, pg.144
+               ls$cargo/desembargador
+               ls$cargo/procurador da real coroa
+
+               filha$antonia claudia rosa da costa/id=jcstrib-per1
+                  ls$titulo/dona
+
+               referido$antonio joaquim de pina manique/id=jcstrib-per2
+                  ls$titulo/doutor
+                  ls$naturalidade/lisboa
+                  ls$cargo/desembargador dos agravos
+                  rel$parentesco/marido/antonia claudia rosa da costa/jcstrib-per1
+
+               referido$pedro damiao de pina manique/id=jcstrib-per3
+                  rel$parentesco/pai/antonio joaquim de pina manique/jcstrib-per2
+                  ls$titulo/cavaleiro fidalgo da casa
+                  ls$databapt/17041012
+
+               referido$joaquim de pina manique/id=jcstrib-per4
+                  rel$parentesco/pai/pedro damiao de pina manique/jcstrib-per3
+
+      familia$albuquerque/id=albuquerque-his1
+
+         linha$linha/id=albuquerque-his1-obj1
+
+            n$maria de albuquerque/f/id=maalbq/obs=anais bib nacional brasil 1926 vol48 pg389
+               ls$titulo/dona
+
+               pai$manoel de melo de albuquerque/id=maalbq-per1
+
+               mae$ana clara cavalcante/id=maalbq-per2
+                  ls$titulo/dona
+
+                  pmae$antonio feijo de melo/id=maalbq-per3
+                     ls$cargo/capitao mor
+
+                  mmae$laura cavalcante/obs=segunda esposa do antonio feijo de melo/id=maalbq-per4
+
+               referido$jose feijo de melo e albuquerque/id=maalbq-per5
+                  ls$titulo/cavaleiro da ordem de cristo
+                  ls$titulo/bacharel/obs=formado em coimbra
+                  ls$cargo/juiz de fora do grao para
+                  ls$cargo/provedor da fazenda real do grao para
+                  ls$cargo/ouvidor do grao para
+                  ls$ec/casado/17120000
+                  ls$residencia/lisboa
+                  rel$parentesco/irmao/maria de albuquerque/maalbq
+
+               referido$antonio de melo de albuquerque/id=maalbq-per6
+                  ls$titulo/cavaleiro da ordem de cristo
+                  ls$residencia/bahia
+                  rel$parentesco/irmao/maria de albuquerque/maalbq
+
+               referido$martinho de melo de albuquerque/id=maalbq-per7
+                  ls$cargo/juiz de orfaos/obs=na vila de goiana capitania de itamaraca
+                  rel$parentesco/irmao/maria de albuquerque/maalbq
+
+               referida$joana vidal de albuquerque/id=maalbq-per8
+                  ls$titulo/dona
+                  rel$parentesco/mulher/martinho de melo de albuquerque/maalbq-per7
+
+               referido$joao lopes vidal/id=maalbq-per9
+                  rel$parentesco/pai/joana vidal de albuquerque/maalbq-per8
+                  ls$cargo/provedor de itamaraca
+
+               referida$maria de mendonca e sa/id=maalbq-per10
+                  ls$titulo/dona
+                  rel$parentesco/mae/joana vidal de albuquerque/maalbq-per8
+
+               marido$antonio goncalves barroso/id=maalbq-per11
+                  ls$nacionalidade/portuguesa
+
+               filho$francisco da virgem maria/id=maalbq-per12
+                  ls$ordem/carmo da provincia da reforma
+                  ls$cargo/frei
+
+               filho$antonio feijo de melo/id=maalbq-per13
+                  ls$cargo/clerigo presbitero
+
+               filho$jose felix goncalves barroso/id=maalbq-per14
+
+               filho$joaquim antonio goncalves barroso/id=maalbq-per15
+
+               filho$antonio jose/id=maalbq-per16
+
+               filha$ana teresa/id=maalbq-per17
+                  ls$titulo/dona
+
+               filha$inacia margarida/id=maalbq-per18
+                  ls$titulo/dona
+
+               filha$maria da conceicao e melo barroso/id=maalbq-per19/obs=ahu 15, cx 196, d13468
+                  ls$titulo/dona
+                  ls$morta/antes/17970129
+
+               filha$rita gertrudes/id=maalbq-per20
+                  ls$titulo/dona
+
+               filha$francisca felipa/id=maalbq-per21
+                  ls$titulo/dona
+
+               filha$joaquina feliciana/id=maalbq-per22
+                  ls$titulo/dona
+
+               referido$juliao lumachi/id=maalbq-per23/obs=ahu 15, cx 196, d13468
+                  rel$parentesco/marido/ana teresa/maalbq-per17
+                  rel$parentesco/irmao/jocomo lumachi/maalbq-per24
+                  ls$cargo/guarda livros do erario regio/obs=incumbido do primitivo estabelecimento e reforma do erario regio em pernambuco
+                  ls$patrimonio/quinta de pisa/obs=em olinda
+                  ls$patrimonio/propriedade de terra/obs=em camaragibe, ahu 15, cx 118, d9013
+                  ls$titulo/senhor de engenho/17750105/obs=ahu 15, cx 118, d9013
+                  ls$patrimonio/fabrica de acucar momumbu/obs=freguesia de goiana, ahu 15, cx 118, d9013
+                  ls$cargo/guarda livros da cgpp direcao de pernambuco/17750105/obs=ahu 15, cx 118, d9013, 497
+                  ls$datachegadaportugal/17590000
+                  ls$cargo/guarda livros da junta de comercio/17610000/obs=ahu 15, cx 135, d10103, f477v
+
+               referido$jocome lumachi/id=maalbq-per24/obs=ahu 15, cx 196, d13468
+                  ls$cargo/capitao da cavalaria auxiliar de olinda
+                  rel$parentesco/marido/maria da conceicao e melo barroso/maalbq-per19
+                  ls$morto/antes/17970129
+                  ls$cargo/acionista da cgpp
+                  ls$nacionalidade/italiano
+                  ls$loccasamento/recife
+                  ls$naturalidade/liorne/obs=italia, tgeorge p.735
+
+               referido$caetano francisco lumachi de melo/id=maalbq-per25/obs=ahu 15, cx 196, d13468
+                  rel$parentesco/filho/maria da conceicao e melo barroso/maalbq-per19
+                  rel$parentesco/filho/jocomo lumachi/maalbq-per24
+                  ls$naturalidade/recife/obs=paroquia de s f pedro goncalves
+                  ls$cargo/escrivao da mesa grande da alfandega da capitania de pernambuco/17971003/obs=merce de propriedade do oficio
+                  ls$cargo/cadete do segundo regimento da armada real de lisboa
+                  ls$morto/sim/18270915
+                  ls$datanasc/17731127/obs=dicionario bibliografico brasileiro, p8
+
+               referida$francisca maria ribeiro de campos lumachi/id=maalbq-per37/obs=tgeorge p.735
+                  rel$parentesco/mulher/caetano francisco lumachi de melo/maalbq-per25
+
+               referido$antonio francisco lumachi/id=maalbq-per26/obs=ahu 15, cx 196, d13468
+                  rel$parentesco/irmao/jocomo lumachi/maalbq-per24
+                  ls$cargo/tenente no regimento real de estrangeiros
+
+               referido$inacio pedro quintela/id=maalbq-per27/obs=ahu 15, cx 118, d9013, 492
+                  rel$sociabilidade/procurador/juliao lumachi/maalbq-per23
+
+               referido$jose pedro lumachi/obs=ahu 15, cx 135, d10102, f434v/id=maalbq-per28
+                  rel$parentesco/filho/juliao lumachi/maalbq-per23
+
+               referido$manoel francisco lumachi/obs=ahu 15, cx 135, d10102, f434v/id=maalbq-per29
+                  rel$parentesco/filho/juliao lumachi/maalbq-per23
+
+               referido$joao andre calvet/obs=lumachi ficou na casa do calvet em 1759 quando chegou a portugal, ahu 15, cx 135, d10103, f477v/id=maalbq-per30
+                  rel$sociabilidade/amigo/juliao lumachi/maalbq-per23
+
+               referido$joao henriques de souza/id=maalbq-per31/obs=ahu 15, cx 135, d10103, f477v
+                  ls$cargo/inspetor da junta do comercio/17610000
+                  rel$sociabilidade/trabalhou com/juliao lumachi/maalbq-per23
+
+               referido$jose francisco da cruz alagoa/id=maalbq-per32/obs=ahu 15, cx 135, d10103, f477
+                  rel$sociabilidade/amigo/juliao lumachi/maalbq-per23
+                  ls$morto/antes/17791109
+
+               referido$inacio pedro quintela/id=maalbq-per33/obs=ahu 15, cx 135, d10103, f477
+                  rel$sociabilidade/amigo/juliao lumachi/maalbq-per23
+                  ls$morto/antes/17791109
+
+               referido$joao andre calvet/id=maalbq-per34/obs=ahu 15, cx 135, d10103, f477
+                  rel$sociabilidade/amigo/juliao lumachi/maalbq-per23
+                  ls$morto/antes/17791109
+
+               referido$francisco manoel calvet/id=maalbq-per35/obs=ahu 15, cx 135, d10103, f477
+                  rel$sociabilidade/amigo/juliao lumachi/maalbq-per23
+
+               referido$joaquim pedro quintela/id=maalbq-per36/obs=ahu 15, cx 135, d10103, f477
+                  rel$sociabilidade/amigo/juliao lumachi/maalbq-per23
+
+      familia$diversas-his2/id=diversas-his2
+
+         linha$linha/id=diversas-his2-obj1
+
+            n$domingos pires monteiro bandeira/id=banddpmont/obs=ahu 15, cx 139, d10311, f15
+               ls$cargo/administrador da capela
+
+               referido$jose rodrigues da cruz/id=banddpmont-per1
+                  ls$titulo/instituidor do vinculo
+
+      familia$diversas-his3/id=diversas-his3
+
+         linha$linha/id=diversas-his3-obj1
+
+            n$joao fernandes de oliveira/id=jfopai/obs=cardoso, m. s. 1979 o desembargador joao fernandes de oliveira
+               ls$cargo/sargento mor
+               ls$naturalidade/freguesia de nossa senhora da oliveira/obs=termo da vila de barcelos
+               ls$cargo/contratador dos diamantes do serro do frio/obs=de 1740 a 1770
+               ls$profissao/homem de negocio
+               ls$morto/sim/17700907
+
+               mulher$maria de sao jose/id=jfopai-per1
+                  ls$titulo/dona
+                  ls$naturalidade/vila de taubate/obs=capitania de santos
+
+               mulher1$isabel pires monteiro de campos/id=jfopai-per5
+
+               pai$joao fernandes de oliveira/id=jfopai-per2
+                  ls$naturalidade/freguesia de nossa senhora da oliveira
+
+               mae$angela fernandes/id=jfopai-per6
+                  ls$naturalidade/lugar da silveira/obs=freguesia de sao miguel do paraiso, termo de guimaraes
+
+                  pmae$pedro dos reis pimentel/id=jfopai-per7
+                     ls$naturalidade/freguesia de santa cruz/obs=ilha das flores
+
+                  mmae$ines de sousa/id=jfopai-per8
+                     ls$naturalidade/vila de santos
+
+               filho$joao fernandes de oliveira i/id=jfofilho
+                  ls$datanasc/17220000
+                  ls$naturalidade/vila do ribeirao do carmo
+                  ls$titulo/doutor/obs=formado em coimbra em 17500000
+                  ls$cargo/desembargador
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes 1762
+                  ls$titulo/cavaleiro ordem de cristo
+
+               filha$ana quiteria de sao jose/id=jfopai-per9
+                  ls$profissao/religiosa/obs=convento de nossa senhora da madre de deus de monchique da cidade do porto
+
+               filha$maria margarida angelica de belem/id=jfopai-per10
+                  ls$profissao/religiosa/obs=convento de nossa senhora da madre de deus de monchique da cidade do porto
+
+               filha$rita isabel de jesus/id=jfopai-per11
+                  ls$profissao/religiosa/obs=convento de nossa senhora da madre de deus de monchique da cidade do porto
+
+               filha$francisca joaquina do pilar/id=jfopai-per12
+                  ls$profissao/religiosa/obs=convento de nossa senhora da madre de deus de monchique da cidade do porto
+
+               filha$helena leocadia da cruz/id=jfopai-per13
+                  ls$profissao/religiosa/obs=convento de nossa senhora da madre de deus de monchique da cidade do porto
+
+               referido$ventura fernandes de oliveira/id=jfopai-per3
+                  ls$cargo/tenente coronel da cavalaria auxiliar da nobreza/obs=termo da cidade de mariana
+                  rel$parentesco/sobrinho/joao fernandes de oliveira/jfopai
+                  ls$residencia/vila rica de ouro preto/17750000
+
+               referido$jose dias de oliveira/id=jfopai-per4
+                  ls$cargo/sargento mor
+                  ls$residencia/rio de janeiro
+                  rel$parentesco/sobrinho/joao fernandes de oliveira/jfopai
+
+               referido$francisco ferreira da silva/id=jfopai-per14
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes de 17400101 a 17471231
+
+               referido$manoel barbosa torres/id=jfopai-per15
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes 1751
+
+               referido$antonio martins torres/id=jfopai-per16
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes 1751
+
+               referido$manoel nunes da silva tojal/id=jfopai-per17
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes 1753 ate 1758
+
+               referido$domingos de bastos viana/id=jfopai-per18
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes 1753 ate 1758
+
+               referido$antonio dos santos pinto/id=jfopai-per19
+                  rel$sociabilidade/socio/joao fernandes de oliveira/jfopai/obs=contrato de diamantes 1759
+
+      familia$diversas-his4/id=diversas-his4
+
+         linha$linha/id=diversas-his4-obj1
+
+            n$manoel garcia velho do amaral/id=mgva-per1/obs=ahu pernambuco
+               ls$profissao/padre
+               ls$cargo/tesoureiro mor da se de olinda
+               ls$cargo/conego da se de olinda
+               ls$residencia/olinda
+
+               mulher$rosa maria de jesus/id=mgva-per2
+                  ls$titulo/dona
+
+                  filho$manoel de lima/id=mgva-per3
+
+      familia$diversas-his5/id=diversas-his5
+
+         linha$linha/id=diversas-his5-obj1
+
+            n$fernando antonio teles de sousa/obs=fonte diario das cortes/id=diversas-his5-obj1-per1
+               ls$cargo/administrador do tabaco da comarca de set�bal
+               ls$morto/antes/18211211
+
+               filho$joao xavier telles de sousa/id=diversas-his5-obj1-per1-per2
+
+      familia$diversas-his6/id=diversas-his6
+
+         linha$linha/id=diversas-his6-obj1
+
+            n$joao marques bacalhau/id=diversas-his6-obj1-per1
+               ls$cargo/capitao mor de ordenancas/17900918/obs=da vila de igarassu
+               ls$condicao/abastado de bens/17890511
+               ls$condicao/pessoa nobre/17890511
+
+               referido$estevao jose carneiro da cunha/id=diversas-his6-obj1-per1-per2
+                  ls$morto/antes/17890511
+                  ls$cargo/capitao mor de ordenancas/obs=da vila de igarassu, foi substituido por joao marques bacalhau
+
+               referido$manoel barbosa da silva garcia/id=diversas-his6-obj1-per1-per3
+                  ls$cargo/oficial maior da secretaria do governo da capitania de pernambuco
+
+               referido$tomas jose de melo/id=diversas-his6-obj1-per1-per4
+                  ls$titulo/dom
+                  ls$cargo/governador da capitania de pernambuco/17871218/obs=parece nesta data como governador no ahu15 cx.161 d.11570
+
+      familia$diversas-his7/id=diversas-his7
+
+         linha$linha/id=diversas-his7-obj1
+
+            n$jose francisco da cruz alagoa/id=diversas-his7-obj1-per1/obs=registro geral das merces de d. jose i, livro 19, f.242
+               ls$titulo/fidalgo da casa
+               ls$cargo/conselheiro da fazenda
+               ls$cargo/tesoureiro mor do real erario
+               ls$residencia/lisboa
+
+               filho$joaquim inacio da cruz alagoa/obs=242/id=diversas-his7-obj1-per1-per1
+                  ls$titulo/foro de fidalgo cavaleiro/17650320
+                  ls$residencia/lisboa
+
+               filho$jose antonio da cruz alagoa/obs=f.242v/id=diversas-his7-obj1-per1-per2
+                  ls$titulo/foro de fidalgo cavaleiro/17650320
+                  ls$residencia/lisboa
+
+      familia$diversas-his8/id=diversas-his8
+
+         linha$linha/id=diversas-his8-obj1
+
+            n$mauricio jose cremer vanzeler/obs=ahu-cu-reino, cx. 343, pasta 11/id=mjcv-his8-per1
+               ls$morto/antes/17980628
+
+               filha$catarina sofia cremer vanzeler/id=mjcv-his8-per1-per1
+                  ls$titulo/dona
+                  rel$sociabilidade/herdeira universal/mauricio jose cremer vanzeler/mjcv-his8-per1
+
+      familia$diversas-his9/id=diversas-his9
+
+         linha$linha/id=diversas-his9-obj1
+
+            n$inacio pedro quitela/obs=ahu 3, cx. 23, d. 2004/id=ipq-his9-per1
+               ls$morto/antes
+
+               referido$joaquim pedro quintela/id=ipq-his9-per1-per1
+                  rel$parentesco/sobrinho/inacio pedro quitela/ipq-his9-per1
+                  ls$cargo/contratado do contrato da pescaria das baleias/17780000/obs=nas costas do brasil
+                  ls$cargo/caixa do contrato da pescaria das baleias/17780000/obs=nas costas do brasil
+                  ls$cargo/administrador geral do contrato da pescaria das baleias/17780000/obs=nas costas do brasil
+
+               referida$ana joaquina quintela/obs=geneall/id=ipq-his9-per1-per2
+                  rel$parentesco/mae/joaquim pedro quintela/ipq-his9-per1-per1
+                  rel$parentesco/irma/inacio pedro quitela/ipq-his9-per1
+
+               referido$luis rebelo quintela/id=ipq-his9-per1-per3
+                  rel$parentesco/irmao/inacio pedro quitela/ipq-his9-per1
+                  rel$parentesco/irmao/ana joaquina quintela/ipq-his9-per1-per2
+                  rel$parentesco/tio/joaquim pedro quintela/ipq-his9-per1-per1
+
+      familia$diversas-his10/id=diversas-his10
+
+         linha$linha/id=diversas-his10-obj1
+
+            n$luis cantofer/obs=ahu 3, cx. 24, d. 2029/id=lc-his10-per1
+
+               referido$pedro breuls/id=lc-his10-per1-per1
+                  rel$sociabilidade/procurador/luis cantofer/lc-his10-per1/data=17790826
+                  ls$profissao/negociante
+                  ls$nacionalidade/alema
+
+               referido$francisco paliart/id=lc-his10-per1-per2
+                  ls$cargo/administradores clavicularios/17790826/obs=da nau mariana vitoria, nomeados pela coroa
+
+               referido$joaquim pedro quintela/id=lc-his10-per1-per3
+                  ls$cargo/admiistradores clavicularios/17790826/obs=da nau mariana vitoria, nomeados pela coroa
+
+      familia$diversas-his11/id=diversas-his11
+
+         linha$linha/id=diversas-his11-obj1
+
+            n$jose de sousa e abreu/obs=ahu 3, cx.27, d.2243/id=jsa-his11-per1
+               ls$morto/sim/17890501
+               ls$cardo/diretor da cgpp
+               ls$ordenado/700.0 reis anual
+
+      familia$diversas-his12/id=diversas-his12
+
+         linha$linha/id=diversas-his12-obj1
+
+            n$jose cavalcante enserrabodes/obs=ahu 15, cx.86, d.7081/obs=jce-his12-per1/id=diversas-his12-obj1-per1
+               ls$cargo/escrivao da camera/17541207/obs=de vila formosa de serinhaem
+               ls$cargo/tabeliao do publico judicial e notas/17541207/obs=de vila formosa de serinhaem
+               ls$cargo/escrivao dos orfaos/17541207/obs=de vila formosa de serinhaem
+               ls$cargo/almotacaria/17541207/obs=de vila formosa de serinhaem
+               ls$naturalidade/vila de serinhaem
+               ls$cor/branca
+               ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+               ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+               ls$cargo/tenente/17541207
+               ls$patrimonio/engenho de acucar/17690603/obs=diatante sete legoas da vila de serinhaem
+               ls$patrimonio/engenho cachoeira/17830000/obs=freguesia de ipojuca, termo da vila de santo antonio do recife de pernambuco
+               ls$titulo/senhor de engenho
+               ls$vivo/sim/18020928
+
+               mulher$angela de nobalas/id=diversas-his12-obj1-per1-per2
+                  ls$titulo/dona
+
+               pai$manoel cavalcante de melo/id=diversas-his12-obj1-per1-per3
+                  ls$naturalidade/vila de serinhaem
+                  ls$cor/branca
+                  ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+                  ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+                  ls$morto/antes/17690603/obs=ahu 15, cx.107, d.8294
+
+               mae$juliana de nobalas enserrabodes/id=diversas-his12-obj1-per1-per4
+                  ls$titulo/dona
+                  ls$naturalidade/vila de serinhaem
+                  ls$cor/branca
+                  ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+                  ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+                  rel$parentesco/madrinha/manoel cavalcante de melo/mcm-his12-per1
+
+               filho$manoel cavalcante de melo/obs=ahu 15, cx.202, d.13801, legitimo e primogenito/id=mcm-his12-per1
+                  ls$cor/branca
+                  ls$ec/c
+                  ls$residencia/vila de serinhaem
+                  ls$naturalidade/vila de serinhaem
+                  ls$cargo/tenente
+                  ls$databapt/17481109/obs=ahu 15, cx.253, d.16950
+                  ls$locbaptismo/capela de nossa senhora da palma no engenho da palma
+
+               referido$luis pereira de carvalho/id=diversas-his12-obj1-per1-per5
+                  ls$cargo/sargento mor
+                  rel$parentesco/padrinho/manoel cavalcante de melo/mcm-his12-per1
+                  ls$ec/c
+
+               referida$arcangela de albuquerque/id=aa-his12-per1
+                  rel$parentesco/mulher/manoel cavalcante de melo/mcm-his12-per1
+
+               referido$afonso de albuquerque e melo/id=diversas-his12-obj1-per1-per6
+                  rel$parentesco/pai/arcangela de albuquerque/aa-his12-per1
+                  rel$parentesco/sogro/manoel cavalcante de melo/mcm-his12-per1
+                  ls$naturalidade/serinhaem
+
+               referida$maria josefa pereira/id=diversas-his12-obj1-per1-per7
+                  rel$parentesco/mae/arcangela de albuquerque/aa-his12-per1
+                  rel$parentesco/sogra/manoel cavalcante de melo/mcm-his12-per1
+                  ls$naturalidade/serinhaem
+
+               ppai$antonio fejo de melo e albuquerque/id=diversas-his12-obj1-per1-per8
+                  ls$naturalidade/vila de serinhaem
+                  ls$cor/branca
+                  ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+                  ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+
+               mpai$isaura cavalcante/id=diversas-his12-obj1-per1-per9
+                  ls$titulo/dona
+                  ls$naturalidade/vila de serinhaem
+                  ls$cor/branca
+                  ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+                  ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+
+               pmae$pedro de melo enserrabodes/id=diversas-his12-obj1-per1-per10
+                  ls$naturalidade/vila de serinhaem
+                  ls$cor/branca
+                  ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+                  ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+
+               mmae$ana enserrabodes/id=diversas-his12-obj1-per1-per11
+                  ls$titulo/dona
+                  ls$naturalidade/vila de serinhaem
+                  ls$cor/branca
+                  ls$religiao/cristao velho/obs=sem casta alguma infectada, nem fama ou rumor em contrario
+                  ls$condicao/pessoa de distinta em nobresa/obs=sem oficio mecanico
+
+               referida$maria das neves/id=mn-his12-per1/obs=ahu 15, cx.253, d.16950
+                  ls$titulo/dona
+                  ls$naturalidade/serinhaem
+                  rel$sociabilidade/procurador/manoel cavalcante de melo/mcm-his12-per1
+
+               referido$joao falcao enserrabodes/obs=ahu 15, cx.253, d.16950/id=jfe-his12-per1
+                  ls$cargo/alferes
+                  rel$parentesco/pai/maria das neves/mn-his12-per1
+                  rel$sociabilidade/procurador/manoel cavalcante de melo/mcm-his12-per1
+
+               referida$ana de albuquerque/obs=ahu 15, cx.253, d.16950/id=diversas-his12-obj1-per1-per12
+                  rel$parentesco/mulher/joao falcao enserrabodes/jfe-his12-per1
+                  rel$parentesco/mae/maria das neves/mn-his12-per1
+                  rel$sociabilidade/procurador/manoel cavalcante de melo/mcm-his12-per1
+
+               referido$joao bernardo gonzaga/id=diversas-his12-obj1-per1-per13
+                  ls$cargo/ouvidor geral da comarca
+
+      familia$diversas-his13/id=diversas-his13
+
+         linha$linha/id=diversas-his13-obj1
+
+            n$luis falcao enserrabodes/obs=ahu 15, cx.105, d.8185/id=lfe-his13-per1
+               ls$cargo/capitao
+               rel$sociabilidade/acusacao morte/francisco ferreira de jesus/ffj-his13-per2
+
+               mulher$mariana da conceicao/id=lfe-his13-per1-per1
+                  rel$sociabilidade/acusacao morte/francisco ferreira de jesus/ffj-his13-per2
+
+                  filho$pedro de melo falcao/id=lfe-his13-per1-per2
+                     rel$sociabilidade/acusacao morte/francisco ferreira de jesus/ffj-his13-per2
+
+                  filho$joao falcao/id=lfe-his13-per1-per3
+                     rel$sociabilidade/acusacao morte/francisco ferreira de jesus/ffj-his13-per2
+
+                  filho$luis falcao/id=lfe-his13-per1-per4
+                     rel$sociabilidade/acusacao morte/francisco ferreira de jesus/ffj-his13-per2
+
+               referido$diogo de ataide/id=lfe-his13-per1-per5
+                  rel$sociabilidade/acusacao morte/francisco ferreira de jesus/ffj-his13-per2
+                  ls$cargo/capitao
+                  rel$parentesco/cunhado/luis falcao enserrabodes/lfe-his13-per1
+
+               referido$francisco ferreira de jesus/id=ffj-his13-per2
+                  ls$cargo/alferes
+
+      familia$diversas-his14/id=diversas-his14
+
+         linha$linha/id=diversas-his14-obj1
+
+            n$gregorio jose da silva coutinho/obs=ahu 14, cx.33, d.2393/id=gjsc-his14-per1
+               ls$cargo/ouvidor geral da paraiba/17970729/obs=nomeado pelo principe d joao
+               ls$cargo/desembargador/18000829
+
+               pai$manoel de oliveira pinto/obs=ahu 15, cx.219, d.14831/id=gjsc-his14-per1-per1
+                  ls$cargo/capitao
+                  ls$cargo/juiz de fora de olinda/17340112
+                  ls$cargo/cabido da se/17341016
+
+               referido$feliciano batista de aguiar/obs=ahu 15, cx.219, d.14831/id=gjsc-his14-per1-per2
+                  ls$cargo/capitao/18000829/obs=reformado das milicias da vila de goiana
+                  rel$contabil/credor/gregorio jose da silva coutinho/gjsc-his14-per1
+
+      familia$diversas-his15/id=diversas-his15
+
+         linha$linha/id=diversas-his15-obj1
+
+            n$amaro gomes coutinho/obs=ahu 14, cx.29, d.2147/id=agcpb-his15-per1
+               ls$cargo/capitao mor/obs=das entradas da capitania da paraiba
+
+               pmulher$matias soares taveira/id=agcpb-his15-per1-per1
+                  ls$cargo/mestre de campo/obs=do terco de auxiliares
+
+               referido$tomas soares de moraes/xmesmo_que=liv521pe-per424/id=agcpb-his15-per1-per2
+                  rel$parentesco/cunhado/amaro gomes coutinho/agcpb-his15-per1
+
+      familia$diversas-his16/id=diversas-his16
+
+         linha$linha/id=diversas-his16-obj1
+
+            n$manoel rodrigues dos santos/obs=ahu 15, cx.219, d.14818/xmesmo_que=mrstos62-1/id=mrs-his16
+               ls$cargo/alferes/17991111/obs=do regimento de cavalaria auxiliar da cidade de olinda
+
+               referido$jose vaz salgado/id=mrs-his16-per1
+                  ls$cargo/coronel/17991111/obs=do regimento de cavalaria auxiliar da cidade de olinda
+                  rel$sociabilidade/trabalhou com/manoel rodrigues dos santos/mrs-his16
+
+      familia$diversas-his17/id=diversas-his17
+
+         linha$linha/id=diversas-his17-obj1
+
+            n$vale e peres/obs=antt feitos findos juizo da india e mina mc19, n15 cx206/id=vp-his17
+
+               referido$manoel eleuterio de castro/id=vp-his17-per1
+                  rel$contabil/devedor/vale e peres/vp-his17
+
+      familia$diversas-his18/id=diversas-his18
+
+         linha$linha/id=diversas-his18-obj1
+
+            n$miguel rodrigues colaco/obs=antt 399 m0166/id=colaco-his18
+
+               referido$$marcelino rodrigues colaco/id=colaco-his18-per1
+                  rel$parentesco/irmao/miguel rodrigues colaco/colaco-his18
+
+               referido$joao rodrigues colaco/id=colaco-his18-per2
+                  rel$parentesco/parente/miguel rodrigues colaco/colaco-his18
+
+      familia$diversas-his19/id=diversas-his19
+
+         linha$linha/id=diversas-his19-obj1
+
+            n$bonifacio alberto de oliveira/obs=antt mc9, n13, cx18 feitos findos, juizo da india e mina, justificacoes ultramarinas/id=bao-his19-per1
+               ls$locmorte/angola
+               ls$naturalidade/lisboa
+
+               mae$francisca xavier da porciuncula/id=bao-his19-per2
+                  ls$naturalidade/lisboa
+                  ls$ec/viuva
+
+               pai$caetano alverto de oliveira/id=bao-his19-per1-per1
+                  ls$naturalidade/lisboa
+
+               pmae$domingos ferreira/id=bao-his19-per1-per2
+                  ls$naturalidade/lisboa
+
+               mmae$ana da porciuncula/id=bao-his19-per1-per3
+                  ls$naturalidade/lisboa
+
+               referido$francisco alberto de oliveira/id=bao-his19-per1-per4
+                  ls$locmorte/angola
+                  rel$parentesco/irmao/francisca xavier da porciuncula/bao-his19-per2
+                  rel$parentesco/tio/bonifacio alberto de oliveira/bao-his19-per1
+
+               referida$maria joaquina/id=bao-his19-per1-per5
+                  ls$naturalidade/lisboa
+                  rel$parentesco/irma/bonifacio alberto de oliveira/bao-his19-per1
+
+               referido$joaquim alberto de oliveira/id=bao-his19-per1-per6
+                  ls$naturalidade/lisboa
+                  rel$parentesco/irmao/bonifacio alberto de oliveira/bao-his19-per1
+
+      familia$diversas-his20/id=diversas-his20
+
+         linha$linha/id=diversas-his20-obj1
+
+            n$felipe hockel/obs=antt 400 m0028/id=diversas-his20-obj1-per1
+               ls$naturalidade/hamburgo
+               ls$profissao/negociante/obs=praca de lisboa
+               ls$condicao/arrematou nos conselhos da real fazenda e do ultramar a chapa de cobre
+
+      familia$diversas-his21/id=diversas-his21
+
+         linha$linha/id=diversas-his21-obj1
+
+            n$antonio rodrigues da silva praca/obs=antt 400 m0053/id=diversas-his21-obj1-per1
+               ls$cargo/deputado inspetor da cgpp na direcao do porto
+
+      familia$diversas-his22/id=diversas-his22
+
+         linha$linha/id=diversas-his22-obj1
+
+            n$francisco xavier fetal/id=ffx-his22-per1/obs=mandados mc01, proc29
+
+               referido$francisco higino dias pereira/id=ffx-his22-per1-per1
+                  rel$sociabilidade/testamenteiro/francisco xavier fetal/ffx-his22-per1
+
+               referido$santa casa de misericoria de lisboa/id=ffx-his22-per1-per2
+                  rel$sociabilidade/herdeiro de/francisco xavier fetal/ffx-his22-per1
+
+      familia$diversas-his23/id=diversas-his23
+
+         linha$linha/id=diversas-his23-obj1
+
+            n$francisco paliart/id=fp-his23-per1/obs=feitos findos, inventarios post mortem, letra f, mc207, n9
+               ls$morto/sim/18160700
+               ls$titulo/cavaleiro da ordem de cristo
+
+               mulher$teresa claousse paliart/id=fp-his23-per1-per1
+                  ls$titulo/dona
+                  ls$morta/sim/18160500
+
+                  filho$henrique paliart/obs=mais velho/id=fp-his23-per1-per2
+
+      familia$diversas-his24/id=diversas-his24
+
+         linha$linha/id=diversas-his24-obj1
+
+            n$sebastiao nunes batista/id=snb-diversas-his24-per1/obs=feitos findos, conservatoria da cgpp, mc.19, n.1, cx.25
+               ls$naturalidade/casal da mata/obs=termo da vila da serta, freguesia de sao pedro da dita vila, priorado do crato
+
+               pai$manoel nunes/id=snb-diversas-his24-per1-per1
+
+               mae$catarina nunes/id=snb-diversas-his24-per1-per2
+
+               mulher$rosa maria de viterbo/id=snb-diversas-his24-per1-per3
+                  rel$sociabilidade/testamenteira/sebastiao nunes batista/snb-diversas-his24-per1
+
+               referido$jose cardoso silva/id=snb-diversas-his24-per1-per4
+                  rel$sociabilidade/testamenteira/sebastiao nunes batista/snb-diversas-his24-per1
+
+               referida$maria joaquina de santa ana/id=mjsa-diversas-his24-per1
+                  ls$titulo/dona
+                  rel$parentesco/sobrinha/sebastiao nunes batista/snb-diversas-his24-per1
+
+               referido$manoel jose rebelo de figueiredo/id=snb-diversas-his24-per1-per5
+                  rel$parentesco/marido/maria joaquina de santa ana/mjsa-diversas-his24-per1
+
+               referido$jose ferreira da fonseca/id=snb-diversas-his24-per1-per6
+                  rel$sociabilidade/conhecido/maria joaquina de santa ana/mjsa-diversas-his24-per1
+
+      familia$diversas-his25/id=diversas-his25
+
+         linha$linha/id=diversas-his25-obj1
+
+            n$matias lourenco de araujo/id=mla-diversas-his25-per1/obs=feitos findos, conservatoria da cgpp, mc.19, n.2, cx.25
+               ls$residencia/bela vista/17750823/obs=freguesia de santa maria madalena, lisboa
+               ls$titulo/cavaleiro da ordem de cristo
+
+      familia$diversas-his26/id=diversas-his26
+
+         linha$linha/id=diversas-his26-obj1
+
+            n$jacinto fernandes bandeira/obs=fonte geneall e resenha das familias titulares do reino de portugal/id=jfb-diversas-his26
+               ls$datanasc/17450428
+               ls$datamorte/18060530
+               ls$titulo/barao de porto covo da bandeira
+               ls$titulo/cavaleiro da ordem de cristo
+               ls$cargo/alcaide mor da vila nova de mil fontes
+               ls$cargo/conselheiro da rainha maria primeira
+               ls$cargo/conselheiro da real fazenda
+               rel$sociabilidade/socio/joaquim pedro quintela/jfb-diversas-his26-per4
+               rel$sociabilidade/socio/antonio jose ferreira/jfb-diversas-his26-per5
+
+               referida$maria josefa cristina bandeira/id=jfb-diversas-his26-per1
+                  ls$titulo/dona
+                  rel$parentesco/irma/jacinto fernandes bandeira/jfb-diversas-his26
+
+               referido$jacinto fernandes da costa bandeira/id=jfb-diversas-his26-per2
+                  rel$parentesco/filho/maria josefa cristina bandeira/jfb-diversas-his26-per1
+                  rel$sociabilidade/herdeiro/jacinto fernandes bandeira/jfb-diversas-his26
+
+               referido$joao da costa/id=jfb-diversas-his26-per3
+                  rel$parentesco/marido/maria josefa cristina bandeira/jfb-diversas-his26-per1
+
+               referido$joaquim pedro quintela/id=jfb-diversas-his26-per4
+                  ls$condicao/homem do contrato geral do tabaco
+                  ls$negocio/importacao de fio e tecido de algodao da inglaterra/obs=em sociedade com jacinto fernandes bandeira
+                  rel$sociabilidade/socio/antonio jose ferreira/jfb-diversas-his26-per5
+
+               referido$antonio jose ferreira/id=jfb-diversas-his26-per5
+                  ls$condicao/homem do contrato geral do tabaco
+                  ls$negocio/importacao de fio e tecido de algodao da inglaterra/obs=em sociedade com jacinto fernandes bandeira
+
+      familia$diversas-his27/id=diversas-his27
+
+         linha$linha/id=diversas-his27-obj1
+
+            n$jose jacques le tavoce/obs=inventario do iahgp/id=jjt-his27
+               ls$residencia/vila do recife/18010609
+               ls$cargo/capitao mor
+
+               mulher$barbara dorothea le tavoce/id=jjt-his27-per1
+                  ls$titulo/dona
+                  ls$residencia/vila do recife/18010609
+                  ls$naturalidade/reino
+
+                  pmulher$jacob antonio/obs=ainda existe um sobrenome apos antonio mas nao identifiquei/id=jjt-his27-per2
+                     ls$naturalidade/reino
+
+                  mmulher$ana maria do nascimento/id=jjt-his27-per3
+                     ls$naturalidade/reino
+
+                  filho$anterio jacques le tavoce/id=jjt-his27-per4
+                     ls$ec/solteiro/18010609
+
+                  filha$mariana joaquina le tavoce/id=jjt-his27-per5
+                     rel$sociabilidade/herdeira universal/jose jacques le tavoce/jjt-his27
+                     ls$ec/solteira/18010609
+
+                  filha$maria da penha le tavoce/id=jjt-his27-per6
+                     ls$ec/solteira/18010609
+
+               referido$vicente jacques le tavoce/id=jjt-his27-per7
+                  rel$parentesco/irmao/jose jacques le tavoce/jjt-his27
+
+               referido$antonio da silva/id=jjt-his27-per8
+                  rel$parentesco/genro/jose jacques le tavoce/jjt-his27
+                  rel$sociabilidade/testamenteiro/jose jacques le tavoce/jjt-his27
+                  rel$sociabilidade/tutor/anterio jacques le tavoce/jjt-his27-per4
+                  rel$sociabilidade/tutor/mariana joaquina le tavoce/jjt-his27-per5
+                  rel$sociabilidade/tutor/maria da penha le tavoce/jjt-his27-per6
+
+               referido$antonio gomes/id=jjt-his27-per9
+                  rel$sociabilidade/testemunha/jose jacques le tavoce/jjt-his27
+                  ls$cargo/deposito/obs=congregacao da igreja que barbara frequentava
+
+               referido$maximiano francisco duarte/id=jjt-his27-per10
+                  rel$sociabilidade/testemunha/jose jacques le tavoce/jjt-his27
+
+               referido$joao benigio/id=jjt-his27-per11
+                  rel$sociabilidade/testemunha/jose jacques le tavoce/jjt-his27
+
+               referido$jose joaquim de sousa/id=jjt-his27-per12
+                  rel$sociabilidade/testemunha/jose jacques le tavoce/jjt-his27
+                  rel$sociabilidade/testemunha/barbara dorothea le tavoce/jjt-his27-per1
+
+               referido$vicente borges gurjao/id=jjt-his27-per13
+                  rel$sociabilidade/testemunha/jose jacques le tavoce/jjt-his27
+                  rel$sociabilidade/testemunha/barbara dorothea le tavoce/jjt-his27-per1
+
+               referido$jose joaquim de carvalho/id=jjt-his27-per14
+                  rel$sociabilidade/testemunha/barbara dorothea le tavoce/jjt-his27-per1
+
+               referido$miguel ferreira guimaraes/id=jjt-his27-per15
+                  rel$sociabilidade/testemunha/barbara dorothea le tavoce/jjt-his27-per1
+
+               referido$gervasio jose de mendonca/id=jjt-his27-per16
+                  rel$sociabilidade/testemunha/barbara dorothea le tavoce/jjt-his27-per1
+
+               referido$francisco xavier de sa/id=jjt-his27-per17
+                  rel$sociabilidade/testemunha/barbara dorothea le tavoce/jjt-his27-per1
+
+               referida$margarida leonor/id=jjt-his27-per18
+                  ls$titulo/dona
+                  ls$residencia/lisboa
+                  rel$sociabilidade/conhecida/barbara dorothea le tavoce/jjt-his27-per1
+
+      familia$diversas-his28/id=diversas-his28
+
+         linha$linha/id=diversas-his28-obj1
+
+            n$jose de sousa e abreu/mesmo_que=jsa-his11-per1/obs=antt 400 m0252/id=diversas-his28-obj1-per1
+               ls$residencia/lisboa
+               ls$morto/antes/17921026
+
+               mulher$ana jose de menezes teles xavier da silva/id=diversas-his28-obj1-per1-per2
+                  ls$titulo/dona
+                  ls$ec/viuva
+
+                  filha$maria margarida xavier de menezes teles/id=diversas-his28-obj1-per1-per3
+                     ls$titulo/dona
+
+      familia$diversas-his29/id=diversas-his29
+
+         linha$linha/id=diversas-his29-obj1
+
+            n$manoel pereira viana de lima/xmesmo_que=macao3-1-per411/obs=antt 400 m0268/id=diversas-his29-obj1-per1
+               ls$residencia/lisboa
+               ls$morto/antes/17951109
+               ls$profissao/negociante/obs=da praca de lisboa
+               ls$posicao/devedor da cgpp
+               ls$valor_divida/63792.2 reis
+
+               mulher$mariana gertrudes sauvan viana/obs=diz possuir dez filhos menores/id=diversas-his29-obj1-per1-per2
+                  ls$titulo/dona
+                  ls$ec/viuva
+
+      familia$diversas-his30/id=diversas-his30
+
+         linha$linha/id=diversas-his30-obj1
+
+            n$manoel dias coelho/xmesmo_que=macao3-1-per966-per1/obs=antt 400 m0273/id=diversas-his30-obj1-per3
+               ls$morto/antes/17980127
+
+               mulher$helena da cruz/id=diversas-his30-per2
+                  ls$titulo/dona
+                  ls$ec/viuva
+
+               referido$tome dias coelho/id=diversas-his30-obj1-per3-per4
+                  rel$parentesco/cunhado/helena da cruz/diversas-his30-per2
+                  rel$parentesco/irmao/manoel dias coelho/diversas-his30-obj1-per3
+
+               referida$catarina dias/id=diversas-his30-obj1-per3-per5
+                  rel$parentesco/cunhada/helena da cruz/diversas-his30-per2
+                  rel$parentesco/irma/manoel dias coelho/diversas-his30-obj1-per3
+
+               referido$jeronimo dias/id=diversas-his30-obj1-per3-per6
+                  rel$parentesco/cunhado/helena da cruz/diversas-his30-per2
+                  rel$parentesco/irmao/manoel dias coelho/diversas-his30-obj1-per3
+
+      familia$diversas-his31/id=diversas-his31
+
+         linha$linha/id=diversas-his31-obj1
+
+            n$francisco xavier monteiro da franca/xmesmo_que=posse20-per1/id=fxmf-his31/obs=ahu 14 d3272, d3492
+               ls$naturalidade/paraiba
+               ls$datanasc/17710000/obs=em 1823 diz ter 52 anos
+               ls$cargo/secretario do governo da paraiba/17780000
+
+               referido$manoel de melo/obs=ahu 14 d3272/id=fxmf-his31-per1
+                  ls$cor/pardo
+                  ls$naturalidade/paraiba
+                  ls$condicao/pardo forro
+                  rel$sociabilidade/criado/francisco xavier monteiro da franca/fxmf-his31
+                  ls$datanasc/17640000/obs=em 1806 diz ter 42 anos
+
+               referida$mariana neri de sao jose/obs=ahu 14 d3272/id=fxmf-his31-per2
+                  ls$cor/preta
+                  ls$naturalidade/paraiba
+                  ls$condicao/preta forra
+                  rel$sociabilidade/criada/francisco xavier monteiro da franca/fxmf-his31
+                  ls$datanasc/17660000/obs=em 1806 diz ter 40 anos
+
+               referida$rosa maria dos prazeres/obs=ahu 14 d3272/id=fxmf-his31-per3
+                  ls$cor/preta
+                  ls$condicao/preta forra
+                  rel$sociabilidade/criada/francisco xavier monteiro da franca/fxmf-his31
+                  ls$datanasc/17860000/obs=em 1806 diz ter 20 anos
+
+               referido$felis de barros/obs=ahu 14 d3492/id=fxmf-his31-per4
+                  rel$sociabilidade/criada/francisco xavier monteiro da franca/fxmf-his31
+
+               referido$luis da mota feo/obs=francisco xavier monteiro de franca veio da corte para o brasil em sua companhia/id=fxmf-his31-per5
+                  ls$cargo/governador da capitania da paraiba
+                  rel$sociabilidade/conhecido/francisco xavier monteiro da franca/fxmf-his31
+
+               referida$leocadia teresa possidonia de lima falcao e melo vanzeler/obs=ahu 14 d3272/id=fxmf-his31-per6
+                  ls$titulo/dona
+                  rel$parentesco/mulher/luis da mota feo/fxmf-his31-per5
+                  rel$sociabilidade/conhecida/francisco xavier monteiro da franca/fxmf-his31
+
+               referido$jacinto fernandes bandeira/obs=antt 400, m301, indicou o francisco xavier monteiro de franca ao cargo na cgpp/id=fxmf-his31-per7
+                  ls$titulo/barao de porto covo de bandeira
+                  ls$cargo/provedor do orgao liquidario da cgpp/17980616
+                  rel$sociabilidade/conhecido/francisco xavier monteiro da franca/fxmf-his31
+
+               referido$manoel de magalhaes pinto do avelar/obs=ntt 400, m301, deu parecer sobre antecedente de conduta para francisco xavier monteiro de franca assumir cargo na cgpp/id=fxmf-his31-per8
+                  ls$cargo/desembargador/obs=na paraiba
+                  rel$sociabilidade/testemunha/francisco xavier monteiro da franca/fxmf-his31
+
+               referido$joao ribeiro pessoa de lacerda/obs=ahu 14 d2806/id=fxmf-his31-per9
+                  ls$residencia/paraiba
+                  ls$cargo/sargento mor/18010622/obs=comandante da tropa de linha da capitania da paraiba
+                  rel$sociabilidade/testemunha/francisco xavier monteiro da franca/fxmf-his31
+
+               referido$luis antonio do rego faria/obs=ahu 14 d2806/id=fxmf-his31-per10
+                  ls$profissao/tabeliao/18020605
+                  rel$sociabilidade/testemunha/joao ribeiro pessoa de lacerda/fxmf-his31-per9
+                  rel$sociabilidade/testemunha/joao ribeiro pessoa de lacerda/fxmf-his31-per11
+
+               referido$luis alvares da nobrega/obs=ahu 14 d2806/id=fxmf-his31-per11
+                  ls$cargo/vereador/17810720/obs=capitania da paraiba
+                  rel$sociabilidade/testemunha/francisco xavier monteiro da franca/fxmf-his31
+
+      familia$diversas-his32/id=diversas-his32
+
+         linha$linha/id=diversas-his32-obj1
+
+            n$goncalo ribeiro dos santos/obs=feitos findos, inventarios post mortem, letra g, mc29, n3/id=diversas-his32-obj1-per1
+               ls$datamorte/17880000
+
+               mulher$francisca rosa da cruz/id=diversas-his32-obj1-per1-per2
+                  ls$titulo/dona
+
+      familia$diversas-his33/id=diversas-his33
+
+         linha$linha/id=diversas-his33-obj1
+
+            n$jose lopes reis/obs=tese george p.776-777/id=jlr-his33-per1
+               ls$naturalidade/lisboa/obs=santa catarina do monte
+               ls$ordem/santa casa de misericordia do recife/obs=irmao
+               ls$datacasamento/17761130
+               ls$cargo/mestre carpinteiro de navios
+
+               mulher$inacia severina de almeida/id=jlr-his33-per1-per1
+                  ls$naturalidade/recife
+
+                  pmulher$manoel de almeida ferreira/id=jlr-his33-per1-per2
+                     ls$nacionalidade/portuguesa
+
+                  mmulher$ana joaquina de freitas sacoto/id=jlr-his33-per1-per3
+                     ls$naturalidade/recife
+
+                  filho$gabriel lopes reis/id=jlr-his33-per2
+                     ls$datanasc/17800205
+                     ls$naturalidade/recife
+                     ls$ec/solteiro/obs=em 18060000
+                     ls$cargo/barrete do terceiro vereador da camara do recife/18030000
+                     ls$profissao/negociante/obs=da praca de pernambuco
+                     ls$cargo/escrivao da cgpp
+                     ls$cargo/familiar do santo oficio/17940704
+                     ls$cargo/capitao/obs=do corpo das conquistas do lugar do monteiro
+
+               referida$maria gualdina de siao e faria/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per3
+                  rel$parentesco/prima/gabriel lopes reis/jlr-his33-per2
+                  ls$databapt/17740609
+                  ls$datanasc/17740418
+
+               referido$bento jose de miranda/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per1-per4
+                  rel$parentesco/padrinho/maria gualdina de siao e faria/jlr-his33-per3
+                  ls$residencia/freguesia de santa isabel/obs=morador a fabrica de seda
+
+               referida$mariana geralda marcial de faria/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per4
+                  rel$parentesco/prima/gabriel lopes reis/jlr-his33-per2
+                  ls$databapt/17790320
+                  ls$datanasc/17781024
+
+               referida$isabel eugenia de faria/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per5
+                  rel$parentesco/prima/gabriel lopes reis/jlr-his33-per2
+                  ls$databapt/17880403
+                  ls$datanasc/17880102
+
+               referida$maria teodosia/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per6
+                  rel$sociabilidade/criada/gabriel lopes reis/jlr-his33-per2
+                  ls$nacionalidade/portuguesa
+                  ls$naturalidade/vila de obidos/obs=duvida no nome da vila
+
+               referida$mariana joaquina/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per7
+                  rel$sociabilidade/criada/gabriel lopes reis/jlr-his33-per2
+                  ls$nacionalidade/portuguesa
+                  ls$naturalidade/vila de obidos/obs=duvida no nome da vila
+
+               referido$teodorio jose leal/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per1-per5
+                  rel$parentesco/pai/mariana joaquina/jlr-his33-per7
+                  rel$parentesco/pai/maria teodosia/jlr-his33-per6
+                  ls$morto/antes/18081007
+
+               referido$manoel jose de sa de faria/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per1-per6
+                  rel$parentesco/pai/maria gualdina de siao e faria/jlr-his33-per3
+                  rel$parentesco/pai/mariana geralda marcial de faria/jlr-his33-per4
+                  rel$parentesco/pai/isabel eugenia de faria/jlr-his33-per5
+                  ls$locbaptismo/freguesia de santa maria de lijo/obs=arcebispado de braga
+                  ls$residencia/rua direita das bernardes/obs=freguesia dos santos em lisboa
+                  ls$datamorte/17991201
+                  ls$locsepultamento/igreja de santos ovelho
+
+               referida$mariana josefa da piedade/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per8
+                  ls$titulo/dona
+                  rel$parentesco/mae/maria gualdina de siao e faria/jlr-his33-per3
+                  rel$parentesco/mae/mariana geralda marcial de faria/jlr-his33-per4
+                  rel$parentesco/mae/isabel eugenia de faria/jlr-his33-per5
+                  ls$locbaptismo/freguesia de sao paulo/obs=em lisboa
+                  ls$locsepultamento/caixas no convento de nossa senhora do carmo/obs=em lisboa
+                  ls$residencia/rua direita das bernardes/obs=freguesia dos santos em lisboa
+                  ls$datamorte/17880102
+
+               referido$antonio jose da rosa/obs=ahu_cu_ 15, cx. 271, d. 18039/id=jlr-his33-per1-per7
+                  ls$cargo/prior/obs=do convento de nossa senhora do carmo em lisboa
+                  rel$sociabilidade/testemunha/mariana josefa da piedade/jlr-his33-per8
+
+               referido$jose sancles ramalho/id=jlr-his33-per1-per8
+                  ls$cargo/coadjuntor/obs=na paroquia da igreja de santos ovelho
+                  rel$sociabilidade/testemunha/maria gualdina de siao e faria/jlr-his33-per3
+                  rel$sociabilidade/testemunha/mariana geralda marcial de faria/jlr-his33-per4
+                  rel$sociabilidade/testemunha/isabel eugenia de faria/jlr-his33-per5
+
+      familia$diversas-his34/id=diversas-his34
+
+         linha$linha/id=diversas-his34-obj1
+
+            n$jose timoteo pereira de bastos/obs=dissertacao de poliana p.232-3/id=jtpb-his34-per1
+               ls$databapt/17430219
+               ls$naturalidade/vila de oeiras
+               ls$datacasamento/17660127
+               ls$titulo/cavaleiro da ordem de cristo/17720123
+
+               pai$francisco jose de moura e bastos/id=jtpb-his34-per1-per1
+                  ls$naturalidade/lisboa
+                  ls$databapt/17091127
+
+               mae$joana maria joaquina de castelo branco/id=jtpb-his34-per1-per2
+                  ls$naturalidade/oeiras
+                  ls$databapt/17190816
+                  ls$datacasamento/17361217
+
+               ppai$francisco ribeiro de bastos/id=jtpb-his34-per1-per3
+                  ls$naturalidade/lisboa
+
+               mpai$teresa maxima margaria/id=jtpb-his34-per1-per4
+                  ls$naturalidade/vila nova da rainha
+
+               pmae$jose pereira da cruz/id=jtpb-his34-per1-per5
+                  ls$cargo/tenente coronel/obs=da fortaleza de sao lourenco da barra
+                  ls$naturalidade/oeiras
+
+               mmae$arcangela maria micaela castelo branco/id=jtpb-his34-per1-per6
+                  ls$naturalidade/lisboa
+
+               mulher$ana joaquina honorata dos santos/id=jtpb-his34-per1-per7
+                  ls$naturalidade/recife
+                  ls$databapt/17490122
+
+                  pmulher$manoel gomes dos santos/id=jtpb-his34-per1-per8
+                     ls$naturalidade/lisboa
+
+                  mmulher$ursula maria das virgens/id=jtpb-his34-per1-per9
+                     ls$naturalidade/ilha da madeira
+
+                  filha$mariana pereira de bastos/id=mariana-his34
+
+               referido$joao afonso regueira junior/id=timoteo-his34-per11
+                  rel$parentesco/marido/mariana pereira de bastos/mariana-his34
+                  rel$parentesco/genro/jose timoteo pereira de bastos/jtpb-his34-per1
+                  ls$cargo/juiz de paz da camara municipal de jaboatao
+                  ls$cargo/vereador da camara municipal de jaboatao
+                  ls$cargo/capitamo mor/obs=do recife
+                  ls$titulo/senhor de engenho/obs=engenho velho em jaboatao
+                  ls$titulo/cavaleiro da ordem de cristo
+
+               referido$joao afonso regueira/id=jtpb-his34-per1-per10
+                  rel$parentesco/pai/joao afonso regueira junior/timoteo-his34-per11
+                  rel$parentesco/sogro/mariana pereira de bastos/mariana-his34
+
+      familia$diversas-his35/id=diversas-his35
+
+         linha$linha/id=diversas-his35-obj1
+
+            n$luis da mota feo e torres/mesmo_que=fxmf-his31-per5/obs=livro memorias contendo a biographia googleplay/id=diversas-his35-obj1-per1
+               ls$cargo/vice almirante
+               ls$datanasc/17690316
+               ls$naturalidade/poco de cortes/obs=freguesia dos olivaes, extramuros da cidade de lisboa
+
+               pai$luis da mota feo e torres/id=diversas-his35-obj1-per1-per2
+                  ls$titulo/fidalgo cavaleiro da casa de sua majestade
+                  ls$titulo/cavaleiro da ordem de cristo
+                  ls$titulo/capitao da primeira plana da corte
+                  ls$cargo/governador do ceara grande
+                  ls$cargo/tesoureiro mor/obs=da casa de ceuta
+
+               mae$ana zeferina de azevedo coutinho/id=diversas-his35-obj1-per1-per3
+                  ls$titulo/dona
+
+                  pmae$antonio de azevedo coutinho/id=diversas-his35-obj1-per1-per4
+                     ls$cargo/conselheiro de elrei d jose
+                     ls$cargo/desembargador no brasil
+                     ls$cargo/desembargador na india
+
+               referido$antonio feo cabral e torres/id=diversas-his35-obj1-per1-per5
+                  ls$cargo/alferes do regimento de cavalaria de olivenca
+                  rel$parentesco/irmao/luis da mota feo e torres/diversas-his35-obj1-per1
+
+               referido$joao feo cardoso de castelo branco/id=diversas-his35-obj1-per1-per6
+                  ls$cargo/capitao de mar e guerra da armada real
+                  rel$parentesco/irmao/luis da mota feo e torres/diversas-his35-obj1-per1
+
+               mulher$leocadia teresa possidonia de lima e melo falcao van zeler/id=diversas-his35-obj1-per1-per7
+                  ls$titulo/dona
+
+                  filho$joao carlos feo cardoso de castelo branco e torres/id=diversas-his35-obj1-per1-per8
+                     ls$datanasc/17981001
+                     ls$datamorte/18680110
+
+      familia$diversas-his36/id=diversas-his36
+
+         linha$linha/id=diversas-his36-obj1
+
+            n$anselmo jose da cruz/xmesmo_que=cbr-tesegeorge-his9-obj1-per11/obs=maxwell conflicts conspiracies p25/id=anselmo-his36-per1
+
+               referido$joaquim inacio da cruz/obs=morgado do sobral/id=anselmo-his36-per1-per1
+                  rel$parentesco/irmao/anselmo jose da cruz/anselmo-his36-per1
+
+               referido$jose francisco da cruz/obs=morgado da alagoa/id=anselmo-his36-per1-per2
+                  ls$profissao/merchant/obs=com interesses na bahia
+                  ls$cargo/provedor da cgpm
+                  ls$cargo/deputado da cgpm
+                  rel$sociabilidade/advisor/sebastiao jose de carvalho e melo/pombal-his36-per1
+                  rel$parentesco/irmao/anselmo jose da cruz/anselmo-his36-per1
+
+               referido$sebastiao jose de carvalho e melo/id=pombal-his36-per1
+
+               referido$antonio jose da cruz/id=anselmo-his36-per1-per3
+                  rel$parentesco/irmao/anselmo jose da cruz/anselmo-his36-per1
+
+               referido$geraldo wenceslao braancamp/id=anselmo-his36-per1-per4
+                  rel$parentesco/genro/anselmo jose da cruz/anselmo-his36-per1
+
+               filha$joana/obs=ratton p.263/id=anselmo-his36-per1-per5
+                  ls$titulo/dona
+
+               filho$sebastiao antonio da cruz sobral/obs=morreu solteiro, ratton p.263/id=anselmo-his36-per1-per6
+                  ls$cargo/desembargador
+
+      familia$diversas-his37/id=diversas-his37
+
+         linha$linha/id=diversas-his37-obj1
+
+            n$madalena tomasia/obs=cod 583 avisos da secretaria ultramar f. 455/xmesmo_que=livrz519-1-mtg/id=mtg-his37-per1
+               ls$titulo/dona
+               ls$viva/sim/17770517
+
+               pai$joao de abreu cordeiro/id=mtg-his37-per1-per1
+
+               marido$joao bernardo gonzaga/id=mtg-his37-per1-per2
+                  ls$cargo/desembargador
+
+               filho$tomas antonio gonzaga/id=mtg-his37-per1-per3
+
+      familia$diversas-his38/id=diversas-his38
+
+         linha$linha/id=diversas-his38-obj1
+
+            n$antonio pereira das neves/xmesmo_que=livrz521-1-per801/id=his38-diversas-per1
+               ls$naturalidade/parroquia de sao joao de pencelhos/obs=vila de guimaraes, arcebispado de braga
+               ls$morto/sim/17921017
+               ls$datacasamento/17711014
+               ls$cargo/caxeiro da direcao de pernambuco da cgpp/obs=trabalhava nos armazens da marinha. lisboa ordenou a demissao dele 17751201 antt 383 m0094
+               ls$cargo/familiar do santo oficio/17830521
+               ls$cargo/sindico/obs=ordem terceira de sao francisco entre 1777 e 1778
+
+               pai$manoel pereira/id=his38-diversas-per1-per1
+                  ls$profissao/cirurgiao
+
+               mae$teresa francisca das neves/id=his38-diversas-per1-per2
+
+               mulher$josefa duarte gurjao/id=his38-diversas-per1-per3
+                  ls$naturalidade/recife
+                  ls$databapt/17471115
+
+                  pmulher$jose duarte palheiros/id=his38-diversas-per1-per4
+                     ls$naturalidade/porto
+
+                  mmulher$rosa da silva gurjao/id=his38-diversas-per1-per5
+                     ls$naturalidade/recife
+
+                  filho$antonio pereira das neves/obs=honomino do pai/id=his38-diversas-per1-per6
+
+      familia$diversas-his39/id=diversas-his39
+
+         linha$linha/id=diversas-his39-obj1
+
+            n$luis mendes de araujo/obs=antt 400/id=diversas-his39-obj1-per1
+               ls$cargo/primeiro guarda livros da cgpp/18120227
+
+      familia$div-caldas-his40/id=diversas-his40
+
+         linha$linha/id=diversas-his40-obj1
+
+            n$luis rodrigues caldas/obs=tese pedreira p267/id=lrc-his40
+               ls$cargo/contratador de tabaco
+
+               filha$ana maria pereira caldas/id=lrc-his40-per1
+
+               filha$maria angelica/id=lrc-his40-per2
+
+               referido$antonio rodrigues caldas/id=lrc-his40-per3
+                  rel$parentesco/marido/maria angelica/lrc-his40-per2
+                  rel$parentesco/genro/luis rodrigues caldas/lrc-his40
+
+               referido$joao rodrigues caldas/id=lrc-his40-per4
+                  rel$parentesco/pai/antonio rodrigues caldas/lrc-his40-per3
+                  ls$residencia/praca da bela vista/obs=freguesia de sao cristovao, lisboa
+                  ls$profissao/negociante/obs=da praca de lisboa
+                  ls$cargo/contratador de tabaco
+
+               filho$jose pereira caldas/id=lrc-his40-per5
+                  ls$titulo/doutor
+
+               referida$joana francisca jorge/id=lrc-his40-per6
+                  rel$parentesco/mulher/jose pereira caldas/lrc-his40-per5
+                  rel$parentesco/filha/manoel joaquim jorge/lrc-his40-per9
+                  rel$parentesco/neta/paulo jorge/lrc-his40-per10
+
+               filho$joao pereira caldas/id=lrc-his40-per7
+                  ls$profissao/negociante
+
+               referida$catarina rita jorge/id=lrc-his40-per8
+                  rel$parentesco/mulher/joao pereira caldas/lrc-his40-per7
+                  rel$parentesco/filha/manoel joaquim jorge/lrc-his40-per9
+                  rel$parentesco/neta/paulo jorge/lrc-his40-per10
+
+               referido$manoel joaquim jorge/id=lrc-his40-per9
+                  rel$parentesco/sogro/jose pereira caldas/lrc-his40-per5
+                  rel$parentesco/sogro/joao pereira caldas/lrc-his40-per7
+
+               referido$paulo jorge/id=lrc-his40-per10
+                  rel$parentesco/pai/manoel joaquim jorge/lrc-his40-per9
+
+      familia$div-marques-his41/id=diversas-his41
+
+         linha$linha/id=diversas-his41-obj1
+
+            n$pedro marques de araujo/obs=tratos e mofatras p407/id=diversas-his41-obj1-per1
+               ls$datanasc/17000000
+               ls$naturalidade/freguesia de salvador da ribeira de pena/obs=comarca de vila real, arcebispado de braga
+               ls$residencia/rua da cadeia
+               ls$cargo/procurador da camara/17630000
+               ls$cargo/almoxarife da fazenda real de Pernambuco/obs=17560801 a 17570731
+               ls$cargo/familiar do santo oficio/17541006
+
+               pai$antonio marques/id=diversas-his41-obj1-per1-per2
+
+               mae$violante Goncalves/id=diversas-his41-obj1-per1-per3
+
+               mulher$lauriana alves de saldanha/id=diversas-his41-obj1-per1-per4
+                  ls$naturalidade/reino
+
+                  pmulher$jeronimo alves saldanha/id=diversas-his41-obj1-per1-per5
+
+                  mmulher$francisca lopes madeira/id=diversas-his41-obj1-per1-per6
+
+                  filho$joaquim marques de araujo/id=diversas-his41-obj1-per1-per7
+                     ls$profissao/jesuita
+                     ls$cargo/comissario do santo oficio
+                     ls$cargo/conselheiro real
+
+                  filho$pedro marques de araujo/id=diversas-his41-obj1-per1-per8
+
+                  filho$manuel marques de araujo/id=diversas-his41-obj1-per1-per9
+                     ls$ordem/carmelita
+
+                  filho$luis marques de araujo/id=diversas-his41-obj1-per1-per10
+                     ls$ordem/carmelita
+
+                  filho$jose maria marques de araujo/id=diversas-his41-obj1-per1-per11
+                     ls$ordem/franciscano
+
+                  filha$ana maria do sacramento/id=diversas-his41-ams
+
+               referido$joao afonso rigueira/id=diversas-his41-obj1-per1-per12
+                  rel$parentesco/marido/ana maria do sacramento/diversas-his41-ams
+
+      familia$div-jaregueira-his42/id=diversas-his42
+
+         linha$linha/id=diversas-his42-obj1
+
+            n$joao afonso regueira/obs=p.225 poliana/id=diversas-his42-obj1-per1
+               ls$naturalidade/viana
+
+               mulher$ana maria do sacramento/id=diversas-his42-obj1-per1-per2
+
+                  mmulher$lauriana alves de saldanha/id=diversas-his42-obj1-per1-per3
+
+                  pmulher$pedro marques de araujo/id=diversas-his42-obj1-per1-per4
+                     ls$condicao/homem rico
+                     ls$naturalidade/lisboa
+
+                  filha$lourenca rosa candida regueira/id=his42-lrcr
+
+               referido$manoel pinto de sousa/id=diversas-his42-obj1-per1-per5
+                  ls$naturalidade/penafiel/obs=cidade do porto
+                  ls$cargo/sargento mor
+                  ls$titulo/senhor de engenho/obs=engenho rosario e buranhem na freguesia de sirinhaem
+                  rel$parentesco/marido/lourenca rosa candida regueira/his42-lrcr
+
+               filha$ana joaquina regueira/id=his42-ajr
+
+               referido$maximiniano francisco duarte/id=diversas-his42-obj1-per1-per6
+                  ls$naturalidade/lisboa cavaleiro da ordem de cristo
+                  ls$cargo/escrivao/obs=junta da real fazenda
+                  ls$cargo/deputado/obs=junta da real fazenda
+                  ls$cargo/tenente coronel
+                  ls$cargo/vedor da gente de guerra
+                  ls$cargo/administrador do correio da capitania de pernambuco
+                  rel$parentesco/marido/ana joaquina regueira/his42-ajr
+
+               filha$rita maria do sacramento regueira/id=diversas-his42-obj1-per1-per7
+                  ls$ec/solteira
+
+               filho$joao afonso regueira junior/id=his42-joaojr
+                  rel$parentesco/marido/mariana pereira de bastos/his42-mpbr
+
+               referida$mariana pereira de bastos/id=his42-mpbr
+
+               referido$jose timoteo pereira de bastos/id=diversas-his42-obj1-per1-per8
+                  rel$parentesco/pai/mariana pereira de bastos/his42-mpbr
+                  rel$parentesco/sogro/joao afonso regueira junior/his42-joaojr
+
+               filha$maria dos prazeres regueira/id=his42-mpr-per1
+
+               referido$manoel anacleto moreira de carvalho/id=his42-mamc
+                  rel$parentesco/marido/maria dos prazeres regueira/his42-mpr-per1
+
+               referido$luis moreira de carvalho/id=diversas-his42-obj1-per1-per9
+                  rel$parentesco/pai/manoel anacleto moreira de carvalho/his42-mamc
+                  rel$parentesco/sogro/maria dos prazeres regueira/his42-mpr-per1
+
+               filha$maria francisca das neves regueira/id=diversas-his42-obj1-per1-per10
+
+               referido$antonio jose de oliveira costa/id=diversas-his42-obj1-per1-per11
+                  ls$naturalidade/porto
+                  ls$profissao/negociante de grosso trato
+
+               filho$jose afonso regueira/id=diversas-his42-obj1-per1-per12
+                  ls$ec/solteiro
+                  ls$cargo/alferes
+                  ls$profissao/negociante de grosso trato
+
+               filho$pedro afonso regueira/id=diversas-his42-obj1-per1-per13
+                  ls$titulo/cavaleiro da ordem de cristo
+                  ls$cargo/vereador da camara do recife
+
+               filho$domingos germano afonso regueira/id=diversas-his42-obj1-per1-per14
+                  ls$profissao/presbitero secular
+                  ls$cargo/governador do bispado de pernambuco
+                  ls$titulo/cavaleiro da ordem de cristo
+
+      familia$div-moreira-his43/id=diversas-his43
+
+         linha$linha/id=diversas-his43-obj1
+
+            n$luis moreira de carvalho/id=diversas-his43-obj1-per1/obs=dissertaco poliana
+               ls$datanasc/17370324
+               ls$naturalidade/lugar de quintao/obs=paroquia de sao martinho de mancelos, conselho de santa cruza de riba lamega, comarca de guimaraes, arcebispado de braga
+               ls$cargo/barrete de segundo veredor da camarado do recife/17990000
+               ls$cargo/soldado/obs=primeira companhia do regimento de milicias da capitania de pernambuco
+               ls$cargo/alferes/obs=primeira companhia do regimento de milicias da capitania de pernambuco
+               ls$cargo/capitao/obs=primeira companhia do regimento de milicias da capitania de pernambuco
+               ls$cargo/familiar do santo oficio/17721117
+
+               pai$alexandre de carvalho/id=diversas-his43-obj1-per1-per2
+                  ls$naturalidade/lugar de quintao/obs=paroquia de sao martinho de mancelos, conselho de santa cruza de riba lamega, comarca de guimaraes, arcebispado de braga
+
+               mae$maria moreira/id=diversas-his43-obj1-per1-per3
+                  ls$naturalidade/lugar de quintao/obs=paroquia de sao martinho de mancelos, conselho de santa cruza de riba lamega, comarca de guimaraes, arcebispado de braga
+
+               ppai$manoel francisco/id=diversas-his43-obj1-per1-per4
+
+               mpai$angela carvalha/id=diversas-his43-obj1-per1-per5
+
+               pmae$antonio moreira/id=diversas-his43-obj1-per1-per6
+                  ls$naturalidade/friaens/obs=vizinho do quintans
+
+               mmae$josefa da silva/id=diversas-his43-obj1-per1-per7
+                  ls$naturalidade/vilarinho/obs=vila de calins
+
+               mulher$ana maria dos anjos/id=diversas-his43-obj1-per1-per8
+                  ls$datacasamento/17661109
+
+                  pmulher$jose de mol/id=diversas-his43-obj1-per1-per9
+
+                  mmulher$ursula bernarda de oliveira/id=diversas-his43-obj1-per1-per10
+
+               ppmulher$maximiliano de mol/id=diversas-his43-obj1-per1-per11
+
+               mpmulher$maria teresa de dongelberg/id=diversas-his43-obj1-per1-per12
+
+               pmmulher$joao de oliveira gouvim/id=diversas-his43-obj1-per1-per13
+
+               mmmulher$helena bernarda/id=diversas-his43-obj1-per1-per14
+
+               filho$manoel anacleto moreira de carvalho/id=mamc-his43
+                  ls$cargo/sargento mor
+
+               referida$maria dos prazeres regueira/id=diversas-his43-obj1-per1-per15
+                  rel$parentesco/mulher/manoel anacleto moreira de carvalho/mamc-his43
+
+      familia$div-andmaciel-his44/id=diversas-his44
+
+         linha$linha/id=diversas-his44-obj1
+
+            n$domingos xavier de andrade/obs=pedreira 1995 p.212/id=dxa-his44
+
+               pai$domingos ferreira de andrade/id=dxa-his44-per1
+                  ls$naturalidade/freguesia rural da comarca de barcelos
+                  ls$profissao/homem de negocio
+
+               referido$guilherme ferreira maciel/id=dxa-his44-per2
+                  rel$parentesco/genro/domingos xavier de andrade/dxa-his44
+                  ls$naturalidade/viana
+                  ls$profissao/caixeiro
+                  ls$profissao/homem de negocio/obs=instalado em lisboa
+
+      familia$div-sacoto-his45/id=diversas-his45
+
+         linha$linha/id=diversas-his45-obj1
+
+            n$inacio de freitas sacoto/obs=pedreira 1995 p.213/id=ifs-his45
+               ls$naturalidade/recife
+
+               referido$domingos bastos viana/mesmo_que=jfopai-per18/id=ifs-his45-per1
+                  ls$condicao/conhecia a escrituracao por partidas dobradas
+                  ls$cargo/administrador/obs=companhia geral do grao para e maranhao
+                  rel$sociabilidade/conhecido/inacio de freitas sacoto/ifs-his45
+
+      familia$div-castro-his46/id=diversas-his46
+
+         linha$linha/id=diversas-his46-obj1
+
+            n$joaquim jose de castro/obs=pedreira 1995 p.213/id=jjc-pedreira-his45
+
+               pai$joao de castro guimaraes/id=pedreira-his45-jcg
+                  ls$profissao/caixeiro
+                  ls$profissao/mercador da classe da capela
+                  ls$cargo/acionista da cgpm
+
+               referido$manoel eleuterio/id=jjc-pedreira-his45-per1
+                  ls$cargo/contratador
+                  ls$profissao/negociante
+                  ls$cargo/deputado/obs=companhia geral do grao para e maranhao
+                  ls$cargo/vice provedor/obs=companhia geral do grao para e maranhao
+                  rel$parentesco/irmao/joaquim jose de castro/jjc-pedreira-his45
+                  rel$parentesco/filho/joao de castro guimaraes/pedreira-his45-jcg

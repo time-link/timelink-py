@@ -2,6 +2,7 @@
 (c) Joaquim Carvalho 2021.
 MIT License, no warranties.
 """
+# pylint: disable=import-error
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.mhk.models.entity import Entity

@@ -1,0 +1,64 @@
+kleio$gacto2.str/prefix=cbr/translations=2
+   fonte$vereacao/Não sabemos/tipo=vereacoes/loc=AHMC/data=17930000%1793/ano=1793
+
+      acto$v1793-1/vereacao/21/2/1793/f. 17
+
+         presente$jose correia de melo/id=v1793-1-per1
+            ls$cargo/preside a vereacao
+            ls$cargo/juiz de fora (servindo de ....)
+            ls$titulo/fidalgo da casa real
+
+            pai$antonio de melo/obs=teste, nao está presente, só para testar geração de famílias/id=v1793-1-per1-per1
+
+            mae$maria correia/obs=teste, nao está presente, só para testar geração de famílias/id=v1793-1-per1-per2
+
+            filho$joaquim correira de melo/obs=teste, nao está presente, só para testar geração de famílias/id=v1793-1-per1-per3
+
+            filha$maria correia de melo/obs=teste, nao está presente, só para testar geração de famílias/id=v1793-1-per1-per4
+
+            mulher$joaquina correia de melo/obs=teste, nao está presente, só para testar geração de famílias/id=v1793-1-per1-per5
+
+         presente$domingos de macedo/id=v1793-1-per2
+            ls$cargo/escrivao da camara
+
+         presente$correio/id=v1793-1-per3
+
+         presente$osorio/id=v1793-1-per4
+
+         presente$botelho/id=v1793-1-per5
+
+         presente$nogueira/id=v1793-1-per6
+            ls$cargo/procurador geral
+
+         presente-f$maria sutil/obs=nao esta realmente presente so para testar o formato/id=v1793-1-per7
+            ls$titulo/dona
+
+         item$certidao de intimacao de acordao/resumo= O bacharel Domingos de Macedo e Freitas cavaleiro professo na Ordem de Christo cidadam incorporado na nobreza da cidade servindo de escrivao da camera nesta cidade de Coimbra nos impedimentos do proprietario escrivao da camera Antonio Joaquim de Macedo em cumprimento do acordao que decorre transcripto neste livro de folhas quinze the folhas dezaseis em veriacao de vinte e dois de Janeiro do anno corrente de mil e setecentos e noventa e tres extrahi copia do seo theor e com carta deregida aos thezoureiros publicos lhe intimei todo e seo conthiudo e determinacao do mesmo acordao para cada hum satisfazer na parte que lhes respeitava de que forao sabedores e asinarao na copia do mesmo acordao que fica o [fl. 18] cartorio da camera autuado nos auttos da exzecucao do referido acordao por alguns dos quais foi apresentada a conta que consta junto ao mesmo treslado ou copia e os mais protestos ao junta la na presente veriacao de hoje ao que no satisfazerao e do referido dei conta na prezente vereacao para o illustrissimo senado proceder como lhe parecer justo para o bem da seguranca da real fazenda indagando por sumario de testemunhas abonatorias o estabelecimento e abonacao dos dittos depozitarios por me nao constar a mim escrivao informacao suficiente para o illustrissimo senado se deliberar sobre a sua conservacao ou expulssaco com a declaracam que o referido (É) acha intimado ao doutor Joao Henrriques Seco thezoureiro da decima por determinar o senado verbalmente que primeiro se apurasem as contas dos mais thezoureiros a vista do que mandou o illustrissimo senado que na primeira inmediata veriacao daria providencia sobre a materia sugeita e para constar do referido por fee de mim escrivao passei a presente e me reporto aos autos da exzecucao do mencionado acordao de 22 de Janeiro de 1793./id=v1793-1-obj1
+
+            referido$domingos de macedo e freitas/id=v1793-1-obj1-per8
+               ls$cargo/cavaleiro da ordem de cristo
+               ls$cargo/escrivao da camara/obs=por impedimento do proprietario
+               ls$titulo/nobre/obs=cidadao incorporado na nobreza da cidade
+               ls$assina/sim
+
+            referido$antonio joaquim de macedo/id=v1793-1-obj1-per9
+               ls$cargo/escrivao da camara/obs=proprietario
+
+            referido$joaquim henriques seco/id=v1793-1-obj1-per10
+               ls$titulo/doutor
+               ls$cargo/tesoureiro da decima
+
+      acto$v1793-2/juramento de posse dos almotaces/1/3/1793/f.18v/para os meses de marco e abril
+
+         presente$francisco quaresma/id=v1793-2-per1
+            ls$titulo/bacharel
+            ls$cargo/almotace/obs=marco e abril
+            ls$assina/sim
+
+         presente$jose joaquim de araujo tavares/id=v1793-2-per2
+            ls$titulo/bacharel
+            ls$cargo/almotace/obs=marco e abril
+            ls$assina/sim
+
+         presente$domingos de macedo e fretias/id=v1793-2-per3
+            ls$cargo/escrivao da camara/obs=com comissao

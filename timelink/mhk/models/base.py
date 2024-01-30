@@ -1,5 +1,7 @@
 # Import all the models, so that Base has them before being
 # imported by Alembic
+# pylint: disable=import-error
+
 from timelink.mhk.models.base_class import Base  # noqa
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper, PomClassAttributes  # noqa

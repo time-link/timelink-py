@@ -1,0 +1,79 @@
+kleio$gacto2.str/translations=2
+   fonte$mp758-santiago-beduido/1758/memorias paroquiais de 1758/antt/obs=a partir da transcriÃÂ§ÃÂ£o de AIRibeiro
+
+      memoria58$mp58-santbed/0/0/1758
+
+         freguesia$santiago do beduido/id=mp58-santbed-geo82
+            atr$vizinhos/564
+            atr$maiores/1490
+            atr$menores/168
+            atr$topo_id/45475/obs=id na tabela de toponimia
+            atr$utm_x/164397
+            atr$utm_y/423414
+            atr$ausentes/158
+            atr$paisagem/campina rasa com muitos pinheiros/obs=Esta esta terra ou freguezia situada em hua campina quasi raza, e della se descobrem (...) parte da freguezia de S. Martinho de Salreu do Bispado de Coimbra alguas mais terras se descobrem, porem confuzamente por rezao de muitos pinheiros de qu he povoada a terra que impedem a verem-se e desta ficam distante perto de trez, coatro legoas pouco mais ou menos.
+            atr$localizacao/estarreja
+            atr$orago/sao tiago maior
+            rel$geografica/confronta/sao martinho de salreu/mp58-santbed-ref1
+            rel$distancia/3 ou 4 leguas/sao martinho de salreu/mp58-santbed-ref1
+
+            gref$sao martinho de salreu/id=mp58-santbed-ref1
+               atr$bispado/coimbra
+
+            provincia$beira baixa/id=mp58-santbed-geo82-geo83
+
+            bispado$porto/id=mp58-santbed-geo82-geo84
+
+            comarca$esgueira/id=mp58-santbed-geo82-geo85
+
+            termoc$estarreja/id=mp58-santbed-geo82-geo86
+               atr$inclui/santiago beduido
+               atr$inclui/sao bartolomeu de veiros
+               atr$inclui/santa maria da murtosa
+               atr$inclui/sao mateus do bunheiro
+               atr$inclui/pardilho
+               atr$inclui_parte/sao martinho de salreu
+               atr$inclui_parte/santa marinha de avanca
+
+            lugar$povoa de baixo/id=mp58-santbed-geo82-geo87
+
+            lugar$povoa de cima/id=mp58-santbed-geo82-geo88
+
+            lugar$teixogueira/id=mp58-santbed-geo82-geo89
+
+            lugar$avieiro da marinha/id=mp58-santbed-geo82-geo90
+
+            lugar$estarreja/id=mp58-santbed-geo82-geo91
+
+            lugar$passo/id=mp58-santbed-geo82-geo92
+
+            lugar$agro/id=mp58-santbed-geo82-geo93
+
+            lugar$santiago/id=mp58-santbed-geo82-geo94
+
+            lugar$campo/id=mp58-santbed-geo82-geo95
+
+            lugar$centiais/id=mp58-santbed-geo82-geo96
+
+            lugar$souto/id=mp58-santbed-geo82-geo97
+
+            lugar$barreiro de alem/id=mp58-santbed-geo82-geo98
+
+            lugar$barreiro do meio/id=mp58-santbed-geo82-geo99
+
+            lugar$barreiro de cima/id=mp58-santbed-geo82-geo100
+
+            lugar$beduido/obs=metade e' metade de santiago de beduido e metade a santa maria de avanca/id=mp58-santbed-geo82-geo101
+               atr$freguesia/santa maria de avanca
+               atr$bispado/porto
+
+            idonatario$mosteiro de arouca/ordem religiosa/id=mp58-santbed-geo82-obj1
+
+            igreja$sao tiago maior/paroquial/id=mp58-santbed-geo82-obj2
+               atr$altar/santissimo sacramento
+               atr$altar/nossa senhora do rosario
+               atr$altar/senhor sao tiago
+               atr$altar/cristo crucificado
+               atr$altar/almas do purgatorio
+
+            irmandade$almas/irmandade/id=mp58-santbed-geo82-obj3

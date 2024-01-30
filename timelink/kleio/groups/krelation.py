@@ -1,11 +1,12 @@
 from timelink.kleio.groups.kgroup import KGroup
 from timelink.kleio.groups.kperson import KPerson
+from timelink.kleio.groups.kobject import KObject
 from timelink.kleio.groups.ksource import KSource
 from timelink.kleio.groups.kact import KAct
 
 
 class KRelation(KGroup):
-    """ KRelation(type,value,destname,destination[,date=,obs=])
+    """KRelation(type,value,destname,destination[,date=,obs=])
 
     A relation between historical entities.
 
@@ -28,17 +29,28 @@ class KRelation(KGroup):
                 guaranteed=type,value,destname,destination ;
                 also=obs,date
     """
-    _name = 'rel'
-    _position = ['type', 'value', 'destname', 'destination']
-    _guaranteed = ['type', 'value', 'destname', 'destination']
-    _also = ['obs', 'date', 'origin']
-    _pom_class_id: str = 'relation'
+
+    _name = "rel"
+    _position = ["type", "value", "destname", "destination"]
+    _guaranteed = ["type", "value", "destname", "destination"]
+    _also = ["obs", "date", "origin"]
+    _pom_class_id: str = "relation"
 
     def before_include(self, container_group):
-        """ Method called before a new group is included in this one
-        through KGroup.include(KGroup)."""
+        """Method called before a new krelation is included
+         in a group with container_group.include(KGroup).
+
+         It sets the origin of the relation to the id of the container group.
+
+        Args:
+            container_group (KGroup): the group that includes the relation
+
+        Returns:
+            True if the relation can be included in the group, False otherwise.
+
+        """
         KGroup.before_include(self, container_group)
-        self['origin'] = container_group.id
+        self["origin"] = container_group.id
         return True
 
     def after_include(self, group):
@@ -46,6 +58,7 @@ class KRelation(KGroup):
 
 
 KPerson.allow_as_part(KRelation)
+KObject.allow_as_part(KRelation)
 KAct.allow_as_part(KRelation)
 KSource.allow_as_part(KRelation)
 KGroup._rel_class = KRelation

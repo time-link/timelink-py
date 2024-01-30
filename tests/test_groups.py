@@ -7,16 +7,17 @@ import logging
 
 import pytest
 
-from timelink.kleio.groups import (KElement,
-                                   KPerson,
-                                   KAbstraction,
-                                   KGroup,
-                                   KKleio,
-                                   KSource,
-                                   KAct, )
+from timelink.kleio.groups import (
+    KElement,
+    KPerson,
+    KAbstraction,
+    KGroup,
+    KKleio,
+    KSource,
+    KAct,
+)
 from timelink.kleio.groups.katr import KAtr
-from timelink.kleio.groups.kelement import KDate, KDay, KMonth, KYear, KType, \
-    KReplace
+from timelink.kleio.groups.kelement import KDate, KDay, KMonth, KYear, KType, KReplace
 from timelink.kleio.groups.kls import KLs
 from timelink.kleio.utilities import quote_long_text
 
@@ -25,8 +26,7 @@ from timelink.kleio.utilities import quote_long_text
 def kgroup_nested() -> KSource:
     """Returns a nested structure"""
     ks = KSource(
-        "s1", type="test", loc="auc", date="2021-07-16", ref="alumni",
-        obs="Nested"
+        "s1", type="test", loc="auc", date="2021-07-16", ref="alumni", obs="Nested"
     )
     ka1 = KAct(
         "a1",
@@ -57,8 +57,7 @@ def kgroup_nested() -> KSource:
     p2 = KPerson("Margarida", "f", "p02")
     p2.attr("residencia", "Trouxemil", date="2020-10-18")
     p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4",
-        obs="Ilha Terceira"
+        "parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira"
     )
     p3 = KPerson("Pedro", "m", "p03")
     p3.attr("residencia", "Rua Arménio RC", date="2021-10-21")
@@ -196,12 +195,12 @@ def test_kelement_extend_4():
 
 
 def test_kelement_extend_6():
-    """ many competing classes for element get the one that matches column """
-    KAno: KYear = KYear.extend('ano')
-    KAno2 = KElement.extend('ano')
-    KAno3 = KAno2.extend('ano')
-    KAno4 = KAno3.extend('ano')
-    gano = KGroup.extend('gano', position=['ano'])
+    """many competing classes for element get the one that matches column"""
+    KAno: KYear = KYear.extend("ano")
+    KAno2 = KElement.extend("ano")
+    KAno3 = KAno2.extend("ano")
+    KAno4 = KAno3.extend("ano")
+    gano = KGroup.extend("gano", position=["ano"])
     testing: KGroup = gano(2021)
     ano = testing.get_element_for_column(KYear.name)
     assert KAno.name == KAno4.name  # just to use the variables
@@ -245,14 +244,19 @@ def test_kday2b():
 
 def test_kday3():
     with pytest.raises(ValueError):
-        day = KDay('32')
-        assert day.core == '32'
+        day = KDay("32")
+        assert day.core == "32"
 
 
 def test_kday4():
     with pytest.raises(ValueError):
-        day = KDay('31x')
-        assert day.core == '31x'
+        day = KDay("31x")
+        assert day.core == "31x"
+
+
+def test_kday5():
+    day = KDay(None)
+    assert day.core == 0
 
 
 def test_month1():
@@ -276,6 +280,11 @@ def test_month3():
 
 def test_month4():
     month = KMonth(0)
+    assert month.core == 0, "Did not accept zero value"
+
+
+def test_month5():
+    month = KMonth(None)
     assert month.core == 0, "Did not accept zero value"
 
 
@@ -370,11 +379,10 @@ def test_kelement_kleio_2():
 
 
 def test_kelement_kleio_3():
-    e = KElement('name', 'Joaquim Carvalho',
-                 comment="Family name in the margin")
-    assert e.to_kleio(
-        name=True) == 'name=Joaquim Carvalho#Family name in the margin', \
-        "str() failed with optional comment"
+    e = KElement("name", "Joaquim Carvalho", comment="Family name in the margin")
+    assert (
+        e.to_kleio(name=True) == "name=Joaquim Carvalho#Family name in the margin"
+    ), "str() failed with optional comment"
 
 
 def test_kelement_is_empty():
@@ -393,20 +401,23 @@ def test_kelement_is_empty_3():
 
 
 def test_kelement_to_kleio_2():
-    e = KElement('name',
-                 'Joaquim Carvalho',
-                 original='Joachim Carvº',
-                 comment="Carvº added in the margin")
-    assert e.to_kleio() == \
-           'name=Joaquim Carvalho#Carvº added in the margin%Joachim Carvº', \
-           'bad kleio representation of Element'
+    e = KElement(
+        "name",
+        "Joaquim Carvalho",
+        original="Joachim Carvº",
+        comment="Carvº added in the margin",
+    )
+    assert (
+        e.to_kleio() == "name=Joaquim Carvalho#Carvº added in the margin%Joachim Carvº"
+    ), "bad kleio representation of Element"
 
 
 def test_kgroup_extend():
     kfonte: KGroup = KGroup.extend(
-        "fonte", position=["id"],
+        "fonte",
+        position=["id"],
         also=["tipo", "data", "ano", "obs", "substitui"],
-        synonyms=[("tipo", "type"), ("data", "date"), ("ano", "year")]
+        synonyms=[("tipo", "type"), ("data", "date"), ("ano", "year")],
     )
     afonte = kfonte("f001", ano=2021, tipo="teste")
     assert afonte.id.core == "f001", "could not extend group and instantiate"
@@ -419,18 +430,16 @@ def test_kgroup_extend2():
     KTipo = KType.extend("tipo")  # noqa: F841
     KSubstitui = KReplace.extend("substitui")  # noqa: F841
     kfonte: KGroup = KGroup.extend(
-        "fonte", position=["id"],
-        also=["tipo", "data", "ano", "obs", "substitui"]
+        "fonte", position=["id"], also=["tipo", "data", "ano", "obs", "substitui"]
     )
-    afonte = kfonte("f001", data="2021-12-09", ano=2021, tipo="teste",
-                    substitui="f001")
+    afonte = kfonte("f001", data="2021-12-09", ano=2021, tipo="teste", substitui="f001")
     assert afonte.data.extends("date")
     year_value = afonte.get_element_for_column("year")
     assert 2021 == year_value.core
-    assert KData.__name__ == 'data'
-    assert KAno.__name__ == 'ano'
-    assert KTipo.__name__ == 'tipo'
-    assert KSubstitui.__name__ == 'substitui'
+    assert KData.__name__ == "data"
+    assert KAno.__name__ == "ano"
+    assert KTipo.__name__ == "tipo"
+    assert KSubstitui.__name__ == "substitui"
 
 
 def test_kroup_elements_allowed():
@@ -438,8 +447,7 @@ def test_kroup_elements_allowed():
         "mygrou", position="id", also=["nome", "genero", "telefone"]
     )
     selements = sorted(my_group.elements_allowed())
-    assert selements == ["genero", "id", "nome",
-                         "telefone"], "wrong element list"
+    assert selements == ["genero", "id", "nome", "telefone"], "wrong element list"
 
 
 def test_kroup_allow_as_element():
@@ -447,8 +455,7 @@ def test_kroup_allow_as_element():
         "mygroup", position="id", also=["nome", "genero", "telefone"]
     )
     selements = sorted(my_group.elements_allowed())
-    assert selements == ["genero", "id", "nome",
-                         "telefone"], "wrong element list"
+    assert selements == ["genero", "id", "nome", "telefone"], "wrong element list"
 
     my_group.allow_as_element("profissao", also=True)
     selements = sorted(my_group.elements_allowed())
@@ -489,8 +496,7 @@ def test_kgroup_subclasses():
     sub_classes = (n, m, f)
     p = n("joaquim", "m", "01")
     sc = KPerson.all_subclasses()
-    assert len(sc) == 3 and len(
-        sub_classes) == 3, "Failed to register subclasses"
+    assert len(sc) == 3 and len(sub_classes) == 3, "Failed to register subclasses"
     assert KPerson.is_kgroup(p), "Failed is_kgroup test"
 
 
@@ -541,8 +547,7 @@ def test_allow_as_part_2():
 
     Kx.allow_as_part(Ky)
     x.include(y)
-    assert y in list(
-        x.includes()), "include failed after class allowed as part"
+    assert y in list(x.includes()), "include failed after class allowed as part"
 
 
 def test_allow_as_part_3():
@@ -559,8 +564,7 @@ def test_allow_as_part_3():
 
 
 def test_allow_as_part_4():
-    n: KPerson = KPerson.extend("n", position=["name", "sex"],
-                                guaranteed=["name"])
+    n: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
     j = n("joaquim", "m", id="jrc")
     pn = KPerson.extend("pn", position=["name"], guaranteed=["name"])
     n.allow_as_part(pn)
@@ -569,12 +573,11 @@ def test_allow_as_part_4():
 
 
 def test_includes_group():
-    n: KPerson = KPerson.extend('n', position=['name', 'sex'],
-                                guaranteed=['name'])
-    j: n = n('joaquim', 'm', id='jrc')
-    j.attr('residencia', 'macau', date='2021-12-16')
-    atr1 = KAtr('residencia', 'Coimbra', '2020-09-20')
-    atr2 = KAtr('hobby', 'caligrafia', '2020-09-20')
+    n: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
+    j: n = n("joaquim", "m", id="jrc")
+    j.attr("residencia", "macau", date="2021-12-16")
+    atr1 = KAtr("residencia", "Coimbra", "2020-09-20")
+    atr2 = KAtr("hobby", "caligrafia", "2020-09-20")
     j.include(atr1)
     j.include(atr2)
     j.attr("idade", "63", date="2021-08-08", obs="Taipa")
@@ -590,8 +593,7 @@ def test_includes_group():
 
 
 def test_includes_by_part_order():
-    n: KPerson = KPerson.extend("n", position=["name", "sex"],
-                                guaranteed=["name"])
+    n: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
     j = n("joaquim", "m", id="jrc")
     pn = KPerson.extend("pn", position=["name"], guaranteed=["name"])
     n.allow_as_part(pn)
@@ -682,8 +684,7 @@ def test_kgroup_set_item():
 def test_kgroup_set_item_check_el():
     p = KPerson("joaquim", "m", "jrc", obs="")
     with pytest.raises(ValueError):
-        p['profissao'] = 'professor', \
-                         "set illegal element should raise error"
+        p["profissao"] = "professor", "set illegal element should raise error"
 
 
 def test_kgroup_get(kgroup_nested):
@@ -773,14 +774,12 @@ def test_kgroup_get_nested_dict_get(kgroup_nested):
 
 def test_kgroup_get_nested_dict_get2(kgroup_nested):
     kgroup_nested
-    assert kgroup_nested.get["acts"][0][
-               "id"] == "a1", "Failed nested dictionary"
+    assert kgroup_nested.get["acts"][0]["id"] == "a1", "Failed nested dictionary"
 
 
 def test_kgroup_dots(kgroup_nested):
     kgroup_nested
-    assert kgroup_nested.dots.includes.act[
-               0].id == "a1", "Failed dots retrieval"
+    assert kgroup_nested.dots.includes.act[0].id == "a1", "Failed dots retrieval"
 
 
 def test_kgroup_dots2(kgroup_nested):
@@ -820,8 +819,7 @@ def test_KPerson_to_json():
     json_string = p2.to_json()
     assert json_string
     p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4",
-        obs="Ilha Terceira"
+        "parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira"
     )
     json_string = p1.to_json()
     assert json_string
@@ -871,7 +869,7 @@ def test_synonyms_1():
     fonte: KSource = KSource.extend(
         "fonte",
         also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"],
-        synonyms=[("tipo", "type")]
+        synonyms=[("tipo", "type")],
     )
     assert fonte is not None
     tipo = KElement.get_class_for("tipo")
@@ -886,8 +884,8 @@ def test_synonyms_2():
         fonte: KSource = KSource.extend(
             "fonte",
             also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"],
-            synonyms=[("tipo", "typer")]  # no KElement typer
-            )
+            synonyms=[("tipo", "typer")],  # no KElement typer
+        )
         assert fonte is not None  # this should never be reached
 
 
@@ -899,61 +897,64 @@ def test_kleio_stru():
     fonte = KSource.extend(
         "fonte",
         also=["tipo", "data", "ano", "substitui", "loc", "ref", "obs"],
-        synonyms=[("tipo", "type"), ("data", "date"), ("ano", "year")]
+        synonyms=[("tipo", "type"), ("data", "date"), ("ano", "year")],
     )
     lista = KAct.extend(
         "lista",
         position=["id", "dia", "mes", "ano"],
         guaranteed=["id", "ano", "mes", "dia"],
         also=["data", "tipo", "loc", "obs"],
-        synonyms=[("tipo", "type"),
-                  ("dia", "day"),
-                  ("mes", "month"),
-                  ("data", "date"),
-                  ("ano", "year")
-                  ]
-        )
+        synonyms=[
+            ("tipo", "type"),
+            ("dia", "day"),
+            ("mes", "month"),
+            ("data", "date"),
+            ("ano", "year"),
+        ],
+    )
     auc = KAbstraction.extend(
-                              "auc",
-                              position=["name", "type"],
-                              also=["level", "id"],
-                              guaranteed=["id"]
-                              )
+        "auc", position=["name", "type"], also=["level", "id"], guaranteed=["id"]
+    )
     n = KPerson.extend(
         "n",
         position=["nome", "sexo"],
         guaranteed=["id", "nome", "sexo"],
         also=["mesmo_que", "obs"],
-        synonyms=[("nome", "name"), ("sexo", "sex"), ("mesmo_que", "same_as")]
-        )
+        synonyms=[("nome", "name"), ("sexo", "sex"), ("mesmo_que", "same_as")],
+    )
     pai = KPerson.extend(
-        "pai", position=["nome"], guaranteed=["nome"],
+        "pai",
+        position=["nome"],
+        guaranteed=["nome"],
         also=["mesmo_que", "obs"],
-        synonyms=[("nome", "name"), ("mesmo_que", "same_as")]
-        )
+        synonyms=[("nome", "name"), ("mesmo_que", "same_as")],
+    )
     mae = KPerson.extend(
-        "mae", position=["nome"], guaranteed=["nome"],
+        "mae",
+        position=["nome"],
+        guaranteed=["nome"],
         also=["mesmo_que", "obs"],
-        synonyms=[("nome", "name"), ("mesmo_que", "same_as")]
-        )
+        synonyms=[("nome", "name"), ("mesmo_que", "same_as")],
+    )
     n.allow_as_part(pai)
     n.allow_as_part(mae)
-    ls = KLs.extend('ls',
-                    position=['type', 'value'],
-                    also=['data', 'obs', 'entity'],
-                    synonyms=[("data", "date")]
-                    )
-    atr = KAtr.extend('atr',
-                      position=['type', 'value'],
-                      also=['data', 'obs', 'entity'],
-                      synonyms=[("data", "date")]
-                      )
+    ls = KLs.extend(
+        "ls",
+        position=["type", "value"],
+        also=["data", "obs", "entity"],
+        synonyms=[("data", "date")],
+    )
+    atr = KAtr.extend(
+        "atr",
+        position=["type", "value"],
+        also=["data", "obs", "entity"],
+        synonyms=[("data", "date")],
+    )
 
     kf = KKleio()
     f = fonte("f001", tipo="auc-tests")
     kf.include(f)
-    l: KGroup = lista("l001", 11, 2, 2021, data="1537-1913", tipo="auc-list",
-                      loc="A")
+    l: KGroup = lista("l001", 11, 2, 2021, data="1537-1913", tipo="auc-list", loc="A")
     f.include(l)
     a = auc("alumni-record", "archeevo-record", id="xpto")
     l.include(a)
@@ -967,5 +968,5 @@ def test_kleio_stru():
     m.include(ls("uc", "fim", data=2021))
     l2.include(m)
     json_string = j.to_json()
-    assert j.nome.core == 'joaquim'
+    assert j.nome.core == "joaquim"
     assert len(json_string) > 0

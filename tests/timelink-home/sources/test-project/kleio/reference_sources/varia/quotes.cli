@@ -1,0 +1,23 @@
+kleio$gacto2.str/obs="""
+    Generated from Archeevo export file:  database/other_exports/ficheiro-alunos-auc/PT-AUC-ELU-UC-AUC-B-001-001.CSV dated 2022-02-03 14:43
+"""/translations=9
+   fonte$quotes/data=20200000
+
+      lista$quotesl/04/02/2022
+
+         n$John Smith/m/obs=""" 
+
+
+        "a quotes line inside triple quote"
+        'a single quoted line inside triple quotes'
+        " a multi line segment
+        inside
+        triple quotes"
+        ' a multi line
+        single quote
+        segment inside triple quotes'
+        and some free text
+
+        
+    """/id=quotesl-per1
+            ls$profession/tester/obs="a multi line double (returns should be removed)"

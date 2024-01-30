@@ -1,7 +1,16 @@
-from warnings import warn
+# pylint: disable=import-error
+# pylint: disable=no-member
 
-from sqlalchemy import MetaData, engine, create_engine, select, inspect
-from timelink.mhk.models import base, Session  # noqa
+from warnings import warn
+from sqlalchemy import (
+    MetaData,
+    create_engine,
+    select,
+    inspect,
+    engine,
+)
+from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
+
 from timelink.mhk.models.base_class import Base
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.base_mappings import pom_som_base_mappings
@@ -9,22 +18,19 @@ from timelink.mhk.models.base_mappings import pom_som_base_mappings
 SQLALCHEMY_ECHO = False
 
 
-class TimelinkDB:
+class TimelinkMHK:
     """
     Provide access to a Timelink-MHK database
 
     Example:
 
-        from timelink.mhk.models import Session
-        from timelink.mhk.model.db import TimelinkDB
+        from timelink.mhk.model.db import TimelinkMHK
 
-        dbsys = TimelinkDB("sql alchemy connection string")
-
-
+        dbsys = TimelinkMHK("sql alchemy connection string")
 
     """
 
-    db_engine: engine = None
+    sa_engine: engine = None
     db_name: str = None
     conn_string = None
     metadata: MetaData = None
@@ -53,31 +59,40 @@ class TimelinkDB:
         """
 
         if conn_string is not None:
-            self.db_engine = create_engine(
+            self.sa_engine = create_engine(
                 conn_string or self.conn_string, future=True, echo=sql_echo
             )
             self.conn_string = conn_string
         if self.conn_string is None:
             raise ValueError("No connection string available")
 
-        with Session(bind=self.db_engine) as session:
+        self.session = sessionmaker(
+            autocommit=False, autoflush=False, bind=self.sa_engine
+        )
+
+        with self.session(bind=self.sa_engine) as session:
             self.create_tables()
             session.commit()
             session.rollback()
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
-            1 + 1
             session.commit()
-            2 + 2
 
-    def get_engine(self) -> engine:
+    def get_engine(self) -> sa_engine:
         """Return sqlalchemy engine"""
-        return self.db_engine
+        return self.sa_engine
 
-    def engine(self) -> engine:
+    def get_session(self) -> sessionmaker:
+        """Return sqlalchemy session"""
+        return self.session
+
+    def sa_engine(self) -> sa_engine:
         """DEPRECATED use TimelinkDB.get_engine()"""
-        warn("This method is deprecated, use get_engine()", DeprecationWarning,
-             stacklevel=2)
+        warn(
+            "This method is deprecated, use get_engine()",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return self.get_engine()
 
     def get_metadata(self) -> MetaData:
@@ -90,8 +105,8 @@ class TimelinkDB:
 
         :return: None
         """
-        self.metadata = Base.metadata
-        self.metadata.create_all(self.db_engine)  # only creates if missing
+        self.metadata = Base.metadata  # pylint: disable=ignore-no-member
+        self.metadata.create_all(self.sa_engine)  # only creates if missing
 
     def load_database_classes(self, session):
         """
@@ -110,8 +125,12 @@ class TimelinkDB:
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for k in pom_som_base_mappings.keys():
-            if k not in available_mappings:
+        for (
+            k
+        ) in (
+            pom_som_base_mappings.keys()
+        ):  # pylint: disable=consider-iterating-dictionary, consider-using-dict-items
+            if k not in available_mappings:  # pylint: disable=consider-using-dict-items
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)
         # this will cache the pomsom mapper objects
@@ -125,7 +144,7 @@ class TimelinkDB:
 
     def table_names(self):
         """Current tables in the current database"""
-        insp = inspect(self.db_engine)
+        insp = inspect(self.sa_engine)
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
 
@@ -139,5 +158,9 @@ class TimelinkDB:
         session.rollback()
         self.load_database_classes(session)
         self.ensure_all_mappings(session)
-        self.metadata = Base.metadata
-        self.metadata.drop_all(self.db_engine)
+        self.metadata = Base.metadata  # pylint: disable=ignore-no-member
+        self.metadata.drop_all(self.sa_engine)
+
+
+# for compatibility with old code
+TimelinkDB = TimelinkMHK

@@ -72,15 +72,15 @@ def get_mhk_env() -> Type[Union[str, None]]:
     if is_mhk_installed():
         home_dir = str(Path.home())
         if home_dir is None:
-            warnings.warn("Could not get a home directory")
+            warnings.warn("Could not get a home directory", stacklevel=2)
             return None
         else:
             env = get_env_as_dict(home_dir + "/.mhk")
             if env is None:
-                warnings.warn("Could not read .mhk env from user home")
+                warnings.warn("Could not read .mhk env from user home", stacklevel=2)
             return env
     else:
-        warnings.warn("MHK is not installed")
+        warnings.warn("MHK is not installed", stacklevel=2)
         return None
 
 
@@ -101,8 +101,25 @@ def get_mhk_app_env() -> Type[Union[str, None]]:
         app_env = get_env_as_dict(mhk_home_dir + "/app/.env")
         return app_env
     else:
-        warnings.warn("Could not get MHK env variables")
+        warnings.warn("Could not get MHK env variables", stacklevel=2)
         return None
+
+
+def get_db_pwd() -> str:
+    """
+    Get the password of the database from the MHK environment
+    """
+    app_env = get_mhk_app_env()
+    if app_env:
+        pwd = app_env["MYSQL_ROOT_PASSWORD"]
+        if pwd is None:
+            raise TypeError("Could not find MHK database password." "Is MHK installed?")
+        else:
+            return pwd
+    else:
+        raise TypeError(
+            "Could not find MHK app information." "Is MHK installed?"
+        )  # noqa: E501
 
 
 def get_connection_string(db: str, host="localhost", port="3307") -> str:
@@ -122,9 +139,8 @@ def get_dbnames():
 
     A search is made in the MySQL server running in the local host port 3307
     """
-    pwd = get_db_pwd()
-    conn_string = "mysql+mysqlconnector://root:{p}@localhost:3307/mysql".format(
-        p=pwd)
+    pwd = get_mhk_db_pwd()
+    conn_string = "mysql+mysqlconnector://root:{p}@localhost:3307/mysql".format(p=pwd)
     mysql = create_engine(conn_string, echo=False, future=True)
     with mysql.connect() as conn:
         databases = conn.execute(
@@ -137,7 +153,7 @@ def get_dbnames():
     return result
 
 
-def get_db_pwd():
+def get_mhk_db_pwd():
     """
     Get the password of the database from the MHK environment
     """
@@ -145,13 +161,11 @@ def get_db_pwd():
     if app_env:
         pwd = app_env["MYSQL_ROOT_PASSWORD"]
         if pwd is None:
-            raise TypeError(
-                "Could not find MHK database password." "Is MHK installed?")
+            raise TypeError("Could not find MHK database password." "Is MHK installed?")
         else:
             return pwd
     else:
-        raise TypeError(
-            "Could not find MHK app information." "Is MHK installed?")
+        raise TypeError("Could not find MHK app information." "Is MHK installed?")
 
 
 def get_mhk_info():
@@ -167,22 +181,21 @@ def get_mhk_info():
     mhk_app_env = get_mhk_app_env()
     mhk_host = mhk_app_env.get("MHK_HOST", "localhost")
 
-    MHKInfo = namedtuple("MHKInfo", ["mhk_app_env",
-                                     "mhk_home",
-                                     "mhk_home_init",
-                                     "mhk_home_update",
-                                     "mhk_host",
-                                     "mhk_version",
-                                     "user_home"]
-                         )
-    mhk_info = MHKInfo(mhk_app_env,
-                       mhk_home,
-                       mhk_home_init,
-                       mhk_home_update,
-                       mhk_host,
-                       mv,
-                       user_home
-                       )
+    MHKInfo = namedtuple(
+        "MHKInfo",
+        [
+            "mhk_app_env",
+            "mhk_home",
+            "mhk_home_init",
+            "mhk_home_update",
+            "mhk_host",
+            "mhk_version",
+            "user_home",
+        ],
+    )
+    mhk_info = MHKInfo(
+        mhk_app_env, mhk_home, mhk_home_init, mhk_home_update, mhk_host, mv, user_home
+    )
     return mhk_info
 
 

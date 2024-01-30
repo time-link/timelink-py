@@ -1,0 +1,1552 @@
+kleio$obidos-vila/translations=9
+   fonte$perdoes/0/perdoes/obs=recolhidos por Dina , aluna de Mestrado de Histria Moderna da FLUC.
+
+      cartaperdao$14g61/04/12/1595/cota=14g61/local=quinta da freiria/tabeliao=francisco do rego/tipo=partes
+
+         perdoante$francisco fernandes/m/id=14g61-perd1
+            ls$residencia/quinta da freiria%termo obidos
+            ls$profissao/caseiro
+            ls$assina/cruz
+            ls$idade_aprox/maior
+            rel$profissional/caseiro/francisco gorjao da serra/14g61-perd4
+
+         vitima$domingos pereira/m/id=14g61-perd2
+            ls$idade_aprox/maior
+            ls$ec/solteiro
+            ls$residencia/quinta da freiria%termo de obidos
+            rel$parentesco/filho/francisco fernandes/14g61-perd1
+
+         perdoado$luis jorge/id=14g61-perd3
+            ls$residencia/ribeira da atouguia da baleia
+            ls$profissao/pescador
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=ferimentos/objecto=pessoa/ocorrencia=local da atouguia da baleia/tempo=noite/descricao=averia mais de hum ano que francisco fernandes querelara e denunciara as justicas de sua magestade diante dos senhores juizes da vila de atouguia da ballea de hum luis jorge dicendo hen sua querela he denunsiasao que o dito luis jorge ferira de noite de preposito he reixa velha a domingos pereira seu filho de huma ferida na cabesa aberta he sangoenta da quoal ferida se lhe tomara querella he por ella tirara testemunhas he por ser de noite se tirara devassa do dito ferimento por bem de justisa he porque pellas quoaes culpas o dito luis jorge handava absente he nao parecia diante das justicas/pronuncia=preso/situacao=ausente/id=14g61-obj1
+
+         perdao$04/12/1595/tipo=livremente/descricao=denuncia feita por ma informacao do seu filho que ja tinha falecido e o caso tinha acontecido acidentalmente sem preposito nem rixa velha como soube mais tarde e o dito luis jorge nao tinha assim tanta culpa no ferimento como lhe pusera. era seu amigo tal como sempre o foi e quando o filho morreu dissera a seu pai para ele lhe perdoar livremente e para que deus lhe perdoe ficara sao e sem aleijao nem desformidade./id=14g61-obj2
+
+         test$francisco gorjao da serra/m/id=14g61-perd4
+            ls$residencia/quinta da freiria
+            ls$profissao/doutor
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$manuel antunes/m/id=14g61-per1
+            ls$residencia/ribeira da atouguia da baleia
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+      cartaperdao$14e16-1/07/06/1623/cota=14e16/local=casa do tabeliao/tabeliao=jeronimo almeida dorta/tipo=partes
+
+         perdoante$manuel fernandes/m/id=14e16-1-perd1
+            ls$residencia/vila de obidos
+            ls$profissao/mercador
+            ls$assina/bem
+            ls$idade_aprox/maior
+
+         vitima$luis nunes/m/id=14e16-1-perd2
+            ls$idade_aprox/menor
+            ls$residencia/vila de obidos
+            rel$parentesco/filho/manuel fernandes/14e16-1-perd1
+
+         perdoado$filipe/id=14e16-1-perd3
+            ls$residencia/vila de obidos
+            rel$condicao profissional/escravo/simao dorta/14e16-1-perd4
+
+            referido$simao dorta/m/id=14e16-1-perd4
+               ls$residencia/vila de obidos
+
+         crime$00/00/0000/forma=denuncia/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da obidos/tempo=dia/descricao=filipe escravo de simao dorta ferira luis nunes filho de manuel fernandes de algumas feridas conteudas no auto de denunciacao/pronuncia=livre/id=14e16-1-obj1
+
+         perdao$07/06/1623/tipo=livremente/descricao=felipe nao tivera culpa no dito ferimento pois fora luis nunes que o fora buscar tendo ficado ferido numa briga e ficara sao e sem aleijao ou desformidade da ferida./id=14e16-1-obj2
+
+         test$antonio barreto da silveira/m/id=14e16-1-per1
+            ls$residencia/vila de obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$joao da pena/m/id=14e16-1-per2
+            ls$residencia/vila de obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+      cartaperdao$14e16-2/20/08/1624/cota=14e16/local=casa do tabeliao/tabeliao=jeronimo almeida dorta/tipo=partes
+
+         perdoante$joao francisco/m/id=14e16-2-perd1
+            ls$residencia/gaeiras, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$joao francisco/m/mesmo_que=14e16-2-perd1/id=14e16-2-per1
+
+         perdoado$francisco pires/id=14e16-2-perd2
+            ls$residencia/gaeiras, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/1624/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa%testa/instrumento=arma%segoda/ocorrencia=local da gaeiras/tempo=dia/descricao=tivera razoes e diferencas com francisco pires de que resultara ele fazer lhe uma ferida na testa aberta e sangoenta com uma segoda da qual viera querelar e denunciar as justisas desta vila/pronuncia=livre/id=14e16-2-obj1
+
+         perdao$20/08/1624/tipo=livremente/descricao=o ferimento fora feito com colera e paixam porque sempre foram e eram muito amigos e o sao hoje pelas quais razoes e para que deus lhe perdoe seus pecados porque estava sao e sem aleijao nem desformidade e serem amigos como sempre foram./id=14e16-2-obj2
+
+         test$francisco dorta da almeida/m/id=14e16-2-perd3
+            ls$residencia/arrabalde, termo de obidos
+            ls$assina/bem
+
+         test$gaspar dias/m/id=14e16-2-perd4
+            ls$residencia/casais do alentejo
+            ls$profissao/lavrador
+            ls$assina/cruz
+
+      cartaperdao$14d57-1/25/09/1631/cota=14d57/local=casa do tabeliao/tabeliao=francisco aguiar pessoa/tipo=partes
+
+         perdoante$domingos fernandes/m/id=14d57-1-perd1
+            ls$residencia/casal de mestre mendo, vila, termo de atouguia da baleia
+            ls$profissao/trabalhador
+            ls$idade_aprox/maior
+            ls$ec/casado
+            ls$assina/cruz
+
+         perdoante$francisca goncalves/f/id=14d57-1-perd2
+            ls$residencia/casal de mestre mendo, vila de atouguia da baleia
+            ls$profissao/trabalhador
+            ls$idade_aprox/maior
+            ls$ec/casada
+            ls$assina/cruz
+            rel$parentesco/esposa/domingos fernandes/14d57-1-perd1
+
+         vitima$domingos/m/id=14d57-1-perd3/obs=falecido
+            ls$idade_aprox/10 anos
+            ls$residencia/capuchos velhos
+            rel$parentesco/filho/domingos fernandes/14d57-1-perd1
+            rel$parentesco/filho/francisca goncalves/14d57-1-perd2
+
+         perdoado$estevao fernandes/id=14d57-1-perd3b/obs=tem filhos
+            ls$residencia/capuchos velhos
+            ls$profissao/trabalhador
+            ls$ec/casado
+            ls$idade_aprox/maior
+
+         crime$00/06/1631/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa/instrumento=verga/ocorrencia=local da capuchos velhos%campo/tempo=dia de ascensao%noite/descricao=no tempo da fome o filho dos perdoantes fora pedir esmola pelo mundo por o nao poderem sustentar e passarem necessidades por falta de pao e o seu filho andava fraco e debilitado com fome morando no carregal com diogo dias visinho de estevao fernandes e diogo dias nao dava de comer ao seu filho pelo que este fora ao faval de estevao fernandes que o avisou para la nao voltar e um dia achandoo no faval no dia de ascensao meteu lhe medo que o iria prender na cadeia e prendera o com uma verga a uma pereira e o rapaz soltara se e foi para os bois do seu amo diogo dias ficando la de noite tendo morrido pouco depois/pronuncia=preso/id=14d57-1-obj1
+
+         referido$diogo dias/m/id=14d57-1-per1
+            ls$residencia/carregal, termo de obidos
+            rel$visinhanca/visinho/estevao fernandes/14d57-1-perd4
+
+         perdao$25/09/1631/tipo=livremente/descricao=sabiam de certo que o dito estevao fernandes nao fora o causador da dia morte do seu filho e so lhe fez o que dito fica para lhe meter medo e estar sem culpa no caso por ser homem pobre e manso e pacifico e temente a deus e as justisas de sua magestade e nao haver quem dele se queixe. a morte do seu filho domingos deveu-se a fome e dor de colequa e fraquezas em que estava causadas pela fome que foi a principal causa da sua morte. pedoa pelo amor de deus nosso senhor e por ser homem pobre, para andar por onde quiser e porque e casado com mulher e filhos e pobre trabalhador./id=14d57-1-obj2
+
+         test$manuel fernandes/m/id=14d57-1-per2
+            ls$residencia/vila de obidos
+            ls$assina/bem
+
+         test$francisco ferreira/m/id=14d57-1-per3
+            ls$residencia/vila de obidos
+            ls$profissao/trabalhador
+            ls$assina/bem
+
+         test$joao manuel/m/id=14d57-1-per4
+            ls$residencia/tras do outeiro, capuchos velhos
+            ls$profissao/trabalhador
+            ls$assina/bem
+
+      cartaperdao$14d57-2/03/02/1632/cota=14d57/local=carvalhal, termo de obidos/tabeliao=francisco aguiar pessoa/tipo=partes
+
+         perdoante$manuel da fonseca/m/id=14d57-2-perd1
+            ls$residencia/carvalhal
+            ls$profissao/jurado do rendeiro do verde do ramo
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         vitima$manuel da fonseca/m/mesmo_que=14d57-2-perd1/id=14d57-2-per1
+
+         perdoado$francisco leal/id=14d57-2-perd2
+            ls$residencia/carvalhal, termo de obidos
+            ls$ec/solteiro
+            ls$idade_aprox/maior
+
+            pai$diogo leal/m/id=14d57-2-perd2-per2
+               ls$profissao/monteiro%matas
+               ls$residencia/carvalhal, termo de obidos
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=ferimento/objecto=pessoa%braco/instrumento=arma%pau/ocorrencia=local da eira de francisco dorta/tempo=noite/descricao=denunciara perante o lecenciado damiao daguiar juis de fora da dita villa de obidos por rezao do ferimento que se lhe fez de noite a de fora que teverao pasado ja segundo elle sobredito huma pouca de palha cuberto com um cuteiro na eira de francisco dorta deste dito lugar ahi o espancarao e com um pau lhe derao pancadas por partes de seu corpo entre as quis o ferirao de huma ferida aberta e sangoenta com couro e carne cortada no braso direito pegado ao cotovelo pela parte de fora e nelle juntamente lhe fiserao huma nodoa grande como todo mais largamente consta do auto da devassa que do caso se tirou do dito ferimento/pronuncia=livre/id=14d57-2-obj1
+
+         referido$damiao de aguiar/m/id=14d57-2-per3
+            ls$profissao/juiz de fora
+            ls$residencia/vila de obidos
+
+         referido$francisco dorta/m/id=14d57-2-per4
+            ls$residencia/carvalhal, termo de obidos
+
+         perdao$03/02/1632/tipo=livremente/descricao=estava sao sem aleijao nem desformidade e tinha sabido depois que o dito francisco leal o nao espancara nem ferira nem tivera no caso culpa alguma e oje comia com ele e com seu pai diogo leal como antes o faziam. pelo amor de deus nosso senhor por ser mansebo de bem manso e pacifico temente a deus e as justicas de sua magestade./id=14d57-2-obj2
+
+         test$simao gomes/m/id=14d57-2-per5
+            ls$residencia/carvalhal, termo de obidos
+            ls$profissao/curtidor
+            ls$assina/bem
+
+         test$francisco botelho/m/id=14d57-2-per6
+            ls$residencia/carvalhal, termo de obidos
+            ls$assina/bem
+
+      cartaperdao$14e21-1/10/11/1635/cota=14e21/local=casa do tabeliao/tabeliao=joao da pena/tipo=partes
+
+         perdoante$gregorio jorge/m/id=14e21-1-perd1
+            ls$residencia/obidos
+            ls$ec/casado
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         perdoante$ana francisca/f/id=14e21-1-perd2
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$ec/casada
+            ls$assina/cruz
+            rel$parentesco/esposa/gregorio jorge/14e21-1-perd1
+
+         vitima$ana francisca/f/mesmo_que=14e21-1-perd2/id=14e21-1-per1
+
+         perdoado$bernardo dorta/id=14e21-1-perd3
+            ls$residencia/carvalhal, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=desonra/subtipo=perda de virgindade/objecto=pessoa%honra/ocorrencia=local da carvalhal/descricao=quando cuidava de bernardo dorta sendo ainda solteira ele desonraraa e tirara sua virgindade/pronuncia=em livramento/id=14e21-1-obj1
+
+         perdao$10/11/1635/tipo=livremente/descricao=bernardo dorta ja lhe tinha pago a satisfacao pelo encargo e compensacao pelo seu casamento e porque ja tinha passado muito tempo./id=14e21-1-obj2
+
+         test$antonio de figueiredo/m/id=14e21-1-per2
+            ls$residencia/vila de obidos
+            ls$assina/bem
+            ls$profissao/licenciado
+
+         test$bras antunes/m/id=14e21-1-per3
+            ls$residencia/vila de obidos
+            ls$assina/cruz
+
+         test$antonio fernandes/m/id=14e21-1-per4
+            ls$residencia/lendal, termo de obidos
+            ls$assina/cruz
+
+      cartaperdao$14e21-2/19/11/1635/cota=14e21/local=casa do tabeliao/tabeliao=joao da pena/tipo=partes
+
+         perdoante$domingos luis/m/id=14e21-2-perd1
+            ls$residencia/lugar do po, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$domingos luis/m/mesmo_que=14e21-2-perd1/id=14e21-2-per1
+
+         perdoado$francisco do vale/id=14e21-2-perd2
+            ls$residencia/lugar do po, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimentos/objecto=pessoa%corpo/ocorrencia=local da lugar do po/descricao= francisco do vale ferira o deixando lhe nodoas e pisaduras conteudas no auto de querela/pronuncia=livre/id=14e21-2-obj1
+
+         perdao$19/11/1635/tipo=livremente/descricao=perdoava para sempre toda a pena e satisfacao que ele podia ter pelo ferimento e nodoas e pisaduras e porque ele oje estava sao e sem aleijao nem desformidade e sao visinhos e amigos e comer e beber em casa um do outro e francisco do vale nao tivera culpa. pelo amor de deus que a isso o movia e por ser francisco do vale pessoa de bem manso e pacifico e era gente de bem./id=14e21-2-obj2
+
+         test$diogo do avelar/m/id=14e21-2-per2
+            ls$residencia/vila de obidos
+            ls$assina/bem
+
+         test$manuel fernandes/m/id=14e21-2-per3
+            ls$residencia/vila de obidos
+            ls$assina/bem
+
+      cartaperdao$14e21-3/21/01/1637/cota=14e21/local=rabeleira, termo de obidos/tabeliao=joao da pena/tipo=partes
+
+         perdoante$domingos silvestre/m/id=14e21-3-perd1
+            ls$residencia/quinta da albergaria
+            ls$ec/casado
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            ls$profissao/lavrador
+
+         perdoante$margarida pires/f/id=14e21-3-perd2
+            ls$residencia/quinta da albergaria
+            ls$ec/casada
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/esposa/domingos silvestre/14e21-3-perd1
+
+         vitima$joao/m/id=14e21-3-perd3/obs=falecido
+            ls$idade_aprox/menor
+            rel$parentesco/filho/domingos silvestre/14e21-3-perd1
+            rel$parentesco/filho/margarida pires/14e21-3-perd2
+
+         perdoado$joao delgado/id=14e21-3-perd4
+            ls$residencia/rabeleira
+            ls$idade_aprox/maior
+
+         perdoado$francisco luis/id=14e21-3-perd5
+            ls$residencia/rabeleira
+            ls$idade_aprox/maior
+
+         perdoado$joao francisco/id=14e21-3-perd6
+            ls$residencia/rabeleira
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa/ocorrencia=local da casa/descricao=os perdoantes apresentaram queixa diante o juis de fora da vila de obidos dos agora perdoados acusandoos de terem culpa na morte do seu filho joao tendo saido culpados na devassa que do caso se tirou/pronuncia=presos/id=14e21-3-obj1
+
+         perdao$21/01/1637/tipo=livremente/descricao=souberam que eles nao tinham nenhuma culpa na morte do filho porque este morrera de doenca por mal desperto e henfermo da alma tendo denunciado levados pela paixam pois sao amigos e visinhos comendo e bebendo juntos pelo amor de deus nosso senhor. sao pessoas de qualidade de bem mansos quietos e pacifcos./id=14e21-3-obj2
+
+         test$luis dorta/m/id=14e21-3-perd7
+            ls$residencia/obidos
+            ls$profissao/padre%igreja de nossa senhora da piedade de cuidaes
+            ls$assina/bem
+            ls$idade_aprox/maior
+            ls$ec/solteiro
+
+         test$diogo joao/m/id=14e21-3-perd8
+            ls$residencia/rabeleira, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         test$pedro alvares/m/id=14e21-3-perd9
+            ls$residencia/rabeleira, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+      cartaperdao$14e21-4/29/03/1637/cota=14e21/local=casa do tabeliao/tabeliao=joao da pena/tipo=partes
+
+         perdoante$luis francisco/m/id=14e21-4-perd1
+            ls$residencia/fanadia, termo de obidos
+            ls$profissao/trabalhador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$luis francisco/m/mesmo_que=14e21-4-perd1/id=14e21-4-per1
+
+         perdoado$joao tristao/id=14e21-4-perd2
+            ls$residencia/fanadia, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$05/01/1637/forma=devassa/tipo=violencia/subtipo=ferimento/objecto=pessoa%cabeca/ocorrencia=local da rua, fanadia/tempo=noite/descricao=em janeiro deste ano em vespera de reis tivera uma briga e ofensas de noite com joao tristao e com mais pessoas em que luis francisco saira ferido de uma ferida na cabeca, mas nao viu muito bem quem lhe deu porque era muita gente/pronuncia=livre/id=14e21-4-obj1
+
+         perdao$29/03/1637/tipo=livremente/descricao=nao viu quem lhe deu eram muito amigos caso aconteceu acidentalmente, e entendia que ele nao tivera culpa no ferimento caso em rixa nova acidental e sucedeu de noite./id=14e21-4-obj2
+
+         test$daniel carneiro ferreira/m/id=14e21-4-perd3
+            ls$residencia/obidos
+            ls$profissao/licenciado
+            ls$assina/bem
+
+         test$silvestre francisco/m/id=14e21-4-perd4
+            ls$residencia/fanadia, termo de obidos
+            ls$assina/cruz
+
+      cartaperdao$14e21-5/28/04/1637/cota=14e21/local=vila de obidos/tabeliao=joao da pena/tipo=partes
+
+         perdoante$francisco fernandes/m/id=14e21-5-perd1
+            ls$residencia/a dos negros, termo de obidos
+            ls$profissao/carpinteiro
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$francisco fernandes/m/mesmo_que=14e21-5-perd1/id=14e21-5-per1
+
+         perdoado$manuel/id=14e21-5-perd2
+            ls$residencia/a dos negros, termo de obidos
+            ls$ec/solteiro
+            ls$idade_aprox/menor
+            rel$parentesco/irmao/luis/14e21-e-perd3
+
+            pai$luis gaspar/m/id=14e21-5-perd2-per2
+               ls$residencia/a dos negros, termo de obidos
+
+         perdoado$luis/id=14e21-e-perd3
+            ls$residencia/a dos negros, termo do obidos
+            ls$ec/solteiro
+            ls$idade_aprox/menor
+            rel$parentesco/irmao/manuel/14e21-5-perd2
+
+            pai$luis gaspar/m/id=14e21-e-perd3-per3
+               ls$residencia/a dos negros, termo de obidos
+
+         crime$27/02/1637/forma=devassa/tipo=violencia/subtipo=ferimento/objecto=pessoa%cabeca/instrumento=espada/ocorrencia=local da rua/tempo=noite/descricao=luis e manuel feriram no e trespassaram no, fazendo lhe feridas na cabeca/pronuncia=presos/id=14e21-5-obj1
+
+         perdao$28/04/1637/tipo=livremente/descricao=denunciara os com colera e paixao, mas soubera depois que nao tiverao culpa no ferimento por alguem que o informou. sao amigos comem e bebem juntos sendo mancebos solteiros./id=14e21-5-obj2
+
+         test$daniel carneiro ferreira/m/id=14e21-5-perd4
+            ls$residencia/obidos
+            ls$profissao/licenciado
+            ls$assina/bem
+
+         test$gaspar ferreira/m/id=14e21-5-perd5
+            ls$residencia/obidos
+            ls$assina/bem
+
+      cartaperdao$14e18/16/10/1645/cota=14e18/local=obidos/tabeliao=fracisco dorta da carvalhosa/tipo=partes/obs=realizado em casa de antonio gomes
+
+         referido$antonio gomes da veiga/m/id=14e18-perd1
+            ls$residencia/obidos
+            ls$profissao/licenciado
+
+         perdoante$luis jorge/m/id=14e18-perd2
+            ls$residencia/peniche
+            ls$profissao/sargento%presidio de peniche
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         vitima$luis jorge/m/mesmo_que=14e18-perd2/id=14e18-per1
+
+         perdoado$bras figueira de almada/id=14e18-perd3
+            ls$residencia/almada
+            ls$profissao/capitao-mor
+            ls$idade_aprox/maior
+            rel$profissional/patrao/luis jorge/14e18-perd2
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa%orelha direita/ocorrencia=local da presidio de peniche/tempo=dia/descricao=teve um dissabor e descontentamento com ele do que resultou fazerlhe uma ferida por baixo da orelha direita de couro e carne cortada/pronuncia=livre/id=14e18-obj1
+
+         perdao$16/10/1645/tipo=livremente/descricao=disse que nunca se queixara diante do juiz de fora ou perante outra qualquer justica do capitao mor e o caso e de pouca consideracao que se curou facilmente sendo do tamanho de um vintem que foi sao sem sangria nem dia de cama ficando sem aleijao nem desformidade. ferida feita por acaso sem reixa nem preposito e que ele deu causa por ser criado do capitao mor lhe dever muitas obrigacões e o tratar sempre bem./id=14e18-obj2
+
+         test$antonio gomes da veiga/m/mesmo_que=14e18-perd1/id=14e18-per2
+            ls$assina/bem
+
+         test$joao ribeiro/m/id=14e18-perd4
+            ls$residencia/obidos
+            ls$profissao/barbeiro
+            ls$assina/bem
+
+      cartaperdao$14e27/14/01/1646/cota=14e27/local=casa do tabeliao/tabeliao=bartolomeu da silva/tipo=partes
+
+         perdoante$antonio vicente/m/id=14e27-perd1
+            ls$residencia/sobral da lagoa
+            ls$profissao/seareiro
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$antonio vicente/m/mesmo_que=14e27-perd1/id=14e27-per1
+
+         perdoado$manuel rodrigues/id=14e27-perd2
+            ls$residencia/vau
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da rua, vau/tempo=dia/descricao=tivera com manuel rodrigues umas paixões e desavencas e delas ficara ferido e foi querelar com ele ao juiz de fora/pronuncia=livre/id=14e27-obj1
+
+         perdao$14/01/1646/tipo=livremente/descricao=era timido cristao e timido a deus nosso senhor que queira perdoar como de efeito logo perdoou sem constrangimento e sem interesse algum/id=14e27-obj2
+
+         test$afonso botelho de sequeira/m/id=14e27-perd3
+            ls$residencia/quinta modora, termo da vila de obidos
+            ls$assina/bem
+
+         test$francisco dias/m/id=14e27-perd4
+            ls$residencia/vau
+            ls$assina/cruz
+
+         test$joao lopes/m/id=14e27-perd5
+            ls$residencia/vau
+            ls$assina/cruz
+
+      cartaperdao$14e19-1/09/05/1648/cota=14e19/local=sobral do perilhao/tabeliao=francisco dorta de carvalhosa/tipo=partes
+
+         perdoante$antonio fernandes/m/id=14e19-1-perd1
+            ls$residencia/sobral do perilhao
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            ls$profissao/rendeiro
+
+         vitima$antonio fernandes/m/mesmo_que=14e19-1-perd1/id=14e19-1-per1
+
+         perdoado$joao luis/id=14e19-1-perd2
+            ls$residencia/sobral do perilhao
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=denunciacao/tipo=violencia/subtipo=ferimento/objecto=pessoa%rosto/ocorrencia=local da rua/tempo=dia/descricao=joao luis ferira o no rosto de huma masa do rosto por baixo do olho dereitto por cima do bigode numa briga que sucedeu por rezois de hum jogo e sobra de hum caso que ouvera no jogo da bulha e acodirao muita gente entre os quais elle dito antonio fernandes caira ferido da ferida de que requerera/pronuncia=livre/id=14e19-1-obj1
+
+         perdao$09/05/1648/tipo=livremente/descricao=estava sao sem aleijao algum sempre fora amigo do dito joao luis como era actualmente. caso acidental porque era crista e nao queria que deus lhe tomasse conta de se queixar de pessoa que nao o avia ofendido e perdoavalhe pelo amor de deos./id=14e19-1-obj2
+
+         test$joao martins/m/id=14e19-1-perd3
+            ls$profissao/lavrador
+            ls$residencia/sobral do perilhao
+            ls$assina/bem
+
+         test$manuel gomes/m/id=14e19-1-perd4
+            ls$residencia/sobral do perilhao
+            ls$assina/bem
+
+      cartaperdao$14e19-2/18/10/1648/cota=14e19/local=casa da tabeliao/tabeliao=francisco dorta da carvalhosa/tipo=partes
+
+         perdoante$vicente fernandes/m/id=14e19-2-perd1
+            ls$residencia/casal da charneca, fanadia
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$vicente fernandes/m/mesmo_que=14e19-2-perd1/id=14e19-2-per1
+
+         perdoado$pedro henriques/id=14e19-2-perd2
+            ls$residencia/sancheira, termo de obidos
+            ls$profissao/trabalhador
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=espancamento/objecto=pessoa%corpo/ocorrencia=local da junto a seu casal/tempo=dia/descricao=viera a vila de obidos requerer ao juis de fora que lhe tomasse sua querela e denunciacao que vinha dar de pedro henriques de o aver espancado junto a seu casal e lhe fizera nodoas e pisaduras e o juis aceitou sua querela/pronuncia=livre/id=14e19-2-obj1
+
+         perdao$18/10/1648/tipo=livremente/descricao=eram amigos como antes e o caso sucedeu acidentalmente. Dava o perdao por ser cristao e nao querer fazer mal aos visinhos/id=14e19-2-obj2
+
+         test$manuel lopes/m/id=14e19-2-perd3
+            ls$residencia/obidos
+            ls$profissao/escrivao%alcaidaria
+            ls$assina/bem
+
+         test$joao lopes/m/id=14e19-2-perd4
+            ls$residencia/delgada
+            ls$assina/cruz
+
+         test$antonio vicente/m/id=14e19-2-perd5
+            ls$residencia/obidos
+            ls$profissao/lavrador
+            ls$assina/cruz
+
+      cartaperdao$14e19-3/06/11/1648/cota=14e19/local=casa do tabeliao/tabeliao=francisco dorta da carvalhosa/tipo=partes
+
+         perdoante-f$maria francisca/id=14e19-3-perd1
+            ls$residencia/lugar do po, termo de obidos
+            ls$ec/solteira
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+            mae$ana francisca/f/id=14e19-3-perd1-per1
+               ls$residencia/lugar do po, termo de obidos
+
+         vitima$maria francisca/f/mesmo_que=14e19-3-perd1/id=14e19-3-per2
+
+         perdoado$pedro fernandes/id=14e19-3-perd2
+            ls$residencia/casal da varzea da pedra, limite do lugar do po, termo de obidos
+            ls$idade_aprox/maior
+            ls$ec/solteiro
+
+            pai$pedro fernandes/m/id=14e19-3-perd2-per3
+               ls$residencia/casal da varzea da pedra, limite do lugar do po, termo da vila de obidos
+
+         crime$00/00/0000/forma=querela/tipo=desonra/subtipo=virgindade promessas casamento/objecto=honra/descricao=acusara o de ter levado sua honra de a ter desonrado e levar a sua virgindade com promessas de casar com ela/pronuncia=livre/id=14e19-3-obj1
+
+         perdao$06/11/1648/tipo=livremente/descricao=perdoava livremente para ele casar com quem quisesse e bem lhe estivesse e que o casamento nunca se concretizar na forma do sagrado concilio tridentino e dele nao quer nada e lhe dava plena quitacao das promessas e considera o desobrigado de toda a promessa que lhe avia feito e lhe perdoa livremente sem constrangimento de pessoa aguma/id=14e19-3-obj2
+
+         test$joao ribeiro/m/id=14e19-3-perd3
+            ls$residencia/vila de obidos
+            ls$profissao/escrevente
+            ls$assina/bem
+
+         test$francisco do vale/m/id=14e19-3-perd4
+            ls$profissao/soldado%peniche
+            ls$residencia/peniche
+            ls$assina/cruz
+
+         test$francisco carvalho da costa/m/id=14e19-3-perd5
+            ls$residencia/peniche
+            ls$profissao/andante%presidio
+            ls$assina/bem
+
+      cartaperdao$14e19-4/12/01/1648/cota=14e19/local=quinta da freiria/tabeliao=francisco dorta da carvalhosa/tipo=partes/obs=perdao realizado em casa de joao souto maior prior da paroquial igreja de sao pedro de obidos
+
+         perdoante$juliao fernandes/m/id=14e19-4-perd1
+            ls$residencia/espinheira
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/pai/barbara rodrigues/14e19-4-perd2
+
+         perdoante$barbara rodrigues/f/id=14e19-4-perd2
+            ls$residencia/espinheira
+            ls$ec/solteira
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/filha/juliao fernandes/14e19-4-perd1
+
+         vitima$barbara rodrigues/f/mesmo_que=14e19-4-perd2/id=14e19-4-per1
+
+         perdoado$francisco fernandes/id=14e19-4-perd3
+            ls$residencia/espinheira
+            ls$idade_aprox/maior
+            ls$ec/solteiro
+
+            pai$domingos fernandes/m/id=14e19-4-perd3-per2
+               ls$alcunha/o frade
+               ls$residencia/espinheira
+
+         crime$00/00/0000/forma=querela/tipo=aleivosia/subtipo=virgindade promessas casamento/objecto=honra/descricao=acusara o de a desonrar e levar sua honra e virgindade/pronuncia=livre/id=14e19-4-obj1
+
+         perdao$12/01/1648/tipo=livremente/descricao=derao a querela por errada informacao e com paixao sabendo que ele nao tivera a culpa declarada pelo que eles perdoavao livremente por serem cristaos e terem dado a querela com paixao dando lhe plena quitacao para se poder casar com quem quisesse/id=14e19-4-obj2
+
+         test$paulo gomes/m/id=14e19-4-perd4
+            ls$residencia/obidos
+            ls$profissao/criado
+            rel$profissional/criado/joao souto maior/14e19-4-perd5
+            ls$assina/bem
+
+         referido$joao souto maior/m/id=14e19-4-perd5
+            ls$residencia/obidos, igreja de sao pedro
+            ls$profissao/prior%paroquial igreja de sao pedro
+            ls$ec/solteiro
+            rel$profissional/patrao/paulo gomes/14e19-4-perd4
+
+         test$nicolau fernandes/m/id=14e19-4-perd6
+            ls$residencia/foz, termo de obidos
+            ls$assina/bem
+
+         test$manuel vieira/id=14e19-4-perd7
+            ls$residencia/obidos
+            ls$profissao/carpinteiro
+            ls$assina/bem
+
+         referido$francisco vieira/m/id=14e19-4-per3
+            ls$residencia/obidos
+            ls$profissao/carpinteiro
+            rel$parentesco/pai/manuel vieira/14e19-4-perd7
+
+      cartaperdao$14e12-1/08/02/1649/cota=14e12/local=obidos, casa do tabeliao/tabeliao=joao da pena/tipo=partes
+
+         perdoante$francisco manuel/m/id=14e12-1-perd1
+            ls$residencia/quinta da briqua, limite do lugar do lendal, termo de obidos
+            ls$assina/bem
+            rel$parentesco/pai/manuel/14e12-1-1perd2
+
+         perdoante$manuel/m/id=14e12-1-perd2
+            ls$residencia/quinta da briqua, limite do lugar do lendal, termo de obidos
+            ls$idade_aprox/maior
+            ls$ec/solteiro
+            ls$assina/cruz
+            rel$parentesco/filho/francisco manuel/14e12-1-perd1
+
+         vitima$manuel/m/mesmo_que=14e12-1-perd2/id=14e12-1-per1
+
+         perdoado$bras afonso/id=14e12-1-perd3
+            ls$residencia/quinta da briqua, limite do lugar do lendal, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+
+         perdoado$joao/id=14e12-1-perd4
+            ls$residencia/quinta da briqua, limite do lugar do lendal, termo de obidos
+            rel$parentesco/filho/bras afonso/14e12-1-perd3
+            rel$parentesco/irmao/manuel/14e12-1-perd5
+
+         perdoado$manuel/id=14e12-1-perd5
+            ls$residencia/quinta da briqua, limite do lugar do lendal, termo de obidos
+            rel$parentesco/filho/bras afonso/14e12-1-perd3
+            rel$parentesco/irmao/joao/14e12-1-perd4
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da fora da vila/tempo=noite/descricao=ferimento que haviam feito e fizeram no dito manuel fazendo lhe feridas/pronuncia=livre/id=14e12-1-obj1
+
+         perdao$08/02/1649/tipo=livremente/descricao=o ferimento foi acidental e oje estava sao sem aleijao nem desformidade e sabiam que nao tiveram culpa no ferimento e oje eram amigos pelo amor de deos nosso senhor que a isso os movia e por serem mansos quietos e pacificos e serem toda gente de qualidade e comerem e beberem juntos/id=14e12-1-obj2
+
+         test$francisco velho de andrada/m/id=14e12-1-perd6
+            ls$residencia/vila de obidos
+            ls$assina/bem
+
+         test$jeronimo tavares/m/id=14e12-1-perd7
+            ls$residencia/via de obidos
+            ls$assina/bem
+
+      cartaperdao$14e12-2/15/11/1649/cota=14e12/local=casa do tabeliao/tabeliao=joao da pena/tipo=partes
+
+         perdoante$pedro figueira/m/id=14e12-2-perd1
+            ls$residencia/vila de obidos
+            ls$profissao/meirinho das coutadas
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         vitima$pedro figueira/m/mesmo_que=14e12-2-perd1/id=14e12-2-per1
+
+         perdoado$francisco leal/id=14e12-2-perd2
+            ls$residencia/casal de vila verde do mato, limite do lugar de a do franco, termo de obidos
+            ls$idade-aprox/maior
+
+         crime$00/00/0000/forma=denuncia/tipo=resistencia a autoridade/subtipo=palavras injuriosas/objecto=pessoa%autoridade/ocorrencia=local da casa de francisco leal/tempo=dia/descricao=denuncia feita aos juizes das coutadas sobre uma resistencia que o perdoado lhe fizera quando o ia noteficar e prender por um precatorio que viera a cidade de lixboa sobre o hir correr com huma apelasao crime das coutadas que tem no dito juizo que foi por apelasao do juizo das coutadas da vila de obidos ao juizo das coutadas do reino da sidade de lixboa e indo noteficar pera hir correr com a dita apellasam do juizo nao quisera obedecer antes tratara mal de palavras afrontosas e injuriosas a elle dito meirinho avisando pello que viera denunsiar delle diante do juis das coutadas/pronuncia=livre/id=14e12-2-obj1
+
+         perdao$15/11/1649/tipo=livremente/descricao=denunciara com paixao e collera pois sempre fora muito amigo delle como oje tambem o era e comiao e bebiao uns em casa dos outros pello que lhe perdoou toda a culpa. da o perdao por servico de nosso senhor e per ver como era amigo dele francisco leal/id=14e12-2-obj2
+
+         test$cristovao botelho de sequeira/m/id=14e12-2-perd3
+            ls$residencia/vila de obidos
+            ls$profissao/monteiro mor
+            ls$assina/bem
+
+         test$manuel lopes/m/id=14e12-2-perd4
+            ls$residencia/vila de obidos
+            ls$profissao/escrivao%alcaidaria
+            ls$assina/bem
+
+      cartaperdao$14e11/04/08/1652/cota=14e11/local=obidos, casa de antonio mendonca/tabeliao=francisco dorta da carvalhosa/tipo=partes
+
+         referido$antonio mendonca/m/id=14e11-perd1
+            ls$residencia/obidos
+
+         perdoante$jeronimo dias/m/id=14e11-perd2
+            ls$residencia/vila de obidos
+            ls$profissao/almocreve
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         vitima$jeronimo dias/m/mesmo_que=14e11-perd2/id=14e11-per1
+
+         perdoado$nicolau porteiro/id=14e11-perd3
+            ls$residencia/arrabalde, termo da vila de obidos
+            ls$idade_aprox/maior
+
+         perdoado$francisco dias/id=14e11-perd4
+            ls$residencia/casal do fraldeu, termo da vila de obidos
+            ls$idade_aprox/maior
+            ls$alcunha/trapassa
+            rel$parentesco/pai/ joao francisco/14e11-perd5
+
+         perdoado$joao francsco/id=14e11-perd5
+            ls$residencia/moinho de mata-tripas, termo de obidos
+            ls$idade_aprox/maior
+            rel$parentesco/filho/francisco dias/14e11-perd4
+
+         crime$00/08/1652/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa%cabeca/ocorrencia=local da rua, obidos/tempo=dia/descricao=ao ir acudir a uma briga que se passava na vila caira ferido de duas feridas na cabeca/pronuncia=presos/id=14e11-obj1
+
+         perdao$04/08/1652/tipo=livremente/descricao=dera a queixa com paixao e sendo cristao e temente a deus dava o perdao nao querendo nada deles/id=14e11-obj2
+
+         test$antonio dias/m/id=14e11-perd6
+            ls$residencia/moinho do ameal, limite do lugar de a dos negros, termo de obidos
+            ls$profissao/moleiro
+            ls$assina/cruz
+            ls$idade_aprox/maior
+
+         test$pedro rodrigues/m/id=14e11-perd7
+            ls$residencia/vila de obidos
+            ls$profissao/pedreiro
+            ls$assina/bem
+            ls$idade_aprox/maior
+
+         test$benedito dorta/m/id=14e11-perd8
+            ls$residencia/obidos
+            ls$assina/bem
+            ls$idade_aprox/maior
+
+      cartaperdao$14e29-1/11/10/1666/cota=14e29/local=vila de obidos, casa de gaspar dos reis de brito/tabeliao=diogo de arruda de seixas/tipo=partes
+
+         referido$gaspar dos reis de brito/m/id=14e29-1-perd1
+            ls$residencia/obidos
+
+         perdoante-m$pedro figueira/id=14e29-1-perd2
+            ls$residencia/obidos
+            ls$profissao/meirinho das coutadas%obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+            rel$parentesco/pai/francisco correia/14e29-1-perd3
+
+         vitima-m$francisco correia/id=14e29-1-perd3/obs=falecido
+            ls$residencia/vila de obidos
+
+            pai$pedro figueira/mesmo_que=14e29-perd2/id=14e29-1-perd3-per1
+
+         perdoado$joao finolo/id=14e29-1-perd4
+            ls$residencia/montemor o velho
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa/ocorrencia=local da torres vedras/descricao=tinha sido acusado da morte do filho de pedro figueira e estava preso na cadeia da vila de torres vedras estando a ser aceite para livramento pela santa casa da misericordia/pronuncia=preso/id=14e29-1-obj1
+
+         perdao$11/10/1666/tipo=livremente/descricao=como cristao espera a misericordia de cristo para salvar sua alma perdoando a ofensa que lhe avia feito ao matar seu filho desistindo de toda a acusacao contra ele para que deus nosso senhor lhe perdoe seus pecados e os do seu filho/id=14e29-1-obj2
+
+         test$antonio soares da almada/m/id=14e29-1-perd5
+            ls$residencia/vila de obidos
+            ls$assina/bem
+
+         test$jose paulo cabral/m/id=14e29-1-perd6
+            ls$residencia/vila de obidos
+            ls$assina/bem
+
+      cartaperdao$14e29-2/07/11/1666/cota=14e29/local=obidos, casa do tabeliao/tabeliao=diogo de arruda de seixas/tipo=partes
+
+         perdoante$joao francisco/m/id=14e29-2-perd1
+            ls$residencia/gaeiras, termo de obidos
+            ls$profisssao/trabalhador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/irmao/domingos francisco/14e29-2-perd2
+
+         perdoante$domingos francisco/m/id=14e29-2-perd2
+            ls$residencia/gaeiras, termo de obidos
+            ls$profissao/trabalhador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/irmao/joao francisco/14e29-2-perd1
+
+         vitima$joao francisco/m/mesmo_que=14e29-2-perd1/id=14e29-2-per1
+
+         vitima$domingos francisco/m/mesmo_que=14e29-2-perd2/id=14e29-2-per2
+
+         perdoado$antonio vicente/id=14e29-2-perd3
+            ls$residencia/gaeiras, termo de obidos
+            ls$idade_aprox/maior
+            ls$profissao/trabalhador
+            rel$visinhanca/visinho/joao francisco/14e29-2-perd1
+            rel$visinhanca/visinho/domingos francisco/14e29-2-perd2
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da rua/tempo=noite/descricao=tiveram umas razoes sobre o trabalho no servico de que resultou feri-los a ambos de noite/pronuncia=preso/id=14e29-2-obj1
+
+         perdao$07/11/1666/tipo=livremente/descricao=caso acidental e porque hoje estao amigos como de antes o eram e perdoam a afronta e desistiam de toda a acusacao que lhe pudessem ter feito e nao querem ter nada contra eles e nao queriam que fosse condenado/id=14e29-2-obj2
+
+         test$antonio gomes/m/id=14e29-2-perd4
+            ls$residencia/a dos negros, termo de obidos
+            ls$profissao/trabalhador
+            ls$assina/cruz
+
+         test$joao do rego/m/id=14e29-2-perd5
+            ls$residencia/a dos negros, termo de obidos
+            ls$profissao/ermita%santa maria madalena
+            ls$assina/cruz
+
+      cartaperdao$14e29-3/13/10/1667/cota=14e29/local=lugar da moita, termo da vila de obidos, casa de antonio gomes/tabeliao=diogo de arruda de seixas/tipo=partes
+
+         referido$antonio gomes/m/id=14e29-3-perd1
+            ls$residencia/lugar da moita, termo de obidos
+            ls$profissao/padre
+            ls$ec/solteiro
+            ls$idade_aprox/maior
+
+         perdoante$antonio fernandes/m/id=14e29-3-perd2
+            ls$residencia/lugar da moita, termo da vila de obidos
+            ls$profissao/pedreiro
+            ls$idade_aprox/maior
+            ls$ec/casado
+            rel$parentesco/marido/isabel lopes/14e29-3-perd3
+            ls$assina/cruz
+
+         perdoante$isabel lopes/f/id=14e29-3-perd3
+            ls$residencia/lugar da moita, termo de obidos
+            ls$idade_aprox/maior
+            ls$ec/casada
+            ls$assina/cruz
+            rel$parentesco/esposa/antonio fernandes/14e29-3-perd2
+
+         vitima$isabel lopes/f/mesmo_que=14e29-3-perd3/id=14e29-3-per1
+
+         vitima$antonio fernandes/m/mesmo_que=14e29-3-perd2/id=14e29-3-per2
+
+         perdoado$luis barreiros/id=14e29-3-perd4
+            ls$residencia/lugar da moita, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/08/1667/forma=querela/tipo=violencia/subtipo=ferimentos/objecto=pessoa%cabecabocaouvidos/instrumento=espingarda/ocorrencia=local da fazenda dos perdoados/tempo=dia/descricao=tivera umas razoes com os perdoantes na sua propria fazenda de que resultar espancala com uma espingarda de que querelara perante as justicas da vila tendo tambem ferido ao perdoante dandolhe na cabeca de que botara sangue pelo ouvido e pela boca de que tambem querelara perante o corregedor da cidade de leiria tendo sido preso/pronuncia=preso%leiria/id=14e29-3-obj1
+
+         perdao$13/10/1667/tipo=livremente/descricao=querem estar em pas com ele porque era seu visinho e porque os ditos crimes nao foram feito de proposito mas sim acidentalmente e antes eram muito amigos e se tratarem como tal/id=14e29-3-obj2
+
+         test$luis coelho/m/id=14e29-3-perd5
+            ls$residencia/obidos
+            ls$profissao/escrivao%orfaos
+            ls$idade_prox/maior
+            ls$assina/bem
+
+         test$antonio gomes/m/mesmo_que=14e29-3-perd1/id=14e29-3-per3
+            ls$assina/bem
+
+         test$andre garcia/m/id=14e29-3-perd6
+            ls$residencia/lugar da moita, termo de obidos
+            ls$profissao/alfaiate
+            ls$assina/cruz
+            ls$idade_aprox/maior
+
+      cartaperdao$14e13-1/10/09/1670/cota=14e13/local=amoreira, casa de lourenco monteiro/tabeliao=joao barreto da silveira/tipo=partes
+
+         referido$lourenco monteiro/m/id=14e13-1-perd1
+            ls$residencia/amoreira
+
+         perdoante$manuel alves/m/id=14e13-1-perd2
+            ls$residencia/amoreira
+            ls$condicao/orfao
+            ls$idade_aprox/mais de 14 anos
+            ls$ec/solteiro
+            ls$assina/cruz
+
+         perdoante$lourenco monteiro/m/mesmo_que=14e13-1-perd1/id=14e13-1-per1
+            rel$parentesco/tutor/manuel alves/14e13-1-perd2
+            ls$assina/cruz
+
+         vitima$manuel alves/m/mesmo_que=14e13-1-perd2/id=14e13-1-per2
+
+         perdoado$manuel gomes/id=14e13-1-perd3
+            ls$residencia/obidos
+            ls$profissao/barbeiro
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da amoreira/tempo=noite/descricao=denunciara queixando-se dele o aver ferido numa certa ocasiao de noite tendo sido prenunciado na devassa tirando carta de seguro/pronuncia=com carta de seguro/id=14e13-1-obj1
+
+         perdao$10/09/1670/tipo=livremente/descricao=por oje ser seu amigo e o ter sido antes do caso acontecer e nao sabia se fora ele o que o ferira porque estava muita gente e era de noite e nao queriam ir contra ele./id=14e13-1-obj2
+
+         test$manuel monteiro/m/id=14e13-1-perd4
+            ls$residencia/amoreira, termo de obidos
+            ls$profissao/barbeiro
+            ls$assina/bem
+
+         test$manuel lopes da silva/m/id=14e13-1-perd5
+            ls$residencia/amoreira, termo de obidos
+            ls$profissao/serralheiro
+            ls$assina/cruz
+
+      cartaperdao$14e13-2/01/11/1670/cota=14e13/local=obidos, casa do tabeliao/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$antonio machado/m/id=14e13-2-perd1
+            ls$residencia/obidos
+            ls$profissao/carsereiro%prisao
+            ls$idade_aprox/maior
+            ls$assina/bem
+            rel$parentesco/pai/jose tavares/14e13-2-perd2
+
+         perdoante-m$jose tavares/id=14e13-2-perd2
+            ls$residencia/obidos
+            ls$profissao/alcaide%obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+            pai$antonio machado/m/mesmo_que=14e13-2-perd1/id=14e13-2-perd2-per1
+
+         vitima$antonio machado/m/mesmo_que=14e13-2-perd1/id=14e13-2-per2
+
+         vitima$jose tavares/m/mesmo_que=14e13-2-perd2/id=14e13-2-per3
+
+         perdoado$luis antunes/id=14e13-2-perd3
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=tentativa de fuga de prisao/subtipo=ferimentos/objecto=pessoa/local=cadeia%obidos/tempo=noite/descricao=denuncia feita diante o juiz de fora da vila de obidos o doutor jeronimo nogueira de barros de luis antunes e de outros presos que estavam na cadeia da vila de os aver ferido e de quererem fugir da dita prisao do que tiraram devassa resultando ficar o perdoado obrigado a livramento sendo remetido para a corte das cidade de lisboa para o limoeiro da mesma/pronuncia=preso%limoeiro/obs=apos a tentativa de fuga foi transferido para o limoeiro da cidade de lisboa./id=14e13-2-obj1
+
+         referido$jeronimo nogueira de barros/m/id=14e13-2-per4
+            ls$profissao/juiz de fora%obidos
+            ls$residencia/obidos
+
+         perdao$1/1/1670/tipo=livremente/descricao=perdoam o ferimento nao os querendo acusar nem ser parte em seu livramento pelo crime e perdoavam pelo amor de deus graciosamente e em horatio/id=14e13-2-obj2
+
+         test$luis coelho de andrade/m/id=14e13-2-perd4
+            ls$residencia/obidos
+            ls$assina/bem
+
+         test$diogo de arruda de seixas/m/id=14e13-2-perd5
+            ls$residencia/obidos
+            ls$assina/bem
+
+      cartaperdao$14e13-3/02/12/1671/cota=14e13/local=casal do carpinteiro, bombarral, casa de antonio rodrigues/tabeliao=bartolomeu da silva pereira/tipo=partes
+
+         referido$antonio rodrigues/m/id=14e13-3-perd1
+            ls$residencia/casal do carpinteiro, bombarral, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+
+         perdoante-f$maria antunes/id=14e13-3-perd2
+            ls$residencia/casal do falcao, termo de obidos
+            ls$ec/viuva%francisco martins
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/mae/catarina antunes/14e13-3-perd3
+            rel$parentesco/mae/manuel antunes/14e13-3-perd4
+
+         perdoante-f$catarina antunes/id=14e13-3-perd3
+            ls$residencia/barassais, termo de obidos
+            ls$ec/casada%manuel de sousa
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/irma/manuel antunes/14e13-3-perd4
+
+            mae$maria antunes/f/mesmo_que=14e13-3-perd2/id=14e13-3-perd3-per1
+
+         perdoante-m$manuel antunes/id=14e13-3-perd4
+            ls$residencia/casal do falcao, termo de obidos
+            ls$ec/solteiro
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+            mae$maria antunes/f/mesmo_que=14e13-3-perd2/id=14e13-3-perd4-per2
+               rel$parentesco/irmao/catarina antunes/14e13-3-perd3
+
+            referido$francisco martins/m/id=14e13-3-perd5/obs=falecido
+               rel$parentesco/marido/maria antunes/14e13-3-perd2
+               rel$parentesco/pai/catarina antunes/14e13-3-perd3
+               rel$parentesco/pai/manuel antunes/14e13-3-perd4
+
+            referido$manuel de sousa/m/id=14e13-3-perd6
+               rel$parentesco/marido/catarina antunes/14e13-3-perd3
+
+         vitima$francisco martins/m/mesmo_que=14e13-3-perd5/id=14e13-3-per3
+
+         perdoado$joao francisco/id=14e13-3-perd7
+            ls$residencia/casal da nora, limite de obidos
+            ls$idade_aprox/maior
+            ls$profissao/lavrador
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=homicidio/descricao=culpa que se lhes imputou pela morte de francisco martins pela qual culpa alcancou sentenca no supremo senado de que foi condenado em sessenta mil eis para ela e seus filhos e quatro anos de degredo para as partes de africa e nas custas/pronuncia=preso/id=14e13-3-obj1
+
+         perdao$00/00/0000/tipo=com condicao/descricao=ja lhe entregou a quantia de sessenta mil reis da condenacao e todas as custas que importaram as sentencas e mais quinze mil reis pelo perdao em seu nome e dos seus filhos pelo que ela ja se dava por satisfeita nas sentencas que alcancou contra ele pelo que perdoam toda a culpa e que ele nao seja mais importunado no que toca as ditas culpas porque ja receberam o dinheiro de contao em moeda corrente e perdoam tambem a condenacao e degredo/id=14e13-3-obj2
+
+         test$joao teixeira/m/id=14e13-3-perd8
+            ls$residencia/casal de quinta melhor, termo de obidos
+            ls$assina/cruz
+
+         test$antonio rodrigues/m/id=14e13-3-perd9
+            ls$residencia/obidos
+            ls$assina/cruz
+
+         test$gregorio dias/m/id=14e13-3-perd10
+            ls$residencia/obidos
+            ls$assina/cruz
+
+      cartaperdao$14e38-1/20/11/1674/cota=14e38/local=casa do tabeliao, obidos/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$luis mendes/m/id=14e38-1-perd1
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/pai/manuel martins/14e38-1-perd2
+
+         perdoante$manuel martins/m/id=14e38-1-perd2
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/filho/luis mendes/14e38-1-perd1
+
+         vitima$luis mendes/m/mesmo_que=14e38-1-perd1/id=14e38-1-per1
+
+         vitima$manuel martins/m/mesmo_que=14e38-1-perd2/id=14e38-1-per2
+
+         perdoado$joao antunes/id=14e38-1-perd3
+            ls$residencia/a dos francos, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da obidos/tempo=dia/descricao=acusado de os aver ferido e espancado/pronuncia=preso/id=14e38-1-obj1
+
+         perdao$20/11/1674/tipo=livremente/descricao=perdoam a culpa que resultara pela querela por ser bom homem e constar nao ter culpa nas ditas pancadas e feridas que lhe fizeram pelo que nao querem ser partes contra ele/id=14e38-1-obj2
+
+         test$manuel botelho/m/id=14e38-1-perd4
+            ls$residencia/a dos francos, termo de obidos
+            ls$assina/bem
+
+         test$manuel da costa/m/id=14e38-1-perd5
+            ls$residencia/obidos
+            ls$profissao/barbeiro
+            ls$assina/bem
+
+      cartaperdao$14e38-2/21/00/1675/cota=14e38/local=obidos, casa do tabeliao/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$luis mendes/m/mesmo_que=14e38-1-perd1/id=14e38-2-per1
+
+         perdoante$manuel martins/m/mesmo_que=14e38-1-perd2/id=14e38-2-per2
+
+         vitima$luis mendes/m/mesmo_que=14e38-1-perd1/id=14e38-2-per3
+
+         vitima$manuel martins/m/mesmo_que=14e38-1-perd2/id=14e38-2-per4
+
+         perdoado$antonio luis/id=14e38-2-perd1
+            ls$residencia/a dos francos, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local de obidos/tempo=dia/descricao=acusado de os ter mandado espancar e maltratar e ferir pela qual culpa fora condenado e obrigado a livramento/pronuncia=preso/obs=preso no limoeiro de lisboa/id=14e38-2-obj1
+
+         perdao$21/00/1675/tipo=livremente/descricao=sabiam que ele nao os mandara espancar ou ferir nem participou nas ditas pancadas pelo que nao queriam acusar ou ser partes contra eles/id=14e38-2-obj2
+
+         test$joao da pena pereira/id=14e38-2-perd2
+            ls$residencia/amoreira, termo de obidos
+            ls$assina/bem
+
+         test$estevao alves/m/id=14e38-2-perd3
+            ls$residencia/amoreira, termo de obidos
+            ls$assina/cruz
+
+      cartaperdao$14e38-3/11/03/1675/cota=14e38/local=carvalhal, em casa de maria martins/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante-m$maria martins/id=14e38-3-perd1
+            ls$residencia/carvalhal, termo de obidos
+            ls$idade_aprox/maior
+            ls$ec/viuva
+            ls$assina/cruz
+            rel$parentesco/mae/pedro de faria/14e38-3-perd2
+
+         vitima-m$pedro de faria/id=14e38-3-perd2/obs=falecido
+            ls$residencia/carvalhal, termo de obidos
+
+            mae$maria martins/f/mesmo_que=14e38-3-perd1/id=14e38-3-perd2-per1
+
+         perdoado$domingos do rego/id=14e38-3-perd3
+            ls$residencia/peniche
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa/ocorrencia=local da peniche/tempo=dia/descricao=devassa pela morte do seu filho pedro de faria pois foi informada que ele se encontrava presente/pronuncia=preso/id=14e38-3-obj1
+
+         perdao$11/03/1675/tipo=com condicao/descricao=sabe que nao foi o que deu a morte ao seu filho e pelo amor de deus e do tempo da santa quaresma que era de perdao e para que deus lhe perdoe seus pecados. perdoava com a condicao que o dito domingos do rego nao tivesse morada em obidos nem no seu termo pois caso contrario o perdao nao valia./id=14e38-3-obj2
+
+         test$manuel de seixas de arruda/m/id=14e38-3-perd4
+            ls$residencia/obidos
+            ls$profissao/tabeliao
+            ls$assina/bem
+
+         test$jose tavares/m/id=14e38-3-perd5
+            ls$residencia/obidos
+            ls$profissao/alcaide
+            ls$assina/bem
+
+         test$manuel nunes/m/id=14e38-3-3perd6
+            ls$residencia/carvalhal, termo de obidos
+            ls$assina/bem
+
+      cartaperdao$14e24/14/06/1675/cota=14e24/local=quinta da charneca, casa de manuel faria da silva/tabeliao=filipe dias alves/tipo=partes
+
+         referido$manuel de faria da silva/m/id=14e24-perd1
+            ls$residencia/quinta da charneca, limite do lugar de a dos negros, termo de obidos
+
+         perdoante$simao vicente/m/id=14e24-perd2
+            ls$residencia/gaeiras de alem, termo de obidos
+            ls$idade_aprox/maior
+            ls$ec/casado
+            ls$assina/cruz
+            ls$profissao/trabalhador
+            rel$parentesco/marido/catarina francisca/14e24-perd3
+
+         perdoante$catarina francisca/f/id=14e24-perd3
+            ls$residencia/gaeiras de alem, termo de obidos
+            ls$idade_aprox/maior
+            ls$ec/casada
+            ls$assina/cruz
+            rel$parentesco/esposa/simao vicente/14e24-perd2
+
+         vitima-m$andre/id=14e24-perd4
+            ls$idade_aprox/menor
+            ls$ec/solteiro
+            rel$parentesco/filho/simao vicente/14e24-perd2
+            rel$parentesco/filho/catarina francisca/14e24-perd3
+
+         perdoado$vicente/id=14e24-perd5
+            ls$residencia/gaeiras, termo de obidos
+            ls$idade_aprox/menor
+            ls$ec/solteiro
+
+            pai$francisco dias/m/id=14e24-perd6
+               ls$profissao/lavrador
+               ls$residencia/gaeiras, termo de obidos
+
+         crime$02/02/1675/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa%rosto/instrumento=espingarda/ocorrencia=local da gaeiras de alem/tempo=dia/descricao=denunciarao perante as justicas da vila de vicente mosso de pouca idade filho de matar a seu filho andre a espingarda, quando iam com outros mossos as galinholas e o dito mosso vicente levava a espingarda carregada com municao e quando ia para atirar a uma galinhola levantando a espingarda ao saltar uma rigueira e vale com cova indo atras dele o seu filho andre a espingarda disparara se atingindo o seu filho no rosto com a municao de quer logo morrera, e embora o caso fosse considerado acontecer por desastre foi prenunciado a prisao/pronuncia=preso/id=14e24-obj1
+
+         perdao$14/06/1675/tipo=livremente/descricao=o caso foi acidental e eram muitos amigos estando sempre juntos comendo e bebendo sempre juntos com grande amizade e o seu filho ensinava a ler e a escrever a vicente e o caso acontecer por desastre, e principalmente pelo amor de deus sem interesse algum dando o perdao de livre vontade e sem constrangimento pois ele nao teve nenhuma culpa./id=14e24-obj2
+
+         test$antonio godinho de abreu/m/id=14e24-perd7
+            ls$residencia/gaeiras de alem, termo de obidos
+            ls$profissao/capitao
+            ls$assina/bem
+
+         test$bartolomeu pires/m/id=14e24-perd8
+            ls$residencia/gaeiras, termo de obidos
+            ls$assina/cruz
+
+         test$francisco gomes barbo/m/id=14e24-perd9
+            ls$residencia/gaeiras, termo de obidos
+            ls$profissao/barbeiro
+            ls$assina/bem
+
+      cartaperdao$14e38-4/24/07/1675/cota=14e38/local=casal do falcao, termo do bombarral/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$maria antunes/f/mesmo_que=14e13-3-perd2/id=14e38-4-per1
+            ls$residencia/casal do falcao, termo do bombarral
+            ls$ec/viuva%francisco martins
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/mae/catarina antunes/14e13-3-perd3
+            rel$parentesco/mae/manuel antunes/14e13-3-perd4
+
+         perdoante$catarina antunes/f/mesmo_que=14e13-3-perd3/id=14e38-4-per2
+            ls$residencia/baracais, termo de obidos
+            ls$ec/casada%manuel de sousa
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/filha/maria antunes/14e13-3-perd2
+            rel$parentesco/irma/manuel antunes/14e13-3-perd4
+
+         perdoante$manuel antunes/m/mesmo_que=14e13-3-perd4/id=14e38-4-per3
+            ls$residencia/casal do falcao, termo do bombarral
+            ls$ec/solteiro
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/filho/maria antunes/14e13-3-perd2
+            rel$parentesco/irmao/catarina antunes/14e13-3-perd3
+
+         perdoante$francisco/m/id=14e38-4-perd1
+            ls$residencia/casal do falcao, termo do bombarral
+            ls$idade_aprox/menor
+            rel$parentesco/filho/maria antunes/14e13-3-perd2
+            rel$parentesco/irmao/manuel antunes/14e13-3-perd4
+            rel$parentesco/irmao/catarina antunes/14e13-3-perd3
+
+         perdoante$antonio/m/id=14e38-4-perd2
+            ls$residencia/casal do falcao, termo do bombarral
+            ls$idade_aprox/menor
+            rel$parentesco/filho/maria antunes/14e13-3-perd2
+            rel$parentesco/irmao/manuel antunes/14e13-3-perd4
+            rel$parentesco/irmao/catarina antunes/14e13-3-perd3
+            rel$parentesco/irmao/francisco/14e38-4-perd1
+
+         perdoante$leonor/f/id=14e38-4-perd3
+            ls$residencia/casal do falcao, termo do bombarral
+            ls$idade_aprox/menor
+            rel$parentesco/filho/maria antunes/14e13-3-perd2
+            rel$parentesco/irmao/manuel antunes/14e13-3-perd4
+            rel$parentesco/irmao/catarina antunes/14e13-3-perd3
+            rel$parentesco/irmao/francisco/14e38-4-perd1
+            rel$parentesco/irmao/antonio/14e38-4-perd3
+
+         perdoante$maria/f/id=14e38-4-perd4
+            ls$residencia/casal do falcao, termo do bombarral
+            ls$idade_aprox/menor
+            rel$parentesco/filho/maria antunes/14e13-3-perd2
+            rel$parentesco/irma/manuel antunes/14e13-3-perd4
+            rel$parentesco/irma/catarina antunes/14e13-3-perd3
+            rel$parentesco/irma/francisco/14e38-4-perd1
+            rel$parentesco/irma/antonio/14e38-4-perd3
+            rel$parentesco/irma/leonor/14e38-4-perd4
+
+         vitima$francisco martins/m/mesmo_que=14e13-3-perd5/id=14e38-4-per4
+            rel$parentesco/marido/maria antunes/14e13-3-perd2
+
+         referido$manuel de sousa/m/mesmo_que=14e13-3-perd6/id=14e38-4-per5
+            rel$parentesco/marido/catarina antunes/14e13-3-perd3
+
+         perdoado$simao francisco/id=14e38-4-perd5
+            ls$residencia/casais do alentejo,termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa/descricao=denunciou perante as justicas de lhe matarem seu marido da qual se tirou devassa e ficara culpado simao francisco que se livra no juizo geral da ouvedoria das terras da princesa nossa senhora da cidade de lisboa/pronuncia=preso/id=14e38-4-obj1
+
+         perdao$24/07/1675/tipo=livremente/descricao=nao foi ele que o feriu e matou, pelo que todos lhe queriam dar perdao de livre vontade so pelo amor de deus nao querendo nada no caso dele ser condenado nem pecuniaria nem de degredo e lhe perdoavam por ser muito pobre e sem interesse algum/id=14e38-4-obj2
+
+         test$antonio rodrigues/m/id=14e38-4-perd6
+            ls$residencia/casal dos carpinteiros, limite de vale covo, termo de obidos
+            ls$assina/cruz
+
+         test$manuel correia/m/id=14e38-4-perd7
+            ls$residencia/obidos
+            ls$assina/cruz
+
+         test$joao barreto da silveira/m/id=14e38-4-perd8
+            ls$residencia/obidos
+            ls$profissao/tabeliao
+            ls$assina/bem
+
+      cartaperdao$14e38-5/27/08/1675/cota=14e38/local=obidos,casa do tabeliao/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$francisco fernandes/m/id=14e38-5-perd1
+            ls$residencia/lugar da fanadia, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$catarina/f/id=14e38-5-perd2
+            ls$idade_aprox/menor
+            ls$residencia/lugar da fanadia, termo de obidos
+            rel$parentesco/filha/francisco fernandes/14e38-5-perd1
+
+         perdoado$francisco jorge/id=14e38-5-perd3
+            ls$residencia/lugar da fanadia, termo de obidos
+            ls$idade_aprox/maior
+            rel$parentesco/sobrinho/francisco fernandes/14e38-5-perd1
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=espancamento/objecto=pessoa%corpo/ocorrencia=local da lugar da fanadia, termo de obidos/tempo=dia/descricao=francisco jorge espancou a sua filha catarina menor de idade, por todo o seu corpo e lhe fez muitas nodoas e pisaduras por todo seu corpo tendo sido obrigado a livramento e apresentou-se com carta de seguro/pronuncia=livre/id=14e38-5-obj1
+
+         perdao$27/08/1675/tipo=livremente/descricao=perdoava porque era seu sobrinho e denunciara por ver a sua filha molestada mas a sua filha estava sam das ditas pancadas nao ficando com aleijao ou desformidade e tambem por ser seu amigo e tio/id=14e38-5-obj2
+
+         test$joao da pena pereira/m/id=14e38-5-per1
+            ls$residencia/obidos
+            ls$assina/bem
+
+         test$joao correia/m/id=14e38-5-per2
+            ls$residencia/obidos
+            ls$profissao/criado
+            rel$profissional/criado/joao barreto da silveira/14e38-5-perd4
+            ls$assina/cruz
+
+         referido$joao barreto da silveira/m/id=14e38-5-perd4
+            ls$residencia/obidos
+            ls$profissao/tabeliao
+
+      cartaperdao$14e9-1/29/07/1676/cota=14e9/local=casa do tabeliao/tabeliao=filipe dias arruda/tipo=partes
+
+         perdoante-m$domingos dias/id=14e6-1-perd1
+            ls$residencia/moinho do pagador, limite do lugar de olho marinho, termo de obidos
+            ls$profissao/carreteiro%farinha
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$profissional/carreteiro/domingos francisco/14e9-1-perd2
+
+            pai$domingos dias/m/id=14e6-1-perd1-per1
+               ls$residencia/santa catarina, coutos de alcobaca
+
+         vitima$domingos dias/m/mesmo_que=14e9-1-perd1/id=14e9-1-per2
+
+         perdoado$domingos francisco/id=14e9-1-perd2
+            ls$residencia/moinho do pagador, limite do lugar de olho marinho, termo de obidos
+            ls$profissao/moleiro
+            ls$idade_aprox/maior
+            rel$profissional/patrao/domingos dias/14e9-1-perd1
+
+         crime$23/07/1676/forma=devassa/tipo=violencia/subtipo=espancamento/objecto=pessoa%cabeca/local=moinho do pagador/tempo=noite/descricao=denunciara de domingos francisco dele o haver ferido na cabeca de huma ferida de carne e couro cortada e tudo acontecera a uma semana quando ele vinha com as bestas do seu amo carregadas de grao para o moinho e quando ia recolhe as bestas ja de noite o seu amo deu lhe uma pancada e o empurrara fazendo lhe uma ferida de que ele tirara devassa/pronuncia=livre/id=14e9-1-obj1
+
+         perdao$29/07/1676/tipo=livremente/descricao=ferida de pouca consideracao feita acidentalmente e ele nunca tivera razao para se queixar do seu amo sendo seu amigo nao tendo causa para o espancar ou ferir e principalmente pelo amor de deus sem interesse algum/id=14e9-1-obj2
+
+         test$joao pereira/m/id=14e9-1-perd3
+            ls$residencia/olho marinho
+            ls$profissao/juis da vintena
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         test$francisco da silva/m/id=14e9-1-perd4
+            ls$residencia/obidos
+            ls$rofissao/sapateiro
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+      cartaperdao$14e9-2/10/12/1677/cota=14e9/local=casa do tabeliao/tabeliao=filipe dias arruda/tipo=partes
+
+         perdoante$antonio leal/m/id=14e9-2-perd1
+            ls$residencia/lugar da fanadia, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$antonio leal/m/mesmo_que=14e9-2-perd1/id=14e9-2-per1
+
+         perdoado$joao manuel/id=14e9-2-perd2
+            ls$residencia/lugar da fanadia, termo de obidos
+            ls$profissao/seareiro
+            ls$idade_aprox/maior
+
+         crime$00/11/1677/forma=denuncia/tipo=violencia/subtipo=ferimento/objecto=pessoa%maos/ocorrencia=local da rua/tempo=dia/descricao=denuncia feita perante as justicas de sua magestade da vila de joao manuel por ele o ter ferido nas maos de couro e carne cortada por o outorgante querer defender a sua fazenda/pronuncia=preso/id=14e9-2-obj1
+
+         perdao$10/12/1677/tipo=livremente/descricao=feridas de pouca consideracao feitas acidentalmente por razoes novas e o outorgante nunca tivera ocasiao de se queixar dele pois eram visinhos e amigos tendo feito a denuncia levado da paixao e da o perdao pelo amor de deus dando o perdao livremente/id=14e9-2-obj2
+
+         test$francisco gomes/m/id=14e9-2-perd3
+            ls$residencia/obidos
+            ls$profissao/aprendiz de barbeiro
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$joao alves/m/id=14e9-2-perd4
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+      cartaperdao$14e28-1/04/01/1679/cota=14e28/local=obidos, casa do tabeliao/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$francisco lopes/m/id=14e28-1-perd1
+            ls$residencia/lugar do arelho,termo de obidos
+            ls$profissao/pescador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$francisco lopes/m/mesmo_que=14e28-1-perd1/id=14e28-1-per1
+
+         perdoado$diogo de macedo soares/id=14e28-1-perd2
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/1679/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa/instrumento=espingarda/ocorrencia=local da rua, ribeiro do arelho/tempo=dia/descricao=denunciou perante as justicas de sua magestade da vila de diogo macedo soares de lhe ter atirado com a espingarda em dia de santo andre na ribeira do arelho/pronuncia=preso/id=14e28-1-obj1
+
+         perdao$04/01/1679/tipo=livremente/descricao=caso aconteceu sem rixa velha e era amigo dele e o caso fora acidental e tambem deu ocasiao para o caso suceder pois feriu-o primeiro/id=14e28-1-obj2
+
+         test$urbano correia/m/id=14e28-1-perd3
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$profissao/licenciado
+            ls$assina/bem
+
+         test$francisco soares de andrade/id=14e28-1-perd4
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         referido$gregorio de freitas de andrade/m/id=14e28-1-per2
+            ls$residencia/obidos
+            rel$parentesco/pai/francisco soares de andrade/14e28-1-perd4
+
+      cartaperdao$14e10-1/12/01/1679/cota=14e10/local=lugar do salgueiro, termo de obidos/tabeliao=filipe dias alves/tipo=partes
+
+         perdoante$ana vicente/f/id=14e10-1-perd1
+            ls$ec/viuva%gaspar da costa
+            ls$idade_aprox/maior
+            ls$residencia/casal do boucelo, limite do lugar do salgueiro,termo de obidos
+            ls$assina/cruz
+
+         vitima$gaspar da costa/m/id=14e10-1-perd2/obs=ja falecido
+            ls$residencia/casal do boucelo
+            rel$parentesco/marido/ana vicente/14e10-1-perd1
+
+         perdoado$manuel gomes/id=14e10-1-perd3
+            ls$residencia/lugar do salgueiro, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=devassa/tipo=violencia/subtipo=homicidio/objecto=pessoa/ocorrencia=local da rua/tempo=dia/descricao=por matarem seu marido denunciou manuel gomes e outros e este fora condenado a prisao por ir lavrar uma terra dos seus irmaos em que avia duvida sobre uma serventia com o seu marido tendo tambem denunciado de antonio alves por razao em ter gosto de matarem seu marido e na acudir seu marido estando avisado da dita morte e estando ela presente tambem a quiseram matar e mataram seu marido tendo ela escapado por pouco/pronuncia=preso%cadeia da vila/id=14e10-1-obj1
+
+         perdao$12/01/1679/tipo=livremente/descricao=ele nao fizera nada em prejuizo da morte do seu marido nem ajudara a isso, pois fora lavrar a sua terra como costumava fazer sendo amigo de seu marido e o dito manuel gomes acudira a ela quando a quiseram matar, mas nao perdoava ao seu cunhado antonio alves por ele ter gosto na morte de seu marido e nao fazer nada para o salvar sabendo do caso/id=14e10-1-obj2
+
+         test$manuel jorge/m/id=14e10-1-perd4
+            ls$residencia/lugar do salgueiro, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$joao gomes/m/id=14e10-1-perd5
+            ls$residencia/lugar do salgueiro, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$manuel antunes/m/id=14e10-1-perd6
+            ls$residencia/lugar do salgueiro, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+      cartaperdao$14e28-2/29/11/1679/cota=14e28/local=lugar da delgada, termo de obidos/tabeliao=joao barreto da silveira/tipo=partes
+
+         perdoante$manuel alves/m/id=14e28-2-perd1
+            ls$residencia/lugar da delgada, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$manuel alves/m/mesmo_que=14e28-2-perd1/id=14e28-2-per1
+
+         perdoado$francisco lopes/id=14e28-2-perd2
+            ls$residencia/lugar da delgada, termo de obidos
+            ls$idade_aprox/maior
+
+         perdoado$manuel gomes/id=14e28-2-perd3
+            ls$residencia/lugar da delgada, termo de obidos
+            ls$idade_aprox/maior
+
+         perdoado$manuel antunes/id=14e28-2-perd4
+            ls$residencia/lugar da delgada, termo de obidos
+            ls$idade_aprox/maior
+
+         perdoada$maria antunes/id=14e28-2-perd5
+            ls$residencia/luga da delgada, termo de obidos
+            ls$idade_aprox/maior
+            rel$parentesco/esposa/manuel antunes/14e28-2-perd4
+
+         crime$13/11/1679/forma=querela/tipo=violencia/subtipo=espancamento/objecto=pessoa/ocorrencia=rua/tempo=dia/descricao=denunciara perante as justicas de sua magestade da vila dos perdoados por eles o terem ferido e espancado e maltratado/pronuncia=presos/id=14e28-2-obj1
+
+         perdao$29/11/1679/tipo=livremente/descricao=denunciara levado da paixao que tivera em se ver ferido e porque oje estava amigo deles e lhe pesava muito de os ter denunciado/id=14e28-2-obj2
+
+         test$antonio cosme/m/id=14e28-2-perd6
+            ls$residencia/lugar da delgada, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         test$domingos da silva/m/id=14e28-2-perd7
+            ls$residencia/lugar da delgada, termo de obidos
+            ls$profissao/trabalhador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+      cartaperdao$14e10-2/09/05/1680/cota=14e10/local=obidos, casa do tabeliao/tabeliao=filipe dias alves/tipo=partes
+
+         perdoante$domingos francisco/m/id=14e10-2-perd1
+            ls$residencia/cabeco da vela,lugar de serra do bouro, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         vitima$domingos francisco/m/mesmo_que=14e10-2-perd1/id=14e10-2-per1
+
+         perdoado$joao rodrigues/id=14e10-2-perd2
+            ls$residencia/cabeco da vela, lugar de serra do bouro, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimento/objecto=pessoa/ocorrencia=local da rua/tempo=dia/descricao=tivera umas razoes com joao rodrigues pelas quais ele o maltratara e ferira embora antes fossem muito amigos/pronuncia=prisao/id=14e10-2-obj1
+
+         perdao$09/05/1680/tipo=livremente/descricao=eram amigos e visinhos e estava arrependido de o ter acusado nao querendo seguir com a dita apelacao e para fazer obra de misericordia e pelo amor de deus perdoando toda a pena/id=14e10-2-obj2
+
+         test$francisco tavares de azevedo/m/id=14e10-2-perd3
+            ls$residencia/obidos
+            ls$profissao/alferes
+            ls$assina/bem
+
+         test$joao alves/m/id=14e10-2-perd4
+            ls$residencia/obidos
+            ls$assina/bem
+
+      cartaperdao$14e7-1/06/09/1688/cota=14e7/local=obidos, casa do tabeliao/tabeliao=antonio lopes ferreira/tipo=partes
+
+         perdoante$luis vieira/m/id=14e7-1-perd1
+            ls$residencia/lugar da usseira, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+         perdoante-f$joana/id=14e7-1-perd2
+            ls$residencia/lugar da usseira, termo de obidos
+            ls$idade_aprox/menor
+            ls$assina/cruz
+
+            pai$luis vieira/m/mesmo_que=14e7-1-perd1/id=14e7-1-perd2-per1
+
+         vitima$joana/f/mesmo_que=14e7-1-perd2/id=14e7-1-per2
+
+         perdoado$valentim de faria/id=14e7-1-perd3
+            ls$residencia/lugar da dagorda, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=aleivosia/subtipo=honra,virgindade/objecto=honra/descricao=querelara dele por ter desonrado a sua filha em sua casa sendo moca recolhida tendo sido pronunciado a prisao e o perdoante viera com novo libelo contra ele denunciado tendo levantado as testemunhas de uma e outra parte/pronuncia=preso%cadeia da vila de obidos/id=14e7-1-obj1
+
+         perdao$06/09/1688/tipo=com condicao/descricao=denunciara obrigado da paixao e pelo amor de deus compadecendo-se da sua muita pobreza e haver muito tempo que estava preso na cadeia padecendo muitas necessidades e ser um homem casado pai de filhos que nao tem outro remedo senao o do dito seu pai pelo que lhe dava perdao sem constrangimento desistindo da causa crime perdoando toda a afronta e agravo e aleivosia que lhe avia feito pedindo que o favorecessem no seu livramento desistindo de toda a causa com a condicao de que nao aparecesse no lugar da usseira durante vinte anos com pena de que o fazendo pagar de cada vez duzentos reis pera as despesas do conselho e pagara todas as custas que o perdoante tiver pago na causa/id=14e7-1-obj2
+
+         test$manuel da silva/m/id=14e7-1-perd4
+            ls$residencia/obidos
+            ls$profissao/escrivao%armas
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$joao ferreira coutinho/m/id=14e7-1-perd5
+            ls$residencia/obidos
+            ls$profissao/meirinho
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+      cartaperdao$14e35-1/01/07/1689/cota=14e35/local=vila de obidos/tabeliao=manuel de oliveira farto/tipo=pertes
+
+         perdoante$diogo de souto maior/m/id=14e35-1-perd1
+            ls$residencia/obidos
+            ls$profissao/ecrivao%coutadas
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         vitima$diogo de souto maior/m/mesmo_que=14e35-1-perd1/id=14e35-1-per1
+
+         perdoado$manuel jorge/id=14e35-1-perd2
+            ls$residencia/amoreira, termo de obidos
+            ls$profissao/lavrador
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=resistencia%autoridade/objecto=pessoa/instrumento=palavras afrontosas/ocorrencia=local da rua/tempo=dia/descricao=dera uma denuncia no juizo ordinario da vila contra o perdoado por lhe aver resistido sendo ele escrivao das coutadas indo ele para fazer certas deligencias de seu oficio/pronuncia=preso/id=14e35-1-obj1
+
+         perdao$01/07/1689/tipo=livremente/descricao=fizera a resistencia acidentalmente por ter ficado afrontado e levado da paixao o que lhe pesava por ser seu amigo e pelo amor de deus/id=14e35-1-obj2
+
+         test$pedro correia salema/m/id=14e35-1-perd3
+            ls$residencia/obidos
+            ls$assina/bem
+
+         test$Henrique pestana/m/id=14e35-1-perd4
+            ls$residencia/obidos
+            ls$assina/bem
+
+      cartaperdao$14e35-2/12/07/1689/cota=14e35/local=obidos, casa do tabeliao/tabeliao=manuel de oliveira farto/tipo=partes
+
+         perdoante$joao da silva/m/id=14e35-2-perd1
+            ls$residencia/lugar da dagorda, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+            rel$parentesco/pai/manuel da silva/14e35-2-perd2
+
+         perdoante-m$manuel da silva/id=14e35-2-perd2
+            ls$residencia/lugar da dagorda, termo de obidos
+            ls$idade_aprox/maior
+            ls$assina/cruz
+
+            pai$joao da silva/m/mesmo_que=14e35-2-perd1/id=14e35-2-perd2-per1
+
+         vitima$manuel da silva/m/mesmo_que=14e35-2-perd2/id=14e35-2-per2
+
+         perdoado$manuel jorge/id=14e35-2-perd3
+            ls$residencia/lugar da amoreira, termo de obidos
+            ls$idade_aprox/maior
+
+         crime$00/00/0000/forma=querela/tipo=violencia/subtipo=ferimentos/objecto=pessoa/ocorrencia=local da rua/tempo=dia/descricao=tinha querelado do perdoado por ele ter ferido o seu filho e dado muitas pancadas por partes do seu corpo como tudo consta do auto da sua queixa e fizera libelo contra ele/pronuncia=preso%cadeia da vila/id=14e35-2-obj1
+
+         perdao$12/07/1689/tipo=livremente/descricao=o perdoado estava arrependido do que fizera e eram muito amigos e perdoava pelo amor de deus e porque estava sao das ditas feridas ficando sem desformidade ou aleijao algum e por ter sido mal informado o que lhe pesava muito pelo que desistiam de toda a pena pois o caso sucedeu acidentalmente/id=14e35-2-obj2
+
+         test$antonio lopes ferreira/m/id=14e35-2-perd4
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$assina/bem
+
+         test$manuel pereira/m/id=14e35-2-perd5
+            ls$residencia/obidos
+            ls$idade_aprox/maior
+            ls$assina/bem

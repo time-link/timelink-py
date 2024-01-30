@@ -2,6 +2,8 @@
 (c) Joaquim Carvalho 2021.
 MIT License, no warranties.
 """
+# pylint: disable=import-error
+
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.mhk.models.entity import Entity
@@ -20,9 +22,7 @@ class Source(Entity):
     replaces = Column(String)
     obs = Column(String)
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'source'
-    }
+    __mapper_args__ = {"polymorphic_identity": "source"}
 
     def __repr__(self):
         sr = super().__repr__()

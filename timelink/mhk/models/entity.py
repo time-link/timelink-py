@@ -1,14 +1,20 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import (
+    Column,
+    String,
+    Integer,
+    DateTime,
+    ForeignKey,
+)  # pylint: disable=import-error
+from sqlalchemy.orm import relationship, backref  # pylint: disable=import-error
 
 from timelink.kleio.utilities import kleio_escape
 from timelink.mhk.models.base_class import Base
 
 
 class Entity(Base):
-    """ ORM Model root of the object hierarchy.
+    """ORM Model root of the object hierarchy.
 
      All entities in a Timelink/MHK database have an entry in this table.
      Each entity is associated with a class that allow access to a
@@ -16,20 +22,18 @@ class Entity(Base):
 
     This corresponds to the model described as "Joined Table Inheritance"
     in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
-     """
+    """
+
     __tablename__ = "entities"
 
     #: str: unique identifier for the entity
     id = Column(String, primary_key=True)
     #: str: name of the class. Links to pom_som_mapper class
-    pom_class = Column('class',
-                       String,
-                       ForeignKey('classes.id', use_alter=True),
-                       index=True
-                       )
+    pom_class = Column(
+        "class", String, ForeignKey("classes.id", use_alter=True), index=True
+    )
     #: str: id of the entity inside which this occurred.
-    inside = Column(String, ForeignKey('entities.id', ondelete='CASCADE'),
-                    index=True)
+    inside = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), index=True)
     #: int: sequential order of this entity in the source
     the_order = Column(Integer)
     #: int: the nesting level of this entity in the source
@@ -46,14 +50,14 @@ class Entity(Base):
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
-
     # this based on
     # https://stackoverflow.com/questions/28843254
     #: list(Entity): list of Entity objects contained in this entity
-    contains = relationship("Entity",
-                            backref=backref("contained_by",
-                                            remote_side="Entity.id"),
-                            cascade="all")
+    contains = relationship(
+        "Entity",
+        backref=backref("contained_by", remote_side="Entity.id"),
+        cascade="all",
+    )
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
@@ -76,19 +80,19 @@ class Entity(Base):
 
     @classmethod
     def get_subclasses(cls):
-        """ Get the subclasses of Entity """
+        """Get the subclasses of Entity"""
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
 
     @classmethod
     def get_orm_entities_classes(cls):
-        """ Currently defined ORM classes that extend Entity
-        (including Entity itself)
+        """Currently defined ORM classes that extend Entity
+         (including Entity itself)
 
 
-       Returns:
-            list: List of ORM classes
+        Returns:
+             list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
         sc.append(Entity)
@@ -96,7 +100,7 @@ class Entity(Base):
 
     @classmethod
     def get_som_mapper_ids(cls):
-        """ Ids of SomPomMapper references by orm classes
+        """Ids of SomPomMapper references by orm classes
 
         Returns:
              List[str]: List of strings
@@ -184,7 +188,6 @@ class Entity(Base):
     def to_kleio(self, ident="", ident_inc="  "):
         s = f"{ident}{str(self)}"
         for inner in self.contains:
-            innerk = inner.to_kleio(ident=ident + ident_inc,
-                                    ident_inc=ident_inc)
+            innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
             s = f"{s}\n{innerk}"
         return s

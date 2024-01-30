@@ -19,15 +19,14 @@ description = "Timelink is an information system for person related information 
 setup(
     author="Joaquim Ramos de Carvalho",
     author_email='joaquimcarvalho@ipm.edu.mo',
-    python_requires='>=3.7',
+    python_requires='>=3.10',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
     description=description,
     entry_points={
@@ -38,7 +37,22 @@ setup(
     project_urls={
          'Documentation': 'https://timelink-py.readthedocs.io/',
     },
-    install_requires=requirements,
+    install_requires=[
+        'typer~=0.4.0',
+        'fastapi~=0.103.0',
+        'sqlalchemy~=2.0.0',
+        'pydantic~=2.0.0',
+        'python-dotenv~=0.21.0',
+        'python-box~=5.3.0',
+        'psycopg2-binary==2.9.6',
+        'py-markdown-table==0.3.3',
+        'pandas~=2.0.0',
+        'docker~=6.0.0',
+        'jsonrpcclient~=4.0.0',
+        'ipython~=8.0.0'
+        
+
+    ],
     license="MIT license",
     long_description= description + '\n\n' + history,
     long_description_content_type = 'text/x-rst',
@@ -49,6 +63,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/time-link/timelink-py',
-    version='0.3.10',
+    version='0.3.11b7',
     zip_safe=False,
 )

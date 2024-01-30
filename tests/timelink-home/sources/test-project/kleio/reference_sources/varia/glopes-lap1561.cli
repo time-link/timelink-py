@@ -1,0 +1,3753 @@
+kleio$sources:structures:glopes.str/translations=13
+   fonte$glopes-lap1561/1561a/tipo=libros de asientos de pasajeros/loc=agi , contratacion 5537 libro 2/obs=pasajeros a indias, com destino a nueva espana e caraibe
+
+      pas$p-733/2/1/1561/2-11/sevilla/honduras/num=1
+
+         mestre$alvaro colombres/id=p-733-per1
+
+         n$gaspar de arguijo/id=p-733-per2
+            ls$naturalidade/tenerife
+            ls$viaja/sim
+
+            pai$garcia arguijo/id=p-733-per2-per3
+
+            mae$elvira de saavedra/id=p-733-per2-per4
+
+      pas$p-736/3/1/1561/2-11v/sevilla/nueva espana/num=3
+
+         mestre$hernan perez/id=p-736-per1
+
+         n$diego de vega/id=p-736-per2
+            ls$naturalidade/toledo
+            ls$residencia/mexico
+            ls$viaja/sim
+
+            pai$francisco de vega/id=p-736-per2-per3
+
+            mae$marta sanchez/id=p-736-per2-per4
+               ls$viaja/sim
+
+            irma$ana de vega/id=p-736-per2-per5
+               ls$viaja/sim
+
+      pas$p-737/3/1/1561/2-111v/sevilla/nueva espana/num=1
+
+         mestre$hernanperez/id=p-737-per1
+
+         n$juan jimenez/id=p-737-per2
+            ls$naturalidade/cuscatan/obs=cuicatlan?
+            ls$viaja/sim
+            ls$ec/s
+
+      pas$p-738/3/1/1561/2-111v/sevilla/nueva espana/num=4
+
+         mestre$pedro menendez marques/id=p-738-per1
+
+         n$alonso de pineda/id=p-738-per2
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$hernando de pineda/id=p-738-per2-per3
+
+            mae$teresa de soto/id=p-738-per2-per4
+
+            mulher$catalina sanchez/id=p-738-per2-per5
+               ls$viaja/sim
+
+            pai$esteban sanchez/id=p-738-per2-per6
+
+            mae$catalina sanchez/id=p-738-per2-per7
+
+            filho$simon pineda/id=p-738-simon
+               ls$viaja/sim
+
+            mulher$isabel nieto/id=p-738-per2-per8
+               rel$parentesco/mulher/simon pineda/p-738-simon
+
+            pai$pedro lugones/id=p-738-per2-per9
+
+            mae$francisca nieto/id=p-738-per2-per10
+
+      pas$p-740/3/1/1561/2-112/sevilla/nueva espana/num=2
+
+         mestre$hernan perez/id=p-740-per1
+
+         n$luisa de hervas/id=p-740-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+
+            pai$alonso de galvez/id=p-740-per2-per3
+
+            mae$isabel ruiz/id=p-740-per2-per4
+
+            filho$andres/id=p-740-per2-per5
+               ls$viaja/sim
+               ls$idade/5
+
+      pas$p-741/6/1/1561/2-112/sevilla/nueva espana/num=3
+
+         mestre$hernan perez/id=p-741-per1
+
+         n$luisa herrera/id=p-741-per2
+            ls$naturalidade/antequera
+            ls$viaja/sim
+
+            pai$alonso galvez/id=p-741-per2-per3
+
+            mae$isabel de herrera/id=p-741-per2-per4
+
+         n$marta sanchez/id=p-741-per5
+            ls$viaja/sim
+
+         n$ana de vega/id=p-741-per6
+            ls$viaja/sim
+
+      pas$p-743/9/12/1561/2-112/sevilla/nueva espana/num=1
+
+         mestre$francisco de rucabo/id=p-743-per1
+
+         n$marina de murga/id=p-743-per2
+            ls$residencia/ayala
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro de murga/id=p-743-per2-per3
+
+            mae$marina de san martin/id=p-743-per2-per4
+
+      pas$p-745/12/1/1561/2-112/sevilla/nueva espana/num=2
+
+         mestre$juan de fuentes/id=p-745-per1
+
+         n$francisca de la torre/id=p-745-per2
+            rel$sociabilidade/reuniao com/pedro serrano/p-764.ref
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/c
+
+            filho$lope serrano/id=p-745-per2-per3
+               ls$viaja/sim
+
+            pai$sebastian de la torre/id=p-745-per2-per4
+
+            mae$isabel lopez/id=p-745-per2-per5
+
+            marido$pedro serrano/id=p-745-per2-per6
+               ls$residencia/nova espana
+
+      pas$p-746/12/1/1561/2-112/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-746-per1
+
+         n$ursula de la torre/id=p-746-per2
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/criada
+            rel$profissional/criada/francisca de la torre/p-745-f
+
+            pai$gomez vasquez/id=p-746-per2-per3
+
+            mae$teresa gomez/id=p-746-per2-per4
+
+      pas$p-747/12/1/1561/2-112/sevilla/nueva espana/num=3
+
+         mestre$juan de fuentes/id=p-747-per1
+
+         n$francisca hernandez/id=p-747-per2
+            rel$sociabilidade/viaja em companhia/ francisca de la torre/p-745-f
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$andres hernandez/id=p-747-per2-per3
+
+            mae$mencia gomez/id=p-747-per2-per4
+
+            filho$alonso perez/id=p-747-per2-per5
+               ls$viaja/sim
+
+            filha$ana de san francisco/id=p-747-per2-per6
+               ls$viaja/sim
+
+      pas$p-749/12/1/1561/2-112/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-749-per1
+
+         n$benito de larin/id=p-749-per2
+            ls$naturalidade/feligresia de galicia
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan de larin/id=p-749-per2-per3
+
+            mae$ antonia diaz/id=p-749-per2-per4
+
+      pas$p-750/12/1/1561/2-112/sevilla/nueva espana/num=1
+
+         mestre$benito sanchez/id=p-750-per1
+
+         n$nicolas de escobar/id=p-750-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/mercador
+
+            pai$gonzalo miguel/id=p-750-per2-per3
+
+            mae$ana martin/id=p-750-per2-per4
+
+      pas$p-764/15/1/1561/2-114/sevilla/nueva espana/num=2
+
+         mestre$juan de fuentes/id=p-764-per1
+
+         n$pedro serrano/id=p-764-per2
+            rel$sociabilidade/viaja em companhia/francisca de la torre/p-745-f
+            ls$naturalidade/granada
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso serrano/id=p-764-per2-per3
+
+            mae$marina lopez/id=p-764-per2-per4
+               ls$viaja/sim
+
+      pas$p-765/15/1/1561/2-114/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-765-per1
+
+         n$esteban martinez/id=p-765-per2
+            ls$naturalidade/utrera
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro jimenez natera/id=p-765-per2-per3
+
+            mae$ines de mesa/id=p-765-per2-per4
+
+      pas$p-768/15/1/1561/2-114/sevilla/nueva espana/num=1
+
+         mestre$francisco de ecija/id=p-768-per1
+
+         n$diego alonso/id=p-768-per2
+            ls$naturalidade/plasencia
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$diego alonso/id=p-768-per2-per3
+
+            mae$maria sanchez/id=p-768-per2-per4
+
+      pas$p-775/18/1/1561/2-114/sevilla/nueva espana/num=2
+
+         mestre$juan de fuentes/id=p-775-per1
+
+         n$sebastian de villareal/id=p-775-per2
+            ls$naturalidade/pedraza
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco de villareal/id=p-775-per2-per3
+
+            mae$maria gonzalez/id=p-775-per2-per4
+
+            mulher$ana de fuentes/id=p-775-per2-per5
+
+               pmulher$pedro hernandez de ribera/id=p-775-per2-per6
+
+               mmulher$ursula de fuentes/id=p-775-per2-per7
+
+      pas$p-776/18/1/1561/2-/sevilla/nova espana/num=1
+
+         mestre$benito sanchez/id=p-776-per1
+
+         n$diego lopez/id=p-776-per2
+            ls$naturalidade/bienvenida
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso lopez/id=p-776-per2-per3
+
+            mae$maria gutierrez/id=p-776-per2-per4
+
+      pas$p-777/18/1/1561/2-115/sevilla/nova espana/num=1
+
+         mestre$benito sanchez/id=p-777-per1
+
+         n$juan blas/id=p-777-per2
+            ls$naturalidade/bienvenida
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro ramos/id=p-777-per2-per3
+
+            mae$ana blas/id=p-777-per2-per4
+
+      pas$p-779/18/1/1561/2-115/sevilla/nueva espana/num=14
+
+         mestre$benito sanchez/id=p-779-per1
+
+         n$juan sanchez/id=p-779-per2
+            ls$naturalidade/arenas
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/criado
+            rel$profissional/criado/frei juan/p-779.ref/obs=e de outros doze religiosos que no cita
+
+            pai$juan sanchez/id=p-779-per2-per3
+
+            mae$maria lucas/id=p-779-per2-per4
+
+         n$juan de san roman/id=p-779.ref
+            ls$titulo/frei
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per5
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per6
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per7
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per8
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per9
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per10
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per11
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per12
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per13
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per14
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per15
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per16
+            ls$profissao/clerigo
+            ls$viaja/sim
+
+         n$nome desconhecido/id=p-779-per17
+            ls$viaja/sim
+            ls$profissao/clerigo
+
+      pas$p-782/18/1/1561/2-115/sevilla/nueva espana/num=1
+
+         mestre$bartolome miguel/id=p-782-per1
+
+         n$francisco de obregon/id=p-782-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$lope obregon/id=p-782-per2-per3
+
+            mae$ines lopez/id=p-782-per2-per4
+
+      pas$p-788/20/1/1561/2-/sevilla/nueva espana/num=2
+
+         mestre$cosme andres/id=p-788-per1
+
+         n$juan hinojosa/id=p-788-per2
+            ls$naturalidade/jerez de la frontera
+            ls$viaja/sim
+            ls$ec/s
+
+            irmao$augustin hinojosa/id=p-788-per2-per3
+               ls$viaja/sim
+               ls$naturalidade/jerez de la frontera
+
+            pai$garcia diz de hinojosa/id=p-788-per2-per4
+
+            mae$dona leonor fuentes/id=p-788-per2-per5
+
+      pas$p-792/22/1/1561/2-116/sevilla/nueva espana/num=4
+
+         mestre$juan de fuentes/id=p-792-per1
+
+         n$alonso hernandez/id=p-792-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alonso hernandez/id=p-792-per2-per3
+
+            mae$leonor diaz/id=p-792-per2-per4
+
+            mulher$ines rodriguez/id=p-792-per2-per5
+               ls$viaja/sim
+
+               pmulher$antonio ramos/id=p-792-per2-per6
+
+               mmulher$francisca de caso/id=p-792-per2-per7
+
+               filho$hernando/id=p-792-per2-per8
+                  ls$viaja/sim
+
+               filha$leonor/id=p-792-per2-per9
+                  ls$viaja/sim
+
+      pas$p-795/22/1/1561/2-116/sevilla/nueva espana espana/num=2
+
+         mestre$hernan perez/id=p-795-per1
+
+         n$catalina vargas/id=p-795.ref
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/c
+
+            filha$augustina mejia/id=p-795-per2-per3
+               ls$viaja/sim
+
+      pas$p-796/22/1/1561/2-116/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-796-per1
+
+         n$beatriz lopez/id=p-796-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criada/catalina vargas/p-795.ref
+
+            referida$catalina vargas/mesmo_que=p-795.ref/id=p-796-per2-per1
+
+            pai$alonso batel/id=p-796-per2-per4
+
+            mae$juana lopez/id=p-796-per2-per5
+
+      pas$p-797/22/1/1561/2-116/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-797-per1
+
+         n$juana lopez/id=p-797-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso martin beato/id=p-797-per2-per3
+
+            mae$ana de caso/id=p-797-per2-per4
+
+      pas$p-798/22/1/1561/2-116/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-798-per1
+
+         n$ambrosio de padilla/id=p-798-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso de carmona/id=p-798-per2-per3
+
+            mae$batriz de padilha/id=p-798-per2-per4
+
+      pas$p-800/22/1/1561/2-116/sevilla/nueva espana/num=2
+
+         mestre$hernan perez/id=p-800-per1
+
+         n$gaspar de la rocha/id=p-800-per2
+            ls$naturalidade/badajoz
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$garcia de corajo/id=p-800-per2-per3
+
+            mae$catalina de la serra/id=p-800-per2-per4
+
+            mulher$elvira delgado/id=p-800-per2-per5
+               ls$naturalidade/caceres
+               ls$viaja/sim
+
+               pmulher$luis moreno/id=p-800-per2-per6
+
+               mmulher$isabel de castro/id=p-800-per2-per7
+
+      pas$p-801/22/1/1561/2-117/sevilla/nueva espana/num=6
+
+         mestre$pedro menendez marqes/id=p-801-per1
+
+         n$nicolas de trujillo/id=p-801-per2
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco de trujillo/id=p-801-per2-per3
+
+            mae$teresa sanchez/id=p-801-per2-per4
+
+            mulher$catalina de pineda/id=p-801-per2-per5
+               ls$viaja/sim
+
+               pmulher$hernando de pineda/id=p-801-per2-per6
+
+               mmulher$teresa de soto/id=p-801-per2-per7
+
+               filha$magdalena/id=p-801-per2-per8
+                  ls$viaja/sim
+
+               filho$pedro/id=p-801-per2-per9
+                  ls$viaja/sim
+
+               filha$cecilia/id=p-801-per2-per10
+                  ls$viaja/sim
+
+               filho$mateo/id=p-801-per2-per11
+                  ls$viaja/sim
+
+      pas$p-802/22/1/1561/2-117/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-802-per1
+
+         n$juan de quiros/id=p-802.ref
+            ls$naturalidade/zalamea de la serena
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro ramirez de mesa/id=p-802.ref-per2
+               ls$titulo/licenciado
+
+            mae$teodora de quiros/id=p-802.ref-per3
+
+      pas$p-803/24/1/1561/2-117/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-803-per1
+
+         n$alonso de paz/id=p-803-per2
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/s
+            ls$titulo/licenciado
+
+            pai$pedro de paz/id=p-803-per2-per3
+
+            mae$nome desconhecido/id=p-803-per2-per4
+               ls$condicao/india
+
+      pas$p-804/24/1/1561/2-117/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-804-per1
+
+         n$melchior de avila/id=p-804-per2
+            ls$naturalidade/granada
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criado/licenciado alonso paz/p-803.ref
+
+            referido$alonso paz/id=p-803.ref
+               ls$titulo/licenciado
+
+            pai$pedro de ocana/id=p-804-per2-per3
+
+            mae$luisa de avila/id=p-804-per2-per4
+
+      pas$p-805/24/1/1561/2-117/sevilla/nueva espana/num=1
+
+         mestre$francisco de ecija/id=p-805-per1
+
+         n$alonso de ontiveros/id=p-805-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$anton de ontiveros/id=p-805-per2-per3
+
+            mae$isabel diaz/id=p-805-per2-per4
+
+      pas$p-807/24/1/1561/2-117/sevilla/nueva espana/num=2
+
+         mestre$juan griego/id=p-807-per1
+
+         n$diego isidro/id=p-807-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan isidro/id=p-807-per2-per3
+
+            mae$juana martin/id=p-807-per2-per4
+
+            mulher$ana garcia/id=p-807-per2-per5
+               ls$naturalidade/mexico
+
+      pas$p-812/24/1/1561/2-117/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-812-per1
+
+         n$francisco ruiz/id=p-812-per2
+            ls$residencia/trigueros
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan ruiz/id=p-812-per2-per3
+
+            mae$ana garcia/id=p-812-per2-per4
+
+      pas$p-815/24/1/1561/2-118/sevilla/nueva espana/num=2
+
+         mestre$hernan perez/id=p-815-per1
+
+         n$diego cortes de ayala/id=p-815-per2
+            ls$naturalidade/ciudad rodrigo
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$diego cort�s/id=p-815-per2-per3
+
+            mae$isabel clemente/id=p-815-per2-per4
+
+            mulher$luciana juarez/id=p-815-per2-per5
+               ls$viaja/siml
+               ls$naturalidade/sevilha
+
+               pmulher$pedro juarez/id=p-815-per2-per6
+
+               mmulher$isabel de contreras/id=p-815-per2-per7
+
+      pas$p-816/21/1/1561/2-118/sevilla/nueva espana/num=4
+
+         mestre$alonso galdamez/id=p-816-per1
+
+         n$blas de esqueda/id=p-816-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$diego esqueda/id=p-816-per2-per3
+
+            mae$maria ruiz/id=p-816-per2-per4
+
+            mulher$petronila de bustamante/id=p-816-per2-per5
+               ls$viaja/sim
+
+               pmulher$juan naranjo y de ojeda/id=p-816-per2-per6
+
+               filho$jeronimo/id=p-816-per2-per7
+                  ls$viaja/sim
+
+               filho$juan/id=p-816-per2-per8
+                  ls$viaja/sim
+
+      pas$p-834/27/1/1561/2-119/sevilla/nueva espana/num=1
+
+         mestre$francisco de ecija/id=p-834-per1
+
+         n$cristobal de morales/id=p-834-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$simon hernandez/id=p-834-per2-per3
+
+            mae$maria de morales/id=p-834-per2-per4
+
+      pas$p-835/27/1/1561/2-119/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-835-per1
+
+         n$damaso de leyva/id=p-835-per2
+            ls$naturalidade/santiago de compostela
+            ls$viaja/sim
+
+            pai$gonzalo de najera/id=p-835-per2-per3
+
+            mae$francisca rodriguez/id=p-835-per2-per4
+
+      pas$p-836/27/1/1561/2-119/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-836-per1
+
+         n$benito ramiro/id=p-836-per2
+            ls$naturalidade/fregenal
+            ls$viaja/sim
+
+            pai$rodrigo tello/id=p-836-per2-per3
+
+            mae$leonor rodriguez/id=p-836-per2-per4
+
+      pas$p-837/27/1/1561/2-119/sevilla/nueva espana/num=1
+
+         mestre$alonso galdamez/id=p-837-per1
+
+         n$pedro arias de avila/id=p-837-per2
+            ls$naturalidade/segovia
+            ls$viaja/sim
+
+            pai$juan arias de avila/id=p-837-per2-per3
+
+            mae$isabel mejia/id=p-837-per2-per4
+               ls$titulo/dona
+
+      pas$p-838/27/1/1561/2-119/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-838-per1
+
+         n$maria de rojas/id=p-838-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+
+            pai$martin rojas/id=p-838-per2-per3
+
+            mae$elvira rojas/id=p-838-per2-per4
+
+      pas$p-840/29/1/1561/2-119/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-840-per1
+
+         n$garcia sanchez/id=p-840-per2
+            ls$naturalidade/merida
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan mateos/id=p-840-per2-per3
+
+            mae$catalina lopez/id=p-840-per2-per4
+
+      pas$p-842/1/1/1561/2-120/sevilla/nueva espana/num=4
+
+         mestre$alonso galdamez/id=p-842-per1
+
+         n$beatriz de mesa/id=p-842-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco de mesa/id=p-842-per2-per3
+
+            mae$catalina de mesa/id=p-842-per2-per4
+
+            filho$constantino vela/id=p-842-per2-per5
+               ls$viaja/sim
+
+            filho$miguel vela/id=p-842-per2-per6
+               ls$viaja/sim
+
+            filho$jacome vela/id=p-842-per2-per7
+               ls$viaja/sim
+
+            marido$miguel vela/id=p-842-per2-per8
+               ls$residencia/nueva espana
+
+      pas$p-847/31/1/1561/2-120/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-847-per1
+
+         n$alonso del corral/id=p-847-per2
+            ls$naturalidade/aguado
+            ls$residencia/aguado
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$diego lopez del corral/id=p-847-per2-per3
+
+            mae$maria sanchez/id=p-847-per2-per4
+
+      pas$p-848/31/1/1561/2-120/sevilla/nueva espana/num=3
+
+         mestre$juan griego/id=p-848-per1
+
+         n$hernando blas/id=p-848-per2
+            ls$naturalidade/olvera
+            ls$viaja/sim
+            ls$profissao/lavrador
+            ls$ec/c
+
+            pai$alonso blas/id=p-848-per2-per3
+
+            mae$juan vazquez/id=p-848-per2-per4
+
+            mulher$antona rodriguez/id=p-848-per2-per5
+               ls$naturalidade/posadas
+               ls$viaja/sim
+
+               pmulher$pedro ruiz de la barrera/id=p-848-per2-per6
+
+               mmulher$juana hernandez/id=p-848-per2-per7
+
+      pas$p-854/31/1/1561/2-120/sevilla/nueva espana/num=4
+
+         mestre$pedro menendez marques/id=p-854-per1
+
+         n$pedro diaz/id=p-854.ref
+            ls$naturalidade/aldeaseca de la frontera
+            ls$viaja/sim
+            ls$profissao/medico
+            ls$titulo/bacharel
+            ls$ec/c
+
+            pai$juan diaz/id=p-854.ref-per2
+
+            mae$lucia carreanueva/id=p-854.ref-per3
+
+            mulher$maria diaz/id=p-854.ref-per4
+               ls$viaja/sim
+
+               pmulher$andres garcia/id=p-854.ref-per5
+
+               mmulher$maria diaz/id=p-854.ref-per6
+
+               filha$marina/id=p-854.ref-per7
+                  ls$viaja/sim
+
+               filho$pedro/id=p-854.ref-per8
+                  ls$viaja/sim
+
+         n$miguel diaz/id=p-854-per9
+            ls$viaja/sim
+            rel$parentesco/sobrinho/pedro diez/p-854.ref
+
+      pas$p-855/31/1/1561/2-121/sevilla/nueva espana/num=8
+
+         mestre$lazaro cruzado/id=p-855-per1
+
+         n$juan garcia berro/id=p-855.j
+            ls$naturalidade/medellin
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$Diego Sanchez/id=p-855.j-per2
+
+            mae$ines garcia/id=p-855.j-per3
+
+            mulher$isabel rodriguez/id=p-855.j-per4
+               ls$viaja/sim
+
+               pmulher$diego duram/id=p-855.j-per5
+
+               mmulher$isabel rodriguez/id=p-855.j-per6
+                  ls$alcunha/la pollida
+
+         n$isabel rodriguez/id=p-855-per7
+            ls$viaja/sim
+            rel$parentesco/sogra/juan garcia berro/p-855.j
+
+         n$maria rodriguez/id=p-855-per8
+            ls$$viaja/sim
+            rel$parentesco/cunhada/juan garcia berro/p-885.j
+
+         n$diego rodriguez/id=p-855-per9
+            ls$viaja/sim
+            rel$parentesco/cunhado/juan garcia berro/p-885.j
+
+         n$juan rodriguez/id=p-855-per10
+            ls$viaja/sim
+            rel$parentesco/cunhado/juan garcia berro/p-885.j
+
+         n$francisco rodriguez/id=p-855-per11
+            ls$viaja/sim
+            rel$parentesco/cunhado/juan garcia berro/p-885.j
+
+         n$antonio rodriguez/id=p-855-per12
+            ls$viaja/sim
+            rel$parentesco/cunhado/juan garcia berro/p-885.j
+
+      pas$p-856/31/1/1561/2-121/sevilla/nueva espana/num=5
+
+         mestre$juan griego/id=p-856-per1
+
+         n$pedro de jerez/id=p-856-per2
+            ls$naturalidade/montalban
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/costureiro de veludo
+
+            pai$francisco de jerez/id=p-856-per2-per3
+
+            mae$maria nunez/id=p-856-per2-per4
+
+            mulher$isabel rodriguez/id=p-856-per2-per5
+               ls$viaja/sim
+
+               pmulher$juan rubio/id=p-856-per2-per6
+
+               mmulher$catalina sanchez/id=p-856-per2-per7
+
+               filho$juan/id=p-856-per2-per8
+                  ls$viaja/sim
+
+               filha$isabel/id=p-856-per2-per9
+                  ls$viaja/sim
+
+               filho$francisco/id=p-856-per2-per10
+                  ls$viaja/sim
+
+      pas$p-875/4/2/1561/2-123/sevilla/nueva espana/num=1
+
+         mestre$francisco ecija/id=p-875-per1
+
+         n$juan suarez/id=p-875-per2
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/mercador
+
+            pai$alonso/id=p-875-per2-per3
+               ls$cargo/jurado
+
+            mae$beatriz de la torre/id=p-875-per2-per4
+
+      pas$p-876/4/2/1561/2-123/sevilla/nueva espana/num=4
+
+         mestre$francisco ecija/id=p-876-per1
+
+         n$simon jimenez/id=p-876-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$pedro jimenez/id=p-876-per2-per3
+
+            mae$juana acosta/id=p-876-per2-per4
+
+            mulher$ana de queiros/id=p-876-per2-per5
+               ls$naturalidade/sevilla
+               ls$viaja/sim
+
+               pmulher$juan alaraz/id=p-876-per2-per6
+
+               mmulher$susana rodriguez/id=p-876-per2-per7
+
+               filho$simon/id=p-876-per2-per8
+                  ls$viaja/sim
+                  ls$ec/s
+
+               filha$juana/id=p-876-per2-per9
+                  ls$viaja/sim
+                  ls$ec/s
+
+      pas$p-878/4/2/1561/2-123/sevilla/nueva espana/num=2
+
+         mestre$lazaro cruzado/id=p-878-per1
+
+         n$catalina marquez/id=p-878-per2
+
+            referido$ballesteros/id=878.ref
+               ls$naturalidade/sevilla
+               ls$viaja/sim
+               ls$ec/v
+               rel$parentesco/viuva/ballesteros/p-878.ref
+
+            pai$andres garcia/id=p-878-per2-per3
+
+            mae$luisa de orellanos/id=p-878-per2-per4
+
+            filha$luisa de orellanos/id=p-878-per2-per5
+               ls$viaja/sim
+
+      pas$p-879/4/2/1561/2-123/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-879-per1
+
+         n$simona alvarez/id=p-879-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alvaro hernandez/id=p-879-per2-per3
+
+            mae$isabel hernandez/id=p-879-per2-per4
+
+      pas$p-885/4/2/1561/2-123/sevilla/nueva espana/num=2
+
+         mestre$juan de fuentes/id=p-885-per1
+
+         n$gonzalo aguilera/id=p-885.ref
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$hernan gomez/id=p-885.ref-per2
+
+            mae$ana de aguilera/id=p-885.ref-per3
+
+            mulher$ana de castro/id=p-885.ref-per4
+
+               pmulher$francisco de castro/id=p-885.ref-per5
+
+               mmulher$mayor de baeza/id=p-885.ref-per6
+
+      pas$p-886/4/2/1561/2-123/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-886-per1
+
+         n$isabel de ribera/id=p-886-per2
+            ls$naturalidade/sevilha
+            ls$viaja/sim
+            rel$profissional/ao servico de/gonzalo aguilera/p-885.ref
+
+            pai$hernando de sevilla/id=p-886-per2-per3
+
+            mae$ines diaz/id=p-886-per2-per4
+
+            referido$gonzalo aguilera/mesmo_que=p-885.ref/id=p-886-per2-per1
+
+      pas$p-887/4/2/1561/2-124/sevilla/nueva espana/num=8
+
+         mestre$juan de fuentes/id=p-887-per1
+
+         n$leonor ribera/id=p-887-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$martin de ribera/id=p-887-per2-per3
+
+            mae$isabel de ribera/id=p-887-per2-per4
+
+            marido$pedro de medellin/id=p-887-per2-per5
+               ls$residencia/nueva espana
+
+            filho$martin/id=p-887-per2-per6
+               ls$viaja/sim
+
+            filho$francisco/id=p-887-per2-per7
+               ls$viaja/sim
+
+            filho$felipe/id=p-887-per2-per8
+               ls$viaja/sim
+
+            filha$isabel/id=p-887-per2-per9
+               ls$viaja/sim
+
+            filha$maria/id=p-887-per2-per10
+               ls$viaja/sim
+
+            filha$beatriz/id=p-887-per2-per11
+               ls$viaja/sim
+
+            filha$ines/id=p-887-per2-per12
+               ls$viaja/sim
+
+      pas$p-892/4/2/1561/2-124v/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-892-per1
+
+         n$juan de zornoza/id=p-892-per2
+            ls$naturalidade/bilbao
+            ls$residencia/mexico
+            ls$viaja/sim
+
+      pas$p-904/4/1/1561/2-125v/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-904-per1
+
+         n$pedro gomez de hoyos/id=p-904-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$residencia/mexico
+
+            pai$pedro gomez de hoyos/id=p-904-per2-per3
+
+            mae$isabel gomez/id=p-904-per2-per4
+
+      pas$p-910/4/2/1561/2-125v/sevilla/nueva espana/num=1
+
+         mestre$benito sanchez/id=p-910-per1
+
+         n$aparicio garcia/id=p-910-per2
+            ls$naturalidade/bienvenida
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan dominguez/id=p-910-per2-per3
+
+            mae$isabel garcia/id=p-910-per2-per4
+
+      pas$p-911/4/2/1561/2-126/sevilla/nueva espana/num=6
+
+         mestre$francisco de ecija/id=p-911-per1
+
+         n$francisco gutierrez/id=p-911.ref
+            ls$naturalidade/caceres
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$perucho vizcaino/id=p-911.ref-per2
+
+            mae$juana gonzalez/id=p-911.ref-per3
+
+            mulher$francisca gonzalez/id=p-911.ref-per4
+               ls$viaja/sim
+               ls$naturalidade/albuquerque
+
+               pmulher$toribio corono/id=p-911.ref-per5
+
+               mmulher$catalina de toro/id=p-911.ref-per6
+
+               filho$antonio gutierrez/id=p-911.ref-per7
+                  ls$viaja/sim
+
+               filho$pedro gutierrez/id=p-911.ref-per8
+                  ls$viaja/sim
+
+               filho$juan gutierrez/id=p-911.ref-per9
+                  ls$viaja/sim
+
+               filho$andres gutierrez/id=p-911.ref-per10
+                  ls$viaja/sim
+
+      pas$p-914/4/2/1561/2-309v/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-914-per1
+
+         n$juan bautista/id=p-914-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/mercador
+
+            pai$francisco almagro/id=p-914-per2-per3
+
+            mae$isabel martin/id=p-914-per2-per4
+
+      pas$p-932/6/2/1561/2-127/sevilla/nueva espana/num=1
+
+         mestre$francisco de ecija/id=p-932-per1
+
+         n$isabel martin/id=p-932-per2
+            ls$naturalidade/albuquerque
+            ls$alcunha/la vitoria
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/criada
+            rel$profissional/criada/francisco gutierrez/p-911.ref
+
+            referido$francisco gutierrez/mesmo_que=p-911.ref/id=p-932-per2-per3
+
+            pai$juan martin centeno/id=p-932-per2-per4
+
+            mae$catalina rodriguez/id=p-932-per2-per5
+
+      pas$p-936/6/2/1561/2-128/sevilla/nueva espana/num=5
+
+         mestre$alonso galdamez/id=p-936-per1
+
+         n$cristobal de carmona/id=p-936-per2
+            ls$naturalidade/villamartin
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$cristobal martin/id=p-936-per2-per3
+
+            mae$beatriz de carmona/id=p-936-per2-per4
+               ls$viaja/sim
+
+            mulher$constanza de morales/id=p-936-per2-per5
+               ls$viaja/sim
+               ls$naturalidade/sevilla
+
+               pmulher$luis de morales/id=p-936-per2-per6
+
+               mmulher$elvira de rosales/id=p-936-per2-per7
+
+               filho$cristobal/id=p-936-per2-per8
+                  ls$viaja/sim
+
+               filha$beatriz/id=p-936-per2-per9
+                  ls$viaja/sim
+
+      pas$p-939/6/2/1561/2-128/sevilla/nueva espana/num=2
+
+         mestre$hernan heredia/id=p-939-per1
+
+         n$alonso pacho/id=p-939-per2
+            ls$naturalidade/fregenal
+            ls$viaja/sim
+            ls$titulo/clerigo
+
+            pai$fernando de jaen/id=p-939-per2-per3
+
+            mae$ana sanchez/id=p-939-per2-per4
+
+            irmao$francisco/id=p-939-per2-per5
+               ls$viaja/sim
+
+      pas$p-951/7/2/1561/2-129v/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-951-per1
+
+         n$catalina de palma/id=p-951-per2
+            ls$naturalidade/villanueva de barcarrota
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan macias/id=p-951-per2-per3
+
+            mae$mencia de la vega/id=p-951-per2-per4
+
+      pas$p-952/7/2/1561/2-129v/sevilla/nueva espana/num=1/obs=no paso y se le refrendo la licencia
+
+         mestre$cosme andres/id=p-952-per1
+
+         n$baltasar de leon/id=p-952-per2
+            ls$naturalidade/uceda
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/mercador
+
+            pai$diego de leon/id=p-952-per2-per3
+
+            mae$beatriz de huerta/id=p-952-per2-per4
+
+      pas$p-987/10/2/1561/2-132v/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-987-per1
+
+         n$ana de amescua/id=p-987-per2
+            ls$condicao/mestica
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$gomez de amescua/id=p-987-per2-per3
+
+            mae$isabel/id=p-987-per2-per4
+               ls$condicao/mestica
+
+      pas$p-996/10/2/1561/2-133v/sevilla/nueva espana/num=2
+
+         mestre$hernan ruiz/id=p-996-per1
+
+         n$beatriz sanchez/id=p-996.ref
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan de retamosa/id=p-996.ref-per2
+
+            mae$leonor sanchez/id=p-996.ref-per3
+
+            marido$anton arratia/id=p-996.ref-per4
+               ls$residencia/nueva espana
+
+         n$andres de flandes/id=p-996-per5
+            ls$naturalidade/san juan del puerto
+            ls$viaja/sim
+            rel$parentesco/primo/beatriz sanchez/p-996.ref
+
+            pai$juan rodriguez de flandes/id=p-996-per5-per6
+
+            mae$ines de gonzalez/id=p-996-per5-per7
+
+      pas$p-998/11/2/1562/2-133v/sevilla/nueva espana/num=1
+
+         mestre$francisco de ecija/id=p-998-per1
+
+         n$diego de estrada/id=p-998-per2
+            ls$naturalidade/talavera de la reina
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan alonso/id=p-998-per2-per3
+
+            mae$ana lopez/id=p-998-per2-per4
+
+      pas$p-999/11/2/1561/2-133/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-999-per1
+
+         n$garcia monroy/id=p-999-per2
+            ls$naturalidade/trujillo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$francisco de monroy/id=p-999-per2-per3
+
+            mae$mayor garcia/id=p-999-per2-per4
+
+      pas$p-1000/11/2/1561/2-133v/sevilla/nueva espana/num=1
+
+         mestre$francisco de ecija/id=p-1000-per1
+
+         n$juan falcon/id=p-1000-per2
+            ls$naturalidade/cazalla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$miguel falcon/id=p-1000-per2-per3
+
+            mae$ana de lora/id=p-1000-per2-per4
+
+      pas$p-1006/12/2/1562/2-134/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1006-per1
+
+         n$juan de baeza/id=p-1006-per2
+            ls$naturalidade/ciudad de rodrigo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$baltasar de baeza/id=p-1006-per2-per3
+
+            mae$catalina garcia/id=p-1006-per2-per4
+
+      pas$p-1008/12/2/1562/2-134v./sevilla/nueva espana/num=3
+
+         mestre$?/id=p-1008-per1
+
+         n$cristobal de quesada/id=p-1008-per2
+            ls$naturalidade/pobladura
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan alonso de quesada/id=p-1008-per2-per3
+
+            mae$isabel sanchez/id=p-1008-per2-per4
+
+            mulher$marina de robles/id=p-1008-per2-per5
+               ls$viaja/sim
+
+               pmulher$alonso vicente/id=p-1008-per2-per6
+
+               mmulher$ana de salas/id=p-1008-per2-per7
+
+               filho$luisico/id=p-1008-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1010/12/2/1562/2-/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1010-per1
+
+         n$alonso gomez de armenia/id=p-1010-per2
+            ls$naturalidade/manzanares
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$francisco gomez de armenia/id=p-1010-per2-per3
+
+            mae$constanza rodriguez/id=p-1010-per2-per4
+
+      pas$p-1011/12/2/1561/2-135/sevilla/nueva espana/num=1
+
+         mestre$pedro menendez marques/id=p-1011-per1
+
+         n$alonso de la fuente/id=p-1011-per2
+            ls$naturalidade/penaranda
+            ls$ec/s
+            ls$viaja/sim
+            rel$profissional/lavrador/bacharel pedro diaz/p-854.ref
+
+            referido$bacharel pedro diaz/mesmo_que=p-854.ref/id=p-1011-per2-per3
+
+            pai$julian de la fuente/id=p-1011-per2-per4
+
+            mae$maria de san martin/id=p-1011-per2-per5
+
+      pas$p-1014/12/2/1561/2-135/sevilla/nueva espana/num=3
+
+         mestre$lazaro cruzado/id=p-1014-per1
+
+         n$juan de zorita/id=p-1014.ref
+            ls$naturalidade/aldeaseca/obs=salamanca
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$hernando zorita/id=p-1014.ref-per1
+
+            mae$brigida gomez/id=p-1014.ref-per2
+
+            irma$margarita de castaneda/id=p-1014.ref-per3
+               ls$viaja/sim
+
+            irma$beatriz de castaneda/id=p-1014.ref-per4
+               ls$viaja/sim
+
+      pas$p-1016/12/2/1561/2-135/sevilla/nueva espana/num=2
+
+         mestre$juan de fuentes/id=p-1016-per1
+
+         n$antonio rodriguez/id=p-1016-per2
+            ls$naturalidade/montilla
+            ls$viaja/sim
+
+            pai$rodrigo rodriguez/id=p-1016-per2-per3
+
+            mae$catalina diaz/id=p-1016-per2-per4
+
+            filho$francisco rodriguez/id=p-1016-per2-per5
+               ls$viaja/sim
+
+      pas$p-1021/15/2/1561/2-135/sevilla/nueva espana/num=4
+
+         mestre$benito sanchez/id=p-1021-per1
+
+         n$alonso moreno/id=p-1021-per2
+            ls$naturalidade/arahal
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$gonzalo moreno/id=p-1021-per2-per3
+
+            mae$isabel garcia/obs=la vellosa/id=p-1021-per2-per4
+
+            mulher$maria garcia/id=p-1021-per2-per5
+               ls$viaja/sim
+
+               pmulher$anton jimenez/id=p-1021-per2-per6
+
+               mmulher$catalina garcia/id=p-1021-per2-per7
+
+               filho$basilio/id=p-1021-per2-per8
+                  ls$viaja/sim
+
+               filho$alonso/id=p-1021-per2-per9
+                  ls$viaja/sim
+
+      pas$p-1022/17/2/1561/2-136/sevilla/nueva espana/num=1/obs=no paso e y refrendo la licencia en 20 marzo
+
+         mestre$pedro de carrion/id=p-1022-per1
+
+         n$melchior de reyes/id=p-1022-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso romi/id=p-1022-per2-per3
+
+            mae$maria gutierrez/id=p-1022-per2-per4
+
+      pas$p-1023/17/2/1562/2-136/sevilla/nueva espana/num=1/obs=no paso y se le refrendo la licencia en 20 de mayo
+
+         mestre$pedro de carrion/id=p-1023-per1
+
+         n$brigida rodriguez/id=p-1023-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$simon suarez/id=p-1023-per2-per3
+
+            mae$isabel de zayas/id=p-1023-per2-per4
+
+      pas$p-1028/19/2/1561/2-136/sevilla/nueva espana/num=1
+
+         mestre$martin sanchez/id=p-1028-per1
+
+         n$francisco de soto/id=p-1028-per2
+            ls$naturalidade/santa maria la real
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$francisco de soto/id=p-1028-per2-per3
+
+            mae$ana garcia/id=p-1028-per2-per4
+
+      pas$p-1030/19/2/1561/2-136v/sevilla/nueva espana/num=4/obs=no pasaron y se les refrendo la licencia en 17 de marzo
+
+         mestre$alonso galdamez/id=p-1030-per1
+
+         n$alonso cortes/id=p-1030-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan cortes/id=p-1030-per2-per3
+
+            mae$leonor sanchez/id=p-1030-per2-per4
+
+            mulher$maria perez/id=p-1030-per2-per5
+               ls$viaja/sim
+
+               pmulher$diego hernandez/id=p-1030-per2-per6
+
+               mmulher$mayor gonzalez/id=p-1030-per2-per7
+
+               filho$francisco cortes/id=p-1030-per2-per8
+                  ls$viaja/sim
+
+               filho$juan cortes/id=p-1030-per2-per9
+                  ls$viaja/sim
+
+      pas$p-1036/19/2/1561/2-137/sevilla/nueva espana/num=2
+
+         mestre$juan griego/id=p-1036-per1
+
+         n$francisco martinez/id=p-1036-per2
+            ls$residencia/fuente de cantos
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$hernan sanchez/id=p-1036-per2-per3
+
+            mae$mencia gomez/id=p-1036-per2-per4
+
+            mulher$francisca juarez/id=p-1036-per2-per5
+               ls$viaja/sim
+
+               pmulher$francisco cid/id=p-1036-per2-per6
+
+               mmulher$beatriz vasquez/id=p-1036-per2-per7
+
+      pas$p-1037/21/2/1561/2-137/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1037-per1
+
+         n$juan gallego/id=p-1037.ref
+            ls$naturalidade/utrera
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan gallego/id=p-1037.ref-per2
+
+            mae$elvira lopez/id=p-1037.ref-per3
+
+      pas$p-1038/21/2/1561/2-137/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1038-per1
+
+         n$ana hernandez/id=p-1038-per2
+            ls$naturalidade/utrera
+            ls$viaja/sim
+            ls$ec/s
+            rel$parentesco/irma/juan gallego/p-1037.ref
+
+            referido$juan gallego/mesmo_que=p-1037.ref/id=p-1038-per2-per1
+
+            pai$juan gallego/id=p-1038-per2-per4
+
+            mae$elvira lopez/id=p-1038-per2-per5
+
+      pas$p-1041/21/1/1561/2-137v/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-1041-per1
+
+         n$bartalome martin/id=p-1041-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criado/juan quiros/p-802.ref
+
+            pai$juan lorenzo/id=p-1041-per2-per3
+
+            mae$mencia ruiz/id=p-1041-per2-per4
+
+      pas$p-1053/21/2/1561/2-310v/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-1053-per1
+
+         n$esteban franco/id=p-1053-per2
+            ls$naturalidade/duenas
+            ls$viaja/sim
+
+            pai$juan franco/id=p-1053-per2-per3
+
+            mae$maria gonzalez/id=p-1053-per2-per4
+
+      pas$p-1056/22/2/1561/2-138v/sevilla/nueva espana/num=1
+
+         mestre$francisco ecija/id=p-1056-per1
+
+         n$francisco martinez barba/id=p-1056-per2
+            ls$naturalidade/talavera de la reina
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$gonzalo martinez/id=p-1056-per2-per3
+
+            mae$ana barba/id=p-1056-per2-per4
+
+      pas$p-0000a/22/1/1561/2-138v/sevilla/nueva espana/num=2
+
+         mestre$hernan perez/id=p-0000a-per1
+
+         n$francisca de villegas/id=p-0000a-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+
+            marido$rui perez/id=p-0000a-per2-per3
+               ls$viaja/nao
+               ls$residencia/nueva espana
+
+            pai$cristobal de villegas/id=p-0000a-per2-per4
+
+            mae$elvira hernandez/id=p-0000a-per2-per5
+
+            filho$juan moreno/id=p-0000a-per2-per6
+               ls$viaja/sim
+
+      pas$p-1062/25/2/1561/2-139/sevilla/nueva espana/num=4
+
+         mestre$anton sanchez/id=p-1062-per1
+
+         n$juan fernandez brizuela/id=p-1062.ref
+            ls$naturalidade/granada
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/alfaite
+
+            pai$anton hernandez/id=p-1062.ref-per2
+
+            mae$ana de brizuela/id=p-1062.ref-per3
+
+            mulher$maria de navas/id=p-1062.ref-per4
+               ls$naturalidade/castillo de locubin
+               ls$viaja/sim
+
+               pmulher$bartolome sanchez/id=p-1062.ref-per5
+
+               mmulher$juana sanchez/id=p-1062.ref-per6
+
+         n$andres de castro/id=p-1062-per7
+            ls$viaja/sim
+            rel$parentesco/sobrinho/juan fernandez brizuela/p-1062.ref
+
+            pai$diego castro/id=p-1062-per7-per8
+
+            mae$catalina hernandez/id=p-1062-per7-per9
+
+         n$maria navas/id=p-1062-per10
+            ls$viaja/sim
+            rel$parentesco/sobrinha/juan fernandez brizuela/p-1062.ref
+
+            pai$cristobal sanchez/id=p-1062-per10-per11
+
+            mae$catalina hernandez/id=p-1062-per10-per12
+
+      pas$p-1064/25/2/1561/2-130v/sevilla/nueva espana/num=1
+
+         mestre$pedro duena sarmiento/id=p-1064-per1
+
+         n$domingo martinez/id=p-1064-per2
+            ls$naturalidade/marquina
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$martin martinez/id=p-1064-per2-per3
+
+            mae$maria martinez/id=p-1064-per2-per4
+
+      pas$p-1068/25/2/1561/2-139v/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-1068-per1
+
+         n$juan de mansilla/id=p-1068-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+            rel$sociabildade/feitor/francisco mansilla/p-1068.ref
+
+            pai$francisco de mansilla/id=p-1068.ref
+
+            mae$mencia lopez/id=p-1068-per2-per3
+
+      pas$p-1070/25/2/1561/2-140/sevilla/nueva espana/num=2
+
+         mestre$cosme andres/id=p-1070-per1
+
+         n$diego ramirez/id=p-1070.d.ref
+            ls$naturalidade/nueva espana
+            ls$viaja/sim
+
+            pai$diego ramirez/id=p-1070.d.ref-per2
+
+            irmao$jose ramirez/id=p-1070.j.ref
+               ls$naturalidade/nueva espana
+               ls$viaja/sim
+
+      pas$p-1072/26/2/1561/2-140/sevillal/nueva espana/num=1
+
+         mestre$diego de maya/id=p-1072-per1
+
+         n$pedro yanez/id=p-1072-per2
+            ls$naturalidade/cuenca
+            ls$viaja/sim
+            rel$profissional/criado/jose ramirez/p-1070.j.ref
+            rel$profissional/criado/diego ramirez/p-1070.d.ref
+
+            pai$pedro canamares/id=p-1072-per2-per3
+
+            mae$isabel yanez/id=p-1072-per2-per4
+
+      pas$p-1074/26/2/1561/2-140/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1074-per1
+
+         n$pedro cortes/id=p-1074-per2
+            ls$naturalidade/llerente
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro cortes/id=p-1074-per2-per3
+
+            mae$catalina jimenez/id=p-1074-per2-per4
+
+      pas$p-1075/26/2/1561/2-140v/sevilla/nueva espana/num=1
+
+         mestre$benito sanchez/id=p-1075-per1
+
+         n$pedro pacheco/id=p-1075.ref
+            ls$naturalidade/ciudad de rodrigo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$francisco hernandez/id=p-1075.ref-per2
+
+            mae$elvira de soria/id=p-1075.ref-per3
+               ls$titulo/dona
+
+      pas$p-1076/26/2/1561/2-140v/sevilla/nueva espana/num=1
+
+         mestre$benito sanchez/id=p-1076-per1
+
+         n$juan fernandez maldonado/id=p-1076-per2
+            ls$naturalidade/ciudad rodrigo
+            ls$viaja/sim
+            rel$profissional/criado/pedro pacheco/p-1075.ref
+            rel$parentesco/irmao/pedro pacheco/p-1075.ref
+
+            pai$francisco hernandez/id=p-1076-per2-per3
+
+            mae$elvira de soria/id=p-1076-per2-per4
+
+      pas$p-1079/26/2/1561/2-140v/sevilla/nueva espana/num=4
+
+         mestre$juan de fuentes/id=p-1079-per1
+
+         n$pedro lopez/id=p-1079.ref
+            ls$naturalidade/los santos
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$hernando gonzalez/id=p-1079.ref-per2
+
+            mae$leonor gonzalez/id=p-1079.ref-per3
+
+         n$cristobal hernandez/id=p-1079-per4
+            ls$viaja/sim
+            rel$parentesco/cunhado/pedro lopez/p-1079.ref
+
+            mulher$isabel gonzalez/id=p-1079-per4-per5
+               ls$naturalidade/los santos
+               ls$viaja/sim
+               rel$parentesco/irma/pedro lopez/p-1079.ref
+
+               filho$diego/id=p-1079-per4-per6
+                  ls$idade/15 meses
+                  ls$viaja/sim
+
+      pas$p-1082/27/2/1561/2-141/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1082-per1
+
+         n$diego lopez de las roelas/id=p-1082-per2
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$gudiel cervatos/id=p-1082-per2-per3
+               ls$titulo/licenciado
+
+            mae$maria de castaneda/id=p-1082-per2-per4
+               ls$titulo/dona
+
+      pas$p-1087/1/2/1561/2-141v/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-1087-per1
+
+         n$teresa martinez/id=p-1087.ref
+            ls$naturalidade/urda
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan martin/id=p-1087.ref-per2
+
+            mae$catalina martinez/id=p-1087.ref-per3
+
+            marido$alonso acena/id=p-1087.ref-per4
+               ls$residencia/nueva espana
+
+      pas$p-1088/1/3/1561/2-141v/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-1088-per1
+
+         n$pedro illescas/id=p-1088-per2
+            ls$naturalidade/herencia
+            ls$viaja/sim
+            ls$ec/s
+            rel$sociabilidade/acompanhou na viagem/teresa martinez/p-1087.ref
+
+            referida$teresa martinez/mesmo_que=p-1087.ref/id=p-1088-per2-per1
+
+            pai$alonso garcia illescas/id=p-1088-per2-per3
+
+            mae$teresa munoz/id=p-1088-per2-per4
+
+      pas$p-1089/1/3/1561/2-141v/sevilla/nueva espana/num=3
+
+         mestre$francisco ecija/id=p-1089-per1
+
+         n$francisco hernandez/id=p-1089-per2
+            ls$naturalidade/moraleja de las panaderas
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/alfaiate
+
+            pai$toribio hernandez/id=p-1089-per2-per3
+
+            mae$elvira garcia/id=p-1089-per2-per4
+
+            mulher$maria diaz/id=p-1089-per2-per5
+               ls$viaja/sim
+
+               pmulher$juan de almenara/id=p-1089-per2-per6
+
+               mmulher$francisca diaz/id=p-1089-per2-per7
+
+      pas$p-1090/1/3/1561/2-141v/sevilla/nueva espana/num=3/obs=2-142v repetido
+
+         mestre$hernan perez/id=p-1090-per1
+
+         n$pedro salamanca/id=p-1090-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$antonio salamanca/id=p-1090-per2-per3
+
+            mae$ana hernandez/id=p-1090-per2-per4
+
+            mulher$maria hernanez/id=p-1090-per2-per5
+               ls$viaja/sim
+
+               pmulher$marcos argomedo/id=p-1090-per2-per6
+
+               mmulher$catalina hernandez/id=p-1090-per2-per7
+
+               filha$beatriz/id=p-1090-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1091/1/3/1561/2-142/sevilla/nueva espana/num=5
+
+         mestre$francisco ecija/id=p-1091-per1
+
+         n$francisco tirado/id=p-1091.ref
+            ls$residencia/malaga
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alonso hernandez tirado/id=p-1091.ref-per2
+
+            mae$ana de peralta/id=p-1091.ref-per3
+
+            mulher$isabel tellez/id=p-1091.ref-per4
+               ls$viaja/sim
+
+               pmulher$juan martin hurtado/id=p-1091.ref-per5
+
+               mmulher$ines tellez/id=p-1091.ref-per6
+
+               filho$juan/id=p-1091.ref-per7
+                  ls$viaja/sim
+
+               filho$alonso/id=p-1091.ref-per8
+                  ls$viaja/sim
+
+         n$catalina tellez/id=p-1091-per9
+            ls$viaja/sim
+            rel$parentesco/cunhada/francisco tirado/p-1091.ref
+
+      pas$p-1093/1/3/1561/2-142/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1093-per1
+
+         n$diego de cespedes/id=p-1093-per2
+            ls$naturalidade/puertollano
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$diego hernandez/id=p-1093-per2-per3
+
+            mae$ana cespedes/id=p-1093-per2-per4
+
+      pas$p-1096/1/3/1561/2-142/sevilla/nueva espana/num=1
+
+         mestre$francisco ecija/id=p-1096-per1
+
+         n$hernando alvarez/id=p-1096-per2
+            ls$naturalidade/toledo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro alvarez de toledo/id=p-1096-per2-per3
+
+            mae$catalina rodriguez/id=p-1096-per2-per4
+
+      pas$p-1101/1/3/1561/2-143/sevilla/nueva espana/num=2
+
+         mestre$benito sanchez/id=p-1101-per1
+
+         n$miguel de parraga/id=p-1101.ref
+            ls$naturalidade/madrid
+            ls$residencia/nueva espana
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$miguel de parraga/id=p-1101.ref-per2
+
+            mae$isabel de quesada/id=p-1101.ref-per3
+
+         n$ines de rojas/id=p-1101-per4
+            ls$viaja/sim
+            rel$parentesco/cunhada/miguel parraga/p-1101.ref
+
+            pai$juan perez/id=p-1101-per4-per5
+
+            mae$margarita perez/id=p-1101-per4-per6
+
+      pas$p-1103/1/3/1561/2-25v.y143/sevilla/nueva espana/num=2
+
+         mestre$juan de fuentes/id=p-1103-per1
+
+         n$teresa martin/id=p-1103-per2
+            ls$naturalidade/jerez de la frontera
+            ls$viaja/sim
+            ls$ec/v
+
+            pai$benito sanchez/id=p-1103-per2-per3
+
+            mae$juana martin/id=p-1103-per2-per4
+
+            filha$leonor sanchez/id=p-1103-per2-per5
+               ls$viaja/sim
+
+      pas$p-1105/1/3/1561/2-310v/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1105-per1
+
+         n$francisco hernandez/id=p-1105-per2
+            ls$residencia/sevilla
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/mercador/obs=por 20 meses
+
+            pai$gonzalo hernandez/id=p-1105-per2-per3
+
+            mae$maria hernandez/id=p-1105-per2-per4
+
+      pas$p-1106/4/3/1561/2-143/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1106-per1
+
+         n$diego alonso larios/id=p-1106.ref
+            ls$naturalidade/gualdacanal
+            ls$residencia/mexico
+            ls$viaja/sim
+
+            pai$diego alonso larios/id=p-1106.ref-per2
+
+            mae$maria garcia/id=p-1106.ref-per3
+
+      pas$p-1107/4/3/1561/2-143v/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1107-per1
+
+         n$juana/id=p-1107-per2
+            ls$viaja/sim
+            ls$condicao/escrava
+            rel$profissional/escrava/diego alonso larios/p-1106.ref
+
+      pas$p-1108/4/2/1561/2-143/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1108-per1
+
+         n$juan gonzalez/id=p-1108-per2
+            ls$naturalidade/torremilano
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$martin sanchez blasco/id=p-1108-per2-per3
+
+            mae$maria lopez/id=p-1108-per2-per4
+
+      pas$p-1109/4/3/1561/2-143v/sevilla/nueva espana/num=2
+
+         mestre$juan griego/id=p-1109-per1
+
+         n$hernando guerra/id=p-1109-per2
+            ls$naturalidade/barco de avila
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso guerra/id=p-1109-per2-per3
+
+            mae$francisca munoz/id=p-1109-per2-per4
+
+            irmao$juan guerra/id=p-1109-per2-per5
+               ls$naturalidade/barco de avila
+               ls$viaja/sim
+               ls$ec/s
+
+      pas$p-1110/4/3/1561/2-143v/sevilla/nueva espana/num=1
+
+         mestre$alonso galdamez/id=p-1110-per1
+
+         n$francisca lopez/id=p-1110.ref
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$pedro hernandez calvo/id=p-110.ref-per2
+
+            mae$francisca lopez/id=p-110.ref-per3
+
+            marido$bartolome de madrid/id=p-110.ref-per4
+               ls$residencia/nueva espana
+
+      pas$p-1111/4/3/1561/2-143/sevilla/nueva espana/num=2
+
+         mestre$alonso galdamez/id=p-1111-per1
+
+         n$alonso de madrid/id=p-1111-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+            rel$sociabilidade/viaja em companhia de/francisca lopez/p-1110.ref
+
+            pai$jeronimo ruiz/id=p-1111-per2-per3
+
+            mae$maria hernandez/id=p-1111-per2-per4
+
+            mulher$catalina de castro/id=p-1111-per2-per5
+               ls$viaja/sim
+               rel$sociabilidade/viaja em companhia de/francisca lopez/p-1110.ref
+
+               pmulher$francisco de castro/id=p-1111-per2-per6
+
+               mmulher$mencia de castro/id=p-1111-per2-per7
+
+            referida$francisca lopez/mesmo_que=p-1110.ref/id=p-1111-per2-per1
+
+      pas$p-1112/4/3/1561/2-143v/sevilla/nueva espana/num=1
+
+         mestre$alonso galdamez/id=p-1112-per1
+
+         n$isabel de madrid/id=p-1112-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criada/francisca lopez/p-1110.ref
+
+            pai$martin alonso anjolero/id=p-1112-per2-per3
+
+            mae$leonor de madrid/id=p-1112-per2-per4
+
+      pas$p-1113/4/3/1561/2-113v/sevilla/nueva espna/num=1/obs=se le refrendo la licencia el 10 de abril
+
+         mestre$alonso galdamez/id=p-1113-per1
+
+         n$pedro manuel pimentel/id=p-1113.ref
+            ls$naturalidade/trujillo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$luis manuel pimentel/id=p-1113.ref-per2
+
+            mae$elvira orellana/id=p-1113.ref-per3
+               ls$titulo/dona
+
+      pas$p-1114/4/2/1561/2-143v/sevilla/nueva espana/num=1
+
+         mestre$hernando heredia/id=p-1114-per1
+
+         n$hernando ribera/id=p-1114-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso gomez/id=p-1114-per2-per3
+               ls$titulo/doutor
+
+            mae$sebastiana/id=p-1114-per2-per4
+               ls$titulo/dona
+
+      pas$p-1124/4/3/1561/2-144v/sevilla/nueva espan/num=3
+
+         mestre$hernan heredia/id=p-1124-per1
+
+         n$alonso martin pachon/id=p-1124-per2
+            ls$residencia/chillon
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/lavrador
+
+            pai$anton martin pachon/id=p-1124-per2-per3
+
+            mae$catalina sanchez/id=p-1124-per2-per4
+               ls$alcunha/la vaqueriza
+
+            mulher$catalina de saavedra/id=p-1124-per2-per5
+               ls$viaja/sim
+
+               filho$martin/id=p-1124-per2-per6
+                  ls$viaja/sim
+
+      pas$p-1125/4/3/1561/2-144v/sevilla/nueva espana/num=1
+
+         mestre$hernan heredia/id=p-1125-per1
+
+         n$francisco henrique/id=p-1125-per2
+            ls$naturalidade/nueva espana
+            ls$residencia/nueva espana
+            ls$viaja/sim
+
+            pai$juan alvarez/id=p-1125-per2-per3
+
+            mae$ana alvarez/id=p-1125-per2-per4
+
+      pas$p-1129/4/3/1561/2-143/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-1129-per1
+
+         n$gaspar ruiz/id=p-1129-per2
+            ls$naturalidade/orense
+            ls$residencia/nueva espana/obs=onde reside a sua mulher
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$gaspar ruiz/id=p-1129-per2-per3
+
+            mae$mencia diaz/id=p-1129-per2-per4
+
+      pas$p-1130/4/3/1561/2-145/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-1130-per1
+
+         n$francisco de tejeda/id=p-1130-per2
+            ls$naturalidade/orense
+            ls$residencia/nueva espana/obs=onde reside sua mulher
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan tejeda/id=p-1130-per2-per3
+
+            mae$isabel hernandez/id=p-1130-per2-per4
+
+      pas$p-1131/4/3/1561/2-145/sevilla/nueva espana/num=2
+
+         mestre$francisco ecija/id=p-1131-per1
+
+         n$antonio vazquez/id=p-1131.ref
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$nicolas de toledo/id=p-1131.ref-per2
+               ls$titulo/licenciado
+
+            mae$maria de castaneda/id=p-1131.ref-per3
+
+            irmao$jose godinez/id=p-1131.ref-per4
+               ls$viaja/sim
+               rel$parentesco/irmao/antonio vazquez/p-1131.ref
+
+      pas$p-1133/4/3/1561/2-311/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1133-per1
+
+         n$alonso juarez/id=p-1133-per2
+            ls$naturalidade/sevilla
+            ls$profissao/mercador
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alonso juarez/id=p-1133-per2-per3
+
+            mae$beatriz de quiros/id=p-1133-per2-per4
+
+      pas$p-1134/4/3/1561/2-311/sevilla/nueva espana/num=1
+
+         mestre$benito sanchez/id=p-1134-per1
+
+         n$pedro ruiz de escobar/id=p-1134-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/mercador
+
+            pai$antonio lopez de escobar/id=p-1134-per2-per3
+
+            mae$isabel lopez/id=p-1134-per2-per4
+
+      pas$p-1135/4/3/1561/2-311/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1135-per1
+
+         n$cosme de vilches/id=p-1135-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan de vilches/id=p-1135-per2-per3
+
+            mae$maria de ribera/id=p-1135-per2-per4
+
+      pas$p-1136/6/3/1561/2-145v/sevilla/nueva espana/num=3
+
+         mestre$francisco de ecija/id=p-1136-per1
+
+         n$ines hernandez/id=p-1136-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            marido$antonio alvarez/id=p-1136-per2-per3
+               ls$residencia/nueva espana
+               ls$viaja/nao
+
+            pai$alonso ramos/id=p-1136-per2-per4
+
+            mae$ana castro/id=p-1136-per2-per5
+
+            filha$ana de castroviaja/sim/id=p-1136-per2-per6
+
+            filho$juan ramos/id=p-1136-per2-per7
+               ls$viaja/sim
+
+      pas$p-1138/6/3/1561/2-145v/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1138-per1
+
+         n$juan ramirez/id=p-1138-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criado/licenciado villanueva/p-1138.ref
+
+            referido$licenciado villanueva/id=p-1138.ref
+               ls$titulo/licenciado
+               ls$cargo/juiz/obs=daquela audiencia
+
+            pai$juan augustin/id=p-1138-per2-per3
+
+            mae$francisca de aguillar/id=p-1138-per2-per4
+
+      pas$p-1139/6/3/1561/2-145v/sevilla/nueva espana/num=2
+
+         mestre$juan griego/id=p-1139-per1
+
+         n$juan de armenia/id=p-1139-per2
+            ls$residencia/manzanares
+            ls$viaja/sim
+
+            filho$bartolome de ontiveros/id=p-1139-per2-per3
+               ls$viaja/sim
+
+      pas$p-1150/6/3/1561/2-146v/sevilla/nueva espana/num=4
+
+         mestre$s.inf/id=p-1150-per1
+
+         n$bartalome gomez/id=p-1150-per2
+            ls$naturalidade/ledesma
+            ls$viaja/sim
+            ls$profissao/alfaiate
+            ls$ec/c
+
+            pai$alonso hernandez/id=p-1150-per2-per3
+
+            mae$elena gomez/id=p-1150-per2-per4
+
+            mulher$maria palencia/id=p-1150-per2-per5
+               ls$viaja/sim
+
+               filha$maria/id=p-1150-per2-per6
+                  ls$viaja/sim
+
+               filha$catalina/id=p-1150-per2-per7
+                  ls$viaja/sim
+
+      pas$p-1151/6/3/1561/2-146v/sevilla/nueva espana/num=5
+
+         mestre$alonso martin/id=p-1151-per1
+
+         n$alonso de madrid/id=p-1151-per2
+            ls$naturalidade/ayamonte
+            ls$profissao/mercador
+            ls$viaja/sim
+
+            pai$diego sanchez/id=p-1151-per2-per3
+
+            mae$isabel de los libos/obs=sic/id=p-1151-per2-per4
+
+            filha$catalina hernandez/id=p-1151-per2-per5
+               ls$viaja/sim
+
+            filha$maria de madrid/id=p-1151-per2-per6
+               ls$viaja/sim
+
+            filha$francisca de madrid/id=p-1151-per2-per7
+               ls$viaja/sim
+
+            filha$leonor de madrid/id=p-1151-per2-per8
+               ls$viaja/sim
+
+      pas$p-1152/6/3/1561/2-146v/sevilla/nueva espana/num=2
+
+         mestre$francisco ecija/id=p-1152-per1
+
+         n$juana gonzalez/id=p-1152-per2
+            ls$naturalidade/hornachuelos
+            ls$viaja/sim
+            ls$ec/v
+
+            pai$alonso miguel/id=p-1152-per2-per3
+
+            mae$juana gonzalez/id=p-1152-per2-per4
+
+            filha$maria/id=p-1152-per2-per5
+               ls$viaja/sim
+
+      pas$p-1153/6/3/1561/2-146v/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1153-per1
+
+         n$rodrigo de navarrete/id=p-1153-per2
+            ls$naturalidade/baeza
+            ls$profissao/mercador
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$francisco de barras/id=p-1153-per2-per3
+
+            mae$isabel de navarrete/id=p-1153-per2-per4
+
+      pas$p-1154/6/3/1561/2-146v/sevilla/nueva espana/num=3
+
+         mestre$juan de fuentes/id=p-1154-per1
+
+         n$francisco de moya/id=p-1154-per2
+            ls$naturalidade/almodovar del campo
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan moya/id=p-1154-per2-per3
+
+            mae$isabel franca/id=p-1154-per2-per4
+
+            mulher$maria rodriguez/id=p-1154-per2-per5
+               ls$viaja/sim
+
+               pmulher$justo gomez/id=p-1154-per2-per6
+
+               mmulher$maria gallega/id=p-1154-per2-per7
+
+               filho$miguel/id=p-1154-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1157/7/3/1561/2-147v/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-1157-per1
+
+         n$juan garcia/id=p-1157-per2
+            ls$viaja/sim
+            ls$naturalidade/cuacos
+            ls$ec/s
+
+            pai$francisco garcia/id=p-1157-per2-per3
+
+            mae$maria gonzalez/id=p-1157-per2-per4
+
+      pas$p-1159/8/3/1561/2-147/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1159-per1
+
+         n$diego lopez de ovalle/id=p-1159-per2
+            ls$naturalidade/sevilla
+            ls$profissao/mercador
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$rui lopez de arjona/id=p-1159-per2-per3
+
+            mae$luisa de ovalle/id=p-1159-per2-per4
+
+      pas$p-1162/8/3/156/2-147v/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1162-per1
+
+         n$diego de tarifa/id=p-1162-per2
+            ls$naturalidade/sevilla
+            ls$profissao/mercador
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso de talavera/id=p-1162-per2-per3
+
+            mae$beatriz garcia/id=p-1162-per2-per4
+
+      pas$p-1165/8/3/1561/2-147v/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-1165-per1
+
+         n$luciano de espindola/id=p-1165-per2
+            ls$naturalidade/granada
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$jeronimo espinndola/id=p-1165-per2-per3
+
+            mae$maria herrera/id=p-1165-per2-per4
+
+      pas$p-1166/8/3/1561/2-147v/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1166-per1
+
+         n$jeronimo lopez/id=p-1166-per2
+            ls$naturalidade/santa olalla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$francisco lopez/id=p-1166-per2-per3
+
+            mae$luisa perez/id=p-1166-per2-per4
+
+      pas$p-1167/8/3/1561/2-147v/sevilla/nueva espana/num=5
+
+         mestre$juan griego/id=p-1167-per1
+
+         n$cristobal hurtado/id=p-1167-per2
+            ls$naturalidade/el pedroso
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$cristobal martin/id=p-1167-per2-per3
+
+            mae$ctalina hunoz hurtada/id=p-1167-per2-per4
+
+            mulher$maria sanchez/id=p-1167-per2-per5
+               ls$naturalidade/zafra
+               ls$viaja/sim
+
+               pmulher$pedro garcia morales/id=p-1167-per2-per6
+
+               mmulher$mayor rodriguez/id=p-1167-per2-per7
+
+               filha$catalina/id=p-1167-per2-per8
+                  ls$vaiaja/sim
+
+               filho$pedro/id=p-1167-per2-per9
+                  ls$vaiaja/sim
+
+               filha$juan/id=p-1167-per2-per10
+                  ls$vaiaja/sim
+
+      pas$p-1168/8/3/1561/2-148/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-1168-per1
+
+         n$juan de palencia/id=p-1168-per2
+            ls$naturalidade/sevilla
+            ls$residencia/mexico
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$anton palencia/id=p-1168-per2-per3
+
+            mae$beatriz de villa padierna/id=p-1168-per2-per4
+
+      pas$p-1176/8/3/1561/2-148v/sevilla/nueva espana/num=1
+
+         mestre$francisco ecija/id=p-1176-per1
+
+         n$pedro vasquez/id=p-1176-per2
+            ls$condicao/mestica
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro vasquez/id=p-1176-per2-per3
+
+            mae$luisa vasquez/id=p-1176-per2-per4
+
+      pas$p-1181/10/3/1561/2-148v/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1181-per1
+
+         n$anton martin de santaella/id=p-1181-per2
+            ls$naturalidade/malaga
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro martin de santaella/id=p-1181-per2-per3
+
+            mae$catalina rodriguez rodriguez/id=p-1181-per2-per4
+
+      pas$p-1182/10/3/1561/2-148v/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1182-per1
+
+         n$bartalome de torres/id=p-1182-per2
+            ls$naturalidade/chiloeches
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso de torres/id=p-1182-per2-per3
+
+            mae$alonso maranon/obs=sic/id=p-1182-per2-per4
+
+      pas$p-1183/10/3/1561/2-148v/sevilla/nueva espana/num=2
+
+         mestre$juan griego/id=p-1183-per1
+
+         n$diego perez de frias/id=p-1183.ref
+            ls$naturalidade/ecija
+            ls$residencia/zacatecas/obs=nueva espana
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan rodriguez de toledano/id=p-1183.ref-per2
+
+            mae$isabel perez/id=p-1183.ref-per3
+
+            mulher$luisa lopez/id=p-1183.ref-per4
+               ls$viaja/sim
+               ls$naturalidade/sevilla
+
+               pmulher$inigo lopez/id=p-1183.ref-per5
+
+               mmulher$leonor de ribera/id=p-1183.ref-per6
+
+      pas$p-1184/10/3/1561/2-148v/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1184-per1
+
+         n$alonso ortiz/id=p-1184-per2
+            ls$naturalidade/utrera/obs=diocese de sevilla
+            ls$viaja/sim
+            ls$profissao/clerigo
+
+            pai$francisco ortiz/id=p-1184-per2-per3
+
+            mae$marina diaz/id=p-1184-per2-per4
+
+      pas$p-1185/10/3/1561/2-311v/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1185-per1
+
+         n$pedro izquierdo/id=p-1185-per2
+            ls$naturalidade/triguero
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco veas/id=p-1185-per2-per3
+
+            mae$baetriz trigueros/id=p-1185-per2-per4
+
+      pas$p-1186/10/3/1561/2-311v/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-1186-per1
+
+         n$andres de quesada/id=p-1186-per2
+            ls$naturalidade/jaen
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan de quesada/id=p-1186-per2-per3
+
+            mae$catalina pareja/id=p-1186-per2-per4
+
+      pas$p-1188/11/3/1561/2-312/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1188-per1
+
+         n$francisco segarra/id=p-1188-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$arnao segarra/id=p-1188-per2-per3
+
+            mae$mayor ponce de leon/id=p-1188-per2-per4
+               ls$titulo/dona
+
+      pas$p-1189/11/3/1561/2-312/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1189-per1
+
+         n$hernan perez/id=p-1189-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/mercador
+
+            pai$pedro hernandez/id=p-1189-per2-per3
+
+            mae$leonia/obs=sic de cordoba/id=p-1189-per2-per4
+
+      pas$p-1192/12/3/1561/2-149/sevilla/nueva espana/num=1
+
+         mestre$juan de fuentes/id=p-1192-per1
+
+         n$gonzalo sanchez/id=p-1192-per2
+            ls$naturalidade/alcocer
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$gonzalo hidalgo/id=p-1192-per2-per3
+
+            mae$mencia de pena/id=p-1192-per2-per4
+
+      pas$p-1197/13/3/1561/2-149v/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1197-per1
+
+         n$rodrigo de prado/id=p-1197-per2
+            ls$residencia/toro/obs=nueva espana donde tiene su mujer e casa
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$rodrigo de prado/id=p-1197-per2-per3
+
+            mae$antonia sanchez/id=p-1197-per2-per4
+
+      pas$p-1198/13/3/1561/2-149v/sevilla/nueva espana/num=1
+
+         mestre$juan diaz/id=p-1198-per1
+
+         n$juan hernandez/id=p-1198-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/v
+            rel$profissional/criada/diego perez de frias/p-1183.ref
+
+            referido$diego perez de frias/mesmo_que=p-1183.ref/id=p-1198-per2-per3
+
+            pai$juan de la pena/id=p-1198-per2-per4
+
+            mae$isabel hernandez/id=p-1198-per2-per5
+
+      pas$p-1199/13/3/1561/2-149v/sevilla/nueva espana/num=1
+
+         mestre$hernan ruiz/id=p-1199-per1
+
+         n$marcos rodriguez/id=p-1199-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$profissao/tecelao
+            ls$ec/s
+
+            pai$juan rodriguez/id=p-1199-per2-per3
+               ls$profissao/tecelao
+
+            mae$maria ruiz/id=p-1199-per2-per4
+
+      pas$p-1202/13/3/1561/2-149v/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1202-per1
+
+         n$anton garcia/id=p-1202-per2
+            ls$naturalidade/sevilla
+            ls$residencia/nueva espana/obs= donde tiene su mujer e casa
+            ls$profissao/sapateiro
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alonso de soria/id=p-1202-per2-per3
+
+            mae$elvira gonzalez/id=p-1202-per2-per4
+
+      pas$p-1203/13/3/1561/2-150/sevilla/nueva espana/num=2
+
+         mestre$lazaro cruzado/id=p-1203-per1
+
+         n$sebastian gallegos/id=p-1203-per2
+            ls$naturalidade/riaza
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$andres de palencia/id=p-1203-per2-per3
+
+            mae$maria/id=p-1203-per2-per4
+
+            mulher$juana gonzalez/id=p-1203-per2-per5
+               ls$viaja/sim
+
+               pmulher$andres gonzalez/id=p-1203-per2-per6
+
+               mmulher$juana gonzalez/id=p-1203-per2-per7
+
+      pas$p-1204/13/3/1561/2-150/sevilla/nueva espana/num=3
+
+         mestre$anton sanchez/id=p-1204-per1
+
+         n$francisco gomez/id=p-1204.ref
+            ls$naturalidade/granja
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$pedro hernandez barbero/id=p-1204.ref-per2
+
+            mae$catalina martin/id=p-1204.ref-per3
+
+            mulher$luisa de los reyes/id=p-1204.ref-per4
+               ls$viaja/sim
+
+               pmulher$martin rodriguez/id=p-1204.ref-per5
+
+               mmulher$ana hernandez/id=p-1204.ref-per6
+
+               filha$leonor/id=p-1204.ref-per7
+                  ls$viaja/sim
+
+      pas$p-1205/13/3/1561/2-150/sevilla/nueva espana/num=3
+
+         mestre$lazaro cruzado/id=p-1205-per1
+
+         n$gonzalo sanchez/id=p-1205-per2
+            ls$naturalidade/sevilla
+            ls$profissao/ferreiro
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan sanchez/id=p-1205-per2-per3
+
+            mae$ines de olmedo/id=p-1205-per2-per4
+
+            mulher$beatriz sanchez/id=p-1205-per2-per5
+               ls$viaja/sim
+
+               pmulher$juan de tuesta/id=p-1205-per2-per6
+
+               mmulher$catalina tuesta/id=p-1205-per2-per7
+
+               filha$ines sanchez/id=p-1205-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1207/13/3/1516/2-150/sevilla/nueva espana/num=2
+
+         mestre$juan griego/id=p-1207-per1
+
+         n$maria de castro verde/id=p-1207-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/v
+
+            filho$gaspar/id=p-1207-per2-per3
+               ls$viaja/sim
+
+      pas$p-1208/13/3/1561/2-150v/sevilla/nueva espana/num=2
+
+         mestre$lazaro cruzado/id=p-1208-per1
+
+         n$diego de sansores/id=p1208.ref
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+
+            pai$pedro sansores/id=p1208.ref-per2
+
+            mae$isabel jimenez/id=p1208.ref-per3
+
+         n$anastacia/id=p-1208-per4
+            ls$viaja/sim
+            rel$parentesco/irma/diego de sansores/p-1208.ref
+
+      pas$p-1209/13/3/1561/2-312v/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1209-per1
+
+         n$bernardino lucas/id=p-1209-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$profissao/mercador
+            ls$ec/c
+
+            pai$diego jimenez/id=p-1209-per2-per3
+
+            mae$juana jimenez/id=p-1209-per2-per4
+
+      pas$p-1210/13/3/1561/2-312v/sevilla/nueva espana/num=1
+
+         mestre$cosme andres/id=p-1210-per1
+
+         n$pedro carrillo/id=p-1210-per2
+            ls$naturalidade/penalver
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$diego carrillo/id=p-1210-per2-per3
+
+            mae$maria ortega/id=p-1210-per2-per4
+
+      pas$p-1213/15/3/156/2-150v/sevilla/nueva espana/num=1/obs=no paso e se le refrendo la licencia en 10 de abril de 1561
+
+         mestre$hernan perez/id=p-1213-per1
+
+         n$diego de silva/id=p-1213-per2
+            ls$naturalidade/jerez/obs=de los caballeros
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criado/pedro manuel pimentel/p-1113.ref
+
+            pai$lorenzo de silva/id=p-1213-per2-per3
+
+            mae$ana de saucedo/id=p-1213-per2-per4
+
+      pas$p-1214/15/3/1561/2-150v/sevilla/nueva espana/num=20
+
+         mestre$hernan perez/id=p-1214-per1
+
+         n$cristobal gomez/id=p-1214-per2
+            ls$naturalidade/ciudad rodrigo
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criado/frei juan de cordoba/p-1214.ref/obs= e de outos dieciocho dominicos mas
+
+            pai$cristobal gomez/id=p-1214-per2-per3
+
+            mae$maria de ampudia/id=p-1214-per2-per4
+
+         n$juan cordoba/id=p-1214.ref
+            ls$titulo/frei
+            ls$cargo/vigario
+            ls$ordem/sao domingo
+            ls$profissao/religioso
+
+         n$nome desconhecido/id=p-1214-per5
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per6
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per7
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per8
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per9
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per10
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per11
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per12
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per13
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per14
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per15
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per16
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per17
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per18
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per19
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per20
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per21
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+         n$nome desconhecido/id=p-1214-per22
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ordem/sao domingo
+
+      pas$p-1215/15/2/1561/2-151/sevilla/nueva espana/num=1
+
+         mestre$hernan perez/id=p-1215-per1
+
+         n$francisco de vallejo/id=p-1215-per2
+            ls$naturalidade/trepana
+            ls$viaja/sim
+            rel$profissional/criado/frei juan de cordoba/p-1214/obs= e de outos dieciocho dominicos mas
+
+            pai$bernarbe de vallejo/id=p-1215-per2-per3
+
+            mae$maria uncea/id=p-1215-per2-per4
+
+      pas$p-1216/15/3/1561/2-151/sevilla/nueva espana/num=2/obs= no paso e se les refrendo la licencia 23 de deziembre 1561
+
+         mestre$rui diaz matamoros/id=p-1216-per1
+
+         n$garcia del castillo/id=p-1216-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$beltran de cetrina/id=p-1216-per2-per3
+
+            mae$francisca del castillo/id=p-1216-per2-per4
+
+            mulher$catalina lopez/id=p-1216-per2-per5
+               ls$titulo/dona
+               ls$naturalidade/sevilla
+               ls$viaja/sim
+
+               pmulher$juan de olivares/id=p-1216-per2-per6
+                  ls$cargo/jurado
+
+               mmulher$beatriz lopez/id=p-1216-per2-per7
+
+      pas$p-1217/15/3/1561/2-151/sevilla/nueva espana/num=2/obs=no paso fernando rodriguez porque morrio e en su lugar si nombro al lorenzo rodriguez espinoza
+
+         mestre$rui diaz matamoros/id=p-1217-per1
+
+         n$fernando rodriguez/id=p-1217-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            rel$profissional/criado/garcia del castillo/p-1216.ref
+
+            pai$juan de olivares/id=p-1217-per2-per3
+
+            mae$beatriz lopez/id=p-1217-per2-per4
+
+         n$luisa de osorio/id=p-1217-per5
+            ls$naturalidade/sevilla
+            rel$profissional/criada/garcia del castillo/p-1216.ref
+
+            pai$antonio rodriguez/id=p-1217-per5-per6
+
+            mae$isabel de torres/id=p-1217-per5-per7
+
+      pas$p-1218/15/3/1561/2-151/sevilla/nueva espna/num=1
+
+         mestre$rui diaz mata moros/id=p-1218-per1
+
+         n$beatriz de villa padierna/id=p-1218-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            rel$profissional/criada/garcia del castillo/p-1216.ref
+
+            pai$juan de castro verde/id=p-1218-per2-per3
+
+            mae$maria hernandez/id=p-1218-per2-per4
+
+      pas$p-1219/15/3/1561/2-151/sevilla/nueva espana/num=4
+
+         mestre$alonso galdamez/id=p-1219-per1
+
+         n$francisco de heredia/id=p-1219-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco de heredia/id=p-1219-per2-per3
+
+            mae$catalina jimenez/id=p-1219-per2-per4
+
+            mulher$francisca rodriguez/id=p-1219-per2-per5
+               ls$viaja/sim
+
+               pmulher$diego rodriguez/id=p-1219-per2-per6
+
+               mmulher$ines hernandez/id=p-1219-per2-per7
+                  ls$viaja/sim
+                  rel$parentesco/sogra/francisco de heredia/p-1219.ref
+
+               filho$francisco/id=p-1219-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1220/15/3/1561/2-151v/sevilla/nueva espana/num=3
+
+         mestre$hernan ruiz/id=p-1220-per1
+
+         n$juan perez clavijo/id=p-1220-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$andres perez clavijo/id=p-1220-per2-per3
+               ls$profissao/lagareiro
+
+            mae$maria hernandez/id=p-1220-per2-per4
+
+            mulher$margarita perez/obs=negra/id=p-1220-per2-per5
+               ls$viaja/sim
+
+               filho$andres de rojas/id=p-1220-per2-per6
+                  ls$viaja/sim
+                  ls$profissao/ferreiro
+
+      pas$p-1221/17/3/1561/2-151v/sevilla/nueva espana/num=4
+
+         mestre$alonso martin/id=p-1221-per1
+
+         n$benito de aguilar/id=p-1221-per2
+            ls$naturalidade/palomas
+            ls$viaja/sim
+            ls$profissao/lavrador
+            ls$ec/c
+
+            pai$francisco marquez/id=p-1221-per2-per3
+
+            mae$elvira sanchez/id=p-1221-per2-per4
+
+            mulher$constanca diaz/id=p-1221-per2-per5
+               ls$viaja/sim
+
+               pmulher$hernando diaz/id=p-1221-per2-per6
+
+               mmulher$beatriz de angulo/id=p-1221-per2-per7
+
+               filha$mariana/id=p-1221-per2-per8
+                  ls$viaja/sim
+
+               filha$juana/id=p-1221-per2-per9
+                  ls$viaja/sim
+
+      pas$p-1222/17/3/1561/2-151v/sevilla/nueva espana/num=2
+
+         mestre$pedro duenas sarmiento/id=p-1222-per1
+
+         n$isabel arias/obs=viaja em companhia de juan arias/id=p-1222-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+
+         n$francisca jimenez/obs=viaja em companhia de juan arias/id=p-1222-per3
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+
+      pas$p-1224/17/3/1561/2-152/sevilla/nueva espana/num=3
+
+         mestre$juan griego/id=p-1224-per1
+
+         n$juan rodriguez/id=p-1224-per2
+            ls$naturalidade/fuente de cantos
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alvar sanchez/id=p-1224-per2-per3
+
+            mae$catalina mateos/id=p-1224-per2-per4
+
+            mulher$elvira gonzalez/id=p-1224-per2-per5
+               ls$viaja/sim
+               ls$naturalidade/marchena
+
+               pmulher$francisco doblada/id=p-1224-per2-per6
+
+               mmulher$maria gonzalez/id=p-1224-per2-per7
+
+               filho$alvaro/id=p-1224-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1225/17/3/1561/2-152/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1225-per1
+
+         n$maria de los reyes/id=p-1225-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/criada
+            rel$profissional/criada/diego perez de frias/p-1183.ref
+
+            pai$anton garcia/id=p-1225-per2-per3
+
+            mae$mencia rodriguez/id=p-1225-per2-per4
+
+      pas$p-1226/17/3/1561/2-152/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1226-per1
+
+         n$luisa de la cueva/id=p-1226-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$martin garcia/id=p-1226-per2-per3
+
+            mae$francisca de cluez/id=p-1226-per2-per4
+
+            marido$francisco martin/id=p-1226-per2-per5
+               ls$viaja/nao
+               ls$residencia/nueva espana
+
+      pas$p-1227/17/3/1561/2-152/sevilla/nueva espana/num=2
+
+         mestre$anton sanchez/id=p-1227-per1
+
+         n$pedro villabaso/id=p-1227-per2
+            ls$naturalidade/bilbao
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$pedro sainz de villabaso/id=p-1227-per2-per3
+
+            mae$clara de gori/id=p-1227-per2-per4
+               ls$titulo/dona
+
+            mulher$leonor de la cueva/id=p-1227-per2-per5
+               ls$viaja/sim
+
+               pmulher$francisco martin/id=p-1227-per2-per6
+
+               mmulher$luisa de la cueva/id=p-1227-per2-per7
+
+      pas$p-1228/17/3/1561/2-152/sevilla/nueva espana/num=4
+
+         mestre$anton sanchez/id=p-1228-per1
+
+         n$cristobal del alcazar/id=p-1228-per2
+            ls$residencia/granada
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$pedro garcia del alcazar/id=p-1228-per2-per3
+
+            mae$maria sanchez/id=p-1228-per2-per4
+
+            mulher$magdalena gonzalez/id=p-1228-per2-per5
+               ls$viaja/sim
+
+               pmulher$diego hernandez/id=p-1228-per2-per6
+
+               mmulher$maria gonzalez de la pena/id=p-1228-per2-per7
+
+               filha$magdalena/id=p-1228-per2-per8
+                  ls$viaja/sim
+
+               filha$luisa/id=p-1228-per2-per9
+                  ls$viaja/sim
+
+      pas$p-1231/17/3/1561/2-152v/sevilla/nueva espana/num=4
+
+         mestre$lazaro cruzado/id=p-1231-per1
+
+         n$bartolome gomez/id=p-1231-per2
+            ls$residencia/ledesma
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/lavrador
+
+            pai$alonso hernandez/id=p-1231-per2-per3
+
+            mae$elena gomez/id=p-1231-per2-per4
+
+            mulher$maria de palencia/id=p-1231-per2-per5
+               ls$naturalidade/sevilla
+               ls$viaja/sim
+               rel$parentesco/irma/juan palencia/p-1168.ref
+
+               pmulher$anton de palencia/id=p-1231-per2-per6
+
+               mmulher$beatriz de villapadierna/id=p-1231-per2-per7
+
+               filha$maria/id=p-1231-per2-per8
+                  ls$viaja/sim
+
+               filha$catalina/id=p-1231-per2-per9
+                  ls$viaja/sim
+
+      pas$p-1232/18/3/1561/2-132v/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1232-per1
+
+         n$juan de salas/id=p-1232-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+            ls$profissao/mercador
+
+            pai$anton de salas/id=p-1232-per2-per3
+
+            mae$maria perez/id=p-1232-per2-per4
+
+      pas$p-1236/19/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1236-per1
+
+         n$francisco martinez/id=p-1236-per2
+            ls$naturalidade/ojacastro
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro martinez/id=p-1236-per2-per3
+
+            mae$catalina villanueva/id=p-1236-per2-per4
+
+      pas$p-1237/20/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$alonso galdamez/id=p-1237-per1
+
+         n$garcia de osma/id=p-1237-per2
+            ls$naturalidade/mirandilla/obs=tierra de merida
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$gonzalo de solis/id=p-1237-per2-per3
+
+            mae$ines ortiz/id=p-1237-per2-per4
+
+      pas$p-1238/20/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$alonso martin/id=p-1238-per1
+
+         n$alonso martin de la plaza/id=p-1238-per2
+            ls$residencia/medina sidonia
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$pedro martin de la plaza/id=p-1238-per2-per3
+
+            mae$ana gutierrez/id=p-1238-per2-per4
+
+      pas$p-1239/20/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$alonso martin/id=p-1239-per1
+
+         n$martin sanchez/id=p-1239-per2
+            ls$naturalidade/medina sidonia
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$julian martin/id=p-1239-per2-per3
+
+            mae$catalina martin/id=p-1239-per2-per4
+
+      pas$p-1240/20/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1240-per1
+
+         n$jeronimo perez/id=p-1240-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/mercador
+
+            pai$andres perez de mexico/id=p-1240-per2-per3
+
+            mae$isabel perez/id=p-1240-per2-per4
+
+      pas$p-1241/20/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1241-per1
+
+         n$francisco ortiz/id=p-1241-per2
+            ls$naturalidade/utrera
+            ls$viaja/sim
+            ls$ec/c
+            ls$residencia/nueva espana/obs=donde residia su mujer
+
+            pai$hernando de reinoso/id=p-1241-per2-per3
+
+            mae$juan ortiz/id=p-1241-per2-per4
+
+      pas$p-1242/20/3/1561/2-153/sevilla/nueva espana/num=1
+
+         mestre$alonso martin/id=p-1242-per1
+
+         n$nuno hernandez/id=p-1242-per2
+            ls$naturalidade/montijo
+            ls$residencia/montijo
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$nuno hernandez/id=p-1242-per2-per3
+
+            mae$isabel garcia/id=p-1242-per2-per4
+
+      pas$p-1245/20/3/1561/2-153v/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1245-per1
+
+         n$gaspar sanchez/id=p-1245-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$martin sanchez/id=p-1245-per2-per3
+
+            mae$isabel ruiz/id=p-1245-per2-per4
+
+      pas$p-1259/24/3/1561/2-154v/sevilla/nueva espana/num=1/obs=no paso e se refrendo la licencia en 4 de abril de 1561
+
+         mestre$pedro duenas sarmiento/id=p-1259-per1
+
+         n$rafael leon castro/id=p-1259.ref
+            ls$naturalidade/paredes de nava
+            ls$viaja/sim
+            ls$ec/s
+            ls$cargo/licenciado
+
+            pai$jeronimo leon/id=p-1259.ref-per2
+               ls$titulo/doutor
+
+            mae$guiomar de castro/id=p-1259.ref-per3
+
+      pas$p-1260/24/3/1561/2-154v/sevilla/nueva espana/num=1
+
+         mestre$pedro duenas sarmientos/id=p-1260-per1
+
+         n$hernando perez/id=p-1260-per2
+            ls$naturalidade/monasterio de rodilla
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/criado
+            rel$profissional/criado/rafael leon castro/p-1259.ref
+
+            pai$juan perez/id=p-1260-per2-per3
+
+            mae$maria aparicio/id=p-1260-per2-per4
+
+      pas$p-1261/24/3/1561/2-154v/sevilla/nueva espana/num=4/obs=no passaron e se les refrendo la licencia 4 de abril de 1561
+
+         mestre$pedro duenas sarmiento/id=p-1261-per1
+
+         n$juana de vergara/id=p-1261-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            marido$jeronimo leon/id=p-1261-per2-per3
+               ls$viaja/nao
+               ls$residencia/nueva espana
+
+            pai$bernardo de vergara/id=p-1261-per2-per4
+
+            mae$francisca diaz de fuentes/id=p-1261-per2-per5
+
+            filho$jeronimo/id=p-1261-per2-per6
+               ls$viaja/sim
+
+            irma$anastacia de vergara/id=p-1261-per2-per7
+               ls$viaja/sim
+
+            irma$catalina de vergara/id=p-1261-per2-per8
+               ls$viaja/sim
+
+      pas$p-1262/24/3/1561/2-154v/sevilla/nueva espana/num=1/obs=no paso e se refrendo la licencia en 4 de abril de 1561
+
+         mestre$pedro duenas sarmiento/id=p-1262-per1
+
+         n$diego lopez/id=p-1262-per2
+            ls$naturalidade/bienevenida
+            ls$viaja/sim
+            ls$ec/s
+            ls$profisso/criado
+            rel$profissional/criado/ licenciado rafael leon de castro/p-1259.ref
+
+            pai$alonso lopez/id=p-1262-per2-per3
+
+            mae$maria gutierrez/id=p-1262-per2-per4
+
+      pas$p-1263/24/3/1561/2-155/sevilla/nueva espana/num=1
+
+         mestre$alonso galdamez/id=p-1263-per1
+
+         n$alonso alfonso/id=p-1263-per2
+            ls$naturalidade/almagro
+            ls$viaja/sim
+            ls$profissao/clerigo
+            ls$ec/s
+
+            pai$alonso de villareal/id=p-1263-per2-per3
+
+            mae$isabel de santacruz/id=p-1263-per2-per4
+
+      pas$p-1264/24/3/1561/2-313/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1264-per1
+
+         n$diego benitez/id=p-1264-per2
+            ls$naturalidade/ecija
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$diego lopez de alcaraz/id=p-1264-per2-per3
+
+            mae$beatriz gonzalez/id=p-1264-per2-per4
+
+      pas$p-1269/26/3/1561/2-155/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1269-per1
+
+         n$juan de monsalve/id=p-1269-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/mercador
+
+            pai$pedro barba/id=p-1269-per2-per3
+
+            mae$isabel arauz/id=p-1269-per2-per4
+               ls$titulo/dona
+
+      pas$p-1275/27/3/1561/2-155v/sevilla/nueva espana/num=1
+
+         mestre$alonso galdamez/id=p-1275-per1
+
+         n$diego martin/id=p-1275-per2
+            ls$naturalidade/merida
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$hernando martin zambrano/id=p-1275-per2-per3
+
+            mae$juan martin/id=p-1275-per2-per4
+
+      pas$p-1278/27/3/1561/2-156/sevilla/nueva espana/num=1
+
+         mestre$alonso martin/id=p-1278-per1
+
+         n$anton moreno/id=p-1278-per2
+            ls$naturalidade/malaga
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/lavrador
+
+            pai$anton moreno/id=p-1278-per2-per3
+
+            mae$elvira saez/id=p-1278-per2-per4
+
+      pas$p-1279/27/3/1561/2-156/sevilla/nueva espana/num=1
+
+         mestre$alonso martin/id=p-1279-per1
+
+         n$martin munoz/id=p-1279-per2
+            ls$naturalidade/castromembibre
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan munoz/id=p-1279-per2-per3
+
+            mae$maria hernandez/id=p-1279-per2-per4
+
+      pas$p-1280/27/3/1561/2-156/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1280-per1
+
+         n$pedro de arquelada/id=p-1280-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$pedro de arquelada/id=p-1280-per2-per3
+
+            mae$isabel gonzalez/id=p-1280-per2-per4
+
+            mulher$beatriz de abrego/id=p-1280-per2-per5
+               ls$viaja/sim
+
+               pmulher$hernando de leon/id=p-1280-per2-per6
+
+               mmulher$elvira de abrego/id=p-1280-per2-per7
+
+               filha$anica/id=p-1280-per2-per8
+                  ls$viaja/sim
+
+      pas$p-1281/27/3/1561/2-156/sevilla/nueva espana/num=1
+
+         mestre$s.inf/id=p-1281-per1
+
+         n$pedro martinez/id=p-1281-per2
+            ls$naturalidade/santibanez
+            ls$viaja/sim
+            ls$ec/s
+            ls$profissao/calcetero
+
+            pai$alonso martinez/id=p-1281-per2-per3
+
+            mae$maria garcia/id=p-1281-per2-per4
+
+      pas$p-1284/28/3/1561/2-156v/sevilla/nueva espana/num=4
+
+         mestre$hernan ruiz/id=p-1284-per1
+
+         n$juan de almonte/id=p-1284.ref
+            ls$naturalidade/teva
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$juan de almonte/id=p-1284.ref-per2
+
+            mae$ana diaz/id=p-1284.ref-per3
+
+            mulher$catalina de almonte/id=p-1284.ref-per4
+               ls$naturalidade/cordoba
+               ls$viaja/sim
+
+               pmulher$bernal rodriguez/id=p-1284.ref-per5
+
+               mmulher$leonor hernandez/id=p-1284.ref-per6
+
+               filho$rodrigo de almonte/id=p-1284.ref-per7
+                  ls$viaja/sim
+
+               filho$tomas de almonte/id=p-1284.ref-per8
+                  ls$viaja/sim
+
+      pas$p-1285/28/3/1561/2-156v/sevilla/nueva espana/num=4
+
+         mestre$hernan ruiz/id=p-1285-per1
+
+         n$gonzalo arteaga/id=p-1285-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alonso arteaga/id=p-1285-per2-per3
+
+            mae$catalina diaz/id=p-1285-per2-per4
+
+            mulher$catalina del monte/id=p-1285-per2-per5
+
+               pmulher$juan de almonte/p-1284.j.ref/id=p-1285-per2-per6
+
+               mmulher$catalina de almonte/p-1284.c.ref/id=p-1285-per2-per7
+
+               filha$maria/id=p-1285-per2-per8
+                  ls$viaja/sim
+
+               filha$catalina/id=p-1285-per2-per9
+                  ls$viaja/sim
+
+      pas$p-1286/29/3/1561/2-156v/sevilla/nueva espana/num=5
+
+         mestre$hernan ruiz/id=p-1286-per1
+
+         n$diego hernandez/id=p-1286-per2
+            ls$naturalidade/cordoba
+            ls$viaja/sim
+            ls$profissao/medico cirurgiao
+            ls$ec/c
+
+            pai$diego hernandez del lerma/id=p-1286-per2-per3
+
+            mae$isabel ruiz/id=p-1286-per2-per4
+
+            irma$juana garcia/id=p-1286-per2-per5
+               ls$viaja/sim
+
+            pmulher$juan de almonte/id=p-1286-per2-per6
+
+            mmulher$catalina de almonte/id=p-1286-per2-per7
+
+            filha$isabel/id=p-1286-per2-per8
+               ls$viaja/sim
+
+            filha$juana/id=p-1286-per2-per9
+               ls$viaja/sim
+
+            filha$catalina/id=p-1286-per2-per10
+               ls$viaja/sim
+
+      pas$p-1287/29/3/1561/2-157/sevilla/nueva espana/num=1
+
+         mestre$alonso martin/id=p-1287-per1
+
+         n$juan garcia parra/id=p-1287-per2
+            ls$naturalidade/don benito
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$juan garcia/id=p-1287-per2-per3
+
+            mae$francisca diaz/id=p-1287-per2-per4
+
+      pas$p-1293/29/3/1561/2-157v/sevilla/nueva espana/num=1
+
+         mestre$jaun griego/id=p-1293-per1
+
+         n$diego de torres/id=p-1293-per2
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$alonso de torres/id=p-1293-per2-per3
+
+            mae$catalina lopez/id=p-1293-per2-per4
+
+      pas$p-1294/29/3/1561/2-157v/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1294-per1
+
+         n$juan perez de cordoba/id=p-1294-per2
+            ls$naturalidade/cordoba
+            ls$residencia/nueva espana
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$alonso sanchez/id=p-1294-per2-per3
+
+            mae$maria hernandez/id=p-1294-per2-per4
+
+      pas$p-1295/29/3/1561/2-157v/sevilla/nueva espana/num=1
+
+         mestre$juan griego/id=p-1295-per1
+
+         n$juana blazquez/id=p-1295-per2
+            ls$naturalidade/el pedroso
+            ls$viaja/sim
+            ls$ec/s
+            rel$sociabilidade/viaja em companhia/cristobal hurtado/p-1167.ref
+
+            referido$cristobal hurtado/id=p-1167.ref
+
+            pai$hernando de soto/id=p-1295-per2-per3
+
+            mae$catalina lopez/id=p-1295-per2-per4
+
+      pas$p-1297/29/3/1561/2-157v/sevilla/nueva espana/num=5
+
+         mestre$alonso galdamez/id=p-1297-per1
+
+         n$jeronimo gonzalez/id=1297.ref
+            ls$condicao/mestico
+            ls$naturalidade/mexico
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco munoz/id=1297.ref-per2
+
+            mae$luisa/id=1297.ref-per3
+               ls$condicao/india
+
+            mulher$francisca munoz/id=1297.ref-per4
+               ls$viaja/sim
+               ls$naturalidade/la granja
+
+               pmulher$juan simon/id=1297.ref-per5
+
+               mmulher$catalina garcia/id=1297.ref-per6
+
+               filha$maria/id=1297.ref-per7
+                  ls$viaja/sim
+
+               filha$catalina/id=1297.ref-per8
+                  ls$viaja/sim
+
+         n$juan ortiz/id=p-1297-per9
+            ls$viaja/sim
+            rel$parentesco/sobrinho/jeronimo gonzalez/p-1297.ref
+
+      pas$p-1298/29/3/1561/2-157v/sevilla/nueva espana/num=3
+
+         mestre$lazaro cruzado/id=p-1298-per1
+
+         n$juan bautista brochero/id=p-1298.ref
+            ls$naturalidade/ciudad rodrigo
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$francisco flores brochero/id=p-1298-per2-per3
+
+            mae$ana perez/id=p-1298-per2-per4
+
+            mulher$maria de villalobos/id=p-1298-per2-per5
+               ls$naturalidade/toledo
+               ls$viaja/sim
+
+               pmulher$diego hernandez de varia/id=p-1298-per2-per6
+
+               mmulher$francisca villa lobos/id=p-1298-per2-per7
+
+         n$jeronimo/id=p-1298-per8
+            ls$viaja/sim
+            rel$parentesco/cunhado/juan baustista/p-1298.ref
+
+      pas$p-12999/29/3/1561/2-158/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-12999-per1
+
+         n$maria dela paz/id=p-12999-per2
+            ls$naturalidade/toledo
+            ls$profissao/criada
+            ls$viaja/sim
+            ls$ec/s
+            rel$profissional/criada/juan bautista brochero/p-1298.ref
+
+            pai$pedro serrano/id=p-12999-per2-per3
+
+            mae$maria villalobos/id=p-12999-per2-per4
+
+      pas$p-1300/29/3/1561/2-313/sevilla/nueva espana/num=1
+
+         mestre$lazaro cruzado/id=p-1300-per1
+
+         n$martin de herrera/id=p-1300-per2
+            ls$naturalidade/sevilla
+            ls$profissao/mercador
+            ls$viaja/sim
+            ls$ec/c
+
+            pai$gonzalo hernandez/id=p-1300-per2-per3
+               ls$titulo/doutor
+
+            mae$leonor de herrera/id=p-1300-per2-per4
+
+      pas$p-1301/31/3/1561/2-158/sevilla/nueva espana/num=1
+
+         mestre$anton sanchez/id=p-1301-per1
+
+         n$gaspar suarez/id=p-1301-per2
+            ls$naturalidade/sevilla
+            ls$viaja/sim
+            ls$ec/s
+
+            pai$hernandez de san pedro/id=p-1301-per2-per3
+
+            mae$leonor suarez/id=p-1301-per2-per4

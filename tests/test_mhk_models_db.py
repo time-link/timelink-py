@@ -1,14 +1,16 @@
 import os
 
+# pylint: disable=import-error
+
 import pytest
 
 # Session is shared by all tests
 from tests import Session
 from tests import skip_on_travis, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
-from timelink.mhk.models import base  # noqa
+from timelink.mhk.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.mhk.models.base_class import Base
-from timelink.mhk.models.db import TimelinkDB
+from timelink.mhk.models.db import TimelinkMHK
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.source import Source
@@ -18,7 +20,7 @@ pytestmark = skip_on_travis
 
 @pytest.fixture(scope="module")
 def dbsystem():
-    db = TimelinkDB(conn_string)
+    db = TimelinkMHK(conn_string)
     Session.configure(bind=db.get_engine())
     yield db
     with Session() as session:
@@ -43,7 +45,7 @@ def kgroup_person_attr_rel() -> KSource:
     """
     p2 = KPerson('Margarida', 'f', 'p02-2', obs=mobs)
     p2.attr('residencia', 'Trouxemil', date='2020-10-18')
-    p1.rel('parentesco', 'marido', p2.name, p2.id,
+    p1.rel('parentesco', 'marido', p2.name, p2.id,  # pylint: disable=no-member
            date='2006-01-4', obs='Ilha Terceira')
     ka1.include(p2)
     ka1.include(p1)
@@ -87,7 +89,7 @@ def test_succeed_if_not_in_travis():
 
 def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
-    metadata = Base.metadata
+    metadata = Base.metadata  # pylint: disable=no-member
     tables = list(metadata.tables.keys())
     assert len(tables) > 0, "tables where not created"
 
@@ -129,7 +131,7 @@ def test_entity_contains(dbsystem):
         session.add(ent2)
         session.add(ent3)
         session.commit()
-        ent4 = ent2.contained_by
+        ent4 = ent2.contained_by  # pylint: disable=no-member
         assert ent4 is ent1
         ent5 = ent1.contains[1]
         assert ent5 is ent3
@@ -255,5 +257,5 @@ def test_store_KGroup_1(dbsystem):
         session.commit()
         source_orm = Entity.get_orm_for_pom_class(afonte.pom_class_id)
         same_fonte = session.get(source_orm, afonte.id.core)
-        assert str(afonte.obs) == str(same_fonte.obs)
+        assert str(afonte.obs) == str(same_fonte.obs)  # pylint: disable=no-member
         session.close()
