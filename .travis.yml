@@ -1,8 +1,5 @@
 env: TRAVIS=true
-# safelist
-# branches:
-#  only:
-#  - main
+dist: xenial
 language: python
 python:
 - "3.10"
