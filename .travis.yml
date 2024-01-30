@@ -4,10 +4,11 @@ env: TRAVIS=true
 #  only:
 #  - main
 language: python
-# could not get 3.10 to work on travis
 python:
-- 3.10.0
-- 3.11.0
+- "3.10"
+- "3.11"
+install:
+  - pip install -r requirements.txt
 script: pytest
 jobs:
     include:
