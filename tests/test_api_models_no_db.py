@@ -12,6 +12,12 @@ def test_entity_subclasses():
     sc1 = len(scl)
 
     class SubEntity(Entity):
+        # polymorphic_on = "type"
+
+        __mapper_args__ = {
+            "polymorphic_identity": "subentity",
+            "inherit_condition": id == Entity.id,
+        }
         pass
 
     scl2 = list(Entity.get_subclasses())
@@ -19,6 +25,10 @@ def test_entity_subclasses():
     assert sc2 == sc1 + 1, "wrong direct subclasses of Entity"
 
     class SubSubEntity(SubEntity):
+        __mapper_args__ = {
+            "polymorphic_identity": "subsubentity",
+            "inherit_condition": id == Entity.id,
+        }
         pass
 
     scl3 = list(Entity.get_subclasses())

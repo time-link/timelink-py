@@ -14,7 +14,6 @@ from timelink.api.models.system import KleioImportedFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
-from timelink.api.models.base import Source
 from timelink.api.database import (
     TimelinkDatabase,
     start_postgres_server,
@@ -391,10 +390,10 @@ def test_import_sources_with_no_year(dbsystem):
             # check if the file was imported
             filename_with_extension = os.path.basename(file)
             filename, extension = os.path.splitext(filename_with_extension)
-            sources = session.query(Source).filter_by().all()
+            sources = session.query(KleioImportedFile).filter_by().all()
             imported = False
             for source in sources:
-                kfilename_with_extension = os.path.basename(source.kleiofile)
+                kfilename_with_extension = os.path.basename(source.path)
                 kfile, kextention = os.path.splitext(kfilename_with_extension)
                 if kfile == filename:
                     imported = True
