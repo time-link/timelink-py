@@ -624,7 +624,7 @@ class KGroup:
                             gid = group.get("id", None)
                             if (
                                 gid is not None
-                                and subgroup not in self.elements_allowed()
+                                and subgroup not in self.elements_allowed()  # noqa
                             ):
                                 if subgroup not in kd.keys():
                                     kd[subgroup] = dict()
@@ -697,8 +697,8 @@ class KGroup:
             m: Union[KElement, str] = getattr(self, e, None)
             if m is not None and (
                 type(m) is str
-                and m > ""
-                or (issubclass(type(m), KElement) and m.to_kleio() > "")
+                and m > ""  # noqa
+                or (issubclass(type(m), KElement) and m.to_kleio() > "") # noqa
             ):
                 # m contains data, lets output
                 if issubclass(type(m), KElement):

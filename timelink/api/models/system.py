@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 from datetime import datetime
-from pydantic import BaseModel  # pylint: disable=import-error
+from pydantic import BaseModel, ConfigDict  # pylint: disable=import-error
 
 from sqlalchemy import Column, String, Integer, DateTime  # pylint: disable=import-error
 from sqlalchemy.sql import func  # pylint: disable=import-error
@@ -66,8 +66,7 @@ class SysParSchema(BaseModel):
     ptype: ParTypeSchema
     obs: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class LogLevel(str, Enum):
@@ -123,8 +122,7 @@ class SysLogSchema(BaseModel):
     origin: str
     message: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class SysLogCreateSchema(BaseModel):
@@ -140,8 +138,7 @@ class SysLogCreateSchema(BaseModel):
     origin: str
     message: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class KleioImportedFile(Base):
@@ -216,5 +213,4 @@ class KleioImportedFileSchema(BaseModel):
     imported: datetime
     imported_string: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

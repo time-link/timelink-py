@@ -1,4 +1,4 @@
-""" Interface to Kleio server"""
+""" Interface to Kleio Server"""
 import logging
 import socket
 import os
@@ -16,6 +16,9 @@ class KleioServer:
     """This class interfaces to a Kleio server through its JSON-RPC api. It also provides convenience methods
     to start a server in Docker locally.
 
+    This class is not intended to be used directly. 
+    Use KleioServer.start() and KleioServer.attach() to create instances of KleioServer.
+
     Args:
         container (docker.models.containers.Container): runing kleio server container
         url (str): kleio server url if running in a different machine (container=None)
@@ -23,19 +26,17 @@ class KleioServer:
         kleio_home (str): kleio server home directory. If None and container is not None then kleio_home is obtained
                            from the container. If not none
 
-    Attributes:
-        host (str): kleio server host
-        url (str): kleio server url
-        token (str): kleio server token
-        kleio_home (str): kleio server home directory
-        container (docker.models.containers.Container): kleio server container
 
     """
-
+    #: kleio server host
     host: str
+    #: kleio server url
     url: str
+    #: kleio server token
     token: str
+    #: kleio server home directory
     kleio_home: str
+    #: kleio server container
     container: docker.models.containers.Container
 
     @staticmethod
@@ -603,6 +604,7 @@ def start_kleio_server(
     reuse: bool = True,
 ):
     """Starts a kleio server in docker
+
     Args:
         image (str, optional): kleio server image. Defaults to "time-link/kleio-server".
         version (str | None, optional): kleio-server version. Defaults to "latest".

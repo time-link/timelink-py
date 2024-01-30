@@ -17,10 +17,11 @@ database models like search requests and search results.
 from typing import List, Optional
 from datetime import datetime
 from datetime import date
-from pydantic import BaseModel  # pylint: disable=import-error
+from pydantic import BaseModel, ConfigDict  # pylint: disable=import-error
 
 
 class EntitySchema(BaseModel):
+
     """Pydantic Schema for Entity"""
 
     id: str
@@ -34,8 +35,7 @@ class EntitySchema(BaseModel):
     indexed: Optional[datetime]
     contains: Optional[List["EntitySchema"]]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class EntityBriefSchema(BaseModel):
@@ -54,8 +54,7 @@ class EntityBriefSchema(BaseModel):
     updated: Optional[datetime]
     indexed: Optional[datetime]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class RelationSchema(BaseModel):
@@ -67,8 +66,7 @@ class RelationSchema(BaseModel):
     the_date: str
     obs: Optional[str]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class RelationOutSchema(RelationSchema):
@@ -87,8 +85,7 @@ class AttributeSchema(BaseModel):
     obs: Optional[str]
     groupname: str = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class EntityAttrRelSchema(BaseModel):
@@ -108,8 +105,7 @@ class EntityAttrRelSchema(BaseModel):
     rels_out: Optional[List["RelationOutSchema"]]
     contains: Optional[List["EntityBriefSchema"]]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class SearchRequest(BaseModel):

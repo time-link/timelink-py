@@ -148,7 +148,7 @@ def get_nattribute_table(db: TimelinkMHK = None):
         insp = inspect(eng)
         if (
             "nattributes" in insp.get_view_names()
-            or "nattributes" in insp.get_table_names()
+            or "nattributes" in insp.get_table_names()  # noqa
         ):
             pass
         else:

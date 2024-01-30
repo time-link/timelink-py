@@ -597,10 +597,10 @@ class TimelinkDatabase:
             for file in kleio_files
             if (
                 file.import_status == import_status_enum.N
-                or file.import_status == import_status_enum.U
+                or file.import_status == import_status_enum.U  # noqa: W503
             )
-            or (include_errors and file.import_status == import_status_enum.E)
-            or (include_warnings and file.import_status == import_status_enum.W)
+            or (include_errors and file.import_status == import_status_enum.E)  # noqa: W503
+            or (include_warnings and file.import_status == import_status_enum.W)  # noqa: W503
         ]
 
     def update_from_sources(
