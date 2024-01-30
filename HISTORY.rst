@@ -2,6 +2,11 @@
 History
 =======
 
+1.0.0 (2024-01-30)
+------------------
+
+First release with Jupyter notebooks integration.
+
 0.3.10 (2022-06-07)
 -------------------
 * Fix to_kleio() in models: now generates quotes and
