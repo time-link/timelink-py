@@ -38,20 +38,19 @@ setup(
          'Documentation': 'https://timelink-py.readthedocs.io/',
     },
     install_requires=[
-        'typer~=0.4.0',
-        'fastapi~=0.103.0',
-        'sqlalchemy~=2.0.0',
-        'pydantic~=2.0.0',
-        'python-dotenv~=0.21.0',
-        'python-box~=5.3.0',
-        'psycopg2-binary==2.9.6',
-        'py-markdown-table==0.3.3',
-        'pandas~=2.0.0',
-        'docker~=6.0.0',
-        'jsonrpcclient~=4.0.0',
-        'ipython~=8.0.0'
+        'typer',
+        'fastapi',
+        'sqlalchemy',
+        'pydantic',
+        'python-dotenv',
+        'python-box',
+        'psycopg2-binary',
+        'py-markdown-table',
+        'pandas',
+        'docker',
+        'jsonrpcclient',
+        'ipython'
         
-
     ],
     license="MIT license",
     long_description= description + '\n\n' + history,
