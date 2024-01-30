@@ -105,7 +105,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python  3.7, 3.8, 3.9, and 3.10 and for PyPy. Check
+3. The pull request should work for Python  3.10, 3.11 and for PyPy. Check
    https://app.travis-ci.com/github/time-link/timelink-py/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
@@ -143,6 +143,8 @@ you need to have the various Python interpreters installed.
 The `tox.ini` file specifies which version of Python will be used for
 tests. `pyenv` is used to install the different versions.
 
+   pyenv install 3.10  # for each version
+
 On MacOS you may get a zlib related error while installing Python versions with pyenv.
 Check  https://stackoverflow.com/questions/50036091/pyenv-zlib-error-on-macos
 
@@ -163,15 +165,16 @@ Example:
 
 .. code-block:: bash
 
-   pyenv local 3.8.16 3.9.0 3.10.0
    pip install tox
 
 Also, if tox complains of not finding the various Python versions then
 try to run `tox` with the `-e` option to specify the environment.  
 
+Alternatively try to run tox --recreate to recreate the virtual environments.
+
 .. code-block:: bash
 
-   tox -e py39 # run tests with Python 3.9
+   tox -e py311 # run tests with Python 3.11
 
 
 The target
