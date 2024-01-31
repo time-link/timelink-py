@@ -1,5 +1,5 @@
 env: TRAVIS=true
-dist: xenial
+dist: bionic
 language: python
 python:
 - "3.10"
@@ -9,6 +9,8 @@ install:
 script: pytest
 jobs:
     include:
+        - python: 3.10
+        - python: 3.11
         - stage: deploy
           provider: pypi
           distributions: sdist bdist_wheel
