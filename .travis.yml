@@ -12,9 +12,9 @@ jobs:
         - stage: deploy
           provider: pypi
           distributions: sdist bdist_wheel
-          user: joaquimrcarvalho
+          username: __token__
           password:
-            secure: IUisEjOeYFpAYmBQ9TodoHIdCC/wgMoHKkBIfCfrhw2v1hQlMw89AMYsfh7s75C9mQ6E3Je02g5hyV+iVJ0VXapXgatHFgfI71vAGc+lb2RfSMF9WnlhkqCvKtRXc7/ot0BVo/6818c9KRyRF6UG+7PcOFOkcMbPGeqJHAaZUg8ckcarW7Ky1ItetSf+aHZJdbYM1q1QOa3CPji9+gjPiKz/WXc2cDI/OIKzbDp8X1TVLFsgixPddC4ik1kX2hLaUYW4zdp+zZOSqKkGyvcCTcRGLou1naPUBl4w13pFy5VAbW7n2M01g2BdWHvG82QKmxSmViBkxfUdz7y/SdglyBbgJWsoDeF5j8z6DA+aLNhqaRmYzBGypipLGh1ECmQgmyGhZY217JcAHMYCrnIsYzpsdd6Rzyqwbv+GVvG8WyGmAH3LJWr+L4rMDu2FcaLkDwf3mjxKbzmdCP2soXydNSYZqamda45DOY5bhZ0/C9Y4JrVOZBTNLWoNfGT3goqX3r25Ox94r4tYWZre0y7MQTeCtOk7AqbqRuZKeu5BCZy5qpcxzsQO/RHzd5unYLKnVGJBZOOf49D+/nBAohSP9gZqj8LEpYhKWSR2ZTV1GFrZj2oT8etLaFwt908kWdiwPGx0iwm+7EVhYS8gml8So3WQH5IfipUVrQhthGMerOY=
+          secure: I+EypsFJW3Nhk+3TVnA5Wt7xZuMV/8GpDLbRcYCVoily/ybX144vI4PRFqpOwEyW4JEoSpAaFBmrOTgZNeNcR9fFNKMPCF2c+N5yp+OsA+ETDTTJ5ga+bJ+45+9Vszl7cyZItlNZ0VTjfDz69rwudv0T98Co463wtRDynjLVvimx6DK6SRJCmp+vtLhj/22TzstI24xp+TtuKh6pAP+XzIjD8iLMwskLCpaqaMxAPZ27KVygw8z+m6yqIi/DHGm4aAocCxqDCeINOWKu1nRNqoWFsZPhc6Bp5SYcq5zWHpOE9J/D4CLO9pN6TNsxPuudE4pGaGX6/WOmHsvHdP5BCvUs2yG8dULM3UBXmy7aMzZ95XYIjTpQDg0lxxptEC+8LGos9+XoDbDM+XaYTNWknnv8qQ13mq99Mq7R3JN9RNY/+NMlAq0PSNYMz0G2FGc8urJiO6egonuqgsWjHUZkAESr2JXjdIaRfTOfS8SKu6xIx3oz1KCoLk0ct47zyvoe0cVEMx51byvGipEizYktfyP0AXVup3Obd1Xinq2W5fBNQ/QOxWzIyJmQ3ZaRDLXoaW3oDEprZgLPKPgxt7Dz3To/H0PWupwSdPe9V8CLVHvHHXHteEhf2BVnlQx6MNNdANERkKbImdAtfPb6RK0UtA89sgUFV1azg8YwkdgPTOg=iwm+7EVhYS8gml8So3WQH5IfipUVrQhthGMerOY=
           on:
             tags: true
             repo: time-link/timelink-py
