@@ -12,6 +12,7 @@ script: pytest
 deploy:
   provider: pypi
   edge: true
+  skip_existing: true
   distributions: sdist bdist_wheel
   username: __token__
   password:

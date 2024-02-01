@@ -2,7 +2,13 @@
 History
 =======
 
+1.0.3 (2024-02-01)
+------------------
+
+* Use new deployment method with Travis
+
 1.0.1 (2024-01-31)
+------------------
 
 * Fix travis build
 
