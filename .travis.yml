@@ -20,5 +20,5 @@ deploy:
   on:
     python: '3.10'
     branch: main
-    tags: false
+    tags: true
 
