@@ -199,6 +199,8 @@ To release a new version:
 
 Travis will then deploy to PyPI if tests pass.
 
+If Travis fails to deploy to PyPI, try "make release" locally.
+
 
 Tips for maintaners
 ===================
