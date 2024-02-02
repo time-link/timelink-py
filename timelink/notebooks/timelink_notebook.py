@@ -156,3 +156,10 @@ class TimelinkNotebook:
             A list of postgres databases
         """
         return get_postgres_dbnames(**kwargs)
+    
+    def table_row_count_df(self):
+        """Return the row count of all tables in the database"""
+        tables = self.db.table_row_count()
+        tables_df = pandas.DataFrame(tables, columns=['table', 'count'])
+        return tables_df
+        
