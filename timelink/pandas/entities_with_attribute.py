@@ -146,7 +146,10 @@ def entities_with_attribute(
             with db.session() as session:
                 records = session.execute(stmt)
                 df2 = pd.DataFrame.from_records(records, index=["id"], columns=cols)
-
+            
+            if sql_echo:
+                   print(f"Query for more_columns={mcol}:\n", stmt)
+            
             if df2.iloc[0].count() == 0:
                 df[mcol] = None  # nothing found we set the column to nulls
             else:
