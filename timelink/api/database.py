@@ -656,6 +656,7 @@ class TimelinkDatabase:
                 with self.session() as session:
                     try:
                         logging.info(f"Importing {kfile.path}")
+                        # TODO: #18 expose import_from_xml in TimelinkDatabase
                         stats = import_from_xml(
                             kfile.xml_url,
                             session=session,
