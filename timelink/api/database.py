@@ -22,7 +22,7 @@ from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy import create_engine
 from sqlalchemy import inspect
-from sqlalchemy import select
+from sqlalchemy import select,func
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy_utils import database_exists
@@ -441,6 +441,21 @@ class TimelinkDatabase:
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
 
+    def table_row_count(self):
+        """ Number of rows of each table in the database
+        
+        Returns:
+            list: list of tuples (table_name, row_count)"""
+            
+        tables_names = self.table_names()
+
+        row_count = []
+        with self.session() as session:
+            for table in tables_names:
+                length = session.scalar(select(func.count()).select_from(text(table)))
+                row_count.append((table, length))
+        return row_count
+        
     def load_database_classes(self, session):
         """
         Populates database with core Database classes
