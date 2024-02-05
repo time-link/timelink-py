@@ -1,0 +1,10 @@
+*.xml
+*.org
+*.old
+*.err
+*.rpt
+*.ids
+*.json
+*.srpt
+*.log
+*.sqlite
