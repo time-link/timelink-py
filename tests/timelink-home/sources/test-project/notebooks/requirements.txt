@@ -1,5 +1,0 @@
-timelink>=1.0.0
-pandas
-sqlalchemy
-sqlalchemy_utils
-psycopg2
