@@ -2,6 +2,7 @@
 
 https://github.com/time-link/timelink-kleio-server
 """
+
 from enum import Enum
 import pytest
 
@@ -138,8 +139,8 @@ def test_generate_limited_token(setup):
         **{
             "comment": "An user that has no privileges, used to test authorization errors",
             "api": [],
-            "structures": "sources/test-project/structures",
-            "sources": "sources/test-project/sources",
+            "structures": "projects/test-project/structures",
+            "sources": "projects/test-project/sources",
         }
     )
 
@@ -158,7 +159,9 @@ def test_generate_normal_token(setup):
     user: str = "normal_user"
     info: TokenInfo = TokenInfo(
         **{
-            "comment": "An user able to translate, upload and delete files, and also create and remove directories, in specific sub-directoris in kleio-home",
+            "comment": "An user able to translate, upload and "
+            "delete files, and also create and "
+            "remove directories, in specific sub-directories in kleio-home",
             "api": [
                 "sources",
                 "kleioset",
@@ -170,8 +173,8 @@ def test_generate_normal_token(setup):
                 "mkdir",
                 "rmdir",
             ],
-            "structures": "sources/test-project/structures",
-            "sources": "sources/test-project/sources",
+            "structures": "projects/test-project/structures",
+            "sources": "projects/test-project/sources",
         }
     )
 
@@ -199,7 +202,7 @@ def test_get_kserver_home():
 @skip_on_travis
 def test_translations_get(setup):
     """Test if translations are retrieved"""
-    path: str = "sources/test-project/kleio/reference_sources/linked_data"
+    path: str = "projects/test-project/kleio/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
 
@@ -211,7 +214,8 @@ def test_translations_get(setup):
     print()
     for kfile in translations:
         print(
-            f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
+            f"{kfile.status} {kfile.path} M:{kfile.modified} "
+            f"T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
         )
     print()
 
@@ -219,7 +223,7 @@ def test_translations_get(setup):
 @skip_on_travis
 def test_translations_translate(setup):
     """Test if translations are translated"""
-    path: str = "sources/test-project/kleio/reference_sources/linked_data"
+    path: str = "projects/test-project/kleio/reference_sources/linked_data"
     recurse: str = "yes"
     spawn: str = "no"
 
@@ -231,7 +235,7 @@ def test_translations_translate(setup):
 @skip_on_travis
 def test_translations_processing(setup):
     """Test translations in process"""
-    path: str = "sources/test_project/"
+    path: str = "projects/test_project/"
     recurse: str = "yes"
     status: str = "P"
 
@@ -242,14 +246,15 @@ def test_translations_processing(setup):
     kfile: KleioFile
     for kfile in translations:
         print(
-            f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
+            f"{kfile.status} {kfile.path} M:{kfile.modified} "
+            f"T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
         )
 
 
 @skip_on_travis
 def test_translations_queued(setup):
     """Test translation queued"""
-    path: str = "sources/test-project/"
+    path: str = "projects/test-project/"
     recurse: str = "yes"
     status: str = "Q"
 
@@ -260,14 +265,15 @@ def test_translations_queued(setup):
     kfile: KleioFile
     for kfile in translations:
         print(
-            f"{kfile.status} {kfile.path} M:{kfile.modified} T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
+            f"{kfile.status} {kfile.path} M:{kfile.modified} "
+            f"T:{kfile.translated} E:{kfile.errors} W:{kfile.warnings}"
         )
 
 
 @skip_on_travis
 def test_translations_clean(setup):
     """Test if translations results are deleted"""
-    path: str = "sources/test-project/kleio/reference_sources/linked_data"
+    path: str = "projects/test-project/kleio/reference_sources/linked_data"
     recurse: str = "yes"
 
     kserver: KleioServer = setup
