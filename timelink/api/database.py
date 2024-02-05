@@ -213,11 +213,15 @@ def get_sqlite_databases(directory_path: str) -> list[str]:
     Returns:
         list[str]: list of sqlite databases
     """
+    cd = os.getcwd()
     sqlite_databases = []
     for root, _dirs, files in os.walk(directory_path):
         for file_name in files:
             if file_name.endswith(".sqlite"):
-                sqlite_databases.append(os.path.join(root, file_name))
+                db_path = os.path.join(root, file_name)
+                # path relative to cd
+                db_path = os.path.relpath(db_path, cd)
+                sqlite_databases.append(db_path)
     return sqlite_databases
 
 
