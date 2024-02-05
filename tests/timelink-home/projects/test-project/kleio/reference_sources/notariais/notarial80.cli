@@ -1,0 +1,956 @@
+kleio$gacto.str
+   fonte$notarial80/data=1780/loc=V, 1e, 8, 3, 204,205,206/obs=notario pascoal gavino
+
+      escritura$not1780-e1/16/1/1780/compra/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=155v-161
+
+         compradora$rosa maria/id=not1780-e1-per1
+            ls$residencia/val de ferro
+            ls$ec/v
+            ls$assina/nao
+
+         vendedor$joao marques/id=not1780-e1-per2
+            ls$residencia/val de ferro
+            ls$assina/sim
+            ls$ec/c
+
+         test$jose simoes gago/m/id=not1780-e1-per3
+            ls$residencia/tovim de baixo
+            ls$assina/nao
+
+         test$manuel simoes/m/id=not1780-e1-per4
+            ls$residencia/tovim de baixo%Taubim deB.xotovim de baixo
+            ls$ec/v
+            ls$assina/nao
+
+         referido$paulino jose cunha/obs=assina a rogo da compradora/id=not1780-e1-per5
+            ls$profissao/padre
+
+         bem$terras/predio rustico
+            atr$localizacao/tovim de cima e do meio
+            atr$valor/6000 reis
+
+         siza$1200 reis/simao pedro marques/martinho andrade pereira/jose antonio conceicao lopes silva/17800111/id=not1780-e1-obj2
+
+      escritura$not1780-e2/19/1/1780/doacao/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=161v-162/sumario=joao ferreira e pessoa e sua mulher afirmam que legarao a sua sobrinha maria rosa todos os bens que possam receber no sequencia da causa que movem pela anulacao do testamento do pe. bernardo de carvalho, assim como 25000 reis que integrarao o seu dote.
+
+         dotante$joao ferreira pessoa/id=not1780-e2-joao
+            ls$residencia/eiras
+            ls$assina/nao
+
+            mulher$ana joaquina carvalho/id=not1780-e2-joao-per1
+               ls$assina/nao
+
+         dotada$maria rosa/id=not1780-e2-per2
+            ls$residencia/mosteiro do lorvao
+            rel$parentesco/sobrinha/joao ferreira pessoa/not1780-e2-joao
+
+         test$manuel jose costa/m/id=not1780-e2-per3
+            ls$residencia/ribeira de lagares
+            ls$assina/nao
+
+         test$antonio rodrigues/m/id=not1780-e2-per4
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         referido$jacome baptista ginhao/m/obs=assina a rogo da dotante/id=not1780-e2-per5
+
+      escritura$not1780-e3/5/2/1780/procuracao/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=1-2/sumario=francisco de campos branco constitui como procurador o dr. joao marques dos reis a fim deste litigar uma causa que tem a correr na casa da suplicacao contra jose teixeira palha.
+
+         constituinte$francisco campos branco/m/id=not1780-fcb
+            ls$residencia/eiras
+            ls$assina/sim
+
+            referido$joao marques reis/id=not1780-fcb-per1
+               ls$titulo/doutor
+               rel$sociabilidade/procurador/francisco campos branco/not1780-fcb
+
+         test$jacome baptista ginhao/m/id=not1780-e3-per2
+            ls$residencia/gondileu, brasfemes
+            ls$assina/sim
+
+         test$manuel jose costa/m/id=not1780-e3-per3
+            ls$residencia/gondileu, brasfemes
+            ls$assina/sim
+
+      escritura$not1780-e4/18/3/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=9-11v/sumario=a confraria de nossa sra. do rosario de eiras empresta a bernardo lopes da costa e sua mulher 25000 rs por um ano.
+
+         devedor$bernardo lopes costa/id=not1780-e4-bernardo
+            ls$residencia/casais de eiras
+            ls$assina/sim
+
+            mulher$bernarda pereira/id=not1780-e4-bernardo-per1
+               ls$assina/nao
+
+         credor$paulino jose cunha/id=not1780-e4-paulino
+            ls$profissao/eclesiastico/obs=clerigo in minoribus
+            ls$cargo/procurador da confraria de nossa sra. do rosario de eiras
+            ls$assina/sim
+
+         credor$jeronimo fernandes prata/id=not1780-jfp
+            ls$profissao/eclesiastico
+            ls$cargo/mordomo da confraria de nossa sra. do rosario de eiras
+            ls$assina/sim
+
+         fiador$antonio jose pereira/id=not1780-e4-antonio
+            ls$residencia/casais de eiras
+            ls$assina/sim
+
+            mulher$barbara maria/id=not1780-e4-antonio-per2
+               ls$assina/nao
+
+         fiador$sebastiao ferreira/id=not1780-e4-sebastiao
+            ls$residencia/carvalho
+
+            mulher$sebastiana maria/id=not1780-e4-sebastiao-per3
+               ls$assina/nao
+
+            referido$antonio jose pereira/id=not1780-e4-sebastiao-per4
+               rel$sociabilidade/procurador/paulino jose cunha/not1780-e4-paulino
+
+         test$joao jose sousa/m/id=not1780-e4-per5
+            ls$residencia/ribeira de lagares, souselas
+            ls$assina/sim
+
+         test$antonio rodrigues/m/id=not1780-e4-per6
+            ls$residencia/ribeira de lagares, souselas
+            ls$assina/sim
+
+         divida$25000 reis/juro 5 por cento por um ano/id=not1780-e4-obj1
+
+         garantia$casa de sobrado/predio urbano
+            rel$posse/pertence/bernardo lopes silva/not1780-e4-bernardo
+            atr$localizacao/casais de eiras
+            atr$confrontacao/manuel jose bernardes/obs= de eiras
+            atr$confrontacao/francisco jose bernardes
+            atr$confrontacao/herdeiros de francisco leite guterres/obs=dos casais de eiras
+            atr$valor/20000 reis
+
+         garantia$casa de sobrado/predio urbano
+            rel$posse/pertence/bernardo lopes silva/not1780-e4-bernardo
+            atr$localizacao/casais de eiras
+            atr$valor/35000 reis
+
+         garantia$duas casas de sobrado com sobrado/predio urbano
+            rel$posse/pertence/antonio jose pereira/not1780-e4-antonio
+            atr$localizacao/casais de eiras
+            atr$confrontacao/antonio pereira da cruz/obs=de eiras
+            atr$confrontacao/bernardo silva/obs=de eiras
+
+         garantia$casa com quintal/predio urbano
+            rel$posse/pertence/sebastiao ferreira/not1780-e4-sebastiao
+            atr$localizacao/casais de eiras
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/sebastiao ferreira/not1780-e4-sebastiao
+            atr$localizacao/balancho, casais de eiras
+
+      escritura$not1780-e5/16/4/1780/procuracao/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=15v-17/sumario=jose pereira, sua mulher e a sua irma constituem como procuradores os drs. luis borges correira e joao tavares a fim desses representarem os seus interesses em causas que correm nos auditorios de coimbra e na relacao do porto.
+
+         constituinte$joaquim jose pereira/m/id=not1780-e5-joaquim
+            ls$residencia/vilarinho de eiras
+            ls$assina/sim
+
+            mulher$teresa silva/id=not1780-e5-joaquim-per1
+               ls$assina/nao
+
+         constituinte$jose cardoso/m/id=not1780-e5-jose
+            ls$residencia/vilarinho de eiras
+            ls$assina/nao
+
+         constituinte$bernarda silva/f/id=not1780-e5-bernarda
+            ls$residencia/eiras
+            rel$parentesco/irma/jose cardoso/not1780-e5-jose
+            ls$assina/no
+
+            referido$luis borges correia/id=not1780-e5-bernarda-per2
+               ls$residencia/coimbra
+               ls$titulo/doutor
+               rel$sociabilidade/procurador/jose cardoso/not1780-e5-jose
+               rel$sociabilidade/procurador/bernarda silva/not1780-e5-bernarda
+               rel$sociabilidade/procurador/joaquim jose pereira/not1780-e5-joaquim
+
+            referido$joao lopes/id=not1780-e5-bernarda-per3
+               ls$residencia/porto
+               ls$titulo/doutor
+               rel$sociabilidade/procurador/jose cardoso/not1780-e5-jose
+               rel$sociabilidade/procurador/bernarda silva/not1780-e5-bernarda
+               rel$sociabilidade/procurador/joaquim jose pereira/not1780-e5-joaquim
+
+         test$joao jose sousa/m/id=not1780-e5-per4
+            ls$residencia/ribeira de lagares, souselas
+            ls$assina/sim
+
+         test$jose pinto mota/m/id=not1780-e5-per5
+            ls$residencia/brasfemes
+            ls$assina/sim
+
+         referido$antonio almeida/obs=assina a rogo das constituintes/id=not1780-e5-per6
+
+      escritura$not1780-e6/23/1/1780/juro/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=22v-25/sumario=a irmandade do santissimo sacramento de eiras empresta a jose marques e sua mulher 32000 rs por um ano.
+
+         devedor$jose marques/id=not1780-e6-jose
+            ls$residencia/marmeleira
+            ls$assina/nao
+
+            mulher$rosa maria/id=not1780-e6-jose-per1
+               ls$assina/nao
+
+         credor$francisco gomes bernardes/id=not1780-e6-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$assina/sim
+
+         fiador$jose francisco/id=not1780-e6-francisco
+            ls$residencia/marmeleira
+
+            mulher$maria conceicao/id=not1780-e6-francisco-per3
+               ls$assina/nao
+
+            referido$joao jose sousa/obs=assina a rogo da devedora e da fiadora/id=not1780-e6-francisco-per4
+
+         test$antonio simoes/m/id=not1780-e6-per5
+            ls$residencia/souselas
+            ls$assina/sim
+
+         test$antonio correia/m/id=not1780-e6-per6
+            ls$residencia/souselas
+            ls$assina/nao
+
+         divida$32000 reis/juro 5 por cento por um ano/id=not1780-e6-obj1
+
+         garantia$casa com quintal/predio urbano
+            rel$posse/pertence/jose marques/not1780-e6-jose
+            atr$localizacao/marmeleira
+            atr$valor/30000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/jose marques/not1780-e6-jose
+            atr$localizacao/marmeleira
+            atr$valor/30000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/jose marques/not1780-e6-jose
+            atr$localizacao/relva,marmeleira
+            atr$valor/15000 reis
+
+         garantia$terra/predio rustico
+            rel$posse/pertence/jose francisco/not1780-e6-francisco
+            atr$localizacao/ouregao, marmeleira
+            atr$valor/30000 reis
+
+      escritura$not1780-e7/1/6/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=48-50/sumario=a irmandade do santissimo sacramento de eiras empresta a luis de sousa e sua mulher 96090 rs por um ano.
+
+         devedor$luis sousa/id=not1780-e7-luis
+            ls$residencia/eiras
+            ls$assina/sim
+
+            mulher$mariana ferreira/id=not1780-e7-luis-per1
+               ls$assina/nao
+
+         credor$antonio jose fernandes silva/id=not1780-e7-per2
+            ls$cargo/escrivao da irmandade do santissimo sacramento de eiras
+            ls$residencia/escaravote
+            ls$assina/sim
+
+            referido$jacome baptista ginhao/obs=assina a rogo da devedora/id=not1780-e7-per2-per3
+
+         test$manuel rodrigues marques/m/id=not1780-e7-per4
+            ls$residencia/brasfemes
+            ls$assina/nao
+
+         test$jose lopes/m/id=not1780-e7-per5
+            ls$residencia/casais de eiras
+            ls$assina/sim
+
+         divida$96090 reis/juro 5 por cento por um ano/id=not1780-e7-obj1
+
+      escritura$not1780-e8/21/7/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=59-61v/sumario=a irmandade do santissimo sacramento de eiras empresta a jose tavares e sua mulher 15000 rs por um ano.
+
+         devedor$jose tavares/id=not1780-e8-jose
+            ls$residencia/vilarinho de eiras
+            ls$assina/nao
+
+            mulher$catarina santos/id=not1780-e8-jose-per1
+               ls$assina/nao
+
+         credor$jose antonio sousa/id=not1780-e8-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/ponte de gondileu, brasfemes
+            ls$assina/sim
+
+         fiador$joao ferreira/id=not1780-e8-joao
+            ls$residencia/vilarinho de eiras
+            ls$assina/nao
+
+            mulher$francisca costa/id=not1780-e8-joao-per3
+               ls$assina/nao
+
+            referido$antonio rodrigues/obs=assina a rogo da devedora e da fiadora/id=not1780-e8-joao-per4
+
+         test$manuel costa/m/id=not1780-e8-per5
+            ls$residencia/vilarinho de eiras
+            ls$assina/nao
+
+         test$joao francisco/m/id=not1780-e8-per6
+            ls$residencia/pisao dos canaviais
+            ls$assina/nao
+
+         divida$15000 reis/juro 5 por cento por um ano/id=not1780-e8-obj1
+
+         garantia$casa/predio urbano
+            rel$posse/pertence/jose tavares/not1780-e8-jose
+            atr$localizacao/vilarinho de eiras
+            atr$valor/20000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/jose tavares/not1780-e8-jose
+            atr$localizacao/vilarinho, junto ao lagar
+            atr$valor/12000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/joao ferreira/not1780-e8-joao
+            atr$localizacao/balancho, vilarinho de eiras
+            atr$valor/20000 reis
+
+      escritura$not1780-e9/29/7/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=59-61v/sumario=a irmandade do santissimo sacramento de eiras empresta a jose antonio sousa e sua mulher 50000 rs por um ano.
+
+         devedor$jose antonio sousa/id=not1780-e9-jose
+            ls$residencia/ponte de gondileu
+            ls$assina/sim
+
+            mulher$mariana josefa jesus/id=not1780-e9-jose-per1
+               ls$assina/nao
+
+         credor$francisco bernardes/id=not1780-e9-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/eiras
+            ls$assina/sim
+
+            referido$antonio cruz cunha/obs=assina a rogo da devedora/id=not1780-e9-per2-per3
+
+         test$manuel santos lopes/m/id=not1780-e9-per4
+            ls$residencia/brasfemes
+            ls$assina/nao
+
+         test$antonio rodrigues/m/id=not1780-e9-per5
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         divida$15000 reis/juro 5 por cento por um ano/id=not1780-e9-obj1
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/jose antonio sousa/not1780-e9-jose
+            atr$localizacao
+            atr$valor/20000 reis
+
+         garantia$vinha com pinhal/predio rustico
+            rel$posse/pertence/jose tavares/not1780-e9-jose
+            atr$localizacao/penedos, casais de eiras
+            atr$valor/70000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/jose tavares/not1780-e9-jose
+            atr$localizacao/rego, casais de eiras
+            atr$confrontacao/conego antonio campos branco
+            atr$confrontacao/reverendo luis barreto figueiredo castilho
+            atr$valor/80000 reis
+
+      escritura$not1780-e10/30/7/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=65-67/sumario=a irmandade do santissimo sacramento de eiras empresta a antonio sousa cunha e sua mulher 100000 rs por um ano.
+
+         devedor$antonio sousa cunha/id=not1780-e10-antonio
+            ls$residencia/casais de eiras
+            ls$assina/sim
+
+         credor$francisco bernardes/id=not1780-e10-per1
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/eiras
+            ls$assina/sim
+
+         fiador$manuel santos lopes/id=not1780-e10-manuel
+            ls$residencia/brasfemes
+            ls$assina/nao
+
+            referido$jose antonio sousa/obs=assina a rogo da devedora e da fiadora/id=not1780-e10-manuel-per2
+
+         test$antonio cruz cunha/m/id=not1780-e10-per3
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         test$antonio rodrigues/m/id=not1780-e10-per4
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         divida$100000 reis/juro 5 por cento por um ano/id=not1780-e10-obj1
+
+         garantia$casa com quintal/predio urbano
+            rel$posse/pertence/antonio sousa cunha/not1780-e10-antonio
+            atr$localizacao/casais de eiras
+            atr$valor/50000 reis
+
+         garantia$casa com quintal/predio urbano
+            rel$posse/pertence/antonio sousa cunha/not1780-e10-antonio
+            atr$localizacao/casais de eiras
+            atr$valor/100000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/manuel santos lopes/not1780-e10-manuel
+            atr$localizacao/fonte, brasfemes/obs= a vinha e chamada a Quinta
+
+      escritura$not1780-e11/24/8/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=82v-85/sumario=a irmandade do santissimo sacramento de eiras empresta a antonio jose pessoa e sua mulher 100000 rs por um ano.
+
+         devedor$antonio jose pessoa/id=not1780-e11-antonio
+            ls$residencia/eiras
+            ls$profissao/boticario
+            ls$assina/sim
+
+            mulher$teresa jesus/id=not1780-e11-teresa
+
+         credor$paulino jose cunha/id=not1780-e11-per1
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$profissao/eclesiastico
+            ls$residencia/eiras
+            ls$assina/sim
+
+         fiador$bento fonseca correia/id=not1780-e11-bento
+            ls$residencia/eiras
+
+            referido$jacome baptista ginhao/obs=assina a rogo da devedora e da fiadora/id=not1780-e11-bento-per2
+               rel$sociabilidade/procurador/teresa jesus/not1780-e11-teresa
+
+            referido$manuel almeida/id=not1780-e11-bento-per3
+               rel$sociabilidade/procurador/bento fonseca correia/not1780-e11-bento
+
+         test$manuel marques/m/id=not1780-e11-per4
+            ls$residencia/brasfemes
+            ls$assina/nao
+
+         test$jose oliveira/m/id=not1780-e11-per5
+            ls$residencia/pisao do canavial
+            ls$assina/nao
+
+         divida$100000 reis/juro 5 por cento por um ano/id=not1780-e11-obj1
+
+         garantia$casa com quintal/predio urbano
+            rel$posse/pertence/antonio jose pessoa/not1780-e11-antonio
+            atr$localizacao/eiras
+            atr$confrontacao/francisco zuzarte quadros
+            atr$confrontacao/conego antonio campos branco
+            atr$valor/40000 reis
+
+         garantia$legitima que lhe legou seu pai em penacova
+
+      escritura$not1780-e12/26/8/1780/compra/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=87v-89v
+
+         comprador$antonio jose pessoa/mesmo_que=not1780-e11-antonio/id=not1780-e12-per1
+            ls$residencia/eiras
+            ls$assina/sim
+
+         vendedor$francisco zuzarte quadros meneses/id=not1780-f12-francisco
+            ls$residencia/coimbra
+            ls$titulo/fidalgo
+            ls$titulo/capitao mor de eiras
+
+         test$paulino jose cunha m/id=not1780-e12-per2
+            ls$residencia/sinceira, brasfemes
+            ls$assina/sim
+            ls$profissao/eclesiastico
+
+         test$antonio jose fernandes silva/m/id=not1780-e12-per3
+            ls$residencia/escaravote
+            ls$profissao/eclesiastico
+            ls$titulo/doutor
+            ls$titulo/reverendo
+            ls$assina/sim
+
+         referido$antonio almeida/obs=assina a rogo da compradora/id=not1780-e12-per4
+            rel$sociabilidade/procurador/francisco zuzarte quadros meneses/not1780-f12-francisco
+
+         bem$casa com quintal/predio urbano
+            atr$localizacao/eiras
+            atr$confrontacao/conego antonio campos branco/obs=antes casas dos jesuitas
+            atr$confrontacao/francisco zuzarte quadros meneses
+            atr$valor/30000 reis
+
+         siza$6200 reis/simao pedro marques/martinho andrade pereira/jose antonio conceicao lopes silva/id=not1780-e12-obj2
+
+      escritura$not1780-e13/4/9/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=91-93v/sumario=a irmandade do santissimo sacramento de eiras empresta a francisco gomes bernardes e sua mulher 80000 rs por um ano
+
+         devedor$francisco gomes bernardes/id=not1780-e13-francisco
+            ls$residencia/eiras
+            ls$assina/sim
+
+            mulher$teresa neves/id=not1780-e13-francisco-per1
+
+         credor$paulino jose cunha/id=not1780-e13-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$profissao/eclesiastico
+            ls$residencia/eiras
+            ls$assina/sim
+
+         fiador$manuel jose bernardes/id=not1780-f13-manuel
+
+            referido$jacome baptista ginhao/obs=assina a rogo da devedora/id=not1780-f13-manuel-per3
+
+         test$jose oliveira/m/id=not1780-e13-per4
+            ls$residencia/pisao do canavial
+            ls$assina/nao
+
+         test$jose antonio/m/id=not1780-e13-per5
+            ls$residencia/ponte de gondileu
+            ls$assina/sim
+
+         divida$80000 reis/juro 5 por cento por um ano/id=not1780-e13-obj1
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/francisco gomes bernardes/not1780-e13-francisco
+            atr$localizacao/eiras, junto a capela do santissimo sacramento
+            atr$confrontacao/estrada publica para coimbra
+            atr$confrontacao/azinhaga que vai para as vargeas
+            atr$valor/180000 reis
+
+         garantia$casa de sobrado com quintal/predio urbano
+            rel$posse/pertence/francisco gomes bernardes/not1780-e13-francisco
+            atr$localizacao/eiras
+            atr$confrontacao/joao francisco dias/obs=de eiras
+            atr$confrontacao/reverendo manuel correia fonseca
+            atr$valor/80000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/francisco gomes bernardes/not1780-e13-francisco
+            atr$localizacao/covoes,eiras
+            atr$confrontacao/padre manuel costa/obs=de eiras
+            atr$confrontacao/herdeiros de maria marques
+            atr$valor/150000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/manuel jose bernardes/not1780-e13-manuel
+            atr$localizacao/covoes,eiras
+            atr$confrontacao/reverendo manuel correia fonseca
+            atr$confrontacao/capitao jose antonio conceicao lopes silva
+            atr$valor/35000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/manuel jose bernardes/not1780-e13-fmanuel
+            atr$localizacao/val paraiso
+            atr$confrontacao/joao oliveira
+            atr$confrontacao/joana maria rainha santa
+            atr$valor/45000 reis
+
+      escritura$not1780-e14/11/9/1780/compra/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=95v-98
+
+         comprador$joaquim vimieiro/id=not1780-f14-joaquim
+            ls$residencia/brasfemes
+            ls$profissao/eclesiastico
+            ls$assina/sim
+
+         vendedor$manuel lopes/id=not1780-e14-per1
+            ls$residencia/ribeiro
+            rel$parentesco/irmao/joaquim vimieiro/not1780-f14-joaquim
+
+            mulher$ines maria encarnacao/id=not1780-e14-per1-per2
+
+         test$joaquim cunha/m/id=not1780-e14-per3
+            ls$residencia/brasfemes
+            ls$assina/no
+
+         test$joao jose sousa/m/id=not1780-e14-per4
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         referido$antonio almeida/obs=assina a rogo da vendedora/id=not1780-e14-per5
+
+         bem$terra/predio rustico
+            atr$localizacao/taipa de vilela
+            atr$valor/24000 reis
+
+         siza$1400 reis/simao pedro marques/martinho andrade pereira/jose antonio conceicao lopes silva/id=not1780-e14-obj2
+
+      escritura$not1780-e15/20/9/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=103-105v/sumario=a irmandade do santissimo sacramento de eiras empresta a feliciano pereira e sua mulher 35000 rs por um ano
+
+         devedor$feliciano pereira/id=not1780-e15-feliciano
+            ls$residencia/casal da sinceira, brasfemes
+            ls$assina/nao
+
+            mulher$maria teresa/id=not1780-e15-feliciano-per1
+
+         credor$antonio almeida/id=not1780-e15-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/brasfemes
+            ls$assina/sim
+
+         fiador$paulino jose cunha/id=not1780-e15-paulino
+            rel$parentesco/cunhado/feliciano pereira/not1780-e15-feliciano
+
+            referido$antonio rodrigues/obs=assina a rogo da devedora/id=not1780-e15-paulino-per3
+
+         test$jose/m/id=not1780-e15-test1
+
+         referido$manuel marques/id=not1780-e15-per4
+            ls$residencia/ribeira de lagares
+            ls$ec/s
+            ls$assina/nao
+            rel$parentesco/pai/jose/not1780-e15-test1
+
+         test$joao/m/id=not1780-e15-test2
+
+         referido$manuel francisco/id=not1780-e15-per5
+            ls$residencia/souselas
+            ls$assina/nao
+            rel$parentesco/pai/joao/not1780-e15-test2
+
+         divida$35000 reis/juro 5 por cento por um ano/id=not1780-e15-obj1
+
+         garantia$terra de semeadura com casa/predio rustico
+            rel$posse/pertence/feliciano pereira/not1780-e15-feliciano
+            atr$localizacao/casal da sinceira
+            atr$valor/40000 reis
+
+         garantia$terra de semeadura com vinha/predio rustico
+            rel$posse/pertence/feliciano pereira/not1780-e15-feliciano
+            atr$localizacao/casal da sinceira
+            atr$valor/20000 reis
+
+         garantia$propriedade/predio rustico
+            rel$posse/pertence/feliciano pereira/not1780-e15-feliciano
+            atr$localizacao/infesta, brasfemes
+            atr$valor/30000 reis
+
+         garantia$propriedade com arvores/predio rustico
+            rel$posse/pertence/paulino jose cunha/not1780-e15-paulino
+            atr$localizacao/sinceira
+            atr$valor/12000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/paulino jose cunha/not1780-e15-paulino
+            atr$localizacao/val de colmeias
+            atr$valor/10000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/paulino jose cunha/not1780-e15-paulino
+            atr$localizacao/val da pomarela, brasfemes
+            atr$valor/10000 reis
+
+      escritura$not1780-e16/26/9/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=103-105v/sumario=a irmandade do santissimo sacramento de eiras empresta a fernando correia e sua mulher 30000 rs por um ano
+
+         devedor$fernando correia/id=not1780-e16-fernando
+            ls$residencia/logo de deus
+            ls$assina/nao
+
+            mulher$maria rosa/id=not1780-e16-fernando-per1
+               ls$assina/nao
+
+         credor$antonio almeida/id=not1780-e16-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/brasfemes
+            ls$assina/sim
+
+         fiador$manuel correia/id=not1780-e16-manuel
+            ls$residencia/azenha de souselas
+            ls$assina/sim
+
+            mulher$maria francisca/id=not1780-e16-manuel-per3
+               ls$assina/nao
+
+            referido$manuel rodrigues santos/obs=assina a rogo da devedora/id=not1780-e16-manuel-per4
+
+         test$antonio rodrigues/m/id=not1780-e16-per5
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         test$joao jose sousa/m/id=not1780-e16-per6
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         divida$30000 reis/juro 5 por cento por um ano/id=not1780-e16-obj1
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/fernando correia/not1780-e16-fernando
+            atr$localizacao/brasfemes
+            atr$valor/24000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/fernando correia/not1780-e16-fernando
+            atr$localizacao/cruz, brasfemes
+            atr$valor/10000 reis
+
+         garantia$vinholival/predio rustico
+            rel$posse/pertence/fernando correia/not1780-e16-fernando
+            atr$localizacao/aparqueira, logo de deus
+            atr$valor/15000 reis
+
+         garantia$terra com oliveiras/predio rustico
+            rel$posse/pertence/fernando correia/not1780-e16-fernando
+            atr$localizacao/vinhas velhas, brasfemes
+            atr$valor/15000 reis
+
+         garantia$chao/predio rustico
+            rel$posse/pertence/manuel correia/not1780-e16-manuel
+            atr$localizacao/azenha de souselas
+            atr$valor/25000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/manuel correia/not1780-e16-manuel
+            atr$localizacao/val longo, souselas
+            atr$valor/100000 reis
+
+      escritura$not1780-e17/29/9/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=115v-118/sumario=a irmandade do santissimo sacramento de eiras empresta a jose gomes e sua mulher 70000 rs por um ano
+
+         devedor$jose gomes/id=not1780-e17-jose
+            ls$residencia/logo de deus
+            ls$assina/sim
+
+            mulher$maria marques/id=not1780-e17-jose-per1
+               ls$assina/nao
+
+         credor$antonio almeida/id=not1780-e17-per2
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/brasfemes
+            ls$assina/sim
+
+         fiador$joao gomes/id=not1780-e17-joao
+            ls$residencia/logo de deus
+            ls$assina/no
+            rel$parentesco/irmao/jose gomes/not1780-e17-jose
+
+         fiador$jose antonio bras/id=not1780-e17-bras
+            ls$assina/sim
+            rel$parentesco/cunhado/jose gomes/not1780-e17-jose
+
+            referido$antonio rodrigues/obs=assina a rogo da devedora/id=not1780-e17-bras-per3
+
+         test$manuel rodrigues dos santos/m/id=not1780-e17-per4
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         test$jacinto oliveira/m/id=not1780-e17-per5
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         divida$70000 reis/juro 5 por cento por um ano/id=not1780-e17-obj1
+
+         garantia$casa de sobrado/predio urbano
+            rel$posse/pertence/jose gomes/not1780-e17-jose
+            atr$localizacao/logo de deus
+            atr$valor/80000 reis
+
+         garantia$vinha/predio rustico
+            rel$posse/pertence/jose gomes/not1780-e17-jose
+            atr$localizacao/barrosa, logo de deus
+            atr$valor/70000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/jose gomes/not1780-e17-jose
+            atr$localizacao/balceira
+            atr$valor/30000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/jose gomes/not1780-e17-jose
+            atr$localizacao/poo
+            atr$valor/17000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/jose gomes/not1780-e17-jose
+            atr$localizacao/val covo
+            atr$valor/18000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/joao gomes/not1780-e17-joao
+            atr$localizacao/cobrados, logo de deus
+            atr$valor/40000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/joao gomes/not1780-e17-joao
+            atr$localizacao/pedragueira, logo de deus
+            atr$valor/45000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/jose antonio bras/not1780-e17-bras
+            atr$localizacao/cruz, logo de deus
+            atr$valor/42000 reis
+
+         garantia$terra de semeadura/predio rustico
+            rel$posse/pertence/jose antonio bras/not1780-e17-bras
+            atr$localizacao/tanchoeira, logo de deus
+            atr$valor/40000 reis
+
+      escritura$not1780-e18/5/11/1780/compra/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=17v-20
+
+         comprador$domingos simoes/id=not1780-f18-domingos
+            ls$residencia/penedos, s. paulo de frades
+            ls$assina/nao
+
+            mulher$inacia cardosa/id=not1780-f18-domingos-per1
+               ls$residencia/penedos, s. paulo de frades
+
+         vendedora$felicia monteira/id=not1780-e18-per2
+            ls$residencia/casais de eiras
+            ls$assina/no
+
+            referido$joao baptista/obs=assina a rogo da vendedora e da compradora/id=not1780-e18-per2-per3
+
+         test$antonio rodrigues/m/id=not1780-e18-per4
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         test$manuel rodrigues marques/m/id=not1780-e18-per5
+            ls$residencia/brasfemes
+            ls$assina/sim
+
+         bem$olival/predio rustico
+            atr$localizacao/penedos, s. paulo de frades
+            atr$valor/24000 reis
+
+         siza$4800 reis/simao pedro marques/martinho andrade pereira/jose antonio conceicao lopes silva/17801029/id=not1780-e18-obj2
+
+      escritura$not1780-e19/12/11/1780/confissao de divida/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=20-22v/sumario=a irmandade do santissimo sacramento de eiras empresta a domingos simoes e sua mulher 30000 rs por um ano
+
+         devedor$domingos simoes/mesmo_que=not1780-f18-domingos/id=not1780-e19-per1
+            ls$residencia/penedos, s.paulo de frades
+            ls$assina/nao
+
+            mulher$inacia maria cardosa/id=not1780-e19-per1-per2
+               ls$assina/nao
+
+         credor$paulino jose cunha/id=not1780-e19-per3
+            ls$cargo/procurador da irmandade do santissimo sacramento de eiras
+            ls$residencia/casal da sinceira
+            ls$assina/sim
+
+         fiador$antonio francisco/id=not1780-e19-antonio
+            ls$residencia/casal da rosa
+            ls$assina/no
+
+            referido$francisco santos/obs=assina a rogo da devedora/id=not1780-e19-antonio-per4
+
+         test$antonio rodrigues/m/id=not1780-e19-per5
+            ls$residencia/ribeira de lagares
+            ls$assina/sim
+
+         test$sebastiao silva/m/id=not1780-e19-per6
+            ls$residencia/ribeira de lagares
+            ls$assina/nao
+
+         divida$70000 reis/juro 5 por cento por um ano/id=not1780-e19-obj1
+
+         garantia$casa/predio urbano
+            rel$posse/pertence/domingos simoes/not1780-e18-domingos
+            atr$localizacao/casal da rosa
+            atr$valor/30000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/domingos simoes/not1780-e18-domingos
+            atr$localizacao/penedos, s. paulo de frades
+            atr$valor/24000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/domingos simoes/not1780-e18-domingos
+            atr$localizacao/casal da rosa
+            atr$valor/30000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/antonio francisco/not1780-e19-antonio
+            atr$localizacao/cobrada, brasfemes
+            atr$valor/15000 reis
+
+         garantia$sorte de terra/predio rustico
+            rel$posse/pertence/antonio francisco/not1780-e19-antonio
+            atr$localizacao/sorte da porta, s. paulo de frades
+            atr$valor/20000 reis
+
+         garantia$olival/predio rustico
+            rel$posse/pertence/antonio francisco/not1780-e19-antonio
+            atr$localizacao/val de mouros, s.paulo de frades
+            atr$valor/15000 reis
+
+      escritura$not1780-e20/16/11/1780/compra/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=26v-30v
+
+         comprador$jeronimo fernandes prata/mesmo_que=not1780-jfp/id=not1780-e20-per1
+            ls$residencia/eiras
+            ls$profissao/eclesiastico
+            ls$assina/sim
+
+         vendedora$teresa joaquina/id=not1780-e20-teresa
+            ls$ec/v
+            ls$residencia/pedrulha
+
+            referido$jose antonio/id=not1780-e20-teresa-per2
+               rel$parentesco/marido/teresa joaquina/not1780-e20-teresa
+
+            referido$manuel lopes gouveia/id=not1780-e20-teresa-per3
+               rel$sociabilidade/procurador/teresa joaquina/not1780-e20-teresa
+
+         test$manuel alvares cruz/m/id=not1780-mac
+            ls$residencia/eiras
+            ls$titulo/doutor
+            ls$assina/sim
+
+         test$manuel jorge santos/m/id=not1780-e20-per4
+            ls$residencia/pedrulha
+            ls$assina/sim
+
+         bem$terras/predio rustico
+            atr$localizacao/campo do bolao, sitio das valadas/obs=3 oitavos e a terca parte de um quarto de terra
+            atr$valor/57500 reis
+
+         siza$5750 reis/simao pedro marques/martinho andrade pereira/jose antonio conceicao lopes silva/obs=pagou meia sisa por despacho/id=not1780-e20-obj2
+
+      escritura$not1780-e22/18/11/1780/compra/loc=ribeira de lagares, souselas, casas de antonio rodrigues/fol=30v-34v
+
+         comprador$manuel alvares cruz/mesmo_que=not1780-mac/id=not1780-e22-per1
+            ls$residencia/eiras
+            ls$titulo/doutor
+            ls$assina/sim
+
+         vendedora$teresa joaquina/mesmo_que=not1780-e20-teresa/id=not1780-e22-per2
+            ls$residencia/pedrulha
+
+            referido$manuel lopes gouveia/id=not1780-e22-per2-per3
+               rel$sociabilidade/procurador/teresa joaquina/not1780-e20-teresa
+
+         test$jeronimo fernandes prata/m/mesmo_que=not1780-jfp/id=not1780-e22-per4
+            ls$residencia/eiras
+            ls$profissao/eclesiastico
+            ls$assina/sim
+
+         test$manuel jorge santos/m/id=not1780-e22-per5
+            ls$residencia/pedrulha
+            ls$assina/sim
+
+         bem$terra/predio rustico
+            atr$localizacao/campo do bolao, sitio das valadas e sitio das correias
+            atr$valor/242000 reis
+
+         siza$48400 reis/simao pedro marques/martinho andrade pereira/jose antonio conceicao lopes silva/17801103/id=not1780-e22-obj2
+
+      escritura$not1780-e21/5/12/1780/aforamento 3 vidas/loc=botao, casas de tome francisco de paiva/fol=34v-37
+
+         senhorio$manuel alvares cruz/mesmo_que=not1780-mac/id=not1780-e21-per1
+            ls$residencia/eiras
+            ls$titulo/doutor
+            ls$assina/sim
+
+            mulher$rita josefa amaral/id=not1780-e21-per1-per2
+               ls$titulo/dona
+               ls$assina/nao
+
+         foreiro$joquim lopes/id=not1780-e21-per3
+            ls$residencia/botao
+            ls$assina/nao
+
+            mulher$josefa s. francisco/id=not1780-e21-per3-per4
+               ls$assina/nao
+
+            referido$tome francisco/obs=assina a rogo da foreira/id=not1780-e21-per3-per5
+
+         test$paulino jose cunha m/id=not1780-e21-per6
+            ls$residencia/casal da sinceira
+            ls$profissao/eclesiastico
+            ls$assina/sim
+
+         test$francisco paiva silva/m/id=not1780-e21-per7
+            ls$residencia/botao
+            ls$assina/sim
+
+         aforamento$terra/predio rustico
+            atr$localizacao/pedrosa, botao
+            atr$renda/400 reis/obs=pagar s.miguel de setembro
+            atr$condicoes/pagar tributos ao directo senhorio o mosteiro do lorvao

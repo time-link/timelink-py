@@ -1,0 +1,2877 @@
+Note =================================================
+Note Generic structure for the Source-Act-Person model
+Note   Now with geoentities and authority-registers
+Note   And Linked data
+Note ================================================
+Note
+Note Gacto2.str - version @@VERSION@@ - build @@BUILD@@ @@DATE@@
+Note =================================================================================================
+note
+note
+note  The name parameter in the database command designates
+note  the target source file.
+note  the read commands specify the structure file and the
+note    data file.
+
+note ================================================
+note ==============  SYSTEM DEFINITIONS =============
+note ================================================
+
+note ================================================
+note THIS SECTION CONTAINS SYSTEM PARAMETERS
+note IN NORMAL SITUATIONS THIS SHOULD NOT BE CHANGED
+note ================================================
+
+note ================================================
+note Database command. We use the kleio group as toplevel
+note                   group for all sources
+note
+note ================================================
+database name=kleio; first=kleio; identification=no
+
+note ===============================================
+note doc group kleio This is the top level group of Kleio files.
+     Specific historical sources must be added
+     to the part parameter of this group.
+note
+
+part 	name=kleio;
+ also=structure,translator,autorels,obs,prefix,translations;
+ position=structure,translator;
+ part=historical-source,fonte,authority-register, identifications, link
+
+note ============================================================
+note Basic historical source group
+note ============================================================
+
+part name=historical-source;
+  guaranteed=id;
+  also=type,date,year,loc,ref,obs,replace, kleiofile;
+  position=id,year,type,ref;
+  part=historical-act
+
+note ============================================================
+note GeoEntity: a spatial entity
+note doc group geoentity 
+
+     GeoEntity: a spatial entity.
+     An entity that represents a spatial entity 
+     in the sense of a conceptual representation of space. 
+     A geo-entity is not an object
+     that has a particular position in place. 
+     It is rather something like
+     the parish of X, the place Y, the region W.
+note ============================================================
+
+part name=geoentity;
+  position=name;
+   also=type,id,obs;
+  part=ls,atr,rel
+
+note ===========================================================
+note doc group authority-register a register of authority-records
+note    authority records are used to identify people, objects
+note    and to normalize vocabularies and other authority information.
+note    authority-registers must have an unique id, but a given community
+note    can have as many authority-registers as needed
+note
+
+part name=authority-register;
+    position=id,name;
+    guaranteed=id,name,date,user,dbase;
+    also=date,user,dbase;
+    part=authority-record
+
+note ===========================================================
+note identifications: a authority-register for identifications
+note doc group identifications 
+     Identifications are authority-registers for record linking.
+     They contain real-entity records (people or objects) that aggregate
+     occurrences in the source pertaining to the same person or entity.
+     To keep imported records separate from local ones use a different user.
+part name=identifications;
+    source=authority-register;
+    position=id,name;
+    guaranteed=id,name,date,user,dbase,mode;
+    also=obs;
+    part=rentity,rperson,robject
+
+note ===========================================================
+note doc group link
+note Declare a linked data target
+part name=link;
+    position=shortname,urlpattern;
+    also=id,obs
+
+note ===========================================================
+note rentity: a authority-record for a real entity
+note doc group rentity 
+        Rentity contains information about a real entity.
+        Defines the standart name for the entity and what are the occurences,
+        in `occ` subgroups.
+part name=rentity;
+     position=id,description,type;
+     guaranteed=id,description,type;
+     also=status,user,obs;
+     part=occ
+note ===========================================================
+note rperson: a authority-record for a real person
+note doc group rperson contains information about a real person.
+note     Defines the standart name for the person, the sex, and what are the occurrences
+note    Note that real entities can have attributes and relations
+part name=rperson;
+     position=id,sname,sex;
+     guaranteed=id,sname,sex;
+     also=status,user,obs;
+     part=occ,ls,atr,rel
+
+note ===========================================================
+note robject: a authority-record for a real object
+note doc group robject contains information about a real object.
+note     Defines the standart name for the object, the type, and what are the occurrences
+note    Note that real entities can have attributes and relations
+part name=robject;
+     position=id,sname,type;
+     guaranteed=id,sname,type;
+     also=status,user,obs;
+     part=occ,ls,atr,rel
+
+note ===========================================================
+note occ: an occurrence of a real entity
+note doc group occ contains the ids of the occurrences of a real entity
+note     Defines the id of the occ and optionally the name of the occurence
+note     the id_act of the act where it occurs, the type of act and the fucntion
+note     note that these optional information are just for documentation because they
+note    derive automatically from the occurrence id.
+part name=occ;
+     position=occurrence,atype,func,date,name;
+     guaranteed=occurrence;
+     also=name,atype,func,date,id,obs
+
+
+
+
+
+
+note ============================================================
+note Basic historical act group
+note ============================================================
+
+part 	name=historical-act;
+     guaranteed=id,type,date;
+     position=id,type,date;
+     also=loc,ref,obs,day,month,year;
+     arbitrary=person,object,geoentity,abstraction,ls,atr,rel
+
+note ============================================================
+note A person
+note	base class por persons
+note ============================================================
+part	name=person ;
+ guaranteed=name,sex;
+ also=id,obs,same_as;
+ position=name,sex,id,same_as;
+ arbitrary=atr,rel,ls
+
+note ============================================================
+nota A Female person
+note	having this group is the fons/source line
+nota    notifies the translator that sex=female
+nota ============================================================
+
+part 	name=female ;
+  source=person;
+ guaranteed=name;
+ also=obs,id,same_as;
+ position=name,sex
+
+note ============================================================
+nota A Male person
+note	having this group is the fons/source line
+nota    notifies the translator that sex=male
+nota ============================================================
+
+part 	name=male ;
+ source=person;
+ guaranteed=name;
+ also=obs,id,same_as;
+ position=name,sex
+
+note ============================================================
+note Object Base class for objects
+note       Objects are similar to person, they take attributes
+note			and relations. They have a type to distinguish categories
+note			of objects.
+note ===========================================================
+part name=object;
+     guaranteed=name;
+     position=name,type;
+     also=obs,id;
+     arbitrary=atr,ls,rel
+
+note ============================================================
+note abstraction Base class for abstractions
+note       Abstractions are similar to objects, they take attributes
+note			and relations. They have a type to distinguish categories
+note			of objects.
+note ===========================================================
+part name=abstraction; source=object
+
+note ============================================================
+note Attribute
+note ============================================================
+
+part	name=attribute ;
+ guaranteed=type,value ;
+ also=obs,date,id ;
+ position=type,value,date
+
+note ============================================================
+note Relation
+note ============================================================
+
+part 	name=relation ;
+ guaranteed=type,value,destname,destination ;
+ also=obs,date,id
+
+note
+note =============================================================
+note End - pseudo group to mark the end of acts
+note
+note    Having this group in source / fons path notifies
+note    the translator that the current act is finished
+note
+note    This is usefull because sometimes new acts begin
+note    with long multi-line elements and the translator
+note    echoes the new act before producing the previous act
+note    reports.
+note =============================================================
+
+part name=end; also=id ; position=id
+
+note
+note =============================================================
+note group-element - pseudo group for element entered as groups
+note    e.g. in obitos
+note
+part name=group-element; position=value; guaranteed=value; also=obs
+
+note =================================================
+note relation-type: pseudo group to flag the translator that a group name defines
+note                the function of the actor in the act. Actor introducing groups
+note                extend this one
+part name=relation-type
+note ================================================
+note Elements for numerical dates
+note   Day - a two digit representation of day
+note   Month - a two digit representation of monthgact
+note   Year - a four digit representation of year
+note   Date - a eight digit representation of a date
+note                    yyyymmdd
+note ================================================
+element name=day; type=number
+element name=month; type=number
+element name=year; type=number
+element name=date;type=number
+
+note ================================================
+note Other base elements.
+note    By declaring them here we allow national
+note    language variations to be declared later on.
+note ================================================
+element name=id; identification=yes
+element name=type
+element name=loc
+element name=obs
+element name=ref
+element name=page
+note pages in the document
+element name=pages
+element name=value
+element name=origin
+element name=destination
+element name=entity
+element name=same_as
+element name=xsame_as
+element name=name
+element name=sex
+element name=destname
+element name=destination
+element name=summary
+element name=description
+element name=replace
+element name=inside
+element name=class
+element name=level
+element name=line
+element name=groupname
+element name=replace
+element name=kleiofile
+
+
+note ================================================
+note ======= END OF SYSTEM DEFINITIONS ==============
+note ================================================
+
+note ================================================
+note USER DEFINITIONS START HERE
+note ================================================
+
+note *****************************************************************
+note Portuguese Historical Sources
+note *****************************************************************
+
+note *****************************************************************
+note doc group fonte Este constitui o grupo principal para os documentos
+         historicos portugueses. Admite qualquer dos actos definidos aqui.
+note loc group fonte pt fonte
+note loc group fonte en source
+note loc group fonte fr source
+note doc element id elemento obrigatorio, identifica unicamente a fonte na base de dados,
+note doc element tipo tipo de fonte (registos paroquiais, livros notariais, etc...)
+note doc element loc localizacao da fonte (arquivo pessoal, AUC, ANTT).
+note doc element ref cota ou outra referencia de localizacao da fonte
+
+part	 name=fonte;
+      source=historical-source;
+      guaranteed=id;
+      also=tipo,loc,localizacao,ref,data,ano,obs,substitui;
+      arbitrary=acto,amz,nom,carta,pauta,hab,proc,beneficio,chanc,encarte,rol,escritura,
+            adenda,arrolamento,cas,bap,b,termo,obito,o,ar,lista,rmerce,merce,let,lbach,capela,
+          gov,familia,po,fim,devassa,cartaperdao,denuncia,matricula,ordenancas,milicias,
+	  memoria58,apontamentosd,eleicao,juramento,lc,crisma,docregio,docpontificio,docepiscopal,automed,
+	  pas,lcc,integr,movacao,geodesc
+
+element name=substitui; source=replace
+
+
+
+note *****************************************************************
+note doc group 'pt-acto' Forma generica de acto.
+note *****************************************************************
+
+part 	name=pt-acto; source=historical-act;
+     arbitrary=celebrante,actorm,
+         actorf,object,abstraction,ls,rel;
+     position=id,dia,mes,ano;
+     guaranteed=id,dia,mes,ano;
+     also=ref,loc,obs
+
+note ****************************************************************
+note funcao-em-acto   -- tipo de relacao entre actor e acto
+note ****************************************************************
+part 	name=funcao-em-acto; source=relation-type;
+     repeat=actorm,actorf
+note ****************************************************************
+note doc group fim fim indica o fim de um acto
+note loc fim pt fim
+note loc fim en end
+note ****************************************************************
+part 	name=fim; source=end; position=id;
+     also=id,obs
+
+note ****************************************************************
+note Equivalencia entre o nome dos elementos em portugues e em ingles
+note ****************************************************************
+element name=dia; source=day
+element name=mes; source=month
+element name=ano; source=year
+element name=data; source=date
+element name=tipo; source=type
+element name=valor; source=value
+element name=localizacao; source=loc
+element name=cota; source=ref;
+element name=nome; source=name
+element name=mesmo_que; source=same_as
+element name=xmesmo_que; source=xsame_as
+element name=sexo; source=sex
+element name=nomedest; source=destname
+element name=iddest; source=destination
+element name=sumario; source=summary
+element name=fol; source=pages;
+element name=fols; source=pages;
+element name=folio; source=pages;
+element name=folios; source=pages;
+
+
+note ****************************************************************
+note doc group acto Actos genericos: servem para vereacoes etc. Compostos por items e por pessoas
+note loc acto pt acto
+note loc actor en actor
+note ****************************************************************
+part name=acto;
+  source=pt-acto;
+  position=id,tipo,dia,mes,ano,loc,obs;
+  repeat=presente,presente-f,referido,referida,item,ls,atr,rel
+
+part name=item; source=object;
+    repeat=presente,presente-f,referido,referida,ls,rel;
+    guaranteed=titulo;
+    position=titulo;
+    also=resumo,id,tipo,obs
+
+note *************************************************************************************************++++
+note livros de registo de acoes de companhias monopolistas - angelica vasconcelos, criada em 19-09-2013
+note ****************************************************************************************************
+
+part name=integr; 
+     source=pt-acto;
+     arbitrary=referido, referida, acionista, acionistaf, ls, rel, acao;
+     position=id,dia,mes,ano;
+     guaranteed=id,dia,mes,ano;
+     also=obs, data
+     
+part name=acao; source=object;
+          arbitrary=referido,referida, atr, rel;
+          guaranteed=name;
+          also=id, obs, data, mesmo_que
+          
+          
+part name=lcc; 
+    source=pt-acto;
+    arbitrary=n
+
+     
+part name=acao; 
+     source=object;
+          arbitrary=referido,referida, atr, rel;
+          guaranteed=name;
+          also=id, obs, data, mesmo_que
+
+
+note ****************************************************************
+note  doc group devassa Devassas temporais nas visitas pastorais
+note loc devassa pt devassa
+note loc devassa en visitation
+note ****************************************************************
+part name=devassa;
+ source=pt-acto;
+ repeat=testo,testa,referido;
+ guaranteed=id,dia,mes,ano,fol;
+ also=folio,visdor,secretario,obs;
+ position=id,dia,mes,ano
+
+part name=acus; source=object;
+  guaranteed=idcaso;
+  position=idcaso, obs;
+  also=literal,origem,obs,id;
+  part=caso
+
+
+part name=acusa; source=acus;
+  also=literal,origem,obs,id;
+  part=caso
+
+part name=caso; source=object;
+   position=id,tipo;
+   certe=id,tipo;
+   also=obs;
+   repeat=acusado,acusada,referido,referida
+
+note ****************************************************************
+note  doc group denuncia Denuncia de um caso como nos cadernos dos promotores da inquisicao
+note ****************************************************************
+part name=denuncia;
+     source=pt-acto;
+     repeat=denunciante;
+     guaranteed=id,dia,mes,ano,fol;
+     also=inquiridor,escrivao,obs;
+     position=id,dia,mes,ano
+
+
+note ****************************************************************
+note doc group nom Nomeacoes de irmaos numa misericordia (A particular historical act)
+note ****************************************************************
+part name=nom;
+ source=pt-acto;
+ repeat=n,referido;
+ guaranteed=id,dia,mes,ano;
+ also=fols,subs,esmola,obs;
+ position=id,dia,mes,ano,fol,subs,esmola
+
+note *****************************************************************
+note  doc group amz Assentos da mesa numa misericordia (A particular historical act)
+note *****************************************************************
+
+part 	name=amz;
+     source=pt-acto;
+     repeat=eleito,eleitor,referido;
+     guaranteed=id,dia,mes,ano,fol;
+     position=id,dia,mes,ano,fol;
+     also=resumo,obs
+
+note *****************************************************************
+note  doc group vereacao actas de vereacao
+note *****************************************************************
+
+part name=vereacao;
+     source=pt-acto;
+     repeat=assunto;
+     guaranteed=id,dia,mes,ano,fol;
+     position=id,dia,mes,ano,fol;
+     also=obs
+
+     
+note *****************************************************************
+note  doc group pautas das vereacoes (criada por Ana Isabel 02-11-2007)
+note *****************************************************************
+
+part name=pauta;
+     source=pt-acto;
+     repeat=n,referido,referida;
+     guaranteed=id,dia,mes,ano,loc;
+     position=id,dia,mes,ano,loc;
+     also=obs
+     
+note *****************************************************************
+note  doc group eleicoes das corporacoes de oficios (criada por Ana Isabel 09-11-2007)
+note *****************************************************************
+     
+part name=eleicao;
+     source=pt-acto;
+     repeat=n,referido,referida;
+     guaranteed=id,dia,mes,ano,loc;
+     position=id,dia,mes,ano,loc;
+     also=obs
+     
+note *****************************************************************
+note  doc group juramentos e licencas de oficios (criada por Ana Isabel 02-01-2008)
+note *****************************************************************
+     
+part name=juramento;
+     source=pt-acto;
+     repeat=n,referido,referida, abonador, abonadora, escrivao;
+     guaranteed=id,dia,mes,ano,loc;
+     position=id,dia,mes,ano,loc;
+     also=obs
+
+
+note *****************************************************************
+note  doc group hab Habilitacoes da Ordem de Cristo e Santo Oficio (A particular historical act).
+note *****************************************************************
+part 	name=hab;
+ source=pt-acto;
+ repeat=n,referido,referida,test;
+ guaranteed=id,cota,data;
+ position=id,cota,data;
+ also=obs
+
+note ** variante usada pela Rosario Castico na Lousa
+part name=proc; source=hab;
+     position=id,dia,mes,ano,loc;
+     guaranteed=id,dia,mes,ano
+
+note ** variante para os processos de ordenacao sacerdotal, a mesma coisa que hab
+part name=po; source=hab
+
+note *****************************************************************
+note  doc group beneficio Beneficios colacoes numa colegiada
+note *****************************************************************
+part 	name=beneficio;
+ source=pt-acto;
+ repeat=n;
+ guaranteed=id,dia,mes,ano,loc;
+ position=id,dia,mes,ano,loc;
+ also=resumo,obs
+
+note *****************************************************************
+note doc group chanc  Chancelarias
+note *****************************************************************
+part 	name=chanc;
+ source=pt-acto;
+ repeat=n,referido,referida,item;
+ guaranteed=id,dia,mes,ano;
+ position=id,dia,mes,ano,loc;
+ also=loc,resumo,obs
+
+note *****************************************************************
+note doc group encarte Encartes
+note *****************************************************************
+part 	name=encarte;
+ source=chanc;
+
+note *****************************************************************
+note Arrolamentos e subsequente processo de eleicao das camaras
+note *****************************************************************
+part	name=arrolamento;
+ source=pt-acto;
+ repeat=rv,rp, referido, referida;
+ guaranteed=id,dia,mes,ano;
+ position=id,ano,mes,dia;
+ also=obs
+
+
+note *****************************************************************
+note doc group capela Extincao de capelas segundo as chancelarias regias (D.Jose)
+note *****************************************************************
+part	name=capela;
+ source=pt-acto;
+ repeat=n;
+ guaranteed=id,dia,mes,ano,loc;
+ position=id,dia,mes,ano,loc;
+ also=obs,resumo
+
+note *****************************************************************
+note doc group cas Casamentos
+note *****************************************************************
+part  name=cas,termo;
+   source=pt-acto;
+   guaranteed=id,dia,mes,ano,fol;
+   position=id,dia,mes,ano,fol,loc,celebrante;
+   also=fol,loc,celebrante,obs;
+   repeat=celebrante,test,referida,referido,
+                  noivo,
+                     pnoivo,
+                         ppnoivo,
+                             pppnoivo,
+                             mppnoivo,
+                         mpnoivo,
+                             pmpnoivo,
+                             mmpnoivo,
+                     mnoivo,
+                         pmnoivo,
+                             ppmnoivo,
+                             mpmnoivo,
+                         mmnoivo,
+                             pmmnoivo,
+                             mmmnoivo,
+                     mulher1,
+                         pmulher1,
+                             ppmulher1,
+                                 pppmulher1,
+                                 mppmulher1,
+                             mpmulher1,
+                                 pmpmulher1,
+                                 mmpmulher1,
+                         mmulher1,
+                             pmmulher1,
+                                 ppmmulher1,
+                                 mpmmulher1,
+                             mmmulher1,
+                                 pmmmulher1,
+                                 mmmmulher1,
+                     mulher2,
+                         pmulher2,
+                             ppmulher2,
+                                 pppmulher2,
+                                 mppmulher2,
+                             mpmulher2,
+                                 pmpmulher2,
+                                 mmpmulher2,
+                         mmulher2,
+                             pmmulher2,
+                                 ppmmulher2,
+                                 mpmmulher2,
+                             mmmulher2,
+                                 pmmmulher2,
+                                 mmmmulher2,
+                     mulher3,
+                         pmulher3,
+                             ppmulher3,
+                                 pppmulher3,
+                                 mppmulher3,
+                             mpmulher3,
+                                 pmpmulher3,
+                                 mmpmulher3,
+                         mmulher3,
+                             pmmulher3,
+                                 ppmmulher3,
+                                 mpmmulher3,
+                             mmmulher3,
+                                 pmmmulher3,
+                                 mmmmulher3,
+                  noiva,
+                     pnoiva,
+                         ppnoiva,
+                             pppnoiva,
+                             mppnoiva,
+                         mpnoiva,
+                             pmpnoiva,
+                             mmpnoiva,
+                     mnoiva,
+                         pmnoiva,
+                             ppmnoiva,
+                             mpmnoiva,
+                         mmnoiva,
+                             pmmnoiva,
+                             mmmnoiva,
+
+                     marido1,
+                         pmarido1,
+                             ppmarido1,
+                                 pppmarido1,
+                                 mppmarido1,
+                             mpmarido1,
+                                 pmpmarido1,
+                                 mmpmarido1,
+                         mmarido1,
+                             pmmarido1,
+                                 ppmmarido1,
+                                 mpmmarido1,
+                             mmmarido1,
+                                 pmmmarido1,
+                                 mmmmarido1,
+                     marido2,
+                         pmarido2,
+                             ppmarido2,
+                                 pppmarido2,
+                                 mppmarido2,
+                             mpmarido2,
+                                 pmpmarido2,
+                                 mmpmarido2,
+                         mmarido2,
+                             pmmarido2,
+                                 ppmmarido2,
+                                 mpmmarido2,
+                             mmmarido2,
+                                 pmmmarido2,
+                                 mmmmarido2,
+                     marido3,
+                         pmarido3,
+                             ppmarido3,
+                                 pppmarido3,
+                                 mppmarido3,
+                             mpmarido3,
+                                 pmpmarido3,
+                                 mmpmarido3,
+                         mmarido3,
+                             pmmarido3,
+                                 ppmmarido3,
+                                 mpmmarido3,
+                             mmmarido3,
+                                 pmmmarido3,
+                                 mmmmarido3
+
+note *****************************************************************
+note doc group bap Baptismos (variante usada nos registos da Lousa
+      por Rosario Campos e em Óbidos)
+note *****************************************************************
+part name=bap; source=pt-acto;
+  position=id,dia,mes,ano,fol,loc,celebrante;
+    also=fol,loc,celebrante,obs;
+  guaranteed=id,dia,mes,ano;
+  repeat=celebrante,n,
+          test,referido,referida
+
+nota doc group b Baptimos, versao original usada em Soure.
+part name=b; source=pt-acto;
+  position=id,dia,mes,ano,dian,mesn,anon,celebrante;
+  also=celebrante,obs;
+  guaranteed=id,dia,mes,ano;
+  repeat=celebrante,n,
+      referido,referida,test
+
+note *****************************************************************
+note doc group obito Obitos
+note
+note *****************************************************************
+part name=obito; source=pt-acto;
+  position=id,dia,mes,ano,fol,celebrante;
+  also=fol,celebrante,obs;
+  guaranteed=id,mes,ano;
+  also=obs;
+  repeat=celebrante,n,marido,mulher,pai,mae,referido,referida,sacr,testamento,testamenteiro,locs,locf,causa,oficios
+
+note doc group o Óbitos. Estilo usado em Soure, sem o id do obito, 
+     mas aceita o id opcionalmente.
+part name=o; source=obito;
+    position=dia,mes,ano;
+    guaranteed=dia,mes,ano;
+    also=obs,id
+
+
+part name=sacr;source=group-element
+part name=testamento;source=group-element
+part name=locs;source=group-element
+part name=locf;source=group-element
+part name=oficios;source=group-element
+part name=causa;source=group-element
+
+
+note *****************************************************************
+note Arrematacoes de bens concelhios (Castelo Branco 1807-1829); alterado por Ana Isabel (12-11-07)
+note *****************************************************************
+part name=ar; source=pt-acto;
+     guaranteed=id,dia,mes,ano;
+     position=id,dia,mes,ano;
+     arbitrary=proparr,bemarr,fornarr,rendarr;
+
+part name=proparr; source=object;
+     guaranteed=name;
+     position=name;
+     also=valor,prazo,condicao,obs,id,mesmo_que,xmesmo_que;
+     part=arrem,fiador;
+
+part name=bemarr; source=proparr
+
+part name=fornarr; source=proparr
+
+part name=rendarr; source=proparr
+
+
+note *****************************************************************
+note Lista generica
+note *****************************************************************
+
+part name=lista; source=pt-acto;
+     guaranteed=id,dia,mes,ano;
+     position=id,dia,mes,ano;
+     arbitrary=n,referido,referida,celebrante,evento,colega;
+     also=obs,loc,tipo,data
+
+note *****************************************************************
+note Lista de ordenancas (criada por Ana Isabel 16-10-2007)
+note *****************************************************************
+
+part name=ordenancas; source=lista;
+     guaranteed=id,dia,mes,ano;
+     position=id,dia,mes,ano;
+     also=obs,loc;
+     arbitrary=n
+     
+     
+note *****************************************************************
+note Lista de credito (criada por Ana Isabel 27-06-2008)
+note *****************************************************************
+
+part name=credito; source=lista;
+     guaranteed=id,dia,mes,ano;
+     position=id,dia,mes,ano;
+     also=obs,loc;
+     arbitrary=n, credor,credora,devedor,devedora,procurador,procuradora
+
+note *****************************************************************
+note Lista de milicias e auxiliares (criada por Ana Isabel 16-10-2007)
+note *****************************************************************
+
+
+part name=milicias; source=ordenancas
+
+
+note *****************************************************************
+note Registo de merces
+note *****************************************************************
+part name=rmerce; source=pt-acto;
+       guaranteed=id,dia,mes,ano,cota,merce;
+       also=obs;
+       position=id,dia,mes,ano,cota,merce,obs;
+       arbitrary=n
+
+note ** sinonym used by Rosario Castico
+part name=merce; source=rmerce;
+
+
+note *****************************************************************
+note Leitura de bachareis: inquiricoes de genere com testemunhas
+note *****************************************************************
+part name=let; source=pt-acto;
+       guaranteed=id,data,cota;
+       also=obs;
+       position=id;
+       arbitrary=n,ts
+
+note sinonimo usado por Rosario Castico nos dados da Lousa
+part name=lbach;source=let;
+         guaranteed=id,dia,mes,ano,loc;
+         also=obs;
+         position=id,dia,mes,ano,loc
+
+note *****************************************************************
+note Rois de confessados
+note *****************************************************************
+
+part name=rol; source=pt-acto;
+     guaranteed=id,dia,mes,ano;
+     position=id,dia,mes,ano;
+     arbitrary=fogo
+
+part name=fogo; source=object;
+       guaranteed=id,local;
+       also=obs;
+       position=id,local;
+     arbitrary=n,criado,criada,engeitado,engeitada,enjeitado,enjeitada,escravo,escrava,fim;
+element name=local; source=loc
+
+note *****************************************************************
+note Crismas
+note *****************************************************************
+part name=crisma; source=pt-acto;
+     guaranteed=id,dia,mes,ano;
+     position=id,dia,mes,ano;
+     arbitrary=n,referido,referida
+
+note *****************************************************************
+note Notariais - escrituras
+note *****************************************************************
+
+part name=escritura; source=pt-acto;
+  position=id,dia,mes,ano,tipo;
+  guaranteed=id,dia,mes,ano,loc;
+  also=tipo,fol,sumario,obs;
+  arbitrary=atr,ls,devedor, devedora, credor, credora, fiador, fiadora, test,
+             comprador,compradora,vendedor,vendedora, louvado,
+             doador, doadora, donatario, donataria,dotante,dotantef,dotado, dotada,
+             senhorio, senhoria, rendeiro, rendeira,arrendatario,arrendataria,testador,testadora,
+             testamentario,testamentaria,testamenteiro,testamenteira,contraente,contraentef,
+             renunciante,renunciantef,
+             procurador,procuradora,escrivao,arrematante,arrematantef,
+             foreiro,foreira,enfiteuta,subenfiteuta,enfiteutaf,subenfiteutaf,constituinte,constituintef,
+             outorgante,outorgantef,referido,referida,
+             divida,garantia,fianca,bem,doacao,arrendamento,aforamento,
+				 demanda,acusacao,destinatario,requerente,requerido,defesa,sentenca,escambo,
+				 siza,sisa,prazo,obra,escrivao,abonador,
+				 abonadora,tabeliao,quitante,quitantef,quitado,quitada,demandador,demandadora,
+                 demandado,escambador,escambadora,reu,reuf,
+				 vedor,
+				 inquiricao,inquirido,inquirida,inquiridor,
+				 apelacao,apelado,apelante,apelantef, apresentado, padroeiro, confirmante,
+				 beneficiario,beneficiaria,autor,autoridade,renda,
+				 juiz,item
+				 
+part name=demanda; source=abstraction;
+part name=acusacao; source=abstraction;
+part name=sentenca; source=abstraction;
+part name=defesa; source=abstraction;
+part name=inquiricao; source=abstraction;
+part name=apelacao; source=abstraction;
+part name=renda; source=abstraction;
+
+element name=sumario; source=summary
+element name=fol; source=ref;
+
+note *****************************************************************
+note Notariais - bens
+note *****************************************************************
+part name=bem; source=object;
+     guaranteed=name;
+     position=name,tipo;
+     also=desc,tipo,id,obs,local;
+     arbitrary=atr,rel,local
+
+element name=desc; source=description;
+
+note *****************************************************************
+note Notariais - dividas
+note *****************************************************************
+
+part name=divida; source=object;
+    guaranteed=valor,juro;
+    position=valor,juro;
+    also=id,prazo,moeda,valorn,obs
+
+part name=garantia; source=bem;
+
+part name=fianca; source=garantia;
+
+note *****************************************************************
+note Notariais - siza
+note *****************************************************************
+part name=siza; source=object;
+     guaranteed=valor;
+     position=valor,juiz,escrivao,depositario,data;
+     also=juiz,escrivao,depositario,data,obs,id
+     
+     
+part name=sisa; source=siza
+
+note *****************************************************************
+note Notariais - aforamento -- colocar as condicoes em atr
+note *****************************************************************
+
+part name=aforamento; source=bem
+
+
+note *****************************************************************
+note Notariais - prazo -- colocar as condicoes em atr (criado por Ana Isabel)
+note *****************************************************************
+
+part name=prazo; source=aforamento
+
+
+note *****************************************************************
+note Notariais - arrendamento -- colocar as condicoes em atr (criado por Ana Isabel)
+note *****************************************************************
+
+part name=arrendamento; source=bem
+
+note *****************************************************************
+note Notariais - escambo -- colocar as condicoes em atr (criado para Amelia)
+note *****************************************************************
+
+part name=escambo; source=bem
+
+
+
+note *****************************************************************
+note Notariais - obra (contratacao de obras publicas e privadas)(criado por Ana Isabel)
+note *****************************************************************
+part name=obra; source=object;
+     guaranteed=name;
+     position=name,tipo,id;
+     also=desc,tipo,id,obs,local;
+     arbitrary=atr,rel
+     
+
+note *****************************************************************
+note DyncoopNet grupos associados ao projecto de base de dados de
+note letrad de cambio
+note doc group lc Letra de câmbio, usado no projecto DyncoopNet. 
+note *****************************************************************
+part name=local; source=geoentity; part=atr,rel
+
+part name=lc; source=pt-acto;
+	position=id,dia,mes,ano,local; 
+	guaranteed=id,dia,mes,ano,local;
+	also=obs;
+	part=atr,rel,
+		beneficiario,beneficiario-representante,beneficiario-procurador,
+		beneficiario1,beneficiario1-representante,beneficiario1-procurador,
+		beneficiario2,beneficiario2-representante,beneficiario2-procurador,
+		beneficiario3,beneficiario3-representante,beneficiario3-procurador,
+		beneficiario4,beneficiario4-representante,beneficiario4-procurador,
+		beneficiario5,beneficiario5-representante,beneficiario5-procurador,
+		beneficiario6,beneficiario6-representante,beneficiario6-procurador,
+		cobrador,cobrador-representante,
+		cobrador1,cobrador-representante1,
+		cobrador2,cobrador-representante2,
+		cobrador3,cobrador-representante3,
+		cobrador4,cobrador-representante4,
+		destinatario,destinatario1,destinatario2,
+		dador,dador-representante,
+		dador1,dador1-representante,
+		dador2,dador2-representante,
+		dador3,dador3-representante,
+		dador4,dador4-representante,
+		debitado,
+		endossante,
+		endossado,
+		local,
+		pagador,pagador-representante,
+		pagador1,pagador1-representante,
+		pagador2,pagador2-representante,
+		pagador3,pagador3-representante,
+		pagador4,pagador4-representante,
+		pagador5,pagador5-representante,
+		recebedor,recebedor-proc,
+		recebedor1,recebedor1-proc,
+		recebedor2,recebedor2-proc,
+		recebedor3,recebedor3-proc,
+		recebedor4,recebedor4-proc,
+		referido,
+		remetente,
+		tomador,tomador-representante,
+		tomador1,tomador1-representante,
+		tomador2,tomador2-representante,
+		tomador3,tomador3-representante,
+		tomador4,tomador4-representante,
+		tomador5,tomador5-representante
+
+part name=carta; source=pt-acto;
+	position=id,dia,mes,ano,loc;
+	also=resumo,refere,obs;
+	part=receptor,emissor,evento,topico,emissor-representante
+
+part name=adenda; source=pt-acto;
+	position=id,dia,mes,ano,loc;
+	also=resumo,refere,obs;
+	part=evento
+
+part name=evento; source=pt-acto;
+	position=description,dia,mes,ano;
+	guaranteed=description;
+	also=obs,id;
+	part=n, referido,referida,
+        informador,defector,representante,
+		intermediario,topico,local,comerciante,agente_financeiro,agente_seguros,fonte_info,cheater,
+		beneficiario,beneficiario-representante,beneficiario-procurador,
+		beneficiario1,beneficiario1-representante,beneficiario1-procurador,
+		beneficiario2,beneficiario2-representante,beneficiario2-procurador,
+		beneficiario3,beneficiario3-representante,beneficiario3-procurador,
+		beneficiario4,beneficiario4-representante,beneficiario4-procurador,
+		beneficiario5,beneficiario5-representante,beneficiario5-procurador,
+		beneficiario6,beneficiario6-representante,beneficiario6-procurador,
+		cobrador,cobrador-representante,
+		cobrador1,cobrador-representante1,
+		cobrador2,cobrador-representante2,
+		cobrador3,cobrador-representante3,
+		cobrador4,cobrador-representante4,
+		destinatario,destinatario1,destinatario2,
+		dador,dador-representante,
+		dador1,dador1-representante,
+		dador2,dador2-representante,
+		dador3,dador3-representante,
+		dador4,dador4-representante,
+		debitado,
+		endossante,
+		endossado,
+		fretador,
+		pagador,pagador-representante,
+		pagador1,pagador1-representante,
+		pagador2,pagador2-representante,
+		pagador3,pagador3-representante,
+		pagador4,pagador4-representante,
+		pagador5,pagador5-representante,
+		receptor,
+		recebedor,recebedor-proc,
+		recebedor1,recebedor1-proc,
+		recebedor2,recebedor2-proc,
+		recebedor3,recebedor3-proc,
+		recebedor4,recebedor4-proc,
+		remetente,
+		tomador,tomador-representante,
+		tomador1,tomador1-representante,
+		tomador2,tomador2-representante,
+		tomador3,tomador3-representante,
+		tomador4,tomador4-representante,
+		tomador5,tomador5-representante,
+		vendedor,comprador,transportador,
+		emissor,emissor-representante
+note =====================================================================
+note Special prosopographical groups
+note =====================================================================
+
+note doc group bio Biographical description (from biographical dictionnaries,etc)
+part name=bio; source=lista;
+
+note doc group pevent Personal event, used inside people groups 
+     to register a personal event.
+     Diferent from event/evento which are top level groups inside lists or sources
+part name=pevent; source=evento;
+	position=description,dia,mes,ano;
+	guaranteed=description;
+	also=obs,id;
+	part=referido,referida,person;
+
+note A certain number of sinonyms for clarity of transcription
+
+part name=viagem; source=pevent;
+
+part name=estadia; source=pevent;
+
+part name=topico; source=abstraction;
+	position=subject,description;
+	guaranteed=subject,description;
+	also=id,obs
+	
+	
+note *****************************************************************
+note Governos.
+note *****************************************************************
+part name=gov; source=pt-acto;
+ position=id, dia,mes,ano,diaf,mesf,anof,obs;
+ guaranteed=id,dia,mes,ano;
+ part=pm,
+ minAdj,
+ minDefNac,
+ minSemPasta,
+ minCoordInterter,
+ secEstAdm,
+ secEstAssEcon,
+ minAdmInt,
+ minJust,
+ subsecEstAdmJudic,
+ minCoordEcon,
+ secEstFin,
+ subsecEstOrc,
+ secEstOrc,
+ subsecEstTes,
+ secEstTes,
+ secEstPlanEcon,
+ secEstIndEEner,
+ secEstAgri,
+ secEstComExtETur,
+ secEstPesc,
+ minNegEstr,
+ secEstNegEstr,
+ minEquiSocEAmb,
+ secEstObPub,
+ secEstTranECom,
+ secEstHabEUrb,
+ secEstMarMer,
+ secEstAmb,
+ minEduECult,
+ secEstAdmEsc,
+ secEstAssCultEInvCient,
+ secEstDespEAccSocEsc,
+ secEstRefEdu,
+ minTrab,
+ secEstEmig,
+ secEstTrab,
+ minAssSoc,
+ secEstSau,
+ secEstSegSoc,
+ minComSoc,
+ minEcon,
+ secEstAbastEPrec,
+ secEstOrientPedag,
+ secEstEmpreg,
+ minIndETecn,
+ secEstIndETecn,
+ subsecEstProgInd,
+ subsecEstAdmInt,
+ subsecEstAdmInd,
+ secEstAdmInt,
+ subsecEstFomCoop,
+ subsecEstAdjMinComExt,
+ secEstInvPub,
+ subsecEstSeg,
+ secEstConstCiv,
+ secEstRecHidESanBas,
+ secEstDespEJuv,
+ secEstDescol,
+ minHabUrbEConst,
+ vpm,
+ subsecEst,
+ secEstPopEmpreg,
+ secEstIntegAdm,
+ secEstFlor,
+ minComETur,
+ secEstTur,
+ secEstPlan,
+ minRepRegAutMad,
+ minRepRegAutAcor,
+ secEstAdmLocEReg,
+ secEstAdmPub,
+ secEstCultEEducPerm,
+ secEstCoopExt,
+ minPlanECoordEcon,
+ secEstPlanRecHum,
+ subsecEstComInt,
+ secEstEnsSupEInvCient,
+ secEstEstrAgra,
+ minAgriEPesc,
+ secEstFomAgra,
+ secEstJust,
+ secEstRecupSoc,
+ secEstComAlim,
+ secEstComNAlim,
+ subsecEstDefCons,
+ secEstEnerEMin,
+ secEstIndLig,
+ secEstIndPes,
+ secEstFormProf,
+ secEstRetorn,
+ secEstInf,
+ minCoop,
+ minFin,
+ secEstCoopEconComPaisSoc,
+ secEstAdjPMAssAdm,
+ secEstAdjPMAssPol,
+ secEstComEIndAgri,
+ secEstIndLigEPes,
+ secEstAdmEEquiEsc,
+ secEstEnsSup,
+ minFin,
+ subsecEstFin,
+ secEstOrc,
+ secEstTes,
+ subsecEstAmb,
+ subsecEstComSoc,
+ secEstComSoc,
+ secEstAdmInt,
+ subsecEstTur,
+ minEquipSocEAmb,
+ subsecEstTran,
+ subsecEstAdjPM,
+ minObPub,
+ subsecEstObPub,
+ minComExt,
+ secEstComExt,
+ subsecEstComExt,
+ minComInt,
+ secEstComInt,
+ secEstAbast,
+ secEstJuvEDesp,
+ subsecEstAdmInt,
+ minTranECom,
+ secEstCult,
+ secEstAdmRegELoc,
+ secEstPlanEOrc,
+ subsecEstPlan,
+ subsecEstInvPub,
+ subsecEstAdjMinFin,
+ minEquiSoc,
+ minEduEInvCient,
+ secEstInvCient,
+ subsecEstAdjMinAgriEPesc,
+ subsecEstAdjMinPesc,
+ subsecEstAdjMinTrab,
+ subsecEstTrab,
+ secEstTrab,
+ secEstCoop,
+ subsecEstAdjMinHabUrbEConst,
+ subsecEstHabUrbEConst,
+ subsecEstConstCiv,
+ subsecEstEstrAgra,
+ secEstAdjPM,
+ subsecEstAdjPM,
+ minEst,
+ secEstPopEEmpreg,
+ secEstCoordEcon,
+ secEstJust,
+ subsecEstFlor,
+ ma,
+ mab,
+ mc,
+ me,
+ mej,
+ mf,
+ mfo,
+ mg,
+ mi,
+ mip,
+ mj,
+ mm,
+ mmu,
+ mco,
+ mop,
+ mopci,
+ mp,
+ mr,
+ mt,
+ mtps,
+ pc,
+ mipba
+
+note *****************************************************************
+note felgaio -
+note doc group felgaio Formato preparado para o registo das genealogias
+      do Felgueiras Gaio.
+note *****************************************************************
+part name=familia; source=pt-acto;
+ position=name;
+ guaranteed=name;
+ also=id,obs;
+ part=linha
+
+part name=linha; source=object;
+ position=numero;
+ guaranteed=numero;
+ part=n
+
+note *****************************************************************
+note Cartas de perdao
+note *****************************************************************
+part name=cartaperdao; source=pt-acto;
+ position=id,dia,mes,ano;
+ guaranteed=id;
+ also=cota,local,tipo,tabeliao,obs;
+ part=perdoante,perdoante-m,perdoante-f,perdoado,perdoada,vitima,vitima-m,vitima-f,
+      crime,perdao,test,referido,referida,tabeliao
+
+
+part name=crime; source=abstraction;
+  position=dia,mes,ano;
+  guaranteed=forma,tipo,subtipo;
+  also=id,objecto,local,descricao,tempo,instrumento,pronuncia,ocorrencia,situacao,obs
+
+part name=perdao; source=abstraction;
+  position=dia,mes,ano;
+  guaranteed=tipo,descricao;
+  also=obs,id;
+  
+note ****************************************************************
+note doc group docregio Documento régio.
+note loc docregio pt carta regia
+note loc docregio en royal chart
+note loc docregio fr charte royale
+note ****************************************************************
+
+
+part name=docregio; source=pt-acto;
+  position=id,dia,mes,ano;
+  guaranteed=id,tipo,fol,loc,sumario;
+  also=obs;
+  repeat=atr,ls,rel,item,autor,autorf,destinatario,destinataria,beneficiario,beneficiaria,referido,referida,
+  			bem,demanda,acusacao,sentenca,defesa,tabeliao,procurador,test,juiz,demandador,reu,
+  			apresentado,padroeiro,autoridade,divida
+
+
+note ****************************************************************
+note doc group docpontificio Documento Pontefício
+note loc docpontificio pt documento ponteficio
+note loc docpontificio en papal chart
+note loc docpontificio fr papal document
+
+part name=docpontificio; source=docregio
+
+part name=docepiscopal; source=docregio
+
+note *****************************************************************
+note Matricula de doentes em Hospital
+note doc group matricula Matricula de doentes no Hospital das Caldas
+         da Rainha.
+note *****************************************************************
+part name=matricula; source=pt-acto;
+ position=id,dia,mes,ano,fol;
+ guaranteed=id;
+ also=obs;
+ part=enfermo,enferma,referido,referida
+
+note ******************* Generic geographical hierarchies *******************
+note doc group geodesc A description of geographic entities.
+part name=geodesc; source=pt-acto;
+    position=id,dia,mes,ano,fol;
+    guaranteed=id;
+    also=obs;
+    part=geo1,geo2,geo3,geo4,atr,rel
+
+note Idea similar EU NUTS https://ec.europa.eu/eurostat/web/nuts/background 
+note doc group geo1 A geographical entity of level 1. Levels geo1 to geo4 
+     are defined.
+note 
+part name=geo1; source=geoentity;
+    position=name,type,id;
+    part=geo2,atr,rel
+
+part name=geo2; source=geoentity;
+    position=name,type,id;
+    part=geo3,atr,rel
+
+part name=geo3; source=geoentity;
+    position=name,type,id;
+    part=geo4,atr,rel
+
+part name=geo4; source=geoentity;
+    position=name,type,id;
+    part=atr,rel
+
+note Dehergne List Maps of "Chretientes" p. 353-
+part name=province; source=geo1;
+    part=atr,rel,fou
+part name=fou; source=geo2;
+    part=atr,rel,tcheou, hien,loc
+part name=tcheou; source=geo3;
+    part=atr,rel,loc
+part name=hien; source=geo3;
+    part=atr,rel,loc
+part name=loc; source=geo4;
+    part=atr,rel
+
+
+
+note ******************** SISTER             *************************
+note *****************************************************************
+note memorias paroquiais de 1758
+note doc group memoria58 Formato para registo das memórias paroquiais de 1758
+part name=memoria58;source=pt-acto;
+	position=id,dia,mes,ano;
+	guaranteed=id;
+	also=obs;
+	part=freguesia
+
+note doc group apontamentosd Sinónimo de memoria58 para uso do Alexandre Pinto
+         em fontes semelhantes.
+part name=apontamentosd; source=memoria58
+	
+part name=freguesia; source=geoentity;
+	part=atr,rel,gref,provincia,comarca,couto,honra,hospital,termoc,lugar,misericordia,mosteiro,idonatario,pdonatario,
+		igreja,irmandade,bispado,confraria,convento,referido
+
+part name=gref; source=geoentity
+part name=lugar; source=geoentity; part=referido,atr,ls
+part name=provincia; source=geoentity
+part name=termoc; source=geoentity
+part name=bispado; source=geoentity
+part name=comarca; source=geoentity
+part name=couto; source=geoentity; part=referido,atr,ls
+part name=honra; source=geoentity; part=referido,atr,ls
+part name=igreja; source=object; part=atr,rel
+part name=convento; source=object; part=atr,rel
+part name=mosteiro; source=object; part=atr,rel
+part name=misericordia; source=object; part=atr,rel
+part name=hospital; source=object; part=atr,rel
+part name=irmandade; source=object
+part name=confraria;source=object
+part name=idonatario;source=object
+part name=pdonatario;source=person; part=referido,ls,atr,rel
+
+
+
+note *********************** TOMBOS *********************************
+note doc group automed Auto de medição, corresponde a um acto  de 
+                medição de extremas de uma terra ocorrido 
+                num dia determinado. Usado para tombos.
+note doc element id elemento obrigatorio, identifica unicamente o auto de medicao
+note doc element loc local onde decorre o auto de medicao
+part name=automed;source=pt-acto;
+	  position=id,dia,mes,ano,loc;
+	  also=obs;
+	  part=terra;
+	  
+part name=terra;source=geoentity;
+		part=atr,rel,proprietario,med
+
+	 
+part name=med;source=abstraction;
+	  position=cardinal,length;
+	  guaranteed=length;
+	  also=obs;
+	  part=conf,marco
+	  
+part name=conf;
+    source=object;
+	part=referido, referida
+
+part name=marco;
+    source=object
+    
+note *****************************************************************
+note gregorio Lopes / Lia Nunes
+note *****************************************************************
+
+part name=pas; source=pt-acto;
+     guaranteed=id,dia,mes,ano,fol,local,destino,num;
+     position=id,dia,mes,ano,fol,local,destino;
+     also=obs;
+     arbitrary=mestre,n,referido,referida;
+     
+    
+note *****************************************************************
+note Wicki, Josef, e C. R Boxer. Liste der Jesuiten-Indienfahrer, 
+note        1541-1758. Münster: Aschendorffsche, 1967.
+note *****************************************************************
+part name=wviagem; source=pt-acto;
+     guaranteed=id,dia,mes,ano,barco;
+     position=id,dia,mes,ano,barco;
+     also=obs;
+     arbitrary=n,referido,referida;
+
+
+note *****************************************************************
+note Actores
+note    Os grupos seguintes definem o modo como os parentem se podem
+note    suceder aos actores dos actos.
+note *****************************************************************
+note Definicao generica de um actor masculino.
+note           nota: todos os parentes aqui enumerados tem de aparecer
+note           associados a parentef ou a parentem
+note *****************************************************************
+part name=actorm;
+  source=male;
+  position=nome,sexo;
+  guaranteed=nome;
+  also=id,obs,mesmo_que,xmesmo_que,sexo;
+  repeat=atr,ls,rel,referido,referida,
+          pai,
+              ppai,
+                  pppai,
+                      ppppai,
+                     mpppai,
+                  mppai,
+                     pmppai,
+                     mmppai,
+              mpai,
+                  pmpai,
+                     ppmpai,
+                     mpmpai,
+                  mmpai,
+                     pmmpai,
+                     mmmpai,
+          mae,
+              pmae,
+                  ppmae,
+                      pppmae,
+                      mppmae,
+                  mpmae,
+                      pmpmae,
+                      mmpmae,
+              mmae,
+                  pmmae,
+                     ppmmae,
+                     mpmmae,
+                  mmmae,
+                     pmmmae,
+                     mmmmae,
+          filho,
+                 fofilho,
+                 fafilho,
+                 merfilho,
+                 mrfafilho,
+                 merfofilho,
+          filha,
+                 fofilha,
+                 fafilha,
+                 mrfilha,
+                 mrfafilha,
+                 merfofilha,
+
+         irmao,
+         irma,
+          mulher,
+              pmulher,
+                 ppmulher,
+                     pppmulher,
+                     mppmulher,
+                 mpmulher,
+                     pmpmulher,
+                     mmpmulher,
+              mmulher,
+                 pmmulher,
+                     ppmmulher,
+                     mpmmulher,
+                 mmmulher,
+                     pmmmulher,
+                     mmmmulher,
+          mulher1,
+              pmulher1,
+                 ppmulher1,
+                     pppmulher1,
+                     mppmulher1,
+                 mpmulher1,
+                     pmpmulher1,
+                     mmpmulher1,
+              mmulher1,
+                 pmmulher1,
+                     ppmmulher1,
+                     mpmmulher1,
+                 mmmulher1,
+                     pmmmulher1,
+                     mmmmulher1,
+          mulher2,
+              pmulher2,
+                 ppmulher2,
+                     pppmulher2,
+                     mppmulher2,
+                 mpmulher2,
+                     pmpmulher2,
+                     mmpmulher2,
+              mmulher2,
+                 pmmulher2,
+                     ppmmulher2,
+                     mpmmulher2,
+                 mmmulher2,
+                     pmmmulher2,
+                     mmmmulher2,
+          mulher3,
+              pmulher3,
+                 ppmulher3,
+                     pppmulher3,
+                     mppmulher3,
+                 mpmulher3,
+                     pmpmulher3,
+                     mmpmulher3,
+              mmulher3,
+                 pmmulher3,
+                     ppmmulher3,
+                     mpmmulher3,
+                 mmmulher3,
+                     pmmmulher3,
+                     mmmmulher3,
+         pn,ppn,mpn,mn,pmn,mmn,
+         pad,ppad,mpad,
+            procuradora-pad,procurador-pad,procurador-mad,procuradora-mad,
+            pad1,ppad1,mpad1,procurador-pad1,procuradora-pad1,
+            pad2,ppad2,mpad2,procurador-pad2,procuradora-pad2,
+            pad3,ppad3,mpad3,procurador-pad3,procuradora-pad3,
+            pad4,ppad4,mpad4,procurador-pad4,procuradora-pad4,
+
+            mad,pmad,mmad,mpad,mrmad,
+            mad1,pmad1,mmad1,mpad1,mrmad1,procurador-mad1,procuradora-mad1,
+            mad2,pmad2,mmad2,mpad2,mrmad2,procurador-mad2,procuradora-mad2,
+            mad3,pmad3,mmad3,mpad3,mrmad3,procurador-mad3,procuradora-mad3,
+            mad4,pmad4,mmad4,mpad4,mrmad4,procurador-mad4,procuradora-mad4,
+         sogra,sogro,genro,nora,sobrinho,sobrinha,afilhado,afilhada,neto,neta,
+         criada,criado,engeitado,engeitada
+
+
+
+note *****************************************************************
+note Actores masculinos: especificados
+note *****************************************************************
+
+note n -- actor generico, normalmente do sexo masculino mas o sexo
+note      pode ser explicitamente fornecido a seguir ao nome
+note      por isso reproduzimos aqui os parentescos aplicaveis a ambos os sexos.
+
+part	 name=n;
+         source=actorm;
+         position=nome,sexo;
+      also=sexo,id,mesmo_que,xmesmo_que,obs;
+         guaranteed=nome;
+         arbitrary=pevent,viagem,estadia,atr,ls,rel,referido,referida,
+                   pai,
+                       ppai,
+                           pppai,
+                               ppppai,
+                              mpppai,
+                           mppai,
+                              pmppai,
+                              mmppai,
+                       mpai,
+                           pmpai,
+                              ppmpai,
+                              mpmpai,
+                           mmpai,
+                              pmmpai,
+                              mmmpai,
+                   mae,
+                       pmae,
+                           ppmae,
+                               pppmae,
+                               mppmae,
+                           mpmae,
+                               pmpmae,
+                               mmpmae,
+                       mmae,
+                           pmmae,
+                              ppmmae,
+                              mpmmae,
+                           mmmae,
+                              pmmmae,
+                              mmmmae,
+                   filho,
+                          fofilho,
+                          fafilho,
+                          merfilho,
+                          mrfafilho,
+                          merfofilho,
+                   filha,
+                          fofilha,
+                          fafilha,
+                          mrfilha,
+                          mrfafilha,
+                          merfofilha,
+
+                  irmao,
+                  irma,
+                   mulher,
+                       pmulher,
+                          ppmulher,
+                              pppmulher,
+                              mppmulher,
+                          mpmulher,
+                              pmpmulher,
+                              mmpmulher,
+                       mmulher,
+                          pmmulher,
+                              ppmmulher,
+                              mpmmulher,
+                          mmmulher,
+                              pmmmulher,
+                              mmmmulher,
+                   mulher1,
+                       pmulher1,
+                          ppmulher1,
+                              pppmulher1,
+                              mppmulher1,
+                          mpmulher1,
+                              pmpmulher1,
+                              mmpmulher1,
+                       mmulher1,
+                          pmmulher1,
+                              ppmmulher1,
+                              mpmmulher1,
+                          mmmulher1,
+                              pmmmulher1,
+                              mmmmulher1,
+                   mulher2,
+                       pmulher2,
+                          ppmulher2,
+                              pppmulher2,
+                              mppmulher2,
+                          mpmulher2,
+                              pmpmulher2,
+                              mmpmulher2,
+                       mmulher2,
+                          pmmulher2,
+                              ppmmulher2,
+                              mpmmulher2,
+                          mmmulher2,
+                              pmmmulher2,
+                              mmmmulher2,
+                   mulher3,
+                       pmulher3,
+                          ppmulher3,
+                              pppmulher3,
+                              mppmulher3,
+                          mpmulher3,
+                              pmpmulher3,
+                              mmpmulher3,
+                       mmulher3,
+                          pmmulher3,
+                              ppmmulher3,
+                              mpmmulher3,
+                          mmmulher3,
+                              pmmmulher3,
+                              mmmmulher3,
+                  noiva,
+                   pnoiva,
+                        ppnoiva,
+                            pppnoiva,
+                            mppnoiva,
+                        mpnoiva,
+                            pmpnoiva,
+                            mmpnoiva,
+                   mnoiva,
+                       pmnoiva,
+                           ppmnoiva,
+                           mpmnoiva,
+                       mmnoiva,
+                           pmmnoiva,
+                           mmmnoiva,
+
+          marido,
+              pmarido,
+                 ppmarido,
+                     pppmarido,
+                     mppmarido,
+                 mpmarido,
+                     pmpmarido,
+                     mmpmarido,
+              mmarido,
+                 pmmarido,
+                     ppmmarido,
+                     mpmmarido,
+                 mmmarido,
+                     pmmmarido,
+                     mmmmarido,
+          marido1,
+              pmarido1,
+                 ppmarido1,
+                     pppmarido1,
+                     mppmarido1,
+                 mpmarido1,
+                     pmpmarido1,
+                     mmpmarido1,
+              mmarido1,
+                 pmmarido1,
+                     ppmmarido1,
+                     mpmmarido1,
+                 mmmarido1,
+                     pmmmarido1,
+                     mmmmarido1,
+          marido2,
+              pmarido2,
+                 ppmarido2,
+                     pppmarido2,
+                     mppmarido2,
+                 mpmarido2,
+                     pmpmarido2,
+                     mmpmarido2,
+              mmarido2,
+                  pmmarido2,
+                     ppmmarido2,
+                     mpmmarido2,
+                 mmmarido2,
+                     pmmmarido2,
+                     mmmmarido2,
+          marido3,
+              pmarido3,
+                 ppmarido3,
+                     pppmarido3,
+                     mppmarido3,
+                 mpmarido3,
+                     pmpmarido3,
+                     mmpmarido3,
+              mmarido3,
+                 pmmarido3,
+                     ppmmarido3,
+                     mpmmarido3,
+                 mmmarido3,
+                     pmmmarido3,
+                     mmmmarido3,
+
+         noivo,
+          pnoivo,
+               ppnoivo,
+                   pppnoivo,
+                   mppnoivo,
+               mpnoivo,
+                   pmpnoivo,
+                   mmpnoivo,
+          mnoivo,
+              pmnoivo,
+                  ppmnoivo,
+                  mpmnoivo,
+              mmnoivo,
+                  pmmnoivo,
+                  mmmnoivo,
+         pn,ppn,mpn,
+         mn,pmn,mmn,
+        pad,ppad,mpad,
+            procuradora-pad,procurador-pad,procurador-mad,procuradora-mad,
+            pad1,ppad1,mpad1,procurador-pad1,procuradora-pad1,
+            pad2,ppad2,mpad2,procurador-pad2,procuradora-pad2,
+            pad3,ppad3,mpad3,procurador-pad3,procuradora-pad3,
+            pad4,ppad4,mpad4,procurador-pad4,procuradora-pad4,
+
+            mad,pmad,mmad,mpad,mrmad,
+            mad1,pmad1,mmad1,mpad1,mrmad1,procurador-mad1,procuradora-mad1,
+            mad2,pmad2,mmad2,mpad2,mrmad2,procurador-mad2,procuradora-mad2,
+            mad3,pmad3,mmad3,mpad3,mrmad3,procurador-mad3,procuradora-mad3,
+            mad4,pmad4,mmad4,mpad4,mrmad4,procurador-mad4,procuradora-mad4,
+	     sogra,sogro,genro,nora,sobrinho,sobrinha,afilhado,afilhada,neto,neta,
+              criada,criado,engeitada,engeitado
+
+part 	name=referido;
+     source=male;
+     guaranteed=nome;
+     position=nome,sexo;
+     also=obs,mesmo_que,xmesmo_que,id;
+     repeat=ls,atr,rel
+
+part  name=celebrante; source=referido
+note  ---- name=noivo; source=actorm;part=pnoivo,mnoivo,mulher1,mulher2,mulher3
+part  name=procurador-pad;source=referido
+part  name=procurador-mad;source=referido
+part  name=procurador-pad1;source=referido
+part  name=procurador-mad1;source=referido
+part  name=procurador-pad2;source=referido
+part  name=procurador-mad2;source=referido
+part  name=procurador-pad3;source=referido
+part  name=procurador-mad3;source=referido
+part  name=procurador-pad4;source=referido
+part  name=procurador-mad4;source=referido
+part  name=presente;source=actorm
+part  name=mestre;source=referido
+
+
+
+
+part 	name=eleitor; source=actorm
+part 	name=eleito; source=actorm
+
+part	name=rv; source=actorm;
+      position=nordem,nome;
+      guaranteed=nordem,nome
+
+part	name=rp; source=actorm;
+      position=nordem,nome;
+      guaranteed=nordem,nome
+
+part 	name=arrem; source=n;
+      also=id,mesmo_que, xmesmo_que,obs,cota
+
+note actores especificos do livro de registos de accoes
+
+part name=acionista; 
+     source=actorm;
+     guaranteed=nome;
+     also=obs,mesmo_que,id;
+     repeat=ls,atr,rel
+
+
+note notariais
+part name=devedor;source=actorm;
+part name=credor;source=actorm;
+part name=fiador; source=actorm;
+part name=comprador; source=actorm;
+part name=vendedor; source=actorm;
+part name=louvado; source=actorm;
+part name=doador; source=actorm;
+part name=donatario; source=actorm;
+part name=dotado; source=actorm;
+part name=dotante; source=actorm;
+part name=senhorio; source=actorm;
+part name=rendeiro; source=actorm;
+part name=foreiro; source=actorm;
+part name=enfiteuta; source=actorm;
+part name=subenfiteuta; source=actorm;
+part name=constituinte; source=actorm;
+part name=outorgante; source=actorm;
+part name=arrendatario; source=actorm;
+part name=testador; source=actorm;
+part name=testamentario; source=actorm;
+part name=testamenteiro; source=actorm;
+part name=contraente; source=actorm;
+part name=renunciante; source=actorm;
+part name=procurador; source=actorm;
+part name=escrivao; source=actorm;
+part name=tabeliao; source=actorm;
+part name=arrematante; source=actorm;
+part name=quitante; source=actorm;
+part name=quitado; source=actorm
+part name=abonador; source=actorm;
+part name=demandador; source=actorm;
+part name=demandado; source=actorm;
+part name=escambador; source=actorm;
+part name=reu;source=actorm;
+part name=inquirido; source=actorm;
+part name=inquiridor; source=actorm;
+part name=apelante; source=actorm;
+part name=apelado; source=actorm;
+part name=vedor; source=actorm;
+part name=autor; source=actorm;
+part name=autoridade; source=actorm;
+part name=beneficiario; source=actorm;
+part name=padroeiro; source=actorm;
+part name=apresentado; source=actorm;
+part name=confirmante; source=actorm;
+part name=comerciante; source=actorm;
+part name=proprietario; source=actorm;
+part name=juiz; source=actorm;
+part name=requerente;source=actorm;
+part name=requerido;source=actorm;
+
+note
+note cargos para o registos de governos
+note
+note
+part name=pm; source=actorm
+note part name=minAdj; source=actorm
+note part name=minDefNac; source=actorm
+note part name=minSemPasta; source=actorm
+note part name=minCoordInterter; source=actorm
+note part name=secEstAdm; source=actorm
+note part name=secEstAssEcon; source=actorm
+note part name=minAdmInt; source=actorm
+note part name=minJust; source=actorm
+note part name=subsecEstAdmJudic; source=actorm
+note part name=minCoordEcon; source=actorm
+note part name=secEstFin; source=actorm
+note part name=secEstOrc; source=actorm
+note part name=subsecEstOrc; source=actorm
+note part name=secEstTes; source=actorm
+note part name=subsecEstTes; source=actorm
+note part name=secEstPlanEcon; source=actorm
+note part name=secEstIndEEner; source=actorm
+note part name=secEstAgri; source=actorm
+note part name=secEstComExtETur; source=actorm
+note part name=secEstPesc; source=actorm
+note part name=minNegEstr; source=actorm
+note part name=secEstNegEstr; source=actorm
+note part name=minEquiSocEAmb; source=actorm
+note part name=secEstObPub; source=actorm
+note part name=secEstTranECom; source=actorm
+note part name=secEstHabEUrb; source=actorm
+note part name=secEstMarMer; source=actorm
+note part name=secEstAmb; source=actorm
+note part name=minEduECult; source=actorm
+note part name=secEstAdmEsc; source=actorm
+note part name=secEstAssCultEInvCient; source=actorm
+note part name=secEstDespEAccSocEsc; source=actorm
+note part name=secEstRefEdu; source=actorm
+note part name=minTrab; source=actorm
+note part name=secEstEmig; source=actorm
+note part name=secEstTrab; source=actorm
+note part name=minAssSoc; source=actorm
+note part name=secEstSau; source=actorm
+note part name=secEstSegSoc; source=actorm
+note part name=minComSoc; source=actorm
+note part name=minEcon; source=actorm
+note part name=secEstAbastEPrec; source=actorm
+note part name=secEstOrientPedag; source=actorm
+note part name=secEstEmpreg; source=actorm
+note part name=minIndETecn; source=actorm
+note part name=secEstIndETecn; source=actorm
+note part name=subsecEstProgInd; source=actorm
+note part name=subsecEstAdmInt; source=actorm
+note part name=secEstAdmInt; source=actorm
+note part name=subsecEstFomCoop; source=actorm
+note part name=subsecEstAdjMinComExt; source=actorm
+note part name=secEstInvPub; source=actorm
+note part name=subsecEstSeg; source=actorm
+note part name=secEstConstCiv; source=actorm
+note part name=secEstRecHidESanBas; source=actorm
+note part name=secEstDespEJuv; source=actorm
+note part name=secEstDescol; source=actorm
+note part name=minHabUrbEConst; source=actorm
+note part name=vpm; source=actorm
+note part name=secEstPopEmpreg; source=actorm
+note part name=secEstIntegAdm; source=actorm
+note part name=secEstFlor; source=actorm
+note part name=minComETur; source=actorm
+note part name=secEstTur; source=actorm
+note part name=subsecEst; source=actorm
+note part name=secEstPlan; source=actorm
+note part name=minRepRegAutMad; source=actorm
+note part name=minRepRegAutAcor; source=actorm
+note part name=secEstAdmLocEReg; source=actorm
+note part name=secEstAdmPub; source=actorm
+note part name=secEstCultEEducPerm; source=actorm
+note part name=secEstCoopExt; source=actorm
+note part name=minPlanECoordEcon; source=actorm
+note part name=secEstPlanRecHum; source=actorm
+note part name=subsecEstComInt; source=actorm
+note part name=secEstEnsSupEInvCient; source=actorm
+note part name=secEstEstrAgra; source=actorm
+note part name=minAgriEPesc; source=actorm
+note part name=secEstFomAgra; source=actorm
+note part name=secEstJust; source=actorm
+note part name=secEstRecupSoc; source=actorm
+note part name=secEstComAlim; source=actorm
+note part name=secEstComNAlim; source=actorm
+note part name=subsecEstDefCons; source=actorm
+note part name=secEstEnerEMin; source=actorm
+note part name=secEstIndLig; source=actorm
+note part name=secEstIndPes; source=actorm
+note part name=secEstFormProf; source=actorm
+note part name=secEstRetorn; source=actorm
+note part name=secEstInf; source=actorm
+note part name=minCoop; source=actorm
+note part name=minFin; source=actorm
+note part name=secEstCoopEconComPaisSoc; source=actorm
+note part name=secEstAdjPMAssAdm; source=actorm
+note part name=secEstAdjPMAssPol; source=actorm
+note part name=secEstComEIndAgri; source=actorm
+note part name=secEstIndLigEPes; source=actorm
+note part name=secEstAdmEEquiEsc; source=actorm
+note part name=secEstEnsSup; source=actorm
+note part name=ma; source=actorm
+note part name=mab; source=actorm
+note part name=mc; source=actorm
+note part name=me; source=actorm
+note part name=mej; source=actorm
+note part name=mf; source=actorm
+note part name=mfo; source=actorm
+note part name=mg; source=actorm
+note part name=mi; source=actorm
+note part name=mip; source=actorm
+note part name=mj; source=actorm
+note part name=mm; source=actorm
+note part name=mmu; source=actorm
+note part name=mco; source=actorm
+note part name=mop; source=actorm
+note part name=mopci; source=actorm
+note part name=mipba; source=actorm
+note part name=mp; source=actorm
+note part name=mr; source=actorm
+note part name=mt; source=actorm
+note part name=mtps; source=actorm
+note part name=pc; source=actorm
+note part name=subsecEstFin; source=actorm
+note part name=secEstOrc; source=actorm
+note part name=secEstTes; source=actorm
+note part name=subsecEstAmb; source=actorm
+note part name=subsecEstComSoc; source=actorm
+note part name=secEstComSoc; source=actorm
+note part name=secEstAdmInt; source=actorm
+note part name=secEstAdmInd; source=actorm
+note part name=subsecEstTur; source=actorm
+note part name=minEquipSocEAmb; source=actorm
+note part name=subsecEstTran; source=actorm
+note part name=subsecEstAdjPM; source=actorm
+note part name=minObPub; source=actorm
+note part name=subsecEstObPub; source=actorm
+note part name=minComExt; source=actorm
+note part name=secEstComExt; source=actorm
+note part name=subsecEstComExt; source=actorm
+note part name=minComInt; source=actorm
+note part name=secEstComInt; source=actorm
+note part name=secEstAbast; source=actorm
+note part name=secEstJuvEDesp; source=actorm
+note part name=subsecEstAdmInt; source=actorm
+note part name=subsecEstAdmInd; source=actorm
+note part name=minTranECom; source=actorm
+note part name=secEstCult; source=actorm
+note part name=secEstAdmRegELoc; source=actorm
+note part name=secEstPlanEOrc; source=actorm
+note part name=subsecEstPlan; source=actorm
+note part name=subsecEstInvPub; source=actorm
+note part name=subsecEstAdjMinFin; source=actorm
+note part name=minEquiSoc; source=actorm
+note part name=minEduEInvCient; source=actorm
+note part name=secEstInvCient; source=actorm
+note part name=subsecEstAdjMinAgriEPesc; source=actorm
+note part name=subsecEstAdjMinPesc; source=actorm
+note part name=subsecEstAdjMinTrab; source=actorm
+note part name=subsecEstTrab; source=actorm
+note part name=secEstTrab; source=actorm
+note part name=secEstCoop; source=actorm
+note part name=subsecEstAdjMinHabUrbEConst; source=actorm
+note part name=subsecEstHabUrbEConst; source=actorm
+note part name=subsecEstConstCiv; source=actorm
+note part name=subsecEstEstrAgra; source=actorm
+note part name=secEstAdjPM; source=actorm
+note part name=subsecEstAdjPM; source=actorm
+note part name=minEst; source=actorm
+note part name=secEstPopEEmpreg; source=actorm
+note part name=secEstCoordEcon; source=actorm
+note part name=secEstJust; source=actorm
+note part name=subsecEstFlor; source=actorm
+
+note Usado em let (leitura de bachareis)
+part name=ts; source=n
+
+note usado em cas (casamentos)
+part name=test; source=male;
+         position=nome,sexo;
+      also=sexo,id,mesmo_que,xmesmo_que,obs;
+         guaranteed=nome;
+      repeat=ls,atr,rel
+note usado nas devassas
+part name=testo; source=actorm;
+	position=nome,sexo;
+	also=id,mesmo_que,xmesmo_que,obs,sexo;
+	guaranteed=nome;
+	part=acus,acusa
+part name=denunciante; source=actorm;
+	position=nome,sexo;
+	also=id,mesmo_que,xmesmo_que,obs,sexo;
+	guaranteed=nome;
+	part=acus,caso
+part name=acusado; source=actorm;
+
+part name=enfermo; source=actorm;
+
+
+note *****************************************************************
+note Letras de cambios
+note *****************************************************************
+part name=destinatario;source=actorm
+part name=destinatario1;source=actorm
+part name=destinatario2;source=actorm
+part name=remetente;source=actorm
+part name=beneficiario;source=actorm
+part name=beneficiario-representante;source=actorm
+part name=beneficiario-procurador;source=actorm
+part name=beneficiario1;source=actorm
+part name=beneficiario1-representante;source=actorm
+part name=beneficiario1-procurador;source=actorm
+part name=beneficiario2;source=actorm
+part name=beneficiario2-representante;source=actorm
+part name=beneficiario2-procurador;source=actorm
+part name=beneficiario3;source=actorm
+part name=beneficiario3-representante;source=actorm
+part name=beneficiario3-procurador;source=actorm
+part name=beneficiario4;source=actorm
+part name=beneficiario4-representante;source=actorm
+part name=beneficiario4-procurador;source=actorm
+part name=beneficiario5;source=actorm
+part name=beneficiario5-representante;source=actorm
+part name=beneficiario5-procurador;source=actorm
+part name=beneficiario6;source=actorm
+part name=beneficiario6-representante;source=actorm
+part name=beneficiario6-procurador;source=actorm
+part name=tomador;source=actorm
+part name=tomador-representante;source=actorm
+part name=tomador1;source=actorm
+part name=tomador1-representante;source=actorm
+part name=tomador2;source=actorm
+part name=tomador2-representante;source=actorm
+part name=tomador3;source=actorm
+part name=tomador3-representante;source=actorm
+part name=tomador4;source=actorm
+part name=tomador4-representante;source=actorm
+part name=tomador5;source=actorm
+part name=tomador5-representante;source=actorm
+part name=pagador;source=actorm
+part name=pagador-representante;source=actorm
+part name=pagador1;source=actorm
+part name=pagador1-representante;source=actorm
+part name=pagador2;source=actorm
+part name=pagador2-representante;source=actorm
+part name=pagador3;source=actorm
+part name=pagador3-representante;source=actorm
+part name=pagador4;source=actorm
+part name=pagador4-representante;source=actorm
+part name=pagador5;source=actorm
+part name=pagador5-representante;source=actorm
+part name=dador;source=actorm
+part name=dador-representante;source=actorm
+part name=dador1;source=actorm
+part name=dador1-representante;source=actorm
+part name=dador2;source=actorm
+part name=dador2-representante;source=actorm
+part name=dador3;source=actorm
+part name=dador3-representante;source=actorm
+part name=dador4;source=actorm
+part name=dador4-representante;source=actorm
+part name=cobrador;source=actorm
+part name=cobrador-representante;source=actorm
+part name=cobrador1;source=actorm
+part name=cobrador-representante1;source=actorm
+part name=cobrador2;source=actorm
+part name=cobrador-representante2;source=actorm
+part name=cobrador3;source=actorm
+part name=cobrador-representante3;source=actorm
+part name=cobrador4;source=actorm
+part name=cobrador-representante4;source=actorm
+part name=endossante;source=actorm
+part name=endossado;source=actorm
+part name=debitado;source=actorm
+part name=recebedor;source=actorm
+part name=recebedor1;source=actorm
+part name=recebedor2;source=actorm
+part name=recebedor3;source=actorm
+part name=recebedor4;source=actorm
+part name=recebedor-proc;source=actorm
+part name=recebedor1-proc;source=actorm
+part name=recebedor2-proc;source=actorm
+part name=recebedor3-proc;source=actorm
+part name=recebedor4-proc;source=actorm
+note ***********************************
+note cartas comerciais dyncoopnet
+note ***********************************
+note informador,defector,beneficiario,representante,tomador,referido,
+note		intermediario,topico,local
+part name=informador;source=actorm
+part name=defector;source=actorm
+part name=intermediario;source=actorm
+part name=fretador;source=actorm
+part name=receptor;source=actorm
+part name=emissor;source=actorm
+part name=emissor-representante;source=actorm
+part name=representante;source=actorm
+part name=agente_financeiro;source=actorm
+part name=agente_seguros;source=actorm
+part name=cheater;source=actorm
+part name=fonte_info;source=actorm
+part name=vendedor;source=actorm
+part name=comprador;source=actorm
+part name=transportador;source=actorm
+
+note *****************************************************************
+note Definicao generica de um actor feminino.
+note           nota: todos os parentes aqui enumerados tem de aparecer
+note           associados a parentef ou a parentem
+note *****************************************************************
+part 	name=actorf;
+     source=female;
+     position=nome,sexo;
+     guaranteed=nome;
+     also=sexo,obs,mesmo_que,xmesmo_que,id;
+     repeat=atr,ls,rel,referido,referida,
+         pai,
+              ppai,
+                  pppai,
+                      ppppai,
+                     mpppai,
+                  mppai,
+                     pmppai,
+                     mmppai,
+              mpai,
+                  pmpai,
+                     ppmpai,
+                     mpmpai,
+                  mmpai,
+                     pmmpai,
+                     mmmpai,
+          mae,
+              pmae,
+                  ppmae,
+                      pppmae,
+                      mppmae,
+                  mpmae,
+                      pmpmae,
+                      mmpmae,
+              mmae,
+                  pmmae,
+                     ppmmae,
+                     mpmmae,
+                  mmmae,
+                     pmmmae,
+                     mmmmae,
+          filho,
+          filha,
+         irmao,
+         irma,
+          marido,
+              pmarido,
+                 ppmarido,
+                     pppmarido,
+                     mppmarido,
+                 mpmarido,
+                     pmpmarido,
+                     mmpmarido,
+              mmarido,
+                 pmmarido,
+                     ppmmarido,
+                     mpmmarido,
+                 mmmarido,
+                     pmmmarido,
+                     mmmmarido,
+          marido1,
+              pmarido1,
+                 ppmarido1,
+                     pppmarido1,
+                     mppmarido1,
+                 mpmarido1,
+                     pmpmarido1,
+                     mmpmarido1,
+              mmarido1,
+                 pmmarido1,
+                     ppmmarido1,
+                     mpmmarido1,
+                 mmmarido1,
+                     pmmmarido1,
+                     mmmmarido1,
+          marido2,
+              pmarido2,
+                 ppmarido2,
+                     pppmarido2,
+                     mppmarido2,
+                 mpmarido2,
+                     pmpmarido2,
+                     mmpmarido2,
+              mmarido2,
+                 pmmarido2,
+                     ppmmarido2,
+                     mpmmarido2,
+                 mmmarido2,
+                     pmmmarido2,
+                     mmmmarido2,
+          marido3,
+              pmarido3,
+                 ppmarido3,
+                     pppmarido3,
+                     mppmarido3,
+                 mpmarido3,
+                     pmpmarido3,
+                     mmpmarido3,
+              mmarido3,
+                 pmmarido3,
+                     ppmmarido3,
+                     mpmmarido3,
+                 mmmarido3,
+                     pmmmarido3,
+                     mmmmarido3,
+
+         noivo,
+          pnoivo,
+               ppnoivo,
+                   pppnoivo,
+                   mppnoivo,
+               mpnoivo,
+                   pmpnoivo,
+                   mmpnoivo,
+          mnoivo,
+              pmnoivo,
+                  ppmnoivo,
+                  mpmnoivo,
+              mmnoivo,
+                  pmmnoivo,
+                  mmmnoivo,
+         pn,ppn,mpn,mn,pmn,mmn,
+         pad,ppad,mpad,procuradora-pad,procurador-pad,procurador-mad,procuradora-mad,
+            pad1,ppad1,mpad1,procuradora-pad1,
+              pad2,ppad2,mpad2,procuradora-pad2,
+             pad3,ppad3,mpad3,procuradora-pad3,
+             pad4,ppad4,mpad4,procuradora-pad4,
+
+              mad,pmad,mmad,mpad,mrmad,
+              mad1,pmad1,mmad1,mpad1,mrmad1,
+              mad2,pmad2,mmad2,mpad2,mrmad2,
+              mad3,pmad3,mmad3,mpad3,mrmad3,
+              mad4,pmad4,mmad4,mpad4,mrmad4,
+              sogra,sogro,genro,nora,sobrinho,sobrinha,afilhado,afilhada,neto,neta,
+              criada,criado,engeitado,engeitada
+
+note *****************************************************************
+note Actores femininos: especificados
+note *****************************************************************
+
+part 	name=referida;	source=female;
+     guaranteed=nome;
+     position=nome,sexo;
+     also=obs,mesmo_que,xmesmo_que,id;
+     repeat=ls,atr,rel
+
+part  name=na; source=actorf
+part  name=procuradora-pad;source=referida
+part  name=procuradora-mad;source=referida
+part  name=procuradora-pad1;source=referida
+part  name=procuradora-mad1;source=referida
+part  name=procuradora-pad2;source=referida
+part  name=procuradora-mad2;source=referida
+part  name=procuradora-pad3;source=referida
+part  name=procuradora-mad3;source=referida
+part  name=procuradora-pad4;source=referida
+part  name=procuradora-mad4;source=referida
+part  name=enferma;source=actorf
+note doc group present-f mulher presente num acto.
+part  name=presente-f;source=actorf
+
+part name=testa; source=actorf;
+	position=nome,sexo;
+	also=id,mesmo_que,xmesmo_que,obs,sexo;
+	guaranteed=nome;
+	part=acus,acusa
+
+note actores femininos presentes nos livros de registos das companhia monopolistas
+part name=acionistaf; 
+     source=actorf;
+     guaranteed=nome;
+     also=obs,mesmo_que,id;
+     repeat=ls,atr,rel
+
+note notariais
+part name=devedora;source=actorf;
+part name=credora;source=actorf;
+part name=fiadora; source=actorf;
+part name=compradora; source=actorf;
+part name=vendedora; source=actorf;
+part name=doadora; source=actorf;
+part name=donataria; source=actorf;
+part name=dotantef; source=actorf;
+part name=dotada; source=actorf;
+part name=senhoria; source=actorf;
+part name=rendeira; source=actorf;
+part name=foreira; source=actorf;
+part name=enfiteutaf; source=actorf;
+part name=subenfiteutaf; source=actorf;
+part name=constituintef; source=actorf;
+part name=outorgantef; source=actorf;
+part name=arrendataria; source=actorf;
+part name=acusada; source=actorf;
+part name=testadora; source=actorf;
+part name=testamentaria; source=actorf;
+part name=testamenteira; source=actorf;
+part name=contraentef; source=actorf;
+part name=renunciantef; source=actorf;
+part name=procuradora; source=actorf;
+part name=arrematantef; source=actorf;
+part name=abonadora; source=actorf;
+part name=quitantef; source=actorf;
+part name=quitada; source=actorf;
+part name=demandadora; source=actorf;
+part name=escambadora; source=actorf;
+part name=reuf; source=actorf;
+part name=inquirida; source=actorf;
+part name=apelantef; source=actorf;
+part name=autorf; source=actorf;
+
+part name=beneficiaria; source=actorf;
+part name=destinataria; source=actorf;
+
+part name=perdoante; source= person;
+     guaranteed=nome;
+     position=nome,sexo;
+     also=obs,mesmo_que,xmesmo_que,id;
+     repeat=ls,atr,rel
+part name=perdoante-m; source= actorm; position=nome
+part name=perdoante-f; source= actorf; position=nome
+part name=perdoado; source=actorm; position=nome
+part name=perdoada; source=actorf; position=nome
+part name=vitima; source=person;
+     guaranteed=nome;
+     position=nome,sexo;
+     also=obs,mesmo_que,xmesmo_que,id;
+     repeat=ls,atr,rel
+part name=vitima-m; source= actorm; position=nome
+part name=vitima-f; source= actorf; position=nome
+
+note *****************************************************************
+note Parente masculino, definicao generica
+note *****************************************************************
+
+note TODO the concept of male kin should go also into the generic part
+part name=parentem;
+ source=male;
+ position=nome,sexo;
+ guaranteed=nome;
+ also=obs,mesmo_que,xmesmo_que,id,sexo;
+ repeat=atr,ls,rel
+
+note TODO this is related to family processing maybe could go into generic part
+
+part name=kin-father; source=parentem
+part name=kin-husband; source=parentem
+part name=kin-son; source=parentem
+
+note *****************************************************************
+note Parente feminino, definicao generica
+note *****************************************************************
+
+note TODO the concept of female kin should go into generic part
+
+part name=parentef;
+  source=female;
+ guaranteed=nome;
+ position=nome,sexo;
+ also=obs,mesmo_que,xmesmo_que,id,sexo;
+ repeat=atr,ls,rel
+
+note TODO this is related to family processing maybe could go into generic part
+
+part name=kin-mother; source=parentef
+part name=kin-wife; source=parentef
+part name=kin-daughter; source=parentef
+
+note *****************************************************************
+note Parentes classificados por genero
+note *****************************************************************
+note TODO falta verificar se todos os part est?o bem feitos
+
+part name=pai;  source=kin-father;pars=ppai, mpai
+part    name=ppai;  source=kin-father;pars=pppai, mppai
+part        name=pppai;  source=kin-father;pars=ppppai, mpppai
+part        name=mppai;  source=kin-mother;pars=pmppai, mmppai
+part    name=mpai;  source=kin-mother;pars=pmpai, mmpai
+part        name=pmpai;  source=kin-father;pars=ppmpai, mpmpai
+part        name=mmpai;  source=kin-mother;pars=pmmpai, mmmpai
+
+
+part name=mae;     			source=kin-mother; part=pmae,mmae
+part 	name=pmae;     		source=kin-father; part=ppmae,mpmae
+part 		name=ppmae;			source=kin-father; part=pppmae,mppmae
+part			name=pppmae;	source=kin-father
+part 			name=mppmae;	source=kin-mother
+part 		name=mpmae;   		source=kin-mother; part=pmpmae, mmpmae
+part			name=pmpmae;	source=kin-father
+part			name=mmpmae;   source=kin-mother
+part 	name=mmae;     		source=kin-mother; part=pmmae,mmmae
+part 		name=pmmae;   		source=kin-father; part=ppmmae,mpmmae
+part			name=ppmmae;	source=kin-father
+part 			name=mpmmae;	source=kin-mother
+part 		name=mmmae;   		source=kin-mother; part=pmmmae,mmmmae
+part			name=pmmmae;	source=kin-father
+part			name=mmmmae;	source=kin-mother
+
+part name=marido;     			source=kin-husband; part=pmarido,mmarido
+part 	name=pmarido;     		source=kin-father; part=ppmarido,mpmarido
+part 		name=ppmarido;			source=kin-father; part=pppmarido,mppmarido
+part			name=pppmarido;	source=kin-father
+part 			name=mppmarido;	source=kin-mother
+part 		name=mpmarido;   		source=kin-mother; part=pmpmarido,mmpmarido
+part			name=pmpmarido;	source=kin-father
+part			name=mmpmarido;   source=kin-father
+part 	name=mmarido;     		source=kin-mother; part=pmmarido,mmmarido
+part 		name=pmmarido;   		source=kin-father
+part			name=ppmmarido;	source=kin-father
+part 			name=mpmmarido;	source=kin-mother
+part 		name=mmmarido;   		source=kin-mother; part=pmmmarido, mmmmarido
+part			name=pmmmarido;	source=kin-father
+part			name=mmmmarido;	source=kin-mother
+
+part name=marido1;     			source=kin-husband; part=pmarido1,mmarido1
+part 	name=pmarido1;     		source=kin-father
+part 		name=ppmarido1;		source=kin-father; part=pppmarido1,mppmarido1
+part			name=pppmarido1;	source=kin-father
+part 			name=mppmarido1;	source=kin-mother
+part 		name=mpmarido1;   	source=kin-mother; part=pmpmarido1,mmpmarido1
+part			name=pmpmarido1;	source=kin-father
+part			name=mmpmarido1;  source=kin-father
+part 	name=mmarido1;     		source=kin-mother; part=pmpmarido1,mmpmarido1
+part 		name=pmmarido1;   	source=kin-father; part=ppmmarido1,mpmmarido1
+part			name=ppmmarido1;	source=kin-father
+part 			name=mpmmarido1;	source=kin-mother
+part 		name=mmmarido1;   	source=kin-mother; part=pmmmarido1,mmmmarido1
+part			name=pmmmarido1;	source=kin-father
+part			name=mmmmarido1;	source=kin-mother
+
+part name=marido2;     			source=kin-husband; part=pmarido2,mmarido2
+part 	name=pmarido2;     		source=kin-father
+part 		name=ppmarido2;		source=kin-father; part=pppmarido2,mppmarido2
+part			name=pppmarido2;	source=kin-father
+part 			name=mppmarido2;	source=kin-mother
+part 		name=mpmarido2;   	source=kin-mother; part=pmpmarido2,mmpmarido2
+part			name=pmpmarido2;	source=kin-father
+part			name=mmpmarido2;  source=kin-father
+part 	name=mmarido2;     		source=kin-mother; part=pmpmarido2,mmpmarido2
+part 		name=pmmarido2;   	source=kin-father; part=ppmmarido2,mpmmarido2
+part			name=ppmmarido2;	source=kin-father
+part 			name=mpmmarido2;	source=kin-mother
+part 		name=mmmarido2;   	source=kin-mother; part=pmmmarido2,mmmmarido2
+part			name=pmmmarido2;	source=kin-father
+part			name=mmmmarido2;	source=kin-mother
+
+part name=marido3;     			source=kin-husband; part=pmarido3,mmarido3
+part 	name=pmarido3;     		source=kin-father
+part 		name=ppmarido3;		source=kin-father; part=pppmarido3,mppmarido3
+part			name=pppmarido3;	source=kin-father
+part 			name=mppmarido3;	source=kin-mother
+part 		name=mpmarido3;   	source=kin-mother; part=pmpmarido3,mmpmarido3
+part			name=pmpmarido3;	source=kin-father
+part			name=mmpmarido3;  source=kin-father
+part 	name=mmarido3;     		source=kin-mother; part=pmpmarido3,mmpmarido3
+part 		name=pmmarido3;   	source=kin-father; part=ppmmarido3,mpmmarido3
+part			name=ppmmarido3;	source=kin-father
+part 			name=mpmmarido3;	source=kin-mother
+part 		name=mmmarido3;   	source=kin-mother; part=pmmmarido3,mmmmarido3
+part			name=pmmmarido3;	source=kin-father
+part			name=mmmmarido3;	source=kin-mother
+
+part name=mulher;     			source=kin-wife; part=pmulher,mmulher,filha,filho
+part 	name=pmulher;     		source=kin-father; part=ppmulher,mpmulher
+part 		name=ppmulher;		source=kin-father; part=pppmulher,mppmulher
+part			name=pppmulher;	source=kin-father
+part 			name=mppmulher;	source=kin-mother
+part 		name=mpmulher;   	source=kin-mother; part=pmpmulher,mmpmulher
+part			name=pmpmulher;	source=kin-father
+part			name=mmpmulher; source=kin-mother
+part 	name=mmulher;     		source=kin-mother; part=pmmulher,mmmulher
+part 		name=pmmulher;   	source=kin-father; part= ppmmulher,mpmmulher
+part			name=ppmmulher;	source=kin-father
+part 			name=mpmmulher;	source=kin-mother
+part 		name=mmmulher;   	source=kin-mother; part=pmmmulher,mmmmulher
+part			name=pmmmulher;	source=kin-father
+part			name=mmmmulher;	source=kin-mother
+
+part name=mulher1;     			source=kin-wife; part=pmulher1,mmulher1
+part 	name=pmulher1;     		source=kin-father; part=ppmulher1,mpmulher1
+part 		name=ppmulher1;		source=kin-father; part=pppmulher1,mppmulher1
+part			name=pppmulher1;	source=kin-father
+part 			name=mppmulher1;	source=kin-mother
+part 		name=mpmulher1;   	source=kin-mother; part=pmpmulher1,mmpmulher1
+part			name=pmpmulher1;	source=kin-father
+part			name=mmpmulher1; source=kin-mother
+part 	name=mmulher1;     		source=kin-mother; part=pmmulher1,mmmulher1
+part 		name=pmmulher1;   	source=kin-father; part= ppmmulher1,mpmmulher1
+part			name=ppmmulher1;	source=kin-father
+part 			name=mpmmulher1;	source=kin-mother
+part 		name=mmmulher1;   	source=kin-mother; part=pmmmulher1,mmmmulher1
+part			name=pmmmulher1;	source=kin-father
+part			name=mmmmulher1;	source=kin-mother
+
+part name=mulher2;     			source=kin-wife; part=pmulher2,mmulher2
+part 	name=pmulher2;     		source=kin-father; part=ppmulher2,mpmulher2
+part 		name=ppmulher2;		source=kin-father; part=pppmulher2,mppmulher2
+part			name=pppmulher2;	source=kin-father
+part 			name=mppmulher2;	source=kin-mother
+part 		name=mpmulher2;   	source=kin-mother; part=pmpmulher2,mmpmulher2
+part			name=pmpmulher2;	source=kin-father
+part			name=mmpmulher2; source=kin-mother
+part 	name=mmulher2;     		source=kin-mother; part=pmmulher2,mmmulher2
+part 		name=pmmulher2;   	source=kin-father; part= ppmmulher2,mpmmulher2
+part			name=ppmmulher2;	source=kin-father
+part 			name=mpmmulher2;	source=kin-mother
+part 		name=mmmulher2;   	source=kin-mother; part=pmmmulher2,mmmmulher2
+part			name=pmmmulher2;	source=kin-father
+part			name=mmmmulher2;	source=kin-mother
+
+part name=mulher3;     			source=kin-wife; part=pmulher3,mmulher3
+part 	name=pmulher3;     		source=kin-father; part=ppmulher3,mpmulher3
+part 		name=ppmulher3;		source=kin-father; part=pppmulher3,mppmulher3
+part			name=pppmulher3;	source=kin-father
+part 			name=mppmulher3;	source=kin-mother
+part 		name=mpmulher3;   	source=kin-mother; part=pmpmulher3,mmpmulher3
+part			name=pmpmulher3;	source=kin-father
+part			name=mmpmulher3; source=kin-mother
+part 	name=mmulher3;     		source=kin-mother; part=pmmulher3,mmmulher3
+part 		name=pmmulher3;   	source=kin-father; part= ppmmulher3,mpmmulher3
+part			name=ppmmulher3;	source=kin-father
+part 			name=mpmmulher3;	source=kin-mother
+part 		name=mmmulher3;   	source=kin-mother; part=pmmmulher3,mmmmulher3
+part			name=pmmmulher3;	source=kin-father
+part			name=mmmmulher3;	source=kin-mother
+
+part name=noiva;     			source=kin-wife; part=pnoiva,mnoiva,marido1,marido2,marido3
+part 	name=pnoiva;     			source=kin-father; part=ppnoiva,mpnoiva
+part 		name=ppnoiva;			source=kin-father; part=pppnoiva,mppnoiva
+part			name=pppnoiva;		source=kin-father
+part 			name=mppnoiva;		source=kin-mother
+part 		name=mpnoiva;   		source=kin-mother; part=pmpnoiva,mmpnoiva
+part			name=pmpnoiva;		source=kin-father
+part			name=mmpnoiva;   	source=kin-father
+part 	name=mnoiva;     			source=kin-mother; part=pmnoiva,mmnoiva
+part 		name=pmnoiva;   		source=kin-father; part=ppmnoiva,mpmnoiva
+part			name=ppmnoiva;		source=kin-father
+part 			name=mpmnoiva;		source=kin-mother
+part 		name=mmnoiva;   		source=kin-mother; part=pmmnoiva,mmmnoiva
+part			name=pmmnoiva;		source=kin-father
+part			name=mmmnoiva;		source=kin-mother
+
+note this was commented because there is a conflict between "noivo"
+note    as actorm and noivo as parentem
+part name=noivo;     			source=kin-husband; part=pnoivo,mnoivo,mulher1,mulher2,mulher3
+part 	name=pnoivo;     			source=kin-father; part=ppnoivo, mpnoivo
+part 		name=ppnoivo;			source=kin-father; part=pppnoivo, mppnoivo
+part			name=pppnoivo;		source=kin-father
+part 			name=mppnoivo;		source=kin-mother
+part 		name=mpnoivo;   		source=kin-mother; part=pmpnoivo,mmpnoivo
+part			name=pmpnoivo;		source=kin-father
+part			name=mmpnoivo;   	source=kin-father
+part name= mnoivo;  source=kin-mother;pars=pmnoivo, mmnoivo
+part name= pmnoivo;  source=kin-father;pars=ppmnoivo, mpmnoivo
+part name= ppmnoivo;  source=kin-father;pars=pppmnoivo, mppmnoivo
+part name= mpmnoivo;  source=kin-mother;pars=pmpmnoivo, mmpmnoivo
+part name= mmnoivo;  source=kin-mother;pars=pmmnoivo, mmmnoivo
+part name= pmmnoivo;  source=kin-father;pars=ppmmnoivo, mpmmnoivo
+part name= mmmnoivo;  source=kin-mother;pars=pmmmnoivo, mmmmnoivo
+part name=irma;					source=parentef
+
+note TODO The following groups must be nested, otherwise ambiguity is possible.
+note TODO
+part name=filho;     			source=kin-son;pars=fofilho,fafilho,merfilho
+part name=fofilho;				source=kin-son;pars=merfofilho
+part name=fafilho;				source=kin-daughter;pars=merfafilho
+part name=merfilho;				source=kin-wife
+part name=mrfafilho;				source=kin-husband
+part name=merfofilho;			source=kin-wife
+
+part name=filha;     			source=kin-daughter;pars=fofilha,fafilha,mrfilha
+part name=fofilha;				source=kin-son;pars=merfofilha
+part name=fafilha;				source=kin-daughter;pars=mrfafilha
+part name=mrfilha; 				source=kin-husband
+part name=mrfafilha; 			source=kin-husband
+part name=merfofilha;			source=kin-wife
+
+part name=irmao;					source=parentem
+
+part name=pn; source=kin-father; part=ppn,mpn
+part name=mn; source=kin-mother; part=pmn,mmn
+part name=ppn; source= kin-father
+part name=mpn; source= kin-mother
+part name=pmn; source= kin-father
+part name=mmn; source= kin-mother
+part name=pad; source= parentem; part=ppad,mpad
+part name=mad; source= parentef; part=pmad,mmad,mrmad
+part name=ppad; source= kin-father
+part name=pmad; source= kin-father
+part name=mpad; source= kin-mother
+part name=mmad; source= kin-mother
+part name=mrmad; source= kin-father
+
+part name=pad1; source= parentem; part=ppad1,mpad1
+part name=mad1; source= parentef; part=pmad1,mmad1,mrmad1
+part name=ppad1; source= kin-father
+part name=pmad1; source= kin-father
+part name=mpad1; source= kin-mother
+part name=mmad1; source= kin-mother
+part name=mrmad1; source= kin-father
+
+part name=pad2; source= parentem; part=ppad2,mpad2
+part name=mad2; source= parentef; part=pmad2,mmad2,mrmad2
+part name=ppad2; source= kin-father
+part name=pmad2; source= kin-father
+part name=mpad2; source= kin-mother
+part name=mmad2; source= kin-mother
+part name=mrmad2; source= kin-father
+
+part name=pad3; source= parentem; part=ppad3,mpad3
+part name=mad3; source= parentef; part=pmad3,mmad3,mrmad3
+part name=ppad3; source= kin-father
+part name=pmad3; source= kin-father
+part name=mpad3; source= kin-mother
+part name=mmad3; source= kin-mother
+part name=mrmad3; source= kin-father
+
+part name=pad4; source= parentem; part=ppad4,mpad4
+part name=mad4; source= parentef; part=pmad4,mmad4,mrmad4
+part name=ppad4; source= kin-father
+part name=pmad4; source= kin-father
+part name=mpad4; source= kin-mother
+part name=mmad4; source= kin-mother
+part name=mrmad4; source= kin-father
+
+part  name=afilhado; source=male
+part  name=genro; source=male
+part  name=criado; source=male
+part  name=escravo; source=male
+part  name=engeitado; source=male
+part  name=enjeitado; source=male
+part  name=sobrinho; source=male
+part  name=sogro; source=male
+part  name=neto; source=male
+
+part  name=nora;  source=female
+part  name=afilhada; source=female
+part  name=criada;source=female
+part  name=escrava;  source=female
+part  name=engeitada;  source=female
+part  name=enjeitada;  source=female
+part  name=sobrinha;source=female
+part  name=sogra;source=female
+part  name=neta;source=female
+
+
+note *****************************************************************
+note Atributos
+note *****************************************************************
+part name=ls; source=attribute;
+        position=tipo,valor,data;
+        guaranteed=tipo,valor;
+        also=data,obs,id;
+        identification=yes
+part name=atr; source=ls
+
+note *****************************************************************
+note  Relacoes
+note *****************************************************************
+part name=rel; source=relation;
+        position=tipo,valor,nomedest,iddest;
+        guaranteed=tipo,valor,nomedest,iddest;
+        also=data,obs,id;
+        identification=yes

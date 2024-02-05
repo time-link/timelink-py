@@ -1,0 +1,18 @@
+
+kleio$gacto2.str/prefix=soure/id=-kle50
+
+ fonte$obitoShort_id_id/tipo=reg paroquiais/localizacao=nao se le/data=1688/obs=este serve para testar o uso do prefixo com relaes (segundo bito).
+
+  obito$o1740.12/7/10/1740/fl.150/vigario fabiao soares paredes
+
+   n$luisa gomes/f/id=1740-o12-luisa
+
+    referido$antonio da cunha roxo/obs=teve filhos com luisa gomes/id=1740-o12-luisa-per1
+     ls$naturalidade/lorvao
+     ls$morto/antes
+     rel$parentesco/marido1/luisa gomes/1740-o12-luisa
+
+    marido$manuel gomes da costa/obs=teve filhos com luisa gomes/id=1740-o12-luisa-per2
+     ls$naturalidade/eiras
+   locs$igreja matriz de s. martinho da torre
+   sacr$sim
