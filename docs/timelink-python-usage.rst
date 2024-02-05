@@ -13,6 +13,7 @@ The Timelink Python package is available on PyPI and can be installed
 using pip:
 
 .. code:: bash
+
     pip install timelink
 
 Interfacing with a Kleio Server

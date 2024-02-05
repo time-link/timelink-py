@@ -19,9 +19,8 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
-
 import timelink
+sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ---------------------------------------------
 
@@ -40,10 +39,13 @@ extensions = [
 # undoc-members: generate only for member without docstrings
 
 autodoc_default_options = {
-    'members':          True,
-    'undoc-members':    False,
+    'members': True,
+    'undoc-members': False,
 }
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
+
+# Include both class and __init__ docstrings
+autoclass_content = "both"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -59,7 +61,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Timelink Python package'
-copyright = "2022, Joaquim Ramos de Carvalho"
+copyright = "2024, Joaquim Ramos de Carvalho"
 author = "Joaquim Ramos de Carvalho"
 
 # The version info for the project you're documenting, acts as replacement
@@ -169,6 +171,3 @@ texinfo_documents = [
      'Timelink, formerly known as MHK (Micro History with Kleio) is an information system designed for processing person related information collected from historical sources.',  # noqa
      copyright),
 ]
-
-
-

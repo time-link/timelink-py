@@ -8,9 +8,9 @@ timelink.notebooks package
 Submodules
 ----------
 
-timelink.notebooks.config module
---------------------------------
+timelink.notebooks.timelink\_notebook module
+--------------------------------------------
 
-.. automodule:: timelink.notebooks.config
+.. automodule:: timelink.notebooks.timelink_notebook
    :no-undoc-members:
    :no-show-inheritance:
