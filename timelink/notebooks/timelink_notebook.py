@@ -211,21 +211,27 @@ class TimelinkNotebook:
         else:
             return ifiles
 
-    def get_sqlite_databases(**kwargs):
+    def get_sqlite_databases(self, sqlite_dir = None, **kwargs):
         """Get the list of sqlite databases
+
+        Args:
+            sqlite_dir: directory where the sqlite databases are located
+            **kwargs: extra arguments to pass to the get_sqlite_databases function
 
         Returns:
             A list of sqlite databases
         """
-        return get_sqlite_databases(**kwargs)
+        if sqlite_dir is None:
+            sqlite_dir = self.sqlite_dir
+        return get_sqlite_databases(directory_path=sqlite_dir, **kwargs)
 
-    def get_postgres_databases(**kwargs):
+    def get_postgres_databases(self):
         """Get the list of postgres databases
 
         Returns:
             A list of postgres databases
         """
-        return get_postgres_dbnames(**kwargs)
+        return get_postgres_dbnames()
 
     def table_row_count_df(self):
         """Return the row count of all tables in the database"""
@@ -299,3 +305,7 @@ class TimelinkNotebook:
         else:
             raise ValueError
         return rpt
+
+    def get_kleio_files(self, path: str = "", recurse: str = "yes"):
+        """Get the list of files in the kleio server"""
+        return self.kleio_server.translation_status(path, recurse)
