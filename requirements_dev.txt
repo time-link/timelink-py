@@ -19,3 +19,5 @@ sphynx
 sphinx-console
 sphinx-rtd-theme
 wheel>=0.38.1
+nbval>=0.10.0
+pytest>=6.2.4
