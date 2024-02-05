@@ -1,10 +1,13 @@
 """ Database connection and setup
 
-TODO
-    - migrate postgres functions to TimelinkDatabase
-    - use logging to database functions.
+TODO:
+
+- use logging to database functions.
+- add mysql support
+
 
 """
+
 from datetime import timezone
 import os
 import random
@@ -22,12 +25,14 @@ from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy import create_engine
 from sqlalchemy import inspect
-from sqlalchemy import select,func
+from sqlalchemy import select, func
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy_utils import database_exists
 from sqlalchemy_utils import create_database
 import docker  # pylint: disable=import-error
+
+import timelink
 from timelink.mhk import utilities
 from timelink.api import models  # pylint: disable=unused-import
 from timelink.api.models import Entity, PomSomMapper
@@ -38,12 +43,10 @@ from timelink.api.models import KleioImportedFile
 from timelink.api.models.system import KleioImportedFileSchema
 from timelink.kleio import KleioServer, KleioFile, import_status_enum
 from timelink.kleio.importer import import_from_xml
-
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 
 # container for postgres
 postgres_container: docker.models.containers.Container = None
-
 
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # SQLALCHEMY_DATABASE_URL = f"postgresql://timelink:db_password@postgresserver/db"
@@ -118,7 +121,7 @@ def start_postgres_server(
         dbname (str): database name
         dbuser (str): database user
         dbpass (str): database password
-        version (str | None, optional): postgres version. Defaults to "latest".
+        version (str | None, optional): postgres version; defaults to "latest".
     """
     # check if postgres is already running in docker
     if is_postgres_running():
@@ -176,11 +179,13 @@ def get_postgres_dbnames():
     Returns:
         list[str]: list of database names
 
-    SELECT datname
-        FROM pg_database
-    WHERE NOT datistemplate
-            AND datallowconn
-            AND datname <> 'postgres';
+    ..code-block:: sql
+
+        SELECT datname
+            FROM pg_database
+        WHERE NOT datistemplate
+                AND datallowconn
+                AND datname <> 'postgres';
     """
 
     container = start_postgres_server()
@@ -191,7 +196,8 @@ def get_postgres_dbnames():
         with engine.connect() as conn:
             dbnames = conn.execute(
                 text(
-                    "SELECT datname FROM pg_database WHERE NOT datistemplate AND datallowconn AND datname <> 'postgres';"
+                    "SELECT datname FROM pg_database "
+                    "WHERE NOT datistemplate AND datallowconn AND datname <> 'postgres';"
                 )
             )
             result = [dbname[0] for dbname in dbnames]
@@ -236,44 +242,27 @@ class TimelinkDatabase:
     """Database connection and setup
 
     Creates a database connection and session. If the database does not exist,
-      it is created.
-    db_type determines the type of database.
+    it is created. **db_type** determines the type of database.
 
-    Currently, only sqlite, postgres, and mysql are supported.
+    Currently, only sqlite and postgres are supported.
 
-    If db_type is sqlite, the database is created in the current directory.
-    If db_type is postgres or mysql,
-    the database is created in a docker container.
-    If the database is postgres, the container is named
-    timelink-postgres.
-    If the database is mysql, the container is named timelink-mysql.
+    * If db_type is sqlite, the database is created in the current directory.
+    * If db_type is postgres or mysql, the database is created in a docker container.
+    * If the database is postgres, the container is named timelink-postgres.
+    * If the database is mysql, the container is named timelink-mysql.
 
-    Args:
-        db_name (str, optional): database name. Defaults to "timelink".
-        db_type (str, optional): database type. Defaults to "sqlite".
-        db_url (str, optional): database url. If None, a url is generated. Defaults to None
-        db_user (str, optional): database user. Defaults to None.
-        db_pwd (str, optional): database password. Defaults to None.
-        kleio_server (KleioServer, optional): kleio server for imports. Defaults to None.
-        kleio_home (str, optional): kleio home directory. Defaults to None. If present and
-                                    kleio_server is None will start new kleio server, which
-        connect_args (dict, optional): database connection arguments. Defaults to None.
-
-    Fields:
-        db_url (str): database url
+    Attributes:
+        db_url (str): database sqlalchemy url
         db_name (str): database name
-        db_user (str): database user
-        db_pwd (str): database password
+        db_user (str): database user (only for postgres databases)
+        db_pwd (str): database password (only for postgres databases)
         engine (Engine): database engine
         session (Session): database session factory
         metadata (MetaData): database metadata
         db_container: database container
         kserver: kleio server attached to this database, used for imports
 
-    Example:
-        db = TimelinkDatabase('timelink', 'sqlite')
-        with db.session() as session:
-            # do something with the session
+
     """
 
     db_url: str
@@ -303,23 +292,31 @@ class TimelinkDatabase:
     ):
         """Initialize the database connection and setup
 
+        Example:
+            .. code-block:: python
+
+                db = TimelinkDatabase('timelink', 'sqlite')
+                with db.session() as session:
+                    # do something with the session
+                    session.commit()
+
         Args:
-            db_name (str, optional): database name. Defaults to "timelink".
-            db_type (str, optional): database type. Defaults to "sqlite".
-            db_url (str, optional): database url. If None, a url is generated. Defaults to None
-            db_user (str, optional): database user. Defaults to None.
-            db_pwd (str, optional): database password. Defaults to None.
-            db_path (str, optional): database path (for sqlite databases). Defaults to None.
-            kleio_server (KleioServer, optional): kleio server for imports. Defaults to None.
-            kleio_home (str, optional): kleio home directory. Defaults to None. If present and
+            db_name (str, optional): database name; defaults to "timelink".
+            db_type (str, optional): database type; defaults to "sqlite".
+            db_url (str, optional): database url. If None, a url is generated; defaults to None
+            db_user (str, optional): database user; defaults to None.
+            db_pwd (str, optional): database password; defaults to None.
+            db_path (str, optional): database path (for sqlite databases); defaults to None.
+            kleio_server (KleioServer, optional): kleio server for imports; defaults to None.
+            kleio_home (str, optional): kleio home directory; defaults to None. If present and
                                         kleio_server is None will start new kleio server, which
                                         can be fetched with get_kleio_server()
             kleio_image (str, optional): kleio docker image. Passed to KleioServer().
             kleio_version (str, optional): kleio version. Passed to KleioServer().
-            postgres_image (str, optional): postgres docker image. Defaults to None.
-            postgres_version (str, optional): postgres version. Defaults to None.
-            connect_args (dict, optional): SQLAlchemy database connection arguments. Defaults to None.
-
+            postgres_image (str, optional): postgres docker image; defaults to None.
+            postgres_version (str, optional): postgres version; defaults to None.
+            extra_args (dict, optional): extra arguments to sqlalchemy and
+                                         :func:`timelink.kleio.KleioServer.start`
         """
         if db_name is None:
             db_name = "timelink"
@@ -368,7 +365,10 @@ class TimelinkDatabase:
                         image=postgres_image,
                         version=postgres_version,
                     )
-                self.db_url = f"postgresql://{self.db_user}:{self.db_pwd}@127.0.0.1/{self.db_name}"
+                self.db_url = (
+                    f"postgresql://{self.db_user}:"
+                    f"{self.db_pwd}@127.0.0.1/{self.db_name}"
+                )
                 self.db_container = start_postgres_server(
                     self.db_name, self.db_user, self.db_pwd
                 )
@@ -442,11 +442,11 @@ class TimelinkDatabase:
         return db_tables
 
     def table_row_count(self):
-        """ Number of rows of each table in the database
-        
+        """Number of rows of each table in the database
+
         Returns:
             list: list of tuples (table_name, row_count)"""
-            
+
         tables_names = self.table_names()
 
         row_count = []
@@ -455,7 +455,7 @@ class TimelinkDatabase:
                 length = session.scalar(select(func.count()).select_from(text(table)))
                 row_count.append((table, length))
         return row_count
-        
+
     def load_database_classes(self, session):
         """
         Populates database with core Database classes
@@ -540,9 +540,10 @@ class TimelinkDatabase:
         except Exception as exc:
             warnings.warn("Dropping tables problem " + str(exc), stacklevel=2)
 
-    def get_imported_files(self):
-        """Returns the list of imported files"""
+    def get_imported_files(self) -> List[KleioImportedFileSchema]:
+        """Returns the list of imported files in the database."""
         result = self.session().query(KleioImportedFile).all()
+        # Convert to Pydantic Schema
         # https://stackoverflow.com/questions/55762673/how-to-parse-list-of-models-with-pydantic
         ta = TypeAdapter(List[KleioImportedFileSchema])
         result_pydantic = ta.validate_python(result)
@@ -553,20 +554,8 @@ class TimelinkDatabase:
     ) -> List[KleioFile]:
         """Get the import status of the kleio files
 
-        The status is returned in KleioFile.import_status
+        See :func:`timelink.api.database.get_import_status`
 
-        Args:
-            kleio_files (List[KleioFile]): list of kleio files, if None get all from the kleio server, defaults to None
-            status (str, optional): if not None, filter the kleio files by status. Defaults to None.
-                                I = imported
-                                E = imported with error
-                                W = imported with warnings no errors
-                                N = not imported
-                                U = translation updated need to reimport
-            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file.
-                                        Defaults to False, only file name is matched.
-        Returns:
-            List[KleioFile]: list of kleio files with field import_status
         """
         if kleio_files is None:
             if self.get_kleio_server() is None:
@@ -598,9 +587,12 @@ class TimelinkDatabase:
 
         Args:
             kleio_files (List[KleioFile]): list of kleio files
-            include_errors (bool, optional): if True, include files with errors. Defaults to False.
-            include_warnings (bool, optional): if True, include files with warnings. Defaults to False.
-            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
+            include_errors (bool, optional): if True, include files with errors;
+                                             defaults to False.
+            include_warnings (bool, optional): if True, include files with warnings;
+                                            defaults to False.
+            match_path (bool, optional): if True, match the path of the kleio file with
+                                         the path of the imported file; defaults to False.
 
         Returns:
             List[KleioFile]: list of kleio files with field import_status
@@ -614,30 +606,62 @@ class TimelinkDatabase:
                 file.import_status == import_status_enum.N
                 or file.import_status == import_status_enum.U  # noqa: W503
             )
-            or (include_errors and file.import_status == import_status_enum.E)  # noqa: W503
-            or (include_warnings and file.import_status == import_status_enum.W)  # noqa: W503
+            or (  # noqa: W503
+                include_errors and file.import_status == import_status_enum.E
+            )
+            or (  # noqa: W503
+                include_warnings and file.import_status == import_status_enum.W
+            )  # noqa: W503
         ]
 
+    def get_import_rpt(self, path: str, match_path=False) -> str:
+        """Get the import report of a file in the database"""
+        with self.session() as session:
+            if match_path:
+                result = (
+                    session.query(KleioImportedFile)
+                    .filter(KleioImportedFile.path == path)
+                    .first()
+                )
+            else:
+                result = (
+                    session.query(KleioImportedFile)
+                    .filter(KleioImportedFile.name == path)
+                    .first()
+                )
+            if result is not None:
+                s = result.error_rpt + '\n' + result.warning_rpt
+            else:
+                s = "No import report found"
+        return s
+
     def update_from_sources(
-        self, with_warnings=True, with_errors=False, match_path=False
+        self, path=None, with_warnings=True, with_errors=False, match_path=False
     ):
         """Update the database from the sources.
 
         Needs an attached KleioServer.
 
+
         Args:
-            with_warnings (bool, optional): if True, import files with warnings. Defaults to True.
-            with_errors (bool, optional): if True, import files with errors. Defaults to False.
-            match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file.
-                                        if False just match the file name. Defaults to False.
+            path (str): path to the sources, if None all the sources are updated.
+            with_warnings (bool, optional): if True, import files with warnings;
+                                            defaults to True.
+            with_errors (bool, optional): if True, import files with errors; defaults to False.
+            match_path (bool, optional): if True, match the path of the kleio file with the
+                                          path of the imported file; if False just match the
+                                          file name; defaults to False.
+
         """
         if self.kserver is None:
             raise ValueError("No kleio server attached to this database")
         else:
+            if path is None:
+                path = ""
             for kfile in self.kserver.translation_status(
-                path="", recurse="yes", status="T"
+                path=path, recurse="yes", status="T"
             ):
-                logging.info(f"{kfile.status.value} {kfile.path}")
+                logging.info(f"Request translarion of {kfile.status.value} {kfile.path}")
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
@@ -699,6 +723,20 @@ class TimelinkDatabase:
             result = session.query(query_spec)
         return result
 
+    def get_person(self, id: str = None, sql_echo: bool = False) -> Person:
+        """Fetch a person by id.
+
+        Args:
+            id (str, optional): person id; defaults to None.
+        """
+        return timelink.api.models.person.get_person(
+            id=id, db=self.get_db(), sql_echo=sql_echo
+        )
+
+    def pperson(self, id: str):
+        """Prints a person in kleio notation"""
+        print(self.get_person(id=id).to_kleio())
+
     def get_models_ids(self):
         """Get the ORM model classes as a list of ids
 
@@ -728,6 +766,8 @@ class TimelinkDatabase:
                 A table object with the nattribute view
 
         Original SQL code:
+
+        .. code-block:: sql
 
           CREATE VIEW nattributes AS
             SELECT p.id        AS id,
@@ -773,20 +813,17 @@ class TimelinkDatabase:
 def get_import_status(
     db: TimelinkDatabase, kleio_files: List[KleioFile], match_path=False
 ) -> List[KleioImportedFileSchema]:
-    """Get the import status of the kleio files
+    """Get the import status of the kleio files.
 
-        The status in returned in KleioFile.import_status
-
-            I = "I" # imported
-            E = "E" # imported with error
-            W = "W" # imported with warnings no errors
-            N = "N" # not imported
-            U = "U" # translation updated need to reimport
+        The status in returned
+        in :attr:`timelink.api.models.system.KleioImportedFileSchema.import_status`
 
     Args:
         db (TimelinkDatabase): timelink database
         kleio_files (List[KleioFile]): list of kleio files with extra field import_status
-        match_path (bool, optional): if True, match the path of the kleio file with the path of the imported file. Defaults to False.
+        match_path (bool, optional): if True, match the path of the kleio file
+                                      with the path of the imported file;
+                                      defaults to False.
 
     Returns:
         List[KleioImportedFileSchema]: list of kleio files with field import_status
@@ -803,8 +840,9 @@ def get_import_status(
         valid_files_dict = {file.name: file for file in kleio_files}
         if len(valid_files_dict) != len(kleio_files):
             raise ValueError(
-                "Some kleio files have the same name."
-                "Use match_path=True to match the path of the kleio file with the path of the imported file."
+                "Some kleio files have the same name. "
+                "Use match_path=True to match the full path of the kleio file "
+                "with the path of the imported file."
             )
 
     for path, file in valid_files_dict.items():

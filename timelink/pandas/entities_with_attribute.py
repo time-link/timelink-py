@@ -1,6 +1,5 @@
-import warnings
 import pandas as pd
-from sqlalchemy import not_, select
+from sqlalchemy import select
 
 from timelink.api.database import TimelinkDatabase
 
@@ -35,7 +34,7 @@ def entities_with_attribute(
     Note that if person_info = True the columns 'name' and 'sex' will be added.
 
     Ideas:
-        Add : 
+        Add :
             the_value_in: (list of values)
             the_value_between_inc (min, max, get >=min and <= max)
             the_value_between_exc (min, max, get >min and < max)
@@ -146,10 +145,10 @@ def entities_with_attribute(
             with db.session() as session:
                 records = session.execute(stmt)
                 df2 = pd.DataFrame.from_records(records, index=["id"], columns=cols)
-            
+
             if sql_echo:
-                   print(f"Query for more_columns={mcol}:\n", stmt)
-            
+                print(f"Query for more_columns={mcol}:\n", stmt)
+
             if df2.iloc[0].count() == 0:
                 df[mcol] = None  # nothing found we set the column to nulls
             else:

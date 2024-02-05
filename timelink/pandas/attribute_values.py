@@ -3,18 +3,15 @@ Create a dataframe with the values of an attribute
 """
 import pandas as pd
 
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import select, func, and_, desc
 
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models import Attribute
-from timelink.notebooks import config as conf
 
 
 def attribute_values(
     attr_type,
     db: TimelinkDatabase = None,
-    session: sessionmaker = None,
     dates_between=None,
     sql_echo=False,
 ):
@@ -27,7 +24,6 @@ def attribute_values(
     Args:
         attr_type = attribute type to search for
         db = database connection to use, either db or session must be specified
-        session = session to use, either db or session must be specified
         dates_between = tuple with two dates in format yyyy-mm-dd
         sql_echo = if true will print the sql statement
 
@@ -42,19 +38,15 @@ def attribute_values(
     #  We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
     dbsystem: TimelinkDatabase = None
-    if session is None:  # if session is none we need to open a new one
-        if db is not None:  # try if we have a db connection in the parameters
-            dbsystem = db
-        elif (
-            conf.TIMELINK_DBSYSTEM is not None
-        ):  # try if we have a global db connection
-            dbsystem = conf.TIMELINK_DBSYSTEM
-        else:  # no session or db connection specified
-            raise (
-                Exception(
-                    "must set up a database connection before or specify previously openned database with db="
-                )
-            )
+    if db is not None:  # try if we have a db connection in the parameters
+        dbsystem = db
+    else:
+        raise Exception(
+            "No database connection specified, must set up a database"
+            " connection before or specify previously openned database"
+            " with db="
+        )
+
     attr_table = Attribute.__table__
 
     if dates_between is not None:
@@ -92,12 +84,8 @@ def attribute_values(
     if sql_echo:
         print(stmt)
 
-    if session is not None:
-        with session.begin():
-            records = session.execute(stmt)
-    else:
-        with dbsystem.session() as session:
-            records = session.execute(stmt)
+    with dbsystem.session() as session:
+        records = session.execute(stmt)
     df = pd.DataFrame.from_records(
         records, index=["value"], columns=["value", "count", "date_min", "date_max"]
     )

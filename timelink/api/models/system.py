@@ -157,7 +157,9 @@ class KleioImportedFile(Base):
 
     __tablename__ = "kleiofiles"
 
+    """path: str"""
     path: Mapped[str] = mapped_column(String(1024), primary_key=True, nullable=False)
+    """name: str"""
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     structure: Mapped[str] = mapped_column(String(255), nullable=False)
     translator: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -187,30 +189,29 @@ class KleioImportedFileSchema(BaseModel):
     """Represents a Kleio file imported in the database
 
     Objects of this class contain the same fields as the KleioImportedFile class.
+    """
 
-
-
-    Fields:
-        path: path of the file
-        name: name of the file
-        structure: structure name
-        translator: translator name
-        translation_date: date of translation
-        nerrors: number of errors
-        nwarnings: number of warnings
-        error_rpt: error report
-        warning_rpt: warning report"""
-
+    """path: str"""
     path: str
+    """name: str"""
     name: str
+    """structure: str structure used to translate the file"""
     structure: str
+    """translator: str name of the translator"""
     translator: str
+    """translation_date: datetime date of translation"""
     translation_date: datetime
+    """nerrors: int number of errors in the translation"""
     nerrors: int
+    """nwarnings: int number of warnings in the translation"""
     nwarnings: int
+    """error_rpt: str error report"""
     error_rpt: Optional[str]
+    """warning_rpt: str warning report"""
     warning_rpt: Optional[str]
+    """imported: datetime date of import"""
     imported: datetime
+    """imported_string: str date of import as string"""
     imported_string: str
 
     model_config = ConfigDict(from_attributes=True)

@@ -1,43 +1,64 @@
 import os
-
 import pandas
-from timelink.api.database import (
-    TimelinkDatabase,
-    is_valid_postgres_db_name,
-    get_postgres_dbnames,
-    get_sqlite_databases,
-)
+from timelink.api.database import TimelinkDatabase
+from timelink.api.database import is_valid_postgres_db_name
+from timelink.api.database import get_postgres_dbnames
+from timelink.api.database import get_sqlite_databases
 from timelink.kleio.kleio_server import KleioServer
 
 
 class TimelinkNotebook:
-    """A class to hold the Timleink server connections and other"""
+    """A class to interact with the Timelink system
+    from Jupyter notebooks
+
+    Example:
+
+    .. code-block:: python
+
+        from timelink.notebooks import TimelinkNotebook
+
+        tln = TimelinkNotebook()
+        tln.print_info()
+    """
 
     def __init__(
         self,
-        project_name=None,  # name of the project. Defaults to the name of the directory
+        project_name=None,
         project_home=None,
-        # directory where kleio server looks for files. Defaults to the parent of the current directory
-        db_type=None,  # type of database ('sqlite' or 'postgres'). Defaults to 'sqlite'
-        db_name=None,  # name of the database. Defaults to project name, normalized
-        kleio_image=None,  # docker image for kleio server. Defaults to 'timelinkserver/kleio-server'
-        kleio_version=None,  # version of kleio server. Defaults to 'latest'
-        postgres_image=None,  # docker image for postgres server. Defaults to 'postgres'
-        postgres_version=None,  # version of postgres server. Defaults to 'latest'
-        sqlite_dir=None,  # directory where sqlite databases are. Defaults to '../database/sqlite'
+        db_type=None,
+        db_name=None,
+        kleio_image=None,
+        kleio_version=None,
+        postgres_image=None,
+        postgres_version=None,
+        sqlite_dir=None,
         **extra_args,
     ):
-        """Create a TimelinkNotebook object
+        """Create a TimelinkNotebook instance
 
-        Create a TimelinkNotebook object, which holds the interface
-        to the Timelink system. Setup of Kleio Server and Timelink
-        database is done here. Several functions are provided to
+        Setup of Kleio Server and Timelink
+        database is done here.
+
+        Several functions are provided to
         manage the kleio files and access the database.
 
-        Usage:
-            from timelink.notebooks import TimelinkNotebook
+        Args:
+            project_name: name of the project. Defaults to the name of the parent directory
+                        of the current directory.
+            project_home: directory where kleio server looks for files;
+                    defaults to the parent of the current directory.
+            db_type: type of database ('sqlite' or 'postgres'). Defaults to 'sqlite'
+            db_name: name of the database. Defaults to project name, normalized
+            kleio_image: docker image for kleio server;
+                         defaults to 'timelinkserver/kleio-server'
+            kleio_version: version of kleio server. Defaults to 'latest'
+            postgres_image: docker image for postgres server. Defaults to 'postgres'
+            postgres_version: version of postgres server. Defaults to 'latest'
+            sqlite_dir: directory where sqlite databases are. Defaults to '../database/sqlite'
+            **extra_args: extra arguments to pass to the TimelinkDatabase object
 
-            tln = TimelinkNotebook()
+        Returns:
+            A TimelinkNotebook object
         """
         self.project_name = project_name
         self.project_home = project_home
@@ -56,7 +77,7 @@ class TimelinkNotebook:
         if self.db_type is None:
             self.db_type = "sqlite"
         if self.db_name is None:
-            self.db_name = self.project_name.replace("-", "_")
+            self.db_name = self.project_name.replace("-", "_").replace(" ", "_")
         if self.kleio_image is None:
             self.kleio_image = "timelinkserver/kleio-server"
         if self.kleio_version is None:
@@ -89,10 +110,24 @@ class TimelinkNotebook:
         self.kleio_server = self.db.get_kleio_server()
 
     def __repr__(self):
-        return f"TimelinkNotebook(project_name={self.project_name}, project_home={self.project_home}, db_type={self.db_type}, db_name={self.db_name}, kleio_image={self.kleio_image}, kleio_version={self.kleio_version}, postgres_image={self.postgres_image}, postgres_version={self.postgres_version})"
+        return (
+            f"TimelinkNotebook(project_name={self.project_name}, "
+            f"project_home={self.project_home}, db_type={self.db_type}, "
+            f"db_name={self.db_name}, kleio_image={self.kleio_image}, "
+            f"kleio_version={self.kleio_version}, "
+            f"postgres_image={self.postgres_image}, "
+            f"postgres_version={self.postgres_version})"
+        )
 
     def __str__(self):
-        return f"TimelinkNotebook(project_name={self.project_name}, project_home={self.project_home}, db_type={self.db_type}, db_name={self.db_name}, kleio_image={self.kleio_image}, kleio_version={self.kleio_version}, postgres_image={self.postgres_image}, postgres_version={self.postgres_version})"
+        return (
+            f"TimelinkNotebook(project_name={self.project_name}, "
+            f"project_home={self.project_home}, db_type={self.db_type}, "
+            f"db_name={self.db_name}, kleio_image={self.kleio_image}, "
+            f"kleio_version={self.kleio_version}, "
+            f"postgres_image={self.postgres_image}, "
+            f"postgres_version={self.postgres_version})"
+        )
 
     def print_info(self):
         """Print information about the TimelinkNotebook object"""
@@ -118,6 +153,39 @@ class TimelinkNotebook:
 
         print(self.__repr__())
 
+    def get_imported_files(self, data_frame=True, **kwargs):
+        """ Get the list of imported files in the database
+
+        See the get_imported_files method in the TimelinkDatabase class:
+        :meth:`timelink.api.database.TimelinkDatabase.get_imported_files`
+
+        Args:
+            data_frame: if True, return a pandas DataFrame; otherwise,
+                        return a list of dictionaries
+            **kwargs: extra arguments to pass to the get_imported_files method
+        """
+        ifiles = self.db.get_imported_files(**kwargs)
+
+        if data_frame:
+            if len(ifiles) == 0:
+                return pandas.DataFrame()
+            ifiles_json = [f.model_dump() for f in ifiles]
+            ifiles_df = pandas.DataFrame(ifiles_json)
+            ifiles_df["nerrors"] = ifiles_df["nerrors"].astype("Int64")
+            ifiles_df["nwarnings"] = ifiles_df["nerrors"].astype("Int64")
+            return ifiles_df
+        else:
+            return ifiles
+
+    def update_from_sources(self, **kwargs):
+        """Update the database from a list of sources
+
+        See the update_from_sources method in the TimelinkDatabase class:
+        :meth:`timelink.api.database.TimelinkDatabase.update_from_sources`
+
+        """
+        self.db.update_from_sources(**kwargs)
+
     def get_import_status(self, data_frame=True, **kwargs):
         """Get the status of files imported
 
@@ -126,6 +194,8 @@ class TimelinkNotebook:
         """
         ifiles = [f.model_dump() for f in self.db.get_import_status(**kwargs)]
         if data_frame:
+            if len(ifiles) == 0:
+                return pandas.DataFrame()
             # create a pandas Data frame
             ifiles_df = pandas.DataFrame(ifiles)
             # convert the column "status" to the enum value
@@ -137,7 +207,7 @@ class TimelinkNotebook:
             # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
             ifiles_df["import_errors"] = ifiles_df["import_errors"].astype("Int64")
             ifiles_df["import_warnings"] = ifiles_df["import_errors"].astype("Int64")
-            return ifiles_df
+            return ifiles_df.fillna(0)
         else:
             return ifiles
 
@@ -156,10 +226,76 @@ class TimelinkNotebook:
             A list of postgres databases
         """
         return get_postgres_dbnames(**kwargs)
-    
+
     def table_row_count_df(self):
         """Return the row count of all tables in the database"""
         tables = self.db.table_row_count()
-        tables_df = pandas.DataFrame(tables, columns=['table', 'count'])
+        tables_df = pandas.DataFrame(tables, columns=["table", "count"])
         return tables_df
-        
+
+    def get_file_paths(self, file_spec, rows, column):
+        """Get the file paths from DataFrame of from a string"""
+        if isinstance(file_spec, pandas.DataFrame):
+            if column not in file_spec.columns:
+                raise Exception(f"There is no {column} in the DataFrame")
+            if rows is None:
+                raise Exception("The 'rows' argument must be present")
+            if type(rows) is not list:
+                rows = [rows]
+            file_paths = file_spec.iloc[list(rows)][column].tolist()
+            return file_paths
+        else:
+            return []
+
+    def get_import_rpt(self,
+                       file_spec: pandas.DataFrame | str,
+                       rows=None,
+                       match_path=False,
+                       **kwargs):
+        """Show the import report for a given file specification
+
+        Args:
+            file_spec: file specification (DataFrame or string)
+                       If a DataFrame, it should have the columns 'path'
+                       and the arguments 'rows' must be present
+            rows: if file_spec is a DataFrane, the row number to show
+            match_path: if True, the path is used to retrieve the import report;
+                        if false the filename is used (default).
+            **kwargs: extra arguments to pass to the show_import_rpt method
+                      in the TimelinkDatabase class
+
+        """
+        rpt = ''
+        if match_path:
+            column = "path"
+        else:
+            column = "name"
+        if isinstance(file_spec, pandas.DataFrame):
+            paths = self.get_file_paths(file_spec, rows, column)
+            for file in paths:
+                rpt += self.db.get_import_rpt(file, match_path=match_path, **kwargs)
+        elif isinstance(file_spec, str):
+            return self.db.get_import_rpt(file_spec, match_path=match_path, **kwargs)
+        else:
+            raise ValueError
+        return rpt
+
+    def get_translation_report(self, file_spec, rows):
+        """Show the translation report for a given file specification
+
+        Args:
+            file_spec: file specification (DataFrame or string)
+                       If a DataFrame, it should have the columns 'rpt_url'
+                       and the arguments 'rows' must be present
+            rows: if file_spec is a DataFrane, the row number of interest
+                      """
+        rpt = ''
+        if isinstance(file_spec, pandas.DataFrame):
+            paths = self.get_file_paths(file_spec, rows, "rpt_url")
+            for file in paths:
+                rpt += self.kleio_server.get_report(file)
+        elif isinstance(file_spec, str):
+            return self.kleio_server.get_report(file_spec)
+        else:
+            raise ValueError
+        return rpt

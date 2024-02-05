@@ -10,6 +10,8 @@ import docker
 import secrets
 import requests
 from jsonrpcclient import request, Error, Ok, parse
+import urllib.request
+
 from .schemas import KleioFile, TokenInfo
 
 
@@ -427,6 +429,32 @@ class KleioServer:
         pars = {"path": path, "recurse": recurse}
         return self.call("sources_get", pars)
 
+    def get_report(self, rpt_url: str) -> str:
+        """Get report from kleio server
+
+        :param rpt_url: url of the report in the Kleio Server
+        :type rpt_url: str
+
+        :return: kleio server API response
+        :rtype: dict
+        """
+
+        server_url = f"{self.get_url()}{rpt_url}"
+        return self.get_url_content(server_url)
+
+    def get_url_content(self, server_url: str) -> str:
+        """ Get content from Kleio Server
+
+        Args:
+            server_url (str): url of the content in the Kleio Server
+
+        """
+        headers = {"Authorization": f"Bearer {self.get_token()}"}
+        req = urllib.request.Request(server_url, headers=headers)
+        with urllib.request.urlopen(req) as source:
+            response_content = source.read().decode('utf-8')
+            return response_content
+
 
 def is_docker_running():
     """Check if docker is running"""
@@ -434,8 +462,8 @@ def is_docker_running():
         client = docker.from_env()
         client.ping()
         return True
-    except Exception as exc:
-        warnings.warn(exc, stacklevel=3)
+    except Exception as exec:
+        logging.error(f"Could not connect to Docker. Is it running? {exec}")
         return False
 
 

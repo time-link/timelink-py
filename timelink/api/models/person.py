@@ -33,7 +33,25 @@ class Person(Entity):
         )
 
     def __str__(self):
-        r = f"{self.groupname}${quote_long_text(self.name)}/{quote_long_text(self.sex)}/id={quote_long_text(self.id)}"
+        r = (
+            f"{self.groupname}${quote_long_text(self.name)}/"
+            f"{quote_long_text(self.sex)}/id={quote_long_text(self.id)}"
+        )
         if self.obs is not None:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
+
+
+def get_person(id: str = None, db=None, sql_echo: bool = False) -> Person:
+    """
+    Fetch a person from the database
+    """
+    if id is None:
+        raise (Exception("Error, id needed"))
+    p: Person = db.session().get(Person, id)
+    return p
+
+
+def pperson(id: str):
+    """Prints a person in kleio notation"""
+    print(get_person(id=id).to_kleio())

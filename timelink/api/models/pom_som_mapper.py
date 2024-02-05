@@ -430,8 +430,8 @@ class PomSomMapper(Entity):
                             f"""Element {element.name} of group {group.kname}:{group.id}"""
                             f""" is too long for column {cattr.colname}"""
                             f""" of class {pom_class.id}"""
-                            f""" truncating to {cattr.colsize} characters"""
-                            , stacklevel=2
+                            f""" truncating to {cattr.colsize} characters""",
+                            stacklevel=2,
                         )
                         core_value = element.core[: cattr.colsize]
 

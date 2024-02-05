@@ -391,7 +391,9 @@ class KleioHandler:
             self.pom_som_cache[group.pom_class_id] = pom_mapper_for_group
         except Exception as exc:
             self.errors.append(
-                f"ERROR: {self.kleio_file_name} {str(group.line)} finding PomSomMapper for class {group.pom_class_id}: {exc.__class__.__name__}: {exc}"
+                f"ERROR: {self.kleio_file_name} {str(group.line)}"
+                f" finding PomSomMapper for class "
+                f"{group.pom_class_id}: {exc.__class__.__name__}: {exc}"
             )
             return
 
@@ -413,7 +415,9 @@ class KleioHandler:
                 except Exception as exc:
                     self.session.rollback()
                     self.errors.append(
-                        f"ERROR: {self.kleio_file_name} {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
+                        f"ERROR: {self.kleio_file_name} {str(group.line)} "
+                        f"storing group {group.kname}${group.id}: "
+                        f"{exc.__class__.__name__}: {exc}"
                     )
                     self.session.rollback()
         else:
@@ -421,14 +425,16 @@ class KleioHandler:
                 pom_mapper_for_group.store_KGroup(group, self.session)
             except IntegrityError as ierror:
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} line {str(group.line)} ** integrity error {group.kname}${group.id}: {ierror}"
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} "
+                    f"** integrity error {group.kname}${group.id}: {ierror}"
                 )
                 self.session.rollback()
 
             except Exception as exc:
                 self.session.rollback()
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} line {str(group.line)} storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} "
+                    f"storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}"
                 )
 
     def newRelation(self, attrs):
@@ -448,18 +454,20 @@ class KleioHandler:
                 self.session.commit()
             except IntegrityError as ierror:
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} {str(group.line)} storing {group.to_kleio()}\n {ierror}"
+                    f"ERROR: {self.kleio_file_name} {str(group.line)} "
+                    f"storing {group.to_kleio()}\n {ierror}"
                 )
                 self.session.rollback()
             except Exception as exc:
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} {str(group.line)} storing {group.to_kleio()}\n {exc.__class__.__name__}: {exc}"
+                    f"ERROR: {self.kleio_file_name} {str(group.line)} "
+                    f"storing {group.to_kleio()}\n {exc.__class__.__name__}: {exc}"
                 )
                 self.session.rollback()
         self.postponed_relations = []
         # store information on kleio file import
         kfile = self.kleio_file_model(
-            path=self.kleio_file,
+            path=self.kleio_file,  # TODO: #20 should remove /Kleio-home from path
             name=self.kleio_file_name,
             structure=self.kleio_structure,
             translator=self.kleio_translator,

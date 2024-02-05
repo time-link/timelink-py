@@ -1,8 +1,6 @@
-from bokeh.models import (
-    Range1d,
-    Circle,
-    MultiLine,
-)
+from bokeh.models import Range1d
+from bokeh.models import Circle
+from bokeh.models import MultiLine
 from bokeh.plotting import figure
 from bokeh.plotting import from_networkx
 from bokeh.io import show, save

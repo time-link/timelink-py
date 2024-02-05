@@ -1,12 +1,12 @@
 """
 
 """
+
 from sqlalchemy import select
 import pandas as pd
 
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models import Person
-import timelink.notebooks.config as conf
 
 
 def remove_particles(name, particles=None):
@@ -31,19 +31,15 @@ def pname_to_df(
     # We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
     dbsystem: TimelinkDatabase = None
-    if session is None:  # if session is none we need to open a new one
-        if db is not None:  # try if we have a db connection in the parameters
-            dbsystem = db
-        elif (
-            conf.TIMELINK_DBSYSTEM is not None
-        ):  # try if we have a global db connection
-            dbsystem = conf.TIMELINK_DBSYSTEM
-        else:  # no session or db connection specified
-            raise (
-                Exception(
-                    "must set up a database connection before or specify previously openned database with db="
-                )
+    if db is not None:  # try if we have a db connection in the parameters
+        dbsystem = db
+    else:  # no session or db connection specified
+        raise (
+            Exception(
+                "must set up a database connection before or specify previously "
+                "openned database with db="
             )
+        )
 
     if similar:
         name_particles = remove_particles(name).split(" ")

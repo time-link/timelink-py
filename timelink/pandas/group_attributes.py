@@ -6,7 +6,9 @@ from IPython.display import display
 from timelink.api.database import TimelinkDatabase
 
 
-from timelink.pandas import entities_with_attribute, styler_row_colors
+from timelink.pandas import entities_with_attribute
+from timelink.pandas.styles import styler_row_colors
+
 
 def group_attributes(
     group: list,
@@ -39,7 +41,8 @@ def group_attributes(
     else:
         raise (
             Exception(
-                "must call get_mhk_db(conn_string) to set up a database connection before or specify previously openned database with db="
+                "must call get_mhk_db(conn_string) to set up a database connection before "
+                "or specify previously openned database with db="
             )
         )
 
@@ -58,7 +61,8 @@ def group_attributes(
         )
         cols = ["id", "name", "sex", "persons_obs", "type", "value", "date", "attr_obs"]
     else:  # no person information required we use the attributes table
-        attr = db.get_model("attribute")
+        attr_model = db.get_model("attribute")
+        attr = attr_model.__table__
         id_col = attr.c.entity
         stmt = select(
             attr.c.entity,
@@ -87,6 +91,7 @@ def group_attributes(
 
     return df
 
+
 def display_group_attributes(
     ids,
     header_cols=None,
@@ -110,10 +115,11 @@ def display_group_attributes(
         table_cols = ["type", "value", "date", "attr_obs"]
 
     if person_info is True:
-        # the cols of persons are inserted automatically by attribute to df
+        # the cols of persons are inserted automatically by entities_with_attribute
         hcols_clean = [col for col in header_cols if col not in ["name", "sex", "obs"]]
     else:
         hcols_clean = header_cols
+
     header_df = entities_with_attribute(
         hcols_clean[0],
         person_info=person_info,
@@ -148,4 +154,3 @@ def display_group_attributes(
         table_cols = [category] + table_cols
     df = styler_row_colors(df[table_cols], category="id", cmap_name=cmap_name)
     display(df)
-

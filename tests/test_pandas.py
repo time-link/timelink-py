@@ -13,7 +13,7 @@ from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from tests import skip_on_travis, TEST_DIR
 
-from timelink.pandas import pname_to_df, attribute_to_df, attribute_values
+from timelink.pandas import pname_to_df, entities_with_attribute, attribute_values
 
 pytestmark = skip_on_travis
 
@@ -91,9 +91,9 @@ def test_attribute_values(dbsystem):
     ],
     indirect=True,
 )
-def test_attributes_to_df(dbsystem):
+def test_entities_with_attribute(dbsystem):
     """Test generation of dataframe from attributes"""
-    df = attribute_to_df(
+    df = entities_with_attribute(
         db=dbsystem,
         the_type="residencia",
         the_value="soure",
@@ -101,6 +101,6 @@ def test_attributes_to_df(dbsystem):
         more_cols=[],
         sql_echo=True,
     )
-    assert df is not None, "attribute_to_df returned None"
-    assert len(df) > 0, "attribute_to_df returned empty dataframe"
+    assert df is not None, "entities_with_attribute returned None"
+    assert len(df) > 0, "entities_with_attribute returned empty dataframe"
     print(df)

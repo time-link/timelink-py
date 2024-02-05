@@ -246,7 +246,9 @@ async def is_kleio_server_running():
 
 # invalidate user
 @app.get("/kleio/invalidate-user/{user}", response_model=str)
-async def invalidate_user(user: str, kserver: KleioServer = Depends(get_kleio_server)): # noqa: B008
+async def invalidate_user(
+    user: str, kserver: KleioServer = Depends(get_kleio_server)
+):  # noqa: B008
     """Invalidate a user"""
     return kserver.invalidate_user(user)
 

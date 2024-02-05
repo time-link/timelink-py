@@ -23,7 +23,7 @@ class import_status_enum(str, Enum):
 
 
 class KleioFile(BaseModel):
-    """Represents the information about kleio file and its
+    """Represents the information about a kleio file and its
     translation and import status"""
 
     path: str = Field(..., description="The path of the file")
@@ -44,6 +44,16 @@ class KleioFile(BaseModel):
         ..., description="The time the file was queued for translation as a string"
     )
     source_url: str = Field(..., description="The URL of the source file")
+    """The status of the file:
+        .. code-block:: python
+
+            V = "valid translations"
+            T = "need translation (source more recent than translation)"
+            E = "translation with errors"
+            W = "translation with warnings"
+            P = "translation being processed"
+            Q = "file queued for translation"
+    """
     status: translation_status_enum = Field(
         ...,
         description="""The status of the file:
@@ -92,9 +102,7 @@ class KleioFile(BaseModel):
     import_warning_rpt: Optional[str] = Field(
         None, description="Warning report from import"
     )
-    imported: Optional[datetime] = Field(
-        None, description="Date of import of the file"
-    )
+    imported: Optional[datetime] = Field(None, description="Date of import of the file")
     imported_string: Optional[str] = Field(
         None, description="Date of import of the file as a string"
     )

@@ -698,7 +698,7 @@ class KGroup:
             if m is not None and (
                 type(m) is str
                 and m > ""  # noqa
-                or (issubclass(type(m), KElement) and m.to_kleio() > "") # noqa
+                or (issubclass(type(m), KElement) and m.to_kleio() > "")  # noqa
             ):
                 # m contains data, lets output
                 if issubclass(type(m), KElement):
