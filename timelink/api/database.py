@@ -861,6 +861,8 @@ def get_import_status(
             file.import_warnings = imported_files_dict[path].nwarnings
             file.import_error_rpt = imported_files_dict[path].error_rpt
             file.import_warning_rpt = imported_files_dict[path].warning_rpt
+            file.imported = imported_files_dict[path].imported
+            file.imported_string = imported_files_dict[path].imported_string
             if imported_files_dict[path].nerrors > 0:
                 file.import_status = import_status_enum.E
             elif imported_files_dict[path].nwarnings > 0:
