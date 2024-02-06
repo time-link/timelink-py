@@ -734,7 +734,17 @@ class TimelinkDatabase:
             id (str, optional): person id; defaults to None.
         """
         return timelink.api.models.person.get_person(
-            id=id, db=self.get_db(), sql_echo=sql_echo
+            id=id, db=self, sql_echo=sql_echo
+        )
+
+    def get_entity(self, id: str = None) -> Entity:
+        """Fetch an entity by id.
+
+        Args:
+            id (str, optional): entity id; defaults to None.
+        """
+        return Entity.get_entity(
+            id=id, session=self.session()
         )
 
     def pperson(self, id: str):
@@ -756,6 +766,15 @@ class TimelinkDatabase:
             ORM class
         """
         return Entity.get_orm_for_pom_class(class_id)
+
+    def get_table(self, class_id: str):
+        """Get the ORM table for a entity type
+
+        Returns:
+            Table
+        """
+        model = self.get_model(class_id)
+        return model.__table__
 
     def get_nattribute_view(self):
         """Return the nattribute view.
