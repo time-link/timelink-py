@@ -7,6 +7,17 @@ from timelink.api.database import get_sqlite_databases
 from timelink.kleio.kleio_server import KleioServer
 
 
+def clean_kleiofile_df(df: pandas.DataFrame) -> pandas.DataFrame:
+    # convert the column "status" to the enum value
+    df["status"] = df["status"].apply(lambda x: x.value)
+    df["import_status"] = df["import_status"].apply(lambda x: x.value)
+    # convert the column "import_errors" to int with NA as 0
+    # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
+    df["import_errors"] = df["import_errors"].astype("Int64")
+    df["import_warnings"] = df["import_errors"].astype("Int64")
+    return df.fillna(0)
+
+
 class TimelinkNotebook:
     """A class to interact with the Timelink system
     from Jupyter notebooks
@@ -154,7 +165,7 @@ class TimelinkNotebook:
         print(self.__repr__())
 
     def get_imported_files(self, data_frame=True, **kwargs):
-        """ Get the list of imported files in the database
+        """Get the list of imported files in the database
 
         See the get_imported_files method in the TimelinkDatabase class:
         :meth:`timelink.api.database.TimelinkDatabase.get_imported_files`
@@ -187,7 +198,7 @@ class TimelinkNotebook:
         self.db.update_from_sources(**kwargs)
 
     def get_import_status(self, data_frame=True, **kwargs):
-        """Get the status of files imported
+        """Get the import status of Kleio Files
 
         Returns:
             A dictionary with the status of the import process
@@ -211,7 +222,7 @@ class TimelinkNotebook:
         else:
             return ifiles
 
-    def get_sqlite_databases(self, sqlite_dir = None, **kwargs):
+    def get_sqlite_databases(self, sqlite_dir=None, **kwargs):
         """Get the list of sqlite databases
 
         Args:
@@ -253,11 +264,9 @@ class TimelinkNotebook:
         else:
             return []
 
-    def get_import_rpt(self,
-                       file_spec: pandas.DataFrame | str,
-                       rows=None,
-                       match_path=False,
-                       **kwargs):
+    def get_import_rpt(
+        self, file_spec: pandas.DataFrame | str, rows=None, match_path=False, **kwargs
+    ):
         """Show the import report for a given file specification
 
         Args:
@@ -271,7 +280,7 @@ class TimelinkNotebook:
                       in the TimelinkDatabase class
 
         """
-        rpt = ''
+        rpt = ""
         if match_path:
             column = "path"
         else:
@@ -286,7 +295,7 @@ class TimelinkNotebook:
             raise ValueError
         return rpt
 
-    def get_translation_report(self, file_spec, rows):
+    def get_translation_report(self, file_spec, rows=None):
         """Show the translation report for a given file specification
 
         Args:
@@ -294,9 +303,17 @@ class TimelinkNotebook:
                        If a DataFrame, it should have the columns 'rpt_url'
                        and the arguments 'rows' must be present
             rows: if file_spec is a DataFrane, the row number of interest
-                      """
-        rpt = ''
+        """
+        rpt = ""
         if isinstance(file_spec, pandas.DataFrame):
+            if rows is None:
+                raise ValueError("The 'rows' argument must be present "
+                                 "if the file_spec is a DataFrame")
+            elif type(rows) is not list:
+                rows = [rows]
+            if len(rows) == 0:
+                raise ValueError("The 'rows' argument must be a non-empty list, or an integer")
+
             paths = self.get_file_paths(file_spec, rows, "rpt_url")
             for file in paths:
                 rpt += self.kleio_server.get_report(file)
@@ -306,6 +323,47 @@ class TimelinkNotebook:
             raise ValueError
         return rpt
 
-    def get_kleio_files(self, path: str = "", recurse: str = "yes"):
-        """Get the list of files in the kleio server"""
-        return self.kleio_server.translation_status(path, recurse)
+    def get_kleio_files(self, data_frame=True, **kwargs):
+        """Get the list of files in the kleio server.
+
+        Alias to :meth:`timelink.notebooks.TimelinkNotebook.get_import_status`
+        but returns a subset of the columns.
+
+            #   Column              Non-Null Count  Dtype
+            ---  ------              --------------  -----
+            0   path                3 non-null      object
+            1   name                3 non-null      object
+            2   size                3 non-null      int64
+            3   directory           3 non-null      object
+            4   modified            3 non-null      datetime64[ns, UTC]
+            5   modified_iso        3 non-null      datetime64[ns, UTC]
+            6   modified_string     3 non-null      object
+            7   qtime               3 non-null      datetime64[ns, UTC]
+            8   qtime_string        3 non-null      object
+            9   source_url          3 non-null      object
+            10  status              3 non-null      object
+            11  translated          3 non-null      datetime64[ns, UTC]
+            12  translated_string   3 non-null      object
+            13  errors              3 non-null      int64
+            14  warnings            3 non-null      int64
+            15  version             3 non-null      object
+            16  rpt_url             3 non-null      object
+            17  xml_url             3 non-null      object
+            18  import_status       3 non-null      object
+            19  import_errors       3 non-null      Int64
+            20  import_warnings     3 non-null      Int64
+            21  import_error_rpt    3 non-null      object
+            22  import_warning_rpt  3 non-null      object
+            23  imported            3 non-null      int64
+            24  imported_string     3 non-null      int64
+        """
+        result = self.get_import_status(**kwargs)
+        return result[["path", "name", "modified",
+                       "status", "translated",
+                       "errors", "warnings",
+                       "import_status",
+                       "import_errors", "import_warnings",
+                       "import_error_rpt",
+                       "import_warning_rpt",
+                       "imported",
+                       "rpt_url", "xml_url"]]
