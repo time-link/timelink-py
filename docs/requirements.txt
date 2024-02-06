@@ -19,3 +19,4 @@ uvicorn~=0.20.0
 pydantic~=2.4.0
 jsonrpcclient
 timelink>=1.0.0
+sphinx-rtd-theme>=2.0.0
