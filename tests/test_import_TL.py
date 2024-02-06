@@ -6,6 +6,7 @@ Check tests.__init__.py for parameters
 import os
 from pathlib import Path
 import random
+import time
 
 import pytest
 
@@ -290,6 +291,14 @@ def test_import_from_kleio_server(dbsystem):
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
     translations = kserver.translation_status(path="", recurse="yes", status="V")
+
+    counter = 0
+    while len(translations) == 0 and counter < 5:
+        kserver.translate(path="", recurse="yes")
+        time.sleep(5)
+        translations = kserver.translation_status(path="", recurse="yes", status="V")
+        counter += 1
+
     assert len(translations) > 0, "no valid translations found in Kleio Server"
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
@@ -341,7 +350,7 @@ def test_import_status_1(dbsystem):
     kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
     translations = kserver.translation_status(path="", recurse="yes", status="V")
 
-    import_status = get_import_status(dbsystem, translations)
+    import_status = get_import_status(dbsystem, translations, match_path=True)
     assert import_status is not None
 
 

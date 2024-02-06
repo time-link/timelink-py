@@ -95,9 +95,10 @@ def test_entities_with_attribute(dbsystem):
     """Test generation of dataframe from attributes"""
     df = entities_with_attribute(
         db=dbsystem,
+        entity_type="person",
         the_type="residencia",
         the_value="soure",
-        person_info=True,
+        more_info=["name", "sex"],
         more_cols=[],
         sql_echo=True,
     )
