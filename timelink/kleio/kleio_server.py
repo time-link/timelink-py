@@ -348,7 +348,10 @@ class KleioServer:
         pars = {"user": user, "info": info.model_dump()}
         return self.call("tokens_generate", pars)
 
-    def translation_status(self, path: str, recurse: str, status: str = None):
+    def translation_status(self,
+                           path: str,
+                           recurse: str,
+                           status: str = None) -> List[KleioFile]:
         """Get translations from kleio server
 
         :param path: path to the directory in sources
@@ -438,6 +441,9 @@ class KleioServer:
         :return: kleio server API response
         :rtype: dict
         """
+
+        if not rpt_url.startswith("/"):
+            rpt_url = f"/{rpt_url}"
 
         server_url = f"{self.get_url()}{rpt_url}"
         return self.get_url_content(server_url)
