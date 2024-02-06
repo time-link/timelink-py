@@ -2,6 +2,11 @@
 History
 =======
 
+1.0.4 (2024-02-06)
+------------------
+
+* Improved notebook integration, new tutorial and receipts notebooks in progress.
+
 1.0.3 (2024-02-01)
 ------------------
 
