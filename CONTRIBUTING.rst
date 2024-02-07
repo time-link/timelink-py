@@ -168,7 +168,11 @@ Example:
    pip install tox
 
 Also, if tox complains of not finding the various Python versions then
-try to run `tox` with the `-e` option to specify the environment.  
+try:
+* check that the versions are installed with `pyenv versions``
+* if not install with pyenv e.g. `pyenv install 3.11`
+* check that the version are available locally with `pyenv local 3.10 3.11 [...]`
+*  run `tox` with the `-e` option to specify the environment.
 
 Alternatively try to run tox --recreate to recreate the virtual environments.
 

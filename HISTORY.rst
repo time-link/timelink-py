@@ -2,6 +2,11 @@
 History
 =======
 
+1.0.5 (2024-02-07)
+------------------
+
+* Fix minor bugs, better interaction with Docker and Jupyter notebooks.
+
 1.0.4 (2024-02-06)
 ------------------
 
