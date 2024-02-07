@@ -20,7 +20,7 @@ urllib3<2
 uvicorn~=0.20.0
 pydantic~=2.4.0
 jsonrpcclient
-networkx~=2.0.0
+networkx>=3.0.0
 bokeh
 wheel>=0.38.1
 IPython
