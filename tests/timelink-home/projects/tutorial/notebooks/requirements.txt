@@ -1,5 +1,10 @@
 timelink>=1.0.0
-pandas
+pandas~=2.0.0
+matplotlib
+fastapi>=0.109.1
+mysql-connector-python~=8.0.0
 sqlalchemy
 sqlalchemy_utils
 psycopg2
+networkx>=3.0
+bokeh
