@@ -33,7 +33,8 @@ sys.path.insert(0, os.path.abspath('..'))
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon']
+    'sphinx.ext.napoleon',
+    'nbsphinx']
 
 # members: generate doc for members of an object with docstring
 # undoc-members: generate only for member without docstrings
