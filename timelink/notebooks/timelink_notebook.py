@@ -43,6 +43,7 @@ class TimelinkNotebook:
         postgres_image=None,
         postgres_version=None,
         sqlite_dir=None,
+        stop_duplicates=True,
         **extra_args,
     ):
         """Create a TimelinkNotebook instance
@@ -61,11 +62,12 @@ class TimelinkNotebook:
             db_type: type of database ('sqlite' or 'postgres'). Defaults to 'sqlite'
             db_name: name of the database. Defaults to project name, normalized
             kleio_image: docker image for kleio server;
-                         defaults to 'timelinkserver/kleio-server'
+                            defaults to 'timelinkserver/kleio-server'
             kleio_version: version of kleio server. Defaults to 'latest'
             postgres_image: docker image for postgres server. Defaults to 'postgres'
             postgres_version: version of postgres server. Defaults to 'latest'
             sqlite_dir: directory where sqlite databases are. Defaults to '../database/sqlite'
+            stop_duplicates: if True, stop duplicates when importing files. Defaults to True
             **extra_args: extra arguments to pass to the TimelinkDatabase object
 
         Returns:
@@ -116,6 +118,7 @@ class TimelinkNotebook:
             kleio_version=self.kleio_version,
             postgres_image=self.postgres_image,
             postgres_version=self.postgres_version,
+            stop_duplicates=stop_duplicates,
             **extra_args,
         )
         self.kleio_server = self.db.get_kleio_server()

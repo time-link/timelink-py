@@ -292,6 +292,7 @@ class TimelinkDatabase:
         kleio_version=None,
         postgres_image=None,
         postgres_version=None,
+        stop_duplicates=True,
         **connect_args,
     ):
         """Initialize the database connection and setup
@@ -410,6 +411,7 @@ class TimelinkDatabase:
                     kleio_home=kleio_home,
                     kleio_image=kleio_image,
                     kleio_version=kleio_version,
+                    stop_duplicates=stop_duplicates,
                 )
 
     def set_kleio_server(self, kleio_server: KleioServer):
