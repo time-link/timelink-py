@@ -665,7 +665,7 @@ class TimelinkDatabase:
             for kfile in self.kserver.translation_status(
                 path=path, recurse="yes", status="T"
             ):
-                logging.info(f"Request translarion of {kfile.status.value} {kfile.path}")
+                logging.info(f"Request translation of {kfile.status.value} {kfile.path}")
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
