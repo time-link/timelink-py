@@ -800,7 +800,7 @@ def start_kleio_server(
     else:
         warnings.warn(
             f"Kleio server is already running in docker mapped to {kleio_home}",
-            stacklevel=2,
+            stacklevel=1,
             )
 
     # if kleio_home is None, use current directory
