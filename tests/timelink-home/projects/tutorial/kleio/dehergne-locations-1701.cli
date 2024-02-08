@@ -1,0 +1,479 @@
+kleio$gacto2.str/translations=9
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin3-7
+   fonte$dehergne-locations-1701/1701/geoinformation/obs="""p. 357        Depuis le 17 août 1658 est créé le vicariat apostolique de Nankin;         puis celui de Cochinchine, et celui du Tonkin; chacun d'eux a         l'administration de plusieurs provinces chinoises. L'ensemble         est remodelé en 1680. Le 10 avril 1690 sont créés les évêchés de         Nankin et de Pékin, qui forment, avec Macao, les trois évêchés du Padroado.         Le 15 oct. 1696, nouvelle redistribution des provinces de Chine,         avec, peu après, création de nouveaux vicariats apostoliques:         Shensi, Kiangsi, Fukien, Szechwan, Yunnan, en 1696;         Hukwang, et Chekiang en 1697; Kweichow, en 1701 (et Shansi en 1702).         Cf Moidrey, p. 253.        Depuis le 30 nov. 1700 la mission française des jésuites de Chine,         dont le supérieur a les pouvoirs de vice-provincial, se partage avec        la vice-province jésuite (dite portugaise) un certain nombre de résidences        éparpillées dans l'empire.        N..B La carte ci-jointe de 1701, hâtivement tracée, a oublié de marquer         le trait conduisant du Collège de Hangchow aux deux résidences jésuites         du Fou-kien, Yenping et Foochow (la résidence de Ningpo, achetée en         juillet-août 1701, est contestée, jugement favorable en septembre 1702,         AHSI 30 (1961), 321). On pourrait aussi prolonger les traits de Kiangchow         à Sian et de Chinkiang à Hwaian.        LÉGENDE        Les ronds désignent les résidences jésuites: résidence habitée en 1701, rond         noir; résidence non occupée, rond blanc sans point central; résidence de la         mission française.                 Les sigles sont les mêmes que ceux de la carte précédente (1644), sauf         qu'un triangle blanc désigne ici les Missions Etrangères de Paris, qui n'avaient         pas de résidence en Chine sous les Ming. — Nous groupons ensemble, par         province et par sigle, les résidences non-occupées en 1701.                 La Congrégation de la Propagande ne possède alors aucune résidence, celle        de Siaoshan du Shaohing au Chekiang n'ayant été achetée que le 9 nov. 1702;         mais il y avait plusieurs missionnaires de différents ordres et congrégations        envoyés par la Propagande.                 Le tableau ci-après, basé sur JS 134, et sur nos propres recherches (publiées        dans l'AHSI depuis 1953), demeure incomplet : € multa sunt templa et sacella         in pagis et oppidis, quae non recensui; imo et forte aliquae domus in urbibus         quas ignoro propter tantam locorum distantiam ». Le catalogue de 1703 multiplie        les « missio cum sede stabili », que nous traduisons par « résidence actuellement         inoccupée, ou maison sans prêtre à demeure » (R'). Nous avons préféré        nous en tenir à l'année 1701, car le nombre et la situation des résidences        (R) va grandement évoluer au cours des années suivantes avec l'afflux méthodique         des jésuites français (1701 sq), tout occupés à l'achat de nouvelles maisons         pour leur mission, et l'arrivée des franciscains de la Propagande (1705).         L'expulsion des missionnaires non munis du p'iao va contribuer à modifier        encore la situation, à partir de 1708. La liste de 1701 donne les noms de la résidence         et des missionnaires qui l'occupent. Il n'en est pas de même du catalogue          de 1703.                   R = Résidence SJ (sauf si marqué R OP; R MEP; R OFM; R OESA).          R' = Résidence inoccupée.                   Les noms des villes autres que les fou sont en italiques et les capitales        de province en majuscules. La carte de Chine de la Grande Encyclopédie,         t. V, p. 2770 Larousse, 1973, donne aussi en pinyin les noms des villes.        NOTA TRANSCRIÇÃO        "geo1$ = Provincia ou região"        "geo2$ = fou (perfeitura ou cidade de 1ª ordem) ou tcheou independente"        "geo3$ = tcheou-hien ou burgo"          Em cada entrada o formato é                    "geoN$Nome geográfico/Tipo (província, fou, tcheou-hien)/id=deh-r1701-nome"          Exº            "geo1$Chekiang#Zhejiang/província/deh-r1701-chekiang"           "geo2$Hangchou#Hangzhou/capital provincial/deh-r1701-hangzhou"           "geo3$Fuyang/tchou-hien/deh-r1701-fuyang"          Nos locais onde há presença de missionários:             "atr$residencia-missao/Jesuíta/16110000 (onde aparece R)"           "atr$residencia-missao/Dominicanos%OP/16560000" (quando passa a residência de outra ordem                                                   ver abreviaturas na legenda do mapa, exº p.354 em Kinhua)           "atr$activa/sim/16110000"         (onde só aparece uma data)            """
+
+      geodesc$deh-chre-1701/0/0/1701
+
+         geo1$Chekiang%CHEKIANG (actuel ZHEJIANG)#Zhejiang， @wikidata: Q16967/província/deh-r1701-chekiang
+
+            geo2$Hangchou#Hangzhou, @wikidata:Q4970/capital provincial/deh-r1701-hangchou
+               atr$activa/sim/1701%R «Collège ou R.»?
+               atr$residencia-missao/Jesuíta/1701%R «Collège ou R.»?
+               atr$activa/não/1701%R «Collège ou R.»?
+               atr$residencia-missao/Franciscanos/1701%R' OFM, residência inocupada
+
+               geo3$Haining/thou-hien/deh-r1701-hainang
+                  atr$activa/não/1701
+
+            geo2$Kashing#Jiaxing, @wikidata:Q58178/fou/deh-r1701-kashing
+               atr$activa/não/1701
+
+            geo2$Kinhwa#Jinhua, @wikidata:Q58210/fou/deh-r1701-kinhwa
+               atr$activa/não/1701
+               atr$residencia-missao/Missões estrangeiros%R' OP dit la Liste 1701, il faut lire R' MEP/1701
+
+               geo3$Lanchi#Lanxi, @wikidata:Q1023793/tchou-hien/deh-r1701-lanchi
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Dominicanos/1701
+
+            geo2$Ningpo#Ningbo, @wikidata:Q42780/fou/deh-r1701-ningpo
+               atr$activa/sim/1701
+
+               geo3$Yenchow/tchou-hien/deh-r1701-yenchow
+                  atr$activa/não/1701
+                  atr$residencia-missao/Missões estrangeiros/1701
+
+         geo1$Fukien#Fujian, @wikidata:Q41705/província/deh-r1701-fukien
+
+            geo2$Foochow#Fuzhou, @wikidata:Q68481/capital provincial/deh-r1701-foochow
+               atr$activa/sim/1701
+               atr$residencia-missao/Jesuíta/1701
+               atr$residencia-missao/Missões estrangeiras/1701
+               atr$activa/não/1701
+               atr$residencia-missao/Dominicanos/1701
+
+               geo3$Lienkong#Lianjiang, @wikidata:Q204827/tchou-hien/deh-r1701-lienkong
+                  atr$activa/não/1701
+
+            geo2$Changchow#Zhangzhou, @wikidata:Q68814/fou/deh-r1701-changchow
+               atr$activa/sim/1701
+               atr$residencia-missao/Dominicanos/1701
+
+            geo2$Chüanchow#Quanzhou, @wikidata:Q68695/fou/deh-r1701-chuanchow
+               atr$activa/sim/1701
+               atr$residencia-missao/Dominicanos/1701
+
+               geo3$Amoy#Xiamen, @wikidata:Q68744/tchou-hien#? como burgo em 1644/deh-r1701-amoy
+                  atr$activa/não/1701
+                  atr$residencia-missao/Missões estrangeiras/1701
+
+            geo2$Funing%(alors tcheou indépendant)Funing, @wikidata:Q241877/tcheou independente/deh-r1701-funing
+               atr$activa/sim/1701
+               atr$residencia-missao/Dominicanos/1701
+
+               geo3$Fuan#Fu'an, @wikidata:Q1374581/tchou-hien/deh-r1701-fuan
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Dominicanos/1701
+
+            geo2$Hinghwa#Xinghua, @wikidata:Q17498990/fou/deh-r1701-hinghwa
+               atr$activa/não/1701
+               atr$residencia-missao/Jesuíta/1701
+               atr$activa/sim/1701
+               atr$residencia-missao/Missões estrangeiras/1701
+
+            geo2$Kienning%Kienning fou, Jianning, @wikidata:Q11065314/fou/deh-r1701-kienning
+
+               geo3$Pucheng/tchou-hien/deh-r1701-pucheng
+                  atr$activa/não/1701
+
+            geo2$Shaowu#Shaowu, @wikidata:Q1025451/fou/deh-r1701-shaowu
+               atr$activa/não/1701
+               atr$residencia-missao/Franciscanos/1701
+
+               geo3$Kienning hien#Jianning Xian, @wikidata:Q781559/tchou-hien/deh-r1701-kienning-hien
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+
+            geo2$Tingchow#Tingzhou, @wikidata:Q7808213/fou/deh-r1701-tingchow
+               atr$activa/sim/1701
+
+               geo3$Shanghang/tchou-hien/deh-r1701-shanghang
+                  atr$activa/não/1701
+
+            geo2$Yenping#Yanping, @wikidata:Q1337959/fou/deh-r1701-yenping
+               atr$activa/sim/1701
+
+               geo3$Tsianglo/tchou-hien/deh-r1701-tsianglo
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+
+         geo1$Honan#Henan, @wikidata:Q43684/província/deh-r1701-honan
+
+            geo2$Kaifeng#Kaifeng, @wikidata:Q208471/capital provincial/deh-r1701-kaifeng
+               atr$activa/sim/1701
+
+            geo2$Kweiteh#Guide, @wikidata:Q404817/fou/deh-r1701-kweiteh
+               atr$activa/não/1701
+
+         geo1$Hukwang%(actuel HUNAN + HUBEI)Huguang, @wikidata:Q2235155/região/deh-r1701-hukwang
+
+            geo2$Wuchang#Wuchang, @wikidata:Q1014420/capital provincial/deh-r1701-wuchang
+               atr$activa/sim/1701
+
+            geo2$Anlu#Anlu, @wikidata:Q557934/fou/deh-r1701-anlu
+               atr$activa/não/1701
+
+            geo2$Changsha/fou/deh-r1701-changsha
+               atr$activa/não/1701
+
+               geo3$Siangtan/tchou-hien/deh-r1701-siangtan
+                  atr$activa/sim/1701
+
+            geo2$Chengchow%Chen(g)chow/tcheou independente/deh-r1701-chengchow/obs=Chen(g)chow, tcheou indép., tout au sud du Hunan R' MEP
+               atr$activa/não/1701
+               atr$residencia-missao/Missões estrangeiras/1701
+
+            geo2$Hengchow/fou/deh-r1701-hengchow
+               atr$activa/não/1701
+
+            geo2$Kingchow#Jingzhou, @wikidata:Q71247/fou/deh-r1701-kingchow
+               atr$activa/não/1701
+
+            geo2$Teian/fou/deh-r1701-teian
+               atr$activa/não/1701
+
+            geo2$Yungchow#Yongzhou, @wikidata:Q266014/fou/deh-r1701-yungchow
+               atr$activa/não/1701
+
+         geo1$Kiangnan%KIANGNAN ou NANKIN (actuel ANHUI + JIANGSU),Jiangnan, @wikidata:Q11133842/região/deh-r1701-kiangnan
+
+            geo2$Nanking#Nanjing, @wikidata:Q16666/capital provincial/deh-r1701-nanking
+               atr$activa/sim%collège/1701
+               atr$residencia-missao/Jesuíta/1701
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos/1701
+
+            geo2$Anking/fou/deh-r1701-anking
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos/1701
+
+            geo2$Changchow#Changzhou, @wikidata:Q57970/fou/deh-r1701-changchow-fou
+
+               geo3$Wusih#Wujin, @wikidata:Q1197421/tchou-hien/deh-r1701-wusih
+                  atr$activa/não/1701
+
+            geo2$Chinchow%Chinchow (= Kweichih)/fou/deh-r1701-chinchow
+               atr$activa/sim/1701
+               atr$residencia-missao/Missões estrangeiras/1701
+
+            geo2$Chinkiang#Zhenjiang, @wikidata:Q57958/fou/deh-r1701-chinkiang
+               atr$activa/sim/1701
+
+               geo3$Tanyang#Danyang, @wikidata:Q925293/tchou-hien/deh-r1701-tanyang
+                  atr$activa/não/1701
+
+            geo2$Fengyang/fou/deh-r1701-fengyang
+               atr$activa/sim/1703
+
+               geo3$Wuho/tchou-hien/deh-r1701-wuho
+                  atr$activa/não/1701
+
+            geo2$Hwaian#Huai'an, @wikidata:Q57818/fou/deh-r1701-hwaian
+               atr$activa/sim/1701
+
+            geo2$Soochow#Suzhou, @wikidata:Q42622/fou/deh-r1701-soochow
+               atr$activa/sim/1701
+
+               geo3$Changshu%Changshu (Cham xo), Changshu, @wikidata:Q1015805/tchou-hien/deh-r1701-changshu
+                  atr$activa/sim/1701
+
+               geo3$Kunshan/tchou-hien/deh-r1701-kunshan
+                  atr$activa/não/1701
+
+            geo2$Süchow#Suzhou, @wikidata:Q42622/tcheou independente/deh-r1701-suchow
+               atr$activa/não/1701
+
+            geo2$Sungkiang#Songjiang, @wikidata:Q11104671/fou/deh-r1701-sungkiang/obs=avec 28 églises
+               atr$activa/sim/1701
+
+               geo3$Shanghai#Shanghai, @wikidata:Q8686/tchou-hien/deh-r1701-shanghai/obs=avec 60 églises
+                  atr$activa/sim/1701
+
+               geo3$Tsingpu#Qingpu, @wikidata:Q46536920/tchou-hien/deh-r1701-tsingpu
+                  atr$activa/não/1701
+
+            geo2$Taitsang/tcheou independente/deh-r1701-taitsang
+               atr$activa/não/1701
+
+               geo3$Kiating#Jiading, @wikidata:Q662101/tchou-hien/deh-r1701-kiating
+                  atr$activa/sim/1701
+
+               geo3$Tsungming#Chongming, @wikidata:Q788812/tchou-hien/deh-r1701-tsungming/obs=9 églises
+                  atr$activa/não/1701
+
+            geo2$Yangchow#Yangzhou, @wikidata:Q57906/fou/deh-r1701-yangchow
+               atr$activa/não/1701
+
+         geo1$Kiangsi#Jiangxi, @wikidata:Q57052/província/deh-r1701-kiangsi
+
+            geo2$Nanchang#Nanchang, @wikidata:Q171943/capital provincial/deh-r1701-nanchang
+               atr$activa/sim/1701
+
+            geo2$Fuchow/fou/deh-r1701-fuchow
+               atr$activa/sim/1701
+
+            geo2$Jaochow/fou/deh-r1701-jaochow
+               atr$activa/sim/1701
+
+            geo2$Kanchow/fou/deh-r1701-kanchow/obs=colégio SJ
+               atr$activa/sim/1701
+               atr$residencia-missão/Jesuíta/1701
+               atr$activa/sim/1701
+               atr$residencia-missão/Franciscanos/1701
+
+               geo3$Ningtu/tchou-hien/deh-r1701-ningtun
+                  atr$activa/não/1701
+                  atr$residencia-missão/Franciscanos/1701
+
+               geo3$Sinfeng/tchou-hien/deh-r1701-sinfeng
+                  atr$activa/não/1701
+
+            geo2$Kian/fou/deh-r1701-kian
+               atr$activa/sim/1701
+               atr$residencia-missão/Franciscanos/1701
+
+               geo3$Tingnan/tchou-hien/deh-r1701-tingnan
+                  atr$activa/não/1701
+                  atr$residencia-missão/Agostinhos/1701
+
+            geo2$Kienchang#Jianchang, @wikidata:Q11065388/fou/deh-r1701-kienchang
+               atr$activa/sim/1701
+
+               geo3$Nanfeng#Nanfeng, @wikidata:Q1356725/tchou-hien/deh-r1701-nanfeng
+                  atr$activa/não/1701
+
+            geo2$Kiukiang/fou/deh-r1701-kiukiang
+               atr$activa/sim/1701
+
+            geo2$Kwangsin/fou/deh-r1701-kwangsin
+
+               geo3$Yushan/tchou-hien/deh-r1701-yushan
+                  atr$activa/não/1701
+                  atr$residencia-missão/Dominicanos/1701
+
+            geo2$Nanan#Nan'an, @wikidata:Q10907402/fou/deh-r1701-nanan
+               atr$activa/sim/1701
+               atr$residencia-missão/Franciscanos/1701
+
+               geo3$Tankiang/tchou-hien/deh-r1701-tankiang
+                  atr$activa/não/1701
+
+         geo1$Kwangsi#Guangxi, @wikidata:Q15176/província/deh-r1701-kwangsi
+
+            geo2$Kweilin#Guilin, @wikidata:Q189633/capital provincial/deh-r1701-kweilin
+               atr$activa/sim/1701
+
+            geo2$Wuchow#Wuzhou, @wikidata:Q571652/fou/deh-r1701-wuchow
+               atr$activa/não/1639
+               atr$residencia-missão/Agostinhos/1701
+
+         geo1$Kwangtung#Guangdong, @wikidata:Q15175/província/deh-r1701-kwangtung
+
+            geo2$Cantão/capital provincial/deh-r1701-cantao
+               atr$activa/sim/1701
+               atr$residencia-missao/Jesuíta/1701/obs=duas
+               atr$residencia-missao/Franciscanos/1701/obs=duas
+               atr$residencia-missao/Agostinhos/1701
+               atr$residencia-missao/Missões estrangeiras/1701
+
+               geo3$Fatshan/tchou-hien/deh-r1701-fatshan
+                  atr$activa/sim/1701
+
+               geo3$Sunwui/tchou-hien/deh-r1701-sunwui
+                  atr$activa/sim/1701
+
+               geo3$Tungkun#Dongguan, @wikidata:Q59218/tchou-hien/deh-r1701-tungkun
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Missões estrangeiras/1701
+
+            geo2$Kiungchow%Kiungchow (île de Hainan), Qiongzhou, @wikidata:Q1081204/fou/deh-r1701-kiungchow
+               atr$activa/sim/1701
+
+            geo2$Limchow/fou/deh-r1701-limchow
+               atr$activa/sim/1701
+
+            geo2$Luichow#Leizhou, @wikidata:Q1209167/fou/deh-r1701-luichow
+               atr$activa/sim/1701
+
+            geo2$Namyung#Nanxiong, @wikidata:Q934465/fou/deh-r1701-namyung
+               atr$activa/sim/1701
+               atr$residencia-missao/Agostinhos/1701
+
+               geo3$Shihing/tchou-hien/deh-r1701-shihing
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Agostinhos/1701
+
+               geo3$Shuntak%Shuntak (Xunte)/tchou-hien/deh-r1701-shuntak
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+
+            geo2$Schiuchow%Shiuhow (Xao cheu)/fou/deh-r1701-schiuchow
+               atr$activa/sim/1701
+               atr$residencia-missao/Missões estrangeiras/1701
+
+               geo3$Lokchong/tchou-hien/deh-r1701-lokchong
+                  atr$activa/não/1701
+                  atr$residencia-missao/Missões estrangeiras/1701
+
+               geo3$Yanfa%Yanfa -- Gin hoa/tchou-hien/deh-r1701-yanfa/obs=duvidoso
+                  atr$activa/não/1701
+                  atr$residencia-missao/Missões estrangeiras/1701
+
+            geo2$Shiuhing%Chao Kim, Zhaoqing, @wikidata:Q59164/fou/deh-r1701-shiuhing
+               atr$activa/sim/1701
+               atr$residencia-missao/Agostinhos/1701
+
+            geo2$Waichow%Waichow, Hwaichow (Hoei cheu), Guizhou, @wikidata:Q47097/deh-r1701-waichow/deh-r1701-kwangtung-geo2-3
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos/1701
+
+            geo2$Macau/Macau#Macao, @wikidata:Q14773/deh-r1701-macau/obs=On pourrait y ajouter Macao, qui forme alors un monde à part avec les couvents OFM., OP., OSA et un ermitage OSA., et, pour les jésuites le collège St Paul et des maisons à l'Ilha Verde et à Lapa (Wan-tchai)
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos/1701/obs=vários conventos
+               atr$residencia-missao/Dominicanos/1701/obs=vários conventos
+               atr$residencia-missao/Agostinhos/1701/obs=vários conventos e um ermitério
+               atr$residencia-missao/Jesuíta/1701/obs=o colégio de S. Paulo e casas na Ilha Verde e Lapa
+
+               geo3$Ilha Verde#Ilha Verde, @wikidata:Q3319473/tchou-hien/deh-r1701-ilha-verde
+                  atr$activa/sim/1701
+
+               geo3$Lapa%Lapa (Wan-tchai),Wanzai, @wikidata:Q14342082/tchou-hien/deh-r1701-lapa
+                  atr$activa/sim/1701
+
+         geo1$Kweichow%KWEICHOW (actuel GUIZHOU): néant PEKING (actuel HEBEI), Guizhou, @wikidata:Q47097/província/deh-r1701-kweichow
+
+            geo2$Pequim%Pékin collège St Joseph (1605) ou Si-t'ang (sera appelé Nan-t'ang en 1723, à cause du Si-t'ang fondé pour la Propagande, R), Beijing, @wikidata:Q956/capital provincal/deh-r1701-pequim
+               atr$activa/sim/1605/obs=colégio de S. José em Nan-t'ang?
+               atr$residencia-missao/Jesuíta/1605/obs=colégio de S. José em Nan-t'ang?
+
+               geo3$Si-t'ang%Si-t'ang fondé pour la Propagande, R [em 1703])/tchou-hien#?/deh-r1701-si-tang
+                  atr$activa/sim/1703
+                  atr$residencia-missao/Propaganda/1703
+
+               geo3$Tong-t'ang%Tong-t'ang ou R Saint-Joseph (1655)/tchou-hien#?/deh-r1701-tong-tang
+                  atr$activa/sim/1655%ou R Saint-Joseph (1655)
+
+               geo3$Pei-t'ang/tchou-hien#?/deh-r1701-pei-tang
+                  atr$activa/sim/1693
+
+               geo3$Liangsiang/tchou-hien%ville/deh-r1701-liangsiang
+                  atr$activa/não/1701
+
+               geo3$Tungchow#Tongzhou, @wikidata:Q393836/tchou-hien%ville/deh-r1701-tungchow
+                  atr$activa/não/1701
+
+            geo2$Chengting#Zhengding, @wikidata:Q197678/fou/deh-r1701-chengting
+               atr$activa/sim/1701
+
+            geo2$Paoting#Baoding, @wikidata:Q58584/fou/deh-r1701-paoting
+               atr$activa/não/1701
+
+         geo1$Shansi#Shanxi, @wikidata:Q46913/província/deh-r1701-shansi
+
+            geo2$Taiyuan#Taiyuan, @wikidata:Q72778/capital provincial/deh-r1701-taiyuan
+               atr$activa/não/1701
+
+            geo2$Fenchow/fou/deh-r1701-fenchow
+               atr$activa/sim/1699
+
+               geo3$Pingyao%Pingyao du Fenchow/tchou-hien/deh-r1701-pingyao/obs=la Liste 1701 suppose des R ou R' à Pingyao et Kiehsiu du Fenchow., cf AHSI 1955, 29
+                  atr$activa/sim/1701
+
+               geo3$Kiehsiu%Kiehsiu du Fenchow/tchou-hien/deh-r1701-kiehsiu/obs=la Liste 1701 suppose des R ou R' à Pingyao et Kiehsiu du Fenchow., cf AHSI 1955, 29
+                  atr$activa/sim/1701
+
+            geo2$Pingyang#Pingyang Fu, @wikidata:Q15905472, Q73156/fou/deh-r1701-pingyang
+
+               geo3$Kiangchow#Jiangzhou, @wikidata:Q1197219/tchou-hien/deh-r1701-kiangchow
+                  atr$activa/sim/1701
+
+               geo3$Puchow#Puzhou, @wikidata:Q14105968/tchou-hien/deh-r1701-puchow
+                  atr$activa/não/1701
+
+               geo3$Hungtung/tchou-hien%De Pingyang dépendaient les «templa et forté parvae domus» dont parle la Liste 1701 à Hungtung, Kiehsiu, Siangling, Tàiping et Wanchuian, qui, à nos yeux, sont des chrétientés, non des R, de même que Tsinglo du Sinchow indépendant/deh-r1701-hungtung/obs=cristandade, não residência
+
+               geo3$Kiehsiu/tchou-hien%De Pingyang dépendaient les «templa et forté parvae domus» dont parle la Liste 1701 à Hungtung, Kiehsiu, Siangling, Tàiping et Wanchuian, qui, à nos yeux, sont des chrétientés, non des R, de même que Tsinglo du Sinchow indépendant/deh-r1701-kiehsiu-tchou/obs=cristandade, não residência
+
+               geo3$Siangling/tchou-hien%De Pingyang dépendaient les «templa et forté parvae domus» dont parle la Liste 1701 à Hungtung, Kiehsiu, Siangling, Tàiping et Wanchuian, qui, à nos yeux, sont des chrétientés, non des R, de même que Tsinglo du Sinchow indépendant/deh-r1701-siangling/obs=cristandade, não residência
+
+               geo3$Taiping#Taiping, @wikidata:Q18111423, Q1113750/tchou-hien%De Pingyang dépendaient les «templa et forté parvae domus» dont parle la Liste 1701 à Hungtung, Kiehsiu, Siangling, Tàiping et Wanchuian, qui, à nos yeux, sont des chrétientés, non des R, de même que Tsinglo du Sinchow indépendant/deh-r1701-taiping/obs=cristandade, não residência
+
+               geo3$Wanchuan/tchou-hien%De Pingyang dépendaient les «templa et forté parvae domus» dont parle la Liste 1701 à Hungtung, Kiehsiu, Siangling, Tàiping et Wanchuian, qui, à nos yeux, sont des chrétientés, non des R, de même que Tsinglo du Sinchow indépendant/deh-r1701-pingyang-geo1-4/obs=cristandade, não residência
+
+            geo2$Sinchow/tcheou independente%Sinchow indépendant/deh-r1701-sinchow
+
+               geo3$Tsinglo/tchou-hien%De Pingyang dépendaient les «templa et forté parvae domus» dont parle la Liste 1701 à Hungtung, Kiehsiu, Siangling, Tàiping et Wanchuian, qui, à nos yeux, sont des chrétientés, non des R, de même que Tsinglo du Sinchow indépendant/deh-r1701-tsinglo
+
+         geo1$Shantung%actuel Shandong, Shandong, @wikidata:Q43407/deh-r1701-shantung/deh-chre-1701-geo1-5
+
+            geo2$Tsinan#Jinan, @wikidata:Q170247/capital provincial/deh-r1701-tsinan
+               atr$activa/sim/1701%R et 8 églises
+               atr$residencia-missao/Franciscanos/1701
+
+               geo3$Taian#Tai'an, @wikidata:Q217681/tchou-hien%alors tcheou/deh-r1701-taian
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+                  atr$activa/não/1701
+                  atr$residencia-missao/Jesuíta/1701
+
+               geo3$Tehchow/tchou-hien/deh-r1701-tehchow
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Jesuíta/1701
+
+            geo2$Tsingchow%(-- Idu, Yitu)Qingzhou, @wikidata:Q1360781, Yidu, @wikidata:Q1360781/fou/deh-r1701-tsingchow
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos/1701
+
+            geo2$Linchu%Linkiu/fou/deh-r1701-linchu
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos/1701
+
+            geo2$Tungchang#Dungchang, @wikidata:Q10870440/fou/deh-r1701-tungchang
+               atr$activa/não/1701
+
+               geo3$Lintsing/tchou-hien/deh-r1701-lintsing
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+
+            geo2$Yenchow/fou/deh-r1701-yenchow-fou
+
+               geo3$Ichow%Ichow ( -- Lini)/tchou-hien/deh-r1701-ichow
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+
+               geo3$Tsining/tchou-hien/deh-r1701-tsining
+                  atr$activa/sim/1701
+                  atr$residencia-missao/Franciscanos/1701
+
+         geo1$Shensi%(actuel SHANXI)Shanxi, @wikidata:Q46913/província/deh-r1701-shensi
+
+            geo2$Sian#Xi'an, @wikidata:Q5826/capital provincial/deh-r1701-sian
+               atr$activa/sim/1701
+               atr$residencia-missao/Franciscanos%avec OFM/1701
+
+               geo3$Sanyuan#Sanyuan, @wikidata:Q1201362/tchou-hien/deh-r1701-sanyuan
+                  atr$activa/não/1701
+
+            geo2$Hanchung#Hanzhong, @wikidata:Q515573/fou/deh-r1701-hanchung
+               atr$activa/não/1701
+
+            geo2$Chengku#Chenggu, @wikidata:Q1069968/fou#?/deh-r1701-chengku
+
+               geo3$Siao-tchai%Siao-tchai du Chengku/tchou-hien/deh-r1701-siao-tchai
+                  atr$activa/não/1701
+
+         geo1$Szechwan%actuel SICHUAN)Sichuan, @wikidata:Q19770/província/deh-r1701-szechwan/obs=nada
+
+            geo2$Chengtu#Chengdu, @wikidata:Q30002/capital provincial/deh-r1701-chengtu
+               atr$activa/sim/17020400#será aberta nesta data
+               atr$residencia-missao/Missões Estrangeiras/17020400#será aberta nesta data
+
+            geo2$Chungking#Chongqing, @wikidata:Q11725/fou/deh-r1701-chungking
+               atr$activa/sim/17020400#será aberta nesta data
+               atr$residencia-missao/Lazaristas/17020400#será aberta nesta data
+
+         geo1$Yunnan#Yunnan, @wikidata:Q43194/província/deh-r1701-yunnan
+
+            geo2$Yunnanfu/capital provincial/deh-r1701-yunnanfu
+               atr$activa/sim/17021100#será aberta nesta data
+               atr$residencia-missao/Missões Estrangeiras/17021100#será aberta nesta data
