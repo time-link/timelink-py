@@ -122,7 +122,7 @@ def display_group_attributes(
 
     header_df = entities_with_attribute(
         hcols_clean[0],
-        person_info=person_info,
+        entity_type="person",
         more_cols=hcols_clean[1:],
         filter_by=ids,
         db=db,

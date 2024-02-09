@@ -151,7 +151,10 @@ class TimelinkNotebook:
         )
 
     def print_info(self):
-        """Print information about the TimelinkNotebook object"""
+        """Print information about the TimelinkNotebook object
+
+        TODO: #26 truncate token and password and add parameter to show them
+        """
         print(f"Project name: {self.project_name}")
         print(f"Project home: {self.project_home}")
         print(f"Database type: {self.db_type}")
@@ -268,7 +271,9 @@ class TimelinkNotebook:
         return tables_df
 
     def get_file_paths(self, file_spec, rows, column):
-        """Get the file paths from DataFrame of from a string"""
+        """Get the file paths from DataFrame of from a string
+
+        TODO: #27 add parameter to convert the paths to absolute local paths"""
         if isinstance(file_spec, pandas.DataFrame):
             if column not in file_spec.columns:
                 raise Exception(f"There is no {column} in the DataFrame")
