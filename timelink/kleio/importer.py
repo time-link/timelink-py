@@ -509,7 +509,7 @@ def import_from_xml(
 
     Arguments:
         filespec (str,Path): a file path, URL of a data file or path in a Kleio Server.
-        conn_string (str): SQLAlchemy connection string to database.
+        session: a database session from TimelinkDatabase.session()
         options (dict): a dictionnary with options
 
            - 'return_stats':  if True import stats will be returned
