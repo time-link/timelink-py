@@ -35,7 +35,7 @@ setup(
         ],
     },
     project_urls={
-         'Documentation': 'https://timelink-py.readthedocs.io/',
+        'Documentation': 'https://timelink-py.readthedocs.io/',
     },
     install_requires=[
         'typer',
@@ -50,11 +50,10 @@ setup(
         'docker',
         'jsonrpcclient',
         'ipython'
-        
     ],
     license="MIT license",
-    long_description= description + '\n\n' + history,
-    long_description_content_type = 'text/x-rst',
+    long_description=description + '\n\n' + history,
+    long_description_content_type='text/x-rst',
     include_package_data=True,
     keywords='timelink',
     name='timelink',
