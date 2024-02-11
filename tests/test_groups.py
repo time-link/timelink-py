@@ -573,17 +573,17 @@ def test_allow_as_part_4():
 
 
 def test_includes_group():
-    n: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
-    j: n = n("joaquim", "m", id="jrc")
+    N: KPerson = KPerson.extend("n", position=["name", "sex"], guaranteed=["name"])
+    j: N = N("joaquim", "m", id="jrc")  # type: ignore
     j.attr("residencia", "macau", date="2021-12-16")
     atr1 = KAtr("residencia", "Coimbra", "2020-09-20")
     atr2 = KAtr("hobby", "caligrafia", "2020-09-20")
     j.include(atr1)
     j.include(atr2)
     j.attr("idade", "63", date="2021-08-08", obs="Taipa")
-    pn = KPerson.extend("pn", position=["name"], guaranteed=["name"])
-    n.allow_as_part(pn)
-    j.include(pn("Arménio"))
+    PN = KPerson.extend("pn", position=["name"], guaranteed=["name"])
+    N.allow_as_part(PN)
+    j.include(PN("Arménio"))
     j.attr("profissao", "professor", date="2021-08-08", obs="Taipa")
 
     lpn = list(j.includes(group="pn"))
@@ -608,8 +608,8 @@ def test_includes_no_arg():
     ks = KSource("s1", type="test", loc="auc", ref="alumni", obs="Nested")
     kleio.include(ks)
     ka1 = KAct(
-        "a1",
-        "test-act",
+        "a1",  # id
+        "test-act",  # type
         date="2021-07-16",
         day=16,
         month=7,

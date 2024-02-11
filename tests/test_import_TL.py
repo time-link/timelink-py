@@ -150,7 +150,7 @@ def test_import_atr_date(dbsystem):
         raise
     sfile: Path = stats["file"]
     assert sfile.name == file.name
-    domingos_vargas = session.get(Person, "b1685.33-per6")
+    domingos_vargas = session.get(Person, "t140337")
     assert domingos_vargas is not None, "could not get a person from file"
     kleio = domingos_vargas.to_kleio()
     assert len(kleio) > 0
