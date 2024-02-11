@@ -281,11 +281,17 @@ class KGroup:
         return KGroup._global_line
 
     def __init__(self, *args, **kwargs):
-        """
-        Creates a new group with elements
-        :param args: values for positional elements
-        :param kwargs: values for optional elements.
-            Use element_check=False to turn off checking of element names
+        """Creates a new instance of group with setting the value of elements.
+
+        Args:
+            *args: values for positional arguments
+            **kwargs: values for optional elements.
+
+        Example:
+            ``ks = KSource("s1", type="test", loc="auc", ref="alumni", obs="Nested")``
+
+        Use element_check=False to turn off checking of element names
+
         """
         self._containsd: dict = {}
         self.level = 1

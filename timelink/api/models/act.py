@@ -1,4 +1,5 @@
 """ Implementation of Acts in POM model
+
 (c) Joaquim Carvalho 2023.
 MIT License, no warranties.
 """

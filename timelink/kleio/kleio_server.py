@@ -55,7 +55,7 @@ class KleioServer:
         port: int = None,
         update: bool = False,
         reuse: bool = True,
-        stop_duplicates: bool = False
+        stop_duplicates: bool = False,
     ):
         """Starts a kleio server in docker
 
@@ -93,7 +93,7 @@ class KleioServer:
             port=port,
             update=update,
             reuse=reuse,
-            stop_duplicates=stop_duplicates
+            stop_duplicates=stop_duplicates,
         )
 
         return KleioServer(container)
@@ -134,7 +134,9 @@ class KleioServer:
         if is_docker_running() is False:
             raise Exception("Docker is not running")
 
-        container = get_kserver_container(kleio_home=kleio_home, kleio_version=kleio_version)
+        container = get_kserver_container(
+            kleio_home=kleio_home, kleio_version=kleio_version
+        )
         if container is not None:
             return KleioServer(container)
         else:
@@ -161,7 +163,9 @@ class KleioServer:
         if is_docker_running() is False:
             raise Exception("Docker is not running")
 
-        container = get_kserver_container(kleio_home=kleio_home, kleio_version=kleio_version)
+        container = get_kserver_container(
+            kleio_home=kleio_home, kleio_version=kleio_version
+        )
         return container is not None
 
     @staticmethod
@@ -358,10 +362,9 @@ class KleioServer:
         pars = {"user": user, "info": info.model_dump()}
         return self.call("tokens_generate", pars)
 
-    def translation_status(self,
-                           path: str,
-                           recurse: str,
-                           status: str = None) -> List[KleioFile]:
+    def translation_status(
+        self, path: str, recurse: str, status: str = None
+    ) -> List[KleioFile]:
         """Get translations from kleio server
 
         :param path: path to the directory in sources
@@ -459,7 +462,7 @@ class KleioServer:
         return self.get_url_content(server_url)
 
     def get_url_content(self, server_url: str) -> str:
-        """ Get content from Kleio Server
+        """Get content from Kleio Server
 
         Args:
             server_url (str): url of the content in the Kleio Server
@@ -468,7 +471,7 @@ class KleioServer:
         headers = {"Authorization": f"Bearer {self.get_token()}"}
         req = urllib.request.Request(server_url, headers=headers)
         with urllib.request.urlopen(req) as source:
-            response_content = source.read().decode('utf-8')
+            response_content = source.read().decode("utf-8")
             return response_content
 
 
@@ -540,8 +543,9 @@ def find_local_kleio_home(path: str = None):
 
 
 def get_kserver_home(
-    container: docker.models.containers.Container = None, container_number: int = 0,
-    kleio_version="latest"
+    container: docker.models.containers.Container = None,
+    container_number: int = 0,
+    kleio_version="latest",
 ):
     """Get the kleio server home directory
 
@@ -554,7 +558,9 @@ def get_kserver_home(
     Returns the volume mapped to /kleio-home in the kleio server container"""
 
     if container is None:
-        container = get_kserver_container_list(kleio_version=kleio_version)[container_number]
+        container = get_kserver_container_list(kleio_version=kleio_version)[
+            container_number
+        ]
 
     kleio_home = None
     if container is not None:
@@ -571,7 +577,7 @@ def get_kserver_home(
 
 
 def list_kleio_server_containers(kleio_version: str = None):
-    """ List running kleio server containers
+    """List running kleio server containers
 
     Args:
         kleio_version (str, optional): kleio server version; defaults
@@ -579,7 +585,9 @@ def list_kleio_server_containers(kleio_version: str = None):
     Returns:
         a tuple (container, kleio_home, port, token) for each container
     """
-    containers: list[docker.models.containers.Container] = get_kserver_container_list(kleio_version=kleio_version)
+    containers: list[docker.models.containers.Container] = get_kserver_container_list(
+        kleio_version=kleio_version
+    )
 
     if len(containers) == 0:
         return []
@@ -593,9 +601,9 @@ def list_kleio_server_containers(kleio_version: str = None):
     return result
 
 
-def get_kserver_container(kleio_home: str = None,
-                          kleio_version="latest",
-                          stop_duplicates=False):
+def get_kserver_container(
+    kleio_home: str = None, kleio_version="latest", stop_duplicates=False
+):
     """Check if a kleio server is running in docker, possibly mapped to
     a given kleio home directory.
 
@@ -609,7 +617,9 @@ def get_kserver_container(kleio_home: str = None,
         docker.models.containers.Container: the Kleio server container
     """
 
-    containers: list[docker.models.containers.Container] = get_kserver_container_list(kleio_version=kleio_version)
+    containers: list[docker.models.containers.Container] = get_kserver_container_list(
+        kleio_version=kleio_version
+    )
 
     if containers is None:
         return None
@@ -641,7 +651,9 @@ def get_kserver_container(kleio_home: str = None,
         return containers[0]
 
 
-def get_kserver_container_list(kleio_version: str = "latest") -> None | List[docker.models.containers.Container]:
+def get_kserver_container_list(
+    kleio_version: str = "latest",
+) -> None | List[docker.models.containers.Container]:
     """Get the Kleio server container
 
     Running containers are inspected to detect
@@ -664,7 +676,9 @@ def get_kserver_container_list(kleio_version: str = "latest") -> None | List[doc
     if kleio_version is None:
         containers = {c for t, c in allimages_tags if "kleio-server" in t}
     else:
-        containers = {c for t, c in allimages_tags if f"kleio-server:{kleio_version}" in t}
+        containers = {
+            c for t, c in allimages_tags if f"kleio-server:{kleio_version}" in t
+        }
 
     if len(containers) > 0:
         return list(containers)
@@ -673,8 +687,9 @@ def get_kserver_container_list(kleio_version: str = "latest") -> None | List[doc
 
 
 def get_kserver_token(
-    container: docker.models.containers.Container = None, container_number: int = 0,
-    kleio_version="latest"
+    container: docker.models.containers.Container = None,
+    container_number: int = 0,
+    kleio_version="latest",
 ) -> str:
     """Get the Kleio server container admin token
 
@@ -688,7 +703,9 @@ def get_kserver_token(
         str: the kleio server container token
     """
     if container is None:
-        container = get_kserver_container_list(kleio_version=kleio_version)[container_number]
+        container = get_kserver_container_list(kleio_version=kleio_version)[
+            container_number
+        ]
 
     token = [
         env
@@ -718,7 +735,7 @@ def start_kleio_server(
     port: int = None,
     update: bool = False,
     reuse: bool = True,
-    stop_duplicates: bool = False
+    stop_duplicates: bool = False,
 ):
     """Starts a kleio server in docker
 
@@ -740,9 +757,9 @@ def start_kleio_server(
         raise Exception("Docker is not running")
 
     # TODO: #25 bug when version is specified new container is always created
-    exists = get_kserver_container(kleio_home=kleio_home,
-                                   kleio_version=version,
-                                   stop_duplicates=stop_duplicates)
+    exists = get_kserver_container(
+        kleio_home=kleio_home, kleio_version=version, stop_duplicates=stop_duplicates
+    )
     if exists is not None:
         if reuse:
             return exists

@@ -3,9 +3,9 @@ from timelink.kleio.groups.kact import KAct
 
 
 class KAbstraction(KObject):
-    """KAbstraction(name,type,id=,obs=,same_as=,xsame_as=)
-    A synonym for object, used in non physical entities such as
+    """A synonym for object, used in non physical entities such as
     institutions.
+
     """
 
     pass

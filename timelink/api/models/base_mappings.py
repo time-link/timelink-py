@@ -1,22 +1,24 @@
-"""
-These mappings are needed to boostrap a new database.
+""" These mappings are needed to boostrap a new database.
 
 They are used by TimelinkDatabase to initialize a new database.
 
 Mappings as these can be generated from existing Timelink/MHK databases with:
 
-        pom_classes = session.query(PomSomMapper).\
-                          where(Entity.pom_clas == 'class').all()
-        for pom_class in pom_classes:
-            print(f"'{pom_class.id}': [")
-            print(repr(pom_class),',')
-            for cattr in pom_class.class_attributes:
-                print(repr(cattr),',')
-            print('],')
+.. code-block:: python
+
+   pom_classes = session.query(PomSomMapper)
+                        .where(Entity.pom_clas == 'class').all()
+   for pom_class in pom_classes:
+        print(f"'{pom_class.id}': [")
+        print(repr(pom_class),',')
+        for cattr in pom_class.class_attributes:
+            print(repr(cattr),',')
+        print('],')
 
 Note that the order of the mappings is important. If a mapping
 extends another mapping with 'super_class', the super class mapping must be defined
 before the subclass mapping.
+
 """
 
 from timelink.api.models.pom_som_mapper import PomSomMapper, PomClassAttributes

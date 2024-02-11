@@ -1,5 +1,8 @@
-# Handling views from
-# view utilities from https://github.com/sqlalchemy/sqlalchemy/wiki/Views
+""" Handling views from sql Alchemy
+
+    View utilities from https://github.com/sqlalchemy/sqlalchemy/wiki/Views
+"""
+
 import sqlalchemy as sa
 from sqlalchemy.ext import compiler
 from sqlalchemy.schema import DDLElement
@@ -7,12 +10,16 @@ from sqlalchemy.sql import table
 
 
 class CreateView(DDLElement):
+    """Create a View"""
+
     def __init__(self, name, selectable):
         self.name = name
         self.selectable = selectable
 
 
 class DropView(DDLElement):
+    """Drop a View"""
+
     def __init__(self, name):
         self.name = name
 
@@ -40,28 +47,30 @@ def view_doesnt_exist(ddl, target, connection, **kw):
 
 def view(name, metadata, selectable):
     """Create a view with the given name from the given selectable.
+
     The view is created when the metadata is first bound to an engine.
 
     Example:
 
-        stuff_view = view(
-        "stuff_view",
-        metadata,
-        sa.select(
-            stuff.c.id.label("id"),
-            stuff.c.data.label("data"),
-            more_stuff.c.data.label("moredata"),
-        )
-        .select_from(stuff.join(more_stuff))
-        .where(stuff.c.data.like(("%orange%"))),
-        )
+    .. code-block:: python
+
+       stuff_view
+            = view("stuff_view", metadata, sa.select(
+                stuff.c.id.label("id"),
+                stuff.c.data.label("data"),
+                more_stuff.c.data.label("moredata"),
+            )
+                .select_from(stuff.join(more_stuff))
+                .where(stuff.c.data.like(("%orange%"))),
+            )
 
         with engine.connect() as conn:
-            conn.execute(
-                sa.select(stuff_view.c.data, stuff_view.c.moredata)
-                ).all()
+        conn.execute(
+            sa.select(stuff_view.c.data, stuff_view.c.moredata)
+        ).all()
 
     """
+
     t = table(name)
 
     t._columns._populate_separate_keys(

@@ -7,7 +7,8 @@ class KAct(KGroup):
 
     An Act is a record of an event in a specific date.
 
-    Elements:
+    Fields:
+
         id: an unique id for this act. A string.
         type: type of the act (baptism, marriage, contract...). A string.
         date: the date of the act. A string in timelink format.

@@ -636,7 +636,7 @@ class TimelinkDatabase:
                     .first()
                 )
             if result is not None:
-                s = result.error_rpt + '\n' + result.warning_rpt
+                s = result.error_rpt + "\n" + result.warning_rpt
             else:
                 s = "No import report found"
         return s
@@ -667,7 +667,9 @@ class TimelinkDatabase:
             for kfile in self.kserver.translation_status(
                 path=path, recurse="yes", status="T"
             ):
-                logging.info(f"Request translation of {kfile.status.value} {kfile.path}")
+                logging.info(
+                    f"Request translation of {kfile.status.value} {kfile.path}"
+                )
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
@@ -735,9 +737,7 @@ class TimelinkDatabase:
         Args:
             id (str, optional): person id; defaults to None.
         """
-        return timelink.api.models.person.get_person(
-            id=id, db=self, sql_echo=sql_echo
-        )
+        return timelink.api.models.person.get_person(id=id, db=self, sql_echo=sql_echo)
 
     def get_entity(self, id: str = None) -> Entity:
         """Fetch an entity by id.
@@ -745,9 +745,7 @@ class TimelinkDatabase:
         Args:
             id (str, optional): entity id; defaults to None.
         """
-        return Entity.get_entity(
-            id=id, session=self.session()
-        )
+        return Entity.get_entity(id=id, session=self.session())
 
     def pperson(self, id: str):
         """Prints a person in kleio notation"""
