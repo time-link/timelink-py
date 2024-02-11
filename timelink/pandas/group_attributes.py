@@ -1,13 +1,9 @@
 import warnings
 from sqlalchemy import select, not_
+from sqlalchemy.orm.session import Session
 import pandas as pd
 from IPython.display import display
-
 from timelink.api.database import TimelinkDatabase
-
-
-from timelink.pandas import entities_with_attribute
-from timelink.pandas.styles import styler_row_colors
 
 
 def group_attributes(
@@ -16,16 +12,20 @@ def group_attributes(
     exclude_attributes=None,
     person_info=True,
     db: TimelinkDatabase = None,
+    session: Session = None,
     sql_echo=False,
 ):
-    """Return the attributes of a group of people in a dataframe.
+    """Return the attributes of a group of entities in a dataframe.
 
     Args:
     group: list of ids
+    entity_type: type of entities to show
+    more_info: more elements of entity type to include
+                (e.g. name, description, obs)
     include_attributes: list of attribute types to include
     exclude_attributes: list of attribute types to exclude
-    person_info: include person information (name, sex, obs)
     db: a TimelinkDatabase object
+    session: a sqlalchemy session object
     sql_echo: if True echo the sql generated
 
     """
@@ -122,6 +122,7 @@ def display_group_attributes(
 
     header_df = entities_with_attribute(
         hcols_clean[0],
+        entity_type="person",
         person_info=person_info,
         more_cols=hcols_clean[1:],
         filter_by=ids,

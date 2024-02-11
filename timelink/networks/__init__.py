@@ -1,2 +1,1 @@
-""" Generation and analysis of Networks
-in Timelink """
+""" Generation and analysis of Networks in Timelink """

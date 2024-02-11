@@ -54,7 +54,9 @@ class Relation(Entity):
             self.dest is not None and self.dest.pom_class == "person"
         ):  # pylint: disable=no-member
             r = (
-                f"rel${kleio_escape(self.the_type)}/{quote_long_text(self.the_value)}/{kleio_escape(self.dest.name)}"  # pylint: disable=no-member
+                f"rel${kleio_escape(self.the_type)}/"
+                f"{quote_long_text(self.the_value)}/"
+                f"{kleio_escape(self.dest.name)}"  # pylint: disable=no-member
                 f"/{self.destination}/{self.the_date}"
             )
         else:

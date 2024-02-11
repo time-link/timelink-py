@@ -310,12 +310,16 @@ class TimelinkNotebook:
         rpt = ""
         if isinstance(file_spec, pandas.DataFrame):
             if rows is None:
-                raise ValueError("The 'rows' argument must be present "
-                                 "if the file_spec is a DataFrame")
+                raise ValueError(
+                    "The 'rows' argument must be present "
+                    "if the file_spec is a DataFrame"
+                )
             elif type(rows) is not list:
                 rows = [rows]
             if len(rows) == 0:
-                raise ValueError("The 'rows' argument must be a non-empty list, or an integer")
+                raise ValueError(
+                    "The 'rows' argument must be a non-empty list, or an integer"
+                )
 
             paths = self.get_file_paths(file_spec, rows, "rpt_url")
             for file in paths:
@@ -361,12 +365,22 @@ class TimelinkNotebook:
             24  imported_string     3 non-null      int64
         """
         result = self.get_import_status(**kwargs)
-        return result[["path", "name", "modified",
-                       "status", "translated",
-                       "errors", "warnings",
-                       "import_status",
-                       "import_errors", "import_warnings",
-                       "import_error_rpt",
-                       "import_warning_rpt",
-                       "imported",
-                       "rpt_url", "xml_url"]]
+        return result[
+            [
+                "path",
+                "name",
+                "modified",
+                "status",
+                "translated",
+                "errors",
+                "warnings",
+                "import_status",
+                "import_errors",
+                "import_warnings",
+                "import_error_rpt",
+                "import_warning_rpt",
+                "imported",
+                "rpt_url",
+                "xml_url",
+            ]
+        ]

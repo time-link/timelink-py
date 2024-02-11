@@ -17,28 +17,30 @@ def remove_particles(name, particles=None):
 
 
 def pname_to_df(
-    name, db: TimelinkDatabase = None, session=None, similar=False, sql_echo=False
+    name,
+    db: TimelinkDatabase = None,
+    session=None,
+    similar=False,
+    name_particles=None,
+    sql_echo=False,
 ):
     """name_to_df return df of people with a matching name
 
     Args:
-        name = name to search for
-        db = database connection to use, either db or session must be specified
-        session = session to use, either db or session must be specified
-        similar = if true will strip particles and insert a wild card %
+        name: name to search for
+        db: = database connection to use, either db or session must be specified
+        session: session to use, either db or session must be specified
+        similar: if true will strip particles and insert a wild card %
                 between name components with an extra one at the end
+        name_particles: list, particles to remove before comparing names
     """
-    # We try to use an existing connection and table introspection
-    # to avoid extra parameters and going to database too much
-    dbsystem: TimelinkDatabase = None
     if db is not None:  # try if we have a db connection in the parameters
-        dbsystem = db
+        my_session = db.session()
+    elif session is not None:
+        my_session = session
     else:  # no session or db connection specified
         raise (
-            Exception(
-                "must set up a database connection before or specify previously "
-                "openned database with db="
-            )
+            Exception("must provide database connection (db=) or session (session=)")
         )
 
     if similar:
@@ -57,12 +59,7 @@ def pname_to_df(
     if sql_echo:
         print(stmt)
 
-    if session is not None:
-        with session.begin():
-            records = session.execute(stmt)
-    else:
-        with dbsystem.session() as session:
-            records = session.execute(stmt)
+    records = my_session.execute(stmt)
     df = pd.DataFrame.from_records(
         records.columns("id", "name", "sex", "obs"),
         index=["id"],
