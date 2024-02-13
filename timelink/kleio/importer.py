@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 import time
@@ -446,7 +447,7 @@ class KleioHandler:
         postponed = len(self.postponed_relations)
         if postponed > 0:
             log = f"Storing {postponed} postponed relations"
-            print(log)
+            logging.info(log)
         for pom_mapper_id, group in self.postponed_relations:
             pom_mapper = self.pom_som_mapper.get_pom_class(pom_mapper_id, self.session)
             try:

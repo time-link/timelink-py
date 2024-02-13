@@ -376,7 +376,7 @@ class PomSomMapper(Entity):
     def element_class_to_column(self, eclass: str) -> str:
         """
         Return the column name corresponding to a group element class
-        :param eclass: the class of an element (included in the export file
+        :param eclass: the class of an element (included in the export file)
         :return: the name of the column corresponding to this element in the
         mapped table.
         """

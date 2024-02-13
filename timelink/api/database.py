@@ -675,8 +675,10 @@ class TimelinkDatabase:
             pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
 
             qfiles = self.kserver.translation_status(path="", recurse="yes", status="Q")
+            # TODO: change to import as each translation finishes
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(3)
+
                 pfiles = self.kserver.translation_status(
                     path="", recurse="yes", status="P"
                 )

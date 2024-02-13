@@ -1,16 +1,19 @@
 import warnings
-from sqlalchemy import select, not_
+from sqlalchemy import column, select, not_
 from sqlalchemy.orm.session import Session
 import pandas as pd
 from IPython.display import display
 from timelink.api.database import TimelinkDatabase
+from timelink.pandas.entities_with_attribute import entities_with_attribute
+from timelink.pandas.styles import styler_row_colors
 
 
 def group_attributes(
     group: list,
+    entity_type='entity',
     include_attributes=None,
     exclude_attributes=None,
-    person_info=True,
+    more_info=None,
     db: TimelinkDatabase = None,
     session: Session = None,
     sql_echo=False,
@@ -24,8 +27,8 @@ def group_attributes(
                 (e.g. name, description, obs)
     include_attributes: list of attribute types to include
     exclude_attributes: list of attribute types to exclude
-    db: a TimelinkDatabase object
-    session: a sqlalchemy session object
+    db: a TimelinkDatabase object if None specify session
+    session: a sqlalchemy session object, if None specify db
     sql_echo: if True echo the sql generated
 
     """
@@ -35,65 +38,81 @@ def group_attributes(
         warnings.warn("No list of ids specified", stacklevel=2)
         return None
 
+    mysession = None
     dbsystem: TimelinkDatabase = None
     if db is not None:
         dbsystem = db
+        mysession = dbsystem.session()
+    elif session is not None:
+        mysession = session
     else:
         raise (
             Exception(
-                "must call get_mhk_db(conn_string) to set up a database connection before "
-                "or specify previously openned database with db="
+                "must call TimelinkDatabase() and pass db= "
+                "or specify previously openned session with session="
             )
         )
 
-    if person_info:  # to fetch person info we need nattributes view
-        attr = db.get_nattribute_view()
-        id_col = attr.c.id
-        stmt = select(
-            attr.c.id,
-            attr.c.name.label("name"),
-            attr.c.sex.label("sex"),
-            attr.c.pobs.label("person_obs"),
-            attr.c.the_type,
-            attr.c.the_value,
-            attr.c.the_date,
-            attr.c.aobs.label("attr_obs"),
-        )
-        cols = ["id", "name", "sex", "persons_obs", "type", "value", "date", "attr_obs"]
-    else:  # no person information required we use the attributes table
-        attr_model = db.get_model("attribute")
-        attr = attr_model.__table__
-        id_col = attr.c.entity
-        stmt = select(
-            attr.c.entity,
-            attr.c.the_type,
-            attr.c.the_value,
-            attr.c.the_date,
-            attr.c.obs.label("attr_obs"),
-        )
-        cols = ["id", "type", "value", "date", "attr_obs"]
+    entity_types = db.get_models_ids()
+    if entity_type not in entity_types:
+        raise ValueError(f"entity_type must be one of {entity_types}")
 
-    stmt = stmt.where(id_col.in_(group))
+    entity_model = db.get_model(entity_type)
+    # get the columns of the entity table, check if more_info is valid
+    # we need the "select" to get all the columns up in the inheritance
+    id_col: column = select(entity_model).selected_columns["id"]
+    entity_names = select(entity_model).selected_columns.keys()
+    if more_info is None:
+        more_info = []
+
+    cols = [id_col]
+    extra_cols = []
+    # collect the column objects for the select list
+    for mi in more_info:
+        if mi not in entity_names:
+            raise ValueError(f"{mi} is not a valid column for {entity_type}")
+        else:
+            extra_cols.append(select(entity_model).selected_columns[mi])
+
+    cols.extend(extra_cols)
+
+    attr = db.get_table("attribute")
+
+    cols.extend([
+        attr.c.the_type,
+        attr.c.the_value,
+        attr.c.the_date,
+        attr.c.obs.label("attr_obs")
+    ])
+
+    select_entities = select(entity_model).where(id_col.in_(group))
+
+    stmt = (
+        select_entities.join(attr, attr.c.entity == entity_model.id, isouter=True)
+        .with_only_columns(*cols)
+    )
 
     # these should allow sql wild cards
     # but it is not easy in sql
-    if include_attributes is not None:
+    if include_attributes is not None and len(include_attributes) != 0:
         stmt = stmt.where(attr.c.the_type.in_(include_attributes))
-    if exclude_attributes is not None:
+    if exclude_attributes is not None and len(exclude_attributes) != 0:
         stmt = stmt.where(not_(attr.c.the_type.in_(exclude_attributes)))
 
     if sql_echo:
         print(stmt)
 
-    with dbsystem.session() as session:
+    with mysession as session:
         records = session.execute(stmt)
-        df = pd.DataFrame.from_records(records, index=["id"], columns=cols)
-
+        col_names = stmt.selected_columns.keys()
+        df = pd.DataFrame.from_records(records, index='id', columns=col_names)
     return df
 
 
 def display_group_attributes(
     ids,
+    entity_type='entity',
+    more_info=None,
     header_cols=None,
     sort_header=None,
     table_cols=None,
@@ -101,29 +120,28 @@ def display_group_attributes(
     # These go to de_row_colors
     category="id",
     cmap_name="Pastel2",
-    # these go to group attributes
+    # these go to table attributes
     include_attributes=None,
     exclude_attributes=None,
-    person_info=True,
     db: TimelinkDatabase = None,
 ):
-    """Display attributes of a group with header and colored rows"""
+    """Display attributes of a group with header and colored rows.
+
+    Same as group attributes but a header is displayed for each entity
+    and each entity is colored. The attribute list is also colored,
+    to make is clear which attributes are from which entity."""
 
     if header_cols is None:
         header_cols = []
     if table_cols is None:
-        table_cols = ["type", "value", "date", "attr_obs"]
+        table_cols = ["the_type", "the_value", "the_date", "attr_obs"]
 
-    if person_info is True:
-        # the cols of persons are inserted automatically by entities_with_attribute
-        hcols_clean = [col for col in header_cols if col not in ["name", "sex", "obs"]]
-    else:
-        hcols_clean = header_cols
+    hcols_clean = header_cols
 
     header_df = entities_with_attribute(
         hcols_clean[0],
-        entity_type="person",
-        person_info=person_info,
+        entity_type=entity_type,
+        more_info=more_info,
         more_cols=hcols_clean[1:],
         filter_by=ids,
         db=db,
@@ -142,9 +160,9 @@ def display_group_attributes(
 
     df = group_attributes(
         ids,
+        entity_type=entity_type,
         include_attributes=include_attributes,
         exclude_attributes=exclude_attributes,
-        person_info=False,
         db=db,
     )
     if sort_attributes is not None:

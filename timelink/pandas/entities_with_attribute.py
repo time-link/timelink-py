@@ -24,16 +24,22 @@ def entities_with_attribute(
         the_value   : if present, limit to this value, can be SQL wildcard,
         entity_type : if present, limit to this entity type, string
         column_name : if present, use this name for the column, otherwise use the_type
-        the_value   : if present, limit to this value, can be SQL wildcard,
         more_info   : List of extra columns from entity_type to add to the dataframe
         dates_in    : (after,before) if present only between those dates (exclusive)
-        name_like   : name must match pattern (will set person_info = True),
-        filter_by   : list of ids, limit to these
+        filter_by   : list of ids, limit to these entities
         more_cols   : add more attributes if available
         db          : A TimelinkMHK object
         sql_echo    : if True echo the sql generated
 
-    Note that if person_info = True the columns 'name' and 'sex' will be added.
+    Example:
+        # name, sex and function of people living in the same place
+
+        neighbors = entities_with_attribute(
+                                entity_type="person",
+                                more_info=["groupname","names","sex"],
+                                the_type='residencia',
+                                column_name="residencia",
+                                the_value="soure")
 
     Ideas:
         Add :
@@ -63,10 +69,10 @@ def entities_with_attribute(
     if entity_type not in entity_types:
         raise ValueError(f"entity_type must be one of {entity_types}")
 
-    # entity_model = db.get_model(entity_type)
+    entity_model = db.get_model(entity_type)
     # get the columns of the entity table, check if more_info is valid
-    entity_table = db.get_table(entity_type)
-    entity_columns = entity_table.columns.keys()
+    entity_columns = select(entity_model).selected_columns.keys()
+
     if more_info is None:
         more_info = []
 
@@ -77,7 +83,7 @@ def entities_with_attribute(
         if mi not in entity_columns:
             raise ValueError(f"{mi} is not a valid column for {entity_type}")
         else:
-            extra_cols.append(entity_table.columns[mi])
+            extra_cols.append(select(entity_model).selected_columns[mi])
 
     if name_like is not None:
         if "name" not in entity_columns:
@@ -96,9 +102,10 @@ def entities_with_attribute(
     )
 
     stmt = (
-        select(*cols)
+        select(entity_model)
+        .join(attr, attr.c.entity == entity_model.id)
         .where(attr.c.the_type.like(the_type))
-        .join(entity_table, entity_table.c.id == attr.c.entity)
+        .with_only_columns(*cols)
     )
 
     # Filter by value
@@ -122,7 +129,7 @@ def entities_with_attribute(
 
     # filter by name
     if name_like is not None:
-        stmt = stmt.where(entity_table.columns["name"].like(name_like))
+        stmt = stmt.where(select(entity_model).select_columns["name"].like(name_like))
 
     stmt = stmt.order_by(attr.c.the_date)
 
@@ -131,7 +138,7 @@ def entities_with_attribute(
 
     with db.session() as session:
         records = session.execute(stmt)
-        col_names = stmt.columns.keys()
+        col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
 
     if df.iloc[0].count() == 0:
