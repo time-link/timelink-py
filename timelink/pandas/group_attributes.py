@@ -13,7 +13,7 @@ def group_attributes(
     entity_type='entity',
     include_attributes=None,
     exclude_attributes=None,
-    more_info=None,
+    show_elements=None,
     db: TimelinkDatabase = None,
     session: Session = None,
     sql_echo=False,
@@ -23,7 +23,7 @@ def group_attributes(
     Args:
     group: list of ids
     entity_type: type of entities to show
-    more_info: more elements of entity type to include
+    show_elements: elements of entity type to include
                 (e.g. name, description, obs)
     include_attributes: list of attribute types to include
     exclude_attributes: list of attribute types to exclude
@@ -62,13 +62,13 @@ def group_attributes(
     # we need the "select" to get all the columns up in the inheritance
     id_col: column = select(entity_model).selected_columns["id"]
     entity_names = select(entity_model).selected_columns.keys()
-    if more_info is None:
-        more_info = []
+    if show_elements is None:
+        show_elements = []
 
     cols = [id_col]
     extra_cols = []
     # collect the column objects for the select list
-    for mi in more_info:
+    for mi in show_elements:
         if mi not in entity_names:
             raise ValueError(f"{mi} is not a valid column for {entity_type}")
         else:
@@ -112,15 +112,14 @@ def group_attributes(
 def display_group_attributes(
     ids,
     entity_type='entity',
-    more_info=None,
-    header_cols=None,
+    header_elements=None,
+    header_attributes=None,
     sort_header=None,
-    table_cols=None,
     sort_attributes=None,
     # These go to de_row_colors
     category="id",
     cmap_name="Pastel2",
-    # these go to table attributes
+    # these go to group_attributes
     include_attributes=None,
     exclude_attributes=None,
     db: TimelinkDatabase = None,
@@ -131,18 +130,18 @@ def display_group_attributes(
     and each entity is colored. The attribute list is also colored,
     to make is clear which attributes are from which entity."""
 
-    if header_cols is None:
-        header_cols = []
-    if table_cols is None:
-        table_cols = ["the_type", "the_value", "the_date", "attr_obs"]
+    if header_elements is None:
+        header_elements = []
+    if header_attributes is None:
+        header_attributes = ['%']
 
-    hcols_clean = header_cols
+    table_cols = ["the_type", "the_value", "the_date", "attr_obs"]
 
     header_df = entities_with_attribute(
-        hcols_clean[0],
+        header_attributes[0],
         entity_type=entity_type,
-        more_info=more_info,
-        more_cols=hcols_clean[1:],
+        show_elements=header_elements,
+        more_attributes=header_attributes[1:],
         filter_by=ids,
         db=db,
     )
@@ -151,6 +150,7 @@ def display_group_attributes(
 
     header_df["id"] = header_df.index
     header_df.reset_index(drop=True, inplace=True)
+    header_cols = header_df.columns.tolist()
     if category not in header_cols:
         header_cols = [category] + header_cols
     header_df = styler_row_colors(
@@ -161,6 +161,7 @@ def display_group_attributes(
     df = group_attributes(
         ids,
         entity_type=entity_type,
+        show_elements=header_elements,
         include_attributes=include_attributes,
         exclude_attributes=exclude_attributes,
         db=db,
@@ -169,6 +170,7 @@ def display_group_attributes(
         df.sort_values(sort_attributes, inplace=True)
     df["id"] = df.index
     df.reset_index(drop=True, inplace=True)
+    table_cols = df.columns.tolist()
     if category not in table_cols:
         table_cols = [category] + table_cols
     df = styler_row_colors(df[table_cols], category="id", cmap_name=cmap_name)

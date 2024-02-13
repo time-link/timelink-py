@@ -1,5 +1,6 @@
 import pandas as pd
-from sqlalchemy import select
+from sqlalchemy import select, and_
+from sqlalchemy.orm import aliased
 
 from timelink.api.database import TimelinkDatabase
 
@@ -9,11 +10,11 @@ def entities_with_attribute(
     the_value=None,
     column_name=None,
     entity_type="entity",
-    more_info=None,
+    show_elements=None,
     dates_in=None,
     name_like=None,
     filter_by=None,
-    more_cols=None,
+    more_attributes=None,
     db: TimelinkDatabase = None,
     sql_echo=False,
 ):
@@ -23,11 +24,11 @@ def entities_with_attribute(
         the_type    : type of attribute, can have SQL wildcards, string
         the_value   : if present, limit to this value, can be SQL wildcard,
         entity_type : if present, limit to this entity type, string
-        column_name : if present, use this name for the column, otherwise use the_type
-        more_info   : List of extra columns from entity_type to add to the dataframe
+        column_name : if present, use this name for the attribute column, otherwise use the_type
+        show_elements: List of entity elements to add to the dataframe
         dates_in    : (after,before) if present only between those dates (exclusive)
         filter_by   : list of ids, limit to these entities
-        more_cols   : add more attributes if available
+        more_attributes: add more attributes if available
         db          : A TimelinkMHK object
         sql_echo    : if True echo the sql generated
 
@@ -36,10 +37,12 @@ def entities_with_attribute(
 
         neighbors = entities_with_attribute(
                                 entity_type="person",
-                                more_info=["groupname","names","sex"],
+                                show_elements=["groupname","names","sex"],
                                 the_type='residencia',
-                                column_name="residencia",
-                                the_value="soure")
+                                the_value="soure"
+                                column_name="local", # use this istead of "residencia"
+                                more_attributes=["profissao"]
+                                )
 
     Ideas:
         Add :
@@ -72,14 +75,15 @@ def entities_with_attribute(
     entity_model = db.get_model(entity_type)
     # get the columns of the entity table, check if more_info is valid
     entity_columns = select(entity_model).selected_columns.keys()
+    entity_id_col = select(entity_model).selected_columns['id']
 
-    if more_info is None:
-        more_info = []
+    if show_elements is None:
+        show_elements = []
 
     extra_cols = []
 
     # collect the column objects for the select list
-    for mi in more_info:
+    for mi in show_elements:
         if mi not in entity_columns:
             raise ValueError(f"{mi} is not a valid column for {entity_type}")
         else:
@@ -91,8 +95,9 @@ def entities_with_attribute(
 
     attr = db.get_table("attribute")
     id_col = attr.c.entity.label("id")
-    cols = [id_col]
+    cols = [entity_id_col]
     cols.extend(extra_cols)
+    more_info_cols = cols.copy()
     cols.extend(
         [
             attr.c.the_value.label(column_name),
@@ -101,12 +106,35 @@ def entities_with_attribute(
         ]
     )
 
-    stmt = (
-        select(entity_model)
-        .join(attr, attr.c.entity == entity_model.id)
-        .where(attr.c.the_type.like(the_type))
-        .with_only_columns(*cols)
-    )
+    # filter by id list
+    if filter_by is not None:
+
+        # in some cases the filter_by list
+        #  may contain ids that are not in the attribute table
+        #  we need to add them to the final dataframe
+        filter_by_sql = (
+            select(entity_model)
+            .where(entity_model.id.in_(filter_by))
+            .with_only_columns(*more_info_cols)
+        )
+        with db.session() as session:
+            filtered_by_rows = session.execute(filter_by_sql)
+            col_names = filter_by_sql.selected_columns.keys()
+            filtered_df = pd.DataFrame.from_records(filtered_by_rows, index=["id"], columns=col_names)
+
+        stmt = (
+            (select(entity_model).where(entity_id_col.in_(filter_by)))
+            .join(attr, attr.c.entity == entity_model.id, isouter=True)
+            .where(attr.c.the_type.like(the_type))
+            .with_only_columns(*cols)
+        )
+    else:
+        stmt = (
+            select(entity_model)
+            .join(attr, attr.c.entity == entity_model.id)
+            .where(attr.c.the_type.like(the_type))
+            .with_only_columns(*cols)
+        )
 
     # Filter by value
     if the_value is not None:
@@ -117,10 +145,6 @@ def entities_with_attribute(
         else:
             raise ValueError("the_value must be either a string or a list of strings")
 
-    # filter by id list
-    if filter_by is not None:
-        stmt = stmt.where(id_col.in_(filter_by))
-
     # filter by date
     if dates_in is not None:
         after_date, before_date = dates_in
@@ -129,7 +153,7 @@ def entities_with_attribute(
 
     # filter by name
     if name_like is not None:
-        stmt = stmt.where(select(entity_model).select_columns["name"].like(name_like))
+        stmt = stmt.where(select(entity_model).selected_columns["name"].like(name_like))
 
     stmt = stmt.order_by(attr.c.the_date)
 
@@ -141,13 +165,21 @@ def entities_with_attribute(
         col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
 
+    if filter_by is not None:
+        fb_ids = filtered_df.index.unique()
+        attr_ids = df.index.unique()
+        missing = list(set(fb_ids) - set(attr_ids))
+        if len(missing) > 0:
+            missing_df = filtered_df.loc[missing]
+            df = pd.concat([df, missing_df])
+
     if df.iloc[0].count() == 0:
         return None  # nothing found we
 
-    if more_cols is None:
+    if more_attributes is None:
         more_columns = []
     else:
-        more_columns = more_cols
+        more_columns = more_attributes
 
     if len(more_columns) > 0:
         id_col = attr.c.entity
@@ -172,7 +204,7 @@ def entities_with_attribute(
                 )
 
             if sql_echo:
-                print(f"Query for more_columns={mcol}:\n", stmt)
+                print(f"Query for more_attributes={mcol}:\n", stmt)
 
             if df2.iloc[0].count() == 0:
                 df[mcol] = None  # nothing found we set the column to nulls
