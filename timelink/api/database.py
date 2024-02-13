@@ -290,6 +290,8 @@ class TimelinkDatabase:
         kleio_home=None,
         kleio_image=None,
         kleio_version=None,
+        kleio_token=None,
+        kleio_update=None,
         postgres_image=None,
         postgres_version=None,
         stop_duplicates=True,
@@ -318,10 +320,12 @@ class TimelinkDatabase:
                                         can be fetched with get_kleio_server()
             kleio_image (str, optional): kleio docker image. Passed to KleioServer().
             kleio_version (str, optional): kleio version. Passed to KleioServer().
+            kleio_token (str, optional): kleio token. Passed to KleioServer().
+            kleio_update (bool, optional): update kleio server. Passed to KleioServer().
             postgres_image (str, optional): postgres docker image; defaults to None.
             postgres_version (str, optional): postgres version; defaults to None.
             extra_args (dict, optional): extra arguments to sqlalchemy and
-                                         :func:`timelink.kleio.KleioServer.start`
+                                        :func:`timelink.kleio.KleioServer.start`
         """
         if db_name is None:
             db_name = "timelink"
@@ -411,6 +415,8 @@ class TimelinkDatabase:
                     kleio_home=kleio_home,
                     kleio_image=kleio_image,
                     kleio_version=kleio_version,
+                    kleio_token=kleio_token,
+                    update=kleio_update,
                     stop_duplicates=stop_duplicates,
                 )
 
@@ -447,7 +453,7 @@ class TimelinkDatabase:
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
 
-    def table_row_count(self):
+    def table_row_count(self) -> List[tuple[str, int]]:
         """Number of rows of each table in the database
 
         Returns:
@@ -594,11 +600,11 @@ class TimelinkDatabase:
         Args:
             kleio_files (List[KleioFile]): list of kleio files
             include_errors (bool, optional): if True, include files with errors;
-                                             defaults to False.
+                                                defaults to False.
             include_warnings (bool, optional): if True, include files with warnings;
                                             defaults to False.
             match_path (bool, optional): if True, match the path of the kleio file with
-                                         the path of the imported file; defaults to False.
+                                            the path of the imported file; defaults to False.
 
         Returns:
             List[KleioFile]: list of kleio files with field import_status
@@ -794,7 +800,7 @@ class TimelinkDatabase:
 
         .. code-block:: sql
 
-          CREATE VIEW nattributes AS
+        CREATE VIEW nattributes AS
             SELECT p.id        AS id,
                 p.name      AS name,
                 p.sex       AS sex,
@@ -847,8 +853,8 @@ def get_import_status(
         db (TimelinkDatabase): timelink database
         kleio_files (List[KleioFile]): list of kleio files with extra field import_status
         match_path (bool, optional): if True, match the path of the kleio file
-                                      with the path of the imported file;
-                                      defaults to False.
+                                    with the path of the imported file;
+                                    defaults to False.
 
     Returns:
         List[KleioImportedFileSchema]: list of kleio files with field import_status
@@ -871,7 +877,7 @@ def get_import_status(
             )
 
     for path, file in valid_files_dict.items():
-        if path not in imported_files_dict:
+        if path not in imported_files_dict or file.translated is None:
             file.import_status = import_status_enum.N
         elif file.translated > imported_files_dict[path].imported.replace(
             tzinfo=timezone.utc

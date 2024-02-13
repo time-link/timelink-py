@@ -3,51 +3,51 @@ kleio$gacto2.str/translations=55
    link$geonames/"https://www.geonames.org/$1"/id=root-lin2-45
    fonte$dehergne-locations-1644/1644/geoinformation/substitui=dehergne-map-1644/obs="""
       Planche: Carte des Chrétientés Chinoises de la fin des Ming (1644).p. 353
-      
+
       _Diocèse_
-      Depuis 1514, l'évêché de Funchal (île de Madère) 
+      Depuis 1514, l'évêché de Funchal (île de Madère)
       s'étend jusqu'aux extrémi-
       tés de l'Asie. Depuis le 3 nov. 1534 est
       créé l'évêché de Goa, dont est déta-
       ché, le 23 janv. 1576, le diocèse de
-      Macao, qui sera amputé, 14 février 
+      Macao, qui sera amputé, 14 février
       1588, du Japon (évêché de Funai):
       l'évêché de Macao comprend théori-
       quement tout l'empire de Chine.
 
       _Provinces Jésuites_
 
-      la vice-province du Japon (province en 
+      la vice-province du Japon (province en
       1611); en 1623, la vice-province de Chine
       indépendante du Japon en est déta-
       chée; mais un visiteur jésuite contrôle
       l'une et l'autre.
 
       La Chine impériale distingue dans chaque province civile les _fou_, préfec-
-      tures ou villes de premier ordre, dont dépendent les _tcheou_ et les _hien_. D'au- 
+      tures ou villes de premier ordre, dont dépendent les _tcheou_ et les _hien_. D'au-
       tres agglomérations importantes comme Tientsin (alors wei) ou encore Amoy
       et Fatshan n'ont pas reçu le titre de hien. Dans notre tableau, les villes autres
-      que les fou sont mises en italiques, et la capitale de chaque province, en 
-      majuscule. Sur la carte, nous mettons en lettres majuscules les seuls fou et 
-      tcheou possédant une chrétienté (pour les tcheou, majuscules penchées); les 
-      hien, en lettres ordinaires, et nous n'inscrivons (en petites lettres) que les 
+      que les fou sont mises en italiques, et la capitale de chaque province, en
+      majuscule. Sur la carte, nous mettons en lettres majuscules les seuls fou et
+      tcheou possédant une chrétienté (pour les tcheou, majuscules penchées); les
+      hien, en lettres ordinaires, et nous n'inscrivons (en petites lettres) que les
       bourgs et demeures chrétiennes antérieures à la persécution de 1615.
-         Pour les jésuites de l'époque, le mot collège désigne une résidence prin- 
-      cipale d'où dépendent (d'un point de vue économique beaucoup plus que juri- 
-      dique), un certain nombre de petites résidences qui lui sont rattachées. La 
-      carte, qui accompagne ces pages comme celle des résidences en 1701, est due au 
+         Pour les jésuites de l'époque, le mot collège désigne une résidence prin-
+      cipale d'où dépendent (d'un point de vue économique beaucoup plus que juri-
+      dique), un certain nombre de petites résidences qui lui sont rattachées. La
+      carte, qui accompagne ces pages comme celle des résidences en 1701, est due au
       Père Pierre Moreau, SJ., et nous lui exprimons ici nos remerciements.
-         Une résidence est une maison propriété de la mission: elle est soit occupée 
-      par un ou plusieurs missionnaire (ici: R) ou cette anné-là, sans prêtre 
-      à demeure (R'); tandis que le mot église s'applique à une chapelle, un oratoire 
-      ou un temple plus important ; d'autres fois, le prêtre dit la messe chez des fidè- 
-      les, dans leur propre maison. Toute résidence possède une église ou oratoire. 
-      Sur la carte, les Résidences sont marquées par un cercle. Résidences et chré- 
-      tientés sont, à l'époque, presque toutes aux Jésuites. Dans le cas contraire, 
-      nous faisons suivre le nom de la localité de la mention de l'Ordre qui les pos- 
+         Une résidence est une maison propriété de la mission: elle est soit occupée
+      par un ou plusieurs missionnaire (ici: R) ou cette anné-là, sans prêtre
+      à demeure (R'); tandis que le mot église s'applique à une chapelle, un oratoire
+      ou un temple plus important ; d'autres fois, le prêtre dit la messe chez des fidè-
+      les, dans leur propre maison. Toute résidence possède une église ou oratoire.
+      Sur la carte, les Résidences sont marquées par un cercle. Résidences et chré-
+      tientés sont, à l'époque, presque toutes aux Jésuites. Dans le cas contraire,
+      nous faisons suivre le nom de la localité de la mention de l'Ordre qui les pos-
       sède: (OP), Dominicains; (OFM), Franciscains; (OESA), Augustins.
-         On observera que le cours du Fleuve Jaune n'était pas le même qu'actuel- 
-      lement, et que les chrétientés se sont développées le long des grandes routes 
+         On observera que le cours du Fleuve Jaune n'était pas le même qu'actuel-
+      lement, et que les chrétientés se sont développées le long des grandes routes
       (le fait est frappant pour la région du Kiangnan). Pour les chrétientés an-
       ciennes des Ming voir aussi MS XVI, 1957 (avec carte en couleurs).
 
@@ -63,21 +63,21 @@ kleio$gacto2.str/translations=55
       de Nankin au XIV* siècle ont été décrites par Prip-Molleb dans la revue
       danoise Artes; résumé dans Chinese Recorder, 1935, 654-656 et hors-texte 641.
       Etc.
-   
+
       NOTA TRANSCRIÇÃO
 
       "geo1$ = Provincia"
       "geo2$ = fou (perfeitura ou cidade de 1ª ordem)"
       "geo3$ = tcheou-hien"
 
-      Em cada entrada o formato é 
-      
+      Em cada entrada o formato é
+
          "geoN$Nome geográfico/Tipo (província, fou, tcheou-hien)/id=deh-r1644-nome"
 
-      Exº 
+      Exº
          "geo1$Chekiang#Zhejiang/província/deh-r1644-chekiang"
          "geo2$Hangchou#Hangzhou/capital provincial/deh-r1644-hangzhou"
-         "geo3$Fuyang/tchou-hien/deh-r1644-fuyang" 
+         "geo3$Fuyang/tchou-hien/deh-r1644-fuyang"
 
       Nos locais onde há presença de missionários:
 
@@ -114,7 +114,7 @@ kleio$gacto2.str/translations=55
                geo3$Tehtsing%Tehtsing du Huchow, Té-ts'ing,Teching, hoje: Deqing, 德清, @wikidata:Q1191987/deh-r1644-tehtsing/deh-r1644-tehtsing
                   atr$activa/sim/1620
 
-            geo2$Kashing#Kia-hing, hoje:Jiaxing, 嘉兴, @widata:Q58178/fou/deh-r1644-kashing
+            geo2$Kashing#Kia-hing, hoje:Jiaxing, 嘉兴, @wikidata:Q58178/fou/deh-r1644-kashing
 
                geo3$Kashan%Kaosham#Kia-chan, hoje: Jiashan, 嘉善, @wikidata:Q1361347/tchou-hien/deh-r1644-kaosham/obs="""
                The place name in the book Dehergne(1973) is "Kaoshan", and in the Chinese translation it is recognized as “高山”. But this place cannot be found. According to Dehergne(1957), it probably shoud be "Kashan 嘉善", which means in the 1973 book, this place is wrongly spelled by mistake."""

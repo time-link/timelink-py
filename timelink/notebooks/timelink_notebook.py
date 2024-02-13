@@ -40,6 +40,8 @@ class TimelinkNotebook:
         db_name=None,
         kleio_image=None,
         kleio_version=None,
+        kleio_token=None,
+        kleio_update=False,
         postgres_image=None,
         postgres_version=None,
         sqlite_dir=None,
@@ -64,6 +66,9 @@ class TimelinkNotebook:
             kleio_image: docker image for kleio server;
                             defaults to 'timelinkserver/kleio-server'
             kleio_version: version of kleio server. Defaults to 'latest'
+            kleio_token: start kleio server with this token.
+                            Defaults to None (create a new token)
+            kleio_update: if True, update the kleio server image. Defaults to False
             postgres_image: docker image for postgres server. Defaults to 'postgres'
             postgres_version: version of postgres server. Defaults to 'latest'
             sqlite_dir: directory where sqlite databases are. Defaults to '../database/sqlite'
@@ -107,7 +112,7 @@ class TimelinkNotebook:
 
         if self.db_type == "postgres":
             if not is_valid_postgres_db_name(self.db_name):
-                raise Exception(f"Invalid database name: {self.db_name}")
+                raise ValueError(f"Invalid database name: {self.db_name}")
 
         self.db: TimelinkDatabase = TimelinkDatabase(
             db_name=self.db_name,
@@ -116,6 +121,8 @@ class TimelinkNotebook:
             kleio_home=self.project_home,
             kleio_image=self.kleio_image,
             kleio_version=self.kleio_version,
+            kleio_token=None,
+            kleio_update=kleio_update,
             postgres_image=self.postgres_image,
             postgres_version=self.postgres_version,
             stop_duplicates=stop_duplicates,
@@ -144,19 +151,29 @@ class TimelinkNotebook:
         )
 
     def print_info(self):
-        """Print information about the TimelinkNotebook object"""
+        """Print information about the TimelinkNotebook object
+
+        TODO: #26 truncate token and password and add parameter to show them
+        """
         print(f"Project name: {self.project_name}")
         print(f"Project home: {self.project_home}")
         print(f"Database type: {self.db_type}")
         print(f"Database name: {self.db_name}")
         print(f"Kleio image: {self.kleio_image}")
-        print(f"Kleio version: {self.kleio_version}")
-
         kserver: KleioServer = self.db.get_kleio_server()
         if kserver is not None:
             print(f"Kleio server token: {kserver.get_token()}")
             print(f"Kleio server URL: {kserver.get_url()}")
             print(f"Kleio server home: {kserver.get_kleio_home()}")
+        if kserver.container is not None:
+            print(f"Kleio server container: {kserver.container.name}")
+        print(f"Kleio version requested: {self.kleio_version}")
+        labels = kserver.container.labels
+        build = labels.get("BUILD", "")
+        version = labels.get("VERSION", "")
+        build_date = labels.get("BUILD_DATE", "")
+        if version != "":
+            print(f"Kleio server version: {version}.{build} ({build_date})")
         if self.db_type == "sqlite":
             print(f"SQLite directory: {self.sqlite_dir}")
         elif self.db_type == "postgres":
@@ -254,7 +271,9 @@ class TimelinkNotebook:
         return tables_df
 
     def get_file_paths(self, file_spec, rows, column):
-        """Get the file paths from DataFrame of from a string"""
+        """Get the file paths from DataFrame of from a string
+
+        TODO: #27 add parameter to convert the paths to absolute local paths"""
         if isinstance(file_spec, pandas.DataFrame):
             if column not in file_spec.columns:
                 raise Exception(f"There is no {column} in the DataFrame")
