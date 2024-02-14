@@ -789,7 +789,7 @@ def start_kleio_server(
                 exists = None
 
         else:
-            logging.info("You are using the latest version of Kleio Server: %s", get_version)
+            logging.info("You are using Kleio Server %s (updated)", get_version)
 
     if exists is not None:
         if reuse:
