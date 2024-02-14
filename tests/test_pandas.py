@@ -98,8 +98,8 @@ def test_entities_with_attribute(dbsystem):
         entity_type="person",
         the_type="residencia",
         the_value="soure",
-        more_info=["name", "sex"],
-        more_cols=[],
+        show_elements=["name", "sex"],
+        more_attributes=[],
         sql_echo=True,
     )
     assert df is not None, "entities_with_attribute returned None"
