@@ -1,7 +1,5 @@
 import pandas as pd
-from sqlalchemy import select, and_
-from sqlalchemy.orm import aliased
-
+from sqlalchemy import select
 from timelink.api.database import TimelinkDatabase
 
 
