@@ -140,3 +140,4 @@ tests/timelink-home/sources/sources/.kleio/logs/kleio_service.log
 tests/timelink-home/projects/test-project/database/sqlite/
 tests/timelink-home/projects/tutorial/database/sqlite/tutorial.sqlite
 tests/timelink-home/projects/tutorial/.kleio/logs/kleio_service.log
+tests/timelink-home/.kleio/conf/token_db
