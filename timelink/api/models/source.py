@@ -8,7 +8,7 @@ from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 
-from timelink.api.models.entity import Entity
+from .entity import Entity
 from timelink.kleio.utilities import kleio_escape, quote_long_text
 
 

@@ -5,7 +5,7 @@ MIT License, no warranties.
 from sqlalchemy import Column, String, ForeignKey
 
 from timelink.kleio.utilities import quote_long_text
-from timelink.api.models.entity import Entity
+from .entity import Entity
 
 
 class Object(Entity):

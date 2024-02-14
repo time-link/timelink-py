@@ -17,7 +17,7 @@ from sqlalchemy import Column, String, Integer, DateTime  # pylint: disable=impo
 from sqlalchemy.sql import func  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
-from timelink.api.models.base_class import Base
+from .base_class import Base
 
 
 class SysPar(Base):

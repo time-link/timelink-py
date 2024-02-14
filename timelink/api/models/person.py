@@ -4,7 +4,7 @@ from typing import Optional
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped
 
-from timelink.api.models.entity import Entity
+from .entity import Entity
 from timelink.kleio.utilities import quote_long_text
 
 
