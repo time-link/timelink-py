@@ -528,6 +528,8 @@ def find_local_kleio_home(path: str = None):
             if kleio_home:
                 break
             dir_path = os.path.dirname(dir_path)
+            if dir_path == os.path.dirname(dir_path):
+                break   # we reached the root
         if kleio_home is None:
             # check if current_dir is "tests"
             if os.path.isdir(f"{current_dir}/tests"):
