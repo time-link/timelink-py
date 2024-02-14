@@ -2,17 +2,22 @@
 from pathlib import Path
 
 import pytest
+from sqlalchemy.orm.session import Session
 
-from tests import skip_on_travis, TEST_DIR, conn_string
+from tests import skip_on_travis, mhk_absent, conn_string, TEST_DIR
 from timelink.kleio.importer import import_from_xml
 from timelink.mhk.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.mhk.models.base import Person  # noqa pylint: disable=unused-import
 from timelink.mhk.models.db import TimelinkMHK
 from timelink.mhk.models.entity import Entity
+from timelink.mhk.utilities import is_mhk_installed
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
 
+if not is_mhk_installed():
+    pytest.skip("skipping MHK tests (MHK not present)", allow_module_level=True)
+
+pytestmark = skip_on_travis
 
 @pytest.fixture(scope="module")
 def dbsystem():
@@ -26,7 +31,8 @@ def dbsystem():
 
 
 @skip_on_travis
-def test_import_xml(dbsystem):
+@mhk_absent
+def test_import_xml(dbsystem: Session):
     file: Path = Path(TEST_DIR, "xml_data/b1685.xml")
     session = dbsystem
     stats = import_from_xml(
@@ -41,7 +47,8 @@ def test_import_xml(dbsystem):
 
 
 @skip_on_travis
-def test_import_with_custom_mapping(dbsystem):
+@mhk_absent
+def test_import_with_custom_mapping(dbsystem: Session):
     file = Path(TEST_DIR, "xml_data/dev1692.xml")
     session = dbsystem
 
@@ -63,7 +70,8 @@ def test_import_with_custom_mapping(dbsystem):
 
 
 @skip_on_travis
-def test_import_with_many(dbsystem):
+@mhk_absent
+def test_import_with_many(dbsystem: Session):
     file = Path(TEST_DIR, "xml_data/test-auc-alunos-264605-A-140337-140771.xml")
     session = dbsystem
     stats = import_from_xml(
@@ -80,7 +88,8 @@ def test_import_with_many(dbsystem):
 
 
 @skip_on_travis
-def test_import_git_hub(dbsystem):
+@mhk_absent
+def test_import_git_hub(dbsystem: Session):
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa
     session = dbsystem
     stats = import_from_xml(

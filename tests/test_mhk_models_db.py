@@ -14,8 +14,12 @@ from timelink.mhk.models.db import TimelinkMHK
 from timelink.mhk.models.entity import Entity  # noqa
 from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.source import Source
+from timelink.mhk.utilities import is_mhk_installed
 
 pytestmark = skip_on_travis
+
+if not is_mhk_installed():
+    pytest.skip("skipping MHK tests (MHK not present)", allow_module_level=True)
 
 
 @pytest.fixture(scope="module")

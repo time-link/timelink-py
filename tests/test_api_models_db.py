@@ -16,7 +16,7 @@ pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
-def get_db() -> TimelinkDatabase:
+def get_db():
     """Returns a database connection"""
     database = TimelinkDatabase(db_url=conn_string)
     try:

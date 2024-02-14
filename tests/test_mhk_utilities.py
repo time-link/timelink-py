@@ -4,6 +4,7 @@ Test for the timelink.mhk.utilities module
 This will only run if a file .mhk is found in the current home dir
 """
 import warnings
+import pytest
 from pathlib import Path
 
 from timelink.mhk.utilities import (
@@ -12,9 +13,12 @@ from timelink.mhk.utilities import (
     get_dbnames,
     is_mhk_installed,
     get_mhk_info,
+    is_mhk_installed,
 )
 from tests import mhk_absent
 
+if not is_mhk_installed():
+    pytest.skip("skipping MHK tests (MHK not present)", allow_module_level=True)
 
 @mhk_absent
 def test_get_mhk_env_exists():
