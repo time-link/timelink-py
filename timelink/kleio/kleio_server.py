@@ -852,6 +852,7 @@ def start_kleio_server(
         cont.status not in ["running"] and elapsed_time < timeout
     ):
         sleep(stop_time)
+        cont.reload()
         elapsed_time += stop_time
         continue
 
