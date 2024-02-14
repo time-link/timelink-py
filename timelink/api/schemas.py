@@ -89,7 +89,7 @@ class AttributeSchema(BaseModel):
 
 
 class EntityAttrRelSchema(BaseModel):
-    """Pydantic Schema for Entity with attributes and relations"""
+    """Pydantic Schema for Entity with attributes, relation and contained entities"""
 
     id: str
     pom_class: str
