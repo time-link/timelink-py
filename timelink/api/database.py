@@ -162,12 +162,6 @@ def start_postgres_server(
         elapsed_time += stop_time
         continue
 
-    # wait for the container to start
-    time.sleep(1)
-    if psql_container.status != "running":
-        psql_container.reload()
-        # wait a bit more
-        time.sleep(3)
     return psql_container
 
 
@@ -205,7 +199,7 @@ def get_postgres_dbnames():
     container = start_postgres_server()
     if container is not None:
         engine = create_engine(
-            f"postgresql://{get_postgres_container_user()}:{get_postgres_container_pwd()}@localhost:5432"
+            f"postgresql://{get_postgres_container_user()}:{get_postgres_container_pwd()}@localhost:5432/postgres"
         )
         with engine.connect() as conn:
             dbnames = conn.execute(
