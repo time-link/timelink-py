@@ -8,16 +8,7 @@ Following the tutorial at https://fastapi.tiangolo.com/tutorial/
 Finished: Query Parameters and String Validations
 * https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
 
-... jumped a few chapters
-Currently doing with: https://fastapi.tiangolo.com/tutorial/sql-databases/
-* √ test TimelinkDatabase create database and mappings
-* √ currently at tests/test_api_models_db.py refactoring to use TimelinkDatabase
-
 Next:
-* √ implement import from file and from url kleio_server with token
-* implement do translations
-* implement get sources
-* implement clear translations
 * get dirs
 * √ implement interface in fastApi for kleio_server
 
@@ -165,6 +156,9 @@ def get_kleio_server():
     return KleioServer(url=url, token=token)
 
 app = FastAPI()
+
+app.state.webapp = "timelink"
+
 
 app.mount("/static", StaticFiles(packages=[('timelink','api/static')]), name="static")
 
