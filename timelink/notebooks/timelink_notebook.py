@@ -8,6 +8,7 @@ from timelink.kleio.kleio_server import KleioServer
 
 
 def clean_kleiofile_df(df: pandas.DataFrame) -> pandas.DataFrame:
+    # Todo: move this function to the pandas module
     # convert the column "status" to the enum value
     df["status"] = df["status"].apply(lambda x: x.value)
     df["import_status"] = df["import_status"].apply(lambda x: x.value)
