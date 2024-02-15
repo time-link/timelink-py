@@ -5,5 +5,13 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "enabled": true
         }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.copilot",
+                "GitHub.copilot-chat"
+            ]
+        }
     }
 }
