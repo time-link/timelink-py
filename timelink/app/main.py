@@ -22,46 +22,36 @@ To Test
 To debug
 * https://fastapi.tiangolo.com/tutorial/debugging/
 """
-import os
-from enum import Enum
-from typing import List, Annotated, Optional
+# Standard library imports
 from datetime import date
-from jinja2 import PackageLoader, Environment
+from enum import Enum
+from typing import Annotated, List, Optional
 
-import uvicorn  # pylint: disable=import-error
-from fastapi import FastAPI
-from fastapi import Request
-from fastapi import Query
-from fastapi import Depends  # pylint: disable=unused-import, import-error
-from fastapi.security import OAuth2PasswordBearer
-
-from fastapi.templating import Jinja2Templates
+# Third-party imports
+from fastapi import FastAPI, Depends, Request
+from fastapi import HTTPException, Query
 from fastapi.responses import HTMLResponse
+from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from jinja2 import Environment, PackageLoader
+from sqlalchemy.orm import Session
+import uvicorn
 
-from sqlalchemy.orm import Session  # pylint: disable=import-error
-from timelink.api import models, crud, schemas
-from timelink.api.database import TimelinkDatabase
-from timelink.api.database import is_valid_postgres_db_name
+# Local application/library specific imports
+from timelink import version
+from timelink.api import crud, models, schemas
+from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
+from timelink.api.schemas import EntityAttrRelSchema, ImportStats
+from timelink.app.backend.settings import Settings
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
 from timelink.app.dependencies import get_db, get_kleio_server
-
+from timelink.kleio import api_permissions_normal, kleio_server as kserver, token_info_normal
 from timelink.kleio.importer import import_from_xml
-from timelink.kleio import kleio_server as kserver
 from timelink.kleio.kleio_server import KleioServer
-from timelink.kleio.schemas import KleioFile, ApiPermissions, TokenInfo
-from timelink.kleio import api_permissions_normal, token_info_normal
+from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
 
-# mover to app...
-from timelink.api.schemas import ImportStats
-from timelink.api.schemas import EntityAttrRelSchema
-
-from timelink import version
-from timelink.app.backend.settings import Settings
-
-import socket
-
-settings = Settings()y
+settings = Settings()
 
 app = FastAPI()
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
@@ -74,7 +64,7 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
 
 
 app.mount("/static", StaticFiles(packages=[('timelink','app/static')]), name="static")
- 
+
 # this is how to load the templates from inside the package
 env = Environment(loader=PackageLoader("timelink", "app/templates"))
 templates = Jinja2Templates(env=env)
@@ -94,7 +84,7 @@ async def root(request: Request):
 
 @app.get("/web/show/{id}", response_class=HTMLResponse)
 async def read_item(request: Request, id: str):
-    current_dir = os.getcwd()
+    # problem here is that I need the current project
     return templates.TemplateResponse(
         request=request, name="item.html", context={"id": id}
     )
