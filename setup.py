@@ -42,6 +42,7 @@ setup(
         'fastapi',
         'sqlalchemy',
         'pydantic',
+        'pydantic-settings',
         'python-dotenv',
         'python-box',
         'psycopg2-binary',

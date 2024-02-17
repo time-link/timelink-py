@@ -6,7 +6,7 @@ import json
 import pandas
 from timelink.api.database import TimelinkDatabase, get_postgres_dbnames, get_sqlite_databases, is_valid_postgres_db_name
 from timelink.kleio.kleio_server import KleioServer
-from timelink.models.user_database import UserDatabase
+from timelink.app.models import UserDatabase, User, UserProperty # noqa
 
 class TimelinkWebApp:
     """A class to interact with the Timelink system
@@ -26,11 +26,12 @@ class TimelinkWebApp:
 
     def __init__(
         self,
+        app_name: str = "timelink",
         timelink_url: str = "http://localhost:8000",
         timelink_home: str = None,
         kleio_server: KleioServer = None,
-        users_db_type: str = None,
-        users_db_name: str = None,
+        users_db_type: str = 'sqlite',
+        users_db_name: str = 'timelink_users',
         kleio_image=None,
         kleio_version=None,
         kleio_token=None,
@@ -39,7 +40,7 @@ class TimelinkWebApp:
         postgres_version=None,
         sqlite_dir=None,
         stop_duplicates=True,
-        **extra_args,
+        **connection_args,
     ):
         """Create a TimelinkWebApp instance
 
@@ -50,6 +51,7 @@ class TimelinkWebApp:
         manage the kleio files and access the database.
 
         Args:
+            app_name: name of the application
             timelink_url: URL of the Timelink web application
             timelink_home: directory where the Timelink database is located
             kleio_server: a KleioServer instance
@@ -63,17 +65,18 @@ class TimelinkWebApp:
             postgres_version: version of the postgres image to use
             sqlite_dir: directory where the sqlite databases are located
             stop_duplicates: if True, stop duplicates
-            **extra_args: extra arguments to pass to the TimelinkDatabase
+            **connection_args: extra arguments to pass to the TimelinkDatabase
 
         Returns:
             A TimelinkWebApp instance
         """
+        self.app_name = app_name
         self.timelink_home = timelink_home
         self.host_url = timelink_url
         self.kleio_server = kleio_server
         self.kleio_version = kleio_version
         self.db_type = users_db_type
-        self.mhk_users_db = users_db_name
+        self.users_db_name = users_db_name
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
         self.postgres_version = postgres_version
@@ -85,18 +88,20 @@ class TimelinkWebApp:
         if self.db_type == "sqlite":
             if self.sqlite_dir is None:
                 self.sqlite_dir = os.path.join(self.timelink_home, "system/db/sqlite")
-            self.db = UserDatabase(
+            if not os.path.exists(self.sqlite_dir):
+                os.makedirs(self.sqlite_dir)
+            self._users_db = UserDatabase(
                 db_type=self.db_type,
-                db_name=self.mhk_users_db,
-                timelink_home=self.timelink_home,
+                db_name=self.users_db_name,
+                db_path=self.sqlite_dir,
                 stop_duplicates=self.stop_duplicates,
-                **extra_args,
+                **connection_args,
             )
         elif self.db_type == "postgres":
             self.db = TimelinkDatabase(
                 db_type=self.db_type,
                 db_name=self.mhk_users_db,
-                **extra_args,
+                **connection_args,
             )
         else:
             raise ValueError(f"Invalid database type: {self.db_type}")
@@ -104,12 +109,15 @@ class TimelinkWebApp:
         if self.kleio_server is not None:
             self.kleio_server = kleio_server
         else:
-            self.kleio_server = KleioServer(
-                image=self.kleio_image,
-                version=self.kleio_version,
-                token=kleio_token,
-                update=kleio_update,
-            )
+            if timelink_home is not None:
+                self.kserver: KleioServer = KleioServer.start(
+                    kleio_home=timelink_home,
+                    kleio_image=kleio_image,
+                    kleio_version=kleio_version,
+                    kleio_token=kleio_token,
+                    update=kleio_update,
+                    stop_duplicates=stop_duplicates,
+                )
 
 
 

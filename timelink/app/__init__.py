@@ -1,4 +1,4 @@
-""" app.py for structure of the app inspired by
+""" Structure of the app inspired by
 https://levelup.gitconnected.com/structuring-fastapi-project-using-3-tier-design-pattern-4d2e88a55757
 
     .

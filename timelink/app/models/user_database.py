@@ -1,4 +1,5 @@
 import os
+import warnings
 import docker
 
 from sqlalchemy import create_engine, select
@@ -9,7 +10,7 @@ from typing import List
 
 from timelink.api import database
 from timelink import mhk
-from .user import User, UserProperty, Base
+from timelink.app.models.user import User, UserProperty, Base
 
 
 class UserDatabase:
@@ -73,11 +74,15 @@ class UserDatabase:
                 else:
                     if db_path is None:
                         db_path = os.getcwd()
+                        warnings.warn(
+                            "No path for the database was specified. Using the current working directory.",
+                            stacklevel=2,
+                        )
                     if connect_args is None:
                         connect_args = {"check_same_thread": False}
                     db_path = os.path.abspath(db_path)
                     os.makedirs(db_path, exist_ok=True)
-                    self.db_url = f"sqlite:///{db_path}/{self.db_name}.sqlite"
+                    self.db_url = f"sqlite:///{db_path}/{self.db_name}"
             elif db_type == "postgres":
                 if db_pwd is None:
                     self.db_pwd = database.get_db_password()

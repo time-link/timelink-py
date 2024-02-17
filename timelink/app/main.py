@@ -33,8 +33,9 @@ from fastapi import FastAPI
 from fastapi import Request
 from fastapi import Query
 from fastapi import Depends  # pylint: disable=unused-import, import-error
-from fastapi.templating import Jinja2Templates
+from fastapi.security import OAuth2PasswordBearer
 
+from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -43,6 +44,7 @@ from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
 from timelink.api.database import is_valid_postgres_db_name
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
+from timelink.app.dependencies import get_db, get_kleio_server
 
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio import kleio_server as kserver
@@ -50,49 +52,29 @@ from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import KleioFile, ApiPermissions, TokenInfo
 from timelink.kleio import api_permissions_normal, token_info_normal
 
+# mover to app...
 from timelink.api.schemas import ImportStats
 from timelink.api.schemas import EntityAttrRelSchema
+
 from timelink import version
+from timelink.app.backend.settings import Settings
+
 import socket
 
-
-# these shoud come from configuration file
-timelink_home = KleioServer.find_local_kleio_home()
-timelink_hostname = socket.gethostname()
-timelink_users_db_type = 'sqlite'
-timelink_users_db_name = 'timelink_users'
-
-webapp = None
-
-# Dependency to get a connection to the database
-def get_db(request: Request):
-
-    db = webapp.db.session()
-
-    try:
-        yield db
-    finally:
-        db.close()
-
-# dependency to get a connection to the kleio server
-def get_kleio_server():
-    """Get a connection to the kleio server
-
-    Uses timelink.kleio.kleio_server.KleioServer to get a connection to the kleio server.
-    """
-
-    return webapp.kleio_server
+settings = Settings()y
 
 app = FastAPI()
-
-if app.state.webapp is None:
-    webapp = TimelinkWebApp()
+if hasattr(app.state, "webapp") is False or app.state.webapp is None:
+    webapp = TimelinkWebApp(app_name = settings.app_name,
+                            users_db_name=settings.users_db_name,
+                            users_db_type=settings.users_db_type
+    )
     app.state.webapp = webapp
+    app.state.status = "started"
 
-webapp = app.state.webapp
 
 app.mount("/static", StaticFiles(packages=[('timelink','app/static')]), name="static")
-
+ 
 # this is how to load the templates from inside the package
 env = Environment(loader=PackageLoader("timelink", "app/templates"))
 templates = Jinja2Templates(env=env)
@@ -101,12 +83,13 @@ templates = Jinja2Templates(env=env)
 @app.get("/")
 async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
+    webapp:TimelinkWebApp = request.app.state.webapp
     context = { "welcome_message": "Welcome to Timelink API and Webapp",
-                "timelink_home": timelink_home,
-               "timelink_hostname": timelink_hostname,
+                "timelink_home": webapp.timelink_home,
+               "timelink_hostname": webapp.host_url,
                "timelink_version":version}
     return templates.TemplateResponse(
-        request=request, name="item.html", context=context
+        request=request, name="index.html", context=context
     )
 
 @app.get("/web/show/{id}", response_class=HTMLResponse)
