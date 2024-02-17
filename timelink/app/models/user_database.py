@@ -1,6 +1,5 @@
 import os
 import warnings
-import docker
 
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker, session
@@ -15,19 +14,19 @@ from timelink.app.models.user import User, UserProperty, Base
 
 class UserDatabase:
     def __init__(
-            self,
-            db_name: str =' timelink_users',
-            db_type: str = 'sqlite',
-            db_url=None,
-            db_user=None,
-            db_pwd=None,
-            db_path=None,
-            postgres_image=None,
-            postgres_version=None,
-            stop_duplicates=True,
-            **connect_args
+        self,
+        db_name: str = " timelink_users",
+        db_type: str = "sqlite",
+        db_url=None,
+        db_user=None,
+        db_pwd=None,
+        db_path=None,
+        postgres_image=None,
+        postgres_version=None,
+        stop_duplicates=True,
+        **connect_args,
     ):
-        """ Create a new UserDatabase object.
+        """Create a new UserDatabase object.
 
         Args:
             db_name: the name of the database
@@ -147,7 +146,7 @@ class UserDatabase:
         self.current_session.close()
 
     def start_session(self):
-        """ Start a new session
+        """Start a new session
 
         Returns:
             the new session
@@ -157,26 +156,20 @@ class UserDatabase:
         return self.current_session
 
     def close_session(self):
-        """ Close the current session
-
-        """
+        """Close the current session"""
         self.current_session.close()
         self.current_session = None
 
     def commit(self):
-        """ Commit the current session
-
-        """
+        """Commit the current session"""
         self.current_session.commit()
 
     def rollback(self):
-        """ Rollback the current session
-
-        """
+        """Rollback the current session"""
         self.current_session.rollback()
 
-    def add_user(self, user: User, session:session=None):
-        """ Add a user to the database
+    def add_user(self, user: User, session: session = None):
+        """Add a user to the database
 
         Args:
             user: the user to add
@@ -184,18 +177,26 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either: pass a session=session or  "
-                                 "do db.start_session() before and db.close_session() or "
-                                 "use context manager with db:")
+                raise ValueError(
+                    "No session available."
+                    "Either: pass a session=session or  "
+                    "do db.start_session() before and db.close_session() or "
+                    "use context manager with db:"
+                )
             else:
                 session = self.current_session
 
+        if self.get_user_by_email(user.email, session=session) is not None:
+            raise ValueError(
+                "An user with that email already exists."
+            )
+
         session.add(user)
 
-
-    def set_user_property(self, user_id: int, property_name: str, property_value: str, session=None):
-        """ Add a user property to the database
+    def set_user_property(
+        self, user_id: int, property_name: str, property_value: str, session=None
+    ):
+        """Add a user property to the database
 
         Args:
             user_id: the id of the user
@@ -205,23 +206,31 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with db: , with db as session")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db: , with db as session"
+                )
             else:
                 session = self.current_session
         # check if property already exists
 
-        user_property = session.scalars(select(UserProperty).filter(UserProperty.user_id == user_id, UserProperty.name == property_name)).first()
+        user_property = session.scalars(
+            select(UserProperty).filter(
+                UserProperty.user_id == user_id, UserProperty.name == property_name
+            )
+        ).first()
         if user_property is not None:
             user_property.value = property_value
             session.merge(user_property)
         else:
-            user_property = UserProperty(name=property_name, value=property_value, user_id=user_id) # pylint: disable=no-member
+            user_property = UserProperty(
+                name=property_name, value=property_value, user_id=user_id
+            )  # pylint: disable=no-member
             session.add(user_property)
 
     def get_user(self, user_id: int, session=None) -> User:
-        """ Get a user from the database
+        """Get a user from the database
 
         Args:
             user_id: the id of the user to get
@@ -232,19 +241,22 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with session=db:")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with session=db:"
+                )
             else:
                 session = self.current_session
 
         return session.get(User, user_id)
 
     def get_user_by_name(self, name: str, session=None) -> User:
-        """ Get a user from the database
+        """Get a user from the database
 
         Args:
             name: the name of the user to get
+            session: a database session
 
         Returns:
             the user with the given name
@@ -252,16 +264,43 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with session=db:")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with session=db:"
+                )
             else:
                 session = self.current_session
 
         return session.scalars(select(User).filter(User.name == name)).first()
 
+    def get_user_by_email(self, email, session=None):
+        """
+        Retrieve a user from the database using their email address.
+
+        Args:
+            email (str): The email address of the user to retrieve.
+            session (Session, optional): The session to use for the query.
+                If None, the current session will be used. Defaults to None.
+
+        Returns:
+            User: The User object that matches the given email address,
+                or None if no user was found.
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+
+        return session.scalars(select(User).filter(User.email == email)).first()
+
     def update_user(self, user: User, session=None):
-        """ Update a user in the database
+        """Update a user in the database
 
         Args:
             user: the user to update
@@ -269,16 +308,18 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with db as session:")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
             else:
                 session = self.current_session
 
         session.merge(user)
 
     def delete_user(self, user: User, session=None):
-        """ Delete a user from the database
+        """Delete a user from the database
 
         Args:
             user: the user to delete
@@ -286,9 +327,11 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with db as session:")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
             else:
                 session = self.current_session
 
@@ -296,7 +339,7 @@ class UserDatabase:
         session.commit()
 
     def get_user_properties(self, user_id: int, session=None) -> List[UserProperty]:
-        """ Get the properties of a user
+        """Get the properties of a user
 
         Args:
             user_id: the id of the user
@@ -307,16 +350,22 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with db as session:")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
             else:
                 session = self.current_session
 
-        return session.scalars(select(UserProperty).filter(UserProperty.user_id == user_id)).all()
+        return session.scalars(
+            select(UserProperty).filter(UserProperty.user_id == user_id)
+        ).all()
 
-    def get_user_property(self, user_id: int, property_name: str, session=None) -> UserProperty:
-        """ Get a user property
+    def get_user_property(
+        self, user_id: int, property_name: str, session=None
+    ) -> UserProperty:
+        """Get a user property
 
         Args:
             user_id: the id of the user
@@ -328,11 +377,16 @@ class UserDatabase:
         """
         if session is None:
             if self.current_session is None:
-                raise ValueError("No session available."
-                                 "Either pass a session or "
-                                 "with db as session:")
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
             else:
                 session = self.current_session
 
-
-        return session.scalars(select(UserProperty).filter(UserProperty.user_id == user_id, UserProperty.name == property_name)).first()
+        return session.scalars(
+            select(UserProperty).filter(
+                UserProperty.user_id == user_id, UserProperty.name == property_name
+            )
+        ).first()

@@ -32,9 +32,8 @@ users have different access levels to the projects. The access levels are:
 """
 
 from datetime import datetime
-import os
 from typing import List, Optional
-from sqlalchemy import String, create_engine, select
+from sqlalchemy import String
 from sqlalchemy.orm import DeclarativeBase
 
 from sqlalchemy.orm import Mapped
@@ -43,13 +42,7 @@ from sqlalchemy import DateTime
 from sqlalchemy.sql import func
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
-from sqlalchemy_utils import database_exists
-from sqlalchemy_utils import create_database
-import docker  # pylint: disable=import-error
 
-from timelink.api import database
-from timelink import mhk
 
 # declarative base class
 class Base(DeclarativeBase):
@@ -72,6 +65,7 @@ class UserProperty(Base):
     def __str__(self):
         return f"UserProperty(id={self.id}, name={self.name}, value={self.value}, user_id={self.user_id})"
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -79,16 +73,40 @@ class User(Base):
     name: Mapped[str]
     fullname: Mapped[str] = mapped_column(String(30))
     nickname: Mapped[Optional[str]]
-    email: Mapped[str]
-    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=func.now())
-    updated: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), default=func.now(), onupdate=func.now())
+    email: Mapped[str] = mapped_column(unique=True)
+    created: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=func.now()
+    )
+    updated: Mapped[Optional[datetime]] = mapped_column(
+        DateTime(timezone=True), default=func.now(), onupdate=func.now()
+    )
 
-    properties: Mapped[List["UserProperty"]] = relationship("UserProperty", back_populates="user")
+    properties: Mapped[List["UserProperty"]] = relationship(
+        "UserProperty", back_populates="user"
+    )
 
     def __repr__(self):
-        return f"User(id={self.id}, name={self.name}, fullname={self.fullname}, nickname={self.nickname}, created={self.created}, updated={self.updated})"
+        return (
+            f"User("
+            f"id={self.id}, "
+            f"name={self.name}, "
+            f"email={self.email}, "
+            f"fullname={self.fullname}, "
+            f"nickname={self.nickname}, "
+            f"created={self.created}, "
+            f"updated={self.updated})"
+        )
 
     def __str__(self):
-        sproperties = ', '.join([str(p) for p in self.properties])
-        return f"User(id={self.id}, name={self.name}, fullname={self.fullname}, nickname={self.nickname}, created={self.created}, updated={self.updated}, properties={sproperties})"
-
+        sproperties = ", ".join([str(p) for p in self.properties])
+        return (
+            f"User("
+            f"id={self.id}, "
+            f"name={self.name}, "
+            f"email={self.email}, "
+            f"fullname={self.fullname}, "
+            f"nickname={self.nickname}, "
+            f"created={self.created}, "
+            f"updated={self.updated}, "
+            f"properties={sproperties})"
+        )
