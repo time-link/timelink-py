@@ -6,7 +6,7 @@ import json
 import pandas
 from timelink.api.database import TimelinkDatabase, get_postgres_dbnames, get_sqlite_databases, is_valid_postgres_db_name
 from timelink.kleio.kleio_server import KleioServer
-
+from timelink.models.user_database import UserDatabase
 
 class TimelinkWebApp:
     """A class to interact with the Timelink system
@@ -81,11 +81,11 @@ class TimelinkWebApp:
         self.stop_duplicates = stop_duplicates
 
         if self.timelink_home is None:
-            self.timelink_home = os.path.join(os.getcwd(), "timelink-home")
+            self.timelink_home = KleioServer.find_local_kleio_home()
         if self.db_type == "sqlite":
-            if self.timelink_home is None:
-                self.timelink_home = os.path.join(os.getcwd(), "timelink")
-            self.db = TimelinkDatabase(
+            if self.sqlite_dir is None:
+                self.sqlite_dir = os.path.join(self.timelink_home, "system/db/sqlite")
+            self.db = UserDatabase(
                 db_type=self.db_type,
                 db_name=self.mhk_users_db,
                 timelink_home=self.timelink_home,

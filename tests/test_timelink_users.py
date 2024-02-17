@@ -42,8 +42,8 @@ def dbsystem(request):
     indirect=True,
 )
 def test_create_user_with_properties(dbsystem):
-
-    with dbsystem.session() as session:
+    db=dbsystem
+    with db.session() as session:
         user = User(name='Test User', fullname='Test User Fullname', email='xpto@xpto.com', nickname='Test Nickname')
         session.add(user)
         session.commit()
@@ -85,8 +85,63 @@ def test_create_user_with_properties(dbsystem):
 )
 def test_create_user_db(dbsystem):
     db: UserDatabase = dbsystem
-    user = User(name='User2', fullname='Full Name', email='xpto@xpto.com', nickname='Test Nickname')
-    db.add_user(user)
-    user2 = db.get_user_by_name('User2')
-    assert user2 is not None
+    with db:
+        user = User(name='User2', fullname='Full Name', email='xpto@xpto.com', nickname='Test Nickname')
+        db.add_user(user)
+        db.commit()
+        user2 = db.get_user_by_name('User2')
+        assert user2 is not None
 
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_path
+        ("sqlite", ":memory:", None),
+        ("postgres", "tests_users", None),
+    ],
+    indirect=True,
+)
+def test_set_user_property(dbsystem):
+    db: UserDatabase = dbsystem
+    db.start_session()
+    user = User(name='User3', fullname='Full Name',
+                email="xoti@xpto.org", nickname='Test Nickname')
+    db.add_user(user)
+    db.commit()  # otherwise user.id is None
+    db.set_user_property(user.id, 'property1', 'value1')
+    db.set_user_property(user.id, 'property2', 'value2')
+    db.commit()
+    user = db.get_user_by_name('User3')
+    assert user is not None
+    assert len(user.properties) == 2
+    props = db.get_user_properties(user.id)
+    assert len(props) == 2
+    proval = db.get_user_property(user.id, 'property1')
+    assert proval.value == 'value1'
+    proval = db.get_user_property(user.id, 'property2')
+    assert proval.value == 'value2'
+    db.close_session()
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_path
+        ("sqlite", ":memory:", None),
+        ("postgres", "tests_users", None),
+    ],
+    indirect=True,
+)
+def test_update_user(dbsystem):
+    db: UserDatabase = dbsystem
+    db.start_session()
+    user    = User(name='User4', fullname='Full Name',
+                email="xpto@xpto.com", nickname='Test Nickname')
+    db.add_user(user)
+    db.commit()
+    user = db.get_user_by_name('User4')
+    assert user.fullname == 'Full Name'
+    user.fullname = 'Full Name Updated'
+    db.update_user(user)
+    db.commit()
+    user = db.get_user_by_name('User4')
+    assert user.fullname == 'Full Name Updated'
