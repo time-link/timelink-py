@@ -293,7 +293,8 @@ def test_import_from_kleio_server(dbsystem):
     translations = kserver.translation_status(path="", recurse="yes", status="V")
 
     counter = 0
-    while len(translations) == 0 and counter < 5:
+    # Fix this. wait by checking the status of the translation
+    while len(translations) == 0 and counter < 10:
         kserver.translate(path="", recurse="yes")
         time.sleep(5)
         translations = kserver.translation_status(path="", recurse="yes", status="V")
