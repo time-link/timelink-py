@@ -45,7 +45,7 @@ def setup():
     else:
         """Setup kleio server for tests"""
         khome = f"{TEST_DIR}/timelink-home"
-        ks = KleioServer.start(kleio_home=khome, reuse=True, update=True)
+        ks = KleioServer.start(kleio_home=khome, reuse=True, update=False)
 
     return ks
 
@@ -67,7 +67,7 @@ def test_is_kleio_server_running():
 @skip_on_travis
 def test_start_kleio_server():
     """Test if kleio server is started"""
-    ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home", update=True)
+    ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home", update=False)
     assert ks is not None
 
 
@@ -122,7 +122,7 @@ def test_stop_kleio_server(setup):
     assert KleioServer.get_server(kome) is None
     kleio_home = f"{TEST_DIR}/timelink-home"
     assert KleioServer.get_server(kleio_home) is None
-    kserver.start(kleio_home=kleio_home, update=True)
+    kserver.start(kleio_home=kleio_home, update=False)
     # wait for server to start
     import time
 
