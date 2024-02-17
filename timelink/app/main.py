@@ -42,6 +42,7 @@ from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models, crud, schemas
 from timelink.api.database import TimelinkDatabase
 from timelink.api.database import is_valid_postgres_db_name
+from timelink.app.backend.timelink_webapp import TimelinkWebApp
 
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio import kleio_server as kserver
@@ -52,94 +53,26 @@ from timelink.kleio import api_permissions_normal, token_info_normal
 from timelink.api.schemas import ImportStats
 from timelink.api.schemas import EntityAttrRelSchema
 from timelink import version
+import socket
 
+
+# these shoud come from configuration file
+timelink_home = KleioServer.find_local_kleio_home()
+timelink_hostname = socket.gethostname()
+timelink_users_db_type = 'sqlite'
+timelink_users_db_name = 'timelink_users'
+
+webapp = None
 
 # Dependency to get a connection to the database
-def get_db(
-    project_name: Optional[str] = None,
-    project_home: Optional[str] = None,
-    sqlite_dir: str = None,
-    db_name: str = None,
-    db_type: str = None,
-    db_url: str = None,
-    db_user: str = None,
-    db_pwd: str = None,
-    db_path: str = None,
-    kleio_server=None,
-    kleio_home=None,
-    kleio_image=None,
-    kleio_version=None,
-    kleio_token=None,
-    kleio_update=None,
-    postgres_image=None,
-    postgres_version=None,
-    stop_duplicates=True,
-    **connect_args
-):
-    """Get a connection to the database
+def get_db(request: Request):
 
-    Uses timelink.api.database.TimelinkDatabase to get a connection to the database."""
+    db = webapp.db.session()
 
-    project_name = project_name
-    project_home = project_home
-    db_type = db_type
-    db_name = db_name
-    sqlite_dir = sqlite_dir
-    kleio_image = kleio_image
-    kleio_version = kleio_version
-    postgres_image = postgres_image
-    postgres_version = postgres_version
-
-    if project_home is None:
-        project_home = KleioServer.find_local_kleio_home()
-    if project_name is None:
-        project_name = os.path.basename(os.path.dirname(os.getcwd()))
-    if db_type is None:
-        db_type = "sqlite"
-    if db_name is None:
-        db_name = project_name.replace("-", "_").replace(" ", "_")
-    if kleio_image is None:
-        kleio_image = "timelinkserver/kleio-server"
-    if kleio_version is None:
-        kleio_version = "latest"
-    if sqlite_dir is None:
-        sqlite_dir = os.path.join(project_home, "database", "sqlite")
-        # create the directory if it does not exist
-        if not os.path.exists(sqlite_dir):
-            os.makedirs(sqlite_dir)
-    if postgres_image is None:
-        postgres_image = "postgres"
-    if postgres_version is None:
-        postgres_version = "latest"
-
-    if db_type == "postgres":
-        if not is_valid_postgres_db_name(db_name):
-            raise ValueError(f"Invalid database name: {db_name}")
-
-    database = TimelinkDatabase(
-        dba_name=db_name,
-        db_type=db_type,
-        db_url=db_url,
-        db_user=db_user,
-        db_pwd=db_pwd,
-        db_path=db_path,
-        kleio_server=kleio_server,
-        kleio_home=kleio_home,
-        kleio_image=kleio_image,
-        kleio_version=kleio_version,
-        kleio_token=kleio_token,
-        kleio_update=kleio_update,
-        postgres_image=postgres_image,
-        postgres_version=postgres_version,
-        stop_duplicates=stop_duplicates,
-        **connect_args
-        )
-    db = database.session()
     try:
         yield db
     finally:
         db.close()
-
 
 # dependency to get a connection to the kleio server
 def get_kleio_server():
@@ -148,29 +81,33 @@ def get_kleio_server():
     Uses timelink.kleio.kleio_server.KleioServer to get a connection to the kleio server.
     """
 
-    kleio_home = kserver.find_kleio_home()
-    if not kserver.is_kserver_running():
-        kserver.start_kleio_server(kleio_home=kleio_home)
-    token = kserver.get_kserver_token()
-    url = kserver.kleio_get_url()
-    return KleioServer(url=url, token=token)
+    return webapp.kleio_server
 
 app = FastAPI()
 
-app.state.webapp = "timelink"
+if app.state.webapp is None:
+    webapp = TimelinkWebApp()
+    app.state.webapp = webapp
 
+webapp = app.state.webapp
 
-app.mount("/static", StaticFiles(packages=[('timelink','api/static')]), name="static")
+app.mount("/static", StaticFiles(packages=[('timelink','app/static')]), name="static")
 
 # this is how to load the templates from inside the package
-env = Environment(loader=PackageLoader("timelink", "api/templates"))
+env = Environment(loader=PackageLoader("timelink", "app/templates"))
 templates = Jinja2Templates(env=env)
 
 
 @app.get("/")
 async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
-    return {"message": f"Welcome to Timelink API {version}", "host": request.headers["host"]}
+    context = { "welcome_message": "Welcome to Timelink API and Webapp",
+                "timelink_home": timelink_home,
+               "timelink_hostname": timelink_hostname,
+               "timelink_version":version}
+    return templates.TemplateResponse(
+        request=request, name="item.html", context=context
+    )
 
 @app.get("/web/show/{id}", response_class=HTMLResponse)
 async def read_item(request: Request, id: str):
@@ -179,7 +116,7 @@ async def read_item(request: Request, id: str):
         request=request, name="item.html", context={"id": id}
     )
 
-@app.post("/search/", response_model=List[schemas.SearchResults])
+@app.post("/web/search/", response_model=List[schemas.SearchResults])
 async def search(search_request: schemas.SearchRequest):
     """Search for items in the database.
 
