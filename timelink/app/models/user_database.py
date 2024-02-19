@@ -15,7 +15,7 @@ from timelink.app.models.user import User, UserProperty, Base
 class UserDatabase:
     def __init__(
         self,
-        db_name: str = " timelink_users",
+        db_name: str = " timelink_users.sqlite",
         db_type: str = "sqlite",
         db_url=None,
         db_user=None,
@@ -23,6 +23,7 @@ class UserDatabase:
         db_path=None,
         postgres_image=None,
         postgres_version=None,
+        initial_users=None,
         stop_duplicates=True,
         **connect_args,
     ):
@@ -58,9 +59,24 @@ class UserDatabase:
             session = db.current_session``
 
         """
+        self.db_name = None
+        self.db_url = None
+        self.db_user = None
+        self.db_pwd = None
+        self.db_path = None
+        self.db_type = db_type
+        self.db_container = None
+        self.engine = None
+        self.session = None
+        self.current_session = None
+        self.metadata = None
+
         if db_name is None:
             raise ValueError("db_name cannot be None")
         self.db_name = db_name
+
+        if self.db_type is None:
+            self.db_type = "sqlite"
 
         # if we received a url, use it to connect
         if db_url is not None:
@@ -134,9 +150,19 @@ class UserDatabase:
         if not database_exists(self.engine.url):
             create_database(self.engine.url)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-        self.current_session: session = None
+        self.current_session = None
         self.metadata = Base.metadata
         Base.metadata.create_all(self.engine)
+        if initial_users is not None:
+            with self.session() as session:
+                for user in initial_users:
+                    user_exists = self.get_user_by_name(user.name, session=session)
+                    if user_exists is None:
+                        self.add_user(user, session=session)
+                    else:
+                        self.delete_user(user_exists, session=session)
+                        self.add_user(user, session=session)
+                session.commit()
 
     def __enter__(self):
         self.current_session = self.session()
@@ -145,20 +171,9 @@ class UserDatabase:
     def __exit__(self, exc_type, exc_value, traceback):
         self.current_session.close()
 
-    def start_session(self):
-        """Start a new session
-
-        Returns:
-            the new session
-
-        """
-        self.current_session = self.session()
-        return self.current_session
-
-    def close_session(self):
-        """Close the current session"""
-        self.current_session.close()
-        self.current_session = None
+    def drop_db(self):
+        """Drop the database"""
+        self.metadata.drop_all(self.engine)
 
     def commit(self):
         """Commit the current session"""

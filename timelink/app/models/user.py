@@ -67,13 +67,28 @@ class UserProperty(Base):
 
 
 class User(Base):
+    """User model
+
+    Fields:
+    - id: int, primary key, autoincrement
+    - name: str, required
+    - fullname: str, optional
+    - nickname: str, optional
+    - email: str, required, unique
+    - hashed_password: str, optional
+    - disabled: bool, optional, default=False
+    - created: datetime, required, default=now
+    - updated: datetime, optional, default=now, onupdate=now
+    """
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str]
-    fullname: Mapped[str] = mapped_column(String(30))
+    name: Mapped[str] = mapped_column(String(30), unique=True)
+    fullname: Mapped[str] = mapped_column(String(64))
     nickname: Mapped[Optional[str]]
     email: Mapped[str] = mapped_column(unique=True)
+    hashed_password: Mapped[Optional[str]]
+    disabled: Mapped[Optional[bool]] = mapped_column(default=False)
     created: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=func.now()
     )
@@ -82,7 +97,7 @@ class User(Base):
     )
 
     properties: Mapped[List["UserProperty"]] = relationship(
-        "UserProperty", back_populates="user"
+        "UserProperty", back_populates="user", cascade="all, delete, delete-orphan"
     )
 
     def __repr__(self):
