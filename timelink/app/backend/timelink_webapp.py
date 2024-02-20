@@ -8,7 +8,7 @@ import pandas
 from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty # noqa
-from timelink.app.schemas.project import Project, base_projects
+from timelink.app.schemas.project import Project
 
 
 class TimelinkWebApp:
@@ -92,7 +92,7 @@ class TimelinkWebApp:
         self.initial_users = initial_users
         self.kleio_token = kleio_token
         self.kleio_update = kleio_update
-        self.projects: List[Project] = base_projects
+        self.projects: List[Project] = []
 
         if initial_users is None:
             self.initial_users = []
@@ -136,22 +136,21 @@ class TimelinkWebApp:
                     update=self.kleio_update,
                     stop_duplicates=self.stop_duplicates,
                 )
+        self.update_projects()
 
-    def print_info(self):
+    def get_info(self):
         """Print information about the Timel8nk Webapp object
 
         """
         info_dict = {
             "Timelink home": self.timelink_home,
             "Timelink host URL": self.host_url,
-            "Timelink users database": self.mhk_users_db,
+            "Timelink users database": self.users_db_name,
             "Kleio server": self.kleio_server,
             "Kleio version requested": self.kleio_version,
             "SQLite directory": self.sqlite_dir,
             "Postgres image": self.postgres_image,
             "Postgres version": self.postgres_version,
-
-
         }
 
         kserver: KleioServer = self.kleio_server
@@ -179,7 +178,31 @@ class TimelinkWebApp:
                 "Postgres user": self.db.db_user,
                 "Postgres password": self.db.db_pwd,
             })
+        return info_dict
 
+    def get_project_dirs(self):
+        """Get the list of projects
+
+        Projects are sub directories of the
+        timelink home directory / projects directory."""
+        projects = []
+        # get the sub directories of timelink-home/projects
+        projects_dir = os.path.join(self.timelink_home, "projects")
+        if os.path.exists(projects_dir):
+            projects = [d for d in os.listdir(projects_dir) if os.path.isdir(os.path.join(projects_dir, d))]
+        return projects
+
+    def update_projects(self)-> List[Project]:
+        """Get the list of projects"""
+        pdirs = self.get_project_dirs()
+        existing_project_names = [p.name for p in self.projects]
+        for pdir in pdirs:
+            if pdir not in existing_project_names:
+                self.projects.append(Project(name=pdir))
+        return self.projects
+
+    def print_info(self):
+        info_dict = self.get_info()
         print(json.dumps(info_dict, indent=4))
         print(self.__repr__())
 
