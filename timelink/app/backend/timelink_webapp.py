@@ -2,11 +2,14 @@
 
 import os
 import json
+from typing import List
 
 import pandas
-from timelink.api.database import TimelinkDatabase, get_postgres_dbnames, get_sqlite_databases, is_valid_postgres_db_name
+from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty # noqa
+from timelink.app.schemas.project import Project, base_projects
+
 
 class TimelinkWebApp:
     """A class to interact with the Timelink system
@@ -31,7 +34,7 @@ class TimelinkWebApp:
         timelink_home: str = None,
         kleio_server: KleioServer = None,
         users_db_type: str = 'sqlite',
-        users_db_name: str = 'timelink_users',
+        users_db_name: str = 'timelink_users.sqlite',
         kleio_image=None,
         kleio_version=None,
         kleio_token=None,
@@ -40,6 +43,7 @@ class TimelinkWebApp:
         postgres_version=None,
         sqlite_dir=None,
         stop_duplicates=True,
+        initial_users: list[User] = None,
         **connection_args,
     ):
         """Create a TimelinkWebApp instance
@@ -64,6 +68,7 @@ class TimelinkWebApp:
             postgres_image: name of the postgres image to use
             postgres_version: version of the postgres image to use
             sqlite_dir: directory where the sqlite databases are located
+            initial_users: list of initial users
             stop_duplicates: if True, stop duplicates
             **connection_args: extra arguments to pass to the TimelinkDatabase
 
@@ -77,12 +82,20 @@ class TimelinkWebApp:
         self.kleio_version = kleio_version
         self.db_type = users_db_type
         self.users_db_name = users_db_name
+        """"The users database instance"""
+        self.users_db = None
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
         self.postgres_version = postgres_version
         self.sqlite_dir = sqlite_dir
         self.stop_duplicates = stop_duplicates
+        self.initial_users = initial_users
+        self.kleio_token = kleio_token
+        self.kleio_update = kleio_update
+        self.projects: List[Project] = base_projects
 
+        if initial_users is None:
+            self.initial_users = []
         if self.timelink_home is None:
             self.timelink_home = KleioServer.find_local_kleio_home()
         if self.db_type == "sqlite":
@@ -90,17 +103,22 @@ class TimelinkWebApp:
                 self.sqlite_dir = os.path.join(self.timelink_home, "system/db/sqlite")
             if not os.path.exists(self.sqlite_dir):
                 os.makedirs(self.sqlite_dir)
-            self._users_db = UserDatabase(
+            self.users_db = UserDatabase(
                 db_type=self.db_type,
                 db_name=self.users_db_name,
                 db_path=self.sqlite_dir,
                 stop_duplicates=self.stop_duplicates,
+                initial_users=self.initial_users,
                 **connection_args,
             )
         elif self.db_type == "postgres":
-            self.db = TimelinkDatabase(
+            self.users_db = UserDatabase(
                 db_type=self.db_type,
-                db_name=self.mhk_users_db,
+                db_name=self.users_db_name,
+                postgres_image=self.postgres_image,
+                postgres_version=self.postgres_version,
+                stop_duplicates=self.stop_duplicates,
+                initial_users=self.initial_users,
                 **connection_args,
             )
         else:
@@ -109,18 +127,15 @@ class TimelinkWebApp:
         if self.kleio_server is not None:
             self.kleio_server = kleio_server
         else:
-            if timelink_home is not None:
+            if self.timelink_home is not None:
                 self.kserver: KleioServer = KleioServer.start(
-                    kleio_home=timelink_home,
-                    kleio_image=kleio_image,
-                    kleio_version=kleio_version,
-                    kleio_token=kleio_token,
-                    update=kleio_update,
-                    stop_duplicates=stop_duplicates,
+                    kleio_home=self.timelink_home,
+                    kleio_image=self.kleio_image,
+                    kleio_version=self.kleio_version,
+                    kleio_token=self.kleio_token,
+                    update=self.kleio_update,
+                    stop_duplicates=self.stop_duplicates,
                 )
-
-
-
 
     def print_info(self):
         """Print information about the Timel8nk Webapp object
@@ -130,7 +145,12 @@ class TimelinkWebApp:
             "Timelink home": self.timelink_home,
             "Timelink host URL": self.host_url,
             "Timelink users database": self.mhk_users_db,
-            "Kleio server": "None"
+            "Kleio server": self.kleio_server,
+            "Kleio version requested": self.kleio_version,
+            "SQLite directory": self.sqlite_dir,
+            "Postgres image": self.postgres_image,
+            "Postgres version": self.postgres_version,
+
 
         }
 

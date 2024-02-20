@@ -23,17 +23,22 @@ To debug
 * https://fastapi.tiangolo.com/tutorial/debugging/
 """
 # Standard library imports
-from datetime import date
+from datetime import date, timedelta
 from enum import Enum
 from typing import Annotated, List, Optional
 
 # Third-party imports
-from fastapi import FastAPI, Depends, Request
+from fastapi import FastAPI, Depends, Request, status
 from fastapi import HTTPException, Query
 from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordRequestForm
+
+
 from jinja2 import Environment, PackageLoader
 from sqlalchemy.orm import Session
 import uvicorn
@@ -45,20 +50,46 @@ from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
 from timelink.api.schemas import EntityAttrRelSchema, ImportStats
 from timelink.app.backend.settings import Settings
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
-from timelink.app.dependencies import get_db, get_kleio_server
+from timelink.app.dependencies import get_user_db, get_kleio_server
+from timelink.app.models.user import User, UserProperty
+from timelink.app.models.user_database import UserDatabase
+from timelink.app.services.auth import fake_hash_password
 from timelink.kleio import api_permissions_normal, kleio_server as kserver, token_info_normal
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
+from timelink.app.dependencies import get_current_active_user, get_db
+from timelink.app.schemas.user import UserSchema
+from timelink.app.services.auth import verify_password
+from timelink.app.services.auth import get_password_hash
+from timelink.app.services.auth import authenticate_user
+from timelink.app.services.auth import create_access_token
+from timelink.app.services.auth import Token, TokenData
 
-settings = Settings()
+# Get Pydantic-based settings defined in timelink.app.backend.settings
+settings = Settings(timelink_admin_pwd="admin")
+
+# Move to settings?
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 app = FastAPI()
+
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
-    webapp = TimelinkWebApp(app_name = settings.app_name,
-                            users_db_name=settings.users_db_name,
-                            users_db_type=settings.users_db_type
+
+    initial_user: List[User] = User(name="admin",
+                                    hashed_password=fake_hash_password(settings.timelink_admin_pwd),
+                                    fullname="Joaquim Carvalho",
+                                    email="joaquim@mpu.edu.mo",
+                                    nickname="jrc")
+    initial_user.hashed_password = get_password_hash(settings.timelink_admin_pwd)
+    admin_role: UserProperty = UserProperty(name="timelink_.role", value="admin")
+    initial_user.properties.append(admin_role)
+    webapp = TimelinkWebApp(app_name = settings.timelink_app_name,
+                            users_db_name=settings.timelink_users_db_name,
+                            users_db_type=settings.timelink_users_db_type,
+                            initial_users=[initial_user]
     )
+
     app.state.webapp = webapp
     app.state.status = "started"
 
@@ -70,17 +101,29 @@ env = Environment(loader=PackageLoader("timelink", "app/templates"))
 templates = Jinja2Templates(env=env)
 
 
-@app.get("/")
-async def root(request: Request):
-    """Timelink API end point. Check URL/docs for API documentation."""
-    webapp:TimelinkWebApp = request.app.state.webapp
-    context = { "welcome_message": "Welcome to Timelink API and Webapp",
-                "timelink_home": webapp.timelink_home,
-               "timelink_hostname": webapp.host_url,
-               "timelink_version":version}
-    return templates.TemplateResponse(
-        request=request, name="index.html", context=context
+@app.post("/token")
+async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
+
+    webapp:TimelinkWebApp = app.state.webapp
+    user_db: UserDatabase = webapp.users_db
+    user = authenticate_user(user_db, form_data.username, form_data.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"username": user.name, "userid": user.id}, expires_delta=access_token_expires
     )
+    return Token(access_token=access_token, token_type="bearer")
+
+
+@app.get("/test_token", response_model=UserSchema)
+async def test_token(current_user: Annotated[UserSchema, Depends(get_current_active_user)],):
+    return current_user
+
 
 @app.get("/web/show/{id}", response_class=HTMLResponse)
 async def read_item(request: Request, id: str):
@@ -269,6 +312,20 @@ async def translate(
     return kserver.translate(path, recurse, spawn)
 
 
+@app.get("/")
+async def root(request: Request):
+    """Timelink API end point. Check URL/docs for API documentation."""
+    webapp:TimelinkWebApp = request.app.state.webapp
+    context = { "welcome_message": "Welcome to Timelink API and Webapp",
+                "timelink_home": webapp.timelink_home,
+               "timelink_hostname": webapp.host_url,
+               "timelink_version":version}
+    return templates.TemplateResponse(
+        request=request, name="index.html", context=context
+    )
+
+
+
 # Tutorial
 
 
@@ -337,3 +394,4 @@ async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):  # noqa:
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

@@ -114,6 +114,21 @@ class KleioServer:
 
         Returns:
             KleioServer: KleioServer object
+
+        TODO #33:
+        from urllib.parse import urlparse
+
+        url = 'http://user:token@localhost:8088/path_to_kleio_home'
+        parsed_url = urlparse(url)
+
+        print('scheme:', parsed_url.scheme)
+        print('netloc:', parsed_url.netloc)
+        print('path:', parsed_url.path)
+        print('username:', parsed_url.username)
+        print('password:', parsed_url.password)
+        print('hostname:', parsed_url.hostname)
+        print('port:', parsed_url.port)
+
         """
         return KleioServer(url=url, token=token, kleio_home=kleio_home)
 
@@ -803,7 +818,7 @@ def start_kleio_server(
         warnings.warn(
             f"Kleio server is already running in docker mapped to {kleio_home}",
             stacklevel=1,
-            )
+        )
 
     # if kleio_home is None, use current directory
     if kleio_home is None:

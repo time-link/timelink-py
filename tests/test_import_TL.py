@@ -54,6 +54,8 @@ def dbsystem(request):
     [
         # db_type, db_name, db_url, db_user, db_pwd
         ("sqlite", ":memory:", None, None, None),
+        # change to pytest.param("postgres", "tests", None, None, None, marks=skip_on_travis)
+        # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "tests", None, None, None),
     ],
     indirect=True,
