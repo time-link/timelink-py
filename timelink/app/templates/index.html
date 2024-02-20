@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
     <title>{{ title }}</title>
+  <script>
+    tailwind.config = {
+    }
+  </script>
 </head>
 <body>
     <header>
-        {{ welcome_message }}
-    </header>
-    <ul>
-    <li>Timelink version: {{ timelink_version }}</li>
-    <li>Timelink home: {{ timelink_home }}</li>
-    <li>Timelink hostname: {{timelink_hostname}}</li>
-    </ul>
+        <div class="bg-blue-500 flex items-center justify-center">
+            <img class="inline" src="static/img/logo_alpha.png"/>
+            <h1 class="text-2xl font-bold underline text-center text-white">{{ welcome_message }}</h1>
+        </div>
+        </header>
+
+    <table class="table-auto mx-auto">
+      <caption class="caption-top">
+        Webapp info
+        </caption>
+        <thead>
+            <tr>
+                 <th>Info</th>
+                 <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for key, value in webapp_info.items() %}
+        {% if value is not none %}
+        <tr>
+            <td class="border border-slate-300">{{ key }}</td>
+            <td class="border border-slate-300">{{ value }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
 
 </body>
 </html>
