@@ -9,6 +9,7 @@ matplotlib
 mysql-connector-python~=8.0.0
 networkx>=3.0.0
 pandas~=2.0.0
+bcrypt==4.0.1  # see https://github.com/logspace-ai/langflow/issues/1173
 passlib[bcrypt]
 psycopg2-binary==2.9.6
 py-markdown-table==0.3.3
