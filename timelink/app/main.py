@@ -60,6 +60,7 @@ from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
 from timelink.app.dependencies import get_current_active_user, get_db
 from timelink.app.schemas.user import UserSchema
+from timelink.app.schemas.project import Project
 from timelink.app.services.auth import verify_password
 from timelink.app.services.auth import get_password_hash
 from timelink.app.services.auth import authenticate_user
@@ -82,7 +83,7 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
                                     email="joaquim@mpu.edu.mo",
                                     nickname="jrc")
     initial_user.hashed_password = get_password_hash(settings.timelink_admin_pwd)
-    admin_role: UserProperty = UserProperty(name="timelink_.role", value="admin")
+    admin_role: UserProperty = UserProperty(name="timelink.role", value="admin")
     initial_user.properties.append(admin_role)
     webapp = TimelinkWebApp(app_name = settings.timelink_app_name,
                             users_db_name=settings.timelink_users_db_name,
@@ -125,8 +126,9 @@ async def test_token(current_user: Annotated[UserSchema, Depends(get_current_act
     return current_user
 
 
-@app.get("/web/show/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
+@app.get("/www/show/{id}",
+         response_class=HTMLResponse)
+async def show_item(request: Request, id: str):
     # problem here is that I need the current project
     return templates.TemplateResponse(
         request=request, name="item.html", context={"id": id}
@@ -311,19 +313,30 @@ async def translate(
     """
     return kserver.translate(path, recurse, spawn)
 
+# Web zone
 
 @app.get("/")
 async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
     webapp:TimelinkWebApp = request.app.state.webapp
+    projects:List[Project] = webapp.get_projects()
     context = { "welcome_message": "Welcome to Timelink API and Webapp",
-                "timelink_home": webapp.timelink_home,
-               "timelink_hostname": webapp.host_url,
-               "timelink_version":version}
+               "webapp_info": webapp.get_info()}
     return templates.TemplateResponse(
         request=request, name="index.html", context=context
     )
 
+@app.get("/www/templates/{template_name}")
+async def get_template(request: Request, template_name: str):
+    """Get a template"""
+    webapp:TimelinkWebApp = request.app.state.webapp
+    context = { "welcome_message": "Welcome to Timelink API and Webapp",
+               "webapp_info": webapp.get_info(),
+               "webapp_projects": webapp.projects}
+
+    return templates.TemplateResponse(
+        request=request, name=template_name, context=context
+    )
 
 
 # Tutorial
