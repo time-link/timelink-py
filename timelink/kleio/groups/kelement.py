@@ -434,6 +434,7 @@ class KSameAs(KElement):
     person$Robert Allan Zimmerman/sameas=bob-dylan
 
     """
+
     name = "same_as"
 
 

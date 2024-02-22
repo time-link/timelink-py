@@ -2,10 +2,9 @@
 from datetime import timedelta, timezone
 from datetime import datetime
 from pydantic import BaseModel
-from timelink.app.models.user import User
 from timelink.app.models.user_database import UserDatabase
 from passlib.context import CryptContext
-from jose import JWTError, jwt
+from jose import JWTError, jwt  # noqa
 
 SECRET_KEY = "cd02c76b7bb2911c8eda7ca38f2a8b1bd15551515cd6341d92ba8cf4e8925b8d"
 ALGORITHM = "HS256"
@@ -28,7 +27,8 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
     Args:
         data (dict): The data to encode in the token
-        expires_delta (timedelta, optional): The time delta for the token to expire. Defaults to None."""
+        expires_delta (timedelta, optional): The time delta for the token to expire. Defaults to None.
+    """
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta

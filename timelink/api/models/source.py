@@ -2,6 +2,7 @@
 (c) Joaquim Carvalho 2023.
 MIT License, no warranties.
 """
+
 from typing import Optional
 
 from sqlalchemy import String, ForeignKey

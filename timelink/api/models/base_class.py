@@ -4,6 +4,7 @@
    https://docs.sqlalchemy.org/en/20/changelog/whatsnew_20.html#whatsnew-20-orm-declarative-typing
 
 """
+
 from typing import Any
 from sqlalchemy.orm import DeclarativeBase  # pylint: disable=import-error
 from sqlalchemy.orm import declared_attr  # pylint: disable=import-error

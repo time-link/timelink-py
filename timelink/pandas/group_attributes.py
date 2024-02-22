@@ -10,7 +10,7 @@ from timelink.pandas.styles import styler_row_colors
 
 def group_attributes(
     group: list,
-    entity_type='entity',
+    entity_type="entity",
     include_attributes=None,
     exclude_attributes=None,
     show_elements=None,
@@ -78,19 +78,20 @@ def group_attributes(
 
     attr = db.get_table("attribute")
 
-    cols.extend([
-        attr.c.the_type,
-        attr.c.the_value,
-        attr.c.the_date,
-        attr.c.obs.label("attr_obs")
-    ])
+    cols.extend(
+        [
+            attr.c.the_type,
+            attr.c.the_value,
+            attr.c.the_date,
+            attr.c.obs.label("attr_obs"),
+        ]
+    )
 
     select_entities = select(entity_model).where(id_col.in_(group))
 
-    stmt = (
-        select_entities.join(attr, attr.c.entity == entity_model.id, isouter=True)
-        .with_only_columns(*cols)
-    )
+    stmt = select_entities.join(
+        attr, attr.c.entity == entity_model.id, isouter=True
+    ).with_only_columns(*cols)
 
     # these should allow sql wild cards
     # but it is not easy in sql
@@ -105,13 +106,13 @@ def group_attributes(
     with mysession as session:
         records = session.execute(stmt)
         col_names = stmt.selected_columns.keys()
-        df = pd.DataFrame.from_records(records, index='id', columns=col_names)
+        df = pd.DataFrame.from_records(records, index="id", columns=col_names)
     return df
 
 
 def display_group_attributes(
     ids,
-    entity_type='entity',
+    entity_type="entity",
     header_elements=None,
     header_attributes=None,
     sort_header=None,
@@ -133,7 +134,7 @@ def display_group_attributes(
     if header_elements is None:
         header_elements = []
     if header_attributes is None:
-        header_attributes = ['%']
+        header_attributes = ["%"]
 
     table_cols = ["the_type", "the_value", "the_date", "attr_obs"]
 

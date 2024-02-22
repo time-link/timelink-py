@@ -13,12 +13,12 @@ from timelink.mhk.utilities import (
     get_dbnames,
     is_mhk_installed,
     get_mhk_info,
-    is_mhk_installed,
 )
 from tests import mhk_absent
 
 if not is_mhk_installed():
     pytest.skip("skipping MHK tests (MHK not present)", allow_module_level=True)
+
 
 @mhk_absent
 def test_get_mhk_env_exists():

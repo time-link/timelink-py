@@ -1,6 +1,7 @@
 """
 Create a dataframe with the values of an attribute
 """
+
 import pandas as pd
 
 from sqlalchemy import select, func, and_, desc

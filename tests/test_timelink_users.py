@@ -58,6 +58,7 @@ dbparam = pytest.mark.parametrize(
     indirect=True,
 )
 
+
 @skip_on_travis
 @dbparam
 def test_create_user_with_properties(dbsystem):

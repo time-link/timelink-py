@@ -3,6 +3,7 @@
 (c) Joaquim Carvalho 2023.
 MIT License, no warranties.
 """
+
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
 # and https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table

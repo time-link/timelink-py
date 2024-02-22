@@ -57,9 +57,9 @@ def is_postgres_running():
     """Check if postgres is running in docker"""
     client = docker.from_env()
 
-    postgres_containers: list[
-        docker.models.containers.Container
-    ] = client.containers.list(filters={"ancestor": "postgres"})
+    postgres_containers: list[docker.models.containers.Container] = (
+        client.containers.list(filters={"ancestor": "postgres"})
+    )
     return len(postgres_containers) > 0
 
 
@@ -154,9 +154,7 @@ def start_postgres_server(
     elapsed_time = 0
     # this necessary to get the status
     cont = client.containers.get(psql_container.id)
-    while (
-        cont.status not in ["running"] and elapsed_time < timeout
-    ):
+    while cont.status not in ["running"] and elapsed_time < timeout:
         time.sleep(stop_time)
         cont.reload()
         elapsed_time += stop_time

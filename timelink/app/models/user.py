@@ -80,6 +80,7 @@ class User(Base):
     - created: datetime, required, default=now
     - updated: datetime, optional, default=now, onupdate=now
     """
+
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)

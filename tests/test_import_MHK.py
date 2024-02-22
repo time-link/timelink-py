@@ -19,6 +19,7 @@ if not is_mhk_installed():
 
 pytestmark = skip_on_travis
 
+
 @pytest.fixture(scope="module")
 def dbsystem():
     database = TimelinkMHK(conn_string)

@@ -4,18 +4,20 @@ from fastapi import Depends
 from fastapi import status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException
-from jose import JWTError, jwt
+from jose import JWTError
 from timelink.app.models.user_database import UserDatabase
 from timelink.app.schemas.user import UserSchema
 
 
-from timelink.app.services.auth import decode_token, TokenData
+from timelink.app.services.auth import decode_token
 from timelink.app.models.user import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
-async def get_current_user(request: Request, token: Annotated[str, Depends(oauth2_scheme)]):
+async def get_current_user(
+    request: Request, token: Annotated[str, Depends(oauth2_scheme)]
+):
     """Get the current user"""
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -39,8 +41,8 @@ async def get_current_user(request: Request, token: Annotated[str, Depends(oauth
     return user_schema
 
 
-async def get_current_active_user(request: Request,
-    current_user: Annotated[User, Depends(get_current_user)]
+async def get_current_active_user(
+    request: Request, current_user: Annotated[User, Depends(get_current_user)]
 ):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
@@ -70,6 +72,7 @@ def get_db(request: Request):
     """Get the database request"""
     webapp = request.app.webapp
     user = Annotated[User, Depends(get_current_active_user)]
-    project = webapp.projects[user.name]
-    project_db = project.db
-    return webapp.db
+    # Todo: Determine the user's project
+    # project = webapp.projects[user.name]
+    # project_db = project.db
+    return webapp.get_current_project_db(user)

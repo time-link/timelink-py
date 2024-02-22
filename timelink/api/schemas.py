@@ -12,6 +12,7 @@ Here we put the pydantic models that are not related to
 database models like search requests and search results.
 
 """
+
 # pylint: disable=too-few-public-methods
 
 from typing import List, Optional
@@ -21,7 +22,6 @@ from pydantic import BaseModel, ConfigDict  # pylint: disable=import-error
 
 
 class EntitySchema(BaseModel):
-
     """Pydantic Schema for Entity"""
 
     id: str

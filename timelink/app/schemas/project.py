@@ -1,10 +1,10 @@
 from typing import Optional
 from pydantic import BaseModel, AnyUrl
-from timelink.kleio.kleio_server import KleioServer
-from timelink.api.database import TimelinkDatabase
+from timelink.kleio.kleio_server import KleioServer  # noqa
+from timelink.api.database import TimelinkDatabase  # noqa
 
 
 class Project(BaseModel):
     name: str
-    DatabaseURL: Optional[AnyUrl] = None
+    databaseURL: Optional[AnyUrl] = None
     kleioServerURL: Optional[AnyUrl] = None

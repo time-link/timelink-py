@@ -9,7 +9,9 @@ from sqlalchemy.orm import declared_attr  # pylint: disable=import-error
 class Base(DeclarativeBase):
     """Base class, all modules must import this to share Metadata"""
 
-    __allow_unmapped__: bool = True  # see https://docs.sqlalchemy.org/en/20/changelog/migration_20.html#migration-20-step-six
+    __allow_unmapped__: bool = (
+        True  # see https://docs.sqlalchemy.org/en/20/changelog/migration_20.html#migration-20-step-six
+    )
     __table_args__: Any = {"extend_existing": True}
 
     id: Any

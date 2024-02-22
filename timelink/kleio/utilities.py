@@ -5,6 +5,7 @@
 
 Kleio Groups are the building blocks for transcription of historical sources.
 """
+
 import textwrap
 from os import linesep as nl
 

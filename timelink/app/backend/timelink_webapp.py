@@ -7,7 +7,7 @@ from typing import List
 import pandas
 from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
 from timelink.kleio.kleio_server import KleioServer
-from timelink.app.models import UserDatabase, User, UserProperty # noqa
+from timelink.app.models import UserDatabase, User, UserProperty  # noqa
 from timelink.app.schemas.project import Project
 
 
@@ -33,8 +33,8 @@ class TimelinkWebApp:
         timelink_url: str = "http://localhost:8000",
         timelink_home: str = None,
         kleio_server: KleioServer = None,
-        users_db_type: str = 'sqlite',
-        users_db_name: str = 'timelink_users.sqlite',
+        users_db_type: str = "sqlite",
+        users_db_name: str = "timelink_users.sqlite",
         kleio_image=None,
         kleio_version=None,
         kleio_token=None,
@@ -139,9 +139,7 @@ class TimelinkWebApp:
         self.update_projects()
 
     def get_info(self):
-        """Print information about the Timel8nk Webapp object
-
-        """
+        """Print information about the Timel8nk Webapp object"""
         info_dict = {
             "Timelink home": self.timelink_home,
             "Timelink host URL": self.host_url,
@@ -155,11 +153,13 @@ class TimelinkWebApp:
 
         kserver: KleioServer = self.kleio_server
         if kserver is not None:
-            info_dict.update({
-                "Kleio server token": kserver.get_token(),
-                "Kleio server URL": kserver.get_url(),
-                "Kleio server home": kserver.get_kleio_home(),
-            })
+            info_dict.update(
+                {
+                    "Kleio server token": kserver.get_token(),
+                    "Kleio server URL": kserver.get_url(),
+                    "Kleio server home": kserver.get_kleio_home(),
+                }
+            )
             if kserver.container is not None:
                 info_dict["Kleio server container"] = kserver.container.name
             info_dict["Kleio version requested"] = self.kleio_version
@@ -172,12 +172,14 @@ class TimelinkWebApp:
         if self.db_type == "sqlite":
             info_dict["SQLite directory"] = self.sqlite_dir
         elif self.db_type == "postgres":
-            info_dict.update({
-                "Postgres image": self.postgres_image,
-                "Postgres version": self.postgres_version,
-                "Postgres user": self.db.db_user,
-                "Postgres password": self.db.db_pwd,
-            })
+            info_dict.update(
+                {
+                    "Postgres image": self.postgres_image,
+                    "Postgres version": self.postgres_version,
+                    "Postgres user": self.db.db_user,
+                    "Postgres password": self.db.db_pwd,
+                }
+            )
         return info_dict
 
     def get_project_dirs(self):
@@ -189,10 +191,14 @@ class TimelinkWebApp:
         # get the sub directories of timelink-home/projects
         projects_dir = os.path.join(self.timelink_home, "projects")
         if os.path.exists(projects_dir):
-            projects = [d for d in os.listdir(projects_dir) if os.path.isdir(os.path.join(projects_dir, d))]
+            projects = [
+                d
+                for d in os.listdir(projects_dir)
+                if os.path.isdir(os.path.join(projects_dir, d))
+            ]
         return projects
 
-    def update_projects(self)-> List[Project]:
+    def update_projects(self) -> List[Project]:
         """Get the list of projects"""
         pdirs = self.get_project_dirs()
         existing_project_names = [p.name for p in self.projects]

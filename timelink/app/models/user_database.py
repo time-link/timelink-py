@@ -202,9 +202,7 @@ class UserDatabase:
                 session = self.current_session
 
         if self.get_user_by_email(user.email, session=session) is not None:
-            raise ValueError(
-                "An user with that email already exists."
-            )
+            raise ValueError("An user with that email already exists.")
 
         session.add(user)
 

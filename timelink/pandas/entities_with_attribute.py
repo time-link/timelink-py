@@ -73,7 +73,7 @@ def entities_with_attribute(
     entity_model = db.get_model(entity_type)
     # get the columns of the entity table, check if more_info is valid
     entity_columns = select(entity_model).selected_columns.keys()
-    entity_id_col = select(entity_model).selected_columns['id']
+    entity_id_col = select(entity_model).selected_columns["id"]
 
     if show_elements is None:
         show_elements = []
@@ -118,7 +118,9 @@ def entities_with_attribute(
         with db.session() as session:
             filtered_by_rows = session.execute(filter_by_sql)
             col_names = filter_by_sql.selected_columns.keys()
-            filtered_df = pd.DataFrame.from_records(filtered_by_rows, index=["id"], columns=col_names)
+            filtered_df = pd.DataFrame.from_records(
+                filtered_by_rows, index=["id"], columns=col_names
+            )
 
         stmt = (
             (select(entity_model).where(entity_id_col.in_(filter_by)))

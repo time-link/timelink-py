@@ -544,7 +544,7 @@ def find_local_kleio_home(path: str = None):
                 break
             dir_path = os.path.dirname(dir_path)
             if dir_path == os.path.dirname(dir_path):
-                break   # we reached the root
+                break  # we reached the root
         if kleio_home is None:
             # check if current_dir is "tests"
             if os.path.isdir(f"{current_dir}/tests"):
@@ -791,10 +791,12 @@ def start_kleio_server(
             get_version = version
 
         # Pull the latest image
-        latest_image = client.images.pull('timelinkserver/kleio-server', tag=get_version)
+        latest_image = client.images.pull(
+            "timelinkserver/kleio-server", tag=get_version
+        )
 
         # Get the currently used image
-        current_image = client.images.get(f'timelinkserver/kleio-server:{get_version}')
+        current_image = client.images.get(f"timelinkserver/kleio-server:{get_version}")
 
         # Compare the IDs
         if latest_image.id != current_image.id:
@@ -863,9 +865,7 @@ def start_kleio_server(
     elapsed_time = 0
     # this necessary to get the status
     cont = client.containers.get(kleio_container.id)
-    while (
-        cont.status not in ["running"] and elapsed_time < timeout
-    ):
+    while cont.status not in ["running"] and elapsed_time < timeout:
         sleep(stop_time)
         cont.reload()
         elapsed_time += stop_time

@@ -54,7 +54,11 @@ from timelink.app.dependencies import get_user_db, get_kleio_server
 from timelink.app.models.user import User, UserProperty
 from timelink.app.models.user_database import UserDatabase
 from timelink.app.services.auth import fake_hash_password
-from timelink.kleio import api_permissions_normal, kleio_server as kserver, token_info_normal
+from timelink.kleio import (
+    api_permissions_normal,
+    kleio_server as kserver,
+    token_info_normal,
+)
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
@@ -77,25 +81,28 @@ app = FastAPI()
 
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
 
-    initial_user: List[User] = User(name="admin",
-                                    hashed_password=fake_hash_password(settings.timelink_admin_pwd),
-                                    fullname="Joaquim Carvalho",
-                                    email="joaquim@mpu.edu.mo",
-                                    nickname="jrc")
+    initial_user: List[User] = User(
+        name="admin",
+        hashed_password=fake_hash_password(settings.timelink_admin_pwd),
+        fullname="Joaquim Carvalho",
+        email="joaquim@mpu.edu.mo",
+        nickname="jrc",
+    )
     initial_user.hashed_password = get_password_hash(settings.timelink_admin_pwd)
     admin_role: UserProperty = UserProperty(name="timelink.role", value="admin")
     initial_user.properties.append(admin_role)
-    webapp = TimelinkWebApp(app_name = settings.timelink_app_name,
-                            users_db_name=settings.timelink_users_db_name,
-                            users_db_type=settings.timelink_users_db_type,
-                            initial_users=[initial_user]
+    webapp = TimelinkWebApp(
+        app_name=settings.timelink_app_name,
+        users_db_name=settings.timelink_users_db_name,
+        users_db_type=settings.timelink_users_db_type,
+        initial_users=[initial_user],
     )
 
     app.state.webapp = webapp
     app.state.status = "started"
 
 
-app.mount("/static", StaticFiles(packages=[('timelink','app/static')]), name="static")
+app.mount("/static", StaticFiles(packages=[("timelink", "app/static")]), name="static")
 
 # this is how to load the templates from inside the package
 env = Environment(loader=PackageLoader("timelink", "app/templates"))
@@ -105,7 +112,7 @@ templates = Jinja2Templates(env=env)
 @app.post("/token")
 async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
 
-    webapp:TimelinkWebApp = app.state.webapp
+    webapp: TimelinkWebApp = app.state.webapp
     user_db: UserDatabase = webapp.users_db
     user = authenticate_user(user_db, form_data.username, form_data.password)
     if not user:
@@ -116,23 +123,26 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
         )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"username": user.name, "userid": user.id}, expires_delta=access_token_expires
+        data={"username": user.name, "userid": user.id},
+        expires_delta=access_token_expires,
     )
     return Token(access_token=access_token, token_type="bearer")
 
 
 @app.get("/test_token", response_model=UserSchema)
-async def test_token(current_user: Annotated[UserSchema, Depends(get_current_active_user)],):
+async def test_token(
+    current_user: Annotated[UserSchema, Depends(get_current_active_user)],
+):
     return current_user
 
 
-@app.get("/www/show/{id}",
-         response_class=HTMLResponse)
+@app.get("/www/show/{id}", response_class=HTMLResponse)
 async def show_item(request: Request, id: str):
     # problem here is that I need the current project
     return templates.TemplateResponse(
         request=request, name="item.html", context={"id": id}
     )
+
 
 @app.post("/web/search/", response_model=List[schemas.SearchResults])
 async def search(search_request: schemas.SearchRequest):
@@ -184,8 +194,7 @@ async def set_syspar(
 
 @app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
-    q: list[str]
-    | None = Query(
+    q: list[str] | None = Query(
         default=None,
         title="Name of system parameter",
         description="Multiple values allowed," "if empty return all",
@@ -210,8 +219,7 @@ async def set_syslog(syslog: models.SysLogCreateSchema, db: Session = Depends(ge
 
 @app.get("/syslog", response_model=list[models.SysLogSchema])
 async def get_syslog(
-    nlines: int
-    | None = Query(
+    nlines: int | None = Query(
         default=10,
         title="Get last N lines of log",
         description="If number of lines not specified" "return last 10",
@@ -313,26 +321,33 @@ async def translate(
     """
     return kserver.translate(path, recurse, spawn)
 
+
 # Web zone
+
 
 @app.get("/")
 async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
-    webapp:TimelinkWebApp = request.app.state.webapp
-    projects:List[Project] = webapp.get_projects()
-    context = { "welcome_message": "Welcome to Timelink API and Webapp",
-               "webapp_info": webapp.get_info()}
+    webapp: TimelinkWebApp = request.app.state.webapp
+    context = {
+        "welcome_message": "Welcome to Timelink API and Webapp",
+        "webapp_info": webapp.get_info(),
+        "projects": webapp.projects,
+    }
     return templates.TemplateResponse(
         request=request, name="index.html", context=context
     )
 
+
 @app.get("/www/templates/{template_name}")
 async def get_template(request: Request, template_name: str):
     """Get a template"""
-    webapp:TimelinkWebApp = request.app.state.webapp
-    context = { "welcome_message": "Welcome to Timelink API and Webapp",
-               "webapp_info": webapp.get_info(),
-               "webapp_projects": webapp.projects}
+    webapp: TimelinkWebApp = request.app.state.webapp
+    context = {
+        "welcome_message": "Welcome to Timelink API and Webapp",
+        "webapp_info": webapp.get_info(),
+        "webapp_projects": webapp.projects,
+    }
 
     return templates.TemplateResponse(
         request=request, name=template_name, context=context
@@ -407,4 +422,3 @@ async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):  # noqa:
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
-

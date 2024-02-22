@@ -31,7 +31,6 @@ class SysPar(Base):
 
 
 class ParTypeSchema(str, Enum):
-
     """Parameter type
 
     Fields:

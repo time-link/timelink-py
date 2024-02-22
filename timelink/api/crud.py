@@ -1,4 +1,5 @@
 """ CRUD operations for the timelink API. """
+
 from datetime import datetime
 from sqlalchemy.orm import Session  # pylint: disable=import-error
 from timelink.api import models
