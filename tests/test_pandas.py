@@ -21,6 +21,8 @@ pytestmark = skip_on_travis
 @pytest.fixture(scope="module")
 def dbsystem(request):
     """Create a database for testing"""
+    db_user = None
+    db_pwd = None
     db_type, db_name, db_url, db_user, db_pwd = request.param
     if db_type == "postgres" and is_postgres_running():
         db_user = get_postgres_container_user()
