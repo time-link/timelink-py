@@ -33,6 +33,7 @@ from sqlalchemy_utils import create_database
 import docker  # pylint: disable=import-error
 
 import timelink
+from timelink.kleio.kleio_server import is_docker_running
 from timelink.mhk import utilities
 from timelink.api import models  # pylint: disable=unused-import
 from timelink.api.models import Entity, PomSomMapper
@@ -55,6 +56,11 @@ postgres_container: docker.models.containers.Container = None
 
 def is_postgres_running():
     """Check if postgres is running in docker"""
+
+    if not is_docker_running():
+        warnings.warn("Docker is not running", stacklevel=2)
+        return False
+
     client = docker.from_env()
 
     postgres_containers: list[docker.models.containers.Container] = (
@@ -72,6 +78,9 @@ def get_postgres_container() -> docker.models.containers.Container:
         docker.models.containers.Container: the postgres container
     """
 
+    if not is_docker_running():
+        raise RuntimeError("Docker is not running")
+
     client: docker.DockerClient = docker.from_env()
     postgres_containers: docker.models.container.Container = client.containers.list(
         filters={"ancestor": "postgres"}
@@ -84,6 +93,9 @@ def get_postgres_container_pwd() -> str:
     Returns:
         str: the postgres container password
     """
+    if not is_docker_running():
+        raise RuntimeError("Docker is not running")
+
     if is_postgres_running():
         container = get_postgres_container()
         pwd = [
@@ -99,6 +111,9 @@ def get_postgres_container_user() -> str:
     Returns:
         str: the postgres container user
     """
+    if not is_docker_running():
+        raise RuntimeError("Docker is not running")
+
     if is_postgres_running():
         container = get_postgres_container()
         user = [
@@ -123,6 +138,9 @@ def start_postgres_server(
         dbpass (str): database password
         version (str | None, optional): postgres version; defaults to "latest".
     """
+    if not is_docker_running():
+        raise RuntimeError("Docker is not running")
+
     # check if postgres is already running in docker
     if is_postgres_running():
         return get_postgres_container()
@@ -193,6 +211,9 @@ def get_postgres_dbnames():
                 AND datallowconn
                 AND datname <> 'postgres';
     """
+
+    if not is_docker_running():
+        raise RuntimeError("Docker is not running")
 
     container = start_postgres_server()
     if container is not None:
