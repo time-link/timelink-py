@@ -234,10 +234,10 @@ def test_import_identifications(dbsystem):
             raise
         sfile = stats["file"]
         assert "identification" in sfile.name
-        real_peron = session.get(Entity, "rp-46")
-        kleio = real_peron.to_kleio()
+        real_person = session.get(Entity, "rp-46")
+        kleio = real_person.to_kleio()
         assert len(kleio) > 0
-        assert real_peron is not None, (
+        assert real_person is not None, (
             "could not get a real person from identifications import"
         )  # noqa
 
