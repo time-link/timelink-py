@@ -88,14 +88,12 @@ def test_get_kleio_server_container(setup):
     assert container is not None
 
 
-@skip_on_travis
 def test_get_kleio_server_token(setup):
     kserver: KleioServer = setup
     """Test if kleio server token is available"""
     assert kserver.get_token() is not None
 
 
-@skip_on_travis
 def test_kleio_get_url(setup):
     kserver: KleioServer = setup
     """Test if kleio server url is available"""
@@ -108,7 +106,6 @@ def test_make_token():
     assert KleioServer.make_token() is not None
 
 
-@skip_on_travis
 def test_stop_kleio_server(setup):
     kserver: KleioServer = setup
     kome: str = kserver.get_kleio_home()
@@ -127,7 +124,6 @@ def test_stop_kleio_server(setup):
     assert KleioServer.is_server_running(kleio_home=kleio_home) is True
 
 
-@skip_on_travis
 def test_generate_limited_token(setup):
     kserver: KleioServer = setup
     """Generate a token with limited privileges"""
@@ -156,7 +152,6 @@ def test_generate_limited_token(setup):
         assert True
 
 
-@skip_on_travis
 def test_generate_normal_token(setup):
     """Generate a token for normal user"""
     user: str = "normal_user"
@@ -194,7 +189,6 @@ def test_generate_normal_token(setup):
     assert KLEIO_NORMAL_TOKEN is not None
 
 
-@skip_on_travis
 def test_get_kserver_home():
     """Test get the mapped kleio home from running server"""
 
@@ -202,7 +196,6 @@ def test_get_kserver_home():
     assert kleio_home is not None
 
 
-@skip_on_travis
 def test_translations_get(setup):
     """Test if translations are retrieved"""
     path: str = "projects/test-project/kleio/reference_sources/linked_data"
@@ -225,7 +218,6 @@ def test_translations_get(setup):
     print()
 
 
-@skip_on_travis
 def test_translations_translate(setup):
     """Test if translations are translated"""
     path: str = "projects/test-project/kleio/reference_sources/linked_data"
@@ -237,7 +229,6 @@ def test_translations_translate(setup):
     assert translations is not None
 
 
-@skip_on_travis
 def test_translations_processing(setup):
     """Test translations in process"""
     path: str = "projects/test_project/"
@@ -256,7 +247,6 @@ def test_translations_processing(setup):
         )
 
 
-@skip_on_travis
 def test_translations_queued(setup):
     """Test translation queued"""
     path: str = "projects/test-project/"
@@ -275,7 +265,6 @@ def test_translations_queued(setup):
         )
 
 
-@skip_on_travis
 def test_translations_clean(setup):
     """Test if translations results are deleted"""
     path: str = "projects/test-project/kleio/reference_sources/linked_data"
@@ -303,7 +292,6 @@ def test_translations_clean(setup):
     assert translations is not None
 
 
-@skip_on_travis
 def test_sources_get(setup):
     """Test if sources are retrieved"""
     path: str = ""
@@ -314,7 +302,6 @@ def test_sources_get(setup):
     assert sources is not None
 
 
-@skip_on_travis
 def test_homepage_get(setup):
     """Test if homepage is retrieved"""
     url = "https://timelink.uc.pt/kleio"
@@ -332,7 +319,6 @@ def test_homepage_get(setup):
     assert version is not None
 
 
-@skip_on_travis
 def test_start_kleio_server_env():
     """Test if kleio server is started with env variables"""
     khome = f"{TEST_DIR}/timelink-home"
