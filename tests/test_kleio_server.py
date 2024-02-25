@@ -7,7 +7,7 @@ from enum import Enum
 import time
 import pytest
 
-from tests import skip_on_travis, TEST_DIR
+from tests import TEST_DIR
 import timelink.kleio.kleio_server as kleio_server
 from timelink.kleio.schemas import KleioFile, TokenInfo
 from timelink.kleio.kleio_server import KleioServer, KleioServerForbidenException

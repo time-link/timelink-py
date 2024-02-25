@@ -48,7 +48,6 @@ def dbsystem(request):
         database.session().close()
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -77,7 +76,6 @@ def test_import_xml(dbsystem):
     assert len(kleio) > 0
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -104,7 +102,6 @@ def test_import_linked_data_attributes(dbsystem):
     assert len(kleio) > 0
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -131,7 +128,6 @@ def test_import_linked_data_geoentites(dbsystem):
     assert len(kleio) > 0
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -158,7 +154,6 @@ def test_import_atr_date(dbsystem):
     assert len(kleio) > 0
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -191,7 +186,6 @@ def test_import_with_custom_mapping(dbsystem):
         assert len(test_kleio) > 0
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -220,7 +214,6 @@ def test_import_with_many(dbsystem):
         )  # noqa
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -249,7 +242,6 @@ def test_import_identifications(dbsystem):
         )  # noqa
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -277,7 +269,6 @@ def test_import_git_hub(dbsystem):
         pass
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -338,7 +329,6 @@ def test_import_from_kleio_server(dbsystem):
         raise AssertionError("no valid translations found in Kleio Server")
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
@@ -366,7 +356,6 @@ def test_import_status_1(dbsystem):
     assert import_status is not None
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [

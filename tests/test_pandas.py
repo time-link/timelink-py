@@ -43,7 +43,6 @@ def dbsystem(request):
         db.close()
 
 
-@skip_on_travis
 @pytest.mark.parametrize(
     "dbsystem",
     [
