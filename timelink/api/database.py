@@ -405,7 +405,7 @@ class TimelinkDatabase:
                     )
                 self.db_url = (
                     f"postgresql://{self.db_user}:"
-                    f"{self.db_pwd}@127.0.0.1/{self.db_name}"
+                    f"{self.db_pwd}@localhost/{self.db_name}"
                 )
                 self.db_container = start_postgres_server(
                     self.db_name, self.db_user, self.db_pwd
