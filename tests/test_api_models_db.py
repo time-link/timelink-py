@@ -144,7 +144,6 @@ def test_create_nattribute(get_db, kgroup_nested):
     assert nattr is not None
 
 
-@skip_on_travis
 def test_entity_contains(get_db):
     """Test entity contains relationship
 
