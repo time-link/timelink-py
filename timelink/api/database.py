@@ -174,6 +174,7 @@ def start_postgres_server(
     cont = client.containers.get(psql_container.id)
     while cont.status not in ["running"] and elapsed_time < timeout:
         time.sleep(stop_time)
+        logging.debug(f"Waiting for postgres server to start: {elapsed_time} seconds")
         cont = client.containers.get(psql_container.id)
         elapsed_time += stop_time
     if cont.status != "running":
