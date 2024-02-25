@@ -210,7 +210,7 @@ def test_import_with_many(dbsystem):
         kleio = estudante.to_kleio()
         assert len(kleio) > 0
         assert estudante is not None, (
-            "could not get an entity from big import" @ skip_on_travis
+            "could not get an entity from big import"
         )  # noqa
 
 
@@ -238,7 +238,7 @@ def test_import_identifications(dbsystem):
         kleio = real_peron.to_kleio()
         assert len(kleio) > 0
         assert real_peron is not None, (
-            "could not get a real person from identifications import" @ skip_on_travis
+            "could not get a real person from identifications import"
         )  # noqa
 
 
