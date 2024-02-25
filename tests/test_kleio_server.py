@@ -4,12 +4,14 @@ https://github.com/time-link/timelink-kleio-server
 """
 
 from enum import Enum
+import time
 import pytest
 
 from tests import skip_on_travis, TEST_DIR
 import timelink.kleio.kleio_server as kleio_server
 from timelink.kleio.schemas import KleioFile, TokenInfo
-from timelink.kleio.kleio_server import KleioServer
+from timelink.kleio.kleio_server import KleioServer, KleioServerForbidenException
+import re
 
 KLEIO_ADMIN_TOKEN: str = None
 KLEIO_LIMITED_TOKEN: str = None
@@ -152,6 +154,12 @@ def test_generate_limited_token(setup):
     limited_token = kserver.generate_token(user, info)
     assert limited_token is not None
 
+    try:
+        kserver.translation_status("", recurse=False, token=limited_token)
+        raise AssertionError("This should not happen, user has no privileges")
+    except KleioServerForbidenException:
+        assert True
+
 
 @skip_on_travis
 def test_generate_normal_token(setup):
@@ -207,7 +215,9 @@ def test_translations_get(setup):
     status: str = None
 
     kserver: KleioServer = setup
-    translations = kserver.translation_status(path, recurse, status)
+    translations = kserver.translation_status(path,
+                                              recurse=recurse,
+                                              status=status)
     assert len(translations) > 0
 
     kfile: KleioFile
@@ -307,3 +317,67 @@ def test_sources_get(setup):
     kserver: KleioServer = setup
     sources = kserver.get_sources(path, recurse)
     assert sources is not None
+
+
+@skip_on_travis
+def test_homepage_get(setup):
+    """Test if homepage is retrieved"""
+    url = "https://timelink.uc.pt/kleio"
+    ks = KleioServer.attach(url, '', '')
+    home = ks.get_home_page()
+    # extract lines with pattern "([A-Za-z_]+):(.*)"
+    pattern = re.compile(r"([A-Za-z_\ ]*):(.*)")
+
+    matches = pattern.findall(home)
+    home_page_info = {}
+    for key, value in matches:
+        print(f"{key} = {value}")
+        home_page_info[key] = value
+    version = home_page_info['Version']
+    assert version is not None
+
+
+@skip_on_travis
+def test_start_kleio_server_env():
+    """Test if kleio server is started with env variables"""
+    khome = f"{TEST_DIR}/timelink-home"
+    kadmin_token = "0123456789"
+    kserver_port = 8089
+    kserver_exposed_port = 8989
+    kworkers = 5
+    kleio_conf_dir = "/kleio-home/systems/conf/kleio"
+    kleio_source_dir = "/kleio-home/projects/test-project/sources"
+    kleio_structure_dir = "/kleio-home/projects/test-project/structures"
+    kleio_default_stru = "/kleio-home/projects/test-project/structures/sources.str"
+    kleio_token_db = "/kleio-home/systems/conf/kleio/tokens.db"
+    kleio_debug = "true"
+
+    ks = KleioServer.start(
+        kleio_home=khome,
+        kleio_admin_token=kadmin_token,
+        kleio_server_port=kserver_port,
+        kleio_external_port=kserver_exposed_port,
+        kleio_server_workers=kworkers,
+        kleio_idle_timeout=60,
+        kleio_conf_dir=kleio_conf_dir,
+        kleio_source_dir=kleio_source_dir,
+        kleio_stru_dir=kleio_structure_dir,
+        kleio_default_stru=kleio_default_stru,
+        kleio_token_db=kleio_token_db,
+        kleio_debug=kleio_debug,
+        reuse=False,
+        update=False)
+
+    time.sleep(3)
+    home = ks.get_home_page()
+    # extract lines with pattern "([A-Za-z_]+):(.*)"
+    pattern = re.compile(r"([A-Za-z_\ ]*):(.*)")
+
+    matches = pattern.findall(home)
+    home_page_info = {}
+    for key, value in matches:
+        print(f"{key} = {value}")
+        home_page_info[key] = value
+    assert home_page_info['Workers'].strip() == str(kworkers), "number of works do not match"
+    ptoken = home_page_info['Kleio_admin_token'].strip()
+    assert ptoken == kadmin_token[:5], "token does not match"

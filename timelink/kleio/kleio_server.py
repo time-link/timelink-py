@@ -15,6 +15,22 @@ import urllib.request
 from .schemas import KleioFile, TokenInfo
 
 
+class KleioServerException(Exception):
+    pass
+
+
+class KleioServerForbidenException(KleioServerException):
+    """Corresponds to json_rpc error code -32006 or HTTP 403"""
+
+    pass
+
+
+class KleioServerDockerException(KleioServerException):
+    """Problem with docker"""
+
+    pass
+
+
 class KleioServer:
     """This class interfaces to a Kleio server through its JSON-RPC api.
     It also provides convenience methods
@@ -38,8 +54,8 @@ class KleioServer:
     host: str
     #: kleio server url
     url: str
-    #: kleio server token
-    token: str
+    #: kleio server admin token
+    kleio_admin_token: str
     #: kleio server home directory
     kleio_home: str
     #: kleio server container
@@ -50,7 +66,17 @@ class KleioServer:
         kleio_image: str = "timelinkserver/kleio-server",
         kleio_version: str | None = "latest",
         kleio_home: str | None = None,
-        kleio_token: str | None = None,
+        kleio_admin_token: str | None = None,
+        kleio_server_port="8088",
+        kleio_external_port="8089",
+        kleio_server_workers="3",
+        kleio_idle_timeout=900,
+        kleio_conf_dir=None,
+        kleio_source_dir=None,
+        kleio_stru_dir=None,
+        kleio_token_db=None,
+        kleio_default_stru=None,
+        kleio_debug=None,
         consistency: str = "cached",
         port: int = None,
         update: bool = False,
@@ -60,12 +86,29 @@ class KleioServer:
         """Starts a kleio server in docker
 
         Args:
-            image (str): kleio server image, defaults to "timelinkserver/kleio-server"
-            version (str, optional): kleio-server version, defaults to "latest"
+            kleio_image (str): kleio server image, defaults to "timelinkserver/kleio-server"
+            kleio_version (str, optional): kleio-server image version, defaults to "latest"
             kleio_home (str, optional): kleio home directory,
                                         defaults to None -> current directory
-            token (str, optional): kleio server token,
+            kleio_token (str, optional): kleio server admin token,
                                     defaults to None -> generate a random token
+            kleio_server_port (str, optional): kleio server port (in the container),
+                                                 defaults to "8088".
+            kleio_external_port (str, optional): kleio server external port (in the host),
+                                                    defaults to "8089".
+            kleio_server_workers (str, optional): number kleio server workers, defaults to "3".
+            kleio_idle_timeout (int, optional): kleio server idle timeout, defaults to 900.
+            kleio_conf_dir (str, optional): kleio server configuration directory,
+                                            defaults to None.
+            kleio_source_dir (str, optional): kleio server sources directory,
+                                            defaults to None.
+            kleio_stru_dir (str, optional): kleio server structures directory,
+                                            defaults to None.
+            kleio_token_db (str, optional): kleio server token database,
+                                            defaults to None.
+            kleio_default_stru (str, optional): kleio server default structure,
+                                            defaults to None.
+            kleio_debug (str, optional): kleio server debug level, defaults to None.
             consistency (str, optional): consistency of the volume mount, defaults to "cached"
             port (int, optional): port to map to 8088,
                                     defaults to None -> find a free port starting at 8088
@@ -88,9 +131,18 @@ class KleioServer:
             image=kleio_image,
             version=kleio_version,
             kleio_home=kleio_home,
-            token=kleio_token,
+            kleio_admin_token=kleio_admin_token,
+            kleio_server_port=kleio_server_port,
+            kleio_external_port=kleio_external_port,
+            kleio_server_workers=kleio_server_workers,
+            kleio_idle_timeout=kleio_idle_timeout,
+            kleio_conf_dir=kleio_conf_dir,
+            kleio_source_dir=kleio_source_dir,
+            kleio_stru_dir=kleio_stru_dir,
+            kleio_token_db=kleio_token_db,
+            kleio_default_stru=kleio_default_stru,
+            kleio_debug=kleio_debug,
             consistency=consistency,
-            port=port,
             update=update,
             reuse=reuse,
             stop_duplicates=stop_duplicates,
@@ -252,7 +304,8 @@ class KleioServer:
             if kleio_home is None:
                 raise ValueError("kleio_home must be provided if container is None")
             self.url = url
-            self.token = token
+
+            self.kleio_admin_token = token
             self.kleio_home = kleio_home
             self.container = None
             return
@@ -263,15 +316,12 @@ class KleioServer:
         self.container = container
         port = None
         try:
-            port = container.attrs["NetworkSettings"]["Ports"]["8088/tcp"][0][
-                "HostPort"
-            ]
-        except KeyError:
-            pass
-        if port is None:
-            port = container.attrs["HostConfig"]["PortBindings"]["8088/tcp"][0][
-                "HostPort"
-            ]
+            p = list(container.attrs["HostConfig"]["PortBindings"])[0]
+            port = container.attrs["HostConfig"]["PortBindings"][p][0]["HostPort"]
+        except Exception as e:
+            error_message = f"Could not get port from container {e}"
+            logging.error(error_message)
+            raise KleioServerDockerException(error_message)
 
         self.url = f"http://127.0.0.1:{port}"
         self.kleio_home = [
@@ -279,7 +329,7 @@ class KleioServer:
             for mount in container.attrs["Mounts"]
             if mount["Destination"] == "/kleio-home"
         ][0]
-        self.token = [
+        self.kleio_admin_token = [
             env
             for env in container.attrs["Config"]["Env"]
             if env.startswith("KLEIO_ADMIN_TOKEN")
@@ -291,7 +341,7 @@ class KleioServer:
         Returns:
             str: kleio server token
         """
-        return self.token
+        return self.kleio_admin_token
 
     def get_kleio_home(self):
         """Get the kleio server home directory
@@ -320,23 +370,28 @@ class KleioServer:
     def __str__(self):
         return f"KleioServer(url={self.url}, kleio_home={self.kleio_home})"
 
-    def call(self, method: str, params: dict):
+    def call(self, method: str, params: dict, token: str = None):
         """Call kleio server API
 
         Args:
             method (str): kleio server API method
             params (dict): kleio server API method parameters
+            token (str, optional): kleio server token; defaults to None -> use admin token
 
         Returns:
             dict: kleio server API response
         """
         url = f"{self.url}/json/"
+
+        if token is None:
+            token = self.kleio_admin_token
+
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.token}",
+            "Authorization": f"Bearer {token}",
         }
         # we add the token to the params
-        params["token"] = self.token
+        params["token"] = token
         rpc = request(method, params=params)
         response = requests.post(url, json=rpc, headers=headers)
         parsed = parse(response.json())
@@ -344,7 +399,11 @@ class KleioServer:
             return parsed.result
         elif isinstance(parsed, Error):
             code, message, data, id = parsed
-            raise Exception(f"Error {code}: {message} ({data} id:{id})")
+            msg = f"Error {code}: {message} ({data} id:{id})"
+            if code == -32006:
+                raise KleioServerForbidenException("Forbiden " + msg)
+            else:
+                raise KleioServer(f"Error {code}: {message} ({data} id:{id})")
         return response
 
     def stop(self):
@@ -378,38 +437,45 @@ class KleioServer:
         return self.call("tokens_generate", pars)
 
     def translation_status(
-        self, path: str, recurse: str, status: str = None
+        self, path: str, recurse: str = "yes", status: str = None, token: str = None
     ) -> List[KleioFile]:
         """Get translations from kleio server
 
-        :param path: path to the directory in sources
-        :type path: str
-        :param recurse: if "yes" recurse in subdirectories
-        :type recurse: str
-        :param status: filter by translation status
-                            V = valid translations
-                            T = need translation (source more recent than translation)
-                            E = translation with errors
-                            W = translation with warnings
-                            P = translation being processed
-                            Q = file queued for translation
-        :type status: str, optional
+        Args:
+            path (str): Path to the directory in sources.
+            recurse (str): If "yes", recurse in subdirectories.
+            status (str, optional): Filter by translation status. Options include:
+                V = valid translations
+                T = need translation (source more recent than translation)
+                E = translation with errors
+                W = translation with warnings
+                P = translation being processed
+                Q = file queued for translation
+            token (str, optional): Kleio server token.
 
-        :return: list of KleioFile objects
-        :rtype: list[KleioFile]
+        Returns:
+            list[KleioFile]: List of KleioFile objects.
+
         """
+        if recurse is True:
+            recurse = "yes"
+        elif recurse is False:
+            recurse = "no"
+
         if status is None:
             pars = {"path": path, "recurse": recurse}
         else:
             pars = {"path": path, "recurse": recurse, "status": status}
-        translations = self.call("translations_get", pars)
+        translations = self.call("translations_get", pars, token=token)
         result = []
         for t in translations:
             kfile = KleioFile(**t)
             result.append(kfile)
         return result
 
-    def translate(self, path: str, recurse: str = "yes", spawn: str = "yes"):
+    def translate(
+        self, path: str, recurse: str = "yes", spawn: str = "yes", token=None
+    ):
         """Translate sources from kleio server
 
         :param path: path to the directory in sources
@@ -423,12 +489,17 @@ class KleioServer:
         :rtype: dict
         """
         pars = {"path": path}
+        if recurse is True:
+            recurse = "yes"
+        elif recurse is False:
+            recurse = "no"
+
         if recurse is not None:
             pars["recurse"] = recurse
         if spawn is not None:
             pars["spawn"] = spawn
 
-        return self.call("translations_translate", pars)
+        return self.call("translations_translate", pars), token
 
     def translation_clean(self, path: str, recurse: str):
         """clean translations from kleio server
@@ -446,7 +517,7 @@ class KleioServer:
         pars = {"path": path, "recurse": recurse}
         return self.call("translations_delete", pars)
 
-    def get_sources(self, path: str, recurse: str):
+    def get_sources(self, path: str, recurse: str, token=None):
         """Get sources from kleio server
 
         :param path: path to the directory in sources
@@ -457,14 +528,20 @@ class KleioServer:
         :return: kleio server API response
         :rtype: dict
         """
-        pars = {"path": path, "recurse": recurse}
-        return self.call("sources_get", pars)
+        if recurse is True:
+            recurse = "yes"
+        elif recurse is False:
+            recurse = "no"
 
-    def get_report(self, rpt_url: str) -> str:
+        pars = {"path": path, "recurse": recurse}
+        return self.call("sources_get", pars, token=token)
+
+    def get_report(self, rpt_url: str, token=None) -> str:
         """Get report from kleio server
 
         :param rpt_url: url of the report in the Kleio Server
         :type rpt_url: str
+
 
         :return: kleio server API response
         :rtype: dict
@@ -474,17 +551,37 @@ class KleioServer:
             rpt_url = f"/{rpt_url}"
 
         server_url = f"{self.get_url()}{rpt_url}"
-        return self.get_url_content(server_url)
+        return self.get_url_content(server_url, token=token)
 
-    def get_url_content(self, server_url: str) -> str:
+    def get_url_content(self, server_url: str, token=None) -> str:
         """Get content from Kleio Server
 
         Args:
             server_url (str): url of the content in the Kleio Server
 
         """
-        headers = {"Authorization": f"Bearer {self.get_token()}"}
+        if token is None:
+            token = self.get_token
+        headers = {"Authorization": f"Bearer {token}"}
         req = urllib.request.Request(server_url, headers=headers)
+        with urllib.request.urlopen(req) as source:
+            response_content = source.read().decode("utf-8")
+            return response_content
+
+    def get_home_page(self, token=None) -> str:
+        """Get home page from Kleio Server
+
+        Args:
+            server_url (str): url of the content in the Kleio Server
+
+        """
+        if token is None:
+            token = self.get_token
+        if token is None:
+            headers = {}
+        else:
+            headers = {"Authorization": f"Bearer {token}"}
+        req = urllib.request.Request(self.get_url(), headers=headers)
         with urllib.request.urlopen(req) as source:
             response_content = source.read().decode("utf-8")
             return response_content
@@ -748,9 +845,18 @@ def start_kleio_server(
     image: str = "timelinkserver/kleio-server",
     version: str | None = None,
     kleio_home: str | None = None,
-    token: str | None = None,
+    kleio_admin_token: str | None = None,
+    kleio_server_port="8088",
+    kleio_external_port=None,
+    kleio_server_workers="3",
+    kleio_idle_timeout=900,
+    kleio_conf_dir=None,
+    kleio_source_dir=None,
+    kleio_stru_dir=None,
+    kleio_token_db=None,
+    kleio_default_stru=None,
+    kleio_debug=None,
     consistency: str = "cached",
-    port: int = None,
     update: bool = False,
     reuse: bool = True,
     stop_duplicates: bool = False,
@@ -761,7 +867,18 @@ def start_kleio_server(
         image (str, optional): kleio server image. Defaults to "time-link/kleio-server".
         version (str | None, optional): kleio-server version; defaults to "latest".
         kleio_home (str | None, optional): kleio home directory. Defaults to current directory.
-        token (str | None, optional): kleio server token; if None -> generate a random token.
+        kleio_admin_token (str | None, optional): kleio server token; if None -> generate a random token.
+        kleio_server_port (str, optional): kleio server port (in the container). Defaults to "8088".
+        kleio_external_port (str, optional): kleio server external port (in the host).
+        kleio_server_workers (str, optional): number kleio server workers. Defaults to "3".
+        kleio_idle_timeout (int, optional): kleio server idle timeout. Defaults to 900.
+        kleio_conf_dir (str, optional): kleio server configuration directory. Defaults to None.
+        kleio_source_dir (str, optional): kleio server sources directory. Defaults to None.
+        kleio_stru_dir (str, optional): kleio server structures directory. Defaults to None.
+        kleio_token_db (str, optional): kleio server token database. Defaults to None.
+        kleio_default_stru (str, optional): kleio server default structure. Defaults to None.
+        kleio_debug (str, optional): kleio server debug level. Defaults to None.
+
         consistency (str, optional): consistency of the volume mount. Defaults to "cached".
         port (int, optional): port to map to 8088, if none find a free port starting at 8088.
         update (bool, optional): update kleio server image. Defaults to False.
@@ -816,7 +933,7 @@ def start_kleio_server(
         else:  # if exists and not reuse stop existing
             exists.stop()
             exists.remove()
-    else:
+    else:  # todo: remove this
         warnings.warn(
             f"Kleio server is already running in docker mapped to {kleio_home}",
             stacklevel=1,
@@ -835,20 +952,41 @@ def start_kleio_server(
     # TODO: remove this
     # os.makedirs(f"{kleio_home}/system/conf/kleio", exist_ok=True)
 
-    if token is None:
-        token = random_token()
+    if kleio_admin_token is None:
+        kleio_admin_token = random_token()
 
-    if port is None:
-        port = find_free_port(8088, 8099)
+    if kleio_external_port is None:
+        kleio_external_port = find_free_port(8088, 8099)
+
+    kleio_env = dict()
+    if kleio_conf_dir is not None:
+        kleio_env["KLEIO_CONF_DIR"] = kleio_conf_dir
+    if kleio_source_dir is not None:
+        kleio_env["KLEIO_SOURCE_DIR"] = kleio_source_dir
+    if kleio_stru_dir is not None:
+        kleio_env["KLEIO_STRU_DIR"] = kleio_stru_dir
+    if kleio_token_db is not None:
+        kleio_env["KLEIO_TOKEN_DB"] = kleio_token_db
+    if kleio_default_stru is not None:
+        kleio_env["KLEIO_DEFAULT_STRU"] = kleio_default_stru
+    if kleio_debug is not None:
+        kleio_env["KLEIO_DEBUG"] = kleio_debug
+    if kleio_server_workers is not None:
+        kleio_env["KLEIO_SERVER_WORKERS"] = kleio_server_workers
+    if kleio_idle_timeout is not None:
+        kleio_env["KLEIO_IDLE_TIMEOUT"] = kleio_idle_timeout
+    if kleio_admin_token is not None:
+        kleio_env["KLEIO_ADMIN_TOKEN"] = kleio_admin_token
+    if kleio_home is not None:
+        kleio_env["KLEIO_HOME"] = kleio_home
+    if kleio_server_port is not None:
+        kleio_env["KLEIO_SERVER_PORT"] = kleio_server_port
 
     kleio_container = client.containers.run(
         image=f"{image}:{version}",
         detach=True,
-        ports={"8088/tcp": port},
-        environment={
-            "KLEIO_ADMIN_TOKEN": token,
-            # TODO ports, workers and DEBUG
-        },
+        ports={f"{kleio_server_port}/tcp": kleio_external_port},
+        environment=kleio_env,
         mounts=[
             docker.types.Mount(
                 target="/kleio-home",
@@ -867,7 +1005,7 @@ def start_kleio_server(
     cont = client.containers.get(kleio_container.id)
     while cont.status not in ["running"] and elapsed_time < timeout:
         sleep(stop_time)
-        cont.reload()
+        cont = client.containers.get(kleio_container.id)
         elapsed_time += stop_time
         continue
 

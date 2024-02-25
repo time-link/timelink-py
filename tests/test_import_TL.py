@@ -293,15 +293,15 @@ def test_import_from_kleio_server(dbsystem):
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
     translations = kserver.translation_status(path="", recurse="yes", status="V")
-
-    counter = 0
-    # Fix this. wait by checking the status of the translation
-    while len(translations) == 0 and counter < 10:
-        kserver.translate(path="", recurse="yes")
-        time.sleep(5)
-        translations = kserver.translation_status(path="", recurse="yes", status="V")
-        counter += 1
-
+    if len(translations) == 0:
+        need_translation = kserver.translation_status(path="", recurse="yes", status="T")
+        one_translation = random.choice(need_translation)
+        kserver.translate(path=one_translation.path, recurse="no")
+        counter = 0
+        while len(translations) == 0 and counter < 10:
+            time.sleep(5)
+            counter += 1
+            translations = kserver.translation_status(path="", recurse="yes", status="V")
     assert len(translations) > 0, "no valid translations found in Kleio Server"
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
@@ -352,7 +352,16 @@ def test_import_status_1(dbsystem):
     """Test if import status is retrieved"""
     kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
     translations = kserver.translation_status(path="", recurse="yes", status="V")
-
+    if len(translations) == 0:
+        need_translation = kserver.translation_status(path="", recurse="yes", status="T")
+        one_translation = random.choice(need_translation)
+        kserver.translate(path=one_translation.path, recurse="no")
+        counter = 0
+        while len(translations) == 0 and counter < 10:
+            time.sleep(5)
+            counter += 1
+            translations = kserver.translation_status(path="", recurse="yes", status="V")
+    assert len(translations) > 0, "no valid translations found in Kleio Server"
     import_status = get_import_status(dbsystem, translations, match_path=True)
     assert import_status is not None
 
@@ -373,7 +382,16 @@ def test_import_sources_with_no_year(dbsystem):
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
     translations = kserver.translation_status(path="", recurse="yes", status="V")
-    assert len(translations) > 0, "no valid translations found in Kleio Server"
+    if len(translations) == 0:
+        need_translation = kserver.translation_status(path="", recurse="yes", status="T")
+        one_translation = random.choice(need_translation)
+        kserver.translate(path=one_translation.path, recurse="no")
+        counter = 0
+        while len(translations) == 0 and counter < 10:
+            time.sleep(5)
+            counter += 1
+            translations = kserver.translation_status(path="", recurse="yes", status="V")
+
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
         file = kleio_file.xml_url
