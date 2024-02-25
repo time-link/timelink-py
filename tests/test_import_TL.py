@@ -28,7 +28,7 @@ from timelink.kleio import KleioServer
 from timelink.kleio.schemas import KleioFile
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+# pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")

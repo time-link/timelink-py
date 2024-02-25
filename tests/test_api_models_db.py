@@ -12,7 +12,7 @@ from timelink.api.models.entity import Entity  # noqa
 from timelink.api.models.pom_som_mapper import PomSomMapper
 from timelink.api.models.source import Source
 
-pytestmark = skip_on_travis
+# pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
