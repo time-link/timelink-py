@@ -55,25 +55,21 @@ def setup():
 def test_find_kleio_home() -> str:
     """Test if kleio home is found"""
     kleio_home = KleioServer.find_local_kleio_home()
-
     assert kleio_home is not None
 
 
-@skip_on_travis
 def test_is_kleio_server_running():
     """Test if kleio server is running"""
     ks = KleioServer.get_server()
     assert ks is not None or ks is None
 
 
-@skip_on_travis
 def test_start_kleio_server():
     """Test if kleio server is started"""
     ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home", update=False)
     assert ks is not None
 
 
-@skip_on_travis
 def test_attach_kleio_server(setup):
     """Test attach to a running kleio server"""
     kserver: KleioServer = setup
@@ -85,7 +81,6 @@ def test_attach_kleio_server(setup):
     assert ks is not None
 
 
-@skip_on_travis
 def test_get_kleio_server_container(setup):
     kserver: KleioServer = setup
     """Test get the container of the running kleio server"""
