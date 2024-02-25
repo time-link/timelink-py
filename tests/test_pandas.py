@@ -15,7 +15,7 @@ from tests import skip_on_travis, TEST_DIR
 
 from timelink.pandas import pname_to_df, entities_with_attribute, attribute_values
 
-pytestmark = skip_on_travis
+# pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
