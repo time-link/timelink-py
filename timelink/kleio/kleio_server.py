@@ -1007,7 +1007,8 @@ def start_kleio_server(
         sleep(stop_time)
         cont = client.containers.get(kleio_container.id)
         elapsed_time += stop_time
-        continue
+    if cont.status != "running":
+        raise RuntimeError("Kleio server did not start")
 
     return kleio_container
 

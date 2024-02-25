@@ -168,7 +168,7 @@ def start_postgres_server(
     )
 
     timeout = 15
-    stop_time = 3
+    stop_time = 5
     elapsed_time = 0
     # this necessary to get the status
     cont = client.containers.get(psql_container.id)
@@ -176,7 +176,8 @@ def start_postgres_server(
         time.sleep(stop_time)
         cont = client.containers.get(psql_container.id)
         elapsed_time += stop_time
-        continue
+    if cont.status != "running":
+        raise RuntimeError("Postgres server did not start")
 
     return psql_container
 
