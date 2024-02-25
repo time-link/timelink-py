@@ -63,9 +63,9 @@ def is_postgres_running():
 
     client = docker.from_env()
 
-    postgres_containers: list[docker.models.containers.Container] = (
-        client.containers.list(filters={"ancestor": "postgres"})
-    )
+    postgres_containers: list[
+        docker.models.containers.Container
+    ] = client.containers.list(filters={"ancestor": "postgres"})
     return len(postgres_containers) > 0
 
 
@@ -174,7 +174,7 @@ def start_postgres_server(
     cont = client.containers.get(psql_container.id)
     while cont.status not in ["running"] and elapsed_time < timeout:
         time.sleep(stop_time)
-        cont.reload()
+        cont = client.containers.get(psql_container.id)
         elapsed_time += stop_time
         continue
 
@@ -442,7 +442,7 @@ class TimelinkDatabase:
                     kleio_home=kleio_home,
                     kleio_image=kleio_image,
                     kleio_version=kleio_version,
-                    kleio_token=kleio_token,
+                    kleio_admin_token=kleio_token,
                     update=kleio_update,
                     stop_duplicates=stop_duplicates,
                 )

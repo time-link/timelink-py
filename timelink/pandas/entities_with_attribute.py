@@ -106,7 +106,6 @@ def entities_with_attribute(
 
     # filter by id list
     if filter_by is not None:
-
         # in some cases the filter_by list
         #  may contain ids that are not in the attribute table
         #  we need to add them to the final dataframe

@@ -132,7 +132,7 @@ class TimelinkWebApp:
                     kleio_home=self.timelink_home,
                     kleio_image=self.kleio_image,
                     kleio_version=self.kleio_version,
-                    kleio_token=self.kleio_token,
+                    kleio_admin_token=self.kleio_token,
                     update=self.kleio_update,
                     stop_duplicates=self.stop_duplicates,
                 )

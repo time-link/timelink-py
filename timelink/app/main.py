@@ -80,7 +80,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 app = FastAPI()
 
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
-
     initial_user: List[User] = User(
         name="admin",
         hashed_password=fake_hash_password(settings.timelink_admin_pwd),
@@ -111,7 +110,6 @@ templates = Jinja2Templates(env=env)
 
 @app.post("/token")
 async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
-
     webapp: TimelinkWebApp = app.state.webapp
     user_db: UserDatabase = webapp.users_db
     user = authenticate_user(user_db, form_data.username, form_data.password)
@@ -194,7 +192,8 @@ async def set_syspar(
 
 @app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
-    q: list[str] | None = Query(
+    q: list[str]
+    | None = Query(
         default=None,
         title="Name of system parameter",
         description="Multiple values allowed," "if empty return all",
@@ -219,7 +218,8 @@ async def set_syslog(syslog: models.SysLogCreateSchema, db: Session = Depends(ge
 
 @app.get("/syslog", response_model=list[models.SysLogSchema])
 async def get_syslog(
-    nlines: int | None = Query(
+    nlines: int
+    | None = Query(
         default=10,
         title="Get last N lines of log",
         description="If number of lines not specified" "return last 10",
