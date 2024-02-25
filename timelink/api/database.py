@@ -180,6 +180,20 @@ def start_postgres_server(
     if cont.status != "running":
         raise RuntimeError("Postgres server did not start")
 
+    while True:
+        # Execute the 'pg_isready' command in the container
+        exit_code, output = psql_container.exec_run('pg_isready')
+
+        # If the 'pg_isready' command succeeded, break the loop
+        if exit_code == 0:
+            logging.info("Postgres server is ready")
+            break
+
+        # If the 'pg_isready' command failed, wait for 5 seconds and try again
+        time.sleep(5)
+
+
+
     return psql_container
 
 

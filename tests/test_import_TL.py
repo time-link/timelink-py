@@ -10,7 +10,7 @@ import time
 
 import pytest
 
-from tests import skip_on_travis, TEST_DIR
+from tests import TEST_DIR
 from timelink.api.models.system import KleioImportedFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
