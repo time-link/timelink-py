@@ -2,10 +2,10 @@
 History
 =======
 
-1.0.6 (2024-02-26
+1.1.1 (2024-02-26)
 ------------------
 
-* Improve tests on Travis CI, better handling of Docker containers
+* Includes basic templates, better integration with Travis CI
 
 1.0.5 (2024-02-07)
 ------------------
