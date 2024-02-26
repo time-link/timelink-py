@@ -2,6 +2,11 @@
 History
 =======
 
+1.0.6 (2024-02-26
+------------------
+
+* Improve tests on Travis CI, better handling of Docker containers
+
 1.0.5 (2024-02-07)
 ------------------
 
