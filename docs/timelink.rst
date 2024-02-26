@@ -12,6 +12,7 @@ Subpackages
    :maxdepth: 4
 
    timelink.api
+   timelink.app
    timelink.kleio
    timelink.mhk
    timelink.networks
