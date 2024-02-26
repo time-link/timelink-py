@@ -10,8 +10,6 @@ import random
 import string
 from sqlalchemy.exc import IntegrityError
 
-from tests import skip_on_travis
-
 
 @pytest.fixture(scope="module")
 def dbsystem(request: pytest.FixtureRequest):
