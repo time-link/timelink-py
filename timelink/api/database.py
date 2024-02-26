@@ -192,8 +192,6 @@ def start_postgres_server(
         # If the 'pg_isready' command failed, wait for 5 seconds and try again
         time.sleep(5)
 
-
-
     return psql_container
 
 
