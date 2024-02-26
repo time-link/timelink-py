@@ -3,8 +3,10 @@ Check tests.__init__.py for parameters
 
 """
 # pylint: disable=import-error
+import logging
 import os
 from pathlib import Path
+from time import sleep
 
 import pytest
 
@@ -281,6 +283,18 @@ def test_import_from_kleio_server(dbsystem):
     kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
+    # wait for the server to start
+    server_up = False
+    counter = 0
+    while not server_up and counter < 10:
+        try:
+            kserver.get_home_page()
+            server_up = True
+        except Exception as exc:
+            logging.debug(exc)
+            sleep(5)
+            counter += 1
+            pass
     kleio_file: KleioFile = get_one_translation(kserver)
     file = kleio_file.xml_url
     with dbsystem.session() as session:
