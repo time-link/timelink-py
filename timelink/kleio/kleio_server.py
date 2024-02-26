@@ -393,7 +393,7 @@ class KleioServer:
         # we add the token to the params
         params["token"] = token
         rpc = request(method, params=params)
-        response = requests.post(url, json=rpc, headers=headers)
+        response = requests.post(url, json=rpc, timeout=30, headers=headers)
         parsed = parse(response.json())
         if isinstance(parsed, Ok):
             return parsed.result
@@ -564,7 +564,7 @@ class KleioServer:
             token = self.get_token
         headers = {"Authorization": f"Bearer {token}"}
         req = urllib.request.Request(server_url, headers=headers)
-        with urllib.request.urlopen(req) as source:
+        with urllib.request.urlopen(req, timeout=30) as source:
             response_content = source.read().decode("utf-8")
             return response_content
 

@@ -2,9 +2,14 @@
 # pylint: disable=unused-import, import-error
 import os
 from pathlib import Path
+import random
+import time
 
 from sqlalchemy.orm import sessionmaker
 import pytest
+
+from timelink.kleio.kleio_server import KleioServer
+from timelink.kleio.schemas import KleioFile
 
 # See https://docs.sqlalchemy.org/en/14
 #      /orm/session_basics.html#when-do-i-make-a-sessionmaker
@@ -30,3 +35,34 @@ skip_on_travis = pytest.mark.skipif(
     os.environ.get('TRAVIS') == 'true',
     reason="this test requires file system access for sqlite"
 )
+
+
+def get_one_translation(kserver: KleioServer,
+                        path="",
+                        max_wait=360) -> KleioFile:
+    """Get one translation from the server"""
+    translations = kserver.translation_status(path=path, recurse="yes", status="V")
+    if len(translations) == 0:
+        need_translation = kserver.translation_status(path="", recurse="yes", status="T")
+        if len(need_translation) == 0:
+            raise RuntimeError("No files available for translation")
+
+        one_translation = random.choice(need_translation)
+        kserver.translate(path=one_translation.path, recurse="no")
+
+        counter = 0
+        wait_for = 10
+        max_counter = max_wait / wait_for
+        in_process = kserver.translation_status(path=path, recurse="yes", status="P")
+        while len(translations) == 0 and (counter < max_counter
+                                          or len(in_process) > 0):  # noqa: W503
+            time.sleep(wait_for)
+            counter += 1
+            translations = kserver.translation_status(path="", recurse="yes", status="V")
+
+    if len(translations) > 0:
+        kleio_file: KleioFile = random.choice(translations)
+    else:
+        raise RuntimeError("No translations available in server")
+
+    return kleio_file
