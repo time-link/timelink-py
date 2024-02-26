@@ -588,7 +588,7 @@ def import_from_xml(
         headers = {"Authorization": f"Bearer {kleio_token}"}
         server_url = f"{kleio_url}{filespec}"
         req = urllib.request.Request(server_url, headers=headers)
-        with urllib.request.urlopen(req) as source:
+        with urllib.request.urlopen(req, timeout=30) as source:
             parser.parse(source)
     elif kleio_token is not None or kleio_url is not None:
         # this means that one of the options is missing

@@ -370,13 +370,14 @@ class KleioServer:
     def __str__(self):
         return f"KleioServer(url={self.url}, kleio_home={self.kleio_home})"
 
-    def call(self, method: str, params: dict, token: str = None):
+    def call(self, method: str, params: dict, token: str = None, timeout=60):
         """Call kleio server API
 
         Args:
             method (str): kleio server API method
             params (dict): kleio server API method parameters
             token (str, optional): kleio server token; defaults to None -> use admin token
+            timeout (int, optional): timeout in seconds; defaults to 60.
 
         Returns:
             dict: kleio server API response
@@ -393,7 +394,7 @@ class KleioServer:
         # we add the token to the params
         params["token"] = token
         rpc = request(method, params=params)
-        response = requests.post(url, json=rpc, timeout=30, headers=headers)
+        response = requests.post(url, json=rpc, timeout=timeout, headers=headers)
         parsed = parse(response.json())
         if isinstance(parsed, Ok):
             return parsed.result
@@ -553,18 +554,20 @@ class KleioServer:
         server_url = f"{self.get_url()}{rpt_url}"
         return self.get_url_content(server_url, token=token)
 
-    def get_url_content(self, server_url: str, token=None) -> str:
+    def get_url_content(self, server_url: str, token=None, timeout=30) -> str:
         """Get content from Kleio Server
 
         Args:
             server_url (str): url of the content in the Kleio Server
+            token (str, optional): Kleio server token; defaults to None -> use admin token.
+            timeout (int, optional): timeout in seconds; defaults to 30.
 
         """
         if token is None:
             token = self.get_token
         headers = {"Authorization": f"Bearer {token}"}
         req = urllib.request.Request(server_url, headers=headers)
-        with urllib.request.urlopen(req, timeout=30) as source:
+        with urllib.request.urlopen(req, timeout=timeout) as source:
             response_content = source.read().decode("utf-8")
             return response_content
 
