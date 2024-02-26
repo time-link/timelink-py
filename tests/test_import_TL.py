@@ -280,7 +280,9 @@ def test_import_git_hub(dbsystem):
 )
 def test_import_from_kleio_server(dbsystem):
     """Test the import of a Kleio file from kleio server into the Timelink database"""
-    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
+    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home",
+                                             reuse=True,
+                                             update=False)
     kleio_url = kserver.get_url()
     kleio_token = kserver.get_token()
     # wait for the server to start
@@ -338,7 +340,9 @@ def test_import_from_kleio_server(dbsystem):
 )
 def test_import_status_1(dbsystem):
     """Test if import status is retrieved"""
-    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
+    kserver: KleioServer = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home",
+                                             reuse=True,
+                                             update=False)
     kleio_file = get_one_translation(kserver)
     translations = [kleio_file]
     assert len(translations) > 0, "no valid translations found in Kleio Server"

@@ -59,7 +59,6 @@ dbparam = pytest.mark.parametrize(
 )
 
 
-@skip_on_travis
 @dbparam
 def test_create_user_with_properties(dbsystem):
     db = dbsystem
@@ -108,7 +107,6 @@ def test_create_user_with_properties(dbsystem):
         assert user.updated > user.created
 
 
-@skip_on_travis
 @dbparam
 def test_create_user_db(dbsystem):
     db: UserDatabase = dbsystem
@@ -128,7 +126,6 @@ def test_create_user_db(dbsystem):
         assert user2 is not None
 
 
-@skip_on_travis
 @dbparam
 def test_set_user_property(dbsystem):
     db: UserDatabase = dbsystem
@@ -158,7 +155,6 @@ def test_set_user_property(dbsystem):
         assert proval.value == "value2"
 
 
-@skip_on_travis
 @dbparam
 def test_update_user(dbsystem):
     db: UserDatabase = dbsystem
@@ -183,7 +179,6 @@ def test_update_user(dbsystem):
         assert user.fullname == "Quarto Utilizador"
 
 
-@skip_on_travis
 @dbparam
 def test_duplicate_email(dbsystem):
     db: UserDatabase = dbsystem
