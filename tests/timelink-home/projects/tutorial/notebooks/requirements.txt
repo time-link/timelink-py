@@ -7,7 +7,7 @@ networkx>=3.0
 pandas~=2.0.0
 pydantic~=2.4.0
 pydantic-settings
-psycopg2
+psycopg2-binary  # avoids erros of missing pg_config
 sqlalchemy
 sqlalchemy_utils
 timelink>=1.0.0
