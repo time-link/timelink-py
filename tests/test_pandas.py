@@ -30,9 +30,11 @@ def dbsystem(request):
     database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
     db = database.session()
     """Load sample data in the test database"""
-    file: Path = Path(TEST_DIR, "xml_data/b1685.xml")
+    file1: Path = Path(TEST_DIR, "xml_data/b1685.xml")
+    file2: Path = Path(TEST_DIR, "xml_data/dehergne-a.xml")
     try:
-        import_from_xml(file, session=db)
+        import_from_xml(file1, session=db)
+        import_from_xml(file2, session=db)
     except Exception as exc:
         print(exc)
         raise
@@ -105,4 +107,28 @@ def test_entities_with_attribute(dbsystem):
     )
     assert df is not None, "entities_with_attribute returned None"
     assert len(df) > 0, "entities_with_attribute returned empty dataframe"
+    print(df)
+
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_entities_with_attribute_list(dbsystem):
+    """Test generation of dataframe from attributes"""
+    df = entities_with_attribute(
+        db=dbsystem,
+        entity_type="person",
+        the_type=["nascimento", "entrada", "partida", "estadia", "morte"],
+        show_elements=["name", "sex"],
+        more_attributes=[],
+        sql_echo=True,
+    )
+    assert df is not None, "entities_with_attribute_list returned None"
+    assert len(df) > 0, "entities_with_attribute_lisy returned empty dataframe"
     print(df)

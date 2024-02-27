@@ -135,17 +135,25 @@ def display_group_attributes(
         header_elements = []
     if header_attributes is None:
         header_attributes = ["%"]
+        column_name = "the_type"
+    else:
+        column_name = header_attributes[0]
 
     table_cols = ["the_type", "the_value", "the_date", "attr_obs"]
 
     header_df = entities_with_attribute(
         header_attributes[0],
         entity_type=entity_type,
+        column_name=column_name,
         show_elements=header_elements,
         more_attributes=header_attributes[1:],
         filter_by=ids,
         db=db,
     )
+    # remove  entries with duplicate index from header_df
+
+    header_df = header_df.reset_index().drop_duplicates(subset='id', keep='first').set_index('id')
+
     if sort_header is not None:
         header_df.sort_values(sort_header, inplace=True)
 

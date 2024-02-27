@@ -1,10 +1,11 @@
+from typing import List
 import pandas as pd
 from sqlalchemy import select
 from timelink.api.database import TimelinkDatabase
 
 
 def entities_with_attribute(
-    the_type,
+    the_type: str | List[str],
     the_value=None,
     column_name=None,
     entity_type="entity",
@@ -19,7 +20,7 @@ def entities_with_attribute(
     """Generate a pandas dataframe with entities with a given attribute
 
     Args:
-        the_type    : type of attribute, can have SQL wildcards, string
+        the_type    : type of attribute, can have SQL wildcards, string, or list
         the_value   : if present, limit to this value, can be SQL wildcard,
         entity_type : if present, limit to this entity type, string
         column_name : if present, use this name for the attribute column, otherwise use the_type
@@ -62,7 +63,11 @@ def entities_with_attribute(
 
     # if we dont have a name for the column we use the attribute type sanitized
     if column_name is None:
-        column_name = the_type
+        # if the_type is a list or a string
+        if type(the_type) is list:
+            column_name = "_".join(the_type)
+        else:
+            column_name = str(the_type)
     date_column_name = f"{column_name}.date"
     obs_column_name = f"{column_name}.obs"
 
@@ -104,6 +109,11 @@ def entities_with_attribute(
         ]
     )
 
+    if type(the_type) is list:
+        attribute_query = attr.c.the_type.in_(the_type)
+    else:
+        attribute_query = attr.c.the_type.like(the_type)
+
     # filter by id list
     if filter_by is not None:
         # in some cases the filter_by list
@@ -124,14 +134,14 @@ def entities_with_attribute(
         stmt = (
             (select(entity_model).where(entity_id_col.in_(filter_by)))
             .join(attr, attr.c.entity == entity_model.id, isouter=True)
-            .where(attr.c.the_type.like(the_type))
+            .where(attribute_query)
             .with_only_columns(*cols)
         )
     else:
         stmt = (
             select(entity_model)
             .join(attr, attr.c.entity == entity_model.id)
-            .where(attr.c.the_type.like(the_type))
+            .where(attribute_query)
             .with_only_columns(*cols)
         )
 

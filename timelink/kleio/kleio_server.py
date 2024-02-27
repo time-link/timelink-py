@@ -5,7 +5,6 @@ import socket
 import os
 from time import sleep
 from typing import List, Tuple
-import warnings
 import docker
 import secrets
 import requests
@@ -68,7 +67,7 @@ class KleioServer:
         kleio_home: str | None = None,
         kleio_admin_token: str | None = None,
         kleio_server_port="8088",
-        kleio_external_port="8089",
+        kleio_external_port=None,
         kleio_server_workers="3",
         kleio_idle_timeout=900,
         kleio_conf_dir=None,
@@ -564,7 +563,7 @@ class KleioServer:
 
         """
         if token is None:
-            token = self.get_token
+            token = self.get_token()
         headers = {"Authorization": f"Bearer {token}"}
         req = urllib.request.Request(server_url, headers=headers)
         with urllib.request.urlopen(req, timeout=timeout) as source:
@@ -714,7 +713,8 @@ def list_kleio_server_containers(
     result = []
     for container in containers:
         kleio_home = get_kserver_home(container)
-        port = container.attrs["NetworkSettings"]["Ports"]["8088/tcp"][0]["HostPort"]
+        p = list(container.attrs["HostConfig"]["PortBindings"])[0]
+        port = container.attrs["HostConfig"]["PortBindings"][p][0]["HostPort"]
         token = get_kserver_token(container)
         result.append((container.name, kleio_home, port, token, container))
     return result
@@ -936,11 +936,6 @@ def start_kleio_server(
         else:  # if exists and not reuse stop existing
             exists.stop()
             exists.remove()
-    else:  # todo: remove this
-        warnings.warn(
-            f"Kleio server is already running in docker mapped to {kleio_home}",
-            stacklevel=1,
-        )
 
     # if kleio_home is None, use current directory
     if kleio_home is None:
