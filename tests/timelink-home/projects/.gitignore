@@ -8,3 +8,4 @@
 *.srpt
 *.log
 *.sqlite
+.venv

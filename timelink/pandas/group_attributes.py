@@ -1,3 +1,5 @@
+""" Return the attributes of a group of entities in a dataframe."""
+
 import warnings
 from sqlalchemy import column, select, not_
 from sqlalchemy.orm.session import Session

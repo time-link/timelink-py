@@ -41,7 +41,7 @@ setup(
         'typer',
         'fastapi',
         'sqlalchemy',
-        'bcrypt==4.0.1', # bug see https://github.com/logspace-ai/langflow/issues/1173
+        'bcrypt==4.0.1',  # bug see https://github.com/logspace-ai/langflow/issues/1173
         'passlib[bcrypt]',
         'pydantic',
         'pydantic-settings',
@@ -54,7 +54,8 @@ setup(
         'pandas',
         'docker',
         'jsonrpcclient',
-        'ipython'
+        'ipython',
+        'uvicorn'
     ],
     license="MIT license",
     long_description=description + '\n\n' + history,

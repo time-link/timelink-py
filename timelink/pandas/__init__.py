@@ -1,6 +1,6 @@
 """
 Pandas related utilities for Timelink
-In progress. Originally developped for the FAUC1537-1919 project
+In progress. Originally developped for the FAUC1537-1919 project.
 Now being integrated in the timelink-py package
 """
 # Utilities for interacting with pandas
