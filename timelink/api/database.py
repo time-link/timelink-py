@@ -706,11 +706,13 @@ class TimelinkDatabase:
                                           file name; defaults to False.
 
         """
+        logging.debug("Updating from sources")
         if self.kserver is None:
             raise ValueError("No kleio server attached to this database")
         else:
             if path is None:
                 path = ""
+                logging.debug("Path set to ''")
             for kfile in self.kserver.translation_status(
                 path=path, recurse="yes", status="T"
             ):
@@ -719,6 +721,7 @@ class TimelinkDatabase:
                 )
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
+            logging.debug("Waiting for translations to finish")
             pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
 
             qfiles = self.kserver.translation_status(path="", recurse="yes", status="Q")
@@ -748,7 +751,7 @@ class TimelinkDatabase:
 
             for kfile in import_needed:
                 kfile: KleioFile
-
+                logging.info(f"Importing {kfile.path}")
                 with self.session() as session:
                     try:
                         logging.info(f"Importing {kfile.path}")
