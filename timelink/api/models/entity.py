@@ -208,5 +208,6 @@ class Entity(Base):
         contained_entities.sort(key=lambda x: x.the_order)
         for inner in contained_entities:
             innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
-            s = f"{s}\n{innerk}"
+            if innerk != "":
+                s = f"{s}\n{innerk}"
         return s
