@@ -322,6 +322,10 @@ class KleioHandler:
         self.kleio_translator = attrs["TRANSLATOR"]
         self.kleio_when = attrs["WHEN"]
         self.pom_som_cache = dict()
+        logging.debug("Kleio file: %s", self.kleio_file)
+        logging.debug("Kleio structure: %s", self.kleio_structure)
+        logging.debug("Kleio translator: %s", self.kleio_translator)
+        logging.debug("Kleio when: %s", self.kleio_when)
 
     def newClass(
         self,
@@ -330,6 +334,7 @@ class KleioHandler:
     ):
         if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
+            logging.debug("Skipping base mapping %s", psm.id)
             return
 
         session = self.session
@@ -340,6 +345,7 @@ class KleioHandler:
         )
         if existing_psm is not None:  # class exists: delete, insert again
             try:
+                logging.debug("Deleting existing class %s", psm.id)
                 session.commit()
                 stmt = delete(self.pom_class_attributes).where(
                     self.pom_class_attributes.the_class == psm.id
@@ -355,6 +361,7 @@ class KleioHandler:
 
         # now we add the new mapping
         try:
+            logging.debug("Adding class %s", psm.id)
             session.add(psm)
             for class_attr in attrs:
                 session.add(class_attr)
@@ -397,6 +404,9 @@ class KleioHandler:
                 f"{group.pom_class_id}: {exc.__class__.__name__}: {exc}"
             )
             return
+
+        if group.pom_class_id == "act":
+            logging.debug(f"{group._name}${group.id}")
 
         if pom_mapper_for_group.id == "relation":
             # it can happen that the destination of a relation
