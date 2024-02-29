@@ -203,7 +203,10 @@ class Entity(Base):
 
     def to_kleio(self, ident="", ident_inc="  "):
         s = f"{ident}{str(self)}"
-        for inner in self.contains:
+        contained_entities: List[Entity] = self.contains
+        # sort by the_order
+        contained_entities.sort(key=lambda x: x.the_order)
+        for inner in contained_entities:
             innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
             s = f"{s}\n{innerk}"
         return s
