@@ -1,6 +1,7 @@
 bokeh
 docker~=6.0.0
 fastapi>=0.109.1
+fastui
 ipykernel
 IPython
 jinja2
@@ -13,7 +14,7 @@ bcrypt==4.0.1  # see https://github.com/logspace-ai/langflow/issues/1173
 passlib[bcrypt]
 psycopg2-binary==2.9.6
 py-markdown-table==0.3.3
-pydantic~=2.4.0
+pydantic
 pydantic-settings
 pytest~=6.2.4
 python-box~=5.3.0
