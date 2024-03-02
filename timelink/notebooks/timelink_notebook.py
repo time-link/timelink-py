@@ -151,39 +151,64 @@ class TimelinkNotebook:
             f"postgres_version={self.postgres_version})"
         )
 
-    def print_info(self):
+    def print_info(self, show_token=False, show_password=False):
         """Print information about the TimelinkNotebook object
+
+        Args:
+            show_token: if True, show the token of the kleio server
+            show_password: if True, show the password of the postgres server
 
         TODO: #26 truncate token and password and add parameter to show them
         """
-        print(f"Project name: {self.project_name}")
-        print(f"Project home: {self.project_home}")
-        print(f"Database type: {self.db_type}")
-        print(f"Database name: {self.db_name}")
-        print(f"Kleio image: {self.kleio_image}")
+        info_dict = self.get_info(show_token, show_password)
+
+        for key, value in info_dict.items():
+            print(f"{key}: {value}")
+        print(self.__repr__())
+
+    def get_info(self, show_token, show_password):
+        info_dict = {
+            "Project name": self.project_name,
+            "Project home": self.project_home,
+            "Database type": self.db_type,
+            "Database name": self.db_name,
+            "Kleio image": self.kleio_image,
+        }
+
         kserver: KleioServer = self.db.get_kleio_server()
         if kserver is not None:
-            print(f"Kleio server token: {kserver.get_token()}")
-            print(f"Kleio server URL: {kserver.get_url()}")
-            print(f"Kleio server home: {kserver.get_kleio_home()}")
-        if kserver.container is not None:
-            print(f"Kleio server container: {kserver.container.name}")
-        print(f"Kleio version requested: {self.kleio_version}")
-        labels = kserver.container.labels
-        build = labels.get("BUILD", "")
-        version = labels.get("VERSION", "")
-        build_date = labels.get("BUILD_DATE", "")
-        if version != "":
-            print(f"Kleio server version: {version}.{build} ({build_date})")
-        if self.db_type == "sqlite":
-            print(f"SQLite directory: {self.sqlite_dir}")
-        elif self.db_type == "postgres":
-            print(f"Postgres image: {self.postgres_image}")
-            print(f"Postgres version: {self.postgres_version}")
-            print(f"Postgres user: {self.db.db_user}")
-            print(f"Postgres password: {self.db.db_pwd}")
+            if show_token:
+                info_dict["Kleio server token"] = kserver.get_token()
+            else:
+                info_dict["Kleio server token"] = kserver.get_token()[:5] + "..."
 
-        print(self.__repr__())
+            info_dict.update({
+                "Kleio server URL": kserver.get_url(),
+                "Kleio server home": kserver.get_kleio_home(),
+            })
+            if kserver.container is not None:
+                info_dict["Kleio server container"] = kserver.container.name
+            info_dict["Kleio version requested"] = self.kleio_version
+            labels = kserver.container.labels
+            build = labels.get("BUILD", "")
+            version = labels.get("VERSION", "")
+            build_date = labels.get("BUILD_DATE", "")
+            if version != "":
+                info_dict["Kleio server version"] = f"{version}.{build} ({build_date})"
+        if self.db_type == "sqlite":
+            info_dict["SQLite directory"] = self.sqlite_dir
+        elif self.db_type == "postgres":
+            if show_password:
+                info_dict["Postgres password"] = self.db.db_pwd
+            else:
+                info_dict["Postgres password"] = self.db.db_pwd[:5] + "..."
+            info_dict.update({
+                "Postgres image": self.postgres_image,
+                "Postgres version": self.postgres_version,
+                "Postgres user": self.db.db_user,
+            })
+
+        return info_dict
 
     def get_imported_files(self, data_frame=True, **kwargs):
         """Get the list of imported files in the database
