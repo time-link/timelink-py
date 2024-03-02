@@ -138,7 +138,7 @@ class TimelinkWebApp:
                 )
         self.update_projects()
 
-    def get_info(self):
+    def get_info(self, show_token=False, show_password=False):
         """Print information about the Timel8nk Webapp object"""
         info_dict = {
             "Timelink home": self.timelink_home,
@@ -159,7 +159,10 @@ class TimelinkWebApp:
                     "Kleio server URL": kserver.get_url(),
                     "Kleio server home": kserver.get_kleio_home(),
                 }
+
             )
+            if not show_token:
+                info_dict["Kleio server token"] = kserver.get_token()[:5] + "..."
             if kserver.container is not None:
                 info_dict["Kleio server container"] = kserver.container.name
             info_dict["Kleio version requested"] = self.kleio_version
@@ -180,6 +183,8 @@ class TimelinkWebApp:
                     "Postgres password": self.db.db_pwd,
                 }
             )
+            if not show_password:
+                info_dict["Postgres password"] = "..."
         return info_dict
 
     def get_project_dirs(self):

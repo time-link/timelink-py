@@ -201,7 +201,7 @@ class TimelinkNotebook:
             if show_password:
                 info_dict["Postgres password"] = self.db.db_pwd
             else:
-                info_dict["Postgres password"] = self.db.db_pwd[:5] + "..."
+                info_dict["Postgres password"] = "..."
             info_dict.update({
                 "Postgres image": self.postgres_image,
                 "Postgres version": self.postgres_version,
