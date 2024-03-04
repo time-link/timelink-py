@@ -1,10 +1,10 @@
 from typing import Annotated
-from fastapi import Request
+from fastapi import Request, Header
 from fastapi import Depends
 from fastapi import status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException
-from jose import JWTError
+from jose import JWTError, ExpiredSignatureError
 from timelink.app.models.user_database import UserDatabase
 from timelink.app.schemas.user import UserSchema
 
@@ -15,19 +15,35 @@ from timelink.app.models.user import User
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
+def get_fastui_token(authorization: Annotated[str, Header()] = ''):
+    try:
+        token = authorization.split(' ', 1)[1]
+    except IndexError:
+        return None
+    return token
+
+
 async def get_current_user(
-    request: Request, token: Annotated[str, Depends(oauth2_scheme)]
+    request: Request, token: Annotated[str, Depends(get_fastui_token)]
 ):
     """Get the current user"""
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
+        headers={"WWW-Authenticate": "Token"},
     )
     try:
         users_db: UserDatabase = request.app.state.webapp.users_db
-        payload = decode_token(token)
-        username: str = payload.get("username")
+        if token is None:
+            # if token is none return guest user
+            username = 'guest'
+        else:
+            try:
+                payload = decode_token(token)
+                username: str = payload.get("username")
+            except ExpiredSignatureError:
+                username = 'guest'
+
         if username is None:
             raise credentials_exception
         with users_db.session() as session:
@@ -36,13 +52,14 @@ async def get_current_user(
                 raise credentials_exception
             user_schema = UserSchema.model_validate(user)
 
-    except JWTError:
-        raise credentials_exception
+    except JWTError as jexception:
+        raise jexception
+        # raise credentials_exception
     return user_schema
 
 
 async def get_current_active_user(
-    request: Request, current_user: Annotated[User, Depends(get_current_user)]
+    request: Request, current_user: Annotated[UserSchema, Depends(get_current_user)]
 ):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
@@ -76,3 +93,9 @@ def get_db(request: Request):
     # project = webapp.projects[user.name]
     # project_db = project.db
     return webapp.get_current_project_db(user)
+
+
+def get_github_auth(request: Request):
+    """Get the github auth request"""
+    webapp = request.app.webapp
+    return webapp
