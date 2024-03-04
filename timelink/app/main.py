@@ -13,7 +13,7 @@ Next:
 * √ implement interface in fastApi for kleio_server
 
 To Run
-    source .venv/bin/activate; cd timelink/api/; uvicorn main:app --reload
+    source .venv/bin/activate; cd timelink/app; uvicorn main:app --reload
 
 To Test
 * http://127.0.0.1:8000/docs
@@ -38,6 +38,11 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security import OAuth2PasswordRequestForm
 
+from fastui import FastUI, AnyComponent, prebuilt_html, components as c
+from fastui.components.display import DisplayMode, DisplayLookup
+from fastui.events import GoToEvent, BackEvent
+
+from pydantic import BaseModel, Field
 
 from jinja2 import Environment, PackageLoader
 from sqlalchemy.orm import Session
@@ -71,6 +76,8 @@ from timelink.app.services.auth import authenticate_user
 from timelink.app.services.auth import create_access_token
 from timelink.app.services.auth import Token, TokenData
 
+from timelink.app.web import router as fastui_router
+
 # Get Pydantic-based settings defined in timelink.app.backend.settings
 settings = Settings(timelink_admin_pwd="admin")
 
@@ -78,27 +85,42 @@ settings = Settings(timelink_admin_pwd="admin")
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 app = FastAPI()
+app.include_router(fastui_router, prefix="/fastui")
 
+# create TimelinkWebApp instance
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
-    initial_user: List[User] = User(
-        name="admin",
-        hashed_password=fake_hash_password(settings.timelink_admin_pwd),
-        fullname="Joaquim Carvalho",
-        email="joaquim@mpu.edu.mo",
-        nickname="jrc",
-    )
-    initial_user.hashed_password = get_password_hash(settings.timelink_admin_pwd)
+    admin_user: User = User(
+            name="admin",
+            fullname="Joaquim Carvalho",
+            email="joaquimcarvalho@mpu.edu.mo",
+            nickname="jrc",
+            hashed_password = get_password_hash(settings.timelink_admin_pwd)
+        )
     admin_role: UserProperty = UserProperty(name="timelink.role", value="admin")
-    initial_user.properties.append(admin_role)
+    admin_user.properties.append(admin_role)
+
+    guest_user: User = User(  # this a guest user. Todo: Disable flag should come from Settings
+            name='guest',
+            hashed_password='',
+            fullname='Guest user',
+            nickname='guest',
+            email='none@none.com',
+            disabled=False
+        )
+    guest_role: UserProperty = UserProperty(name="timelink.role", value="guest")
+    guest_user.properties.append(guest_role)
+
+    initial_users = [admin_user, guest_user]
+
     webapp = TimelinkWebApp(
         app_name=settings.timelink_app_name,
         users_db_name=settings.timelink_users_db_name,
         users_db_type=settings.timelink_users_db_type,
-        initial_users=[initial_user],
+        initial_users=initial_users,
     )
 
     app.state.webapp = webapp
-    app.state.status = "started"
+    app.state.status = "Initialized"
 
 
 app.mount("/static", StaticFiles(packages=[("timelink", "app/static")]), name="static")
@@ -134,7 +156,7 @@ async def test_token(
     return current_user
 
 
-@app.get("/www/show/{id}", response_class=HTMLResponse)
+@app.get("/web/show/{id}", response_class=HTMLResponse)
 async def show_item(request: Request, id: str):
     # problem here is that I need the current project
     return templates.TemplateResponse(
@@ -192,8 +214,7 @@ async def set_syspar(
 
 @app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
-    q: list[str]
-    | None = Query(
+    q: list[str] | None = Query(
         default=None,
         title="Name of system parameter",
         description="Multiple values allowed," "if empty return all",
@@ -218,8 +239,7 @@ async def set_syslog(syslog: models.SysLogCreateSchema, db: Session = Depends(ge
 
 @app.get("/syslog", response_model=list[models.SysLogSchema])
 async def get_syslog(
-    nlines: int
-    | None = Query(
+    nlines: int | None = Query(
         default=10,
         title="Get last N lines of log",
         description="If number of lines not specified" "return last 10",
@@ -325,7 +345,7 @@ async def translate(
 # Web zone
 
 
-@app.get("/")
+@app.get("/web")
 async def root(request: Request):
     """Timelink API end point. Check URL/docs for API documentation."""
     webapp: TimelinkWebApp = request.app.state.webapp
@@ -339,7 +359,7 @@ async def root(request: Request):
     )
 
 
-@app.get("/www/templates/{template_name}")
+@app.get("/web/templates/{template_name}")
 async def get_template(request: Request, template_name: str):
     """Get a template"""
     webapp: TimelinkWebApp = request.app.state.webapp
@@ -354,9 +374,15 @@ async def get_template(request: Request, template_name: str):
     )
 
 
+# This is the main entry point for the fastUI interface
+# Must come last as it matches all paths
+@app.get("/{path:path}")
+async def html_landing() -> HTMLResponse:
+    """Simple HTML page which serves the React app, comes last as it matches all paths."""
+    return HTMLResponse(prebuilt_html(title="Timelink", api_root_url="/fastui"))
+
+
 # Tutorial
-
-
 class ModelName(str, Enum):
     """Enum for model names"""
 
@@ -422,3 +448,4 @@ async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):  # noqa:
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    app.state.status = "Running"
