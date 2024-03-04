@@ -1,7 +1,8 @@
 bokeh
 docker~=6.0.0
-fastapi>=0.109.1
+fastapi
 fastui
+httpx
 ipykernel
 IPython
 jinja2
@@ -29,5 +30,5 @@ sqlalchemy-views
 SQLAlchemy~=2.0.0
 typer~=0.4.0
 urllib3<2
-uvicorn~=0.20.0
+uvicorn
 wheel>=0.38.1

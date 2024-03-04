@@ -40,6 +40,7 @@ setup(
     install_requires=[
         'typer',
         'fastapi',
+        'fastui',
         'sqlalchemy',
         'bcrypt==4.0.1',  # bug see https://github.com/logspace-ai/langflow/issues/1173
         'passlib[bcrypt]',
@@ -54,6 +55,7 @@ setup(
         'pandas',
         'docker',
         'jsonrpcclient',
+        'httpx',
         'ipython',
         'uvicorn'
     ],
