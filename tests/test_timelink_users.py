@@ -1,14 +1,16 @@
 import os
 import time
-from timelink.api import database
-from timelink.app.models.user import User, UserProperty  # noqa
+import random
+import string
 
 import pytest
 from sqlalchemy import delete, select
-from timelink.app.models.user_database import UserDatabase
-import random
-import string
 from sqlalchemy.exc import IntegrityError
+
+from timelink.api import database
+from timelink.app.models.user import User, UserProperty  # noqa
+from timelink.app.models.user_database import UserDatabase
+from timelink.app.models.project import Project, ProjectAccess
 
 
 @pytest.fixture(scope="module")
@@ -27,11 +29,13 @@ def dbsystem(request: pytest.FixtureRequest):
         db_type=db_type,
         db_user=db_user,
         db_pwd=db_pwd,
-        db_path=db_path
+        db_path=db_path,
     )
 
     with dbsystem.session() as session:
         # delete all users and properties
+        session.execute(delete(ProjectAccess))
+        session.execute(delete(Project))
         session.execute(delete(UserProperty))
         session.execute(delete(User))
         session.commit()
@@ -47,7 +51,7 @@ dbparam = pytest.mark.parametrize(
     "dbsystem",
     [
         # db_type, db_name, db_path
-        ("sqlite", ":memory:", None),
+        ("sqlite", "test_users.sqlite", "tests/db"),
         # see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         # Not working
         # (pytest.param("postgres", "tests_users", None)),
@@ -61,7 +65,7 @@ dbparam = pytest.mark.parametrize(
 def test_create_user_with_properties(dbsystem):
     db = dbsystem
     if db.db_type == "postgres":
-        if os.environ.get('TRAVIS') == 'true':
+        if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
     with db.session() as session:
         user = User(
@@ -109,7 +113,7 @@ def test_create_user_with_properties(dbsystem):
 def test_create_user_db(dbsystem):
     db: UserDatabase = dbsystem
     if db.db_type == "postgres":
-        if os.environ.get('TRAVIS') == 'true':
+        if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
     with db:
         user = User(
@@ -128,7 +132,7 @@ def test_create_user_db(dbsystem):
 def test_set_user_property(dbsystem):
     db: UserDatabase = dbsystem
     if db.db_type == "postgres":
-        if os.environ.get('TRAVIS') == 'true':
+        if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
     with db:  # noqa
         user = User(
@@ -157,7 +161,7 @@ def test_set_user_property(dbsystem):
 def test_update_user(dbsystem):
     db: UserDatabase = dbsystem
     if db.db_type == "postgres":
-        if os.environ.get('TRAVIS') == 'true':
+        if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
     with db:
         user = User(
@@ -181,7 +185,7 @@ def test_update_user(dbsystem):
 def test_duplicate_email(dbsystem):
     db: UserDatabase = dbsystem
     if db.db_type == "postgres":
-        if os.environ.get('TRAVIS') == 'true':
+        if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
     with db.session() as session:
         user = User(
@@ -200,6 +204,51 @@ def test_duplicate_email(dbsystem):
             nickname="six",
         )
 
-        with pytest.raises(IntegrityError):  # Replace Exception with a more specific exception
+        with pytest.raises(
+            IntegrityError
+        ):  # Replace Exception with a more specific exception
             session.add(duplicate_user)
             session.commit()
+
+
+@dbparam
+def test_user_project_access(dbsystem):
+    db: UserDatabase = dbsystem
+    if db.db_type == "postgres":
+        if os.environ.get("TRAVIS") == "true":
+            pytest.xfail("No postgres on Travis")
+    with db.session() as session:
+        user = db.get_user_by_nickname("PU1", session=session)
+        if user is None:
+            user = User(
+                name="ProjectUser1",
+                fullname="Project User one",
+                email="project_user_one@xpto.com",
+                nickname="PU1",
+                projects=[],
+            )
+        session.add(user)
+        session.commit()
+
+        project = session.query(Project).filter_by(name="Project One").first()
+        if project is None:
+            project = Project(
+                name="Project One",
+                description="Project One description",
+            )
+            session.add(project)
+            session.commit()
+
+        access_level = "admin"
+        db.set_user_project_access(user.id, project.id, access_level, session=session)
+        session.commit()
+        user = session.scalars(select(User).filter_by(nickname="PU1")).first()
+        project_access_list = [(p.project.name, p.access_level)
+                               for p in user.projects
+                               if p.project.name == project.name]
+        assert len(project_access_list) == 1, "Project access not set"
+
+        pa: ProjectAccess = db.get_user_project_access(user.id, project.id, session=session)
+        assert pa.access_level == access_level, "Project access level not set"
+
+
