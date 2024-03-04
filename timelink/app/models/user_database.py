@@ -10,6 +10,7 @@ from typing import List
 from timelink.api import database
 from timelink import mhk
 from timelink.app.models.user import User, UserProperty, Base
+from timelink.app.models.project import ProjectAccess
 
 
 class UserDatabase:
@@ -312,6 +313,31 @@ class UserDatabase:
 
         return session.scalars(select(User).filter(User.email == email)).first()
 
+    def get_user_by_nickname(self, nickname, session=None):
+        """
+        Retrieve a user from the database using their nickname.
+
+        Args:
+            nickname (str): The nickname address of the user to retrieve.
+            session (Session, optional): The session to use for the query.
+                If None, the current session will be used. Defaults to None.
+
+        Returns:
+            User: The User object that matches the given nickname,
+                or None if no user was found.
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+
+        return session.scalars(select(User).filter(User.nickname == nickname)).first()
+
     def update_user(self, user: User, session=None):
         """Update a user in the database
 
@@ -401,5 +427,65 @@ class UserDatabase:
         return session.scalars(
             select(UserProperty).filter(
                 UserProperty.user_id == user_id, UserProperty.name == property_name
+            )
+        ).first()
+
+    def set_user_project_access(self, user_id: int, project_id: int, access_level: str, session=None):
+        """Set the access level of a user to a project
+
+        Args:
+            user_id: the id of the user
+            project_id: the id of the project
+            access_level: the access level
+
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+
+        project_access = session.scalars(
+            select(ProjectAccess).filter(
+                ProjectAccess.user_id == user_id, ProjectAccess.project_id == project_id
+            )
+        ).first()
+        if project_access is not None:
+            project_access.access_level = access_level
+            session.merge(project_access)
+        else:
+            project_access = ProjectAccess(
+                user_id=user_id, project_id=project_id, access_level=access_level
+            )
+            session.add(project_access)
+
+    def get_user_project_access(self, user_id: int, project_id: int, session=None) -> ProjectAccess:
+        """Get the access level of a user to a project
+
+        Args:
+            user_id: the id of the user
+            project_id: the id of the project
+
+        Returns:
+            the access level of the user to the project
+
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+
+        return session.scalars(
+            select(ProjectAccess).filter(
+                ProjectAccess.user_id == user_id, ProjectAccess.project_id == project_id
             )
         ).first()

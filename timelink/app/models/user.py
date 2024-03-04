@@ -7,7 +7,7 @@ A project is a collection of Kleio sources and a database to store the data.
 
 Access of the user to Kleio sources is done through a Kleio server.
 In the Kleio server each user has an acess token that determines the
-acess level to the sources directory. So for each project the user
+access level to the sources directory. So for each project the user
 needs to have a valid access token to the Kleio server and its url.
 
 Each project is associated with a database. Timelink is tested with
@@ -99,6 +99,10 @@ class User(Base):
 
     properties: Mapped[List["UserProperty"]] = relationship(
         "UserProperty", back_populates="user", cascade="all, delete, delete-orphan"
+    )
+
+    projects: Mapped[List["ProjectAccess"]] = relationship(  # type: ignore # noqa F821
+        "ProjectAccess", back_populates="user", cascade="all, delete, delete-orphan"
     )
 
     def __repr__(self):

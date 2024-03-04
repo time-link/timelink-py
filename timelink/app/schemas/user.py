@@ -11,6 +11,15 @@ class UserPropertySchema(BaseModel):
 
 
 class UserSchema(BaseModel):
+    """User schema.
+
+    Fields:
+    - name: str
+    - fullname: Optional[str]
+    - email: str
+    - nickname: Optional[str]
+    - disabled: Optional[bool]
+    - properties: Optional[List[UserPropertySchema]]"""
     name: str
     fullname: Optional[str]
     email: str
