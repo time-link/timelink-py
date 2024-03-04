@@ -5,6 +5,7 @@ import json
 from typing import List
 
 import pandas
+import timelink
 from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty  # noqa
@@ -82,7 +83,7 @@ class TimelinkWebApp:
         self.kleio_version = kleio_version
         self.db_type = users_db_type
         self.users_db_name = users_db_name
-        """"The users database instance"""
+        """"The users / projects database instance"""
         self.users_db = None
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
@@ -128,7 +129,7 @@ class TimelinkWebApp:
             self.kleio_server = kleio_server
         else:
             if self.timelink_home is not None:
-                self.kserver: KleioServer = KleioServer.start(
+                self.kleio_server: KleioServer = KleioServer.start(
                     kleio_home=self.timelink_home,
                     kleio_image=self.kleio_image,
                     kleio_version=self.kleio_version,
@@ -141,10 +142,11 @@ class TimelinkWebApp:
     def get_info(self, show_token=False, show_password=False):
         """Print information about the Timel8nk Webapp object"""
         info_dict = {
+            "Timelink version": timelink.version,
             "Timelink home": self.timelink_home,
             "Timelink host URL": self.host_url,
             "Timelink users database": self.users_db_name,
-            "Kleio server": self.kleio_server,
+            "Kleio server": self.kleio_server.get_url(),
             "Kleio version requested": self.kleio_version,
             "SQLite directory": self.sqlite_dir,
             "Postgres image": self.postgres_image,
