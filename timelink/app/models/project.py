@@ -30,9 +30,11 @@ users have different access levels to the projects. The access levels are:
 
 from datetime import datetime
 from typing import List, Optional
+import enum
 from sqlalchemy import String
 
 from sqlalchemy.orm import Mapped
+from sqlalchemy import Enum
 from sqlalchemy.orm import mapped_column
 from sqlalchemy import DateTime
 from sqlalchemy.sql import func
@@ -55,13 +57,20 @@ class Project(Base):
     users: Mapped[List["ProjectAccess"]] = relationship("ProjectAccess", back_populates="project")
 
 
+class AccessLevel(enum.Enum):
+    admin = "admin"
+    manager = "manager"
+    colaborator = "colaborator"
+    viewer = "viewer"
+
+
 class ProjectAccess(Base):
     __tablename__ = "user_project_access"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"))
-    access_level: Mapped[str] = mapped_column(String(30))
+    access_level: Mapped[Enum] = mapped_column(Enum(AccessLevel))
 
     user: Mapped["User"] = relationship("User", back_populates="projects")
     project: Mapped["Project"] = relationship("Project", back_populates="users")
