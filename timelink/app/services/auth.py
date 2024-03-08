@@ -1,4 +1,9 @@
-# deal with tokens
+""" Authentication services
+
+See https://fastapi-users.github.io/fastapi-users/latest/
+*
+
+"""
 import os
 from datetime import timedelta, timezone
 from datetime import datetime

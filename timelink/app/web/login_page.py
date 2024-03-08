@@ -14,12 +14,13 @@ from fastui.forms import fastui_form
 from pydantic import BaseModel, EmailStr, Field, SecretStr
 
 from timelink.app.schemas.user import UserSchema
-from timelink.app.web.home_page import home_page
 from timelink.app.dependencies import get_current_user, get_github_auth
 from timelink.app.services.auth import authenticate_user, create_access_token
+from timelink.app.web.home_page import home_page
 
+UserDep = Annotated[UserSchema, Depends(get_current_user)]
 
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 5 * 24 * 60  # 5 days
 
 LoginKind: TypeAlias = Literal['password', 'github']
 
@@ -62,6 +63,7 @@ def auth_login(
         ),
         request=request,
         title='Authentication',
+        user=user
     )
 
 
@@ -70,13 +72,7 @@ def auth_login_content(kind: LoginKind) -> list[AnyComponent]:
     match kind:
         case 'password':
             return [
-                c.Heading(text='Password Login', level=3),
-                c.Paragraph(
-                    text=(
-                        'Timelink login'
-                    )
-                ),
-                c.Paragraph(text='(Passwords are not saved and is email stored in the browser via a JWT only)'),
+                c.Heading(text='Timelink login', level=5, class_name='text-center'),
                 c.ModelForm(model=LoginForm, submit_url='/fastui/auth/login', display_mode='page'),
             ]
         case 'github':
@@ -92,11 +88,11 @@ def auth_login_content(kind: LoginKind) -> list[AnyComponent]:
 
 class LoginForm(BaseModel):
     email: EmailStr = Field(
-        title='Email Address', description='Enter whatever value you like', json_schema_extra={'autocomplete': 'email'}
+        title='Email Address', description='Enter a valid email address', json_schema_extra={'autocomplete': 'email'}
     )
     password: SecretStr = Field(
         title='Password',
-        description='Enter whatever value you like, password is not checked',
+        description='Enter your password',
         json_schema_extra={'autocomplete': 'current-password'},
     )
 
@@ -128,7 +124,8 @@ async def profile(request: Request, user: Annotated[UserSchema, Depends(get_curr
             submit_trigger=PageEvent(name='submit-form'),
         ),
         title='Authentication',
-        request=request
+        request=request,
+        user=user
     )
 
 
