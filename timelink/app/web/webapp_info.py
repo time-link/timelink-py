@@ -4,6 +4,7 @@ from fastui import components as c
 from pydantic import BaseModel, Field
 
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
+from timelink.app.schemas.user import UserSchema
 from .home_page import home_page
 
 
@@ -15,7 +16,7 @@ class WebAppInfo(BaseModel):
     info_value: Optional[str] = Field(title="Value", default="<NA>")
 
 
-def webapp_info(webapp: TimelinkWebApp, request: Request) -> c.Page:
+def webapp_info(webapp: TimelinkWebApp, request: Request, user: UserSchema) -> c.Page:
     info_list = [
         WebAppInfo(info_label=label, info_value=value)
         for (label, value) in webapp.get_info().items()
@@ -27,5 +28,6 @@ def webapp_info(webapp: TimelinkWebApp, request: Request) -> c.Page:
             ]
         ),
         request=request,
-        title="Server info"
+        title="Server info",
+        user=user
     )

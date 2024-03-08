@@ -251,4 +251,7 @@ def test_user_project_access(dbsystem):
         pa: ProjectAccess = db.get_user_project_access(user.id, project.id, session=session)
         assert pa.access_level == access_level, "Project access level not set"
 
+        projects = db.get_user_projects(user.id, session=session)
+        assert len(projects) == 1, "User has no projects"
+
 

@@ -16,13 +16,14 @@ To Run
     source .venv/bin/activate; cd timelink/app; uvicorn main:app --reload
 
 To Test
-* http://127.0.0.1:8000/docs
-* http://127.0.0.1:8000/redoc
+* http://127.0.0.1:8008/docs
+* http://127.0.0.1:8008/redoc
 
 To debug
 * https://fastapi.tiangolo.com/tutorial/debugging/
 """
 # Standard library imports
+import os
 from datetime import date, timedelta
 from enum import Enum
 from typing import Annotated, List, Optional
@@ -41,6 +42,10 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastui import FastUI, AnyComponent, prebuilt_html, components as c
 from fastui.components.display import DisplayMode, DisplayLookup
 from fastui.events import GoToEvent, BackEvent
+from starlette_admin import EnumField
+
+from starlette_admin.contrib.sqla import Admin, ModelView
+from starlette_admin.views import Link
 
 from pydantic import BaseModel, Field
 
@@ -58,6 +63,7 @@ from timelink.app.backend.timelink_webapp import TimelinkWebApp
 from timelink.app.dependencies import get_user_db, get_kleio_server
 from timelink.app.models.user import User, UserProperty
 from timelink.app.models.user_database import UserDatabase
+from timelink.app.models.project import Project, ProjectAccess, AccessLevel
 from timelink.app.services.auth import fake_hash_password
 from timelink.kleio import (
     api_permissions_normal,
@@ -69,7 +75,6 @@ from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
 from timelink.app.dependencies import get_current_active_user, get_db
 from timelink.app.schemas.user import UserSchema
-from timelink.app.schemas.project import Project
 from timelink.app.services.auth import verify_password
 from timelink.app.services.auth import get_password_hash
 from timelink.app.services.auth import authenticate_user
@@ -122,6 +127,14 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
     app.state.webapp = webapp
     app.state.status = "Initialized"
 
+admin = Admin(webapp.users_db.engine, title="timelink admin")
+admin.add_view(ModelView(User))
+admin.add_view(ModelView(UserProperty))
+admin.add_view(ModelView(Project))
+admin.add_view(ModelView(ProjectAccess))
+admin.add_view(Link(label="Timelink web", icon="fa fa-link", url="/"))
+
+admin.mount_to(app)
 
 app.mount("/static", StaticFiles(packages=[("timelink", "app/static")]), name="static")
 
@@ -447,5 +460,5 @@ async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):  # noqa:
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8008)
     app.state.status = "Running"

@@ -10,7 +10,9 @@ from typing import List
 from timelink.api import database
 from timelink import mhk
 from timelink.app.models.user import User, UserProperty, Base
-from timelink.app.models.project import ProjectAccess
+from timelink.app.models.project import ProjectAccess, Project
+from timelink.app.schemas.user import UserPropertySchema
+from timelink.app.schemas import UserProjectSchema
 
 
 class UserDatabase:
@@ -159,9 +161,6 @@ class UserDatabase:
                 for user in initial_users:
                     user_exists = self.get_user_by_name(user.name, session=session)
                     if user_exists is None:
-                        self.add_user(user, session=session)
-                    else:
-                        self.delete_user(user_exists, session=session)
                         self.add_user(user, session=session)
                 session.commit()
 
@@ -377,7 +376,9 @@ class UserDatabase:
         session.delete(user)
         session.commit()
 
-    def get_user_properties(self, user_id: int, session=None) -> List[UserProperty]:
+    def get_user_properties(
+        self, user_id: int, session=None
+    ) -> List[UserPropertySchema]:
         """Get the properties of a user
 
         Args:
@@ -396,14 +397,14 @@ class UserDatabase:
                 )
             else:
                 session = self.current_session
-
-        return session.scalars(
-            select(UserProperty).filter(UserProperty.user_id == user_id)
-        ).all()
+            result = session.scalars(
+                select(UserProperty).filter(UserProperty.user_id == user_id)
+            ).all()
+        return [UserPropertySchema.model_validate(property) for property in result]
 
     def get_user_property(
         self, user_id: int, property_name: str, session=None
-    ) -> UserProperty:
+    ) -> UserPropertySchema:
         """Get a user property
 
         Args:
@@ -424,13 +425,16 @@ class UserDatabase:
             else:
                 session = self.current_session
 
-        return session.scalars(
+        r = session.scalars(
             select(UserProperty).filter(
                 UserProperty.user_id == user_id, UserProperty.name == property_name
             )
         ).first()
+        return UserPropertySchema.model_validate(r)
 
-    def set_user_project_access(self, user_id: int, project_id: int, access_level: str, session=None):
+    def set_user_project_access(
+        self, user_id: int, project_id: int, access_level: str, session=None
+    ):
         """Set the access level of a user to a project
 
         Args:
@@ -463,7 +467,9 @@ class UserDatabase:
             )
             session.add(project_access)
 
-    def get_user_project_access(self, user_id: int, project_id: int, session=None) -> ProjectAccess:
+    def get_user_project_access(
+        self, user_id: int, project_id: int, session=None
+    ) -> ProjectAccess:
         """Get the access level of a user to a project
 
         Args:
@@ -489,3 +495,41 @@ class UserDatabase:
                 ProjectAccess.user_id == user_id, ProjectAccess.project_id == project_id
             )
         ).first()
+
+    def get_user_projects(self, user_id: int, session=None) -> List[UserProjectSchema]:
+        """Get the projects of a user
+
+        Args:
+            user_id: the id of the user
+
+        Returns:
+            a list with the projects of the user
+
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+        stmt = (
+            select(Project.name, Project.description, ProjectAccess.access_level)
+            .join(Project.users)
+            .filter(ProjectAccess.user_id == user_id)
+        )
+        result = session.execute(stmt).all()
+
+        projects = []
+        for (name, description, user_access) in result:
+            user_project = UserProjectSchema(
+                user_id=user_id,
+                project_name=name,
+                project_description=description,
+                access_level=user_access
+            )
+            projects.append(user_project)
+
+        return projects

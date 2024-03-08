@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException
 from jose import JWTError, ExpiredSignatureError
 from timelink.app.models.user_database import UserDatabase
-from timelink.app.schemas.user import UserSchema
+from timelink.app.schemas import UserSchema
 
 
 from timelink.app.services.auth import decode_token
@@ -50,11 +50,14 @@ async def get_current_user(
             user = users_db.get_user_by_name(username, session=session)
             if user is None:
                 raise credentials_exception
+            user_projects = users_db.get_user_projects(user.id, session=session)
             user_schema = UserSchema.model_validate(user)
+            user_schema.projects = user_projects
 
     except JWTError as jexception:
         raise jexception
         # raise credentials_exception
+
     return user_schema
 
 
