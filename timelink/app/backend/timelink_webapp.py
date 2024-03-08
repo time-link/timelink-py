@@ -5,11 +5,15 @@ import json
 from typing import List
 
 import pandas
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
+
 import timelink
 from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
+from timelink.app.schemas.project import ProjectSchema
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty  # noqa
-from timelink.app.schemas.project import Project
+from timelink.app.models.project import Project
 
 
 class TimelinkWebApp:
@@ -93,7 +97,7 @@ class TimelinkWebApp:
         self.initial_users = initial_users
         self.kleio_token = kleio_token
         self.kleio_update = kleio_update
-        self.projects: List[Project] = []
+        self.projects: List[ProjectSchema] = []
 
         if initial_users is None:
             self.initial_users = []
@@ -206,12 +210,29 @@ class TimelinkWebApp:
         return projects
 
     def update_projects(self) -> List[Project]:
-        """Get the list of projects"""
-        pdirs = self.get_project_dirs()
-        existing_project_names = [p.name for p in self.projects]
-        for pdir in pdirs:
-            if pdir not in existing_project_names:
-                self.projects.append(Project(name=pdir))
+        """Get the list of projects
+
+        Get the list of projects from the subdirectories
+        of the "projects" directory in the Timelink home directory.
+
+        Check the database for projects entries and merge the two lists
+        so that the database has the most recent information.
+        """
+        with self.users_db.session() as session:
+            projs = session.scalars(select(Project).options(selectinload(Project.users))).all()
+            if projs is not None:
+                self.projects = [ProjectSchema.model_validate(proj) for proj in projs]
+            else:
+                self.projects = []
+            existing_project_names = [p.name for p in self.projects]
+            pdirs = self.get_project_dirs()
+            for pdir in pdirs:
+                if pdir not in existing_project_names:
+                    # todo: check if there is a project settings in the dir
+                    project = Project(name=pdir)
+                    session.add(project)
+                    self.projects.append(project)
+            session.commit()
         return self.projects
 
     def print_info(self):
