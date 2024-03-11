@@ -16,18 +16,20 @@ class WebAppInfo(BaseModel):
     info_value: Optional[str] = Field(title="Value", default="<NA>")
 
 
-def webapp_info(webapp: TimelinkWebApp, request: Request, user: UserSchema) -> c.Page:
+async def webapp_info(
+    webapp: TimelinkWebApp,
+    request: Request,
+    user: UserSchema,
+    token_access: dict = False,
+) -> c.Page:
     info_list = [
         WebAppInfo(info_label=label, info_value=value)
         for (label, value) in webapp.get_info().items()
     ]
-    return home_page(
-        c.Page(
-            components=[
-                c.Table(data=info_list)
-            ]
-        ),
+
+    return await home_page(
+        c.Page(components=[c.Table(data=info_list)]),
         request=request,
         title="Server info",
-        user=user
+        user=user,
     )

@@ -42,10 +42,18 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastui import FastUI, AnyComponent, prebuilt_html, components as c
 from fastui.components.display import DisplayMode, DisplayLookup
 from fastui.events import GoToEvent, BackEvent
+
+# import realted with starlette admin app
 from starlette_admin import EnumField
 
 from starlette_admin.contrib.sqla import Admin, ModelView
 from starlette_admin.views import Link
+
+
+# imports related to authentication with fief
+from fastapi.security import OAuth2AuthorizationCodeBearer
+from fief_client import FiefAccessTokenInfo, FiefAsync
+from fief_client.integrations.fastapi import FiefAuth
 
 from pydantic import BaseModel, Field
 
@@ -60,27 +68,27 @@ from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
 from timelink.api.schemas import EntityAttrRelSchema, ImportStats
 from timelink.app.backend.settings import Settings
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
-from timelink.app.dependencies import get_user_db, get_kleio_server
+from timelink.app.dependencies import get_kleio_server
 from timelink.app.models.user import User, UserProperty
 from timelink.app.models.user_database import UserDatabase
 from timelink.app.models.project import Project, ProjectAccess, AccessLevel
-from timelink.app.services.auth import fake_hash_password
 from timelink.kleio import (
-    api_permissions_normal,
+    api_permissions_normal,  # todo: should have kleio prefixed name
     kleio_server as kserver,
-    token_info_normal,
+    token_info_normal,  # todo: chenge to kleio prefixed names
 )
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
 from timelink.app.dependencies import get_current_active_user, get_db
 from timelink.app.schemas.user import UserSchema
-from timelink.app.services.auth import verify_password
+from timelink.app.services.auth import auth
+# Deprecated will use Fief instead
 from timelink.app.services.auth import get_password_hash
 from timelink.app.services.auth import authenticate_user
 from timelink.app.services.auth import create_access_token
-from timelink.app.services.auth import Token, TokenData
-
+from timelink.app.services.auth import Token
+# End deprecated
 from timelink.app.web import router as fastui_router
 
 # Get Pydantic-based settings defined in timelink.app.backend.settings
@@ -92,8 +100,11 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 app = FastAPI()
 app.include_router(fastui_router, prefix="/fastui")
 
+
 # create TimelinkWebApp instance
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
+
+    # Deprecated will use Fief
     admin_user: User = User(
             name="admin",
             fullname="Joaquim Carvalho",
@@ -116,11 +127,13 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
     guest_user.properties.append(guest_role)
 
     initial_users = [admin_user, guest_user]
+    # End deprecated
 
     webapp = TimelinkWebApp(
         app_name=settings.timelink_app_name,
         users_db_name=settings.timelink_users_db_name,
         users_db_type=settings.timelink_users_db_type,
+        fief_authenticator=auth,
         initial_users=initial_users,
     )
 
@@ -128,10 +141,7 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
     app.state.status = "Initialized"
 
 admin = Admin(webapp.users_db.engine, title="timelink admin")
-admin.add_view(ModelView(User))
-admin.add_view(ModelView(UserProperty))
 admin.add_view(ModelView(Project))
-admin.add_view(ModelView(ProjectAccess))
 admin.add_view(Link(label="Timelink web", icon="fa fa-link", url="/"))
 
 admin.mount_to(app)

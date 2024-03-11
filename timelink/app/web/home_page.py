@@ -4,14 +4,14 @@ from fastui import AnyComponent, components as c
 from fastui.events import GoToEvent
 
 from timelink import version as timelink_version
-from timelink.app.schemas.user import UserSchema
+from timelink.app.services.auth import FiefUserInfo
 
 
-def home_page(
+async def home_page(
     *components: AnyComponent,
     request: Request = None,
     title: str = None,
-    user: UserSchema = None,
+    user: FiefUserInfo = None,
 ) -> list[AnyComponent]:
     """Timelink FastUI main page
 
@@ -28,38 +28,32 @@ def home_page(
         title (str, optional): The title of the page. Defaults to None.
         user (str, optional): The user logged in. Defaults to None.
     """
-    if user is None or user.name == "guest":
+    if user is None:
         user_name = "guest"
+    else:
+        user_name = user['email']
+    admin_link = None
+    if user is None or user_name == "guest":
+        auth_url = request.url_for("login")
         login_logout = c.Link(
             components=[c.Text(text="Login")],
-            on_click=GoToEvent(url="/auth/login/password"),
-            active="startswith:/auth/login",
+            on_click=GoToEvent(url=str(auth_url)),
+            active=f"startswith:{auth_url}",
         )
     else:
-        user_name = user.name
+        logout_url = request.url_for("logout")
         login_logout = c.Link(
             components=[c.Text(text="Logout")],
-            on_click=GoToEvent(url="/auth/profile"),
-            active="startswith:/auth/profile",
+            on_click=GoToEvent(url=str(logout_url)),
+            active=f"startswith:{logout_url}",
         )
-    if user is None:
         admin_link = None
-    else:
-        roles = [p.value for p in user.properties if p.name == "timelink.role"]
-        if "admin" in roles:
-            admin_app = "http://localhost:8000/admin/"
-            admin_link = c.Link(
-                components=[c.Text(text="Admin")],
-                on_click=GoToEvent(url=admin_app)
-            )
-        else:
-            admin_link = None
+
     end_links = [admin_link, login_logout] if admin_link else [login_logout]
     page = [
         c.PageTitle(text=f"{title}" if title else "Timelink"),
-        # align user name to the right
         c.Navbar(
-            title=f"Timelink  {user_name}",
+            title="Timelink",
             title_event=GoToEvent(url="/"),
             start_links=[
                 c.Link(
@@ -89,11 +83,13 @@ def home_page(
                 ),
             ],
             end_links=end_links,
+
         ),
         c.Page(
             components=[
                 *((c.Heading(text=title, level=3),) if title else ()),
                 *components,
+                c.Heading(level=6, text=f"{user_name}"),
             ],
         ),
         c.Footer(
