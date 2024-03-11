@@ -253,5 +253,3 @@ def test_user_project_access(dbsystem):
 
         projects = db.get_user_projects(user.id, session=session)
         assert len(projects) == 1, "User has no projects"
-
-
