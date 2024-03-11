@@ -20,17 +20,33 @@ class TimelinkWebApp:
     """A class to interact with the Timelink system
     from a FastAPI web application
 
-    It stores TimelinkDatabase and KleioServer objects,
-    and an user registry.
+    It stores TimelinkDatabase, KleioServer objects
+    and Fief (user management) objects.
+
+
+    Deprecated
+    An user registry.
 
     Each user has a token to access
     the KleioServer and the TimelinkDatabase associated.
+    End deprecated
 
     Several functions are provided to manage the kleio files
     and access the database.
 
 
     """
+    # this should be set in a Dependency
+    after_auth_url = None
+    # Url in fief to authenticate
+    # must be set with fief.auth_url(redirect_uri="http://localhost:8000")
+    # see https://fief-dev.github.io/fief-python/fief_client.html#Fief.auth_url
+    auth_url = None
+    after_logout_url = None
+    # Url in fief to logout
+    # must be set with fief.logout_url(redirect_uri="http://localhost:8000")
+    # see https://fief-dev.github.io/fief-python/fief_client.html#Fief.logout_url
+    logout_url = None
 
     def __init__(
         self,
@@ -47,7 +63,8 @@ class TimelinkWebApp:
         postgres_image=None,
         postgres_version=None,
         sqlite_dir=None,
-        stop_duplicates=True,
+        stop_duplicates=True,  # kleio server duplicates
+        fief_authenticator=None,
         initial_users: list[User] = None,
         **connection_args,
     ):
@@ -73,7 +90,8 @@ class TimelinkWebApp:
             postgres_image: name of the postgres image to use
             postgres_version: version of the postgres image to use
             sqlite_dir: directory where the sqlite databases are located
-            initial_users: list of initial users
+            fief_authenticator: a handle to a Fief service (user management)
+            initial_users: list of initial users (deprecated)
             stop_duplicates: if True, stop duplicates
             **connection_args: extra arguments to pass to the TimelinkDatabase
 
@@ -87,14 +105,17 @@ class TimelinkWebApp:
         self.kleio_version = kleio_version
         self.db_type = users_db_type
         self.users_db_name = users_db_name
-        """"The users / projects database instance"""
+        """"The users / projects database instance deprecated"""
         self.users_db = None
+        self.fief = fief_authenticator
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
         self.postgres_version = postgres_version
         self.sqlite_dir = sqlite_dir
         self.stop_duplicates = stop_duplicates
+        # deprecated
         self.initial_users = initial_users
+        #
         self.kleio_token = kleio_token
         self.kleio_update = kleio_update
         self.projects: List[ProjectSchema] = []
