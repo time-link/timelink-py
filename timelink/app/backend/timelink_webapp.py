@@ -23,17 +23,21 @@ class TimelinkWebApp:
     It stores TimelinkDatabase, KleioServer objects
     and Fief (user management) objects.
 
-
-    Deprecated
-    An user registry.
-
-    Each user has a token to access
-    the KleioServer and the TimelinkDatabase associated.
-    End deprecated
-
-    Several functions are provided to manage the kleio files
-    and access the database.
-
+    Fields:
+    - app_name: name of the application
+    - timelink_home: directory where the Timelink database is located
+    - host_url: URL of the Timelink web application
+    - kleio_server: a KleioServer instance
+    - db_type: type of the users database (sqlite or postgres)
+    - users_db_name: name of the users database
+    - users_db: a UserDatabase instance
+    - auth_manager: URL of the authentication manager
+    - app_manager: URL of the application manager
+    - kleio_image: name of the Kleio image to use
+    - postgres_image: name of the postgres image to use
+    - postgres_version: version of the postgres image to use
+    - sqlite_dir: directory where the sqlite databases are located
+    - stop_duplicates: if True, stop other kleio servers for the same timelink home
 
     """
     # this should be set in a Dependency
@@ -51,7 +55,9 @@ class TimelinkWebApp:
     def __init__(
         self,
         app_name: str = "timelink",
-        timelink_url: str = "http://localhost:8000",
+        timelink_url: str = "http://localhost:8008",
+        auth_manager: str = "http://localhost:8000",
+        app_manager: str = "http://localhost:8008/admin/",
         timelink_home: str = None,
         kleio_server: KleioServer = None,
         users_db_type: str = "sqlite",
@@ -64,7 +70,6 @@ class TimelinkWebApp:
         postgres_version=None,
         sqlite_dir=None,
         stop_duplicates=True,  # kleio server duplicates
-        fief_authenticator=None,
         initial_users: list[User] = None,
         **connection_args,
     ):
@@ -90,7 +95,6 @@ class TimelinkWebApp:
             postgres_image: name of the postgres image to use
             postgres_version: version of the postgres image to use
             sqlite_dir: directory where the sqlite databases are located
-            fief_authenticator: a handle to a Fief service (user management)
             initial_users: list of initial users (deprecated)
             stop_duplicates: if True, stop duplicates
             **connection_args: extra arguments to pass to the TimelinkDatabase
@@ -107,7 +111,8 @@ class TimelinkWebApp:
         self.users_db_name = users_db_name
         """"The users / projects database instance deprecated"""
         self.users_db = None
-        self.fief = fief_authenticator
+        self.auth_manager = auth_manager
+        self.app_manager = app_manager
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
         self.postgres_version = postgres_version
@@ -245,10 +250,10 @@ class TimelinkWebApp:
                 self.projects = [ProjectSchema.model_validate(proj) for proj in projs]
             else:
                 self.projects = []
-            existing_project_names = [p.name for p in self.projects]
+            existing_project_names = [p.name.upper() for p in self.projects]
             pdirs = self.get_project_dirs()
             for pdir in pdirs:
-                if pdir not in existing_project_names:
+                if pdir.upper() not in existing_project_names:
                     # todo: check if there is a project settings in the dir
                     project = Project(name=pdir)
                     session.add(project)
