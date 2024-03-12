@@ -84,10 +84,10 @@ class User(Base):
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(30), unique=True)
-    fullname: Mapped[str] = mapped_column(String(64))
-    nickname: Mapped[Optional[str]]
+    name: Mapped[str] = mapped_column(String(128), unique=False)
+    nickname: Mapped[Optional[str]] = mapped_column(String(32))
     email: Mapped[str] = mapped_column(unique=True)
+    # deprecated. Authentica with Fief
     hashed_password: Mapped[Optional[str]]
     disabled: Mapped[Optional[bool]] = mapped_column(default=False)
     created: Mapped[datetime] = mapped_column(
@@ -111,7 +111,6 @@ class User(Base):
             f"id={self.id}, "
             f"name={self.name}, "
             f"email={self.email}, "
-            f"fullname={self.fullname}, "
             f"nickname={self.nickname}, "
             f"created={self.created}, "
             f"updated={self.updated})"

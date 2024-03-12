@@ -1,18 +1,18 @@
 import os
 import warnings
+from typing import Dict, List
 
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker, session
 from sqlalchemy_utils import database_exists, create_database
 
-from typing import List
-
 from timelink.api import database
 from timelink import mhk
 from timelink.app.models.user import User, UserProperty, Base
 from timelink.app.models.project import ProjectAccess, Project
-from timelink.app.schemas.user import UserPropertySchema
+from timelink.app.schemas.user import UserPropertySchema, UserSchema
 from timelink.app.schemas import UserProjectSchema
+from timelink.app.services.auth import FiefUserInfo
 
 
 class UserDatabase:
@@ -73,6 +73,7 @@ class UserDatabase:
         self.session = None
         self.current_session = None
         self.metadata = None
+        self.cache: Dict[str, UserSchema] = {}
 
         if db_name is None:
             raise ValueError("db_name cannot be None")
@@ -205,6 +206,42 @@ class UserDatabase:
             raise ValueError("An user with that email already exists.")
 
         session.add(user)
+
+    def on_board_user(self, user: FiefUserInfo, permissions: str = None, session=None):
+        """On board an user registered on Fief
+
+        Gets email, name and fields from fief and adds it to the database.
+
+        Adds permissions if provided. Permissions should be fetched
+        from the fief access_token and passed as a comma separeted string.
+
+        The access_token is store in a cookie and can be validated with
+        fief.validate_access_token
+
+        """
+
+        user_email = user["email"]
+        user_db = self.get_user_by_email(user_email, session=session)
+        if user_db is None:
+            user_fields = user.get("fields", {})
+            user_name = user_fields.get("user_name", "")
+            user_nickname = user_fields.get("user_nickname", None)
+            if user_nickname is None:
+                user_nickname = user_email.split("@")[0]
+            user = User(name=user_name, nickname=user_nickname, email=user_email)
+            self.add_user(user, session=session)
+            session.commit()
+        for field_name, field_value in user["fields"].items():
+            self.set_user_property(user_db.id, field_name, field_value, session=session)
+        session.commit()
+        # todo: think about this
+        for permission in permissions:
+            self.set_user_property(
+                user_db.id, f"permission:{permission}", "yes", session=session
+            )
+        session.commit()
+
+        return user_db
 
     def set_user_property(
         self, user_id: int, property_name: str, property_value: str, session=None
@@ -397,9 +434,9 @@ class UserDatabase:
                 )
             else:
                 session = self.current_session
-            result = session.scalars(
-                select(UserProperty).filter(UserProperty.user_id == user_id)
-            ).all()
+        result = session.scalars(
+            select(UserProperty).filter(UserProperty.user_id == user_id)
+        ).all()
         return [UserPropertySchema.model_validate(property) for property in result]
 
     def get_user_property(
@@ -516,19 +553,20 @@ class UserDatabase:
             else:
                 session = self.current_session
         stmt = (
-            select(Project.name, Project.description, ProjectAccess.access_level)
+            select(Project.id, Project.name, Project.description, ProjectAccess.access_level)
             .join(Project.users)
             .filter(ProjectAccess.user_id == user_id)
         )
         result = session.execute(stmt).all()
 
         projects = []
-        for (name, description, user_access) in result:
+        for pid, name, description, user_access in result:
             user_project = UserProjectSchema(
+                project_id=pid,
                 user_id=user_id,
                 project_name=name,
                 project_description=description,
-                access_level=user_access
+                access_level=user_access,
             )
             projects.append(user_project)
 
