@@ -42,12 +42,10 @@ from .projects_page import projects_info
 
 # deprecated we dont handle logins anymore
 from timelink.app.dependencies import get_current_user
-from .login_page import router as login_router
 
 # --------------
 
 router = APIRouter(tags=["fastui"], responses={404: {"description": "Not found"}})
-router.include_router(login_router, prefix="/auth")
 
 # deprecated we dont handle logins anymore see fiefUserDep
 UserDep = Annotated[UserSchema, Depends(get_current_user)]
@@ -139,12 +137,10 @@ async def auth_callback(
 @router.get("/logout", name="logout")
 async def logout(request: Request,
                  response: Response,
-                 user: FiefUserInfo = Depends(auth.current_user())):
+                 user: UserSchema = Depends(get_current_user)):
     """Logout the user
     Remove the cookie and redirect to fief logout, then to the main page
     """
-    sessionCookie = request.cookies.get(SESSION_COOKIE_NAME)
-    print(sessionCookie)
     base_url = f"{request.url.scheme}://{request.url.netloc}"
     logout_url = await fief.logout_url(str(base_url))
     response = RedirectResponse(logout_url)
@@ -155,7 +151,7 @@ async def logout(request: Request,
 @router.get("/projects", response_model=FastUI, response_model_exclude_none=True)
 async def projects(
     request: Request,
-    user: Optional[FiefUserInfo] = Depends(auth.current_user(optional=True)),
+    user: Optional[UserSchema] = Depends(get_current_user),
 ) -> list[AnyComponent]:
     webapp: TimelinkWebApp = (
         request.app.state.webapp
@@ -165,20 +161,18 @@ async def projects(
 
 @router.get("/info", response_model=FastUI, response_model_exclude_none=True)
 async def info(
-    request: Request, user: FiefUserInfo = Depends(auth.current_user())
+    request: Request, user: UserSchema = Depends(get_current_user)
 ) -> list[AnyComponent]:
     webapp: TimelinkWebApp = (
         request.app.state.webapp
     )  # collect the info from TimelinkWebApp
-    cookie = request.cookies.get(SESSION_COOKIE_NAME)
-    token_access = await fief.validate_access_token(cookie)
-    return await webapp_info(webapp, request=request, user=user, token_access=token_access)
+    return await webapp_info(webapp, request=request, user=user)
 
 
 @router.get("/explore", response_model=FastUI, response_model_exclude_none=True)
 async def explore(
     request: Request,
-    user: FiefUserInfo = Depends(auth.current_user())
+    user: UserSchema = Depends(get_current_user)
 ) -> list[AnyComponent]:
     markdown = """\
 * See list of attributes
@@ -192,7 +186,7 @@ async def explore(
 
 @router.get("/sources", response_model=FastUI, response_model_exclude_none=True)
 async def sources(
-    request: Request, user: FiefUserInfo = Depends(auth.current_user())
+    request: Request, user: UserSchema = Depends(get_current_user)
 ) -> list[AnyComponent]:
     markdown = """\
 * View sources
@@ -205,10 +199,33 @@ async def sources(
     )
 
 
+@router.get("/adm", response_model=FastUI, response_model_exclude_none=True)
+async def admin(
+    request: Request,
+    user: UserSchema = Depends(get_current_user),
+) -> list[AnyComponent]:
+    webapp: TimelinkWebApp = request.app.state.webapp
+    markdown = f"""\
+### Welcome {user.name} to the admin page
+
+Timelink administration consists of:
+
+* Managing [authentication]({webapp.auth_manager}/admin/)
+    * Who can login, with what permissions, passwords, etc.
+* Managing [application resources]({webapp.app_manager})
+    * Projects, associate users with projects with specific permissions.
+    * General application settings, logs, etc.
+
+"""
+    return await home_page(
+        c.Markdown(text=markdown), request=request, title="Admin", user=user
+    )
+
+
 @router.get("/", name="home", response_model=FastUI, response_model_exclude_none=True)
 async def home(
     request: Request,
-    user: Optional[FiefUserInfo] = Depends(auth.current_user(optional=True)),
+    user: Optional[UserSchema] = Depends(get_current_user),
 ) -> list[AnyComponent]:
     markdown = """\
 

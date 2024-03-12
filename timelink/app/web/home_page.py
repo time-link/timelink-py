@@ -4,14 +4,14 @@ from fastui import AnyComponent, components as c
 from fastui.events import GoToEvent
 
 from timelink import version as timelink_version
-from timelink.app.services.auth import FiefUserInfo
+from timelink.app.schemas.user import UserSchema
 
 
 async def home_page(
     *components: AnyComponent,
     request: Request = None,
     title: str = None,
-    user: FiefUserInfo = None,
+    user: UserSchema = None,
 ) -> list[AnyComponent]:
     """Timelink FastUI main page
 
@@ -31,8 +31,40 @@ async def home_page(
     if user is None:
         user_name = "guest"
     else:
-        user_name = user['email']
-    admin_link = None
+        user_name = user.name
+        if user_name == "":
+            user_name = user.email.split("@")[0]
+
+    start_links = [
+        c.Link(
+            components=[c.Text(text="Explore")],
+            on_click=GoToEvent(url="/explore"),
+            active="startswith:/explore",
+        ),
+        c.Link(
+            components=[c.Text(text="Sources")],
+            on_click=GoToEvent(url="/sources"),
+            active="startswith:/sources",
+        ),
+        c.Link(
+            components=[c.Text(text="Info")],
+            on_click=GoToEvent(url="/info"),
+            active="startswith:/info",
+        ),
+        c.Link(
+            components=[c.Text(text="Projects")],
+            on_click=GoToEvent(url="/projects"),
+            active="startswith:/projects",
+        ),
+    ]
+    if user.is_admin():
+        admin_link = c.Link(
+            components=[c.Text(text="Admin")],
+            on_click=GoToEvent(url="/adm"),
+            active="startswith:/adm",
+        )
+        start_links.append(admin_link)
+
     if user is None or user_name == "guest":
         auth_url = request.url_for("login")
         login_logout = c.Link(
@@ -47,43 +79,14 @@ async def home_page(
             on_click=GoToEvent(url=str(logout_url)),
             active=f"startswith:{logout_url}",
         )
-        admin_link = None
-
-    end_links = [admin_link, login_logout] if admin_link else [login_logout]
+    end_links = [login_logout]
     page = [
         c.PageTitle(text=f"{title}" if title else "Timelink"),
         c.Navbar(
             title="Timelink",
             title_event=GoToEvent(url="/"),
-            start_links=[
-                c.Link(
-                    components=[c.Text(text="Explore")],
-                    on_click=GoToEvent(url="/explore"),
-                    active="startswith:/explore",
-                ),
-                c.Link(
-                    components=[c.Text(text="Sources")],
-                    on_click=GoToEvent(url="/sources"),
-                    active="startswith:/sources",
-                ),
-                c.Link(
-                    components=[c.Text(text="Info")],
-                    on_click=GoToEvent(url="/info"),
-                    active="startswith:/info",
-                ),
-                c.Link(
-                    components=[c.Text(text="Projects")],
-                    on_click=GoToEvent(url="/projects"),
-                    active="startswith:/projects",
-                ),
-                c.Link(
-                    components=[c.Text(text="Auth")],
-                    on_click=GoToEvent(url="/auth/login/password"),
-                    active="startswith:/auth",
-                ),
-            ],
+            start_links=start_links,
             end_links=end_links,
-
         ),
         c.Page(
             components=[

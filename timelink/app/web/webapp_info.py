@@ -4,7 +4,7 @@ from fastui import components as c
 from pydantic import BaseModel, Field
 
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
-from timelink.app.schemas.user import UserSchema
+from timelink.app.schemas.user import UserSchema, UserPropertySchema
 from .home_page import home_page
 
 
@@ -17,19 +17,21 @@ class WebAppInfo(BaseModel):
 
 
 async def webapp_info(
-    webapp: TimelinkWebApp,
-    request: Request,
-    user: UserSchema,
-    token_access: dict = False,
+    webapp: TimelinkWebApp, request: Request, user: UserSchema
 ) -> c.Page:
     info_list = [
         WebAppInfo(info_label=label, info_value=value)
         for (label, value) in webapp.get_info().items()
     ]
+    user_properties = user.properties
 
     return await home_page(
-        c.Page(components=[c.Table(data=info_list)]),
+        c.Page(components=[
+            c.Heading(text="User Info", level=4),
+            c.Table(data=user_properties, data_model=UserPropertySchema),
+            c.Heading(text="WebApp Info", level=4),
+            c.Table(data=info_list)]),
         request=request,
-        title="Server info",
+        title="Info",
         user=user,
     )

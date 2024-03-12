@@ -83,12 +83,7 @@ from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
 from timelink.app.dependencies import get_current_active_user, get_db
 from timelink.app.schemas.user import UserSchema
 from timelink.app.services.auth import auth
-# Deprecated will use Fief instead
-from timelink.app.services.auth import get_password_hash
-from timelink.app.services.auth import authenticate_user
-from timelink.app.services.auth import create_access_token
-from timelink.app.services.auth import Token
-# End deprecated
+
 from timelink.app.web import router as fastui_router
 
 # Get Pydantic-based settings defined in timelink.app.backend.settings
@@ -103,44 +98,25 @@ app.include_router(fastui_router, prefix="/fastui")
 
 # create TimelinkWebApp instance
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
-
-    # Deprecated will use Fief
-    admin_user: User = User(
-            name="admin",
-            fullname="Joaquim Carvalho",
-            email="joaquimcarvalho@mpu.edu.mo",
-            nickname="jrc",
-            hashed_password = get_password_hash(settings.timelink_admin_pwd)
-        )
-    admin_role: UserProperty = UserProperty(name="timelink.role", value="admin")
-    admin_user.properties.append(admin_role)
-
-    guest_user: User = User(  # this a guest user. Todo: Disable flag should come from Settings
-            name='guest',
-            hashed_password='',
-            fullname='Guest user',
-            nickname='guest',
-            email='none@none.com',
-            disabled=False
-        )
-    guest_role: UserProperty = UserProperty(name="timelink.role", value="guest")
-    guest_user.properties.append(guest_role)
-
-    initial_users = [admin_user, guest_user]
+    initial_users = []
     # End deprecated
 
     webapp = TimelinkWebApp(
         app_name=settings.timelink_app_name,
         users_db_name=settings.timelink_users_db_name,
         users_db_type=settings.timelink_users_db_type,
-        fief_authenticator=auth,
         initial_users=initial_users,
     )
 
     app.state.webapp = webapp
     app.state.status = "Initialized"
 
-admin = Admin(webapp.users_db.engine, title="timelink admin")
+admin = Admin(webapp.users_db.engine,
+              title="timelink admin",
+              )
+admin.add_view(ModelView(User))
+admin.add_view(ModelView(UserProperty))
+admin.add_view(ModelView(ProjectAccess))
 admin.add_view(ModelView(Project))
 admin.add_view(Link(label="Timelink web", icon="fa fa-link", url="/"))
 
@@ -151,25 +127,6 @@ app.mount("/static", StaticFiles(packages=[("timelink", "app/static")]), name="s
 # this is how to load the templates from inside the package
 env = Environment(loader=PackageLoader("timelink", "app/templates"))
 templates = Jinja2Templates(env=env)
-
-
-@app.post("/token")
-async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
-    webapp: TimelinkWebApp = app.state.webapp
-    user_db: UserDatabase = webapp.users_db
-    user = authenticate_user(user_db, form_data.username, form_data.password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(
-        data={"username": user.name, "userid": user.id},
-        expires_delta=access_token_expires,
-    )
-    return Token(access_token=access_token, token_type="bearer")
 
 
 @app.get("/test_token", response_model=UserSchema)

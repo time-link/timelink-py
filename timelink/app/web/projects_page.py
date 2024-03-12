@@ -1,11 +1,10 @@
-from typing import List, Optional
+from typing import Optional
 from pydantic import BaseModel
 from fastapi import Request
 from fastui import components as c
 
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
-from ..schemas import ProjectSchema
-from ..services.auth import FiefUserInfo
+from timelink.app.schemas.user import UserSchema, UserProjectSchema
 from .home_page import home_page
 
 
@@ -18,16 +17,14 @@ class ProjectInfoSchema(BaseModel):
     kleioServerURL: Optional[str] = None
 
 
-async def projects_info(webapp: TimelinkWebApp, request: Request, user: FiefUserInfo) -> c.Page:
+async def projects_info(webapp: TimelinkWebApp, request: Request, user: UserSchema) -> c.Page:
 
-    user_fields = user.get("fields", {})
-    user_projects = [proj.strip() for proj in user_fields.get("user_projects", '').split(",")]
-    projects: List[ProjectSchema] = [proj for proj in webapp.projects if proj.name in user_projects]
+    user_projects = user.projects
 
     return await home_page(
         c.Page(
             components=[
-                c.Table(data=projects, data_model=ProjectSchema, no_data_message="No projects found"),
+                c.Table(data=user_projects, data_model=UserProjectSchema, no_data_message="No projects found"),
             ]
         ),
         request=request,
