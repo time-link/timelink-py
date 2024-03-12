@@ -1,15 +1,14 @@
 from typing import Annotated
 from fastapi import Request, Header
 from fastapi import Depends
-from fastapi import status
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import HTTPException
-from jose import JWTError, ExpiredSignatureError
+from jose import JWTError
 from timelink.app.models.user_database import UserDatabase
 from timelink.app.schemas import UserSchema
 
 
-from timelink.app.services.auth import decode_token
+from timelink.app.services.auth import fief, auth, FiefUserInfo, SESSION_COOKIE_NAME
 from timelink.app.models.user import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -24,35 +23,25 @@ def get_fastui_token(authorization: Annotated[str, Header()] = ''):
 
 
 async def get_current_user(
-    request: Request, token: Annotated[str, Depends(get_fastui_token)]
+    request: Request, user: Annotated[FiefUserInfo, Depends(auth.current_user(optional=True))]
 ):
-    """Get the current user"""
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Token"},
-    )
     try:
         users_db: UserDatabase = request.app.state.webapp.users_db
-        if token is None:
-            # if token is none return guest user
-            username = 'guest'
+        if user is None:
+            return None
         else:
-            try:
-                payload = decode_token(token)
-                username: str = payload.get("username")
-            except ExpiredSignatureError:
-                username = 'guest'
-
-        if username is None:
-            raise credentials_exception
-        with users_db.session() as session:
-            user = users_db.get_user_by_name(username, session=session)
-            if user is None:
-                raise credentials_exception
-            user_projects = users_db.get_user_projects(user.id, session=session)
-            user_schema = UserSchema.model_validate(user)
-            user_schema.projects = user_projects
+            user_schema = users_db.cache.get(user["email"])
+            if user_schema is None:
+                with users_db.session() as session:
+                    cookie = request.cookies.get(SESSION_COOKIE_NAME)
+                    token_access = await fief.validate_access_token(cookie)
+                    permissions = token_access.get("permissions", [])
+                    db_user = users_db.on_board_user(user, permissions=permissions, session=session)
+                    user_schema = UserSchema.model_validate(db_user)
+                    user_schema.properties = users_db.get_user_properties(db_user.id, session=session)
+                    user_schema.projects = users_db.get_user_projects(db_user.id, session=session)
+                    users_db.cache[user["email"]] = user_schema
+            return user_schema
 
     except JWTError as jexception:
         raise jexception
