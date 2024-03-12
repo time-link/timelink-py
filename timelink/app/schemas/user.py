@@ -28,13 +28,11 @@ class UserSchema(BaseModel):
 
     Fields:
     - name: str
-    - fullname: Optional[str]
     - email: str
     - nickname: Optional[str]
     - disabled: Optional[bool]
     - properties: Optional[List[UserPropertySchema]]"""
     name: str
-    fullname: Optional[str]
     email: str
     nickname: Optional[str]
     disabled: Optional[bool]
@@ -42,6 +40,12 @@ class UserSchema(BaseModel):
     projects: Optional[List["UserProjectSchema"]]  # noqa Flake8: F821
     created: Optional[datetime] = None
     updated: Optional[datetime] = None
+
+    def is_admin(self, admin_property: str = "permission:timelink:admin"):
+        for prop in self.properties:
+            if prop.name == admin_property and prop.value in ["true", "yes"]:
+                return True
+        return False
 
     # ORM mode
     model_config = ConfigDict(from_attributes=True)
