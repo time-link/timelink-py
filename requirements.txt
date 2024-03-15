@@ -2,11 +2,13 @@ bokeh
 docker~=6.0.0
 fastapi
 fastui
+fief-client
 httpx
 ipykernel
 IPython
 jinja2
 jsonrpcclient
+makefun           # tox seems to need this
 matplotlib
 mysql-connector-python~=8.0.0
 networkx>=3.0.0
@@ -17,7 +19,7 @@ psycopg2-binary==2.9.6
 py-markdown-table==0.3.3
 pydantic
 pydantic-settings
-pytest~=6.2.4
+pytest
 python-box~=5.3.0
 python-dotenv~=0.21.0
 python-jose[cryptography]
