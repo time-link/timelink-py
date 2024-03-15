@@ -1,6 +1,9 @@
 """ Structure of the app inspired by
 https://levelup.gitconnected.com/structuring-fastapi-project-using-3-tier-design-pattern-4d2e88a55757
 
+
+.. code-block:: bash
+
     .
     └── app/
         ├── backend/            # Backend functionality and configs
@@ -29,4 +32,5 @@ https://levelup.gitconnected.com/structuring-fastapi-project-using-3-tier-design
 
 More good ideias in: https://medium.com/@ketansomvanshi007/structuring-a-fastapi-app-an-in-depth-guide-cdec3b8f4710
 Official info: https://fastapi.tiangolo.com/tutorial/bigger-applications/
+
  """

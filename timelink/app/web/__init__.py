@@ -1,3 +1,4 @@
+# noqa B008
 """FastAPI routers for the web interface of Timelink.
 
 This is the main switch board of the FastUI web interface.

@@ -3,24 +3,26 @@
 """
 FastAPI app for timelink
 
-Following the tutorial at https://fastapi.tiangolo.com/tutorial/
+Next
 
-Finished: Query Parameters and String Validations
-* https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#__tabbed_7_3
+* Authentication
 
-Next:
-* get dirs
-* √ implement interface in fastApi for kleio_server
+    * startup Fief docker container, try to add first user
+    * add first admin user to database
 
 To Run
-    source .venv/bin/activate; cd timelink/app; uvicorn main:app --reload
+
+    * source .venv/bin/activate; cd timelink/app; uvicorn main:app --reload
 
 To Test
+
 * http://127.0.0.1:8008/docs
 * http://127.0.0.1:8008/redoc
 
 To debug
+
 * https://fastapi.tiangolo.com/tutorial/debugging/
+
 """
 # Standard library imports
 import os
