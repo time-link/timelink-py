@@ -1,6 +1,13 @@
 =======
 History
 =======
+
+1.1.3 (2024-03-16)
+------------------
+
+Fixes a bug in update_from_sources() when import_with_errors was choosen
+
+
 1.1.2 (2024-02-27)
 ------------------
 
