@@ -30,7 +30,7 @@ app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
 def start():
     """Starts timelink with uvicorn"""
     typer.echo("Starting Timelink")
-    config = uvicorn.Config("timelink.api.main:app", port=8000, reload=True)
+    config = uvicorn.Config("timelink.app.main:app", port=8008, reload=True)
 
     global server
     server = uvicorn.Server(config)
