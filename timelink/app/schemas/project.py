@@ -1,18 +1,10 @@
 from typing import Optional
 from datetime import datetime
-from pydantic import BaseModel as PydanticBaseModel, validator
+from pydantic import BaseModel as BaseModel
 from pydantic import ConfigDict
 from timelink.kleio.kleio_server import KleioServer  # noqa
 from timelink.api.database import TimelinkDatabase  # noqa
 from ..schemas import UserSchema
-
-
-class BaseModel(PydanticBaseModel):
-    @validator('*')
-    def empty_str_to_none(cls, v):
-        if v == '':
-            return None
-        return v
 
 
 class ProjectAccess(BaseModel):
