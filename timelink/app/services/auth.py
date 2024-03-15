@@ -1,13 +1,10 @@
-""" Authentication services
-
-"""
+""" Authentication services """
 import os
 import uuid
 from typing import Optional
 from typing_extensions import Dict
 from fastapi import Request, Response, HTTPException, status
 from fastapi.security import APIKeyCookie
-
 
 # see https://docs.fief.dev/integrate/python/fastapi/#web-application-example
 from fief_client import FiefAsync, FiefUserInfo
@@ -24,7 +21,8 @@ class CustomFiefAuth(FiefAuth):
 
     That's what'll do with the get_unauthorized_response.
 
-    See: https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__
+    See https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__
+
     """
 
     client: FiefAsync
