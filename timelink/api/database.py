@@ -168,7 +168,7 @@ def start_postgres_server(
     )
 
     timeout = 15
-    stop_time = 5
+    stop_time = 1
     elapsed_time = 0
     # this necessary to get the status
     cont = client.containers.get(psql_container.id)
@@ -189,8 +189,8 @@ def start_postgres_server(
             logging.info("Postgres server is ready")
             break
 
-        # If the 'pg_isready' command failed, wait for 5 seconds and try again
-        time.sleep(5)
+        # If the 'pg_isready' command failed, wait for 1 seconds and try again
+        time.sleep(1)
 
     return psql_container
 
@@ -628,8 +628,8 @@ class TimelinkDatabase:
     def get_need_import(
         self,
         kleio_files: List[KleioFile],
-        include_errors=False,
-        include_warnings=False,
+        with_import_errors=False,
+        with_import_warnings=False,
         match_path=False,
     ) -> List[KleioFile]:
         """Get the kleio files that need import
@@ -640,9 +640,9 @@ class TimelinkDatabase:
 
         Args:
             kleio_files (List[KleioFile]): list of kleio files
-            include_errors (bool, optional): if True, include files with errors;
+            with_import_errors (bool, optional): if True, include files with errors;
                                                 defaults to False.
-            include_warnings (bool, optional): if True, include files with warnings;
+            with_import_warnings (bool, optional): if True, include files with warnings;
                                             defaults to False.
             match_path (bool, optional): if True, match the path of the kleio file with
                                             the path of the imported file; defaults to False.
@@ -660,10 +660,10 @@ class TimelinkDatabase:
                 or file.import_status == import_status_enum.U  # noqa: W503
             )
             or (  # noqa: W503
-                include_errors and file.import_status == import_status_enum.E
+                with_import_errors and file.import_status == import_status_enum.E
             )
             or (  # noqa: W503
-                include_warnings and file.import_status == import_status_enum.W
+                with_import_warnings and file.import_status == import_status_enum.W
             )  # noqa: W503
         ]
 
@@ -689,7 +689,13 @@ class TimelinkDatabase:
         return s
 
     def update_from_sources(
-        self, path=None, with_warnings=True, with_errors=False, match_path=False
+        self,
+        path=None,
+        with_translation_warnings=True,
+        with_translation_errors=False,
+        with_import_errors=False,
+        with_import_warnings=False,
+        match_path=False
     ):
         """Update the database from the sources.
 
@@ -698,9 +704,11 @@ class TimelinkDatabase:
 
         Args:
             path (str): path to the sources, if None all the sources are updated.
-            with_warnings (bool, optional): if True, import files with warnings;
+            with_translation_warnings (bool, optional): if True, import files with translation warnings;
                                             defaults to True.
-            with_errors (bool, optional): if True, import files with errors; defaults to False.
+            with_translation_errors (bool, optional): if True, import files with tr errors; defaults to False.
+            with_import_errors (bool, optional): if True, re-import files with errors; defaults to False.
+            with_import_warnings (bool, optional): if True, re-import files with warnings; defaults to False.
             match_path (bool, optional): if True, match the path of the kleio file with the
                                           path of the imported file; if False just match the
                                           file name; defaults to False.
@@ -727,7 +735,7 @@ class TimelinkDatabase:
             qfiles = self.kserver.translation_status(path="", recurse="yes", status="Q")
             # TODO: change to import as each translation finishes
             while len(pfiles) > 0 or len(qfiles) > 0:
-                time.sleep(3)
+                time.sleep(1)
 
                 pfiles = self.kserver.translation_status(
                     path="", recurse="yes", status="P"
@@ -739,15 +747,19 @@ class TimelinkDatabase:
             to_import = self.kserver.translation_status(
                 path="", recurse="yes", status="V"
             )
-            if with_warnings:
+            if with_translation_warnings:
                 to_import += self.kserver.translation_status(
                     path="", recurse="yes", status="W"
                 )
-            if with_errors:
+            if with_translation_errors:
                 to_import += self.kserver.translation_status(
                     path="", recurse="yes", status="E"
                 )
-            import_needed = self.get_need_import(to_import, match_path=match_path)
+            # https://github.com/time-link/timelink-py/issues/40
+            import_needed = self.get_need_import(to_import,
+                                                 with_import_errors,
+                                                 with_import_warnings,
+                                                 match_path=match_path)
 
             for kfile in import_needed:
                 kfile: KleioFile
@@ -838,23 +850,24 @@ class TimelinkDatabase:
         The column id contains the id of the person/object, not of the attribute
 
         Returns:
-                A table object with the nattribute view
+            A table object with the nattribute view
 
-        Original SQL code:
+        Original SQL code
 
         .. code-block:: sql
 
-        CREATE VIEW nattributes AS
-            SELECT p.id        AS id,
-                p.name      AS name,
-                p.sex       AS sex,
-                a.the_type  AS the_type,
-                a.the_value AS the_value,
-                a.the_date  AS the_date,
-                p.obs       AS pobs,
-                a.obs       AS aobs
-            FROM attributes a, persons p
-            WHERE (a.entity = p.id)
+            CREATE VIEW nattributes AS
+                SELECT p.id        AS id,
+                    p.name      AS name,
+                    p.sex       AS sex,
+                    a.the_type  AS the_type,
+                    a.the_value AS the_value,
+                    a.the_date  AS the_date,
+                    p.obs       AS pobs,
+                    a.obs       AS aobs
+                FROM attributes a, persons p
+                WHERE (a.entity = p.id)
+
         """
         if self.nattributes is None:
             eng: Engine = self.engine

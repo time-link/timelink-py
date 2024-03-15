@@ -997,7 +997,7 @@ def start_kleio_server(
     )
 
     timeout = 15
-    stop_time = 3
+    stop_time = 1
     elapsed_time = 0
     # this necessary to get the status
     cont = client.containers.get(kleio_container.id)
