@@ -52,7 +52,7 @@ def get_one_translation(kserver: KleioServer,
         kserver.translate(path=one_translation.path, recurse="no")
 
         counter = 0
-        wait_for = 10
+        wait_for = 1
         max_counter = max_wait / wait_for
         translations = kserver.translation_status(path=path, recurse="yes", status="V")
         in_process = kserver.translation_status(path=path, recurse="yes", status="P")

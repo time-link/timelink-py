@@ -294,7 +294,7 @@ def test_import_from_kleio_server(dbsystem):
             server_up = True
         except Exception as exc:
             logging.debug(exc)
-            sleep(5)
+            sleep(1)
             counter += 1
             pass
     kleio_file: KleioFile = get_one_translation(kserver)
