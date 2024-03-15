@@ -70,7 +70,6 @@ def test_create_user_with_properties(dbsystem):
     with db.session() as session:
         user = User(
             name="User One",
-            fullname="Tests User One",
             email="one@xpto.com",
             nickname="One",
         )
@@ -118,7 +117,6 @@ def test_create_user_db(dbsystem):
     with db:
         user = User(
             name="User 2",
-            fullname="Utilizador segundo",
             email="two@xpto.com",
             nickname="NumberTwo",
         )
@@ -137,7 +135,6 @@ def test_set_user_property(dbsystem):
     with db:  # noqa
         user = User(
             name="User 3",
-            fullname="Tertius",
             email="san@xpto.org",
             nickname="三",
         )
@@ -166,19 +163,18 @@ def test_update_user(dbsystem):
     with db:
         user = User(
             name="User4",
-            fullname="Utilizador Quatro",
             email="four@xpto.com",
             nickname="Test Nickname",
         )
         db.add_user(user)
         db.commit()
         user = db.get_user_by_email("four@xpto.com")
-        assert user.fullname == "Utilizador Quatro"
-        user.fullname = "Quarto Utilizador"
+        assert user.name == "User4"
+        user.name = "Quarto Utilizador"
         db.update_user(user)
         db.commit()
         user = db.get_user_by_email("four@xpto.com")
-        assert user.fullname == "Quarto Utilizador"
+        assert user.name == "Quarto Utilizador"
 
 
 @dbparam
@@ -190,7 +186,6 @@ def test_duplicate_email(dbsystem):
     with db.session() as session:
         user = User(
             name="User five",
-            fullname="Tests User five",
             email="five@xpto.com",
             nickname="five",
         )
@@ -199,7 +194,6 @@ def test_duplicate_email(dbsystem):
 
         duplicate_user = User(
             name="User six",
-            fullname="Tests User six",
             email="five@xpto.com",
             nickname="six",
         )
@@ -221,8 +215,7 @@ def test_user_project_access(dbsystem):
         user = db.get_user_by_nickname("PU1", session=session)
         if user is None:
             user = User(
-                name="ProjectUser1",
-                fullname="Project User one",
+                name="Project User one",
                 email="project_user_one@xpto.com",
                 nickname="PU1",
                 projects=[],
@@ -249,7 +242,7 @@ def test_user_project_access(dbsystem):
         assert len(project_access_list) == 1, "Project access not set"
 
         pa: ProjectAccess = db.get_user_project_access(user.id, project.id, session=session)
-        assert pa.access_level == access_level, "Project access level not set"
+        assert pa.access_level.value == access_level, "Project access level not set"
 
         projects = db.get_user_projects(user.id, session=session)
         assert len(projects) == 1, "User has no projects"
