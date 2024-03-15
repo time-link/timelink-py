@@ -1,6 +1,7 @@
 """ Timelink User model
 
 timelink users are registered users of the application.
+
 Each user can be associated with one or more "projects".
 
 A project is a collection of Kleio sources and a database to store the data.
@@ -19,6 +20,7 @@ When using PostgreSQL, each project is associated with a database
 and each project is associated with a user and a password to access the database.
 
 users have different access levels to the projects. The access levels are:
+
 1. admin: the user has full access to the project, including the ability to associate
     new users to the project.
 2. manager: the user has access to the project, can import data and identify
@@ -72,7 +74,6 @@ class User(Base):
     Fields:
     - id: int, primary key, autoincrement
     - name: str, required
-    - fullname: str, optional
     - nickname: str, optional
     - email: str, required, unique
     - hashed_password: str, optional
