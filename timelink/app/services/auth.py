@@ -35,7 +35,7 @@ class CustomFiefAuth(FiefAuth):
         # Redirect to the Fief auth URL
         raise HTTPException(
             status_code=status.HTTP_307_TEMPORARY_REDIRECT,
-            headers={"Location": str(auth_url)},
+            headers={"Location": str(auth_url)}
         )
 
 
