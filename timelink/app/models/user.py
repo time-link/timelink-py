@@ -69,17 +69,16 @@ class UserProperty(Base):
 
 
 class User(Base):
-    """User model
-
-    Fields:
-    - id: int, primary key, autoincrement
-    - name: str, required
-    - nickname: str, optional
-    - email: str, required, unique
-    - hashed_password: str, optional
-    - disabled: bool, optional, default=False
-    - created: datetime, required, default=now
-    - updated: datetime, optional, default=now, onupdate=now
+    """
+    Attributes:
+        id (int): Primary key, autoincrement.
+        name (str): Required.
+        nickname (str): Optional.
+        email (str): Required, unique.
+        hashed_password (str): Optional.
+        disabled (bool): Optional, default is False.
+        created (datetime): Required, default is now.
+        updated (datetime): Optional, default is now, updated at now.
     """
 
     __tablename__ = "users"
