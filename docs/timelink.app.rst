@@ -13,6 +13,9 @@ Subpackages
 
    timelink.app.backend
    timelink.app.models
+   timelink.app.schemas
+   timelink.app.services
+   timelink.app.web
 
 Submodules
 ----------

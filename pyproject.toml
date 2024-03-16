@@ -5,4 +5,5 @@
 [tool.black]
 line-length = 88
 exclude = '__init__.py'
+extend-immutable-calls = 'Depends, fastapi.Depends, fastapi.params.Depends'
 

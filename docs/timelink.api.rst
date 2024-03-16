@@ -30,13 +30,6 @@ timelink.api.database module
    :no-undoc-members:
    :no-show-inheritance:
 
-timelink.api.main module
-------------------------
-
-.. automodule:: timelink.api.main
-   :no-undoc-members:
-   :no-show-inheritance:
-
 timelink.api.schemas module
 ---------------------------
 
