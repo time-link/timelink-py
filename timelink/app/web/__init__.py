@@ -1,5 +1,6 @@
 # noqa B008
-"""FastAPI routers for the web interface of Timelink.
+"""
+FastAPI routers for the web interface of Timelink.
 
 This is the main switch board of the FastUI web interface.
 
@@ -10,14 +11,14 @@ the login and logout pages.
 To add future pages:
 
 1. Write a new function in a separate file that produces the
-    components for the new tab: see webapp_info.py for
-   inspiration
+   components for the new tab: see :mod:`webapp_info` for
+   inspiration.
 2. Here import the page and add a new router that calls
-    the new function to collect the components and call
-    home_page to wrap the components in a page.
+   the new function to collect the components and call
+   :func:`home_page` to wrap the components in a page.
 3. If the new page handles subpaths, like /auth/login,
    it is better to create a new router in the new page
-   and include it here, like the /auth router is included
+   and include it here, like the /auth router is included.
 """
 
 import uuid
@@ -54,7 +55,7 @@ UserDep = Annotated[UserSchema, Depends(get_current_user)]
 
 @router.get("/login", name="login")
 async def login(request: Request,
-                user: FiefUserInfo = Depends(auth.current_user(optional=False))):
+                user: FiefUserInfo = Depends(auth.current_user(optional=False))):  # noqa B008
     """ We require the user to be logged in to access this page
 
     So the Dependency will forward the user to the fief login page
@@ -66,8 +67,8 @@ async def login(request: Request,
 async def auth_callback(
     request: Request,
     response: Response,
-    code: str = Query(...),
-    memory_userinfo_cache: MemoryUserInfoCache = Depends(get_memory_userinfo_cache),
+    code: str = Query(...),  # noqa B008
+    memory_userinfo_cache: MemoryUserInfoCache = Depends(get_memory_userinfo_cache),  # noqa B008
 ):
     """Callback for the Fief authentication
 
@@ -138,7 +139,7 @@ async def auth_callback(
 @router.get("/logout", name="logout")
 async def logout(request: Request,
                  response: Response,
-                 user: UserSchema = Depends(get_current_user)):
+                 user: UserSchema = Depends(get_current_user)):  # noqa B008
     """Logout the user
     Remove the cookie and redirect to fief logout, then to the main page
     """
@@ -152,7 +153,7 @@ async def logout(request: Request,
 @router.get("/projects", response_model=FastUI, response_model_exclude_none=True)
 async def projects(
     request: Request,
-    user: Optional[UserSchema] = Depends(get_current_user),
+    user: Optional[UserSchema] = Depends(get_current_user),  # noqa B008
 ) -> list[AnyComponent]:
     webapp: TimelinkWebApp = (
         request.app.state.webapp
@@ -162,7 +163,7 @@ async def projects(
 
 @router.get("/info", response_model=FastUI, response_model_exclude_none=True)
 async def info(
-    request: Request, user: UserSchema = Depends(get_current_user)
+    request: Request, user: UserSchema = Depends(get_current_user)  # noqa B008
 ) -> list[AnyComponent]:
     webapp: TimelinkWebApp = (
         request.app.state.webapp
@@ -173,7 +174,7 @@ async def info(
 @router.get("/explore", response_model=FastUI, response_model_exclude_none=True)
 async def explore(
     request: Request,
-    user: UserSchema = Depends(get_current_user)
+    user: UserSchema = Depends(get_current_user)  # noqa B008
 ) -> list[AnyComponent]:
     markdown = """\
 * See list of attributes
@@ -187,7 +188,7 @@ async def explore(
 
 @router.get("/sources", response_model=FastUI, response_model_exclude_none=True)
 async def sources(
-    request: Request, user: UserSchema = Depends(get_current_user)
+    request: Request, user: UserSchema = Depends(get_current_user)  # noqa B008
 ) -> list[AnyComponent]:
     markdown = """\
 * View sources
@@ -203,7 +204,7 @@ async def sources(
 @router.get("/adm", response_model=FastUI, response_model_exclude_none=True)
 async def admin(
     request: Request,
-    user: UserSchema = Depends(get_current_user),
+    user: UserSchema = Depends(get_current_user),  # noqa B008
 ) -> list[AnyComponent]:
     webapp: TimelinkWebApp = request.app.state.webapp
     markdown = f"""\
@@ -226,7 +227,7 @@ Timelink administration consists of:
 @router.get("/", name="home", response_model=FastUI, response_model_exclude_none=True)
 async def home(
     request: Request,
-    user: Optional[UserSchema] = Depends(get_current_user),
+    user: Optional[UserSchema] = Depends(get_current_user),  # noqa B008
 ) -> list[AnyComponent]:
     markdown = """\
 
