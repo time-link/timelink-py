@@ -10,7 +10,7 @@ from time import sleep
 
 import pytest
 
-from tests import TEST_DIR, get_one_translation
+from tests import TEST_DIR, get_one_translation, skip_on_travis
 from timelink.api.models.system import KleioImportedFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
@@ -28,7 +28,7 @@ from timelink.kleio import KleioServer
 from timelink.kleio.schemas import KleioFile
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-# pytestmark = skip_on_travis
+pytestmark = skip_on_travis
 
 
 @pytest.fixture(scope="module")
