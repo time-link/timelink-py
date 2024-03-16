@@ -18,6 +18,6 @@ from .api import schemas  # noqa: F401
 
 __author__ = """Joaquim Ramos de Carvalho"""
 __email__ = 'joaquim@uc.pt'
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 
 version = __version__
