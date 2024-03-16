@@ -1,7 +1,5 @@
 from __future__ import annotations as _annotations
 
-from datetime import timedelta
-
 from typing import Annotated, Literal, TypeAlias
 import asyncio
 
@@ -11,14 +9,12 @@ from fastui import AnyComponent, FastUI
 from fastui import components as c
 from fastui.auth import AuthRedirect, GitHubAuthProvider
 from fastui.events import AuthEvent, GoToEvent, PageEvent
-from fastui.forms import fastui_form
 
 # from httpx import AsyncClient
 from pydantic import BaseModel, EmailStr, Field, SecretStr
 
 from timelink.app.schemas.user import UserSchema
 from timelink.app.dependencies import get_current_user, get_github_auth
-from timelink.app.services.auth import authenticate_user, create_access_token
 from timelink.app.web.home_page import home_page
 
 
@@ -123,23 +119,6 @@ class LoginForm(BaseModel):
         description="Enter your password",
         json_schema_extra={"autocomplete": "current-password"},
     )
-
-
-@router.post("/login", response_model=FastUI, response_model_exclude_none=True)
-async def login_form_post(
-    request: Request, form: Annotated[LoginForm, fastui_form(LoginForm)]
-) -> list[AnyComponent]:
-    webapp = request.app.state.webapp
-    user_db = webapp.users_db
-    user = authenticate_user(
-        user_db, form.email, password=form.password.get_secret_value()
-    )
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    token = create_access_token(
-        data={"username": user.name, "userid": user.id},
-        expires_delta=access_token_expires,
-    )
-    return [c.FireEvent(event=AuthEvent(token=token, url="/auth/profile"))]
 
 
 @router.get("/profile", response_model=FastUI, response_model_exclude_none=True)
