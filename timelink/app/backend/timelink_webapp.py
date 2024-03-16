@@ -23,21 +23,21 @@ class TimelinkWebApp:
     It stores TimelinkDatabase, KleioServer objects
     and Fief (user management) objects.
 
-    Fields:
-    - app_name: name of the application
-    - timelink_home: directory where the Timelink database is located
-    - host_url: URL of the Timelink web application
-    - kleio_server: a KleioServer instance
-    - db_type: type of the users database (sqlite or postgres)
-    - users_db_name: name of the users database
-    - users_db: a UserDatabase instance
-    - auth_manager: URL of the authentication manager
-    - app_manager: URL of the application manager
-    - kleio_image: name of the Kleio image to use
-    - postgres_image: name of the postgres image to use
-    - postgres_version: version of the postgres image to use
-    - sqlite_dir: directory where the sqlite databases are located
-    - stop_duplicates: if True, stop other kleio servers for the same timelink home
+    Attributes:
+        app_name (str): Name of the application.
+        timelink_home (str): Directory where the Timelink database is located.
+        host_url (str): URL of the Timelink web application.
+        kleio_server (KleioServer): A KleioServer instance.
+        db_type (str): Type of the users database (sqlite or postgres).
+        users_db_name (str): Name of the users database.
+        users_db (UserDatabase): A UserDatabase instance.
+        auth_manager (str): URL of the authentication manager.
+        app_manager (str): URL of the application manager.
+        kleio_image (str): Name of the Kleio image to use.
+        postgres_image (str): Name of the postgres image to use.
+        postgres_version (str): Version of the postgres image to use.
+        sqlite_dir (str): Directory where the sqlite databases are located.
+        stop_duplicates (bool): If True, stop other kleio servers for the same timelink home.
 
     """
     # this should be set in a Dependency
@@ -109,7 +109,6 @@ class TimelinkWebApp:
         self.kleio_version = kleio_version
         self.db_type = users_db_type
         self.users_db_name = users_db_name
-        """"The users / projects database instance deprecated"""
         self.users_db = None
         self.auth_manager = auth_manager
         self.app_manager = app_manager
