@@ -158,12 +158,15 @@ class TimelinkNotebook:
             show_token: if True, show the token of the kleio server
             show_password: if True, show the password of the postgres server
 
-        TODO: #26 truncate token and password and add parameter to show them
         """
         info_dict = self.get_info(show_token, show_password)
 
         for key, value in info_dict.items():
             print(f"{key}: {value}")
+        if not show_token:
+            print("Call print_info(show_token=True) to show the Kleio Server token")
+        if not show_password:
+            print("Call print_info(show_password=True) to show the Postgres password")
         print(self.__repr__())
 
     def get_info(self, show_token, show_password):
