@@ -24,7 +24,7 @@ async def projects_info(webapp: TimelinkWebApp, request: Request, user: UserSche
     return await home_page(
         c.Page(
             components=[
-                c.Table(data=user_projects, data_model=UserProjectSchema, no_data_message="No projects found"),
+                c.Table(data=user_projects, data_model=UserProjectSchema, no_data_message="No projects found. Associate users with projects in the admin page."),
             ]
         ),
         request=request,
