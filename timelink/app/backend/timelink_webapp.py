@@ -7,6 +7,7 @@ from typing import List
 import pandas
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload
+from sqlalchemy.engine.url import make_url
 
 import timelink
 from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
@@ -28,7 +29,7 @@ class TimelinkWebApp:
         timelink_home (str): Directory where the Timelink database is located.
         host_url (str): URL of the Timelink web application.
         kleio_server (KleioServer): A KleioServer instance.
-        db_type (str): Type of the users database (sqlite or postgres).
+        users_db_type (str): Type of the users database (sqlite or postgres).
         users_db_name (str): Name of the users database.
         users_db (UserDatabase): A UserDatabase instance.
         auth_manager (str): URL of the authentication manager.
@@ -107,7 +108,7 @@ class TimelinkWebApp:
         self.host_url = timelink_url
         self.kleio_server = kleio_server
         self.kleio_version = kleio_version
-        self.db_type = users_db_type
+        self.users_db_type = users_db_type
         self.users_db_name = users_db_name
         self.users_db = None
         self.auth_manager = auth_manager
@@ -128,22 +129,22 @@ class TimelinkWebApp:
             self.initial_users = []
         if self.timelink_home is None:
             self.timelink_home = KleioServer.find_local_kleio_home()
-        if self.db_type == "sqlite":
+        if self.users_db_type == "sqlite":
             if self.sqlite_dir is None:
                 self.sqlite_dir = os.path.join(self.timelink_home, "system/db/sqlite")
             if not os.path.exists(self.sqlite_dir):
                 os.makedirs(self.sqlite_dir)
             self.users_db = UserDatabase(
-                db_type=self.db_type,
+                db_type=self.users_db_type,
                 db_name=self.users_db_name,
                 db_path=self.sqlite_dir,
                 stop_duplicates=self.stop_duplicates,
                 initial_users=self.initial_users,
                 **connection_args,
             )
-        elif self.db_type == "postgres":
+        elif self.users_db_type == "postgres":
             self.users_db = UserDatabase(
-                db_type=self.db_type,
+                db_type=self.users_db_type,
                 db_name=self.users_db_name,
                 postgres_image=self.postgres_image,
                 postgres_version=self.postgres_version,
@@ -152,7 +153,7 @@ class TimelinkWebApp:
                 **connection_args,
             )
         else:
-            raise ValueError(f"Invalid database type: {self.db_type}")
+            raise ValueError(f"Invalid database type: {self.users_db_type}")
 
         if self.kleio_server is not None:
             self.kleio_server = kleio_server
@@ -170,11 +171,20 @@ class TimelinkWebApp:
 
     def get_info(self, show_token=False, show_password=False):
         """Print information about the Timel8nk Webapp object"""
+        if not show_password:
+            # mask any password that might be present in the dabase URL
+            url = make_url(str(self.users_db.engine.url))
+            if url.password:
+                url.password = '****'
+            db_url = str(url)
+        else:
+            db_url = str(self.users_db.engine.url)
+
         info_dict = {
             "Timelink version": timelink.version,
             "Timelink home": self.timelink_home,
             "Timelink host URL": self.host_url,
-            "Timelink users database": self.users_db_name,
+            "Timelink users database": db_url,
             "Kleio server": self.kleio_server.get_url(),
             "Kleio version requested": self.kleio_version,
             "SQLite directory": self.sqlite_dir,
@@ -203,9 +213,9 @@ class TimelinkWebApp:
             build_date = labels.get("BUILD_DATE", "")
             if version != "":
                 info_dict["Kleio server version"] = f"{version}.{build} ({build_date})"
-        if self.db_type == "sqlite":
+        if self.users_db_type == "sqlite":
             info_dict["SQLite directory"] = self.sqlite_dir
-        elif self.db_type == "postgres":
+        elif self.users_db_type == "postgres":
             info_dict.update(
                 {
                     "Postgres image": self.postgres_image,
@@ -243,6 +253,8 @@ class TimelinkWebApp:
         Check the database for projects entries and merge the two lists
         so that the database has the most recent information.
         """
+        if self.timelink_home is None:
+            return []
         with self.users_db.session() as session:
             projs = session.scalars(select(Project).options(selectinload(Project.users))).all()
             if projs is not None:
