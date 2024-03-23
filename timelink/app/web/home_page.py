@@ -30,10 +30,15 @@ async def home_page(
     """
     if user is None:
         user_name = "guest"
+        current_project_name = "None"
     else:
         user_name = user.name
         if user_name == "":
             user_name = user.email.split("@")[0]
+        if user.current_project_name is None:
+            current_project_name = "None"
+        else:
+            current_project_name = user.current_project_name
 
     start_links = [
         c.Link(
@@ -57,7 +62,7 @@ async def home_page(
             active="startswith:/projects",
         ),
     ]
-    if user.is_admin():
+    if user is not None and user.is_admin():
         admin_link = c.Link(
             components=[c.Text(text="Admin")],
             on_click=GoToEvent(url="/adm"),
@@ -92,7 +97,7 @@ async def home_page(
             components=[
                 *((c.Heading(text=title, level=3),) if title else ()),
                 *components,
-                c.Heading(level=6, text=f"{user_name}"),
+                c.Heading(level=6, text=f"{user_name} ({current_project_name})"),
             ],
         ),
         c.Footer(

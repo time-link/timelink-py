@@ -25,18 +25,22 @@ import uuid
 
 from typing import Annotated, Optional
 
-from fastapi import APIRouter, Depends, Request, Response, Query
+from fastapi import APIRouter, Depends, Form, Request, Response, Query
 from fastapi.responses import RedirectResponse
 
 from fastui import FastUI, AnyComponent, components as c
+from fastui.events import GoToEvent, PageEvent
 
+from timelink.app.backend import settings
+from timelink.api.database import TimelinkDatabase
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
+from timelink.app.models.project import Project, ProjectAccess
 from timelink.app.schemas.user import UserSchema
 from timelink.app.services.auth import fief, auth, FiefUserInfo
 from timelink.app.services.auth import (
     get_memory_userinfo_cache,
     MemoryUserInfoCache,
-    SESSION_COOKIE_NAME
+    SESSION_COOKIE_NAME,
 )
 from .home_page import home_page
 from .webapp_info import webapp_info
@@ -54,9 +58,9 @@ UserDep = Annotated[UserSchema, Depends(get_current_user)]
 
 
 @router.get("/login", name="login")
-async def login(request: Request,
-                user: FiefUserInfo = Depends(auth.current_user(optional=False))):  # noqa B008
-    """ We require the user to be logged in to access this page
+async def login(
+    request: Request, user: FiefUserInfo = Depends(auth.current_user(optional=False))):  # noqa B008
+    """We require the user to be logged in to access this page
 
     So the Dependency will forward the user to the fief login page
     """
@@ -89,7 +93,9 @@ async def auth_callback(
     Here we get the tokens and userinfo from Fief and store the userinfo,
     then we redirect to the main page.
     """
-    redirect_uri = request.url_for("auth_callback")  # the arg is the name of the function
+    redirect_uri = request.url_for(
+        "auth_callback"
+    )  # the arg is the name of the function
     # docs:
     # We generate an access token
     #
@@ -137,9 +143,8 @@ async def auth_callback(
 
 
 @router.get("/logout", name="logout")
-async def logout(request: Request,
-                 response: Response,
-                 user: UserSchema = Depends(get_current_user)):  # noqa B008
+async def logout(
+    request: Request, response: Response, user: UserSchema = Depends(get_current_user)):  # noqa B008
     """Logout the user
     Remove the cookie and redirect to fief logout, then to the main page
     """
@@ -155,10 +160,32 @@ async def projects(
     request: Request,
     user: Optional[UserSchema] = Depends(get_current_user),  # noqa B008
 ) -> list[AnyComponent]:
-    webapp: TimelinkWebApp = (
-        request.app.state.webapp
-    )  # collect the info from TimelinkWebApp
+    webapp: TimelinkWebApp = request.app.state.webapp
+    # collect the info from TimelinkWebApp
     return await projects_info(webapp, request=request, user=user)
+
+
+@router.post("/projects/select", response_model=FastUI, response_model_exclude_none=True)
+async def project_select(
+    request: Request,
+    project_name: Annotated[str, Form()],
+    user: UserSchema = Depends(get_current_user),  # noqa B008
+):
+    webapp: TimelinkWebApp = request.app.state.webapp
+    if project_name is not None:
+        user.current_project_name = project_name
+        users_db = webapp.users_db
+        with users_db.session() as session:
+            project: Project = users_db.get_project_by_name(project_name, session=session)
+        user.current_project = project
+        access_level: ProjectAccess = users_db.get_user_project_access(user.id, project.id, session=session)
+        if access_level is None:
+            raise ValueError(f"User {user.name} has no access to project {project_name}")
+
+        project_db = TimelinkDatabase(project.databaseURL)
+        user.current_project_db = project_db
+
+    return [c.FireEvent(event=GoToEvent(url='/projects'))]
 
 
 @router.get("/info", response_model=FastUI, response_model_exclude_none=True)
@@ -173,8 +200,7 @@ async def info(
 
 @router.get("/explore", response_model=FastUI, response_model_exclude_none=True)
 async def explore(
-    request: Request,
-    user: UserSchema = Depends(get_current_user)  # noqa B008
+    request: Request, user: UserSchema = Depends(get_current_user)  # noqa B008
 ) -> list[AnyComponent]:
     markdown = """\
 * See list of attributes

@@ -23,7 +23,10 @@ async def webapp_info(
         WebAppInfo(info_label=label, info_value=value)
         for (label, value) in webapp.get_info().items()
     ]
-    user_properties = user.properties
+    if user is not None:
+        user_properties = user.properties
+    else:
+        user_properties = []
 
     return await home_page(
         c.Page(components=[
