@@ -339,7 +339,9 @@ class TimelinkNotebook:
         if isinstance(file_spec, pandas.DataFrame):
             paths = self.get_file_paths(file_spec, rows, column)
             for file in paths:
+                rpt += file + "\n"
                 rpt += self.db.get_import_rpt(file, match_path=match_path, **kwargs)
+                rpt += "\n\n"
         elif isinstance(file_spec, str):
             return self.db.get_import_rpt(file_spec, match_path=match_path, **kwargs)
         else:
