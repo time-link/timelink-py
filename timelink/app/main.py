@@ -68,13 +68,15 @@ from timelink import version
 from timelink.api import crud, models, schemas
 from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
 from timelink.api.schemas import EntityAttrRelSchema, ImportStats
+
 from timelink.app.backend.settings import Settings
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
-from timelink.app.dependencies import get_kleio_server
+from timelink.app.dependencies import get_current_user, get_kleio_server
 from timelink.app.models.user import User, UserProperty
 from timelink.app.models.user_database import UserDatabase
 from timelink.app.models.project import Project, ProjectAccess, AccessLevel
 from timelink.kleio import (
+    KleioServer,
     api_permissions_normal,  # todo: should have kleio prefixed name
     kleio_server as kserver,
     token_info_normal,  # todo: chenge to kleio prefixed names
@@ -101,13 +103,17 @@ app.include_router(fastui_router, prefix="/fastui")
 # create TimelinkWebApp instance
 if hasattr(app.state, "webapp") is False or app.state.webapp is None:
     initial_users = []
+    possible_timelink_home = KleioServer.find_local_kleio_home()
     # End deprecated
 
+    # need to add timelink_home to settings and to webapp
     webapp = TimelinkWebApp(
         app_name=settings.timelink_app_name,
+        timelink_home=possible_timelink_home,
         users_db_name=settings.timelink_users_db_name,
         users_db_type=settings.timelink_users_db_type,
         initial_users=initial_users,
+
     )
 
     app.state.webapp = webapp
@@ -326,15 +332,18 @@ async def translate(
 
 # Web zone
 
-
+# web prefix uses templates for htmx and tailwind
 @app.get("/web")
-async def root(request: Request):
+async def root(request: Request,
+               user: UserSchema = Depends(get_current_user)
+               ):
     """Timelink API end point. Check URL/docs for API documentation."""
     webapp: TimelinkWebApp = request.app.state.webapp
     context = {
         "welcome_message": "Welcome to Timelink API and Webapp",
         "webapp_info": webapp.get_info(),
         "projects": webapp.projects,
+        "user": user,
     }
     return templates.TemplateResponse(
         request=request, name="index.html", context=context

@@ -629,6 +629,9 @@ def find_local_kleio_home(path: str = None):
     # check if current_dir is "notebooks"
     if os.path.basename(current_dir) == "notebooks":
         kleio_home = os.path.dirname(current_dir)
+    # check if current dir is one of the timelink home names
+    elif os.path.basename(current_dir) in timelink_home_names:
+        kleio_home = os.path.dirname(current_dir)
     else:
         # check if kleio-home exists in current directory,
         # parents of current directory up to user_home,
