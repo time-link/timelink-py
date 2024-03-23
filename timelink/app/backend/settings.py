@@ -11,3 +11,4 @@ class Settings(BaseSettings):
     timelink_app_url: str = "http://localhost:8008"
     timelink_users_db_path: str = ""
     timelink_admin_pwd: str = "adminpwd"
+    timelink_project_db_type: str = "sqlite"
