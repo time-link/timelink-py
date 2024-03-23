@@ -29,9 +29,9 @@ from fastapi import APIRouter, Depends, Form, Request, Response, Query
 from fastapi.responses import RedirectResponse
 
 from fastui import FastUI, AnyComponent, components as c
-from fastui.events import GoToEvent, PageEvent
+from fastui.events import GoToEvent
 
-from timelink.app.backend import settings
+# from timelink.app.backend import settings
 from timelink.api.database import TimelinkDatabase
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
 from timelink.app.models.project import Project, ProjectAccess
