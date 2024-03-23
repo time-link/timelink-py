@@ -1,63 +1,60 @@
-<img style="background-color:rgb(87, 192, 233);" src="static/img/logo_alpha.png" />
-<h1>{{ welcome_message }}</h1>
-</div>
-</header>
+<html lang="en">
 
-<table border="1">
-<thead>
-<tr>
-  <th scope="col">
-    Info</th>
-  <th scope="col">
-    Value
-  </th>
-</tr>
-</thead>
-<tbody>
-{% for key, value in webapp_info.items() %}
-{% if value is not none %}
-<tr>
-  <td>
-    {{ key }}
-  </td>
-  <td>
-    {{ value }}</td>
-</tr>
-{% endif %}
-{% endfor %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=<div>, initial-scale=1.0">
+  <title>Document</title>
+</head>
 
-<table border="1">
-  <caption>
-    Projects
-  </caption>
-  <thead>
-    <tr>
-      <th scope="col">
-        Project name
-      </th>
-      <th scope="col">
-        Kleio_Url
-      </th>
-      <th scope="col">
-        DB_Url
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for proj in projects %}
-    <tr>
-      <td>
-        {{ proj.name }}
-      </td>
-      <td>
-        {{ proj.kleioServerURL }}
-      </td>
-      <td>
-        {{ proj.databaseURL }}
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<body>
+  <div> <!-- content wrapper -->
+    <div>
+      <nav>
+        <div>
+          <h1>
+            <a href="/web">Home</a>
+          </h1>
+        </div>
+        <ul>
+          <li>
+            <a href="#">
+              <span>Explore</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Search</span>
+            </a>
+          </li>
+          <li>
+            <a href="Sources">
+              <span>Link 2</span>
+            </a>
+          </li>
+          <li>
+            <a href="Identify">
+              <span>Link 2</span>
+            </a>
+          </li>
+          <li>
+            <a href="Admin">
+              <span>Link 3</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div> <!-- end nav -->
+    <main>
+      <div>
+        <a href="#"">login</a>
+        <a href=" #">register</a>
+      </div>
+      <header>
+        <h2>Timelink</h2>
+        <h3>Projects</h3>
+      </header>
+    </main>
+  </div>
+</body>
 
-
+</html>
