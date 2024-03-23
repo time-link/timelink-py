@@ -47,7 +47,7 @@ class Project(Base):
     __tablename__ = "projects"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(30))
+    name: Mapped[str] = mapped_column(String(30), primary_key=True)
     description: Mapped[Optional[str]] = mapped_column(String(4096))
     databaseURL: Mapped[Optional[str]] = mapped_column(String(256))
     kleioServerURL: Mapped[Optional[str]] = mapped_column(String(256))
