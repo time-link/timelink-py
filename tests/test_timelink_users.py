@@ -246,3 +246,25 @@ def test_user_project_access(dbsystem):
 
         projects = db.get_user_projects(user.id, session=session)
         assert len(projects) == 1, "User has no projects"
+
+
+@dbparam
+def test_get_project_name(dbsystem):
+    db: UserDatabase = dbsystem
+    if db.db_type == "postgres":
+        if os.environ.get("TRAVIS") == "true":
+            pytest.xfail("No postgres on Travis")
+    with db.session() as session:
+        result = db.get_project_by_name(name="Project One", session=session)
+        if result is None:
+            project = Project(
+                name="Project One",
+                description="Project One description",
+            )
+            session.add(project)
+            session.commit()
+        else:
+            project = result.first()
+
+        project = db.get_project_by_name(name="Project One", session=session)
+        assert project is not None, "Project not found"
