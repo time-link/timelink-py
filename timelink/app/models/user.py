@@ -45,6 +45,8 @@ from sqlalchemy.sql import func
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
+from timelink.app.schemas.user import UserPropertySchema, UserSchema
+
 
 # declarative base class
 class Base(DeclarativeBase):
@@ -60,6 +62,10 @@ class UserProperty(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
     user: Mapped["User"] = relationship("User", back_populates="properties")
+
+    def as_schema(self):
+        """Return the pydantic model for this object."""
+        return UserPropertySchema.model_validate(self)
 
     def __repr__(self):
         return f"UserProperty(id={self.id}, name={self.name}, value={self.value}, user_id={self.user_id})"
@@ -104,6 +110,12 @@ class User(Base):
     projects: Mapped[List["ProjectAccess"]] = relationship(  # type: ignore # noqa F821
         "ProjectAccess", back_populates="user", cascade="all, delete, delete-orphan"
     )
+
+    def as_schema(self):
+        """Return the pydantic model for this object."""
+        us = UserSchema.model_validate(self)
+        us.properties = [p.as_schema() for p in self.properties]
+        us.projects = [p.as_schema() for p in self.projects]
 
     def __repr__(self):
         return (

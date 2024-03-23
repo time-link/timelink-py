@@ -1,7 +1,10 @@
 # Pydantic schema
-from typing import List, Optional
+from typing import Annotated, List, Optional
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, SkipValidation
+
+from timelink.api.database import TimelinkDatabase
+from timelink.kleio.kleio_server import KleioServer
 
 
 class UserPropertySchema(BaseModel):
@@ -12,7 +15,7 @@ class UserPropertySchema(BaseModel):
 
 
 class UserProjectSchema(BaseModel):
-    """ This is used to avoid circular import between UserSchema and ProjectSchema."""
+
     user_id: Optional[int] = None
     project_id: Optional[int] = None
     project_name: Optional[str] = None
@@ -38,6 +41,9 @@ class UserSchema(BaseModel):
     disabled: Optional[bool]
     properties: Optional[List[UserPropertySchema]]
     projects: Optional[List["UserProjectSchema"]]  # noqa Flake8: F821
+    current_project_name: Optional[str] = None
+    current_project_db: Annotated[TimelinkDatabase, SkipValidation] = None
+    current_project_kleio_server: Annotated[KleioServer, SkipValidation] = None
     created: Optional[datetime] = None
     updated: Optional[datetime] = None
 
@@ -48,4 +54,4 @@ class UserSchema(BaseModel):
         return False
 
     # ORM mode
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(from_attributes=True, arbitrary_types_allowed=True)
