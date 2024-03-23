@@ -215,14 +215,14 @@ class UserDatabase:
         Adds permissions if provided. Permissions should be fetched
         from the fief access_token and passed as a comma separeted string.
 
-        The access_token is store in a cookie and can be validated with
+        The access_token is stored in a cookie and can be validated with
         fief.validate_access_token
 
         """
 
         user_email = user["email"]
-        user_db = self.get_user_by_email(user_email, session=session)
-        if user_db is None:
+        user_in_db = self.get_user_by_email(user_email, session=session)
+        if user_in_db is None:
             user_fields = user.get("fields", {})
             user_name = user_fields.get("user_name", "")
             user_nickname = user_fields.get("user_nickname", None)
@@ -232,16 +232,18 @@ class UserDatabase:
             self.add_user(user, session=session)
             session.commit()
         for field_name, field_value in user["fields"].items():
-            self.set_user_property(user_db.id, field_name, field_value, session=session)
+            self.set_user_property(
+                user_in_db.id, field_name, field_value, session=session
+            )
         session.commit()
         # todo: think about this
         for permission in permissions:
             self.set_user_property(
-                user_db.id, f"permission:{permission}", "yes", session=session
+                user_in_db.id, f"permission:{permission}", "yes", session=session
             )
         session.commit()
 
-        return user_db
+        return UserSchema.model_validate(user_in_db)
 
     def set_user_property(
         self, user_id: int, property_name: str, property_value: str, session=None
@@ -298,8 +300,11 @@ class UserDatabase:
                 )
             else:
                 session = self.current_session
-
-        return session.get(User, user_id)
+        user: User = session.get(User, user_id)
+        if user is None:
+            return None
+        else:
+            return user
 
     def get_user_by_name(self, name: str, session=None) -> User:
         """Get a user from the database
@@ -322,7 +327,11 @@ class UserDatabase:
             else:
                 session = self.current_session
 
-        return session.scalars(select(User).filter(User.name == name)).first()
+        user: User = session.scalars(select(User).filter(User.name == name)).first()
+        if user is None:
+            return None
+        else:
+            return user
 
     def get_user_by_email(self, email, session=None):
         """
@@ -347,7 +356,11 @@ class UserDatabase:
             else:
                 session = self.current_session
 
-        return session.scalars(select(User).filter(User.email == email)).first()
+        user: User = session.scalars(select(User).filter(User.email == email)).first()
+        if user is None:
+            return None
+        else:
+            return user
 
     def get_user_by_nickname(self, nickname, session=None):
         """
@@ -372,7 +385,13 @@ class UserDatabase:
             else:
                 session = self.current_session
 
-        return session.scalars(select(User).filter(User.nickname == nickname)).first()
+        user: User = session.scalars(
+            select(User).filter(User.nickname == nickname)
+        ).first()
+        if user is None:
+            return None
+        else:
+            return user
 
     def update_user(self, user: User, session=None):
         """Update a user in the database
@@ -437,7 +456,7 @@ class UserDatabase:
         result = session.scalars(
             select(UserProperty).filter(UserProperty.user_id == user_id)
         ).all()
-        return [UserPropertySchema.model_validate(property) for property in result]
+        return result
 
     def get_user_property(
         self, user_id: int, property_name: str, session=None
@@ -467,7 +486,7 @@ class UserDatabase:
                 UserProperty.user_id == user_id, UserProperty.name == property_name
             )
         ).first()
-        return UserPropertySchema.model_validate(r)
+        return r
 
     def set_user_project_access(
         self, user_id: int, project_id: int, access_level: str, session=None
@@ -553,7 +572,12 @@ class UserDatabase:
             else:
                 session = self.current_session
         stmt = (
-            select(Project.id, Project.name, Project.description, ProjectAccess.access_level)
+            select(
+                Project.id,
+                Project.name,
+                Project.description,
+                ProjectAccess.access_level,
+            )
             .join(Project.users)
             .filter(ProjectAccess.user_id == user_id)
         )
@@ -571,3 +595,33 @@ class UserDatabase:
             projects.append(user_project)
 
         return projects
+
+    def get_project(self, project_id: int, session=None) -> Project:
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with session=db:"
+                )
+            else:
+                session = self.current_session
+
+        return session.get(Project, project_id)
+
+    def get_project_by_name(self, name: str, session=None) -> Project:
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with session=db:"
+                )
+            else:
+                session = self.current_session
+
+        result = session.scalars(select(Project).filter(Project.name == name))
+        if result is not None:
+            return result.first()
+        else:
+            return None
