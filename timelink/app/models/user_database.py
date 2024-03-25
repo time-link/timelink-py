@@ -243,7 +243,7 @@ class UserDatabase:
             )
         session.commit()
 
-        return UserSchema.model_validate(user_in_db)
+        return user_in_db
 
     def set_user_property(
         self, user_id: int, property_name: str, property_value: str, session=None
