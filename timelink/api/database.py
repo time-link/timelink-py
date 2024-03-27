@@ -33,7 +33,7 @@ from sqlalchemy_utils import create_database
 import docker  # pylint: disable=import-error
 
 import timelink
-from timelink.kleio.kleio_server import is_docker_running
+from timelink.global_utilities import is_docker_running
 from timelink.mhk import utilities
 from timelink.api import models  # pylint: disable=unused-import
 from timelink.api.models import Entity, PomSomMapper

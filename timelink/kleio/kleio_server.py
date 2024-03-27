@@ -11,6 +11,7 @@ import requests
 from jsonrpcclient import request, Error, Ok, parse
 import urllib.request
 
+from timelink.global_utilities import is_docker_running
 from .schemas import KleioFile, TokenInfo
 
 
@@ -587,17 +588,6 @@ class KleioServer:
         with urllib.request.urlopen(req) as source:
             response_content = source.read().decode("utf-8")
             return response_content
-
-
-def is_docker_running():
-    """Check if docker is running"""
-    try:
-        client = docker.from_env()
-        client.ping()
-        return True
-    except Exception as exec:
-        logging.error(f"Could not connect to Docker. Is it running? {exec}")
-        return False
 
 
 def find_local_kleio_home(path: str = None):
