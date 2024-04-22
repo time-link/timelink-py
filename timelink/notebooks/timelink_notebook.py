@@ -122,7 +122,7 @@ class TimelinkNotebook:
             kleio_home=self.project_home,
             kleio_image=self.kleio_image,
             kleio_version=self.kleio_version,
-            kleio_token=None,
+            kleio_token=kleio_token,
             kleio_update=kleio_update,
             postgres_image=self.postgres_image,
             postgres_version=self.postgres_version,
