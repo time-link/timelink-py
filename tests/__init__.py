@@ -52,7 +52,7 @@ def get_one_translation(kserver: KleioServer,
         kserver.translate(path=one_translation.path, recurse="no")
 
         counter = 0
-        wait_for = 1
+        wait_for = 2
         max_counter = max_wait / wait_for
         translations = kserver.translation_status(path=path, recurse="yes", status="V")
         in_process = kserver.translation_status(path=path, recurse="yes", status="P")
@@ -69,6 +69,6 @@ def get_one_translation(kserver: KleioServer,
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
     else:
-        raise RuntimeError("No translations available in server")
+        raise RuntimeError("No translations available in server" + f"tried {counter} times waiting {wait_for} seconds")
 
     return kleio_file
