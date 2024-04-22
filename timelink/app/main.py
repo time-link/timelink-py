@@ -91,7 +91,7 @@ from timelink.app.services.auth import auth
 from timelink.app.web import router as fastui_router
 
 # Get Pydantic-based settings defined in timelink.app.backend.settings
-settings = Settings(timelink_admin_pwd="admin")
+settings = Settings()
 
 # Move to settings?
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -118,6 +118,7 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
 
     app.state.webapp = webapp
     app.state.status = "Initialized"
+
 
 admin = Admin(webapp.users_db.engine,
               title="timelink admin",
@@ -343,6 +344,7 @@ async def root(request: Request,
         "welcome_message": "Welcome to Timelink API and Webapp",
         "webapp_info": webapp.get_info(),
         "projects": webapp.projects,
+        "request":request,
         "user": user,
     }
     return templates.TemplateResponse(

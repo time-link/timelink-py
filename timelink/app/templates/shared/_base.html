@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=<div>, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div> <!-- content wrapper -->
+    <div>
+      <nav>
+        <div>
+          <h1>
+            <a href="/web">Timelink</a>
+            <span>{{ user.name }}</span>
+          </h1>
+        </div>
+        <ul role="tab">
+          <li>
+            <a href="#">
+              <span>Explore</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Search</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Sources</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Identify</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>Admin</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div> <!-- end nav -->
+    <main>
+      <div>
+        <a href="{{ request.url_for('login') }}">login</a>
+        <a href="#">register</a>
+      </div>
+      <header>
+        {% block content %}
+        <h2>Timelink</h2>
+        <h3>Projects</h3>
+        {% endblock %}
+
+      </header>
+    </main>
+  </div>
+</body>
+
+</html>
