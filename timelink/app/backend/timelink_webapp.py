@@ -1,13 +1,20 @@
-""" Main class for the Timelink web application. """
+""" Main class for the Timelink web application
+
+Store runtime information of a timelink web instance, including
+links database services, kleio services and fief services.
+
+ """
 
 import os
 import json
 from typing import List
 
 import pandas
+import docker
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 from sqlalchemy.engine.url import make_url
+
 
 import timelink
 from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
@@ -15,6 +22,7 @@ from timelink.app.schemas.project import ProjectSchema
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty  # noqa
 from timelink.app.models.project import Project
+from timelink.app.services.auth import start_fief_server
 
 
 class TimelinkWebApp:
@@ -41,6 +49,7 @@ class TimelinkWebApp:
         stop_duplicates (bool): If True, stop other kleio servers for the same timelink home.
 
     """
+
     # this should be set in a Dependency
     after_auth_url = None
     # Url in fief to authenticate
@@ -71,6 +80,14 @@ class TimelinkWebApp:
         postgres_version=None,
         sqlite_dir=None,
         stop_duplicates=True,  # kleio server duplicates
+        fief_server: docker.models.containers.Container = None,
+        fief_image=None,
+        fief_version=None,
+        fief_server_port=8000,
+        fief_external_port=8000,
+        fief_domain="localhost:8000",
+        fief_main_user_email=None,
+        fief_main_user_password=None,
         initial_users: list[User] = None,
         **connection_args,
     ):
@@ -96,8 +113,15 @@ class TimelinkWebApp:
             postgres_image: name of the postgres image to use
             postgres_version: version of the postgres image to use
             sqlite_dir: directory where the sqlite databases are located
-            initial_users: list of initial users (deprecated)
             stop_duplicates: if True, stop duplicates
+            fief_image: name of the Fief image to use
+            fief_version: version of the Fief image to use
+            fief_server_port: port of the Fief server
+            fief_external_port: external port of the Fief server
+            fief_domain: domain of the Fief server
+            fief_main_user_email: email of the main user
+            fief_main_user_password: password of the main user
+            initial_users: list of initial users (deprecated)
             **connection_args: extra arguments to pass to the TimelinkDatabase
 
         Returns:
@@ -155,7 +179,7 @@ class TimelinkWebApp:
         else:
             raise ValueError(f"Invalid database type: {self.users_db_type}")
 
-        if self.kleio_server is not None:
+        if kleio_server is not None:
             self.kleio_server = kleio_server
         else:
             if self.timelink_home is not None:
@@ -167,6 +191,18 @@ class TimelinkWebApp:
                     update=self.kleio_update,
                     stop_duplicates=self.stop_duplicates,
                 )
+        if fief_server is not None:
+            self.fief_server = fief_server
+        else:
+            self.fief_server = start_fief_server(
+                fief_image=fief_image,
+                fief_version=fief_version,
+                fief_server_port=fief_server_port,
+                fief_external_port=fief_external_port,
+                fief_domain=fief_domain,
+                main_user_email=fief_main_user_email,
+                main_user_password=fief_main_user_password,
+            )
         self.update_projects()
 
     def get_info(self, show_token=False, show_password=False):
@@ -175,7 +211,7 @@ class TimelinkWebApp:
             # mask any password that might be present in the dabase URL
             url = make_url(str(self.users_db.engine.url))
             if url.password:
-                url.password = '****'
+                url.password = "****"
             db_url = str(url)
         else:
             db_url = str(self.users_db.engine.url)
@@ -200,7 +236,6 @@ class TimelinkWebApp:
                     "Kleio server URL": kserver.get_url(),
                     "Kleio server home": kserver.get_kleio_home(),
                 }
-
             )
             if not show_token:
                 info_dict["Kleio server token"] = kserver.get_token()[:5] + "..."
@@ -256,7 +291,9 @@ class TimelinkWebApp:
         if self.timelink_home is None:
             return []
         with self.users_db.session() as session:
-            projs = session.scalars(select(Project).options(selectinload(Project.users))).all()
+            projs = session.scalars(
+                select(Project).options(selectinload(Project.users))
+            ).all()
             if projs is not None:
                 self.projects = [ProjectSchema.model_validate(proj) for proj in projs]
             else:
