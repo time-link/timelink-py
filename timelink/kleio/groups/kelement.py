@@ -213,15 +213,15 @@ class KElement:
         c = self.core
         cc = self.comment
         o = self.original
-        if c is None:
+        if c is None or c == "":
             c = ""
         else:
             c = quote_long_text(str(c))
-        if cc is None:
+        if cc is None or cc == "":
             cc = ""
         else:
             cc = "#" + quote_long_text(str(cc))
-        if o is None:
+        if o is None or o == "":
             o = ""
         else:
             o = "%" + quote_long_text(str(o))
