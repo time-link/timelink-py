@@ -2,6 +2,7 @@
 
 import logging
 import warnings
+import json
 from typing import Optional, Type, List
 
 from sqlalchemy import Table  # pylint: disable=import-error
@@ -418,8 +419,10 @@ class PomSomMapper(Entity):
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
         # columns = inspect(ormClass).columns
-
-        for cattr in pom_class.class_attributes:
+        # extra_info =  this will store the extra information in comment and original words
+        extra_info: dict = dict()  # {el1:{'core':'','comment':'','original':''},el2:...}
+        group_obs = ''  # this will store the observation information with extra info
+        for cattr in pom_class.class_attributes:  # for each mapped column
             if cattr.colclass == "id":
                 pass
             element: KElement = group.get_element_for_column(cattr.colclass)
@@ -438,6 +441,13 @@ class PomSomMapper(Entity):
                     else:
                         core_value = element.core
                     setattr(entity_from_group, cattr.colname, str(core_value))
+                    extra_info.update({element.name: {}})
+                    if cattr.colname == "obs":
+                        group_obs = core_value  # we save the obs element for later
+                    if element.comment is not None and element.comment.strip() != '':
+                        extra_info[element.name].update({'comment': element.comment.strip()})
+                    if element.original is not None and element.original.strip() != '':
+                        extra_info[element.name].update({'original': element.original.strip()})
                 except Exception as e:
                     session.rollback()
                     raise ValueError(
@@ -451,9 +461,28 @@ class PomSomMapper(Entity):
         entity_from_group.the_line = group.line
         entity_from_group.the_level = group.level
         entity_from_group.the_order = group.order
+        extra_info = {k: v for k, v in extra_info.items() if v != {}}
+        # for elname, extras in extra_info.items():
+        #     el_obs = ''
+        #     if extras.get('comment', None) is not None and extras['comment'].strip() != '':
+        #         el_obs = el_obs + f"# {extras['comment']}. "
+        #     if extras.get('original', None) is not None and extras['original'].strip() != '':
+        #         el_obs = el_obs + f"% {extras['original']}. "
+        #     if el_obs != '':
+        #         group_obs = f"{group_obs} {elname} {el_obs}"
+        # if group_obs.strip() != '':
+        #     entity_from_group.obs = group_obs.strip()
+        if len(extra_info) > 0:
+            if group_obs is not None and group_obs.strip() != '':
+                group_obs = f"{group_obs.strip()} extra_info: {json.dumps(extra_info)}"
+            else:
+                group_obs = f"extra_info: {json.dumps(extra_info)}"
+
+        # convert extra_info to string
+        entity_from_group.extra_info = extra_info
+        entity_from_group.obs = group_obs
 
         # check if we have an id from the group
-
         # check if this group is enclosed in another
         container_id = group.get_container_id()
         if container_id not in ["root", "None", "", None]:

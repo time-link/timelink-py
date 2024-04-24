@@ -96,10 +96,12 @@ def test_import_linked_data_attributes(dbsystem):
         raise
     sfile: Path = stats["file"]
     assert sfile.name == file.name
-    per = session.get(Person, "deh-antonio-de-abreu")
+    per: Person = session.get(Person, "deh-antonio-de-abreu")
     assert per is not None, "could not get a group with linked data from file"
-    kleio = per.to_kleio()
-    assert len(kleio) > 0
+    # check for attributes with extra_info
+    for a in per.attributes:
+        if 'extra_info' in a.obs:
+            assert a.get_extra_info() is not None
 
 
 @pytest.mark.parametrize(
@@ -124,8 +126,7 @@ def test_import_linked_data_geoentites(dbsystem):
     assert sfile.name == file.name
     geo1 = session.get(Entity, "deh-r1644-chekiang")
     assert geo1 is not None, "could not get a group with linked data from file"
-    kleio = geo1.to_kleio()
-    assert len(kleio) > 0
+    assert geo1.get_extra_info() is not None
 
 
 @pytest.mark.parametrize(

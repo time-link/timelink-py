@@ -1,5 +1,6 @@
 from typing import List, Optional
 from datetime import datetime
+import json
 
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
@@ -182,7 +183,33 @@ class Entity(Base):
         else:
             return None
 
-        return entity
+    def get_extra_info(self):
+        """Return a dictionatry with extra information about this entity or None
+
+        if entity has an 'obs' field and that field
+        contains the string 'extra_info:' then the rest
+        of the field is considered a json representation of
+        extra information about the entity. Extra information can
+        be comments and original wording of field values.
+
+        This method returns
+        the json information as a dictionnary.
+
+        Currently the dictionary has the following structure:
+
+            {'field_name': {'comment': text_of_comment, 'original': original_wording}}
+        """
+        obs = getattr(self, 'obs', None)
+        if obs is not None:
+            s = obs.split('extra_info:')
+            if len(s) > 1:
+                exs = s[1].strip()
+                extra_info = json.loads(exs)
+            else:
+                extra_info = None
+        else:
+            extra_info = None
+        return extra_info
 
     def __repr__(self):
         return (
