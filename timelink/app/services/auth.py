@@ -12,19 +12,18 @@ from fief_client.integrations.fastapi import FiefAuth
 
 
 class CustomFiefAuth(FiefAuth):
-    """We customize the FiefAuth helper to fit our needs
-
-    The base class is implemented with an API scenario in mind.
-    Nevertheless, it's designed in a way you can customize its
-    behavior when the user is not authenticated or has not the
-    required scope.
-
-    That's what'll do with the get_unauthorized_response.
-
-    See https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__
-
     """
+    CustomFiefAuth is a subclass of FiefAuth that allows for customization of user authentication.
 
+    This class is designed to be used in scenarios where the base FiefAuth class does not provide
+    the desired behavior. Specifically, it allows for customization of the response when a user
+    is not authenticated or does not have the required scope.
+
+    Attributes:
+        client (FiefAsync): An instance of the FiefAsync class for making asynchronous requests.
+
+    See https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__ for more details.
+    """
     client: FiefAsync
 
     async def get_unauthorized_response(self,
