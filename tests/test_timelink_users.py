@@ -264,7 +264,7 @@ def test_get_project_name(dbsystem):
             session.add(project)
             session.commit()
         else:
-            project = result.first()
+            project = result
 
         project = db.get_project_by_name(name="Project One", session=session)
         assert project is not None, "Project not found"

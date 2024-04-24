@@ -46,7 +46,7 @@ from .user import Base, User
 class Project(Base):
     __tablename__ = "projects"
 
-    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(primary_key=True, unique=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(30), primary_key=True)
     description: Mapped[Optional[str]] = mapped_column(String(4096))
     databaseURL: Mapped[Optional[str]] = mapped_column(String(256))
@@ -67,7 +67,7 @@ class AccessLevel(enum.Enum):
 class ProjectAccess(Base):
     __tablename__ = "user_project_access"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"))
     access_level: Mapped[Enum] = mapped_column(Enum(AccessLevel))
