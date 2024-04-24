@@ -2,7 +2,9 @@
 History
 =======
 
-1.1.5 (2024-04-24)
+
+
+1.1.6 (2024-04-24)
 ------------------
 Comments and original wording are now stored
 in the "obs" field of entities, preceeded by
@@ -15,6 +17,8 @@ A new method in the Entity class, get_extra_info()
 fetches the extra info as a dictionnary.
 
 This partially implements issue #9.
+
+Fixes regression in 1.1.5 (unreleased)
 
 1.1.4 (2024-03-16)
 ------------------
