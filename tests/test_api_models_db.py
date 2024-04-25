@@ -1,7 +1,7 @@
 import os
 
 import pytest  # pylint: disable=import-error
-from sqlalchemy import inspect  # noqa
+from sqlalchemy import select  # noqa
 
 from tests import skip_on_travis, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
@@ -129,7 +129,7 @@ def test_create_db(get_db):
     assert len(tables) > 0, "tables where not created"
 
 
-def test_create_nattribute(get_db, kgroup_nested):
+def test_create_eattribute(get_db, kgroup_nested):
     # Database is created and initialized in the fixture
     db: TimelinkDatabase = get_db
     ks = kgroup_nested
@@ -139,9 +139,31 @@ def test_create_nattribute(get_db, kgroup_nested):
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    nattr = db.get_nattribute_view()
+    eattr = db.get_eattribute_view()
     # l2 = len(inspect(get_db.get_engine()).get_view_names())
-    assert nattr is not None
+
+    assert eattr is not None
+
+    with get_db.session() as session:
+        stmt = select(eattr).where(eattr.c.inside == "p01")
+        results = session.execute(stmt).all()
+
+    for result in results:
+        print(result)
+
+def test_create_pattribute(get_db, kgroup_nested):
+    # Database is created and initialized in the fixture
+    db: TimelinkDatabase = get_db
+    ks = kgroup_nested
+    with get_db.session() as session:
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+
+    # views = inspect(db.get_engine()).get_view_names()
+    # l1 = len(views)
+    pattr = db.get_pattribute_view()
+    # l2 = len(inspect(get_db.get_engine()).get_view_names())
+    assert pattr is not None
 
 
 def test_entity_contains(get_db):
