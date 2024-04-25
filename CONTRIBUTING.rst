@@ -236,6 +236,17 @@ Tests related to the existence of a MHK installation
     $ mv ~/.mhk_copy ~/.mhk
     $ make test-all
 
+ We also use [nbval](https://nbval.readthedocs.io/en/latest/) to test the notebooks. To run the tests on the notebooks::
+
+    $ py.test --nbval tests/timelink-home/projects/test-project/*
+
+Tha make target "test" activates both code and notebook tests.
+Currently the notebooks are not tested on different versions of Python (no tox integration)
+
+
+
+
+
 Code style (lint)
 -----------------
 
