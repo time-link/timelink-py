@@ -2,6 +2,7 @@
 from typing import List
 import pandas as pd
 from sqlalchemy import select
+
 from timelink.api.database import TimelinkDatabase
 
 
@@ -71,6 +72,7 @@ def entities_with_attribute(
             column_name = str(the_type)
     date_column_name = f"{column_name}.date"
     obs_column_name = f"{column_name}.obs"
+    type_column_name = f"{column_name}.type"
 
     entity_types = db.get_models_ids()
     if entity_type not in entity_types:
@@ -104,6 +106,7 @@ def entities_with_attribute(
     more_info_cols = cols.copy()
     cols.extend(
         [
+            attr.c.the_type.label(type_column_name),
             attr.c.the_value.label(column_name),
             attr.c.the_date.label(date_column_name),
             attr.c.obs.label(obs_column_name),
