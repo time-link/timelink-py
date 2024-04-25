@@ -63,9 +63,9 @@ def is_postgres_running():
 
     client = docker.from_env()
 
-    postgres_containers: list[
-        docker.models.containers.Container
-    ] = client.containers.list(filters={"ancestor": "postgres"})
+    postgres_containers: list[docker.models.containers.Container] = (
+        client.containers.list(filters={"ancestor": "postgres"})
+    )
     return len(postgres_containers) > 0
 
 
@@ -182,7 +182,7 @@ def start_postgres_server(
 
     while True:
         # Execute the 'pg_isready' command in the container
-        exit_code, output = psql_container.exec_run('pg_isready')
+        exit_code, output = psql_container.exec_run("pg_isready")
 
         # If the 'pg_isready' command succeeded, break the loop
         if exit_code == 0:
@@ -315,7 +315,8 @@ class TimelinkDatabase:
     db_user: str
     db_pwd: str
     db_type: str
-    nattributes: Table | None = None
+    pattributes: Table | None = None
+    eattributes: Table | None = None
     nfuncs: Table | None = None
     kserver: KleioServer | None = None
 
@@ -486,7 +487,8 @@ class TimelinkDatabase:
 
         :return: None
         """
-        self.nattributes = self.get_nattribute_view()
+        self.pattributes = self.get_pattribute_view()
+        self.eattributes = self.get_eattribute_view()
 
     def table_names(self):
         """Current tables in the database"""
@@ -695,7 +697,7 @@ class TimelinkDatabase:
         with_translation_errors=False,
         with_import_errors=False,
         with_import_warnings=False,
-        match_path=False
+        match_path=False,
     ):
         """Update the database from the sources.
 
@@ -756,10 +758,12 @@ class TimelinkDatabase:
                     path="", recurse="yes", status="E"
                 )
             # https://github.com/time-link/timelink-py/issues/40
-            import_needed = self.get_need_import(to_import,
-                                                 with_import_errors,
-                                                 with_import_warnings,
-                                                 match_path=match_path)
+            import_needed = self.get_need_import(
+                to_import,
+                with_import_errors,
+                with_import_warnings,
+                match_path=match_path,
+            )
 
             for kfile in import_needed:
                 kfile: KleioFile
@@ -840,23 +844,23 @@ class TimelinkDatabase:
         model = self.get_model(class_id)
         return model.__table__
 
-    def get_nattribute_view(self):
+    def get_pattribute_view(self):
         """Return the nattribute view.
 
-        Returns a sqlalchemy table linked to the nattributes view of timelink/MHK databases
+        Returns a sqlalchemy table linked to the pattributes view of timelink/MHK databases
         This views joins the table "persons" and the table "attributes" providing attribute
         values with person names and sex.
 
         The column id contains the id of the person/object, not of the attribute
 
         Returns:
-            A table object with the nattribute view
+            A table object with the pattribute view
 
         Original SQL code
 
         .. code-block:: sql
 
-            CREATE VIEW nattributes AS
+            CREATE VIEW pattributes AS
                 SELECT p.id        AS id,
                     p.name      AS name,
                     p.sex       AS sex,
@@ -869,10 +873,10 @@ class TimelinkDatabase:
                 WHERE (a.entity = p.id)
 
         """
-        if self.nattributes is None:
+        if self.pattributes is None:
             eng: Engine = self.engine
             metadata: MetaData = self.metadata
-            # texists = inspect(eng).has_table("nattributes")
+            # texists = inspect(eng).has_table("pattributes")
 
             person = Person.__table__
             attribute = Attribute.__table__
@@ -892,10 +896,53 @@ class TimelinkDatabase:
                     person.join(attribute, person.c.id == attribute.c.entity)
                 ),
             )
-            self.nattributes = attr
+            self.pattributes = attr
             with eng.begin() as con:
                 metadata.create_all(con)
-        return self.nattributes
+        return self.pattributes
+
+
+    def get_eattribute_view(self):
+        """Return the eattribute view.
+
+        Returns a sqlalchemy table with a view that joins the table "entities"
+        and the table "attributes". This view provides attribute values with
+        the "positional" information kept in the entities tables, such as
+        line number, level and order in the source file as well as groupname of
+        the attribute ("ls", "attr", etc...) and timestamps for updates and indexing.
+        """
+        if self.eattributes is None:
+            eng: Engine = self.engine
+            metadata: MetaData = self.metadata
+            # texists = inspect(eng).has_table("eattributes")
+
+            entity = Entity.__table__
+            attribute = Attribute.__table__
+            attr = views.view(
+                "eattributes",
+                metadata,
+                select(
+                    entity.c.id.label("id"),
+                    entity.c.inside.label("inside"),
+                    entity.c.the_line.label("the_line"),
+                    entity.c.the_level.label("the_level"),
+                    entity.c.the_order.label("the_order"),
+                    entity.c.groupname.label("groupname"),
+                    entity.c.updated.label("updated"),
+                    entity.c.indexed.label("indexed"),
+                    attribute.c.the_type.label("the_type"),
+                    attribute.c.the_value.label("the_value"),
+                    attribute.c.the_date.label("the_date"),
+                    attribute.c.obs.label("aobs"),
+
+                ).select_from(
+                    entity.join(attribute, entity.c.id == attribute.c.id)
+                ),
+            )
+            self.eattributes = attr
+            with eng.begin() as con:
+                metadata.create_all(con)
+            return self.eattributes
 
 
 def get_import_status(
