@@ -73,6 +73,8 @@ def entities_with_attribute(
     date_column_name = f"{column_name}.date"
     obs_column_name = f"{column_name}.obs"
     type_column_name = f"{column_name}.type"
+    line_column_name = f"{column_name}.line"
+    level_column_name = f"{column_name}.level"
 
     entity_types = db.get_models_ids()
     if entity_type not in entity_types:
@@ -99,7 +101,7 @@ def entities_with_attribute(
         if "name" not in entity_columns:
             raise (ValueError("To filter by name requires person_info=True."))
 
-    attr = db.get_table("attribute")
+    attr = db.get_eattribute_view()
     id_col = attr.c.entity.label("id")
     cols = [entity_id_col]
     cols.extend(extra_cols)
@@ -109,7 +111,10 @@ def entities_with_attribute(
             attr.c.the_type.label(type_column_name),
             attr.c.the_value.label(column_name),
             attr.c.the_date.label(date_column_name),
-            attr.c.obs.label(obs_column_name),
+            attr.c.the_line.label(line_column_name),
+            attr.c.the_level.label(level_column_name),
+
+            attr.c.aobs.label(obs_column_name),
         ]
     )
 
@@ -205,7 +210,7 @@ def entities_with_attribute(
                 attr.c.entity.label("id"),
                 attr.c.the_value.label(column_name),
                 attr.c.the_date.label(date_column_name),
-                attr.c.obs.label(obs_column_name),
+                attr.c.aobs.label(obs_column_name),
             ).where(attr.c.the_type == mcol)
             stmt = stmt.where(id_col.in_(df.index))
             col_names = stmt.columns.keys()
