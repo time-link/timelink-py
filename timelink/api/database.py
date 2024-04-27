@@ -901,7 +901,6 @@ class TimelinkDatabase:
                 metadata.create_all(con)
         return self.pattributes
 
-
     def get_eattribute_view(self):
         """Return the eattribute view.
 
@@ -923,13 +922,13 @@ class TimelinkDatabase:
                 metadata,
                 select(
                     entity.c.id.label("id"),
-                    entity.c.inside.label("inside"),
                     entity.c.the_line.label("the_line"),
                     entity.c.the_level.label("the_level"),
                     entity.c.the_order.label("the_order"),
                     entity.c.groupname.label("groupname"),
                     entity.c.updated.label("updated"),
                     entity.c.indexed.label("indexed"),
+                    attribute.c.entity.label("entity"),
                     attribute.c.the_type.label("the_type"),
                     attribute.c.the_value.label("the_value"),
                     attribute.c.the_date.label("the_date"),
@@ -942,7 +941,7 @@ class TimelinkDatabase:
             self.eattributes = attr
             with eng.begin() as con:
                 metadata.create_all(con)
-            return self.eattributes
+        return self.eattributes
 
 
 def get_import_status(
