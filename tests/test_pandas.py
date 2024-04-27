@@ -126,7 +126,7 @@ def test_entities_with_attribute_list(dbsystem):
         entity_type="person",
         the_type=["nascimento", "entrada", "partida", "estadia", "morte"],
         column_name="lugares",
-        show_elements=["name", "sex","the_line"],
+        show_elements=["name", "sex", "the_line"],
         more_attributes=[],
         sql_echo=True,
     )

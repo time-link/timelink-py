@@ -151,6 +151,7 @@ def test_create_eattribute(get_db, kgroup_nested):
     for result in results:
         print(result)
 
+
 def test_create_pattribute(get_db, kgroup_nested):
     # Database is created and initialized in the fixture
     db: TimelinkDatabase = get_db
