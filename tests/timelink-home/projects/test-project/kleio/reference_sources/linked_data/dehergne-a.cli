@@ -168,16 +168,16 @@ kleio$gacto2.str/translations=201
                ls$embarque/[Para a China]/16730315
 
          n$Afonso Aires/id=deh-afonso-aires
-            ls$nacionalidade/Portugal
-            ls$jesuita-estatuto/Padre
             ls$nome/Afonso Ayres
+            ls$nacionalidade/Portugal
+            ls$nascimento/Santarém%Scalabis# @wikidata:Q273877/16300000
+            ls$jesuita-entrada/Coimbra# @wikidata:Q45412/16490000
+            ls$jesuita-estatuto/Padre
+            ls$tarefa/Estuda Teologia/16490000
             ls$embarque/Bom Jesus da Vidigueira/16570404
             ls$wicky/1043/16570404
             ls$wicky-viagem/89/16570404
             ls$morte/[No mar, depois do Cabo da Boa Esperança]/16570000
-            ls$jesuita-entrada/Coimbra# @wikidata:Q45412/16490000
-            ls$tarefa/Estuda Teologia/16490000
-            ls$nascimento/Santarém%Scalabis# @wikidata:Q273877/16300000
             ls$dehergne/10/obs=Emb. pour la Chine sur le Bom Jésus da Vidigueira, 4 avril 1657 (W 1043).M. 1657, après avoir doublé le Cap de Bonne Espérance.Pf. 329. — Le catal. du Portugal de 1655 ne mentionne qu'un frère Ayres de Almeida, N. Scalabis 1630, E. 1649 (Lus. 45, 179v), qui commençait alors sa théologie à Coïmbre.
 
             referido$Aires de Almeida/id=deh-afonso-aires-ref1
