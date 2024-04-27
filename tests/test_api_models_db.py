@@ -145,7 +145,7 @@ def test_create_eattribute(get_db, kgroup_nested):
     assert eattr is not None
 
     with get_db.session() as session:
-        stmt = select(eattr).where(eattr.c.inside == "p01")
+        stmt = select(eattr).where(eattr.c.entity == "p01")
         results = session.execute(stmt).all()
 
     for result in results:
