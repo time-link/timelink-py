@@ -1,0 +1,14 @@
+bokeh
+fastapi>=0.109.1
+jinja2
+matplotlib
+mysql-connector-python~=8.0.0
+networkx>=3.0
+openpyxl
+pandas~=2.0.0
+pydantic~=2.4.0
+pydantic-settings
+psycopg2-binary  # avoids errors of missing pg_config
+sqlalchemy
+sqlalchemy_utils
+timelink>=1.1.6
