@@ -293,6 +293,26 @@ def test_insert_entities_attr_rel(get_db, kgroup_person_attr_rel):
         assert "obs" not in kleio, "Empty obs should not be rendered"
 
 
+def test_export_entities_as_kleio(get_db, kgroup_person_attr_rel):
+    """Test exporting entities as Kleio"""
+    ks = kgroup_person_attr_rel
+    source_id = ks.get_id()
+    with get_db.session() as session:
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+        source_from_db = Entity.get_entity(source_id, session)
+        act = source_from_db.contains[0]
+        people = act.contains
+        people_ids = [person.id for person in people]
+        get_db.export_as_kleio(people_ids, 'tests/test_kleio_export.cli')
+        assert os.path.exists('tests/test_kleio_export.cli')
+        # read the file
+        with open('tests/test_kleio_export.cli', 'r') as f:
+            kleio = f.read()
+            assert kleio
+        os.remove('tests/test_kleio_export.cli')
+
+
 def test_quote_and_long_test(kgroup_person_attr_rel):
     ks = kgroup_person_attr_rel
     kleio = ks.to_kleio()

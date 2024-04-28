@@ -933,15 +933,48 @@ class TimelinkDatabase:
                     attribute.c.the_value.label("the_value"),
                     attribute.c.the_date.label("the_date"),
                     attribute.c.obs.label("aobs"),
-
-                ).select_from(
-                    entity.join(attribute, entity.c.id == attribute.c.id)
-                ),
+                ).select_from(entity.join(attribute, entity.c.id == attribute.c.id)),
             )
             self.eattributes = attr
             with eng.begin() as con:
                 metadata.create_all(con)
         return self.eattributes
+
+    def export_as_kleio(
+        self,
+        ids: List,
+        filename,
+        kleio_group: str = None,
+        source_group: str = None,
+        act_group: str = None,
+    ):
+        """Export entities to a kleio file
+
+        Renders each of the entities in the list in kleio format
+        using Entity.to_kleio() and writes them to a file.
+
+        If provded, kleio_group, source_group and act_group are written
+        before the entities.
+
+
+        Args:
+            ids (List): list of ids
+            filename ([type]): destination file path
+            kleio_group ([type]): text to be used as initial kleio group
+            source_group ([type]): text to be used as source group
+            act_group ([type]): text to be used as act group
+        """
+
+        with open(filename, "w") as f:
+            if kleio_group is not None:
+                f.write(f"{kleio_group}\n")
+            if source_group is not None:
+                f.write(f"{source_group}\n")
+            if act_group is not None:
+                f.write(f"{act_group}\n")
+            for id in ids:
+                ent = self.get_entity(id)
+                f.write(str(ent.to_kleio()) + "\n\n")
 
 
 def get_import_status(
