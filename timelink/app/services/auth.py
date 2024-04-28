@@ -16,13 +16,18 @@ class CustomFiefAuth(FiefAuth):
     CustomFiefAuth is a subclass of FiefAuth that allows for customization of user authentication.
 
     This class is designed to be used in scenarios where the base FiefAuth class does not provide
-    the desired behavior. Specifically, it allows for customization of the response when a user
+    the desired behavior.
+
+    Specifically, it allows for customization of the response when a user
     is not authenticated or does not have the required scope.
 
-    Attributes:
-        client (FiefAsync): An instance of the FiefAsync class for making asynchronous requests.
+    Args:
+        client (FiefAsync): An instance of the FiefAsync class for making asynchronous requests
 
-    See https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__ for more details.
+    See:
+       https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__
+       for more details.
+
     """
     client: FiefAsync
 
