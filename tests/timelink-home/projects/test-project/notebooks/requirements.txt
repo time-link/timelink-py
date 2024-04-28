@@ -8,6 +8,7 @@ openpyxl
 pandas~=2.0.0
 pydantic~=2.4.0
 pydantic-settings
+pyuca
 psycopg2-binary  # avoids errors of missing pg_config
 sqlalchemy
 sqlalchemy_utils
