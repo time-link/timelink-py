@@ -1,5 +1,5 @@
 """ Utilities for styling pandas dataframes"""
-
+import random
 from matplotlib import cm, colors
 
 
@@ -18,6 +18,9 @@ def category_palette(categories, cmap_name=None):
 
     palette = cm.get_cmap(cmap_name, len(categories))
     mapcolors = [colors.rgb2hex(palette(i)) for i in range(len(categories))]
+    # shufle the colors
+    random.shuffle(mapcolors)
+
     cat_to_color = dict(zip(categories, mapcolors))
     return cat_to_color
 
