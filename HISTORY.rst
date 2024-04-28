@@ -1,31 +1,34 @@
 =======
 History
 =======
+
+
 1.1.7 (2024-04-28)
 ------------------
 
-* Adds new eattributes views to easily access
-line, level, groupname of attributes
+* Adds new eattributes views to easily access line, level, groupname of attributes
 * pandas.entities_with_attribute returns attribute type,line,level and obs.
 * Adds reference requirements.txt file to notebook tests
 * Adds TimelinkDatabase.export_as_kleio(ids,filename
 
-
 1.1.6 (2024-04-24)
 ------------------
-Comments and original wording are now stored
-in the "obs" field of entities, preceeded by
-"extra_info:".
 
-If obs field contained explicit observations,
-these are preserved, and "extra_info:" is appended.
+Fixes regression in 1.1.5.
 
-A new method in the Entity class, get_extra_info()
-fetches the extra info as a dictionnary.
+1.1.5 (2024-04-24)
+------------------
+* Comments and original wording are now stored
+  in the "obs" field of entities, preceeded by
+  "extra_info:".
 
-This partially implements issue #9.
+* If obs field contained explicit observations,
+  these are preserved, and "extra_info:" is appended.
 
-Fixes regression in 1.1.5 (unreleased)
+* A new method in the Entity class, get_extra_info()
+  fetches the extra info as a dictionnary.
+
+* Partially implements issue #9.
 
 1.1.4 (2024-03-16)
 ------------------
@@ -145,3 +148,4 @@ Developement related changes
 ------------------
 
 * First release on PyPI.
+
