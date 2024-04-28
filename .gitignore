@@ -146,3 +146,4 @@ tests/timelink-home/system/db/sqlite/timelink_users.sqlite.sqlite
 tests/timelink-home/system/db/sqlite/timelink_users
 tests/db/test_users.sqlite
 docs/system/db/sqlite/timelink_users.sqlite
+test_kleio_export.cli
