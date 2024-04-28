@@ -44,7 +44,7 @@ class Attribute(Entity):
         r = f"{self.groupname}${quote_long_text(self.the_type)}"
         r += f"/{quote_long_text(self.the_value)}/"
         r += f"{self.the_date}"
-        if self.obs is not None:
+        if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
 

@@ -68,6 +68,6 @@ class Source(Entity):
             f'/kleiofile={kleio_escape(self.kleiofile)}"'
             f"/replaces={self.replaces}"
         )
-        if self.obs is not None:
+        if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
