@@ -51,7 +51,8 @@ def kgroup_person_attr_rel() -> KSource:
     )
     ks.include(ka1)
     p1 = KPerson("Joaquim", "m", "p01-2", obs="Living in Macau/China")
-    p1.attr("residencia", "Macau", date="2021-12-11")
+    # note attr with empty "obs"
+    p1.attr("residencia", "Macau", date="2021-12-11", obs="")
     mobs = """
     Moving from Portugal
     to Macau in 2022
@@ -285,6 +286,11 @@ def test_insert_entities_attr_rel(get_db, kgroup_person_attr_rel):
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)
         assert source_from_db.id == ks.get_id()
+        # test if empty obs are removed from kleio rendering
+        a_person = Entity.get_entity("p01-2", session)
+        # the first attribute has an empty obs element should not be rendered
+        kleio = a_person.attributes[0].to_kleio()
+        assert "obs" not in kleio, "Empty obs should not be rendered"
 
 
 def test_quote_and_long_test(kgroup_person_attr_rel):
