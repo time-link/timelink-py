@@ -1,7 +1,14 @@
 =======
 History
 =======
+1.1.7 (2024-04-28)
+------------------
 
+* Adds new eattributes views to easily access
+line, level, groupname of attributes
+* pandas.entities_with_attribute returns attribute type,line,level and obs.
+* Adds reference requirements.txt file to notebook tests
+* Adds TimelinkDatabase.export_as_kleio(ids,filename
 
 
 1.1.6 (2024-04-24)
