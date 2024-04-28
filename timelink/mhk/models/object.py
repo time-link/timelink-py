@@ -38,6 +38,6 @@ class Object(Entity):
         else:
             name = self.name + "/"
         r = f"{self.groupname}${name}{quote_long_text(self.the_type)}/id={self.id}"
-        if self.obs is not None:
+        if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}  /obs={quote_long_text(self.obs)}"
         return r

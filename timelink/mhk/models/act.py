@@ -53,6 +53,6 @@ class Act(Entity):
             f"/ref={quote_long_text(self.ref)}"
             f"/loc={quote_long_text(self.loc)}"
         )
-        if self.obs is not None:
+        if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r

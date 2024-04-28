@@ -64,7 +64,7 @@ class Relation(Entity):
                 f"rel${self.the_type}/{quote_long_text(self.the_value)}/"
                 f"{self.destination}/{self.the_date}"
             )
-        if self.obs is not None:
+        if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
 

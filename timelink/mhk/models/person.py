@@ -32,6 +32,6 @@ class Person(Entity):
 
     def __str__(self):
         r = f"{self.groupname}${quote_long_text(self.name)}/{quote_long_text(self.sex)}/id={quote_long_text(self.id)}"
-        if self.obs is not None:
+        if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
