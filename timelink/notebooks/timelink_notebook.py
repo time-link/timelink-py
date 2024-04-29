@@ -1,5 +1,6 @@
 import os
 import pandas
+import timelink
 from timelink.api.database import TimelinkDatabase
 from timelink.api.database import is_valid_postgres_db_name
 from timelink.api.database import get_postgres_dbnames
@@ -171,6 +172,7 @@ class TimelinkNotebook:
 
     def get_info(self, show_token, show_password):
         info_dict = {
+            "Timelink version": timelink.version,
             "Project name": self.project_name,
             "Project home": self.project_home,
             "Database type": self.db_type,
