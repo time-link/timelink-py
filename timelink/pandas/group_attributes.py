@@ -72,7 +72,10 @@ def group_attributes(
     # collect the column objects for the select list
     for mi in show_elements:
         if mi not in entity_names:
-            raise ValueError(f"{mi} is not a valid column for {entity_type}")
+            raise ValueError(
+                f"{mi} is not a valid column for {entity_type}."
+                " Use entity_type arg to specify the desired entity type (e.g. person)."
+            )
         else:
             extra_cols.append(select(entity_model).selected_columns[mi])
 
@@ -131,7 +134,23 @@ def display_group_attributes(
 
     Same as group attributes but a header is displayed for each entity
     and each entity is colored. The attribute list is also colored,
-    to make is clear which attributes are from which entity."""
+    to make is clear which attributes are from which entity.
+
+    Args:
+        ids: list of ids
+        entity_type: type of entities to show
+        header_elements: elements of entity type to include in header
+                    (e.g. name, description, obs)
+        header_attributes: list of attribute types to include in header
+        sort_header: sort the header by this attribute
+        sort_attributes: sort the attributes by this attribute
+        include_attributes: list of attribute types to include
+        exclude_attributes: list of attribute types to exclude
+        db: a TimelinkDatabase object if None specify session
+        category: column to use for coloring
+        cmap_name: name of the colormap to use
+
+    """
 
     if header_elements is None:
         header_elements = []
@@ -154,7 +173,11 @@ def display_group_attributes(
     )
     # remove  entries with duplicate index from header_df
 
-    header_df = header_df.reset_index().drop_duplicates(subset='id', keep='first').set_index('id')
+    header_df = (
+        header_df.reset_index()
+        .drop_duplicates(subset="id", keep="first")
+        .set_index("id")
+    )
 
     if sort_header is not None:
         header_df.sort_values(sort_header, inplace=True)
