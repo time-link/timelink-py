@@ -7,7 +7,7 @@ import pandas as pd
 from IPython.display import display
 from timelink.api.database import TimelinkDatabase
 from timelink.pandas.entities_with_attribute import entities_with_attribute
-from timelink.pandas.styles import styler_row_colors
+from timelink.pandas.styles import category_palette, styler_row_colors
 
 
 def group_attributes(
@@ -187,9 +187,12 @@ def display_group_attributes(
     header_cols = header_df.columns.tolist()
     if category not in header_cols:
         header_cols = [category] + header_cols
+
+    categories = header_df[category].unique()
+    palette = category_palette(categories, cmap_name=cmap_name)
+
     header_df = styler_row_colors(
-        header_df[header_cols], category=category, cmap_name=cmap_name
-    )
+        header_df[header_cols], category=category, palette=palette)
     display(header_df)
 
     df = group_attributes(
@@ -207,5 +210,5 @@ def display_group_attributes(
     table_cols = df.columns.tolist()
     if category not in table_cols:
         table_cols = [category] + table_cols
-    df = styler_row_colors(df[table_cols], category="id", cmap_name=cmap_name)
+    df = styler_row_colors(df[table_cols], category="id", palette=palette)
     display(df)

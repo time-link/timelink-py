@@ -25,20 +25,21 @@ def category_palette(categories, cmap_name=None):
     return cat_to_color
 
 
-def style_color_row_by_category(row, category="id", palette=None):
+def style_color_row_by_category(row, palette, category="id"):
     """Color row by category. Function for styling dataframes
     Usage: display(df.style.apply(style_color_row_by_category,axis=1,palette=mypalette))
+
     Args
-        row: this is passed by pandas when
-        category:  column that determines the row color
+        row: this is passed by pandas when rendering the dataframe
         palette: a dict that maps category values to colors
+        category:  column that determines the row color
     """
     id = row[category]
     row_colors = [f"background-color: {palette.get(id,'#ffffff')}"] * len(row)
     return row_colors
 
 
-def styler_row_colors(df, category="id", columns=None, cmap_name="Pastel2"):
+def styler_row_colors(df, category="id", columns=None, palette=None, cmap_name=None):
     """returns a dataframe setting the row color according to a category
 
     Args:
@@ -48,7 +49,10 @@ def styler_row_colors(df, category="id", columns=None, cmap_name="Pastel2"):
 
     """
     categories = df[category].unique()
-    palette = category_palette(categories, cmap_name=cmap_name)
+    if cmap_name is None:
+        cmap_name = "Pastel2"
+    if palette is None:
+        palette = category_palette(categories, cmap_name=cmap_name)
     if columns is None:
         columns = df.columns
     if category not in columns:
