@@ -304,13 +304,13 @@ def test_export_entities_as_kleio(get_db, kgroup_person_attr_rel):
         act = source_from_db.contains[0]
         people = act.contains
         people_ids = [person.id for person in people]
-        get_db.export_as_kleio(people_ids, 'tests/test_kleio_export.cli')
-        assert os.path.exists('tests/test_kleio_export.cli')
+        get_db.export_as_kleio(people_ids, 'tests/test_kleio_export.txt')
+        assert os.path.exists('tests/test_kleio_export.txt')
         # read the file
-        with open('tests/test_kleio_export.cli', 'r') as f:
+        with open('tests/test_kleio_export.txt', 'r') as f:
             kleio = f.read()
             assert kleio
-        os.remove('tests/test_kleio_export.cli')
+        os.remove('tests/test_kleio_export.txt')
 
 
 def test_quote_and_long_test(kgroup_person_attr_rel):

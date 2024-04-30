@@ -973,8 +973,9 @@ class TimelinkDatabase:
             if act_group is not None:
                 f.write(f"{act_group}\n")
             for id in ids:
-                ent = self.get_entity(id)
-                f.write(str(ent.to_kleio()) + "\n\n")
+                with self.session() as session:
+                    ent = Entity.get_entity(id, session)
+                    f.write(str(ent.to_kleio()) + "\n\n")
 
 
 def get_import_status(
