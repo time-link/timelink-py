@@ -7,7 +7,6 @@ import pandas as pd
 from sqlalchemy import select, func, and_, desc
 
 from timelink.api.database import TimelinkDatabase
-from timelink.api.models import Attribute
 
 
 def attribute_values(
@@ -48,7 +47,7 @@ def attribute_values(
             " with db="
         )
 
-    attr_table = Attribute.__table__
+    attr_table = db.get_eattribute_view()
 
     if dates_between is not None:
         first_date, last_date = dates_between
