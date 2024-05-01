@@ -228,13 +228,13 @@ class Entity(Base):
     def __str__(self):
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
-    def to_kleio(self, ident="", ident_inc="  "):
+    def to_kleio(self, ident="", ident_inc="  ", **kwargs):
         s = f"{ident}{str(self)}"
         contained_entities: List[Entity] = self.contains
         # sort by the_order
         contained_entities.sort(key=lambda x: x.the_order)
         for inner in contained_entities:
-            innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc)
+            innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc, **kwargs)
             if innerk != "":
                 s = f"{s}\n{innerk}"
         return s

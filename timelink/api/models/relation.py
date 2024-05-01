@@ -79,12 +79,12 @@ class Relation(Entity):
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
 
-    def to_kleio(self, ident="", ident_inc="  "):
+    def to_kleio(self, ident="", ident_inc="  ", **kwargs):
         if self.the_type == "function-in-act":
             return ""
         else:
             # call to_kleio from the parent class
-            return super().to_kleio(ident, ident_inc)
+            return super().to_kleio(ident, ident_inc, **kwargs)
 
 
 Entity.rels_out = relationship(

@@ -66,6 +66,9 @@ class Act(Entity):
         )
 
     def __str__(self):
+        return self.to_kleio()
+
+    def to_kleio(self, width=80) -> str:
         r = (
             f"{self.groupname}${self.id}"
             f"/{self.the_date}"
@@ -74,5 +77,5 @@ class Act(Entity):
             f"/loc={quote_long_text(self.loc)}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs)}"
+            r = f"{r}/obs={quote_long_text(self.obs.strip(),width=width)}"
         return r

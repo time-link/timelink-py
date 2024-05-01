@@ -60,6 +60,9 @@ class Source(Entity):
         )
 
     def __str__(self):
+        return self.to_kleio()
+
+    def to_kleio(self, width=80) -> str:
         r = (
             f"{self.groupname}${self.id}/{self.the_date}"
             f"/type={kleio_escape(self.the_type)}"
@@ -69,5 +72,5 @@ class Source(Entity):
             f"/replaces={self.replaces}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs)}"
+            r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
         return r
