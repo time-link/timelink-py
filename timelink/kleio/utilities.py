@@ -51,6 +51,8 @@ def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048) -> 
     """
     if txt is None:
         return None
+    if width is None:
+        width = 80
     if len(txt) > 127 or len(txt.splitlines()) > 1:
         s = '"""' + nl
         for line in txt.splitlines():
