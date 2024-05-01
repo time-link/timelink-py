@@ -813,7 +813,9 @@ class TimelinkDatabase:
         Args:
             id (str, optional): entity id; defaults to None.
         """
-        return Entity.get_entity(id=id, session=self.session())
+        with self.session() as session:
+            result = Entity.get_entity(id=id, session=session)
+        return result
 
     def pperson(self, id: str):
         """Prints a person in kleio notation"""
