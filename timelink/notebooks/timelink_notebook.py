@@ -241,15 +241,14 @@ class TimelinkNotebook:
 
     def update_from_sources(self, **kwargs):
         """Update the database from a list of sources
-
-        See the update_from_sources method in the TimelinkDatabase class:
-        :meth:`timelink.api.database.TimelinkDatabase.update_from_sources`
-
         """
         self.db.update_from_sources(**kwargs)
 
+    update_from_sources.__doc__ = TimelinkDatabase.update_from_sources.__doc__
+
     def get_import_status(self, data_frame=True, **kwargs):
         """Get the import status of Kleio Files
+
 
         Returns:
             A dictionary with the status of the import process
@@ -388,33 +387,34 @@ class TimelinkNotebook:
         Alias to :meth:`timelink.notebooks.TimelinkNotebook.get_import_status`
         but returns a subset of the columns.
 
-            #   Column              Non-Null Count  Dtype
-            ---  ------              --------------  -----
-            0   path                3 non-null      object
-            1   name                3 non-null      object
-            2   size                3 non-null      int64
-            3   directory           3 non-null      object
-            4   modified            3 non-null      datetime64[ns, UTC]
-            5   modified_iso        3 non-null      datetime64[ns, UTC]
-            6   modified_string     3 non-null      object
-            7   qtime               3 non-null      datetime64[ns, UTC]
-            8   qtime_string        3 non-null      object
-            9   source_url          3 non-null      object
-            10  status              3 non-null      object
-            11  translated          3 non-null      datetime64[ns, UTC]
-            12  translated_string   3 non-null      object
-            13  errors              3 non-null      int64
-            14  warnings            3 non-null      int64
-            15  version             3 non-null      object
-            16  rpt_url             3 non-null      object
-            17  xml_url             3 non-null      object
-            18  import_status       3 non-null      object
-            19  import_errors       3 non-null      Int64
-            20  import_warnings     3 non-null      Int64
-            21  import_error_rpt    3 non-null      object
-            22  import_warning_rpt  3 non-null      object
-            23  imported            3 non-null      int64
-            24  imported_string     3 non-null      int64
+        | Column             | Non-Null Count | Dtype             |
+        |--------------------|----------------|-------------------|
+        | path               | 3 non-null     | object            |
+        | name               | 3 non-null     | object            |
+        | size               | 3 non-null     | int64             |
+        | directory          | 3 non-null     | object            |
+        | modified           | 3 non-null     | datetime64[ns, UTC] |
+        | modified_iso       | 3 non-null     | datetime64[ns, UTC] |
+        | modified_string    | 3 non-null     | object            |
+        | qtime              | 3 non-null     | datetime64[ns, UTC] |
+        | qtime_string       | 3 non-null     | object            |
+        | source_url         | 3 non-null     | object            |
+        | status             | 3 non-null     | object            |
+        | translated         | 3 non-null     | datetime64[ns, UTC] |
+        | translated_string  | 3 non-null     | object            |
+        | errors             | 3 non-null     | int64             |
+        | warnings           | 3 non-null     | int64             |
+        | version            | 3 non-null     | object            |
+        | rpt_url            | 3 non-null     | object            |
+        | xml_url            | 3 non-null     | object            |
+        | import_status      | 3 non-null     | object            |
+        | import_errors      | 3 non-null     | Int64             |
+        | import_warnings    | 3 non-null     | Int64             |
+        | import_error_rpt   | 3 non-null     | object            |
+        | import_warning_rpt | 3 non-null     | object            |
+        | imported           | 3 non-null     | int64             |
+        | imported_string    | 3 non-null     | int64             |
+
         """
         result = self.get_import_status(**kwargs)
         return result[
