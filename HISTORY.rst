@@ -1,7 +1,11 @@
 =======
 History
 =======
+1.1.8 (2024-05-02)
+------------------
 
+* Fix bug with export_to_kleio()
+* Several minor bug fixes
 
 1.1.7 (2024-04-28)
 ------------------
