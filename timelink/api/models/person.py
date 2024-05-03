@@ -35,14 +35,21 @@ class Person(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
         r = (
             f"{self.groupname}${quote_long_text(self.name)}/"
             f"{quote_long_text(self.sex)}/id={quote_long_text(self.id)}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs,width=width)}"
-        return r
+        kleio = super().to_kleio(
+            self_string=r,
+            show_contained=show_contained,
+            ident=ident,
+            ident_inc=ident_inc,
+            width=width,
+        )
+        return kleio
 
 
 def get_person(id: str = None, db=None, sql_echo: bool = False) -> Person:

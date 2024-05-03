@@ -301,7 +301,11 @@ def test_export_entities_as_kleio(get_db, kgroup_person_attr_rel):
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)
+        ksource = source_from_db.to_kleio(ident_inc="...")
+        assert ksource
         act = source_from_db.contains[0]
+        kact = act.to_kleio()
+        assert kact
         people = act.contains
         people_ids = [person.id for person in people]
         get_db.export_as_kleio(people_ids, 'tests/test_kleio_export.txt')

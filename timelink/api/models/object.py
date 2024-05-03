@@ -30,9 +30,9 @@ class Object(Entity):
         )
 
     def __str__(self):
-        self.to_kleio()
+        self.to_kleio(show_contained=False)
 
-    def to_kleio(self, width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", width=80) -> str:
         if self.name is None:
             name = ""
         else:
@@ -40,4 +40,5 @@ class Object(Entity):
         r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}/id={self.id}"
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}  /obs={quote_long_text(self.obs.strip(), width=width)}"
+        r = super().to_kleio(self_string=r, ident=ident, ident_inc=ident_inc, width=width)
         return r

@@ -66,9 +66,9 @@ class Act(Entity):
         )
 
     def __str__(self):
-        return self.to_kleio()
+        return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
         r = (
             f"{self.groupname}${self.id}"
             f"/{self.the_date}"
@@ -78,4 +78,11 @@ class Act(Entity):
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs.strip(),width=width)}"
-        return r
+        kleio = super().to_kleio(
+            self_string=r,
+            ident=ident,
+            ident_inc=ident_inc,
+            show_contained=show_contained,
+            width=width,
+        )
+        return kleio

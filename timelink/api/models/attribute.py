@@ -41,12 +41,18 @@ class Attribute(Entity):
         )
 
     def __str__(self):
+        return self.to_kleio(show_contained=False)
+
+    def to_kleio(self, ident="", ident_inc="  ", width=80) -> str:
         r = f"{self.groupname}${quote_long_text(self.the_type)}"
         r += f"/{quote_long_text(self.the_value)}/"
         r += f"{self.the_date}"
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
-        return r
+        kleio = super().to_kleio(
+            self_string=r, ident=ident, ident_inc=ident_inc, width=width
+        )
+        return kleio
 
 
 Entity.attributes = relationship(
