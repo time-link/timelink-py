@@ -767,7 +767,6 @@ class TimelinkDatabase:
 
             for kfile in import_needed:
                 kfile: KleioFile
-                logging.info(f"Importing {kfile.path}")
                 with self.session() as session:
                     try:
                         logging.info(f"Importing {kfile.path}")
