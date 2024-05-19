@@ -2,6 +2,10 @@
 History
 =======
 
+1.1.10 (2024-05-19)
+
+* Fix a bug in entities_with_attribute() filter_by parameter handling.
+
 1.1.9 (2024-05-03)
 ------------------
 

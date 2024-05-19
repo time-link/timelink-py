@@ -119,6 +119,39 @@ def test_entities_with_attribute(dbsystem):
     ],
     indirect=True,
 )
+def test_entities_with_attribute_filter_by(dbsystem):
+    """Test generation of dataframe from attributes"""
+    conimbricensis = [
+        "deh-afonso-aires",
+        "deh-antonio-de-abreu-ref1",
+        "deh-antonio-de-andrade",
+        "deh-goncalo-alvares",
+        "deh-miguel-do-amaral",
+        "deh-pedro-de-alcacova",
+    ]
+    df = entities_with_attribute(
+        entity_type="person",
+        show_elements=["name", "groupname"],
+        the_type="jesuita-entrada",
+        more_attributes=["nacionalidade", "nascimento"],
+        filter_by=conimbricensis,
+        sql_echo=True,
+        db=dbsystem,
+    )
+    assert df is not None, "entities_with_attribute returned None"
+    assert len(df.index.unique()) == len(conimbricensis), "entities_with_attribute returned bad filtered dataframe"
+    print(df)
+
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
 def test_entities_with_attribute_list(dbsystem):
     """Test generation of dataframe from attributes"""
     df = entities_with_attribute(

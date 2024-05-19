@@ -1,4 +1,5 @@
 """ """
+
 from typing import List
 import pandas as pd
 from sqlalchemy import select
@@ -113,7 +114,6 @@ def entities_with_attribute(
             attr.c.the_date.label(date_column_name),
             attr.c.the_line.label(line_column_name),
             attr.c.the_level.label(level_column_name),
-
             attr.c.aobs.label(obs_column_name),
         ]
     )
@@ -130,8 +130,8 @@ def entities_with_attribute(
         #  we need to add them to the final dataframe
         filter_by_sql = (
             select(entity_model)
+            .with_only_columns(*more_info_cols, maintain_column_froms=True)
             .where(entity_model.id.in_(filter_by))
-            .with_only_columns(*more_info_cols)
         )
         with db.session() as session:
             filtered_by_rows = session.execute(filter_by_sql)
