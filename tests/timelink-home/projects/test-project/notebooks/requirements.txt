@@ -52,8 +52,8 @@ SQLAlchemy-Utils==0.41.2
 sqlalchemy-views==0.3.2
 starlette==0.37.2
 timelink>=1.1.6
-tornado==6.4
+tornado>=6.4.1
 typing_extensions==4.11.0
 tzdata==2024.1
-urllib3==1.26.18
+urllib3==1.26.19
 xyzservices==2024.4.0
