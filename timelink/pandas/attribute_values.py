@@ -91,3 +91,36 @@ def attribute_values(
     )
 
     return df
+
+
+def attribute_types(db: TimelinkDatabase = None):
+    """Return the list of attribute types in the database
+
+    Args:
+        db = database connection to use, either db or session must be specified
+
+    """
+
+    #  We try to use an existing connection and table introspection
+    # to avoid extra parameters and going to database too much
+    dbsystem: TimelinkDatabase = None
+    if db is not None:  # try if we have a db connection in the parameters
+        dbsystem = db
+    else:
+        raise Exception(
+            "No database connection specified, must set up a database"
+            " connection before or specify previously openned database"
+            " with db="
+        )
+
+    attr_table = db.get_eattribute_view()
+
+    stmt = select(attr_table.c.the_type,
+                  func.count(attr_table.c.the_type).label('count'),
+                  func.count(func.distinct(attr_table.c.the_value)).label('unique')
+
+                  ).group_by(attr_table.c.the_type).order_by(attr_table.c.the_type)
+    with dbsystem.session() as session:
+        records = session.execute(stmt)
+    df = pd.DataFrame.from_records(records, columns=["type", "count", "unique"])
+    return df
