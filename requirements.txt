@@ -1,5 +1,5 @@
 bokeh
-docker~=6.0.0
+docker
 fastapi
 fastui
 fief-client
@@ -15,6 +15,7 @@ networkx>=3.0.0
 pandas~=2.0.0
 bcrypt==4.0.1  # see https://github.com/logspace-ai/langflow/issues/1173
 passlib[bcrypt]
+prompt-toolkit==3.0.36
 psycopg2-binary==2.9.6
 py-markdown-table==0.3.3
 pydantic
@@ -25,8 +26,10 @@ python-dotenv~=0.21.0
 python-jose[cryptography]
 python-multipart
 pyYAML==6.0
-requests>=2.31.0
+questionary==2.0.1  #
+requests<2.32.0
 setuptools>=65.5.1
+shiny==0.10.2
 sqlalchemy-utils
 sqlalchemy-views
 SQLAlchemy~=2.0.0
