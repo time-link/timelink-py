@@ -2,6 +2,7 @@
 
 import pytest
 from pathlib import Path
+import pandas
 
 from timelink.api.database import (
     TimelinkDatabase,
@@ -14,6 +15,7 @@ from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F
 from tests import TEST_DIR
 
 from timelink.pandas import pname_to_df, entities_with_attribute, attribute_values
+from timelink.pandas import attribute_types
 
 # pytestmark = skip_on_travis
 
@@ -166,3 +168,23 @@ def test_entities_with_attribute_list(dbsystem):
     assert df is not None, "entities_with_attribute_list returned None"
     assert len(df) > 0, "entities_with_attribute_lisy returned empty dataframe"
     print(df)
+
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_attribute_types(dbsystem):
+    """Test fetching attribute types from the database."""
+    # Assuming attribute_types function requires a db connection or identifier
+    result_types = attribute_types(db=dbsystem)
+
+    assert result_types is not None, "attribute_types returned None"
+    assert isinstance(result_types, pandas.DataFrame), "attribute_types did not return a pandas DataFrame"
+    assert len(result_types) > 0, "attribute_types returned an empty list"
+    print("Test passed for db:", dbsystem)
