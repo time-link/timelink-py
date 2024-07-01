@@ -1,0 +1,6 @@
+faicons
+shiny
+seaborn
+pandas
+shinywidgets
+plotly
