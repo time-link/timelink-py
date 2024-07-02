@@ -7,7 +7,7 @@ import timelink
 from timelink.pandas import attribute_types, attribute_values
 
 from shared import tlnb, project_home
-from shared import task_queue, task_running, context
+from shared import task_queue, task_running
 
 ui.h1("Timelink dashboard")
 
@@ -47,7 +47,7 @@ def filter_files():
 
 
 @reactive.effect()
-@reactive.event(input.update_sources)
+@reactive.event(input.update_sources, ignore_init=False)
 def update_from_sources():
     task_queue.put((tlnb.update_from_sources, (), {}))
 
@@ -89,15 +89,41 @@ with ui.card(bg="light"):
 
     @render.data_frame
     def file_status():
-        cols = ["name", "status", "import_status", "directory"]
+        cols = ["name", "status", "import_status", "directory", "rpt_url"]
         kleio_files = filter_files()
-        return kleio_files[cols]
+        return render.DataGrid(kleio_files[cols], filters=True, selection_mode="row")
 
     ui.input_action_button("refresh_files", "Refresh files")
     if task_running.is_set():
         ui.p("Task running")
     ui.input_action_button("update_sources", "Update from sources")
 
+    @reactive.calc()
+    def show_selected_file():
+        selected_file = file_status.cell_selection()
+        if selected_file is None:
+            return None
+        print(selected_file)
+        if len(selected_file["rows"]) == 0:
+            return None
+
+        row = selected_file["rows"][0]
+        print("Row", row)
+
+        df = file_status.data_view()
+
+        rpt = tlnb.get_translation_report(df, row)
+
+        return rpt
+
+    ui.hr()
+
+    @render.code
+    def selected_file():
+        return show_selected_file()
+
+    ui.hr()
+# Attribute types and values
 types_totals = attribute_types(db=tlnb.db)
 types_totals.info()
 unique_types = types_totals["type"].nunique()
