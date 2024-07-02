@@ -170,7 +170,14 @@ class TimelinkNotebook:
             print("Call print_info(show_password=True) to show the Postgres password")
         print(self.__repr__())
 
-    def get_info(self, show_token, show_password):
+    def get_info(self, show_token, show_password, as_dataframe=False):
+        """Get information about the TimelinkNotebook object
+
+        Args:
+            show_token: if True, show the token of the kleio server
+            show_password: if True, show the password of the postgres server
+            as_dataframe: if True, return a pandas DataFrame; otherwise, return a dictionary
+        """
         info_dict = {
             "Timelink version": timelink.version,
             "Project name": self.project_name,
@@ -212,8 +219,10 @@ class TimelinkNotebook:
                 "Postgres version": self.postgres_version,
                 "Postgres user": self.db.db_user,
             })
-
-        return info_dict
+        if as_dataframe:
+            return pandas.DataFrame(info_dict.items(), columns=["Attribute", "Value"])
+        else:
+            return info_dict
 
     def get_imported_files(self, data_frame=True, **kwargs):
         """Get the list of imported files in the database
