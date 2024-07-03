@@ -16,9 +16,10 @@ project_home = Path(__file__).parent.parent.parent
 context['project_home'] = project_home
 
 tlnb = TimelinkNotebook(project_home=project_home)
-tlnb.print_info()
 
-context['tlnb'] = tlnb
+tlnb_info = tlnb.get_info(as_dataframe=False, show_token=True, show_password=True)
+context['dbtype'] = tlnb_info['Database type']
+context['info'] = tlnb_info
 
 
 # Background worker and thread
@@ -58,5 +59,5 @@ background_thread = threading.Thread(target=worker, args=(task_queue, task_runni
 background_thread.start()
 
 
-task_queue.put((example_task, ("First task", 2), {}))
-task_queue.put((example_task, ("Second task", 3), {}))
+# task_queue.put((example_task, ("First task", 2), {}))
+# task_queue.put((example_task, ("Second task", 3), {}))

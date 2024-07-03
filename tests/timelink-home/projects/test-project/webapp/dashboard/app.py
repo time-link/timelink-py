@@ -1,69 +1,78 @@
+from functools import partial
 from shiny import reactive
+from shiny.ui import page_navbar
 from shiny.express import ui, render, input
 from shinywidgets import render_plotly
 import plotly.express as px
 
-import timelink
 from timelink.pandas import attribute_types, attribute_values
 
-from shared import tlnb, project_home
-from shared import task_queue, task_running
+from shared import tlnb
+from shared import task_queue, task_running, context
 
-ui.h1("Timelink dashboard")
+ui.page_opts(
+    title="Timelink",
+    page_fn=partial(page_navbar, id="page", position='static-top', bg="blue", inverse=True),
+)
 
-with ui.sidebar(bg="#f8f8f8"):
-    "SideBar"
+# ==============================
+# Timelink overview
+# ==============================
 
-timelink_info = tlnb.print_info()
+with ui.nav_panel("Overview"):
 
-# Get kleio files status
+    with ui.card(width="80%"):
 
-kleio_files_df = tlnb.get_import_status()
-kleio_files_df.info()
+        with ui.layout_columns(col_widths=[3, 3, 6]):
+            ui.input_checkbox("show_token", "Show token", False)
+            ui.input_checkbox("show_password", "Show password", False)
 
+            @render.text(inline=True)
+            def db_password_warning():
+                if context.get("dbtype", "") == "sqlite" and input.show_password():
+                    return "No password is shown for SQLite databases"
 
-@reactive.calc()
-@reactive.event(input.refresh_files, ignore_init=False)
-def refresh_files():
-    print("Files refreshed")
-    return tlnb.get_import_status()
-
-
-@reactive.calc()
-def filter_files():
-
-    kleio_files_df = refresh_files()
-
-    if input.tstatus() == "*":
-        tfilter = kleio_files_df.status == kleio_files_df.status
-    else:
-        tfilter = input.tstatus() == kleio_files_df.status
-
-    if input.istatus() == "*":
-        ifilter = kleio_files_df.import_status == kleio_files_df.import_status
-    else:
-        ifilter = input.istatus() == kleio_files_df.import_status
-    return kleio_files_df[(tfilter) & (ifilter)]
+        @render.data_frame
+        def show_timelink_info():
+            df = tlnb.get_info(
+                show_token=input.show_token(),
+                show_password=input.show_password(),
+                as_dataframe=True,
+            )
+            return render.DataGrid(df, width="80%")
 
 
-@reactive.effect()
-@reactive.event(input.update_sources, ignore_init=False)
-def update_from_sources():
-    task_queue.put((tlnb.update_from_sources, (), {}))
+# ==============================
+# Timelink sources
+# ==============================
+with ui.nav_panel("Sources"):
+    "Sources"
+    @reactive.calc()
+    @reactive.event(input.refresh_files, ignore_init=False)
+    def refresh_files():
+        print("Files refreshed")
+        return tlnb.get_import_status()
 
+    @reactive.calc()
+    def filter_files():
 
-database_status = tlnb.table_row_count_df()
+        kleio_files_df = refresh_files()
 
+        if input.tstatus() == "*":
+            tfilter = kleio_files_df.status == kleio_files_df.status
+        else:
+            tfilter = input.tstatus() == kleio_files_df.status
 
-with ui.card(bg="light"):
-    "Database status"
+        if input.istatus() == "*":
+            ifilter = kleio_files_df.import_status == kleio_files_df.import_status
+        else:
+            ifilter = input.istatus() == kleio_files_df.import_status
+        return kleio_files_df[(tfilter) & (ifilter)]
 
-    @render.data_frame
-    def db_status():
-        return database_status
-
-with ui.card(bg="light"):
-    "File status"
+    @reactive.effect()
+    @reactive.event(input.update_sources, ignore_init=False)
+    def update_from_sources():
+        task_queue.put((tlnb.update_from_sources, (), {}))
 
     translation_status = {
         "*": "All",
@@ -71,6 +80,8 @@ with ui.card(bg="light"):
         "V": "V-Valid translation",
         "E": "E-Translated with errors",
         "W": "W-Translated with warnings",
+        "P": "P-Processing",
+        "Q": "Q-Queued",
     }
     import_status = {
         "*": "All",
@@ -91,12 +102,18 @@ with ui.card(bg="light"):
     def file_status():
         cols = ["name", "status", "import_status", "directory", "rpt_url"]
         kleio_files = filter_files()
-        return render.DataGrid(kleio_files[cols], filters=True, selection_mode="row")
+        return render.DataGrid(kleio_files[cols], filters=False, selection_mode="row")
 
     ui.input_action_button("refresh_files", "Refresh files")
-    if task_running.is_set():
-        ui.p("Task running")
     ui.input_action_button("update_sources", "Update from sources")
+
+    @render.text(inline=True)
+    @reactive.event(input.refresh_files, ignore_init=False)
+    def is_task_running():
+        if task_running.is_set():
+            return "Update underway"
+        else:
+            return "No updates in progress"
 
     @reactive.calc()
     def show_selected_file():
@@ -115,7 +132,6 @@ with ui.card(bg="light"):
         rpt = tlnb.get_translation_report(df, row)
 
         return rpt
-
     ui.hr()
 
     @render.code
@@ -123,13 +139,22 @@ with ui.card(bg="light"):
         return show_selected_file()
 
     ui.hr()
-# Attribute types and values
-types_totals = attribute_types(db=tlnb.db)
-types_totals.info()
-unique_types = types_totals["type"].nunique()
+# ==============================
+# Timelink database
+# ==============================
 
-with ui.card(bg="light"):
-    "Attribute types"
+with ui.nav_panel("Database"):
+
+    database_status = tlnb.table_row_count_df()
+
+    @render.data_frame
+    def db_status():
+        return database_status
+
+    # Attribute types and values
+    types_totals = attribute_types(db=tlnb.db)
+    types_totals.info()
+    unique_types = types_totals["type"].nunique()
 
     ui.input_slider("top_types", "Top types", min=1, max=types_totals.size, step=1, value=10)
 
@@ -150,7 +175,3 @@ with ui.card(bg="light"):
         if input.unique_types():
             return attribute_values(db=tlnb.db, attr_type=input.unique_types()).reset_index()
         return None
-
-ui.hr()
-ui.p(f"Timelink project home: {project_home}")
-ui.p(f"Timelink version: {timelink.__version__}")
