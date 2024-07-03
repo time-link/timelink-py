@@ -220,7 +220,9 @@ class TimelinkNotebook:
                 "Postgres user": self.db.db_user,
             })
         if as_dataframe:
-            return pandas.DataFrame(info_dict.items(), columns=["Attribute", "Value"])
+            info_df = pandas.DataFrame(info_dict.items(), columns=["attribute", "value"])
+            info_df["value"] = info_df["value"].astype("string")
+            return info_df
         else:
             return info_dict
 
