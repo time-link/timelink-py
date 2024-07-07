@@ -51,7 +51,7 @@ with ui.nav_panel("Sources"):
     @reactive.event(input.refresh_files, ignore_init=False)
     def refresh_files():
         print("Files refreshed")
-        return tlnb.get_import_status()
+        return tlnb.get_import_status().reset_index()
 
     @reactive.calc()
     def filter_files():
@@ -100,7 +100,7 @@ with ui.nav_panel("Sources"):
 
     @render.data_frame
     def file_status():
-        cols = ["name", "status", "import_status", "directory", "rpt_url"]
+        cols = ["index", "name", "status", "import_status", "directory", "rpt_url"]
         kleio_files = filter_files()
         return render.DataGrid(kleio_files[cols], filters=False, selection_mode="row")
 
@@ -128,15 +128,30 @@ with ui.nav_panel("Sources"):
         print("Row", row)
 
         df = file_status.data_view()
+        # Identify the file select in the current display list
+        #   which can be a filtered subset of the full file list
+        # row is the 0 based index of the line selected in the current file display
+        # "index" is the 0 based index in the full list of files
+        # the following gets the index of file in the full list
+        file_number = list(df['index'])[row]
+        files = refresh_files()
 
-        rpt = tlnb.get_translation_report(df, row)
-
-        return rpt
+        return file_number, files
     ui.hr()
 
     @render.code
-    def selected_file():
-        return show_selected_file()
+    def selected_file_rpt():
+        file_number, files = show_selected_file()
+        rpt = tlnb.get_translation_report(files, file_number)
+        return rpt
+
+    @render.code
+    def selected_file_import_rpt():
+        file_number, files = show_selected_file()
+        rpt = tlnb.get_import_rpt(files, file_number)
+        return rpt
+
+    # >TODO: render source file, put these in tabs
 
     ui.hr()
 # ==============================
