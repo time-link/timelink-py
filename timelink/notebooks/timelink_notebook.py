@@ -392,6 +392,38 @@ class TimelinkNotebook:
             raise ValueError
         return rpt
 
+    def get_source_file(self, file_spec, rows=None):
+        """Show the Kleio source file content for a given file specification
+
+        Args:
+            file_spec: file specification (DataFrame or string)
+                       If a DataFrame, it should have the columns 'rpt_url'
+                       and the arguments 'rows' must be present
+            rows: if file_spec is a DataFrane, the row number of interest
+        """
+        source = ""
+        if isinstance(file_spec, pandas.DataFrame):
+            if rows is None:
+                raise ValueError(
+                    "The 'rows' argument must be present "
+                    "if the file_spec is a DataFrame"
+                )
+            elif type(rows) is not list:
+                rows = [rows]
+            if len(rows) == 0:
+                raise ValueError(
+                    "The 'rows' argument must be a non-empty list, or an integer"
+                )
+
+            paths = self.get_file_paths(file_spec, rows, "source_url")
+            for file in paths:
+                source += self.kleio_server.get_sources(file)
+        elif isinstance(file_spec, str):
+            return self.kleio_server.get_sources(file_spec)
+        else:
+            raise ValueError
+        return source
+
     def get_kleio_files(self, data_frame=True, **kwargs):
         """Get the list of files in the kleio server.
 
