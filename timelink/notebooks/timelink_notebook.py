@@ -388,19 +388,19 @@ class TimelinkNotebook:
         but returns a subset of the columns.
 
         | Column             | Non-Null Count | Dtype             |
-        |--------------------|----------------|-------------------|
+       \|-------------------\|---------------\|-------------------|
         | path               | 3 non-null     | object            |
         | name               | 3 non-null     | object            |
         | size               | 3 non-null     | int64             |
         | directory          | 3 non-null     | object            |
-        | modified           | 3 non-null     | datetime64[ns, UTC] |
-        | modified_iso       | 3 non-null     | datetime64[ns, UTC] |
+        | modified           | 3 non-null     | datetime64        |
+        | modified_iso       | 3 non-null     | datetime64        |
         | modified_string    | 3 non-null     | object            |
-        | qtime              | 3 non-null     | datetime64[ns, UTC] |
+        | qtime              | 3 non-null     | datetime64        |
         | qtime_string       | 3 non-null     | object            |
         | source_url         | 3 non-null     | object            |
         | status             | 3 non-null     | object            |
-        | translated         | 3 non-null     | datetime64[ns, UTC] |
+        | translated         | 3 non-null     | datetime64        |
         | translated_string  | 3 non-null     | object            |
         | errors             | 3 non-null     | int64             |
         | warnings           | 3 non-null     | int64             |

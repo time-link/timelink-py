@@ -83,6 +83,15 @@ def test_attribute_values(dbsystem):
 
     locais_residencia = attribute_values("residencia", db=dbsystem, sql_echo=True)
     assert locais_residencia is not None, "attribute_values returned None"
+    attr_values = attribute_values("nacionalidade", db=dbsystem, sql_echo=True)
+    assert attr_values is not None, "attribute_values returned None"
+    # get count of unique values for Portugal
+    attr_type_count = attr_values.loc["Portugal"]["count"]
+    # now count filtering by groupname "n" (this filters out "referidos"
+    attr_values_2 = attribute_values("nacionalidade", groupname="n", db=dbsystem, sql_echo=True)
+    # get count of unique values for Portugal
+    attr_type_count_2 = attr_values_2.loc["Portugal"]["count"]
+    assert attr_type_count > attr_type_count_2, "attribute_values returned bad results"
 
 
 @pytest.mark.parametrize(

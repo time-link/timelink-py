@@ -124,7 +124,7 @@ def display_group_attributes(
     sort_attributes=None,
     # These go to de_row_colors
     category="id",
-    cmap_name="Pastel2",
+    cmap_name="tab20",
     # these go to group_attributes
     include_attributes=None,
     exclude_attributes=None,
@@ -148,7 +148,8 @@ def display_group_attributes(
         exclude_attributes: list of attribute types to exclude
         db: a TimelinkDatabase object if None specify session
         category: column to use for coloring
-        cmap_name: name of the colormap to use
+        cmap_name: name of the colormap to use.
+                    See https://matplotlib.org/stable/tutorials/colors/colormaps.html
 
     """
 

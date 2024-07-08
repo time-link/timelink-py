@@ -9,7 +9,7 @@ charset-normalizer==3.3.2
 contourpy==1.2.1
 cryptography==42.0.5
 cycler==0.12.1
-docker==7.0.0
+docker>=7.0.0
 fastapi==0.110.2
 fonttools==4.51.0
 httpcore==1.0.5

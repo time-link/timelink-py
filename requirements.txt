@@ -1,5 +1,5 @@
 bokeh
-docker~=6.0.0
+docker>=7.0.0
 fastapi
 fastui
 fief-client
@@ -12,8 +12,9 @@ makefun           # tox seems to need this
 matplotlib
 mysql-connector-python~=8.0.0
 networkx>=3.0.0
-pandas~=2.0.0
-bcrypt==4.0.1  # see https://github.com/logspace-ai/langflow/issues/1173
+numpy==1.26.4
+pandas~=2.2.2
+# bcrypt==4.0.1  # see https://github.com/logspace-ai/langflow/issues/1173
 passlib[bcrypt]
 psycopg2-binary==2.9.6
 py-markdown-table==0.3.3

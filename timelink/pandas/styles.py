@@ -1,6 +1,7 @@
 """ Utilities for styling pandas dataframes"""
-import random
-from matplotlib import cm, colors
+from matplotlib import colors
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def category_palette(categories, cmap_name=None):
@@ -14,12 +15,16 @@ def category_palette(categories, cmap_name=None):
     Returns a dict with the categories as keys and colors as values
     """
     if cmap_name is None:
-        cmap_name = "Pastel2"
+        cmap_name = "tab20"
 
-    palette = cm.get_cmap(cmap_name, len(categories))
-    mapcolors = [colors.rgb2hex(palette(i)) for i in range(len(categories))]
+    # Assuming 'cmap_name' is the name of your colormap and 'categories' is a list of categories
+    num_categories = len(categories)
+    cmap = plt.colormaps[cmap_name]
+    palette = cmap(np.linspace(0, 1, num_categories))
+
+    mapcolors = [colors.rgb2hex(palette[i]) for i in range(num_categories)]
     # shufle the colors
-    random.shuffle(mapcolors)
+    # random.shuffle(mapcolors)
 
     cat_to_color = dict(zip(categories, mapcolors))
     return cat_to_color
