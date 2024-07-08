@@ -1,15 +1,11 @@
 =======
 History
 =======
-1.1.12 (2024-07-7)
+1.1.11 (2024-07-7)
 
 * Implements Issue43 (adds groupname filtering to attribute_values)
 * Fixes bug in pandas.styles due to deprecation of matplotlib.cm
-
-
-1.1.11 (2024-05-20)
-
-* Try to fix a problem with the release process.
+* Fix a problem with the release process.
 
 1.1.10 (2024-05-19)
 
