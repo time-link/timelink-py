@@ -24,7 +24,7 @@ script: pytest
 deploy:
   provider: pypi
   edge:
-    branch: v2.0.3-beta.4  # due to issue see https://travis-ci.community/t/builds-suddenly-fail-with-error-installing-dpl/14270/6
+    branch: v2.0.3-beta.5  # due to issue see https://travis-ci.community/t/builds-suddenly-fail-with-error-installing-dpl/14270/6
   skip_existing: true
   distributions: sdist bdist_wheel
   username: __token__
@@ -33,5 +33,5 @@ deploy:
   on:
     python: '3.11'
     branch: main
-    tags: true
+#    tags: true
 
