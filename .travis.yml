@@ -33,5 +33,5 @@ deploy:
   on:
     python: '3.11'
     branch: main
-#    tags: true
+    tags: true
 
