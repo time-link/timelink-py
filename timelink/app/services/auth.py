@@ -21,9 +21,6 @@ class CustomFiefAuth(FiefAuth):
     Specifically, it allows for customization of the response when a user
     is not authenticated or does not have the required scope.
 
-    Args:
-        client (FiefAsync): An instance of the FiefAsync class for making asynchronous requests
-
     See:
        https://fief-dev.github.io/fief-python/fief_client/integrations/fastapi.html#FiefAuth.__init__
        for more details.
