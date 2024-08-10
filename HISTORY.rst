@@ -2,12 +2,14 @@
 History
 =======
 1.1.11 (2024-07-7)
+------------------
 
 * Implements Issue43 (adds groupname filtering to attribute_values)
 * Fixes bug in pandas.styles due to deprecation of matplotlib.cm
 * Fix a problem with the release process.
 
 1.1.10 (2024-05-19)
+-------------------
 
 * Fix a bug in entities_with_attribute() filter_by parameter handling.
 
