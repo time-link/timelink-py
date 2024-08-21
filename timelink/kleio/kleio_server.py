@@ -403,7 +403,7 @@ class KleioServer:
             if code == -32006:
                 raise KleioServerForbidenException("Forbiden " + msg)
             else:
-                raise KleioServer(f"Error {code}: {message} ({data} id:{id})")
+                raise KleioServerException(f"Error {code}: {message} ({data} id:{id})")
         return response
 
     def stop(self):
