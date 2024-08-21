@@ -10,6 +10,9 @@ from .entity import Entity
 
 
 class Object(Entity):
+    """
+    Represent an object in the database. Objects are entities that are not people.
+    """
     __tablename__ = "objects"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
@@ -30,15 +33,15 @@ class Object(Entity):
         )
 
     def __str__(self):
-        self.to_kleio(show_contained=False)
+        return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
         if self.name is None:
             name = ""
         else:
             name = self.name + "/"
-        r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}/id={self.id}"
+        r: str = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}/id={self.id}"
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}  /obs={quote_long_text(self.obs.strip(), width=width)}"
-        r = super().to_kleio(self_string=r, ident=ident, ident_inc=ident_inc, width=width)
+        r = super().to_kleio(self_string=r, ident=ident, ident_inc=ident_inc, show_contained=show_contained, width=width)
         return r
