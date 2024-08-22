@@ -1,8 +1,9 @@
 from sqlalchemy import Enum, String, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from enum import Enum as PyEnum
 
 from .entity import Entity
+from .base_class import Base
 
 
 class RentityStatus(PyEnum):
@@ -16,6 +17,7 @@ class RentityStatus(PyEnum):
     Confirmed: linked by the user.
     Source: in the source transcription an identity link was recorded as "sameas" or "sameas"
     """
+
     DEFAULT = "Default"  # unlinked entity
     AUTOMATIC = "Automatic"  # linked automatically
     CONFIRMED = "Confirmed"  # confirmed by the user
@@ -32,32 +34,147 @@ class Rentity(Entity):
 
     The representation supports reversing the entity resolution
     process. A mapping between the real entity and the entities
-    that compose it is maintained in the `links` table.
+    that compose is maintained in the `links` table.
+
+    We use the term "rentity" to avoid confusion with the term "entity",
+    and often use to unlinked entities as "occurrences".
 
     Note that it is possible for an occurrence to be linked
     to more than one real entity. This can happen when the
     different users have different opinions about the identity
     of the entities.
 
-    We use the term "rentity" to avoid confusion with the term "entity",
-    and often use to unlinked entities as "occurrences".
+
     """
+
     __tablename__ = "rentities"
     __mapper_args__ = {"polymorphic_identity": "rentity"}
 
-    id: Mapped[str] = mapped_column(String,
-                                    ForeignKey("entity.id"),
-                                    primary_key=True,
-                                    on_delete="CASCADE")
-    user: Mapped[str] = mapped_column(String)  # user that identified this real entity
-    description: Mapped[str] = mapped_column(String)  # description of the real entity
-    status: Mapped[RentityStatus] =
-            mapped_column(Enum(RentityStatus),
-                          nullable=False)  # status of the real entity
+    id: Mapped[str] = mapped_column(
+        String(64), ForeignKey("entity.id"), primary_key=True, on_delete="CASCADE"
+    )
+    user: Mapped[str] = mapped_column(
+        String(64)
+    )  # user that identified this real entity
+    description: Mapped[str] = mapped_column(
+        String(4096)
+    )  # description of the real entity
+    status: Mapped[RentityStatus] = mapped_column(
+        Enum(RentityStatus), nullable=False
+    )  # status of the real entity
     obs: Mapped[str] = mapped_column(String)  # observations about the real entity
 
+    occurrences: Mapped[list["Link"]] = relationship(
+        "Link", back_populates="rentity"
+    )  # One-to-many relationship
+
+    def __repr__(self):
+        sr = super().__repr__()
+        return (
+            f"Rentity(id={sr}, "
+            f"user={self.user}, "
+            f"description={self.description}, "
+            f"status={self.status}, "
+            f"obs={self.obs}"
+            f")"
+        )
+
+    # introspection
+    def get_user(self):
+        """ Get the user that identified this real entity """
+        return self.user
+
+    def set_user(self, user):
+        """ Set the user that identified this real entity """
+        self.user = user
+
+    def get_description(self):
+        """ Get the description of the real entity """
+        return self.description
+
+    def set_description(self, description):
+        """ Set the description of the real entity """
+        self.description = description
+
+    def get_status(self):
+        """ Get the status of the real entity """
+        return self.status
+
+    def set_status(self, status):
+        """ Set the status of the real entity """
+        self.status = status
+
+    def get_obs(self):
+        """ Get the observations about the real entity """
+        return self.obs
+
+    def set_obs(self, obs):
+        """ Set the observations about the real entity """
+        self.obs = obs
+
+    def get_occurrences(self):
+        """ Get the occurrences of the real entity """
+        return self.occurrences
+
+    @classmethod
+    def get_rentity_brief(cls, rentity_id: str, session=None, db=None):
+        """
+        Fetch a real entity from the database
+        """
+        if session is not None:
+            r: Rentity = session.get(Rentity, rentity_id)
+        elif db is not None:
+            with db.session() as session:
+                r: Rentity = session.get(Rentity, rentity_id)
+        else:
+            raise ValueError("Error, session or db needed")
+        return r
+
+    @classmethod
+    def get_rentity_full(cls, rentity_id: str, session=None, db=None):
+        """
+        Fetch a real entity from the database with all the
+        attributes, relationships and contained objects of
+        the occurrences of the real entity.
+
+        I think this corresponds to an eager fetch in SQLAlchemy
+        """
+
+        if session is not None:
+            # Fetch eargely the occurrences
+
+            r: Rentity = session.get(Rentity, rentity_id)
+        elif db is not None:
+            with db.session() as session:
+                r: Rentity = session.get(Rentity, rentity_id)
+        else:
+            raise ValueError("Error, session or db needed")
+
+        return r
 
 
+class Link(Base):
+    """
+    Represents the link between a real entity and an entity.
 
+    The link between a real entity and an entity is maintained in this table.
+    """
 
+    __tablename__ = "links"
 
+    rid: Mapped[str] = mapped_column(
+        String(64), ForeignKey("rentities.id"), primary_key=True, on_delete="CASCADE"
+    )
+    entity: Mapped[str] = mapped_column(
+        String(64), ForeignKey("entities.id"), primary_key=True, on_delete="CASCADE"
+    )
+    rule: Mapped[str] = mapped_column(
+        String(4096)
+    )  # rule used to link the entity to the real entity
+
+    rentity: Mapped["Rentity"] = relationship(
+        "Rentity", back_populates="occurrences"
+    )  # Many-to-one relationship
+
+    def __repr__(self):
+        return f"Link(rid={self.rid}, entity={self.entity}, rule={self.rule})"

@@ -4,9 +4,8 @@ from typing import Optional
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped
 
-from .entity import Entity
 from timelink.kleio.utilities import quote_long_text
-
+from .entity import Entity
 
 class Person(Entity):
     """Represents a person in a historical source"""
@@ -14,7 +13,7 @@ class Person(Entity):
     __tablename__ = "persons"
 
     id: Mapped[str] = mapped_column(
-        String, ForeignKey("entities.id", on_delete="CASCADE"), primary_key=True
+        String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True
     )
     name: Mapped[Optional[str]] = mapped_column(String, index=True)
     sex: Mapped[Optional[str]] = mapped_column(String(1))
