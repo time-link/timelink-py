@@ -1,6 +1,7 @@
 alabaster==0.7.12
 argh~=0.28.1
 black>=24.3.0
+build
 bump2version==1.0.1
 colorama
 coverage==5.5
