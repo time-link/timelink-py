@@ -388,7 +388,7 @@ class TimelinkNotebook:
         but returns a subset of the columns.
 
         | Column             | Non-Null Count | Dtype             |
-       \|-------------------\|---------------\|-------------------|
+        |------------------- |--------------- |-------------------|
         | path               | 3 non-null     | object            |
         | name               | 3 non-null     | object            |
         | size               | 3 non-null     | int64             |
