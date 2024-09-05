@@ -464,49 +464,35 @@ class KGroup:
 
             return inc_by_part_order
 
-    def attr(  # to be renamed add_attr after refactoring
-            self,
-            the_type: Union[str, KElement, Tuple[str, str, str]],
-            value: Union[str, KElement, Tuple[str, str, str]],
-            date: Union[str, KElement, Tuple[str, str, str]],
-            obs=None,
-        ):
-            """Utility function to include a KAttribute in this KGroup
-
-            The call::
-
-                KGroup.attr('age','25','2021-08-08',obs='in May')
-
-            is short hand for::
-
-                KGroup.include(KAttr('age','25','2021-08-08',obs='in May'))
-
-            Params google style
-
-            :param str or tuple the_type: core or (core,org,comment)
-            :param str or tuple value: core or (core,org,comment)
-            :param str date: date as string in Kleio format, or (date,org,comment)
-            :param str obs: options observation field
-
-            """
-            ka = self._attr_class
-            self.include(ka(the_type, value, date=date, obs=obs))
-            return self
-
-    def attr_deprecated(  # to be renamed to attr after tests
+    def attr(
         self,
         the_type: Union[str, KElement, Tuple[str, str, str]],
         value: Union[str, KElement, Tuple[str, str, str]],
         date: Union[str, KElement, Tuple[str, str, str]],
         obs=None,
     ):
-        """Deprecated: Use add_attr instead."""
-        warnings.warn(
-            "The 'attr' method is deprecated, use 'add_attr' instead.",
-            DeprecationWarning,
-            stacklevel=2
-        )
-        return self.add_attr(the_type, value, date, obs)
+        """Utility function to include a KAttribute in this KGroup
+
+        The call::
+
+            KGroup.attr('age','25','2021-08-08',obs='in May')
+
+        is short hand for::
+
+            KGroup.include(KAttr('age','25','2021-08-08',obs='in May'))
+
+        Params google style
+
+        :param str or tuple the_type: core or (core,org,comment)
+        :param str or tuple value: core or (core,org,comment)
+        :param str date: date as string in Kleio format, or (date,org,comment)
+        :param str obs: options observation field
+
+        """
+        ka = self._attr_class
+        self.include(ka(the_type, value, date=date, obs=obs))
+        return self
+
     def rel(
         self,
         the_type: Union[str, tuple],
@@ -832,18 +818,13 @@ class KGroup:
 
     def get_element_by_name_or_class(self, element_spec, default=None):
         """
-        Return the value of an element by providing the element name or class.
+        Return the value of an element with a given name or that
+        inherits from an element of the given name.
 
-        An element matches a element_spec if its name is equal to the namespec
-        or if it is an instance of a KElement subclass with the same name.
+        An element matches a element_spec if its name is equal to the element_spec name
+        or if it is an instance of KElement subclass with the name equal to element_spec.
 
-        Note that group element can be a KElement or a subclass of KElement.
-        KElement sub classing is used to handle synonyms and localized names
-        for instance a KElement class for "year" can be created with a synonym
-        "ano" in Portuguese, and code can still retrieve the element, through
-        this method using the class name "year".
-
-        :param element_spec: name or class of element
+        :param element_spec: name of column, or name of POMClassAttributes
         :param default: default value if not element found
         :return: KElement, or whatever in default.
 
