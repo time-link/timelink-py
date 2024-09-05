@@ -54,6 +54,9 @@ test: ## run tests quickly with the default Python
 	pytest --rootdir=tests
 	py.test --nbval tests/timelink-home/projects/test-project/*
 
+test-nb: ## test notebooks only
+	py.test --nbval tests/timelink-home/projects/test-project/*
+
 
 test-all: ## run tests on every Python version with tox
 	tox
