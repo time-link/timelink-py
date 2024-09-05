@@ -1,6 +1,12 @@
 =======
 History
 =======
+
+1.1.12 (2024-09-05)
+-------------------
+* Fixes issue #48: now import propagates data to higher levels in table
+    hierarchy, even if the data is not mapped in the lower levels.
+
 1.1.11 (2024-07-7)
 ------------------
 
