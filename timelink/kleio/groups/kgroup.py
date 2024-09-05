@@ -464,35 +464,49 @@ class KGroup:
 
             return inc_by_part_order
 
-    def attr(
+    def attr(  # to be renamed add_attr after refactoring
+            self,
+            the_type: Union[str, KElement, Tuple[str, str, str]],
+            value: Union[str, KElement, Tuple[str, str, str]],
+            date: Union[str, KElement, Tuple[str, str, str]],
+            obs=None,
+        ):
+            """Utility function to include a KAttribute in this KGroup
+
+            The call::
+
+                KGroup.attr('age','25','2021-08-08',obs='in May')
+
+            is short hand for::
+
+                KGroup.include(KAttr('age','25','2021-08-08',obs='in May'))
+
+            Params google style
+
+            :param str or tuple the_type: core or (core,org,comment)
+            :param str or tuple value: core or (core,org,comment)
+            :param str date: date as string in Kleio format, or (date,org,comment)
+            :param str obs: options observation field
+
+            """
+            ka = self._attr_class
+            self.include(ka(the_type, value, date=date, obs=obs))
+            return self
+
+    def attr_deprecated(  # to be renamed to attr after tests
         self,
         the_type: Union[str, KElement, Tuple[str, str, str]],
         value: Union[str, KElement, Tuple[str, str, str]],
         date: Union[str, KElement, Tuple[str, str, str]],
         obs=None,
     ):
-        """Utility function to include a KAttribute in this KGroup
-
-        The call::
-
-            KGroup.attr('age','25','2021-08-08',obs='in May')
-
-        is short hand for::
-
-            KGroup.include(KAttr('age','25','2021-08-08',obs='in May'))
-
-        Params google style
-
-        :param str or tuple the_type: core or (core,org,comment)
-        :param str or tuple value: core or (core,org,comment)
-        :param str date: date as string in Kleio format, or (date,org,comment)
-        :param str obs: options observation field
-
-        """
-        ka = self._attr_class
-        self.include(ka(the_type, value, date=date, obs=obs))
-        return self
-
+        """Deprecated: Use add_attr instead."""
+        warnings.warn(
+            "The 'attr' method is deprecated, use 'add_attr' instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
+        return self.add_attr(the_type, value, date, obs)
     def rel(
         self,
         the_type: Union[str, tuple],
@@ -816,15 +830,20 @@ class KGroup:
         """Return the id of the group"""
         return self.unpack_from_kelement(self.id)
 
-    def get_element_for_column(self, colspec, default=None):
+    def get_element_by_name_or_class(self, element_spec, default=None):
         """
-        Return the value of an element that matches a specific column in the
-        database.
+        Return the value of an element by providing the element name or class.
 
-        An element matches a column if its name is equal to the column name
-        or if it is an instance of KElement subclass with the same name.
+        An element matches a element_spec if its name is equal to the namespec
+        or if it is an instance of a KElement subclass with the same name.
 
-        :param colspec: name of column, or name of POMClassAttributes
+        Note that group element can be a KElement or a subclass of KElement.
+        KElement sub classing is used to handle synonyms and localized names
+        for instance a KElement class for "year" can be created with a synonym
+        "ano" in Portuguese, and code can still retrieve the element, through
+        this method using the class name "year".
+
+        :param element_spec: name or class of element
         :param default: default value if not element found
         :return: KElement, or whatever in default.
 
@@ -836,11 +855,11 @@ class KGroup:
         ) in (
             self._elementsd.items()
         ):  # same name as column or in ancestors # noqa: E501
-            if name == colspec:
+            if name == element_spec:
                 return el
         # Handles synonyms created by subclassing core KElements
         for el in self._elementsd.values():  # if name in inherited names
-            if colspec in el.inherited_names():
+            if element_spec in el.inherited_names():
                 return el
         # handles multiple subclassing of core KElements
         for (
@@ -849,7 +868,7 @@ class KGroup:
             self._elementsd.values()
         ):  # check if there are alternative classes # noqa: E501
             # all classes for colspec
-            targets = KElement.get_classes_for(colspec)
+            targets = KElement.get_classes_for(element_spec)
             # other classes for el
             alternatives = KElement.get_classes_for(el.name)
             # now check if there is a common path

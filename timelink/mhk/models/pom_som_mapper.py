@@ -362,19 +362,42 @@ class PomSomMapper(Entity):
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session=session)
 
-    def element_class_to_column(self, eclass: str) -> str:
+    def element_class_to_column(self, eclass: str, session: None) -> str:
+        """Return the column name corresponding to a group element class.
+
+        Args:
+            eclass (str): The class of an element (included in the export file).
+
+        Returns:
+            str: The name of the column corresponding to this element in the mapped table.
         """
-        Return the column name corresponding to a group element class
-        :param eclass: the class of an element (included in the export file
-        :return: the name of the column corresponding to this element in the
-        mapped table.
+        cattr: PomClassAttributes = None
+        for cattr in self.class_attributes:
+            if cattr.colclass == eclass:
+                return cattr.colname
+        if self.id != "entity":
+            super_class = self.get_pom_class(self.super_class, session=session)
+            if super_class is not None:
+                return super_class.element_class_to_column(eclass, session=session)
+        return None
+
+    def column_to_class_attribute(
+        self, colname: str, session: None
+    ) -> "PomClassAttributes":
+        """Return the class attribute corresponding to a column name.
+
+        Args:
+            colname (str): The name of a column in the mapped table.
+
         """
-        cattr: PomClassAttributes = (
-            self.class_attributes.filter(  # pylint: disable=no-member
-                PomClassAttributes.pom_class == eclass
-            )
-        )
-        return cattr.colname
+        for cattr in self.class_attributes:
+            if cattr.colname == colname:
+                return cattr
+        if self.id != "entity":
+            super_class = self.get_pom_class(self.super_class, session)
+            if super_class is not None:
+                return super_class.column_to_class_attribute(colname, session)
+        return None
 
     @classmethod
     def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
@@ -413,7 +436,7 @@ class PomSomMapper(Entity):
         for cattr in pom_class.class_attributes:
             if cattr.colclass == "id":
                 pass
-            element: KElement = group.get_element_for_column(cattr.colclass)
+            element: KElement = group.get_element_by_name_or_class(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
                     setattr(entity_from_group, cattr.colname, str(element.core))

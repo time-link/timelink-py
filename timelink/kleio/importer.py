@@ -414,7 +414,7 @@ class KleioHandler:
             #  In this case we postpone the storing of the relation
             # until the end of file
             exits_dest_rel = self.session.get(
-                self.entity_model, group.get_element_for_column("destination").core
+                self.entity_model, group.get_element_by_name_or_class("destination").core
             )
             if exits_dest_rel is None:
                 self.postponed_relations.append(

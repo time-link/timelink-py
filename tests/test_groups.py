@@ -202,7 +202,7 @@ def test_kelement_extend_6():
     KAno4 = KAno3.extend("ano")
     gano = KGroup.extend("gano", position=["ano"])
     testing: KGroup = gano(2021)
-    ano = testing.get_element_for_column(KYear.name)
+    ano = testing.get_element_by_name_or_class(KYear.name)
     assert KAno.name == KAno4.name  # just to use the variables
     assert ano.core == 2021  # get the more specialized
 
@@ -434,7 +434,7 @@ def test_kgroup_extend2():
     )
     afonte = kfonte("f001", data="2021-12-09", ano=2021, tipo="teste", substitui="f001")
     assert afonte.data.extends("date")
-    year_value = afonte.get_element_for_column("year")
+    year_value = afonte.get_element_by_name_or_class("year")
     assert 2021 == year_value.core
     assert KData.__name__ == "data"
     assert KAno.__name__ == "ano"
