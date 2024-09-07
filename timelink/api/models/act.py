@@ -59,7 +59,7 @@ class Act(Entity):
             f"Act(id={sr}, "
             f'the_type="{kleio_escape(self.the_type)}", '
             f'the_date="{self.the_date}", '
-            f'local="{kleio_escape(self.loc)}", '
+            f'loc="{kleio_escape(self.loc)}", '
             f'ref="{kleio_escape(self.ref)}", '
             f'obs="{quote_long_text(self.obs)}"'
             f")"
