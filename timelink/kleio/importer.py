@@ -337,6 +337,13 @@ class KleioHandler:
             logging.debug("Skipping base mapping %s", psm.id)
             return
 
+        # if we import mapping from local file we also skip those
+        # the importer should check at the beggining if local mappings
+        # are available before starting the file import
+        # we need a function check_local_mappings() that returns a list
+        # of mappings available in the local file system.
+        # if psm.id in check_local_mappings(): return
+
         session = self.session
 
         # check if we have this class defined in the database.

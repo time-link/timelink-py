@@ -210,6 +210,18 @@ def test_import_issue48(dbsystem):
         assert carta.the_type is not None, "carta did not have a type"
         pom_class: PomSomMapper = PomSomMapper.get_pom_class(carta.pom_class, session)
         assert pom_class.element_class_to_column('type', session) is not None
+    file = Path(TEST_DIR, "xml_data/issue36b.xml")
+    with dbsystem.session() as session:
+        try:
+            import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+
+        crono = session.get(Entity, "__china-geral-his1-34")
+        assert crono.loc is not None, "crono did not have a loc"
+        pom_class: PomSomMapper = PomSomMapper.get_pom_class(crono.pom_class, session)
+        assert pom_class.element_class_to_column('loc', session) is not None
 
 
 @pytest.mark.parametrize(
