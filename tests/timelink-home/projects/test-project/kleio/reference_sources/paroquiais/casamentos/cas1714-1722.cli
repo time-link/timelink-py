@@ -1,599 +1,599 @@
-kleio$gacto.str/translations=7
+kleio$gacto.str/translations=9
    fonte$cas1714-1722/localizacao-a.u.c./obs=freguesia de S. silvestre da lousa
 
       cas$c1714-1/8/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)/obs=com licenca do prior manuel lopes serra que assina o termonao se referem testemunhas
 
-         noivo$pedro martins/id=c1714-1-per1
+         noivo$pedro martins
 
-            pnoivo$pedro martins/id=c1714-1-per2
+            pnoivo$pedro martins
                ls$morto/antes
                ls$morada/prilhao
                ls$freguesia/vilarinho
 
-            mnoivo$antonia simoes/id=c1714-1-per3
+            mnoivo$antonia simoes
                ls$morta/antes
 
-         noiva$ana fernandes/id=c1714-1-per4
+         noiva$ana fernandes
 
-            pnoiva$joana fernandes/id=c1714-1-per5
+            pnoiva$joana fernandes
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoiva$maria goncalves/id=c1714-1-per6
+            mnoiva$maria goncalves
 
       cas$c1714-2/10/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)morador na vila da lousa/obs=com licenca do prior manuel lopes serra que assina o termo
 
-         noivo$antonio fernandes/id=c1714-2-per1
+         noivo$antonio fernandes
             ls$ec/viuvo
             ls$morada/olival
             ls$freguesia/lousa
 
-            pnoivo$manuel fernandes/id=c1714-2-per2
+            pnoivo$manuel fernandes
                ls$morada/povoa
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1714-2-per3
+            mnoivo$maria francisca
 
-         noiva$antonia francisca/id=c1714-2-per4
+         noiva$antonia francisca
 
-            pnoiva$antonio goncalves/id=c1714-2-per5
+            pnoiva$antonio goncalves
                ls$morada/oliva
                ls$freguesia/lousa
 
-            mnoiva$ana francisca/id=c1714-2-per6
+            mnoiva$ana francisca
 
-         mulher1$maria rodrigues/id=c1714-2-per7
+         mulher1$maria rodrigues
 
-            pmulher1$tome luis/id=c1714-2-per8
+            pmulher1$tome luis
                ls$morada/olival
                ls$freguesia/lousa
 
-            mmulher1$catarina rodrigues/id=c1714-2-per9
+            mmulher1$catarina rodrigues
 
-         test$joao negrao/id=c1714-2-per10
+         test$joao negrao
             ls$profissao/capitao mor
 
-         test$joao negrao/obs=filho do capitao mor joao negrao/id=c1714-2-per11
+         test$joao negrao/obs=filho do capitao mor joao negrao
 
       cas$c1714-3/13/2/1714/fl.143igreja de sao silvestre/manoel loupes serra(prior)
 
-         noivo$ventura nunes/obs="os quais contrahentes sao agora resientes no lugar das serdeiras desta feguesia de sao silvestre"/id=c1714-3-per1
+         noivo$ventura nunes/obs="os quais contrahentes sao agora resientes no lugar das serdeiras desta feguesia de sao silvestre"
 
-            pnoivo$manuel domingues/id=c1714-3-per2
+            pnoivo$manuel domingues
                ls$morada/coentral
                ls$freguesia/pedrogao grande/obs="termo de pedrogao grande"
 
-            mnoivo$maria simoes/id=c1714-3-per3
+            mnoivo$maria simoes
 
-         noiva$clara simoes/id=c1714-3-per4
+         noiva$clara simoes
 
-            pnoiva$manuel rodrigues/id=c1714-3-per5
+            pnoiva$manuel rodrigues
                ls$morada/cardeal/obs="termo de miranda"
                ls$freguesia/miranda
 
-            mnoiva$maria simoes/id=c1714-3-per6
+            mnoiva$maria simoes
 
-         test$antonio simoes/id=c1714-3-per7
+         test$antonio simoes
             ls$morada/serdeiras
 
-         test$lourenco simoes/id=c1714-3-per8
+         test$lourenco simoes
             ls$morada/serdeiras
 
       cas$c1714-4/25/2/1714/fl.143v./igreja de sao silvestre/manoel da fonseca(prior)/obs=com licenca do prior manuel lopes serra que assina o termo
 
-         noivo$antonio duarte/id=c1714-4-per1
+         noivo$antonio duarte
 
-            pnoivo$antonio duarte/id=c1714-4-per2
+            pnoivo$antonio duarte
                ls$morada/ceira
                ls$freguesia/lousa/obs=deve tratar se de ceira dos vales
 
-            mnoivo$mariana seca/id=c1714-4-per3
+            mnoivo$mariana seca
 
-         noiva$maria ferreira/id=c1714-4-per4
+         noiva$maria ferreira
 
-            pnoiva$antonio ferreira/id=c1714-4-per5
+            pnoiva$antonio ferreira
                ls$morada/ribeira
                ls$freguesia/lousa
 
-            mnoiva$maria duarte/id=c1714-4-per6
+            mnoiva$maria duarte
 
-         test$jose de almeida mata/id=c1714-4-per7
+         test$jose de almeida mata
             ls$titulo/licenciado
 
-         test$luis duarte cortes/id=c1714-4-per8
+         test$luis duarte cortes
             ls$morada/vila da lousa
 
       cas$c1714-5/10/4/1714/fl.143v./igreja de sao silvestre/manoel de almeida serra(prior)
 
-         noivo$tomas correia/id=c1714-5-per1
+         noivo$tomas correia
 
-            pnoivo$braz tome/id=c1714-5-per2
+            pnoivo$braz tome
                ls$morto/antes
                ls$morada/lousa/obs=apenas refere "moradores que foram nesta freguesia"
                ls$freguesia/lousa
 
-            mnoivo$ana correia/id=c1714-5-per3
+            mnoivo$ana correia
                ls$morta/antes
 
-         noiva$isabel simoes/id=c1714-5-per4
+         noiva$isabel simoes
 
-            pnoiva$lourenco simoes/id=c1714-5-per5
+            pnoiva$lourenco simoes
                ls$morada/vila
                ls$freguesia/lousa
 
-            mnoiva$joana dias/id=c1714-5-per6
+            mnoiva$joana dias
 
-         test$jose arnaut cortes/id=c1714-5-per7
+         test$jose arnaut cortes
             ls$morada/vila da lousa
 
-         test$jeronimo henriques/id=c1714-5-per8
+         test$jeronimo henriques
             ls$morada/vilada lousa
 
       cas$c1714-6/3/5/1714/fl.143v./igreja de sao silvestre/manoel lopes serra (prior)
 
-         noivo$antonio fernandes/id=c1714-6-per1
+         noivo$antonio fernandes
 
-            pnoivo$domingos fernandes/id=c1714-6-per2
+            pnoivo$domingos fernandes
                ls$morada/ribeira
                ls$freguesia/lousa
 
-            mnoivo$maria jose/id=c1714-6-per3
+            mnoivo$maria jose
 
-         noiva$domingas ferreira/id=c1714-6-per4
+         noiva$domingas ferreira
 
-            pnoiva$joao goncalves/id=c1714-6-per5
+            pnoiva$joao goncalves
                ls$morto/antes
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoiva$ana ferreira/id=c1714-6-per6
+            mnoiva$ana ferreira
                ls$morta/antes
 
-         test$francisco lopes/id=c1714-6-per7
+         test$francisco lopes
             ls$morada/ribeira
 
-         test$luis cabral/id=c1714-6-per8
+         test$luis cabral
             ls$morada/ribeira
 
       cas$c1714-7/15/5/1714/fl.144/igreja de sao silvestre/manoel da fonseca(prior)/obs=com licenca do prior manuel lopes serra que assina o termonao se referem testemunhas
 
-         noivo$manuel goncalves/id=c1714-7-per1
+         noivo$manuel goncalves
 
-            pnoivo$manuel goncalves/id=c1714-7-per2
+            pnoivo$manuel goncalves
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoivo$isabel goncalves/id=c1714-7-per3
+            mnoivo$isabel goncalves
 
-         noiva$isabel francisca/id=c1714-7-per4
+         noiva$isabel francisca
 
-            pnoiva$antonio goncalves/id=c1714-7-per5
+            pnoiva$antonio goncalves
                ls$morada/olival
                ls$freguesia/lousa
 
-            mnoiva$ana francisca/id=c1714-7-per6
+            mnoiva$ana francisca
 
       cas$c1714-8/19/5/1714/fl.144v./igreja de sao silvestre/joao lopes serra (prior)/obs=com licenca do prior manuel lopes serra que assina o termonoa se referem testemunhas
 
-         noivo$antonio cortes/id=c1714-8-per1
+         noivo$antonio cortes
 
-            pnoivo$jose cortes/id=c1714-8-per2
+            pnoivo$jose cortes
                ls$morada/mingachos
                ls$freguesia/foz de arouce
 
-            mnoivo$antonia simoes/id=c1714-8-per3
+            mnoivo$antonia simoes
 
-         noiva$francisca duarte/id=c1714-8-per4
+         noiva$francisca duarte
 
-            pnoiva$joao duarte/id=c1714-8-per5
+            pnoiva$joao duarte
                ls$morada/olival
                ls$freguesia/lousa
 
-            mnoiva$maria carvalha/id=c1714-8-per6
+            mnoiva$maria carvalha
 
       cas$c1714-9/28/7/1714/fl.144v./igreja de sao silvestre/manoel lopes serra(prior)/obs=nao se referem testemunhas
 
-         noivo$francisco lopes/id=c1714-9-per1
+         noivo$francisco lopes
 
-            pnoivo$salvador lopes/id=c1714-9-per2
+            pnoivo$salvador lopes
                ls$morada/chiqueiro
                ls$freguesia/lousa
 
-            mnoivo$maria alvares/id=c1714-9-per3
+            mnoivo$maria alvares
 
-         noiva$catarina teresa da serra/id=c1714-9-per4
+         noiva$catarina teresa da serra
 
-            pnoiva$manuel simoes/id=c1714-9-per5
+            pnoiva$manuel simoes
                ls$morada/alfocheira
                ls$freguesia/lousa
 
-            mnoiva$maria dias/id=c1714-9-per6
+            mnoiva$maria dias
 
       cas$c1714-10/1/9/1714/fl.145/igreja de sao silvestre/manoel da fonseca(prior)/obs=com licenca do prior manuel lopes serra que assina o termonao se referem testemunhas
 
-         noivo$domingos rodrigues/id=c1714-10-per1
+         noivo$domingos rodrigues
 
-            pnoivo$domingos rodrigues/id=c1714-10-per2
+            pnoivo$domingos rodrigues
                ls$morada/vale de nogueira
                ls$freguesia/lousa
 
-            mnoivo$helena de almeida/id=c1714-10-per3
+            mnoivo$helena de almeida
 
-         noiva$francisca rodrigues/id=c1714-10-per4
+         noiva$francisca rodrigues
 
-            pnoiva$antonio francisco raposo/id=c1714-10-per5
+            pnoiva$antonio francisco raposo
                ls$morto/ante
                ls$morada/vale de maceira
                ls$freguesia/lousa
 
-            mnoiva$sebastiana rodrigues/id=c1714-10-per6
+            mnoiva$sebastiana rodrigues
                ls$morta/antes
 
       cas$c1714-11/18/9/1714/fl.145/igreja de sao silvestre/manoel da fonseca(prior)/obs=com a presenca do prior manuel lopes serraassina o padre manuel da fonsecadispensados os noivos em terceiro grau de consanguinidadenao se referem testemunhas
 
-         noivo$antonio da fonseca/id=c1714-11-per1
+         noivo$antonio da fonseca
 
-            pnoivo$antonio da fonseca/id=c1714-11-per2
+            pnoivo$antonio da fonseca
                ls$morada/alvares
                ls$freguesia/alvares
 
-            mnoivo$isabel antonia/id=c1714-11-per3
+            mnoivo$isabel antonia
 
-         noiva$maria barata/obs="maria barata de sao fagundo"/id=c1714-11-per4
+         noiva$maria barata/obs="maria barata de sao fagundo"
 
-            pnoiva$simao alvares/id=c1714-11-per5
+            pnoiva$simao alvares
                ls$morada/alvares
                ls$freguesia/lousa
 
-            mnoiva$francisca barata/id=c1714-11-per6
+            mnoiva$francisca barata
 
       cas$c1714-12/2/10/1714/fl.145v./igreja de sao silvestre/manoel da fonseca (economo na igreja de sao silvestre))/obs=assina o termo o padre manuel lopes serranao se referem testemunhas
 
-         noivo$manuel rodrigues/id=c1714-12-per1
+         noivo$manuel rodrigues
 
-            pnoivo$antonio rodrigues/id=c1714-12-per2
+            pnoivo$antonio rodrigues
                ls$morada/pedreira
                ls$freguesia/rio de vide/obs="sao tiago de rio de vide"
 
-            mnoivo$isabel joao/id=c1714-12-per3
+            mnoivo$isabel joao
 
-         noiva$joana francisca/id=c1714-12-per4
+         noiva$joana francisca
 
-            pnoiva$manuel francisco/id=c1714-12-per5
+            pnoiva$manuel francisco
                ls$morada/vila da lousa
                ls$freguesia/lousa
 
-            mnoiva$luisa simoes/id=c1714-12-per6
+            mnoiva$luisa simoes
 
       cas$c1714-13/20/10/1714/fl.145v./igreja de sao silvestre/manoel lopes serra (prior)/obs=nao se referem testemunhas
 
-         noivo$joao simoes/id=c1714-13-per1
+         noivo$joao simoes
 
-            pnoivo$amaro simoes/id=c1714-13-per2
+            pnoivo$amaro simoes
                ls$morto/antes
                ls$morada/gestoza
                ls$freguesia/castanheira/obs="sao domingos da castanheira termo de pedrogao grande"
 
-            mnoivo$antonia luis/id=c1714-13-per3
+            mnoivo$antonia luis
                ls$morta/antes
 
-         noiva$antonia francisca/id=c1714-13-per4
+         noiva$antonia francisca
 
-            pnoiva$antonio carvalho/id=c1714-13-per5
+            pnoiva$antonio carvalho
                ls$morada/cova de lobo
                ls$freguesia/lousa
 
-            mnoiva$francisca antonia/id=c1714-13-per6
+            mnoiva$francisca antonia
 
       cas$c1714-14/10/11/1714/fl.145v./igreja de sao silvestre/manoel lopes serra(prior)/obs=cnao se referem testemunhas
 
-         noivo$joao carvalho/id=c1714-14-per1
+         noivo$joao carvalho
 
-            pnoivo$manuel seco carvalho/id=c1714-14-per2
+            pnoivo$manuel seco carvalho
                ls$morto/antes
                ls$morada/fiscal
                ls$freguesia/vilarinho
 
-            mnoivo$catarina de paiva/id=c1714-14-per3
+            mnoivo$catarina de paiva
                ls$morta/antes
 
-         noiva$antonia francisca/id=c1714-14-per4
+         noiva$antonia francisca
 
-            pnoiva$matias francisco/id=c1714-14-per5
+            pnoiva$matias francisco
                ls$morto/antes
                ls$morada/cova de lobo
                ls$freguesia/lousa
 
-            mnoiva$antonia joao/id=c1714-14-per6
+            mnoiva$antonia joao
                ls$morta/antes
 
       cas$c1715-15/10/2/1715/fl.178/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao carvalho/id=c1715-15-per1
+         noivo$joao carvalho
 
-            pnoivo$manuel joao/id=c1715-15-per2
+            pnoivo$manuel joao
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoivo$$luisa carvalha/id=c1715-15-per3
+            mnoivo$$luisa carvalha
 
-         noiva$maria goncalves/id=c1715-15-per4
+         noiva$maria goncalves
 
-            pnoiva$manuel goncalves/id=c1715-15-per5
+            pnoiva$manuel goncalves
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoiva$iabel goncalves/id=c1715-15-per6
+            mnoiva$iabel goncalves
 
-         test$manuel fernandes/obs=nao assinou/id=c1715-15-per7
+         test$manuel fernandes/obs=nao assinou
             ls$morada/papanata
             ls$freguesia/lousa
 
-         test$jose ferreira/obs=nao assinou/id=c1715-15-per8
+         test$jose ferreira/obs=nao assinou
             ls$morada/papanata
             ls$freguesia/lousa
 
       cas$c1715-16/25/2/1715/fl.178/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$martinho simoes/id=c1715-16-per1
+         noivo$martinho simoes
 
-            pnoivo$amaro simoes/id=c1715-16-per2
+            pnoivo$amaro simoes
                ls$morada/gestosa fundeira
                ls$freguesia/sao domingos da castanheira
 
-            mnoivo$antonia luis/id=c1715-16-per3
+            mnoivo$antonia luis
 
-         noiva$luisa carvalha/obs=nao faz referencia as testemunhas/id=c1715-16-per4
+         noiva$luisa carvalha/obs=nao faz referencia as testemunhas
 
-            pnoiva$manuel carvalho/id=c1715-16-per5
+            pnoiva$manuel carvalho
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1715-16-per6
+            mnoiva$maria rodrigues
 
       cas$c1715-17/26/2/1715/fl.178v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$tome lopes serra/id=c1715-17-per1
+         noivo$tome lopes serra
 
-            pnoivo$luis simmoes/id=c1715-17-per2
+            pnoivo$luis simmoes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$maria lopes/id=c1715-17-per3
+            mnoivo$maria lopes
 
-         noiva$teresa cortes de jesus/id=c1715-17-per4
+         noiva$teresa cortes de jesus
 
-            pnoiva$manuel cortes/id=c1715-17-per5
+            pnoiva$manuel cortes
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria antonia/id=c1715-17-per6
+            mnoiva$maria antonia
 
-         test$joao negrao arnau/obs=nao assinou/id=c1715-17-per7
+         test$joao negrao arnau/obs=nao assinou
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$jose arnau cortes/obs=nao assinou/id=c1715-17-per8
+         test$jose arnau cortes/obs=nao assinou
             ls$morada/nao refere
 
       cas$c1715-18/3/3/1715/fl.178v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel cortes/id=c1715-18-per1
+         noivo$manuel cortes
 
-            pnoivo$domingos fernandes/id=c1715-18-per2
+            pnoivo$domingos fernandes
                ls$morada/ribeira
                ls$freguesia/lousa
 
-            mnoivo$$maria jose/id=c1715-18-per3
+            mnoivo$$maria jose
 
-         noiva$maria rodrigues/id=c1715-18-per4
+         noiva$maria rodrigues
 
-            pnoiva$manuel rodrigues/id=c1715-18-per5
+            pnoiva$manuel rodrigues
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoiva$isabel goncalves/id=c1715-18-per6
+            mnoiva$isabel goncalves
 
-         test$" os demais moradores do lugar da moita, reguengo e ribeira"/id=c1715-18-per7
+         test$" os demais moradores do lugar da moita, reguengo e ribeira"
 
       cas$c1715-19/3/3/1715/fl.179/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao francisco/id=c1715-19-per1
+         noivo$joao francisco
 
-            pnoivo$manuel francisco/id=c1715-19-per2
+            pnoivo$manuel francisco
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoivo$$antonia dias/id=c1715-19-per3
+            mnoivo$$antonia dias
 
-         noiva$maria fernandes/id=c1715-19-per4
+         noiva$maria fernandes
 
-            pnoiva$sebastiao fernandes/id=c1715-19-per5
+            pnoiva$sebastiao fernandes
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoiva$maria fernandes/id=c1715-19-per6
+            mnoiva$maria fernandes
 
-         test$"os mais moradores do lugar dce cova do lobo e val de neira"/id=c1715-19-per7
+         test$"os mais moradores do lugar dce cova do lobo e val de neira"
 
       cas$c1715-20/29/4/1715/fl.179/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$bartolomeu simoes/id=c1715-20-per1
+         noivo$bartolomeu simoes
 
-            pnoivo$manuel simoes/id=c1715-20-per2
+            pnoivo$manuel simoes
                ls$morada/mega simeira
                ls$freguesia/alvares
 
-            mnoivo$$maria simoes/id=c1715-20-per3
+            mnoivo$$maria simoes
 
-         noiva$antonia carvalha/id=c1715-20-per4
+         noiva$antonia carvalha
 
-            pnoiva$silvestre carvalho/id=c1715-20-per5
+            pnoiva$silvestre carvalho
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1715-20-per6
+            mnoiva$maria francisca
 
-         test$manuel carvalho/id=c1715-20-per7
+         test$manuel carvalho
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
-         test$antonio carvalho/id=c1715-20-per8
+         test$antonio carvalho
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
       cas$c1715-21/30/4/1715/fl.179v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel rodrigues/id=c1715-21-per1
+         noivo$manuel rodrigues
 
-            pnoivo$antonio rodrigues/id=c1715-21-per2
+            pnoivo$antonio rodrigues
                ls$morada/pedreira
                ls$freguesia/rio de vide
 
-            mnoivo$$isabel joao/id=c1715-21-per3
+            mnoivo$$isabel joao
 
-         noiva$luisa rodrigues/obs=nao faz referencia as testemunhas/id=c1715-21-per4
+         noiva$luisa rodrigues/obs=nao faz referencia as testemunhas
 
-            pnoiva$manuel francisco/id=c1715-21-per5
+            pnoiva$manuel francisco
                ls$alcunha/brandao
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$apolonia rodrigues/id=c1715-21-per6
+            mnoiva$apolonia rodrigues
 
       cas$c1715-22/30/4/1715/fl.179v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$gregorio simoes/id=c1715-22-per1
+         noivo$gregorio simoes
 
-            pnoivo$manuel simoes/id=c1715-22-per2
+            pnoivo$manuel simoes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$$maria jorge/id=c1715-22-per3
+            mnoivo$$maria jorge
 
-         noiva$ana pinheira/obs=nao faz refencia as testemunhas/id=c1715-22-per4
+         noiva$ana pinheira/obs=nao faz refencia as testemunhas
 
-            pnoiva$manuel rodrigues/id=c1715-22-per5
+            pnoiva$manuel rodrigues
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria pinheira/id=c1715-22-per6
+            mnoiva$maria pinheira
 
       cas$c1715-23/4/5/1715/fl.180/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao da piedade/id=c1715-23-per1
+         noivo$joao da piedade
 
-            pnoivo$pai incerto/id=c1715-23-per2
+            pnoivo$pai incerto
 
             mnoivo$maria francisca/id=b1715-p1
                ls$morada/nao refere
 
-         referido$martim carneiro/id=c1715-23-per3
+         referido$martim carneiro
             rel$sociabilidade?/senhor de escravo/maria francisca/b1715-p1
             ls$morada/tabuas
             ls$freguesia/miranda
 
-         noiva$cecilia leal/id=c1715-23-per4
+         noiva$cecilia leal
 
-            pnoiva$manuel leal/id=c1715-23-per5
+            pnoiva$manuel leal
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1715-23-per6
+            mnoiva$maria francisca
 
-         test$" e assistiram muitas pessoas"/id=c1715-23-per7
+         test$" e assistiram muitas pessoas"
 
       cas$c1715-24/21/7/1715/fl.180/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina joao lopes serra (reverendo)
 
-         noivo$francisco correia/id=c1715-24-per1
+         noivo$francisco correia
 
-            pnoivo$joao fernandes/id=c1715-24-per2
+            pnoivo$joao fernandes
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoivo$joana francisca/id=c1715-24-per3
+            mnoivo$joana francisca
 
-         noiva$teresa freire/id=c1715-24-per4
+         noiva$teresa freire
 
-            pnoiva$domingos fernandes/id=c1715-24-per5
+            pnoiva$domingos fernandes
                ls$morada/fornea
                ls$freguesia/lousa
 
-            mnoiva$maria freire/id=c1715-24-per6
+            mnoiva$maria freire
 
-         test$" a que assistiram outras pesoas"/id=c1715-24-per7
+         test$" a que assistiram outras pesoas"
 
       cas$c1715-25/4/11/1715/fl.180v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel luis/id=c1715-25-per1
+         noivo$manuel luis
             ls$ec/viuvo
 
-            mulher1$maria duarte/id=c1715-25-per1-per1-2
+            mulher1$maria duarte-2
                ls$morada/povoa
                ls$freguesia/lousa
 
-         noiva$isabel goncalves/id=c1715-25-per2
+         noiva$isabel goncalves
             ls$ec/viuva
 
-            marido1$manuel francisco/id=c1715-25-per2-2
+            marido1$manuel francisco-2
                ls$morada/moita
                ls$freguesia/lousa
 
-         test$manuel alvares/id=c1715-25-per3
+         test$manuel alvares
             ls$morada/nao refere
 
-         test$manuel goncalves/id=c1715-25-per4
+         test$manuel goncalves
             ls$morada/povoa
             ls$freguesia/lousa
 
       cas$c1715-26/30/11/1715/fl.180v./igreja de sao silvestre/joao lopes serra (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel seco/id=c1715-26-per1
+         noivo$manuel seco
 
-            pnoivo$antonio seco/id=c1715-26-per2
+            pnoivo$antonio seco
                ls$morada/fiscal
                ls$freguesia/vilarinho
 
-            mnoivo$antonia joao/id=c1715-26-per3
+            mnoivo$antonia joao
 
-         noiva$maria ferreira/id=c1715-26-per4
+         noiva$maria ferreira
 
-            pnoiva$antonio martins/id=c1715-26-per5
+            pnoiva$antonio martins
                ls$morto/antes
 
-         mnoivo$maria ferreira/id=c1715-26-per6
+         mnoivo$maria ferreira
             ls$morada/vila nova
             ls$freguesia/lousa
 
-         test$joao negrao arnau/id=c1715-26-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$teodosio negrao arnau/id=c1715-26-per8
+         test$teodosio negrao arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1716-27/7/1/1716/fl.181/igreja de sao silvestre/joao lopes serra (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio fernandes/id=c1716-27-per1
+         noivo$antonio fernandes
 
-            pnoivo$manuel fernandes/id=c1716-27-per2
+            pnoivo$manuel fernandes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$ana francisca/id=c1716-27-per3
+            mnoivo$ana francisca
 
-         noiva$angela antunes/id=c1716-27-per4
+         noiva$angela antunes
 
-            pnoiva$manuel antunes/id=c1716-27-per5
+            pnoiva$manuel antunes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$maria joao/id=c1716-27-per6
+            mnoiva$maria joao
 
-         test$joao negrao arnau/id=c1716-27-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
@@ -602,1718 +602,1718 @@ kleio$gacto.str/translations=7
             ls$morada/lousa
             ls$freguesia/lousa
 
-         referido$joao negrao arnau/id=c1716-27-per8
+         referido$joao negrao arnau
             rel$parentesco/pai/antonino negrao/b1716-p2
 
       cas$c1716-28/15/1/1716/fl.181/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$bartolomeu pereira de arantes/id=c1716-28-per1
+         noivo$bartolomeu pereira de arantes
             ls$morada/lousa
 
-            pnoivo$martinho rodrigues/id=c1716-28-per2
+            pnoivo$martinho rodrigues
                ls$morto/antes
                ls$morada/miranda
                ls$freguesia/miranda
 
-            mnoivo$maria pereira/id=c1716-28-per3
+            mnoivo$maria pereira
                ls$morta/antes
 
-         noiva$maria josefa de miranda/id=c1716-28-per4
+         noiva$maria josefa de miranda
 
-            pnoiva$manuel duarte/id=c1716-28-per5
+            pnoiva$manuel duarte
                ls$morto/antes
 
-            mnoiva$maria dias/id=c1716-28-per6
+            mnoiva$maria dias
                ls$morada/rio de vide
                ls$freguesia/santiago de rio de vide
 
-         test$jose de macedo/id=c1716-28-per7
+         test$jose de macedo
             ls$titulo/doutor
             ls$morada/nao refere
 
-         test$teodosio arnau/id=c1716-28-per8
+         test$teodosio arnau
             ls$morada/nao refere
 
       cas$c1716-29/30/1/1716/fl.181v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$luis simoes/id=c1716-29-per1
+         noivo$luis simoes
 
-            pnoivo$manuel simoes/id=c1716-29-per2
+            pnoivo$manuel simoes
                ls$morada/mega simeira
                ls$freguesia/alvares
 
-            mnoivo$domingas fernandes/id=c1716-29-per3
+            mnoivo$domingas fernandes
 
-         noiva$ana francisca/id=c1716-29-per4
+         noiva$ana francisca
 
-            pnoiva$manuel jorge/id=c1716-29-per5
+            pnoiva$manuel jorge
                ls$morada/val pereira
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1716-29-per6
+            mnoiva$maria rodrigues
 
-         test$manuel correia/id=c1716-29-per7
+         test$manuel correia
             ls$morada/nao refere
 
-         test$domingos jorge/obs="e outras pesoas de val de nogueira"/id=c1716-29-per8
+         test$domingos jorge/obs="e outras pesoas de val de nogueira"
             ls$morada/nao refere
 
       cas$c1716-30/25/2/1716/fl.181v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina joao lopes serra(reverendo)
 
-         noivo$domingos lopes/id=c1716-30-per1
+         noivo$domingos lopes
 
-            pnoivo$manuel lopes/id=c1716-30-per2
+            pnoivo$manuel lopes
                ls$morto/antes
                ls$morada/freixo
                ls$freguesia/vilarinho
 
-            mnoivo$maria ferreira/id=c1716-30-per3
+            mnoivo$maria ferreira
                ls$morta/antes
 
-         noiva$pascoa francisca/id=c1716-30-per4
+         noiva$pascoa francisca
 
-            pnoiva$manuel goncalves/id=c1716-30-per5
+            pnoiva$manuel goncalves
                ls$morto/antes
                ls$morada/olival
                ls$freguesia/lousa
 
-            mnoiva$domingas francisca/id=c1716-30-per6
+            mnoiva$domingas francisca
                ls$morta/antes
 
-         test$tome luis/id=c1716-30-per7
+         test$tome luis
             ls$morada/olival
             ls$freguesia/lousa
 
-         test$antonio fernandes/id=c1716-30-per8
+         test$antonio fernandes
             ls$morada/olival
             ls$freguesia/lousa
 
       cas$c1716-31/11/5/1716/fl.182/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio ferreira/id=c1716-31-per1
+         noivo$antonio ferreira
 
-            pnoivo$antonio simoes/id=c1716-31-per2
+            pnoivo$antonio simoes
                ls$morada/ramalhais
                ls$freguesia/lousa
 
-            mnoivo$joana carvalha/id=c1716-31-per3
+            mnoivo$joana carvalha
 
-         noiva$antonia rodrigues/id=c1716-31-per4
+         noiva$antonia rodrigues
 
-            pnoiva$joao goncalves/id=c1716-31-per5
+            pnoiva$joao goncalves
                ls$morada/era de calva
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1716-31-per6
+            mnoiva$maria rodrigues
 
-         test$lourenco simoes/id=c1716-31-per7
+         test$lourenco simoes
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$luis francisco/id=c1716-31-per8
+         test$luis francisco
             ls$morada/val de neira
             ls$freguesia/lousa
 
       cas$c1716-32/12/6/1716/fl.18/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$francisco goncalves/id=c1716-32-per1
+         noivo$francisco goncalves
 
-            pnoivo$manuel goncalves/id=c1716-32-per2
+            pnoivo$manuel goncalves
                ls$morto/antes
 
-            mnoivo$maria duarte/id=c1716-32-per3
+            mnoivo$maria duarte
                ls$morada/olival
                ls$freguesia/lousa
 
-         noiva$maria ferreira/id=c1716-32-per4
+         noiva$maria ferreira
 
-            pnoiva$joao martins/id=c1716-32-per5
+            pnoiva$joao martins
                ls$morto/antes
 
-            mnoiva$luisa duarte/id=c1716-32-per6
+            mnoiva$luisa duarte
                ls$morada/povoa
                ls$freguesia/lousa
 
-         test$antonio fernandes/id=c1716-32-per7
+         test$antonio fernandes
             ls$morada/nao refere
 
-         test$tome luis/id=c1716-32-per8
+         test$tome luis
             ls$morada/olival
             ls$freguesia/lousa
 
       cas$c1716-33/13/6/1716/fl.182v./igreja de sao silvestre/belchior henriques (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$jose da costa/id=c1716-33-per1
+         noivo$jose da costa
 
-            pnoivo$joao da costa/id=c1716-33-per2
+            pnoivo$joao da costa
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$ana henriques/id=c1716-33-per3
+            mnoivo$ana henriques
 
-         noiva$maria da costa/obs=nao faz refencia as testemunhas/id=c1716-33-per4
+         noiva$maria da costa/obs=nao faz refencia as testemunhas
             ls$morada/freguesia da se da cidade de coimbra
 
-            pnoiva$bento da costa/id=c1716-33-per5
+            pnoiva$bento da costa
                ls$morada/sao joao de almedina da cidade de coimbra
                ls$freguesia/sao joao de almedina da cidade de coimbra
 
-            mnoiva$maria simoes/id=c1716-33-per6
+            mnoiva$maria simoes
 
       cas$c1716-34/14/6/1716/fl.182v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$miguel freire coelho/id=c1716-34-per1
+         noivo$miguel freire coelho
             ls$naturalidade/coimbra
             ls$morada/lousa
             ls$freguesia/lousa
 
-         noiva$catarina teles arnau de rivo/id=c1716-34-per2
+         noiva$catarina teles arnau de rivo
             ls$titulo/dona
 
-            pnoiva$martinho negrao arnau/id=c1716-34-per3
+            pnoiva$martinho negrao arnau
                ls$profissao/capitao
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$isabel teles coutinho/id=c1716-34-per4
+            mnoiva$isabel teles coutinho
 
       cas$c1716-35/16/9/1716/fl.183/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao goncalves/id=c1716-35-per1
+         noivo$joao goncalves
 
-            pnoivo$joao goncalves/id=c1716-35-per2
+            pnoivo$joao goncalves
                ls$morada/espinheiro
                ls$freguesia/lousa
 
-            mnoivo$maria simoes/id=c1716-35-per3
+            mnoivo$maria simoes
 
-         noiva$ana francisca/id=c1716-35-per4
+         noiva$ana francisca
 
-            pnoiva$manuel francisco/id=c1716-35-per5
+            pnoiva$manuel francisco
                ls$morada/pegos
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1716-35-per6
+            mnoiva$maria francisca
 
       cas$c1716-36/18/9/1716/fl.183/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao gaspar/id=c1716-36-per1
+         noivo$joao gaspar
 
-            pnoivo$simao gaspar/id=c1716-36-per2
+            pnoivo$simao gaspar
                ls$morto/antes
                ls$morada/pe de janeiro
                ls$freguesia/campelo
 
-            mnoivo$maria rodrigues/id=c1716-36-per3
+            mnoivo$maria rodrigues
                ls$morta/antes
 
-         noiva$maria lourenca/id=c1716-36-per4
+         noiva$maria lourenca
 
-            pnoiva$lourenco simoes/id=c1716-36-per5
+            pnoiva$lourenco simoes
                ls$morada/cerdeiras
                ls$freguesia/lousa
 
-            mnoiva$isabel simoes/id=c1716-36-per6
+            mnoiva$isabel simoes
 
-         test$"todos os moradores do dito lugar"/id=c1716-36-per7
+         test$"todos os moradores do dito lugar"
 
       cas$c1716-37/19/9/1716/fl.183v./igreja de sao silvestre/joao lopes serra (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel fernandes/id=c1716-37-per1
+         noivo$manuel fernandes
 
-            pnoivo$manuel fernandes/id=c1716-37-per2
+            pnoivo$manuel fernandes
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1716-37-per3
+            mnoivo$maria francisca
 
-         noiva$maria fernandes/id=c1716-37-per4
+         noiva$maria fernandes
 
-            pnoiva$manuel simoes/id=c1716-37-per5
+            pnoiva$manuel simoes
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoiva$luisa fernandes/id=c1716-37-per6
+            mnoiva$luisa fernandes
 
-         test$" a maior parte dos moradores do dito sitio"/id=c1716-37-per7
+         test$" a maior parte dos moradores do dito sitio"
 
       cas$c1716-38/22/9/1716/fl.183v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel simoes/id=c1716-38-per1
+         noivo$manuel simoes
 
-            pnoivo$domingos simoes/id=c1716-38-per2
+            pnoivo$domingos simoes
                ls$morada/casal novo
                ls$freguesia/lousa
 
-            mnoivo$luisa joao/id=c1716-38-per3
+            mnoivo$luisa joao
 
-         noiva$maria luis/id=c1716-38-per4
+         noiva$maria luis
 
-            pnoiva$manuel luis/id=c1716-38-per5
+            pnoiva$manuel luis
                ls$morada/casal novo
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1716-38-per6
+            mnoiva$maria simoes
 
-         test$manuel pires/id=c1716-38-per7
+         test$manuel pires
             ls$morada/casal novo
             ls$freguesia/lousa
 
-         test$manuel dias/id=c1716-38-per8
+         test$manuel dias
             ls$morada/casal novo
             ls$freguesia/lousa
 
       cas$c1716-39/8/11/1716/fl.184/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$manuel luis/id=c1716-39-per1
+         noivo$manuel luis
 
-            pnoivo$manuel luis/id=c1716-39-per2
+            pnoivo$manuel luis
                ls$morada/ventosa
                ls$freguesia/santo andre/obs=termo dfe penacova
 
-            mnoivo$maria luis/id=c1716-39-per3
+            mnoivo$maria luis
 
-         noiva$maria francisca/id=c1716-39-per4
+         noiva$maria francisca
 
-            pnoiva$manuel seco/id=c1716-39-per5
+            pnoiva$manuel seco
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1716-39-per6
+            mnoiva$maria francisca
 
-         test$manuel fernandes/id=c1716-39-per7
+         test$manuel fernandes
             ls$morada/casal
             ls$freguesia/lousa
 
-         test$antonio fernandes/id=c1716-39-per8
+         test$antonio fernandes
             ls$morada/casal
             ls$freguesia/lousa
 
       cas$c1717-40/15/1/1717/fl.184/igreja de sao silvestre/manuel lopes serra(prior)/obs=antes deste assento pode ler-se " visto em vizita 12 de janeiro de 1717"
 
-         noivo$francisco duarte/id=c1717-40-per1
+         noivo$francisco duarte
 
-            pnoivo$manuel duarte/id=c1717-40-per2
+            pnoivo$manuel duarte
                ls$morada/val de maceira
                ls$freguesia/lousa
 
-            mnoivo$ana rodrigues/id=c1717-40-per3
+            mnoivo$ana rodrigues
 
-         noiva$teresa correia/id=c1717-40-per4
+         noiva$teresa correia
 
-            pnoiva$joao fernandes/id=c1717-40-per5
+            pnoiva$joao fernandes
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoiva$joana francisca/id=c1717-40-per6
+            mnoiva$joana francisca
 
-         test$manuel joao/id=c1717-40-per7
+         test$manuel joao
             ls$morada/nao refere
 
-         test$pedro simoes/id=c1717-40-per8
+         test$pedro simoes
             ls$morada/val de maceira
             ls$freguesia/lousa
 
       cas$c1717-41/3/5/1717/fl.184v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio fernandes/id=c1717-41-per1
+         noivo$antonio fernandes
             ls$ec/viuvo
 
-            mulher1$maria rodrigues/id=c1717-41-per1-per1-2
+            mulher1$maria rodrigues-2
                ls$morada/cume
                ls$freguesia/lousa
 
-         noiva$josefa correia/id=c1717-41-per2
+         noiva$josefa correia
 
-            pnoiva$manuel correia/id=c1717-41-per3
+            pnoiva$manuel correia
                ls$morada/alfocjeira
                ls$freguesia/lousa
 
-            mnoiva$apolonoia duarte/id=c1717-41-per4
+            mnoiva$apolonoia duarte
 
-         test$jeronimo henriques/id=c1717-41-per5
+         test$jeronimo henriques
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$antonino negrao/id=c1717-41-per6
+         test$antonino negrao
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1717-42/5/4/1717/fl.184v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$jose cabral/id=c1717-42-per1
+         noivo$jose cabral
 
-            pnoivo$joao teixeira cabral/id=c1717-42-per2
+            pnoivo$joao teixeira cabral
                ls$morada/lagiosa/obs=termo de celorico, bispado da guarda
 
-            mnoivo$isabel fernandes/id=c1717-42-per3
+            mnoivo$isabel fernandes
 
-         noiva$maria francisca/id=c1717-42-per4
+         noiva$maria francisca
 
-            pnoiva$gabriel correia/id=c1717-42-per5
+            pnoiva$gabriel correia
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoiva$isabel francisca/id=c1717-42-per6
+            mnoiva$isabel francisca
 
       cas$c1717-43/16/4/1717/fl.184v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio lopes/id=c1717-43-per1
+         noivo$antonio lopes
 
-            pnoivo$manuel lopes/id=c1717-43-per2
+            pnoivo$manuel lopes
                ls$morto/antes
 
-            mnoivo$maria francisca/id=c1717-43-per3
+            mnoivo$maria francisca
                ls$morada/favarica
                ls$freguesia/lousa
 
-         noiva$maria nunes/id=c1717-43-per4
+         noiva$maria nunes
 
-            pnoiva$antonio pereira/id=c1717-43-per5
+            pnoiva$antonio pereira
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria nunes/id=c1717-43-per6
+            mnoiva$maria nunes
 
-         test$teodosio negrao/id=c1717-43-per7
+         test$teodosio negrao
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$raimundo de macedo/id=c1717-43-per8
+         test$raimundo de macedo
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1717-44/26/4/1717/fl.185/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao antunes/id=c1717-44-per1
+         noivo$joao antunes
 
-            pnoivo$manuel antunes/id=c1717-44-per2
+            pnoivo$manuel antunes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$maria joao/id=c1717-44-per3
+            mnoivo$maria joao
                ls$morta/antes
 
-         noiva$josefa francisca/id=c1717-44-per4
+         noiva$josefa francisca
 
-            pnoiva$manuel fernandes/id=c1717-44-per5
+            pnoiva$manuel fernandes
                ls$morto/antes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$ana francisca/id=c1717-44-per6
+            mnoiva$ana francisca
                ls$morta/antes
 
-         test$luis duarte cortes/id=c1717-44-per7
+         test$luis duarte cortes
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$babiano nunes da gama/id=c1717-44-per8
+         test$babiano nunes da gama
             ls$profissao/padre
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1717-45/3/5/1717/fl.185/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel francisco/obs="os contrahentes athe o prezente eam ambos moradores em lugar do chiqueiro em caza de maria nunes"/id=c1717-45-per1
+         noivo$manuel francisco/obs="os contrahentes athe o prezente eam ambos moradores em lugar do chiqueiro em caza de maria nunes"
 
-            pnoivo$domingos francisco/id=c1717-45-per2
+            pnoivo$domingos francisco
                ls$morada/santa luzia de pomares
                ls$freguesia/santa luzia de pomares/obs=termo da vila de avo
 
-            mnoivo$joana andre/id=c1717-45-per3
+            mnoivo$joana andre
 
-         noiva$benta simoes/id=c1717-45-per4
+         noiva$benta simoes
 
-            pnoiva$andre francisco/id=c1717-45-per5
+            pnoiva$andre francisco
                ls$morto/antes
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoiva$antonia simoes/id=c1717-45-per6
+            mnoiva$antonia simoes
                ls$morta/antes
 
-         test$antonio simoes/id=c1717-45-per7
+         test$antonio simoes
             ls$morada/rios
             ls$freguesia/lousa
 
-         test$bebiano nunes da gama/id=c1717-45-per8
+         test$bebiano nunes da gama
             ls$profissao/padre
             ls$morada/rios
             ls$freguesia/lousa
 
       cas$c1717-46/28/5/1717/fl.185/igreja de sao silvestre/joao lopes serra (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio francisco/id=c1717-46-per1
+         noivo$antonio francisco
 
-            pnoivo$joao rodrigues/id=c1717-46-per2
+            pnoivo$joao rodrigues
                ls$morto/antes
 
-            mnoivo$maria francisca/id=c1717-46-per3
+            mnoivo$maria francisca
                ls$morada/vale
                ls$freguesia/lousa
 
-         noiva$antonia correia de almeida/id=c1717-46-per4
+         noiva$antonia correia de almeida
             ls$morada/viidual
             ls$ferguesia/rio de vide
 
-            pnoiva$manuel correia de almeida/id=c1717-46-per5
+            pnoiva$manuel correia de almeida
                ls$morto/antes
                ls$morada/freguesia de sao tiago da cidade de coimbra
                ls$freguesia/sao tiago da cidade de coimbra
 
-            mnoiva$isabel antunes/id=c1717-46-per6
+            mnoiva$isabel antunes
                ls$morta/antes
 
-         test$jose rodrigues/id=c1717-46-per7
+         test$jose rodrigues
             ls$morada/vale
             ls$freguesia/lousa
 
-         test$manuel rodrigues/id=c1717-46-per8
+         test$manuel rodrigues
             ls$morada/vale
             ls$freguesia/lousa
 
       cas$c1717-47/29/5/1717/fl.185v./igreja de sao silvestre/manuel lopes serra (prior)/obs= assina joao lopes serra(reverendo)
 
-         noivo$alexandre da costa quaresma/id=c1717-47-per1
+         noivo$alexandre da costa quaresma
 
-            pnoivo$antonio rodrigues seco/id=c1717-47-per2
+            pnoivo$antonio rodrigues seco
                ls$morto/antes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$mariana da costa/id=c1717-47-per3
+            mnoivo$mariana da costa
                ls$morta/antes
 
-         noiva$maria teresa viegas/id=c1717-47-per4
+         noiva$maria teresa viegas
 
-            pnoiva$manuel ferreira da silva/id=c1717-47-per5
+            pnoiva$manuel ferreira da silva
                ls$morto/antes
                ls$titulo/licenciado
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$francisca vieira/id=c1717-47-per6
+            mnoiva$francisca vieira
                ls$morta/antes
 
-         test$joao negrao arnau/id=c1717-47-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$teodosio arnau/id=c1717-47-per8
+         test$teodosio arnau
             ls$morada/nao refere
 
       cas$c1717-48/27/6/1717/fl.185v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$joao rodrigues pinheiro/id=c1717-48-per1
+         noivo$joao rodrigues pinheiro
 
-            pnoivo$manuel rodrigues/id=c1717-48-per2
+            pnoivo$manuel rodrigues
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$maria pinheira/id=c1717-48-per3
+            mnoivo$maria pinheira
 
-         noiva$joana maria baioa/id=c1717-48-per4
+         noiva$joana maria baioa
 
-            pnoiva$manuel jorge/id=c1717-48-per5
+            pnoiva$manuel jorge
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria baioa/id=c1717-48-per6
+            mnoiva$maria baioa
 
-         test$joao de arruda frazao/id=c1717-48-per7
+         test$joao de arruda frazao
             ls$titulo/licenciado
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$manuel da costa/id=c1717-48-per8
+         test$manuel da costa
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1717-49/5/7/1717/fl.186/igreja de sao domingos da cidade de coimbra/manuel lopes serra(prior)
 
-         noivo$pascoal rodrigues/id=c1717-49-per1
+         noivo$pascoal rodrigues
 
-            pnoivo$manuel goncalves/id=c1717-49-per2
+            pnoivo$manuel goncalves
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoivo$antonia fernandes/id=c1717-49-per3
+            mnoivo$antonia fernandes
 
-         noiva$brisida simoes/id=c1717-49-per4
+         noiva$brisida simoes
 
-            pnoiva$joao simoes/id=c1717-49-per5
+            pnoiva$joao simoes
                ls$morada/casal novo
                ls$freguesia/lousa
 
-            mnoiva$domingas simoes/id=c1717-49-per6
+            mnoiva$domingas simoes
 
       cas$c1717-50/16/8/1717/fl.186/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel fernandes/id=c1717-50-per1
+         noivo$manuel fernandes
 
-            pnoivo$domingos goncalves/id=c1717-50-per2
+            pnoivo$domingos goncalves
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoivo$maria manuel/id=c1717-50-per3
+            mnoivo$maria manuel
 
-         noiva$maria da encarnacao/id=c1717-50-per4
+         noiva$maria da encarnacao
 
-            pnoiva$domingos fernandes/id=c1717-50-per5
+            pnoiva$domingos fernandes
                ls$morto/antes
 
-            mnoiva$maria de sequeira/id=c1717-50-per6
+            mnoiva$maria de sequeira
                ls$morada/ponte velha
                ls$freguesia/sao miguel de foz de arouce
 
-         test$joao negrao arnau/id=c1717-50-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$joao negrao arnau de rivo/id=c1717-50-per8
+         test$joao negrao arnau de rivo
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1717-51/12/10/1717/fl.186v./igreja de sao silvestre/manuel lopes serra (prior)/obs= assina joao lopes serra(reverendo)
 
-         noivo$manuel vaz cortes/id=c1717-51-per1
+         noivo$manuel vaz cortes
 
-            pnoivo$manuel vaz/id=c1717-51-per2
+            pnoivo$manuel vaz
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$brasia cortes/id=c1717-51-per3
+            mnoivo$brasia cortes
                ls$morta/antes
 
-         noiva$antonia de almeida de jesus/id=c1717-51-per4
+         noiva$antonia de almeida de jesus
 
-            pnoiva$lourenco de almeida/id=c1717-51-per5
+            pnoiva$lourenco de almeida
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoiva$domingas ferreira/id=c1717-51-per6
+            mnoiva$domingas ferreira
                ls$morta/antes
 
-         test$jose de macedo/id=c1717-51-per7
+         test$jose de macedo
             ls$titulo/licenciado
             ls$morada/nao refere
 
-         test$joao de arruda frazao/id=c1717-51-per8
+         test$joao de arruda frazao
             ls$titulo/licenciado
             ls$morada/nao refere
 
       cas$c1717-52/26/10/1717/fl.186v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel rodrigues/id=c1717-52-per1
+         noivo$manuel rodrigues
 
-            pnoivo$joao rodrigues/id=c1717-52-per2
+            pnoivo$joao rodrigues
                ls$morto/antes
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoivo$isabel rodrigues/id=c1717-52-per3
+            mnoivo$isabel rodrigues
                ls$morta/antes
 
-         noiva$domingas francisca/id=c1717-52-per4
+         noiva$domingas francisca
 
-            pnoiva$joao pires/id=c1717-52-per5
+            pnoiva$joao pires
                ls$morto/antes
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoiva$isabel francisca/id=c1717-52-per6
+            mnoiva$isabel francisca
 
-         test$gabriel correia/id=c1717-52-per7
+         test$gabriel correia
             ls$morada/val de neira
             ls$freguesia/lousa
 
-         test$luis francisco/id=c1717-52-per8
+         test$luis francisco
             ls$morada/val de neira
             ls$freguesia/lousa
 
       cas$c1718-53/25/1/1718/fl.186v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel pires de araujo/id=c1718-53-per1
+         noivo$manuel pires de araujo
 
-            pnoivo$joao pires/id=c1718-53-per2
+            pnoivo$joao pires
                ls$morada/cesta feita
                ls$freguesia/sao pedro de concelho do bexes/obs=termo de monte alegre, bispado de braga
 
-            mnoivo$cipriana de azevedo/id=c1718-53-per3
+            mnoivo$cipriana de azevedo
 
-         noiva$ana francisca/id=c1718-53-per4
+         noiva$ana francisca
 
-            pnoiva$joao martins/id=c1718-53-per5
+            pnoiva$joao martins
                ls$morada/casal da povoa
                ls$freguesia/lousa
 
-            mnoiva$luisa duarte/id=c1718-53-per6
+            mnoiva$luisa duarte
 
       cas$c1718-54/30/1/1718/fl.187/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio ferreira/id=c1718-54-per1
+         noivo$antonio ferreira
 
-            pnoivo$simao ferreira/id=c1718-54-per2
+            pnoivo$simao ferreira
                ls$morada/casal da bouga
                ls$freguesia/sao miguel da vila de penela
 
-            mnoivo$francisca simoes/id=c1718-54-per3
+            mnoivo$francisca simoes
 
-         noiva$monica rodrigues/id=c1718-54-per4
+         noiva$monica rodrigues
 
-            pnoiva$joao ferreira/id=c1718-54-per5
+            pnoiva$joao ferreira
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoiva$apolonia rodrigues/id=c1718-54-per6
+            mnoiva$apolonia rodrigues
 
-         test$teodosio arnau/id=c1718-54-per7
+         test$teodosio arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$manuel lopes dos santos/id=c1718-54-per8
+         test$manuel lopes dos santos
             ls$profissao/padre
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1718-55/16/2/1718/fl.187v./igreja de sao silvestre/belchior henriques arnau (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio dos santos/id=c1718-55-per1
+         noivo$antonio dos santos
 
-            pnoivo$manuel de freitas/id=c1718-55-per2
+            pnoivo$manuel de freitas
                ls$morada/lorvao
 
-            mnoivo$lourenca baptista/id=c1718-55-per3
+            mnoivo$lourenca baptista
 
-         noiva$barbosa da conceicao/id=c1718-55-per4
+         noiva$barbosa da conceicao
 
-            pnoiva$joao da costa/id=c1718-55-per5
+            pnoiva$joao da costa
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$ana henriques/id=c1718-55-per6
+            mnoiva$ana henriques
 
-         test$bernardo de magalhaes/id=c1718-55-per7
+         test$bernardo de magalhaes
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$vasco de macedo/id=c1718-55-per8
+         test$vasco de macedo
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1718-56/20/2/1718/fl.187v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$luis carvalho/id=c1718-56-per1
+         noivo$luis carvalho
 
-            pnoivo$manuel carvalho/id=c1718-56-per2
+            pnoivo$manuel carvalho
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoivo$maria rodrigues/id=c1718-56-per3
+            mnoivo$maria rodrigues
 
-         noiva$antonia francisca/id=c1718-56-per4
+         noiva$antonia francisca
 
-            pnoiva$manuel francisco/id=c1718-56-per5
+            pnoiva$manuel francisco
                ls$morto/antes
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1718-56-per6
+            mnoiva$maria simoes
 
-         test$gabriel correia/id=c1718-56-per7
+         test$gabriel correia
             ls$morada/val de neira
             ls$freguesia/lousa
 
-         test$simao ferreira/id=c1718-56-per8
+         test$simao ferreira
             ls$morada/val de neira
             ls$freguesia/lousa
 
       cas$c1718-57/30/3/1718/fl.188/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$custodio da silva/id=c1718-57-per1
+         noivo$custodio da silva
 
-            pnoivo$jeronimo da silva/id=c1718-57-per2
+            pnoivo$jeronimo da silva
                ls$morada/bispado de braga
 
-            mnoivo$maria francisca/id=c1718-57-per3
+            mnoivo$maria francisca
 
-         noiva$madalena caneva/id=c1718-57-per4
+         noiva$madalena caneva
 
-            pnoiva$simao caneva/id=c1718-57-per5
+            pnoiva$simao caneva
                ls$morada/rios lsüfreguesia/lousa
 
-            mnoiva$joana de lorva/obs=baptizada na freguesia de eugenio da villa de genova, reino de genova/id=c1718-57-per6
+            mnoiva$joana de lorva/obs=baptizada na freguesia de eugenio da villa de genova, reino de genova
 
-         test$bartolomeu maria/id=c1718-57-per7
+         test$bartolomeu maria
             ls$naturalidade/reino de genova
 
-         test$jose maria/id=c1718-57-per8
+         test$jose maria
             ls$naturalidade/reino de genova
 
       cas$c1718-58/15/4/1718/fl.188/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio nunes da costa/id=c1718-58-per1
+         noivo$antonio nunes da costa
 
-            pnoivo$manuel morais/id=c1718-58-per2
+            pnoivo$manuel morais
                ls$morada/vilarinho
                ls$freguesia/vilarinho
 
-            mnoivo$maria fernandes/id=c1718-58-per3
+            mnoivo$maria fernandes
 
-         noiva$escolastica antonia/id=c1718-58-per4
+         noiva$escolastica antonia
 
-            pnoiva$andre francisco/id=c1718-58-per5
+            pnoiva$andre francisco
                ls$morto/antes
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoiva$antonia simoes/id=c1718-58-per6
+            mnoiva$antonia simoes
                ls$morta/antes
 
-         test$teodosio arnau de rivo/id=c1718-58-per7
+         test$teodosio arnau de rivo
             ls$morada/nao refere
 
-         test$caetano da costa/id=c1718-58-per8
+         test$caetano da costa
             ls$morada/pampilhosa
 
       cas$c1718-59/16/4/1718/fl.188/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$luis fernandes/id=c1718-59-per1
+         noivo$luis fernandes
 
-            pnoivo$joao rodrigues/id=c1718-59-per2
+            pnoivo$joao rodrigues
                ls$morto/antes
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoivo$isabel fernandes/id=c1718-59-per3
+            mnoivo$isabel fernandes
                ls$morta/antes
 
-         noiva$maria joao/id=c1718-59-per4
+         noiva$maria joao
 
-            pnoiva$antonio rodrigues/id=c1718-59-per5
+            pnoiva$antonio rodrigues
                ls$morada/vidual
                ls$freguesia/santiago de rio de vide
 
-            mnoiva$maria joao/id=c1718-59-per6
+            mnoiva$maria joao
 
-         test$silvestre carvalho/id=c1718-59-per7
+         test$silvestre carvalho
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
-         test$manuel carvalho/id=c1718-59-per8
+         test$manuel carvalho
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
       cas$c1718-60/25/7/1718/fl.188v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$mateus dos reis/id=c1718-60-per1
+         noivo$mateus dos reis
 
-            pnoivo$manuel dos reis/id=c1718-60-per2
+            pnoivo$manuel dos reis
                ls$morto/antes
                ls$morada/miranda
                ls$freguesia/miranda
 
-            mnoivo$isabel correia/id=c1718-60-per3
+            mnoivo$isabel correia
                ls$morta/antes
 
-         noiva$teresa de jesus/id=c1718-60-per4
+         noiva$teresa de jesus
 
-            pnoiva$sebastiao fernandes/id=c1718-60-per5
+            pnoiva$sebastiao fernandes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$isabel rodrigues/id=c1718-60-per6
+            mnoiva$isabel rodrigues
 
-         test$tomas galvao/id=c1718-60-per7
+         test$tomas galvao
             ls$profissao/barbeiro
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$gaspar velho cortes/id=c1718-60-per8
+         test$gaspar velho cortes
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1718-61/6/12/1718/fl.189/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao simoes/id=c1718-61-per1
+         noivo$joao simoes
 
-            pnoivo$manuel afonso/id=c1718-61-per2
+            pnoivo$manuel afonso
                ls$alcunha/novo
                ls$morada/silveira
                ls$freguesia/lousa
 
-            mnoivo$domingas simoes/id=c1718-61-per3
+            mnoivo$domingas simoes
 
-         noiva$joana coelha/id=c1718-61-per4
+         noiva$joana coelha
 
-            pnoiva$manuel afonso/id=c1718-61-per5
+            pnoiva$manuel afonso
                ls$alcunha/velho
                ls$morada/silveira
                ls$freguesia/lousa
 
-            mnoiva$isabel simoes/id=c1718-61-per6
+            mnoiva$isabel simoes
 
-         test$teodosio arnau/id=c1718-61-per7
+         test$teodosio arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$alexandre da costa/id=c1718-61-per8
+         test$alexandre da costa
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1718-62/6/12/1718/fl.189/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$francisco fernandes miguel/id=c1718-62-per1
+         noivo$francisco fernandes miguel
 
-            pnoivo$manuel fernandes/id=c1718-62-per2
+            pnoivo$manuel fernandes
                ls$morada/val da velha
                ls$freguesia/lousa
 
-            mnoivo$maria bernarda/id=c1718-62-per3
+            mnoivo$maria bernarda
 
-         noiva$mariana luis/id=c1718-62-per4
+         noiva$mariana luis
 
-            pnoiva$manuel negrao/id=c1718-62-per5
+            pnoiva$manuel negrao
                ls$morada/ceira
                ls$freguesia/lousa
 
-            mnoiva$joana luis/id=c1718-62-per6
+            mnoiva$joana luis
 
-         test$joao barreto/id=c1718-62-per7
+         test$joao barreto
             ls$morada/nao refere
 
-         test$manuel da costa/id=c1718-62-per8
+         test$manuel da costa
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1718-63/20/12/1718/fl.189/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$jose francisco/id=c1718-63-per1
+         noivo$jose francisco
 
-            pnoivo$antonio francisco/id=c1718-63-per2
+            pnoivo$antonio francisco
                ls$morto/antes
                ls$morada/val de maceira
                ls$freguesia/lousa
 
-            mnoivo$maria rodrigues/id=c1718-63-per3
+            mnoivo$maria rodrigues
                ls$morta/antes
 
-         noiva$josefa francisca/id=c1718-63-per4
+         noiva$josefa francisca
 
-            pnoiva$manuel fernandes/id=c1718-63-per5
+            pnoiva$manuel fernandes
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1718-63-per6
+            mnoiva$maria francisca
 
-         test$manuel duarte/id=c1718-63-per7
+         test$manuel duarte
             ls$alcunha/velho
             ls$morada/val de maceira
             ls$freguesia/lousa
 
-         test$manuel duarte/id=c1718-63-per8
+         test$manuel duarte
             ls$alcunha/novo
             ls$morada/val de maceira
             ls$freguesia/lousa
 
       cas$c1718-64/22/12/1718/fl.189v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$domingos da silva/id=c1718-64-per1
+         noivo$domingos da silva
 
-            pnoivo$manuel da silva/id=c1718-64-per2
+            pnoivo$manuel da silva
                ls$morto/antes
 
-            mnoivo$isabel simoes/id=c1718-64-per3
+            mnoivo$isabel simoes
                ls$morada/povoa
                ls$freguesia/lousa
 
-         noiva$pascoa carvalha/id=c1718-64-per4
+         noiva$pascoa carvalha
 
-            pnoiva$domingos francisco/id=c1718-64-per5
+            pnoiva$domingos francisco
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$luisa carvalha/id=c1718-64-per6
+            mnoiva$luisa carvalha
 
-         test$manuel da costa/id=c1718-64-per7
+         test$manuel da costa
             ls$profissao/tesoureiro
             ls$morada/nao refere
 
-         test$manuel rodrigues/id=c1718-64-per8
+         test$manuel rodrigues
             ls$alcunha/minimo
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1718-65/28/12/1718/fl.189v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$francisco jorge/id=c1718-65-per1
+         noivo$francisco jorge
 
-            pnoivo$manuel francisco/id=c1718-65-per2
+            pnoivo$manuel francisco
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$luisa joao/id=c1718-65-per3
+            mnoivo$luisa joao
 
-         noiva$teresa francisca/id=c1718-65-per4
+         noiva$teresa francisca
 
-            pnoiva$gaspar simoes/id=c1718-65-per5
+            pnoiva$gaspar simoes
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1718-65-per6
+            mnoiva$maria rodrigues
 
-         test$silvestre carvalho/id=c1718-65-per7
+         test$silvestre carvalho
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
-         test$manuel carvalho/id=c1718-65-per8
+         test$manuel carvalho
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1719-66/7/1/1719/fl.190/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel vaz/id=c1719-66-per1
+         noivo$manuel vaz
 
-            pnoivo$manuel francisco/id=c1719-66-per2
+            pnoivo$manuel francisco
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoivo$isabel vaz/id=c1719-66-per3
+            mnoivo$isabel vaz
 
-         noiva$maria duarte/id=c1719-66-per4
+         noiva$maria duarte
 
-            pnoiva$manuel luis/id=c1719-66-per5
+            pnoiva$manuel luis
                ls$morada/povoa
                ls$freguesia/lousa
 
-            mnoiva$maria duarte/id=c1719-66-per6
+            mnoiva$maria duarte
 
-         test$manuel alvres/id=c1719-66-per7
+         test$manuel alvres
             ls$morada/povoa
             ls$freguesia/lousa
 
-         test$manuel goncalves/id=c1719-66-per8
+         test$manuel goncalves
             ls$morada/povoa
             ls$freguesia/lousa
 
       cas$c1719-67/15/1/1719/fl.190/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$silvestre fernandes/id=c1719-67-per1
+         noivo$silvestre fernandes
 
-            pnoivo$alexandre fernandes/id=c1719-67-per2
+            pnoivo$alexandre fernandes
                ls$morada/sao marftinho da ferrastela/obs=arcebispado de braga
 
-            mnoivo$maria alvares/id=c1719-67-per3
+            mnoivo$maria alvares
 
-         noiva$joana francisca/id=c1719-67-per4
+         noiva$joana francisca
 
-            pnoiva$manuel francisco/id=c1719-67-per5
+            pnoiva$manuel francisco
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$luisa francisca/id=c1719-67-per6
+            mnoiva$luisa francisca
 
-         test$jeronimo henriques arnau/id=c1719-67-per7
+         test$jeronimo henriques arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$antonio monteiro/id=c1719-67-per8
+         test$antonio monteiro
             ls$morada/quinta do areal
             ls$freguesia/lousa
 
       cas$c1719-68/20/1/1719/fl.190v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$miguel cortes/id=c1719-68-per1
+         noivo$miguel cortes
 
-            pnoivo$miguel francisco/id=c1719-68-per2
+            pnoivo$miguel francisco
                ls$morada/mingachos
                ls$freguesia/foz de arouce
 
-            mnoivo$maria cortes/id=c1719-68-per3
+            mnoivo$maria cortes
                ls$morta/antes
 
-         noiva$maria duarte/id=c1719-68-per4
+         noiva$maria duarte
 
-            pnoiva$jose fernandes/id=c1719-68-per5
+            pnoiva$jose fernandes
                ls$morto/antes
 
-            mnoiva$francisca duarte/id=c1719-68-per6
+            mnoiva$francisca duarte
                ls$morada/espinheiro
                ls$freguesia/lousa
 
       cas$c1719-69/20/4/1719/fl.190v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$matias seco/id=c1719-69-per1
+         noivo$matias seco
 
-            pnoivo$manuel seco/id=c1719-69-per2
+            pnoivo$manuel seco
                ls$morto/antes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1719-69-per3
+            mnoivo$maria francisca
                ls$morta/antes
 
-         noiva$luisa francisca/id=c1719-69-per4
+         noiva$luisa francisca
 
-            pnoiva$francisco mendes/id=c1719-69-per5
+            pnoiva$francisco mendes
                ls$morada/cruz de ferro
                ls$freguesia/lousa
 
-            mnoiva$catarina francisca/id=c1719-69-per6
+            mnoiva$catarina francisca
 
-         test$jose de sousa/id=c1719-69-per7
+         test$jose de sousa
             ls$morada/nao refere
 
-         test$antonio mendes/id=c1719-69-per8
+         test$antonio mendes
             ls$morada/nao refere
 
       cas$c1719-70/11/5/1719/fl.190v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio francisco/id=c1719-70-per1
+         noivo$antonio francisco
 
-            pnoivo$manuel francisco/id=c1719-70-per2
+            pnoivo$manuel francisco
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoivo$maria simoes/id=c1719-70-per3
+            mnoivo$maria simoes
 
-         noiva$maria rodrigues/id=c1719-70-per4
+         noiva$maria rodrigues
 
-            pnoiva$joao rodrigues/id=c1719-70-per5
+            pnoiva$joao rodrigues
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoiva$isabel rodrigues/id=c1719-70-per6
+            mnoiva$isabel rodrigues
 
-         test$luis francisco/id=c1719-70-per7
+         test$luis francisco
             ls$morada/nao refere
 
-         test$manuel fernandes/id=c1719-70-per8
+         test$manuel fernandes
             ls$morada/nao refere
 
       cas$c1719-71/15/5/1719/fl.191/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel fernandes/id=c1719-71-per1
+         noivo$manuel fernandes
 
-            pnoivo$manuel fernandes/id=c1719-71-per2
+            pnoivo$manuel fernandes
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoivo$francisca simoes/id=c1719-71-per3
+            mnoivo$francisca simoes
 
-         noiva$joana francisca/id=c1719-71-per4
+         noiva$joana francisca
 
-            pnoiva$manuel seco/id=c1719-71-per5
+            pnoiva$manuel seco
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1719-71-per6
+            mnoiva$maria francisca
 
-         test$jeronimo henriques arnau/id=c1719-71-per7
+         test$jeronimo henriques arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$antonino arnau/id=c1719-71-per8
+         test$antonino arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1719-72/15/5/1719/fl.191/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$manuel seco/id=c1719-72-per1
+         noivo$manuel seco
 
-            pnoivo$manuel seco/id=c1719-72-per2
+            pnoivo$manuel seco
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1719-72-per3
+            mnoivo$maria francisca
 
-         noiva$maria francisca/id=c1719-72-per4
+         noiva$maria francisca
 
-            pnoiva$manuel fernandes/id=c1719-72-per5
+            pnoiva$manuel fernandes
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoiva$francisca simoes/id=c1719-72-per6
+            mnoiva$francisca simoes
 
-         test$joao lopes serra/id=c1719-72-per7
+         test$joao lopes serra
             ls$profissao/padre
             ls$morada/nao refere
 
-         test$joao arnau/id=c1719-72-per8
+         test$joao arnau
             ls$profissao/padre
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1719-73/20/9/1719/fl.191/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$luis ferreira/id=c1719-73-per1
+         noivo$luis ferreira
 
-            pnoivo$joao ferreira/id=c1719-73-per2
+            pnoivo$joao ferreira
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$apolonia rodrigues/id=c1719-73-per3
+            mnoivo$apolonia rodrigues
 
-         noiva$maria freire/id=c1719-73-per4
+         noiva$maria freire
 
-            pnoiva$jose freire/id=c1719-73-per5
+            pnoiva$jose freire
                ls$morto/antes
 
-            mnoiva$maria mendes/id=c1719-73-per6
+            mnoiva$maria mendes
                ls$morada/fornea
                ls$freguesia/lousa
 
-         test$teodosio arnau/id=c1719-73-per7
+         test$teodosio arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$antonio monteiro/id=c1719-73-per8
+         test$antonio monteiro
             ls$morada/areal
             ls$freguesia/lousa
 
       cas$c1719-74/25/9/1719/fl.191v./igreja de sao silvestre/manuel lopes dos santos (padre economo)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio francisco/id=c1719-74-per1
+         noivo$antonio francisco
             ls$morada/povoa
 
-            pnoivo$niguel francisco/id=c1719-74-per2
+            pnoivo$niguel francisco
                ls$morada/ribeira
                ls$freguesia/lousa
 
-         noiva$maria joao/id=c1719-74-per3
+         noiva$maria joao
             ls$ec/viuva
 
-            marido1$manuel quaresma/id=c1719-74-per1-2
+            marido1$manuel quaresma-2
                ls$morada/fontainhas
                ls$freguesia/lousa
 
-         test$manuel alvares/id=c1719-74-per4
+         test$manuel alvares
             ls$morada/povoa
             ls$freguesia/lousa
 
-         test$luis cabral/id=c1719-74-per5
+         test$luis cabral
             ls$morada/ribeira
             ls$freguesia/lousa
 
       cas$c1719-75/15/10/1719/fl.191v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio rodrigues/id=c1719-75-per1
+         noivo$antonio rodrigues
             ls$ec/viuvo
 
-            mulher1$domingas fernandes/id=c1719-75-per1-per1-2
+            mulher1$domingas fernandes-2
                ls$morada/silveira
                ls$freguesia/lousa
 
-         noiva$maria joao/id=c1719-75-per2
+         noiva$maria joao
 
-            pnoiva$joao filipe/id=c1719-75-per3
+            pnoiva$joao filipe
                ls$morada/serpins
                ls$freguesia/serpins
 
-            mnoiva$maria joao/id=c1719-75-per4
+            mnoiva$maria joao
 
-         test$joao rodrigues/id=c1719-75-per5
+         test$joao rodrigues
             ls$morada/silveira
             ls$freguesia/lousa
 
-         test$vitoriano antonio de arantes/id=c1719-75-per6
+         test$vitoriano antonio de arantes
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1719-76/26/11/1719/fl.192/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao carvalho/id=c1719-76-per1
+         noivo$joao carvalho
 
-            pnoivo$manuel joao/obs=nao faz referencia a mae do noivo/id=c1719-76-per2
+            pnoivo$manuel joao/obs=nao faz referencia a mae do noivo
                ls$morada/papanata
                ls$freguesia/lousa
 
-         noiva$teresa de araujo/id=c1719-76-per3
+         noiva$teresa de araujo
 
-            pnoiva$diogo fernandes/id=c1719-76-per4
+            pnoiva$diogo fernandes
                ls$morada/cume
                ls$freguesia/lousa
 
-            mnoiva$maria de araujo/id=c1719-76-per5
+            mnoiva$maria de araujo
 
-         test$joao negrao arnau/id=c1719-76-per6
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$jeronimo henriques/id=c1719-76-per7
+         test$jeronimo henriques
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1719-77/28/11/1719/fl.192/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$jose ferreira/id=c1719-77-per1
+         noivo$jose ferreira
 
-            pnoivo$manuel fernandes/id=c1719-77-per2
+            pnoivo$manuel fernandes
                ls$morada/ceira
                ls$freguesia/lousa
 
-            mnoivo$maria simoes/id=c1719-77-per3
+            mnoivo$maria simoes
 
-         noiva$maria dias/id=c1719-77-per4
+         noiva$maria dias
 
-            pnoiva$manuel luis/id=c1719-77-per5
+            pnoiva$manuel luis
                ls$morada/ceira
                ls$freguesia/lousa
 
-            mnoiva$brasia dias/id=c1719-77-per6
+            mnoiva$brasia dias
 
-         test$antonio de sequeira/id=c1719-77-per7
+         test$antonio de sequeira
             ls$morada/nao refere
 
-         test$pascoal simoes/id=c1719-77-per8
+         test$pascoal simoes
             ls$morada/nao refere
 
       cas$c1719-78/28/11/1719/fl.192v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$manuel luis/id=c1719-78-per1
+         noivo$manuel luis
 
-            pnoivo$manuel luis/id=c1719-78-per2
+            pnoivo$manuel luis
                ls$morada/ceira
                ls$freguesia/lousa
 
-            mnoivo$brasia dias/id=c1719-78-per3
+            mnoivo$brasia dias
 
-         noiva$luisa simoes/id=c1719-78-per4
+         noiva$luisa simoes
 
-            pnoiva$manuel fernandes/id=c1719-78-per5
+            pnoiva$manuel fernandes
                ls$morada/ceira
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1719-78-per6
+            mnoiva$maria simoes
 
-         test$antonio de sequeira/id=c1719-78-per7
+         test$antonio de sequeira
             ls$morada/nao refere
 
-         test$manuel ferreira/id=c1719-78-per8
+         test$manuel ferreira
             ls$morada/ceira
             ls$freguesia/lousa
 
       cas$c1720-79/9/2/1720/fl.192v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$sebastiao simoes/id=c1720-79-per1
+         noivo$sebastiao simoes
 
-            pnoivo$pedro simoes/id=c1720-79-per2
+            pnoivo$pedro simoes
                ls$morada/val de maceira
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/obs=primeira mulher de pedro simoes/id=c1720-79-per3
+            mnoivo$maria francisca/obs=primeira mulher de pedro simoes
 
-         noiva$maria lopes/id=c1720-79-per4
+         noiva$maria lopes
 
-            pnoiva$manuel dias/id=c1720-79-per5
+            pnoiva$manuel dias
                ls$morada/casal novo
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1720-79-per6
+            mnoiva$maria simoes
 
-         test$joao negrao arnau/id=c1720-79-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$joao de arruda/id=c1720-79-per8
+         test$joao de arruda
             ls$titulo/licenciado
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1720-80/10/2/1720/fl.192v./igreja de sao silvestre/joao lopes serra (reverendo)/obs= assina manuel lopes serra(prior)
 
-         noivo$lourenco de almeida/id=c1720-80-per1
+         noivo$lourenco de almeida
 
-            pnoivo$manuel simoes/id=c1720-80-per2
+            pnoivo$manuel simoes
                ls$morada/era de calva
                ls$freguesia/lousa
 
-            mnoivo$antonia de almeida/id=c1720-80-per3
+            mnoivo$antonia de almeida
                ls$morta/antes
 
-         noiva$maria henriques/id=c1720-80-per4
+         noiva$maria henriques
 
-            pnoiva$manuel fernandes/id=c1720-80-per5
+            pnoiva$manuel fernandes
                ls$morto/antes
 
-            mnoiva$ana henriques/id=c1720-80-per6
+            mnoiva$ana henriques
                ls$morada/era de calva
                ls$freguesia/lousa
 
-         test$gabriel correia/id=c1720-80-per7
+         test$gabriel correia
             ls$morada/val de neira
             ls$freguesia/lousa
 
-         test$manuel vaz/id=c1720-80-per8
+         test$manuel vaz
             ls$morada/val de neira
             ls$freguesia/lousa
 
       cas$c1720-81/12/2/1720/fl.193/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel rodrigues/id=c1720-81-per1
+         noivo$manuel rodrigues
 
-            pnoivo$manuel rodrigues/id=c1720-81-per2
+            pnoivo$manuel rodrigues
                ls$morto/antes
 
-         mnoiva$maria francisca/id=c1720-81-per3
+         mnoiva$maria francisca
             ls$morada/era de calva
             ls$freguesia/lousa
 
-         noiva$maria rodrigues/id=c1720-81-per4
+         noiva$maria rodrigues
             ls$morto/antes
 
-            pnoiva$joao goncalves/id=c1720-81-per5
+            pnoiva$joao goncalves
                ls$morada/era de calva
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1720-81-per6
+            mnoiva$maria rodrigues
                ls$morta/antes
 
-         test$joao negrao arnau/id=c1720-81-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$antonino/id=c1720-81-per8
+         test$antonino
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1720-82/16/2/1720/fl.193/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio rodrigues/id=c1720-82-per1
+         noivo$antonio rodrigues
 
-            pnoivo$manuel rodrigues/id=c1720-82-per2
+            pnoivo$manuel rodrigues
                ls$morada/era de calva
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1720-82-per3
+            mnoivo$maria francisca
 
-         noiva$isabel rodrigues/id=c1720-82-per4
+         noiva$isabel rodrigues
 
-            pnoiva$joao goncalves/id=c1720-82-per5
+            pnoiva$joao goncalves
                ls$morada/era de calva
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1720-82-per6
+            mnoiva$maria rodrigues
 
-         test$joao negrao arnau/id=c1720-82-per7
+         test$joao negrao arnau
             ls$profissao/capitao mor
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$teodosio negrao/id=c1720-82-per8
+         test$teodosio negrao
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1720-83/20/2/1720/fl.193/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$joao rodrigues/id=c1720-83-per1
+         noivo$joao rodrigues
 
-            pnoivo$manuel goncalves/id=c1720-83-per2
+            pnoivo$manuel goncalves
                ls$morto/antes
                ls$morada/rio de vide
                ls$freguesia/rio de vide
 
-            mnoivo$isabel rodrigues/id=c1720-83-per3
+            mnoivo$isabel rodrigues
                ls$morta/antes
 
-         noiva$maria rodrigues/id=c1720-83-per4
+         noiva$maria rodrigues
 
-            pnoiva$domingos rodrigues/id=c1720-83-per5
+            pnoiva$domingos rodrigues
                ls$morto/antes
 
-            mnoiva$helena joao/id=c1720-83-per6
+            mnoiva$helena joao
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-         test$joao tomas/id=c1720-83-per7
+         test$joao tomas
             ls$morada/nao refere
 
-         test$antonio de almeida/id=c1720-83-per8
+         test$antonio de almeida
             ls$morada/nao refere
 
       cas$c1720-84/20/2/1720/fl.193v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$joao francisco/id=c1720-84-per1
+         noivo$joao francisco
 
-            pnoivo$francisco joao/id=c1720-84-per2
+            pnoivo$francisco joao
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoivo$domingas goncalves/id=c1720-84-per3
+            mnoivo$domingas goncalves
 
-         noiva$luisa antonia/id=c1720-84-per4
+         noiva$luisa antonia
 
-            pnoiva$manuel antonio/id=c1720-84-per5
+            pnoiva$manuel antonio
                ls$morada/picoto
                ls$freguesia/lousa
 
-            mnoiva$maria joao/id=c1720-84-per6
+            mnoiva$maria joao
                ls$morta/antes
 
-         test$alexandre da costa/id=c1720-84-per7
+         test$alexandre da costa
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$antonio de mendonca/id=c1720-84-per8
+         test$antonio de mendonca
             ls$morada/nao refere
 
       cas$c1720-85/12/5/1720/fl.193v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio francisco/id=c1720-85-per1
+         noivo$antonio francisco
 
-            pnoivo$manuel francisco/id=c1720-85-per2
+            pnoivo$manuel francisco
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$maria rodrigues/id=c1720-85-per3
+            mnoivo$maria rodrigues
 
-         noiva$maria da natividade de sao bernardo/id=c1720-85-per4
+         noiva$maria da natividade de sao bernardo
 
-            pnoiva$manuel goncalves/id=c1720-85-per5
+            pnoiva$manuel goncalves
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$luisa bernarda/id=c1720-85-per6
+            mnoiva$luisa bernarda
 
-         test$manuel lopes dos santos/id=c1720-85-per7
+         test$manuel lopes dos santos
             ls$profissao/padre
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$manuel coelho/id=c1720-85-per8
+         test$manuel coelho
             ls$morada/nao refere
 
       cas$c1720-86/21/10/1720/fl.194/igreja de sao silvestre/manuel lopes serra(prior)/obs=antes deste assento pode ler-se "visto em vezita aos 20 de outubro"
 
-         noivo$marftinho alvares/id=c1720-86-per1
+         noivo$marftinho alvares
 
-            pnoivo$manuel alvares/id=c1720-86-per2
+            pnoivo$manuel alvares
                ls$morto/antes
                ls$morada/povoa
                ls$freguesia/lousa
 
-            mnoivo$madalena de paiva/id=c1720-86-per3
+            mnoivo$madalena de paiva
                ls$morta/antes
 
-         noiva$maria duarte/id=c1720-86-per4
+         noiva$maria duarte
 
-            pnoiva$joao lopes/id=c1720-86-per5
+            pnoiva$joao lopes
                ls$morada/ceira
                ls$freguesia/lousa
 
-            mnoiva$maria duarte/id=c1720-86-per6
+            mnoiva$maria duarte
 
-         test$manuel alvares/id=c1720-86-per7
+         test$manuel alvares
             ls$morada/nao refere
 
-         test$manuel francisco/id=c1720-86-per8
+         test$manuel francisco
             ls$morada/povoa
             ls$freguesia/lousa
 
       cas$c1720-87/22/10/1720/fl.194/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$lourenco simoes/id=c1720-87-per1
+         noivo$lourenco simoes
 
-            pnoivo$domingos simoes/id=c1720-87-per2
+            pnoivo$domingos simoes
                ls$morada/casal novo
                ls$freguesia/lousa
 
-            mnoivo$luisa joao/id=c1720-87-per3
+            mnoivo$luisa joao
 
-         noiva$isabel neta/id=c1720-87-per4
+         noiva$isabel neta
 
-            pnoiva$joao fernandes/id=c1720-87-per5
+            pnoiva$joao fernandes
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoiva$isabel neta/id=c1720-87-per6
+            mnoiva$isabel neta
 
-         test$afonso simao/id=c1720-87-per7
+         test$afonso simao
             ls$morada/chiqueiro
             ls$freguesia/lousa
 
-         test$joao/id=c1720-87-per8
+         test$joao
             ls$ec/solteiro
             ls$morada/chiqueiro
             ls$freguesia/lousa
 
       cas$c1720-88/24/10/1720/fl.194v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs=assina manuel lopes serra(prior)
 
-         noivo$antonio nunes pereira/id=c1720-88-per1
+         noivo$antonio nunes pereira
 
-            pnoivo$antonio pereira/id=c1720-88-per2
+            pnoivo$antonio pereira
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$maria nunes/id=c1720-88-per3
+            mnoivo$maria nunes
 
-         noiva$maria de jesus/id=c1720-88-per4
+         noiva$maria de jesus
 
-            pnoiva$manuel pinheiro/id=c1720-88-per5
+            pnoiva$manuel pinheiro
                ls$profissao/barbeiro
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria baptista/id=c1720-88-per6
+            mnoiva$maria baptista
 
       cas$c1720-89/30/10/1720/fl.194v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel simoes/id=c1720-89-per1
+         noivo$manuel simoes
             ls$ec/viuvo
 
-            mulher1$maria fernandes/id=c1720-89-per1-per1-2
+            mulher1$maria fernandes-2
 
-            pnoivo$miguel neto/id=c1720-89-per2
+            pnoivo$miguel neto
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoivo$maria fernandes/id=c1720-89-per3
+            mnoivo$maria fernandes
 
-         noiva$josefa borges de morais/id=c1720-89-per4
+         noiva$josefa borges de morais
 
-            pnoiva$antonio borges de morais/id=c1720-89-per5
+            pnoiva$antonio borges de morais
                ls$morada/ribeira
                ls$freguesia/lousa
 
-            mnoiva$maria cortes/id=c1720-89-per6
+            mnoiva$maria cortes
 
-         test$luis cabral/id=c1720-89-per7
+         test$luis cabral
             ls$morada/papanata
             ls$freguesia/lousa
 
-         test$manuel luis/id=c1720-89-per8
+         test$manuel luis
             ls$morada/papanata
             ls$freguesia/lousa
 
       cas$c1720-90/10/12/1720/fl.95/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$matias seco/id=c1720-90-per1
+         noivo$matias seco
 
-            pnoivo$manuel seco/id=c1720-90-per2
+            pnoivo$manuel seco
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1720-90-per3
+            mnoivo$maria francisca
 
-         noiva$cecilia rodrigues/id=c1720-90-per4
+         noiva$cecilia rodrigues
 
-            pnoiva$manuel francisco/id=c1720-90-per5
+            pnoiva$manuel francisco
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$isabel rodrigues/id=c1720-90-per6
+            mnoiva$isabel rodrigues
 
-         test$manuel soares/id=c1720-90-per7
+         test$manuel soares
             ls$morada/casal
             ls$freguesia/lousa
 
-         test$manuel luis macio/id=c1720-90-per8
+         test$manuel luis macio
             ls$morada/casal
             ls$freguesia/lousa
 
       cas$c1720-91/26/12/1720/fl.195/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$jose francisco/id=c1720-91-per1
+         noivo$jose francisco
 
-            pnoivo$manuel francisco/id=c1720-91-per2
+            pnoivo$manuel francisco
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$luisa joao/id=c1720-91-per3
+            mnoivo$luisa joao
 
-         noiva$brisida francisca/id=c1720-91-per4
+         noiva$brisida francisca
 
-            pnoiva$gaspar simoes/id=c1720-91-per5
+            pnoiva$gaspar simoes
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1720-91-per6
+            mnoiva$maria rodrigues
 
-         test$francisco jorge/id=c1720-91-per7
+         test$francisco jorge
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$manuel francisco/id=c1720-91-per8
+         test$manuel francisco
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1721-92/20/1/1721/fl.195v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$tomas goncalves/id=c1721-92-per1
+         noivo$tomas goncalves
 
-            pnoivo$manuel goncalves/id=c1721-92-per2
+            pnoivo$manuel goncalves
                ls$morada/olival
                ls$freguesia/lousa
 
-            mnoivo$maria duarte/id=c1721-92-per3
+            mnoivo$maria duarte
 
-         noiva$maria manuel/id=c1721-92-per4
+         noiva$maria manuel
 
-            pnoiva$manuel carvalho/id=c1721-92-per5
+            pnoiva$manuel carvalho
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoiva$ana manuel/obs=primeira mulher de manuel carvalho/id=c1721-92-per6
+            mnoiva$ana manuel/obs=primeira mulher de manuel carvalho
 
-         test$manuel fernandes/id=c1721-92-per7
+         test$manuel fernandes
             ls$morada/papanata
             ls$freguesia/lousa
 
-         test$domingos goncalves/id=c1721-92-per8
+         test$domingos goncalves
             ls$morada/papanata
             ls$freguesia/lousa
 
       cas$c1721-93/9/2/1721/fl.195v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$manuel goncalves/id=c1721-93-per1
+         noivo$manuel goncalves
 
-            pnoivo$domingos goncalves/id=c1721-93-per2
+            pnoivo$domingos goncalves
                ls$morada/reguengo
                ls$freguesia/lousa
 
-            mnoivo$joana goncalves/id=c1721-93-per3
+            mnoivo$joana goncalves
 
-         noiva$esperanca simoes/id=c1721-93-per4
+         noiva$esperanca simoes
 
-            pnoiva$gaspar simoes/id=c1721-93-per5
+            pnoiva$gaspar simoes
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1721-93-per6
+            mnoiva$maria rodrigues
 
-         test$antonio luis/id=c1721-93-per7
+         test$antonio luis
             ls$morada/reguengo
             ls$freguesia/lousa
 
-         test$joaquim duarte/id=c1721-93-per8
+         test$joaquim duarte
             ls$morada/reguengo
             ls$freguesia/lousa
 
       cas$c1721-94/20/2/1721/fl.196/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio de almeida/id=c1721-94-per1
+         noivo$antonio de almeida
 
-            pnoivo$domingos rodrigues/id=c1721-94-per2
+            pnoivo$domingos rodrigues
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoivo$joana de almeida/id=c1721-94-per3
+            mnoivo$joana de almeida
 
-         noiva$maria rodrigues/id=c1721-94-per4
+         noiva$maria rodrigues
 
-            pnoiva$pedro da costa/id=c1721-94-per5
+            pnoiva$pedro da costa
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1721-94-per6
+            mnoiva$maria rodrigues
 
-         test$bebiano nunes da gama/id=c1721-94-per7
+         test$bebiano nunes da gama
             ls$profissao/padre
             ls$morada/nao refere
 
@@ -2321,694 +2321,694 @@ kleio$gacto.str/translations=7
             ls$morada/chiqueiro
             ls$freguesia/lousa
 
-         referido$bebiano nunes da gama/id=c1721-94-per8
+         referido$bebiano nunes da gama
             rel$parentesco/irmao/afonso simao/b1721-p3
             ls$profissao/padre
 
       cas$c1721-95/20/2/1721/fl.196/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio luis/id=c1721-95-per1
+         noivo$antonio luis
 
-            pnoivo$antonio luis/id=c1721-95-per2
+            pnoivo$antonio luis
                ls$morto/antes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$catarina seca/id=c1721-95-per3
+            mnoivo$catarina seca
                ls$morta/antes
 
-         noiva$joana francisca/id=c1721-95-per4
+         noiva$joana francisca
 
-            pnoiva$manuel fernandes/id=c1721-95-per5
+            pnoiva$manuel fernandes
                ls$morto/antes
                ls$morada/rios
                ls$freguesia/lousa
 
-            mnoiva$francisca simoes/id=c1721-95-per6
+            mnoiva$francisca simoes
                ls$morta/antes
 
-         test$teodosio arnau/id=c1721-95-per7
+         test$teodosio arnau
             ls$morada/nao refere
 
-         test$jeronimo henriques/id=c1721-95-per8
+         test$jeronimo henriques
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1721-96/24/2/1721/fl.196/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio simoes/id=c1721-96-per1
+         noivo$antonio simoes
 
-            pnoivo$manuel simoes/id=c1721-96-per2
+            pnoivo$manuel simoes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$maria antunes/id=c1721-96-per3
+            mnoivo$maria antunes
 
-         noiva$isabel francisca/id=c1721-96-per4
+         noiva$isabel francisca
 
-            pnoiva$manuel fernandes/id=c1721-96-per5
+            pnoiva$manuel fernandes
                ls$morto/antes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoiva$ana francisca/id=c1721-96-per6
+            mnoiva$ana francisca
                ls$morta/antes
 
-         test$teodosio arnau/id=c1721-96-per7
+         test$teodosio arnau
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$joao arnau/id=c1721-96-per8
+         test$joao arnau
             ls$profissao/padre
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1721-97/10/3/1721/fl.196v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$antonio mateus/id=c1721-97-per1
+         noivo$antonio mateus
 
-            pnoivo$manuel fernandes/id=c1721-97-per2
+            pnoivo$manuel fernandes
                ls$morada/val de neira
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1721-97-per3
+            mnoivo$maria francisca
 
-         noiva$maria francisca/id=c1721-97-per4
+         noiva$maria francisca
 
-            pnoiva$antonio fernandes/id=c1721-97-per5
+            pnoiva$antonio fernandes
                ls$morada/porto da pedra
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1721-97-per6
+            mnoiva$maria francisca
 
-         test$antonio mateus/id=c1721-97-per7
+         test$antonio mateus
             ls$morada/era de calva
             ls$freguesia/lousa
 
-         test$antonio nunes/id=c1721-97-per8
+         test$antonio nunes
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
       cas$c1721-98/21/4/1721/fl.196v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$jacinto rodrigues/id=c1721-98-per1
+         noivo$jacinto rodrigues
 
-            pnoivo$joao rodrigues/id=c1721-98-per2
+            pnoivo$joao rodrigues
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoivo$maria dias/id=c1721-98-per3
+            mnoivo$maria dias
 
-         noiva$maria quaresma/id=c1721-98-per4
+         noiva$maria quaresma
 
-            pnoiva$luis rodrigues/id=c1721-98-per5
+            pnoiva$luis rodrigues
                ls$morada/pegos
                ls$freguesia/lousa
 
-            mnoiva$francisca quaresma/id=c1721-98-per6
+            mnoiva$francisca quaresma
 
-         test$manuel francisco/id=c1721-98-per7
+         test$manuel francisco
             ls$alcunha/velho
             ls$morada/pegos
             ls$freguesia/lousa
 
-         test$martinho rodrigues/id=c1721-98-per8
+         test$martinho rodrigues
             ls$morada/val de neira
             ls$freguesia/lousa
 
       cas$c1721-99/28/4/1721/fl.97/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel fernandes/obs="os contrahentes sao moradores n o lugar de fontainhas"/id=c1721-99-per1
+         noivo$manuel fernandes/obs="os contrahentes sao moradores n o lugar de fontainhas"
 
-            pnoivo$joao fernandes/id=c1721-99-per2
+            pnoivo$joao fernandes
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoivo$maria miguel/id=c1721-99-per3
+            mnoivo$maria miguel
 
-         noiva$maria lopes/id=c1721-99-per4
+         noiva$maria lopes
 
-            pnoiva$manuel goncalves/id=c1721-99-per5
+            pnoiva$manuel goncalves
                ls$morto/antes
 
-            mnoiva$francisca lopes/id=c1721-99-per6
+            mnoiva$francisca lopes
                ls$morada/ribeira
                ls$freguesia/lousa
 
-         test$luis cabral/id=c1721-99-per7
+         test$luis cabral
             ls$morada/nao refere
 
-         test$antonio nferreira/id=c1721-99-per8
+         test$antonio nferreira
             ls$morada/ribeira
             ls$freguesia/lousa
 
       cas$c1721-100/10/5/1721/fl.97/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$ascenso rodrigues/id=c1721-100-per1
+         noivo$ascenso rodrigues
 
-            pnoivo$joao rodrigues/id=c1721-100-per2
+            pnoivo$joao rodrigues
                ls$morada/ribeira
                ls$freguesia/lousa
 
-            mnoivo$antonia francisca/id=c1721-100-per3
+            mnoivo$antonia francisca
 
-         noiva$isabel borges de morais/id=c1721-100-per4
+         noiva$isabel borges de morais
 
-            pnoiva$antonio borges/id=c1721-100-per5
+            pnoiva$antonio borges
                ls$morto/antes
                ls$morada/ribeira
                ls$freguesia/lousa
 
-            mnoiva$maria cortes/id=c1721-100-per6
+            mnoiva$maria cortes
                ls$morta/antes
 
-         test$luis cabral/id=c1721-100-per7
+         test$luis cabral
             ls$morada/nao refere
 
-         test$simao correia/id=c1721-100-per8
+         test$simao correia
             ls$morada/ribeira
             ls$freguesia/lousa
 
       cas$c1721-101/12/5/1721/fl.97v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$manuel fernandes/id=c1721-101-per1
+         noivo$manuel fernandes
 
-            pnoivo$joao fernandes/id=c1721-101-per2
+            pnoivo$joao fernandes
                ls$morto/antes
 
-            mnoivo$isabel de araujo/id=c1721-101-per3
+            mnoivo$isabel de araujo
                ls$morada/cume
                ls$freguesia/lousa
 
-         noiva$maria simoes/id=c1721-101-per4
+         noiva$maria simoes
 
-            pnoiva$joao fernandes de carvalho/id=c1721-101-per5
+            pnoiva$joao fernandes de carvalho
                ls$morada/vales
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1721-101-per6
+            mnoiva$maria simoes
 
-         test$francisco fernandes/id=c1721-101-per7
+         test$francisco fernandes
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$manuel fernandes/id=c1721-101-per8
+         test$manuel fernandes
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1721-102/3/6/1721/fl.97v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$domingos goncalves/id=c1721-102-per1
+         noivo$domingos goncalves
 
-            pnoivo$domingos goncalves/obs=nao faz referencia a mae do noivo/id=c1721-102-per2
+            pnoivo$domingos goncalves/obs=nao faz referencia a mae do noivo
                ls$morada/gandara
                ls$freguesia/vilarinho
 
-         noiva$joana ferreira/id=c1721-102-per3
+         noiva$joana ferreira
 
-            pnoiva$andre ferreira/id=c1721-102-per4
+            pnoiva$andre ferreira
                ls$morto/antes
 
-            mnoiva$maria fernandes/id=c1721-102-per5
+            mnoiva$maria fernandes
                ls$morada/ramalhais
                ls$freguesia/lousa
 
-         test$jose arnau cortes/id=c1721-102-per6
+         test$jose arnau cortes
             ls$profissao/capitao
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$lourenco simoes/id=c1721-102-per7
+         test$lourenco simoes
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1721-103/15/6/1721/fl.98/igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$antonio dias/id=c1721-103-per1
+         noivo$antonio dias
 
-            pnoivo$manuel dias/id=c1721-103-per2
+            pnoivo$manuel dias
                ls$morada/espinheiro
                ls$freguesia/lousa
 
-            mnoivo$isabel dias/id=c1721-103-per3
+            mnoivo$isabel dias
                ls$morta/antes
 
-         noiva$joana fernandes/id=c1721-103-per4
+         noiva$joana fernandes
 
-            pnoiva$manuel fernandes/id=c1721-103-per5
+            pnoiva$manuel fernandes
                ls$morto/antes
 
-            mnoiva$domingas queiros/id=c1721-103-per6
+            mnoiva$domingas queiros
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-         test$manuel simoes/id=c1721-103-per7
+         test$manuel simoes
             ls$morada/espinheiro
             ls$freguesia/lousa
 
-         test$manuel luis/id=c1721-103-per8
+         test$manuel luis
             ls$morada/espinheiro
             ls$freguesia/lousa
 
       cas$c1721-104/26/6/1721/fl.98/igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel jooa/id=c1721-104-per1
+         noivo$manuel jooa
 
-            pnoivo$antonio joao/id=c1721-104-per2
+            pnoivo$antonio joao
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoivo$ana seca/id=c1721-104-per3
+            mnoivo$ana seca
                ls$morta/antes
 
-         noiva$joana simoes/id=c1721-104-per4
+         noiva$joana simoes
 
-            pnoiva$joao fernandes/id=c1721-104-per5
+            pnoiva$joao fernandes
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoiva$maria miguel/id=c1721-104-per6
+            mnoiva$maria miguel
 
-         test$manuel francisco/id=c1721-104-per7
+         test$manuel francisco
             ls$morada/nao refere
 
-         test$manuel simoes/id=c1721-104-per8
+         test$manuel simoes
             ls$morada/moita
             ls$freguesia/lousa
 
       cas$c1721-105/28/6/1721/fl.98v./igreja de sao silvestre/manuel lopes serra(prior)
 
-         noivo$sebastiao rodrigues/id=c1721-105-per1
+         noivo$sebastiao rodrigues
 
-            pnoivo$manuel rodrigues/id=c1721-105-per2
+            pnoivo$manuel rodrigues
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$maria gomes/id=c1721-105-per3
+            mnoivo$maria gomes
 
-         noiva$maria francisca/id=c1721-105-per4
+         noiva$maria francisca
 
-            pnoiva$lazaro simoes/id=c1721-105-per5
+            pnoiva$lazaro simoes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$esperanca francisca/id=c1721-105-per6
+            mnoiva$esperanca francisca
 
-         test$jose arnau cortes/id=c1721-105-per7
+         test$jose arnau cortes
             ls$profissao/capitao
             ls$morada/lousa
             ls$freguesia/lousa
 
-         test$vitoriano antonio de arantes/id=c1721-105-per8
+         test$vitoriano antonio de arantes
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1721-106/20/10/1721/fl.98v./igreja de sao silvestre/manuel da fonseca (padre cura)/obs= assina manuel lopes serra(prior)
 
-         noivo$manuel francisco/id=c1721-106-per1
+         noivo$manuel francisco
 
-            pnoivo$antonio francisco/id=c1721-106-per2
+            pnoivo$antonio francisco
                ls$morada/pedreira
                ls$freguesia/santiago de rio de vide
 
-            mnoivo$maria francisca/id=c1721-106-per3
+            mnoivo$maria francisca
 
-         noiva$joana fernandes/id=c1721-106-per4
+         noiva$joana fernandes
 
-            pnoiva$tome fernandes/id=c1721-106-per5
+            pnoiva$tome fernandes
                ls$morada/val pereira das vinhas
                ls$freguesia/lousa
 
-            mnoiva$maria rodrigues/id=c1721-106-per6
+            mnoiva$maria rodrigues
 
-         test$antonio monteiro/id=c1721-106-per7
+         test$antonio monteiro
             ls$morada/moita
             ls$freguesia/lousa
 
-         test$francisco carvalho/id=c1721-106-per8
+         test$francisco carvalho
             ls$morada/nao refere
 
       cas$c1721-107/14/2/1722/fl.99/igreja de santa justa da cidade de coimbra/joao lopes serra(rev)
 
-         noivo$manuel coelho/id=c1721-107-per1
+         noivo$manuel coelho
 
-            pnoivo$manuel coelho/id=c1721-107-per2
+            pnoivo$manuel coelho
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoivo$madalena gomes/id=c1721-107-per3
+            mnoivo$madalena gomes
 
-         noiva$catarina rodrigues/id=c1721-107-per4
+         noiva$catarina rodrigues
 
-            pnoiva$sebastiao fernandes/id=c1721-107-per5
+            pnoiva$sebastiao fernandes
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$isabel rodrigues/id=c1721-107-per6
+            mnoiva$isabel rodrigues
 
       cas$c1722-108/20/2/1722/fl.99/igreja de santa justa da cidade de coimbra/joao lopes serra(rev)
 
-         noivo$joao rodrigues/id=c1722-108-per1
+         noivo$joao rodrigues
 
-            pnoivo$pai incerto/id=c1722-108-per2
+            pnoivo$pai incerto
 
-            mnoivo$domingas francisca/id=c1722-108-per3
+            mnoivo$domingas francisca
                ls$ec/solteira
                ls$morada/vilarinho
                ls$freguesia/vilarinho
 
-         noiva$eufrasia maria/id=c1722-108-per4
+         noiva$eufrasia maria
 
-            pnoiva$pedro dias/id=c1722-108-per5
+            pnoiva$pedro dias
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$domingas tomata/id=c1722-108-per6
+            mnoiva$domingas tomata
 
       cas$c1722-109/10/3/1722/fl.99v./igreja de sao silvestre/joao lopes serra(rev)
 
-         noivo$joao rodrigues/id=c1722-109-per1
+         noivo$joao rodrigues
 
-            pnoivo$joao rodrigues/id=c1722-109-per2
+            pnoivo$joao rodrigues
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoivo$maria francisca/id=c1722-109-per3
+            mnoivo$maria francisca
 
-         noiva$maria correia/id=c1722-109-per4
+         noiva$maria correia
 
-            pnoiva$manuel correia/id=c1722-109-per5
+            pnoiva$manuel correia
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1722-109-per6
+            mnoiva$maria francisca
 
-         test$jose de almeida/id=c1722-109-per7
+         test$jose de almeida
             ls$profissao/padre
             ls$morada/nao refere
 
-         test$gabriel correia/obs="e a maior parte dos moradores de dito lugar"/id=c1722-109-per8
+         test$gabriel correia/obs="e a maior parte dos moradores de dito lugar"
             ls$morada/nao refere
 
       cas$c1722-110/12/4/1722/fl.99v./igreja de sao silvestre/joao lopes serra(rev)
 
-         noivo$manuel neto/id=c1722-110-per1
+         noivo$manuel neto
 
-            pnoivo$miguel neto/id=c1722-110-per2
+            pnoivo$miguel neto
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoivo$pascoa fernandes/id=c1722-110-per3
+            mnoivo$pascoa fernandes
 
-         noiva$maria luis/id=c1722-110-per4
+         noiva$maria luis
 
-            pnoiva$manuel luis/id=c1722-110-per5
+            pnoiva$manuel luis
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoiva$isabel francisca/id=c1722-110-per6
+            mnoiva$isabel francisca
 
-         test$" a maior parte dos moradores do sito lugar de papanata"/id=c1722-110-per7
+         test$" a maior parte dos moradores do sito lugar de papanata"
 
       cas$c1722-111/14/4/1722/fl.100/igreja de sao silvestre/manuel lopes dos santos (padre cura)/obs= assina joao lopes serra (reverendo)
 
-         noivo$andre luis/id=c1722-111-per1
+         noivo$andre luis
 
-            pnoivo$andre luis/id=c1722-111-per2
+            pnoivo$andre luis
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoivo$luisa fernandes/id=c1722-111-per3
+            mnoivo$luisa fernandes
 
-         noiva$ana luis/id=c1722-111-per4
+         noiva$ana luis
 
-            pnoiva$manuel carvalho/id=c1722-111-per5
+            pnoiva$manuel carvalho
                ls$morada/papanata
                ls$freguesia/lousa
 
-            mnoiva$maria luis/id=c1722-111-per6
+            mnoiva$maria luis
 
-         test$" a maior parte dos moradores dos ditos lugares"/id=c1722-111-per7
+         test$" a maior parte dos moradores dos ditos lugares"
 
       cas$c1722-112/17/4/1722/fl.100/igreja de sao silvestre/manuel lopes dos santos (padre cura)/obs= assina joao lopes serra (reverendo)
 
-         noivo$tome luis/id=c1722-112-per1
+         noivo$tome luis
 
-            pnoivo$luis dias/id=c1722-112-per2
+            pnoivo$luis dias
                ls$morada/favarica
                ls$freguesia/lousa
 
-            mnoivo$maria fernandes/id=c1722-112-per3
+            mnoivo$maria fernandes
 
-         noiva$antonia duarte/id=c1722-112-per4
+         noiva$antonia duarte
 
-            pnoiva$antonio seco/id=c1722-112-per5
+            pnoiva$antonio seco
                ls$morada/favarica
                ls$freguesia/lousa
 
-            mnoiva$maria duarte/id=c1722-112-per6
+            mnoiva$maria duarte
 
-         test$luis da serra/id=c1722-112-per7
+         test$luis da serra
             ls$morada/nao refere
 
-         test$joao tomas/id=c1722-112-per8
+         test$joao tomas
             ls$morada/nao refere
 
       cas$c1722-113/20/4/1722/fl.100/igreja de sao silvestre/manuel lopes dos santos (padre cura)/obs= assina joao lopes serra (reverendo)
 
-         noivo$joao francisco/id=c1722-113-per1
+         noivo$joao francisco
 
-            pnoivo$joao francisco/id=c1722-113-per2
+            pnoivo$joao francisco
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoivo$isabel goncalves/id=c1722-113-per3
+            mnoivo$isabel goncalves
 
-         noiva$ana fernandes/id=c1722-113-per4
+         noiva$ana fernandes
 
-            pnoiva$andre luis/id=c1722-113-per5
+            pnoiva$andre luis
                ls$morada/moita
                ls$freguesia/lousa
 
-            mnoiva$luisa fernandes/id=c1722-113-per6
+            mnoiva$luisa fernandes
 
-         test$manuel simoes/id=c1722-113-per7
+         test$manuel simoes
             ls$morada/nao refere
 
-         test$joao fernandes/id=c1722-113-per8
+         test$joao fernandes
             ls$morada/moita
             ls$freguesia/lousa
 
       cas$c1722-114/3/9/1722/fl.100/igreja de sao silvestre/joao lopes serra (reverendo)/obs=assina manuel lopes serra (prior)antes deste assento pode ler-se "visto em vezita aos 13 de setembro de 1722"
 
-         noivo$joao de franca cordeira/id=c1722-114-per1
+         noivo$joao de franca cordeira
 
-            pnoivo$manuel de franca caldeira/id=c1722-114-per2
+            pnoivo$manuel de franca caldeira
                ls$morada/espinal/obs=termo da vila de penela
 
-            mnoivo$maria cordeira/id=c1722-114-per3
+            mnoivo$maria cordeira
 
-         noiva$bernarda antonia maria da costa freire de valadares e mesquita/id=c1722-114-per4
+         noiva$bernarda antonia maria da costa freire de valadares e mesquita
             ls$titulo/dona
 
-            pnoiva$bartolomeu da costa de mesquita/id=c1722-114-per5
+            pnoiva$bartolomeu da costa de mesquita
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria teresa freire de valadares e mesquita/id=c1722-114-per6
+            mnoiva$maria teresa freire de valadares e mesquita
                ls$titulo/dona
 
-         test$antonio de mendonca serrao/id=c1722-114-per7
+         test$antonio de mendonca serrao
             ls$morada/nao refere
 
-         test$joaquim de franca/id=c1722-114-per8
+         test$joaquim de franca
             ls$morada/lousa
             ls$freguesia/lousa
 
       cas$c1722-115/4/9/1722/fl.101/igreja de sao silvestre/manuel lopes serra (prior)
 
-         noivo$joao de freitas/id=c1722-115-per1
+         noivo$joao de freitas
 
-            pnoivo$francisco de freitas/id=c1722-115-per2
+            pnoivo$francisco de freitas
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoivo$paula francisco/id=c1722-115-per3
+            mnoivo$paula francisco
 
-         noiva$luisa francisca/id=c1722-115-per4
+         noiva$luisa francisca
 
-            pnoiva$bento gomes/id=c1722-115-per5
+            pnoiva$bento gomes
                ls$morada/cova do lobo
                ls$freguesia/lousa
 
-            mnoiva$francisca antonia/id=c1722-115-per6
+            mnoiva$francisca antonia
 
-         test$antonio nunes/id=c1722-115-per7
+         test$antonio nunes
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
-         test$joao carvalho/id=c1722-115-per8
+         test$joao carvalho
             ls$morada/cova do lobo
             ls$freguesia/lousa
 
       cas$c1722-116/6/9/1722/fl.101/igreja de sao silvestre/manuel lopes serra (prior)
 
-         noivo$manuel rodrigues/id=c1722-116-per1
+         noivo$manuel rodrigues
 
-            pnoivo$luis rodrigues/id=c1722-116-per2
+            pnoivo$luis rodrigues
                ls$morada/pegos
                ls$freguesia/lousa
 
-            mnoivo$francisca quaresma/id=c1722-116-per3
+            mnoivo$francisca quaresma
 
-         noiva$francisca simoes/id=c1722-116-per4
+         noiva$francisca simoes
 
-            pnoiva$joao goncalves/id=c1722-116-per5
+            pnoiva$joao goncalves
                ls$morada/espinheiro
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1722-116-per6
+            mnoiva$maria simoes
 
-         test$antonio francisco/id=c1722-116-per7
+         test$antonio francisco
             ls$morada/espinheiro
             ls$freguesia/lousa
 
-         test$manuel simoes/id=c1722-116-per8
+         test$manuel simoes
             ls$morada/espinheiro
             ls$freguesia/lousa
 
       cas$c1722-117/8/9/1722/fl.101v./igreja de sao silvestre/manuel lopes serra (prior)
 
-         noivo$joao francisco/id=c1722-117-per1
+         noivo$joao francisco
 
-            pnoivo$manuel luis/id=c1722-117-per2
+            pnoivo$manuel luis
                ls$morto/antes
                ls$morada/casal
                ls$freguesia/lousa
 
-            mnoivo$domingas francisca/id=c1722-117-per3
+            mnoivo$domingas francisca
                ls$morta/antes
 
-         noiva$francisca cabral/id=c1722-117-per4
+         noiva$francisca cabral
 
-            pnoiva$gaspar cabral/id=c1722-117-per5
+            pnoiva$gaspar cabral
                ls$ec/solteiro
                ls$morada/lousa
                ls$freguesia/lousa
 
-            mnoiva$maria antunes/id=c1722-117-per6
+            mnoiva$maria antunes
                ls$ec/solteira
                ls$morada/favarica
 
-         test$luis da serra/id=c1722-117-per7
+         test$luis da serra
             ls$morada/nao refere
 
-         test$joao vaz/id=c1722-117-per8
+         test$joao vaz
             ls$morada/favarica
             ls$freguesia/lousa
 
       cas$c1722-118/10/9/1722/fl.101v./igreja de sao silvestre/manuel lopes serra (prior)
 
-         noivo$antonio simoes/id=c1722-118-per1
+         noivo$antonio simoes
 
-            pnoivo$domingos fernandes/id=c1722-118-per2
+            pnoivo$domingos fernandes
                ls$morto/antes
 
-            mnoivo$isabel simoes/id=c1722-118-per3
+            mnoivo$isabel simoes
                ls$morada/val pereira da serra
                ls$freguesia/lousa
 
-         noiva$brasia simoes/id=c1722-118-per4
+         noiva$brasia simoes
 
-            pnoiva$manuel francisco/id=c1722-118-per5
+            pnoiva$manuel francisco
                ls$morada/val de nogueira
                ls$freguesia/lousa
 
-            mnoiva$maria simoes/id=c1722-118-per6
+            mnoiva$maria simoes
                ls$morto/antes
 
-         test$manuel correia/id=c1722-118-per7
+         test$manuel correia
             ls$morada/nao refere
 
-         test$domingos jorge/id=c1722-118-per8
+         test$domingos jorge
             ls$morada/val de nogueira
             ls$freguesia/lousa
 
       cas$c1722-119/16/9/1722/fl.101v./igreja de sao silvestre/manuel lopes dos santos (padre cura)/obs= assina manuel lopes serra (prior)
 
-         noivo$domingos rodrigues/id=c1722-119-per1
+         noivo$domingos rodrigues
 
-            pnoivo$mateus marques/id=c1722-119-per2
+            pnoivo$mateus marques
                ls$morada/impossivel de ler devido ao mau estado de conservacao
                ls$freguesia/sao miguel da bidiosa/obs=bispado da cidade de viseu
 
-            mnoivo$maria rodrigues/id=c1722-119-per3
+            mnoivo$maria rodrigues
 
-         noiva$antonia francisca/id=c1722-119-per4
+         noiva$antonia francisca
 
-            pnoiva$joao fernandes/id=c1722-119-per5
+            pnoiva$joao fernandes
                ls$morada/val pereira da serra
                ls$freguesia/lousa
 
-            mnoiva$francisca fernandes/id=c1722-119-per6
+            mnoiva$francisca fernandes
 
-         test$manuel correia/id=c1722-119-per7
+         test$manuel correia
             ls$morada/val de nogueira
             ls$freguesia/lousa
 
-         test$manuel de almeida/id=c1722-119-per8
+         test$manuel de almeida
             ls$morada/val de nogueira
             ls$freguesia/lousa
 
       cas$c1722-120/28/9/1722/fl.102/igreja de sao silvestre/manuel lopes serra (prior)
 
-         noivo$jose rodrigues/id=c1722-120-per1
+         noivo$jose rodrigues
 
-            pnoivo$joao rodrigues/id=c1722-120-per2
+            pnoivo$joao rodrigues
                ls$morto/antes
 
-            mnoivo$domingas simoes/id=c1722-120-per3
+            mnoivo$domingas simoes
                ls$morada/vale
                ls$freguesia/lousa
 
-         noiva$isabel francisca/id=c1722-120-per4
+         noiva$isabel francisca
 
-            pnoiva$manuel francisco/id=c1722-120-per5
+            pnoiva$manuel francisco
                ls$morada/pegos
                ls$freguesia/lousa
 
-            mnoiva$maria francisca/id=c1722-120-per6
+            mnoiva$maria francisca
 
-         test$antonio dias/id=c1722-120-per7
+         test$antonio dias
             ls$morada/pegos
             ls$freguesia/lousa
 
-         test$luis costa/id=c1722-120-per8
+         test$luis costa
             ls$morada/padrao
             ls$freguesia/lousa
 
       cas$c1722-121/10/10/1722/fl.102/igreja de sao silvestre/manuel lopes dos santos (padre cura)/obs= assina manuel lopes serra (prior)
 
-         noivo$simao freire/id=c1722-121-per1
+         noivo$simao freire
 
-            pnoivo$domingos fernandes/id=c1722-121-per2
+            pnoivo$domingos fernandes
                ls$morto/antes
 
-            mnoivo$maria freire/id=c1722-121-per3
+            mnoivo$maria freire
                ls$morada/fornea
                ls$freguesia/lousa
 
-         noiva$ascensa maria/id=c1722-121-per4
+         noiva$ascensa maria
 
-            pnoiva$antonio rodrigues/id=c1722-121-per5
+            pnoiva$antonio rodrigues
                ls$morto/antes
 
-            mnoiva$luisa antunes/id=c1722-121-per6
+            mnoiva$luisa antunes
                ls$morada/era de calva
                ls$freguesia/lousa
 
-         test$joao pires/id=c1722-121-per7
+         test$joao pires
             ls$morada/nao refere
 
-         test$manuel simoes/id=c1722-121-per8
+         test$manuel simoes
             ls$morada/nao refere

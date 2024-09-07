@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=7
+kleio$gacto2.str/translations=9
    fonte$genealdiversas/data=0/loc=diversas
 
       familia$diversas-his1/id=diversas-his1
@@ -895,13 +895,13 @@ kleio$gacto2.str/translations=7
                referido$felis de barros/obs=ahu 14 d3492/id=fxmf-his31-per4
                   rel$sociabilidade/criada/francisco xavier monteiro da franca/fxmf-his31
 
-               referido$luis da mota feo/obs=francisco xavier monteiro de franca veio da corte para o brasil em sua companhia/id=fxmf-his31-per5
+               referido$luis da mota feo/obs=francisco xavier monteiro de franca veio da corte para o brasil em sua companhia/id=fxmf-luis-mota-feo
                   ls$cargo/governador da capitania da paraiba
                   rel$sociabilidade/conhecido/francisco xavier monteiro da franca/fxmf-his31
 
                referida$leocadia teresa possidonia de lima falcao e melo vanzeler/obs=ahu 14 d3272/id=fxmf-his31-per6
                   ls$titulo/dona
-                  rel$parentesco/mulher/luis da mota feo/fxmf-his31-per5
+                  rel$parentesco/mulher/luis da mota feo/fxmf-luis-mota-feo
                   rel$sociabilidade/conhecida/francisco xavier monteiro da franca/fxmf-his31
 
                referido$jacinto fernandes bandeira/obs=antt 400, m301, indicou o francisco xavier monteiro de franca ao cargo na cgpp/id=fxmf-his31-per7
@@ -1090,7 +1090,7 @@ kleio$gacto2.str/translations=7
 
          linha$linha/id=diversas-his35-obj1
 
-            n$luis da mota feo e torres/mesmo_que=fxmf-his31-per5/obs=livro memorias contendo a biographia googleplay/id=diversas-his35-obj1-per1
+            n$luis da mota feo e torres/mesmo_que=fxmf-luis-mota-feo/obs=livro memorias contendo a biographia googleplay/id=diversas-his35-obj1-per1
                ls$cargo/vice almirante
                ls$datanasc/17690316
                ls$naturalidade/poco de cortes/obs=freguesia dos olivaes, extramuros da cidade de lisboa

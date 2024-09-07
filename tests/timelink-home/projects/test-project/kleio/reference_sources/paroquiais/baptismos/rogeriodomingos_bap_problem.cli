@@ -1,15 +1,15 @@
-kleio$gacto2.str/prefix=rd/translations=6
+kleio$gacto2.str/prefix=rd/translations=8
    fonte$rogeriodomingos_bap_problem/localizacao-rog-dom/freguesia ?
 
       bap$b1714-1b/6/1/1714/fl.117v./igreja de sao silvestre/joao lopes serra(padre)/obs=com licenca do padre manuel lopes serraassina joao lopes serra
 
-         n$antonio/f/id=b1714-1b-per1
+         n$antonio/f
 
             pad$antonio augusto de sousa/id=quelfes1800-b4-antonio
 
-               ppad$jose antonio de sousa/id=b1714-1b-per1-per2
+               ppad$jose antonio de sousa
 
-               mpad$beatriz de almeida/id=b1714-1b-per1-per3
+               mpad$beatriz de almeida
 
-            referida$maria soares/id=b1714-1b-per1-per4
+            referida$maria soares
                rel$parentesco/mulher/antonio augusto de sousa/quelfes1800-b4-antonio

@@ -1,4 +1,4 @@
-kleio$gacto2.str./translations=6
+kleio$gacto2.str./translations=8
    fonte$xpto_comuns_soure
 
       chanc$428.1/18/5/1566/1-48/resumo=alvara de acrescentamento de 4 mil reis a cada um dos seis beneficiados das igrejas desta freguesia
@@ -91,19 +91,19 @@ kleio$gacto2.str./translations=6
 
       chanc$428.45a/21/4/1766/286-301/resumo=alvara de administracao da comenda da alcaidaria-mor de soure/obs=da base de dados ANTT
 
-         referido$antonio de saldanha de albuquerque countinho matas/id=428.45a-per1
+         referido$antonio de saldanha de albuquerque countinho matas
 
       chanc$428.45b/23/5/1771/286-186v/resumo=alvara alcaidaria-mor de soure/obs=da base de dados ANTT
 
-         referido$antonio de saldanha de albuquerque countinho matas/id=428.45b-per1
+         referido$antonio de saldanha de albuquerque countinho matas
 
       chanc$428.45c/21/4/1766/286-361/resumo=carta de quitacao de 12$000 reis dos 3
 
-         referido$antonio de saldanha de albuquerque countinho matas/id=428.45c-per1
+         referido$antonio de saldanha de albuquerque countinho matas
 
       chanc$428.45d/12/6/1758/220-71/resumo=provisao para se lhe findar o tombo dos bens da sua comenda de alencarce em soure
 
-         referido$antonio de saldanha e albuquerque coutinho matas e noronha/id=428.45d-per1
+         referido$antonio de saldanha e albuquerque coutinho matas e noronha
 
       chanc$428.45/6/8/1716/115-229v/obs=VER/resumo=carta de confirmacao de emprazamento do prazo chamado da coimbra, no termo desta vila, na comenda de s.pedro da varzea a d. alexandra antonia
 
@@ -699,28 +699,28 @@ kleio$gacto2.str./translations=6
 
       chanc$bd-952/22/7/1747/228-150/resumo=carta de confirmacao de aforamento de um moinho no sitio das Chousas limite da vila de soure da comenda mestral da dia vila.
 
-         referida$jacinta rodrigues/id=bd-952-per1
+         referida$jacinta rodrigues
 
       chanc$bd-1534/2/12/1601/13-221v/resumo=alvara de rendas e direitos da ermida de s.mateus da vila de soure.
 
-         referido$damiao de aguiar/id=bd-1534-per1
+         referido$damiao de aguiar
 
       chanc$bd-1632/0/0/0/011-378v/resumo=verba porque consta ser provisao em comenda dos rendimentos da ermida de s.mateus da vila de soure
 
-         referido$damiao de aguiar/id=bd-1632-per1
+         referido$damiao de aguiar
 
       chanc$bd-1778/22/7/1713/96-377/resumo=alavra de merce de um prazo, sito no termo da vila de soure, foreiro 'a comenda do paliao, tirando-o por demanda 'a sua custa
 
-         referido$jacinto da costa ed vasconcelos/id=bd-1778-per1
+         referido$jacinto da costa ed vasconcelos
 
       chanc$bd-1789/4/12/1761/287-159/resumo=carta de confirmacao de emprazamento do casal novo no limite da quinta de s.tome, termo de soure, da comenda de alencarce
 
-         referido$jacinto da costa e vasconcelos/id=bd-1789-per1
+         referido$jacinto da costa e vasconcelos
 
       chanc$bd-1925/18/6/1769/292-282/resumo=carta de apresentacao de beneficio ao curado da igreja de santiago de soure
 
-         referido$jacinto ferreira/id=bd-1925-per1
+         referido$jacinto ferreira
 
       chanc$bd-1936/10/1/1679/61-284/resumo=alvara merce de tabeliao do judicial da vila de soure
 
-         referido$bento gomes da costa/id=bd-1936-per1
+         referido$bento gomes da costa

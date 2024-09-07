@@ -1,4 +1,4 @@
-kleio$gacto2.str/prefix=sj/translations=6
+kleio$gacto2.str/prefix=sj/translations=8
    fonte$avexplorfa/1322-1348/emprazamentos/1322-1348/loc=cx.5, mc.27, n.620;cx.4, mc.23, n.462;cx.2, mc.9, n.172;cx.1, mc.5, n.121;cx.1, mc.5, n.123;cx.4, mc.23, n.459;cx.1, mc.5, n.124;cx.4, mc.25, n.519;cx.6, mc.33, n.755;cx.4, mc.25, n.498;cx.1, mc.6, n.140;
 
       escritura$cex1322.1/18/6/1322/emprazamento/fol=cx.6, mc.27, n.620/loc=coimbra, igreja de santa justa/sumario=martim peres, procurador do prior de santa justa, empraza a joao anes, albardeiro, e a maria simoes sua mulher, uma casa na rua de oleiros, por 4 libras/obs=perg., bom, gotico cursivo, sinal notarial.
@@ -20,19 +20,19 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$residencia/coimbra
             rel$parentesco/mulher/joao anes/1322.e1.joao
 
-         test$gomes domingues/id=cex1322.1-per2
+         test$gomes domingues
             ls$cargo/racoeiro de santo estevao
 
-         test$domingos francisco/id=cex1322.1-per3
+         test$domingos francisco
             ls$profissao/alfaiate
 
-         test$estevao anes/id=cex1322.1-per4
+         test$estevao anes
             ls$profissao/?/obs=ilegivel
 
-         test$fernandes/id=cex1322.1-per5
+         test$fernandes
             ls$cargo/procurador
 
-         tabeliao$martim goncalves/id=cex1322.1-per6
+         tabeliao$martim goncalves
             ls$intitulacao/publico tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
@@ -64,18 +64,18 @@ kleio$gacto2.str/prefix=sj/translations=6
          enfiteutaf$domingas martins/id=1324.e1.domingas
             rel$parentesco/mulher/estevao da marmeleira/1324.e1.estevao
 
-         test$nome desconhecido/id=cex1324.1-per2
+         test$nome desconhecido
             ls$profissao/alfaiate
 
-         test$domings goncalves/id=cex1324.1-per3
+         test$domings goncalves
             ls$profissao/alfaiate
 
-         test$joao ramos/id=cex1324.1-per4
+         test$joao ramos
 
          test$joao afonso/id=1324.e1.joao
             rel$parentesco/irmao/francisco afonso/1324.e1.francisco
 
-         tabeliao$martim anes/id=cex1324.1-per5
+         tabeliao$martim anes
             ls$intitulacao/publico tabeliao/obs=intitulacao incompleta
 
          prazo$1 olival com vinha/id=sj-cex1324.1-obj1
@@ -95,7 +95,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido da colegiada de santa justa/id=1324.e2.colsj
 
-            referido$francisco afonso/id=1324.e2.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteuta$martim domingues/id=1324.e2.martim
@@ -105,24 +105,24 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$residencia/coimbra
             rel$parentesco/mulher/martim domingues/1324.e2.martim
 
-         test$domingos peres/id=cex1324.2-per3
+         test$domingos peres
 
-         test$domingos martins/id=cex1324.2-per4
+         test$domingos martins
             ls$cargo/tesoureiro
 
-         test$nicolau anes/obs=duvida de leitura do patronimico/id=cex1324.2-per5
+         test$nicolau anes/obs=duvida de leitura do patronimico
             ls$cargo/capelao de santa justa
 
-         test$mateus peres/id=cex1324.2-per6
+         test$mateus peres
             ls$cargo/capelao de santa justa
 
-         tabeliao$miguel lourenco/id=cex1324.2-per7
+         tabeliao$miguel lourenco
             ls$intitulacao/publico tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
-            referido$domingos prestes/id=cex1324.2-per7-per2
+            referido$domingos prestes
 
-            referida$dona mendonza/obs=duvidas de leitura/id=cex1324.2-per7-per3
+            referida$dona mendonza/obs=duvidas de leitura
 
          prazo$1 olival/id=sj-cex1324.2-obj1
             atr$localizacao/gemil/obs=termo de coimbra
@@ -144,16 +144,16 @@ kleio$gacto2.str/prefix=sj/translations=6
          enfiteuta$bartolomeu martins/id=1325.e1.bartolomeu
             ls$cargo/prior de oliveira
 
-         test$domingos martins/id=cex1325.1-per2
+         test$domingos martins
             ls$cargo/capelao
 
-         test$leonardo esteves/id=cex1325.1-per3
+         test$leonardo esteves
             ls$cargo/porteiro da se
 
-         tabeliao$martim anes/id=cex1325.1-per4
+         tabeliao$martim anes
             ls$intitulacao/publico tabeliao do rei na cidade de coimbra
 
-            referido$domingos peres/id=cex1325.1-per4-per1
+            referido$domingos peres
                ls$titulo/clerigo
 
          prazo$pardieiros/id=sj-cex1325.1-obj1
@@ -172,7 +172,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido da colegiada de santa justa/id=1329.e1.colsj
 
-            referido$frutuoso martins/id=1329.e1.colsj-per1
+            referido$frutuoso martins
                ls$cargo/racoeiro de santa justa
 
          enfiteuta$joao martinho/id=1329.e1.joao
@@ -183,7 +183,7 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$residencia/coimbra
             rel$parentesco/mulher/joao martinho/1329.e1.joao
 
-         test$domingos martins/id=cex1329.1-per3
+         test$domingos martins
             ls$cargo/capelao
 
          referido$domingos lagareiro/id=1329.e1.domingos
@@ -192,10 +192,10 @@ kleio$gacto2.str/prefix=sj/translations=6
          test$andre domingues/id=1329.e1.andre
             rel$profissional/criado/domingos lagareiro/1329.e1.domingos
 
-         test$bras peres/id=cex1329.1-per4
+         test$bras peres
             ls$cargo/capelao de santa justa
 
-         tabeliao$joao domingues/id=cex1329.1-per5
+         tabeliao$joao domingues
             ls$intitulacao/tabeliao da cidade de coimbra
             ls$sinal/sim
 
@@ -219,7 +219,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido da colegiada de santa justa/id=1330.e1.colsj
 
-            referido$francisco afonso/id=1330.e1.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteuta$francisco anes/id=1330.e1.francisco
@@ -227,13 +227,13 @@ kleio$gacto2.str/prefix=sj/translations=6
          enfiteutaf$nome desconhecido/id=1330.e1.enfiteutaf
             rel$parentesco/mulher/francisco anes/1330.e1.francisco
 
-         test$bartolomeu martins/id=cex1330.1-per3
+         test$bartolomeu martins
             ls$cargo/prior de oliveira
 
-         test$domingos martins/id=cex1330.1-per4
+         test$domingos martins
             ls$cargo/tesoureiro
 
-         tabeliao$pero salvadores/id=cex1330.1-per5
+         tabeliao$pero salvadores
             ls$intitulacao/tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
@@ -255,7 +255,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e colegiada de santa justa/id=1335.e1.colsj
 
-            referido$francisco afonso/id=1335.e1.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteuta$joao domingues/id=1335.e1.joao
@@ -264,16 +264,16 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$alcunha/valadeira
             rel$parentesco/mulher/joao domingues/1335.e1.joao
 
-         test$bartolomeu martins/id=cex1335.1-per3
+         test$bartolomeu martins
             ls$cargo/prior de oliveira
 
-         test$vasco dias/id=cex1335.1-per4
+         test$vasco dias
             ls$cargo/capelao de santa justa
 
-         test$domingos martins/id=cex1335.1-per5
+         test$domingos martins
             ls$cargo/capelao de santa justa
 
-         tabeliao$miguel lourenco/id=cex1335.1-per6
+         tabeliao$miguel lourenco
             ls$intitulacao/publico tabelaio do rei em coimbra
             ls$sinal/sim
 
@@ -301,7 +301,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido da colegiada de santa justa/id=1340.e1.colsj
 
-            referido$francisco afonso/id=1340.e1.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteuta$rodrigo anes/id=1340.e1.rodrigo
@@ -312,22 +312,22 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$residencia/coimbra
             rel$parentesco/mulher/rodrigo anes/1340.e1.rodrigo
 
-         test$domingos fernandes/id=cex1340.1-per3
+         test$domingos fernandes
 
-         test$joao d'eiras auxela/id=cex1340.1-per4
+         test$joao d'eiras auxela
             ls$naturalidade/eiras
 
-         test$mateus peres/id=cex1340.1-per5
+         test$mateus peres
             ls$titulo/clerigo
 
-         test$bras peres/id=cex1340.1-per6
+         test$bras peres
             ls$titulo/clerigo
 
-         tabeliao$martim goncalves/id=cex1340.1-per7
+         tabeliao$martim goncalves
             ls$intitulacao/tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
-            referida$constanca alvares/id=cex1340.1-per7-per2
+            referida$constanca alvares
 
             referido$goncalo peres/id=1340.e1.goncalo
 
@@ -347,7 +347,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido da colegiada de santa justa/id=1344.e1.colsj
 
-            referido$francisco afonso/id=1344.e1.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteutaf$maria martins/id=1344.e1.maria
@@ -371,7 +371,7 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$titulo/clerigo
             rel$parentesco/filho/estevao de espada/1344.e1.estevao
 
-         test$joao martins/id=cex1344.1-per3
+         test$joao martins
             ls$cargo/capelao de santa clara
 
          referido$domingos de eiras/id=1344.e1.domingos
@@ -380,7 +380,7 @@ kleio$gacto2.str/prefix=sj/translations=6
          test$ildo domingues/id=1344.e1.ildo
             rel$parentesco/filho/domingos de eiras/1344.e1.domingos
 
-         tabeliao$afonso martins/id=cex1344.1-per4
+         tabeliao$afonso martins
             ls$intitulacao/publico tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
@@ -399,7 +399,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido de santa justa/id=1347.e1.colsj
 
-            referido$francisco afonso/id=1347.e1.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteuta$domingos esteves/id=1347.e1.domingos
@@ -407,16 +407,16 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$residencia/coimbra
             ls$profissao/lavrador
 
-         test$domingos andre/id=cex1347.1-per3
+         test$domingos andre
             ls$cargo/capelao de santa justa
 
-         tabeliao$afonso martins/id=cex1347.1-per4
+         tabeliao$afonso martins
             ls$intitulacao/tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
-            referida$urraca sanches/id=cex1347.1-per4-per2
+            referida$urraca sanches
 
-            referido$pedro martins/id=cex1347.1-per4-per3
+            referido$pedro martins
                ls$alcunha/alcoforado
 
          prazo$lombo de santa justa/obs=uma grande peca de terra que he chamada o lombo de santa justa que sao 12 jeiras de terras de vassadoiro/id=sj-cex1347.1-obj1
@@ -434,10 +434,10 @@ kleio$gacto2.str/prefix=sj/translations=6
             atr$pagamento da renda principal/?/obs=nao especifica apenas diz que e um pagamento anual e as despesas do enfiteuta
             atr$caucao/50 libras
 
-         referido$afonso peres/id=cex1347.1-per7
+         referido$afonso peres
             ls$titulo/cavaleiro
 
-         referido$rasca velhas/id=cex1347.1-per8
+         referido$rasca velhas
             ls$alcunha/rasca velhas
 
          prazo$duas jeiras de terra de vessadoiro/obs=partidas por aguilhadas/id=sj-cex1347.1-obj2
@@ -458,7 +458,7 @@ kleio$gacto2.str/prefix=sj/translations=6
 
          senhorio$prior e cabido da colegiada de santa justa/id=1348.e1.colsj
 
-            referido$francisco afonso/id=1348.e1.colsj-per1
+            referido$francisco afonso
                ls$cargo/prior de santa justa
 
          enfiteuta$vasco domingues/id=1348.e1.vasco
@@ -469,23 +469,23 @@ kleio$gacto2.str/prefix=sj/translations=6
             ls$residencia/coimbra
             rel$parentesco/mulher/vasco domingues/1348.e1.vasco
 
-         test$pedro andre/id=cex1348.1-per3
+         test$pedro andre
             ls$profissao/vogado
 
          referido$d afonso/id=1348.e1.dafonso/obs=no documento so rei
             ls$cargo/rei de portugal
 
-         test$marco/id=cex1348.1-per4
+         test$marco
             rel$profissional/homem/d afonso/1348.e1.dafonso
 
-         test$joao de coimbra/id=cex1348.1-per5
+         test$joao de coimbra
 
-         test$vasco peres/obs=marido de graca/id=cex1348.1-per6
+         test$vasco peres/obs=marido de graca
 
-         test$lourenco anes/id=cex1348.1-per7
+         test$lourenco anes
             ls$alcunha/garca
 
-         tabeliao$afonso martins/id=cex1348.1-per8
+         tabeliao$afonso martins
             ls$intitulacao/tabeliao do rei na cidade de coimbra
             ls$sinal/sim
 
@@ -557,7 +557,7 @@ kleio$gacto2.str/prefix=sj/translations=6
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         referido$afonso peres/id=cex1348.1-per9
+         referido$afonso peres
             ls$alcunha/colaco
 
          prazo$1 courela e uma oitava de terra/id=sj-cex1348.1-obj5
@@ -619,11 +619,11 @@ kleio$gacto2.str/prefix=sj/translations=6
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         referido$vasco gil/id=cex1348.1-per10
+         referido$vasco gil
             ls$cargo/racoeiro de santiago
             ls$morto/antes
 
-         referido$salvador domingues/id=cex1348.1-per11
+         referido$salvador domingues
             ls$profissao/tabeliao de coimbra
             ls$morto/antes
 
@@ -641,7 +641,7 @@ kleio$gacto2.str/prefix=sj/translations=6
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a fregusia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         referido$afonso peres/id=cex1348.1-per12
+         referido$afonso peres
             ls$titulo/cavaleiro
 
          prazo$duas jeiras de terras de pao/id=sj-cex1348.1-obj11
@@ -656,7 +656,7 @@ kleio$gacto2.str/prefix=sj/translations=6
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         referido$soeiro/id=cex1348.1-per13
+         referido$soeiro
             ls$alcunha/gago
 
          prazo$terra/id=sj-cex1348.1-obj12
@@ -671,10 +671,10 @@ kleio$gacto2.str/prefix=sj/translations=6
             atr$condicoes/no caso de o darem a outros a explorar devem dar aos fregueses de santa justa para que nao se perca o dizimo, se derem a vizinhos de outras freguesias estes devem pagar metade da dizima a santa justa e a outra metade a freguesia da sua residencia
             atr$duracao/2 vidas/obs=casal
 
-         referido$lourenco anes/id=cex1348.1-per14
+         referido$lourenco anes
             ls$alcunha/pao e agua
 
-         referido$pascoal domingues/id=cex1348.1-per15
+         referido$pascoal domingues
             ls$residencia/rio frio
 
          prazo$1 talho de terra/id=sj-cex1348.1-obj13
@@ -695,7 +695,7 @@ kleio$gacto2.str/prefix=sj/translations=6
          referido$vasco goncalves/id=1348.e1.vgoncalves
             rel$parentesco/genro/britacampos/1348.e1.britacampos
 
-         referido$domingos geraldes/id=cex1348.1-per16
+         referido$domingos geraldes
             ls$residencia/eiras
 
          referido$martim fernandes/id=1348.e1.mfernandes

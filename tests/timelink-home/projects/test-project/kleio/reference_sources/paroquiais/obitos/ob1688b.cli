@@ -1,13 +1,13 @@
-kleio$gacto2.str
+kleio$gacto2.str/translations=2
    fonte$ob1688b/tipo=reg paroquiais/localizacao=nao se le/data=1688/obs=cuidado com a expressao "mulher que foi" em relacao 'as defuntas porque nao parece ser legitimo inferir que era viuva, ao contrario do que acontece nas fontes em que a mulher esta "viva" no momento do registo. padre manuel cordeiro
 
       o$1/1/1688/id=obitos 1688-his1
 
-         n$antonia francisca/f/id=obitos 1688-his1-per1
+         n$antonia francisca/f
             ls$ec/v
             ls$residencia/mogadouro
 
-            marido$joao rodrigues/id=obitos 1688-his1-per1-per2
+            marido$joao rodrigues
                ls$residencia/mogadouro
                ls$morto/antes
 
@@ -15,7 +15,7 @@ kleio$gacto2.str
 
       o$1/1/1688/id=obitos 1688-his2
 
-         n$simao rodrigues marnoto?/m/id=obitos 1688-his2-per1
+         n$simao rodrigues marnoto?/m
             ls$residencia/soure
 
          sacr$sim
@@ -26,7 +26,7 @@ kleio$gacto2.str
 
       o$3/1/1688/id=obitos 1688-his3
 
-         n$mariva?/f/id=obitos 1688-his3-per1
+         n$mariva?/f
             ls$residencia/alencarce
 
          sacr$sim
@@ -35,7 +35,7 @@ kleio$gacto2.str
 
       o$5/1/1688/id=obitos 1688-his4
 
-         n$francisco rodrigues monteiro/m/id=obitos 1688-his4-per1
+         n$francisco rodrigues monteiro/m
             ls$residencia/porto panelas
 
          sacr$sim
@@ -46,7 +46,7 @@ kleio$gacto2.str
 
       o$5/1/1688/id=obitos 1688-his5
 
-         n$joao de seabra jaques/m/id=obitos 1688-his5-per1
+         n$joao de seabra jaques/m
             ls$cargo/capitao
 
          sacr$sim
@@ -59,7 +59,7 @@ kleio$gacto2.str
 
       o$17/1/1688/id=obitos 1688-his6
 
-         n$manuel rodrigues maravilhoso/m/obs=este aparece referido na documentacao camararia como o "maravilhoso"/id=obitos 1688-his6-per1
+         n$manuel rodrigues maravilhoso/m/obs=este aparece referido na documentacao camararia como o "maravilhoso"
             ls$residencia/alencarce de cima
 
          sacr$sim
@@ -70,7 +70,7 @@ kleio$gacto2.str
 
       o$25/1/1688/id=obitos 1688-his7
 
-         n$jorge rodrigues/m/id=obitos 1688-his7-per1
+         n$jorge rodrigues/m
             ls$residencia/barril
 
          sacr$sim
@@ -79,21 +79,21 @@ kleio$gacto2.str
 
       o$31/3/1688/obs=este assento devia de ir adiante/id=obitos 1688-his8
 
-         n$maria colaco/f/id=obitos 1688-his8-per1
+         n$maria colaco/f
             ls$ec/s
 
-            pai$gaspar coelho dos reis/id=obitos 1688-his8-per1-per2
+            pai$gaspar coelho dos reis
                ls$cargo/capitao
 
          sacr$sim
 
       o$30/1/1688/id=obitos 1688-his9
 
-         n$isabel/f/id=obitos 1688-his9-per1
+         n$isabel/f
             ls$ec/s
             ls$idade_aprox/mais de 16
 
-            pai$manuel ramos/id=obitos 1688-his9-per1-per2
+            pai$manuel ramos
                ls$residencia/cavaleiros
 
          sacr$sim
@@ -102,9 +102,9 @@ kleio$gacto2.str
 
       o$3/2/1688/id=obitos 1688-his10
 
-         n$maria/f/id=obitos 1688-his10-per1
+         n$maria/f
 
-            pai$manuel gomes pasinha/id=obitos 1688-his10-per1-per2
+            pai$manuel gomes pasinha
                ls$residencia/barril
 
          sacr$sim
@@ -115,11 +115,11 @@ kleio$gacto2.str
 
       o$3/2/1688/id=obitos 1688-his11
 
-         n$maria?/f/id=obitos 1688-his11-per1
+         n$maria?/f
 
             pai$luis rodrigues/id=ro03021688
 
-            mae$maria simoes/id=obitos 1688-his11-per1-per2
+            mae$maria simoes
                rel$parentesco/mulher/luis rodrigues/ro03021688
 
          sacr$sim
@@ -128,21 +128,21 @@ kleio$gacto2.str
 
       o$16/2/1688/id=obitos 1688-his12
 
-         n$esperanca/f/id=obitos 1688-his12-per1
+         n$esperanca/f
             ls$idade/3
 
-            pai$manuel rodrigues/id=obitos 1688-his12-per1-per2
+            pai$manuel rodrigues
 
-            mae$maria cordeiro/id=obitos 1688-his12-per1-per3
+            mae$maria cordeiro
 
          locs$adro
 
       o$20/2/1688/id=obitos 1688-his13
 
-         n$andreia da gante/f/id=obitos 1688-his13-per1
+         n$andreia da gante/f
             ls$ec/v
 
-            marido$manuel fernandes/id=obitos 1688-his13-per1-per2
+            marido$manuel fernandes
                ls$alcunha/recolhas
                ls$morto/antes
 
@@ -150,13 +150,13 @@ kleio$gacto2.str
 
       o$25/2/1688/id=obitos 1688-his14
 
-         n$maria/f/id=obitos 1688-his14-per1
+         n$maria/f
             ls$ec/s
 
-            pai$manuel mateus/id=obitos 1688-his14-per1-per2
+            pai$manuel mateus
                ls$residencia/soure
 
-            mae$madalena dos santos/id=obitos 1688-his14-per1-per3
+            mae$madalena dos santos
 
          sacr$sim
 
@@ -164,7 +164,7 @@ kleio$gacto2.str
 
       o$25/2/1688/id=obitos 1688-his15
 
-         n$manuel fernandes/m/id=obitos 1688-his15-per1
+         n$manuel fernandes/m
             ls$residencia/casal novo
 
          sacr$sim
@@ -173,7 +173,7 @@ kleio$gacto2.str
 
       o$26/2/1688/id=obitos 1688-his16
 
-         n$felix fernandes/m/id=obitos 1688-his16-per1
+         n$felix fernandes/m
 
          sacr$sim
 
@@ -181,7 +181,7 @@ kleio$gacto2.str
 
       o$1/3/1688/id=obitos 1688-his17
 
-         n$antonia madeira/f/id=obitos 1688-his17-per1
+         n$antonia madeira/f
             ls$ec/s
             ls$idade_aprox/maior
 
@@ -191,18 +191,18 @@ kleio$gacto2.str
 
       o$3/3/1688/id=obitos 1688-his18
 
-         n$maria/f/id=obitos 1688-his18-per1
+         n$maria/f
             ls$idade_aprox/mais de 6 menos de 7
 
-            pai$manuel dos santos/id=obitos 1688-his18-per1-per2
+            pai$manuel dos santos
 
-            mae$maria cordeiro/id=obitos 1688-his18-per1-per3
+            mae$maria cordeiro
 
          locs$ermida de s.to andre, por nao se poder passar
 
       o$9/3/1688/id=obitos 1688-his19
 
-         n$manuel gomes pasinha?/m/id=obitos 1688-his19-per1
+         n$manuel gomes pasinha?/m
             ls$ec/v
 
          sacr$sim
@@ -213,20 +213,20 @@ kleio$gacto2.str
 
       o$16/3/1688/obs= e' um viuvo e dao o nome do pai/id=obitos 1688-his20
 
-         n$joao gomes/m/id=obitos 1688-his20-per1
+         n$joao gomes/m
             ls$ec/v
             ls$residencia/barril
 
-            pai$pedro gomes/id=obitos 1688-his20-per1-per2
+            pai$pedro gomes
                ls$residencia/barril
 
          sacr$sim
 
-         locs$igreja de s.mateus, por nao haver comunidade para o trazer ao adro por  respeito das cheias
+         locs$igreja de s.mateus, por nao haver comunidade para o trazer ao adro por respeito das cheias
 
       o$14/3/1688/obs=data sic/id=obitos 1688-his21
 
-         n$domingos lourenco/m/id=obitos 1688-his21-per1
+         n$domingos lourenco/m
             ls$residencia/quinta da cruz
 
          sacr$sim
@@ -235,11 +235,11 @@ kleio$gacto2.str
 
       o$30/3/1688/obs=data sic/id=obitos 1688-his22
 
-         n$maria esteves/f/id=obitos 1688-his22-per1
+         n$maria esteves/f
             ls$ec/v#mulher que foi...
             ls$residencia/barril
 
-            marido$manuel rodrigues formigo/m/id=obitos 1688-his22-per1-per2
+            marido$manuel rodrigues formigo/m
                ls$morto/antes
                ls$residencia/barril
 
@@ -249,7 +249,7 @@ kleio$gacto2.str
 
       o$20/3/1688/obs=data sic/id=obitos 1688-his23
 
-         n$brites simoes/f/id=obitos 1688-his23-per1
+         n$brites simoes/f
             ls$residencia/casal de sebastiao soares
 
          sacr$sim
@@ -258,7 +258,7 @@ kleio$gacto2.str
 
       o$24/3/1688/id=obitos 1688-his24
 
-         n$manuel goncalves/m/id=obitos 1688-his24-per1
+         n$manuel goncalves/m
             ls$residencia/casal dos corcoris
 
          sacr$sim
@@ -269,7 +269,7 @@ kleio$gacto2.str
 
       o$24/3/1688/id=obitos 1688-his25
 
-         n$maria francisca/f/id=obitos 1688-his25-per1
+         n$maria francisca/f
             ls$ec/v
             ls$residencia/casal do vinagre
             ls$pobre/sim
@@ -282,7 +282,7 @@ kleio$gacto2.str
 
       o$0/3/1688/obs=no dia de pascoa/id=obitos 1688-his26
 
-         n$manuel mateus/m/id=obitos 1688-his26-per1
+         n$manuel mateus/m
             ls$residencia/soure
 
          sacr$sim
@@ -291,7 +291,7 @@ kleio$gacto2.str
 
       o$0/3/1688/obs=no dia de pascoa/id=obitos 1688-his27
 
-         n$leonor francisca/f/id=obitos 1688-his27-per1
+         n$leonor francisca/f
             ls$residencia/lage
 
          sacr$sim
@@ -302,10 +302,10 @@ kleio$gacto2.str
 
       o$19/4/1688/id=obitos 1688-his28
 
-         n$maria/f/id=obitos 1688-his28-per1
+         n$maria/f
             ls$idade_aprox/mais de 20
 
-            pai$pedro gomes/id=obitos 1688-his28-per1-per2
+            pai$pedro gomes
                ls$residencia/barril
 
          sacr$sim
@@ -314,7 +314,7 @@ kleio$gacto2.str
 
       o$28/3/1688/obs=data sic/id=obitos 1688-his29
 
-         n$pedro gomes/m/id=obitos 1688-his29-per1
+         n$pedro gomes/m
             ls$residencia/barril
 
          sacr$sim
@@ -323,10 +323,10 @@ kleio$gacto2.str
 
       o$22/4/1688/id=obitos 1688-his30
 
-         n$antonio/m/id=obitos 1688-his30-per1
+         n$antonio/m
             ls$idade_aprox/menor de 7
 
-            pai$mateus goncalves/id=obitos 1688-his30-per1-per2
+            pai$mateus goncalves
                ls$residencia/alencarce de baixo
 
          sacr$sim
@@ -335,9 +335,9 @@ kleio$gacto2.str
 
       o$29/4/1688/id=obitos 1688-his31
 
-         n$domingas goncalves/f/id=obitos 1688-his31-per1
+         n$domingas goncalves/f
 
-            pai$simao jorge/id=obitos 1688-his31-per1-per2
+            pai$simao jorge
                ls$residencia/paleao
 
          sacr$sim
@@ -346,11 +346,11 @@ kleio$gacto2.str
 
       o$11/5/1688/id=obitos 1688-his32
 
-         n$luisa/f/id=obitos 1688-his32-per1
+         n$luisa/f
             ls$ec/s
             ls$idade_aprox/mais de 25
 
-            pai$manuel gomes carvasco#deve ser erro do paroco, provavelmente ravasco/id=obitos 1688-his32-per1-per2
+            pai$manuel gomes carvasco#deve ser erro do paroco, provavelmente ravasco
 
          sacr$sim
 
@@ -358,7 +358,7 @@ kleio$gacto2.str
 
       o$14/5/1688/id=obitos 1688-his33
 
-         n$diogo rodrigues/m/id=obitos 1688-his33-per1
+         n$diogo rodrigues/m
             ls$residencia/vale da borra
 
          sacr$sim
@@ -367,7 +367,7 @@ kleio$gacto2.str
 
       o$20/5/1688/id=obitos 1688-his34
 
-         n$manuel rodrigues fuseiro/m/id=obitos 1688-his34-per1
+         n$manuel rodrigues fuseiro/m
 
          locs$igreja de s.mateus, por nao haver quem atravessasse ao adro
 
@@ -377,10 +377,10 @@ kleio$gacto2.str
 
       o$21/5/1688/id=obitos 1688-his35
 
-         n$domingas henriques/f/id=obitos 1688-his35-per1
+         n$domingas henriques/f
             ls$cargo/foi ermitoa de s.mateus
 
-            marido$baptista de moura/id=obitos 1688-his35-per1-per2
+            marido$baptista de moura
 
          sacr$sim
 
@@ -390,11 +390,11 @@ kleio$gacto2.str
 
       o$31/5/1688/id=obitos 1688-his36
 
-         n$catarina/f/id=obitos 1688-his36-per1
+         n$catarina/f
             ls$ec/s
             ls$idade/15
 
-            pai$domingos goncalves vargas/id=obitos 1688-his36-per1-per2
+            pai$domingos goncalves vargas
                ls$residencia/vale da borra
 
          sacr$sim
@@ -403,7 +403,7 @@ kleio$gacto2.str
 
       o$1/6/1688/id=obitos 1688-his37
 
-         n$francisco rodrigues/m/id=obitos 1688-his37-per1
+         n$francisco rodrigues/m
             ls$residencia/casal da lage
 
          sacr$sim
@@ -420,9 +420,9 @@ kleio$gacto2.str
 
       o$12/6/1688/id=obitos 1688-his39
 
-         n$mateus/m/id=obitos 1688-his39-per1
+         n$mateus/m
 
-            pai$mateus goncalves/id=obitos 1688-his39-per1-per2
+            pai$mateus goncalves
                ls$residencia/alencarce de baixo
 
          sacr$sim
@@ -431,9 +431,9 @@ kleio$gacto2.str
 
       o$14/6/1688/id=obitos 1688-his40
 
-         n$isabel/f/id=obitos 1688-his40-per1
+         n$isabel/f
 
-            pai$manuel rodrigues navarro/m/mesmo_que=ro12061688/id=obitos 1688-his40-per1-per2
+            pai$manuel rodrigues navarro/m/mesmo_que=ro12061688
                ls$morto/antes
 
          sacr$sim
@@ -442,9 +442,9 @@ kleio$gacto2.str
 
       o$25/6/1688/id=obitos 1688-his41
 
-         n$antonia alves/f/id=obitos 1688-his41-per1
+         n$antonia alves/f
 
-            marido$joao rodrigues ruivo/id=obitos 1688-his41-per1-per2
+            marido$joao rodrigues ruivo
                ls$residencia/beltroes
 
          sacr$sim
@@ -453,11 +453,11 @@ kleio$gacto2.str
 
       o$26/6/1688/id=obitos 1688-his42
 
-         n$isabel/f/id=obitos 1688-his42-per1
+         n$isabel/f
             ls$idade/7
             ls$ec/s
 
-            pai$joao gomes/m/id=obitos 1688-his42-per1-per2
+            pai$joao gomes/m
                ls$residencia/porto panelas
 
          sacr$sim
@@ -466,7 +466,7 @@ kleio$gacto2.str
 
       o$29/6/1688/id=obitos 1688-his43
 
-         n$isabel/f/id=obitos 1688-his43-per1
+         n$isabel/f
             ls$ec/s
             ls$idade_aprox/mais de 20
 
@@ -476,7 +476,7 @@ kleio$gacto2.str
 
       o$30/6/1688/id=obitos 1688-his44
 
-         n$maria goncalves/f/id=obitos 1688-his44-per1
+         n$maria goncalves/f
             ls$ec/v
             ls$residencia/casal da lage
 
@@ -486,7 +486,7 @@ kleio$gacto2.str
 
       o$8/7/1688/id=obitos 1688-his45
 
-         n$isabel rodrigues/f/id=obitos 1688-his45-per1
+         n$isabel rodrigues/f
             ls$ec/v
             ls$residencia/alencarce de cima
 
@@ -496,10 +496,10 @@ kleio$gacto2.str
 
       o$8/7/1688/id=obitos 1688-his46
 
-         n$maria francisca/f/id=obitos 1688-his46-per1
+         n$maria francisca/f
             ls$ec/v/obs=mulher que foi....
 
-            marido$francisco lopes labias/id=obitos 1688-his46-per1-per2
+            marido$francisco lopes labias
                ls$morto/antes
 
          sacr$sim
@@ -508,7 +508,7 @@ kleio$gacto2.str
 
       o$10/7/1688/id=obitos 1688-his47
 
-         n$manuel goncalves/m/id=obitos 1688-his47-per1
+         n$manuel goncalves/m
             ls$residencia/casal da lage
             ls$alcunha/sintaixa
 
@@ -522,7 +522,7 @@ kleio$gacto2.str
 
       o$6/8/1688/id=obitos 1688-his48
 
-         n$manuel goncalves? ruivo/m/id=obitos 1688-his48-per1
+         n$manuel goncalves? ruivo/m
             ls$residencia/alencarce de cima
 
          sacr$sim
@@ -531,16 +531,16 @@ kleio$gacto2.str
 
       o$11/8/1688/id=obitos 1688-his49
 
-         n$domingos/m/id=obitos 1688-his49-per1
+         n$domingos/m
             ls$idade/4
 
-            pai$manuel leao/id=obitos 1688-his49-per1-per2
+            pai$manuel leao
 
          locs$adro
 
       o$30/8/1688/id=obitos 1688-his50
 
-         n$manuel mateus/m/id=obitos 1688-his50-per1
+         n$manuel mateus/m
             ls$profissao/padre
             ls$cargo/benefeciado na igreja de soure
             ls$titulo/frei
@@ -555,11 +555,11 @@ kleio$gacto2.str
 
       o$1/9/1688/id=obitos 1688-his51
 
-         n$antonia goncalves/f/id=obitos 1688-his51-per1
+         n$antonia goncalves/f
             ls$ec/v?/obs=mulher que foi
             ls$residencia/casais do soares
 
-            marido$manuel de figueiredo/m/id=obitos 1688-his51-per1-per2
+            marido$manuel de figueiredo/m
                ls$residencia/casais do soares
                ls$morto/antes
 
@@ -569,7 +569,7 @@ kleio$gacto2.str
 
       o$2/9/1688/id=obitos 1688-his52
 
-         n$leonor/f/id=obitos 1688-his52-per1
+         n$leonor/f
             ls$ec/s
             ls$idade/15
 
@@ -579,17 +579,17 @@ kleio$gacto2.str
 
       o$7/9/1688/obs=nao da lugar de sepultura/id=obitos 1688-his53
 
-         n$jose/m/id=obitos 1688-his53-per1
+         n$jose/m
             ls$idade/12
 
-            pai$bento gomes da costa/id=obitos 1688-his53-per1-per2
+            pai$bento gomes da costa
                ls$residencia/soure
 
          sacr$absoluto sub conditione
 
       o$12/9/1688/id=obitos 1688-his54
 
-         n$manuel jorge soeiro/m/id=obitos 1688-his54-per1
+         n$manuel jorge soeiro/m
             ls$alcunha/moco
             ls$residencia/casa velha
 
@@ -599,11 +599,11 @@ kleio$gacto2.str
 
       o$23/9/1688/id=obitos 1688-his55
 
-         n$maria joao/f/id=obitos 1688-his55-per1
+         n$maria joao/f
             ls$ec/v?/obs=mulher que foi...
             ls$residencia/casal do mau
 
-            marido$domingos gomes/m/id=obitos 1688-his55-per1-per2
+            marido$domingos gomes/m
                ls$residencia/casal do mau
                ls$morto/antes
 
@@ -615,11 +615,11 @@ kleio$gacto2.str
 
       o$23/9/1688/id=obitos 1688-his56
 
-         n$francisca joao/f/id=obitos 1688-his56-per1
+         n$francisca joao/f
             ls$residencia/casal das estercadas
             ls$pobre/sim/obs=muito pobre
 
-            marido$nome desconhecido/m/id=obitos 1688-his56-per1-per2
+            marido$nome desconhecido/m
                ls$alcunha/palaio
                ls$residencia/casal das estercadas
 
@@ -631,7 +631,7 @@ kleio$gacto2.str
 
       o$27/9/1688/id=obitos 1688-his57
 
-         n$manuel goncalves/m/id=obitos 1688-his57-per1
+         n$manuel goncalves/m
             ls$residencia/casal das brancas
 
          sacr$sim
@@ -640,10 +640,10 @@ kleio$gacto2.str
 
       o$30/9/1688/id=obitos 1688-his58
 
-         n$miguel/m/id=obitos 1688-his58-per1
+         n$miguel/m
             ls$idade/18
 
-            pai$domingos antunes/m/id=obitos 1688-his58-per1-per2
+            pai$domingos antunes/m
                ls$residencia/casal das brancas
 
          sacr$sim
@@ -652,7 +652,7 @@ kleio$gacto2.str
 
       o$19/10/1688/id=obitos 1688-his59
 
-         n$maria serrana/f/obs=conheco esta de algum lado/id=obitos 1688-his59-per1
+         n$maria serrana/f/obs=conheco esta de algum lado
 
          sacr$sim
 
@@ -660,18 +660,18 @@ kleio$gacto2.str
 
       o$23/10/1688/id=obitos 1688-his60
 
-         n$joao/m/id=obitos 1688-his60-per1
+         n$joao/m
             ls$ec/s
             ls$idade/4
 
-            pai$joao francisco/m/id=obitos 1688-his60-per1-per2
+            pai$joao francisco/m
                ls$residencia/bechos
 
          locs$adro
 
       o$5/11/1688/id=obitos 1688-his61
 
-         n$joao rodrigues palaio/m/obs=ver obito de 23/9/1688/id=obitos 1688-his61-per1
+         n$joao rodrigues palaio/m/obs=ver obito de 23-9-1688
 
          sacr$sim
 
@@ -681,7 +681,7 @@ kleio$gacto2.str
 
       o$6/11/1688/id=obitos 1688-his62
 
-         n$manuel rebelo/m/id=obitos 1688-his62-per1
+         n$manuel rebelo/m
             ls$pobre/sim
 
          sacr$sim
@@ -690,7 +690,7 @@ kleio$gacto2.str
 
       o$23/11/1688/id=obitos 1688-his63
 
-         n$manuel figueiredo/m/id=obitos 1688-his63-per1
+         n$manuel figueiredo/m
             ls$profissao/lavrador
             ls$residencia/casais da quinta da cruz
 
@@ -700,19 +700,19 @@ kleio$gacto2.str
 
       o$29/11/1688/id=obitos 1688-his64
 
-         n$esperanca/f/id=obitos 1688-his64-per1
+         n$esperanca/f
             ls$idade/0.25#3 ou 4 meses
 
-            pai$manuel joao/m/id=obitos 1688-his64-per1-per2
+            pai$manuel joao/m
                ls$residencia/casa velha
 
-            mae$maria francisca/f/id=obitos 1688-his64-per1-per3
+            mae$maria francisca/f
 
          locs$adro
 
       o$10/12/1688/id=obitos 1688-his65
 
-         n$maria de miranda/f/id=obitos 1688-his65-per1
+         n$maria de miranda/f
 
          sacr$sim
 
