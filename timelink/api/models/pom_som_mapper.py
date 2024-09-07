@@ -449,8 +449,8 @@ class PomSomMapper(Entity):
         group_obs = ''  # this will store the observation information with extra info
         columns = inspect(ormClass).columns
         # temp
-        for column in set(columns):
-            cattr = pom_class.column_to_class_attribute(column.name, session)
+        for column in set([c.name for c in columns]):
+            cattr = pom_class.column_to_class_attribute(column, session)
             if cattr is None:  # cols as updated and indexed not mapped
                 continue
             if cattr.colclass == "id":
