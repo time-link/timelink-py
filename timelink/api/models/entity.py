@@ -228,6 +228,12 @@ class Entity(Base):
     def __str__(self):
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
+    def render_id(self):
+        if self.id[:1] == "_":
+            return ""
+        else:
+            return f"/id={self.id}"
+
     def to_kleio(self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs):
         if self_string is None:
             s = f"{ident}{str(self)}"

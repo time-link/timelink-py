@@ -37,8 +37,8 @@ class Object(Entity):
             name = ""
         else:
             name = self.name + "/"
-        r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}/id={self.id}"
+        r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}{self.render_id()}"
         if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}  /obs={quote_long_text(self.obs.strip(), width=width)}"
+            r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
         r = super().to_kleio(self_string=r, ident=ident, ident_inc=ident_inc, width=width)
         return r
