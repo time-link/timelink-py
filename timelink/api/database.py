@@ -798,23 +798,21 @@ class TimelinkDatabase:
             result = session.query(query_spec)
         return result
 
-    def get_person(self, id: str = None, sql_echo: bool = False) -> Person:
-        """Fetch a person by id.
+    def get_person(self, *args, **kwargs):
+        """Fetch a person by id
 
-        Args:
-            id (str, optional): person id; defaults to None.
+        See :func:`timelink.api.models.person.get_person`
+
         """
-        return timelink.api.models.person.get_person(id=id, db=self, sql_echo=sql_echo)
+        return timelink.api.models.person.get_person(*args, **kwargs)
 
-    def get_entity(self, id: str = None) -> Entity:
+    def get_entity(self, *args, **kwargs) -> Entity:
         """Fetch an entity by id.
 
-        Args:
-            id (str, optional): entity id; defaults to None.
+        See: :func:`timelink.api.models.entity.Entity.get_entity`
+
         """
-        with self.session() as session:
-            result = Entity.get_entity(id=id, session=session)
-        return result
+        return Entity.get_entity(self, *args, **kwargs)
 
     def pperson(self, id: str):
         """Prints a person in kleio notation"""

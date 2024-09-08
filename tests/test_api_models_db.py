@@ -4,7 +4,8 @@ import pytest  # pylint: disable=import-error
 from sqlalchemy import select  # noqa
 
 from tests import skip_on_travis, conn_string
-from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
+from timelink.api.models.person import get_person
+from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson, KGeoentity
 from timelink.api.models import base  # noqa
 from timelink.api.models.base_class import Base
 from timelink.api.database import TimelinkDatabase
@@ -50,6 +51,10 @@ def kgroup_person_attr_rel() -> KSource:
         obs="Test Act",
     )
     ks.include(ka1)
+
+    kg = KGeoentity(id="geo1", name="my name is test-geo", type="geo-test-typ", obs="Test Geo")
+    ka1.include(kg)
+
     p1 = KPerson("Joaquim", "m", "p01-2", obs="Living in Macau/China")
     # note attr with empty "obs"
     p1.attr("residencia", "Macau", date="2021-12-11", obs="")
@@ -151,6 +156,18 @@ def test_create_eattribute(get_db, kgroup_nested):
 
     for result in results:
         print(result)
+
+
+def test_get_person(get_db, kgroup_nested):
+    # Database is created and initialized in the fixture
+    ks = kgroup_nested
+    with get_db.session() as session:
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+
+    with get_db.session() as session:
+        p = get_person("p01", session=session)
+        assert p is not None, "Person not found with get_person"
 
 
 def test_create_pattribute(get_db, kgroup_nested):
@@ -315,6 +332,10 @@ def test_export_entities_as_kleio(get_db, kgroup_person_attr_rel):
             kleio = f.read()
             assert kleio
         os.remove('tests/test_kleio_export.txt')
+        # special test for geoentities rendering
+        geo = source_from_db.contains[0].contains[0]
+        kgeo = geo.to_kleio()
+        assert kgeo
 
 
 def test_quote_and_long_test(kgroup_person_attr_rel):
