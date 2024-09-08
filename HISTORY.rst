@@ -2,6 +2,14 @@
 History
 =======
 
+1.1.13 (2024-09-07)
+-------------------
+* Improves import when tables duplicate columns of super class table, bug fixes
+  * Fixes issue #49: now import propagates data to higher levels in table
+    hierarchy, even if the data is not mapped in the lower levels.
+    * Fixes #44: get_person and get_entity now accept db and session as parameters
+    * Improves rendering of automatic ids.
+
 1.1.12 (2024-09-05)
 -------------------
 * Fixes issue #48: now import propagates data to higher levels in table
