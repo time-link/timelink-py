@@ -29,7 +29,7 @@ class KObject(KGroup):
     _name = "object"
     _guaranteed = ["name"]
     _also = ["id", "obs", "same_as"]
-    _position = ["name", "sex", "id", "same_as", "xsame_as"]
+    _position = ["name", "id", "same_as", "xsame_as"]
     _part = ["rel", "attr"]
     _pom_class_id: str = "object"
 
