@@ -1,0 +1,8 @@
+.venv
+.DS_Store
+.vscode/settings.json
+notebooks/__pycache__
+database/sqlite/
+sources/.kleio.json
+.kleio/logs/
+*.rpts

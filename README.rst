@@ -15,3 +15,4 @@ The package includes:
 * Utility functions for acessing a Timelink/MHK instalation.
 * CLI tool.
 
+See: https://timelink-py.readthedocs.io/

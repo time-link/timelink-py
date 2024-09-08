@@ -130,7 +130,7 @@ admin.add_view(Link(label="Timelink web", icon="fa fa-link", url="/"))
 
 admin.mount_to(app)
 
-app.mount("/static", StaticFiles(packages=[("timelink", "app/static")]), name="static")
+app.mount("/static", StaticFiles(packages=[("timelink")]), name="static")
 
 # this is how to load the templates from inside the package
 env = Environment(loader=PackageLoader("timelink", "app/templates"))

@@ -15,6 +15,7 @@ Timelink Python package
 * Free software: MIT license
 * Documentation: https://timelink-py.readthedocs.io/
 * PiPY: https://pypi.org/project/timelink/
+* GitHub: https://github.com/time-link/timelink-py
 
 .. toctree::
    :maxdepth: 1
