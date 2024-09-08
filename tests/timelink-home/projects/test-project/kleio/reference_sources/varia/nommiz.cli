@@ -1,4 +1,4 @@
-kleio$gacto.str/translations=1
+kleio$gacto.str/translations=3
    fonte$nommiz/obs=Misericordia mis termos de aceitacao de Irmaos (1724-1829)
 
       nom$nom1a/3/7/1729/2
@@ -85,10 +85,10 @@ kleio$gacto.str/translations=1
 
       nom$nom9/2/4/1740/6/obs="termo em como a meza ha por derriscado jose miguel de macedo"-por "ter dito repetidas vezes nao querer continuar em servir esta santa caza e ter faltado a procissao do senhor dos passos que se fez em este prezente anno tendo obrigacam de assistir e vindo a procissam sem veste a portanto e o haviao por desriscado e por imbuido nas penas do compromisso (...)"., era provedor martinho nagrao arnaut
 
-         referido$jose miguel de macedo
+         referido$jose miguel de macedo/id=nom9-p1
             ls$titulo/irmao/obs=riscado nesta data(ver acto)
 
-         referido$martinho negrao arnaut
+         referido$martinho negrao arnaut/id=nom9-p2
             ls$cargo/provedor
 
       nom$nom9a/2/7/1740/6v
@@ -412,10 +412,10 @@ kleio$gacto.str/translations=1
             ls$profissao/padre
             ls$titulo/irmao de maior condicao/17370302
 
-         referido$jose miguel de macedo%jose miguel de macedo de magalhaes mexia joze miguel de macedo de riscado a fl. 68v./mesmo_que=nom63a-p1/obs=riscado a 17400402
+         referido$jose miguel de macedo%jose miguel de macedo de magalhaes mexia joze miguel de macedo de riscado a fl. 68v./mesmo_que=nom9-p1/obs=riscado a 17400402
             ls$titulo/irmao de maior condicao/17380404/obs=o termo de aceitacao foi riscado
 
-         referido$martinho negrao arnaut%martinho negrao arnaut de riscado a fl. 69/mesmo_que=nom63b-p1/obs=riscado a 17420903 por nao querer ser irmao usando de palavras menos proprias (ver acto)
+         referido$martinho negrao arnaut%martinho negrao arnaut de riscado a fl. 69/mesmo_que=nom9-p2/obs=riscado a 17420903 por nao querer ser irmao usando de palavras menos proprias (ver acto)
             ls$titulo/irmao de maior condicao/17380404/obs=o termo de aceitacao foi riscado
 
          referido$luis botelho de macedo/xmesmo_que=nom64-p1/obs=luis botelho de macedo-de riscado a fl. 70, riscado a 417390412 por nao querer aceitar os cargos que lhe foram dados durante a semans santa e faltar a varios enterros(ver acto)
@@ -983,10 +983,8 @@ kleio$gacto.str/translations=1
             ls$titulo/irmao
             ls$assinatura/bem-nivel3
 
-      nom$nom91/18/9/1752/81v/obs="termo de aceytacao do irmao do azul joachim dias desta villa""""(...) aonde estava prezente o provedor (...) e os irmans da meza que o prezente anno
-servem apareceo joachim dias filho de manoel dias da rua direyta desta villa e por elle
-foy dito ao dito provedor e meza que porquanto hera falecido o irmao do azul desta sta
-caza(fl. 81v) joao de almeyda elle dezejava servir a mesma em a ditta ocupacao e
+      nom$nom91/18/9/1752/81v/obs="""termo de aceytacao do irmao do azul joachim dias desta villa(...) aonde estava prezente o provedor (...) e os irmans da meza que o prezente anno servem apareceo joachim dias filho de manoel dias da rua direyta desta villa e por elle foy dito ao dito provedor e meza que porquanto hera falecido o irmao do azul
+      desta sta caza(fl. 81v) joao de almeyda elle dezejava servir a mesma em a ditta ocupacao e
 ministerio e visto pello provedor e meza o seu requerimento., depois de proceder
 informacao da capacidade do dito joachim dias por em elle concorrerem limpeza de sangue.,
 bom procedimento., fidelidade e os mais requizitos que para semelhante emprego se
@@ -1014,7 +1012,7 @@ meza e das testemunhas abaixo nomeadas que elle se obrigava a dar inteira e tota
 satisfacao de todos os bens que por inventario se entregassem ao dito seo filho o qual
 com elle assignava (...)., ao que tudo disse obrigava seos bens prezentes e futuros e
 queria que este termo tivesse toda a validade(...)feyto este termo assim de aceytacao
-delle como de abonacao e fianca do dito seo pay"""(- foram testemunhas- joseph francisco do "lugar da rogella e termo desta villa" e cladio joseph de sousa do lugar de "val de maceyra do mesmo termo" de manoel dias uma cruz-nivel1., de joachim dias assinatura autografa-nivel 3)
+delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph francisco do "lugar da rogella e termo desta villa" e cladio joseph de sousa do lugar de "val de maceyra do mesmo termo" de manoel dias uma cruz-nivel1., de joachim dias assinatura autografa-nivel 3)"""
 
          referido$joachim dias/id=nom91-r1
             ls$residencia/vila da louza
@@ -1765,18 +1763,14 @@ delle como de abonacao e fianca do dito seo pay"""(- foram testemunhas- joseph f
             ls$residencia/vila da louza
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-      nom$nom191/0/0/0/136v/obs="termo com que se ha-de de dispor o interro do senhor quinta feira santa""""o procurador ha para esse dia ser normal., dois irmaons agentes os quais disporam a
-procissam em toda a necessaria veneracam
-
-
-em primeiro luguar
-
-ira o pendam que levara hum irmam seguir-se-ha outro com huma cruz em que ira dependurada
-huma vara
-
-logo seguiram os irmaons dois ahi em forma que nam vam mais de huma parte que da outra
-nem muito juntos., nem suparados., e dispostos em boa ordem e pello meyo delles
-seguir-se-ham os
+      nom$nom191/0/0/0/136v/obs="""termo com que se ha-de de dispor o interro do senhor
+      quinta feira santao procurador ha para esse dia ser normal., dois irmaons agentes os
+      quais disporam a procissam em toda a necessaria veneracam em primeiro luguar
+      ira o pendam que levara hum irmam seguir-se-ha outro com huma cruz em que ira
+      dependurada huma vara
+      logo seguiram os irmaons dois ahi em forma que nam vam mais de huma parte que da outra
+      nem muito juntos., nem suparados., e dispostos em boa ordem e pello meyo delles
+      seguir-se-ham os
 
 anjos sem mais adorno que as tunicas roxas, descalcos e huma capella de silvas na
 cabessa: o primeiro levara a varonica do senhor., o segundo hum calix., o terceiro huma
@@ -1809,7 +1803,7 @@ em este acto., sempre se requer toda a modestia. Declaro que tambem ira a bandei
 irmandade nesta prossicam. (fl. 137)
 """
 
-      nom$nom192/2/7/1731/137v/obs="termo que se fez em meza a respeito do ornamento novo""""aos dois dias do m?s de julho de mil settecentos e trinta e hum nesta santa caza da
+      nom$nom192/2/7/1731/137v/obs="""termo que se fez em meza a respeito do ornamento novo aos dois dias do m?s de julho de mil settecentos e trinta e hum nesta santa caza da
 mizericordia foi acordado pella meza della que como se achava completo o ornamento que
 consta de cazula., duas almaticas e hum pano de pulpito., que o provedor nem irmaons da
 meza empresta sem o devido ornamento a pessoa alguma e so o podessem alugar para as
@@ -1818,7 +1812,7 @@ santa caza so pagava por cada huma das ditas couzas outenta reis e nao sendo irm
 e cinquenta e no cazo que algum provedor ofecial ou irmao desta santa caza o emprestar
 pagara da sua bolsa o dito aluguer e porque tambem se acha hum pano de pulpito digo de
 estante este por ser couza tenue entrava no dito aluguer e por verdade eu antonio arnaut
-cortez escrivao da dita santa caza o escrevi """antonio arnaut cortez(assinatura autografa)joao barreto bacellar (assinatura autografa)alexandre da costa quaresma(assinatura autografa)(...)
+cortez escrivao da dita santa caza o escrevi antonio arnaut cortez """(assinatura autografa)joao barreto bacellar (assinatura autografa)alexandre da costa quaresma(assinatura autografa)(...)
 
       nom$nom193/0/0/1729/139/obs="titulo do irmaos de menor condicao que actualmente estam servindo a santa caza da mizericordia desta villa da louza o przente anno de 1729" (esta riscado"menor condicao")
 

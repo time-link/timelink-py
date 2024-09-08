@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=7
+kleio$gacto2.str/translations=9
    fonte$ivcc/tipo=fonte-jesuita/ano=1719/obs="""
       Franco (S.I.), Antonio, Imagem da virtude em o noviciado da Companhia de
       Jesus no Real Collegio de Jesus de Coimbra em Portugal
@@ -203,7 +203,6 @@ kleio$gacto2.str/translations=7
                   ls$academic/Doutor em Teologia, Universidade de Gandia, Espanha.
 
                referido$João Dício Flamengo/mesmo_que=ivc-joao-dicio-flamengo
-
 
                referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja
                   ls$titulo/Duque
@@ -475,8 +474,8 @@ kleio$gacto2.str/translations=7
                referido$Pantaleão de Sá/id=ivc-pantaleao-de-sa/obs="See https://www.geni.com/people/Pantaleão-de-Sá-de-Menezes-capitão-de-Sofala/6000000017017918072"
                   ls$titulo/Senhor
 
-               referida$Luísa/obs=See "https://www.geni.com/people/Luisa-de-Vasconcelos/6000000017017436413"
-                  ls$titulo/Dona /id=ivc-luisa-de-vasconcelos
+               referida$Luísa/obs=See "https://www.geni.com/people/Luisa-de-Vasconcelos/6000000017017436413"/id=ivc-luisa-de-vasconcelos
+                  ls$titulo/Dona
                   ls$titulo/ls$titulo/dona
                   rel$kin/wife/Pantaleão de Sá/ivc-pantaleao-de-sa
 
