@@ -352,14 +352,28 @@ class PomSomMapper(Entity):
         pom_id = getattr(group, "_pom_class_id", None)
         if pom_id is None:
             kname = group.kname
-            for pom in cls.get_pom_classes(session):
-                if kname == pom.group_name:
-                    # TODO use a setter
-                    pom_id = pom.id
-                    break
+            pom_id = cls.get_pom_id_by_group_name(session, kname)
         if pom_id:
             return cls.get_pom_class(pom_id, session)
         return None
+
+    @classmethod
+    def get_pom_id_by_group_name(cls, session, kname):
+        """ Returns the PomSomMapper id for a given group name"""
+        for pom in cls.get_pom_classes(session):
+            if kname == pom.group_name:
+                # TODO use a setter
+                return pom.id
+        return None
+
+    @classmethod
+    def get_orm_for_group(cls, groupname: str):
+        """
+        PomSomMapper.get_orm_for_groupname("act")
+
+        will return the ORM class corresponding to the groupname "act"
+        """
+        psm_id = cls.get_orm_for_groupname(groupname)
 
     @classmethod
     def ensure_all_mappings(cls, session):
