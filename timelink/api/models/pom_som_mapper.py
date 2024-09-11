@@ -234,13 +234,13 @@ class PomSomMapper(Entity):
             #       automatically
             my_table = Table(self.table_name, metadata_obj, extend_existing=True)
             cattr: Type["PomClassAttributes"]
-            for cattr in self.class_attributes:
-                PyType: str
+            for cattr in self.class_attributes:  # pylint: disable=no-member
+                PyType: str  # pylint: disable=invalid-name
                 pom_type = cattr.coltype.lower()
                 if pom_type == "varchar":
-                    PyType = String(cattr.colsize)
+                    PyType = String(cattr.colsize)   # pylint: disable=invalid-name
                 elif pom_type == "numeric" and cattr.colprecision == 0:
-                    PyType = Integer
+                    PyType = Integer   # pylint: disable=invalid-name
                 elif pom_type == "numeric" and cattr.colprecision > 0:
                     PyType = Float
                 else:
@@ -303,6 +303,7 @@ class PomSomMapper(Entity):
             logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), e)
 
         self.orm_class = my_orm
+        PomSomMapper.group_orm_models[self.group_name] = my_orm
 
         return self.orm_class
 
@@ -407,7 +408,7 @@ class PomSomMapper(Entity):
         """
 
         cattr: PomClassAttributes = None
-        for cattr in self.class_attributes:
+        for cattr in self.class_attributes:  # pylint: disable=no-member
             if cattr.colclass == eclass:
                 return cattr.colname
         if self.id != "entity":
@@ -423,7 +424,7 @@ class PomSomMapper(Entity):
             colname (str): The name of a column in the mapped table.
 
         """
-        for cattr in self.class_attributes:
+        for cattr in self.class_attributes:  # pylint: disable=no-member
             if cattr.colname == colname:
                 return cattr
         if self.id != "entity":
@@ -544,7 +545,7 @@ class PomSomMapper(Entity):
         return entity_from_group
 
     @classmethod
-    def store_KGroup(cls, group: KGroup, session, with_pom=None):
+    def store_KGroup(cls, group: KGroup, session=None):
         """Store a Kleio Group in the database
 
         Will recursively store all the groups included in this group.
@@ -554,6 +555,9 @@ class PomSomMapper(Entity):
 
         This is the main method that import Kleio transcripts into the database.
         """
+        if session is None:
+            raise ValueError("No session provided")
+
         entity_from_group: Entity = cls.kgroup_to_entity(group, session)
         exists = session.get(entity_from_group.__class__, entity_from_group.id)
 
@@ -587,7 +591,7 @@ class PomSomMapper(Entity):
 
     def __str__(self):
         r = f"{self.id} table {self.table_name} super {self.super_class}\n"
-        for cattr in self.class_attributes:
+        for cattr in self.class_attributes:  # pylint: disable=no-member
             r = r + f"{cattr.the_class}.{cattr.name} \t"
             r = r + f"class {cattr.colclass} \t"
             r = r + f"col {cattr.colname} \ttype {cattr.coltype} "

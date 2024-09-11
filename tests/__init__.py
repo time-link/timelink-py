@@ -20,11 +20,11 @@ from timelink.kleio.schemas import KleioFile
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # conn_string local file version
 # from pathlib import Path
-# sqlite_db = Path(TEST_DIR, "/sqlite/test.db")
-# conn_string = f'sqlite://{sqlite_db}?check_same_thread=False'
+sqlite_db = Path(TEST_DIR, "sqlite/test.db")
+conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 
 # con_string sqlite in memory version
-conn_string = "sqlite://?check_same_thread=False"
+# conn_string = "sqlite://?check_same_thread=False"
 
 Session = sessionmaker()
 

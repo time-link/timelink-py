@@ -408,7 +408,7 @@ class KleioHandler:
                 raise ValueError(
                     f"Could not find PomSomMapper for class {group.pom_class_id}"
                 )
-            self.pom_som_cache[group.pom_class_id] = pom_mapper_for_group
+            self.pom_som_cache[group.pom_class_id] = pom_mapper_for_group  # TODO redundant?
         except Exception as exc:
             self.errors.append(
                 f"ERROR: {self.kleio_file_name} {str(group.line)}"

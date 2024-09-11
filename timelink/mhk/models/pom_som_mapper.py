@@ -117,6 +117,9 @@ class PomSomMapper(Entity):
     orm_class: Entity
     # Class attribute stores current PomSomMappings keyed by id
     pom_classes: dict = {}
+    # Stores the association between group names and ORM Models.
+    #  See get_orm_for_groupname and issue #53
+    group_orm_models: dict = {}
 
     def ensure_mapping(self, session=None):
         """
@@ -147,6 +150,9 @@ class PomSomMapper(Entity):
         my_orm = Entity.get_orm_for_pom_class(self.id)
         if my_orm is not None:
             self.orm_class = my_orm
+            if self.group_name is not None:
+                # Store as "static"
+                PomSomMapper.group_orm_models[self.group_name] = my_orm
             return self.orm_class
 
         # we have no ORM mapping for the SomPomMapper
@@ -279,10 +285,11 @@ class PomSomMapper(Entity):
                 # specialized classes (obs normally, but also the_type...)
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
-        except Exception as exc:
+        except Exception as exc:   # pylint: disable=broad-except
             logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), exc)
 
         self.orm_class = my_orm
+        PomSomMapper.group_orm_models[self.group_name] = my_orm
 
         return self.orm_class
 
@@ -335,20 +342,33 @@ class PomSomMapper(Entity):
 
     @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
+        """Returns the PomSomMapper for a given group"""
         # TODO use property instead
         pom_id = getattr(group, "_pom_class_id", None)
         if pom_id is None:
             kname = group.kname
-            for pom in cls.get_pom_classes(session):
-                if kname == pom.group_name:
-                    # TODO use a setter
-                    pom_id = pom.id
-                    break
+            pom_id = cls.get_pom_id_by_group_name(session, kname)
         if pom_id:
             return cls.get_pom_class(pom_id, session)
-        else:
-            return None
+        return None
 
+    @classmethod
+    def get_pom_id_by_group_name(cls, session, kname):
+        """ Returns the PomSomMapper id for a given group name"""
+        for pom in cls.get_pom_classes(session):
+            if kname == pom.group_name:
+                # TODO use a setter
+                return pom.id
+        return None
+
+    @classmethod
+    def get_orm_for_group(cls, groupname: str):
+        """
+        PomSomMapper.get_orm_for_groupname("act")
+
+        will return the ORM class corresponding to the groupname "act"
+        """
+        return PomSomMapper.group_orm_models.get(groupname, None)
     @classmethod
     def ensure_all_mappings(cls, session):
         """
@@ -363,7 +383,7 @@ class PomSomMapper(Entity):
             pom_class.ensure_mapping(session=session)
 
     def element_class_to_column(self, eclass: str, session: None) -> str:
-        """Return the column name corresponding to a group element class.
+        """ Return the column name corresponding to a group element class.
 
         Args:
             eclass (str): The class of an element (included in the export file).
@@ -371,6 +391,7 @@ class PomSomMapper(Entity):
         Returns:
             str: The name of the column corresponding to this element in the mapped table.
         """
+
         cattr: PomClassAttributes = None
         for cattr in self.class_attributes:
             if cattr.colclass == eclass:
@@ -429,42 +450,104 @@ class PomSomMapper(Entity):
 
         pom_class.ensure_mapping(session)
         ormClass = Entity.get_orm_for_pom_class(pom_class.id)
+
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
-        # columns = inspect(ormClass).columns
 
-        for cattr in pom_class.class_attributes:
+        # extra_info =  this will store the extra information in comment and original words
+        extra_info: dict = dict()  # {el1:{'core':'','comment':'','original':''},el2:...}
+        group_obs = ''  # this will store the observation information with extra info
+        columns = inspect(ormClass).columns
+        # temp
+        for column in set([c.name for c in columns]):
+            cattr = pom_class.column_to_class_attribute(column, session)
+            if cattr is None:  # cols as updated and indexed not mapped
+                continue
             if cattr.colclass == "id":
                 pass
             element: KElement = group.get_element_by_name_or_class(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    setattr(entity_from_group, cattr.colname, str(element.core))
-                except Exception as exc:
+                    if len(element.core) > cattr.colsize:
+                        warnings.warn(
+                            f"""Element {element.name} of group {group.kname}:{group.id}"""
+                            f""" is too long for column {cattr.colname}"""
+                            f""" of class {pom_class.id}"""
+                            f""" truncating to {cattr.colsize} characters""",
+                            stacklevel=2,
+                        )
+                        core_value = element.core[: cattr.colsize]
+
+                    else:
+                        core_value = element.core
+                    setattr(entity_from_group, cattr.colname, str(core_value))
+                    extra_info.update({element.name: {}})
+                    if cattr.colname == "obs":
+                        group_obs = core_value  # we save the obs element for later
+                    if element.comment is not None and element.comment.strip() != '':
+                        extra_info[element.name].update({'comment': element.comment.strip()})
+                    if element.original is not None and element.original.strip() != '':
+                        extra_info[element.name].update({'original': element.original.strip()})
+                except Exception as e:
+                    session.rollback()
                     raise ValueError(
                         f"""Error while setting column {cattr.colname}"""
                         f""" of class {pom_class.id} """
                         f"""with element {element.name}"""
-                        f""" of group {group.kname}:{group.id}: {exc} """
-                    ) from exc
+                        f""" of group {group.kname}:{group.id}: {e} """
+                    ) from e
 
         # positional information in the original file
         entity_from_group.the_line = group.line
         entity_from_group.the_level = group.level
         entity_from_group.the_order = group.order
+        extra_info = {k: v for k, v in extra_info.items() if v != {}}
+        # for elname, extras in extra_info.items():
+        #     el_obs = ''
+        #     if extras.get('comment', None) is not None and extras['comment'].strip() != '':
+        #         el_obs = el_obs + f"# {extras['comment']}. "
+        #     if extras.get('original', None) is not None and extras['original'].strip() != '':
+        #         el_obs = el_obs + f"% {extras['original']}. "
+        #     if el_obs != '':
+        #         group_obs = f"{group_obs} {elname} {el_obs}"
+        # if group_obs.strip() != '':
+        #     entity_from_group.obs = group_obs.strip()
+        if len(extra_info) > 0:
+            if group_obs is not None and group_obs.strip() != '':
+                group_obs = f"{group_obs.strip()} extra_info: {json.dumps(extra_info)}"
+            else:
+                group_obs = f"extra_info: {json.dumps(extra_info)}"
+
+        # convert extra_info to string
+        entity_from_group.extra_info = extra_info
+        entity_from_group.obs = group_obs
 
         # check if we have an id from the group
-
         # check if this group is enclosed in another
         container_id = group.get_container_id()
         if container_id not in ["root", "None", "", None]:
             entity_from_group.inside = container_id
+        else:
+            entity_from_group.inside = None
         return entity_from_group
 
     @classmethod
-    def store_KGroup(cls, group: KGroup, session, with_pom=None):
+    def store_KGroup(cls, group: KGroup, session=None):
+        """Store a Kleio Group in the database
+
+        Will recursively store all the groups included in this group.
+
+        If the group is already in the database it will be deleted, as well
+        as all included groups.
+
+        This is the main method that import Kleio transcripts into the database.
+        """
+        if session is None:
+            raise ValueError("No session provided")
+
         entity_from_group: Entity = cls.kgroup_to_entity(group, session)
         exists = session.get(entity_from_group.__class__, entity_from_group.id)
+
         if exists is not None:
             session.delete(exists)
             session.commit()
@@ -472,8 +555,8 @@ class PomSomMapper(Entity):
         try:
             session.add(entity_from_group)
             session.commit()
-        except Exception as exc:
-            print(exc)
+        except Exception as e:  # pylint: disable=broad-except
+            raise e
 
         in_group: KGroup
         for in_group in group.includes():
@@ -481,8 +564,8 @@ class PomSomMapper(Entity):
 
         try:
             session.commit()
-        except Exception as exc:
-            print(exc)
+        except Exception as e:  # pylint: disable=broad-except
+            raise e
 
     def __repr__(self):
         return (
@@ -504,7 +587,7 @@ class PomSomMapper(Entity):
         return r
 
 
-class PomClassAttributes(Base):
+class PomClassAttributes(Base):   # pylint: disable=too-few-public-methods
     """
     Attribute of a PomClass. Maps kleio group element to table columns
 
