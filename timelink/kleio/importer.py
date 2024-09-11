@@ -334,7 +334,12 @@ class KleioHandler:
     ):
         if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
+            # TODO needs rethinking see #53
+            #
             logging.debug("Skipping base mapping %s", psm.id)
+            orm_class = self.entity_model.get_orm_for_pom_class(psm.id)
+            if orm_class is not None:
+                self.pom_som_mapper.group_orm_models[psm.group_name] = orm_class
             return
 
         # if we import mapping from local file we also skip those

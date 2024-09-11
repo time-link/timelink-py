@@ -129,6 +129,9 @@ class PomSomMapper(Entity):
     orm_class: Entity
     # Class attribute stores current PomSomMappings keyed by id
     pom_classes: dict = {}
+    # Stores the association between group names and ORM Models.
+    #  See get_orm_for_groupname and issue #53
+    group_orm_models: dict = {}
 
     def ensure_mapping(self, session=None):
         """
@@ -159,6 +162,9 @@ class PomSomMapper(Entity):
         my_orm = Entity.get_orm_for_pom_class(self.id)
         if my_orm is not None:
             self.orm_class = my_orm
+            if self.group_name is not None:
+                # Store as "static"
+                PomSomMapper.group_orm_models[self.group_name] = my_orm
             return self.orm_class
 
         # we have no ORM mapping for the SomPomMapper
@@ -166,13 +172,15 @@ class PomSomMapper(Entity):
         # This might happen if we have different kleio groups mapped to the
         # same table, in order to make the kleio transcripts more readable
         # (it happens frequently with the table 'acts').
-        # If so we will reuse the existing Table class
+        # If so we will reuse the existing Table class.
+        #
         # It can also happen that while not having a ORM mapping the table
         # can already exist in the database as result of previous imports.
         #
         # Note that non core PomSomMappings and corresponding ORM classes,
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
+        #
         metadata_obj = type(self).metadata
         pytables = metadata_obj.tables  # these are the tables known to ORM
 
@@ -373,10 +381,7 @@ class PomSomMapper(Entity):
 
         will return the ORM class corresponding to the groupname "act"
         """
-        for pom in cls.pom_classes.values():
-            if groupname == pom.group_name:
-                return pom.orm_class
-        return None
+        return PomSomMapper.group_orm_models.get(groupname, None)
 
     @classmethod
     def ensure_all_mappings(cls, session):
