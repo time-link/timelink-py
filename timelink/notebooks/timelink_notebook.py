@@ -249,6 +249,7 @@ class TimelinkNotebook:
     def get_import_status(self, data_frame=True, **kwargs):
         """Get the import status of Kleio Files
 
+        See: :meth:`timelink.api.database.TimelinkDatabase.get_import_status`
 
         Returns:
             A dictionary with the status of the import process

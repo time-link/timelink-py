@@ -373,7 +373,10 @@ class PomSomMapper(Entity):
 
         will return the ORM class corresponding to the groupname "act"
         """
-        psm_id = cls.get_orm_for_groupname(groupname)
+        for pom in cls.pom_classes.values():
+            if groupname == pom.group_name:
+                return pom.orm_class
+        return None
 
     @classmethod
     def ensure_all_mappings(cls, session):
