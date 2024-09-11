@@ -1,0 +1,1796 @@
+kleio$gacto2.str/translations=18
+   fonte$notlousa1/1728/notariais/v-1ªd-8-1-nº95
+
+      escritura$lnot95-1/22/5/1728/emprestimo/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$bernardo de seixas
+            atr$residencia/alca perna
+
+         divida$19000/?/id=lnot95-1-obj1
+
+      escritura$lnot95-2/22/5/1728/procuracao/loc=?
+
+         outorgante$joao de oliveira
+
+         procurador$verissimo de seixas
+            atr$residencia/povoa do couto de semide
+
+      escritura$lnot95-3/20/6/1728/venda/loc=?
+
+         comprador$manuel fernandes
+
+         vendedor$manuel fernandes de carvalho
+            atr$residencia/lousa
+
+         bem$terra/desc=com suas oliveiras/local=pocas/obs=leva de semeadura 6 alqueires de pao pelo preco de 20000 reis/id=lnot95-3-obj1-2
+
+      escritura$lnot95-4/30/6/1728/treslado de carta e de alvara/loc=?/obs=carta que manda lancar o habito de cristo e alvara que manda professar na dita ordem de cristo
+
+         outorgante$joao
+            atr$titulo/sua majestade
+            atr$titulo/dom
+            atr$cargo/rei
+
+         beneficiario$joao barreto bacelar
+            atr$residencia/lousa
+            atr$titulo/licenciado
+
+      escritura$lnot95-5/3/7/1728/procuracao/loc=?
+
+         outorgante$joao fernandes moleiro
+            atr$preso/sim/obs=na cadeia desta vila
+
+         procurador$eusebio barbosa de almeida
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$silverio jose cortes
+            atr$residencia/lousa
+
+         procurador$manuel de almeida serra
+            atr$residencia/lousa
+
+         procurador$antonio cardoso
+            atr$titulo/doutor
+            atr$residencia/montemor-o-velho
+
+         procurador$bernardo da costa
+            atr$titulo/doutor
+            atr$residencia/montemor-o-velho
+
+         procurador$antonio carvalho de arancio
+            atr$titulo/doutor
+            atr$residencia/porto
+
+         procurador$antonio pereira da silva
+            atr$titulo/doutor
+            atr$residencia/porto
+
+         procurador$manuel alves maia
+            atr$residencia/porto
+
+         procurador$antonio goncalves carvalho
+            atr$residencia/porto
+
+      escritura$lnot95-6/9/7/1728/compra/loc=?
+
+         vendedor$antonio da serra cortes
+            atr$residencia/quinta do pau
+
+         comprador$manuel ferreira
+            atr$residencia/ceira
+            atr$ec/s
+
+         bem$um bocado de chao/desc=com suas arvores de fruto e sem fruto tapado sobre si/local=?/obs=a que chamam o carreiro/id=lnot95-6-obj1-2
+
+         bem$outro bocado de terra/desc=leva de semeadura 2 alqueires de pao com suas oliveiras e mais arvores de fruto e sem fruto/local=no limite do pau/id=lnot95-6-obj2-2
+
+      escritura$lnot95-7/15/7/1728/emprestimo/loc=?
+
+         credor$manuel alves
+            atr$residencia/povoa
+
+         devedor$antonio ferreira
+            atr$residencia/ribeira
+
+         divida$7500/?/moeda=reis/id=lnot95-7-obj1
+
+      escritura$lnot95-8/22/7/1728/quitacao/loc=?
+
+         quitante$amaro furtado
+            atr$residencia/casal de ermio
+
+         quitado$manuel seco
+            atr$residencia/ponte de foz de arouce
+
+      escritura$lnot95-9/26/7/1728/procuracao/loc=?
+
+         outorgante$manuel goncalves rei
+            atr$residencia/reguengo
+
+         procurador$antonio goncalves de carvalho
+            atr$residencia/porto
+
+         procurador$manuel ferreira
+            atr$residencia/reguengo
+
+      escritura$lnot95-10/29/7/1728/doacao/loc=?
+
+         doador$manuel giam
+            atr$residencia/vidual
+
+         dotada$nome desconhecido
+            rel$parentesco/mulher/manuel giam/lnot95-10-per1
+            atr$residencia/vidual
+
+         bem$bens moveis e de raiz/id=lnot95-10-obj1-2
+
+      escritura$lnot95-11/29/7/2728/compra/loc=?
+
+         comprador$antonio martins
+            atr$residencia/fiscal
+
+         vendedor$vitorino curado
+            atr$residencia/fiscal
+
+         bem$casas e quintal/local=fiscal/id=lnot95-11-obj1-2
+
+      escritura$lnot95-12/10/8/1728/emprestimo/loc=?
+
+         credor$francisco lopes/id=lnot95-12-mq-1
+            atr$residencia/alfoncheira
+
+         devedor$maria de arantes
+
+         devedor$antonia de arantes
+
+         devedor$antonio de arantes
+            atr$profissao/padre
+
+         divida$150000/?/moeda=reis/id=lnot95-12-obj1
+
+      escritura$lnot95-13/31/8/1728/doacao/loc=?
+
+         doador$antonio de arantes/obs=com suas irmas ver escritura acima
+
+         dotado$francisco lopes/mesmo_que=lnot95-12-mq-1
+
+         bem$chao/desc=com suas casas/id=lnot95-13-obj1-2
+
+         bem$terra/desc=leva de semeadura 13 alqueires de pao com suas latadas e mais arvores/local=alfoncheira/id=lnot95-13-obj2-2
+
+      escritura$lnot95-14/1/9/1728/juro/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$antonio vaz
+            atr$residencia/alca perna
+
+         devedora$nome desconhecido
+            rel$parentesco/mulher/antonio vaz/lnot95-14-per2
+            atr$residencia/alca perna
+
+         divida$18000/?/moeda=reis/id=lnot95-14-obj1
+
+      escritura$lnot95-15/5/9/1728/dote de casamento/loc=?
+
+         doador$nome desconhecido
+
+         dotada$joana neta
+            atr$residencia/vales
+            rel$parentesco/filha/antonio jorge/lnot95-15-per3
+
+      escritura$lnot95-16/12/9/1728/juro/loc=?
+
+         credor$manuel de almeida serra
+            atr$titulo/doutor
+
+         devedor$francisco correia
+            atr$residencia/fornea
+
+         divida$4800/?/moeda=reis/id=lnot95-16-obj1
+
+      escritura$lnot95-17/15/9/1728/juro/loc=?
+
+         credor$joao lopes serra
+            atr$residencia/lousa
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+         devedor$luisa antunes
+            atr$residencia/era de calva
+            rel$parentesco/viuva/joao fernandes/lnot95-17-per3
+
+         divida$12000/?/moeda=reis/id=lnot95-17-obj1
+
+      escritura$lnot95-18/16/10/1728/procuracao/loc=?
+
+         outorgante$manuel vaz cortes
+            atr$titulo/licenciado
+            atr$residencia/val de neira
+
+         procurador$manuel duarte coelho
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+         procurador$joao lopes serra
+            atr$residencia/lisboa
+
+      escritura$lnot95-19/16/10/1728/juro/loc=?
+
+         credor$manuel vaz cortes
+            atr$titulo/doutor
+            atr$residencia/val de neira
+
+         devedor$jose francisco
+            atr$residencia/val domingos
+
+         divida$24000/?/moeda=reis/id=lnot95-19-obj1
+
+      escritura$lnot95-20/17/10/1728/juro/loc=?
+
+         credor$manuel de almeida serra
+            atr$titulo/doutor
+            atr$residencia/alfoncheira
+
+         devedor$joao vaz
+
+         devedor$antonio serra
+
+         divida$75000/?/moeda=reis/obs=60000 reis a joao vaz e 15000 a antonio serra/id=lnot95-20-obj1
+
+      escritura$lnot95-21/18/10/1728/juro/loc=?
+
+         credor$joao lopes serra
+            atr$titulo/reverendo
+            atr$profissao/padre
+            atr$residencia/casal
+
+         devedor$jose ribeiro
+
+         devedor$pascoal goncalves
+
+         divida$14400/?/moeda=reis/id=lnot95-21-obj1
+
+      escritura$lnot95-22/27/10/1728/juro/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$antonio simoes
+
+         devedora$catarina vaz
+            rel$parentesco/mulher/antonio simoes/lnot95-22-per2
+
+         divida$24000/?/moeda=reis/id=lnot95-22-obj1
+
+      escritura$lnot95-23/27/10/1728/juro/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$luis vaz
+            atr$residencia/foz de arouce
+
+         divida$57600/?/moeda=reis/id=lnot95-23-obj1
+
+      escritura$lnot95-24/26/10/1728/compra/loc=?
+
+         comprador$antonio da serra cortes
+            atr$residencia/quinta de pau
+
+         vendedor$manuel de paiva
+            atr$profissao/boticario
+
+         bem$uns assentos de terra/id=lnot95-24-obj1-2
+
+         bem$pomar/obs=leva de semeadura 2 alqueires de pao/id=lnot95-24-obj2-2
+
+         bem$terra/desc=com suas arvores de fruto e sem fruto/obs=leva de semeadura 6 alqueires de pao/id=lnot95-24-obj3-2
+
+         bem$terra/desc=com suas arvores de fruto e sem fruto/local=limite de ceira/obs=chamam de reguateira e levara de semeadura 3 alqueires de pao/id=lnot95-24-obj4-2
+
+         bem$chao/desc=com suas arvores de fruto e sem fruto/obs=leva de semeadura tres quartas de pao e e de rega/id=lnot95-24-obj5-2
+
+         bem$pousio/desc=com seus matos oliveiras e castanheiros e mais matos onde chamam cimo dos talhos/id=lnot95-24-obj6-2
+
+         bem$pousio/desc=com seus matos castanheiros sobreiros e mais arvores de fruto e sem frutos/id=lnot95-24-obj7-2
+
+         divida$310000/?/moeda=reis/obs=valor de todos os bens comprados/id=lnot95-24-obj8
+
+      escritura$lnot95-25/13/11/1728/procuracao/loc=?
+
+         outorgante$manuel borges
+            atr$residencia/povoa
+
+         procurador$antonio carvalho de aranio
+            atr$titulo/doutor
+            atr$residencia/porto
+
+         procurador$antonio pereira da silva
+            atr$titulo/doutor
+            atr$residencia/porto
+
+         procurador$manuel alves maia
+            atr$residencia/porto
+
+         procurador$antonio goncalves carvalho
+            atr$residencia/porto
+
+         procurador$silverio jose cortes
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$eusebio barbosa de almeida
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$manuel almeida serra
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$antonio cardoso seara
+            atr$titulo/doutor
+            atr$residencia/montemor o velho
+
+         procurador$bernardo da costa
+            atr$titulo/doutor
+            atr$residencia/montemor o velho
+
+      escritura$lnot95-26/21/11/1728/procuracao/loc=?
+
+         outorgante$fufina fernandes
+            atr$residencia/lousa
+
+         procurador$manuel rebelo esteves
+            atr$titulo/doutor
+            atr$profissao/padre
+
+         procurador$luis rebelo esteves
+
+         procurador$joao de paiva almeida
+
+      escritura$lnot95-27/21/11/1728/procuracao/loc=?
+
+         outorgante$maria caetana/f
+            atr$titulo/dona
+            atr$residencia/lousa
+            rel$parentesco/viuva/jeronimo de magalhaes/lnot95-27-per3/obs=de arganil
+
+         procurador$francisco jose
+            atr$residencia/pedrogao grande
+            atr$profissao/padre
+            atr$titulo/reverendo
+
+      escritura$lnot95-28/26/11/1728/juro/loc=?
+
+         credor$manuel de oliveira
+            atr$residencia/pegada
+
+         devedor$antonio de morais cortes
+
+         devedora$antonia maria
+            rel$parentesco/irma/antonio de morais corte/lnot-95-28-per2
+
+         devedora$josefa antonia de morais
+            rel$parentesco/irma/antonio de morais corte/lnot-95-28-per2
+
+         devedora$teresa antonia de jesus
+            rel$parentesco/irma/antonio de morais corte/lnot-95-28-per2
+
+      escritura$lnot95-29/1/12/1728/arrendamento/loc=?
+
+         arrendataria$maria caetana pimentel de proenca
+            atr$titulo/dona
+            rel$parentesco/viuva/jeronimo de magalhaes/lnot95-29-per3
+
+         rendeiro$joao travassos sarinho
+            atr$residencia/varzea de gois
+
+         bem$chao/desc=tapado sobre si/local=na varzea/obs=com suas videiras e mais arvores de fruto/id=lnot95-29-obj1-2
+
+      escritura$lnot95-30/2/12/1729/testamento/loc=?
+
+         testador$antonio mendonca serrao
+            atr$residencia/lousa
+
+         testamentario$jose antonio monteiro de tavora
+            rel$parentesco/filho/antonio mendonca serrao/lnot95-30-per1
+
+      escritura$lnot95-31/10/12/1728/juro/loc=?
+
+         credor$amaro de oliveira
+            atr$residencia/pegada
+
+         devedor$joao francisco
+            atr$profissao/quilheiro
+            atr$alcunha/da marmeleira
+
+         divida$10000/?/moeda=reis/id=lnot95-31-obj1
+
+      escritura$lnot95-32/10/12/1728/procuracao/loc=?
+
+         outorgante$andre martins
+            atr$residencia/covelos
+
+         outorgante$joana de oliveira
+            atr$residencia/covelos
+            rel$parentesco/mulher/andre martins/lnot95-32-per1
+
+         procurador$manuel de almeida serra
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$eusebio barbosa de almeida
+            atr$residencia/lousa
+
+         procurador$manuel seco nazare ferrador
+            atr$residencia/foz de arouce
+
+         procurador$luis de sousa
+            atr$residencia/coimbra
+
+         procurador$antonio cardoso seara
+            atr$titulo/doutor
+            atr$residencia/montemor o velho
+
+         procurador$bernardo da costa
+            atr$residencia/montemor o velho
+
+         procurador$antonio carvalho de arancio
+            atr$residencia/porto
+            atr$titulo/doutor
+
+         procurador$antonio pereira da silva
+            atr$residencia/porto
+
+         procurador$manuel alves maia
+            atr$residencia/porto
+
+         procurador$manuel simoes
+            atr$residencia/covelos
+
+      escritura$lnot95-33/13/12/1728/compra/loc=?
+
+         comprador$manuel dos reis
+            atr$residencia/ribeira
+
+         vendedor$manuel carvalho varela
+            atr$residencia/papanata
+
+         vendedora$nome desconhecido
+            rel$parentesco/mulher/manuel carvalho varela/lnot95-33-per2
+            atr$residencia/papanata
+
+         bem$terra/local=relvios/id=lnot95-33-obj1-2
+
+      escritura$lnot95-34/6/1/1729/aforamento/loc=?
+
+         arrendatario$alexandre da costa
+            atr$residencia/lousa
+
+         arrendataria$joana seco
+            atr$residencia/lousa
+            rel$parentesco/mulher/alexandre da costa/lnot95-34-per1
+
+         foreira$joana francisca
+            atr$residencia/fiscal
+
+         bem$pedaco de mato/obs=fateusim perpetuo/desc=chamam almofre/id=lnot95-34-obj1-2
+
+      escritura$lnot95-35/14/1/1729/procuracao/loc=?
+
+         outorgante$luisa micaela antonia/f
+            rel$parentesco/viuva/luis antonio tavares pinto/lnot95-35-per14
+            atr$residencia/marmeleira
+
+         procurador$ascenso de matos tavares
+            atr$residencia/gois
+
+         procurador$jose de matos tavares
+            atr$profissao/padre
+            atr$titulo/reverendo
+            atr$residencia/gois
+
+         procurador$jose tavares castanheira
+            atr$profissao/padre
+            atr$titulo/reverendo
+            atr$residencia/gois
+
+         procurador$manuel simoes
+            atr$alcunha/o casado
+            atr$residencia/gois
+
+         procurador$manuel lopes pereira
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$manuel lourenco da fonseca
+            atr$titulo/licenciado
+            atr$residencia/casal de ermio
+
+         procurador$antonio vaz
+            atr$residencia/alca perna
+
+         procurador$joao seco ferreira
+            atr$residencia/foz de arouce
+
+         procurador$luis de sousa carvalho
+            atr$residencia/coimbra
+            atr$titulo/doutor
+
+         procurador$feliz moreira
+            atr$residencia/porto
+            atr$titulo/doutor
+
+         procurador$antonio cardoso seara
+            atr$titulo/doutor
+            atr$residencia/montemor o velho
+
+         procurador$bernardo da costa
+            atr$titulo/doutor
+            atr$residencia/montemor o velho
+
+      escritura$lnot95-36/17/1/1729/juro/loc=?
+
+         credor$manuel lopes serra
+            atr$profissao/prior
+            atr$titulo/reverendo
+
+         devedor$luis de paiva manso
+            atr$residencia/troia/obs=termo de miranda
+
+         divida$60000/?/moeda=reis/obs=pode ler-se no final "nao teve efeito"/id=lnot95-36-obj1
+
+      escritura$lnot95-37/17/1/1729/juro/loc=?
+
+         credor$manuel lopes serra
+            atr$profissao/prior
+            atr$titulo/reverendo
+
+         devedor$luis de paiva manso
+            atr$residencia/troia
+
+         divida$60000/?/moeda=reis/id=lnot95-37-obj1
+
+      escritura$lnot95-38/30/1/1729/juro/loc=?
+
+         credor$ascenso simoes
+            atr$residencia/pereiro de cima
+
+         devedor$manuel lopes pereira
+            atr$titulo/licenciado
+
+         divida$60000/?/moeda=reisa/id=lnot95-38-obj1
+
+      escritura$lnot95-39/4/2/1729/arrolamento/loc=?
+
+         referido$jose antonio monteiro de tavora
+            atr$profissao/padre
+
+         bem$300000 reis/obs=trata-se de uma avaliacao de propriedade/id=lnot95-39-obj1-2
+
+      escritura$lnot95-40/5/2/1729/procuracao/loc=?
+
+         outorgante$manuel rodrigues
+            atr$residencia/fiscal
+
+         outorgante$nome desconhecido/f
+            atr$residencia/fiscal
+            rel$parentesco/mulher/manuel rodrigues/lnot95-40-per1
+
+         outorgante$antonio martins
+            atr$residencia/fiscal
+
+         outorgante$nome desconhecido/f
+            atr$residencia/fiscal
+            rel$parentesco/mulher/antonio martins/lnot95-40-per3
+
+         procuradora$antonia orfa
+
+      escritura$lnot95-41/5/2/1729/juro/loc=?
+
+         credor$joao neto
+            atr$residencia/espinhal
+            atr$titulo/doutor
+
+         devedor$antonio arnault cortes
+            atr$residencia/espinhal
+
+         divida$19200/?/moeda=reis/id=lnot95-41-obj1
+
+      escritura$lnot35-42/12/2/1729/compra/loc=?
+
+         comprador$joao rodrigues pinheiro
+            atr$residencia/lousa
+
+         vendedora$antonia de sao joao
+            atr$residencia/lousa
+
+         bem$casas terrenas/desc=com seu quintal e arvores de fruto e sem fruto/obs=leva de semeadura um alqueire de pao e vale 40000 reis/id=lnot35-42-obj1-2
+
+      cartaperdao$lnot35-43/13/2/1729
+
+         perdoante$joao curado/m
+
+         perdoado$damiao de oliveira das neves/obs=preso na cadeia desta vila
+
+         vitima$caetana de arantes/f
+            rel$parentesco/filha/joao curado/lnot35-43-per1
+
+         crime$/forma=lesa virgindade/tipo=sexual/subtipo=desfloracao/id=lnot35-43-obj1
+
+      escritura$lnot95-44/13/2/1729/compra/loc=?
+
+         comprador$joaquim de franca
+            atr$residencia/lousa
+
+         vendedor$francisco curado
+            atr$residencia/tapada
+
+         vendedora$nome desconhecido
+            atr$residencia/tapada
+            rel$parentesco/mulher/francisco curado/lont95-44-per2
+
+         bem$pedaco de chao/obs=leva de semeadura 2 alquereires de pao/local=tapada/id=lnot95-44-obj1-2
+
+      escritura$lnot95-45/18/2/1729/juro/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$joao francisco
+            atr$residencia/casal do paiva de gaiate
+
+         devedora$joana de paiva
+            atr$residencia/casal do paiva de gaiate
+            rel$parentesco/mulher/joao francisco/lnot95-45-per2
+
+         divida$36000/?/moeda=reis/id=lnot95-45-obj1
+
+      escritura$lnot95-46/5/3/1729/juro/loc=?/obs=dinheiro de companhia e obrigacao de dinheiro
+
+         credor$ascenso de paiva pinto
+
+         devedor$amaro de oliveira
+            atr$residencia/pegada
+
+         devedor$joao de seixas
+            atr$residencia/pousafoles
+
+         divida$58600/?/moeda=reis/obs=229000 ao primeiro devedor e 357600 ao segundo/id=lnot95-46-obj1
+
+      escritura$lnot95-47/7/3/1729/compra/loc=?
+
+         comprador$antonio luis
+            atr$residencia/rego
+
+         vendedor$francisco
+            atr$residencia/casal da povoa
+
+         bem$terra/desc=com duas oliveiras e chamam de trioa/obs=leva de semeadura 3 alqueires de pao/local=termo de ramalhais/id=lnot95-47-obj1-2
+
+      escritura$lnot95-48/11/3/1729/compra/loc=?
+
+         comprador$manuel cabral
+
+         comprador$bebiano nunes
+            atr$residencia/rios
+
+         vendedor$manuel rodrigues
+            atr$residencia/favarica
+
+         bem$terra/obs=leva de semeadura 5 alqueires de pao/id=lnot95-48-obj1-2
+
+         bem$terra/obs=leva de semeadura 5 alqueires de pao/id=lnot95-48-obj2-2
+
+         bem$tapada de terra/obs=leva de semeadura 2 alqueires de pao/id=lnot95-48-obj3-2
+
+         bem$terra/obs=leva de semeadura 2 alqueires de pao/id=lnot95-48-obj4-2
+
+      escritura$lnot95-49/8/4/1729/procuracao/loc=?
+
+         outorgante$manuel rodrigues
+            atr$residencia/semide
+
+         procurador$eusebio barbosa de almeida
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$manuel de almeida serra
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$joao curado
+            atr$residencia/tapada
+
+         procurador$antonio cordeiro gomes
+            atr$titulo/licenciado
+            atr$residencia/miranda
+
+      escritura$lnot95-50/10/5/1729/procuracao/loc=?
+
+         outorgante$raimundo pimentel de macedo
+
+         outorgante$maria caetana/f
+
+         outorgante$jeronima faustina de fria serrao
+            atr$titulo/dona
+
+         procurador$manuel de almeida serra
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         procurador$antonio de arantes
+            atr$residencia/lousa
+
+         procurador$francisco lopes
+            atr$residencia/lousa
+
+         procurador$antonio cardoso
+            atr$residencia/semide
+
+      escritura$lnot95-51/26/4/1729/compra/loc=?
+
+         comprador$antonio luis
+            atr$residencia/reguengo
+
+         vendedor$ambrosio furtado de mesquita
+
+         vendedor$joaquim furtado de mesquita
+
+         vendedora$maria furtada
+            atr$titulo/dona
+            rel$parentesco/irma/joaquim furtado de mesquita/lnot95-51-per3
+
+         vendedora$maria angelica
+            atr$titulo/dona
+            rel$parentesco/sobrinha/joaquim furtado de mesquita/lnot95-51-per3
+
+         vendedora$josefa
+            atr$titulo/dona
+            rel$parentesco/sobrinha/joaquim furtado de mesquita/lnot95-51-per3
+
+         bem$um quarto de casal/id=lnot95-51-obj1-2
+
+      escritura$lnot95-52/26/4/1729/procuracao/loc=?
+
+         outorgante$jeronima de frias serrao/f
+            atr$titulo/dona
+
+         procurador$bartolomeu molineli
+            atr$residencia/coimbra
+
+      escritura$lnot95-53/29/4/1729/procuracao/loc=?
+
+         outorgante$manuel alves
+            atr$residencia/povoa
+
+         procurador$joao barroso pereira
+            atr$residencia/coimbra
+
+         procurador$joao solteiro
+            rel$parentesco/filho/manuel goncalves/lnot95-53-per4
+
+      escritura$lnot95-54/1/5/1729/arrendamento/loc=?
+
+         arrendatario$nome desconhecido/obs=dom martim de sousa e meneses manuel
+            atr$titulo/conde de vila flor
+            atr$oficio/copeiro mor
+
+         rendeiro$joao negro arnault
+
+      escritura$lnot95-55/3/5/1729/venda/loc=?
+
+         comprador$manuel fernandes
+            atr$residencia/rios
+
+         vendedor$antonio rodrigues
+            atr$residencia/era de calva
+
+         bem$terra/obs=leva de semeadura 2 alqueires e uma quarta de pao/id=lnot95-55-obj1-2
+
+      escritura$lnot95-56/16/5/1729/prcuracao/loc=?
+
+         outorgante$helena pinto cabral/f
+            rel$parentesco/viuva/jeronimo henriques arnault/lnot95-56-per3
+
+         procurador$antonio arnaut cortes
+            rel$parentesco/filho/helena pinto cabral/lnot95-56-per1
+
+      escritura$lnot95-57/20/5/1729/procuracao/loc=?
+
+         outorgante$manuel lopes
+
+         outorgante$domingas seca/f
+
+         outorgante$domingas simoes/f
+
+         procurador$antonio rodrigues
+            atr$residencia/lousa
+
+         procurador$manuel rodrigues
+            atr$residencia/lousa
+
+         procurador$antonio carvalho
+            atr$profissao/boticario
+            atr$residencia/coimbra
+
+         procurador$antonio rodrigues
+            atr$profissao/barbeiro
+            atr$residencia/coimbra
+
+      escritura$lnot95-58/26/5/1729/juro/loc=?
+
+         credor$joao lopes serra
+            atr$residencia/casal
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+         devedor$antonio ferreira
+            atr$residencia/ribeira de arouce
+
+         divida$9000/?/moeda=reis/id=lnot95-58-obj1
+
+      cartaperdao$lnot95-59/8/6/1729/obs=nao se trata de um crime mas da anulacao de uma deserdacao
+
+         perdoante$antonio de almeida/m
+
+         perdoante$teresa tomas/f
+            rel$parentesco/mulher/antonio de almeida/lnot95-59-per1
+
+         perdoada$madalena teresa
+            rel$parentesco/filha/antonio de almeida/lnot95-59-per1
+            rel$parentesco/filha/teresa tomas/lnot95-59-per2
+            rel$parentesco/viuva/manuel simoes/lnot95-59-per4
+
+         crime$/forma=ter casado sem o consentimento dos pais/tipo=honra/subtipo=familiar/id=lnot95-59-obj1
+
+      cartaperdao$lnot95-60/8/6/1729
+
+         perdoante$domingas francisca/f
+
+         perdoante$madalena teresa de almeida/f
+            rel$parentesco/viuva/manuel simoes/lnot05-60-per6
+
+         perdoado$vitoriano antonio de arantes
+            atr$residencia/fiscal
+
+         perdoado$antonio de almeida
+            atr$residencia/fiscal
+
+         perdoado$joao tomas
+            rel$parentesco/filho/antonio de almeida/lnot95-60-per4
+            atr$residencia/fiscal
+
+         vitima$manuel simoes/m
+            rel$parentesco/filho/domingas francisca/lnot95-60-per1
+            rel$parentesco/marido/madalena teresa de almeida/lnot95-60-per2
+
+         crime$/forma=ferido e maltratado/tipo=violento/subtipo=agressao/obs=embora a vitima tenha falecido as perdoantes retiram a queixa por considerar que o agredido faleceu por vontade de deus e nao por causa dos ferimentos/id=lnot95-60-obj1
+
+      escritura$lnot95-61/16/6/1729/procuracao/loc=?
+
+         outorgante$teodosio arnault
+
+         outorgante$maria de basto sousa
+            atr$titulo/dona
+            rel$parentesco/mulher/teodosio arnault/lnot95-61-per1
+
+         outorgante$catarina teresa
+            rel$parentesco/sobrinha/teodosio arnault/lnot95-61-per1
+
+         procurador$diogo goncalves
+            atr$residencia/lisboa
+
+      cartaperdao$lnot95-62/26/6/1729/obs=fazem novamente herdeira madalena teresa de almeida
+
+         perdoante$antonio de almeida/m
+
+         perdoante$nome desconhecido/f
+            rel$parentesco/mulher/antonio de almeida/lnot95-59-per1
+
+         perdoada$madalena teresa de almeida
+            rel$parentesco/filha/antonio de almeida/lnot95-62-per1
+            rel$parentesco/filha/nome desconhecido/lnot95-62-per2
+            rel$parentesco/viuva/manuel simoes/lnot95-64-per4
+
+         crime$/forma=casar sem consentimento dos pais/tipo=honra/subtipo=familiar/id=lnot95-62-obj1
+
+      cartaperdao$lnot95-63/26/6/1729
+
+         perdoante$domingas francisca/f
+            rel$parentesco/mulher/manuel francisco/lnot95-63-per7
+            atr$residencia/candal
+
+         perdoante$madalena teresa de almeida/f
+            rel$parentesco/viuva/manuel simoes/lnot95-63-per6
+            atr$residencia/candal
+
+         perdoante$jeronimo solteiro/m
+            atr$residencia/val de nogueira
+            rel$parentesco/filho/domingas francisca/lnot95-63-per1
+
+         perdoante$maria francisca/f
+            rel$parentesco/mulher/lourenco simoes/lnot95-63-per8
+            rel$parentesco/filha/domingas francisca/lnot95-63-per1
+            atr$residencia/candal
+
+         perdoado$vitoriano antonio de arantes
+
+         vitima$manuel simoes/m
+
+         crime$/forma=ataque/tipo=violento/subtipo=agressao/id=lnot95-63-obj1
+
+      escritura$lnot95-64/3/7/1729/compra/loc=?
+
+         comprador$jose nunes pereira
+
+         vendedor$manuel francisco
+            atr$residencia/favarica
+
+         bem$metade de uma terra/desc=leva de semeadura 2 alqueires de pao/obs=por 7500 reis/local=no limite da lousa/id=lnot95-64-obj1-2
+
+      escritura$lnot95-65/29/7/1729/juro/loc=?
+
+         credor$amaro de oliveira
+            atr$residencia/pegada
+
+         devedor$manuel seco
+            atr$residencia/povoa
+
+         divida$20000/?/moeda=reis/id=lnot95-65-obj1
+
+      escritura$lnot95-66/31/7/1729/fianca/loc=?/obs=para ser tutora dos seus filhos
+
+         fiadora$maria duarte do pisao
+            atr$residencia/gaiate
+
+      escritura$lnot95-67/1/8/1729/fianca/loc=?/obs=para ser tutora dos seus filhos
+
+         fiadora$luisa micaela antonia
+            atr$residencia/marmeleira
+            rel$parentesco/viuva/luis antonio tavares pinto/lnot95-67-per2
+
+      escritura$lnot95-68/3/8/1729/procuracao/loc=?
+
+         outorgante$helena pinto cabral/f
+            atr$residencia/lousa
+
+         procurador$antonio de sousa
+            atr$residencia/coimbra
+
+         procurador$manuel duarte barreto
+            atr$residencia/coimbra
+            atr$titulo/reverendo
+
+         procurador$domingos da silva castro
+            atr$residencia/porto
+            atr$titulo/doutor
+
+         procurador$amaro alves
+            atr$residencia/porto
+            atr$titulo/doutor
+
+         procurador$manuel alves maia
+            atr$profissao/solicitador
+            atr$residencia/porto
+
+         procurador$antonio goncalves de carvalho
+            atr$profissao/solicitador
+            atr$residencia/porto
+
+         procurador$miguel luis torres
+            atr$profissao/solicitador
+            atr$residencia/porto
+
+         procurador$jose fernandes martins
+            atr$profissao/solicitador
+            atr$residencia/porto
+
+      escritura$lnot95-69/2/9/1729/nomeacao/loc=?/obs=nomeacao de uma capela a prazo
+
+         outorgante$andre luis da moita
+
+         procurador$manuel luis
+            rel$parentesco/filho/andre luis da moita/lnot95-69-per1
+
+      escritura$lnot95-70/3/8/1729/doacao/loc=?
+
+         doadora$maria fernandes
+            atr$residencia/alfoncheira
+
+         dotado$verissimo da fonseca/m/obs=para casar com luisa maria filha de manuel correia
+
+         bem$latada com sua terra/id=lnot95-70-obj1-2
+
+      escritura$lnot95-71/13/9/1729/juro/loc=?
+
+         credor$francisco ferreira de mendonca
+            atr$profissao/padre
+
+         devedor$antonio duarte
+            atr$profissao/alfaiate
+            atr$residencia/lousa
+
+         devedora$maria ferreira
+            rel$parentesco/mulher/antonio duarte/lnot95-71-per2
+            atr$residencia/lousa
+
+         divida$187000/?/moeda=?/id=lnot95-71-obj1
+
+      escritura$lnot95-72/16/9/1729/juro/loc=?
+
+         credor$antonio serra cortes
+            atr$residencia/quinta do pau
+
+         devedor$manuel ferreira
+            atr$residencia/gandara
+            atr$alcunha/o novo
+
+         divida$21600/?/moeda=reis/id=lnot95-72-obj1
+
+      escritura$lnot95-73/18/9/1729/compra/loc=?
+
+         comprador$manuel ferreira
+            atr$residencia/gandara
+
+         vendedor$manuel carvalho
+            atr$residencia/freixo
+
+         vendedora$maria francisca
+            atr$residencia/freixo
+            rel$parentesco/mulher/manuel carvalho/lnot95-73-per2
+
+         bem$terra/desc=com suas oliveiras e que leva de semeadura 4 alqueires de pao/obs=custou 23000 reis/id=lnot95-73-obj1-2
+
+      escritura$lnot95-74/21/9/1729/aforamento/loc=?
+
+         arrendatario$antonio luis
+
+         arrendataria$nome desconhecido
+            rel$parentesco/mulher/antonio luis/lnot95-74-per1
+
+         foreiro$andre luis
+            atr$residencia/moita
+
+         foreira$ana luis
+            atr$residencia/moita
+            rel$parentesco/mulher/andre luis/lnot95-74-per3
+
+         bem$terra/desc=leva de semeadura 5 alqueires de pao/local=reguengo/id=lnot95-74-obj1-2
+
+      escritura$lnot95-75/30/9/1729/juro/loc=?
+
+         credor$manuel lopes serra
+            atr$titulo/reverendo
+            atr$profissao/prior
+            atr$residencia/lousa
+
+         devedora$francisca arnault neta
+
+         divida$465000/?/moeda=reis/id=lnot95-75-obj1
+
+      escritura$lnot95-76/1/10/1729/compra/loc=?
+
+         comprador$francisca arnault
+
+         vendedora$catarina feia
+
+         bem$olival/local=no limite da lousa/id=lnot95-76-obj1-2
+
+      escritura$lnot95-77/6/10/1729/testamento/loc=?
+
+         testador$martinho simoes
+            atr$residencia/val de neira
+
+      escritura$lnot95-78/12/10/1729/procuracao/loc=?
+
+         outorgante$jose de macedo
+            atr$titulo/doutor
+
+         outorgante$raimundo pimentel
+            rel$parentesco/irmao/jose de macedo/lnot95-78-per1
+
+         outorgante$jeronima faustina frias/f
+            rel$parentesco/irma/jose de macedo/lnot95-78-per1
+
+         outorgante$maria pimentel de macedo/f
+            rel$parentesco/irma/jose de macedo/lnot95-78-per1
+
+         procurador$heitor duarte de miranda/obs=para cobrar naquela cidade 24 alqueires e meio de trigo que joao da rocha pimentel lhes deve
+            atr$residencia/coimbra
+
+      escritura$lnot95-79/6/11/1729/juro/loc=?
+
+         credor$manuel de almeida serra
+            atr$titulo/licenciado
+
+         devedor$jose nunes pereira
+            atr$residencia/lousa
+
+         divida$30000/?/moeda=reis/id=lnot95-79-obj1
+
+      escritura$lnot95-80/12/11/1729/compra/loc=?
+
+         comprador$antonio nunes
+            atr$residencia/cova do lobo
+
+         vendedor$manuel fernandes
+            atr$residencia/termo de miranda
+
+         vendedora$nome desconhecido
+            rel$parentesco/mulher/manuel fernandes/lnot95-80-per2
+
+         bem$olival/local=onde chamam portela no limite dos pegos/obs=por 12000 reis/id=lnot95-80-obj1-2
+
+      escritura$lnot95-81/27/11/1729/compra/loc=?
+
+         comprador$joao rodrigues pinheiro
+            atr$residencia/lousa
+
+         vendedor$silverio jose cortes
+            atr$titulo/licenciado
+            atr$residencia/lousa
+
+         vendedora$nome desconhecido
+            atr$residencia/lousa
+            rel$parentesco/mulher/silverio jose cortes/lnot95-81-per-2
+
+         bem$oliveiras/local=cruz ddos pegos/id=lnot95-81-obj1-2
+
+      escritura$lnot95-82/6/12/1729/aforamento/loc=?
+
+         arrendatario$manuel vaz
+            atr$titulo/licenciado
+            atr$residencia/val de neira
+
+         foreiro$pedro simoes
+            atr$residencia/val de maceira
+
+         foreira$antonia lopes
+            atr$residencia/val de maceira
+            rel$parentesco/mulher/pedro simoes/lnot95-82-per2
+
+         foreiro$francisco lopes
+            atr$ec/solteiro
+            atr$residencia/val de maceira
+            rel$parentesco/filho/pedro simoes/lnot95-82-per2
+
+      escritura$lnot95-83/6/12/1729/doacao/loc=?/obs=de todos os bens moveis e de raiz
+
+         doadora$maria luis
+
+         dotado$francisco lopes
+            rel$parentesco/filho/pedro simoes/lnot95-83-per5
+            rel$parentesco/filho/sebastiana simoes/lnot95-83-per6
+
+         dotada$josefa lopes
+            rel$parentesco/filha/pedro simoes/lnot95-83-per5
+            rel$parentesco/filha/sebastiana simoes/lnot95-83-per6
+
+         dotada$joana maria
+            rel$parentesco/filha/pedro simoes/lnot95-83-per5
+            rel$parentesco/filha/sebastiana simoes/lnot95-83-per6
+
+      escritura$lnot95-84/7/12/1729/juro/loc=?
+
+         credor$joao neto
+            atr$titulo/doutor
+
+         devedor$belchior henrique arnault
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+         divida$100000/?/moeda=?/id=lnot95-84-obj1
+
+      escritura$lnot95-85/10/12/1729/juro/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$manuel henriques
+
+         devedora$ana seca
+            rel$parentesco/mulher/manuel henriques/lnot95-85-per2
+
+         divida$28800/?/moeda=?/id=lnot95-85-obj1
+
+      escritura$lnot95-86/19/12/1729/compra/loc=?
+
+         comprador$ascenso de paiva pinto
+
+         vendedor$jose de oliveira
+
+         vendedora$clara de sequeira
+            rel$parentesco/mulher/jose de oliveira/lnot95-86-per2
+
+         bem$um bocado de chao com sua casa/local=val de aires/id=lnot95-86-obj1-2
+
+      escritura$lnot95-87/13/12/1729/compra/loc=?
+
+         comprador$ascenso de paiva pinto
+
+         vendedora$isabel coutinho
+            atr$residencia/rivo
+
+         vendedora$catarina arnault
+            atr$titulo/dona
+            atr$residencia/rivo
+
+         bem$terras matos pinhais olivais e vinhas/obs=tudo pelo valor de 340000 reis/id=lnot95-87-obj1-2
+
+      escritura$lnot95-88/13/12/1729/compra/loc=?
+
+         comprador$manuel de almeida serra
+            atr$titulo/doutor
+
+         vendedora$isabel teles coutinho
+            rel$parentesco/viuva/martinho negrao arnault/lnot95-88-per4/obs=era capitao
+            atr$residencia/quinta de val damiao arrabalde de coimbra
+
+         vendedora$nome desconhecido
+            rel$parentesco/filha/isabel teles coutinho/lnot95-88-per2
+
+         bem$moinhos com suas casa currais e tapada/local=ponte do areal/id=lnot95-88-obj1-2
+
+      escritura$lnot95-89/15/12/1729/compra/loc=?
+
+         comprador$antonio fernandes frade
+            atr$residencia/cova do lobo
+
+         vendedor$antonio fernandes
+            atr$alcunha/o certo
+
+         vendedor$manuel rodrigues
+            atr$residencia/era de calva
+
+         bem$tarro de terra/desc=com suas videiras/id=lnot95-89-obj1-2
+
+      escritura$lnot95-90/11/1/1730/juro/loc=?
+
+         credora$catarina
+            rel$parentesco/filha/domingos goncalves/lnot95-90-per3/obs=ja falecido
+            atr$residencia/papanata
+
+         devedor$antonio duarte
+
+         divida$25130/?/moeda=reis/id=lnot95-90-obj1
+
+      escritura$lnot95-91/17/1/1730/procuracao/loc=?
+
+         outorgante$henrique furtado de morai
+
+         procurador$luis joao
+            atr$residencia/charneca termo de pombal
+
+      escritura$lnot95-92/19/1/1730/procuracao/loc=?
+
+         outorgante$antonio cortes
+            atr$residencia/favarica
+
+         procurador$joao curado
+            atr$residencia/tapada
+
+      escritura$lnot95-93/29/1/1730/juro/loc=?
+
+         credor$joao lopes serra
+            atr$residencia/casal
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+         devedora$maria fernandes
+            rel$parentesco/viuva/miguel da cruz/lnot95-93-per3
+            atr$residencia/cova do lobo
+
+         divida$20000/?/moeda=reis/id=lnot95-93-obj1
+
+      escritura$lnot95-94/1/2/1730/procuracao/loc=?
+
+         outorgante$antonio cortes
+            atr$residencia/mingachos
+
+         procurador$tome de oliveira
+            atr$residencia/foz de arouce
+
+      escritura$lnot95-95/4/2/1730/procuracao/loc=?
+
+         outorgante$jose francisco de almeida
+            atr$residencia/alfoncheira
+
+         outorgante$nome desconhecido/m
+            rel$parentesco/mulher/jose francisco de almeida/lnot95-95-per1
+            atr$residencia/alfoncheira
+
+         procurador$antonio fernandes
+            atr$alcunha/camacho
+            atr$residencia/pampilhosa
+
+      escritura$lnot95-96/4/2/1730/procuracao/loc=?
+
+         outorgante$joao lopes peixe
+
+         procurador$manuel de arantes
+            atr$residencia/lousa
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+      escritura$lnot95-97/10/2/1730/juro/loc=?
+
+         credor$ascenso de paiva pinto
+
+         devedor$luis miguel das neves
+            atr$residencia/vilarinho
+
+         divida$40000/?/moeda=reis/id=lnot95-97-obj1
+
+      escritura$lnot05-98/19/2/1730/compra/loc=?
+
+         comprador$gregorio simoes
+            atr$residencia/lousa
+
+         vendedor$miguel goncalves neto
+            atr$residencia/papanata
+
+         bem$uma terra/id=lnot05-98-obj1-2
+
+      escritura$lnot95-99/19/2/1730/procuracao/loc=?
+
+         outorgante$manuel lopes quaresma
+            atr$residencia/lousa
+
+         procurador$bras antonio rosa
+            atr$titulo/doutor
+            atr$residencia/porto
+
+         procurador$domingos silva castro
+            atr$titulo/doutor
+            atr$residencia/porto
+
+         procurador$manuel alves maia
+            atr$profissao/solicitador
+            atr$residencia/porto
+
+      escritura$lnot95-100/7/3/1730/fianca/loc=?/obs=para lhes ser entregue os bens administrados por jose absente cunhado do fiador
+
+         fiador$antonio luis
+
+         fiadora$nome desconhecido
+            rel$parentesco/mulher/antonio luis/lnot95-100-per1
+
+      escritura$lnot95-101/9/3/1730/doacao/loc=?/obs=todos os bens moveis e de raiz
+
+         doadora$ana francisca
+            rel$parentesco/mulher/domingos simoes/lnot95-101-per3
+
+         dotado$luis
+            rel$parentesco/enteado/ana francisca/lnot95-101-per1
+            rel$parentesco/filho/nome desconhecido/lnot95-101-per4/obs=primeira mulher de luis simoes
+            rel$parentesco/filho/domingos simoes/lnot95-101-per3
+
+      escritura$lnot95-102/16/3/1730/juro/loc=?
+
+         credora$luisa micaela antonia
+            rel$parentesco/viuva/luis antonio tavares pinto/lnot95-102-per5
+            atr$residencia/marmeleira
+
+         credora$nome desconhecido
+            rel$parentesco/filha/luisa micaela antonia/lnot95-102-per1
+
+         devedor$antonio da fonseca
+            atr$titulo/doutor
+
+         devedora$nome desconhecido
+            rel$parentesco/mulher/antonio da fonseca/lnot95-102-per3
+
+         divida$120000/?/moeda=reis/id=lnot95-102-obj1
+
+      escritura$lnot95-103/17/3/1730/juro/loc=?
+
+         credor$joao neto arnault
+            atr$titulo/doutor
+            atr$residencia/espinhal
+
+         devedor$manuel correia
+            atr$residencia/val de nogueira
+
+         divida$50000/?/moeda=reis/id=lnot95-103-obj1
+
+      escritura$lnot95-104/3/4/1730/juro/loc=?
+
+         credor$luisa micaela antonia
+
+         devedor$manuel francisco
+
+         devedora$maria ferreira
+            rel$parentesco/mulher/manuel francisco/lnot95-104-per2
+
+      escritura$lnot95-105/25/5/1730/compra/loc=?
+
+         comprador$antonio de almeida
+            atr$titulo/reverendo
+            atr$profissao/padre
+            atr$residencia/foz de arouce
+
+         vendedor$joao seco jorge
+            atr$residencia/fiscal
+
+         bem$olival/local=casinha termo de alca perna/id=lnot95-105-obj1-2
+
+      escritura$lnot95-106/2/6/1730/compra/loc=?
+
+         comprador$manuel da costa
+            atr$residencia/covelos
+
+         vendedor$luis vaz dias
+            atr$residencia/foz de arouce
+
+         bem$terra/obs=chamam de chanis/local=limite de foz de arouce/id=lnot95-106-obj1-2
+
+      escritura$lnot96-107/2/6/1730/compra/loc=?
+
+         comprador$ascenso de paiva pinto
+
+         vendedora$ana ferreira
+            rel$parentesco/viuva/inacio seco/lnot95-107-per3
+            atr$residencia/barca
+
+         bem$partes de um lagar e moinhos com tres pedras/local=barca/id=lnot96-107-obj1-2
+
+      escritura$lnot95-108/8/6/1730/compra/loc=?
+
+         comprador$antonio das neves
+            atr$residencia/vilarinho
+
+         vendedor$manuel pinheiro
+            atr$ec/solteiro
+            atr$idade/maior de 30 anos
+            atr$residencia/vilarinho
+
+         bem$terra/desc=leva de semeadura 3 alqueires de pao/obs=com suas videiras e mais arvores pelo preco de 24000/local=chao picoito limite de vilarinho/id=lnot95-108-obj1-2
+
+      escritura$lnot95-109/6/7/1730/procuracao/loc=?
+
+         outorgante$antonio monteiro da mota
+            atr$residencia/lousa
+
+         outorgante$bernarda de macedo
+            rel$parentesco/filha/antonio monteiro da mota/lnot95-109-per1
+
+         procurador$luis de sousa e carvalho
+            atr$titulo/doutor
+            atr$residencia/coimbra
+
+         procurador$francisco de cunha e ataide
+            atr$titulo/doutor
+            atr$residencia/coimbra
+
+         procurador$joao velho de serra e almeida
+            atr$titulo/doutor
+            atr$residencia/coimbra
+
+         procurador$domingos da costa montanha
+            atr$titulo/doutor
+            atr$residencia/coimbra
+
+      escritura$lnot95-110/25/7/1730/juro/loc=?
+
+         credor$ascenso de paiva pinto
+
+         devedor$manuel correia
+            atr$ec/viuvo
+            atr$residencia/val de nogueira
+
+         divida$31200/?/moeda=reis/id=lnot95-110-obj1
+
+      escritura$lnot95-111/28/7/1730/compra/loc=?
+
+         comprador$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         vendedor$mateus vaz
+            atr$residencia/foz de arouce
+
+         bem$terra/obs=leva de semeadura 5 alqueires de pao/local=limite de foz de arouce/id=lnot95-111-obj1-2
+
+      escritura$lnot95-112/9/8/1730/compra/loc=?/obs=pelo preco de 8000
+
+         comprador$joao francisco
+            atr$residencia/sarnadinha
+
+         vendedor$luis miguel das neves
+            atr$residencia/vilarinho
+
+         bem$terra/local=ameixieira limite do fiscal/id=lnot95-112-obj1-2
+
+         bem$terra/local=caridade/id=lnot95-112-obj2-2
+
+      escritura$lnot95-113/9/8/1730/compra/loc=?
+
+         comprador$joao da costa
+            atr$residencia/fiscal
+            atr$titulo/licenciado
+            atr$titulo/reverendo
+
+         vendedor$joao francisco
+            atr$residencia/sarnadinha
+
+         vendedora$nome desconhecido
+            atr$residencia/sarnadinha
+            rel$parentesco/mulher/joao francisco/lnot95-113-per2
+
+         bem$terra/obs=chamada de oliveiras ou olival do senhor/desc=leva de semeadura 3 alqueires de pao/local=limite do fiscal/id=lnot95-113-obj1-2
+
+         bem$terra/obs=chamam de caridade/local=limite do fiscal/id=lnot95-113-obj2-2
+
+      escritura$lnot95-114/20/8/1730/juro/loc=?
+
+         credor$antonio cardoso
+            atr$residencia/couto de semide
+
+         devedor$jeronimo da costa de pavia
+            atr$residencia/couto de semide
+
+      escritura$lnot95-115/13/9/1730/juro/loc=?
+
+         credor$manuel lopes quaresma
+
+         devedor$antonio simoes
+            atr$residencia/povoa do fiscal
+
+         devedor$luis fernandes
+            atr$residencia/povoa do fiscal
+
+         divida$19200/?/moeda=reis/id=lnot95-115-obj1
+
+      escritura$lnot95-116/28/9/1730/doacao/loc=?/obs=com todo o direito do que lhes pertencia numa causa de pertences que corriam no juizo do couto de semide em que foi executado manuel ferreira de brito e sua mulher
+
+         doador$manuel simoes
+
+         doadora$nome desconhecido
+            rel$parentesco/mulher/manuel simoes/lnot95-117-per1
+
+         dotado$cristovao ribeiro da costa
+            atr$residencia/semide
+
+      escritura$lnot95-117/3/10/1730/compra/loc=?
+
+         comprador$antonio francisco
+            atr$residencia/lousa
+
+         vendedor$jose da costa
+            atr$residencia/lousa
+            atr$profissao/sapateiro
+
+         bem$casas de sobredo/obs=pelo preco de 21000 reis/id=lnot95-117-obj1-2
+
+      escritura$lnot95-118/4/10/1730/aforamento/loc=?/obs=em fateusim perpetuo de umas casas de sobrado
+
+         arrendatario$joao lopes serra
+            atr$titulo/reverendo
+            atr$titulo/padre
+
+         foreiro$caetano simoes
+
+         foreiro$francisco lopes
+
+      escritura$lnot95-119/8/10/1730/compra/loc=?
+
+         comprador$pascoal simoes ferreira
+            atr$residencia/ceira
+
+         vendedor$manuel carvalho
+            atr$residencia/papanata
+
+         vendedora$nome desconhecido
+            atr$residencia/papanata
+            rel$parentesco/mulher/manuel carvalho/lnot95-119-per2
+
+         bem$fazenda/obs=pelo preco de 40000/desc=com as casas terras matos olivais castanheiros pousios e arvores de fruto e sem fruto/local=nos vales/id=lnot95-119-obj1-2
+
+      escritura$lnot95-120/19/10/1730/juro/loc=?
+
+         credor$ascenso de paiva pinto
+            atr$residencia/foz de arouce
+
+         devedor$antonio cortes
+            atr$alcunha/o velho
+            atr$residencia/olival
+
+         devedor$antonio cortes
+            atr$alcunha/o novo
+            atr$residencia/mingachos
+
+         divida$16000/?/moeda=reis/id=lnot95-120-obj1
+
+      escritura$lnot95-121/27/10/1730/juro/loc=?
+
+         credor$joao neto arnault
+            atr$titulo/doutor
+
+         devedor$antonio goncalves
+            atr$alcunha/o azedo
+            atr$residencia/olival
+
+         divida$40000/?/moeda=reis/id=lnot95-121-obj1
+
+      escritura$lnot05-122/29/10/1730/juro/loc=?
+
+         credor$pascoal simoes ferreira
+            atr$residencia/ceira
+
+         devedor$joao francisco
+            atr$residencia/freixo
+
+         divida$20000/?/moeda=reis/id=lnot05-122-obj1
+
+      escritura$lnot95-123/25/11/1730/procuracao/loc=?/obs=+ara o procurador velar pelos interesses das outorgantes no inventario de bens de joaquim magalhaes mexia
+
+         outorgante$maria caetana pimentel de proenca
+            atr$titulo/dona
+
+         outorgante$maria jose
+            atr$titulo/dona
+            rel$parentesco/filha/maria caetana pimentel de proenca/lnot-95-123-per1
+
+         procurador$antonio morais cortes
+            atr$residencia/casal de ermio
+
+            referido$jeronimo de magalhaes mexia
+               rel$parentesco/marido/maria caetana pimentel de proenca/lnot-95-123-per1
+               rel$parentesco/pai/maria jose/lnot-95-123-per2
+
+      escritura$lnot95-124/25/11/1730/compra/loc=?
+
+         comprador$manuel de almeida serra
+            atr$titulo/doutor
+
+         vendedor$joao da costa
+            atr$residencia/lousa
+
+         vendedora$ana henriques
+            atr$residencia/lousa
+            rel$parentesco/mulher/joao da costa/lnot95-124-per2
+
+         bem$casas/desc=de sobrado/obs=com suas serventias/local=rua nova da lousa/id=lnot95-124-obj1-2
+
+      escritura$lnot95-125/25/11/1730/arrendamento/loc=?/obs=nao teve efeito
+
+         arrendatario$manuel de almeida serra
+            atr$titulo/licenciado
+            atr$funcao/mordomo da confraria de nossa senhora da igreja da lousa
+
+         arrendatario$joaquim de franca
+            atr$funcao/mordomo da confraria de nossa senhora da igreja da lousa
+
+         rendeiro$joao rodrigues soares
+
+         rendeiro$francisco soares
+
+         rendeiro$antonio rodrigues
+            atr$residencia/lousa
+
+         bem$olivais/local=ribeira da fornea/id=lnot95-125-obj1-2
+
+      escritura$lnot95-126/26/11/1730/compra/loc=?
+
+         comprador$antonio luis supico
+            atr$residencia/lousa
+
+         vendedor$martinho freire
+            atr$residencia/casal dos rios
+
+         vendedora$nome desconhecido
+            rel$parentesco/mulher/martinho freire/lnot95-126-per2
+            atr$residencia/casal dos rios
+
+         bem$pedaco de chao/local=cerejal/id=lnot95-126-obj1-2
+
+      escritura$lnot95-127/3/12/1730/procuracao/loc=?
+
+         outorgante$maria caetana pimentel de proenca
+            atr$residencia/lousa
+
+         outorgante$ana josefa mexia
+            rel$parentesco/filha/maria caetana pimentel de proenca/lnot95-127-per1
+            atr$residencia/lousa
+
+         procurador$antonio de morais cortes
+            atr$residencia/casal de ermio
+
+      escritura$lnot95-128/10/12/1730/juro/loc=?
+
+         credor$antonio da serra cortes
+
+         devedor$antonio da serra
+            atr$titulo/reverendo
+            atr$profissao/padre
+
+         devedor$bernardo da costa
+
+         devedora$maria da serra
+            rel$parentesco/mulher/bernardo da costa/lnot95-128-per3
+
+         divida$85000/?/moeda=reis/id=lnot95-128-obj1
+
+      escritura$lnot95-129/10/12/1730/procuracao/loc=?/obs=para os procuradores irem comprer umas casas e metade de uma quintal
+
+         outorgante$josefa
+            rel$parentesco/filha/gaspar duarte cortes/lnot95-129-per7
+
+         outorgante$francisca
+            rel$parentesco/filha/gaspar duarte cortes/lnot95-129-per7
+
+         outorgante$angela
+            rel$parentesco/filha/gaspar duarte cortes/lnot95-129-per7
+
+         procurador$silverio jose cortes
+            atr$titulo/licenciado
+
+         procurador$eusebio barbosa de almeida
+            atr$titulo/licenciado
+
+         procurador$manuel lopes pereira
+            atr$titulo/licenciado
+
+      escritura$lnot95-130/21/12/1730/juro/loc=?
+
+         credor$pascoal simoes
+            atr$residencia/ceira
+
+         devedor$antonio simoes
+
+         devedora$nome desconhecido
+            rel$parentesco/mulher/antonio simoes/lnot95-130-per2
+
+         divida$7200/?/moeda=reis/id=lnot95-130-obj1
+
+      escritura$lnot95-131/2/2/1731/juro/loc=?
+
+         credora$joana lopes serra
+
+         devedor$manuel goncalves
+            atr$profissao/ferreiro
+            atr$residencia/papanata
+
+         divida$14000/?/moeda=reis/id=lnot95-131-obj1
+
+      escritura$lnot95-132/13/2/1731/procuracao/loc=?
+
+         outorgante$francisca rodrigues
+            rel$parentesco/viuva/jose dias/lnot95-132-per6
+
+         procurador$jose antonio
+            rel$parentesco/filho/francisca rodrigues/lnot95-132-per1
+
+         procurador$manuel de almeida serra
+            atr$residencia/alfoncheira
+            atr$titulo/licenciado
+
+         procurador$vitoriano de arante
+
+         procurador$tomas galvao
+            atr$residencia/lousa
+
+      escritura$lnot95-133/20/2/1731/compra/loc=?
+
+         comprador$manuel joao
+            atr$residencia/vilarinho
+
+         vendedor$manuel negrao
+
+         vendedora$nome desconhecido
+            rel$parentesco/mulher/manuel negrao/lnot95-133-per2
+
+      escritura$lnot95-134/3/3/1731/quitacao/loc=?
+
+         quitante$manuel vaz cortes
+
+         quitantef$nome desconhecido
+            rel$parentesco/mulher/manuel vaz cortes/lnot95-134-per1
+
+         quitado$manuel simoes
