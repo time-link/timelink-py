@@ -21,6 +21,14 @@ TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # conn_string local file version
 # from pathlib import Path
 sqlite_db = Path(TEST_DIR, "sqlite/test.db")
+
+# Extract the directory path
+directory = os.path.dirname(sqlite_db)
+
+# Create the directory if it doesn't exist
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
 conn_string = f'sqlite:///{sqlite_db}?check_same_thread=False'
 
 # con_string sqlite in memory version

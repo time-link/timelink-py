@@ -58,6 +58,8 @@ def test_import_with_custom_mapping(dbsystem: Session):
     )
     sfile = stats["file"]
     assert "dev1692" in sfile.name
+    dev = session.get(Entity, "dev1692-per5")
+    assert dev is not None, "could not get an entity from special mapping"
     caso = session.get(Entity, "c1692-antonio-cordeiro-alcouc")
     caso_kleio = caso.to_kleio()
     assert len(caso_kleio) > 0
