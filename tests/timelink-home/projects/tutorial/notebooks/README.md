@@ -13,7 +13,7 @@ You also need to install Docker.
    * choose Python interpreter from list
    * accept suggestion to install notebooks/requirements.txt
 4. Install jupyter extension
-5. Open notebook 0-tutorial
+5. Open notebook [00-tutorial-index.ipynb]
 6. in the upper right corner select the environment you just created
 7. Install Docker. See https://docs.docker.com/get-docker/
 
