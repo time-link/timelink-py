@@ -1,6 +1,7 @@
 import logging
 import warnings
 from typing import Optional, Type, List
+import json
 
 # pylint: disable=import-error
 
@@ -369,6 +370,7 @@ class PomSomMapper(Entity):
         will return the ORM class corresponding to the groupname "act"
         """
         return PomSomMapper.group_orm_models.get(groupname, None)
+
     @classmethod
     def ensure_all_mappings(cls, session):
         """

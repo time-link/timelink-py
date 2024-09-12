@@ -546,6 +546,26 @@ class TimelinkDatabase:
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session)
 
+        # Keep a dictionary of group names to ORM classes
+        # this is necessary because the Kleio export file
+        # only exports a class once, but a given source can
+        # have multiple groups associated with the same class.
+        # That is the case with persons, for example.
+        # If later we want to know which ORM class to use for
+        # for a given group, we can use this dictionary.
+        # which is based on the actual class associated with each
+        # group in the database.
+
+        stmt = select(Entity.pom_class, Entity.groupname).distinct()
+        results = session.execute(stmt).all()
+        for pom_class, groupname in results:
+            if groupname is not None:
+                gname = groupname
+            else:
+                gname = 'class'
+
+            Entity.group_models[gname] = Entity.get_orm_for_pom_class(pom_class)
+
     def __enter__(self):
         return self.session()
 
@@ -850,10 +870,10 @@ class TimelinkDatabase:
             ORM class
         """
         if isinstance(class_id, list):
-            return [self.get_model_by_name(c) for c in class_id]
-        return self.get_model_by_name(class_id)
+            return [self.get_model_by_name(c, make_alias=True) for c in class_id]
+        return self.get_model_by_name(class_id, make_alias=False)
 
-    def get_model_by_name(self, class_or_groupname: str):
+    def get_model_by_name(self, class_or_groupname: str, make_alias=False):
         """Get the ORM class for a entity type by name
         or for a group name. If the name is not found, return None
 
@@ -867,12 +887,18 @@ class TimelinkDatabase:
 
         orm_model = Entity.get_orm_for_pom_class(class_or_groupname)
         if orm_model is not None:
-            return aliased(orm_model, flat=True)
+            if make_alias:
+                return aliased(orm_model, flat=True)
+            else:
+                return orm_model
         else:
-            return aliased(
-                PomSomMapper.get_orm_for_group(class_or_groupname),
-                flat=True
-            )
+            orm_model = Entity.get_orm_for_group(class_or_groupname)
+            if orm_model is None:
+                return None
+            if make_alias:
+                return aliased(orm_model, flat=True)
+            else:
+                return orm_model
 
     def get_table(self, class_id: str):
         """Get the ORM table for a entity type
