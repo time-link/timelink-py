@@ -76,6 +76,9 @@ class Entity(Base):
         cascade="all",
     )
 
+    # group_models = contains the correspondence between groupname and ORM class
+    group_models = dict()
+
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
     #      see https://github.com/sqlalchemy/sqlalchemy/issues/5445
@@ -136,6 +139,15 @@ class Entity(Base):
             ormclass.__mapper__.local_table.name: ormclass
             for ormclass in Entity.get_orm_entities_classes()
         }
+
+    @classmethod
+    def get_orm_for_group(cls, groupname: str):
+        """
+        Entity.get_orm_for_group("acts")
+
+        will return the ORM class handling a given group
+        """
+        return cls.group_models.get(groupname, None)
 
     @classmethod
     def get_som_mapper_to_orm_as_dict(cls):
