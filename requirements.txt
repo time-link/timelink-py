@@ -32,6 +32,7 @@ setuptools>=65.5.1
 sqlalchemy-utils
 sqlalchemy-views
 SQLAlchemy~=2.0.0
+sqlalchemy-utils
 starlette-admin
 typer~=0.4.0
 urllib3>=1.26.19
