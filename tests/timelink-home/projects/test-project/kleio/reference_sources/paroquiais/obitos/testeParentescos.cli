@@ -1,15 +1,15 @@
-kleio$gacto2.str/translations=10
+kleio$gacto2.str/translations=11
    fonte$testeParentescos/tipo=reg paroquiais/localizacao=nao se le/data=1688/obs=feito para testar os parentescos quando estao separados de n e tb a geracao de um ls para a causa de morte
 
       obito$ox-1/1/1/1688
 
-         n$antonia francisca/f
+         n$antonia francisca/f/id=ox-1-per1-11
 
          causa$sida
 
          locf$rua
 
-         pai$joao rodrigues
+         pai$joao rodrigues/id=ox-1-per2-11
             ls$residencia/mogadouro
             ls$morto/antes
 
@@ -17,7 +17,7 @@ kleio$gacto2.str/translations=10
 
       obito$ox-2/1/1/1688
 
-         n$antonia francisca/f
+         n$antonia francisca/f/id=ox-2-per1-11
 
          causa$sida
 
@@ -25,13 +25,13 @@ kleio$gacto2.str/translations=10
 
          locf$rua
 
-         mae$maria rodrigues
+         mae$maria rodrigues/id=ox-2-per2-11
             ls$residencia/mogadouro
             ls$morto/antes
 
       obito$ox-3/1/1/1688
 
-         n$antonia francisca/f
+         n$antonia francisca/f/id=ox-3-per1-11
 
          causa$sida
 
@@ -39,19 +39,19 @@ kleio$gacto2.str/translations=10
 
          locf$rua
 
-         marido$joao rodrigues
+         marido$joao rodrigues/id=ox-3-per2-11
             ls$residencia/mogadouro
             ls$morto/antes
 
       obito$ox-4/1/1/1688
 
-         n$antonio francisca/m
+         n$antonio francisca/m/id=ox-4-per1-11
 
          causa$sida
 
          locf$rua
 
-         mulher$joana rodrigues
+         mulher$joana rodrigues/id=ox-4-per2-11
             ls$residencia/mogadouro
             ls$morto/antes
 

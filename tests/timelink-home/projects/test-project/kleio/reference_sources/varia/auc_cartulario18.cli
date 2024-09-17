@@ -1,16 +1,16 @@
-kleio$gacto2.str/translations=10
+kleio$gacto2.str/translations=11
    fonte$auc_cartulario18/tipo=escrituras/loc=auc/obs=livro encadernado de notas n�18, santa clara de coimbra, cota:iii-1.d-16-3-19, tabeliao gregorio lourenco
 
       escritura$esc1517-e1/9/6/1517/aforamento em fatiosim/fol=3v-6/loc=grades/sumario=aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e joao esteves, de um assento de casas, moinho e levadas, acude e oito currais, sitos em portunhos, lugar da crota
 
-         senhoria$margarida de meneses
+         senhoria$margarida de meneses/id=esc1517-e1-per1-11
             ls$cargo/abadessa
 
-         foreiro$joao esteves
+         foreiro$joao esteves/id=esc1517-e1-per2-11
             ls$profissao/moleiro
             ls$residencia/crota junto de portunhos, termo da vila de anca
 
-         foreira$maria lopes
+         foreira$maria lopes/id=esc1517-e1-per3-11
             rel$parentesco/mulher/joao esteves/esc1517-e1-per2
 
          aforamento$um assento de casas/id=esc1517-e1-obj1-3
@@ -26,28 +26,28 @@ kleio$gacto2.str/translations=10
             atr$foro/um capao
             atr$multa/vinte mil reais de pena por incumprimento
 
-         test$pedro goncalves/m/obs=assinou por maria lopes
+         test$pedro goncalves/m/obs=assinou por maria lopes/id=esc1517-e1-per4-11
             ls$cargo/escudeiro do mosteiro
             rel$profissional/vedor/margarida de meneses/esc1517-e1-per1
             ls$cargo/vedor do mosteiro
 
-         test$antao gil/m
+         test$antao gil/m/id=esc1517-e1-per5-11
             rel$profissional/carniceiro/margarida de meneses/esc1517-e1-per1
 
       escritura$esc1518-e2/2/11/1518/aforamento em fatiosim%para sempre/fol=6-8v/loc=grades/sumario=aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e joao jorge, de um meio casal sito no sebal grande
 
-         senhoria$margarida de meneses
+         senhoria$margarida de meneses/id=esc1518-e2-per1-11
             ls$cargo/abadessa
 
-         foreiro$joao jorge
+         foreiro$joao jorge/id=esc1518-e2-per2-11
             ls$residencia/sebal grande
             ls$profissao/lavrador
 
-            referido$jorge pires
+            referido$jorge pires/id=esc1518-e2-per2-11-per3-11
                rel$parentesco/pai/joao jorge/esc1518-e2-per2
                ls$morto/antes
 
-            referida$catarina martins
+            referida$catarina martins/id=esc1518-e2-per2-11-per4-11
                rel$parentesco/mae/joao jorge/esc1518-e2-per2
 
          aforamento$meio casal/id=esc1518-e2-obj1-3
@@ -64,29 +64,29 @@ kleio$gacto2.str/translations=10
             atr$foro/um alqueire de trigo
             atr$foro/um alqueire de cevada/obs=o pao debulhado e limpo na eira; o linho curtido e enxuto; o vinho a bica do lagar e outras novidades no tempo do recolher; primeira paga no ano seguinte
 
-         test$pedro goncalves/m
+         test$pedro goncalves/m/id=esc1518-e2-per5-11
             rel$profissional/escudeiro/margarida de meneses/esc1518-e2-per1
             rel$profissional/vedor/margarida de meneses/esc1518-e2-per1
             ls$cargo/vedor do mosteiro
             ls$cargo/escudeiro do mosteiro
 
-         test$pedro anes/m
+         test$pedro anes/m/id=esc1518-e2-per6-11
             rel$profissional/mordomo/margarida de meneses/esc1518-e2-per1/obs=em urzelhe
 
-         test$pedro anes/m
+         test$pedro anes/m/id=esc1518-e2-per7-11
             rel$parentesco/filho/pedro anes/esc1518-e2-per6
 
       escritura$esc1519-e3/4/1/1519/aforamento em fatiosim% para sempre/fol=9-11v/loc=no curral, nas pousadas de pedro goncalves%, escudeiro e vedor do mosteiro/sumario=aforamento em fatiosim ara sempre celebrado entre mosteiro de santa clara e pedro anes de urzelhe, de uma vinha e um pomar de arvores sitas no lugar de urzelhe, termo de miranda
 
-         senhoria$margarida de meneses
+         senhoria$margarida de meneses/id=esc1519-e3-per1-11
             ls$cargo/abadessa
 
-         foreiro$pedro anes
+         foreiro$pedro anes/id=esc1519-e3-per2-11
             ls$profissao/lavrador
             ls$residencia/urzelhe
             rel$profissional/mordomo/margarida de meneses/esc1519-e3-per1
 
-         foreira$beatriz alvares
+         foreira$beatriz alvares/id=esc1519-e3-per3-11
             rel$parentesco/mulher/pedro anes/esc1519-e3-per2
 
          aforamento$uma vinha/id=esc1519-e3-obj1-3
@@ -96,42 +96,42 @@ kleio$gacto2.str/translations=10
             atr$foro/uma galinha/obs=pela vinha
             atr$foro/um frango/obs=do pomar; pago dentro do mosteiro com pena de dez mil reais por incumprimento; vinho a bica do lagar e fruta ao pe da arvore
 
-         test$joao anes/m
+         test$joao anes/m/id=esc1519-e3-per4-11
             ls$profissao/lavrador
             rel$profissional/mordomo/margarida de meneses/esc1519-e3-per1
 
-         test$pedro anes/m
+         test$pedro anes/m/id=esc1519-e3-per5-11
 
-         test$lourenco pires/m
+         test$lourenco pires/m/id=esc1519-e3-per6-11
             ls$profissao/sapateiro
 
-         referido$diogo lopes
+         referido$diogo lopes/id=esc1519-e3-per7-11
             ls$cargo/capelao/obs=da senhora condessa de penela a velha
 
-         test$pedro vaz/m
+         test$pedro vaz/m/id=esc1519-e3-per8-11
             ls$ec/solteiro
             rel$profissional/criado/diogo lopes/esc1519-e3-per7
 
-         test$joao rodrigues/m
+         test$joao rodrigues/m/id=esc1519-e3-per9-11
             ls$profissao/carpinteiro
             ls$residencia/pacos do mosteiro
 
       escritura$esc1519-e4/21/10/1519/renuncia, aforamento fatiosim% para sempre/fol=12-15/loc=grades/sumario=renuncia e novo aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e francisco anes
 
-         senhoria$margarida de meneses
+         senhoria$margarida de meneses/id=esc1519-e4-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco anes
+         foreiro$francisco anes/id=esc1519-e4-per2-11
 
-         foreira$cezilia martins
+         foreira$cezilia martins/id=esc1519-e4-per3-11
             rel$parentesco/mulher/francisco anes/esc1519-e4-per2
 
-            referido$joao martins/obs=renunciante do meio casal
+            referido$joao martins/obs=renunciante do meio casal/id=esc1519-e4-per3-11-per4-11
                ls$profissao/lavrador
                ls$residencia/penela
                rel$sociabilidade/procurador/catarina anes/esc1519-e4-per5
 
-            referida$catarina anes
+            referida$catarina anes/id=esc1519-e4-per3-11-per5-11
                rel$parentesco/mulher/joao martins/esc1519-e4-per4
 
          aforamento$um meio casal/id=esc1519-e4-obj1-3
@@ -141,7 +141,7 @@ kleio$gacto2.str/translations=10
             atr$foro/um capao/obs=o pao debulhado e limpo na eira; o linho curtido e enxuto; o vinho a bica do lagar; primeira paga no ano seguinte;
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1519-e4-per6-11
             ls$cargo/escudeiro
             ls$titulo/cidadao
             ls$residencia/coimbra
@@ -149,10 +149,10 @@ kleio$gacto2.str/translations=10
 
       escritura$esc1520-e5/13/4/1520/emprazamento/fol=15-17/loc=grades/sumario=emprazamento em duas vidas celebrado entre mosteiro de santa clara e duarte de mendonca, de um quinhao de carreiro? sito em penacova
 
-         senhoria$margarida de meneses
+         senhoria$margarida de meneses/id=esc1520-e5-per1-11
             ls$cargo/abadessa
 
-         foreiro$duarte de mendonca
+         foreiro$duarte de mendonca/id=esc1520-e5-per2-11
             ls$residencia/penacova
             ls$titulo/cavaleiro
 
@@ -161,25 +161,25 @@ kleio$gacto2.str/translations=10
             atr$renda foro e pensao/quatorze lampreias/obs=boas e frescas a entregar dentro do mosteiro
             atr$multa/dez mil reais por incumprimento/obs=pena de dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1520-e5-per3-11
             ls$cargo/escudeiro
             ls$titulo/cidadao
             ls$residencia/coimbra
             rel$profissional/vedor/margarida de meneses/esc1520-e5-per1
 
-         test$fernao anes/m
+         test$fernao anes/m/id=esc1520-e5-per4-11
             rel$profissional/escudeiro/francisco de faria/esc1520-e5-per5
 
-         referido$francisco de faria
+         referido$francisco de faria/id=esc1520-e5-per5-11
             ls$titulo/fidalgo
             ls$residencia/vila de penacova
 
       escritura$esc1521-e6/11/9/1521/emprazamento em tres vidas/fol=17-22/loc=grades/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e micia vaz, de um casal, uma jeira e meia de terra, quatro aguilhadas de terra, nove aguilhadas de terra, um olival, uma vinha, sitos em montemor-o-velho
 
-         senhoria$margarida de meneses
+         senhoria$margarida de meneses/id=esc1521-e6-per1-11
             ls$cargo/abadessa
 
-         foreira$micia vaz
+         foreira$micia vaz/id=esc1521-e6-per2-11
             rel$parentesco/mulher/diogo de figueiredo/esc1520-e5-per3
 
          prazo$um casal/id=esc1521-e6-obj1-3
@@ -203,33 +203,33 @@ kleio$gacto2.str/translations=10
             atr$racao/um capao/obs=primeira paga no ano seguinte
             atr$multa/sessenta mil reais por incumprimento
 
-         test$joao goncalves/m
+         test$joao goncalves/m/id=esc1521-e6-per3-11
             ls$profissao/luveiro
             ls$residencia/curral dos pacos do mosteiro
 
-         test$joao fernandes/m
+         test$joao fernandes/m/id=esc1521-e6-per4-11
             ls$profissao/almocreve
             ls$alcunha/o sanfalho
 
-         test$goncalo pires/m
+         test$goncalo pires/m/id=esc1521-e6-per5-11
             ls$profissao/trabalhador
 
       escritura$esc1523-e7/8/5/1523/aforamento/fol=22-24/loc=grades/sumario=aforamento em fatiosim por via de renuncia, de um moinho sito abaixo de casconha, cernache
 
-         senhoria$maria de meneses
+         senhoria$maria de meneses/id=esc1523-e7-per1-11
             ls$cargo/abadessa
 
-         foreiro$afonso dias
+         foreiro$afonso dias/id=esc1523-e7-per2-11
             ls$alcunha/o bicho
 
-         foreira$margarida martins
+         foreira$margarida martins/id=esc1523-e7-per3-11
             rel$parentesco/mulher/afonso dias/esc1520-e7-per2
 
-            referido$afonso dias
+            referido$afonso dias/id=esc1523-e7-per3-11-per4-11
                ls$profissao/lavrador
                ls$residencia/vila nova de cernache
 
-            referida$ana afonso
+            referida$ana afonso/id=esc1523-e7-per3-11-per5-11
                rel$parentesco/mulher/afonso dias/esc1523-e7-per4
 
          aforamento$um moinho/id=esc1523-e7-obj1-3
@@ -240,25 +240,25 @@ kleio$gacto2.str/translations=10
             atr$foro/quatro alqueires de segunda/obs=medida nova; pago no moinho por dia de s. miguel de setembro;
             atr$multa/trinta mil reais por incumprimento
 
-         test$francisco perestrelo/m/obs=assinou por ana afonso, marido e filho
+         test$francisco perestrelo/m/obs=assinou por ana afonso, marido e filho/id=esc1523-e7-per6-11
             ls$titulo/cidadao
             ls$residencia/coimbra
 
-         test$simao lopes/m
+         test$simao lopes/m/id=esc1523-e7-per7-11
             ls$profissao/criado
 
-         test$antao gil/m
+         test$antao gil/m/id=esc1523-e7-per8-11
             rel$profissional/carniceiro/maria de meneses/esc1523-e7-per1
 
       escritura$esc1524-e8/5/3/1524/aforamento/fol=24-26v/loc=grades/sumario=aforamento em fatiosim celebrado entre mosteiro de santa clara e simao goncalves, de um mato bravio e maninho, sito no lugar de casais, da freguesia do lugar de vila nova da barca, termo da vila montemor-o-velho
 
-         senhoria$maria de meneses
+         senhoria$maria de meneses/id=esc1524-e8-per1-11
             ls$cargo/abadessa
 
-         foreiro$simao goncalves
+         foreiro$simao goncalves/id=esc1524-e8-per2-11
             ls$profissao/lavrador
 
-         foreira$filipa pires
+         foreira$filipa pires/id=esc1524-e8-per3-11
             rel$parentesco/mulher/simao goncalves/esc1524-e8-per2
 
          aforamento$um mato bravio e maninho/id=esc1524-e8-obj1-3
@@ -272,21 +272,21 @@ kleio$gacto2.str/translations=10
             atr$fogaca/tres quartos de trigo/obs=do pao proprio do lavrador; foro e racao pagos na eira; primeira paga por s. miguel de setembro no ano presente, nos lugares respectivos e ao mordomo do mosteiro
             atr$multa/dez mil reais por incumprimento/obs=pena de dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1524-e8-per4-11
             rel$profissional/vedor/maria de meneses/esc1524-e8-per1
 
-         test$simao lopes/m
+         test$simao lopes/m/id=esc1524-e8-per5-11
             rel$profissional/criado/maria de meneses/esc1524-e8-per1
 
-         test$lopo fernandes/m
+         test$lopo fernandes/m/id=esc1524-e8-per6-11
             rel$profissional/mordomo/maria de meneses/esc1524-e8-per1/obs=em vila nova da barca
 
       escritura$esc1529-e9/23/2/1529/emprazamento/fol=26v-27/loc=grades/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e joao goncalves de castelo branco, de uma vinha, sita nas vinhas da rebela e que partem das vinhas do mosteiro de santa cruz
 
-         senhoria$maria de meneses
+         senhoria$maria de meneses/id=esc1529-e9-per1-11
             ls$cargo/abadessa
 
-         foreiro$joao goncalves
+         foreiro$joao goncalves/id=esc1529-e9-per2-11
             ls$titulo/fidalgo/obs=da casa do rei
 
          prazo$uma vinha/id=esc1529-e9-obj1-3
@@ -294,29 +294,29 @@ kleio$gacto2.str/translations=10
             atr$foro/cento e vinte mil reais/obs=por s. miguel de setembro; primeira paga no ano seguinte
             atr$multa/vinte mil reais por incumprimento/obs=pena de dez mil reais por incumprimento
 
-         test$joao lopes/m
+         test$joao lopes/m/id=esc1529-e9-per3-11
             ls$residencia/rua da calcada
             ls$profissao/lavrador
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1529-e9-per4-11
 
-         test$francisco/m
+         test$francisco/m/id=esc1529-e9-per5-11
             ls$ec/solteiro
             rel$profissional/criado/joao goncalves/esc1529-e9-per2
             ls$profissao/criado
 
       escritura$esc1530-e10/12/4/1530/emprazamento/fol=28-29v/loc=grades/sumario=renuncia e emprazamento em tres vidas celebrado entre mosteiro de santa clara e jorge seco, do olival de nossa senhora da esperanca, mais dois olivais
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1530-e10-per1-11
             ls$cargo/abadessa
 
-         foreiro$jorge seco
+         foreiro$jorge seco/id=esc1530-e10-per2-11
             ls$cargo/conego/obs=da se catedral
 
-            referido$francisco vaz/obs=antigo foreiro, renunciante
+            referido$francisco vaz/obs=antigo foreiro, renunciante/id=esc1530-e10-per2-11-per3-11
                ls$profissao/pedreiro
 
-            referida$maria pais
+            referida$maria pais/id=esc1530-e10-per2-11-per4-11
                rel$parentesco/mulher/francisco vaz/esc1530-e10-per3
 
          prazo$olival de nossa senhora da esperanca/id=esc1530-e10-obj1-3
@@ -326,41 +326,41 @@ kleio$gacto2.str/translations=10
             atr$racao/nove alqueires de azeite/obs=a safra de dois em dois a
             atr$multa/trinta mil reais por incumprimento
 
-         test$alvaro/m
+         test$alvaro/m/id=esc1530-e10-per5-11
             rel$parentesco/filho/gregorio lourenco/1530-e10-glou
 
          referido$gregorio lourenco/id=1530-e10-glou
             ls$profissao/tabeliao
 
-         test$pedro dias/m
+         test$pedro dias/m/id=esc1530-e10-per6-11
             ls$profissao/sapateiro
             ls$residencia/coimbra
 
-         test$joao afonso
+         test$joao afonso/id=esc1530-e10-per7-11
             ls$residencia/pacos
 
-         test$simao lopes
+         test$simao lopes/id=esc1530-e10-per8-11
 
       escritura$esc1531-e11/28/3/1531/aforamento/fol=30-31v/loc=grades/sumario=aforamento para sempre a varias pessoas
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1531-e11-per1-11
             ls$cargo/abadessa
 
-         foreiro$pedro anes
+         foreiro$pedro anes/id=esc1531-e11-per2-11
             ls$residencia/eira pedrinha
 
-         foreira$leonor afonso
+         foreira$leonor afonso/id=esc1531-e11-per3-11
             rel$parentesco/mulher/pedro anes/esc1531-e11-per2
 
-         foreiro$diogo afonso
+         foreiro$diogo afonso/id=esc1531-e11-per4-11
 
-         foreiro$andre afonso
+         foreiro$andre afonso/id=esc1531-e11-per5-11
 
-         foreiro$joao pires
+         foreiro$joao pires/id=esc1531-e11-per6-11
 
-         foreiro$joao alvares
+         foreiro$joao alvares/id=esc1531-e11-per7-11
 
-         foreira$margarida pires
+         foreira$margarida pires/id=esc1531-e11-per8-11
             rel$parentesco/mulher/joao alvares/esc1531-e11-per7
 
          aforamento$duas meias leiras de vinha/id=esc1531-e11-obj1-3
@@ -378,26 +378,26 @@ kleio$gacto2.str/translations=10
             atr$racao/um quinto de azeite/obs=do meio casal
             atr$racao/um quinto de legumes/obs=do meio casal
 
-         test$diogo de figueiredo/m/obs=assinou pelos foreiros
+         test$diogo de figueiredo/m/obs=assinou pelos foreiros/id=esc1531-e11-per9-11
             ls$titulo/cavaleiro
             rel$profissional/vedor/margarida de castro/esc1531-e11-per1
 
-         test$pedro anes/m
+         test$pedro anes/m/id=esc1531-e11-per10-11
             rel$profissional/mordomo/margarida de castro/esc1531-e11-per1
 
-         test$joao gil
+         test$joao gil/id=esc1531-e11-per11-11
             rel$profissional/servidor/margarida de castro/esc1531-e11-per1
 
       escritura$esc1533-e12/11/9/1533/aforamento/fol=32-33v/loc=grades/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e rodrigo anes, do casal dos vieiros, bouca, termo da vila de penela
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1533-e12-per1-11
             ls$cargo/abadessa
 
-         foreiro$rodrigo anes
+         foreiro$rodrigo anes/id=esc1533-e12-per2-11
             ls$profissao/lavrador
             ls$residencia/bouca, termo de penela
 
-         foreira$ines pires/obs=nao presente
+         foreira$ines pires/obs=nao presente/id=esc1533-e12-per3-11
 
          aforamento$um casal/id=esc1533-e12-obj1-3
             atr$localizacao/vieiros
@@ -412,29 +412,29 @@ kleio$gacto2.str/translations=10
             atr$foro/um cabrito
             atr$foro/vinte ovos/obs=carneiro, cabrito e ovos pagos no mosteiro; primeira paga pela pascoa do ano seguinte
 
-         test$antonio mascarenhas/m
+         test$antonio mascarenhas/m/id=esc1533-e12-per4-11
             ls$residencia/penela
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1533-e12-per5-11
             ls$profissao/alfaiate
             ls$residencia/penela
 
-         test$domingos/m
+         test$domingos/m/id=esc1533-e12-per6-11
             ls$profissao/criado/obs=foi criado de fernao da ponte, falecido
 
-         test$diogo de figueiredo/m/obs=assinou pelo inquilino
+         test$diogo de figueiredo/m/obs=assinou pelo inquilino/id=esc1533-e12-per7-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             rel$profissional/vedor/margarida de castro/esc1533-e12-per1
 
       escritura$esc1534-e13/1/6/1534/aforamento/fol=33v-35v/loc=grades/sumario=aforamento celebrado entre mosteiro de santa clara e anrique mendes, de uma vala e um lameiro, sitos em vila nova da barca, montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1534-e13-per1-11
             ls$cargo/abadessa
 
-         foreiro$anrique mendes
+         foreiro$anrique mendes/id=esc1534-e13-per2-11
 
-         foreiro$simao rodrigues
+         foreiro$simao rodrigues/id=esc1534-e13-per3-11
             ls$profissao/mercador
 
          aforamento$uma vala/id=esc1534-e13-obj1-3
@@ -443,26 +443,26 @@ kleio$gacto2.str/translations=10
             atr$localizacao/vila nova da barca/obs=montemor o velho
             atr$foro/dez alqueires de pao meado de trigo e milho
 
-         test$fernao da serra/m
+         test$fernao da serra/m/id=esc1534-e13-per4-11
             ls$profissao/latoeiro
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1534-e13-per5-11
             rel$profissional/oficial/margarida de castro/esc1534-e13-per1
             ls$residencia/curral do mosteiro
 
-         test$gaspar fernandes/m
+         test$gaspar fernandes/m/id=esc1534-e13-per6-11
             ls$profissao/trabalhador
             ls$residencia/curral do mosteiro
 
       escritura$esc1534-e14/8/10/1534/aforamento/fol=36-37v/loc=grades/sumario=aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e alvaro pires, de um mato bravio, sito em amoreira, sangalhos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1534-e14-per1-11
             ls$cargo/abadessa
 
-         foreiro$alvaro pires
+         foreiro$alvaro pires/id=esc1534-e14-per2-11
             ls$profissao/lavrador
 
-         foreira$catarina afonso
+         foreira$catarina afonso/id=esc1534-e14-per3-11
             rel$parentesco/mulher/alvaro pires/esc1534-e14-per2
 
          aforamento$um mato bravio/id=esc1534-e14-obj1-3
@@ -473,30 +473,30 @@ kleio$gacto2.str/translations=10
             atr$racao/legumes/obs=na eira e ao tempo do seu recolher; pago pelo natal
             atr$foro/uma galinha/obs=boa e paga no mosteiro
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1534-e14-per4-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             ls$titulo/cidadao
             rel$profissional/vedor/margarida de castro/esc1534-e14-per1
 
-         test$simao pires/m
+         test$simao pires/m/id=esc1534-e14-per5-11
             ls$residencia/sangalhos
             rel$profissional/mordomo/margarida de castro/esc1534-e14-per1
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1534-e14-per6-11
             ls$profissao/alfaiate
             ls$residencia/curral do mosteiro
 
       escritura$esc1534-e15/12/12/1534/aforamento/fol=37v-39v/loc=grades/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e simao afonso, de um dos tres pedacos de mato com uma casa queja tem feita sita no mato de vale de nacagoa
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1534-e15-per1-11
             ls$cargo/abadessa
 
-         foreiro$simao afonso
+         foreiro$simao afonso/id=esc1534-e15-per2-11
             ls$profissao/lavrador
             ls$residencia/lugar da amoreira/obs=limite de sangalhos
 
-         foreira$catarina pires
+         foreira$catarina pires/id=esc1534-e15-per3-11
             rel$parentesco/mulher/simao afonso/esc1534-e15-per2
 
          aforamento$um de tres pedacos de mato com uma casa/id=esc1534-e15-obj1-3
@@ -507,35 +507,35 @@ kleio$gacto2.str/translations=10
             atr$foro/um alqueire de trigo/obs=do pao do lavrador; pao limpo e debulhado na eira; o vinho a bica do lagar; o linho curtido e enxuto; legumes ao tempo do recolher
             atr$multa/dez mil reais por incumprimento
 
-         test$simao pires/m
+         test$simao pires/m/id=esc1534-e15-per4-11
             rel$profissional/mordomo/margarida de castro/esc1534-e15-per1
             ls$residencia/sangalhos
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1534-e15-per5-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             ls$titulo/cidadao
             rel$profissional/vedor/margarida de castro/esc1534-e15-per1
 
-         test$antonio rodrigues/m
+         test$antonio rodrigues/m/id=esc1534-e15-per6-11
             ls$profissao/alfaiate
 
-         test$serafim teixeira/m
+         test$serafim teixeira/m/id=esc1534-e15-per7-11
             ls$profissao/alfaiate
             ls$residencia/cerco do mosteiro
 
-         test$antonio fernandes/m/obs=assinou por si e pelo foreiro
+         test$antonio fernandes/m/obs=assinou por si e pelo foreiro/id=esc1534-e15-per8-11
 
       escritura$esc1535-e16/29/4/1535/emprazamento/fol=39v-41v/loc=grades/sumario=emprazamento em tres pessoas celebrado entre mosteiro de santa clara e francisco anes, de umas casas sitas em santarem
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1535-e16-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco anes
+         foreiro$francisco anes/id=esc1535-e16-per2-11
             ls$profissao/torneiro
             ls$residencia/santarem
 
-         foreira$catarina goncalves
+         foreira$catarina goncalves/id=esc1535-e16-per3-11
             rel$parentesco/mulher/francisco anes/esc1535-e16-per2
 
          prazo$casas/id=esc1535-e16-obj1-3
@@ -544,21 +544,21 @@ kleio$gacto2.str/translations=10
             atr$foro/oitocentos reais/obs=segunda e terceira vidas; por s. miguel de setembro e com abatimento de pensao por benfeitorias as casas e mosteiro
             atr$multa/quarenta mil reis por imcumprimento
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1535-e16-per4-11
             rel$profissional/oficial/margarida de castro/esc1535-e16-per1
 
-         test$simao lopes/m
+         test$simao lopes/m/id=esc1535-e16-per5-11
 
-         test$adao luis/m
+         test$adao luis/m/id=esc1535-e16-per6-11
             ls$titulo/clerigo
             ls$cargo/cura/obs=da casa do dito mosteiro; assinou pelo foreiro
 
       escritura$esc1535-e17/26/6/1535/emprazamento/fol=42-44/loc=grades/sumario=emprazamento em tres vidas de quatro pessoas celebrado entre mosteiro de santa clara e francisco afonso, de umas moendas de pao (engenho de moer o pao e azeite) e umas casas nas quais os inquilinos vivem
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1535-e17-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco afonso
+         foreiro$francisco afonso/id=esc1535-e17-per2-11
             ls$profissao/moleiro
             ls$residencia/pacos do mosteiro
 
@@ -569,27 +569,27 @@ kleio$gacto2.str/translations=10
             atr$foro/cento e dez reais/obs=por s. joao baptista;
             atr$multa/pena de trinta mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1535-e17-per3-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             ls$titulo/cidadao
             rel$profissional/vedor/margarida de castro/esc1535-e17-per1
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1535-e17-per4-11
             ls$profissao/alfaiate
             ls$residencia/cerco do mosteiro de santa clara
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1535-e17-per5-11
             rel$profissional/porteiro/margarida de castro/esc1535-e17-per1
 
       escritura$esc1535-e18/4/8/1535/emprazamento/fol=44-45v/loc=grades/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e diogo de figueiredo, de um olival sito em vale do rosal, urzelhe, e umas casas sitas nos circuitos dos pacos, uma vinha, um pomar e um pequeno chao
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1535-e18-per1-11
             ls$cargo/abadessa
 
-         foreiro$diogo de figueiredo
+         foreiro$diogo de figueiredo/id=esc1535-e18-per2-11
 
-         foreira$micia vaz
+         foreira$micia vaz/id=esc1535-e18-per3-11
             rel$parentesco/mulher/diogo de figueiredo/esc1535-e18-per2
 
          prazo$um olival/id=esc1535-e18-obj1-3
@@ -608,21 +608,21 @@ kleio$gacto2.str/translations=10
             atr$foro e pensao/duzentos reais brancos/obs=da moeda corrente de seis ceitis; por s. miguel de setembro e no mosteiro
             atr$multa/trinta mil reais por incumprimento
 
-         test$adao luis/m
+         test$adao luis/m/id=esc1535-e18-per4-11
             ls$cargo/capelao/obs=da igreja da barra
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1535-e18-per5-11
             rel$profissional/servidor/margarida de castro/esc1535-e18-per1
             ls$residencia/cerco do mosteiro
 
       escritura$esc1535-e19/27/10/1535/novo emprazamento/fol=46-49v/loc=grades/sumario=novo emprazamento em tres pessoas celebrado entre mosteiro de santa clara e fernao de lima, de uma quinta na freguesia e limite de sao joao da talha, azoia, junto a sacavem
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1535-e19-per1-11
             ls$cargo/abadessa
 
-         foreiro$fernao de lima
+         foreiro$fernao de lima/id=esc1535-e19-per2-11
 
-            referido$francisco lopes
+            referido$francisco lopes/id=esc1535-e19-per2-11-per3-11
                rel$parentesco/pai/fernao de lima/esc1535-e19-per2
 
          prazo$uma quinta/id=esc1535-e19-obj1-3
@@ -630,13 +630,13 @@ kleio$gacto2.str/translations=10
 
       escritura$esc1536-e20/1/2/1536/emprazamento/fol=49v-51v/loc=grades/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e maria joao, de umas casas em que vive, sitas nos pacos do mosteiro
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e20-per1-11
             ls$cargo/abadessa
 
-         foreira$maria joao
+         foreira$maria joao/id=esc1536-e20-per2-11
             ls$residencia/pacos do mosteiro
 
-         foreiro$aleixo morim
+         foreiro$aleixo morim/id=esc1536-e20-per3-11
             rel$parentesco/marido/maria joao/esc1536-e20-per2
 
          prazo$umas casas/id=esc1536-e20-obj1-3
@@ -644,89 +644,89 @@ kleio$gacto2.str/translations=10
             atr$foro/duzentos reais/obs=da moeda corrente de seis ceitis ao real; por s.miguel de setembro
             atr$multa/quatro mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1536-e20-per4-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             ls$residencia/curral do mosteiro
             rel$profissional/vedor/margarida de castro/esc1536-e20-per1
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1536-e20-per5-11
             rel$profissional/alfaiate/margarida de castro/esc1536-e20-per1
             ls$residencia/curral do mosteiro
 
-         test$joao baixo/m
+         test$joao baixo/m/id=esc1536-e20-per6-11
             rel$profissional/moleiro/margarida de castro/esc1536-e20-per1
             ls$residencia/casconha
             ls$profissao/moleiro
 
       escritura$esc1536-e21/6/3/1536/emprazamento/fol=51v-54/loc=grades/sumario=emprazamento e aprovacao celebrado entre mosteiro de santa clara e belchior de macedo, de um prazo de uns passais da igreja de s. pedro de gouveia, sito em gouveia
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e21-per1-11
             ls$cargo/abadessa
 
-         foreiro$belchior de macedo
+         foreiro$belchior de macedo/id=esc1536-e21-per2-11
             ls$titulo/cavaleiro/obs=da casa do rei
 
          prazo$um prazo de uns passais/obs=da igreja de s. pedro de gouveia/id=esc1536-e21-obj1-3
             atr$localizacao/gouveia
             atr$foro/quatro mil reais da moeda corrente/obs=por s. joao baptista
 
-         test$pedro lopes/m
+         test$pedro lopes/m/id=esc1536-e21-per3-11
             ls$profissao/tosador
 
-         test$afonso goncalves/m
+         test$afonso goncalves/m/id=esc1536-e21-per4-11
             ls$profissao/tosador
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1536-e21-per5-11
             rel$profissional/alfaiate/margarida de castro/esc1536-e21-per1
 
       escritura$esc1536-e22/10/3/1536/renuncia emprazamento/fol=54v-56v/loc=grades/sumario=renuncia e emprazamento celebrado entre mosteiro de santa clara e goncalo luis, de um olival sito em penela
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e22-per1-11
             ls$cargo/abadessa
 
-         foreiro$goncalo luis
+         foreiro$goncalo luis/id=esc1536-e22-per2-11
             ls$profissao/lavrador
 
-            referido$pedro anes/obs=renunciante
+            referido$pedro anes/obs=renunciante/id=esc1536-e22-per2-11-per3-11
 
          prazo$um olival/id=esc1536-e22-obj1-3
             atr$localizacao/lugar do beco penela
             atr$foro/quatro alqueires de azeite/obs=safra de dois em dois anos, feito no pote; pelo entrudo
             atr$multa/seis mil reais por incumprimento
 
-         test$pedro lopes/m
+         test$pedro lopes/m/id=esc1536-e22-per4-11
             ls$profissao/tosador
 
-         test$afonso goncalves/m
+         test$afonso goncalves/m/id=esc1536-e22-per5-11
             ls$profissao/tosador
 
-         test$simao pires/m
+         test$simao pires/m/id=esc1536-e22-per6-11
             ls$profissao/moleiro
 
-         test$cristovao gil/m
+         test$cristovao gil/m/id=esc1536-e22-per7-11
             ls$profissao/almocreve
             ls$residencia/pacos do mosteiro
 
-         test$francisco/m
+         test$francisco/m/id=esc1536-e22-per8-11
             ls$profissao/criado
             rel$profissional/criado/gregorio lourenco/1536-e22-grelou
 
          referido$gregorio lourenco/id=1536-e22-grelou
             ls$profissao/tabeliao
 
-         test$gravite ribeiro/m
+         test$gravite ribeiro/m/id=esc1536-e22-per9-11
             ls$profissao/alfaiate
             ls$profissao/mercador
 
       escritura$esc1536-e23/24/4/1536/aforamento/fol=57v-60/loc=porta da cerca/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e martim goncalves, de um meio casal de herdade, sito no rabacal, aldeia da serra de jeanes
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e23-per1-11
             ls$cargo/abadessa
 
-         foreiro$martim goncalves
+         foreiro$martim goncalves/id=esc1536-e23-per2-11
 
-         foreira$catarina rodrigues
+         foreira$catarina rodrigues/id=esc1536-e23-per3-11
             rel$parentesco/mulher/martim goncalves/esc1536-e23-per2
 
          aforamento$um meio casal de herdade/id=esc1536-e23-obj1-3
@@ -742,40 +742,40 @@ kleio$gacto2.str/translations=10
             atr$foro/dez paes cozidos bons/obs=pagos dentro do mosteiro por s. miguel de setembro
             atr$multa/pena de dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1536-e23-per4-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             rel$profissional/vedor/margarida de castro/esc1536-e23-per1
 
-         test$afonso anes/m
+         test$afonso anes/m/id=esc1536-e23-per5-11
             ls$profissao/lavrador
             ls$residencia/lousa
             rel$profissional/caseiro/margarida de castro/esc1536-e23-per1
 
-         test$francisco/m
+         test$francisco/m/id=esc1536-e23-per6-11
             ls$profissao/criado
             rel$profissional/criado/gregorio lourenco/1536-e23-gl
 
          referido$gregorio lourenco/id=1536-e23-gl
             ls$profissao/tabeliao
 
-         test$jorge seco/m
+         test$jorge seco/m/id=esc1536-e23-per7-11
             ls$cargo/conego/obs=da se catedral de coimbra
 
       escritura$esc1536-e24/2/11/1536/aforamento/fol=60v-62/loc=porta da cerca/sumario=aforamento em fatiosim celebrado entre mosteiro de santa clara e joao eanes, de uma terra sita no lugar chamado vale de guargufe, em portunhos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e24-per1-11
             ls$cargo/abadessa
 
-         foreiro$joao eanes
+         foreiro$joao eanes/id=esc1536-e24-per2-11
             ls$residencia/aldeia de portunhos
 
-         foreira$beatriz eanes
+         foreira$beatriz eanes/id=esc1536-e24-per3-11
             rel$parentesco/mulher/joao eanes/esc1536-e24-per2
 
-            referido$joao fernandes/obs=antigo foreiro
+            referido$joao fernandes/obs=antigo foreiro/id=esc1536-e24-per3-11-per4-11
 
-            referida$margarida pires
+            referida$margarida pires/id=esc1536-e24-per3-11-per5-11
                rel$parentesco/mulher/joao fernandes/esc1536-e24-per4
 
          aforamento$uma terra de um casal/id=esc1536-e24-obj1-3
@@ -786,23 +786,23 @@ kleio$gacto2.str/translations=10
             atr$racao/um oitavo do vinho/obs=a bica do lagar; primeira paga no ano seguinte
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1536-e24-per6-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             rel$profissional/vedor/margarida de castro/esc1536-e24-per1
 
-         test$rui lopes/m
+         test$rui lopes/m/id=esc1536-e24-per7-11
             ls$profissao/escrivao
 
       escritura$esc1536-e25/10/11/1536/emprazamento/fol=62v-65v/loc=porta da cerca/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e pedro afonso, de umas casas sitas no curral do mosteiro
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e25-per1-11
             ls$cargo/abadessa
 
-         foreiro$pedro afonso
+         foreiro$pedro afonso/id=esc1536-e25-per2-11
             rel$profissional/azemel/margarida de castro/esc1536-e25-per1
 
-         foreira$margarida afonso
+         foreira$margarida afonso/id=esc1536-e25-per3-11
             rel$parentesco/mulher/pedro afonso/esc1536-e25-per2
 
          prazo$umas casas/id=esc1536-e25-obj1-3
@@ -810,27 +810,27 @@ kleio$gacto2.str/translations=10
             atr$foro/cento e cinquenta reais brancos/obs=da moeda corrente de seis ceitis; por s. miguel de setembro
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo de figueiredo/obs=assinou por margarida afonso
+         test$diogo de figueiredo/obs=assinou por margarida afonso/id=esc1536-e25-per4-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             rel$profissional/vedor/margarida de castro/esc1536-e25-per1
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1536-e25-per5-11
             rel$profissional/servidor/margarida de castro/esc1536-e25-per1
 
-         test$gaspar fernandes/m
+         test$gaspar fernandes/m/id=esc1536-e25-per6-11
             ls$profissao/trabalhador
             ls$residencia/cerco do mosteiro
 
       escritura$esc1536-e26/10/11/1536/emprazamento/fol=66-68/loc=porta da cerca/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e joana goncalves, de umas casas sobradadas nas quais vive com seu marido
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1536-e26-per1-11
             ls$cargo/abadessa
 
-         foreiro$joana goncalves
+         foreiro$joana goncalves/id=esc1536-e26-per2-11
             ls$residencia/curral dos pacos do mosteiro
 
-         foreiro$afonso martins
+         foreiro$afonso martins/id=esc1536-e26-per3-11
             ls$residencia/curral dos pacos do mosteiro
             rel$parentesco/marido/joana goncalves/esc1536-e26-per2
 
@@ -839,28 +839,28 @@ kleio$gacto2.str/translations=10
             atr$foro/duzentos reais brancos/obs=da moeda corrente de seis ceitis; por s. miguel de setembro; primeira paga no ano seguinte
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m/obs=assinou por joana goncalves
+         test$diogo de figueiredo/m/obs=assinou por joana goncalves/id=esc1536-e26-per4-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             rel$profissional/vedor/margarida de castro/esc1536-e26-per1
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1536-e26-per5-11
             rel$profissional/servidor/margarida de castro/esc1536-e26-per1
 
-         test$gaspar fernandes/m
+         test$gaspar fernandes/m/id=esc1536-e26-per6-11
             ls$residencia/terreiro do mosteiro
             rel$profissional/servidor/margarida de castro/esc1536-e26-per1
 
       escritura$esc1537-e27/11/6/1537/novo emprazamento/fol=68v-71/loc=grades/sumario=novo emprazamento em tres vidas celebrado entre mosteiro de santa clara e gomes, solteiro, do olival do mouro, que parte da estrada que vai da cidade de coimbra para sao miguel de pastores
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1537-e27-per1-11
             ls$cargo/abadessa
 
-         foreiro$gomes
+         foreiro$gomes/id=esc1537-e27-per2-11
             ls$ec/solteiro
             ls$residencia/coimbra
 
-            referido$pedro de figueiredo
+            referido$pedro de figueiredo/id=esc1537-e27-per2-11-per3-11
                rel$parentesco/pai/gomes/esc1537-e27-per2
                ls$titulo/cidadao
                ls$residencia/coimbra
@@ -870,33 +870,33 @@ kleio$gacto2.str/translations=10
             atr$racao/treze alqueires de azeite/obs=safra de dois em dois anos; primeira paga no ano seguinte
             atr$multa/trinta mil reais por incumprimento
 
-         test$antonio pires/m
+         test$antonio pires/m/id=esc1537-e27-per4-11
             ls$profissao/pedreiro
             ls$residencia/pacos do mosteiro
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1537-e27-per5-11
             rel$profissional/solicitador/margarida de castro/esc1537-e27-per1
             ls$residencia/pacos do mosteiro
             ls$cargo/solicitador do mosteiro
 
-         test$luis anes/m
+         test$luis anes/m/id=esc1537-e27-per6-11
             ls$profissao/trabalhador
             ls$residencia/pacos do mosteiro
 
       escritura$esc1537-e28/7/11/1537/renuncia e novo aforamento/fol=71-74/loc=grades/sumario=renuncia e novo aforamento celebrado entre mosteiro de santa clara e francisco vaz, de uma vinha e oliveira, sitas em montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1537-e28-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco vaz
+         foreiro$francisco vaz/id=esc1537-e28-per2-11
             ls$titulo/clerigo de missa
             ls$cargo/beneficiado/obs=na igreja de santa maria de alcacova de montemor o velho
 
-            referido$lucas goncalves/obs=renunciante
+            referido$lucas goncalves/obs=renunciante/id=esc1537-e28-per2-11-per3-11
                ls$profissao/carpinteiro
                ls$residencia/pedreira
 
-            referida$isabel fernandes
+            referida$isabel fernandes/id=esc1537-e28-per2-11-per4-11
                rel$parentesco/mulher/lucas goncalves/esc1537-e28-per3
 
          aforamento$vinha e oliveira/id=esc1537-e28-obj1-3
@@ -910,34 +910,34 @@ kleio$gacto2.str/translations=10
             atr$racao/vinho/obs=a bica do lagar
             atr$racao/azeitona/obs=apanhada ao pe da oliveira
 
-         test$diogo de figueredo/m
+         test$diogo de figueredo/m/id=esc1537-e28-per5-11
             rel$profissional/vedor/margarida de castro/esc1537-e28-per1
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             ls$cargo/vedor do mosteiro
 
-         test$jeronimo/m
+         test$jeronimo/m/id=esc1537-e28-per6-11
             ls$titulo/frei
             ls$profissao/padre
             ls$ordem/sao jeronimo/obs=mosteiro de s. marcos
 
-         test$baltasar fernandes/m
+         test$baltasar fernandes/m/id=esc1537-e28-per7-11
             ls$profissao/ataqueiro
             ls$residencia/coimbra
 
       escritura$esc1538-e29/2/3/1538/novo aforamento em fatiosim/fol=74-76v/loc=porta da cerca/sumario=novo aforamento em fatiosim celebrado entre mosteiro de santa clara e fernao rodrigues, de uma leira de vinha com seu mato (por arrotear), sita no lugar de orelhudo
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1538-e29-per1-11
             ls$cargo/abadessa
 
-         foreiro$fernao rodrigues
+         foreiro$fernao rodrigues/id=esc1538-e29-per2-11
             ls$profissao/moleiro
             ls$residencia/ribeira de casconha
 
-         foreira$isabel pires
+         foreira$isabel pires/id=esc1538-e29-per3-11
             rel$parentesco/mulher/fernao rodrigues/esc1538-e29-per2
 
-            referido$domingos pires
+            referido$domingos pires/id=esc1538-e29-per3-11-per4-11
                ls$residencia/orelhudo
 
          aforamento$uma leira de vinha com seu mato/obs=se nao for plantado, devera ser devolvido ao mosteiro/id=esc1538-e29-obj1-3
@@ -945,44 +945,44 @@ kleio$gacto2.str/translations=10
             atr$foro/um almude de vinho/obs=do seu proprio a bica do lagar
             atr$racao/um oitavo do vinho/obs=feito no lagar do mosteiro em orelhudo
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1538-e29-per5-11
             ls$residencia/casconha
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1538-e29-per6-11
             rel$profissional/criado/margarida de castro/esc1538-e29-per1
             ls$profissao/criado
 
-         test$jorge seco/m
+         test$jorge seco/m/id=esc1538-e29-per7-11
             ls$cargo/conego/obs=na se da cidade de coimbra
 
       escritura$esc1538-e30/8/5/1538/novo aforamento em fatiosim/fol=77v-81/loc=grades/sumario=renuncia e novo aforamento em fatiosim de tres quintos de um casal celebrado entre mosteiro de santa clara, alvaro afonso, simao afonso e pedro afonso
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1538-e30-per1-11
             ls$cargo/abadessa
 
-         foreiro$alvaro afonso
+         foreiro$alvaro afonso/id=esc1538-e30-per2-11
 
-         foreiro$simao afonso
+         foreiro$simao afonso/id=esc1538-e30-per3-11
 
-         foreiro$pedro afonso
+         foreiro$pedro afonso/id=esc1538-e30-per4-11
 
-         renunciante$joao afonso
+         renunciante$joao afonso/id=esc1538-e30-per5-11
             ls$profissao/lavrador
             ls$residencia/casais da cruz
             rel$parentesco/irmao/alvaro afonso/esc1538-e30-per2
             rel$parentesco/irmao/simao afonso/esc1538-e30-per3
             rel$parentesco/irmao/pedro afonso/esc1538-e30-per4
 
-            referida$isabel dias
+            referida$isabel dias/id=esc1538-e30-per5-11-per6-11
                ls$profissao/lavradora
                ls$residencia/casais da cruz
                rel$parentesco/mulher/joao afonso/esc1538-e30-per5
 
-         renunciante$pedro dias
+         renunciante$pedro dias/id=esc1538-e30-per7-11
             ls$profissao/lavrador
             ls$residencia/casais da cruz
 
-            referida$margarida afonso
+            referida$margarida afonso/id=esc1538-e30-per7-11-per8-11
                ls$profissao/lavradora
                ls$residencia/casais da cruz
                rel$parentesco/mulher/pedro dias/esc1538-e30-per7
@@ -990,11 +990,11 @@ kleio$gacto2.str/translations=10
                rel$parentesco/irma/simao afonso/esc1538-e30-per3
                rel$parentesco/irma/pedro afonso/esc1538-e30-per4
 
-            referido$afonso anes/obs=antigo foreiro
+            referido$afonso anes/obs=antigo foreiro/id=esc1538-e30-per7-11-per9-11
                rel$parentesco/pai/margarida afonso/esc1538-e30-per8
                rel$parentesco/pai/joao afonso/esc1538-e30-per5
 
-            referida$maria anes/obs=antiga foreira
+            referida$maria anes/obs=antiga foreira/id=esc1538-e30-per7-11-per10-11
                rel$parentesco/mae/margarida afonso/esc1538-e30-per8
                rel$parentesco/mae/joao afonso/esc1538-e30-per5
 
@@ -1014,32 +1014,32 @@ kleio$gacto2.str/translations=10
             atr$foro/seis ovos/obs=paga alvaro afonso
             atr$multa/dez mil reais
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1538-e30-per11-11
             rel$profissional/vedor/margarida de castro/esc1538-e30-per1
             ls$titulo/cavaleiro fidalgo
             ls$residencia/curral do mosteiro
             ls$cargo/vedor do mosteiro
 
-         test$joao raposo/m
+         test$joao raposo/m/id=esc1538-e30-per12-11
             ls$profissao/alfaiate
             ls$residencia/curral do mosteiro
 
       escritura$esc1538-e31/25/5/1538/aforamento em fatiosim/fol=81v-85/loc=grades/sumario=aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e lopo eanes de um casal e meio, este dota a sua filha e genro tres quartos deste casal e meio
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1538-e31-per1-11
             ls$cargo/abadessa
 
-         foreiro$lopo anes/obs=do casal e meio dota tres quartos deste casal a seu genro e filha
+         foreiro$lopo anes/obs=do casal e meio dota tres quartos deste casal a seu genro e filha/id=esc1538-e31-per2-11
             ls$profissao/lavrador
             ls$residencia/aldeia de ventosa
 
-         foreira$branca anes
+         foreira$branca anes/id=esc1538-e31-per3-11
             rel$parentesco/mulher/lopo eanes/sc1538-e31-per2
 
-         foreiro$francisco anes
+         foreiro$francisco anes/id=esc1538-e31-per4-11
             rel$parentesco/genro/lopo anes/esc1538-e31-per2
 
-         foreira$catarina lopes
+         foreira$catarina lopes/id=esc1538-e31-per5-11
             rel$parentesco/filha/francisco anes/esc1538-e31-per4
 
          aforamento$um quinto de casal/obs=para lopo anes e sua mulher branca anes/id=esc1538-e31-obj1-3
@@ -1068,32 +1068,32 @@ kleio$gacto2.str/translations=10
             atr$foro/vinte e seis ovos/obs=pagam francisco anes e sua filha catarina lopes; pao debulhado, limpo e pago na eira; aves e ovos pagos no mosteiro por s. miguel de setembro; o vinho a bica do lagar; o linho curido e enxuto
             atr$multa/vinte mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1538-e31-per6-11
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             rel$profissional/vedor/margarida de castro/esc1538-e31-per1
             ls$cargo/vedor do mosteiro
 
-         test$jorge seco/m
+         test$jorge seco/m/id=esc1538-e31-per7-11
             ls$cargo/conego/obs=na se da cidade de coimbra
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1538-e31-per8-11
             ls$profissao/alfaiate
 
       escritura$esc1538-e32/20/11/1538/emprazamento/fol=85v-88v/loc=grades/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e cristovao moreno, de uma casa terrea de estrebaria, sita em viseu, na travessa que vai para a se
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1538-e32-per1-11
             ls$cargo/abadessa
 
-         foreiro$cristovao moreno
+         foreiro$cristovao moreno/id=esc1538-e32-per2-11
             ls$cargo/escudeiro
             ls$profissao/tabeliao
             ls$residencia/viseu
 
-            referida$isabel nunes/obs=pede para emprazarem a casa a cristovao moreno
+            referida$isabel nunes/obs=pede para emprazarem a casa a cristovao moreno/id=esc1538-e32-per2-11-per3-11
                ls$ec/viuva
 
-            referido$diogo de tourais
+            referido$diogo de tourais/id=esc1538-e32-per2-11-per4-11
                ls$morto/antes
                rel$parentesco/marido/isabel nunes/esc1538-e32-per3
 
@@ -1102,43 +1102,43 @@ kleio$gacto2.str/translations=10
             atr$foro/trinta reais brancos de moeda corrente de seis ceitis ao real/obs=pagos ao feitor do mosteiro, no dia de pascoa
             atr$multa/dez mil reais por incumprimento
 
-         test$rodrigo anes/m
+         test$rodrigo anes/m/id=esc1538-e32-per5-11
             ls$profissao/mercador
             ls$cargo/escrivao das sisas dos vinhos
 
-         test$afonso goncalves/m
+         test$afonso goncalves/m/id=esc1538-e32-per6-11
             ls$profissao/carpinteiro
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1538-e32-per7-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1538-e32-per1
             ls$cargo/vedor do mosteiro
 
       escritura$esc1539-e33/30/1/1539/novo aforamento/fol=89-91v/loc=porta da cerca/sumario=novo aforamento para sempre celebrado entre mosteiro de santa clara, manuel fernandes e catarina fernandes, de um casal (casal da cha) sito em bruscos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1539-e33-per1-11
             ls$cargo/abadessa
 
-         foreiro$manuel fernandes/obs=e-lhe aforado um quarto de casal
+         foreiro$manuel fernandes/obs=e-lhe aforado um quarto de casal/id=esc1539-e33-per2-11
 
-            referido$fernao fernandes
+            referido$fernao fernandes/id=esc1539-e33-per2-11-per3-11
                ls$morto/antes
                rel$parentesco/avo/manuel fernandes/esc1539-e33-per2
 
-         foreira$catarina fernandes
+         foreira$catarina fernandes/id=esc1539-e33-per4-11
             rel$parentesco/filha/fernao fernandes/esc1539-e33-per3
 
-         foreiro$miguel alvares
+         foreiro$miguel alvares/id=esc1539-e33-per5-11
             ls$residencia/bruscos
             rel$parentesco/marido/catarina fernandes/esc1539-e33-per4
 
-         foreiro$joao luis/obs=satisfeito em dinheiro por catarina fernandes e miguel alvares
+         foreiro$joao luis/obs=satisfeito em dinheiro por catarina fernandes e miguel alvares/id=esc1539-e33-per6-11
             ls$residencia/meas, termo de miranda do corvo
 
-         foreiro$vasco martins/obs=satisfeito em dinheiro por catarina fernandes e miguel alvares
+         foreiro$vasco martins/obs=satisfeito em dinheiro por catarina fernandes e miguel alvares/id=esc1539-e33-per7-11
             ls$residencia/cernache
 
-         foreiro$joao dos santos/obs=satisfeito em dinheiro por catarina fernandes e miguel alvares
+         foreiro$joao dos santos/obs=satisfeito em dinheiro por catarina fernandes e miguel alvares/id=esc1539-e33-per8-11
             ls$residencia/rabacal
 
          aforamento$um casal chamado o casal da cha/id=esc1539-e33-obj1-3
@@ -1152,28 +1152,28 @@ kleio$gacto2.str/translations=10
             atr$fogaca/um capao
             atr$fogaca/dez ovos/obs=pago por s. miguel de setembro
 
-         test$jorge seco/m
+         test$jorge seco/m/id=esc1539-e33-per9-11
             ls$cargo/conego/obs=na se da cidade de coimbra
 
-         test$diogo pires/m
+         test$diogo pires/m/id=esc1539-e33-per10-11
             rel$profissional/mordomo/margarida de castro/esc1539-e33-per1/obs=em urzelhe
 
-         test$simao pires/m
+         test$simao pires/m/id=esc1539-e33-per11-11
             rel$profissional/mordomo/margarida de castro/esc1539-e33-per1/obs=em sangalhos
 
       escritura$esc1539-e34/13/2/1539/emprazamento/fol=91v-94v/loc=porta da cerca outorgado a porta da varanda e grade/sumario=emprazamento para sempre por via de venda e renuncia celebrado entre mosteiro de santa clara e diogo afonso, de dois quartos de casal e uma leira de vinha, sitos na aldeia da cruz
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1539-e34-per1-11
             ls$cargo/abadessa
 
-         foreiro$diogo afonso
+         foreiro$diogo afonso/id=esc1539-e34-per2-11
             ls$profissao/ferrador
 
-            referido$simao afonso/obs=antigo foreiro
+            referido$simao afonso/obs=antigo foreiro/id=esc1539-e34-per2-11-per3-11
                ls$profissao/lavrador
                ls$residencia/aldeia da cruz, termo de coimbra
 
-            referida$maria pires
+            referida$maria pires/id=esc1539-e34-per2-11-per4-11
                rel$parentesco/mulher/simao afonso/esc1539-e34-per3
 
          prazo$dois quartos de casal/id=esc1539-e34-obj1-3
@@ -1188,32 +1188,32 @@ kleio$gacto2.str/translations=10
             atr$foro/um capao bom/obs=capao dentro do mosteiro e por s. miguel de setembro
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1539-e34-per5-11
             rel$profissional/vedor/margarida de castro/esc1539-e34-per1
             ls$titulo/cavaleiro
             ls$titulo/fidalgo
             ls$cargo/vedor do mosteiro
 
-         test$diogo martins/m
+         test$diogo martins/m/id=esc1539-e34-per6-11
             ls$residencia/pacos do mosteiro
             rel$profissional/servidor/margarida de castro/esc1539-e34-per1
 
-         test$nuno fernandes/m
+         test$nuno fernandes/m/id=esc1539-e34-per7-11
             rel$profissional/servidor/margarida de castro/esc1539-e34-per1
             ls$residencia/pacos do mosteiro
 
       escritura$esc1539-e35/9/7/1539/aforamento/fol=94v-96v/loc=porta da cerca/sumario=aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e andre afonso, de um talho de vinha sito em casconha, limite de orelhudo
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1539-e35-per1-11
             ls$cargo/abadessa
 
-         foreiro$andre afonso
+         foreiro$andre afonso/id=esc1539-e35-per2-11
             ls$profissao/lavrador
 
-         foreira$catarina alvares
+         foreira$catarina alvares/id=esc1539-e35-per3-11
             rel$parentesco/mulher/andre afonso/esc1539-e35-per2
 
-            referido$simao pires/obs=antigo foreiro
+            referido$simao pires/obs=antigo foreiro/id=esc1539-e35-per3-11-per4-11
                ls$residencia/cernache%sarnache
 
          aforamento$talho de vinha/id=esc1539-e35-obj1-3
@@ -1224,31 +1224,31 @@ kleio$gacto2.str/translations=10
             atr$foro/uma galinha
             atr$foro/cinco ovos/obs=por s. miguel de setembro; seis mil reais por incumprimento
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1539-e35-per5-11
             ls$residencia/curral do mosteiro
             rel$profissional/servidor/margarida de castro/esc1539-e35-per1
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1539-e35-per6-11
             rel$profissional/alfaiate/margarida de castro/esc1539-e35-per1
             ls$residencia/curral do mosteiro
             ls$profissao/alfaiate/obs=alfaiate do mosteiro
 
-         test$joao escudeiro/m
+         test$joao escudeiro/m/id=esc1539-e35-per7-11
             ls$titulo/cidadao
             ls$residencia/coimbra
 
       escritura$esc1539-e36/26/7/1539/emprazamento/fol=97-101v/loc=porta da cerca/sumario=novo emprazamento em tres vidas celebrado entre mosteiro de santa clara e juliao calumela, de uns moinhos para moer pao, um lagar de azeite, um pomar e dois engenhos, sitos no termo da vila de leiria, junto a ponte das cortes
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1539-e36-per1-11
             ls$cargo/abadessa
 
-         foreiro$juliao calumela
+         foreiro$juliao calumela/id=esc1539-e36-per2-11
             ls$cargo/chantre/obs=do senhor nuncio
 
-            referido$jorge seco
+            referido$jorge seco/id=esc1539-e36-per2-11-per3-11
                rel$sociabilidade/procurador/juliao calumela/esc1539-e36-per2
 
-            referido$joao lopes tojo/obs=antigo foreiro que perdera as propriedades por ser um falsario das letras apostolicas e por essa razao fora condenado ao degredo para sempre
+            referido$joao lopes tojo/obs=antigo foreiro que perdera as propriedades por ser um falsario das letras apostolicas e por essa razao fora condenado ao degredo para sempre/id=esc1539-e36-per2-11-per4-11
                ls$titulo/frei
 
          prazo$moinhos para moer pao/id=esc1539-e36-obj1-3
@@ -1262,29 +1262,29 @@ kleio$gacto2.str/translations=10
             atr$foro/mil e quinhentos reais da moeda corrente de seis ceitis ao real/obs=por s.miguel de setembro
             atr$multa/trinta mil reais
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1539-e36-per5-11
             ls$profissao/alfaiate
             ls$residencia/coimbra
 
-         test$pedro afonso/m
+         test$pedro afonso/m/id=esc1539-e36-per6-11
             ls$profissao/almocreve
             ls$residencia/pacos do mosteiro
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1539-e36-per7-11
             rel$profissional/servidor/margarida de castro/esc1539-e36-per1
 
       escritura$esc1539-e37/10/12/1539/emprazamento/fol=102-104v/loc=porta da cerca/sumario=emprazamento em tres vidas por via de renuncia celebrado entre mosteiro de santa clara e joao de boim, de duas courelas em alvisquer, santarem
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1539-e37-per1-11
             ls$cargo/abadessa
 
-         foreiro$joao de boim
+         foreiro$joao de boim/id=esc1539-e37-per2-11
             ls$titulo/cavaleiro fidalgo
 
-         foreira$luisa de boim
+         foreira$luisa de boim/id=esc1539-e37-per3-11
             rel$parentesco/mulher/joao de boim/esc1539-e37-per2
 
-            referido$antonio de escovedo
+            referido$antonio de escovedo/id=esc1539-e37-per3-11-per4-11
                ls$titulo/clerigo de missa
                rel$sociabilidade/procurador/joao de boim/esc1539-e37-per2
 
@@ -1293,28 +1293,28 @@ kleio$gacto2.str/translations=10
             atr$foro/quatrocentos e vinte reais brancos da moeda corrente de seis ceitis ao real/obs=pagos no mosteiro ate ao dia de s. miguel de setembro
             atr$multa/trinta mil reais
 
-         test$gaspar mendes/m
+         test$gaspar mendes/m/id=esc1539-e37-per5-11
             ls$profissao/ourives
 
-         test$anrique dias/m
+         test$anrique dias/m/id=esc1539-e37-per6-11
             ls$profissao/pintor
 
-         test$martim alvares/m
+         test$martim alvares/m/id=esc1539-e37-per7-11
             ls$profissao/tabeliao
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1539-e37-per8-11
             ls$profissao/alfaiate
 
       escritura$esc1541-e38/31/1/1541/novo aforamento em fatiosim/fol=104v-106/loc=grades/sumario=novo aforamento em fatiosim celebrado entre mosteiro de santa clara e manuel jorge, de um casal e meio, sito em feteira, coimbra
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e38-per1-11
             ls$cargo/abadessa
 
-         foreiro$manuel jorge
+         foreiro$manuel jorge/id=esc1541-e38-per2-11
             ls$profissao/lavrador
             ls$residencia/feteira
 
-         foreira$brites pires
+         foreira$brites pires/id=esc1541-e38-per3-11
             rel$parentesco/mulher/manuel jorge/esc1541-e38-per2
 
          aforamento$um casal e meio/id=esc1541-e38-obj1-3
@@ -1325,28 +1325,28 @@ kleio$gacto2.str/translations=10
             atr$fogaca/uma galinha/obs=por s. miguel de setembro
             atr$multa/trinta mil reais
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e38-per4-11
             rel$profissional/vedor/margarida de castro/esc1541-e38-per1
             ls$titulo/cavaleiro fidalgo
             ls$cargo/vedor do mosteiro
 
-         test$bastiao lopes/m
+         test$bastiao lopes/m/id=esc1541-e38-per5-11
             ls$profissao/lavrador
             ls$residencia/cruz
 
-         test$pedro anes/m
+         test$pedro anes/m/id=esc1541-e38-per6-11
             ls$profissao/lavrador
             ls$residencia/cernache
 
       escritura$esc1541-e39/3/2/1541/novo aforamento em fatiosim/fol=106-107v/loc=grades/sumario=novo aforamento em fatiosim celebrado entre mosteiro de santa clara e jorge martins, de um casal de herdade, suas casas, terras, currais, pomares, matos e demais pertencas do casal, sitos e, seira
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e39-per1-11
             ls$cargo/abadessa
 
-         foreiro$jorge martins
+         foreiro$jorge martins/id=esc1541-e39-per2-11
             ls$residencia/no casal em seira
 
-         foreira$lucrecia pires
+         foreira$lucrecia pires/id=esc1541-e39-per3-11
             rel$parentesco/mulher/jorge martins/esc1541-e39-per2
 
          aforamento$casal de herdade% com casas terras currais pomares matos e demais pertencas/id=esc1541-e39-obj1-3
@@ -1358,30 +1358,30 @@ kleio$gacto2.str/translations=10
             atr$fogaca/dois alqueires de trigo do pao do lavrador/obs=tudo pago na eira
             atr$multa/vinte mil reais
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e39-per4-11
             rel$profissional/vedor/margarida de castro/esc1541-e39-per1
             ls$titulo/cavaleiro fidalgo
             ls$cargo/vedor do mosteiro
 
-         test$pedro goncalves/m
+         test$pedro goncalves/m/id=esc1541-e39-per5-11
             ls$residencia/circuito do mosteiro
 
-         test$fernao gil/m
+         test$fernao gil/m/id=esc1541-e39-per6-11
             ls$profissao/lavrador
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1541-e39-per7-11
             rel$profissional/servidor/margarida de castro/esc1541-e39-per1
 
       escritura$esc1541-e40/4/2/1541/novo emprazamento/fol=107v-113/loc=grades/sumario=novo emprazamento em tres pessoas celebrado entre mosteiro de santa clara e diogo alvares, de um casal com casas, terras, currais, matos e demais pertencas do casal, sitos em torres novas
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e40-per1-11
             ls$cargo/abadessa
 
-         foreiro$diogo alvares
+         foreiro$diogo alvares/id=esc1541-e40-per2-11
             ls$profissao/lavrador
             ls$residencia/termo de torres novas
 
-         foreira$ines dias
+         foreira$ines dias/id=esc1541-e40-per3-11
             rel$parentesco/mulher/diogo alvares/esc1541-e40-per2
 
          prazo$casal com casas currais terras matos e demais pertencas/id=esc1541-e40-obj1-3
@@ -1395,27 +1395,27 @@ kleio$gacto2.str/translations=10
             atr$racao/linho/obs=curtido e enxuto no tendal
             atr$multa/trinta mil reais
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e40-per4-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1541-e40-per1
             ls$cargo/vedor do mosteiro
 
-         test$pedro goncalves/m
+         test$pedro goncalves/m/id=esc1541-e40-per5-11
             ls$profissao/boieiro/obs=no curral do mosteiro
 
-         test$diogo fernandes/m
+         test$diogo fernandes/m/id=esc1541-e40-per6-11
             ls$profissao/carpinteiro
 
       escritura$esc1541-e41/9/5/1541/aforamento/fol=113v-115/loc=porta da cerca/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e francisco pires, de uma casa terreira e um mato com vinha para arrotear, sitos em vila nova da barca, montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e41-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco pires
+         foreiro$francisco pires/id=esc1541-e41-per2-11
             ls$profissao/tecelao
             ls$residencia/vila nova da barca, termo de montemor o velho
 
-         foreira$benedita lopes
+         foreira$benedita lopes/id=esc1541-e41-per3-11
             rel$parentesco/mulher/francisco pires/esc1541-e41-per2
 
          aforamento$casa terreira/id=esc1541-e41-obj1-3
@@ -1432,48 +1432,48 @@ kleio$gacto2.str/translations=10
             atr$foro/uma galinha/obs=novidades por s. miguel de setembro
             atr$multa/dez mil reais
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e41-per4-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1541-e41-per1
             ls$cargo/vedor do mosteiro
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1541-e41-per5-11
             ls$profissao/mordomo
             ls$residencia/pacos do mosteiro
 
-         test$diogo fernandes/m
+         test$diogo fernandes/m/id=esc1541-e41-per6-11
             ls$profissao/trabalhador
             rel$profissional/criado/diogo de figueiredo/esc1541-e41-per4
 
-         test$antonio anes/m
+         test$antonio anes/m/id=esc1541-e41-per7-11
             ls$profissao/alfaiate/obs=no curral do mosteiro
 
       escritura$esc1541-e42/17/5/1541/aforamento/fol=115v-118v/loc=grades/sumario=aforamento por via de renuncia celebrado entre mosteiro de santa clara e afonso salgado, de umas vinhas e mato sitos em sangalhos. tem treslado de alvara do bispo de coimbra e conde de arganil, dom jorge de almeida
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e42-per1-11
             ls$cargo/abadessa
 
-         foreiro$afonso salgado
+         foreiro$afonso salgado/id=esc1541-e42-per2-11
 
          aforamento$vinhas e matos/id=esc1541-e42-obj1-3
             atr$localizacao/sangalhos
 
-         referido$jorge de almeida
+         referido$jorge de almeida/id=esc1541-e42-per3-11
             ls$titulo/dom
             ls$cargo/bispo/obs=de coimbra
             ls$titulo/conde de arganil
 
       escritura$esc1541-e43/4/11/1541/emprazamento/fol=119-121/loc=grades/sumario=emprazamento em tres vidas de quatro pessoa celebrado entre mosteiro de santa clara e jorge bras, de um talho de terra e um olival, sitos em leiria
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e43-per1-11
             ls$cargo/abadessa
 
-         foreiro$jorge bras
+         foreiro$jorge bras/id=esc1541-e43-per2-11
 
-         foreira$maria pires
+         foreira$maria pires/id=esc1541-e43-per3-11
             rel$parentesco/mulher/jorge bras/esc1541-e43-per2
 
-            referido$simao luis/obs=antigo foreiro
+            referido$simao luis/obs=antigo foreiro/id=esc1541-e43-per3-11-per4-11
 
          prazo$um prazo de terra ao porto que chamam santa clara/id=esc1541-e43-obj1-3
 
@@ -1485,28 +1485,28 @@ kleio$gacto2.str/translations=10
             atr$foro/um frango/obs=por s. miguel de setembro
             atr$multa/trinta mil reais
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e43-per5-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1541-e43-per1
             ls$cargo/vedor do mosteiro
 
-         test$francisco afonso/m
+         test$francisco afonso/m/id=esc1541-e43-per6-11
             rel$profissional/moleiro/margarida de castro/esc1541-e43-per1
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1541-e43-per7-11
             ls$profissao/sapateiro
             ls$residencia/pacos de santa clara
 
       escritura$esc1541-e44/18/11/1541/aforamento/fol=121v-123/loc=porta da cerca/sumario=aforamento para sempre celerado entre mosteiro de santa clara e andre afonso, de meio casal no qual mora; um quarto de casal; um oitavo de casal; dois pedacos de mato, sitos em orelhudo
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e44-per1-11
             ls$cargo/abadessa
 
-         foreiro$andre afonso
+         foreiro$andre afonso/id=esc1541-e44-per2-11
             ls$profissao/lavrador
             ls$residencia/orelhudo
 
-         foreira$catarina alvares
+         foreira$catarina alvares/id=esc1541-e44-per3-11
             rel$parentesco/mulher/andre afonso/esc1541-e44-per2
 
          aforamento$meio casal/id=esc1541-e44-obj1-3
@@ -1524,31 +1524,31 @@ kleio$gacto2.str/translations=10
             atr$fogaca/um capao/obs=por sao miguel de setembro
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e44-per4-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1541-e44-per1
             ls$residencia/cerco do mosteiro
             ls$cargo/vedor do mosteiro
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1541-e44-per5-11
             rel$profissional/oficial/margarida de castro/esc1541-e44-per1
             ls$residencia/cerco do mosteiro
 
-         test$pedro goncalves/m
+         test$pedro goncalves/m/id=esc1541-e44-per6-11
             ls$profissao/boeiro
             ls$residencia/cerco do mosteiro
 
       escritura$esc1541-e45/29/11/1541/aforamento/fol=123-125/loc=porta da cerca/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e manuel afonso, de dois moinhos, uma casa de moer pao e dois engenhos de moer pao, sitos na quinta da amoreira, sangalhos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1541-e45-per1-11
             ls$cargo/abadessa
 
-         foreiro$manuel afonso
+         foreiro$manuel afonso/id=esc1541-e45-per2-11
 
-         foreira$leonor ribeira
+         foreira$leonor ribeira/id=esc1541-e45-per3-11
             rel$parentesco/mulher/manuel afonso/esc1541-e45-per2
 
-            referido$afonso vicente/obs=antigo foreiro
+            referido$afonso vicente/obs=antigo foreiro/id=esc1541-e45-per3-11-per4-11
                rel$parentesco/filho/manuel afonso/esc1541-e45-per2
 
          aforamento$dois moinhos/id=esc1541-e45-obj1-3
@@ -1562,26 +1562,26 @@ kleio$gacto2.str/translations=10
             atr$foro/dois capoes
             atr$multa/vinte mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1541-e45-per5-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1541-e45-per1
             ls$residencia/cerco do mosteiro
             ls$cargo/vedor do mosteiro
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1541-e45-per6-11
             rel$profissional/alfaiate/margarida de castro/esc1541-e45-per1
             ls$residencia/curral do mosteiro
 
       escritura$esc1542-e46/29/12/1542/aforamento/fol=125-127/loc=porta da cerca/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e domingos pires, de meio casal e oitavo de casal
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e46-per1-11
             ls$cargo/abadessa
 
-         foreiro$domingos pires
+         foreiro$domingos pires/id=esc1542-e46-per2-11
             ls$profissao/lavrador e moleiro
             ls$residencia/orelhudo
 
-         foreira$brites eanes
+         foreira$brites eanes/id=esc1542-e46-per3-11
             rel$parentesco/mulher/domingos pires/esc1542-e46-per2
 
          aforamento$meio casal/id=esc1542-e46-obj1-3
@@ -1597,24 +1597,24 @@ kleio$gacto2.str/translations=10
             atr$foro/dois alqueires e meio de trigo/obs=por sao miguel de setembro
             atr$multa/dez mil reais por incumprimento
 
-         test$jorge seco/m
+         test$jorge seco/m/id=esc1542-e46-per4-11
             ls$cargo/conego/obs=da se
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1542-e46-per5-11
             rel$profissional/alfaiate/margarida de castro/esc1542-e46-per1
             ls$residencia/cerca do mosteiro
             ls$profissao/alfaiate
 
       escritura$esc1542-e47/16/1/1542/aforamento/fol=127-129/loc=porta da cerca/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e pedro dias, de um mato maninho sito onde chamam as casarias, em sangalhos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e47-per1-11
             ls$cargo/abadessa
 
-         foreiro$pedro dias
+         foreiro$pedro dias/id=esc1542-e47-per2-11
             ls$profissao/lavrador
             ls$residencia/fogueira, termo de sangalhos
 
-         foreira$catarina fernandes
+         foreira$catarina fernandes/id=esc1542-e47-per3-11
             rel$parentesco/mulher/pedro dias/esc1542-e47-per2
 
          aforamento$um mato maninho/id=esc1542-e47-obj1-3
@@ -1625,27 +1625,27 @@ kleio$gacto2.str/translations=10
             atr$racao/um alqueire de trigo
             atr$multa/dez mil reais por incumprimento
 
-         test$simao pires/m
+         test$simao pires/m/id=esc1542-e47-per4-11
             rel$profissional/mordomo/margarida de castro/esc1542-e47-per1/obs=em sangalhos
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1542-e47-per5-11
             rel$profissional/porteiro/margarida de castro/esc1542-e47-per1
             ls$residencia/pacos do mosteiro
 
-         test$luis pires/m
+         test$luis pires/m/id=esc1542-e47-per6-11
             ls$profissao/barqueiro
 
       escritura$esc1542-e48/21/1/1542/emprazamento/fol=129-132/loc=porta da cerca e outorgou-se nas grades da varanda/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e alvaro botelho caldeira, de uns moinhos de moer pao; um engenho que foi lagar de fazer azeite; um pomar e umas casas com seu lagar para fazer vinho; um pedaco de lameira
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e48-per1-11
             ls$cargo/abadessa
 
-         foreiro$alvaro botelho caldeira/obs=por boa obra que fez ao mosteiro
+         foreiro$alvaro botelho caldeira/obs=por boa obra que fez ao mosteiro/id=esc1542-e48-per2-11
             ls$titulo/cavaleiro fidalgo
             ls$titulo/cavaleiro da ordem de cristo/obs=duvida
             ls$residencia/leiria
 
-            referido$joao lopes/obs=antigo foreiro
+            referido$joao lopes/obs=antigo foreiro/id=esc1542-e48-per2-11-per3-11
                ls$titulo/clerigo
 
          prazo$uns moinhos de moer pao/id=esc1542-e48-obj1-3
@@ -1663,54 +1663,54 @@ kleio$gacto2.str/translations=10
             atr$pensao/mil e oitocentos reais/obs=terceira vida
             atr$multa/cem cruzados de ouro por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1542-e48-per4-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1542-e48-per1
             ls$residencia/cerco do mosteiro
             ls$cargo/vedor do mosteiro
 
-         test$goncalo vaz/m
+         test$goncalo vaz/m/id=esc1542-e48-per5-11
             rel$profissional/criado/alvaro botelho caldeira/esc1542-e48-per2
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1542-e48-per6-11
             rel$profissional/porteiro/margarida de castro/esc1542-e48-per1
             ls$residencia/pacos do mosteiro
 
       escritura$esc1542-e49/12/5/1542/emprazamento/fol=132-136/loc=varanda/sumario=emprazamento em tres pessoas celebrado entre mosteiro de santa clara e jorge fernandes; antonio rodrigues; manuel fernandes; simao rodrigues; bras pires, de umas casas sitas no burgo do mosteiro de santa clara
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e49-per1-11
             ls$cargo/abadessa
 
-         foreiro$jorge fernandes
+         foreiro$jorge fernandes/id=esc1542-e49-per2-11
             ls$profissao/solicitador
             ls$residencia/pacos do mosteiro
 
-         foreira$catarina afonso
+         foreira$catarina afonso/id=esc1542-e49-per3-11
             rel$parentesco/mulher/jorge fernandes/esc1542-e49-per2
 
-         foreiro$antonio rodrigues
+         foreiro$antonio rodrigues/id=esc1542-e49-per4-11
             ls$residencia/pacos do mosteiro
 
-         foreira$catarina dias
+         foreira$catarina dias/id=esc1542-e49-per5-11
             rel$parentesco/mulher/antonio rodrigues/esc1542-e49-per4
 
-         foreiro$manuel fernandes
+         foreiro$manuel fernandes/id=esc1542-e49-per6-11
             ls$profissao/carpinteiro
 
-         foreira$isabel martins
+         foreira$isabel martins/id=esc1542-e49-per7-11
             rel$parentesco/mulher/manuel fernandes/esc1542-e49-per6
 
-         foreiro$simao rodrigues
+         foreiro$simao rodrigues/id=esc1542-e49-per8-11
             ls$profissao/barqueiro
 
-         foreira$branca rodrigues
+         foreira$branca rodrigues/id=esc1542-e49-per9-11
             rel$parentesco/mulher/simao rodrigues/esc1542-e49-per8
 
-         foreiro$bras pires
+         foreiro$bras pires/id=esc1542-e49-per10-11
             ls$profissao/trabalhador
             ls$residencia/pacos do mosteiro
 
-         foreira$catarina pires
+         foreira$catarina pires/id=esc1542-e49-per11-11
             rel$parentesco/mulher/bras pires/esc1542-e49-per10
 
          prazo$casas/id=esc1542-e49-obj1-3
@@ -1718,29 +1718,29 @@ kleio$gacto2.str/translations=10
             atr$foro/duzentos reais/obs=por s. miguel de setembro; os tres primeiros inquilinos
             atr$foro/cem reais/obs= por s. miguel de setembro; os dois ultimos inquilinos
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1542-e49-per12-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1542-e49-per1
             ls$residencia/cerco do mosteiro
             ls$cargo/vedor do mosteiro
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1542-e49-per13-11
             rel$profissional/alfaiate/margarida de castro/esc1542-e49-per1
             ls$residencia/cerco do mosteiro
             ls$profissao/alfaiate
 
-         test$francisco do abelar/m
+         test$francisco do abelar/m/id=esc1542-e49-per14-11
             ls$titulo/cavaleiro
             ls$residencia/vila de alenquer
 
       escritura$esc1542-e50/5/6/1542/aforamento/fol=136v-138v/loc=varanda/sumario=novo aforamento em fatiosim celebrado entre mosteiro de santa clara e joao dias e seu irmao diogo fernandes, de meio casal para cada um sitos na povoa de s. joao, em sangalhos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e50-per1-11
             ls$cargo/abadessa
 
-         foreiro$joao dias
+         foreiro$joao dias/id=esc1542-e50-per2-11
 
-         foreiro$diogo fernandes
+         foreiro$diogo fernandes/id=esc1542-e50-per3-11
 
          aforamento$meio casal/id=esc1542-e50-obj1-3
 
@@ -1753,27 +1753,27 @@ kleio$gacto2.str/translations=10
             atr$foro/tres alqueires de pao pela medida velha/obs=a igreja do mosteiro
             atr$multa/vinte mil reais por incumprimento
 
-         test$simao pires/m
+         test$simao pires/m/id=esc1542-e50-per4-11
             rel$profissional/mordomo/margarida de castro/esc1542-e50-per1
 
-         test$domingos fernandes/m
+         test$domingos fernandes/m/id=esc1542-e50-per5-11
             ls$profissao/lavrador
             ls$residencia/vidoeiro limite de sangalhos
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1542-e50-per6-11
             rel$profissional/alfaiate/margarida de castro/esc1542-e50-per1
             ls$residencia/cerco do mosteiro
             ls$profissao/alfaiate
 
       escritura$esc1542-e51/20/6/1542/emprazamento/fol=138v-141v/loc=grades/sumario=novo emprazamento em tres vidas celebrado entre mosteiro de santa clara e filipa leite, de umas casas, casais e outras propriedades sitas na freguesia de sta. maria do sobrado; em riba douro; na freguesia de sampaio, termo da vila de guimaraes; na freguesia de s. martinho de butarim e dos pi�e; na freguesia de santa maria de quintas, no termo de barcelos
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e51-per1-11
             ls$cargo/abadessa
 
-         foreira$filipe leite
+         foreira$filipe leite/id=esc1542-e51-per2-11
             ls$residencia/porto
 
-            referido$bartolomeu da fonseca
+            referido$bartolomeu da fonseca/id=esc1542-e51-per2-11-per3-11
                rel$parentesco/marido/filipe leite/esc1542-e51-per2
                ls$morto/antes
 
@@ -1784,47 +1784,47 @@ kleio$gacto2.str/translations=10
             atr$foro/dois mil e quatrocentos reais/obs=terceira vida
             atr$multa/duzentos cruzados em outro por incumprimento
 
-         test$? fernandes/m/obs=duvida primeiro nome
+         test$? fernandes/m/obs=duvida primeiro nome/id=esc1542-e51-per4-11
             ls$titulo/bacharel
             ls$profissao/cirurgiao
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1542-e51-per5-11
             rel$profissional/alfaiate/margarida de castro/esc1542-e51-per1
             ls$residencia/coimbra
             ls$profissao/alfaiate
 
-         test$vasco leite/m
+         test$vasco leite/m/id=esc1542-e51-per6-11
             ls$titulo/cidadao
             ls$residencia/porto
 
-         test$manuel goncalves/m
+         test$manuel goncalves/m/id=esc1542-e51-per7-11
             rel$profissional/criado/vasco leite/esc1542-e51-per6
             ls$profissao/criado
 
       escritura$esc1542-e52/25/8/1542/aforamento/fol=142-144/loc=porta da cerca/sumario=novo aforamento em fatiosim celebrado entre mosteiro de santa clara e andre fernandes; andre bras e simao pires, de uns matos com agua para moendas
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1542-e52-per1-11
             ls$cargo/abadessa
 
-         foreiro$andre fernandes
+         foreiro$andre fernandes/id=esc1542-e52-per2-11
             ls$profissao/lavrador
             ls$residencia/monte longo
 
-         foreira$catarina fernandes
+         foreira$catarina fernandes/id=esc1542-e52-per3-11
             rel$parentesco/mulher/andre fernandes/esc1542-e52-per2
 
-         foreiro$andre bras
+         foreiro$andre bras/id=esc1542-e52-per4-11
             ls$profissao/sapateiro
             ls$residencia/avelas de caminho
 
-         foreira$leonor pires
+         foreira$leonor pires/id=esc1542-e52-per5-11
             rel$parentesco/mulher/andre bras/esc1542-e52-per4
 
-         foreiro$simao pires
+         foreiro$simao pires/id=esc1542-e52-per6-11
             rel$profissional/mordomo/margarida de castro/esc1542-e52-per1
             ls$residencia/sangalhos
 
-         foreira$maria rodrigues
+         foreira$maria rodrigues/id=esc1542-e52-per7-11
             rel$parentesco/mulher/simao pires/esc1542-e52-per6
 
          aforamento$matos com agua para moendas/id=esc1542-e52-obj1-3
@@ -1836,35 +1836,35 @@ kleio$gacto2.str/translations=10
             atr$racao/uma galinha/obs=pelo natal
             atr$multa/vinte mil reais por incumprimento
 
-         test$diogo de figueiredo/m
+         test$diogo de figueiredo/m/id=esc1542-e52-per8-11
             ls$titulo/cavaleiro fidalgo
             rel$profissional/vedor/margarida de castro/esc1542-e52-per1
             ls$residencia/cerco do mosteiro
             ls$cargo/vedor do mosteiro
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1542-e52-per9-11
             rel$profissional/alfaiate/margarida de castro/esc1542-e52-per1
             ls$residencia/pacos do mosteiro
             ls$profissao/alfaiate
 
-         test$bras eanes/m
+         test$bras eanes/m/id=esc1542-e52-per10-11
             ls$residencia/pacos do mosteiro
 
-         test$simao martins/m
+         test$simao martins/m/id=esc1542-e52-per11-11
             ls$residencia/penela
 
       escritura$esc1543-e53/8/8/1543/emprazamento/fol=144v-147v/loc=grades/sumario=novo emprazamento em tres vidas celebrado entre mosteiro de santa clara e o reverendo doutor francisco de moncao, de lotes de terra sitos no limite do lugar de gat�es, em montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1543-e53-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco de moncao
+         foreiro$francisco de moncao/id=esc1543-e53-per2-11
             ls$cargo/reverendo
             ls$titulo/doutor catedratico/obs=da universidade
 
-            referido$francisco pinheiro/obs=antigo foreiro
+            referido$francisco pinheiro/obs=antigo foreiro/id=esc1543-e53-per2-11-per3-11
 
-            referido$joao rodrigues/obs=antigo foreiro
+            referido$joao rodrigues/obs=antigo foreiro/id=esc1543-e53-per2-11-per4-11
 
          prazo$quatro lotes de terra/id=esc1543-e53-obj1-3
             atr$localizacao/gatoes, montemor o velho
@@ -1872,26 +1872,26 @@ kleio$gacto2.str/translations=10
             atr$racao/um quarto das novidades/obs=pao, trigo e segundas; linho e legumes
             atr$multa/duzentos cruzados em ouro por cada lote
 
-         test$antonio fernandes/m
+         test$antonio fernandes/m/id=esc1543-e53-per5-11
             ls$profissao/alfaiate
             ls$residencia/curral do mosteiro
 
-         test$bastiao martins/m
+         test$bastiao martins/m/id=esc1543-e53-per6-11
             ls$profissao/criado
 
-         referido$martim afonso
+         referido$martim afonso/id=esc1543-e53-per7-11
             rel$profissional/patrao/bastiao martins/esc1543-e53-per6
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1543-e53-per8-11
             ls$profissao/trabalhador
             ls$residencia/coimbra
 
       escritura$esc1543-e54/20/8/1543/emprazamento/fol=147v-149v/loc=porta da cerca/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e aleixo amorim, de um olival sito em montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1543-e54-per1-11
             ls$cargo/abadessa
 
-         foreiro$aleixo amorim
+         foreiro$aleixo amorim/id=esc1543-e54-per2-11
             ls$profissao/pedreiro
             ls$residencia/pacos do mosteiro
 
@@ -1901,32 +1901,32 @@ kleio$gacto2.str/translations=10
             atr$racao/um terco das novidades
             atr$multa/dez mil reais por incumprimento
 
-         test$luis eanes/m
+         test$luis eanes/m/id=esc1543-e54-per3-11
             ls$profissao/trabalhador
 
-         test$jorge andre/m
+         test$jorge andre/m/id=esc1543-e54-per4-11
             ls$residencia/pacos do mosteiro
 
-         test$afonso pires/m
+         test$afonso pires/m/id=esc1543-e54-per5-11
             ls$profissao/sapateiro
             ls$residencia/coimbra
 
       escritura$esc1544-e55/26/5/1544/emprazamento/fol=149v-151/loc=grades e outorgado a porta da cerca/sumario=emprazamento em tres vidas celebrado entre mosteiro de santa clara e pero anes e antonio pires, de umas casas no burgo de santa clara, sitas ao terreiro dos pacos e com alpendre de santa isabel
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1544-e55-per1-11
             ls$cargo/abadessa
 
-         foreiro$pedro anes
+         foreiro$pedro anes/id=esc1544-e55-per2-11
             ls$profissao/cavouqueiro
             ls$residencia/pacos do mosteiro
 
-         foreira$margarida fernandes
+         foreira$margarida fernandes/id=esc1544-e55-per3-11
             rel$parentesco/mulher/pedro anes/esc1544-e55-per2
 
-         foreiro$antonio pires
+         foreiro$antonio pires/id=esc1544-e55-per4-11
             ls$profissao/boeiro
 
-         foreira$catarina goncalves
+         foreira$catarina goncalves/id=esc1544-e55-per5-11
             rel$parentesco/mulher/antonio pires/esc1544-e55-per4
 
          prazo$casas/id=esc1544-e55-obj1-3
@@ -1934,27 +1934,27 @@ kleio$gacto2.str/translations=10
             atr$foro/duzentos e quarenta reais/obs=cento e vinte reais em cada ano, por s. miguel de setembro
             atr$multa/dez mil reais por incumprimento
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1544-e55-per6-11
             rel$profissional/mordomo/margarida de castro/esc1544-e55-per1
 
-         test$antonio anes/m
+         test$antonio anes/m/id=esc1544-e55-per7-11
             ls$profissao/alfaiate
             ls$residencia/pacos do mosteiro
 
-         test$anrique mendes/m
+         test$anrique mendes/m/id=esc1544-e55-per8-11
             rel$profissional/solicitador/margarida de castro/esc1544-e55-per1
             ls$cargo/solicitador do mosteiro
 
       escritura$esc1544-e56/27/5/1544/aforamento/fol=151-153v/loc=porta da cerca/sumario=renuncia e aforamento celebrados entre mosteiro de santa clara e francisco de moncao, representado por seu procurador o doutor de santa cruz, de quatro lotes de terras, mais moinhos, sitos nas proximidades de santa maria da serra
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1544-e56-per1-11
             ls$cargo/abadessa
 
-         foreiro$francisco de moncao
+         foreiro$francisco de moncao/id=esc1544-e56-per2-11
             ls$cargo/abade/obs=de sao joao da pesqueira
             ls$titulo/doutor
 
-            referido$santa cruz
+            referido$santa cruz/id=esc1544-e56-per2-11-per3-11
                rel$sociabilidade/procurador/francisco de moncao/esc1544-e56-per2
                ls$titulo/doutor catedratico
                ls$profissao/lente de vespera de leis na universidade
@@ -1967,31 +1967,31 @@ kleio$gacto2.str/translations=10
             atr$racao/um terco das novidades
             atr$multa/quinhentos cruzados em ouro por incumprimento
 
-         test$mateus fernandes/m
+         test$mateus fernandes/m/id=esc1544-e56-per4-11
 
-         test$belchior goncalves/m
+         test$belchior goncalves/m/id=esc1544-e56-per5-11
 
-         test$diogo goncalves/m
+         test$diogo goncalves/m/id=esc1544-e56-per6-11
             rel$profissional/criado/santa cruz/esc1544-e56-per3
 
       escritura$esc1547-e57/1/3/1547/aforamento/fol=155v-157v/loc=porta da cerca/sumario=aforamento em fatiosim celebrado entre mosteiro de santa clara e maria afonso, de uns pardieiros que, em outros tempos , ja foram casas, sitos na cidade de leiria
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1547-e57-per1-11
             ls$cargo/abadessa
 
-         foreiro$maria afonso
+         foreiro$maria afonso/id=esc1547-e57-per2-11
             ls$ec/viuva
 
-            referido$joao dias
+            referido$joao dias/id=esc1547-e57-per2-11-per3-11
                ls$profissao/lavrador
                ls$residencia/aldeia de barbaes, termo da vila de miranda
                rel$parentesco/marido/maria afonso/esc1547-e57-per2
                ls$morto/antes
 
-            referido$diogo afonso
+            referido$diogo afonso/id=esc1547-e57-per2-11-per4-11
                rel$parentesco/sogro/maria afonso/esc1547-e57-per2
 
-            referida$marquesa fernandes
+            referida$marquesa fernandes/id=esc1547-e57-per2-11-per5-11
                rel$parentesco/sogra/maria afonso/esc1547-e57-per2
 
          aforamento$um terco de casal/id=esc1547-e57-obj1-3
@@ -2002,28 +2002,28 @@ kleio$gacto2.str/translations=10
             atr$foro/uma canastra rasada
             atr$multa/dez mil reais por incumprimento
 
-         test$diogo pires/m
+         test$diogo pires/m/id=esc1547-e57-per6-11
             ls$residencia/termo de miranda
 
-         test$diogo pires/m
+         test$diogo pires/m/id=esc1547-e57-per7-11
             ls$residencia/urzelhe
 
-         test$manuel homem/m
+         test$manuel homem/m/id=esc1547-e57-per8-11
             ls$ec/solteiro
             ls$profissao/criado
 
-         referido$marcal macedo
+         referido$marcal macedo/id=esc1547-e57-per9-11
             ls$titulo/cidadao
             rel$profissional/patrao/manuel homem/esc1547-e57-per8
 
       escritura$esc1547-e58/21/8/1547/aforamento/fol=157v-159v/loc=porta da cerca/sumario=aforamento em fatiosim celebrado entre mosteiro de santa clara e lourenco mendes de abreu, de uns pardieiros, sitos na cidade de leiria
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1547-e58-per1-11
             ls$cargo/abadessa
 
-         foreiro$lourenco mendes de abreu
+         foreiro$lourenco mendes de abreu/id=esc1547-e58-per2-11
 
-         foreira$antonia gomes
+         foreira$antonia gomes/id=esc1547-e58-per3-11
             rel$parentesco/mulher/margarida de castro/esc1547-e58-per1
 
          aforamento$uns pardieiros/id=esc1547-e58-obj1-3
@@ -2031,33 +2031,33 @@ kleio$gacto2.str/translations=10
             atr$foro/duzentos e trinta reais/obs=por s. miguel de setembro
             atr$multa/sessenta mil reais por incumprimento
 
-         test$anrique mendes/m
+         test$anrique mendes/m/id=esc1547-e58-per4-11
             rel$profissional/feitor/margarida de castro/esc1547-e58-per1
             ls$residencia/cerco do mosteiro
 
-         test$joao da fonseca/m
+         test$joao da fonseca/m/id=esc1547-e58-per5-11
             ls$residencia/coimbra
 
-         test$bras eanes/m
+         test$bras eanes/m/id=esc1547-e58-per6-11
             rel$profissional/mordomo/margarida de castro/esc1547-e58-per1
             ls$residencia/pacos do mosteiro
 
       escritura$esc1548-e59/23/10/1548/aforamento/fol=160-163/loc=porta da cerca/sumario=aforamento para sempre celebrado entre mosteiro de santa clara e rodrigo afonso, de um quarto de casal, terras, casas e currais no lugar de gat�es, montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1548-e59-per1-11
             ls$cargo/abadessa
 
-         foreiro$rodrigo afonso
+         foreiro$rodrigo afonso/id=esc1548-e59-per2-11
             ls$alcunha/escudeiro
             ls$residencia/gatoes, montemor o velho
 
-         foreira$brites pires
+         foreira$brites pires/id=esc1548-e59-per3-11
             rel$parentesco/mulher/rodrigo afonso/esc1548-e59-per2
 
-            referido$vicente anes
+            referido$vicente anes/id=esc1548-e59-per3-11-per4-11
                rel$parentesco/pai/brites pires/esc1548-e59-per3
 
-            referido$pedro anes
+            referido$pedro anes/id=esc1548-e59-per3-11-per5-11
                rel$parentesco/irmao/brites pires/esc1548-e59-per3
 
          aforamento$um quarto de casal com terras casas currais/id=esc1548-e59-obj1-3
@@ -2068,129 +2068,129 @@ kleio$gacto2.str/translations=10
             atr$foro/dois frangos
             atr$multa/quarenta mil reais
 
-         test$anrique mendes/m
+         test$anrique mendes/m/id=esc1548-e59-per6-11
             rel$profissional/feitor/margarida de castro/esc1548-e59-per1
 
-         test$manuel jorge/m
+         test$manuel jorge/m/id=esc1548-e59-per7-11
 
-         referido$jorge anes
+         referido$jorge anes/id=esc1548-e59-per8-11
             ls$residencia/pacos de santa clara
             rel$parentesco/pai/manuel jorge/esc1548-e59-per7
 
-         test$francisco afonso/m
+         test$francisco afonso/m/id=esc1548-e59-per9-11
             ls$residencia/pacos do mosteiro
 
-         test$joao afonso/m
+         test$joao afonso/m/id=esc1548-e59-per10-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         test$fernao gomes/m
+         test$fernao gomes/m/id=esc1548-e59-per11-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
       escritura$esc1548-e60/23/10/1548/aforamento/fol=163v-169/loc=porta da cerca/sumario=aforamento em fatiosim para sempre celebrado entre mosteiro de santa clara e goncalo afonso; luis afonso; joao afonso; domingos afonso; rodrigo alvares; simao rodrigues; fernao gomes; simao vaz; joao afonso; domingos vaz; francisco pires; francisco fernandes; catarina vaz; joao rodrigues, de umas terras, vinhas, currais, herancas e matos, sitos em gatoes, montemor-o-velho
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1548-e60-per1-11
             ls$cargo/abadessa
 
-         foreiro$goncalo afonso
+         foreiro$goncalo afonso/id=esc1548-e60-per2-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$brites afonso
+         foreira$brites afonso/id=esc1548-e60-per3-11
             rel$parentesco/mulher/goncalo afonso/esc1548-e60-per2
 
-         foreiro$luis afonso
+         foreiro$luis afonso/id=esc1548-e60-per4-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$isabel anes
+         foreira$isabel anes/id=esc1548-e60-per5-11
             rel$parentesco/mulher/luis afonso/esc1548-e60-per4
 
-         foreiro$joao afonso
+         foreiro$joao afonso/id=esc1548-e60-per6-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$ines afonso
+         foreira$ines afonso/id=esc1548-e60-per7-11
             rel$parentesco/mulher/joao afonso/esc1548-e60-per6
 
-         foreiro$domingos afonso
+         foreiro$domingos afonso/id=esc1548-e60-per8-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$catarina goncalves
+         foreira$catarina goncalves/id=esc1548-e60-per9-11
             rel$parentesco/mulher/domingos afonso/esc1548-e60-per8
 
-         foreiro$rodrigo alvares
+         foreiro$rodrigo alvares/id=esc1548-e60-per10-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$ines pires
+         foreira$ines pires/id=esc1548-e60-per11-11
             rel$parentesco/mulher/rodrigo alvares/esc1548-e60-per10
 
-         foreiro$simao rodrigues
+         foreiro$simao rodrigues/id=esc1548-e60-per12-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$filipa fernandes
+         foreira$filipa fernandes/id=esc1548-e60-per13-11
             rel$parentesco/mulher/simao rodrigues/esc1548-e60-per12
 
-         foreiro$fernao gomes
+         foreiro$fernao gomes/id=esc1548-e60-per14-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$ines rodrigues
+         foreira$ines rodrigues/id=esc1548-e60-per15-11
             rel$parentesco/mulher/fernao gomes/esc1548-e60-per14
 
-         foreiro$simao vaz
+         foreiro$simao vaz/id=esc1548-e60-per16-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$catarina fernandes
+         foreira$catarina fernandes/id=esc1548-e60-per17-11
             rel$parentesco/mulher/simao vaz/esc1548-e60-per16
 
-         foreiro$joao afonso
+         foreiro$joao afonso/id=esc1548-e60-per18-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-            referido$frade do seixo
+            referido$frade do seixo/id=esc1548-e60-per18-11-per19-11
                rel$parentesco/pai/joao afonso/esc1548-e60-per18
 
-         foreira$brites vaz
+         foreira$brites vaz/id=esc1548-e60-per20-11
             rel$parentesco/mulher/joao afonso/esc1548-e60-per18
 
-         foreiro$domingos vaz
+         foreiro$domingos vaz/id=esc1548-e60-per21-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$isabel anes
+         foreira$isabel anes/id=esc1548-e60-per22-11
             rel$parentesco/mulher/domingos vaz/esc1548-e60-per21
 
-         foreiro$francisco pires
+         foreiro$francisco pires/id=esc1548-e60-per23-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$catarina goncalves
+         foreira$catarina goncalves/id=esc1548-e60-per24-11
             rel$parentesco/mulher/francisco pires/esc1548-e60-per23
 
-         foreiro$francisco fernandes
+         foreiro$francisco fernandes/id=esc1548-e60-per25-11
             ls$profissao/lavrador
             ls$residencia/gatoes, montemor o velho
 
-         foreira$domingas rodrigues
+         foreira$domingas rodrigues/id=esc1548-e60-per26-11
             rel$parentesco/mulher/francisco fernandes/esc1548-e60-per25
 
-         foreira$catarina vaz
+         foreira$catarina vaz/id=esc1548-e60-per27-11
             ls$ec/viuva
 
-            referido$vasco pires
+            referido$vasco pires/id=esc1548-e60-per27-11-per28-11
                rel$parentesco/marido/catarina vaz/esc1548-e60-per27
                ls$morto/antes
 
-         foreiro$joao rodrigues
+         foreiro$joao rodrigues/id=esc1548-e60-per29-11
             ls$residencia/maiorca
 
-         foreira$ana fernandes
+         foreira$ana fernandes/id=esc1548-e60-per30-11
             rel$parentesco/mulher/joao rodrigues/esc1548-e60-per29
 
          aforamento$terras casas vinhas currais herancas e matos/id=esc1548-e60-obj1-3
@@ -2203,29 +2203,29 @@ kleio$gacto2.str/translations=10
             atr$foro/dois alqueires de qualquer novidade/obs=pelas jeiras do paul
             atr$multa/quarenta mil reais por incumprimento
 
-         test$anrique mendes/m
+         test$anrique mendes/m/id=esc1548-e60-per31-11
             rel$profissional/feitor/margarida de castro/esc1548-e60-per1
             ls$residencia/pacos e cerco do mosteiro
 
-         test$jorge anes/m
+         test$jorge anes/m/id=esc1548-e60-per32-11
             ls$profissao/carpinteiro
             ls$residencia/pacos e cerco do mosteiro
 
-         test$andre jorge/m
+         test$andre jorge/m/id=esc1548-e60-per33-11
 
-         test$manuel jorge/m
+         test$manuel jorge/m/id=esc1548-e60-per34-11
 
       escritura$esc1549-e61/22/3/1549/emprazamento/fol=169-170v/loc=grades/sumario=emprazamento em quatro vidas celebrado entre mosteiro de santa clara e o conego na se catedral de coimbra, luis pires camelo, de um olival sito junto ao mosteiro de celas
 
-         senhoria$margarida de castro
+         senhoria$margarida de castro/id=esc1549-e61-per1-11
             ls$cargo/abadessa
 
-         foreiro$luis pires
+         foreiro$luis pires/id=esc1549-e61-per2-11
             ls$cargo/conego/obs=da se de coimbra
 
-            referido$gil fernandes/obs=antigo foreiro
+            referido$gil fernandes/obs=antigo foreiro/id=esc1549-e61-per2-11-per3-11
 
-            referida$catarina morais
+            referida$catarina morais/id=esc1549-e61-per2-11-per4-11
                rel$parentesco/mulher/gil fernandes/esc1549-e61-per3
 
          prazo$um olival/id=esc1549-e61-obj1-3
@@ -2233,11 +2233,11 @@ kleio$gacto2.str/translations=10
             atr$foro/onze alqueires de azeite
             atr$multa/quarenta mil reis
 
-         test$joao alvares/m
+         test$joao alvares/m/id=esc1549-e61-per5-11
             ls$residencia/pacos do mosteiro
 
-         test$antonio ?/m/obs=duvida nao se le o segundo nome
+         test$antonio ?/m/obs=duvida nao se le o segundo nome/id=esc1549-e61-per6-11
             ls$residencia/pacos do mosteiro
 
-         test$gaspar fernandes/m
+         test$gaspar fernandes/m/id=esc1549-e61-per7-11
             ls$residencia/pacos do mosteiro
