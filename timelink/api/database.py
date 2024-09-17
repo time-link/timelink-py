@@ -658,13 +658,13 @@ class TimelinkDatabase:
             file
             for file in kleio_files
             if (
-                file.import_status == import_status_enum.N
-                or file.import_status == import_status_enum.U  # noqa: W503
-            )
-            or (  # noqa: W503
+                file.import_status == import_status_enum.N or
+                file.import_status == import_status_enum.U  # noqa: W503
+            ) or
+            (  # noqa: W503
                 with_import_errors and file.import_status == import_status_enum.E
-            )
-            or (  # noqa: W503
+            ) or
+            (  # noqa: W503
                 with_import_warnings and file.import_status == import_status_enum.W
             )  # noqa: W503
         ]
@@ -804,6 +804,8 @@ class TimelinkDatabase:
         See :func:`timelink.api.models.person.get_person`
 
         """
+        if 'db' not in kwargs and 'session' not in kwargs:
+            kwargs['db'] = self
         return timelink.api.models.person.get_person(*args, **kwargs)
 
     def get_entity(self, *args, **kwargs) -> Entity:

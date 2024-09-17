@@ -1,6 +1,5 @@
 from typing import List, Optional
 from datetime import datetime
-import json
 
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
@@ -15,22 +14,22 @@ from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 from sqlalchemy.orm import relationship  # pylint: disable=import-error
 
-from timelink.kleio.utilities import kleio_escape
+from timelink.kleio.utilities import kleio_escape, get_extra_info
 from .base_class import Base
 
 
 class Entity(Base):
     """ORM Model root of the object hierarchy.
 
-     All entities in a Timelink/MHK database have an entry in this table.
-     Each entity is associated with a class that allow access to a
-     specialization table with more columns for that class.
+    All entities in a Timelink/MHK database have an entry in this table.
+    Each entity is associated with a class that allow access to a
+    specialization table with more columns for that class.
 
     This corresponds to the model described as "Joined Table Inheritance"
     in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
 
-    TODO: specialize in TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
-         Acts, Sources, Attributes and Relations are TemporalEntities
+    TODO: specialize TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
+            Acts, Sources, Attributes and Relations are TemporalEntities
     """
 
     __tablename__ = "entities"
@@ -183,7 +182,7 @@ class Entity(Base):
         else:
             return None
 
-    def get_extra_info(self):
+    def get_extra_info(self) -> tuple[str, dict]:
         """Return a dictionatry with extra information about this entity or None
 
         if entity has an 'obs' field and that field
@@ -192,24 +191,17 @@ class Entity(Base):
         extra information about the entity. Extra information can
         be comments and original wording of field values.
 
-        This method returns
-        the json information as a dictionnary.
+        This method returns a tuple with the new obs string
+        (withou the extra_info part) and a dictionary with
+        the extra information.
+
 
         Currently the dictionary has the following structure:
 
             {'field_name': {'comment': text_of_comment, 'original': original_wording}}
         """
         obs = getattr(self, 'obs', None)
-        if obs is not None:
-            s = obs.split('extra_info:')
-            if len(s) > 1:
-                exs = s[1].strip()
-                extra_info = json.loads(exs)
-            else:
-                extra_info = None
-        else:
-            extra_info = None
-        return extra_info
+        return get_extra_info(obs)
 
     def __repr__(self):
         return (
@@ -229,12 +221,21 @@ class Entity(Base):
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def render_id(self):
+        """ if the id begins with an underscore, it is a temporary id and returns an empty string"""
         if self.id[:1] == "_":
             return ""
         else:
             return f"/id={self.id}"
 
     def to_kleio(self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs):
+        """ conver the entity to a kleio string
+
+        Args:
+            self_string: the string to be used to represent the entity
+            show_contained: if True, contained entities are also converted to kleio
+            ident: initial identation
+            ident_inc: identation increment
+            kwargs: additional arguments to be passed to contained entities"""
         if self_string is None:
             s = f"{ident}{str(self)}"
         else:
