@@ -43,6 +43,7 @@ setup(
         'fastui',
         'fief-client',
         'sqlalchemy',
+        'sqlalchemy-utils',
         'bcrypt==4.0.1',  # bug see https://github.com/logspace-ai/langflow/issues/1173
         'passlib[bcrypt]',
         'pydantic',
