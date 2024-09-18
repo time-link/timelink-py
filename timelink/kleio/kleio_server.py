@@ -581,7 +581,7 @@ class KleioServer:
 
         """
         if token is None:
-            token = self.get_token
+            token = self.get_token()
         if token is None:
             headers = {}
         else:
