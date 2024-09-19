@@ -12,6 +12,7 @@ from .act import Act  # noqa pylint: disable=unused-import
 from .source import Source  # noqa pylint: disable=unused-import
 from .person import Person  # noqa pylint: disable=unused-import
 from .object import Object  # noqa pylint: disable=unused-import
+from .geoentity import Geoentity  # noqa pylint: disable=unused-import
 from .pom_som_mapper import PomSomMapper  # noqa pylint: disable=unused-import
 from .pom_som_mapper import PomClassAttributes  # noqa pylint: disable=unused-import
 from .base_mappings import pom_som_base_mappings  # noqa pylint: disable=unused-import

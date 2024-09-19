@@ -1,0 +1,1441 @@
+<?xml version='1.0'?>
+<KLEIO STRUCTURE="/kleio-home/structures/sources.str" SOURCE="/kleio-home/sources/china-geral.cli" TRANSLATOR="gactoxml2.str" WHEN="2024-9-7 9:28:12" OBS="" SPACE="">
+<CLASS NAME="source" SUPER="entity" TABLE="sources" GROUP="fonte">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="date" COLUMN="the_date" CLASS="date" TYPE="varchar" SIZE="24" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="type" COLUMN="the_type" CLASS="type" TYPE="varchar" SIZE="32" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="value" COLUMN="the_value" CLASS="value" TYPE="varchar" SIZE="254" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="loc" COLUMN="loc" CLASS="loc" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="ref" COLUMN="ref" CLASS="ref" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="kleiofile" COLUMN="kleiofile" CLASS="kleiofile" TYPE="varchar" SIZE="512" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="32768" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="replace" COLUMN="replaces" CLASS="replace" TYPE="varchar" SIZE="254" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="china-geral" NAME="fonte" CLASS="source" ORDER="1" LEVEL="1" LINE="24">
+    <ELEMENT NAME="line" CLASS="line"><core>24</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>fonte</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>root</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>source</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>1</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>1</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[cronologia]]></core>   </ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1552:1758]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA["""
+
+        Referências:
+
+        Dehergne, J. (1973). Répertoire des Jésuites de Chine de 1552 à 1800.
+                  Institutum historicum ; Letouzey & Ané.
+                  https://archive.org/details/bhsi37
+                  pp. 325-352
+
+        Pires, Benjamim Videira. 1999. «The Antecedents and Context of the University
+        College of St.Paul». em Religion and culture: an international symposium
+        commemorating the fourth centenary of the University College of St. Paul, Macau,
+        28 November to 1 December 1994.
+
+
+
+        """]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15520000.1758]]></core>   </ELEMENT>
+   <ELEMENT NAME="kleiofile" CLASS="kleiofile">
+         <core><![CDATA[/kleio-home/sources/china-geral.cli]]></core>   </ELEMENT>
+</GROUP>
+<CLASS NAME="act" SUPER="entity" TABLE="acts" GROUP="historical-act">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="date" COLUMN="the_date" CLASS="date" TYPE="varchar" SIZE="24" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="type" COLUMN="the_type" CLASS="type" TYPE="varchar" SIZE="32" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="loc" COLUMN="loc" CLASS="loc" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="ref" COLUMN="ref" CLASS="ref" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+<CLASS NAME="evento" SUPER="act" TABLE="eventos" GROUP="crono">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="date" COLUMN="the_date" CLASS="date" TYPE="varchar" SIZE="24" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="description" COLUMN="description" CLASS="description" TYPE="varchar" SIZE="1024" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="__china-geral-his1-34" NAME="crono" CLASS="evento" ORDER="2" LEVEL="2" LINE="26">
+    <ELEMENT NAME="line" CLASS="line"><core>26</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>2</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1522-01-28]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Kia-Tsing imperador]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15220128]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+<CLASS NAME="person" SUPER="entity" TABLE="persons" GROUP="referido">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="name" COLUMN="name" CLASS="name" TYPE="varchar" SIZE="128" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="sex" COLUMN="sex" CLASS="sex" TYPE="char" SIZE="1" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="__china-geral-his1-34-per1-34" NAME="referido" CLASS="person" ORDER="3" LEVEL="3" LINE="28">
+    <ELEMENT NAME="line" CLASS="line"><core>28</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his1-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his1-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>3</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Jiajing]]></core>         <original><![CDATA[Kia-Tsing]]></original>
+         <comment><![CDATA[ @wikidata:Q10011]]></comment>
+   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his1-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+<CLASS NAME="relation" SUPER="entity" TABLE="relations" GROUP="relation">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="date" COLUMN="the_date" CLASS="date" TYPE="varchar" SIZE="24" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="origin" COLUMN="origin" CLASS="origin" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="destination" COLUMN="destination" CLASS="destination" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="type" COLUMN="the_type" CLASS="type" TYPE="varchar" SIZE="32" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="value" COLUMN="the_value" CLASS="value" TYPE="varchar" SIZE="254" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="__-__china-geral-his1-34-rela1" NAME="relation"  ORDER="4" LEVEL="4" CLASS="relation" LINE="28">
+    <ELEMENT NAME="line" CLASS="line"><core>28</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his1-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>4</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his1-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his1-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his1-34-rela1</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15220128</core></ELEMENT>
+</GROUP><CLASS NAME="attribute" SUPER="entity" TABLE="attributes" GROUP="atr">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="entity" COLUMN="entity" CLASS="entity" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="date" COLUMN="the_date" CLASS="date" TYPE="varchar" SIZE="24" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="type" COLUMN="the_type" CLASS="type" TYPE="varchar" SIZE="512" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="value" COLUMN="the_value" CLASS="value" TYPE="varchar" SIZE="1024" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="__china-geral-his1-34-per1-34-atra1" NAME="atr"  ORDER="5" LEVEL="4" CLASS="attribute" LINE="28">
+    <ELEMENT NAME="line" CLASS="line"><core>28</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>atr</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his1-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>5</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type">      <core><![CDATA[person:name@wikidata]]></core>      <comment><![CDATA[]]></comment>      <original><![CDATA[]]></original></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value">      <core><![CDATA[https://www.wikidata.org/wiki/Q10011]]></core>      <comment><![CDATA[ @wikidata:Q10011]]></comment>      <original><![CDATA[Q10011]]></original></ELEMENT>
+    <ELEMENT NAME="entity" CLASS="entity"><core>__china-geral-his1-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his1-34-per1-34-atra1</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15220128</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his2-34" NAME="crono" CLASS="evento" ORDER="6" LEVEL="2" LINE="30">
+    <ELEMENT NAME="line" CLASS="line"><core>30</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his2-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>6</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1542:1543]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[Fora da China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Chegada dos Portugueses a Japão (e, em 1549, chegada de S. Francisco Xavier)]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15420000.1543]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his2-34-per1-34" NAME="referido" CLASS="person" ORDER="7" LEVEL="3" LINE="32">
+    <ELEMENT NAME="line" CLASS="line"><core>32</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his2-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his2-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>7</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Francisco Xavier]]></core>   </ELEMENT>
+   <ELEMENT NAME="xmesmo_que" CLASS="undef">
+         <core><![CDATA[francisco-xavier]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his2-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his2-34-rela2" NAME="relation"  ORDER="8" LEVEL="4" CLASS="relation" LINE="32">
+    <ELEMENT NAME="line" CLASS="line"><core>32</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his2-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>8</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his2-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his2-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his2-34-rela2</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15420000.1543</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his3-34" NAME="crono" CLASS="evento" ORDER="10" LEVEL="2" LINE="34">
+    <ELEMENT NAME="line" CLASS="line"><core>34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his3-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>10</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1552-12-02]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Morte de Francisco Xavier em Sanchuan]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15521202]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his3-34-per1-34" NAME="referido" CLASS="person" ORDER="11" LEVEL="3" LINE="36">
+    <ELEMENT NAME="line" CLASS="line"><core>36</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his3-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his3-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>11</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Francisco Xavier]]></core>   </ELEMENT>
+   <ELEMENT NAME="xmesmo_que" CLASS="undef">
+         <core><![CDATA[francisco-xavier]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his3-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his3-34-rela4" NAME="relation"  ORDER="12" LEVEL="4" CLASS="relation" LINE="36">
+    <ELEMENT NAME="line" CLASS="line"><core>36</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his3-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>12</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his3-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his3-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his3-34-rela4</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15521202</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his4-34" NAME="crono" CLASS="evento" ORDER="14" LEVEL="2" LINE="38">
+    <ELEMENT NAME="line" CLASS="line"><core>38</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his4-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>14</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1555-7-0]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Melchior Nunes Barreto chega a Sanchuan]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15550700]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his4-34-per1-34" NAME="referido" CLASS="person" ORDER="15" LEVEL="3" LINE="40">
+    <ELEMENT NAME="line" CLASS="line"><core>40</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his4-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his4-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>15</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Melchior Nunes Barreto]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his4-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his4-34-rela6" NAME="relation"  ORDER="16" LEVEL="4" CLASS="relation" LINE="40">
+    <ELEMENT NAME="line" CLASS="line"><core>40</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his4-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>16</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his4-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his4-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his4-34-rela6</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15550700</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his5-34" NAME="crono" CLASS="evento" ORDER="17" LEVEL="2" LINE="42">
+    <ELEMENT NAME="line" CLASS="line"><core>42</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his5-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>17</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1557]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Fundação de Macau]]></core>         <original><![CDATA[possession portugaise]]></original>
+   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15570000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+<CLASS NAME="geoentity" SUPER="entity" TABLE="geoentities" GROUP="lugar">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="type" COLUMN="the_type" CLASS="type" TYPE="varchar" SIZE="32" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="name" COLUMN="name" CLASS="name" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="__china-geral-his5-34-geo1-34" NAME="lugar" CLASS="geoentity" ORDER="18" LEVEL="3" LINE="44">
+    <ELEMENT NAME="line" CLASS="line"><core>44</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his5-34-geo1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>lugar</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his5-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>geoentity</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>18</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="name" CLASS="name">
+         <core><![CDATA[Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his5-34-geo1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[lugar]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his5-34-rela7" NAME="relation"  ORDER="19" LEVEL="4" CLASS="relation" LINE="44">
+    <ELEMENT NAME="line" CLASS="line"><core>44</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his5-34-geo1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>19</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>lugar</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his5-34-geo1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his5-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his5-34-rela7</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15570000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his6-34" NAME="crono" CLASS="evento" ORDER="20" LEVEL="2" LINE="46">
+    <ELEMENT NAME="line" CLASS="line"><core>46</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his6-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>20</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1560]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Chegada dos primeiros Jesuítas a Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15600000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his7-34" NAME="crono" CLASS="evento" ORDER="21" LEVEL="2" LINE="48">
+    <ELEMENT NAME="line" CLASS="line"><core>48</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his7-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>21</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1565]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Residência Jesuíta fundada em Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15650000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his8-34" NAME="crono" CLASS="evento" ORDER="22" LEVEL="2" LINE="50">
+    <ELEMENT NAME="line" CLASS="line"><core>50</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>22</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1555-11-20]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Chegada primeiros jesuítas a Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA[Pires, 1999.]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-his7-per1" NAME="referido" CLASS="person" ORDER="23" LEVEL="3" LINE="51">
+    <ELEMENT NAME="line" CLASS="line"><core>51</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-his7-per1</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>23</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Belchior Nunes Barreto]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his8-34-rela8" NAME="relation"  ORDER="24" LEVEL="4" CLASS="relation" LINE="51">
+    <ELEMENT NAME="line" CLASS="line"><core>51</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>24</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-his7-per1</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his8-34-rela8</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15551120</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his7-per1-att1-34" NAME="ls" CLASS="attribute" ORDER="25" LEVEL="4" LINE="53">
+    <ELEMENT NAME="line" CLASS="line"><core>53</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his7-per1-att1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>25</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[jesuita-cargo]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[Vice-Provincial]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his7-per1-att1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-his7-per1]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-his7-per1-per2" NAME="referido" CLASS="person" ORDER="26" LEVEL="3" LINE="54">
+    <ELEMENT NAME="line" CLASS="line"><core>54</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-his7-per1-per2</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>26</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Gaspar Vilela]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his8-34-rela9" NAME="relation"  ORDER="27" LEVEL="4" CLASS="relation" LINE="54">
+    <ELEMENT NAME="line" CLASS="line"><core>54</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>27</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-his7-per1-per2</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his8-34-rela9</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15551120</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his7-per1-per2-att2-34" NAME="ls" CLASS="attribute" ORDER="28" LEVEL="4" LINE="56">
+    <ELEMENT NAME="line" CLASS="line"><core>56</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his7-per1-per2-att2-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>28</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[profissao]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[padre]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his7-per1-per2-att2-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-his7-per1-per2]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-his7-per1-per2-per3" NAME="referido" CLASS="person" ORDER="29" LEVEL="3" LINE="57">
+    <ELEMENT NAME="line" CLASS="line"><core>57</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-his7-per1-per2-per3</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>29</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[António Dias]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his8-34-rela10" NAME="relation"  ORDER="30" LEVEL="4" CLASS="relation" LINE="57">
+    <ELEMENT NAME="line" CLASS="line"><core>57</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2-per3</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>30</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-his7-per1-per2-per3</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his8-34-rela10</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15551120</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his7-per1-per2-per3-att3-34" NAME="ls" CLASS="attribute" ORDER="31" LEVEL="4" LINE="59">
+    <ELEMENT NAME="line" CLASS="line"><core>59</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his7-per1-per2-per3-att3-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2-per3</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>31</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[profissao]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[padre]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his7-per1-per2-per3-att3-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-his7-per1-per2-per3]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his8-34-per1-34" NAME="referido" CLASS="person" ORDER="32" LEVEL="3" LINE="60">
+    <ELEMENT NAME="line" CLASS="line"><core>60</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his8-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>32</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Fernão Mendes Pinto]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his8-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his8-34-rela11" NAME="relation"  ORDER="33" LEVEL="4" CLASS="relation" LINE="60">
+    <ELEMENT NAME="line" CLASS="line"><core>60</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>33</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his8-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his8-34-rela11</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15551120</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his8-34-per1-34-att4-34" NAME="ls" CLASS="attribute" ORDER="34" LEVEL="4" LINE="62">
+    <ELEMENT NAME="line" CLASS="line"><core>62</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his8-34-per1-34-att4-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34-per1-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>34</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[jesuita-estatuto]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[escolástico]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his8-34-per1-34-att4-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[__china-geral-his8-34-per1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-his7-per1-per2-per3-per4-per5" NAME="referido" CLASS="person" ORDER="35" LEVEL="3" LINE="63">
+    <ELEMENT NAME="line" CLASS="line"><core>63</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-his7-per1-per2-per3-per4-per5</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>35</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Belchior Dias]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his8-34-rela12" NAME="relation"  ORDER="36" LEVEL="4" CLASS="relation" LINE="63">
+    <ELEMENT NAME="line" CLASS="line"><core>63</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2-per3-per4-per5</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>36</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-his7-per1-per2-per3-per4-per5</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his8-34-rela12</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15551120</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his7-per1-per2-per3-per4-per5-att5-34" NAME="ls" CLASS="attribute" ORDER="37" LEVEL="4" LINE="65">
+    <ELEMENT NAME="line" CLASS="line"><core>65</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his7-per1-per2-per3-per4-per5-att5-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2-per3-per4-per5</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>37</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[jesuita-estatuto]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[escolástico]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his7-per1-per2-per3-per4-per5-att5-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-his7-per1-per2-per3-per4-per5]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-his7-per1-per2-per3-per4-per5-per6" NAME="referido" CLASS="person" ORDER="38" LEVEL="3" LINE="66">
+    <ELEMENT NAME="line" CLASS="line"><core>66</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-his7-per1-per2-per3-per4-per5-per6</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his8-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>38</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Estevão de Góis]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA[Fica em Cantão para estudar Chinês, mas adoece e volta a Goa]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his8-34-rela13" NAME="relation"  ORDER="39" LEVEL="4" CLASS="relation" LINE="66">
+    <ELEMENT NAME="line" CLASS="line"><core>66</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2-per3-per4-per5-per6</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>39</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-his7-per1-per2-per3-per4-per5-per6</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his8-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his8-34-rela13</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15551120</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his7-per1-per2-per3-per4-per5-per6-att6-34" NAME="ls" CLASS="attribute" ORDER="40" LEVEL="4" LINE="68">
+    <ELEMENT NAME="line" CLASS="line"><core>68</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his7-per1-per2-per3-per4-per5-per6-att6-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his7-per1-per2-per3-per4-per5-per6</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>40</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[jesuita-estatuto]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[escolástico]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his7-per1-per2-per3-per4-per5-per6-att6-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-his7-per1-per2-per3-per4-per5-per6]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15551120]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his9-34" NAME="crono" CLASS="evento" ORDER="41" LEVEL="2" LINE="70">
+    <ELEMENT NAME="line" CLASS="line"><core>70</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his9-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>41</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1557]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Portugueses autorizados a fixarem-se em Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15570000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his10-34" NAME="crono" CLASS="evento" ORDER="42" LEVEL="2" LINE="72">
+    <ELEMENT NAME="line" CLASS="line"><core>72</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his10-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>42</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1562]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Embaixada para Pequim em Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA[Pires, 1999]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-1562-diogo" NAME="referido" CLASS="person" ORDER="43" LEVEL="3" LINE="73">
+    <ELEMENT NAME="line" CLASS="line"><core>73</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-1562-diogo</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>43</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Diogo Pereira]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his10-34-rela14" NAME="relation"  ORDER="44" LEVEL="4" CLASS="relation" LINE="73">
+    <ELEMENT NAME="line" CLASS="line"><core>73</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-1562-diogo</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>44</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-1562-diogo</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his10-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his10-34-rela14</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15620000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-1562-diogo-att1-34" NAME="ls" CLASS="attribute" ORDER="45" LEVEL="4" LINE="74">
+    <ELEMENT NAME="line" CLASS="line"><core>74</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-1562-diogo-att1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-1562-diogo</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>45</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[profissao]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[mercador]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-1562-diogo-att1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-1562-diogo]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-1562-diogo-att2-34" NAME="ls" CLASS="attribute" ORDER="46" LEVEL="4" LINE="76">
+    <ELEMENT NAME="line" CLASS="line"><core>76</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-1562-diogo-att2-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-1562-diogo</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>46</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[cargo]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[enviado do Rei de Portugal ao Imperador da China]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-1562-diogo-att2-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-1562-diogo]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-1562-guilherme-pereira" NAME="referido" CLASS="person" ORDER="47" LEVEL="3" LINE="77">
+    <ELEMENT NAME="line" CLASS="line"><core>77</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-1562-guilherme-pereira</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>47</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Guilherme Pereira]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA[ofereceu alojamento]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA[ofereceu alojamento]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his10-34-rela15" NAME="relation"  ORDER="48" LEVEL="4" CLASS="relation" LINE="77">
+    <ELEMENT NAME="line" CLASS="line"><core>77</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-1562-guilherme-pereira</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>48</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-1562-guilherme-pereira</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his10-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his10-34-rela15</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15620000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-1562-guilherme-pereira-att3-34" NAME="ls" CLASS="attribute" ORDER="49" LEVEL="4" LINE="79">
+    <ELEMENT NAME="line" CLASS="line"><core>79</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-1562-guilherme-pereira-att3-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-1562-guilherme-pereira</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>49</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[residencia]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-1562-guilherme-pereira-att3-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-1562-guilherme-pereira]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his10-34-per1-34" NAME="referido" CLASS="person" ORDER="50" LEVEL="3" LINE="80">
+    <ELEMENT NAME="line" CLASS="line"><core>80</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his10-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>50</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Luís Fróis]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his10-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his10-34-rela16" NAME="relation"  ORDER="51" LEVEL="4" CLASS="relation" LINE="80">
+    <ELEMENT NAME="line" CLASS="line"><core>80</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>51</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his10-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his10-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his10-34-rela16</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15620000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his10-34-per1-34-att4-34" NAME="ls" CLASS="attribute" ORDER="52" LEVEL="4" LINE="81">
+    <ELEMENT NAME="line" CLASS="line"><core>81</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his10-34-per1-34-att4-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34-per1-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>52</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[jesuita-estatuto]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[Padre]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his10-34-per1-34-att4-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[__china-geral-his10-34-per1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his10-34-per1-34-rel1-34" NAME="rel" CLASS="relation" ORDER="53" LEVEL="4" LINE="83">
+    <ELEMENT NAME="line" CLASS="line"><core>83</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his10-34-per1-34-rel1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>rel</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34-per1-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>53</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[parentesco]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[irmão]]></core>   </ELEMENT>
+   <ELEMENT NAME="nomedest" CLASS="undef">
+         <core><![CDATA[Guilherme Pereira]]></core>   </ELEMENT>
+   <ELEMENT NAME="iddest" CLASS="destination">
+         <core><![CDATA[china-geral-1562-guilherme-pereira]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his10-34-per1-34-rel1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="origin" CLASS="origin">
+         <core><![CDATA[__china-geral-his10-34-per1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="china-geral-his9-per1-per3-per4" NAME="referido" CLASS="person" ORDER="54" LEVEL="3" LINE="84">
+    <ELEMENT NAME="line" CLASS="line"><core>84</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>china-geral-his9-per1-per3-per4</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>54</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Giovanni Battista de Monte]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his10-34-rela17" NAME="relation"  ORDER="55" LEVEL="4" CLASS="relation" LINE="84">
+    <ELEMENT NAME="line" CLASS="line"><core>84</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his9-per1-per3-per4</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>55</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>china-geral-his9-per1-per3-per4</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his10-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his10-34-rela17</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15620000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his9-per1-per3-per4-att5-34" NAME="ls" CLASS="attribute" ORDER="56" LEVEL="4" LINE="86">
+    <ELEMENT NAME="line" CLASS="line"><core>86</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his9-per1-per3-per4-att5-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral-his9-per1-per3-per4</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>56</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[jesuita-estatuto]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[Padre]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his9-per1-per3-per4-att5-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[china-geral-his9-per1-per3-per4]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15620000]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his10-34-per2-34" NAME="referido" CLASS="person" ORDER="57" LEVEL="3" LINE="88">
+    <ELEMENT NAME="line" CLASS="line"><core>88</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his10-34-per2-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>57</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Pedro Quintero]]></core>   </ELEMENT>
+   <ELEMENT NAME="obs" CLASS="obs">
+         <core><![CDATA[Ofereceu fundos para a primeira residência Jesuíta em Macau (Pires, 1999)]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his10-34-per2-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his10-34-rela18" NAME="relation"  ORDER="58" LEVEL="4" CLASS="relation" LINE="88">
+    <ELEMENT NAME="line" CLASS="line"><core>88</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his10-34-per2-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>58</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his10-34-per2-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his10-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his10-34-rela18</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15620000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his11-34" NAME="crono" CLASS="evento" ORDER="59" LEVEL="2" LINE="90">
+    <ELEMENT NAME="line" CLASS="line"><core>90</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his11-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>59</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1563]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[Fora da China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Fim do Concílio de Trento]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15630000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+<CLASS NAME="object" SUPER="entity" TABLE="objects" GROUP="object">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="name" COLUMN="name" CLASS="name" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="type" COLUMN="the_type" CLASS="type" TYPE="varchar" SIZE="32" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+<CLASS NAME="topico" SUPER="object" TABLE="topicos" GROUP="topico">
+     <ATTRIBUTE NAME="id" COLUMN="id" CLASS="id" TYPE="varchar" SIZE="64" PRECISION="0" PKEY="1" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="subject" COLUMN="subject" CLASS="subject" TYPE="varchar" SIZE="1024" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="description" COLUMN="description" CLASS="description" TYPE="varchar" SIZE="1024" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+     <ATTRIBUTE NAME="obs" COLUMN="obs" CLASS="obs" TYPE="varchar" SIZE="16654" PRECISION="0" PKEY="0" ></ATTRIBUTE>
+</CLASS>
+
+<GROUP ID="__china-geral-his11-34-obj1-34" NAME="topico" CLASS="topico" ORDER="60" LEVEL="3" LINE="92">
+    <ELEMENT NAME="line" CLASS="line"><core>92</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his11-34-obj1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>topico</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his11-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>topico</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>60</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="name" CLASS="name">
+         <core><![CDATA[Concílio de Trento]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his11-34-obj1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[topico]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his11-34-rela19" NAME="relation"  ORDER="61" LEVEL="4" CLASS="relation" LINE="92">
+    <ELEMENT NAME="line" CLASS="line"><core>92</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his11-34-obj1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>61</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>topico</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his11-34-obj1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his11-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his11-34-rela19</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15630000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his12-34" NAME="crono" CLASS="evento" ORDER="62" LEVEL="2" LINE="94">
+    <ELEMENT NAME="line" CLASS="line"><core>94</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his12-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>62</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1565]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[Fora da China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Espanhóis instalados nas Filipinas, descobertas por Magalhães em 1521, conforme ao tratado de Tortesilhas (1494)]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15650000]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his12-34-geo2-34" NAME="lugar" CLASS="geoentity" ORDER="63" LEVEL="3" LINE="96">
+    <ELEMENT NAME="line" CLASS="line"><core>96</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his12-34-geo2-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>lugar</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his12-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>geoentity</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>63</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="name" CLASS="name">
+         <core><![CDATA[Filipinas]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his12-34-geo2-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[lugar]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his12-34-rela20" NAME="relation"  ORDER="64" LEVEL="4" CLASS="relation" LINE="96">
+    <ELEMENT NAME="line" CLASS="line"><core>96</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his12-34-geo2-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>64</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>lugar</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his12-34-geo2-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his12-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his12-34-rela20</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15650000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his12-34-obj1-34" NAME="topico" CLASS="topico" ORDER="65" LEVEL="3" LINE="98">
+    <ELEMENT NAME="line" CLASS="line"><core>98</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his12-34-obj1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>topico</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his12-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>topico</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>65</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="name" CLASS="name">
+         <core><![CDATA[Tratado de Tortesilhas]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his12-34-obj1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[topico]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his12-34-rela21" NAME="relation"  ORDER="66" LEVEL="4" CLASS="relation" LINE="98">
+    <ELEMENT NAME="line" CLASS="line"><core>98</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his12-34-obj1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>66</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>topico</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his12-34-obj1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his12-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his12-34-rela21</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15650000</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his13-34" NAME="crono" CLASS="evento" ORDER="67" LEVEL="2" LINE="100">
+    <ELEMENT NAME="line" CLASS="line"><core>100</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his13-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>67</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1567-02-09]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Long-K'ing imperador]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15670209]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his13-34-per1-34" NAME="referido" CLASS="person" ORDER="68" LEVEL="3" LINE="102">
+    <ELEMENT NAME="line" CLASS="line"><core>102</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his13-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his13-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>68</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Longqing]]></core>         <original><![CDATA[Long-K'ing]]></original>
+         <comment><![CDATA[@wikidata:Q10059]]></comment>
+   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his13-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his13-34-rela22" NAME="relation"  ORDER="69" LEVEL="4" CLASS="relation" LINE="102">
+    <ELEMENT NAME="line" CLASS="line"><core>102</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his13-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>69</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his13-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his13-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his13-34-rela22</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15670209</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his13-34-per1-34-atra2" NAME="atr"  ORDER="70" LEVEL="4" CLASS="attribute" LINE="102">
+    <ELEMENT NAME="line" CLASS="line"><core>102</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>atr</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his13-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>70</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type">      <core><![CDATA[person:name@wikidata]]></core>      <comment><![CDATA[]]></comment>      <original><![CDATA[]]></original></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value">      <core><![CDATA[https://www.wikidata.org/wiki/Q10059]]></core>      <comment><![CDATA[@wikidata:Q10059]]></comment>      <original><![CDATA[Q10059]]></original></ELEMENT>
+    <ELEMENT NAME="entity" CLASS="entity"><core>__china-geral-his13-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his13-34-per1-34-atra2</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15670209</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his14-34" NAME="crono" CLASS="evento" ORDER="71" LEVEL="2" LINE="104">
+    <ELEMENT NAME="line" CLASS="line"><core>104</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his14-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>71</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1568-07]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Monsenhor Belchior Carneiro primeiro bispo residente em Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15520000.1758]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his14-34-per1-34" NAME="referido" CLASS="person" ORDER="72" LEVEL="3" LINE="105">
+    <ELEMENT NAME="line" CLASS="line"><core>105</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his14-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>referido</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his14-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>person</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>72</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>3</core></ELEMENT>
+   <ELEMENT NAME="nome" CLASS="name">
+         <core><![CDATA[Belchior Carneiro]]></core>   </ELEMENT>
+   <ELEMENT NAME="xmesmo_que" CLASS="undef">
+         <core><![CDATA[deh-belchior-carneiro]]></core>   </ELEMENT>
+   <ELEMENT NAME="sex" CLASS="sex">
+         <core><![CDATA[m]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his14-34-per1-34]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__-__china-geral-his14-34-rela23" NAME="relation"  ORDER="73" LEVEL="4" CLASS="relation" LINE="105">
+    <ELEMENT NAME="line" CLASS="line"><core>105</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his14-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>73</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>function-in-act</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>referido</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>crono</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his14-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>__china-geral-his14-34</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__-__china-geral-his14-34-rela23</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15520000.1758</core></ELEMENT>
+</GROUP>
+<GROUP ID="__china-geral-his14-34-per1-34-att1-34" NAME="ls" CLASS="attribute" ORDER="75" LEVEL="4" LINE="106">
+    <ELEMENT NAME="line" CLASS="line"><core>106</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his14-34-per1-34-att1-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his14-34-per1-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>75</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[cargo]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[Bispo residente de Macau]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his14-34-per1-34-att1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[__china-geral-his14-34-per1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15520000.1758]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his14-34-per1-34-att2-34" NAME="ls" CLASS="attribute" ORDER="76" LEVEL="4" LINE="108">
+    <ELEMENT NAME="line" CLASS="line"><core>108</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his14-34-per1-34-att2-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>ls</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his14-34-per1-34</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>attribute</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>76</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+   <ELEMENT NAME="tipo" CLASS="type">
+         <core><![CDATA[titulo]]></core>   </ELEMENT>
+   <ELEMENT NAME="valor" CLASS="value">
+         <core><![CDATA[Monsenhor]]></core>   </ELEMENT>
+   <ELEMENT NAME="id" CLASS="id">
+         <core><![CDATA[__china-geral-his14-34-per1-34-att2-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="entity" CLASS="entity">
+         <core><![CDATA[__china-geral-his14-34-per1-34]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15520000.1758]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his15-34" NAME="crono" CLASS="evento" ORDER="77" LEVEL="2" LINE="110">
+    <ELEMENT NAME="line" CLASS="line"><core>110</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his15-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>77</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1573-02-02:1620]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Wan Li imperador]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15730202.162]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<GROUP ID="__china-geral-his16-34" NAME="crono" CLASS="evento" ORDER="78" LEVEL="2" LINE="111">
+    <ELEMENT NAME="line" CLASS="line"><core>111</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his16-34</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>crono</core></ELEMENT>
+   <ELEMENT NAME="inside" CLASS="inside"><core>china-geral</core></ELEMENT>
+   <ELEMENT NAME="class" CLASS="class"><core>evento</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>78</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>2</core></ELEMENT>
+   <ELEMENT NAME="data" CLASS="date">
+         <core><![CDATA[1573-09-24]]></core>   </ELEMENT>
+   <ELEMENT NAME="loc" CLASS="loc">
+         <core><![CDATA[China]]></core>   </ELEMENT>
+   <ELEMENT NAME="description" CLASS="description">
+         <core><![CDATA[Em Roma, Valignano é nomeado Visitador das Missões do Oriente e Extremo-Oriente; parte em fin de Setembro (DI. IX, 1, a sua patente)]]></core>   </ELEMENT>
+   <ELEMENT NAME="date" CLASS="date">
+         <core><![CDATA[15730924]]></core>   </ELEMENT>
+   <ELEMENT NAME="type" CLASS="type">
+         <core><![CDATA[crono]]></core>   </ELEMENT>
+</GROUP>
+
+<RELATION ID="__-__china-geral-his2-34-rela3" ORG="__china-geral-his2-34-per1-34" DEST="francisco-xavier" TYPE="META" VALUE="same_as"/>
+<GROUP ID="__china-geral-his2-34-rela3" NAME="relation"  ORDER="9" LEVEL="4"  CLASS="relation" LINE="32">
+    <ELEMENT NAME="line" CLASS="line"><core>32</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his2-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>9</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>identification</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>same as</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>n/a</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his2-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>francisco-xavier</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his2-34-rela3</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15420000.1543</core></ELEMENT>
+</GROUP>
+<RELATION ID="__-__china-geral-his3-34-rela5" ORG="__china-geral-his3-34-per1-34" DEST="francisco-xavier" TYPE="META" VALUE="same_as"/>
+<GROUP ID="__china-geral-his3-34-rela5" NAME="relation"  ORDER="13" LEVEL="4"  CLASS="relation" LINE="36">
+    <ELEMENT NAME="line" CLASS="line"><core>36</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his3-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>13</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>identification</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>same as</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>n/a</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his3-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>francisco-xavier</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his3-34-rela5</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15521202</core></ELEMENT>
+</GROUP>
+<RELATION ID="__-__china-geral-his14-34-rela24" ORG="__china-geral-his14-34-per1-34" DEST="deh-belchior-carneiro" TYPE="META" VALUE="same_as"/>
+<GROUP ID="__china-geral-his14-34-rela24" NAME="relation"  ORDER="74" LEVEL="4"  CLASS="relation" LINE="105">
+    <ELEMENT NAME="line" CLASS="line"><core>105</core></ELEMENT>
+    <ELEMENT NAME="groupname" CLASS="groupname"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="inside" CLASS="inside"><core>__china-geral-his14-34</core></ELEMENT>
+    <ELEMENT NAME="class" CLASS="class"><core>relation</core></ELEMENT>
+    <ELEMENT NAME="order" CLASS="order"><core>74</core></ELEMENT>
+    <ELEMENT NAME="level" CLASS="level"><core>4</core></ELEMENT>
+    <ELEMENT NAME="type" CLASS="type"><core>identification</core></ELEMENT>
+    <ELEMENT NAME="value" CLASS="value"><core>same as</core></ELEMENT>
+    <ELEMENT NAME="destname" CLASS="destname"><core>n/a</core></ELEMENT>
+    <ELEMENT NAME="origin" CLASS="origin"><core>__china-geral-his14-34-per1-34</core></ELEMENT>
+    <ELEMENT NAME="destination" CLASS="destination"><core>deh-belchior-carneiro</core></ELEMENT>
+    <ELEMENT NAME="id" CLASS="id"><core>__china-geral-his14-34-rela24</core></ELEMENT>
+    <ELEMENT NAME="date" CLASS="date"><core>15520000.1758</core></ELEMENT>
+</GROUP></KLEIO>

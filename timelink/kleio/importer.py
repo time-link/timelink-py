@@ -334,8 +334,20 @@ class KleioHandler:
     ):
         if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
+            # TODO needs rethinking see #53
+            #
             logging.debug("Skipping base mapping %s", psm.id)
+            orm_class = self.entity_model.get_orm_for_pom_class(psm.id)
+            if orm_class is not None:
+                self.pom_som_mapper.group_orm_models[psm.group_name] = orm_class
             return
+
+        # if we import mapping from local file we also skip those
+        # the importer should check at the beggining if local mappings
+        # are available before starting the file import
+        # we need a function check_local_mappings() that returns a list
+        # of mappings available in the local file system.
+        # if psm.id in check_local_mappings(): return
 
         session = self.session
 
@@ -396,7 +408,7 @@ class KleioHandler:
                 raise ValueError(
                     f"Could not find PomSomMapper for class {group.pom_class_id}"
                 )
-            self.pom_som_cache[group.pom_class_id] = pom_mapper_for_group
+            self.pom_som_cache[group.pom_class_id] = pom_mapper_for_group  # TODO redundant?
         except Exception as exc:
             self.errors.append(
                 f"ERROR: {self.kleio_file_name} {str(group.line)}"
@@ -414,7 +426,7 @@ class KleioHandler:
             #  In this case we postpone the storing of the relation
             # until the end of file
             exits_dest_rel = self.session.get(
-                self.entity_model, group.get_element_for_column("destination").core
+                self.entity_model, group.get_element_by_name_or_class("destination").core
             )
             if exits_dest_rel is None:
                 self.postponed_relations.append(

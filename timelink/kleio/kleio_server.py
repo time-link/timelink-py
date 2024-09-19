@@ -437,7 +437,7 @@ class KleioServer:
         return self.call("tokens_generate", pars)
 
     def translation_status(
-        self, path: str, recurse: str = "yes", status: str = None, token: str = None
+        self, path: str, recurse: str = True, status: str = None, token: str = None
     ) -> List[KleioFile]:
         """Get translations from kleio server
 
@@ -461,6 +461,9 @@ class KleioServer:
             recurse = "yes"
         elif recurse is False:
             recurse = "no"
+
+        if path is None:
+            path = ""
 
         if status is None:
             pars = {"path": path, "recurse": recurse}
@@ -578,7 +581,7 @@ class KleioServer:
 
         """
         if token is None:
-            token = self.get_token
+            token = self.get_token()
         if token is None:
             headers = {}
         else:

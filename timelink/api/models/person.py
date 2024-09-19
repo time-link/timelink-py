@@ -37,7 +37,7 @@ class Person(Entity):
     def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
         r = (
             f"{self.groupname}${quote_long_text(self.name)}/"
-            f"{quote_long_text(self.sex)}/id={quote_long_text(self.id)}"
+            f"{quote_long_text(self.sex)}{self.render_id()}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs,width=width)}"
@@ -51,17 +51,24 @@ class Person(Entity):
         return kleio
 
 
-def get_person(id: str = None, db=None, sql_echo: bool = False) -> Person:
+def get_person(id: str = None, db=None, session=None, sql_echo: bool = False) -> Person:
     """
     Fetch a person from the database
     """
     if id is None:
-        raise (Exception("Error, id needed"))
-    with db.session() as session:
-        p: Person = session.get(Person, id)
+        raise ValueError("Error, id needed")
+
+    if session is None and db is None:
+        raise ValueError("Error, session or database object needed")
+
+    if db is not None:
+        session = db.session()
+
+    p: Person = session.get(Person, id)
+
     return p
 
 
-def pperson(id: str):
+def pperson(id: str, session=None):
     """Prints a person in kleio notation"""
-    print(get_person(id=id).to_kleio())
+    print(get_person(id=id, session=session).to_kleio())

@@ -1,0 +1,59 @@
+kleio$gacto2.str/translations=43
+
+   property$multiple-entry-flag/124#ascii for pipe char
+   link$uc-china/"https://timelink.uc.pt/mhk/china/id/$1"/id=root-lin1-5
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-8
+   fonte$crono-avulsos/tipo=cronologia/data=1552:1758/obs="""
+
+         Referências:
+
+         Pires, Benjamim Videira. 1999. «The Antecedents and Context of the University
+         College of St.Paul». em Religion and culture: an international symposium
+         commemorating the fourth centenary of the University College of St. Paul, Macau,
+         28 November to 1 December 1994.
+
+         """
+
+      crono$1555-11-20/China/Chegada primeiros jesuítas a Macau/obs=Pires, 1999.
+
+         referido$Belchior Nunes Barreto/id=crono-avulsos-belchior-barreto#@uc-china:deh-belchior-nunes-barreto
+            ls$jesuita-cargo/Vice-Provincial
+
+         referido$Gaspar Vilela/id=crono-avulsos-gaspar-vilela#@uc-china:deh-gaspar-de-vilela
+            ls$profissao/padre
+
+         referido$António Dias/id=crono-avulsos-antonio-dias#@uc-china:deh-antonio-diaz
+            ls$profissao/padre
+
+         referido$Fernão Mendes Pinto
+            ls$jesuita-estatuto/escolástico
+
+         referido$Belchior Dias/id=crono-avulsos-belchior-dias#@uc-china:deh-melchor-diaz-ref1
+            ls$jesuita-estatuto/escolástico
+
+         referido$Estevão de Góis/id=crono-avulsos-estevao-de-gois#@uc-china:deh-estevao-de-gois/obs=Fica em Cantão para estudar Chinês, mas adoece e volta a Goa
+            ls$jesuita-estatuto/escolástico
+
+         lugar$Macau
+
+      crono$1562/China/Embaixada para Pequim em Macau/obs=Pires, 1999
+
+         referido$Diogo Pereira/id=crono-avulsos-1562-diogo
+            ls$profissao/mercador
+            ls$cargo/enviado do Rei de Portugal ao Imperador da China
+
+         referido$Guilherme Pereira/obs=ofereceu alojamento/obs=Benfeitor de S. Francisco de Assis (Pires, 1999)/id=crono-avulsos-guilherme-pereira
+            ls$residencia/Macau
+
+         referido$Luís Fróis
+            ls$jesuita-estatuto/Padre
+            rel$parentesco/irmão/Guilherme Pereira/crono-avulsos-guilherme-pereira
+
+         referido$Giovanni Battista de Monte/id=crono-avulsos-giovanni-battista-de-monte#@uc-china:deh-giovanni-battista-de-monte
+            ls$jesuita-estatuto/Padre
+
+         referido$Pedro Quintero/obs=Ofereceu fundos para a primeira residência Jesuíta em Macau (Pires, 1999)
+
+         lugar$Macau
+
+         lugar$Pequim

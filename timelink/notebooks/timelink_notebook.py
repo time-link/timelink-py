@@ -249,6 +249,7 @@ class TimelinkNotebook:
     def get_import_status(self, data_frame=True, **kwargs):
         """Get the import status of Kleio Files
 
+        See: :meth:`timelink.api.database.TimelinkDatabase.get_import_status`
 
         Returns:
             A dictionary with the status of the import process
@@ -266,9 +267,10 @@ class TimelinkNotebook:
             )
             # convert the column "import_errors" to int with NA as 0
             # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
-            ifiles_df["import_errors"] = ifiles_df["import_errors"].astype("Int64")
-            ifiles_df["import_warnings"] = ifiles_df["import_errors"].astype("Int64")
-            return ifiles_df.fillna(0)
+            ifiles_df["import_errors"] = ifiles_df["import_errors"].astype("Int64").fillna(0)
+            ifiles_df["import_warnings"] = ifiles_df["import_errors"].astype("Int64").fillna(0)
+
+            return ifiles_df
         else:
             return ifiles
 
@@ -388,7 +390,7 @@ class TimelinkNotebook:
         but returns a subset of the columns.
 
         | Column             | Non-Null Count | Dtype             |
-       \|-------------------\|---------------\|-------------------|
+        |------------------- |--------------- |-------------------|
         | path               | 3 non-null     | object            |
         | name               | 3 non-null     | object            |
         | size               | 3 non-null     | int64             |

@@ -1,0 +1,2861 @@
+kleio$gacto.str/translations=11
+   fonte$bapteirasproblem1/registos paroquiais/1787-1792/loc=Auc/obs=o livro inicia-se em 1784
+
+      b$b1787.1112/29/7/1787/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=fl. 9v/id=1787-b1112-jose
+            ls$datanasc/20071787
+
+            pai$francisco marques valenca
+               ls$residencia/eiras
+
+               ppai$joao marques valenca
+                  ls$residencia/eiras
+
+               mpai$eugenia correia
+
+            mae$angelica joaquina
+
+               pmae$jose gaspar
+                  ls$residencia/oureta
+
+               mmae$ana joaquina
+
+            pad$jose
+
+               ppad$joao francisco soldado
+                  ls$residencia/casal da rosa
+
+            mad$bernarda margarida correia
+               rel$parentesco/tia/jose/1787-b1112-jose
+
+         test$antonio jose de oliveira/m
+            ls$assina/sim
+
+         test$luis ferreira/m
+            ls$assina/sim
+
+      b$b1787.1113/8/8/1787/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais; fl. 9v
+            ls$datanasc/17870720
+
+            pai$antonio ferreira
+               ls$residencia/casais de eiras
+
+               ppai$constantino ferreira
+                  ls$residencia/casais de eiras
+
+               mpai$bernarda maria/obs=terceira mulher de constantino ferreira
+
+            mae$teresa maria
+
+               pmae$jose antonio conceicao
+                  ls$residencia/casal dos penedos, freguesia de s. paulo de frades
+
+               mmae$maria teresa
+
+            pad$tomas de aquino
+               ls$titulo/reverendo padre
+               ls$cargo/capelao da casa do correio mor de coimbra
+
+            mad$joana castilho
+               ls$cargo/regente do recolhimento da misericordia de coimbra
+
+         test$luis ferreira/m
+            ls$assina/sim
+
+         test$antonio jose de oliveira/m
+            ls$assina/sim
+
+      b$b1787.1114/17/10/1787/vigario luis barreto de figueiredo castilho
+
+         n$bernardo/m/obs=diz a margem eiras; fl. 10
+            ls$datanasc/17871009
+
+            pai$antonio jose dos santos estouro
+               ls$residencia/eiras
+
+               ppai$francisco jose dos santos
+                  ls$residencia/brasfemes
+
+               mpai$clara maria de jesus
+
+            mae$rosa cardosa
+
+               pmae$antonio cardoso
+                  ls$residencia/souselas
+
+               mmae$josefa lopes
+
+            pad$bernardo jose de sousa
+               ls$residencia/eiras
+
+            mad$isabel
+               ls$ec/s
+
+               pmad$joaquim simoes
+                  ls$residencia/brasfemes
+
+         test$luis ferreira/m
+            ls$assina/sim
+
+         test$antonio jose de oliveira/m
+            ls$assina/sim
+
+      b$b1787.1115/30/10/1787/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras; fl. 10/id=1787-b1115-antonio
+            ls$datanasc/17871018
+
+            pai$manuel marques da murta
+               ls$residencia/eiras
+
+               ppai$simao marques cesar
+                  ls$residencia/eiras
+
+               mpai$maria da murta
+
+            mae$maria da cruz prata
+
+               pmae$antonio fernandes prata
+                  ls$residencia/eiras
+
+               mmae$maria da cruz
+
+            pad$jeronimo fernandes prata
+               ls$residencia/eiras
+               ls$titulo/reverendo padre
+               rel$parentesco/tio/antonio/1787-b1115-antonio
+
+            mad$nossa senhora do rosario de eiras
+
+         test$luis ferreira/m
+            ls$assina/sim
+
+         test$antonio jose de oliveira/m
+            ls$assina/sim
+
+      b$b1787.1116/25/11/1787/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras; fl. 10-10v
+            ls$datanasc/17871116
+
+            pai$jose monteiro
+               ls$residencia/eiras
+
+               ppai$manuel da cunha pedrais
+                  ls$residencia/eiras
+
+               mpai$benta monteira
+
+            mae$bernarda da silva
+
+               pmae$jose da silva gaio
+                  ls$residencia/eiras
+
+               mmae$mariana da silva
+
+            pad$bernardo antonio de figueiredo
+               ls$residencia/eiras
+
+            mad$maria
+               ls$ec/s
+
+               pmad$jose francisco
+                  ls$residencia/quinta das lapas de lordemao
+
+      b$b1787.1117/2/12/1787/vigario luis barreto de figueiredo castilho
+
+         n$ana/f/obs=diz a margem casais; fl. 10v/id=1787-b1117-maria
+            ls$datanasc/17871123
+
+            pai$salvador pereira
+               ls$residencia/casais de eiras
+
+               ppai$jose pereira
+                  ls$residencia/s. paulo de frades
+
+               mpai$maria francisca
+
+            mae$teresa lopes
+
+               pmae$luis lopes
+                  ls$residencia/casais de eiras
+
+               mmae$rosa teresa
+
+            pad$manuel pereira
+               rel$parentesco/tio/maria/1787-b1117-maria
+
+            mad$ana maria
+
+               mrmad$manuel da silva ferreira
+                  ls$residencia/casais de eiras
+
+      b$b1788.1118/22/1/1788/vigario luis barreto de figueiredo castilho e o reverendo cosme dias ribeiro de coimbra
+
+         n$bernardo/m/obs=diz a margem casais; fl.10v
+            ls$datanasc/17880111
+
+            pai$antonio jose da conceicao
+               ls$residencia/casais de eiras
+
+               ppai$jose antonio da conceicao
+                  ls$residencia/casal dos penedos, freguesia de s. paulo de frades
+
+               mpai$maria teresa
+
+            mae$rosa monteira de quadros
+
+               pmae$antonio jose gaspar
+                  ls$residencia/casais de eiras
+
+               mmae$bernarda monteira
+
+            pad$bernardo antonio de quadros/id=1788-b1118-bernardo
+
+            mad$jacinta micaela felicia de quadros
+               rel$parentesco/irma/bernardo antonio de quadros/1788-b1118-bernardo
+
+      b$b1788.1119/31/1/1788/vigario luis barreto de figueiredo castilho
+
+         n$leocadia/f/obs=diz a margemescravote; fl. 10v/id=1788-b1119-leocadia
+            ls$datanasc/17880120
+
+            pai$luis da silva
+               ls$naturalidade/coimbra
+               ls$residencia/escravote
+
+               ppai$jose da silva
+                  ls$residencia/coimbra, freguesia de santa justa
+
+               mpai$teresa francisca de jesus
+
+            mae$maria angelica
+               ls$naturalidade/escravote
+
+               pmae$antonio fernandes
+                  ls$residencia/escravote
+
+               mmae$benta pereira
+
+            pad$antonio jose fernandes
+               ls$titulo/reverendo padre
+               rel$parentesco/tio/leocadia/1788-b1119-leocadia
+
+            mad$nossa senhora do rosario de eiras
+
+      b$b1788.1120/24/2/1788/vigario luis barreto de figueiredo castilho
+
+         n$mariana/f/obs=diz a margem eiras; fl. 11
+            ls$datanasc/17880215
+
+            pai$luis fernandes
+               ls$residencia/eiras
+
+               ppai$domingos fernandes
+                  ls$residencia/lordemao, freguesia de s. paulo de frades
+
+               mpai$maria da conceicao
+
+            mae$ana das neves
+
+               pmae$francisco gomes bernanrdes
+                  ls$residencia/eiras
+
+               mmae$teresa das neves
+
+            pad$jose de campos branco
+               ls$titulo/reverendo beneficiado da igreja de s. salvador de coimbra
+
+            mad$mariana teresa
+               ls$ec/v
+
+               mrmad$jose de jesus
+                  ls$morto/antes
+                  ls$residencia/quinta de lordemao
+
+      b$b1788.1121/24/2/1788/vigario luis barreto de figueiredo castilho
+
+         n$barbara/f/obs=diz a margem casais; fl. 11/id=1788-b1121-barbara
+            ls$datanasc/17880214
+
+            pai$joa de sousa estopa
+               ls$residencia/casais de eiras
+
+               ppai$antonio de sousa lopes
+                  ls$residencia/casais de eiras
+
+               mpai$barbara de jesus
+
+            mae$rosa de jesus
+
+               pmae$manuel da silva
+                  ls$residencia/telhado, freguesia de figueira do lorvao
+
+               mmae$maria fernandes
+
+            pad$antonio ferreira moleiro
+
+            mad$barbara
+               ls$ec/s
+               rel$parentesco/tia/barbara/1788-b1121-barbara
+
+      b$b1788.1122/2/3/1788/vigario luis barreto de figueiredo castilho
+
+         n$barbara/f/obs=diz a margem casais; fl. 11
+            ls$datanasc/17880221
+
+            pai$joaquim simoes rigor
+               ls$residencia/casais de eiras
+
+               ppai$manuel simoes
+                  ls$residencia/casais de eiras
+
+               mpai$mari alourenca
+
+            mae$jacinta pereira cardosa
+
+               pmae$valerio rodrigues pereira
+                  ls$residencia/casais de eiras
+
+               mmae$joana cardosa
+
+            pad$jose pereira
+
+               ppad$antonio pereira da cruz
+                  ls$residencia/casais de eiras
+
+            mad$barbara da costa
+
+               mrmad$antonio jose pereira
+                  ls$residencia/casais de eiras
+
+      b$b1788.1123/9/3/1788/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais; fl. 11v
+            ls$datanasc/17880301
+
+            pai$bento de matos
+               ls$residencia/casais de eiras
+
+               ppai$manuel de matos
+                  ls$residencia/eiras
+
+               mpai$luisa da cunha
+
+            mae$ana pereira
+
+               pmae$jose rodrigues pereira
+                  ls$residencia/casais de eiras
+
+               mmae$maria da cunha
+
+            pad$antonio pereira carpinteiro
+               ls$residencia/casais de eiras
+
+            mad$maria
+
+               pmad$manuel de matos
+                  ls$residencia/eiras
+
+      b$b1788.1124/4/6/1788/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras; fl. 11v
+            ls$datanasc/17880528
+
+            pai$joaquim dos santos
+               ls$residencia/eiras
+
+               ppai$jose dos santos
+                  ls$residencia/pedrulha
+
+               mpai$isidora maria
+
+            mae$bernarda da silva
+
+               pmae$antonio lopes da silva
+                  ls$residencia/eiras
+
+               mmae$angela maria
+
+            pad$antonio vieira de macedo
+               ls$residencia/coimbra
+
+            mad$rosa maria de campos
+               ls$residencia/eiras
+
+      b$b1788.1125/8/4/1788/vigario luis barreto de figueiredo castilho
+
+         n$vitorio/m/obs=diz a margem eiras; fl. 11v
+            ls$datanasc/17880524
+
+            pai$manuelgomes grinaldo
+               ls$residencia/eiras
+
+               ppai$caetano gomes
+                  ls$residencia/casais de eiras
+
+               mpai$catarina marques
+
+            mae$luisa de jesus
+
+               pmae$simiao lopes
+                  ls$residencia/casais de eiras
+
+               mmae$joana teresa
+
+            pad$vitorio pereira seabra
+               ls$residencia/ademia de baixo
+
+            mad$antonia duarte/id=1788-b1125-antonia
+               ls$ec/v
+               ls$residencia/santa justa
+
+            referido$duarte garrido
+               rel$sociabilidade/procurador/antonia duarte/1788-b1125-antonia
+
+      b$b1788.1126/11/6/1788/vigario luis barreto de figueiredo castilho e padre antonio jose fernandes
+
+         n$margarida/f/obs=diz a margem casais; fl. 11v-12/id=1788-b1126-margarida
+
+            pai$luis de matos
+               ls$residencia/casais de eiras
+
+               ppai$manuel de matos
+                  ls$residencia/eiras
+
+               mpai$luisa da cunha
+
+            mae$rosa maria querida
+
+               pmae$bento marques nunes
+                  ls$residencia/casais de eiras
+
+               mmae$esperanca maria
+
+            pad$francisco fernandes sampaio
+               ls$residencia/sinceira, brasfemes
+
+            mad$margarida rosa querida
+               rel$parentesco/tia/margarida/1788-b1126-margarida
+
+      b$b1788.1127/15/6/1788/vigario luis barreto de figueiredo castilho e o padre jeronimo fernandes prata
+
+         n$manuel/m/obs=diz a margem eiras; fl. 12
+            ls$datanasc/17880607
+
+            pai$francisco fernandes valente
+               ls$residencia/eiras
+
+               ppai$manuel fernandes valente
+                  ls$residencia/eiras
+
+               mpai$isabel teresa
+
+            mae$joaquina lopes
+
+               pmae$manuel teixeira
+                  ls$residencia/eiras
+
+               mmae$josefa lopes
+
+            pad$antonio pereira
+               ls$ec/s
+
+               ppad$manuel pereira
+                  ls$residencia/eiras
+
+            mad$rosa de campos
+               ls$residencia/eiras
+
+      b$b1788.1128/15/6/1788/vigario luis barreto de figueiredo castilho e o padre jeronimo fernandes prta
+
+         n$jeronimo/m/obs=diz a margem eiras; fl. 12/id=1788-b1128-jeronimo
+            ls$datanasc/17880607
+
+            pai$jose gomes leal
+               ls$residencia/eiras
+
+               ppai$antonio fernandes bruxeiro
+                  ls$residencia/eiras
+
+               mpai$maria leal
+
+            mae$joana luisa
+
+               pmae$pascoal pereira
+                  ls$residencia/sepins
+
+               mmae$maria francisca
+
+            pad$jeronimo fernandes prata
+               ls$titulo/reverendo padre
+
+            mad$maria de jesus
+               rel$parentesco/tia/jeronimo/1788-b1128-jeronimo
+
+      b$b1788.1129/18/6/1788/vigario luis barreto de figueiredo castilho e o padre antonio jose fernandes
+
+         n$maria/f/obs=diz a margem carvalho; fl. 12/id=1788-b1129-maria
+            ls$datanasc/17880610
+
+            pai$sebastiao ferreira
+               ls$residencia/azenhas do carvalho, casais
+
+               ppai$constantino ferreira
+                  ls$residencia/casais de eiras
+
+               mpai$maria da silva/obs=primeira mulher de constantino ferreira
+
+            mae$sebastiana maria
+
+               pmae$caetano simoes
+                  ls$residencia/casais de eiras
+
+               mmae$isabel lopes
+
+            pad$antonio ferreira
+               rel$parentesco/tio/maria/1788-b1129-maria
+
+            mad$maria teresa
+
+               mrmad$jose antonio
+                  ls$residencia/penedos, freguesia de s. paulo de frades
+
+      b$b1788.1130/22/6/1788/vigario luis barreto de figueiredo castilho e o padre antonio jose fernandes
+
+         n$manuel/m/obs=diz a margem casais; fl. 12-12v
+            ls$datanasc/17880613
+
+            pai$antonio pereira da serra novo
+               ls$residencia/casais de eiras
+
+               ppai$antonio pereira da serra velho
+
+               mpai$marta cardosa
+
+            mae$teresa joaquina
+
+               pmae$manuel fernandes moleiro
+                  ls$residencia/eiras
+
+               mmae$margarida pereira
+
+            pad$manuel freire
+               ls$residencia/coimbra
+
+            mad$ana joaquina
+               ls$residencia/escravote
+
+      b$b1788.1131/22/6/1788/vigario luis barreto de figueiredo castilho e o padre antonio jose fernandes
+
+         n$bernardo/m/obs=diz a margem casais; fl. 12v/id=1788-b1131-benardo
+            ls$datanasc/17880614
+
+            pai$joao da costa
+               ls$residencia/casais de eiras
+
+               ppai$antonio da costa
+                  ls$residencia/vilarinho
+
+               mpai$josefa da conceicao
+
+            mae$francisca rosa
+
+               pmae$luis lopes
+                  ls$residencia/casais de eiras
+
+               mmae$rosa maria
+
+            pad$calisto da costa
+               rel$parentesco/tio/bernardo/1788-b1131-benardo
+
+            mad$bernarda teresa
+
+               mrmad$jose francisco
+                  ls$residencia/vilarinho
+
+      b$b1788.1132/13/7/1788/vigario luis barreto de figueiredo castilho e reverendo antonio jose efernandes
+
+         n$antonio/m/obs=diz a margem casais; fl. 12v
+            ls$datanasc/17880704
+
+            pai$bernardo jose pereia
+               ls$residencia/casais de eiras
+
+               ppai$valerio jose pereira
+                  ls$residencia/casais de eiras
+
+               mpai$joana cardosa
+
+            mae$bernarda pereira
+
+               pmae$custodio pereira
+                  ls$residencia/casais de eiras
+
+               mmae$ana francisca/obs=primeira mulher de custodio pereira
+
+            pad$antonio jose da conceicao
+               ls$residencia/casais de eiras
+
+            mad$ana joaquina/id=1788-b1132-ana
+               ls$ec/v
+               ls$residencia/eiras
+
+            referido$bernardo lopes da silva
+               ls$residencia/eiras
+               rel$sociabilidade/procurador/ana joaquina/1788-b1132-ana
+
+      b$b1788.1133/31/8/1788/vigario luis barreto de figueiredo castilho
+
+         n$bernardo/m/obs=diz a margem eiras; fl. 12v/id=1788-b1133-bernardo
+            ls$datanasc/17880822
+
+            pai$joao de oliveira
+               ls$residencia/eiras
+
+               ppai$manuel de oliveira santos
+                  ls$residencia/pedrulha
+
+               mpai$sebastiana duarte
+
+            mae$ana marques da murta
+
+               pmae$manuel marques da murta
+                  ls$residencia/eiras
+
+               mmae$maria da cruz
+
+            pad$bernardo de oliveira
+               ls$ec/s
+
+               ppad$joao de oliveira
+
+            mad$rosa
+               ls$ec/s
+               rel$parentesco/tia/bernardo/1788-b1133-bernardo
+
+      b$b1788.1134/7/9/1788/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem casais; fl. 13
+            ls$datanasc/17880831
+
+            pai$antonio de sousa lopes
+               ls$residencia/casais de eiras
+
+               ppai$antonio de sousa
+                  ls$residencia/casais de eiras
+
+               mpai$isabel lopes
+
+            mae$barbara de jesus
+
+               pmae$antonio da cunha
+                  ls$residencia/brasfemes
+
+               mmae$maria de almeida
+
+            pad$antonio ferreia moleiro
+               ls$residencia/eiras
+
+            mad$teresa
+               ls$ec/s
+
+               pmad$francisco fernandes de sampaio
+                  ls$residencia/sinceira, freguesia de brasfemes
+
+      b$b1788.1135/19/10/1788/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras; fl. 13
+            ls$datanasc/17881010
+
+            pai$francisco jose de matos
+               ls$residencia/eiras
+
+               ppai$jose carlos peixoto
+                  ls$residencia/eiras
+
+               mpai$maria do rosario de matos
+
+            mae$josefa pereira
+
+               pmae$joao duarte leal
+                  ls$residencia/grade, freguesia de vila nova de monsarraz
+
+               mmae$catarina simoes
+
+            pad$antonio jose de oliveira
+               ls$cargo/capitao
+               ls$residencia/eiras
+
+            mad$maria branca
+
+               mrmad$simao pedro marques
+                  ls$residencia/eiras
+
+      b$b1788.1136/22/10/1788/vigario luis barreto de figueiredo castilho
+
+         n$jeronimo/m/obs=diz a margem casais; fl. 13
+            ls$datanasc/17881003
+
+            pai$luis bernardes
+               ls$residencia/lapas, casais de eiras
+
+               ppai$antonio jose de oliveira
+                  ls$residencia/eiras
+
+               mpai$maria bernardes
+
+            mae$josefa de jesus/obs=segunda mulher de luis bernardes
+
+               pmae$antonio da silva
+                  ls$residencia/sazes
+
+               mmae$maria de jesus
+
+            pad$jeronimo ferreira
+               ls$residencia/lordemao
+
+            mad$joaquina
+               ls$ec/s
+
+               pmad$manuel goncalves
+                  ls$profissao/mercador da rua da calcada de coimbra
+
+      b$b1788.1137/1/11/1788/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras; fl. 13/id=1788-b1137-antonio
+            ls$datanasc/17881021
+
+            pai$manuel rodrigues pacarotrigao
+               ls$residencia/eiras
+
+               ppai$jose rodrigues
+                  ls$residencia/telhado, freguesia de figueira do lorvao
+
+               mpai$leonarda micaela
+
+            mae$teresa cardosa
+
+               pmae$bernardo jose da cunha leite
+                  ls$residencia/eiras
+
+               mmae$marina cardosa
+
+            pad$antonio marques de campos
+
+            mad$rosaria cardosa
+               ls$ec/s
+               rel$parentesco/tia/antonio/1788-b1137-antonio
+
+      b$b1789.1138/1/2/1789/vigario luis barreto de figueiredo castilho
+
+         n$bernarda/f/obs=diz a margem murtal; fl. 13v/id=1789-b1138-bernarda
+            ls$datanasc/17890125
+
+            pai$bernardo jose gomes
+               ls$residencia/murtal
+
+               ppai$manuel jose bernardes
+                  ls$residencia/eiras
+
+               mpai$joana das neves
+
+            mae$teresa cardosa monteira
+
+               pmae$joao cardoso
+                  ls$residencia/logo de deus, freguesia de s. paulo de frades
+
+               mmae$mariana monteira
+
+            pad$fabiao jose bernardes
+               ls$titulo/padre
+
+            mad$bernarda monteira
+               rel$parentesco/tia/bernarda/1789-b1138-bernarda
+
+      b$b1789.1139/22/2/1789/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras; fl. 13v/id=1789-b1139-jose
+            ls$datanasc/17890212
+
+            pai$manuel marques moco
+               ls$residencia/eiras
+
+               ppai$antonio marques moco
+                  ls$residencia/eiras
+
+               mpai$rosa cardosa
+
+            mae$joana cardosa
+
+               pmae$luis bernardes
+                  ls$residencia/eiras
+
+               mmae$joana cardosa
+
+            pad$jose
+               ls$ec/s
+               rel$parentesco/tio/jose/1789-b1139-jose
+
+            mad$mariana teresa
+               rel$parentesco/tia/jose/1789-b1139-jose
+
+      b$b1789.1140/22/2/1789/vigario luis barreto de figueiredo castilho
+
+         n$joaquim/m/obs=diz a margem eiras; fl. 13v/id=1789-b1140-joaquim
+            ls$datanasc/17890213
+
+            pai$antonio marques de campos
+               ls$residencia/eiras
+
+               ppai$simao pedro marques
+                  ls$cargo/alferes
+                  ls$residencia/eiras
+
+               mpai$maria josefa campos
+
+            mae$maria da silva
+
+               pmae$antonio lopes da silva
+                  ls$residencia/eiras
+
+               mmae$arcangela maria
+
+            pad$joaquim de campos
+               ls$titulo/padre
+               rel$parentesco/tio/joaquim/1789-b1140-joaquim
+
+            mad$mariana teresa
+               ls$ec/v
+
+               mrmad$jose da silva
+                  ls$morto/antes
+                  ls$residencia/quinta de lordemao
+
+      b$b1789.1141/19/4/1789/vigario luis barreto de figueiredo castilho
+
+         n$rosa/f/obs=diz a margem casais; fl.13v-14
+            ls$datanasc/17890410
+
+            pai$joao simoes rigor
+               ls$residencia/casais de eiras
+
+               ppai$manuel simoes rigor
+                  ls$residencia/casais de eiras
+
+               mpai$maria lourenca
+
+            mae$escolastica cardosa
+
+               pmae$luis bernardes
+                  ls$residencia/eiras
+
+               mmae$joana cardosa
+
+            pad$antonio jose de almeida
+               ls$profissao/cirurgiao em eiras
+
+            mad$rosa monteira de quadros
+
+               mrmad$antonio jose da conceicao
+                  ls$residencia/casais de eiras
+
+      b$b1789.1142/19/5/1789/vigario luis barreto de figueiredo castilho
+
+         n$jacinta/f/obs=diz a margem eiras; fl. 14/id=1789-b1142-jacinta
+            ls$datanasc/17890509
+
+            pai$antonio da cruz
+               ls$residencia/eiras
+
+               ppai$manuel da cruz
+                  ls$residencia/eiras
+
+               mpai$maria cardosa perdigoa
+
+            mae$maria marques
+
+               pmae$joaquim marques moco
+                  ls$residencia/eiras
+
+               mmae$josefa pereira
+
+            pad$joaquim marques moco
+               rel$parentesco/avo/jacinta/1789-b1142-jacinta
+
+            mad$jacinta ferreira
+               ls$ec/s
+               ls$residencia/eiras
+
+      b$b1789.1143/27/5/1789/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem casais; fl. 14
+            ls$datanasc/17890514
+
+            pai$jose pereira
+               ls$residencia/casais de eiras
+
+               ppai$manuel jose pereira
+
+               mpai$maria dos santos/obs=primeira mulher de manuel jose pereira
+
+            mae$maria de jesus
+
+               pmae$antonio marques
+                  ls$residencia/azenhas dos penedos, freguesia de s. paulo de frades
+
+               mmae$maria joana
+
+            pad$jose da encarnacao
+               ls$profissao/moleiro
+               ls$residencia/azenha de baixo
+
+            mad$teresa de jesus
+
+               mrmad$antonio da cruz
+                  ls$residencia/coselhas, freguesia da se de coimbra
+
+      b$b1789.1144/29/5/1789/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem eiras; fl. 14
+            ls$datanasc/17890515
+
+            pai$joaquim marques de matos
+               ls$residencia/eiras
+
+               ppai$luis marques de matos
+                  ls$residencia/eiras
+
+               mpai$luis lopes
+
+            mae$maria de jesus
+
+               pmae$joaquim duarte
+                  ls$residencia/lameira de s. pedro, freguesia do luso
+
+               mmae$rosaria maria
+
+            pad$jose pereira
+               ls$residencia/ademia
+
+            mad$teresa sciencia
+               ls$ec/s
+               ls$residencia/eiras
+
+      b$b1789.1145/15/3/1787/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem casais; fl. 14-14v
+            ls$datanasc/17870306
+
+            pai$joao simoes rigor
+               ls$residencia/casais de eiras
+
+               ppai$manuel simoes rigor
+                  ls$residencia/casais de eiras
+
+               mpai$maria lourenca
+
+            mae$escolastica cardosa
+
+               pmae$luis bernardes
+                  ls$residencia/eiras
+
+               mmae$joana cardosa
+
+            pad$antonio barata
+               ls$ec/c/obs=em 1789
+
+            mad$teresa cardosa
+               ls$ec/v
+
+      b$b1789.1146/7/6/1789/vigario luis barreto de figueiredo castilho
+
+         n$francisco/m/obs=diz a margem eiras; fl. 14v
+            ls$datanasc/17890526
+
+            pai$jose nunes
+               ls$residencia/eiras
+
+               ppai$joao nunes
+                  ls$residencia/eiras
+
+               mpai$josefa correia
+
+            mae$josefa pereira/obs=ilegitima
+
+               pmae$antonio simoes
+                  ls$ec/s
+                  ls$residencia/pampilhosa
+
+               mmae$isabel maria
+                  ls$ec/s
+
+            pad$francisco lopes do vale
+               ls$profissao/mercador em coimbra, freguesia de santa justa
+
+            mad$feliciana
+               ls$profissao/criada
+               rel$profissional/criada/jose dias/1789-b1146-jose
+
+            referido$jose dias/id=1789-b1146-jose
+               ls$residencia/coimbra
+
+      b$b1789.1147/20/6/1789/vigario luis barreto de figueiredo castilho
+
+         n$bernardo/m/obs=diz a margemeiras; fl. 14v/id=1789-b1147-bernardo
+            ls$datanasc/17890611
+
+            pai$jose cardoso penela
+               ls$residencia/eiras
+
+               ppai$joao cardoso bruxeiro
+                  ls$residencia/eiras
+
+               mpai$maria francisca
+
+            mae$teresa de jesus
+
+               pmae$luis rodrigues
+                  ls$residencia/grnaja, fregeusia de figueira do lorvao
+
+               mmae$maria rodrigues
+
+            pad$bernardo jose pereira
+               ls$residencia/casais de eiras
+
+            mad$maria cardosa
+               rel$parentesco/tia/bernardo/1789-b1147-bernardo
+
+      b$b1789.1148/24/6/1789/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras; fl.14v-15
+            ls$datanasc/17890616
+
+            pai$manuel francisco mazorro/obs=ilegitimo
+               ls$residencia/eiras
+
+               ppai$manuel francisco
+                  ls$residencia/varzea de gois
+
+               mpai$maria carneira
+                  ls$ec/s
+
+            mae$maria de jesus/obs=exposta
+
+               pmae$incognito
+
+               mmae$incognita
+
+            pad$antonio fernandes faria
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras
+
+      b$b1789.1149/30/8/1789/vigario luis barreto de figueiredo castilho
+
+         n$joaquim/m/obs=diz a margem casais; fl. 15
+            ls$datanasc/17890822
+
+            pai$bernardo simoes
+               ls$residencia/casais de eiras
+
+               ppai$jose antonio
+                  ls$residencia/casais dos penedos, freguesia de s. paulo de frades
+
+               mpai$maria teresa
+
+            mae$joana maria
+
+               pmae$jose antonio poeta
+                  ls$residencia/vilarinho
+
+               mmae$sebastiana maria
+
+            pad$joaquim pereira de macedo
+
+               ppad$bento rodrigues de macedo
+                  ls$residencia/coimbra
+
+            mad$helena maria
+               ls$ec/v
+
+               mrmad$antonio de almeida
+                  ls$morto/antes
+                  ls$residencia/coimbra
+
+      b$b1789.1150/14/10/1789/vigario luis barreto de figueiredo castilho
+
+         n$antonia/f/obs=diz a margem eiras; fl. 15
+            ls$datanasc/17890924
+
+            pai$luis jose da cunha leite
+               ls$residencia/eiras
+
+               ppai$bernardo jose da cunha leite
+                  ls$residencia/eiras
+
+               mpai$mariana cardosa
+
+            mae$luisa lopes
+
+               pmae$bento lopes
+                  ls$residencia/eiras
+
+               mmae$angela da silva
+
+            pad$manuel cardoso
+
+               ppad$francisco cardoso
+                  ls$residencia/s. paulo de frades
+
+            mad$antonia maria
+
+               mrmad$manuel rodrigues moco
+                  ls$residencia/eiras
+
+      b$b1789.1151/8/11/1789/vigario luis barreto de figueiredo castilho
+
+         n$joana/f/obs=diz a margem casais; fl. 15
+
+            pai$joaquim das neves
+               ls$residencia/casais de eiras
+
+               ppai$feliciano marques
+                  ls$residencia/casais de eiras
+
+               mpai$joana das neves
+
+            mae$isabel pereira
+
+               pmae$bento rodrigues pereira
+                  ls$residencia/casais de eiras
+
+               mmae$perpetua pereira
+
+            pad$manuel correia
+               ls$residencia/casais de eiras
+
+            mad$joana correia
+               ls$ec/s
+               ls$residencia/casais de eiras
+
+      b$b1789.1152/15/11/1789/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem azenha; fl.15-15v/id=1789-b1152-maria
+            ls$datanasc/17891107
+
+            pai$antonio ferreira
+               ls$profissao/moleiro
+               ls$residencia/azenha de baixo
+
+               ppai$joao ferreira
+                  ls$residencia/azenha de baixo
+
+               mpai$teresa lopes
+
+            mae$angelica da cruz
+
+               pmae$jose bento
+                  ls$residencia/val de linhares, freguesia da se de coimbra
+
+               mmae$josefa francisca
+
+            pad$jose bento
+               rel$parentesco/avo/maria/1789-b1152-maria
+
+            mad$maria
+               rel$parentesco/tia/maria/1789-b1152-maria
+
+               pmad$jose bento
+
+      b$b1789.1153/15/11/1789/vigario luis barreto de figueiredo castilho
+
+         n$ana/f/obs=diz a margem eiras; fl. 15v/id=1789-b1153-ana
+            ls$datanasc/17891107
+
+            pai$antonio ferreira
+               ls$residencia/eiras
+
+               ppai$sebastiao ferreira
+                  ls$residencia/azenhas do carvalho
+
+               mpai$sebastina maria
+
+            mae$ana cardosa
+
+               pmae$luis bernardes
+                  ls$residencia/eiras
+
+               mmae$joana cardosa
+
+            pad$sebastiao ferreira
+               rel$parentesco/avo/ana/1789-b1153-ana
+
+            mad$ana do nascimento
+
+               mrmad$manuel da silva ferreira
+                  ls$residencia/casais de eiras
+
+      b$b1789.1154/13/12/1789/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras; fl. 15v
+            ls$datanasc/17891205
+
+            pai$antonio jose dos santos estouro
+               ls$residencia/eiras
+
+               ppai$francisco jose dos santos
+                  ls$residencia/brasfemes
+
+               mpai$clara maria de jesus
+
+            mae$rosa cardosa
+
+               pmae$antonio cardoso
+                  ls$residencia/souselas
+
+               mmae$josefa lopes
+
+            pad$joao pereira
+               ls$ec/s
+
+               mpad$maria da assuncao
+                  ls$ec/v
+                  ls$residencia/eiras
+
+               ppad$joao pereira cardoso
+                  ls$morto/antes
+
+            mad$maria da conceicao
+               ls$ec/s
+               ls$residencia/vilarinho
+
+      b$b1789.1155/23/12/1789/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem casais; fl. 15v
+            ls$datanasc/17891213
+
+            pai$manuel jose pereira
+               ls$residencia/casais de eiras
+
+               ppai$antonio rodrigues pereira
+                  ls$residencia/casais de eiras
+
+               mpai$josefa cardosa
+
+            mae$francisca maria
+
+               pmae$francisco simoes
+                  ls$residencia/casal da rosa, freguesia de s. paulo de frades
+
+               mmae$teresa maria
+
+            pad$jose francisco
+               ls$residencia/val da luz
+
+            mad$maria cardosa
+               ls$residencia/casal da rosa, freguesia de s. paulo de frades
+
+      b$b1790.1156/6/1/1790/vigario luis barreto de figueiredo castilho
+
+         n$bernardo/m/obs=diz a margem eiras; fl. 16
+            ls$datanasc/17891228
+
+            pai$domingos fernandes frio
+               ls$residencia/eiras
+
+               ppai$miguel fernandes
+                  ls$residencia/lendiosa, freguesia de casal comba
+
+               mpai$maria alvares
+
+            mae$bernarda lopes teixeira
+
+               pmae$manuel teixeira
+                  ls$residencia/eiras
+
+               mmae$josefa lopes
+
+            pad$manuel de campos
+
+               mpad$rosa de campos
+                  ls$residencia/eiras
+
+            mad$bernarda lopes
+
+               mrmad$jose antonio moleiro
+                  ls$residencia/azenhas das religiosas de celas
+
+      b$b1790.1157/10/1/1790/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais; fl. 16
+            ls$datanasc/17891226
+
+            pai$luis da silva
+               ls$residencia/casais de eiras
+
+               ppai$jose da silva
+                  ls$residencia/coimbra, freguesia de santa justa
+
+               mpai$teresa francisca
+
+            mae$maria angelica
+
+               pmae$antonio fernandes
+                  ls$residencia/escravote
+
+               mmae$benta pereira
+
+            pad$manuel fernandes guimaraes
+               ls$profissao/mercador em coimbra
+
+            mad$maria inacia
+
+               mrmad$manuel caetano de morais
+                  ls$profissao/mercador em coimbra
+
+      b$b1790.1158/12/1/1790/vigario luis barreto de figueiredo castilho
+
+         n$liboria/f/obs=diz a margem eiras; fl. 16
+            ls$datanasc/17900102
+
+            pai$joaquim dos santos
+               ls$residencia/eiras
+
+               ppai$jose dos santos
+                  ls$residencia/pedrulha
+
+               mpai$isidora maria
+
+            mae$bernarda da silva
+
+               pmae$antonio lopes da silva
+                  ls$residencia/eiras
+
+               mmae$arcangela maria
+
+            pad$manuel freire
+               ls$profissao/boticario em coimbra, freguesia de s. bartolomeu
+
+            mad$rosa
+               ls$ec/s
+
+               pmad$jose antonio
+                  ls$residencia/pedrulha
+
+      b$b1790.1159/15/1/1790/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem eiras; fl. 16
+            ls$datanasc/17900108
+
+            pai$jeronimo ferreira
+               ls$residencia/eiras
+
+               ppai$antonio ferreira
+                  ls$residencia/lordemao, freguesia de s. paulo de frades
+
+               mpai$catarinha maria de carvalho
+
+            mae$rosa maria da silva
+
+               pmae$antonio lopes da silva
+                  ls$residencia/eiras
+
+               mmae$arcangela maria
+
+            pad$antonio joaquim da silva
+
+            mad$maria
+
+               pmad$manuel marques da murta
+                  ls$residencia/eiras
+
+      b$b1790.1160/2/2/1790/vigario luis barreto de figueiredo castilho
+
+         n$antonia/f/obs=diz a margem eiras; fl. 16v
+            ls$datanasc/17900127
+
+            pai$antonio ferreira da cunha
+               ls$residencia/eiras
+
+               ppai$jose da cunha
+                  ls$residencia/eiras
+
+               mpai$josefa maria da natividade
+
+            mae$maria marques de jesus
+
+               pmae$dionisio rodrigues
+                  ls$residencia/eiras
+
+               mmae$teresa cardosa
+
+            pad$joao morais carneiro fontoura
+               ls$titulo/tenente
+
+            mad$antonia angelica do vale sotomaior
+               ls$titulo/dona
+               ls$residencia/coimbra
+
+      b$b1790.1161/18/2/1790/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem casais; fl. 16v
+            ls$datanasc/17900211
+
+            pai$manuel da cunha velho
+               ls$residencia/casais de eiras
+
+               ppai$manuel da cunha velho
+                  ls$residencia/casais de eiras
+
+               mpai$joaquina lopes
+
+            mae$antonia joaquina
+
+               pmae$antonio bernardes
+                  ls$residencia/eiras
+
+               mmae$teresa de jesus
+
+            pad$jose da encarnacao
+               ls$profissao/moleiro
+               ls$residencia/vilarinho
+
+            mad$teresa lopes
+
+               mrmad$joao ferreira
+                  ls$residencia/azenha de baixo
+
+      b$b1790.1162/21/2/1790/vigario luis barreto de figueiredo castilho e o padre antonio jose fernandes
+
+         n$manuel/m/obs=diz a margem eiras; fl. 16v
+            ls$datanasc/17900214
+
+            pai$manuel lopes valente
+               ls$residencia/eiras
+
+               ppai$simiao lopes
+                  ls$residencia/casais de eiras
+
+               mpai$joana teresa valente
+
+            mae$mariana cardosa
+
+               pmae$antonio cardoso
+                  ls$residencia/souselas
+
+               mmae$josefa do nascimento
+
+            pad$manuel de jesus
+               ls$residencia/brasfemes
+               ls$profissao/mestre canteiro
+
+            mad$teresa cardosa
+
+               mrmad$manuel fernandes valente
+                  ls$profissao/pedreiro
+                  ls$residencia/eiras
+
+      b$b1790.1163/28/2/1790/vigario luis barreto de figueiredo castilho e o padre antonio jose fernandes
+
+         n$manuel/m/obs=diz a margem casais; fl. 16v
+            ls$datanasc/17900215
+
+            pai$jose bento
+               ls$residencia/casais de eiras
+
+               ppai$jose rodrigues pereira
+
+               mpai$mariana da cunha
+
+            mae$maria francisca
+
+               pmae$joaquim francisco
+                  ls$residencia/s. paulo de eiras
+
+               mmae$joana cardosa
+
+            pad$antonio pereira carpinteiro
+
+            mad$catarina da silva
+               ls$ec/v
+               ls$residencia/eiras
+
+      b$b1790.1164/28/2/1790/vigario luis barreto de figueiredo castilho
+
+         n$angelica/f/obs=diz a margem casais; fl. 17
+            ls$datanasc/17900219
+
+            pai$jose bernardes
+               ls$residencia/casais de eiras
+
+               ppai$antonio jose bernandes e oliveira
+                  ls$alcunha/o passara
+                  ls$residencia/eiras
+
+               mpai$maria bernnardes
+
+            mae$teresa cardosa
+
+               pmae$bernardo rodrigues bartolo
+                  ls$residencia/casais de eiras
+
+               mmae$maria da cunha copa
+
+            pad$jose coelho
+
+               ppad$manuel coelho
+                  ls$profissao/mercador da freguesia de santiago de coimbra
+
+            mad$angelicade jesus
+
+               mrmad$jose lopes calhao
+                  ls$residencia/vilarinho
+
+      b$b1790.1165/14/3/1790/vigario luis barreto de figueiredo castilho e reverendo antonio jose fernandes
+
+         n$joaquim/m/obs=diz a margem eiras; fl. 17
+            ls$datanasc/17900307
+
+            pai$luis fernandes
+               ls$residencia/eiras
+
+               ppai$domingos fernandes
+                  ls$residencia/lordemao, freguesia de s. paulo de frades
+
+               mpai$maria da conceicao
+
+            mae$ana das neves
+
+               pmae$francisco gomes bernardes
+                  ls$residencia/eiras
+
+               mmae$teresa das neves
+
+            pad$joaquim de almeida
+               ls$profissao/sapateiro
+               ls$residencia/coimbra
+
+            mad$bernarda rodrigues
+
+               mrmad$manuel da silva
+                  ls$residencia/ademia
+
+      b$b1790.1166/28/3/1790/vigario luis barreto de figueiredo castilho
+
+         n$jacome/obs=diz a margem casais; fl. 17
+            ls$datanasc/17900320
+
+            pai$alberto correia gomes
+               ls$residencia/casais de eiras
+
+               ppai$jeronimo correia gomes
+                  ls$residencia/casais de eiras
+
+               mpai$teresa maria das neves
+
+            mae$joana da costa
+
+               pmae$bernardo rodrigues penela
+                  ls$residencia/eiras
+
+               mmae$madalena da costa
+
+            pad$jacome baptista ginhao
+               ls$residencia/sinceira, freguesia de brasfemes
+
+            mad$maria da cruz
+
+               mrmad$manuel correia
+
+      b$b1790.1167/2/5/1790/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais; fl. 17-17v/id=1790-b1167-maria
+            ls$datanasc/17900424
+
+            pai$jose de figueiredo
+               ls$residencia/casais de eiras
+
+               ppai$nicolau de figueiredo
+                  ls$residencia/travanca, freguesia de chas, bispado de viseu
+
+               mpai$micaela de lemos
+
+            mae$teresa rosa de sousa
+
+               pmae$anastacio de sousa
+                  ls$residencia/casais de eiras
+
+               mmae$mariana de jesus
+
+            pad$jose antonio de sousa
+
+            mad$mariana de jesus
+               rel$parentesco/avo/maria/1790-b1167-maria
+
+      b$b1790.1168/16/5/1790/vigario luis barreto de figueiredo castilho
+
+         n$luis/m/obs=diz a margem rocha velha; fl. 17v
+            ls$datanasc/17900506
+
+            pai$antoniio francisco
+               ls$residencia/rocha velha
+
+               ppai$manuel joao
+                  ls$residencia/rocha velha
+
+               mpai$joana cardosa
+
+            mae$maria de jesus
+
+               pmae$jose fernandes
+                  ls$residencia/casal da rosa, freguesia de s. paulo de frades
+
+               mmae$isabel simoes
+
+            pad$luis simoes
+
+               ppad$manue lsimoes
+                  ls$residencia/golpe
+
+            mad$luisa
+               ls$ec/s
+
+               pmad$manuel cardoso
+                  ls$residencia/rocha velha
+
+         test$luis simoes/m
+            ls$assina/sim
+
+         test$jose fernandes/m
+            ls$assina/cruz
+
+      b$b1790.1169/13/6/1790/vigario luis barreto de figueiredo castilho
+
+         n$antonio/m/obs=diz a margem casais; fl. 17v
+            ls$datanasc/17900604
+
+            pai$antonio carvalho
+               ls$residencia/casais de eiras
+
+               ppai$bernardo de carvalho
+                  ls$residencia/casais de eiras
+
+               mpai$marina pereira
+
+            mae$rosa ferreira
+
+               pmae$constantino ferreira
+                  ls$residencia/casais de eiras
+
+               mmae$maria da silva
+
+            pad$luis
+               ls$ec/s
+
+               ppad$manuel simoes
+                  ls$residencia/golpe, freguesia de s. paulo de frades
+
+            mad$luisa simoes
+               ls$residencia/rocha velha, freguesia de s. paulo de frades
+
+      b$b1790.1170/13/6/1790/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem eiras; fl. 17v
+            ls$datanasc/17900604
+
+            pai$joao de oliveira dos santos
+               ls$residencia/eiras
+
+               ppai$manuel de oliveira dos santos
+                  ls$residencia/pedrulha
+
+               mpai$sebastina duarte
+
+            mae$ana marques da murta
+
+               pmae$manuel marques da murta
+                  ls$residencia/eiras
+
+               mmae$maria da cruz
+
+            pad$manuel rodrigues moco
+               ls$residencia/eiras
+
+            mad$maria
+
+               pmad$francisco dias
+                  ls$residencia/pedrulha
+
+      b$b1790.1171/4/8/1790/vigario luis barreto de figueiredo castilho
+
+         n$jeronimo/m/obs=diz a margem casais; fl. 17v-18
+            ls$datanasc/17900726
+
+            pai$joaquim simoes rigor
+               ls$residencia/casais de eiras
+
+               ppai$manuel simoes rigor
+                  ls$residencia/casais de eiras
+
+               mpai$maria lourenca
+
+            mae$jacinta pereira
+
+               pmae$valerio rodrigues pereira
+                  ls$residencia/casais de eiras
+
+               mmae$jona cardosa
+
+            pad$jeronimo fernandes prata
+               ls$titulo/reverendo padre
+
+            mad$bernarda da cunha
+               ls$residencia/eiras
+
+      b$b1790.1172/8/8/1790/vigario luis barreto de figueiredo castilho e o reverendo padre antonio jose fernandes
+
+         n$faustino/m/obs=diz a margem lordemao; fl. 18/id=1790-b1172-faustino
+            ls$datanasc/17900728
+
+            pai$bernardo francisco
+               ls$residencia/lapas do lordemao
+
+               ppai$manuel francisco
+                  ls$residencia/pisao, freguesia de barcouco
+
+               mpai$maria fernandes
+
+            mae$jacinta maria
+
+               pmae$lourenco antunes
+                  ls$residencia/bemposta, freguesia de s. paedro de coimbra
+
+               mmae$maria pereira
+
+            pad$alexandre rodrigues osorio
+               ls$residencia/s. martinho de mouros, bispado de viseu
+
+            mad$maria humbelina
+               rel$parentesco/irma/faustino/1790-b1172-faustino
+
+      b$b1790.1173/15/8/1790/vigario luis barreto de figueiredo castilho
+
+         n$maria/m/obs=diz a margem eiras; fl. 18
+            ls$datanasc/17900806
+
+            pai$jose monteiro
+               ls$residencia/eiras
+
+               ppai$manuel da cunha pedrais
+                  ls$residencia/eiras
+
+               mpai$benta monteira
+
+            mae$bernarda da silva
+
+               pmae$jose da cunha gaio
+                  ls$residencia/eoras
+
+               mmae$mariana da silva
+
+            pad$jacome baptista ginhao
+
+            mad$nossa senhora do rosario de eiras
+
+      b$b1790.1174/3/10/1790/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem eiras; fl. 18/id=1790-b1174-teresa
+            ls$datanasc/17900925
+
+            pai$manuel marques luzeiro
+               ls$residencia/eiras
+
+               ppai$jeronimo marques luzeiro
+                  ls$residencia/eiras
+
+               mpai$rosa de abreu
+
+            mae$maria leal
+
+               pmae$manuel leal
+                  ls$residencia/s. paulo de frades
+
+               mmae$maria cardosa/obs=segunda mulher de manuel leal
+
+            pad$jose leal
+               rel$parentesco/tio/teresa/1790-b1174-teresa
+               ls$residencia/s. paulo de frades
+
+            mad$rita
+               ls$ec/s
+
+               pmad$jose da silva
+                  ls$profissao/albardeiro
+                  ls$residencia/coimbra, freguesia de santa justa
+
+      b$b1790.1175/4/10/1790/vigario luis barreto de figueiredo castilho
+
+         n$josefa/f/obs=diz a margem casais; fl. 18
+            ls$datanasc/17900926
+
+            pai$antonio ferreira
+               ls$residencia/casais de eiras
+
+               ppai$constantino ferreira
+                  ls$residencia/casais de eiras
+
+               mpai$bernarda lopes/obs=segunda mulher de constantino ferreira
+
+            mae$teresa maria
+
+               pmae$jose antonio da conceicao
+                  ls$residencia/casais de eiras
+
+               mmae$maria teresa
+
+            pad$tomas de aquino lemos
+               ls$titulo/reverendo padre
+               ls$cargo/administrador da casa do correio mor de coimbra
+
+            mad$josefa maria
+
+               mrmad$francisco lopes
+                  ls$residencia/coimbrta, freguesia de s. cristovao
+
+      b$b1790.1176/10/10/1790/vigario luis barreto de figueiredo castilho
+
+         n$tomas/m/obs=diz a margem casais; fl. 18v/id=1790-b1176-tomas
+            ls$datanasc/17901002
+
+            pai$antonio jose da conceicao
+               ls$residencia/casais de eiras
+
+               ppai$jose antonio da conceicao
+                  ls$residencia/casais de eiras
+
+               mpai$maria teresa
+
+            mae$rosa monteira de quadros
+
+               pmae$antonio jose gaspar
+                  ls$residencia/casais de eiras
+
+               mmae$bernarda monteira
+
+            pad$tomas de aquino lemos
+               ls$titulo/reverendo padre
+               ls$cargo/adminstrador da casa do correio mor de coimbra
+
+            mad$antonia monteira
+               rel$parentesco/tia/tomas/1790-b1176-tomas
+               ls$residencia/casais de eiras
+
+      b$b1790.1177/10/10/1790/vigario luis barreto de figueiredo castilho
+
+         n$jose/m/obs=diz a margem casais; fl. 18v
+            ls$datanasc/17901002
+
+            pai$antonio pereira da serra
+               ls$residencia/casais de eiras
+
+               ppai$antonio pereira da serra
+                  ls$residencia/eiras
+
+               mpai$marta cardosa
+
+            mae$teresa joaquina
+
+               pmae$manuel fernandes
+                  ls$residencia/casais de eiras
+
+               mmae$margarida pereira
+
+            pad$jose de campos branco
+               ls$residencia/coimbra
+               ls$titulo/reverendo beneficiado
+
+            mad$bernarda teresa
+
+               mrmad$joao correia
+                  ls$cargo/capitao
+                  ls$residencia/eiras
+
+      b$b1790.1178/17/10/1790/vigario luis barreto de figueiredo castilho
+
+         n$rosa/f/obs=diz a margem eiras; fl. 18v
+            ls$datanasc/17901009
+
+            pai$antonio pereira
+               ls$residencia/eiras
+
+               ppai$manuelpereira cardoso
+                  ls$residencia/eiras
+
+               mpai$maria da assuncao
+
+            mae$ana teresa
+
+               pmae$jose carlos peixoto
+                  ls$residencia/eiras
+
+               mmae$mari ado rosario de matos
+
+            pad$manuel de almeida
+               ls$ec/s
+               ls$residencia/coimbra
+
+            mad$rosa
+               ls$ec/s
+
+               pmad$manuel marques da murta
+                  ls$residencia/eiras
+
+      b$b1790.1179/29/11/1790/vigario luis barreto de figueiredo castilho
+
+         n$maria/f/obs=diz a margem casais; fl. 18v-19
+            ls$datanasc/17901120
+
+            pai$luis bernardes
+               ls$residencia/casais de eiras
+
+               ppai$antonio jose oliveira bernardes
+                  ls$residencia/eiras
+
+               mpai$mari abernardes
+
+            mae$josefa maria
+
+               pmae$antonio da silva
+                  ls$residencia/sazes
+
+               mmae$maria de jesus
+
+            pad$jose joaquim
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras
+
+      b$b1791.1180/2/1/1791/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem eiras; fl. 19
+            ls$datanasc/17901223
+
+            pai$francisco fernandes valente
+               ls$residencia/eiras
+
+               ppai$manuel fernandes valente
+                  ls$residencia/eiras
+
+               mpai$isabel teresa
+
+            mae$joaquina lopes
+
+               pmae$manuel teixeira
+                  ls$residencia/eiras
+
+               mmae$josefa lopes
+
+            pad$luis bernardes
+               ls$residencia/rocha nova, freguesia de s. paulo de frades
+
+            mad$teresa de jesus
+
+               mrmad$antonio ferreira
+                  ls$residencia/eiras
+
+      b$b1791.1181/30/1/1791/vigario luis barreto de figueiredo castilho e o reverendo encomendado antonio fernandes da silva
+
+         n$ana barbara/f/obs=diz a margem eiras; fl. 19
+            ls$datanasc/17910120
+
+            pai$antonio nunes
+               ls$residencia/eiras
+               ls$naturalidade/celas
+
+               ppai$antonio nunes
+                  ls$residencia/celas
+
+               mpai$luisa maria
+
+            mae$maria joana
+
+               pmae$jose rodrigues jacinto
+                  ls$residencia/coimbra, rua do corpo de deus, freguesia de santiago
+
+               mmae$joana maria
+
+            pad$bento rodrigues de macedo
+               ls$residencia/coimbra
+
+            mad$ana de castro
+               ls$titulo/dona
+               ls$residencia/mosteiro de celas
+
+      b$b1791.1182/13/2/1791/vigario luis barreto de figueiredo castilho
+
+         n$angelica/f/obs=diz a margem eiras; fl. 19
+            ls$datanasc/17910205
+
+            pai$domingos fernandes escamudo
+               ls$residencia/eiras
+
+               ppai$miguel fernandes
+                  ls$residencia/lendiosa, freguesia de casal comba
+
+               mpai$maria alvares
+
+            mae$bernarda lopes teixeira
+
+               pmae$manuel teixeira
+                  ls$residencia/eiras
+
+               mmae$josefa lopes
+
+            pad$jose da conceicao
+               ls$profissao/moleiro
+               ls$residencia/vilarinho
+
+            mad$angelica da cruz
+
+               mrmad$antonio ferreira
+                  ls$profissao/moleiro
+                  ls$residencia/azenha de baixo
+
+      b$b1791.1183/13/2/1791/vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem eiras; fl. 19v
+            ls$datanasc/17910203
+
+            pai$jose antonio
+               ls$profissao/moleiro
+               ls$residencia/azenhas da ponte, eiras
+
+               ppai$jose antonio
+                  ls$residencia/casal de semide
+
+               mpai$maria simoes
+
+            mae$bernarda teresa lopes
+
+               pmae$joao ferreira
+                  ls$residencia/azenhas da quinta de baixo, eiras
+
+               mmae$teresa rosa
+
+            pad$manuel rodrigues moco
+               ls$residencia/eiras
+
+            mad$teresa de jesus
+
+               mrmad$antonio ferreira
+                  ls$residencia/casais de eiras
+
+      b$b1791.1184/14/3/1791/vigario luis barreto de figueiredo castilho e o encomendado antonio jose fernandes da silva
+
+         n$antonio/m/obs=diz a margem murtal; fl. 19v
+            ls$datanasc/17910307
+
+            pai$bernardo jose gomes
+               ls$residencia/murtal
+
+               ppai$manuel jose bernardes
+                  ls$residencia/eiras
+
+               mpai$joana das neves
+
+            mae$teresa cardosa monteiro
+
+               pmae$joao cardoso
+                  ls$residencia/logo de deus, freguesia de s. paulo de frades
+
+               mmae$mariana cardosa
+
+            pad$antonio da silva
+               ls$residencia/murtal
+
+            mad$nossa senhora do rosario de eiras
+
+         test$fabiao jose bernardes/m
+            ls$assina/nao
+            ls$titulo/reverendo
+
+         test$sebastiao da silva/m
+            ls$residencia/murtal
+            ls$assina/nao
+
+      b$b1791.1185/3/4/1791/antonio jose fernandes da silva, encomendado e o vigario luis barreto de figueiredo castilho
+
+         n$teresa/f/obs=diz a margem carvalho; fl. 19v
+            ls$datanasc/17910326
+
+            pai$sebastiao ferreira
+               ls$residencia/sitio do carvalho
+
+               ppai$constantino ferreia
+                  ls$residencia/casais de eiras
+
+               mpai$maria da silva
+
+            mae$sebastiana maria
+
+               pmae$caetano simoes
+                  ls$residencia/casais de eiras
+
+               mmae$isabel lopes
+
+            pad$salvador pereira
+               ls$residencia/casais de eiras
+
+            mad$maria
+               ls$ec/s
+
+               pmad$manuel pereira
+                  ls$residencia/coimbra
+
+               mmad$teresa vinagre
+
+      b$b1791.1186/25/4/1791/antonio jose fernandes da silva, encomendado e o padre jeronimo fernandes prata; o vigario morreu
+
+         n$maria/f/obs=diz a margem murtal; fl. 20/id=1791-b1186-maria
+            ls$datanasc/17910418
+
+            pai$antonio simoes
+               ls$residencia/murtal
+
+               ppai$bento simoes
+                  ls$residencia/murtal
+
+               mpai$isabel rodrigues
+
+            mae$maria da murta
+
+               pmae$jeronimo marques luzeiro
+                  ls$residencia/eiras
+
+               mmae$rosa de abreu grila
+
+            pad$jose coelho pereira
+               ls$residencia/vilarinho
+
+            mad$catarina
+               ls$ec/s
+               rel$parentesco/tia/maria/1791-b1186-maria
+
+               pmad$bento simoes
+
+      b$b1791.1187/22/5/1791/vigario luis barreto de figueiredo castilho
+
+         n$antonia/f/obs=diz a margem eiras; fl. 20
+            ls$datanasc/17910512
+
+            pai$manuel fernandes valente
+               ls$residencia/eiras
+
+               ppai$jose carlos peixoto
+                  ls$residencia/eiras
+
+               mpai$maria de matos
+
+            mae$teresa cardosa
+
+               pmae$manuel marques de amtos
+                  ls$residencia/eiras
+
+               mmae$mariana cardosa
+
+            pad$antonio de abrantes
+               ls$residencia/vilarinho
+
+            mad$antonia da conceicao
+
+               mrmad$francisco fernandes de sampaio
+                  ls$residencia/sinceira, freguesia de brasfemes
+
+      b$b1791.1188/19/4/1791/vigario luis barreto de figueiredo castilho e o padre jeronimo fernandes prata; feito por antonio jose fernandes da silva
+
+         n$manuel/m/obs=diz a margem eiras; fl. 20
+            ls$datanasc/17910412
+
+            pai$bernardo jose pereira
+               ls$residencia/eiras
+
+               ppai$caetano jose pereira
+                  ls$residencia/casais de eiras
+
+               mpai$benta pereira
+
+            mae$rosa cardosa
+
+               pmae$manuel marques de matos
+                  ls$residencia/eiras
+
+               mmae$mariana cardosa
+
+            pad$manuelpereira dinis
+
+            mad$josefa pereira
+
+               mrmad$jose pedro
+                  ls$residencia/lordemao
+
+      b$b1791.1189/29/5/1791/antonio jose fernandes da silva, encomendado
+
+         n$maria/f/obs=diz a margem vilarinho; fl. 20v/obs=baptismo realizado na capela de nossa senhora da piedade em vilarinho
+            ls$datanasc/17910519
+
+            pai$jose coelho de campos
+               ls$residencia/vilarinho, sua quinta
+
+               ppai$jose coelho
+                  ls$residencia/coimbra
+
+               mpai$ana tomasia de aquino
+
+            mae$maria madalena
+
+               pmae$jose ginioux
+                  ls$residencia/gondileu, freguesia de brasfemes
+
+               mmae$benta rosa
+
+            pad$manuel joaquim pimenta
+               ls$residencia/coimbra
+
+            mad$nossa senhora da piedade
+
+      b$b1791.1190/30/5/1791/antonio jose fernandes da silva, encomendado
+
+         n$maria/f/obs=diz a margem eiras; fl. 20v
+            ls$datanasc/17910523
+
+            pai$antonio de campos
+               ls$residencia/eiras
+
+               ppai$simoa pedro marques
+                  ls$residencia/eiras
+
+               mpai$maria branca
+
+            mae$maria da silva
+
+               pmae$antonio lopes da silva
+                  ls$residencia/eiras
+
+               mmae$arcangela maria
+
+            pad$bento rodrigues de macedo/id=1791-b1190-bento
+               ls$residencia/coimbra
+
+            mad$antonia maria de oliveira
+               ls$residencia/eiras
+
+            referido$joaquim de campos
+               rel$sociabilidade/procurador/bento rodrigues de macedo/1791-b1190-bento
+
+      b$b1791.1191/2/6/1791/antonio jose fernandes da silva, encomendado
+
+         n$antonio/m/obs=diz a margem eiras; fl. 20v-21
+            ls$datanasc/17910525
+
+            pai$manuel rodrigues de figueiredo
+               ls$residencia/eiras
+
+               ppai$jose rodrigues
+                  ls$residencia/telhado, freguesia de figueira do lorvao
+
+               mpai$leonor micaela
+
+            mae$teresa cardosa
+
+               pmae$bento jose da cunha
+                  ls$residencia/eiras
+
+               mmae$mariana cardosa
+
+            pad$antonio da silva
+               ls$residencia/murtal
+
+            mad$nossa senhora do rosario de eiras
+
+      b$b1791.1192/5/6/1791/antonio jose fernandes da silva, encomendado
+
+         n$jose/m/obs=diz a margem casais; fl. 20
+            ls$datanasc/17910527
+
+            pai$joao da costa
+               ls$residencia/casais de eiras
+
+               ppai$antonio da costa
+                  ls$residencia/vilarinho
+
+               mpai$josefa da conceicao
+
+            mae$francisca rosa
+
+               pmae$luis lopes
+                  ls$residencia/casais de eiras
+
+               mmae$rosa teresa
+
+            pad$jose da encarnacao
+               ls$residencia/vilarinho
+
+            mad$bernarda teresa
+
+               mrmad$jose antonio
+                  ls$residencia/azenhas da ponte
+
+      b$b1791.1193/11/6/1791/antonio jose fernandes da silva e reverendo jeronimo fernandes prata
+
+         n$maria/f/obs=diz a margem eiras; fl. 20-21v
+            ls$datanasc/17910602
+
+            pai$jose penela
+               ls$residencia/eiras
+
+               ppai$joao cardoso
+                  ls$residencia/eiras
+
+               mpai$maria francisca
+
+            mae$teresa de jesus
+
+               pmae$luis rodrigues
+                  ls$residencia/granja, freguesia de figueira do lorvao
+
+               mmae$maria rodrigues
+
+            pad$joao pereira
+               ls$residencia/eiras
+
+            mad$nossa senhora do rosario de eiras
+
+      b$b1791.1194/29/8/1791/antonio jose fernandes da silva
+
+         n$jacome/m/obs=diz a margem eiras; fl. 21v
+            ls$datanasc/17910820
+
+            pai$jose nunes
+               ls$residencia/eiras
+
+               ppai$joao nunes
+                  ls$residencia/eiras
+
+               mpai$josefa correia
+
+            mae$josefa pereira/obs=ilegitima
+
+               pmae$antonio simoes
+                  ls$ec/s
+                  ls$residencia/pampilhosa
+
+               mmae$isabel maria
+                  ls$ec/s
+
+            pad$jacome baptista ginhao
+               ls$residencia/gondileu, freguesia de brasfemes
+
+            mad$?
+               ls$residencia/pampilhosa
+
+      b$b1791.1195/29/6/1791/antonio jose fernandes da silva
+
+         n$joana/f/obs=diz a margem eiras; fl.21v
+            ls$datanasc/17910621
+
+            pai$joaquim dos santos
+               ls$residencia/eiras
+
+               ppai$jose dos santos
+                  ls$residencia/eiras
+
+               mpai$isidora maria
+
+            mae$bernarda pereira
+
+               pmae$antonio lopes da silva
+                  ls$residencia/eiras
+
+               mmae$arcangela maria
+
+            pad$francisco rodrigues
+               ls$residencia/ademia
+
+            mad$joana joaquina
+
+               mrmad$estevao jose
+                  ls$residencia/fornos, freguesia de trouxemil
+
+      b$b1791.1196/3/7/1791/antonio jose fernandes da silva
+
+         n$jose/m/obs=diz a margem eiras; fl. 21
+            ls$datanasc/17910623
+
+            pai$joao de oliveira dos santos
+               ls$residencia/eiras
+
+               ppai$manuel de oliveira dos santos
+                  ls$residencia/pedrulha
+
+               mpai$sebastiana duarte
+
+            mae$ana marques da murta
+
+               pmae$manuel marques da murta
+                  ls$residencia/eiras
+
+               mmae$maria da cruz
+
+            pad$jeronimo fernandes prata
+               ls$residencia/eiras
+               ls$titulo/reverendo padre
+
+            mad$nossa senhora do rosario de eiras
+
+            referido$joaquim antonio ribeiro/obs=toca pela senhora do rosario
+               ls$titulo/reverendo
+
+      b$b1791.1197/10/7/1791/antonio jose fernandes da silva
+
+         n$maria/f/obs=diz a margem eiras; fl. 21
+            ls$datanasc/17910701
+
+            pai$antonio jose dos santos estouro
+               ls$residencia/eiras
+
+               ppai$francisco jose dos santos
+                  ls$residencia/brasfemes
+
+               mpai$clara de jesus
+
+            mae$rosa cardosa
+
+               pmae$antonio cardoso
+                  ls$residencia/souselas
+
+               mmae$josefa da costa
+
+            pad$jacome baptista ginioux
+               ls$residencia/gondileu
+
+            mad$maria rosa
+               ls$ec/v
+               ls$residencia/s. paulo de frades
+
+      b$b1791.1198/31/7/1791/antonio jose fernandes da silva
+
+         n$antonio/m/obs=diz a margem casais; fl. 22-22v/obs=baptismo em casa por necessidade
+            ls$datanasc/17910718
+
+            pai$bento de matos
+               ls$residencia/casais de eiras
+
+               ppai$manuel de matos
+                  ls$residencia/eiras
+
+               mpai$luisa da cunha
+
+            mae$ana pereira
+
+               pmae$jose rodrigues pereira
+                  ls$residencia/casais de eiras
+
+               mmae$maria da cunha
+
+            pad$antonio jose da conceicao
+               ls$residencia/casais de eiras
+
+            mad$febronia
+               ls$ec/s
+
+               pmad$luis de matos
+                  ls$residencia/casais de eiras
+
+      b$b1791.1199/31/7/1791/antonio jose fernandes da silva
+
+         n$jose/m/obs=diz a margem casais; fl. 22v
+            ls$datanasc/17910719
+
+            pai$joa de sousa
+               ls$residencia/casais de eiras
+
+               ppai$antonio de sousa lopes
+                  ls$residencia/casais de eiras
+
+               mpai$barbara de jesus
+
+            mae$rosa de jesus
+
+               pmae$manuel da silva
+                  ls$residencia/telhado, freguesia de figueira do lorvao
+
+               mmae$maria ferreira
+
+            pad$jose antonio
+               ls$residencia/azenha
+
+            mad$teresa joaquina
+
+               pmad$jose marques
+                  ls$residencia/antuzede
+
+      b$b1791.1200/4/9/1791/antonio jose fernandes da silva
+
+         n$antonio/m/obs=diz a margem casais; fl. 22v/obs=baptizado em necessidade pela parteira
+            ls$datanasc/17910826
+
+            pai$joaquim simoes rigor
+               ls$residencia/casais de eiras
+
+               ppai$manuel simoes rigor
+                  ls$residencia/casais d eeiras
+
+               mpai$maria lourenca
+
+            mae$jacinta pereira
+
+               pmae$valerio rodrigues pereira/id=1791-b1200-valerio
+                  ls$residencia/casais de eiras
+
+               mmae$joana cardosa
+
+            pad$manuel
+               ls$ec/s
+
+               ppad$valerio rodrigues pereira/mesmo_que=1791-b1200-valerio
+
+            mad$antonia
+               ls$ec/s
+
+               pmad$antonio pereira da cruz
+                  ls$residencia/casais de eiras
+
+      b$b1791.1201/17/11/1791/antonio jose fernandes da silva
+
+         n$manuel/m/obs=diz a margem casais; fl. 23
+            ls$datanasc/17911108
+
+            pai$antonio ferreira
+               ls$residencia/casais de eiras
+
+               ppai$sebastiao ferreira
+                  ls$residencia/sitio do carvalho
+
+               mpai$sebastiana maria
+
+            mae$ana cardosa
+
+               pmae$luis bernardes
+                  ls$residencia/eiras
+
+               mmae$joana cardosa
+
+            pad$manuel correia da fonseca/id=1791-b1201-manuel
+               ls$titulo/doutor
+
+            mad$josefa teresa de campos
+               ls$residencia/cabeco do lordemao
+               rel$parentesco/prima/manuel correia da fonseca/1791-b1201-manuel
+
+      b$b1792.1202/1/1/1792/antonio jose fernandes da silva e o padre jeronimo fernandes prata
+
+         n$maria/f/obs=diz a margem casais; fl. 23
+            ls$datanasc/17911222
+
+            pai$joao simoes rigor
+               ls$residencia/casais de eiras
+
+               ppai$manuel simoes rigor
+                  ls$residencia/casais de eiras
+
+               mpai$maria lorenca
+
+            mae$escolastica cardosa
+
+               pmae$luis bernardes
+                  ls$residencia/eiras
+
+               mmae$joana cardosa
+
+            pad$josede campos branco
+               ls$titulo/reverendo beneficiado
+
+            mad$rosa baptista
+               ls$ec/s
+               ls$residencia/casais de eiras
+
+      b$b1792.1203/9/1/1792/antonio jose fernandes da silva
+
+         n$antonio/m/obs=diz a margem eiras; fl. 23-23v
+            ls$datanasc/17911228
+
+            pai$joaquim marques
+               ls$residencia/eiras
+
+               ppai$luis marques de matos
+                  ls$residencia/eiras
+
+               mpai$luisa lopes
+
+            mae$maria joaquina
+
+               pmae$joaquim duarte
+                  ls$residencia/lameira, freguesia do luso
+
+               mmae$rosaria maria
+
+            pad$antonio
+
+               ppad$joaquim simoes
+                  ls$residencia/coimbra
+
+               mpad$maria do desterro
+
+            mad$maria de jesus
+
+               mrmad$jose pereira cardoso
+                  ls$residencia/ademia
+
+      b$b1792.1204/11/1/1792/antonio jose fernandes da silva
+
+         n$barbara/f/obs=diz a margem casais; fl. 23v/obs=baptizada em necessidade pela parteira
+            ls$datanasc/17920102
+
+            pai$bernardo jose pereira
+               ls$residencia/casais de eiras
+
+               ppai$valerio jose pereira/id=1792-b1204-valerio
+                  ls$residencia/casais de eiras
+
+               mpai$joana cardosa
+
+            mae$bernarda pereira
+
+               pmae$custodio pereira
+                  ls$residencia/casais de eiras
+
+               mmae$ana francisca/obs=primeira mulher de custodio pereira
+
+            pad$manuel jose
+               ls$ec/s
+
+               ppad$valerio jose pereira/mesmo_que=1792-b1204-valerio
+
+            mad$barbara da silva/id=1792-b1204-barbara
+
+               mrmad$antonio jose pereira
+                  ls$residencia/casais de eiras
+                  rel$sociabilidade/procurador/barbara da silva/1792-b1204-barbara
+
+      b$b1792.1205/22/1/1792/antonio jose fernandes da silva
+
+         n$antonio/m/obs=diz a margem casais; fl. 23v-24
+
+            pai$luis da silva
+               ls$residencia/casais de eiras
+
+               ppai$jose da silva
+                  ls$residencia/santa justa de coimbra
+
+               mpai$teresa de jesus
+
+            mae$mari angelica
+
+               pmae$antonio fernandes
+                  ls$residencia/escravote
+
+               mmae$benta pereira
+
+            pad$s. jose
+
+            referido$andre fernandes da silva/obs=toca por s. jose
+               ls$titulo/padre
+
+            mad$rainha santa isabel
+
+            referido$joaquim antonio de almeida pacheco/obs=toca pela rainha santa
+               ls$residencia/brasfemes
+
+      b$b1792.1206/5/2/1792/antonio jose fernandes da silva
+
+         n$ivo/m/obs=diz a margem eiras; fl. 24/obs=baptizado em casa pela parteira por necessidade
+            ls$datanasc/17920126
+
+            pai$francisco jose de matos
+               ls$residencia/eiras
+
+               ppai$jose carlos peixoto
+                  ls$residencia/eiras
+
+               mpai$maria do rosario de matos
+
+            mae$josefa pereira
+
+               pmae$joao duarte leal
+                  ls$residencia/grade, freguesia de vila nova de monsarros
+
+               mmae$catarina simoes
+
+            pad$ivo jose antonio de almeida/id=1792-b1206-ivo
+               ls$residencia/coimbra
+               ls$titulo/doutor
+
+            referido$antonio jose de oliveira
+               ls$titulo/capitao
+               ls$residencia/eiras
+               rel$sociabilidade/procurador/ivo jose antonio de almeida/1792-b1206-ivo
+
+            mad$teresa sciencia/id=1792-b1206-teresa
+
+            referido$antonio joaquim
+               ls$residencia/eiras
+               rel$sociabilidade/procuraodor/teresa sciencia/1792-b1206-teresa
+
+      b$b1792.1207/9/2/1792/antonio jose fernandes da silva
+
+         n$manuel/m/obs=diz a margem eiras; fl. 24v/id=1792-b1207-manuel
+            ls$datanasc/17920131
+
+            pai$manuel marques de matos novo
+               ls$residencia/eiras
+
+               ppai$manuel marques de matos
+                  ls$residencia/eiras
+
+               mpai$marina cardosa
+
+            mae$maria antonia de santa comba
+
+               pmae$bernardo jose da cunha
+                  ls$residencia/eiras
+
+               mmae$marina cardosa
+
+            pad$manuel de almeida
+               ls$ec/s
+               ls$residencia/coimbra
+
+            mad$rosa maria
+               ls$ec/s
+               rel$parentesco/tia/manuel/1792-b1207-manuel
+
+      b$b1792.1208/12/2/1792/antonio jose fernandes da silva
+
+         n$francisco/m/obs=diz a margem eiras; fl. 24v
+            ls$datanasc/17920206
+
+            pai$antonio da cruz
+               ls$residencia/eiras
+
+               ppai$manuel da cruz
+                  ls$residencia/eiras
+
+               mpai$maria dos santos
+
+            mae$maria marques
+
+               pmae$joaquim marques moco
+                  ls$residencia/eiras
+
+               mmae$josefa pereira
+
+            pad$francisco antonio
+               ls$residencia/coimbra
+
+            mad$teresa ribeira/id=1792-b1208-teresa
+
+               mrmad$manuel marques
+                  ls$residencia/s. martinho do bispo
+                  rel$sociabilidade/procurador/teresa ribeira/1792-b1208-teresa
+
+      b$b1792.1209/15/2/1792/antonio jose fernandes da silva
+
+         n$manuel/m/obs=diz a margem eiras; fl. 25
+            ls$datanasc/17920207
+
+            pai$francisco marques valenca
+               ls$residencia/eiras
+
+               ppai$joao marques valenca
+                  ls$residencia/eiras
+
+               mpai$eugenia correia
+
+            mae$angelica joaquina
+
+               pmae$jose goncalves
+                  ls$residencia/oureta
+
+               mmae$ana joaquina
+
+            pad$manuel de campos
+               ls$residencia/eiras
+
+            mad$maria
+               ls$ec/s
+
+               pmad$manuel da murta
+                  ls$residencia/eiras
+
+      b$b1792.1210/26/2/1792/antonio jose fernandes da silva
+
+         n$jose/m/obs=diz a margem eiras; fl. 25/id=1792-b1210-jose
+            ls$datanasc/17920219
+
+            pai$jose marque smoco
+               ls$residencia/?
+
+               ppai$antonio marques moco
+                  ls$residencia/eiras
+
+               mpai$rosa cardosa
+
+            mae$rosaria de matos
+
+               pmae$manuel de matos
+                  ls$residencia/eiras
+
+               mmae$luisa da cunha
+
+            pad$jose
+               ls$ec/s
+
+            pmad$catarina da silva
+               ls$ec/v
+
+            mad$maria
+               ls$ec/s
+               rel$parentesco/tia/jose/1792-b1210-jose
+
+      b$b1792.1211/28/3/1792/antonio jose fernandes da silva
+
+         n$antonio/m/obs=diz a margem eiras; fl. 25v
+
+            pai$jose gomes leal
+               ls$residencia/eiras
+
+               ppai$antonio fernandes bruxeiro
+                  ls$residencia/eiras
+
+               mpai$maria gomes leal
+
+            mae$joana luisa
+
+               pmae$pascoal pereira
+                  ls$residencia/sepins grande
+
+               mmae$maria francisca
+
+            pad$antonio
+
+               ppad$manuel goncalves
+                  ls$residencia/coimbra
+
+            mad$rosa de castilho
+
+               mmad$maria de jesus
+                  ls$residencia/eiras[KleioImporter] ERROR newKleioGroup: b1787.1112-rela1 Kleio file line: 7 General error

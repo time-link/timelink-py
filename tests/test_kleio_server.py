@@ -198,7 +198,7 @@ def test_get_kserver_home():
 
 def test_translations_get(setup):
     """Test if translations are retrieved"""
-    path: str = "projects/test-project/kleio/reference_sources/linked_data"
+    path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
 
@@ -220,7 +220,7 @@ def test_translations_get(setup):
 
 def test_translations_translate(setup):
     """Test if translations are translated"""
-    path: str = "projects/test-project/kleio/reference_sources/linked_data"
+    path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
     spawn: str = "no"
 
@@ -267,7 +267,7 @@ def test_translations_queued(setup):
 
 def test_translations_clean(setup):
     """Test if translations results are deleted"""
-    path: str = "projects/test-project/kleio/reference_sources/linked_data"
+    path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
 
     kserver: KleioServer = setup

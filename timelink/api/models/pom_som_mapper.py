@@ -129,6 +129,9 @@ class PomSomMapper(Entity):
     orm_class: Entity
     # Class attribute stores current PomSomMappings keyed by id
     pom_classes: dict = {}
+    # Stores the association between group names and ORM Models.
+    #  See get_orm_for_groupname and issue #53
+    group_orm_models: dict = {}
 
     def ensure_mapping(self, session=None):
         """
@@ -159,6 +162,9 @@ class PomSomMapper(Entity):
         my_orm = Entity.get_orm_for_pom_class(self.id)
         if my_orm is not None:
             self.orm_class = my_orm
+            if self.group_name is not None:
+                # Store as "static"
+                PomSomMapper.group_orm_models[self.group_name] = my_orm
             return self.orm_class
 
         # we have no ORM mapping for the SomPomMapper
@@ -166,13 +172,15 @@ class PomSomMapper(Entity):
         # This might happen if we have different kleio groups mapped to the
         # same table, in order to make the kleio transcripts more readable
         # (it happens frequently with the table 'acts').
-        # If so we will reuse the existing Table class
+        # If so we will reuse the existing Table class.
+        #
         # It can also happen that while not having a ORM mapping the table
         # can already exist in the database as result of previous imports.
         #
         # Note that non core PomSomMappings and corresponding ORM classes,
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
+        #
         metadata_obj = type(self).metadata
         pytables = metadata_obj.tables  # these are the tables known to ORM
 
@@ -226,13 +234,13 @@ class PomSomMapper(Entity):
             #       automatically
             my_table = Table(self.table_name, metadata_obj, extend_existing=True)
             cattr: Type["PomClassAttributes"]
-            for cattr in self.class_attributes:
-                PyType: str
+            for cattr in self.class_attributes:  # pylint: disable=no-member
+                PyType: str  # pylint: disable=invalid-name
                 pom_type = cattr.coltype.lower()
                 if pom_type == "varchar":
-                    PyType = String(cattr.colsize)
+                    PyType = String(cattr.colsize)   # pylint: disable=invalid-name
                 elif pom_type == "numeric" and cattr.colprecision == 0:
-                    PyType = Integer
+                    PyType = Integer   # pylint: disable=invalid-name
                 elif pom_type == "numeric" and cattr.colprecision > 0:
                     PyType = Float
                 else:
@@ -295,6 +303,7 @@ class PomSomMapper(Entity):
             logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), e)
 
         self.orm_class = my_orm
+        PomSomMapper.group_orm_models[self.group_name] = my_orm
 
         return self.orm_class
 
@@ -352,14 +361,28 @@ class PomSomMapper(Entity):
         pom_id = getattr(group, "_pom_class_id", None)
         if pom_id is None:
             kname = group.kname
-            for pom in cls.get_pom_classes(session):
-                if kname == pom.group_name:
-                    # TODO use a setter
-                    pom_id = pom.id
-                    break
+            pom_id = cls.get_pom_id_by_group_name(session, kname)
         if pom_id:
             return cls.get_pom_class(pom_id, session)
         return None
+
+    @classmethod
+    def get_pom_id_by_group_name(cls, session, kname):
+        """ Returns the PomSomMapper id for a given group name"""
+        for pom in cls.get_pom_classes(session):
+            if kname == pom.group_name:
+                # TODO use a setter
+                return pom.id
+        return None
+
+    @classmethod
+    def get_orm_for_group(cls, groupname: str):
+        """
+        PomSomMapper.get_orm_for_groupname("act")
+
+        will return the ORM class corresponding to the groupname "act"
+        """
+        return PomSomMapper.group_orm_models.get(groupname, None)
 
     @classmethod
     def ensure_all_mappings(cls, session):
@@ -374,17 +397,41 @@ class PomSomMapper(Entity):
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session=session)
 
-    def element_class_to_column(self, eclass: str) -> str:
+    def element_class_to_column(self, eclass: str, session: None) -> str:
+        """ Return the column name corresponding to a group element class.
+
+        Args:
+            eclass (str): The class of an element (included in the export file).
+
+        Returns:
+            str: The name of the column corresponding to this element in the mapped table.
         """
-        Return the column name corresponding to a group element class
-        :param eclass: the class of an element (included in the export file)
-        :return: the name of the column corresponding to this element in the
-        mapped table.
+
+        cattr: PomClassAttributes = None
+        for cattr in self.class_attributes:  # pylint: disable=no-member
+            if cattr.colclass == eclass:
+                return cattr.colname
+        if self.id != "entity":
+            super_class = self.get_pom_class(self.super_class, session=session)
+            if super_class is not None:
+                return super_class.element_class_to_column(eclass, session=session)
+        return None
+
+    def column_to_class_attribute(self, colname: str, session: None) -> 'PomClassAttributes':
+        """ Return the class attribute corresponding to a column name.
+
+        Args:
+            colname (str): The name of a column in the mapped table.
+
         """
-        cattr: PomClassAttributes = self.class_attributes.filter(
-            PomClassAttributes.pom_class == eclass
-        )
-        return cattr.colname
+        for cattr in self.class_attributes:  # pylint: disable=no-member
+            if cattr.colname == colname:
+                return cattr
+        if self.id != "entity":
+            super_class = self.get_pom_class(self.super_class, session)
+            if super_class is not None:
+                return super_class.column_to_class_attribute(colname, session)
+        return None
 
     @classmethod
     def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
@@ -416,21 +463,25 @@ class PomSomMapper(Entity):
 
         pom_class.ensure_mapping(session)
         ormClass = Entity.get_orm_for_pom_class(pom_class.id)
+
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
-        # columns = inspect(ormClass).columns
+
         # extra_info =  this will store the extra information in comment and original words
-        extra_info: dict = (
-            dict()
-        )  # {el1:{'core':'','comment':'','original':''},el2:...}
-        group_obs = ""  # this will store the observation information with extra info
-        for cattr in pom_class.class_attributes:  # for each mapped column
+        extra_info: dict = dict()  # {el1:{'core':'','comment':'','original':''},el2:...}
+        group_obs = ''  # this will store the observation information with extra info
+        columns = inspect(ormClass).columns
+        # temp
+        for column in set([c.name for c in columns]):
+            cattr = pom_class.column_to_class_attribute(column, session)
+            if cattr is None:  # cols as updated and indexed not mapped
+                continue
             if cattr.colclass == "id":
                 pass
-            element: KElement = group.get_element_for_column(cattr.colclass)
+            element: KElement = group.get_element_by_name_or_class(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    if len(element.core) > cattr.colsize:
+                    if len(element.core) > cattr.colsize: ## Problema que em alguns casos as colunas são números
                         warnings.warn(
                             f"""Element {element.name} of group {group.kname}:{group.id}"""
                             f""" is too long for column {cattr.colname}"""
@@ -493,10 +544,12 @@ class PomSomMapper(Entity):
         container_id = group.get_container_id()
         if container_id not in ["root", "None", "", None]:
             entity_from_group.inside = container_id
+        else:
+            entity_from_group.inside = None
         return entity_from_group
 
     @classmethod
-    def store_KGroup(cls, group: KGroup, session, with_pom=None):
+    def store_KGroup(cls, group: KGroup, session=None):
         """Store a Kleio Group in the database
 
         Will recursively store all the groups included in this group.
@@ -506,6 +559,9 @@ class PomSomMapper(Entity):
 
         This is the main method that import Kleio transcripts into the database.
         """
+        if session is None:
+            raise ValueError("No session provided")
+
         entity_from_group: Entity = cls.kgroup_to_entity(group, session)
         exists = session.get(entity_from_group.__class__, entity_from_group.id)
 
@@ -539,7 +595,7 @@ class PomSomMapper(Entity):
 
     def __str__(self):
         r = f"{self.id} table {self.table_name} super {self.super_class}\n"
-        for cattr in self.class_attributes:
+        for cattr in self.class_attributes:  # pylint: disable=no-member
             r = r + f"{cattr.the_class}.{cattr.name} \t"
             r = r + f"class {cattr.colclass} \t"
             r = r + f"col {cattr.colname} \ttype {cattr.coltype} "

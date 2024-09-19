@@ -1,0 +1,1836 @@
+kleio$gacto.str/translations=20
+   fonte$eiras-rol3/data=17770505/tipo= rol de confessados/loc=AUC.IIID, 5-4-31, cx 5./substitui=rol3
+
+      rol$r1777/05/05/1777
+
+         fogo$r1777-f1/eiras
+
+            n$manuel alvares da cruz/m
+               ls$titulo/doutor
+
+               mulher$rita do amaral
+                  ls$titulo/dona
+
+                  filho$joao alvares do amaral
+                     ls$titulo/doutor
+
+                  filho$antonio
+
+                  filho$manuel
+
+                  filha$maria do amaral/id=r1777-f1-maria
+                     ls$titulo/dona
+
+               referido$manuel dos santos
+                  rel$parentesco/marido/maria do amaral/r1777-f1-maria
+
+         fogo$r1777-f2/eiras
+
+            n$joao marques valenca/m
+
+               filha$bernarda
+
+         fogo$r1777-f3/eiras
+
+            n$antonio marques valenca/m
+
+               mulher$josefa lopes/id=r1777-f3-josefa
+
+                  filho$jose
+
+               referida$margarida
+                  rel$parentesco/irma/josefa lopes/r1777-f3-josefa
+
+         fogo$r1777-f4/eiras
+
+            n$cristovao pereira/m
+
+               filho$jose
+
+         fogo$r1777-f5/eiras
+
+            n$simao pedro marques/m
+
+               mulher$maria branca
+
+                  filho$antonio
+
+                  filho$manuel
+
+                  filho$joaquim
+
+         fogo$r1777-f6/eiras
+
+            n$luis francisco/m
+
+               mulher$luisa marques
+
+         fogo$r1777-f7/eiras
+
+            n$teresa da cunha pedrais/f
+
+         fogo$r1777-f8/eiras
+
+            n$joao marques/m
+
+         fogo$r1777-f9/eiras
+
+            n$manuel da cruz/m
+
+               mulher$maria dos santos
+
+                  filha$maria
+
+                  filha$roda
+
+         fogo$r1777-f10/eiras
+
+            n$manuel marques de carvalho/m
+
+               mulher$antonia dos santos
+
+                  filha$maria
+
+         fogo$r1777-f11/eiras
+
+            n$maria dos santos/f
+               ls$ec/v
+
+               filha$josefa
+
+               filha$maria
+
+         fogo$r1777-f12/eiras
+
+            n$maria fernandes/f/id=r1777-f12-maria
+               ls$ec/v
+
+               referida$teresa
+                  rel$parentesco/irma/maria fernandes/r1777-f12-maria
+
+         fogo$r1777-f13/eiras
+
+            n$antonio cardoso natalio/m/id=r1777-f13-antonio
+
+               mulher$rosa cardosa
+
+                  filho$antonio
+
+               referida$josefa cardosa
+                  rel$parentesco/irma/antonio cardoso/r1777-f13-antonio
+
+         fogo$r1777-f14/eiras
+
+            n$josefa ferreira/f
+               ls$ec/v
+
+               filha$joaquina
+
+               filha$jacinta
+
+         fogo$r1777-f15/eiras
+
+            n$jose cardoso/m
+
+               mulher$teresa da cruz
+
+         fogo$r1777-f16/eiras
+
+            n$antonio carneiro/m/id=r1777-f16-antonio
+
+               mulher$luisa do sacramento
+
+                  filha$ana
+
+                  filha$benta
+
+               referido$manuel baptista
+                  rel$parentesco/sobrinho/antonio carneiro/r1777-f16-antonio
+
+               criada$perpetua
+
+         fogo$r1777-f17/eiras
+
+            n$francisco jose castor/m
+
+               mulher$ana maria da murta
+
+                  filha$teresa
+
+                  filha$maria
+
+         fogo$r1777-f18/eiras
+
+            n$antonio da costa/m
+               ls$ec/v
+
+               filha$ana da costa/id=r1777-f18-ana
+
+               referido$antonio da rocha
+                  rel$parentesco/marido/ana da costa/r1777-f18-ana
+
+         fogo$r1777-f19/eiras
+
+            n$joao ferreira cardoso/m
+
+               mulher$josefa da murta
+
+                  filho$simao/obs=menor
+
+               criada$rosa
+
+         fogo$r1777-f20/eiras
+
+            n$manuel fernandes perdigao/m/id=r1777-f20-manuel
+
+               referida$josefa cardosa
+                  rel$parentesco/irma/manuel fernandes perdigao/r1777-f20-manuel
+
+         fogo$r1777-f21/eiras
+
+            n$antonio fernandes bruxeiro/m
+
+               filha$maria
+
+               filha$mariana
+
+               filho$jose
+
+         fogo$r1777-f22/eiras fogo$r1777-f20
+
+            n$antonio baptista/m
+
+               mulher$teresa baptista
+
+         fogo$r1777-f23/eiras
+
+            n$manuel dos santos/m
+
+               mulher$luisa da cunha
+
+                  filha$maria/obs=ausente
+
+                  filho$bento
+
+                  filha$rosaria
+
+         fogo$r1777-f24/eiras
+
+            n$rosa de campos/m
+               ls$ec/v
+
+               filho$manuel
+
+         fogo$r1777-f25/eiras
+
+            n$joao ferreira dos santos/m
+
+               mulher$margarida da conceicao
+
+         fogo$r1777-f26/eiras
+
+            n$antonio bernardes/m
+
+         fogo$r1777-f27/eiras
+
+            n$manuel boto/m
+               ls$titulo/doutor
+
+               mulher$maria
+                  ls$titulo/dona
+
+               criado$jose nogueira
+
+               criada$maria
+
+               criada$bernarda
+
+               criado$jose
+
+         fogo$r1777-f28/eiras
+
+            n$antonio luis/m
+               ls$titulo/doutor
+
+               mulher$joana
+                  ls$titulo/dona
+
+         fogo$r1777-f29/eiras
+
+            n$joana sciencia/f
+
+               filha$teresa
+
+         fogo$r1777-f30/eiras
+
+            n$luis marques cardoso/m
+
+               mulher$rosa maria
+
+                  filha$maria antonia
+
+                  filha$luisa
+
+                  filha$mariana
+
+                  filha$bernarda
+
+                  filha$joaquina
+
+               criado$joao
+
+               criado$manuel
+
+               criada$josefa
+
+         fogo$r1777-f31/eiras
+
+            n$antonio jose pessoa/m
+
+               mulher$teresa de jesus
+
+                  filha$joaquina/obs=menor
+
+         fogo$r1777-f32/eiras
+
+            n$vicencia de castro/f
+
+               filha$teresa rosa
+
+         fogo$r1777-f33/eiras
+
+            n$jose marques carpinteiro/m
+
+               mulher$luisa de almeida
+
+         fogo$r1777-f34/eiras
+
+            n$antonia maria/f
+               ls$ec/v
+
+               filho$antonio
+
+               criada$maria
+
+         fogo$r1777-f35/eiras
+
+            n$cristovao pereira cardoso/m
+
+               mulher$josefa dinis
+
+                  filho$manuel/obs=menor
+
+         fogo$r1777-f36/eiras
+
+            n$antonio bernardes velho/m
+
+               mulher$josefa cardosa
+
+                  filha$maria cardosa/id=r1777-f36-antonio
+
+               referido$antonio jose bernardes
+                  rel$parentesco/marido/maria cardosa/r1777-f36-antonio
+
+               filha$mariana
+
+               filho$jose/obs=menor
+
+         fogo$r1777-f37/eiras
+
+            n$bernardo lopes da silva/m
+
+               mulher$rosa carvalho
+
+                  filho$antonio
+
+                  filha$josefa
+
+                  filho$jose
+
+         fogo$r1777-f38/eiras
+
+            n$nuno do vale/m
+
+               filha$rosa/obs=menor
+
+               filha$maria
+
+         fogo$r1777-f39/eiras
+
+            n$luis marques de matos/m
+
+               mulher$luisa lopes
+
+                  filha$bernarda
+
+                  filho$joaquim
+
+         fogo$r1777-f40/eiras
+
+            n$catarina dos santos/f
+               ls$ec/v
+
+         fogo$r1777-f41/eiras
+
+            n$manuel pereira/m
+
+               mulher$mariana da cruz
+
+         fogo$r1777-f42/eiras
+
+            n$maria marques jesus/f/id=r1777-f42-maria
+               ls$ec/v
+
+               referida$luisa marques
+                  rel$parentesco/irma/maria marques jesus/r1777-f42-maria
+
+               referido$manuel marques
+                  rel$parentesco/irmao/maria marques de jesus/r1777-f42-maria
+
+               criado$feliciano
+
+               criada$joana
+
+         fogo$r1777-f43/eiras
+
+            n$manuel pedrosa do nascimento/m
+
+               mulher$josefa joaquina
+
+         fogo$r1777-f44/eiras
+
+            n$joaquim marques/m
+               ls$ec/v
+
+               filho$jose/obs=ja nao vive no fogo
+
+               filho$manuel/obs=menor
+
+         fogo$r1777-f45/eiras
+
+            n$isabel teresa/f/id=r1777-f45-isabel
+
+               referida$teresa tomasia
+                  rel$parentesco/irma/isabel teresa/r1777-f45-isabel
+
+               referido$feliciano
+                  rel$parentesco/irmao/isabel teresa/r1777-f45-isabel
+
+               referido$jose
+                  rel$parentesco/irmao/isabel teresa/r1777-f45-isabel
+
+               criada$isabel
+
+         fogo$r1777-f46/eiras
+
+            n$antonio da cruz/m
+
+               mulher$maria marques
+
+         fogo$r1777-f47/eiras
+
+            n$francisco marques valenca/m
+
+               referida$angelica joaquina/obs=sera a mulher de francisco marques valenca?
+
+         fogo$r1777-f48/eiras
+
+            n$antonio bernardes novo/m
+
+               mulher$teresa de jesus
+
+                  filha$antonia
+
+                  filha$maria
+
+         fogo$r1777-f49/eiras
+
+            n$francisco marques carpinteiro/m
+
+               mulher$maria francisca
+
+                  filha$bernarda
+
+         fogo$r1777-f50/eiras
+
+            n$manuel simoes/m
+
+               mulher$rosa da murta
+
+         fogo$r1777-f51/eiras
+
+            n$joao da cunha/m
+
+               mulher$josefa maria
+
+         fogo$r1777-f52/eiras
+
+            n$bernardo rodrigues penela/m
+
+               filha$joana
+
+         fogo$r1777-f53/eiras
+
+            n$lourenco marques/m
+
+               mulher$ursula de almeida
+
+                  filha$maria
+
+                  filha$antonia
+
+         fogo$r1777-f54/eiras
+
+            n$antonio rodrigues ruivo/m
+
+               mulher$vitoria maria
+
+         fogo$r1777-f55/eiras
+
+            n$jose da cunha/m
+
+               mulher$ursula francisca
+
+                  filho$jose
+
+         fogo$r1777-f56/eiras
+
+            n$bento marques dos reis/m
+
+               mulher$catarina da silva
+
+                  filho$antonio
+
+                  filho$joaquim
+
+                  filho$jose
+
+         fogo$r1777-f57/eiras
+
+            n$bernarda de almeida/f
+               ls$ec/v
+
+               filho$manuel/obs=menor
+
+         fogo$r1777-f58/eiras
+
+            n$antonio de almeida/m
+               ls$ec/v
+
+               filha$maria/obs=menor
+
+         fogo$r1777-f59/eiras
+
+            n$margarida gomes/f/id=r1777-f59-margarida
+               ls$ec/v
+
+               filha$rosa
+
+               referida$margarida
+                  rel$parentesco/neta/margarida gomes/r1777-f59-margarida
+
+         fogo$r1777-f60/eiras
+
+            n$dionio rodrigues/m
+
+               mulher$teresa de jesus
+
+                  filha$maria
+
+                  filho$jacinto
+
+                  filho$antonio
+
+         fogo$r1777-f61/eiras
+
+            n$francisco gomes bernardes/m
+
+               mulher$teresa das neves
+
+                  filha$antonia
+
+                  filha$rosa
+
+         fogo$r1777-f62/eiras
+
+            n$joao ferreira dias/m/id=r1777-f63-joao
+
+               mulher$maria fernandes
+
+               referida$ana
+                  rel$parentesco/neta/joao ferreira dias/r1777-f63-joao
+
+         fogo$r1777-f63/eiras
+
+            n$joao nunes/m
+
+               mulher$josefa maria
+
+         fogo$r1777-f64/eiras
+
+            n$joaquim lopes/m
+
+               pai$bento lopes/obs=ja nao vive no fogo
+
+               mulher$luisa mauricia
+
+         fogo$r1777-f65/eiras
+
+            n$joao francisco barata/m
+
+               mulher$francisca cardosa
+
+                  filho$antonio/obs=menor
+
+                  filho$joaquim/obs=menor
+
+         fogo$r1777-f66/eiras
+
+            n$maria violante/f
+
+               filha$maria
+
+         fogo$r1777-f67/eiras
+
+            n$joao correia/m
+               ls$titulo/capitao
+
+               pai$bento marques/id=r1777-f67-joao
+
+               mulher$bernarda teresa
+
+               referida$maria bras
+                  rel$parentesco/mulher/bento marques/r1777-f67-joao
+
+               criada$josefa
+
+               criado$manuel
+
+         fogo$r1777-f68/eiras
+
+            n$luis rodrigues/m
+
+               mulher$brigida teresa
+
+         fogo$r1777-f69/eiras
+
+            n$antonio marques de matos/m
+
+               mulher$antonia cardosa
+
+         fogo$r1777-f70/eiras
+
+            n$manuel dos santos/m
+
+               mulher$maria cardosa
+
+         fogo$r1777-f71/eiras
+
+            n$antonio marques moco/m
+
+               mulher$rosa cardosa
+
+                  filho$manuel
+
+         fogo$r1777-f72/eiras
+
+            n$jeronimo marques loureiro/m/obs=duvidas na leitura do apelido
+
+               filha$maria
+
+         fogo$r1777-f73/eiras
+
+            n$joao de oliveira/m
+
+               mulher$maria do rosario
+
+                  filho$bernardo
+
+         fogo$r1777-f74/eiras
+
+            n$francisco martins/m
+
+               mulher$maria dos ramos
+
+         fogo$r1777-f75/eiras
+
+            n$maria gamilha/f
+               ls$ec/s
+
+         fogo$r1777-f76/eiras
+
+            n$francisco fernandes valente/m
+
+               mulher$joaquina lopes
+
+                  mmulher$josefa lopes
+
+                  filha$bernarda
+
+         fogo$r1777-f77/eiras
+
+            n$manuel rodrigues moco/m
+
+               mulher$antonia maria
+
+         fogo$r1777-f78/eiras
+
+            n$fabiao francisco/m
+
+               mulher$luisa teresa/id=r1777-f78-luisa
+
+                  mmulher$isabel teresa
+                     ls$ec/v
+
+               referida$joana teresa/id=r1777-f78-joana
+                  ls$ec/v
+                  rel$parentesco/irma/luisa teresa/r1777-f78-luisa
+
+               referido$manuel
+                  rel$parentesco/filho/joana teresa/r1777-f78-joana
+
+         fogo$r1777-f79/eiras
+
+            n$manuel gomes/m
+
+               mulher$josefa costa
+
+               mae$maria antonia
+
+               filha$luisa carneiro
+
+         fogo$r1777-f80/eiras
+
+            n$manuel pereira da serra/m
+
+               mulher$marta lopes
+
+                  filho$antonio
+
+                  filha$maria/obs=menor
+
+         fogo$r1777-f81/eiras
+
+            n$manuel de bastos/m
+
+               mulher$josefa da costa
+
+               mae$maria antonia
+
+               filha$luisa carneiro
+
+         fogo$r1777-f82/eiras
+
+            n$joana maria/f/id=r1777-f82-joana
+               ls$ec/v
+
+               referido$domingos pereira
+                  rel$parentesco/marido/joana maria/r1777-f82joana
+                  ls$morto/antes
+
+         fogo$r1777-f83/eiras
+
+            n$manuel luis/m
+
+               referida$maria do sacramento
+
+         fogo$r1777-f84/eiras
+
+            n$manuel pereira cardoso/m
+
+               mulher$maria da assuncao
+
+                  mmulher$maria da assuncao
+
+                  filho$antonio
+
+                  filho$joao/obs=menor
+
+                  filha$antonia
+
+         fogo$r1777-f85/eiras
+
+            n$luis fernandes/m
+
+               mulher$ana das neves
+
+                  filha$josefa/obs=menor
+
+         fogo$r1777-f86/eiras
+
+            n$antonio matias/m
+
+               mulher$jacinta lopes
+
+         fogo$r1777-f87/eiras
+
+            n$bernardo jose/m
+
+               mulher$mariana cardosa
+
+                  filha$rosaria
+
+                  filha$teresa
+
+                  filha$maria/obs=menor
+
+                  filho$luis
+
+         fogo$r1777-f88/eiras
+
+            n$manuel jose bernardes/m
+
+               mulher$joana das neves
+
+                  filha$ana
+
+                  filha$maria
+
+                  filho$bernardo
+
+                  filha$josefa/obs=menor
+
+                  filho$jose
+
+                  filho$fabiao/obs=ja nao vive no fogo
+
+         fogo$r1777-f89/eiras
+
+            n$luis bernardes/m
+
+               mulher$joana cardosa
+
+                  filha$escolastica
+
+                  filha$ana/obs=menor
+
+                  filha$joana
+
+         fogo$r1777-f90/eiras
+
+            n$maria monteira/f
+               ls$ec/v
+
+               filha$rosa
+
+         fogo$r1777-f91/eiras
+
+            n$antonio fernandes prata/m
+
+               mulher$maria da cruz
+
+                  filha$arcangela
+
+                  filha$maria da cruz/id=r1777-f91-maria
+
+               referido$manuel marques
+                  rel$parentesco/marido/maria da cruz/r1777-f91-maria
+
+               referida$ana
+                  rel$parentesco/filha/maria da cruz/r1777-f91-maria
+
+               referida$arcangela/obs=menor
+                  rel$parentesco/filha/maria da cruz/r1777-f91-maria
+
+         fogo$r1777-f92/eiras
+
+            n$jose da cunha/m
+
+               mulher$mariana da cunha
+
+                  filha$teresa/obs=menor
+
+         fogo$r1777-f93/eiras
+
+            n$antonio lopes da silva/m
+
+               mulher$arcangela maria
+
+                  filha$maria
+
+                  filha$bernarda
+
+                  filha$rita
+
+                  filha$rosa
+
+                  filha$mariana
+
+         fogo$r1777-f94/eiras
+
+            n$pedro francisco giao/m
+
+               mulher$teresa dos santos
+
+                  filha$catarina
+
+         fogo$r1777-f95/eiras
+
+            n$maria francisca/f
+               ls$ec/v
+
+               filha$joana
+
+         fogo$r1777-f96/eiras
+
+            n$manuel nabarro/m
+
+         fogo$r1777-f97/eiras
+
+            n$jose carlos peixoto/m
+
+               mulher$maria rodrigues
+
+                  filho$francisco
+
+                  filho$manuel
+
+                  filha$ana
+
+                  filho$luis/obs=menor
+
+         fogo$r1777-f98/eiras
+
+            n$manuel rodrigues/m
+
+               mulher$josefa cardosa
+
+         fogo$r1777-f99/eiras
+
+            n$manuel marques de matos/m
+
+               mulher$mariana cardosa
+
+                  filha$teresa
+
+                  filha$mariana/obs=menor
+
+                  filha$rosa/obs=menor
+
+         fogo$r1777-f100/eiras
+
+            n$manuel carvalho/m
+
+               mulher$urbana pereira
+
+                  filho$francisco
+
+                  filho$joao
+
+                  filho$jeronimo/obs=menor
+
+         fogo$r1777-f101/eiras
+
+            n$manuel cardoso botas/m
+
+               mulher$jeronima marques
+
+                  filha$laurencia
+
+                  filha$maria
+
+         fogo$r1777-f102/eiras
+
+            n$josefa teresa/f
+               ls$ec/s
+
+         fogo$r1777-f103/eiras
+
+            n$jose cardoso/m/id=r1777-f103-jose
+               ls$ec/s
+
+               referida$bernarda da silva
+                  rel$parentesco/irma/jose cardoso/r1777-f103-jose
+
+         fogo$r1777-f104/eiras
+
+            n$jose monteiro/m
+
+               mulher$bernarda da silva
+
+         fogo$r1777-f105/eiras
+
+            n$manuel marques de matos
+
+               mulher$vitoria de abrantes
+
+                  filho$jose/obs=menor
+
+         fogo$r1777-f106/eiras
+
+            n$joao camelo/m/obs=j� n�o vive no fogo. tera morrido?
+
+               filha$teresa
+
+               filho$antonio
+
+               filha$antonia
+
+         fogo$r1777-f107/eiras
+
+            n$jose lopes/m/id=r1777-f107-jose
+
+               mulher$teresa brandoa/id=r1777-f107-teresa
+
+               referida$laurencia
+                  rel$parentesco/filha/teresa brandoa/ r1777-f107-teresa
+                  rel$parentesco/enteada/jose lopes/r1777-f107-jose
+
+         fogo$r1777-f108/eiras
+
+            n$manuel fernandes moleiro/m
+
+               mulher$margarida pereira
+
+                  filha$teresa/obs=menor
+
+               criado$antonio
+
+         fogo$r1777-f109/eiras
+
+            n$manuel descalco/m
+
+         fogo$r1777-f110/eiras
+
+            n$joao ferreira moleiro
+
+               mulher$teresa lopes
+
+                  filho$manuel
+
+                  filho$antonio
+
+                  filha$bernarda
+
+         fogo$r1777-f111/eiras
+
+            n$joao/m
+
+               pai$manuel fernandes cumprido/obs=ja nao vive no fogo
+
+         fogo$r1777-f112/eiras
+
+            n$manuel de figueiredo/m
+
+               mulher$luisa pereira
+
+         fogo$r1777-f113/carvalho, redonda, escravote
+
+            n$antonio fernandes/m
+
+               mulher$benta pereira
+
+                  filha$benta
+
+                  filha$maria
+
+                  filha$eulalia
+
+               criado$jose
+
+         fogo$r1777-f114/carvalho, redonda e escravote
+
+            n$sebastiao ferreira/m
+
+               mulher$sebastiana maria
+
+                  filho$francisco/obs=menor
+
+                  filho$antonio/obs=menor
+
+               criado$bernardo
+
+         fogo$r1777-f115/carvalho, redonda e escravote
+
+            n$antonio jose ribeiro/m
+
+               mulher$joana maria
+
+                  filha$maria
+
+         fogo$r1777-f116/carvalho, redonda e escravote
+
+            n$joao pais/m
+
+               mulher$mariana de jesus
+
+                  filha$maria
+
+         fogo$r1777-f117/carvalho, redonda e escravote
+
+            n$jose vitorio/m/obs=apelido ilegivel
+
+               mulher$josefa rodrigues
+
+                  filho$jose
+
+         fogo$r1777-f118/murtal
+
+            n$maria ferreira/f/id=r1777-f118-maria
+               ls$ec/v
+
+               referido$manuel joao silva
+                  rel$parentesco/marido/maria ferreira/ r1777-f118-maria
+                  ls$morto/antes
+
+               filho$domingos
+
+         fogo$r1777-f119/murtal
+
+            n$antonio da silva
+
+               mulher$maria da cruz
+
+               pai$jose da silva
+
+         fogo$r1777-f120/murtal
+
+            n$manuel da costa/m
+
+               mulher$maria luisa
+
+         fogo$r1777-f121/murtal
+
+            n$bento simoes/m
+
+               mulher$isabel rodrigues
+
+                  filho$antonio/m
+
+         fogo$r1777-f122/murtal
+
+            n$manuel de figueiredo/m
+
+               mulher$caetana francisca
+
+                  filha$ana teresa
+
+                  filho$joao
+
+                  filho$sebastiao
+
+         fogo$r1777-f123/murtal
+
+            n$rosaria gomes/f/id=r1777-f123-rosaria
+
+               referida$irma
+                  rel$parentesco/irma/rosaria gomes/r1777-f123-rosaria
+
+               criado$jose
+
+         fogo$r1777-f124/casais de eiras
+
+            n$francisca da cunha/f
+               ls$ec/v
+
+         fogo$r1777-f125/casais de eiras
+
+            n$jose francisco/m
+
+               mulher$rosa pereira
+
+         fogo$r1777-f126/casais de eiras
+
+            n$manuel cardoso/m/obs=ultimo nome gan.o
+
+               mulher$maria da cunha
+
+         fogo$r1777-f127/casais de eiras
+
+            n$manuel simoes rigor/m
+
+               mulher$maria de s.jose
+
+                  filho$joao
+
+         fogo$r1777-f128/casais de eiras
+
+            n$antonio rodrigues bertolo/m
+
+               mulher$teresa de oliveira/id=r1777-f128-teresa
+
+               mae$maria pereira
+
+               referida$maria francisca
+                  rel$parentesco/irma/teresa de oliveira/r1777-f128-teresa
+
+         fogo$r1777-f129/casais de eiras
+
+            n$jose duarte/m
+
+               mulher$felizarda pereira
+
+         fogo$r1777-f130/casais de eiras
+
+            n$jose rodrigues rato novo/m
+
+               mulher$bernarda pereira
+
+         fogo$r1777-f131/casais de eiras
+
+            n$jose baptista/m/id=r1777-f131-jose
+
+               mulher$teresa de jesus
+
+                  filho$sebastiao/obs=nao vive no fogo
+
+                  filha$rosa
+
+               referida$teresa baptista
+                  rel$parentesco/tia/jose baptista/r1777-f131-jose
+
+         fogo$r1777-f132/casais de eiras
+
+            n$felicia monteira/f
+
+               criada$felicia
+
+               criada$helena maria
+
+         fogo$r1777-f133/casais de eiras
+
+            n$custodio pereira/m
+
+               mulher$luisa fernandes
+
+                  filha$maria
+
+         fogo$r1777-f134/casais de eiras
+
+            n$rosa monteira/f
+
+               filha$antonia
+
+         fogo$r1777-f135/casais de eiras
+
+            n$luis de matos/m
+
+               mulher$rosa maria
+
+         fogo$r1777-f136/casais de eiras
+
+            n$manuel da cunha velho/m
+
+               mulher$joaquina lopes
+
+                  filho$manuel
+
+         fogo$r1777-f137/casais de eiras
+
+            n$josefa maria/f/id=r1777-f137-josefa
+               ls$ec/v
+
+               referido$sebastiao da silva
+
+               referida$josefa
+                  rel$parentesco/afilhada/josefa maria/r1777-f137-josefa
+
+         fogo$r1777-f138/casais de eiras
+
+            n$antonio de miranda/m
+
+               mulher$teresa rosa
+
+         fogo$r1777-f139/casais de eiras
+
+            n$sebastiao baptista/m
+
+               mulher$rosa de matos
+
+         fogo$r1777-f140/casais de eiras
+
+            n$manuel/m/id=r1777-140-manuel
+
+               pai$francisco baptista sargaco
+                  ls$morto/antes
+
+               referido$joao
+                  rel$parentesco/irmao/manuel/r1777-140-manuel
+
+               referida$antonia
+                  rel$parentesco/irma/manuel/r1777-140-manuel
+
+         fogo$r1777-f141/casais de eiras
+
+            n$valerio rodrigues pereira/m
+
+               mulher$joana cardosa
+
+                  filho$bernardo
+
+                  filha$jacinta
+
+         fogo$r1777-f142/casais de eiras
+
+            n$maria de sousa/f/id=r1777-f142-maria
+               ls$ec/v
+
+               filha$maria
+
+               referida$maria/obs=menor
+                  rel$parentesco/neta/maria de sousa/r1777-f142-maria
+
+         fogo$r1777-f143/casais de eiras
+
+            n$jose bento/m
+
+               mulher$maria francisca
+
+                  filho$jose/obs=menor
+
+         fogo$r1777-f144/casais de eiras
+
+            n$jose rodrigues pereira/m
+
+               mulher$maria da cunha
+
+                  filha$mariana
+
+                  filha$ana
+
+         fogo$r1777-f145/casais de eiras
+
+            n$jose nunes da cunha/m
+
+         fogo$r1777-f146/casais de eiras
+
+            n$maria das neves/f
+               ls$ec/v
+
+         fogo$r1777-f147/casais de eiras
+
+            n$manuel rodrigues rato/m
+
+               filho$antonio
+
+         fogo$r1777-f148/casais de eiras
+
+            n$francisco pereira delgado/m
+
+               mulher$eugenia cardosa
+
+         fogo$r1777-f149/casais de eiras
+
+            n$antonio carvalho/m
+
+               mulher$rosa ferreira
+
+         fogo$r1777-f150/casais de eiras
+
+            n$antonio rodrigues pereira/m
+               ls$ec/v
+
+         fogo$r1777-f151/casais de eiras
+
+            n$bernardo lopes da silva/m
+
+               mulher$bernarda pereira
+
+         fogo$r1777-f152/casais de eiras
+
+            n$feliciano marques/m
+
+               mulher$joana das neves
+
+                  filho$joaquim/obs=menor
+
+         fogo$r1777-f153/casais de eiras
+
+            n$antonio pereira da cruz/m
+
+               mulher$maria marques
+
+                  filha$joana
+
+         fogo$r1777-f154/casais de eiras
+
+            n$maria da cunha/f
+               ls$ec/v
+
+         fogo$r1777-f155/casais de eiras
+
+            n$manuel ferreira/m
+
+               mulher$esperanca da cunha
+
+                  filha$ana
+
+                  filho$antonio
+
+         fogo$r1777-f155b/casais de eiras
+
+            n$antonio jose pereira/m
+
+               mulher$barbara da costa
+
+         fogo$r1777-f156/casais de eiras
+
+            n$francisco lopes/m
+
+               mulher$maria francisca
+
+               mae$escolastica lopes
+
+         fogo$r1777-f157/casais de eiras
+
+            n$francisco de figueiredo/m
+
+               mulher$isabel lopes
+
+         fogo$r1777-f158/casais de eiras
+
+            n$jose antonio costa/m
+
+               mulher$maria da costa
+
+                  filho$jose
+
+         fogo$r1777-f159/casais de eiras
+
+            n$manuel jose pereira/m
+
+               mulher$francisca maria
+
+                  filho$jose
+
+         fogo$r1777-f160/casais de eiras
+
+            n$eulalia pereira/f
+               ls$ec/v
+
+         fogo$r1777-f161/casais de eiras
+
+            n$vitorio rodrigues/m
+
+               mulher$joaquina cardosa
+
+                  filha$maria/obs=menor
+
+                  filho$simao/obs=menor
+
+         fogo$r1777-f162/casais de eiras
+
+            n$mariana de jesus/f
+
+               filha$teresa
+
+         fogo$r1777-f163/casais de eiras
+
+            n$maria simoes/f
+               ls$ec/v
+
+         fogo$r1777-f164/casais de eiras
+
+            n$manuel rodrigues rato/m
+
+               mulher$mariana gomes
+
+         fogo$r1777-f165/casais de eiras
+
+            n$antonio nunes/m
+
+               mulher$francisca monteira
+
+                  filho$bento
+
+                  filha$teresa
+
+         fogo$r1777-f166/casais de eiras
+
+            n$antonio pereira lopes/m
+
+               mulher$isabel dos santos
+
+         fogo$r1777-f167/casais de eiras
+
+            n$antonio de oliveira/m
+
+               mulher$maria pereira
+
+         fogo$r1777-f168/casais de eiras
+
+            n$bento rodrigues pereira/m
+
+               mulher$perpetua pereira
+
+                  filho$antonio
+
+                  filha$isabel
+
+         fogo$r1777-f169/casais de eiras
+
+            n$antonio da silva ferreira/m
+
+               mulher$joaquina cardosa
+
+                  filho$antonio
+
+         fogo$r1777-f170/casais de eiras
+
+            n$caetano pereira/m
+
+               mulher$benta pereira
+
+         fogo$r1777-f171/casais de eiras
+
+            n$joao pereira lopes/m
+
+               mulher$maria pereira
+
+                  filho$manuel/obs=menor
+
+         fogo$r1777-f172/casais de eiras
+
+            n$maria pereira/f
+               ls$ec/v
+
+         fogo$r1777-f173/casais de eiras
+
+            n$vitoria/f/id=r1777-f173-vitoria
+
+               referido$joaquim
+                  rel$parentesco/sobrinho/vitoria/r1777-f173-vitoria
+
+         fogo$r1777-f174/casais de eiras
+
+            n$francisca dos santos/f
+               ls$ec/v
+
+         fogo$r1777-f175/casais de eiras
+
+            n$antonio de sousa lopes/m
+
+               mulher$barbara de jesus
+
+                  filho$antonio
+
+                  filho$joao/obs=menor
+
+         fogo$r1777-f176/casais de eiras
+
+            n$isabel lopes/f
+               ls$ec/v
+
+         fogo$r1777-f177/casais de eiras
+
+            n$salvador pereira/m
+
+               mulher$josefa teresa
+
+         fogo$r1777-f178/casais de eiras
+
+            n$joao da costa/m
+
+               mulher$francisca rosa
+
+                  mmulher$rosa maria teresa
+
+         fogo$r1777-f179/casais de eiras
+
+            n$sebastiao bandeira/m
+
+               mulher$maria rosa
+
+         fogo$r1777-f180/casais de eiras
+
+            n$gaspar simoes/m
+
+               mulher$bernarda lopes
+
+                  filho$francisco/obs=menor
+
+         fogo$r1777-f181/vilarinho
+
+            n$fabiao da cunha/m
+
+               mulher$ana da cunha
+
+               criada$isabel
+
+               criado$bernardo
+
+               criado$francisco
+
+               criada$joaquina
+
+         fogo$r1777-f182/vilarinho
+
+            n$antonio gavino/m
+
+               mulher$bernarda da cunha
+
+         fogo$r1777-f183/vilarinho
+
+            n$luis antonio/m
+
+               mulher$rosa joaquina
+
+                  filha$rosaria
+
+                  filho$domingos
+
+               criada$joaquina
+
+         fogo$r1777-f184/vilarinho
+
+            n$constantino ferreira/m
+
+               mulher$bernarda lopes
+
+                  filho$antonio
+
+                  filho$caetano
+
+                  filho$manuel
+
+                  filha$eulalia
+
+         fogo$r1777-f185/vilarinho
+
+            n$bernardo jose garrido/m/id=r1777-f185-bernardo
+
+               mulher$ana maria
+
+                  filha$luisa
+
+                  filha$vitoria
+
+                  filho$luis/obs=menor
+
+               referida$leonor maria
+                  rel$parentesco/tia/bernardo jose garrido/r1777-f185-bernardo
+
+         fogo$r1777-f186/vilarinho
+
+            n$inacia de abrantes/f/id=r1777-f186-inacia
+
+               referido$jose
+                  rel$parentesco/irmao/inacia de abrantes/r1777-f186-inacia
+
+               referido$bernardo
+                  rel$parentesco/irmao/inacia de abrantes/r1777-f186-inacia
+
+         fogo$r1777-f187/vilarinho
+
+            n$bernarda francisca/f
+
+         fogo$r1777-f188/vilarinho
+
+            n$manuel correia/m
+
+               filha$rosa maria/id=r1777-f188-rosa
+
+               referido$antonio de abreu grilo
+                  rel$parentesco/marido/rosa maria/r1777-f188-rosa
+
+         fogo$r1777-f189/vilarinho
+
+            n$maria de abrantes/f
+
+               filha$maria
+
+         fogo$r1777-f190/vilarinho
+
+            n$bernardo francisco/m
+
+               mulher$felicia de almeida
+
+                  filho$jose
+
+         fogo$r1777-f191/vilarinho
+
+            n$jose da costa/m
+
+               mulher$bernarda da silva
+
+                  mmulher$catarina maria
+
+         fogo$r1777-f192/vilarinho
+
+            n$antonia/f/id=r1777-f192-antonia/obs=ausente
+               ls$titulo/dona
+               ls$ec/v
+
+               referida$maria
+                  ls$titulo/dona
+                  rel$parentesco/sobrinha/antonia/r1777-f192-antonia
+
+               referido$joao felix
+                  rel$parentesco/sobrinho/antonia/r1777-f192-antonia
+
+               criada$josefa
+
+               criada$ana
+
+            escravo$joao
+
+            escrava$maria
+
+            escravo$domingos
+
+         fogo$r1777-f193/vilarinho
+
+            n$maria da costa/f
+               ls$ec/v
+
+               filha$maria
+
+               filha$cecilia
+
+         fogo$r1777-f194/vilarinho
+
+            n$bernardo jose/m
+
+               mulher$maria da conceicao
+
+                  filha$antonia/obs=menor
+
+         fogo$r1777-f195/vilarinho
+
+            n$joaquim antonio/m
+
+               mulher$mariana da cunha
+
+                  filho$luis
+
+         fogo$r1777-f196/vilarinho
+
+            n$francisco oliveira/m
+
+               mulher$josefa maria
+
+               criada$joaquina
+
+         fogo$r1777-f197/vilarinho
+
+            n$jose de abreu/m
+               ls$profissao/sacerdote
+
+         fogo$r1777-f198/vilarinho
+
+            n$manuel/m/obs=apelido ilegivel
+
+               mulher$maria abreu
+
+         fogo$r1777-f199/vilarinho
+
+            n$manuel de s. jose da costa/m
+
+               mulher$inacia maria
+
+                  filha$antonia
+
+                  filha$bernarda
+
+                  filho$luis
+
+                  filha$maria
+
+         fogo$r1777-f200/vilarinho
+
+            n$bernarda da costa/f
+
+         fogo$r1777-f201/vilarinho
+
+            n$joaquim jose pereira/m
+
+               mulher$teresa da silva
+
+               criado$joao
+
+         fogo$r1777-f202/vilarinho
+
+            n$manuel de s. jose/m/id=r1777-f202-manuel
+               ls$profissao/sacerdote
+
+               referido$antonio
+                  rel$parentesco/sobrinho/manuel de s. jose/r1777-f202-manuel
+
+         fogo$r1777-f203/vilarinho
+
+            n$joao ferreira/m
+
+               mulher$francisca maria costa
+
+                  filha$mariana
+
+         fogo$r1777-f204/vilarinho
+
+            n$antonio rodrigues/m
+
+               mulher$teresa da conceicao
+
+         fogo$r1777-f205/vilarinho
+
+            n$joao correia/m
+
+               mulher$josefa
+
+         fogo$r1777-f206/vilarinho
+
+            n$teresa de jesus/f
+
+         fogo$r1777-f207/vilarinho
+
+            n$joana teresa/f
+               ls$ec/v
+
+         fogo$r1777-f208/vilarinho
+
+            n$maria da conceicao/f
+               ls$ec/s
+
+         fogo$r1777-f209/vilarinho
+
+            n$josefa da conceicao/f/id=r1777-f209-josefa
+               ls$ec/v
+
+               filha$bernarda
+
+               referido$joao
+                  rel$parentesco/neto/josefa da conceicao/r1777-f209-josefa
+
+         fogo$r1777-f210/vilarinho
+
+            n$joao dos santos/m
+
+               mulher$brigida de abrantes
+
+                  mmulher$francisca nunes
+                     ls$ec/v
+
+         fogo$r1777-f211/vilarinho
+
+            n$antonio de abrantes/m
+
+               mulher$maria da conceicao
+
+                  filha$inacia
+
+         fogo$r1777-f212/vilarinho
+
+            n$marcelina ferreira/f
+               ls$ec/s
+
+         fogo$r1777-f213/vilarinho
+
+            n$mariana de abrantes/f
+               ls$ec/v
+
+               filha$maria/obs=menor
+
+         fogo$r1777-f214/vilarinho
+
+            n$jose antonio da silva/m
+
+               mulher$mariana fernandes
+
+                  filho$antonio
+
+                  filha$maria/obs=menor
+
+         fogo$r1777-f215/vilarinho
+
+            n$manuel fernandes comprido/m
+
+            escrava$mariana

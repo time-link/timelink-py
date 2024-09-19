@@ -149,3 +149,4 @@ docs/system/db/sqlite/timelink_users.sqlite
 test_kleio_export.cli
 tests/timelink-home/database/sqlite/*
 
+tests/sqlite/test.db.sqlite

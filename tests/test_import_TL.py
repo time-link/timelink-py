@@ -14,7 +14,7 @@ from tests import TEST_DIR, get_one_translation, skip_on_travis
 from timelink.api.models.system import KleioImportedFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
-from timelink.api.models.base import Person
+from timelink.api.models.base import Person, PomSomMapper
 from timelink.api.database import (
     TimelinkDatabase,
     start_postgres_server,
@@ -185,6 +185,43 @@ def test_import_with_custom_mapping(dbsystem):
         assert test is not None
         test_kleio = test.to_kleio()
         assert len(test_kleio) > 0
+
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_issue48(dbsystem):
+    """ Problem with importing mapping hierarchies issue #48 """
+    file = Path(TEST_DIR, "xml_data/issue36.xml")
+    with dbsystem.session() as session:
+        try:
+            import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+
+        carta = session.get(Entity, "deh-ca-1645-b-2-a")
+        assert carta.the_type is not None, "carta did not have a type"
+        pom_class: PomSomMapper = PomSomMapper.get_pom_class(carta.pom_class, session)
+        assert pom_class.element_class_to_column('type', session) is not None
+    file = Path(TEST_DIR, "xml_data/issue36b.xml")
+    with dbsystem.session() as session:
+        try:
+            import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+
+        crono = session.get(Entity, "__china-geral-his1-34")
+        assert crono.loc is not None, "crono did not have a loc"
+        pom_class: PomSomMapper = PomSomMapper.get_pom_class(crono.pom_class, session)
+        assert pom_class.element_class_to_column('loc', session) is not None
 
 
 @pytest.mark.parametrize(

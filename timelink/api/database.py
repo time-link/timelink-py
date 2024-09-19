@@ -28,6 +28,7 @@ from sqlalchemy import inspect
 from sqlalchemy import select, func
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
+from sqlalchemy.orm import aliased
 from sqlalchemy_utils import database_exists
 from sqlalchemy_utils import create_database
 import docker  # pylint: disable=import-error
@@ -545,6 +546,26 @@ class TimelinkDatabase:
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session)
 
+        # Keep a dictionary of group names to ORM classes
+        # this is necessary because the Kleio export file
+        # only exports a class once, but a given source can
+        # have multiple groups associated with the same class.
+        # That is the case with persons, for example.
+        # If later we want to know which ORM class to use for
+        # for a given group, we can use this dictionary.
+        # which is based on the actual class associated with each
+        # group in the database.
+
+        stmt = select(Entity.pom_class, Entity.groupname).distinct()
+        results = session.execute(stmt).all()
+        for pom_class, groupname in results:
+            if groupname is not None:
+                gname = groupname
+            else:
+                gname = 'class'
+
+            Entity.group_models[gname] = Entity.get_orm_for_pom_class(pom_class)
+
     def __enter__(self):
         return self.session()
 
@@ -605,9 +626,22 @@ class TimelinkDatabase:
         return result_pydantic
 
     def get_import_status(
-        self, kleio_files: List[KleioFile] = None, status=None, match_path=False
+        self, kleio_files: List[KleioFile] = None, path=None, recurse=True, status=None, match_path=False
     ) -> List[KleioFile]:
         """Get the import status of the kleio files
+
+        The import status is stored in the database.
+        This method retrieves the import status of the kleio files.
+
+        Args:
+            kleio_files (List[KleioFile], optional): list of kleio files; defaults to None.
+            path (str, optional): path to the sources; defaults to None.
+            recurse (bool, optional): if True, recurse the path; defaults to True.
+            status (import_status_enum, optional): import status; defaults to None.
+            math_path (bool, optional): if True, match the path of the kleio file with
+                                        the path of the imported file; defaults to False
+                                        (match just the file name).
+
 
         See :func:`timelink.api.database.get_import_status`
 
@@ -616,18 +650,18 @@ class TimelinkDatabase:
             if self.get_kleio_server() is None:
                 raise ValueError(
                     "Empty list of files. \n"
-                    "Either provide list of files or attache database to Kleio server."
+                    "Either provide list of files or attach database to Kleio server."
                 )
             else:
                 kleio_files = self.get_kleio_server().translation_status(
-                    path="", recurse="yes"
+                    path=path, recurse=recurse
                 )
-        files: List[KleioFile] = get_import_status(self, kleio_files, match_path)
+        files: List[KleioFile] = get_import_status(self, kleio_files=kleio_files, match_path=match_path)
         if status is not None:
             files = [file for file in files if file.import_status.value == status]
         return files
 
-    def get_need_import(
+    def get_need_import(  # TODO: better name check_need_import
         self,
         kleio_files: List[KleioFile],
         with_import_errors=False,
@@ -653,7 +687,9 @@ class TimelinkDatabase:
             List[KleioFile]: list of kleio files with field import_status
         """
 
-        kleio_files: List[KleioFile] = get_import_status(self, kleio_files, match_path)
+        kleio_files: List[KleioFile] = get_import_status(self,
+                                                         kleio_files,
+                                                         match_path=match_path)
         return [
             file
             for file in kleio_files
@@ -693,6 +729,7 @@ class TimelinkDatabase:
     def update_from_sources(
         self,
         path=None,
+        recurse=True,
         with_translation_warnings=True,
         with_translation_errors=False,
         with_import_errors=False,
@@ -703,9 +740,9 @@ class TimelinkDatabase:
 
         Needs an attached KleioServer.
 
-
         Args:
             path (str): path to the sources, if None all the sources are updated.
+            recurse (bool, optional): if True, recurse the path; defaults to True.
             with_translation_warnings (bool, optional): if True, import files with translation warnings;
                                             defaults to True.
             with_translation_errors (bool, optional): if True, import files with tr errors; defaults to False.
@@ -724,7 +761,7 @@ class TimelinkDatabase:
                 path = ""
                 logging.debug("Path set to ''")
             for kfile in self.kserver.translation_status(
-                path=path, recurse="yes", status="T"
+                path=path, recurse=recurse, status="T"  # TODO: make parameter
             ):
                 logging.info(
                     f"Request translation of {kfile.status.value} {kfile.path}"
@@ -732,9 +769,9 @@ class TimelinkDatabase:
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             logging.debug("Waiting for translations to finish")
-            pfiles = self.kserver.translation_status(path="", recurse="yes", status="P")
+            pfiles = self.kserver.translation_status(path=path, recurse="yes", status="P")
 
-            qfiles = self.kserver.translation_status(path="", recurse="yes", status="Q")
+            qfiles = self.kserver.translation_status(path=path, recurse="yes", status="Q")
             # TODO: change to import as each translation finishes
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(1)
@@ -747,15 +784,15 @@ class TimelinkDatabase:
                 )
             # import the files
             to_import = self.kserver.translation_status(
-                path="", recurse="yes", status="V"
+                path=path, recurse=recurse, status="V"  # TODO recurse make param
             )
             if with_translation_warnings:
                 to_import += self.kserver.translation_status(
-                    path="", recurse="yes", status="W"
+                    path=path, recurse=recurse, status="W"
                 )
             if with_translation_errors:
                 to_import += self.kserver.translation_status(
-                    path="", recurse="yes", status="E"
+                    path=path, recurse=recurse, status="E"
                 )
             # https://github.com/time-link/timelink-py/issues/40
             import_needed = self.get_need_import(
@@ -798,23 +835,21 @@ class TimelinkDatabase:
             result = session.query(query_spec)
         return result
 
-    def get_person(self, id: str = None, sql_echo: bool = False) -> Person:
-        """Fetch a person by id.
+    def get_person(self, *args, **kwargs):
+        """Fetch a person by id
 
-        Args:
-            id (str, optional): person id; defaults to None.
+        See :func:`timelink.api.models.person.get_person`
+
         """
-        return timelink.api.models.person.get_person(id=id, db=self, sql_echo=sql_echo)
+        return timelink.api.models.person.get_person(*args, **kwargs)
 
-    def get_entity(self, id: str = None) -> Entity:
+    def get_entity(self, *args, **kwargs) -> Entity:
         """Fetch an entity by id.
 
-        Args:
-            id (str, optional): entity id; defaults to None.
+        See: :func:`timelink.api.models.entity.Entity.get_entity`
+
         """
-        with self.session() as session:
-            result = Entity.get_entity(id=id, session=session)
-        return result
+        return Entity.get_entity(self, *args, **kwargs)
 
     def pperson(self, id: str):
         """Prints a person in kleio notation"""
@@ -828,13 +863,42 @@ class TimelinkDatabase:
         """
         return Entity.get_som_mapper_ids()
 
-    def get_model(self, class_id: str):
+    def get_model(self, class_id: str | List[str]):
         """Get the ORM class for a entity type
 
         Returns:
             ORM class
         """
-        return Entity.get_orm_for_pom_class(class_id)
+        if isinstance(class_id, list):
+            return [self.get_model_by_name(c, make_alias=True) for c in class_id]
+        return self.get_model_by_name(class_id, make_alias=False)
+
+    def get_model_by_name(self, class_or_groupname: str, make_alias=False):
+        """Get the ORM class for a entity type by name
+        or for a group name. If the name is not found, return None
+
+        Args:
+            class_or_groupname (str): class or group name
+
+        Returns:
+            ORM class aliased to avoid  # https://docs.sqlalchemy.org/en/20/errors.html#error-xaj2
+
+        """
+
+        orm_model = Entity.get_orm_for_pom_class(class_or_groupname)
+        if orm_model is not None:
+            if make_alias:
+                return aliased(orm_model, flat=True)
+            else:
+                return orm_model
+        else:
+            orm_model = Entity.get_orm_for_group(class_or_groupname)
+            if orm_model is None:
+                return None
+            if make_alias:
+                return aliased(orm_model, flat=True)
+            else:
+                return orm_model
 
     def get_table(self, class_id: str):
         """Get the ORM table for a entity type

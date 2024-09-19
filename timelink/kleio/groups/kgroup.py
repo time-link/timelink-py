@@ -816,15 +816,15 @@ class KGroup:
         """Return the id of the group"""
         return self.unpack_from_kelement(self.id)
 
-    def get_element_for_column(self, colspec, default=None):
+    def get_element_by_name_or_class(self, element_spec, default=None):
         """
-        Return the value of an element that matches a specific column in the
-        database.
+        Return the value of an element with a given name or that
+        inherits from an element of the given name.
 
-        An element matches a column if its name is equal to the column name
-        or if it is an instance of KElement subclass with the same name.
+        An element matches a element_spec if its name is equal to the element_spec name
+        or if it is an instance of KElement subclass with the name equal to element_spec.
 
-        :param colspec: name of column, or name of POMClassAttributes
+        :param element_spec: name of column, or name of POMClassAttributes
         :param default: default value if not element found
         :return: KElement, or whatever in default.
 
@@ -836,11 +836,11 @@ class KGroup:
         ) in (
             self._elementsd.items()
         ):  # same name as column or in ancestors # noqa: E501
-            if name == colspec:
+            if name == element_spec:
                 return el
         # Handles synonyms created by subclassing core KElements
         for el in self._elementsd.values():  # if name in inherited names
-            if colspec in el.inherited_names():
+            if element_spec in el.inherited_names():
                 return el
         # handles multiple subclassing of core KElements
         for (
@@ -849,7 +849,7 @@ class KGroup:
             self._elementsd.values()
         ):  # check if there are alternative classes # noqa: E501
             # all classes for colspec
-            targets = KElement.get_classes_for(colspec)
+            targets = KElement.get_classes_for(element_spec)
             # other classes for el
             alternatives = KElement.get_classes_for(el.name)
             # now check if there is a common path

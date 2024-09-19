@@ -1,0 +1,60 @@
+kleio$gacto.str/alterado no browser, duas vezes/translations=13
+   fonte$cas1714-1722-com-celebrante/localizacao-a.u.c./tipo=casamentos/obs=freguesia de sao silvestre da lousa
+
+      cas$c1714-1/8/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)/obs=licenca do prior manuel lopes serra que assina o termo nao se referem testemunhas
+
+         celebrante$manuel da fonseca
+
+         noivo$pedro martins
+
+            pnoivo$pedro martins
+               ls$morto/antes
+               ls$morada/prilhao
+               ls$freguesia/vilarinho
+
+            mnoivo$antonia simoes
+               ls$morta/antes
+
+         noiva$ana fernandes
+
+            pnoiva$joana fernandes
+               ls$morada/papanata
+               ls$freguesia/lousa
+
+            mnoiva$maria goncalves
+
+      cas$c1714-2/10/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)morador na vila da lousa/obs=com licenca do prior manuel lopes serra que assina o termo
+
+         celebrante$manuel da fonseca
+
+         noivo$antonio fernandes
+            ls$ec/viuvo
+            ls$morada/olival
+            ls$freguesia/lousa
+
+            pnoivo$manuel fernandes
+               ls$morada/povoa
+               ls$freguesia/lousa
+
+            mnoivo$maria francisca
+
+         noiva$antonia francisca
+
+            pnoiva$antonio goncalves
+               ls$morada/oliva
+               ls$freguesia/lousa
+
+            mnoiva$ana francisca
+
+         mulher1$maria rodrigues
+
+            pmulher1$tome luis
+               ls$morada/olival
+               ls$freguesia/lousa
+
+            mmulher1$catarina rodrigues
+
+         test$joao negrao
+            ls$profissao/capitao mor
+
+         test$joao negrao/obs=filho do capitao mor joao negrao

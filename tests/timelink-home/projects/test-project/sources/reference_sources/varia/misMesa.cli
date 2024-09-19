@@ -1,0 +1,2255 @@
+kleio$gacto.str/translations=12
+   fonte$misMesa/tipo=acordaos da mesa/localizacao=Arquivo da Santa Casa da Misericordia de Soure
+
+      amz$amz1/3/10/1683/2/resumo=nomeacao de capelao que se fez na casa desta vila de soure por morte do padre simao homem de oliveira
+
+         referido$simao homem de oliveira
+            ls$cargo/capelao da missa quotidiana
+            ls$morto/antes
+
+         eleito$simao leao/obs=as razoes que levaram a sua eleicao sao o facto de viver com sua mae velha e duas irmas donzelas e virtuosas,orfas de pai e honradas
+            ls$cargo/capelao da missa quotidiana
+            ls$naturalidade/soure
+
+      amz$amz2/0/0/1684/3/resumo=auto de posse que se deu ao padre simao leao em virtude do auto de eleicao atras que foi feito pela mesa desta santa casa-ordenado:em cada ano cento e trinta alqueires de trigo, quatro alqueires de azeite, sessenta e quatro almudes de vino e dois mil e quinhentos reis em dinheiro
+
+      amz$amz3/2/7/1684/4/resumo=auto de eleicao de novos oficiais que hao-de ser eleitos para fazer nova eleicao no ano que vem de 1684
+
+         eleitor$manuel homem de quadros
+
+         eleitor$luis coelho
+            ls$titulo/licenciado
+
+         eleitor$paulo de almeida
+
+         eleitor$sebastiao colaco
+
+         eleitor$manuel francisco
+
+         eleitor$antonio morais
+
+         eleitor$sebastiao machado
+
+         eleitor$pedro de meneses
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$antonio lopes
+
+         eleitor$joao goncalves
+            ls$profissao/padre
+            ls$titulo/frei
+
+         eleitor$sebastiao goncalves
+
+         eleito$pedro de meneses
+            ls$titulo/dom
+            ls$titulo/senhor
+            ls$cargo/provedor
+
+         eleito$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+            ls$cargo/escrivao
+
+         eleito$manuel coelho
+            ls$cargo/mordomo
+
+         eleito$luis coelho dos reis
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$sebastiao colaco
+            ls$cargo/irmao de maior condicao
+
+         eleito$sebastiao soares coelho
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio carvalho coelho
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$amaro de pina
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose velho
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel dias duqueso
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao da fonseca
+            ls$cargo/irmao de menor condicao
+            ls$profissao/ferrador
+
+         eleito$manuel jorge
+            ls$cargo/irmao de menor condicao
+            ls$profissao/serralheiro
+
+         eleito$antonio lourenco
+            ls$cargo/irmao de menor condicao
+
+      amz$amz4/26/11/1684/13v/resumo=assento sobre assistirem em mesa os irmaos com vestes
+
+      amz$amz5/24/9/1684/14/resumo=acordao que se tomou em mesa na misericordia desta vila de soure sobre a feitura de casas que hao-deservir de hospital
+
+      amz$amz6/1/7/1685/14v/resumo=promessa de pagar a divida de 100.0 reis do padre joao colaco de morais, sob a forma de juro sendo o primeiropagamento feito na pascoa seguinte
+
+      amz$amz7/2/6/1685/15/resumo=auto de eleicao de novos oficiais que hao-de ser eleitos pra fazer a eleicao que hao-de servir na casa no ano que vem
+
+         eleitor$pedro de meneses
+            ls$titulo/senhor
+            ls$titulo/dom
+
+         eleitor$luis coelho dos reis
+            ls$titulo/licenciado
+
+         eleitor$sebastiao colaco
+
+         eleitor$sebastiao rodrigues
+            ls$profissao/padre
+
+         eleitor$joao goncalves
+            ls$titulo/frei
+            ls$profissao/padre
+
+         eleitor$manuel de tavora
+            ls$titulo/doutor
+
+         eleitor$antonio carvalho
+            ls$titulo/licenciado
+
+         eleitor$jose velho
+
+         eleito$pedro de meneses
+            ls$cargo/provedor
+            ls$titulo/senhor
+            ls$titulo/dom
+
+         eleito$luis coelho dos reis
+            ls$titulo/licenciado
+            ls$cargo/escrivao
+
+         eleito$mateus goncalves aldente?
+            ls$cargo/mordomo
+
+         eleito$manuel de tavora
+            ls$alcunha/moco
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose pinto de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio lopes
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao rodrigues aceita
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel gomes lendia
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio rodrigues subtil
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues
+            ls$profissao/barbeiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose velho
+            ls$cargo/irmao de menor condicao
+
+      amz$amz8/20/7/1685/15v/resumo=juramento dos irmaos eleitos
+
+      amz$amz9/28/7/1685/16v/resumo=auto de eleicao que se fez dos irmaos que hao-de ser da junta este ano de 1685
+
+         eleito$joao goncalves
+            ls$profissao/padre
+            ls$titulo/frei
+            ls$titulo/reverendo
+            ls$cargo/irmao de maior condicao
+
+         eleito$sebastiao rodrigues
+            ls$profissao/padre
+            ls$titulo/frei
+            ls$titulo/reverendo
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel francisco barreira
+            ls$cargo/irmao de menor condicao
+
+      amz$amz10/2/7/1686/17v/resumo=auto de eleicao de novos oficiais que hao-de servir a eleitores para fazerem os oficiais que hao-de servir na casa no ano que vem
+
+         eleitor$pedro de meneses
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$joao de seabra jacques
+
+         eleitor$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+
+         eleitor$domingos simoes
+            ls$profissao/padre
+
+         eleitor$manuel de tavora
+
+         eleitor$sebastiao goncalves/obs=menor condicao
+
+         eleitor$antonio rodrigues subtil/obs=menor condicao
+
+         eleitor$joao rodrigues/obs=menor condicao
+            ls$profissao/barbeiro
+
+         eleitor$manuel coelho/obs=menor condicao
+
+         eleitor$joao rodrigues aceita/obs=menor condicao
+
+         eleito$manuel homem de quadros
+            ls$cargo/provedor
+
+         eleito$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+            ls$cargo/escrivao
+
+         eleito$manuel dias duqueso
+            ls$cargo/mordomo
+
+         eleito$antonio coelho de carvalho
+            ls$titulo/licenciado
+            ls$cargo/irmao de maior condicao
+
+         eleito$sebastiao colaco leitao
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel de tavora
+            ls$cargo/irmao de maior condicao
+
+         eleito$amaro de pina
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio rodrigues subtil
+            ls$cargo/irmao de menor condicao
+
+         eleito$miguel rodrigues
+            ls$profissao/carpinteiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lopes
+            ls$profissao/sapateiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues aceita
+            ls$cargo/irmao de menor condicao
+
+         eleito$jorge baixo?
+            ls$cargo/irmao de menor condicao
+
+      amz$amz11/2/7/1687/19/resumo=auto de eleicao de novos oficiais que hao-de servir na santa casa ao ano que vem de 1687 para 688
+
+         eleitor$pedro de meneses
+            ls$titulo/dom
+
+         eleitor$manuel homem de quadros
+
+         eleitor$luis coelho dos reis
+            ls$titulo/licenciado
+
+         eleitor$sebastiao colaco leitao
+
+         eleitor$joao de seabra jacques
+            ls$cargo/capitao
+
+         eleitor$manuel francisco de morais
+
+         eleitor$manuel de tavora
+
+         eleitor$amaro de pina
+
+         eleitor$bento gomes da costa
+
+         eleitor$antonio carvalho
+            ls$titulo/licenciado
+
+         eleito$manuel homem de quadros
+            ls$cargo/provedor
+
+         eleito$joao colaco
+            ls$titulo/frei
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$manuel dias duqueso
+            ls$cargo/mordomo
+
+         eleito$antonio carvalho coelho
+            ls$titulo/licenciado
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel de tavora
+            ls$cargo/irmao de maior condicao
+
+         eleito$sebastiao colaco leitao
+            ls$cargo/irmao de maior condicao
+
+         eleito$domingos cardoso
+            ls$profissao/sapateiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel carvalho
+            ls$profissao/sapateiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$lazaro de barros
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose velho
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio fernandes
+            ls$profissao/sapateiro
+            ls$cargo/irmao de menor condicao
+
+      amz$amz12/4/7/1688/21/resumo=auto de eleicao de novos oficiais que hao-de servir nesta casa da santa misericordia desta vila de soure este ano de 1688 ate dia de santa isabel de 1689
+
+         eleitor$pedro de meneses/obs=foi chamado para assistir a eleicao mas nao veio sendo substituido
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$luis de seabra/obs=substitui dom pedro
+
+         eleitor$manuel homem de quadros
+
+         eleitor$sebastiao colaco leitao
+
+         eleitor$luis coelho dos reis
+            ls$titulo/licenciado
+
+         eleitor$manuel de tavora
+
+         eleitor$manuel carvalho/obs=de menor condicao
+
+         eleitor$antonio rodrigues subtil/obs=de menor condicao
+
+         eleitor$domingos cardoso/obs=de menor condicao
+
+         eleitor$jose velho/obs=de menor condicao
+
+         eleitor$joao francisco/obs=de menor condicao
+
+         eleito$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+            ls$cargo/provedor
+
+         eleito$lopo nunes pinto
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$manuel carvalho
+            ls$profissao/sapateiro
+            ls$cargo/mordomo
+
+         eleito$luis coelho dos reis
+            ls$titulo/licenciado
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$luis de seabra jacques
+            ls$cargo/irmao de maior condicao
+
+         eleito$sebastiao machado
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio covaensso?
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio rodrigues subtil
+            ls$cargo/irmao de menor condicao
+
+         eleito$lazaro de barros
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel dias duqueso
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel carvalho
+            ls$cargo/irmao de menor condicao
+
+      amz$amz13/3/7/1689/22v/resumo=auto de eleicao de novos oficiais que hao-de servir ate ao ano que vem de 1689 para elegedores e oficiaisque hao-de servir o ano que vem
+
+         eleitor$pedro de meneses
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+
+         eleitor$manuel de tavora
+
+         eleitor$manuel homem de quadros
+
+         eleitor$joao francisco
+
+         eleitor$jose velho
+
+         eleitor$joao mendes
+
+         eleitor$joao da fonseca
+
+         eleito$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+            ls$cargo/provedor
+
+         eleito$antonio lopes de oliveira
+            ls$cargo/escrivao
+
+         eleito$manuel coelho
+            ls$cargo/mordomo
+
+         eleito$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$luis de seabra jacques
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio coelho de carvalho
+            ls$titulo/licenciado
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao francisco
+            ls$profissao/marceneiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao da fonseca
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+      amz$amz15/2/3/1690/24v/resumo=sobre o regimento da procissao dos pacos, aspectos varios
+
+      amz$amz16/2/7/1690/25/resumo=votacao em dez irmaos para eleitores dos oficiais que haviam de servir no ano vindouro
+
+      amz$amz17/0/7/1690/26/obs=dia de santa isabel as quatro horas da tarde/resumo=reuniao para eleger os novos oficiais, conforme o compromisso da santa casa devia assistir e tomar votos o capelao da casa com o escrivao, e porque sendo avisado o capelao nao assistia a ela, nomeou ele provedor e os mais irmaos abaixo assinados o padre sebastiao rodrigues irmao da casa por ser homem velho e idoneo que assistiu com odito escrivao a tomar os votos debaixo de juramento
+
+      amz$amz18/0/7/1690/26/obs=dia de santa isabel/resumo=eleicao
+
+         eleito$pedro de meneses
+            ls$titulo/dom
+            ls$titulo/senhor
+            ls$cargo/provedor
+
+         eleito$antonio coelho de carvalho
+            ls$cargo/escrivao
+            ls$titulo/licenciado
+
+         eleito$manuel jorge
+            ls$cargo/mordomo
+            ls$profissao/serralheiro
+
+         eleito$luis manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+            ls$alcunha/moco
+
+         eleito$antonio galvao ribeiro
+            ls$cargo/irmao de maior condicao
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao mendes
+            ls$profissao/pedreiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao pimentel
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$domingos cardoso
+            ls$cargo/irmao de menor condicao
+
+      amz$amz19/0/0/1690/26v/resumo=diferencas entre o padre capelao e o escrivao da santa casa sobre o tomar dos votos para a eleicao
+
+      amz$amz20/16/7/1690/28/resumo=por impossibilidade de d.pedro de meneses de exercer o cargo de provedor por causa de "achaques", os irmaosde acordo com os estatutos recorrem ao provedor que serviu no ano antecedente
+
+      amz$amz21/16/7/1690/30/resumo=o padre frei joao colaco aceita o lugar de provedor em substituicao de d.pedro de meneses
+
+      amz$amz22/9/5/1691/30v/resumo= o escrivao eleito (licenciado antonio coelho carvalho) escusa-se ao cargo
+
+      amz$amz23/2/7/1691/31v/obs=dia de santa isabel/resumo=adiamento da eleicao para domingo seguinte por se encontrarem ausentes muitos irmaos
+
+      amz$amz24/8/7/1691/32/resumo=auto de eleicao de novos oficiais que hao-de servir nesta casa da santa misericordia desta vila
+
+         eleitor$pedro de meneses
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+
+         eleitor$sebastiao colaco
+
+         eleitor$luis manhos de abreu
+
+         eleitor$luis de seabra/obs=ausente
+
+         eleitor$inacio coelho de sequeira/obs=substitui luis de seabra
+
+         eleitor$joao rodrigues alvaro/obs=de menor condicao
+
+         eleitor$manuel cardoso/obs=de menor condicao
+
+         eleitor$joao mendes/obs=de menor condicao
+            ls$profissao/pedreiro
+
+         eleitor$manuel coelho/obs=de menor condicao
+
+         eleitor$domingos cardoso/obs=de menor condicao
+
+         eleito$luis coelho
+            ls$titulo/licenciado
+            ls$cargo/provedor
+
+         eleito$manuel cordeiro
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$mateus goncalves
+            ls$cargo/mordomo
+            ls$profissao/carpinteiro
+
+         eleito$antonio galvao
+            ls$cargo/irmao de maior condicao
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$luis de seabra
+            ls$cargo/irmao de maior condicao
+
+         eleito$luis manhos
+            ls$cargo/irmao de maior condicao
+
+         eleito$inacio coelho
+            ls$cargo/irmao de maior condicao
+
+         eleito$miguel mendes
+            ls$profissao/pedreiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+            ls$profissao/pedreiro
+
+         eleito$manuel jorge
+            ls$cargo/irmao de menor condicao
+            ls$profissao/serralheiro
+
+         eleito$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel cardoso
+            ls$cargo/irmao de menor condicao
+
+      amz$amz25/15/7/1691/33v/resumo=eleicao de dois irmaos para resolver quaisquer duvidas e causas que a santa casa tiver em quaisquer negocios
+
+         eleito$joao colaco
+            ls$profissao/padre
+            ls$titulo/frei
+
+         eleito$joao francisco
+            ls$profissao/marceneiro
+
+      amz$amz26/5/8/1691/34v/resumo=termo de aceitacao de medico
+
+         referido$manuel lopes de lima/obs=receberia anualmente 15 alqueires de trigo
+            ls$titulo/licenciado
+            ls$cargo/medico do partido
+
+      amz$amz27/16/12/1691/36/resumo=auto de eleicao que se fez de irmao da mesa em falta do irmao falecido antonio galvao ribeiro
+
+         eleito$antonio manhos de abreu
+            ls$titulo/doutor
+            ls$cargo/irmao de maior condicao
+
+      amz$amz28/5/7/1692/37/resumo=auto de nomeacao de capelao desta santa casa que vagou por morte do padre simao leao feita no licenciado manuel duarte de morais
+
+         eleito$manuel duarte de morais/obs=e eleito por ser formado e de bom procedimento e ter irmas donzelas e irmaos e sobrinhos pobres e serem de qualidade e ajuda desta capela os podera sustentar mais comodamente
+            ls$cargo/capelao da santa casa da misericordia
+            ls$titulo/licenciado
+            ls$titulo/frei
+            ls$profissao/padre
+
+      amz$amz29/5/7/1692/38/resumo=auto de posse que se deu ao licenciado manuel duarte de morais-ordenado:em cada ano cento e trinta alqueires de trigo, quatro alqueires de azeite, sessenta e quatro almudes de vino e dois mil e quinhentos reis em dinheiro
+
+      amz$amz30/0/0/1692/39/resumo=auto de eleicao de oficiais que hao-de servir nesta casa da santa misericordia desta vila de soure este ano de 1692 para 93
+
+         eleitor$pedro de meneses/obs=de maior condicao
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$luis coelho dos reis/obs=de maior condicao
+
+         eleitor$mateus manhos/obs=de maior condicao
+
+         eleitor$luis manhos/obs=de maior condicao
+
+         eleitor$sebastiao colaco/obs=de maior condicao
+
+         eleitor$manuel cardoso/obs=de menor condicao
+
+         eleitor$manuel jorge/obs=de menor condicao
+
+         eleitor$miguel mendes/obs=de menor condicao
+
+         eleitor$joao mendes/obs=de menor condicao
+
+         eleitor$joao rodrigues alvaro/obs=de menor condicao
+
+         eleito$luis coelho dos reis
+            ls$titulo/licenciado
+            ls$cargo/provedor
+
+         eleito$manuel cordeiro
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$mateus goncalves
+            ls$cargo/mordomo
+            ls$profissao/carpinteiro
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$luis de seabra
+            ls$cargo/irmao de maior condicao
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel lopes de lima
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$miguel mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel jorge
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+      amz$amz31/8/7/1692/41/resumo=treslado de um alvara de confirmacao da capelania da santa misericordia por que foi confirmado o padre simao leao capelao que dela foi
+
+      amz$amz32/0/0/1693/43/resumo=auto de eleicao dos oficiais que hao-de servir nesta casa da misericordia desta vila de soure este ano de 1693 para 1694
+
+         eleitor$pedro de meneses/obs=de maior condicao
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$sebastiao colaco leitao/obs=de maior condicao
+
+         eleitor$manuel soares coelho/obs=de maior condicao
+
+         eleitor$antonio manhos/obs=de maior condicao
+            ls$titulo/doutor
+
+         eleitor$luis coelho/obs=de maior condicao
+
+         eleitor$mateus goncalves/obs=de menor condicao
+
+         eleitor$antonio lourenco/obs=de menor condicao
+
+         eleitor$domingos cardoso/obs=de menor condicao
+
+         eleitor$joao da fonseca/obs=de menor condicao
+
+         eleitor$antonio velho/obs=de menor condicao
+
+         eleito$sebastiao soares coelho
+            ls$cargo/provedor
+
+         eleito$manuel rodrigues
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$antonio lourenco
+            ls$cargo/mordomo
+            ls$profissao/carpinteiro
+
+         eleito$manuel marques de oliveira
+            ls$cargo/irmao de maior condicao
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$mateus goncalves
+            ls$cargo/irmao de menor condicao
+            ls$profissao/carpinteiro
+
+         eleito$antonio lopes
+            ls$cargo/irmao de menor condicao
+            ls$profissao/sapateiro
+
+         eleito$joao da fonseca
+            ls$cargo/irmao de menor condicao
+            ls$profissao/ferrador
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$domingos cardoso
+            ls$cargo/irmao de menor condicao
+
+      amz$amz33/12/7/1693/44v/resumo=eleicao de dois irmaos para servirem na junta que fizerem a respeito de quaisquer duvidas ou causas que a santa casa tiver em quaisquer negocios
+
+         eleito$luis coelho
+
+         eleito$manuel cardoso
+
+      amz$amz34/0/0/1694/45/resumo=auto de eleicao dos oficiais que hao-de servir esta casa da misericordia desta vila este ano de 1694 para 1695
+
+         eleitor$pedro de meneses/obs=de maior condicao
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$sebastiao soares coelho/obs=de maior condicao
+
+         eleitor$vicente colaco/obs=de maior condicao
+
+         eleitor$luis coelho/obs=de maior condicao
+
+         eleitor$antonio manhos/obs=de maior condicao
+            ls$titulo/licenciado
+
+         eleitor$antonio lourenco/obs=de menor condicao
+
+         eleitor$mateus goncalves/obs=de menor condicao
+
+         eleitor$antonio lopes/obs=de menor condicao
+
+         eleitor$joao da fonseca/obs=de menor condicao
+
+         eleitor$domingos cardoso/obs=de menor condicao
+
+         eleito$sebastiao soares coelho
+            ls$cargo/provedor
+
+         eleito$manuel rodrigues
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$antonio lourenco
+            ls$cargo/mordomo
+
+         eleito$antonio manhos de abreu
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$manuel marques de oliveira
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$joao da fonseca
+            ls$cargo/irmao de menor condicao
+
+         eleito$mateus goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lopes
+            ls$cargo/irmao de menor condicao
+
+         eleito$domingos cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+      amz$amz35/0/0/1695/46/resumo=auto de eleicao dos oficiais que hao-de servir esta casa da misericordia desta vila este ano de 1695 para 1696
+
+         eleitor$pedro de meneses/obs=de maior condicao
+            ls$titulo/dom
+            ls$titulo/senhor
+
+         eleitor$sebastiao soares coelho/obs=de maior condicao
+
+         eleitor$vasco botelho de almeida/obs=de maior condicao
+
+         eleitor$luis coelho/obs=de maior condicao
+
+         eleitor$sebastiao colaco leitao/obs=de maior condicao
+
+         eleitor$joao da fonseca/obs=de menor condicao
+
+         eleitor$domingos cardoso/obs=de menor condicao
+
+         eleitor$antonio lopes/obs=de menor condicao
+
+         eleitor$antonio lourenco/obs=de menor condicao
+
+         eleitor$joao mendes/obs=de menor condicao
+
+         eleito$luis manhos de abreu
+            ls$cargo/provedor
+
+         eleito$manuel marques de oliveira
+            ls$titulo/licenciado
+            ls$cargo/escrivao
+
+         eleito$antonio velho
+            ls$cargo/mordomo
+            ls$profissao/barbeiro
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos de abreu
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes
+            ls$cargo/irmao de maior condicao
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$miguel mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lourenco
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$mateus goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao da fonseca
+            ls$cargo/irmao de menor condicao
+
+      amz$amz36/11/7/1695/47v/resumo=eleicao de dois irmaos para servirem na junta que fizerem a respeito de quaisquer duvidas ou causas que a santa casa tiver em quaisquer negocios
+
+         eleito$sebastiao soares coelho
+
+         eleito$antonio lopes
+            ls$profissao/sapateiro
+
+      amz$amz37/24/7/1695/48/resumo=definicao de um novo percurso para a procissao dos passos
+
+      amz$amz38/10/8/1695/49/resumo=auto de eleicao que se fez do irmao da mesa em falta do irmao riscado bento gomes da costa
+
+         referido$bento gomes da costa
+            ls$cargo/irmao de maior condicao/obs=e riscado por ter sido eleito e por sendo chamado nao querer vir nem tomar juramento
+
+         referido$amaro de pina
+            ls$cargo/irmao de maior condicao/obs=substitui bento gomes da costa
+
+      amz$amz39/26/2/1696/49v/resumo=adriao da costa soares clerigo de ordens menores desejando usa-las oferece-se para ajudar nas missas e servir assim na santa casa
+
+         referido$adriao da costa soares
+            ls$profissao/clerigo de ordens menores
+
+      amz$amz40/0/0/1696/50/resumo=eleicao
+
+         eleitor$luis coelho dos reis
+
+         eleitor$sebastiao machado da costa/obs=de maior condicao
+
+         eleitor$vasco botelho de almeida/obs=de maior condicao
+
+         eleitor$vicente colaco de morais/obs=de maior condicao
+
+         eleitor$luis manhos de abreu/obs=de maior condicao
+
+         eleitor$joao mendes/obs=de menor condicao
+
+         eleitor$miguel mendes/obs=de menor condicao
+
+         eleitor$mateus goncalves/obs=de menor condicao
+
+         eleitor$antonio lourenco/obs=de menor condicao
+
+         eleitor$antonio velho/obs=de menor condicao
+            ls$profissao/sapateiro
+
+         eleito$luis manhos de abreu
+            ls$cargo/provedor
+
+         eleito$manuel marques de oliveira
+            ls$titulo/licenciado
+            ls$cargo/escrivao
+
+         eleito$antonio velho
+            ls$cargo/mordomo
+            ls$profissao/barbeiro
+
+         eleito$inacio coelho
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$mateus manhos
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$amaro de pina
+            ls$cargo/irmao de maior condicao
+
+         eleito$miguel mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lourenco
+            ls$cargo/irmao de menor condicao
+
+         eleito$mateus goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao da fonseca
+            ls$cargo/irmao de menor condicao
+
+      amz$amz41/20/8/1696/51v/resumo=eleicao de irmao da mesa em lugar do irmao defunto amaro de pina
+
+         referido$amaro de pina
+            ls$cargo/irmao de maior condicao
+            ls$morto/antes
+
+         eleito$jose pinto de abreu/obs=substitui amaro de pina por morte deste
+            ls$cargo/irmao de maior condicao
+
+      amz$amz42/14/10/1696/52/resumo=antonio lopes, sapateiro chamado por recado a ir com sua veste acompanhar a bandeira no enterro de manuel luis feio, responde que nao pode ir por estar ocupado com o conserto de uns sapatos, o que o provedor nao achou desculpa suficiente e sendo chamado a mesa disse ser rustico e nao saber a desobediencia que cometera pelo que o condenaram somente a uma multa de meio arratel de cera
+
+         referido$antonio lopes
+            ls$profissao/sapateiro
+
+         referido$manuel luis feio
+            ls$morto/antes
+            ls$residencia/soure
+
+      amz$amz43/27/7/1697/53/resumo=apresentacao de uma peticao por parte de cipriano da silva serrao em que pedia o aceitassem em mesa por parte da misericordia para poder correr seu livramento visto ser preso na cadeia da vila e ser pobre e miseravel, e nao ter com que se livrar, tendo o provedor e mais irmaos aceitado te-lo por preso da santa casa e mandaram que por despesa da santa casa se corresse com o seu livramento
+
+      amz$amz44/2/7/1697/54/resumo=eleicao
+
+         eleitor$luis coelho dos reis
+            ls$titulo/doutor
+
+         eleitor$vicente colaco de morais/obs=de maior condicao
+
+         eleitor$luis manhos de abreu/obs=de maior condicao
+
+         eleitor$pedro de meneses/obs=de maior condicao
+            ls$titulo/dom
+
+         eleitor$sebastiao colaco leitao
+            ls$cargo/irmao de maior condicao
+
+         eleitor$miguel mendes
+            ls$cargo/irmao de menor condicao
+
+         eleitor$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleitor$mateus goncalves/obs=de menor condicao
+
+         eleitor$joao francisco/obs=de menor condicao
+
+         eleitor$antonio lourenco/obs=de menor condicao
+
+         eleito$manuel soares coelho
+            ls$cargo/provedor
+
+         eleito$tome velho
+            ls$cargo/escrivao
+
+         eleito$mateus goncalves
+            ls$cargo/mordomo
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose pinto
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio velho
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lopes
+            ls$cargo/irmao de menor condicao
+            ls$profissao/sapateiro
+
+         eleito$joao francisco
+            ls$profissao/marceneiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$domingos cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+      amz$amz45/27/10/1697/56/resumo=eleicao de dois irmaos para servirem na junta que fizerem a respeito de quaisquer duvidas ou causas que a santa casa tiver em quaisquer negocios
+
+         eleito$luis manhos de abreu
+
+         eleito$joao rodrigues
+            ls$profissao/barbeiro
+
+      amz$amz46/6/7/1698/56v <---- VERIFICAR O ANO/resumo=eleicao
+
+         eleitor$antonio de meneses
+            ls$titulo/dom
+
+         eleitor$luis manhos de abreu/obs=de maior condicao
+
+         eleitor$luis coelho/obs=de maior condicao
+
+         eleitor$manuel homem de quadros/obs=de maior condicao
+
+         eleitor$manuel soares coelho/obs=de maior condicao
+
+         eleitor$mateus goncalves/obs=de menor condicao
+
+         eleitor$joao da fonseca/obs=de menor condicao
+
+         eleitor$joao mendes/obs=de menor condicao
+
+         eleitor$antonio velho/obs=de menor condicao
+
+         eleitor$domingos cordeiro/obs=de menor condicao
+
+         eleito$manuel soares coelho
+            ls$cargo/provedor
+
+         eleito$tome velho
+            ls$cargo/escrivao
+
+         eleito$mateus goncalves
+            ls$cargo/mordomo
+
+         eleito$mateus manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$inacio coelho de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose pinto de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$domingos cardoso
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio velho
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues
+            ls$cargo/irmao de menor condicao
+            ls$profissao/barbeiro
+
+         eleito$antonio lopes
+            ls$cargo/irmao de menor condicao
+
+      amz$amz47/14/12/1698/59/resumo=termo de eleicao de irmao em lugar de domingos francisco de alencarce
+
+         eleito$joao rodrigues feijao/obs=substitui domingos francisco de alencarce
+            ls$residencia/casais de s.mateus
+
+            referido$domingos francisco/obs=foi substituido possivelmente por ter morrido
+               ls$residencia/alencarce
+
+      amz$amz48/2/7/1699/60/resumo=auto de eleicao de provedor e escrivao e irmaos da mesa
+
+         eleitor$manuel homem de quadros
+
+         eleitor$manuel soares coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$luis manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleitor$luis coelho dos reis
+            ls$cargo/irmao de maior condicao
+
+         eleitor$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$antonio lourenco
+            ls$cargo/irmao de menor condicao
+
+         eleitor$mateus goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleitor$joao mendes
+            ls$cargo/irmao de menor condicao
+
+         eleitor$domingos cardoso/obs=de menor condicao
+
+         eleitor$antonio velho
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio de meneses
+            ls$cargo/provedor
+            ls$titulo/dom
+
+         eleito$manuel soares coelho
+            ls$cargo/escrivao
+
+         eleito$antonio lourenco
+            ls$cargo/mordomo
+
+         eleito$nome ilegivel
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes ravasco
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel alves
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues serrao
+            ls$cargo/irmao de menor condicao
+
+         eleito$nome ilegivel
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel carvalho coelho
+            ls$cargo/irmao de menor condicao
+
+         eleito$mateus goncalves
+            ls$cargo/irmao de menor condicao
+
+      amz$amz49/2/7/1700/62/resumo=termo de eleicao.Resolvem manter os mesmos membros do ano anterior
+
+         referido$antonio de meneses
+            ls$cargo/provedor/obs=ausente em lisboa
+
+         referido$manuel soares coelho
+            ls$cargo/provedor/obs=subtituto na ausencia do anterior
+
+         eleito$antonio de meneses
+            ls$cargo/provedor
+            ls$titulo/dom
+
+         eleito$manuel soares coelho
+            ls$cargo/escrivao
+
+         eleito$antonio lourenco
+            ls$cargo/mordomo
+
+         eleito$nome ilegivel
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes ravasco
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleito$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel alves
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues serrao
+            ls$cargo/irmao de menor condicao
+
+         eleito$nome ilegivel
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel carvalho coelho
+            ls$cargo/irmao de menor condicao
+
+         eleito$mateus goncalves
+            ls$cargo/irmao de menor condicao
+
+      amz$amz51/12/1/1701/63/resumo=acordao que se tomou em mesa sobre a diminuicao da esmola das missas do capelao-salario:cento e trinta alqueires de trigo, quatro almudes de azeite, trinta e quatro almudes de vinho e dois mil e quinhentos reis em dinheiro
+
+         referido$manuel duarte de morais
+            ls$profissao/padre
+            ls$titulo/reverendo
+            ls$titulo/frei
+            ls$cargo/capelao da santa casa da misericordia
+            ls$morto/antes
+
+      amz$amz52/16/1/1701/64/resumo=auto de nomeacao de capelao da santa casa da misericordia que vagou por morte do padre manuel duarte de morais feita em o reverendo padre luis ribeiro cabral
+
+         referido$luis ribeiro cabral
+            ls$profissao/padre
+            ls$cargo/capelao da santa casa da misericordia
+            ls$titulo/reverendo
+
+      amz$amz53/16/1/1701/65/resumo=auto de posse da capelania desta santa casa que vagou por falecimento do padre manuel duarte de morais dado novamente eleito ao padre luis ribeiro cabral
+
+         eleito$luis ribeiro cabral
+            ls$profissao/padre
+            ls$cargo/capelao da santa casa da misericordia
+            ls$titulo/reverendo
+
+      amz$amz54/5/6/1701/66/resumo=acordao que tomou em mesa o provedor e mais irmaos da santa casa sobre se riscar o licenciado antonio manhos de abreu; razoes pelas quais ele e riscado-nao defendia a santa casa na forma a que era obrigado pelo compromisso, mas pondo-se pela parte contraria defendendo nao ser a dita santa casa previligiada querendo-lhe tirar a liberdade e isencao que prezam os seua caseiros ... de nao pagarem os oitavos sendo contra ela procurador dos rendeiros para convencerem a dita santa casa em juizo etc
+
+      amz$amz55/26/7/1701/67/resumo=decisao de manter a eleicao do ano anterior dando juramento a jose pinto de abreu para o lugar de manuel soares coelho que se encontrava a substituir antonio de meneses que continuava ausente
+
+      amz$amz56/11/8/1709/68/resumo=termo de eleicao de provedor e mais irmaos da mesa
+
+         eleitor$manuel marques de oliveira
+            ls$titulo/doutor
+
+         eleitor$dionisio de magalhaes
+
+         eleitor$pedro de eiro matoso
+
+         eleitor$jose de barros
+
+         eleitor$manuel goncalves vargas
+
+         eleitor$manuel ferreira
+            ls$profissao/sapateiro
+
+         eleito$joao da costa de vasconcelos
+            ls$cargo/provedor
+
+         eleito$manuel pessoa
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$jose marques harpista
+            ls$cargo/mordomo
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes
+            ls$cargo/irmao de maior condicao
+
+         eleito$dionisio de magalhaes pinto
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$mateus mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose de barros
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lourenco
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues descalco
+            ls$cargo/irmao de menor condicao
+
+      amz$amz57/13/7/1710/70/resumo=eleicao para provedor e mais irmaos que hao-de servir na mesa da santa casa da misericordia este ano de 1710 que ha-de findar em dia de santa isabel futuro de 1711
+
+         eleitor$luis manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleitor$vicente colaco de morais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$joao colaco de morais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$pedro de eiro matoso
+            ls$cargo/irmao de maior condicao
+
+         eleitor$domingos goncalves
+            ls$cargo/irmao de maior condicao
+            ls$titulo/licenciado
+
+         eleitor$mateus mendes
+            ls$cargo/irmao de menor condicao
+
+         eleitor$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleitor$antonio lourenco
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel rodrigues
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose de barros
+            ls$cargo/irmao de menor condicao
+
+         eleito$nuno alvares pereira
+            ls$cargo/provedor
+
+         eleito$manuel pessoa leitao
+            ls$cargo/escrivao
+            ls$profissao/padre
+
+         eleito$jose marques harpista
+            ls$cargo/mordomo
+
+         eleito$dionisio de magalhaes
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose barbosa
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues serrao
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose de barros
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues descalco
+            ls$cargo/irmao de menor condicao
+
+         eleito$mateus mendes
+            ls$cargo/irmao de menor condicao
+
+      amz$amz58/14/8/1712/72/resumo=auto de eleicao de provedor e mais irmaos que hao-de servir neste ano de 1712 e hao-de acabar em dia de santa isabel de 1713
+
+         eleitor$joao da costa de vasconcelos
+            ls$cargo/irmao de maior condicao
+
+         eleitor$luis manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleitor$domingos goncalves galhardo
+            ls$cargo/irmao de maior condicao
+
+         eleitor$dionisio de magalhaes pinto
+            ls$cargo/irmao de maior condicao
+
+         eleitor$jose barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleitor$manuel rodrigues serrao
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleitor$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleitor$joao rodrigues alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleitor$antonio francisco
+            ls$cargo/irmao de menor condicao
+
+         eleitor$mateus mendes
+            ls$cargo/irmao de menor condicao
+
+         eleito$sebastiao machado da costa
+            ls$cargo/provedor
+
+         eleito$domingos goncalves galhardo
+            ls$cargo/escrivao
+            ls$titulo/doutor
+
+         eleito$manuel goncalves vargas
+            ls$cargo/mordomo
+
+         eleito$pedro de eiro matoso
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel manhos
+            ls$cargo/irmao de maior condicao
+
+         eleito$henrique barbosa
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel alvares
+            ls$cargo/irmao de menor condicao
+
+         eleito$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues duqueso
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel de brito
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel monteiro/obs= ja morto em 21 maio de 1713
+            ls$cargo/irmao de menor condicao
+
+      amz$amz59/1/7/1714/74/resumo=auto de eleicao de provedor, escrivao e irmaos da mesa que hao-de servir nesta santa casa neste anode 1714 para 1715
+
+         eleitor$manuel pessoa leitao
+            ls$cargo/irmao de maior condicao
+            ls$profissao/padre
+
+         eleitor$dionisio de magalhaes
+            ls$cargo/irmao de maior condicao
+
+         eleitor$manuel manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleitor$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleitor$alexandre mendes ravasco
+            ls$cargo/irmao de maior condicao
+
+         eleitor$manuel rodrigues serrao
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel rodrigues duqueso
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel goncalves vargas
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel de brito
+            ls$cargo/irmao de menor condicao
+
+         eleitor$sebastiao goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel pessoa leitao
+            ls$cargo/provedor
+            ls$profissao/padre
+
+         eleito$pedro de eiro matoso
+            ls$cargo/escrivao
+
+         eleito$andre goncalves
+            ls$cargo/mordomo
+
+         eleito$manuel manhos de abreu
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes ravasco
+            ls$cargo/irmao de maior condicao
+
+         eleito$joao da costa machado
+            ls$cargo/irmao de maior condicao
+
+         eleito$dionisio de magalhaes
+            ls$cargo/irmao de maior condicao
+
+         eleito$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose da costa
+            ls$cargo/irmao de menor condicao
+
+         eleito$luis da silva
+            ls$cargo/irmao de menor condicao
+            ls$profissao/alfaiate
+
+         eleito$jose dias
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose de andrade
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel gomes
+            ls$cargo/irmao de menor condicao
+            ls$alcunha/bicho
+
+         eleito$jose de barros
+            ls$cargo/irmao de menor condicao
+
+      amz$amz60/4/7/1715/76/resumo=eleicao de medico da casa-ordenado:quinze alqueires de trigo
+
+         eleito$joao baptista de oliveira
+            ls$titulo/doutor
+
+      amz$amz61/6/7/1715/76v/resumo=eleicao de provedor e mais irmaos
+
+         eleitor$vicente colaco de morais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$domingos goncalves galhardo
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleitor$rodrigo homem de quadros
+            ls$cargo/irmao de maior condicao
+
+         eleitor$antonio de abreu
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleitor$joao coelho de sequeira
+            ls$cargo/irmao de maior condicao
+
+         eleitor$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleitor$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel goncalves vargas
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose da costa
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel rodrigues
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao da costa de vasconcelos
+            ls$cargo/provedor
+
+         eleito$luis soares coelho
+            ls$cargo/escrivao
+            ls$profissao/padre
+
+         eleito$jose de barros
+            ls$cargo/mordomo
+
+         eleito$manuel pinto de miranda
+            ls$cargo/irmao de maior condicao
+
+         eleito$luis barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio de abreu de castelo branco
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleito$dionisio de magalhaes pinto
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose mendes alvaro
+            ls$cargo/irmao de menor condicao
+
+         eleito$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues descalco
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose da costa
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose marques harpista
+            ls$cargo/irmao de menor condicao
+
+      amz$amz62/13/7/1715/78/resumo=muitas vezes nas ocasioes em que era necessario juntar-se os irmaos da mesa para as varias ocasioes necessarias principalmente nos acompanhamentos dos defuntos concluiu-se que todas as vezes que faltasse algum sem causa legitima na forma do estatuto seriam condenados pela primeira vez em dois tostoes para a casa da misericordia e pela segunda vez seriam riscados; e que outrossi pediriam pela vila cada mes dois a saber, sob pena de doze vintens
+
+         referido$manuel pinto de miranda
+            ls$cargo/eleito para pedir/obs=no primeiro mes
+
+         referido$jose marques
+            ls$cargo/eleito para pedir/obs=no primeiro mes
+
+         referido$dionisio de magalhaes
+            ls$cargo/eleito para pedir/obs=no segundo mes
+
+         referido$jose mendes heleno
+            ls$cargo/eleito para pedir/obs=no segundo mes
+
+         referido$luis barbosa canais
+            ls$cargo/eleito para pedir/obs=no terceiro mes
+
+         referido$tome velho
+            ls$cargo/eleito para pedir/obs=no quarto mes
+
+         referido$jose da costa
+            ls$cargo/eleito para pedir/obs=no quarto mes
+
+         referido$antonio de abreu
+            ls$cargo/eleito para pedir/obs=no quinto mes
+
+         referido$andre goncalves
+            ls$cargo/eleito para pedir/obs=no quinto mes
+
+      amz$amz63/27/8/1715/78v/resumo=multa por ter faltado a um enterro dele tendo sido avisado
+
+         referido$francisco lopes labias/obs=e quem vai a enterrar
+            ls$morto/antes
+
+         referido$manuel rodrigues descalco/obs=falta ao enterro sendo por isso multado em dez tostoes
+
+      amz$amz64/19/7/1715/79/resumo=eleicao de um irmao para o lugar do dr.antonio de abreu
+
+         referido$antonio de abreu
+            ls$titulo/doutor
+
+         eleito$joao de sequeira coelho/obs=em lugar do anterior
+
+      amz$amz65/19/9/1715/79/resumo=proposta para se acabar com o oficio de cirurgiao que era escusado por nao haver doentes
+
+         referido$manuel rodrigues descalco
+            ls$cargo/cirurgiao da santa casa
+
+      amz$amz66/27/8/1715/78v/resumo=multas por faltas a enterros de irmaos, eleicao de irmao para substituir os que por isso sao riscados
+
+         referido$dionisio de magalhaes/obs=multa de 200 reis por faltar ao enterro do filho de manuel pinto
+
+         referido$manuel pinto/id=amz66-ref1
+
+         referido$nome desconhecido
+            ls$morto/antes
+            rel$parentesco/filho/manuel pinto/amz66-ref1
+
+         referido$manuel rodrigues descalco/obs=foi riscado por se negar a vir a mesa sendo chamado muitas vezes
+
+         eleito$manuel ferreira mioto
+            ls$profissao/sapateiro
+
+            referido$tome velho/obs=condenado por faltar ao enterro da irma isabel da silva
+
+            referido$luis barbosa canais/obs=condenado por faltar ao enterro da irma isabel da silva
+
+            referido$andre goncalves/obs=condenado por faltar ao enterro da irma isabel da silva
+
+            referido$jose marques/obs=condenado por faltar ao enterro da irma isabel da silva
+
+            referida$isabel da silva/obs=e quem vai a enterrar
+               ls$morta/antes
+
+      amz$amz67/9/2/1716/80/resumo=acordao que fizeram o provedor e irmaos da mesa sobre as disposicoes no tocante as tumbas nova e velha
+
+      amz$amz68/5/7/1716/81/resumo=eleicao
+
+         eleitor$luis barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$domingos goncalves galhardo
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleitor$bento gomes da costa
+            ls$cargo/irmao de maior condicao
+
+         eleitor$joao de sequeira coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$joao colaco de morais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$jose da costa
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel de brito
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose de barros
+            ls$cargo/irmao de menor condicao
+
+         eleitor$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$luis soares coelho
+            ls$cargo/provedor
+            ls$profissao/padre
+
+         eleito$manuel pinto de miranda
+            ls$cargo/escrivao
+
+         eleito$jose da costa
+            ls$cargo/mordomo
+
+         eleito$alexandre mendes ravasco
+            ls$cargo/conselheiro
+
+         eleito$joao de sequeira coelho
+            ls$cargo/conselheiro
+
+         eleito$dionisio de magalhaes
+            ls$cargo/conselheiro
+
+         eleito$tome velho
+            ls$cargo/conselheiro
+
+         eleito$joao da costa machado
+            ls$cargo/conselheiro
+
+         eleito$jose martins
+            ls$cargo/conselheiro
+
+         eleito$jose barros
+            ls$cargo/conselheiro
+
+         eleito$andre goncalves
+            ls$cargo/conselheiro
+
+         eleito$manuel ferreira
+            ls$cargo/conselheiro
+
+         eleito$manuel rodrigues serrao
+            ls$cargo/conselheiro
+
+      amz$amz69/5/7/1716/82/resumo=juramento dos irmaos eleitos
+
+      amz$amz70/12/7/1716/82v/resumo=juramento dos restantes irmaos, tem uma nota a parte onde diz que joao da costa machado e sustituido pelo reverendo padre manuel pessoa
+
+      amz$amz71/12/7/1716/82v/resumo=provisao de padre manuel pessoa leitao na capela de missa que deixou d.isabel da silva na forma do seu testamento
+
+      amz$amz72/4/10/1716/83/resumo=multas a irmaos por causas varias, decisoes sobre uma imagem do senhor dos passos que se encontrava na capela dos anjos, transferencia para a capela da santa casa
+
+         referido$joao da costa machado/obs=multado em 200rs por faltar a muitas mesas sendo para isso avisado
+
+         referido$jose de barros/obs=multado em 200rs por faltar ao enterro de um irmao
+
+         referido$domingos joao hospitaleiro/obs=multado em 200rs por faltar ao enterro de um irmao
+
+         referido$manuel luis/obs=multado em 200rs por faltar ao peditorio
+            ls$residencia/casais de s.mateus
+
+         referido$antonio rodrigues feijao/obs=multado em 200rs por faltar ao peditorio
+            ls$alcunha/velho
+
+         referido$joao gaspar/obs=multado em 200rs por faltar ao peditorio
+
+         referido$manuel domingues/obs=multado em 200rs por faltar ao peditorio
+            ls$residencia/paliao
+
+         referido$antonio rodrigues lourenco/obs=multado em 200rs por faltar ao peditorio
+
+         referido$manuel goncalves galhim/obs=multado em 200rs por faltar ao peditorio
+            ls$residencia/alencarce
+
+      amz$amz73/13/12/1716/84/resumo=disposicoes sobre a forma como o capelao devia dizer a missa, condenacao de irmaos
+
+         referido$dionisio de magalhaes/obs=multado em 200rs por faltar a mesa sendo avisado
+
+         referido$joao da costa machado/obs=multado em 200rs por faltar a mesa sendo avisado
+
+      amz$amz74/22/12/1716/85/resumo=substituicao de irmao sendo este escusado por faltar muitas vezes aos actos
+
+         referido$joao da costa machado/obs=escusado do seu cargo
+
+         eleito$manuel pessoa leitao/obs=eleito em lugar de joao da costa machado
+            ls$cargo/irmao de maior condicao
+            ls$profissao/padre
+            ls$titulo/reverendo
+
+      amz$amz75/11/2/1717/85v/resumo=irmaos obrigam-se a armar a sua custa passos da procissao
+
+         referido$dionisio de magalhaes/obs=obriga-se a armar o segundo passo
+
+         referido$jose de barros/obs=obriga-se a armar o quinto passo
+
+      amz$amz76/4/7/1717/86/resumo=eleicao para pedintes e visitadores de doentes
+
+         referido$manuel de tavora/obs=eleito para visitar os doentes em julho e agosto
+            ls$profissao/padre
+            ls$titulo/reverendo
+
+         referido$manuel ferreira/obs=eleito para visitar os doentes em julho e agosto
+
+         referido$tome velho/obs=eleito para visitar os doentes em setembro e outubro
+
+         referido$andre goncalves/obs=eleito para visitar os doentes em setembro e outubro
+
+         referido$joao de sequeira coelho/obs=eleito para visitar os doentes em novembro e dezembro
+
+         referido$jose marques/obs=eleito para visitar os doentes em novembro e dezembro
+
+         referido$dionisio de magalhaes/obs=eleito para visitar os doentes em janeiro e fevereiro
+
+         referido$manuel rodrigues serrao/obs=eleito para visitar os doentes em janeiro e fevereiro
+
+         referido$manuel pinto de miranda/obs=eleito para visitar os doentes em marco e abril
+
+         referido$jose da costa/obs=eleito para visitar os doentes em marco e abril
+
+         referido$manuel pessoa leitao/obs=eleito para visitar os doentes em maio e junho
+            ls$profissao/padre
+            ls$cargo/mordomo da capela
+
+         referido$jose de barros/obs=eleito para visitar os doentes em maio e junho
+
+         referido$manuel pessoa leitao
+            ls$cargo/irmao da junta
+
+         referido$joao da costa e vasconcelos
+            ls$cargo/irmao da junta
+
+         referido$vicente colaco de morais
+            ls$cargo/irmao da junta
+
+         referido$manuel soares coelho
+            ls$cargo/irmao da junta
+
+         referido$domingos goncalves galhardo
+            ls$cargo/irmao da junta
+
+         referido$antonio de abreu e castelo branco
+            ls$cargo/irmao da junta
+
+      amz$amz77/4/7/1717/86v/resumo=eleicao de um cirurgiao, salario de 12 alqueires de trigo
+
+         referido$antonio dos santos
+            ls$cargo/cirurgiao da santa casa
+
+      amz$amz78/3/12/1717/87/resumo=eleicao de cirurgiao na repulsa de antonio dos santos por nao assistir conforme sua obrigacao
+
+         referido$antonio velho
+            ls$cargo/cirurgiao da santa casa
+
+      amz$amz79/4/12/1718/87v/resumo=eleicao de provedor, escrivao e mordomo e irmaos que hao-de servir neste ano de 1719
+
+         eleitor$manuel soares coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$joao da costa e vasconcelos
+            ls$cargo/irmao de maior condicao
+
+         eleitor$luis barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$henrique barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$manuel pessoa leitao
+            ls$profissao/padre
+            ls$cargo/irmao de maior condicao
+
+         eleitor$manuel goncalves vargas
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose velho
+            ls$cargo/irmao de menor condicao
+
+         eleitor$alberto ferreira
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel rodrigues descalco
+            ls$cargo/irmao de menor condicao
+
+         eleitor$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$rodrigo homem de quadros
+            ls$cargo/provedor
+
+         eleito$henrique barbosa canais
+            ls$titulo/licenciado
+            ls$cargo/escrivao
+
+         eleito$alberto ferreira
+            ls$cargo/mordomo
+
+         eleito$luis barbosa canais
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel pinto de miranda
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes
+            ls$cargo/irmao de maior condicao
+
+         eleito$pedro de eiro matoso
+            ls$cargo/irmao de maior condicao
+
+         eleito$luis soares coelho
+            ls$profissao/padre
+            ls$titulo/reverendo
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose da costa
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lopes estanqueiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$luis da silva
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel de brito
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao rodrigues alvaro
+            ls$alcunha/velho
+            ls$cargo/irmao de menor condicao
+
+      amz$amz80/17/10/1719/89v/resumo=eleicao de provedor, escrivao e mordomo e irmaos que hao-de servir neste ano de 1720
+
+         eleitor$manuel soares coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$luis soares coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$antonio de abreu
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleitor$vicente colaco de morais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$manuel pessoa leitao
+            ls$profissao/padre
+            ls$cargo/irmao de maior condicao
+
+         eleitor$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose de andrade
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel alvares
+            ls$cargo/irmao de menor condicao
+
+         eleitor$luis da silva
+            ls$cargo/irmao de menor condicao
+
+         eleitor$manuel soares coelho
+            ls$cargo/irmao de menor condicao
+
+         eleito$rodrigo homem de quadros
+            ls$cargo/provedor
+
+         eleito$manuel pessoa leitao
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$andre goncalves
+            ls$cargo/mordomo
+
+         eleito$pedro de eiro matoso
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel pinto de miranda
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$dionisio de magalhaes
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome pereira de brito
+            ls$cargo/irmao de maior condicao
+
+         eleito$manuel lopes
+            ls$cargo/irmao de menor condicao
+            ls$profissao/sapateiro
+
+         eleito$jose de morais
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel martins camouco
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose da costa
+            ls$cargo/irmao de menor condicao
+
+      amz$amz81/7/7/1721/91/resumo=auto de eleicao de provedor, escrivao e mordomo e irmaos que hao-de servir nesta santa casa este ano de 1721 para 1722
+
+         eleitor$rodrigo homem de quadros
+            ls$cargo/irmao de maior condicao
+
+         eleitor$antonio de abreu
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleitor$manuel soares coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$joao de sequeira coelho
+            ls$cargo/irmao de maior condicao
+
+         eleitor$vicente colaco de morais
+            ls$cargo/irmao de maior condicao
+
+         eleitor$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleitor$jose da costa
+            ls$cargo/irmao de menor condicao
+
+         eleitor$antonio lopes
+            ls$cargo/irmao de menor condicao
+
+         eleitor$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleitor$joao henriques
+            ls$cargo/irmao de menor condicao
+
+         eleito$luis manhos de abreu
+            ls$cargo/provedor
+
+         eleito$sebastiao ferreira
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$jose de andrade
+            ls$cargo/mordomo
+
+         eleito$manuel pinto de miranda
+            ls$cargo/irmao de maior condicao
+
+         eleito$alexandre mendes ravasco
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome pereira de brito
+            ls$cargo/irmao de maior condicao
+
+         eleito$tome velho
+            ls$cargo/irmao de maior condicao
+
+         eleito$dionisio de magalhaes
+            ls$cargo/irmao de maior condicao
+
+         eleito$antonio lopes
+            ls$profissao/estanqueiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$alberto ferreira
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues descalco
+            ls$cargo/irmao de menor condicao
+
+         eleito$andre goncalves
+            ls$cargo/irmao de menor condicao
+
+         eleito$joao da costa
+            ls$cargo/irmao de menor condicao
+
+      amz$amz82/5/7/1720/92v/resumo=substituicao de mordomo por o irmao eleito se encontrar impedido de exercer o cargo
+
+         referido$jose de andrade
+            ls$cargo/mordomo/obs=cessa funcoes por "impedimentos"
+
+         referido$jose da costa
+            ls$cargo/mordomo/obs=substitui jose de andrade no cargo
+
+      amz$amz83/5/7/1722/93/resumo=nomeacao de irmaos para administradores e cobradores de dividas
+
+         referido$jose marques
+            ls$cargo/administrador e cobrador
+
+         referido$manuel rodrigues
+            ls$cargo/administrador e cobrador
+
+      amz$amz84/18/10/1722/93v/resumo=termo de eleicao de tres irmaos
+
+         referido$dionisio de magalhaes/obs=diz-se que e substituido por estar"em falta"
+
+         referido$tome velho/obs=diz-se que e substituido por estar"em falta"
+
+         eleito$jose velho/obs=substitui dionisio de magalhaes
+
+         eleito$manuel goncalves vargas/obs=substitui tome velho
+
+      amz$amz85/4/7/1723/94/resumo=auto de eleicao de provedor escrivao e mordomo e irmaos que hao-de servir esta santa casa este ano de 1723 para 1724
+
+         eleitor$manuel pessoa
+            ls$profissao/padre
+            ls$titulo/reverendo
+
+         eleitor$jacinto da costa
+            ls$titulo/doutor
+
+         eleitor$luis manhos
+            ls$cargo/capitao
+
+         eleitor$antonio de abreu
+            ls$titulo/doutor
+
+         eleitor$manuel soares coelho
+
+         eleitor$jose marques
+
+         eleitor$antonio lopes
+
+         eleitor$jose velho
+
+         eleitor$jose da costa
+
+         eleitor$alberto ferreira
+
+         eleito$jacinto da costa de vasconcelos
+            ls$cargo/provedor
+
+         eleito$manuel pessoa leitao
+            ls$profissao/padre
+            ls$cargo/escrivao
+
+         eleito$jose da costa
+            ls$cargo/mordomo
+
+         eleito$joao de sequeira coelho
+            ls$cargo/irmao de maior condicao
+
+         eleito$sebastiao machado da costa
+            ls$cargo/irmao de maior condicao
+
+         eleito$domingos goncalves
+            ls$cargo/irmao de maior condicao
+            ls$titulo/doutor
+
+         eleito$alexandre mendes ravasco
+            ls$cargo/irmao de maior condicao
+
+         eleito$jose marques
+            ls$cargo/irmao de menor condicao
+
+         eleito$jose velho
+            ls$cargo/irmao de menor condicao
+
+         eleito$antonio lopes estanqueiro
+            ls$cargo/irmao de menor condicao
+
+         eleito$alberto ferreira
+            ls$cargo/irmao de menor condicao
+
+         eleito$manuel rodrigues serrao
+            ls$cargo/irmao de menor condicao
+            ls$alcunha/velho

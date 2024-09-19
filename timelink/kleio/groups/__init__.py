@@ -73,6 +73,7 @@ In normal usage the basic groups are extended for a particular context:
 
 from timelink.kleio.groups.kabstraction import KAbstraction  # noqa
 from timelink.kleio.groups.kobject import KObject  # noqa
+from timelink.kleio.groups.kgeoentity import KGeoentity  # noqa
 from timelink.kleio.groups.kact import KAct  # noqa
 from timelink.kleio.groups.kattribute import KAttribute   # noqa
 from timelink.kleio.groups.kls import KLs  # noqa

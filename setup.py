@@ -43,6 +43,7 @@ setup(
         'fastui',
         'fief-client',
         'sqlalchemy',
+        'sqlalchemy-utils',
         'bcrypt==4.0.1',  # bug see https://github.com/logspace-ai/langflow/issues/1173
         'passlib[bcrypt]',
         'pydantic',
@@ -70,6 +71,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/time-link/timelink-py',
-    version='1.1.11',
+    version='1.1.13',
     zip_safe=False,
 )
