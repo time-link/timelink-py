@@ -481,7 +481,7 @@ class PomSomMapper(Entity):
             element: KElement = group.get_element_by_name_or_class(cattr.colclass)
             if element is not None and element.core is not None:
                 try:
-                    if len(element.core) > cattr.colsize:
+                    if len(element.core) > cattr.colsize: ## Problema que em alguns casos as colunas são números
                         warnings.warn(
                             f"""Element {element.name} of group {group.kname}:{group.id}"""
                             f""" is too long for column {cattr.colname}"""
