@@ -26,7 +26,7 @@ class RentityStatus(PyEnum):
 
 class Rentity(Entity):
     """
-    Represents Real Entities in the database. Real Entities are the result of Entity Resolution.
+    Represents Real Entities in the database.
 
     Real entities are the result of entity resolution.
     They aggregate the information of several entities
@@ -151,6 +151,27 @@ class Rentity(Entity):
             raise ValueError("Error, session or db needed")
 
         return r
+
+    #
+    def same_as(self, id1: str,
+                id2: str,
+                user="user",
+                status="M",
+                real_id=None,
+                session=None) -> str:
+        """ Returns a real entity id linking id1 and id2.
+
+        if id1 and id2 are both unliked occurrences then a new real entity is created
+            associated with user.  if real_id is given is not given a random id is generated.
+
+        if id1 is a real entity and id2 is not, then id2 is added to id1 and id1 returned
+        if id2 is a real entity and id1 is not, swap and do as above.
+        if both id1 and id2 are real entities, merge them and keep the id of the real
+          entity with higher status V->M->S->A->U
+
+        in all the cases linking two id2 of different types or inheriting from a
+        common type not equal to Entity is an error."""
+        return None
 
 
 class Link(Base):
