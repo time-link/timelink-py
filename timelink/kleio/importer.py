@@ -136,7 +136,7 @@ class SaxHandler(handler.ContentHandler):
                 )
             # <GROUP ID="coja-rol-1841" NAME="fonte"
             #        CLASS="source" ORDER="1" LEVEL="1" LINE="4">
-            id = attrs["ID"]
+            gid = attrs["ID"]
             name = attrs["NAME"]
             the_class = attrs["CLASS"]
             order = attrs["ORDER"]
@@ -145,7 +145,7 @@ class SaxHandler(handler.ContentHandler):
 
             # Mal [? porquê?]
             self._current_group = KGroup()
-            self._current_group.id = id
+            self._current_group.id = gid
             self._current_group._name = name
             self._current_group._pom_class_id = the_class
             self._current_group._order = int(order)
@@ -600,10 +600,10 @@ def import_from_xml(
     start = time.time()
     if collect_stats:
         nentities_before = session.query(
-            func.count(kleio_handler.entity_model.id)
+            func.count(kleio_handler.entity_model.id)  # pylint: disable=not-callable
         ).scalar()
         npersons_before = session.query(
-            func.count(kleio_handler.person_model.id)
+            func.count(kleio_handler.person_model.id)  # pylint: disable=not-callable
         ).scalar()
 
     if kleio_url is not None and kleio_token is not None:
@@ -627,8 +627,8 @@ def import_from_xml(
     end = time.time()
     if collect_stats:
         machine = platform.node()
-        nentities = session.query(func.count(kleio_handler.entity_model.id)).scalar()
-        npersons = session.query(func.count(kleio_handler.person_model.id)).scalar()
+        nentities = session.query(func.count(kleio_handler.entity_model.id)).scalar()  # pylint: disable=not-callable
+        npersons = session.query(func.count(kleio_handler.person_model.id)).scalar()  # pylint: disable=not-callable
         erate = (nentities - nentities_before) / (end - start)
         prate = (npersons - npersons_before) / (end - start)
         stats = {

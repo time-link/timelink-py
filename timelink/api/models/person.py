@@ -7,6 +7,7 @@ from sqlalchemy.orm import mapped_column, Mapped
 from timelink.kleio.utilities import quote_long_text
 from .entity import Entity
 
+
 class Person(Entity):
     """Represents a person in a historical source"""
 
@@ -34,7 +35,7 @@ class Person(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
+    def to_kleio(self, self_string='', ident="", ident_inc="  ", show_contained=True, width=80) -> str:
         r = (
             f"{self.groupname}${quote_long_text(self.name)}/"
             f"{quote_long_text(self.sex)}{self.render_id()}"

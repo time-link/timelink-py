@@ -83,7 +83,7 @@ def get_postgres_container() -> docker.models.containers.Container:
         raise RuntimeError("Docker is not running")
 
     client: docker.DockerClient = docker.from_env()
-    postgres_containers: docker.models.container.Container = client.containers.list(
+    postgres_containers: docker.models.container.Container = client.containers.list(  # pylint: disable=E1101
         filters={"ancestor": "postgres"}
     )
     return postgres_containers[0]
@@ -508,7 +508,7 @@ class TimelinkDatabase:
         row_count = []
         with self.session() as session:
             for table in tables_names:
-                length = session.scalar(select(func.count()).select_from(text(table)))
+                length = session.scalar(select(func.count()).select_from(text(table)))  # pylint: disable=not-callable
                 row_count.append((table, length))
         return row_count
 
