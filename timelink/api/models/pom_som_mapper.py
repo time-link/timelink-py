@@ -15,10 +15,11 @@ from sqlalchemy import Float  # pylint: disable=import-error
 from sqlalchemy import inspect  # pylint: disable=import-error
 from sqlalchemy.engine import Engine  # pylint: disable=import-error
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
-from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
-from sqlalchemy.orm import relationship  # pylint: disable=import-error
-from sqlalchemy import exc as sa_exc  # pylint: disable=import-error
-from sqlalchemy import select  # pylint: disable=import-error
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import relationship
+from sqlalchemy import exc as sa_exc
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 
 from ...kleio.groups import KGroup, KElement
 from .base_class import Base
@@ -480,20 +481,22 @@ class PomSomMapper(Entity):
                 pass
             element: KElement = group.get_element_by_name_or_class(cattr.colclass)
             if element is not None and element.core is not None:
+                core_value = str(element.core)
                 try:
-                    if len(element.core) > cattr.colsize:  # Problema que em alguns casos as colunas são números
-                        warnings.warn(
-                            f"""Element {element.name} of group {group.kname}:{group.id}"""
-                            f""" is too long for column {cattr.colname}"""
-                            f""" of class {pom_class.id}"""
-                            f""" truncating to {cattr.colsize} characters""",
-                            stacklevel=2,
-                        )
-                        core_value = element.core[: cattr.colsize]
+                    # if value too long for column truncate with warning
+                    if cattr.coltype != "numeric":
+                        if len(element.core) > cattr.colsize :
+                            # Problema que em alguns casos as colunas são números
+                            warnings.warn(
+                                f"""Element {element.name} of group {group.kname}:{group.id}"""
+                                f""" is too long for column {cattr.colname}"""
+                                f""" of class {pom_class.id}"""
+                                f""" truncating to {cattr.colsize} characters""",
+                                stacklevel=2,
+                            )
+                            core_value = element.core[: cattr.colsize]
 
-                    else:
-                        core_value = element.core
-                    setattr(entity_from_group, cattr.colname, str(core_value))
+                    setattr(entity_from_group, cattr.colname, core_value)
                     extra_info.update({element.name: {}})
                     if cattr.colname == "obs":
                         group_obs = core_value  # we save the obs element for later
@@ -572,6 +575,8 @@ class PomSomMapper(Entity):
         try:
             session.add(entity_from_group)
             session.commit()
+        except IntegrityError as e:
+            raise e  # TODO create our own Exception
         except Exception as e:  # pylint: disable=broad-except
             raise e
 
