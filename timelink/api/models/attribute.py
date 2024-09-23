@@ -46,7 +46,7 @@ class Attribute(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, show_contained=False, ident="", ident_inc="  ", **kwargs, show_contained=None) -> str:
+    def to_kleio(self, show_contained=False, ident="", ident_inc="  ", **kwargs) -> str:
         _ = show_contained  # unused
         obs, extra_info = get_extra_info(self.obs)
         r = f"{self.groupname}${quote_long_text(self.the_type)}"
