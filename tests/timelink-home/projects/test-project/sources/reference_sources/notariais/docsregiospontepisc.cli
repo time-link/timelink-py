@@ -7,11 +7,11 @@ kleio$gacto2.str/""" This is a text for quoting attributes in xml output
 
          item$carta de merce sobre a jugada do vale da belavista/resumo=o rei concede as monjas de santa clara isencao de jugada nas terras do vale da belavista/id=docreg-1-obj1
 
-         autor$d.pedro I
+         autor$d.pedro I/id=docreg-1-per1-14
 
-         destinatario$abadessa
+         destinatario$abadessa/id=docreg-1-per2-14
 
-         beneficiario$mosteiro de santa clara
+         beneficiario$mosteiro de santa clara/id=docreg-1-per3-14
 
          bem$quinta do vale da belavista/id=docreg-1-obj1-3
 
@@ -19,27 +19,27 @@ kleio$gacto2.str/""" This is a text for quoting attributes in xml output
 
          item$breve de bonifacio IX/resumo=o papa concede às monjas terem um boeiro residence no mostreiro/id=docpapal-1-obj1
 
-         autor$bonifacio IX
+         autor$bonifacio IX/id=docpapal-1-per1-14
             ls$cargo/papa
 
-         destinatario$abadessa
+         destinatario$abadessa/id=docpapal-1-per2-14
 
-         beneficiario$mosteiro de santa clara
+         beneficiario$mosteiro de santa clara/id=docpapal-1-per3-14
 
-            referido$manuel rodrigues
+            referido$manuel rodrigues/id=docpapal-1-per3-14-per4-14
                ls$cargo/boeiro de santa clara
 
       docepiscopal$docepis-1/1/1/1768/obs=nomeacao de confessor/fol=?/loc=?/tipo=carta episcopal/sumario=bispo nomeia novo confessor para o mosteiro
 
          item$carta de d.miguel da anunciacao/resumo=bispo nomeia novo confessor para o mosteiro/id=docepis-1-obj1
 
-         autor$miguel da anunciacao
+         autor$miguel da anunciacao/id=docepis-1-per1-14
             ls$cargo/bispo de coimbra
 
-         destinatario$abadessa
+         destinatario$abadessa/id=docepis-1-per2-14
 
-         beneficiario$mosteiro de santa clara
+         beneficiario$mosteiro de santa clara/id=docepis-1-per3-14
 
-            referido$manuel rodrigues
+            referido$manuel rodrigues/id=docepis-1-per3-14-per4-14
                ls$cargo/confessor do mosteiro
                ls$profissao/padre

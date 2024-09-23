@@ -2,11 +2,14 @@
 
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
+from timelink.kleio.utilities import quote_long_text, get_extra_info, render_with_extra_info
 from .entity import Entity
-from timelink.kleio.utilities import quote_long_text
 
 
 class Attribute(Entity):
+    """ represents an attribute of an entity.
+
+    Attributes have a type, a value, a date and an optional observation."""
     __tablename__ = "attributes"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
@@ -43,15 +46,20 @@ class Attribute(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80, show_contained=None) -> str:
+    def to_kleio(self, show_contained=False, ident="", ident_inc="  ", **kwargs, show_contained=None) -> str:
         _ = show_contained  # unused
+        obs, extra_info = get_extra_info(self.obs)
         r = f"{self.groupname}${quote_long_text(self.the_type)}"
-        r += f"/{quote_long_text(self.the_value)}/"
-        r += f"{self.the_date}"
-        if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs)}"
+        r += f"/{render_with_extra_info('value', self.the_value, extra_info=extra_info, **kwargs)}/"
+        r += f"{render_with_extra_info('the_date', self.the_date, extra_info=extra_info, **kwargs)}"
+        if obs is not None and len(obs.strip()) > 0:
+            r = f"{r}/obs={render_with_extra_info('obs', obs, extra_info=extra_info, **kwargs)}"
         kleio = super().to_kleio(
-            self_string=r, ident=ident, ident_inc=ident_inc, width=width
+            self_string=r,
+            show_contained=show_contained,
+            ident=ident,
+            ident_inc=ident_inc,
+            **kwargs
         )
         return kleio
 
