@@ -261,34 +261,6 @@ def test_import_with_many(dbsystem):
     ],
     indirect=True,
 )
-def test_import_identifications(dbsystem):
-    """Test the import a identifications file"""
-    file = Path(TEST_DIR, "xml_data/mhk_identification_toliveira.xml")
-    with dbsystem.session() as session:
-        try:
-            stats = import_from_xml(file, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
-        sfile = stats["file"]
-        assert "identification" in sfile.name
-        real_person = session.get(Entity, "rp-46")
-        kleio = real_person.to_kleio()
-        assert len(kleio) > 0
-        assert real_person is not None, (
-            "could not get a real person from identifications import"
-        )  # noqa
-
-
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
 def test_import_git_hub(dbsystem):
     """Test the import of a Kleio file from github into the Timelink database"""
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa

@@ -1,17 +1,13 @@
 Note =================================================
 Note Generic structure for the Source-Act-Person model
-Note   Now with geoentities and authority-registers
-Note   And Linked data
+Note   Now with geoentities, authority-registers
+Note   and Linked data
 Note ================================================
 Note
-Note Gacto2.str - version @@VERSION@@ - build @@BUILD@@ @@DATE@@
+Note sources.str - this version part of timelink-py
+Note               python package: in test-project
 Note =================================================================================================
 note
-note
-note  The name parameter in the database command designates
-note  the target source file.
-note  the read commands specify the structure file and the
-note    data file.
 
 note ================================================
 note ==============  SYSTEM DEFINITIONS =============
@@ -52,13 +48,13 @@ part name=historical-source;
 
 note ============================================================
 note GeoEntity: a spatial entity
-note doc group geoentity 
+note doc group geoentity
 
      GeoEntity: a spatial entity.
-     An entity that represents a spatial entity 
-     in the sense of a conceptual representation of space. 
+     An entity that represents a spatial entity
+     in the sense of a conceptual representation of space.
      A geo-entity is not an object
-     that has a particular position in place. 
+     that has a particular position in place.
      It is rather something like
      the parish of X, the place Y, the region W.
 note ============================================================
@@ -84,7 +80,7 @@ part name=authority-register;
 
 note ===========================================================
 note identifications: a authority-register for identifications
-note doc group identifications 
+note doc group identifications
      Identifications are authority-registers for record linking.
      They contain real-entity records (people or objects) that aggregate
      occurrences in the source pertaining to the same person or entity.
@@ -97,15 +93,8 @@ part name=identifications;
     part=rentity,rperson,robject
 
 note ===========================================================
-note doc group link
-note Declare a linked data target
-part name=link;
-    position=shortname,urlpattern;
-    also=id,obs
-
-note ===========================================================
 note rentity: a authority-record for a real entity
-note doc group rentity 
+note doc group rentity
         Rentity contains information about a real entity.
         Defines the standart name for the entity and what are the occurences,
         in `occ` subgroups.
@@ -114,6 +103,7 @@ part name=rentity;
      guaranteed=id,description,type;
      also=status,user,obs;
      part=occ
+
 note ===========================================================
 note rperson: a authority-record for a real person
 note doc group rperson contains information about a real person.
@@ -149,7 +139,14 @@ part name=occ;
      also=name,atype,func,date,id,obs
 
 
-
+note ===========================================================
+note Linked data
+note ===========================================================
+note doc group link
+note Declare a linked data target
+part name=link;
+    position=shortname,urlpattern;
+    also=id,obs
 
 
 
@@ -414,25 +411,25 @@ note ***************************************************************************
 note livros de registo de acoes de companhias monopolistas - angelica vasconcelos, criada em 19-09-2013
 note ****************************************************************************************************
 
-part name=integr; 
+part name=integr;
      source=pt-acto;
      arbitrary=referido, referida, acionista, acionistaf, ls, rel, acao;
      position=id,dia,mes,ano;
      guaranteed=id,dia,mes,ano;
      also=obs, data
-     
+
 part name=acao; source=object;
           arbitrary=referido,referida, atr, rel;
           guaranteed=name;
           also=id, obs, data, mesmo_que
-          
-          
-part name=lcc; 
+
+
+part name=lcc;
     source=pt-acto;
     arbitrary=n
 
-     
-part name=acao; 
+
+part name=acao;
      source=object;
           arbitrary=referido,referida, atr, rel;
           guaranteed=name;
@@ -511,7 +508,7 @@ part name=vereacao;
      position=id,dia,mes,ano,fol;
      also=obs
 
-     
+
 note *****************************************************************
 note  doc group pautas das vereacoes (criada por Ana Isabel 02-11-2007)
 note *****************************************************************
@@ -522,22 +519,22 @@ part name=pauta;
      guaranteed=id,dia,mes,ano,loc;
      position=id,dia,mes,ano,loc;
      also=obs
-     
+
 note *****************************************************************
 note  doc group eleicoes das corporacoes de oficios (criada por Ana Isabel 09-11-2007)
 note *****************************************************************
-     
+
 part name=eleicao;
      source=pt-acto;
      repeat=n,referido,referida;
      guaranteed=id,dia,mes,ano,loc;
      position=id,dia,mes,ano,loc;
      also=obs
-     
+
 note *****************************************************************
 note  doc group juramentos e licencas de oficios (criada por Ana Isabel 02-01-2008)
 note *****************************************************************
-     
+
 part name=juramento;
      source=pt-acto;
      repeat=n,referido,referida, abonador, abonadora, escrivao;
@@ -772,7 +769,7 @@ part name=obito; source=pt-acto;
   also=obs;
   repeat=celebrante,n,marido,mulher,pai,mae,referido,referida,sacr,testamento,testamenteiro,locs,locf,causa,oficios
 
-note doc group o Óbitos. Estilo usado em Soure, sem o id do obito, 
+note doc group o Óbitos. Estilo usado em Soure, sem o id do obito,
      mas aceita o id opcionalmente.
 part name=o; source=obito;
     position=dia,mes,ano;
@@ -828,8 +825,8 @@ part name=ordenancas; source=lista;
      position=id,dia,mes,ano;
      also=obs,loc;
      arbitrary=n
-     
-     
+
+
 note *****************************************************************
 note Lista de credito (criada por Ana Isabel 27-06-2008)
 note *****************************************************************
@@ -927,7 +924,7 @@ part name=escritura; source=pt-acto;
 				 apelacao,apelado,apelante,apelantef, apresentado, padroeiro, confirmante,
 				 beneficiario,beneficiaria,autor,autoridade,renda,
 				 juiz,item
-				 
+
 part name=demanda; source=abstraction;
 part name=acusacao; source=abstraction;
 part name=sentenca; source=abstraction;
@@ -970,8 +967,8 @@ part name=siza; source=object;
      guaranteed=valor;
      position=valor,juiz,escrivao,depositario,data;
      also=juiz,escrivao,depositario,data,obs,id
-     
-     
+
+
 part name=sisa; source=siza
 
 note *****************************************************************
@@ -1010,17 +1007,17 @@ part name=obra; source=object;
      position=name,tipo,id;
      also=desc,tipo,id,obs,local;
      arbitrary=atr,rel
-     
+
 
 note *****************************************************************
 note DyncoopNet grupos associados ao projecto de base de dados de
 note letrad de cambio
-note doc group lc Letra de câmbio, usado no projecto DyncoopNet. 
+note doc group lc Letra de câmbio, usado no projecto DyncoopNet.
 note *****************************************************************
 part name=local; source=geoentity; part=atr,rel
 
 part name=lc; source=pt-acto;
-	position=id,dia,mes,ano,local; 
+	position=id,dia,mes,ano,local;
 	guaranteed=id,dia,mes,ano,local;
 	also=obs;
 	part=atr,rel,
@@ -1133,7 +1130,7 @@ note =====================================================================
 note doc group bio Biographical description (from biographical dictionnaries,etc)
 part name=bio; source=lista;
 
-note doc group pevent Personal event, used inside people groups 
+note doc group pevent Personal event, used inside people groups
      to register a personal event.
      Diferent from event/evento which are top level groups inside lists or sources
 part name=pevent; source=evento;
@@ -1152,8 +1149,8 @@ part name=topico; source=abstraction;
 	position=subject,description;
 	guaranteed=subject,description;
 	also=id,obs
-	
-	
+
+
 note *****************************************************************
 note Governos.
 note *****************************************************************
@@ -1369,7 +1366,7 @@ part name=perdao; source=abstraction;
   position=dia,mes,ano;
   guaranteed=tipo,descricao;
   also=obs,id;
-  
+
 note ****************************************************************
 note doc group docregio Documento régio.
 note loc docregio pt carta regia
@@ -1416,10 +1413,10 @@ part name=geodesc; source=pt-acto;
     also=obs;
     part=geo1,geo2,geo3,geo4,atr,rel
 
-note Idea similar EU NUTS https://ec.europa.eu/eurostat/web/nuts/background 
-note doc group geo1 A geographical entity of level 1. Levels geo1 to geo4 
+note Idea similar EU NUTS https://ec.europa.eu/eurostat/web/nuts/background
+note doc group geo1 A geographical entity of level 1. Levels geo1 to geo4
      are defined.
-note 
+note
 part name=geo1; source=geoentity;
     position=name,type,id;
     part=geo2,atr,rel
@@ -1463,7 +1460,7 @@ part name=memoria58;source=pt-acto;
 note doc group apontamentosd Sinónimo de memoria58 para uso do Alexandre Pinto
          em fontes semelhantes.
 part name=apontamentosd; source=memoria58
-	
+
 part name=freguesia; source=geoentity;
 	part=atr,rel,gref,provincia,comarca,couto,honra,hospital,termoc,lugar,misericordia,mosteiro,idonatario,pdonatario,
 		igreja,irmandade,bispado,confraria,convento,referido
@@ -1489,8 +1486,8 @@ part name=pdonatario;source=person; part=referido,ls,atr,rel
 
 
 note *********************** TOMBOS *********************************
-note doc group automed Auto de medição, corresponde a um acto  de 
-                medição de extremas de uma terra ocorrido 
+note doc group automed Auto de medição, corresponde a um acto  de
+                medição de extremas de uma terra ocorrido
                 num dia determinado. Usado para tombos.
 note doc element id elemento obrigatorio, identifica unicamente o auto de medicao
 note doc element loc local onde decorre o auto de medicao
@@ -1498,24 +1495,24 @@ part name=automed;source=pt-acto;
 	  position=id,dia,mes,ano,loc;
 	  also=obs;
 	  part=terra;
-	  
+
 part name=terra;source=geoentity;
 		part=atr,rel,proprietario,med
 
-	 
+
 part name=med;source=abstraction;
 	  position=cardinal,length;
 	  guaranteed=length;
 	  also=obs;
 	  part=conf,marco
-	  
+
 part name=conf;
     source=object;
 	part=referido, referida
 
 part name=marco;
     source=object
-    
+
 note *****************************************************************
 note gregorio Lopes / Lia Nunes
 note *****************************************************************
@@ -1525,10 +1522,10 @@ part name=pas; source=pt-acto;
      position=id,dia,mes,ano,fol,local,destino;
      also=obs;
      arbitrary=mestre,n,referido,referida;
-     
-    
+
+
 note *****************************************************************
-note Wicki, Josef, e C. R Boxer. Liste der Jesuiten-Indienfahrer, 
+note Wicki, Josef, e C. R Boxer. Liste der Jesuiten-Indienfahrer,
 note        1541-1758. Münster: Aschendorffsche, 1967.
 note *****************************************************************
 part name=wviagem; source=pt-acto;
@@ -1945,7 +1942,7 @@ part 	name=arrem; source=n;
 
 note actores especificos do livro de registos de accoes
 
-part name=acionista; 
+part name=acionista;
      source=actorm;
      guaranteed=nome;
      also=obs,mesmo_que,id;
@@ -2480,7 +2477,7 @@ part name=testa; source=actorf;
 	part=acus,acusa
 
 note actores femininos presentes nos livros de registos das companhia monopolistas
-part name=acionistaf; 
+part name=acionistaf;
      source=actorf;
      guaranteed=nome;
      also=obs,mesmo_que,id;

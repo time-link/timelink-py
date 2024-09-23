@@ -1,49 +1,49 @@
-kleio$gacto.str/prefix=quelfes/translations=13
+kleio$gacto.str/prefix=quelfes/translations=14
    fonte$crisma1753/data=17531228/tipo=crisma/loc=livro XXXXXX/obs=Lembrança das pessoas que se crismaram na visita que fez oExcellentissimo e Reverendissimo Senhor D. Fernandes Lourenço de Santa Maria em 28 de Dezembro de 1753
 
       crisma$cr1753/28/12/1753
 
-         n$joana
+         n$joana/id=cr1753-per1-14
 
-            pai$domingos gomes
+            pai$domingos gomes/id=cr1753-per1-14-per2-14
                ls$residencia/quelfes
 
-            mae$maria de jesus
+            mae$maria de jesus/id=cr1753-per1-14-per3-14
 
-            mad$juliana palermo
+            mad$juliana palermo/id=cr1753-per1-14-per4-14
 
-               mrmad$manuel rodrigues correia
+               mrmad$manuel rodrigues correia/id=cr1753-per1-14-per4-14-per5-14
 
-         n$antónio
+         n$antónio/id=cr1753-per6-14
 
-            pai$francisco de sousa de figueiredo
+            pai$francisco de sousa de figueiredo/id=cr1753-per6-14-per7-14
                ls$residencia/peares
 
-            mae$sebastiana rodrigues
+            mae$sebastiana rodrigues/id=cr1753-per6-14-per8-14
 
-            pad$josé gomes
+            pad$josé gomes/id=cr1753-per6-14-per9-14
                ls$ec/c
                ls$residencia/praia de olhÂo
 
-         n$joaquim
+         n$joaquim/id=cr1753-per10-14
 
-            pai$manuel gonçalves
+            pai$manuel gonçalves/id=cr1753-per10-14-per11-14
                ls$residencia/peares
 
-            mae$maria da conceição, do sitio
+            mae$maria da conceição, do sitio/id=cr1753-per10-14-per12-14
 
             pad$josé da rocha/id=cr1753-pad-1
                ls$residencia/praria de olhao
 
-            referida$inês da rosa
+            referida$inês da rosa/id=cr1753-per10-14-per13-14
                rel$parentesco/mulher/josé da rocha/cr1753-pad1
 
-         n$antonio
+         n$antonio/id=cr1753-per14-14
 
-            pai$jose pinto
+            pai$jose pinto/id=cr1753-per14-14-per15-14
                ls$residencia/quelfes
 
-            mae$isabel de faria
+            mae$isabel de faria/id=cr1753-per14-14-per16-14
 
-            pad$marcos de brito de faria
+            pad$marcos de brito de faria/id=cr1753-per14-14-per17-14
                ls$residencia/boavista

@@ -241,10 +241,11 @@ class TimelinkNotebook:
 
     def update_from_sources(self, **kwargs):
         """Update the database from a list of sources
+
+        see: :meth:`timelink.api.database.TimelinkDatabase.update_from_sources`
+
         """
         self.db.update_from_sources(**kwargs)
-
-    update_from_sources.__doc__ = TimelinkDatabase.update_from_sources.__doc__
 
     def get_import_status(self, data_frame=True, **kwargs):
         """Get the import status of Kleio Files
@@ -387,6 +388,7 @@ class TimelinkNotebook:
         """Get the list of files in the kleio server.
 
         Alias to :meth:`timelink.notebooks.TimelinkNotebook.get_import_status`
+
         but returns a subset of the columns.
 
         | Column             | Non-Null Count | Dtype             |
@@ -416,6 +418,7 @@ class TimelinkNotebook:
         | import_warning_rpt | 3 non-null     | object            |
         | imported           | 3 non-null     | int64             |
         | imported_string    | 3 non-null     | int64             |
+        |------------------- |--------------- |-------------------|
 
         """
         result = self.get_import_status(**kwargs)

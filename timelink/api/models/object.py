@@ -3,7 +3,9 @@
 MIT License, no warranties.
 """
 
-from sqlalchemy import Column, String, ForeignKey
+from typing import Optional
+from sqlalchemy import String, ForeignKey
+from sqlalchemy.orm import mapped_column, Mapped
 
 from timelink.kleio.utilities import quote_long_text
 from .entity import Entity
@@ -15,10 +17,10 @@ class Object(Entity):
     """
     __tablename__ = "objects"
 
-    id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
-    name = Column(String, index=True)
-    the_type = Column(String(32), index=True)
-    obs = Column(String)
+    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
+    name: Mapped[Optional[str]] = mapped_column(String, index=True)
+    the_type: Mapped[str] = mapped_column(String(32), index=True)
+    obs: Mapped[Optional[str]] = mapped_column(String)
 
     __mapper_args__ = {"polymorphic_identity": "object"}
 

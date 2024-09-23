@@ -1,6 +1,6 @@
-kleio$gacto2.str/authorities/Generated from database toliveira_china by user toliveira, file date: +2021-06-18 Timestamp:2021-06-18T02:43:33.674Z/translations=12
+kleio$gacto2.str/authorities/Generated from database toliveira_china by user toliveira, file date: +2021-06-18 Timestamp:2021-06-18T02:43:33.674Z/translations=16
 
-   identifications$real-entities-toliveira/Real entities, including real persons and real objects/dbase=toliveira_china/user=toliveira/date=20210618/mode=backup
+   identifications$real-entities-toliveira/China Coimbra, sample/obs=Real entities, including real persons and real objects/dbase=toliveira_china/user=toliveira/date=20210618/mode=backup
 
       rperson$rp-46/Agostinho de Barros/m/status=N
 
@@ -28,7 +28,23 @@ kleio$gacto2.str/authorities/Generated from database toliveira_china by user tol
 
          occ$deh-alessandro-valignano/id=rp-22-occ4
 
-      rperson$rp-1/Álvaro da Silveira/m/status=N/obs=[ Brother of Gonçalo Silveira, Jesuit.|cit.:| À morte de D. Álvaro da Silveira, filho do conde da Sortelha, e irmão de outro seu amigo o jesuita Gonçalo da Silveira., ambos regaram com o seu sangue os dominios portuguezes, este obtendo a palma do martyrio nas terras da Africa oriental, e aquelle no desastrado conflicto do Baharem. D. Alvaro da Silveira militou com muita distincção na India., e acabou ás mãos dos turcos, que lhe cortaram a cabeça, tendo-o primeiro ferido em uma verilha, e depois mortalmente no pescoço, Este fidalgo era não só intimo amigo de Camões, mas até julgo que parente por seu avô Vasco Pires de Camões., estava despachado com a capitania de Ormuz: assim a sua morte devia ser fatal a Camões, pois o poderia melhorar de fortuna, levando-o em sua companhia, e assim ficaram derrubados aquelles castellos de vento a que allude nesta poesia: Não tenho ja rasão de vos fazer Meus castellos de vento sobre o mar, etc.|fim cit.| Obras de Luiz de Camões, ed. by Visconde de Juromenha (1862), III, p.5
+      rperson$rp-1/Álvaro da Silveira/m/status=N/obs="""
+
+         Brother of Gonçalo Silveira, Jesuit.|cit.:|
+          À morte de D. Álvaro da Silveira, filho do conde da Sortelha, e irmão de outro
+          seu amigo o jesuita Gonçalo da Silveira., ambos regaram com o seu sangue os
+          dominios portuguezes, este obtendo a palma do martyrio nas terras da Africa
+          oriental, e aquelle no desastrado conflicto do Baharem. D. Alvaro da Silveira
+          militou com muita distincção na India., e acabou ás mãos dos turcos, que lhe
+          cortaram a cabeça, tendo-o primeiro ferido em uma verilha, e depois
+          mortalmente no pescoço, Este fidalgo era não só intimo amigo de Camões, mas
+          até julgo que parente por seu avô Vasco Pires de Camões., estava despachado
+          com a capitania de Ormuz: assim a sua morte devia ser fatal a Camões, pois o
+          poderia melhorar de fortuna, levando-o em sua companhia, e assim ficaram
+          derrubados aquelles castellos de vento a que allude nesta poesia: Não tenho ja
+          rasão de vos fazer Meus castellos de vento sobre o mar, etc.
+          fim cit.|
+          Obras de Luiz de Camões, ed. by Visconde de Juromenha (1862), III, p.5"""
 
          occ$bio-alvaro-silveira-his3-4-per1-5/id=rp-1-occ1
 

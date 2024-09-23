@@ -18,6 +18,8 @@ Subpackages
    timelink.networks
    timelink.notebooks
    timelink.pandas
+   timelink.static
+   timelink.statics
 
 Submodules
 ----------

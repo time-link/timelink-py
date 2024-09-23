@@ -499,7 +499,7 @@ pom_som_base_mappings = {
             colname="description",
             colclass="name",
             coltype="varchar",
-            colsize="128",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
@@ -552,7 +552,7 @@ pom_som_base_mappings = {
             colsize="64",
             colprecision="0",
             pkey="0",
-        ),
+        )
     ],
     "rgeoentity": [
         PomSomMapper(

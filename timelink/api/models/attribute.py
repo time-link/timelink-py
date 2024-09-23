@@ -43,7 +43,8 @@ class Attribute(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", width=80, show_contained=None) -> str:
+        _ = show_contained  # unused
         r = f"{self.groupname}${quote_long_text(self.the_type)}"
         r += f"/{quote_long_text(self.the_value)}/"
         r += f"{self.the_date}"
