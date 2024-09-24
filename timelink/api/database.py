@@ -83,8 +83,10 @@ def get_postgres_container() -> docker.models.containers.Container:
         raise RuntimeError("Docker is not running")
 
     client: docker.DockerClient = docker.from_env()
-    postgres_containers: docker.models.container.Container = client.containers.list(  # pylint: disable=E1101
-        filters={"ancestor": "postgres"}
+    postgres_containers: docker.models.container.Container = (
+        client.containers.list(  # pylint: disable=E1101
+            filters={"ancestor": "postgres"}
+        )
     )
     return postgres_containers[0]
 
@@ -508,7 +510,9 @@ class TimelinkDatabase:
         row_count = []
         with self.session() as session:
             for table in tables_names:
-                length = session.scalar(select(func.count()).select_from(text(table)))  # pylint: disable=not-callable
+                length = session.scalar(
+                    select(func.count()).select_from(text(table))
+                )  # pylint: disable=not-callable
                 row_count.append((table, length))
         return row_count
 
@@ -562,7 +566,7 @@ class TimelinkDatabase:
             if groupname is not None:
                 gname = groupname
             else:
-                gname = 'class'
+                gname = "class"
 
             Entity.group_models[gname] = Entity.get_orm_for_pom_class(pom_class)
 
@@ -626,7 +630,12 @@ class TimelinkDatabase:
         return result_pydantic
 
     def get_import_status(
-        self, kleio_files: List[KleioFile] = None, path=None, recurse=True, status=None, match_path=False
+        self,
+        kleio_files: List[KleioFile] = None,
+        path=None,
+        recurse=True,
+        status=None,
+        match_path=False,
     ) -> List[KleioFile]:
         """Get the import status of the kleio files
 
@@ -656,7 +665,9 @@ class TimelinkDatabase:
                 kleio_files = self.get_kleio_server().translation_status(
                     path=path, recurse=recurse
                 )
-        files: List[KleioFile] = get_import_status(self, kleio_files=kleio_files, match_path=match_path)
+        files: List[KleioFile] = get_import_status(
+            self, kleio_files=kleio_files, match_path=match_path
+        )
         if status is not None:
             files = [file for file in files if file.import_status.value == status]
         return files
@@ -687,20 +698,20 @@ class TimelinkDatabase:
             List[KleioFile]: list of kleio files with field import_status
         """
 
-        kleio_files: List[KleioFile] = get_import_status(self,
-                                                         kleio_files,
-                                                         match_path=match_path)
+        kleio_files: List[KleioFile] = get_import_status(
+            self, kleio_files, match_path=match_path
+        )
         return [
             file
             for file in kleio_files
             if (
-                file.import_status == import_status_enum.N or
-                file.import_status == import_status_enum.U  # noqa: W503
-            ) or
-            (  # noqa: W503
+                file.import_status == import_status_enum.N
+                or file.import_status == import_status_enum.U  # noqa: W503
+            )
+            or (  # noqa: W503
                 with_import_errors and file.import_status == import_status_enum.E
-            ) or
-            (  # noqa: W503
+            )
+            or (  # noqa: W503
                 with_import_warnings and file.import_status == import_status_enum.W
             )  # noqa: W503
         ]
@@ -769,9 +780,13 @@ class TimelinkDatabase:
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             logging.debug("Waiting for translations to finish")
-            pfiles = self.kserver.translation_status(path=path, recurse="yes", status="P")
+            pfiles = self.kserver.translation_status(
+                path=path, recurse="yes", status="P"
+            )
 
-            qfiles = self.kserver.translation_status(path=path, recurse="yes", status="Q")
+            qfiles = self.kserver.translation_status(
+                path=path, recurse="yes", status="Q"
+            )
             # TODO: change to import as each translation finishes
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(1)
@@ -841,8 +856,8 @@ class TimelinkDatabase:
         See :func:`timelink.api.models.person.get_person`
 
         """
-        if 'db' not in kwargs and 'session' not in kwargs:
-            kwargs['db'] = self
+        if "db" not in kwargs and "session" not in kwargs:
+            kwargs["db"] = self
         return timelink.api.models.person.get_person(*args, **kwargs)
 
     def get_entity(self, *args, **kwargs) -> Entity:
