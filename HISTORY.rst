@@ -6,13 +6,12 @@ History
 -------------------
 
 * Add model for RealEntiy, imports Real Entities (sameas and authority records).
-#22, #21 (only Real Entities)
+          #22, #21 (only Real Entities)
 * Improve rendering of extra_info in Kleio
 * Removes Kleio-home from path when storing Kleio files #20
 * Fixes problem with checking length of content for numeric fields #54
 * Implements #53 facilitates access to ORM models using group names.
 
-Improves disp
 
 1.1.13 (2024-09-07)
 -------------------
