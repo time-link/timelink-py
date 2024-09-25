@@ -241,12 +241,24 @@ class Entity(Base):
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def render_id(self):
+        """Return the id of the entity in a kleio format
+
+        Does not return the id if it starts with an underscore"""
         if self.id[:1] == "_":
             return ""
         else:
             return f"/id={self.id}"
 
-    def to_kleio(self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs):
+    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=True, **kwargs):
+        """Return a string representation of the entity in kleio format
+
+        Args:
+            self_string (str, optional): string to use as the entity name. Defaults to None.
+            show_contained (bool, optional): show the contained entities. Defaults to True.
+            ident (str, optional): indentation string. Defaults to "".
+            ident_inc (str, optional): increment of indentation. Defaults to "  ".
+
+        """
         if self_string is None:
             s = f"{ident}{str(self)}"
         else:

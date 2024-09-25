@@ -30,9 +30,9 @@ class Geoentity(Entity):
         )
 
     def __str__(self):
-        self.to_kleio(show_contained=False)
+        return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", width=80, **kwargs) -> str:
         if self.name is None:
             name = ""
         else:
