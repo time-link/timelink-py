@@ -34,7 +34,7 @@ def test_quote_long_text_with_text_containing_quotes():
 def test_quote_long_text_with_text_containing_newlines():
     text_with_newlines = "This text\ncontains\nnewlines."
     s = quote_long_text(text_with_newlines, initial_indent="", indent="", width=80)
-    assert s == f'"""\n{text_with_newlines}\n"""'
+    assert s == f'"""{text_with_newlines}\n"""'
 
 
 def test_quote_long_text_with_text_containing_special_chars():
