@@ -302,6 +302,14 @@ def test_sources_get(setup):
     assert sources is not None
 
 
+def tests_get_logs(setup):
+    """Test if logs are retrieved"""
+    kserver: KleioServer = setup
+    logs = kserver.get_logs(tail=10)
+    print(logs)
+    assert logs is not None
+
+
 def test_homepage_get(setup):
     """Test if homepage is retrieved"""
     url = "https://timelink.uc.pt/kleio"

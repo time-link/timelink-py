@@ -358,6 +358,24 @@ class KleioServer:
         """
         return self.container
 
+    def get_logs(self, **kwargs):
+        """Get the logs of the kleio server container
+
+        Args:
+            **kwargs: arguments to pass to docker container logs:
+            tail (str): number of lines to show from the end of the logs
+            since (str): show logs since a datetime timestamp integer seconds
+            until (str): show logs until a datetime timestamp integer seconds
+            timestamps (bool): show timestamps
+            follow (bool): follow log output
+
+        Returns:
+            str: kleio server logs
+
+        """
+
+        return self.container.logs(**kwargs).decode("utf-8")
+
     def get_url(self):
         """Get the kleio server url
 
