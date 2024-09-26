@@ -5,11 +5,13 @@ MIT License, no warranties.
 
 from sqlalchemy import Column, String, ForeignKey
 
-from timelink.kleio.utilities import quote_long_text
+from timelink.kleio.utilities import quote_long_text, get_extra_info as gxi, render_with_extra_info as rxi
 from .entity import Entity
 
 
 class Geoentity(Entity):
+    """ represents a geographical entity."""
+
     __tablename__ = "geoentities"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
@@ -30,15 +32,17 @@ class Geoentity(Entity):
         )
 
     def __str__(self):
-        self.to_kleio(show_contained=False)
+        return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80) -> str:
-        if self.name is None:
-            name = ""
+    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=False, **kwargs) -> str:
+        if self_string is None:
+            gname = self.groupname
         else:
-            name = self.name + "/"
-        r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}{self.render_id()}"
-        if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
+            gname = self_string
+        width = kwargs.get("width", 80)
+        obs, extra_info = gxi(self.obs)
+        r = f"{gname}${rxi('name',self.name, extra_info=extra_info, initial_indent='',  width=width)}{self.render_id()}"
+        if obs is not None and len(self.obs.strip()) > 0:
+            r = f"{r}/obs={quote_long_text(obs.strip(), width=width)}"
         r = super().to_kleio(self_string=r, ident=ident, ident_inc=ident_inc, width=width)
         return r

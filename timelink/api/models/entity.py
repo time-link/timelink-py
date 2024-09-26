@@ -239,7 +239,7 @@ class Entity(Base):
         else:
             return f"/id={self.id}"
 
-    def to_kleio(self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs):
+    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=True, **kwargs):
         """ conver the entity to a kleio string
 
         Args:

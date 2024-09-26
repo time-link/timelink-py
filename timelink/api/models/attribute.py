@@ -46,10 +46,13 @@ class Attribute(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, show_contained=False, ident="", ident_inc="  ", **kwargs) -> str:
-        _ = show_contained  # unused
+    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=False, **kwargs):
         obs, extra_info = get_extra_info(self.obs)
-        r = f"{self.groupname}${quote_long_text(self.the_type)}"
+        if self_string is not None:
+            r = self_string
+        else:
+            r = f"{self.groupname}"
+        r = f"{r}${quote_long_text(self.the_type)}"
         r += f"/{render_with_extra_info('value', self.the_value, extra_info=extra_info, **kwargs)}/"
         r += f"{render_with_extra_info('the_date', self.the_date, extra_info=extra_info, **kwargs)}"
         if obs is not None and len(obs.strip()) > 0:
