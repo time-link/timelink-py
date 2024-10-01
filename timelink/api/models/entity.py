@@ -230,6 +230,8 @@ class Entity(Base):
         )
 
     def __str__(self):
+        if self.groupname is None:
+            return f"{self.pom_class}${kleio_escape(self.id)}"
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def render_id(self):
