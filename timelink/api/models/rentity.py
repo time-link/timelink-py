@@ -143,7 +143,7 @@ class REntity(Entity):
     def contains(self):
         # get the sqlalchemy session of self
         session = object_session(self)
-        # collect all the entities that are linked to this real entity and return the cones they contain
+        # collect all the entities that are linked to this real entity and return the ones they contain
         return list(
             chain.from_iterable(
                 session.get(Entity, occ.entity).contains for occ in self.occurrences
