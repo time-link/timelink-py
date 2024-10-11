@@ -317,7 +317,7 @@ class PomSomMapper(Entity):
         for each class. Use pom_class.ensure_mapping() method to dynamically
         produce the ORM class
 
-        :return: A list of SomPomMappers object for each class in the db
+        :return: A list of PomSomMappers object for each class in the db
         """
 
         stmt = select(cls)

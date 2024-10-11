@@ -7,6 +7,27 @@ from .entity import Entity
 
 
 class Relation(Entity):
+    """ represents a relation between two entities.
+
+    Relations have a type, a value, a date and an optional observation.
+
+    Args:
+        id (str): the id of the relation
+        origin (str): the id of the origin entity
+        destination (str): the id of the destination entity
+        the_type (str): the type of the relation
+        the_value (str): the value of the relation
+        the_date (str): the date of the relation
+        obs (str): an observation about the relation
+
+    Also, for the entity super class:
+        groupname (str): the name of the group
+        inside (str): the id of the containing entity
+        the_line (str): the line of the entity in the source
+        the_level (str): the level of the entity in the source
+        the_order (str): the order of the entity in the source
+
+    """
     __tablename__ = "relations"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)

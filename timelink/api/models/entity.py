@@ -13,8 +13,13 @@ from sqlalchemy.orm import backref  # pylint: disable=import-error
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 from sqlalchemy.orm import relationship  # pylint: disable=import-error
+from sqlalchemy.orm import object_session  # pylint: disable=import-error
 
-from timelink.kleio.utilities import kleio_escape, get_extra_info
+from timelink.kleio.utilities import (
+    kleio_escape,
+    get_extra_info,
+    render_with_extra_info,
+)
 from .base_class import Base
 
 
@@ -62,9 +67,17 @@ class Entity(Base):
     #: datetime: when this entity was added to the full text index
     indexed = mapped_column(DateTime, index=True, nullable=True)
 
+    # This is defined in attribute.py
+    # Entity.attributes = relationship(
+    #   "Attribute", foreign_keys=[Attribute.entity], back_populates="the_entity"
+    #   )
+
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
+
+    # This is defined in REntity.py
+    # links = relationship("Link", back_populates="entity_rel", cascade="all, delete-orphan")
 
     # this based on
     # https://stackoverflow.com/questions/28843254
@@ -194,6 +207,49 @@ class Entity(Base):
         else:
             return None
 
+    def add_attribute(self, attribute):
+        """Add an attribute to the entity"""
+        if attribute.inside is None:
+            attribute.inside = self.id
+        self.attributes.append(attribute)
+
+    def add_relation(self, relation):
+        """Add a relation to the entity"""
+        if relation.inside is None:
+            relation.inside = self.id
+        if relation.origin is None or self.id == relation.origin:
+            # no origin, this is the origin
+            relation.origin = self.id
+            self.rels_out.append(relation)
+        elif relation.destination is None or self.id == relation.destination:
+            # no destination, this is the destination
+            relation.destination = self.id
+            self.rels_in.append(relation)
+        else:
+            raise ValueError("Relation does not belong to this entity")
+
+    def with_extra_info(self):
+        """Returns a copy of the entity with field values rendered with extra information
+
+        Extra_info is current stored as json in the obs field of the entity.
+        """
+        # the the current session
+        session = object_session(self)
+        if session is None:
+            raise ValueError("Entity must be in a session to get extra info")
+        # create a new object of the same class
+        new_entity = self.__class__()
+        my_pom_class = session.get(Entity, self.pom_class)
+
+        obs, extra_info = self.get_extra_info()
+        for class_attr in my_pom_class.class_attributes:
+            nvalue = render_with_extra_info(
+                class_attr.name, getattr(self, class_attr.colname), extra_info
+            )
+            setattr(new_entity, class_attr.colname, nvalue)
+        new_entity.obs = obs
+        return new_entity
+
     def get_extra_info(self) -> tuple[str, dict]:
         """Return a dictionatry with extra information about this entity or None
 
@@ -212,7 +268,7 @@ class Entity(Base):
 
             {'field_name': {'comment': text_of_comment, 'original': original_wording}}
         """
-        obs = getattr(self, 'obs', None)
+        obs = getattr(self, "obs", None)
         return get_extra_info(obs)
 
     def __repr__(self):
@@ -235,14 +291,16 @@ class Entity(Base):
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def render_id(self):
-        """ if the id begins with an underscore, it is a temporary id and returns an empty string"""
+        """if the id begins with an underscore, it is a temporary id and returns an empty string"""
         if self.id[:1] == "_":
             return ""
         else:
             return f"/id={self.id}"
 
-    def to_kleio(self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs):
-        """ conver the entity to a kleio string
+    def to_kleio(
+        self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
+    ):
+        """conver the entity to a kleio string
 
         Args:
             self_string: the string to be used to represent the entity
@@ -255,12 +313,37 @@ class Entity(Base):
         else:
             s = f"{ident}{self_string}"
 
-        contained_entities: List[Entity] = self.contains
+        contained_entities: List[Entity] = [
+            entity
+            for entity in self.contains
+            if (entity not in self.attributes)
+            and (entity not in self.rels_in)
+            and (entity not in self.rels_out)
+        ]
+
+        # we now get the attributes, and relations with dates
+        attributes = [
+            (a.the_date, a)
+            for a in self.attributes]
+
+        relations = [
+            (r.the_date, r)
+            for r in self.rels_in + self.rels_out
+            if r.the_type not in ['function-in-act', 'identification']]
+
+        # sort by the_date
+        attributes.sort(key=lambda x: x[0] if x[0] is not None else "9999")
+        relations.sort(key=lambda x: x[0] if x[0] is not None else "9999")
+
         # sort by the_order
         if show_contained and contained_entities is not None:
-            contained_entities.sort(key=lambda x: x.the_order)
+            contained_entities.sort(
+                key=lambda x: x.the_order if x.the_order is not None else 999999
+            )
             for inner in contained_entities:
-                innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc, **kwargs)
+                innerk = inner.to_kleio(
+                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                )
                 if innerk != "":
                     s = f"{s}\n{innerk}"
         return s

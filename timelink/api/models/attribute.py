@@ -49,7 +49,11 @@ class Attribute(Entity):
     def to_kleio(self, show_contained=False, ident="", ident_inc="  ", **kwargs) -> str:
         _ = show_contained  # unused
         obs, extra_info = get_extra_info(self.obs)
-        r = f"{self.groupname}${quote_long_text(self.the_type)}"
+        if self.groupname is None:
+            myname = "attribute"
+        else:
+            myname = self.groupname
+        r = f"{myname}${quote_long_text(self.the_type)}"
         r += f"/{render_with_extra_info('value', self.the_value, extra_info=extra_info, **kwargs)}/"
         r += f"{render_with_extra_info('the_date', self.the_date, extra_info=extra_info, **kwargs)}"
         if obs is not None and len(obs.strip()) > 0:
