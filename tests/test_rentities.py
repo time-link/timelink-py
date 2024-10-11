@@ -8,12 +8,13 @@ from pathlib import Path
 import random
 
 import pytest
+from sqlalchemy import select
 
 from tests import TEST_DIR, skip_on_travis
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
-from timelink.api.models.rentity import REntity, REntityStatus as STATUS
+from timelink.api.models.rentity import Link, REntity, REntityStatus as STATUS
 from timelink.api.database import (
     TimelinkDatabase,
     start_postgres_server,
@@ -22,6 +23,10 @@ from timelink.api.database import (
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
+
+db_path = Path(TEST_DIR, "sqlite")
+rentity_db = "rentities"
+# rentity_db = ":memory:"
 
 # set a list of files to be imported before the tests begin
 file: Path = Path(TEST_DIR, "timelink-home/projects/test-project/sources/reference_sources/sameas/sameas-tests.xml")
@@ -37,7 +42,12 @@ def dbsystem(request):
         db_user = get_postgres_container_user()
         db_pwd = get_postgres_container_pwd()
 
-    database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
+    database = TimelinkDatabase(db_name=db_name,
+                                db_type=db_type,
+                                db_path=db_path,
+                                db_url=db_url,
+                                db_user=db_user,
+                                db_pwd=db_pwd)
     with database.session() as sess:
         try:
             for file in import_files:
@@ -56,7 +66,7 @@ def dbsystem(request):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", rentity_db, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -100,10 +110,15 @@ def test_link_two_occ(dbsystem):
         random.shuffle(occurrences)
 
         # erase any previous real entities
-        for occ in occurrences:
-            real_id = REntity.get_real_entity(occ, session=session)
-            if real_id:
-                REntity.delete(real_id, session=session)
+        # select distinct real_id from links where entity_id in (occurrences)
+        stmt = select(Link.rid).where(Link.entity.in_(occurrences)).distinct()
+
+        rids = session.execute(stmt).scalars().all()
+
+        for real_id in rids:
+            REntity.delete(real_id, session=session)
+            link = session.query(Link).where(Link.rid == real_id).all()
+            print(link)
 
         # test all the combinations
         occ1 = occurrences[0]
@@ -140,7 +155,7 @@ def test_link_two_occ(dbsystem):
 
         # check that the real entity has the correct number of occurrences
         rel_entity = session.get(REntity, r6.id)
-        occs = [link.entity for link in rel_entity.occurrences]
+        occs = [link.entity for link in rel_entity.links]
         assert len(occs) == 6
         assert occ1 in occs
         assert occ2 in occs
@@ -167,7 +182,7 @@ def test_link_two_occ(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", rentity_db, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -190,7 +205,7 @@ def test_make_real(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", rentity_db, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -215,13 +230,26 @@ def test_import_aregister(dbsystem):
         assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
         kleio = real_person.to_kleio()
         assert len(kleio) > 0
+        # Import again
+        try:
+            stats = import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+        sfile = stats["file"]
+        assert "rentities" in sfile.name
+        real_person = session.get(REntity, "rp-66")
+        assert real_person is not None, (
+            "could not get a real person from identifications import"
+        )
+        assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
 
 
 @pytest.mark.parametrize(
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", rentity_db, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
