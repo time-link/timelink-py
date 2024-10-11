@@ -5,6 +5,8 @@
 
 Kleio Groups are the building blocks for transcription of historical sources.
 """
+
+from datetime import datetime
 import json
 import textwrap
 from os import linesep as nl
@@ -109,10 +111,15 @@ def render_with_extra_info(element_name, element_value, extra_info, **kwargs) ->
     :param element_value: The value of the element from the db
     :type element_value: str
     :param extra_info: The extra information dictionary
-    :type extra_info: dict
+    :type extra_info: dict, or str (wiil be handled by :py:func:`get_extra_info`)
     :param kwargs: Additional parameters for :py:func:`quote_long_text`
     :rtype: str
     """
+    if type(extra_info) is not dict:
+        if type(extra_info) is str:
+            _notused, extra_info = get_extra_info(extra_info)
+        else:
+            extra_info = {}
     element_value = quote_long_text(element_value, **kwargs)
     extras = extra_info.get(element_name, {})
     element_comment = extras.get("comment", None)
@@ -123,3 +130,75 @@ def render_with_extra_info(element_name, element_value, extra_info, **kwargs) ->
     if element_original is not None:
         element_value = f"{element_value}%{quote_long_text(element_original, **kwargs)}"
     return element_value
+
+
+def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
+    """Convert a Timelink date in the format YYYYMMDD to a Python datetime
+
+    Args:
+    tl_date: a string representing a date in the format YYYYMMDD
+    format: the format used to scan the date string
+    Dates can be incomplete: 1586 or 1586-03 or 158603
+
+    Zeros can be used to register unknown values: 15860000 or 15860300
+
+    Missing information is handled in the following way:
+    * If the year is missing returns None
+    * If the month is missing, returns the 2nd of July of that year (middle day of the year)
+    * If the day is missing, returns the 15th of the month (middle day of the month)
+    """
+    # return None if tl_date is None
+    if tl_date is None:
+        return None
+    # if tl_date is not a string, return None
+    if not isinstance(tl_date, str):
+        return None
+    # remove dashes
+    tl_date_clean = tl_date.replace("-", "")
+    # pad tl_date with zeros up to length 8
+    tl_date_clean = tl_date_clean.ljust(8, "0")
+    year, month, day = tl_date_clean[:4], tl_date_clean[4:6], tl_date_clean[6:]
+    # handle the case where month is zero by setting the month to 07 and day to 02 (middle day of year)
+    if year == "0000":
+        return None
+    elif month == "00":
+        month = "07"
+        day = "02"
+    elif day == "00":
+        day = "15"
+
+    new_date = year + month + day
+    try:
+        result = datetime.strptime(new_date, format)
+    except ValueError as BadDate:
+        print(tl_date, tl_date_clean)
+        print(BadDate)
+        result = None
+    return result
+
+
+def format_timelink_date(tl_datet) -> str:
+    """Format a timelink date YYYYMMDD and variantes to nice string"""
+    # return empty string if tl_datet is None
+    if tl_datet is None:
+        return ""
+    # return empty string if tl_datet is not a string
+    if not isinstance(tl_datet, str):
+        return ""
+    # fill with zeros
+    tl_datet = tl_datet.ljust(8, "0")
+    # if tl_datet is '00000000' return empty string
+    if tl_datet == "00000000":
+        return ""
+    # if date ends in '0000' return just the first 4 characters
+    if tl_datet.endswith("0000"):
+        return tl_datet[:4]
+    # if date ends in '00' return the first 6 characters with an hifen between 4th and 5th characters
+    if tl_datet.endswith("00"):
+        return tl_datet[:4] + "-" + tl_datet[4:6]
+    # Otherwise convert the date
+    py_date = convert_timelink_date(tl_datet)
+    if py_date is None:
+        return ""
+    # return date in format YYYY-MM-DD
+    return py_date.strftime("%Y-%m-%d")
