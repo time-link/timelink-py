@@ -310,6 +310,11 @@ class TimelinkDatabase:
         db_container: database container
         kserver: kleio server attached to this database, used for imports
 
+    Main methods:
+        * table_names: get the current tables in the database
+        * table_row_count: get the number of rows of each table in the database
+        * get_models: get ORM Models for using in Queries
+
 
     """
 
@@ -445,12 +450,7 @@ class TimelinkDatabase:
             create_database(self.engine.url)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.metadata = models.Base.metadata
-        self.create_tables()
-        with self.session() as session:
-            session.commit()
-            session.rollback()
-            self.load_database_classes(session)
-            self.ensure_all_mappings(session)
+        self.create_db()
 
         if kleio_server is not None:
             self.set_kleio_server(kleio_server)
@@ -464,6 +464,17 @@ class TimelinkDatabase:
                     update=kleio_update,
                     stop_duplicates=stop_duplicates,
                 )
+
+    def create_db(self):
+        self.create_tables()
+        self.create_views
+        with self.session() as session:
+            session.commit()
+            session.rollback()
+            session.expire_on_commit = False
+            self.load_database_classes(session)
+            self.ensure_all_mappings(session)
+            session.commit()
 
     def set_kleio_server(self, kleio_server: KleioServer):
         """Set the kleio server for imports
@@ -601,13 +612,16 @@ class TimelinkDatabase:
         """
         return self.metadata
 
-    def drop_db(self, session):
+    def drop_db(self, session=None):
         """
         This will drop all timelink related tables from the database.
         It will not touch non timelink tables that might exist.
         :param session:
         :return:
         """
+        if session is None:
+            session = self.session()
+
         session.rollback()
         self.load_database_classes(session)
         self.ensure_all_mappings(session)
@@ -888,7 +902,7 @@ class TimelinkDatabase:
         """
         if isinstance(class_id, list):
             return [self.get_model_by_name(c, make_alias=True) for c in class_id]
-        return self.get_model_by_name(class_id, make_alias=False)
+        return self.get_model_by_name(class_id, make_alias=True)
 
     def get_model_by_name(self, class_or_groupname: str, make_alias=False):
         """Get the ORM class for a entity type by name
@@ -917,17 +931,69 @@ class TimelinkDatabase:
             else:
                 return orm_model
 
-    def get_table(self, class_id: str):
-        """Get the ORM table for a entity type
+    def get_table(self, table_or_class: str | Entity) -> Table:
+        """Get a table object from the database
+
+        Args:
+            table_or_class (str | Entity): table name, model name of ORM model
 
         Returns:
-            Table
+            sqlAlchemy Table: table object
+
+
         """
-        model = self.get_model(class_id)
-        return model.__table__
+        if type(table_or_class) is str:
+            model = self.get_model(table_or_class)
+            if model is not None:
+                return model.__table__
+            elif table_or_class in self.table_names():
+                table = self.metadata.tables.get(table_or_class, None)
+                if table is not None:
+                    return table
+        elif issubclass(table_or_class, Entity):
+            return table_or_class.__table__
+        return None
+
+    def get_columns(self, class_or_table: str):
+        """Get the columns for a entity type
+
+        Returns:
+            list: list of columns
+        """
+
+        Model = self.get_model_by_name(class_or_table, make_alias=False)
+        if Model is None:
+            if class_or_table in self.table_names():
+                return list(self.get_table(class_or_table).columns)
+            else:
+                raise ValueError(f"{class_or_table} not found")
+
+        insp = inspect(Model)
+        return list(insp.columns)
+
+    def describe(self, argument, **kwargs):
+        """Describe a table or a model
+          if argument is a string, it is assumed to be a table name
+          if argument is a model, it is assumed to be a ORM model
+          the method prints the columns of the table or model
+        Args:
+            argument: table name or model
+            kwargs: additional arguments to pass to the describe method
+        """
+        columns = []
+        if isinstance(argument, str):
+            columns = self.get_columns(argument)
+        elif issubclass(argument, Entity):
+            Model = argument
+            insp = inspect(Model)
+            columns = list(insp.columns)
+        if len(columns) > 0:
+            for col in columns:
+                fkey = str(col.foreign_keys) if col.foreign_keys else ""
+                print(col.table, col.name, col.type, fkey)
 
     def get_pattribute_view(self):
-        """Return the nattribute view.
+        """Return the pattribute view.
 
         Returns a sqlalchemy table linked to the pattributes view of timelink/MHK databases
         This views joins the table "persons" and the table "attributes" providing attribute
@@ -1042,9 +1108,9 @@ class TimelinkDatabase:
         Args:
             ids (List): list of ids
             filename ([type]): destination file path
-            kleio_group ([type]): text to be used as initial kleio group
-            source_group ([type]): text to be used as source group
-            act_group ([type]): text to be used as act group
+            kleio_group ([type]): initial kleio group
+            source_group ([type]): source group
+            act_group ([type]): act group
         """
 
         with open(filename, "w") as f:
