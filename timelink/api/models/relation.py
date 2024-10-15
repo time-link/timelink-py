@@ -7,7 +7,7 @@ from .entity import Entity
 
 
 class Relation(Entity):
-    """ represents a relation between two entities.
+    """represents a relation between two entities.
 
     Relations have a type, a value, a date and an optional observation.
 
@@ -28,6 +28,7 @@ class Relation(Entity):
         the_order (str): the order of the entity in the source
 
     """
+
     __tablename__ = "relations"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
@@ -86,26 +87,45 @@ class Relation(Entity):
         )
 
     def __str__(self):
-        if self.dest is not None and self.dest.pom_class == "person":
-            r = (
-                f"rel${kleio_escape(self.the_type)}/{quote_long_text(self.the_value)}/{kleio_escape(self.dest.name)}"
-                f"/{self.destination}/{self.the_date}"
-            )
-        else:
-            r = (
-                f"rel${self.the_type}/{quote_long_text(self.the_value)}/"
-                f"{self.destination}/{self.the_date}"
-            )
+        return self.to_kleio()
+
+    def to_kleio(self, ident="", ident_inc="  ", **kwargs):
+        if self.the_type == "function-in-act":
+            function = self.the_value
+            act_type = self.dest.groupname
+            act_date = self.dest.the_date
+            act_id = self.dest.id
+            return f"{ident}{act_type}${act_id}/{act_date}/function={function}"
+        outgoing = kwargs.get("outgoing", True)
+        if outgoing:
+            if self.dest is not None and self.dest.pom_class in [
+                "person",
+                "object",
+                "geoentity",
+            ]:
+                relname = self.dest.name
+            else:
+                relname = self.dest.groupname
+            label = "rel"
+        else:  # relation registred at the destination
+            if self.org is not None and self.org.pom_class in [
+                "person",
+                "object",
+                "geoentity",
+            ]:
+                relname = self.org.name
+            else:
+                relname = self.org.groupname
+            label = "<rel"
+
+        r = (
+            f"{ident}{label}${kleio_escape(self.the_type)}/"
+            f"{quote_long_text(self.the_value)}/"
+            f"{kleio_escape(relname)}/{self.the_date}"
+        )
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
-
-    def to_kleio(self, **kwargs):
-        if self.the_type == "function-in-act":
-            return ""
-        else:
-            # call to_kleio from the parent class
-            return super().to_kleio(**kwargs)
 
 
 Entity.rels_out = relationship(

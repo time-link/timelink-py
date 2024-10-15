@@ -25,12 +25,14 @@ from timelink.api.database import (
 pytestmark = skip_on_travis
 
 db_path = Path(TEST_DIR, "sqlite")
-rentity_db = "rentities"
+RENTITY_DB = "rentities"
 # rentity_db = ":memory:"
 
 # set a list of files to be imported before the tests begin
-file: Path = Path(TEST_DIR, "timelink-home/projects/test-project/sources/reference_sources/sameas/sameas-tests.xml")
-import_files = [file]
+files: Path = Path(
+    TEST_DIR,
+    "timelink-home/projects/test-project/sources/reference_sources/sameas/sameas-tests.xml")
+import_files = [files]
 
 
 @pytest.fixture(scope="module")
@@ -50,15 +52,15 @@ def dbsystem(request):
                                 db_pwd=db_pwd)
     with database.session() as sess:
         try:
-            for file in import_files:
-                import_from_xml(file, session=sess)
+            for xfile in import_files:
+                import_from_xml(xfile, session=sess)
         except Exception as exc:
             print(exc)
             raise
     try:
         yield database
     finally:
-        database.drop_db
+        database.drop_db()
         database.session().close()
 
 
@@ -66,7 +68,7 @@ def dbsystem(request):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", rentity_db, None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -182,7 +184,7 @@ def test_link_two_occ(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", rentity_db, None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -205,7 +207,7 @@ def test_make_real(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", rentity_db, None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -249,7 +251,7 @@ def test_import_aregister(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", rentity_db, None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),

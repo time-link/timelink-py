@@ -442,7 +442,9 @@ class REntity(Entity):
 
                 if real_id is None:
                     if real_id_prefix is None:
-                        ridp = "r" + eid1.pom_class[0]  # we take firs
+                        ridp = "r" + eid1.pom_class[0]  # we take first letter of the class
+                    else:
+                        ridp = real_id_prefix
                     real_id = cls.generate_id(session=session)
                     real_id = f"{ridp}{real_id}"
                 else:
@@ -637,6 +639,8 @@ class REntity(Entity):
             if real_id is None:
                 if real_id_prefix is None:
                     ridp = "r" + eid1.pom_class[0]  # we take firs
+                else:
+                    ridp = real_id_prefix
                 real_id = cls.generate_id(session=session)
                 real_id = f"{ridp}-{real_id}"
 

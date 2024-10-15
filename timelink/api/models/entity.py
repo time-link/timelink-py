@@ -14,6 +14,7 @@ from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 from sqlalchemy.orm import relationship  # pylint: disable=import-error
 from sqlalchemy.orm import object_session  # pylint: disable=import-error
+from sqlalchemy import inspect  # pylint: disable=import-error
 
 from timelink.kleio.utilities import (
     kleio_escape,
@@ -71,13 +72,19 @@ class Entity(Base):
     # Entity.attributes = relationship(
     #   "Attribute", foreign_keys=[Attribute.entity], back_populates="the_entity"
     #   )
+    attributes = None
 
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
 
+    rels_in = None
+    rels_out = None
+
     # This is defined in REntity.py
     # links = relationship("Link", back_populates="entity_rel", cascade="all, delete-orphan")
+
+    links = None
 
     # this based on
     # https://stackoverflow.com/questions/28843254
@@ -89,7 +96,7 @@ class Entity(Base):
     )
 
     # group_models = contains the correspondence between groupname and ORM class
-    group_models = dict()
+    group_models = {}
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
@@ -120,11 +127,11 @@ class Entity(Base):
     @classmethod
     def get_orm_entities_classes(cls):
         """Currently defined ORM classes that extend Entity
-         (including Entity itself)
+        (including Entity itself)
 
 
         Returns:
-             list: List of ORM classes
+            list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
         sc.append(Entity)
@@ -135,7 +142,7 @@ class Entity(Base):
         """Ids of SomPomMapper references by orm classes
 
         Returns:
-             List[str]: List of strings
+            List[str]: List of strings
         """
         return [
             aclass.__mapper_args__["polymorphic_identity"]
@@ -188,7 +195,7 @@ class Entity(Base):
         return cls.get_som_mapper_to_orm_as_dict().get(pom_class, None)
 
     @classmethod
-    def get_entity(cls, id: str, session=None):
+    def get_entity(cls, eid: str, session=None):
         """
         Get an Entity from the database. The object returned
         will be of the ORM class defined by mappings.
@@ -196,11 +203,11 @@ class Entity(Base):
         :param session: current session
         :return: an Entity object of the proper class for the mapping
         """
-        entity = session.get(Entity, id)
+        entity = session.get(Entity, eid)
         if entity is not None:
             if entity.pom_class != "entity":
                 orm_class = Entity.get_orm_for_pom_class(entity.pom_class)
-                object_for_id = session.get(orm_class, id)
+                object_for_id = session.get(orm_class, eid)
                 return object_for_id
             else:
                 return entity
@@ -239,15 +246,17 @@ class Entity(Base):
             raise ValueError("Entity must be in a session to get extra info")
         # create a new object of the same class
         new_entity = self.__class__()
-        my_pom_class = session.get(Entity, self.pom_class)
-
+        mapper = inspect(type(self))
+        field_to_column = {col.key: col.columns[0].name for col in list(mapper.column_attrs)}
         obs, extra_info = self.get_extra_info()
-        for class_attr in my_pom_class.class_attributes:
+        for name, column in field_to_column.items():
             nvalue = render_with_extra_info(
-                class_attr.name, getattr(self, class_attr.colname), extra_info
+                name, getattr(self, column), extra_info
             )
-            setattr(new_entity, class_attr.colname, nvalue)
-        new_entity.obs = obs
+            setattr(new_entity, name, nvalue)
+
+        setattr(new_entity, "obs", obs)
+
         return new_entity
 
     def get_extra_info(self) -> tuple[str, dict]:
@@ -297,6 +306,30 @@ class Entity(Base):
         else:
             return f"/id={self.id}"
 
+    def dated_bio(self) -> dict:
+        """Return the bio of the entity with the date of the entity"""
+        bio = {}
+
+        if self.rels_in is not None:
+            for rel in self.rels_in:
+                date = rel.the_date
+                this_date_list = bio.get(date, [])
+                this_date_list.append(rel)
+                bio[date] = this_date_list
+        if self.rels_out is not None:
+            for rel in self.rels_out:
+                date = rel.the_date
+                this_date_list = bio.get(date, [])
+                this_date_list.append(rel)
+                bio[date] = this_date_list
+        if self.attributes is not None:
+            for attr in self.attributes:
+                date = attr.the_date
+                this_date_list = bio.get(date, [])
+                this_date_list.append(attr)
+                bio[date] = this_date_list
+        return bio
+
     def to_kleio(
         self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
     ):
@@ -313,27 +346,30 @@ class Entity(Base):
         else:
             s = f"{ident}{self_string}"
 
-        contained_entities: List[Entity] = [
-            entity
-            for entity in self.contains
-            if (entity not in self.attributes)
-            and (entity not in self.rels_in)
-            and (entity not in self.rels_out)
-        ]
+        contained_entities = list(
+            set(self.contains)
+            - set(self.rels_in)
+            - set(self.rels_out)
+            - set(self.attributes)
+        )
 
-        # we now get the attributes, and relations with dates
-        attributes = [
-            (a.the_date, a)
-            for a in self.attributes]
-
-        relations = [
-            (r.the_date, r)
-            for r in self.rels_in + self.rels_out
-            if r.the_type not in ['function-in-act', 'identification']]
-
-        # sort by the_date
-        attributes.sort(key=lambda x: x[0] if x[0] is not None else "9999")
-        relations.sort(key=lambda x: x[0] if x[0] is not None else "9999")
+        bio = self.dated_bio()
+        sorted_keys = sorted(bio.keys())
+        for date in sorted_keys:
+            date_list = bio[date]
+            for bio_item in date_list:
+                bio_item_xi = bio_item.with_extra_info()
+                if bio_item.pom_class == "relation":
+                    if bio_item.destination == self.id:
+                        rel_in = True
+                    else:
+                        rel_in = False
+                    kwargs["outgoing"] = not rel_in
+                bio_itemk = bio_item_xi.to_kleio(
+                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                )
+                if bio_itemk != "":
+                    s = f"{s}\n{bio_itemk}"
 
         # sort by the_order
         if show_contained and contained_entities is not None:
