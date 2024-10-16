@@ -249,13 +249,13 @@ class Entity(Base):
         mapper = inspect(type(self))
         field_to_column = {col.key: col.columns[0].name for col in list(mapper.column_attrs)}
         obs, extra_info = self.get_extra_info()
-        for name, column in field_to_column.items():
+        for name, __column in field_to_column.items():
             nvalue = render_with_extra_info(
-                name, getattr(self, column), extra_info
+                name, getattr(self, name), extra_info
             )
             setattr(new_entity, name, nvalue)
 
-        setattr(new_entity, "obs", obs)
+        setattr(new_entity, "obs", obs)  # noqa
 
         return new_entity
 
@@ -358,7 +358,7 @@ class Entity(Base):
         for date in sorted_keys:
             date_list = bio[date]
             for bio_item in date_list:
-                bio_item_xi = bio_item.with_extra_info()
+                bio_item_xi = bio_item
                 if bio_item.pom_class == "relation":
                     if bio_item.destination == self.id:
                         rel_in = True

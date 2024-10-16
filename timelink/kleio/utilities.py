@@ -60,6 +60,9 @@ def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048) -> 
     if width is None:
         width = 80
 
+    if type(txt) is not str:
+        txt = str(txt)
+
     # check if text already is triple quoted, starts with """ and end with """
     if txt.startswith('"""') and txt.endswith('"""'):
         return txt
@@ -120,7 +123,8 @@ def render_with_extra_info(element_name, element_value, extra_info, **kwargs) ->
             _notused, extra_info = get_extra_info(extra_info)
         else:
             extra_info = {}
-    element_value = quote_long_text(element_value, **kwargs)
+    if type(element_value) is not str:
+        element_value = quote_long_text(element_value, **kwargs)
     extras = extra_info.get(element_name, {})
     element_comment = extras.get("comment", None)
     element_original = extras.get("original", None)
