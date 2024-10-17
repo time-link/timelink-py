@@ -98,6 +98,14 @@ class REntity(Entity):
     different users have different opinions about the identity
     of the entities.
 
+    Fields:
+        id: id of the real entity
+        user: user that identified this real entity
+        description: description of the real entity
+        status: status of the real entity
+        obs: observations about the real entity
+        links: list of links to the entities that compose the real entity
+
 
     """
 
