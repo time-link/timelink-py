@@ -1,10 +1,10 @@
-kleio$/translations=19
+kleio$/translations=11
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-4
    fonte$sameas-tests/obs="""
 
-    File with occurrences of the sameas tag, to be used in tests.
-    Note that ids are prefixed with "sa-" to avoid conflicts with other ids.
-    """
+      File with occurrences of the sameas tag, to be used in tests.
+      Note that ids are prefixed with "sa-" to avoid conflicts with other ids.
+      """
 
       lista$sameas-dehergne/20/09/2024
 
@@ -82,7 +82,7 @@ kleio$/translations=19
             ls$morte/Rio Kan#Rio Nam Khan, em Laos?/15940000#afogado no naufrágio, a caminho do noviciato
             ls$dehergne/77/obs=Barradas, João (macaïste) 77 N. à Macao (v. 1570?). En 1594, en route pour entrer au noviciat, accompagne Ricci sur la rivière Kan où il fait naufrage et se noie. Pf. 25., DElia, I 341 et 344 n.
 
-            referido$Matteo Ricci/mesmo_que=deh-matteo-ricci/id=deh-joao-barradas-ref1
+            referido$Matteo Ricci/id=deh-joao-barradas-ref1
                ls$estadia/rio Kan#Rio Nam Khan, em Laos?/15940000
 
          n$Lazzaro Cattaneo/id=deh-lazzaro-cattaneo
