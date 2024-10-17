@@ -394,6 +394,8 @@ class TimelinkNotebook:
 
         """
         result = self.get_import_status(**kwargs)
+        if len(result) == 0:
+            return pandas.DataFrame()
         return result[
             [
                 "path",
