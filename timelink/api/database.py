@@ -83,7 +83,7 @@ def get_postgres_container() -> docker.models.containers.Container:
         raise RuntimeError("Docker is not running")
 
     client: docker.DockerClient = docker.from_env()
-    postgres_containers: docker.models.container.Container = (
+    postgres_containers: docker.models.container.Container = (  # pylint: disable=E1101
         client.containers.list(  # pylint: disable=E1101
             filters={"ancestor": "postgres"}
         )
@@ -522,7 +522,7 @@ class TimelinkDatabase:
         with self.session() as session:
             for table in tables_names:
                 length = session.scalar(
-                    select(func.count()).select_from(text(table))
+                    select(func.count()).select_from(text(table))  # pylint: disable=not-callable
                 )  # pylint: disable=not-callable
                 row_count.append((table, length))
         return row_count
@@ -835,7 +835,7 @@ class TimelinkDatabase:
                 kfile: KleioFile
                 with self.session() as session:
                     try:
-                        logging.info(f"Importing {kfile.path}")
+                        logging.info("Importing %s", kfile.path)
                         # TODO: #18 expose import_from_xml in TimelinkDatabase
                         stats = import_from_xml(
                             kfile.xml_url,
@@ -847,7 +847,7 @@ class TimelinkDatabase:
                                 "mode": "TL",
                             },
                         )
-                        logging.debug(f"Imported {kfile.path}: {stats}")
+                        logging.debug("Imported %s: %s", kfile.path, stats)
                         time.sleep(1)
                     except Exception as e:
                         logging.error("Unexpected error:")
