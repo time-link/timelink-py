@@ -89,13 +89,18 @@ class Relation(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, ident="", ident_inc="  ", **kwargs):
+    def to_kleio(self, ident="", **kwargs):  # noqa
         if self.the_type == "function-in-act":
             function = self.the_value
             act_type = self.dest.groupname
             act_date = self.dest.the_date
             act_id = self.dest.id
-            return f"{ident}{act_type}${act_id}/{act_date}/function={function}"
+
+            s = f"{ident}rel$function-in-act/{function}/{act_type}/{act_id}/{act_date}"
+            if self.the_line is not None:
+                s += f"/obs=line: {self.the_line}"
+            return s
+
         outgoing = kwargs.get("outgoing", True)
         if outgoing:
             if self.dest is not None and self.dest.pom_class in [

@@ -172,7 +172,7 @@ class REntity(Entity):
 
     def get_occurrences(self):
         """Get the occurrences of the real entity"""
-        return self.links
+        return [link.entity for link in self.links]
 
     @property
     def contains(self):
@@ -706,6 +706,10 @@ class REntity(Entity):
                 session.flush()
                 session.commit()
         return self
+
+    def is_inbound_relation(self, relation):
+        """Check if the relation is inbound to this real entity."""
+        return relation.destination in self.get_occurrences()
 
 
 class Link(Base):

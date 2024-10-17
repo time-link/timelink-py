@@ -68,7 +68,7 @@ class Act(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80, **kwargs) -> str:
         r = (
             f"{self.groupname}${self.id}"
             f"/{self.the_date}"
@@ -84,5 +84,6 @@ class Act(Entity):
             ident_inc=ident_inc,
             show_contained=show_contained,
             width=width,
+            **kwargs
         )
         return kleio

@@ -48,7 +48,9 @@ class ARegister(Entity):
         String, nullable=True, comment="name of the exporting database"
     )
     replace_mode: Mapped[Optional[str]] = mapped_column(
-        String, nullable=True, comment="backup mode means the file is ignored by default on import"
+        String,
+        nullable=True,
+        comment="backup mode means the file is ignored by default on import",
     )
     kleiofile: Mapped[Optional[str]] = mapped_column(
         String, index=True, comment="path of the kleio file"
@@ -61,7 +63,7 @@ class ARegister(Entity):
 
     def __repr__(self):
         sr = super().__repr__()
-        return (
+        return str(
             f"ARegister(id={sr}, "
             f'the_type="{self.the_type}", '
             f'the_date="{self.the_date}", '
@@ -75,17 +77,19 @@ class ARegister(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
-        r = (
-            f"{self.groupname}${self.id}/{self.the_date}"
-            f"/type={kleio_escape(self.the_type)}"
-            f"/ref={kleio_escape(self.ref)}"
-            f"/loc={kleio_escape(self.loc)}"
-            f'/kleiofile={kleio_escape(self.kleiofile)}"'
-            f"/replaces={self.replaces}"
-        )
-        if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
+    def to_kleio(self, show_contained=True, self_string=None, ident="", ident_inc="  ", width=80, **kwargs) -> str:
+        if self_string is None:
+            r = (
+                f"{self.groupname}${self.id}/{self.the_date}"
+                f"/type={kleio_escape(self.the_type)}"
+                f"/replace_mode={kleio_escape(self.replace_mode)}"
+                f"/the_date={kleio_escape(self.the_date)}"
+                f'/kleiofile={kleio_escape(self.kleiofile)}"'
+            )
+            if self.obs is not None and len(self.obs.strip()) > 0:
+                r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
+        else:
+            r = self_string
         r = super().to_kleio(
             self_string=r,
             ident=ident,

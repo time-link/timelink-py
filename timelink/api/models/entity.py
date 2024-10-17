@@ -247,12 +247,12 @@ class Entity(Base):
         # create a new object of the same class
         new_entity = self.__class__()
         mapper = inspect(type(self))
-        field_to_column = {col.key: col.columns[0].name for col in list(mapper.column_attrs)}
+        field_to_column = {
+            col.key: col.columns[0].name for col in list(mapper.column_attrs)
+        }
         obs, extra_info = self.get_extra_info()
         for name, __column in field_to_column.items():
-            nvalue = render_with_extra_info(
-                name, getattr(self, name), extra_info
-            )
+            nvalue = render_with_extra_info(name, getattr(self, name), extra_info)
             setattr(new_entity, name, nvalue)
 
         setattr(new_entity, "obs", obs)  # noqa
@@ -307,7 +307,11 @@ class Entity(Base):
             return f"/id={self.id}"
 
     def dated_bio(self) -> dict:
-        """Return the bio of the entity with the date of the entity"""
+        """Return the atributes and relations of the entity grouped by date
+
+        Returns a dictionary with the date as key and a list of attributes and relations as value
+
+        """
         bio = {}
 
         if self.rels_in is not None:
@@ -329,6 +333,13 @@ class Entity(Base):
                 this_date_list.append(attr)
                 bio[date] = this_date_list
         return bio
+
+    def is_inbound_relation(self, relation):
+        """Check if the relation is inbound to this entity.
+
+        Override in real entities or other special cases
+        """
+        return relation.destination == self.id
 
     def to_kleio(
         self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
@@ -360,14 +371,13 @@ class Entity(Base):
             for bio_item in date_list:
                 bio_item_xi = bio_item
                 if bio_item.pom_class == "relation":
-                    if bio_item.destination == self.id:
-                        rel_in = True
-                    else:
-                        rel_in = False
-                    kwargs["outgoing"] = not rel_in
+
+                    kwargs["outgoing"] = not self.is_inbound_relation(bio_item)
+
                 bio_itemk = bio_item_xi.to_kleio(
                     ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
                 )
+
                 if bio_itemk != "":
                     s = f"{s}\n{bio_itemk}"
 
