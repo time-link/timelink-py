@@ -31,7 +31,7 @@ RENTITY_DB = "rentities"
 # set a list of files to be imported before the tests begin
 files: Path = Path(
     TEST_DIR,
-    "timelink-home/projects/test-project/sources/reference_sources/sameas/sameas-tests.xml")
+    "timelink-home/projects/test-project/kleio/reference_sources/sameas/sameas-tests.xml")
 import_files = [files]
 
 
