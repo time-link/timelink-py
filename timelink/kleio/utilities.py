@@ -35,7 +35,7 @@ def kleio_escape(v: str) -> str:
         return s
 
 
-def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048) -> str:
+def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048, **kwargs) -> str:
     """Surround long text with triple quotes,
     wraps and indents lines if needed.
     Some of the parameters are passed on to :py:func:`textwrap.fill`.
