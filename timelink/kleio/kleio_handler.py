@@ -288,7 +288,7 @@ class KleioHandler:
         both related to processing same as relations:
 
         1. same_as:  register the same_as and xsame_as elements
-                     in groups
+                    in groups
         ```xml
         <RELATION ID="__-sa-deh-joao-barradas-rela6"
             ORG="sa-deh-joao-barradas-per1-11"
@@ -300,7 +300,7 @@ class KleioHandler:
         2. attach_to_rentity:  used in authority registers to register
                                 existing real entities to the register
         ```xml
-              <RELATION ID="rp-31-occ1"
+            <RELATION ID="rp-31-occ1"
                     REGISTER="real-entities-toliveira"
                     USER="toliveira"
                     ORG="deh-paul-lieou"
