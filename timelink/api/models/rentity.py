@@ -537,7 +537,7 @@ class REntity(Entity):
                         .values(rid=r1_id, rule=rule, source=source)
                     )
                     session.execute(stmt)
-                    session.flush()
+                    session.merge(real1)
                     session.delete(real2)
                     r = real1
                 else:
@@ -551,7 +551,7 @@ class REntity(Entity):
                         .values(rid=r2_id, rule=rule, source=source)
                     )
                     session.execute(stmt)
-                    session.flush()
+                    session.merge(real2)
                     session.delete(real1)
                     r = real2
             session.commit()
@@ -711,7 +711,7 @@ class REntity(Entity):
                     aregister=aregister,
                 )
                 self.links.append(link)
-                session.flush()
+                session.merge(self)
                 session.commit()
         return self
 
