@@ -126,6 +126,8 @@ class KleioServer:
             kleio_version = "latest"
         if not is_docker_running():
             raise RuntimeError("Docker is not running")
+        # TODO: test if kleio_home is a valid directory
+
         container: docker.models.containers.Container = start_kleio_server(
             image=kleio_image,
             version=kleio_version,
@@ -135,9 +137,9 @@ class KleioServer:
             kleio_external_port=kleio_external_port,
             kleio_server_workers=kleio_server_workers,
             kleio_idle_timeout=kleio_idle_timeout,
-            kleio_conf_dir=kleio_conf_dir,
-            kleio_source_dir=kleio_source_dir,
-            kleio_stru_dir=kleio_stru_dir,
+            kleio_conf_dir=str(kleio_conf_dir),
+            kleio_source_dir=str(kleio_source_dir),
+            kleio_stru_dir=str(kleio_stru_dir),
             kleio_token_db=kleio_token_db,
             kleio_default_stru=kleio_default_stru,
             kleio_debug=kleio_debug,
