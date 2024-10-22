@@ -325,10 +325,9 @@ class REntity(Entity):
                             raise ValueError(f"Error, {rentity_id} does not exist")
                         return None
                     else:
-                        # for link in re.links:
-                        #     session.delete(link)
+                        for link in re.links:
+                            session.delete(link)
                         session.delete(re)
-                        session.flush()
                 except Exception as e:
                     session.rollback()
                     raise e
