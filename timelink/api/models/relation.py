@@ -2,7 +2,7 @@
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
-from timelink.kleio.utilities import kleio_escape, quote_long_text
+from timelink.kleio.utilities import kleio_escape, quote_long_text, format_timelink_date as ftld
 from .entity import Entity
 
 
@@ -81,7 +81,7 @@ class Relation(Entity):
             f'destination="{self.destination}", '
             f'the_type="{self.the_type}", '
             f'the_value="{self.the_value}", '
-            f'the_date="{self.the_date}"", '
+            f'the_date="{self.the_date}", '
             f"obs={self.obs}"
             f")"
         )
@@ -99,13 +99,13 @@ class Relation(Entity):
                 act_date = self.dest.the_date
                 act_id = self.dest.id
 
-                s = f"{ident}rel$function-in-act/{function}/{act_type}/{act_id}/{act_date}"
+                s = f"{ident}rel$function-in-act/{function}/{act_type}/{act_id}/{ftld(act_date)}"
                 if self.the_line is not None:
                     s += f"/obs=line: {self.the_line}"
                 return s
 
             if self.the_type == "identification":
-                return f"{ident}rel$identification/{self.the_value}/{self.dest_name}/{self.the_date}"
+                return f"{ident}rel$identification/{self.the_value}/{self.dest_name}/{self.destination}/{ftld(self.the_date)}"
 
             if self.dest is not None and self.dest.pom_class in [
                 "person",
@@ -130,7 +130,7 @@ class Relation(Entity):
         r = (
             f"{ident}{label}${kleio_escape(self.the_type)}/"
             f"{quote_long_text(self.the_value)}/"
-            f"{kleio_escape(relname)}/{self.the_date}"
+            f"{kleio_escape(relname)}/{self.origin}/{ftld(self.the_date)}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
             r = f"{r}/obs={quote_long_text(self.obs)}"

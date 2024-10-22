@@ -2,7 +2,12 @@
 
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
-from timelink.kleio.utilities import quote_long_text, get_extra_info, render_with_extra_info
+from timelink.kleio.utilities import (
+    quote_long_text,
+    get_extra_info,
+    render_with_extra_info,
+    format_timelink_date as ftld,
+)
 from .entity import Entity
 
 
@@ -55,7 +60,7 @@ class Attribute(Entity):
             myname = self.groupname
         r = f"{myname}${quote_long_text(self.the_type)}"
         r += f"/{render_with_extra_info('value', self.the_value, extra_info=extra_info, **kwargs)}/"
-        r += f"{render_with_extra_info('the_date', self.the_date, extra_info=extra_info, **kwargs)}"
+        r += f"{render_with_extra_info('the_date', ftld(self.the_date), extra_info=extra_info, **kwargs)}"
         if obs is not None and len(obs.strip()) > 0:
             r = f"{r}/obs={render_with_extra_info('obs', obs, extra_info=extra_info, **kwargs)}"
         kleio = super().to_kleio(
