@@ -1,4 +1,4 @@
-kleio$/translations=19
+kleio$/translations=20
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-4
    fonte$sameas-tests/obs="""
 
@@ -125,7 +125,7 @@ kleio$/translations=19
             ls$dehergne/158/obs=Cattaneo (Cataneo), Lazzaro (ital.) P. 158 Kouo Klu-Tslng Yang-Houang (Pf.., Yang-fong, selon Courant, 6880). N. 1560 (1568, selon Streit), Sarzana, en Toscane (JS 134, 303: 66 ans en 1626) -E. 27 févr. 1581, Rome, noviciat St André (Rom. 169. 16). Emb. sur le S. Tomé 1 avr. 1588 (W 302)., arr. 1589, Goa., Côte de la Pêcherie., 1593, Macao., Shiuchow (Chao-tcheou) avec Ricci, ils prennent l'habit de lettrés et « romanisent » les 5 tons du chinois, 1594., 7 sept, au 5 nov. 1598, à Pékin., août 1599, Macao., mars Cattaneo (Cataneo), Lazzaro (ital.) P. 158 Kouo Klu-Tslng Yang-Houang (Pf.., Yang-fong, selon Courant, 6880). N. 1560 (1568, selon Streit), Sarzana, en Toscane (JS 134, 303: 66 ans en 1626) -E. 27 févr. 1581, Rome, noviciat St André (Rom. 169. 16). Emb. sur le S. Tomé 1 avr. 1588 (W 302)., arr. 1589, Goa., Côte de la Pêcherie., 1593, Macao., Shiuchow (Chao-tcheou)# @wikidata:Q1346617 avec Ricci, ils prennent l'habit de lettrés et « romanisent » les 5 tons du chinois, 1594., 7 sept, au 5 nov. 1598, à Pékin
             ls$dehergne/158/obs=août 1599, Macao., mars 1600, Nankin., passages à Macao 1601 et 1602., 1604, Malacca et Macao, procure., sept. 1608 à 1610, premier apôtre de Shanghai et de Kiating, invité par Paul Siu., 8 mai 1611, autre résidence fondée à Hangchow, Tchôkiang., 1620, Kiating., 1622, Hangchow., 1631, Hangchow (D'Elia I, 331-334). P. 1587. V. Canton, 26 mai 1596, pr. (Lus. 2, 139). M. 19 janv. 1640, Hangchow. Pf. 51., DHGE (A. De Bil)., EC (E. Lamalle). Art. de Strizoli dans Marco Polo II et III, Shanghai, 1940-1941., de J. de La Servière, New China Review, (Shanghai 1921) 350-355 et D'Elu, dans Florilegio Apostolico II, Venise 1922, 25-39.
 
-            referido$Matteo Ricci/id=deh-lazzaro-cattaneo-ref1
+            referido$Matteo Ricci/id=deh-lazzaro-cattaneo-ref1/xmesmo_que=deh-matteo-ricci
                ls$estadia/Shiuchow (Chao-tcheou)# @wikidata:Q1346617/15940000
                ls$jesuita-tarefa/Toma o hábito de letrado
                ls$tarefa/Romaniza os cinco tons do chinês
