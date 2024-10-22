@@ -134,3 +134,4 @@ tests/timelink-home/.kleio/conf/token_db
 tests/timelink-home/system/db/sqlite/timelink_users
 tests/timelink-home/database/sqlite/*
 tests/sqlite/*
+tests/-- SQLite.sql
