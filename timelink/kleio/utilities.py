@@ -182,7 +182,7 @@ def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
 
 
 def format_timelink_date(tl_datet) -> str:
-    """Format a timelink date YYYYMMDD and variantes to nice string"""
+    """Format a timelink date YYYYMMDD and variants to nice string"""
     # return empty string if tl_datet is None
     if tl_datet is None:
         return ""
