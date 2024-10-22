@@ -1,4 +1,4 @@
-kleio$/translations=20
+kleio$/translations=24
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-4
    fonte$sameas-tests/obs="""
 
@@ -16,7 +16,7 @@ kleio$/translations=20
             ls$nascimento/Macerata# @wikidata:Q13135/15521006
             ls$jesuita-entrada/Roma% (Noviciado de Sant'Andrea al Quirinale)# @wikidata:Q220/15710816
             ls$partida-x/Roma/1577-05-18/obs=Schutte, Monumenta historica japoniae I.1280
-            ls$estadia-x/Coimbra/obs="""
+            ls$estadia-x/Coimbra/15770700/obs="""
             Ricci and Tacchi Venturi, Opere Storiche Del p. Matteo Ricci s. i.
                de Junho de 1577 a fim de março de 1578, p. lxiii
 
@@ -50,15 +50,125 @@ kleio$/translations=20
             ls$jesuita-votos/4V/15960101
             ls$jesuita-votos-local/Nan-tch'ang/15960101
             ls$morte/Pequim# @wikidata:Q956/16100511
-            ls$dehergne/684/obs=Ricci, Matteo (ital.) P. 684 Li Ma-teou, Si-T'al (Pf.., et non Ki-Jen, RBS 218)., en portugais Richo (DI. XI, 155, n. 19). N. 6 oct. 1552, Macerata, dans la Marche d'Ancône. E. noviciat St André du Quirinal, Rome, 16 août 1571 (Rom. 171A, 16: il signe: Matteo Riccio). Emb. sur le S. Luis, 24 mars 1578 (W 200)., arr. Goa, 13 sept., et Macao, 7 août 1582., août 1583, Canton., 10 sept. 1583, Shiuhing (Tchao-k'ing fou), où il fonde une résidence., oct. 1589, résidence à Shiuchow (Chao-tcheou)., du 21 mai 1595 au 15 juin, Nankin., 28 juin 1596 au 25 juin 1598, Nan-tch'ang fou., 5 juill. 1599, Nankin., 19 mai 1600, départ pour Pékin où il arr. le 24 janv. 1601, et où il fonde la mission du Hopei, 1601., Supérieur de la mission de Chine, d'août 1597 à sa mort., 1609, congrégation mariale. Pékin., calendrier chrétien en Chine (Pf. 117).
-            ls$dehergne/684/obs=P. 25 juill. 1580, à Cochin, où il célèbre sa première messe le 26 juill. (D'Elia III, 22). V. Nan-tch'ang 1er janv. 1596 (D'Elia I, 374 et II, 4) pr. « Nanciani » ... Riccius (Lus. 2, 128). M. 11 mai 1610, Pékin (JS 113, 120-146., Planchet p. 222). Fils de Giovanni Battista Ricci, pharmacien, et de Giovanna Angiolelli, famille noble, marquis de Castelvecchio (D'Elia I, cii et II, 550). HS 43, 58 le fait mourir d'abord en 1609, puis le 11 mai 1610. Portrait: Pf. 31., D'Elia I, p. vi., ARSI Rom. 185, f° 97-98., BN: Estampes, Ne 100., en couleurs dans Bortone, P. Fernando,- Gesuiti alla corte di Pechino, 1969, pl. II p. 1., cf. Hamy. Pf. 22., Koch., NCE (F. A. Rouleau)., EC (Cel. Testore)., EB (J.S. Sebes)., CE (J. Brucker)., El (Tacchi Venturi). Bibliographie: SiRErr IV, p. 525-528., XII, p. 275-283., XIV. 1. p. 778.,
-            ls$dehergne/684/obs=D'Elu III, 239-243. Biographie: en chinois: BN: Courant 9 (anonyme), 1014-1016 I, par Aleni, 1321 (par Pantoja, de Ursis)., et 6832 I, poème sur Rica. BernardE-MaÎtre], H., Le P. Matthieu Ricci et la société chinoise de son temps (1552-1610), Tientsin, 1937, 2 vol.., trad. chinoise par Wang Tch'ang-Tche, J., 1943., du même, Iles Philippines, 213-218 (sur la pensée de Ricci)., Cronin, Vincent, The Wise Man front the West, Londres, 1955., Dunne, G. H., Génération of Giants, 1962, p. 23-108., trad. franç. Chinois avec les Chinois, te P. Ricci et ses compagnons, Paris, 1964., Bortone, Fernando, P. Matteo Ricci, SJ.: Il « Saggio d'Occidente », 2' éd., 1965., trad. franç. en préparation. Le ms de Pires, Francisco, montre qu'il a failli être envoyé au Japon.Son oeuvre: Nocentini, Lod., --primo Sinologo, P.M.R., Florence, 1882.,
-            ls$dehergne/684/obs=Tacchi-Venturi, Opère storiche del P. M. R., Macerata, 1911-1912, 2 vol.., D'Elia, P. M., Fonti Ricciane, Rome, 1942-1949, 3 vol.., du même,. Grandi Missionari, t. I (Rome, 1939), 127-176., du même, Il domma cattolico integralmente présentai da M. R ai letterati delta Cina, Civ. Catt., 1935, II, 35-53., cf Gregorianum 21 (1940), 482-526., du même, Galiteo in Cina, Anatecta Gregor. il, Sect. A n° 1., Son oeuvre: Nocentini, Lod., -- primo Sinologo, P.M.R., Florence, 1882., Tacchi-Venturi, Opère storiche del P. M. R., Macerata, 1911-1912, 2 vol.., D'Elia, P. M., Fonti Ricciane, Rome, 1942-1949, 3 vol.., du même,- Grandi Missionari, t. I (Rome, 1939), 127-176., du même, Il domma cattolico integralmente présentai da M. R ai letterati delta Cina, Civ. Catt., 1935, II, 35-53., cf Gregorianum 21 (1940), 482-526., du même, Galiteo in Cina, Anatecta Gregor. il, Sect. A n° 1.,
-            ls$dehergne/684/obs=id.. L'apport scientifique du P. M. R à la Chine, Tientsin, 1935, dont trad. anglaise par Chalmers Werner, Edw., Pékin, 1935., id., L'attitude du P. M. R. en face des coutumes et rites chinois, RSRel. 28 (1938), 31-47., id., Les étapes de la cartographie scientifique pour ta Chine et tes pays voisins, MS I (1936), 428-477., Brou, A., Les tâtonnements du P. M. R., RHM 15 (1938), 228-244., Szczesniak, B., The Seventeenth Maps of China, Imago Mundi 17 (1956), 116-136, 9 cartes., id., Matteo Ricci's Maps of China, ibid , 11 (1954), 127-134., cf Giles, L., Geographicat Journal 52 (1918), 367-385 et 53 (1919), 19-30., Wallis, Helen, The Influence of Father R. on Far Eastern Cartography, Imago Mundi 19 (1965), 38-45, 5 cartes., Harris, George L., The Mission of M. R. A case study of an effort at guided culture change in the Sixteenth Century, MS 25 (1968), 1-168.,
-            ls$dehergne/684/obs=Bettray, Johannes, S.V.D., Die akkomodationmethode des P. M. R., S.J., in China, Analecta Gregoriana, nº 76, Rome, 411 p.., Rule, Paul A., Jestât and Confucian? Chinese Religion in the journal of M.R, Journal of Religious History (Sidney, 1969), 105-124., D'Elia, P. M., Récent discoveries and New Studies (1938-1960) on the World Map in Chinese of F. M.R., SJ., MS XX (1961), 82-164., Danibl-Rops, Histoire de t'Eglise du Christ VI (Paris, 1966), 272-276, Le Christ entre au « Cathay » avec « Li Mateou »., Schutte, 996., DI. XII, 1031. Et nombre d'études sur des points spéciaux., par exemple, sur la Congré- gation mariale de Pékin: Du Manoir, Hubert, Maria t. IV, 968-972., NZM 1962, 255 citant Margiotti...
-            ls$dehergne/684/obs=Sur l'art chinois: Sepp Schûller, P. M. Ricci und die christliche Kunst, Die Kath. Miss. LXIV (Diisseldorf, 1936), 3-8., H. Bernard [Maître], L'Art chré- tien en Chine au temps du P. M. R., RHM 12 (1935), 199-229., D'Elia, Le origini delt'arte cristiana cinese, Rome 1939. Sur l'influence au Japon des cartes de Ricci, Aleni et Verbiest, l'art, de Shintarô Ayusawa, MNipp. 19 (1964), 45-49. Sur le Ki-jen che p'ien, RBS 228 et 399. Principaux autographes de RICCI: — Son catéchisme, B. Casanatense ms 2136 G. I 1, daté de 1603, cf. JS 195.
-            ls$dehergne/684/obs=— Délia Entrata delta Comp. nella Cina, avec additions de N. Trigault, JS 106a. Cf D'Elia. Une édition nouvelle, avec un important appareil documentaire et critique est en préparation à l'Université de Paris VII (Bulletin de Liaison, Ecole Pratique des Hautes Etudes, VI* section, 54 bd Raspail, 75006 Paris, vol. V (1972) p. 42. — La Carte de Chine, 28 sept. 1584, reproduite dans Colin, Francisco & Pastells, Pablo, Labor Evangelica .... Barcelone, 1902, III, planche, p. 448 (Arch. d. Ind., 145-7-7). Sa carte du Monde, supra. Gaibandi, Pietro, -- P. M.R e ta geografia délia Cina, Rivista di fisica, matematica e scienze naturali, Padua, VIII, 1903, 321-355, 459-464.
-            ls$dehergne/684/obs=pécimen d'écriture, nom chinois et romanisation, Allan, pl. p. 49 (noter le -RI de Ricci, écrit à la fois RI et LI. Copie de la lettre du P. « Matheo Risi y Saliano » (1584) à Juan Bautista RomAn, facteur des îles Philippines à Macao, dans Carlos Sanz, Primitivas Relaciones de Espana con Asia y Oceania, Madrid, 1958, 372-384 (Archivos de Indias 67-6-29) et l'art, de Léon Lopetegui, Miss. Hisp. I, 1944, 341-352., Razén y Fe IV, 1902, 463477.
+            ls$dehergne/684/obs="""
+            Ricci, Matteo (ital.) P. 684
+            Li Ma-teou, Si-T'al (Pf.., et non Ki-Jen, RBS 218)., en portugais Richo (DI. XI, 155, n. 19).
+            N. 6 oct. 1552, Macerata, dans la Marche d'Ancône.
+            E. noviciat St André du Quirinal, Rome, 16 août 1571 (Rom. 171A, 16: il signe: Matteo Riccio).
+            Emb. sur le S. Luis, 24 mars 1578 (W 200).,
+            arr. Goa, 13 sept., et Macao, 7 août 1582., août 1583,
+            Canton., 10 sept. 1583,
+            Shiuhing (Tchao-k'ing fou), où il fonde une résidence.,
+            oct. 1589, résidence à Shiuchow (Chao-tcheou).,
+            du 21 mai 1595 au 15 juin, Nankin.,
+            28 juin 1596 au 25 juin 1598, Nan-tch'ang fou.,
+            5 juill. 1599, Nankin.,
+            19 mai 1600, départ pour Pékin où il arr. le 24 janv. 1601,
+               et où il fonde la mission du Hopei, 1601.,
+            Supérieur de la mission de Chine, d'août 1597 à sa mort.,
+            1609, congrégation mariale.
+            Pékin., calendrier chrétien en Chine (Pf. 117).
+            P. 25 juill. 1580, à Cochin, où il célèbre sa première messe
+               le 26 juill. (D'Elia III, 22).
+            V. Nan-tch'ang 1er janv. 1596 (D'Elia I, 374 et II, 4)
+            pr. « Nanciani » ... Riccius (Lus. 2, 128).
+            M. 11 mai 1610, Pékin (JS 113, 120-146.,
+            Planchet p. 222).
+            Fils de Giovanni Battista Ricci, pharmacien, et de Giovanna Angiolelli, famille noble,
+               marquis de Castelvecchio (D'Elia I, cii et II, 550).
+               HS 43, 58 le fait mourir d'abord en 1609, puis le 11 mai 1610.
+            Portrait: Pf. 31., D'Elia I, p. vi., ARSI Rom. 185, f° 97-98.,
+                  BN: Estampes, Ne 100., en couleurs dans Bortone, P. Fernando,
+                  - Gesuiti alla corte di Pechino, 1969, pl. II p. 1.,
+                  cf. Hamy. Pf. 22., Koch., NCE (F. A. Rouleau).,
+                  EC (Cel. Testore)., EB (J.S. Sebes)., CE (J. Brucker)., El (Tacchi Venturi
+            Bibliographie:
+               SiRErr IV, p. 525-528., XII, p. 275-283., XIV. 1. p. 778.,
+               D'Elu III, 239-243.
+            Biographie: en chinois:  BN: Courant 9 (anonyme), 1014-1016 I,
+               par Aleni, 1321 (par Pantoja, de Ursis)., et 6832 I,
+               poème sur Rica.
+               BernardE-MaÎtre], H., Le P. Matthieu Ricci et la société chinoise de son temps
+                   (1552-1610), Tientsin, 1937, 2 vol.., trad. chinoise par Wang Tch'ang-Tche, J.,
+                     1943.,
+               du même, Iles Philippines, 213-218 (sur la pensée de Ricci).,
+               Cronin, Vincent, The Wise Man front the West, Londres, 1955.,
+               Dunne, G. H., Génération of Giants, 1962, p. 23-108.,
+                  trad. franç. Chinois avec les Chinois, te P. Ricci et ses compagnons, Paris, 1964.,
+               Bortone, Fernando, P. Matteo Ricci, SJ.: Il « Saggio d'Occidente », 2' éd., 1965., trad. franç. en préparation.
+               Le ms de Pires, Francisco, montre qu'il a failli être envoyé au Japon.
+            Son oeuvre:
+               Nocentini, Lod., --primo Sinologo, P.M.R., Florence, 1882.,
+               Tacchi-Venturi, Opère storiche del P. M. R., Macerata, 1911-1912, 2 vol..,
+               D'Elia, P. M., Fonti Ricciane, Rome, 1942-1949, 3 vol..,
+               du même,. Grandi Missionari, t. I (Rome, 1939), 127-176.,
+               du même, Il domma cattolico integralmente présentai da M. R
+                  ai letterati delta Cina, Civ. Catt., 1935, II, 35-53.,
+                  cf Gregorianum 21 (1940), 482-526.,
+               du même, Galiteo in Cina, Anatecta Gregor. il, Sect. A n° 1.,
+            Son oeuvre: Nocentini, Lod., -- primo Sinologo, P.M.R., Florence, 1882., Tacchi-Venturi,
+               Opère storiche del P. M. R., Macerata, 1911-1912, 2 vol..,
+               D'Elia, P. M., Fonti Ricciane, Rome, 1942-1949, 3 vol.., du même,- Grandi Missionari,
+               t. I (Rome, 1939), 127-176., du même, Il domma cattolico integralmente présentai da M.
+               R ai letterati delta Cina, Civ. Catt., 1935, II, 35-53., cf Gregorianum 21 (1940),
+               482-526., du même, Galiteo in Cina, Anatecta Gregor. il, Sect. A n° 1.,
+            id.. L'apport scientifique du P. M. R à la Chine, Tientsin, 1935, dont trad. anglaise par
+               Chalmers Werner, Edw., Pékin, 1935.,
+            id., L'attitude du P. M. R. en face des coutumes et rites chinois, RSRel. 28 (1938),
+               31-47.,
+            id., Les étapes de la cartographie scientifique pour ta Chine et tes pays voisins, MS I
+               (1936), 428-477.,
+            Brou, A., Les tâtonnements du P. M. R., RHM 15 (1938), 228-244.,
+            Szczesniak, B., The Seventeenth Maps of China, Imago Mundi 17 (1956), 116-136, 9 cartes.,
+            id., Matteo Ricci's Maps of China, ibid , 11 (1954), 127-134.,
+               cf Giles, L., Geographicat Journal 52 (1918), 367-385 et 53 (1919), 19-30.,
+            Wallis, Helen, The Influence of Father R. on Far Eastern Cartography, Imago Mundi 19
+               (1965), 38-45, 5 cartes.,
+            Harris, George L., The Mission of M. R. A case study of an effort at guided culture change
+               in the Sixteenth Century, MS 25 (1968), 1-168.,
+
+            Bettray, Johannes, S.V.D., Die akkomodationmethode des P. M. R., S.J., in China, Analecta
+               Gregoriana, nº 76, Rome, 411 p..,
+            Rule, Paul A., Jestât and Confucian? Chinese Religion in the journal of M.R, Journal of
+               Religious History (Sidney, 1969), 105-124.,
+            D'Elia, P. M., Récent discoveries and New Studies (1938-1960) on the World Map in Chinese
+               of F. M.R., SJ., MS XX (1961), 82-164.,
+            Danibl-Rops, Histoire de t'Eglise du Christ VI (Paris, 1966), 272-276, Le Christ entre au
+               « Cathay » avec « Li Mateou ».,
+            Schutte, 996., DI. XII, 1031.
+
+            Et nombre d'études sur des points spéciaux.,
+            par exemple, sur la Congréation mariale de Pékin:
+            Du Manoir, Hubert, Maria t. IV, 968-972., NZM 1962, 255 citant Margiotti...
+            Sur l'art chinois:
+            Sepp Schûller, P. M. Ricci und die christliche Kunst, Die Kath. Miss. LXIV (Diisseldorf,
+               1936), 3-8.,
+            H. Bernard [Maître], L'Art chré- tien en Chine au temps du P. M. R., RHM 12 (1935),
+               199-229.,
+            D'Elia, Le origini delt'arte cristiana cinese, Rome 1939.
+
+            Sur l'influence au Japon des cartes de Ricci, Aleni et Verbiest, l'art, de Shintarô
+               Ayusawa, MNipp. 19 (1964), 45-49.
+            Sur le Ki-jen che p'ien, RBS 228 et 399.
+
+            Principaux autographes de RICCI:
+            — Son catéchisme, B. Casanatense ms 2136 G. I 1, daté de 1603, cf. JS 195.
+            — Délia Entrata delta Comp. nella Cina, avec additions de N. Trigault, JS 106a.
+               Cf D'Elia. Une édition nouvelle, avec un important appareil documentaire et critique
+               est en préparation à l'Université de Paris VII (Bulletin de Liaison, Ecole Pratique des
+               Hautes Etudes, VI* section, 54 bd Raspail, 75006 Paris, vol. V (1972) p. 42.
+            — La Carte de Chine, 28 sept. 1584, reproduite dans Colin, Francisco & Pastells, Pablo,
+               Labor Evangelica .... Barcelone, 1902, III, planche, p. 448 (Arch. d. Ind., 145-7-7).
+            Sa carte du Monde, supra. Gaibandi, Pietro, -- P. M.R e ta geografia délia Cina, Rivista
+               di fisica, matematica e scienze naturali, Padua, VIII, 1903, 321-355, 459-464.
+
+            pécimen d'écriture, nom chinois et romanisation, Allan, pl. p. 49 (noter le -RI de Ricci, écrit à la fois RI et LI.
+            Copie de la lettre du P. « Matheo Risi y Saliano » (1584)
+               à Juan Bautista RomAn, facteur des îles Philippines à Macao,
+               dans Carlos Sanz, Primitivas Relaciones de Espana con Asia y Oceania, Madrid, 1958,
+               372-384 (Archivos de Indias 67-6-29) et l'art, de Léon Lopetegui, Miss. Hisp. I, 1944,
+               341-352., Razén y Fe IV, 1902, 463477.
+            """
             ls$nota/JRC/obs="""
 
       Schutte, Monumenta historica japoniae I. 1280

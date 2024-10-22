@@ -105,6 +105,7 @@ def test_link_two_occ(dbsystem):
 
         ricci = session.get(Person, "deh-matteo-ricci")
         assert ricci is not None, "could not get a person from file"
+        ricci.to_kleio()
 
         test_rid = "rp-matteo"
 
