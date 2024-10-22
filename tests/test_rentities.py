@@ -11,6 +11,7 @@ import pytest
 from sqlalchemy import select
 
 from tests import TEST_DIR, skip_on_travis
+from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
@@ -29,10 +30,12 @@ RENTITY_DB = "rentities"
 # rentity_db = ":memory:"
 
 # set a list of files to be imported before the tests begin
-files: Path = Path(
+TEST_FILES_DIR = str(Path(
     TEST_DIR,
-    "timelink-home/projects/test-project/kleio/reference_sources/sameas/sameas-tests.xml")
-import_files = [files]
+    "timelink-home/projects/test-project/sources/reference_sources/rentities")
+)
+
+kserver = None
 
 
 @pytest.fixture(scope="module")
@@ -50,13 +53,21 @@ def dbsystem(request):
                                 db_url=db_url,
                                 db_user=db_user,
                                 db_pwd=db_pwd)
-    with database.session() as sess:
+
+    global kserver
+    global TEST_FILES_DIR
+
+    if kserver is None:
+        # start a kleio server
         try:
-            for xfile in import_files:
-                import_from_xml(xfile, session=sess)
+            kserver = KleioServer.start(kleio_home=TEST_FILES_DIR, update=False)
         except Exception as exc:
             print(exc)
             raise
+
+    database.set_kleio_server(kserver)
+    database.update_from_sources()
+
     try:
         yield database
     finally:
