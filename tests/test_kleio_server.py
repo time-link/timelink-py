@@ -47,7 +47,7 @@ def setup():
     else:
         """Setup kleio server for tests"""
         khome = f"{TEST_DIR}/timelink-home"
-        ks = KleioServer.start(kleio_home=khome, reuse=True, update=False)
+        ks = KleioServer.start(kleio_home=khome, reuse=True, update=True)
 
     return ks
 
@@ -370,3 +370,4 @@ def test_start_kleio_server_env():
     assert home_page_info['Workers'].strip() == str(kworkers), "number of works do not match"
     ptoken = home_page_info['Kleio_admin_token'].strip()
     assert ptoken == kadmin_token[:5], "token does not match"
+    ks.stop()
