@@ -5,7 +5,7 @@ MIT License, no warranties.
 
 from sqlalchemy import Column, String, ForeignKey
 
-from timelink.kleio.utilities import quote_long_text, get_extra_info as gxi, render_with_extra_info as rxi
+from timelink.kleio.utilities import quote_long_text
 from .entity import Entity
 
 
