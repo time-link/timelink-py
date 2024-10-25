@@ -5,11 +5,13 @@ MIT License, no warranties.
 
 from sqlalchemy import Column, String, ForeignKey
 
-from timelink.kleio.utilities import quote_long_text
+from timelink.kleio.utilities import quote_long_text, get_extra_info as gxi, render_with_extra_info as rxi
 from .entity import Entity
 
 
 class Geoentity(Entity):
+    """ represents a geographical entity."""
+
     __tablename__ = "geoentities"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)

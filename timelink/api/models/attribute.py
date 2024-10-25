@@ -51,8 +51,7 @@ class Attribute(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, show_contained=False, ident="", ident_inc="  ", **kwargs) -> str:
-        _ = show_contained  # unused
+    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=False, **kwargs):
         obs, extra_info = get_extra_info(self.obs)
         if self.groupname is None:
             myname = "attribute"
