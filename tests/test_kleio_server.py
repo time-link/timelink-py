@@ -369,3 +369,4 @@ def test_start_kleio_server_env():
     assert home_page_info['Workers'].strip() == str(kworkers), "number of works do not match"
     ptoken = home_page_info['Kleio_admin_token'].strip()
     assert ptoken == kadmin_token[:5], "token does not match"
+    ks.stop()
