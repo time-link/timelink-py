@@ -10,6 +10,8 @@ from .entity import Entity
 
 
 class Geoentity(Entity):
+    """ represents a geographical entity."""
+
     __tablename__ = "geoentities"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
