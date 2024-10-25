@@ -937,6 +937,7 @@ def start_kleio_server(
             get_version = version
 
         # Pull the latest image
+        logging.info("Pulling the latest image: timelinkserver/kleio-server:%s", get_version)
         latest_image = client.images.pull(
             "timelinkserver/kleio-server", tag=get_version
         )
