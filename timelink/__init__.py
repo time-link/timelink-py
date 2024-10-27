@@ -10,8 +10,8 @@ information collected from historical sources.
 
 
 """
-from .api import database  # noqa: F401
 from .api import models  # noqa: F401
+from .api import database  # noqa: F401
 from .api import views  # noqa: F401
 from .api import schemas  # noqa: F401
 
