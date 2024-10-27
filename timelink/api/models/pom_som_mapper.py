@@ -566,11 +566,16 @@ class PomSomMapper(Entity):
             raise ValueError("No session provided")
 
         entity_from_group: Entity = cls.kgroup_to_entity(group, session)
-        exists = session.get(entity_from_group.__class__, entity_from_group.id)
+        exists: Entity = session.get(entity_from_group.__class__, entity_from_group.id)
 
         if exists is not None:
+            # we now delete the existong entity and all included entities
+            # this is a recursive delete enabled by the cascade="all,delete-orphan
+            # We need to take into account that inbound relations to this entity
+            # will have the destination column set to None by SQLAlchemy configuration
+            # so we need to same the id of inbound relations and restore the destination
+            # id after the entity is reinserted.
             session.delete(exists)
-            session.commit()
 
         try:
             session.add(entity_from_group)
@@ -583,7 +588,6 @@ class PomSomMapper(Entity):
         in_group: KGroup
         for in_group in group.includes():
             cls.store_KGroup(in_group, session)
-
         try:
             session.commit()
         except Exception as e:  # pylint: disable=broad-except
