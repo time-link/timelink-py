@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from typing import List, Optional
 from datetime import datetime
 
@@ -312,7 +313,7 @@ class Entity(Base):
         Returns a dictionary with the date as key and a list of attributes and relations as value
 
         """
-        bio = {}
+        bio = OrderedDict()
 
         if self.rels_in is not None:
             for rel in self.rels_in:
@@ -332,7 +333,7 @@ class Entity(Base):
                 this_date_list = bio.get(date, [])
                 this_date_list.append(attr)
                 bio[date] = this_date_list
-        return bio
+        return sorted(bio)
 
     def is_inbound_relation(self, relation):
         """Check if the relation is inbound to this entity.
@@ -359,9 +360,9 @@ class Entity(Base):
 
         contained_entities = list(
             set(self.contains)
-            - set(self.rels_in)
-            - set(self.rels_out)
-            - set(self.attributes)
+            - set(self.rels_in)  # noqa: W503
+            - set(self.rels_out)  # noqa: W503
+            - set(self.attributes)  # noqa: W503
         )
 
         bio = self.dated_bio()
