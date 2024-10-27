@@ -739,10 +739,10 @@ class Link(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     rid: Mapped[str] = mapped_column(
-        String(64), ForeignKey(REntity.id, ondelete="CASCADE")
+        String(64), ForeignKey(REntity.id, ondelete="CASCADE"), index=True
     )
     entity: Mapped[str] = mapped_column(
-        String(64), ForeignKey(Entity.id, ondelete="CASCADE")
+        String(64), ForeignKey(Entity.id, ondelete="CASCADE"), index=True
     )
     # Define the relationship with Entity
     entity_rel = relationship(
@@ -768,7 +768,7 @@ class Link(Base):
     )  # status of the link
 
     source: Mapped[Optional[str]] = mapped_column(
-        String(64), ForeignKey(Source.id, ondelete="CASCADE")
+        String(64), ForeignKey(Source.id, ondelete="CASCADE"), index=True
     )  # id of source of the link when same_as or x_same_as
 
     aregister: Mapped[Optional[str]] = mapped_column(
@@ -798,5 +798,5 @@ class Link(Base):
 # this is the back relation from Entities
 Entity.linked_to = relationship(
     Link, back_populates="entity_rel", cascade="all, delete-orphan",
-    passive_deletes=True
+    passive_deletes=False
 )
