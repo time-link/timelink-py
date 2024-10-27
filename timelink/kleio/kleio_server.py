@@ -1,6 +1,7 @@
 """ Interface to Kleio Server"""
 
 import logging
+import warnings
 import socket
 import os
 from time import sleep
@@ -456,6 +457,30 @@ class KleioServer:
         pars = {"user": user, "info": info.model_dump()}
         return self.call("tokens_generate", pars)
 
+    # this is deprecated should be translation_get for consistency
+    def get_translations(
+        self, path: str, recurse: str = True, status: str = None, token: str = None
+    ) -> List[KleioFile]:
+        """Get translations from kleio server
+
+        Args:
+            path (str): Path to the directory in sources.
+            recurse (str): If "yes", recurse in subdirectories.
+            status (str, optional): Filter by translation status. Options include:
+                V = valid translations
+                T = need translation (source more recent than translation)
+                E = translation with errors
+                W = translation with warnings
+                P = translation being processed
+                Q = file queued for translation
+            token (str, optional): Kleio server token.
+
+        Returns:
+            list[KleioFile]: List of KleioFile objects.
+
+        """
+        return self.translation_status(path, recurse, status, token)
+
     def translation_status(
         self, path: str, recurse: str = True, status: str = None, token: str = None
     ) -> List[KleioFile]:
@@ -477,6 +502,12 @@ class KleioServer:
             list[KleioFile]: List of KleioFile objects.
 
         """
+        warnings.warn(
+            "The 'translation_status' method is deprecated and will be removed in a future version. "
+            "Use 'get_translations' instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
         if recurse is True:
             recurse = "yes"
         elif recurse is False:
@@ -484,6 +515,8 @@ class KleioServer:
 
         if path is None:
             path = ""
+
+        path = str(path)
 
         if status is None:
             pars = {"path": path, "recurse": recurse}
