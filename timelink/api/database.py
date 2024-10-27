@@ -36,7 +36,7 @@ import docker  # pylint: disable=import-error
 import timelink
 from timelink.kleio.kleio_server import is_docker_running
 from timelink.mhk import utilities
-from timelink.api import models  # pylint: disable=unused-import
+from timelink import models  # pylint: disable=unused-import
 from timelink.api.models import Entity, PomSomMapper
 from timelink.api.models import pom_som_base_mappings
 from timelink.api.models import Person
