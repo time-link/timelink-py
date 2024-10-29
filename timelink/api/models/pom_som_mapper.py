@@ -518,6 +518,7 @@ class PomSomMapper(Entity):
                     ) from e
 
         # positional information in the original file
+        entity_from_group.the_source = group.source_id
         entity_from_group.the_line = group.line
         entity_from_group.the_level = group.level
         entity_from_group.the_order = group.order

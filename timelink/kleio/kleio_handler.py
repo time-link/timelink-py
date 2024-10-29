@@ -226,6 +226,9 @@ class KleioHandler:
             )
             return
 
+        # store the current source id into the group
+        group.source_id = self.kleio_source_id
+
         # check if pom_mapper_for_group is attached to the session
         if not self.session.object_session(pom_mapper_for_group):
             self.session.add(pom_mapper_for_group)
@@ -239,6 +242,7 @@ class KleioHandler:
 
         if pom_mapper_for_group.id == "source":  # TODO should be .extends("source")
             self.kleio_source_id = str(group.id.core)
+            group.source_id = self.kleio_source_id
 
         if pom_mapper_for_group.id == "relation":  # TODO should be .extends("relation")
             # it can happen that the destination of a relation

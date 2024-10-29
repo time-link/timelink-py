@@ -10,6 +10,7 @@ from sqlalchemy import ForeignKey  # pylint: disable=import-error
 from sqlalchemy import String  # pylint: disable=import-error
 from sqlalchemy import Integer  # pylint: disable=import-error
 from sqlalchemy import DateTime  # pylint: disable=import-error
+from sqlalchemy import JSON  # pylint: disable=import-error
 from sqlalchemy.orm import backref  # pylint: disable=import-error
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
@@ -56,6 +57,8 @@ class Entity(Base):
     inside: Mapped[Optional[str]] = mapped_column(
         String, ForeignKey("entities.id", ondelete="CASCADE"), index=True
     )
+    # id of the source from which this entity was extracted
+    the_source: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     #: int: sequential order of this entity in the source
     the_order = mapped_column(Integer, nullable=True)
     #: int: the nesting level of this entity in the source
@@ -64,6 +67,8 @@ class Entity(Base):
     the_line = mapped_column(Integer, nullable=True)
     #: str: name of the kleio group that produced this entity
     groupname = mapped_column(String, index=True, nullable=True)
+    # extra_info a JSON field with extra information about the entity
+    extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
     updated = mapped_column(DateTime, default=datetime.utcnow, index=True)
     #: datetime: when this entity was added to the full text index
@@ -285,7 +290,8 @@ class Entity(Base):
         return (
             f'Entity(id="{self.id}", '
             f'pom_class="{self.pom_class}",'
-            f'inside="{self.inside}", '
+            f'inside="{self.inside}", ',
+            f"the_source={self.the_source}, "
             f"the_order={self.the_order}, "
             f"the_level={self.the_level}, "
             f"the_line={self.the_line}, "
