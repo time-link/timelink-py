@@ -576,7 +576,7 @@ class PomSomMapper(Entity):
             # so we need to same the id of inbound relations and restore the destination
             # id after the entity is reinserted.
             session.delete(exists)
-
+            session.commit()  # we need to commit otherwise sqlalchemy will use the id and not delete
         try:
             session.add(entity_from_group)
             session.commit()
