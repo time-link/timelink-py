@@ -60,21 +60,37 @@ def start():
 # These are used to manage the database migrations
 
 
+db_index = {}
+db_url = {}
+
+
 @db_app.command("list")
 def db_database_list_cmd():
     """List all available databases (sqlite, postgresql, etc)"""
-    postgres_list = get_postgres_dbnames()
-    sqlite_list = get_sqlite_databases(current_working_directory)
-    if postgres_list:
-        typer.echo("PostgreSQL databases:")
-        for db in postgres_list:
-            typer.echo(f"    {db} ({get_postgres_url(db)})")
-    if sqlite_list:
-        typer.echo("SQLite databases:")
-        for db in sqlite_list:
-            # extract the database name from the path
-            db_name = db.split("/")[-1]
-            typer.echo(f"    {db_name} ({get_sqlite_url(db)})")
+    global db_index
+    db_index = create_db_index()
+    typer.echo("Available data bases:")
+    for i, db in db_index.items():
+        typer.echo(f"    {i:>5} {db[0]:>8} {db[1]:20}: {db[2]}")  # f-string
+    return db_index
+
+
+def create_db_index():
+    postgres_list = [('postgres', db, get_postgres_url(db)) for db in sorted(get_postgres_dbnames())]
+    sqlite_list = [('sqlite', os.path.basename(db), get_sqlite_url(db)) for db in sorted(get_sqlite_databases(current_working_directory))]
+    # make tuples of the form (int, dbame) from postgres_list + sqlite_list
+    enumeration = enumerate(postgres_list + sqlite_list, 1)
+    db_index = {i: db for i, db in enumeration}
+    return db_index
+
+
+def parse_db_url(db_url):
+    # check if db_url is an integer
+    if db_url.isdigit():
+        db_index = create_db_index()
+        key = int(db_url)
+        db_url = db_index[key][2]
+    return db_url
 
 
 @db_app.command("current")
@@ -83,7 +99,8 @@ def db_current_cmd(
     verbose: str = "--verbose",
 ):
     """Display current database revision"""
-    pass
+    db_url = parse_db_url(db_url)
+
     migrations.current(db_url, verbose)
 
 
