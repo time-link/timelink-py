@@ -289,16 +289,15 @@ class Entity(Base):
     def __repr__(self):
         return (
             f'Entity(id="{self.id}", '
-            f'pom_class="{self.pom_class}",'
-            f'inside="{self.inside}", ',
+            f'pom_class="{self.pom_class}", '
+            f'inside="{self.inside}", '
             f"the_source={self.the_source}, "
             f"the_order={self.the_order}, "
             f"the_level={self.the_level}, "
             f"the_line={self.the_line}, "
             f'groupname="{self.groupname}", '
             f"updated={self.updated}, "
-            f"indexed={self.indexed},"
-            f")"
+            f"indexed={self.indexed})"
         )
 
     def __str__(self):
