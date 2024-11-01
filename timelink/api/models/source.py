@@ -45,6 +45,12 @@ class Source(Entity):
 
     __mapper_args__ = {"polymorphic_identity": "source"}
 
+    def get_update_context(Entity, session, **kwargs):
+        """ When a source is deleted it is necessary
+        See: https://time-link.github.io/timelink-docs/D_Updating_sources_in_the_database/D.1%20Processing%20new%20versions%20of%20source%20transcription/
+        """
+        return None
+
     def __repr__(self):
         sr = super().__repr__()
         return (
