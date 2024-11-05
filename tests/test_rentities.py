@@ -6,26 +6,43 @@ Check tests.__init__.py for parameters
 # pylint: disable=import-error
 from pathlib import Path
 import random
+from typing import List
 
 import pytest
+from sqlalchemy import select
 
 from tests import TEST_DIR, skip_on_travis
+from timelink.api.models.relation import Relation
+from timelink.api.models.source import Source
+from timelink.api.models.system import KleioImportedFile
+from timelink.kleio.kleio_server import KleioServer, KleioFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
-from timelink.api.models.rentity import REntity, REntityStatus as STATUS
+from timelink.api.models.rentity import Link, REntity, REntityStatus as STATUS
 from timelink.api.database import (
     TimelinkDatabase,
     start_postgres_server,
     get_postgres_container_user,
-    get_postgres_container_pwd,)
+    get_postgres_container_pwd,
+)
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
 
+db_path = Path(TEST_DIR, "sqlite")
+RENTITY_DB = "rentities"
+# rentity_db = ":memory:"
+
 # set a list of files to be imported before the tests begin
-file: Path = Path(TEST_DIR, "timelink-home/projects/test-project/sources/reference_sources/sameas/sameas-tests.xml")
-import_files = [file]
+TEST_FILES_DIR = str(
+    Path(
+        TEST_DIR,
+        "timelink-home/projects/test-project/sources/reference_sources/rentities",
+    )
+)
+
+kserver = None
 
 
 @pytest.fixture(scope="module")
@@ -37,18 +54,32 @@ def dbsystem(request):
         db_user = get_postgres_container_user()
         db_pwd = get_postgres_container_pwd()
 
-    database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
-    with database.session() as sess:
+    database = TimelinkDatabase(
+        db_name=db_name,
+        db_type=db_type,
+        db_path=db_path,
+        db_url=db_url,
+        db_user=db_user,
+        db_pwd=db_pwd,
+    )
+
+    global kserver
+    global TEST_FILES_DIR
+
+    if kserver is None:
+        # start a kleio server
         try:
-            for file in import_files:
-                import_from_xml(file, session=sess)
+            kserver = KleioServer.start(kleio_home=TEST_FILES_DIR, update=False)
         except Exception as exc:
             print(exc)
             raise
+
+    database.set_kleio_server(kserver)
+
     try:
         yield database
     finally:
-        database.drop_db
+        database.drop_db()
         database.session().close()
 
 
@@ -56,7 +87,7 @@ def dbsystem(request):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -80,8 +111,16 @@ def test_link_two_occ(dbsystem):
 
         session.expire_on_commit = False
 
+        file1 = Path(TEST_FILES_DIR, "sameas-tests.xml")
+        try:
+            import_from_xml(file1, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+
         ricci = session.get(Person, "deh-matteo-ricci")
         assert ricci is not None, "could not get a person from file"
+        ricci.to_kleio()
 
         test_rid = "rp-matteo"
 
@@ -100,16 +139,23 @@ def test_link_two_occ(dbsystem):
         random.shuffle(occurrences)
 
         # erase any previous real entities
-        for occ in occurrences:
-            real_id = REntity.get_real_entity(occ, session=session)
-            if real_id:
-                REntity.delete(real_id, session=session)
+        # select distinct real_id from links where entity_id in (occurrences)
+        stmt = select(Link.rid).where(Link.entity.in_(occurrences)).distinct()
+
+        rids = session.execute(stmt).scalars().all()
+
+        for real_id in rids:
+            REntity.delete(real_id, session=session)
+            link = session.query(Link).where(Link.rid == real_id).all()
+            print(link)
 
         # test all the combinations
         occ1 = occurrences[0]
         occ2 = occurrences[1]
         # two unbound occurrences
-        ri1 = REntity.same_as(occ1, occ2, real_id=test_rid, status=STATUS.MANUAL, session=session)
+        ri1 = REntity.same_as(
+            occ1, occ2, real_id=test_rid, status=STATUS.MANUAL, session=session
+        )
         assert ri1 is not None, "Real entity not returned"
         assert ri1.id == test_rid, "real_id not preserved"
 
@@ -140,7 +186,7 @@ def test_link_two_occ(dbsystem):
 
         # check that the real entity has the correct number of occurrences
         rel_entity = session.get(REntity, r6.id)
-        occs = [link.entity for link in rel_entity.occurrences]
+        occs = [link.entity for link in rel_entity.links]
         assert len(occs) == 6
         assert occ1 in occs
         assert occ2 in occs
@@ -155,7 +201,9 @@ def test_link_two_occ(dbsystem):
 
         # check that cannot set real_id if occurrences are already bound
         with pytest.raises(ValueError):
-            REntity.same_as(occ5, occ6, real_id="xpto", status=STATUS.AUTOMATIC, session=session)
+            REntity.same_as(
+                occ5, occ6, real_id="xpto", status=STATUS.AUTOMATIC, session=session
+            )
 
         real_ricci = session.get(REntity, ri1.id)
         assert len(real_ricci.to_kleio()) > 0
@@ -167,7 +215,7 @@ def test_link_two_occ(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -177,10 +225,18 @@ def test_link_two_occ(dbsystem):
 def test_make_real(dbsystem):
     """Test the creation of a real entity"""
     with dbsystem.session() as session:
+        file1 = Path(TEST_FILES_DIR, "sameas-tests.xml")
+        try:
+            import_from_xml(file1, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
         bento_de_gois = session.get(Person, "deh-bento-de-gois")
         assert bento_de_gois is not None, "could not get a person from file"
 
-        rid = REntity.make_real(bento_de_gois.id, status=STATUS.AUTOMATIC, session=session)
+        rid = REntity.make_real(
+            bento_de_gois.id, status=STATUS.AUTOMATIC, session=session
+        )
         assert rid is not None, "real_id not returned"
         real_bento = session.get(REntity, rid.id)
         assert len(real_bento.to_kleio()) > 0
@@ -190,7 +246,83 @@ def test_make_real(dbsystem):
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", "xsameas", None, None, None),
+        # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
+        # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
+        ("postgres", "xsameas", None, None, None),
+    ],
+    indirect=True,
+)
+def test_import_xsameas(dbsystem: TimelinkDatabase):
+    # Test that the sequence of import files does not affect the result
+    file1 = "sameas-tests.cli"
+    file2 = "xsameas-tests.cli"
+
+    with dbsystem.session() as session:
+
+        dbsystem.update_from_sources(file1)
+        dbsystem.update_from_sources(file2)
+
+        # check the number of KleioFiles imported
+        stmt = select(KleioImportedFile)
+
+        kfiles = session.execute(stmt).scalars().all()
+        print(len(kfiles))
+
+        # count the number of links
+        stmt = select(Link)
+        links = session.execute(stmt).scalars().all()
+        linked_entities = sorted([link.entity for link in links])
+        nlinks = len(links)
+
+        # count the number of relations with None in destination
+        stmt = select(Relation).where(Relation.destination is None)
+        relations = session.execute(stmt).scalars().all()
+        nrelations = len(relations)
+
+        # We now reimport file1 and check if the number of links and relations is the same
+        importfile1: List[KleioFile] = dbsystem.kserver.get_translations(file1)
+        xml_file = importfile1[0].xml_url
+        import_from_xml(
+            xml_file,
+            session,
+            options={
+                "return_stats": True,
+                "kleio_token": dbsystem.kserver.get_token(),
+                "kleio_url": dbsystem.kserver.get_url(),
+                "mode": "TL",
+            },
+        )
+
+        stmt = select(Link)
+        links = session.execute(stmt).scalars().all()
+        linked_entities_2 = sorted([link.entity for link in links])
+        diff = set(linked_entities) - set(linked_entities_2)
+        print(diff)
+        assert len(links) == nlinks, "wrong number of links"
+
+        stmt = select(Relation).where(Relation.destination == None)  # noqa
+        relations = session.execute(stmt).scalars().all()
+        assert len(relations) == nrelations, "some relations have no destination after reimport"
+
+        # now we test if the deletion of a source file affects the links
+        stmt = select(Source)
+        sources = session.execute(stmt).scalars().all()
+        one_source = sources[0]
+        stmt = select(Link).where(Link.source_id == one_source.id)
+        links = session.execute(stmt).scalars().all()
+        nlinks = len(links)  # number of links for one source
+        dbsystem.delete_source(one_source.id)
+        stmt = select(Link).where(Link.source_id == one_source.id)
+        links = session.execute(stmt).scalars().all()
+        assert len(links) == 0, "links not deleted when source is deleted"
+
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),
@@ -199,7 +331,7 @@ def test_make_real(dbsystem):
 )
 def test_import_aregister(dbsystem):
     """Test the import a identifications file"""
-    file = Path(TEST_DIR, "timelink-home/projects/test-project/identifications/rentities-tests.xml")
+    file = Path(TEST_FILES_DIR, "aregister-tests.xml")
     with dbsystem.session() as session:
         try:
             stats = import_from_xml(file, session, options={"return_stats": True})
@@ -207,21 +339,34 @@ def test_import_aregister(dbsystem):
             print(exc)
             raise
         sfile = stats["file"]
-        assert "rentities" in sfile.name
+        assert "aregister" in sfile.name  # ensure import was done
         real_person = session.get(REntity, "rp-66")
-        assert real_person is not None, (
-            "could not get a real person from identifications import"
-        )  # noqa
+        assert (
+            real_person is not None
+        ), "could not get a real person from identifications import"  # noqa
         assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
         kleio = real_person.to_kleio()
         assert len(kleio) > 0
+        # Import again
+        try:
+            stats = import_from_xml(file, session, options={"return_stats": True})
+        except Exception as exc:
+            print(exc)
+            raise
+        sfile = stats["file"]
+        assert "aregister" in sfile.name
+        real_person = session.get(REntity, "rp-66")
+        assert (
+            real_person is not None
+        ), "could not get a real person from identifications import"
+        assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
 
 
 @pytest.mark.parametrize(
     "dbsystem",
     [
         # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
+        ("sqlite", RENTITY_DB, None, None, None),
         # change to pytest.param("postgres", "rentities", None, None, None, marks=skip_on_travis)
         # to skip the test on travis see https://doc.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize
         ("postgres", "rentities", None, None, None),

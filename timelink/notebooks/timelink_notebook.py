@@ -391,37 +391,11 @@ class TimelinkNotebook:
 
         but returns a subset of the columns.
 
-        | Column             | Non-Null Count | Dtype             |
-        |------------------- |--------------- |-------------------|
-        | path               | 3 non-null     | object            |
-        | name               | 3 non-null     | object            |
-        | size               | 3 non-null     | int64             |
-        | directory          | 3 non-null     | object            |
-        | modified           | 3 non-null     | datetime64        |
-        | modified_iso       | 3 non-null     | datetime64        |
-        | modified_string    | 3 non-null     | object            |
-        | qtime              | 3 non-null     | datetime64        |
-        | qtime_string       | 3 non-null     | object            |
-        | source_url         | 3 non-null     | object            |
-        | status             | 3 non-null     | object            |
-        | translated         | 3 non-null     | datetime64        |
-        | translated_string  | 3 non-null     | object            |
-        | errors             | 3 non-null     | int64             |
-        | warnings           | 3 non-null     | int64             |
-        | version            | 3 non-null     | object            |
-        | rpt_url            | 3 non-null     | object            |
-        | xml_url            | 3 non-null     | object            |
-        | import_status      | 3 non-null     | object            |
-        | import_errors      | 3 non-null     | Int64             |
-        | import_warnings    | 3 non-null     | Int64             |
-        | import_error_rpt   | 3 non-null     | object            |
-        | import_warning_rpt | 3 non-null     | object            |
-        | imported           | 3 non-null     | int64             |
-        | imported_string    | 3 non-null     | int64             |
-        |------------------- |--------------- |-------------------|
 
         """
         result = self.get_import_status(**kwargs)
+        if len(result) == 0:
+            return pandas.DataFrame()
         return result[
             [
                 "path",

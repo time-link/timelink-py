@@ -1,6 +1,7 @@
 """ Interface to Kleio Server"""
 
 import logging
+import warnings
 import socket
 import os
 from time import sleep
@@ -126,6 +127,8 @@ class KleioServer:
             kleio_version = "latest"
         if not is_docker_running():
             raise RuntimeError("Docker is not running")
+        # TODO: test if kleio_home is a valid directory
+
         container: docker.models.containers.Container = start_kleio_server(
             image=kleio_image,
             version=kleio_version,
@@ -135,9 +138,9 @@ class KleioServer:
             kleio_external_port=kleio_external_port,
             kleio_server_workers=kleio_server_workers,
             kleio_idle_timeout=kleio_idle_timeout,
-            kleio_conf_dir=kleio_conf_dir,
-            kleio_source_dir=kleio_source_dir,
-            kleio_stru_dir=kleio_stru_dir,
+            kleio_conf_dir=str(kleio_conf_dir),
+            kleio_source_dir=str(kleio_source_dir),
+            kleio_stru_dir=str(kleio_stru_dir),
             kleio_token_db=kleio_token_db,
             kleio_default_stru=kleio_default_stru,
             kleio_debug=kleio_debug,
@@ -358,6 +361,24 @@ class KleioServer:
         """
         return self.container
 
+    def get_logs(self, **kwargs):
+        """Get the logs of the kleio server container
+
+        Args:
+            **kwargs: arguments to pass to docker container logs:
+            tail (str): number of lines to show from the end of the logs
+            since (str): show logs since a datetime timestamp integer seconds
+            until (str): show logs until a datetime timestamp integer seconds
+            timestamps (bool): show timestamps
+            follow (bool): follow log output
+
+        Returns:
+            str: kleio server logs
+
+        """
+
+        return self.container.logs(**kwargs).decode("utf-8")
+
     def get_url(self):
         """Get the kleio server url
 
@@ -436,6 +457,30 @@ class KleioServer:
         pars = {"user": user, "info": info.model_dump()}
         return self.call("tokens_generate", pars)
 
+    # this is deprecated should be translation_get for consistency
+    def get_translations(
+        self, path: str, recurse: str = True, status: str = None, token: str = None
+    ) -> List[KleioFile]:
+        """Get translations from kleio server
+
+        Args:
+            path (str): Path to the directory in sources.
+            recurse (str): If "yes", recurse in subdirectories.
+            status (str, optional): Filter by translation status. Options include:
+                V = valid translations
+                T = need translation (source more recent than translation)
+                E = translation with errors
+                W = translation with warnings
+                P = translation being processed
+                Q = file queued for translation
+            token (str, optional): Kleio server token.
+
+        Returns:
+            list[KleioFile]: List of KleioFile objects.
+
+        """
+        return self.translation_status(path, recurse, status, token)
+
     def translation_status(
         self, path: str, recurse: str = True, status: str = None, token: str = None
     ) -> List[KleioFile]:
@@ -457,6 +502,12 @@ class KleioServer:
             list[KleioFile]: List of KleioFile objects.
 
         """
+        warnings.warn(
+            "The 'translation_status' method is deprecated and will be removed in a future version. "
+            "Use 'get_translations' instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
         if recurse is True:
             recurse = "yes"
         elif recurse is False:
@@ -464,6 +515,8 @@ class KleioServer:
 
         if path is None:
             path = ""
+
+        path = str(path)
 
         if status is None:
             pars = {"path": path, "recurse": recurse}
@@ -917,6 +970,7 @@ def start_kleio_server(
             get_version = version
 
         # Pull the latest image
+        logging.info("Pulling the latest image: timelinkserver/kleio-server:%s", get_version)
         latest_image = client.images.pull(
             "timelinkserver/kleio-server", tag=get_version
         )

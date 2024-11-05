@@ -205,6 +205,11 @@ Travis will then deploy to PyPI if tests pass.
 
 If Travis fails to deploy to PyPI, try "make release" locally.
 
+Note that errors in package description in setup.py can prevent deployment to PyPI.
+This happens mainly with markup problems in HISTORY.rst.
+See https://github.com/pypi/warehouse/issues/5890
+
+"make release" will do `twine check dist/*` to check for errors.
 
 Tips for maintaners
 ===================

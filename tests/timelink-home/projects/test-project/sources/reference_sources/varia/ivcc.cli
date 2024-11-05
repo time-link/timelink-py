@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=12
+kleio$gacto2.str/translations=15
    fonte$ivcc/tipo=fonte-jesuita/ano=1719/obs="""
       Franco (S.I.), Antonio, Imagem da virtude em o noviciado da Companhia de
       Jesus no Real Collegio de Jesus de Coimbra em Portugal
@@ -57,7 +57,7 @@ kleio$gacto2.str/translations=12
                ls$estadia/Colégio de Jesus, Coimbra/164100/obs=data aprox. p. 6
                rel$kin/son/Álvaro/ivc-alvaro-duque-aveiro
 
-            referido$António
+            referido$António/id=colegio-coimbra-per1-10
                ls$titulo/Dom
                ls$death-place/Castela
                ls$estadia/Colégio de Jesus, Coimbra/163900/obs=data aprox. p. 6
@@ -94,7 +94,7 @@ kleio$gacto2.str/translations=12
 
             viagem$Itália para Portugal/0/0/1540/obs=Viagem dos primeiros Jesuítas para Portugal/id=ivc-simao-rodrigues-his7-35
 
-               referido$Paulo Camarte/mesmo_que=ivc-paulo-camarte
+               referido$Paulo Camarte/mesmo_que=ivc-paulo-camarte/id=ivc-simao-rodrigues-his7-35-per1-10
 
             viagem$Lisboa para Coimbra/9/6/1542/obs=chegou dia de Santo António, com 11 irmãos: um Valenciano, dois Franceses, dois Castelhanos, dois Italianos e três Portugueses (1 desistiu)/id=ivc-simao-rodrigues-his8-40
                ls$inicio/Lisboa/15420609
@@ -121,16 +121,16 @@ kleio$gacto2.str/translations=12
             ls$clergy/Ordens de Missa/15450908#Dia de Nossa Senhora de Setembro
             ls$bibliography/Mia Couto, O Outro Pé da Sereia/20060000/obs=Romance em que Gonçalo da Silveira e a sua missão em África tem papel importante.
 
-            referido$João III
+            referido$João III/id=ivc-goncalo-da-silveira-per1-10
                ls$estadia/Almeirim/obs=Estava a corte em Almeirim
 
-            referido$Nuno Ribeiro
+            referido$Nuno Ribeiro/id=ivc-goncalo-da-silveira-per2-10
                ls$jesuita-estatuto/father
 
             referido$Belchior Carneiro/id=ivc-belchior-carneiro
                ls$cargo/Bispo de Nicea/0/obs=foi com Gonçalo Silveira a Góis, ver a a família de Gonçalo, quando ainda estavam ambos em Coimbra.
 
-            pai$Luis da Silveira/obs="dai a poucos anos [morreu] o Conde..." Referência de Carlos V à mercê de Conde de Sortelha a Luís de Silveira, nos Anais de D. João III, de Fr. Luís de Sousa, p.375, no anexo de "Memórias e Documentos", datada de Bruxelas 33 de outubro de 1531, e no texto p.10. D. João III teria enviado Luis da Silveira como embaixador a Carlos V para tratar do casamento da irmã, a infanta Isabel. Ver Frei Luis de Sousa p. 41.
+            pai$Luis da Silveira/obs="dai a poucos anos [morreu] o Conde..." Referência de Carlos V à mercê de Conde de Sortelha a Luís de Silveira, nos Anais de D. João III, de Fr. Luís de Sousa, p.375, no anexo de "Memórias e Documentos", datada de Bruxelas 33 de outubro de 1531, e no texto p.10. D. João III teria enviado Luis da Silveira como embaixador a Carlos V para tratar do casamento da irmã, a infanta Isabel. Ver Frei Luis de Sousa p. 41./id=ivc-goncalo-da-silveira-per3-10
                ls$titulo/Dom
                ls$titulo/Conde de Sortelha/obs=primeiro Conde
                ls$cargo/Guarda Mor de D.João III
@@ -140,89 +140,89 @@ kleio$gacto2.str/translations=12
                ls$dead-tomb/Igreja de Góis/geral|view|70290/obs=Buried at the Igreja de Góis,see p.40 cap. XIII http:||www.patrimoniocultural.gov.pt|pt|patrimonio|patrimonio-imovel|pesquisa-do-patrimonio|classificado-ou-em-vias-de-classificacao
                rel$parentesco/pai/Filipa de Vilhena/ivc-filipa-de-vilhena
 
-               ppai$Nuno Martins da Silveira
+               ppai$Nuno Martins da Silveira/id=ivc-goncalo-da-silveira-per3-10-per4-10
                   ls$titulo/Senhor de Góis
                   ls$cargo/Mordomo da Rainha D. Catarina
                   ls$cargo/Mordomo de D.Filipa de Vilhena
 
-            mae$Brites Coutinho
+            mae$Brites Coutinho/id=ivc-goncalo-da-silveira-per5-10
                ls$name/Brites Noronha
                ls$titulo/Dona
                ls$titulo/Condessa
                ls$death-date/15260226%ao terceiro dia [depois do parto] faleceu
                rel$parentesco/mae/Filipa de Vilhena/ivc-filipa-vilhena
 
-               pmae$Fernando Coutinho
+               pmae$Fernando Coutinho/id=ivc-goncalo-da-silveira-per5-10-per6-10
                   ls$cargo/Marechal do Reino
                   ls$death-place/Koldata, India%Calicut/obs=note margin: "Corografia Potug., Tom. 2 pag.276". In the text "Quando o grande Afonso de Albuquerque quiz tomar ao Zamorim aquela cidade"
 
-               mmae$Maria de Noronha
+               mmae$Maria de Noronha/id=ivc-goncalo-da-silveira-per5-10-per7-10
                   ls$titulo/Dona
 
             referido$Luís Alves de Távora/id=ivc-luis-alves-de-tavora/obs=Da família dos Marqueses de Távora/obs=Took Gonçalo and his brother Álvaro to his home to raise them when orphaned
                ls$titulo/Senhor do Mogadouro
                rel$kin/brother in law/Gonçalo da Silveira/ivc-goncalo-da-silveira
 
-            referido$Álvaro da Silveira/xmesmo_que=bio-alvaro-silveira/obs=Later capitam of Ormuz, dies in battle in the Persian Gulf
+            referido$Álvaro da Silveira/xmesmo_que=bio-alvaro-silveira/obs=Later capitam of Ormuz, dies in battle in the Persian Gulf/id=ivc-goncalo-da-silveira-per8-10
                rel$kin/brother/Gonçalo da Silveira/ivc-goncalo-da-silveira
 
             referida$Filipa de Vilhena/id=ivc-filipa-de-vilhena
                rel$kin/wife/Luís Alves de Távora/ivc-luis-alves-de-tavora
 
-            referido$Álvaro da Silveira
+            referido$Álvaro da Silveira/id=ivc-goncalo-da-silveira-per9-10
                ls$titulo/Dom
                rel$parentesco/sobrinho/Gonçalo da Silveira/ivc-goncalo-da-silveira/obs=neto do pai de Gonçalo da Silveira
 
-            referido$Rodrigo de Menezes/obs=Colega.
+            referido$Rodrigo de Menezes/obs=Colega./id=ivc-goncalo-da-silveira-per10-10
                ls$titulo/Dom
 
             pevent$First Jesuits in Coimbra/0/0/1543/id=ivc-goncalo-da-silveira-his3-115
 
-               referido$Luís Gonçalves da Câmara/obs=Colega
+               referido$Luís Gonçalves da Câmara/obs=Colega/id=ivc-goncalo-da-silveira-his3-115-per1-10
 
-               referido$Leão Henriques de Noronha/obs=Colega
+               referido$Leão Henriques de Noronha/obs=Colega/id=ivc-goncalo-da-silveira-his3-115-per2-10
                   ls$titulo/Dom
 
-               referido$António Moniz/obs=Colega
+               referido$António Moniz/obs=Colega/id=ivc-goncalo-da-silveira-his3-115-per3-10
 
-               referido$Teotónio/obs=Filho dos Duques de Bragança. Colega
+               referido$Teotónio/obs=Filho dos Duques de Bragança. Colega/id=ivc-goncalo-da-silveira-his3-115-per4-10
                   ls$cargo/Arcebispo de Évora/0/obs=mais tarde
 
             viagem$Viagem a Roma 1550/5/1/1550%dia de reis/id=imagem-virtude-v2-his1-18/obs=Santo Inácio chamou a Roma Simão Rodrigues e mandou que com ele fossem alguns teólogos, dos que "dessem de si mais esperanças" para "verem a Companhia na sua fonte". Foram 3. No caminho deviam para em Gandia, para receberem o grau de Doutores em Teologia "assim para maior autoridade das suas letras, como por dar gosto ao Duque D. Francisco de Borja, que assim o pedia, e já naquele tempo era ocultamente da Companhia... p.10" Quando partiram vieram despedir-se 100 irmãos.
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=imagem-virtude-v2-his1-18-per1-10
 
                referido$João Dício Flamengo/id=ivc-joao-dicio-flamengo
 
-               referido$nome desconhecido/obs="O terceiro não ficou lembrança de como se chamava"
+               referido$nome desconhecido/obs="O terceiro não ficou lembrança de como se chamava"/id=imagem-virtude-v2-his1-18-per2-10
 
             estadia$Estadia em Gandia/0/1/1550/obs=sairam de Coimbra em 5 de Janeiro de 1550./id=imagem-virtude-v2-his2-21
                ls$estadia/Gandia, Espanha
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=imagem-virtude-v2-his2-21-per1-10
                   ls$academic/Doutor em Teologia, Universidade de Gandia, Espanha.
 
-               referido$João Dício Flamengo/mesmo_que=ivc-joao-dicio-flamengo
+               referido$João Dício Flamengo/mesmo_que=ivc-joao-dicio-flamengo/id=imagem-virtude-v2-his2-21-per2-10
 
-               referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja
+               referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja/id=imagem-virtude-v2-his2-21-per3-10
                   ls$titulo/Duque
                   ls$titulo/Dom
 
-               referido$André de Oviedo
+               referido$André de Oviedo/id=imagem-virtude-v2-his2-21-per4-10
                   ls$cargo/Reitor do Colégio de Gândia
 
             viagem$Viagem a Valência/0/1/1550/obs=Depois de estar em Gandia/obs=onde Diogo Mirão, que o tinha recebido na companhia, era Reitor. Pregou com grande sucesso O rei, sabendo que estava ali a pregar mandou recado por mestre Simão que o fizesse voltar ao reino o que ele obedeceu./id=imagem-virtude-v2-his1-22
                ls$estadia/Valencia, Espanha
 
-               referido$Diogo Mirão/mesmo_que=ivc-diogo-mirao
+               referido$Diogo Mirão/mesmo_que=ivc-diogo-mirao/id=imagem-virtude-v2-his1-22-per1-10
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=imagem-virtude-v2-his1-22-per2-10
 
             viagem$Viagem de Valência a Portugal/obs="lhe chegou ordem do Padre Mestre Simão que voltasse a Portugal, porquanto El-Rey sabendo de sua detença em Valença, e fruto raro que nela fazia, significou ao Padre Mestre Simão, que lhe daria contentamento em mandar voltar pera o Reino ao Padre Dom Gonçalo" ... "No mesmo dia que recebeu a ordem se por logo a caminhoi, sem mais lhe lembrar o desejo de ir a Roma", p. 11./id=ivc-goncalo-da-silveira-his1-56
 
             estadia$Missão na Província de Entre-Douro e Minho/0/0/1551/obs=p. 11/id=ivc-goncalo-da-silveira-his2-56
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-56-per1-10
                   ls$estadia/Hospital de São Marcos, Braga
 
                referido$Baltazar Limpo/id=ivc-baltazar-limpo
@@ -237,10 +237,10 @@ kleio$gacto2.str/translations=12
 
             estadia$Missão no Porto/30/11/1551/obs="dia de Santo André"/id=ivc-goncalo-da-silveira-his3-57
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his3-57-per1-10
                   ls$estadia/Santa Casa da Misericórdia, Porto
 
-               referido$Pedro de Santa Maria
+               referido$Pedro de Santa Maria/id=ivc-goncalo-da-silveira-his3-57-per2-10
                   ls$order/Congregação de S.João Evangelista/obs="Que neste Reino chamam Santo Elói"
                   ls$order/Lóios/obs=same as S.João Evangelista
 
@@ -248,21 +248,21 @@ kleio$gacto2.str/translations=12
                   rel$parentesco/pai/Cristovão de Gouveia/ivc-cristovao-madureira
                   rel$parentesco/pai/João de Madureira/ivc-joao-de-madireira
 
-               referido$Cristovão de Gouveia
+               referido$Cristovão de Gouveia/id=ivc-goncalo-da-silveira-his3-57-per3-10
                   ls$jesuita-estatuto/Padre
 
-               referido$João de Madureira
+               referido$João de Madureira/id=ivc-goncalo-da-silveira-his3-57-per4-10
                   ls$jesuita-estatuto/Padre
 
             estadia$Vila de Tomar/0/0/1552/obs=Inferred date > november 1551, remained 6 months./id=ivc-goncalo-da-silveira-his5-61
 
             estadia$Lisboa, S.Roque e Corte/0/10/1553/obs="Tinha uma ou duas primas no paço..." p. 17/id=ivc-goncalo-da-silveira-his4-63
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his4-63-per1-10
 
             viagem$Lisboa para a Índia/0/0/1556/obs="iam nesta viagem 13 da nossa companhia, repartidos em diversas naus". Arrival in Goa 6 september 1556/id=ivc-goncalo-da-silveira-his5-64
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his5-64-per1-10
                   ls$estadia/Goa, Índia/15560906
 
                referido$João Nunes Barreto/id=ivc-joao-nunes-barreto
@@ -271,18 +271,18 @@ kleio$gacto2.str/translations=12
                referido$André de Ouviedo/id=ivc-andre-de-ouviedo
                   ls$cargo/Bispo
 
-               referido$Francisco Rodrigues
+               referido$Francisco Rodrigues/id=ivc-goncalo-da-silveira-his5-64-per2-10
                   ls$jesuita-estatuto/Padre
                   ls$alcunha/Manquinho
 
             estadia$Moçambique/25/7/1556/obs=dia de Santiago Maior até dia de S. Lourenço (10-Aug)/id=ivc-goncalo-da-silveira-his6-64
                ls$estadia/Moçambique/15560810/obs="Dia de S. Lourenço"
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his6-64-per1-10
 
             estadia$Goa/6/9/1556/id=ivc-goncalo-da-silveira-his7-67
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his7-67-per1-10
                   ls$cargo/Provincial da Índia
                   ls$estadia/Colégio de S. Paulo, Goa
 
@@ -294,33 +294,33 @@ kleio$gacto2.str/translations=12
 
             viagem$Goa a Baçaim/0/9/1556/obs=date? he write from Cochim on January 1567/id=ivc-goncalo-da-silveira-his6-68
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his6-68-per1-10
                   ls$estadia/Chaul/obs=Stayed 7 or 8 days. With the Dominicans
                   ls$estadia/Tanã, India/obs="onde tinhamos casa"
 
-               referido$Francisco de Mascarenhas/obs=lead a "fusta" of the "armada" going to Baçaim
+               referido$Francisco de Mascarenhas/obs=lead a "fusta" of the "armada" going to Baçaim/id=ivc-goncalo-da-silveira-his6-68-per2-10
                   ls$titulo/Dom
 
-               referido$Paio Correira/obs="soldado muito nobre"
+               referido$Paio Correira/obs="soldado muito nobre"/id=ivc-goncalo-da-silveira-his6-68-per3-10
                   ls$profissao/soldier/obs=decides to join de Jesuits
                   ls$estadia/Tanã, Índia
                   ls$nascimento/Porto, Portugal
 
-               referido$Diogo de Noronha/obs=Gonçalo travels in his boat (Catur) from Tanã to Cochim
+               referido$Diogo de Noronha/obs=Gonçalo travels in his boat (Catur) from Tanã to Cochim/id=ivc-goncalo-da-silveira-his6-68-per4-10
                   ls$titulo/Dom
 
             estadia$Cochim/0/1/1557/obs=data de carte escrita de Cochim/obs=p. 24 e ss. Describes establishment of the Inquisition in Goa. Papers with menaces signed "O Povo de Israel" were left in the alms boxes, etc.. So the Jesuits required that the Vigário Geral takes action. Witnesses are questionned. Local capitan tries to dissuade the Vigário. At the end more than 20 were found guilty "e erão dos mais ricos da cidade". After winter they were sent to Goa and the fathers with them [the story is told as if the jesuits were the ones ensuring persecution of the "Cristãos Novos". In Goa they tried to free them with bail, but the fathers opposed and they were sent to Portugal, with other "Cristãos Novos" found in Goa. The Jesuits ask the King to bring the Inquisition to India./id=ivc-goncalo-da-silveira-his7-69
 
-               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his7-69-per1-10
 
-               referido$Belchior Carneiro/mesmo_que=ivc-belchior-carneiro
+               referido$Belchior Carneiro/mesmo_que=ivc-belchior-carneiro/id=ivc-goncalo-da-silveira-his7-69-per2-10
                   ls$cargo/Bispo Eleito de Niceia
 
                referido$João de Albuquerque/id=ivc-joao-de-albuquerque
                   ls$cargo/Bispo de Goa
                   ls$morte-data/<1557-01
 
-               referido$Pedro Gonçalves
+               referido$Pedro Gonçalves/id=ivc-goncalo-da-silveira-his7-69-per3-10
                   ls$cargo/Vigário Geral de Goa
                   rel$social/friend/Francisco Xavier/ivc-francisco-xavier
 
@@ -364,20 +364,20 @@ kleio$gacto2.str/translations=12
                |fim cit.|
                   """/id=ivc-goncalo-da-silveira-his1-146
 
-               referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto
+               referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his1-146-per1-10
                   ls$cargo/Governador
 
-               referido$João Nunes Barreto/mesmo_que=ivc-joao-nunes-barreto
+               referido$João Nunes Barreto/mesmo_que=ivc-joao-nunes-barreto/id=ivc-goncalo-da-silveira-his1-146-per2-10
                   ls$cargo/Patriarca
 
-               referido$Belchior Carneiro%o bispo eleito/mesmo_que=ivc-belchior-carneiro
+               referido$Belchior Carneiro%o bispo eleito/mesmo_que=ivc-belchior-carneiro/id=ivc-goncalo-da-silveira-his1-146-per3-10
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his1-146-per4-10
 
-               referido$António de Quadros/mesmo_que=ivc-antonio-quadros
+               referido$António de Quadros/mesmo_que=ivc-antonio-quadros/id=ivc-goncalo-da-silveira-his1-146-per5-10
                   ls$jesuita-estatuto/Padre
 
-               referido$Francisco Rodrigues
+               referido$Francisco Rodrigues/id=ivc-goncalo-da-silveira-his1-146-per6-10
 
             pevent$New Vice-Rei Constantino de Bragança/0/0/1558/id=ivc-goncalo-da-silveira-his2-80/obs=see event bio-alvaro-silveira-his3-4
 
@@ -386,7 +386,7 @@ kleio$gacto2.str/translations=12
                   ls$cargo/Vice-Rei da Índia
                   ls$estadia/Goa, Índia
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-80-per1-10
                   rel$institutional/advise/Constantino de Bragança/ivc-constantino-de-braganca/obs="""
                   Construction of the Church of S. Tomé em Goa. Because the King of
                   Narsinga looted the city of Meliapor and took the relicts of the
@@ -403,16 +403,16 @@ kleio$gacto2.str/translations=12
 
             viagem$Chaul, defender de ataque/0/0/1558#inferido/id=ivc-goncalo-da-silveira-his1-85
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/obs=""" With Chaul menaced by the 'Melique', the Governor could not  prepare a defense army and asked Gonçalo to preach the danger, which he  did, gathering great number of people and donations to pay soldiers. "E  em breve tempo se achou o governador em Chaul com três mil portugueses,  que é o maior poder de gente Portuguesa, que ajunta o Vice-Rei, agora a  gente da terra". Surprised, the atacker made peace"""
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/obs=""" With Chaul menaced by the 'Melique', the Governor could not  prepare a defense army and asked Gonçalo to preach the danger, which he  did, gathering great number of people and donations to pay soldiers. "E  em breve tempo se achou o governador em Chaul com três mil portugueses,  que é o maior poder de gente Portuguesa, que ajunta o Vice-Rei, agora a  gente da terra". Surprised, the atacker made peace"""/id=ivc-goncalo-da-silveira-his1-85-per1-10
 
-               referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto
+               referido$Francisco Barreto/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his1-85-per2-10
 
             pevent$End of office as Provincial/0/0/1559%acabando de ser 3 anos provincial entregou a ocupação ao Padre António de Quadros/id=ivc-goncalo-da-silveira-his2-85
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-85-per1-10
                   ls$cargo/Provincial#end of term
 
-               referido$António de Quadros/mesmo_que=ivc-antonio-quadros
+               referido$António de Quadros/mesmo_que=ivc-antonio-quadros/id=ivc-goncalo-da-silveira-his2-85-per2-10
                   ls$cargo/Provincial#start of term
 
             pevent$Chegada das naus do reino a Moçambique/0/0/1559/id=ivc-goncalo-da-silveira-his3-85/obs="""
@@ -423,10 +423,10 @@ kleio$gacto2.str/translations=12
             Upon arrival they forward the request to the Vice-Rei who in turn speaks to
             António Quadros, provincial of the Jesuits.p.27."""
 
-               referido$Sebastião de Sá
+               referido$Sebastião de Sá/id=ivc-goncalo-da-silveira-his3-85-per1-10
                   ls$cargo/Capitão da fortaleza de Moçambique
 
-               referido$Sebastiao de Sá/obs=sobrinho do rei de Inhambane e Oronge, afilhado do capitão Sebastião de Sá, de quem recebe o nome. Depois de convertido e batizado em Moçambique voltou junto do Rei que teria ficado encantado com o relato do sobrinho e manisfestou desejo de se converter, pediu ao sobrinho voltasse a Moçambique para pedir pregadores
+               referido$Sebastiao de Sá/obs=sobrinho do rei de Inhambane e Oronge, afilhado do capitão Sebastião de Sá, de quem recebe o nome. Depois de convertido e batizado em Moçambique voltou junto do Rei que teria ficado encantado com o relato do sobrinho e manisfestou desejo de se converter, pediu ao sobrinho voltasse a Moçambique para pedir pregadores/id=ivc-goncalo-da-silveira-his3-85-per2-10
                   rel$kin/nephew/Rei de Inhambane e Oronge/ivc-rei-de-inhambane
                   rel$identification/not-same-as/Sebastião de Sá/ivc-goncalo-da-silveira-his3-85-per1-85/obs=têm o mesmo nome porque este foi aflihado de batismo do outro
 
@@ -440,21 +440,21 @@ kleio$gacto2.str/translations=12
                   ls$titulo/dom
                   ls$cargo/bispo de Cochim/obs=First bishop of Cochim
 
-               referido$António Pegado
+               referido$António Pegado/id=ivc-goncalo-da-silveira-his3-85-per3-10
                   ls$titulo/Frei
                   ls$cargo/Vigário Geral dos Religiosos de São Domingos da Índia
                   ls$order/Dominicanos
 
             pevent$Nomeação para pregar em Monomotapa [Mutapa]/0/12/1559/id=ivc-goncalo-da-silveira-his1-91
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his1-91-per1-10
 
                referido$André Fernandes/id=ivc-andre-fernandes
                   ls$jesuita-estatuto/Padre
                   ls$ordained/Missa/obs="que para esta missão foi ordenado de Missa"
                   ls$cargo/Coadjutor temporal
 
-               referido$Francisco Xavier/mesmo_que=ivc-francisco-xavier
+               referido$Francisco Xavier/mesmo_que=ivc-francisco-xavier/id=ivc-goncalo-da-silveira-his1-91-per2-10
                   rel$institutional/send to Europe/André Fernandes/ivc-andre-fernandes
 
                referido$André da Costa/id=ivc-andre-da-costa
@@ -464,12 +464,12 @@ kleio$gacto2.str/translations=12
                ls$voyage/start/15600105
                ls$voyage/end/15600205/obs=dia da Benaventurança de Santa Ágata
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his1-92-per1-10
                   ls$estadia/Chaul/15591225/obs=according to letter to António Quadros ivc-doc4
 
-               referido$André Fernandes/mesmo_que=ivc-andre-fernandes
+               referido$André Fernandes/mesmo_que=ivc-andre-fernandes/id=ivc-goncalo-da-silveira-his1-92-per2-10
 
-               referido$André da Costa/mesmo_que=ivc-andre-da-costa
+               referido$André da Costa/mesmo_que=ivc-andre-da-costa/id=ivc-goncalo-da-silveira-his1-92-per3-10
 
                referido$Pantaleão de Sá/id=ivc-pantaleao-de-sa/obs="See https://www.geni.com/people/Pantaleão-de-Sá-de-Menezes-capitão-de-Sofala/6000000017017918072"
                   ls$titulo/Senhor
@@ -481,24 +481,24 @@ kleio$gacto2.str/translations=12
 
             estadia$Ilha de Moçambique/0/2/1560/id=ivc-goncalo-da-silveira-his2-101
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his2-101-per1-10
                   ls$estadia/Ilha de Moçambique
                   rel$social/lived at the house of/Pantaleão de Sá/ivc-goncalo-da-silveira-his2-101-per1-103
 
-               referido$Francisco Barreto de Lima/mesmo_que=ivc-francisco-barreto
+               referido$Francisco Barreto de Lima/mesmo_que=ivc-francisco-barreto/id=ivc-goncalo-da-silveira-his2-101-per2-10
                   ls$cargo/Governador da Índia/obs="fora Governador da Índia" [replaced Pedro de Mascarenhas 16-6-1555]
                   ls$estadia/Ilha de Moçambique/obs=Coming from Índia to Portugal, the armada lost a "nau", and its own was overloaded with could be saved and had to stop at Moçambique. See "https://pt.wikipedia.org/wiki/Francisco_Barreto"
 
-               referido$Pantaleão de Sá/mesmo_que=ivc-pantaleao-de-sa
+               referido$Pantaleão de Sá/mesmo_que=ivc-pantaleao-de-sa/id=ivc-goncalo-da-silveira-his2-101-per3-10
                   ls$estadia/Ilha de Moçambique/obs=Where he had a house with a tower
 
             pevent$Visão da Batalha de Ormuz/0/0/1558#ano?/obs=Gonçalo da Silveira teria tido a visão que o irmão iria morrer no Golfo Pérsico e terá avisado o Vice-Rei Constantino de Bragança. Mas o Vice-Rei e o irmão ignoraram o aviso e o irmão morreu, na batalha de Bahrein./id=ivc-goncalo-da-silveira-his4-117
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his4-117-per1-10
 
-               referido$Álvaro da Silveira/xmesmo_que=bio-alvaro-silveira
+               referido$Álvaro da Silveira/xmesmo_que=bio-alvaro-silveira/id=ivc-goncalo-da-silveira-his4-117-per2-10
 
-               referido$Constantino de Bragança/xmesmo_que=bio-constantino-de-braganca
+               referido$Constantino de Bragança/xmesmo_que=bio-constantino-de-braganca/id=ivc-goncalo-da-silveira-his4-117-per3-10
 
             estadia$Inhambane/12/2/1560/obs= """With presentes from Pantaleão de Sá and Francisco Barreto. Together with
             the two Jesuits brothers and two other portuguese, un-named. Sic on arrival,
@@ -506,13 +506,13 @@ kleio$gacto2.str/translations=12
             King, queen and her sister and 500 more people. Built church dedicated to
             Nossa Senhora da Assunção."""/id=ivc-goncalo-da-silveira-his3-118
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his3-118-per1-10
                   ls$estadia/Tonga/obs=for seven weeks
 
-               referido$André Fernandes/mesmo_que=ivc-andre-fernandes
+               referido$André Fernandes/mesmo_que=ivc-andre-fernandes/id=ivc-goncalo-da-silveira-his3-118-per2-10
                   ls$estadia/Tonga/15600200/obs=was sic for a while, stayed for two years, local "feiticeiros" against him. After two years is expelled and returns to Índia
 
-               referido$André da Costa/mesmo_que=ivc-andre-da-costa
+               referido$André da Costa/mesmo_que=ivc-andre-da-costa/id=ivc-goncalo-da-silveira-his3-118-per3-10
                   ls$estadia/Tonga/obs=After falling ill returned to Moçambique
 
             viagem$Moçambique para Monomotapa/0/9/1560/obs=com seis Portugueses e nenhum Jesuíta/id=ivc-goncalo-da-silveira-his9-119
@@ -536,9 +536,9 @@ kleio$gacto2.str/translations=12
             and other riches. Shows imagem of Our lady that greatly impresses King.
             Offers imagem to King, builds oratory in the King's chambers for the image."""/id=ivc-goncalo-da-silveira-his5-123
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his5-123-per1-10
 
-               referido$Rei de Monomotapa
+               referido$Rei de Monomotapa/id=ivc-goncalo-da-silveira-his5-123-per2-10
                   ls$baptized/date/15610125/obs=Followed by 300 noble men.
 
             pevent$Morte do Padre Gonçalo/15/3/1561/obs="""
@@ -546,7 +546,7 @@ kleio$gacto2.str/translations=12
             povo contra o rei. O Rei decide matá-lo. Tem pre monição, faz confissão
             pascal aos portugueses e batiza mais 50 pessoas."""/id=ivc-goncalo-da-silveira-his10-124
 
-               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+               referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-goncalo-da-silveira-his10-124-per1-10
                   ls$death/date/15610315/obs="""Killed by 8 men at orders of the King of Monomotapa. Also que 50 recently converted christians were killed. God send locust to avenge his deadth and later Franisco Barreto de Lima to conquer the gold mines in 1571"""
 
          evento$Recebimento da Infanta D. Isabel com Carlos V/20/1/1526/id=imagem-virtude-v2-his1-9/obs=v.2, p.3 Recebimento same as Marriage. But they will only meet in person later.
@@ -563,7 +563,7 @@ kleio$gacto2.str/translations=12
          evento$Nascimento do Infante D. Afonso/24/2/1526/id=imagem-virtude-v2-his2-10
             ls$estadia/Almeirim/obs=Onde estava a corte
 
-            n$Afonso
+            n$Afonso/id=imagem-virtude-v2-his2-10-per1-10
                ls$titulo/Principe
                ls$birth-date/15260224
 
@@ -578,26 +578,26 @@ kleio$gacto2.str/translations=12
          pierce his cap, António de Quadros was poisoned,
          Gonçalo Silveira was targeted in the island of Chorão. All escaped."""/id=ivc-bio-goncalo-da-silveira-his8-76
 
-            referido$Gaspar/obs=Come to India with the first Inquisidores.
+            referido$Gaspar/obs=Come to India with the first Inquisidores./id=ivc-bio-goncalo-da-silveira-his8-76-per1-10
                ls$titulo/Dom
                ls$cargo/Arcebispo de Goa
                ls$estadia/Goa/15600000
 
          evento$Arrival of Vice-Rei Constantino de Bragança/0/0/1558/id=ivc-bio-goncalo-da-silveira-his1-81
 
-            referido$Constantino de Bragança
+            referido$Constantino de Bragança/id=ivc-bio-goncalo-da-silveira-his1-81-per1-10
                ls$titulo/Dom
                ls$cargo/Vice-Rei
                ls$estadia/Goa, Índia
 
          evento$Início da Casa Professa de S.Roque/0/10/1553/obs="primeiro domingo de Outubro de 1553" p. 17./id=ivc-doc2-his6-61
 
-            referido$Jerónimo Nadal/mesmo_que=ivc-jeronimo-nadal
+            referido$Jerónimo Nadal/mesmo_que=ivc-jeronimo-nadal/id=ivc-doc2-his6-61-per1-10
                ls$cargo/Comissário
 
-            referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja
+            referido$Francisco de Borja/mesmo_que=ivc-francisco-de-borja/id=ivc-doc2-his6-61-per2-10
 
-            referido$João III/mesmo_que=joao-iii
+            referido$João III/mesmo_que=joao-iii/id=ivc-doc2-his6-61-per3-10
                rel$parentesco/pai/João/ivc-joao-principe
 
             referido$João/id=ivc-joao-principe
@@ -618,12 +618,12 @@ kleio$gacto2.str/translations=12
 
          evento$Batalha de Bahraim/0/0/1555/id=ivc-bio-goncalo-da-silveira-his2-107
 
-            referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+            referido$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-bio-goncalo-da-silveira-his2-107-per1-10
 
             referido$Alvaro de Silveira/obs="""
             Foi nomeado Capitão de Ormuz e morreu numa batalha no Bahraim. Seria amigo de
             Camões que lhe dedicou uma elegia
-            'Não tenho razão de vos fazer meus castelo de vento sobre o mar...' """
+            'Não tenho razão de vos fazer meus castelo de vento sobre o mar...' """/id=ivc-bio-goncalo-da-silveira-his2-107-per2-10
                ls$titulo/dom
                rel$kin/brother/Gonçalo da Silveira/ivc-bio-goncalo-da-silveira-his2-107-per1-107
                rel$social/friend/Luís de Camões/bio-luis-de-camoes/obs=See Obras de Luiz de Camões, ed. by Visconde de Juromenha (Imprensa nacional, 1862), III, p.555
@@ -632,9 +632,9 @@ kleio$gacto2.str/translations=12
       oblige due to the great number of people that came to hear him, to confess, and
       these people convinvced the archbishop to make him stay."""
 
-         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc1-per1-10
 
-         receptor$Miguel de Torres
+         receptor$Miguel de Torres/id=ivc-doc1-per2-10
             ls$jesuita-estatuto/Superior
             ls$jesuita-estatuto/Padre
 
@@ -643,21 +643,21 @@ kleio$gacto2.str/translations=12
                 depois, que tudo nascia da nova edificação, e gosto, que tinha de ter
                 ouvido ofruto que Deus fazia com as doutrinas e mais serviço da Companhia
                 na sua cidade."
-            """
+            """/id=ivc-doc1-per2-10-per3-10
 
       carta$ivc-doc2/0/11/1551/obs=transcrita parcialmente p.14-15/resumo=VERIFICAR CONTEÚDO.
 
-         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc2-per1-10
 
          receptor$Manuel Godinho%e irmãos/id=ivc-manuel-godinho
             ls$jesuita-estatuto/padre
 
       carta$ivc-doc3/0/1/1557/obs=Written from Cochimtranscription p. 20-21. Narrates de horrors of the trip, in very vivid terms. Also trip from Goa to Bassaim
 
-         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira
+         emissor$Gonçalo Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc3-per1-10
             ls$estadia/Cochim
 
-         receptor$Gonçalo Vaz de Melo/mesmo_que=ivc-goncalo-vaz-de-melo
+         receptor$Gonçalo Vaz de Melo/mesmo_que=ivc-goncalo-vaz-de-melo/id=ivc-doc3-per2-10
             ls$jesuita-estatuto/Padre
 
       carta$ivc-doc4/12/2/1560/obs="""
@@ -676,18 +676,18 @@ kleio$gacto2.str/translations=12
       approach to Moçambique from the sea http://www.hpip.org/pt/heritage/details/38.
       """
 
-         emissor$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira
+         emissor$Gonçalo da Silveira/mesmo_que=ivc-goncalo-da-silveira/id=ivc-doc4-per1-10
             ls$estadia/Chaul/15591225/obs=according to letter to António Quadros ivc-doc4
 
-         receptor$António de Quadros/mesmo_que=ivc-antonio-quadros
+         receptor$António de Quadros/mesmo_que=ivc-antonio-quadros/id=ivc-doc4-per2-10
 
-            referido$nome desconhecido
+            referido$nome desconhecido/id=ivc-doc4-per2-10-per3-10
                ls$cargo/Vigário de Sofala
 
-            referido$Pantaleão de Sá/mesmo_que=ivc-pantaleao-de-sa
+            referido$Pantaleão de Sá/mesmo_que=ivc-pantaleao-de-sa/id=ivc-doc4-per2-10-per4-10
                ls$titulo/Senhor
 
-            referida$Luísa/mesmo_que=ivc-luisa-de-vasconcelos
+            referida$Luísa/mesmo_que=ivc-luisa-de-vasconcelos/id=ivc-doc4-per2-10-per5-10
                ls$titulo/ls$titulo/dona
                rel$kin/wife/Pantaleão de Sá/ivc-pantaleao-de-sa
 
@@ -699,29 +699,29 @@ kleio$gacto2.str/translations=12
             ls$morte/Xauceo#Shiuchow/15911017%O padre Juvenci tem que morrera aos 16 de setembro
             ls$jesuita-estatutoa-entrada/Coimbra/15760104%tendo dezoito anos e dois meses de idade
 
-            pai$Fernão de Sequeira
+            pai$Fernão de Sequeira/id=ivc-antonio-de-almeida-per1-10
 
-            mae$Ana de Andrade
+            mae$Ana de Andrade/id=ivc-antonio-de-almeida-per2-10
 
-            viagem$Lisboa-Índia/0/0/1584/obs=com outros oito da Companhia referidohis1-130
+            viagem$Lisboa-Índia/0/0/1584/obs=com outros oito da Companhia referidohis1-130/id=ivc-antonio-de-almeida-his1-10
 
-            estadia$Macau/0/0/0/obs=Valignano o enviou para Macau com o Padre Duarte de Sandehis1-131
+            estadia$Macau/0/0/0/obs=Valignano o enviou para Macau com o Padre Duarte de Sandehis1-131/id=ivc-antonio-de-almeida-his2-10
 
-               referido$Alessandro Valignano/xmesmo_que=bio-alessandro-valignano
+               referido$Alessandro Valignano/xmesmo_que=bio-alessandro-valignano/id=ivc-antonio-de-almeida-his2-10-per1-10
 
-               referido$Duarte de Sande
+               referido$Duarte de Sande/id=ivc-antonio-de-almeida-his2-10-per2-10
 
-            estadia$Cantão/0/0/0/obs=Onde estava com mercadores portugueseshis2-131
+            estadia$Cantão/0/0/0/obs=Onde estava com mercadores portugueseshis2-131/id=ivc-antonio-de-almeida-his3-10
 
-               referido$Michele Ruggieri%Miguel Rogerio/obs="Nesse tempo o Padre Miguel Rodgerio da nossa Companhia, que vivia dentro da China, tendo licença pera fundar casa em uma das metrópoles [Zhaoqing desde 1583] veio à cidade de Cantão para se refazer de algumas coisas necessárias"/xmesmo_que=bio-michele-ruggieriv
+               referido$Michele Ruggieri%Miguel Rogerio/obs="Nesse tempo o Padre Miguel Rodgerio da nossa Companhia, que vivia dentro da China, tendo licença pera fundar casa em uma das metrópoles [Zhaoqing desde 1583] veio à cidade de Cantão para se refazer de algumas coisas necessárias"/xmesmo_que=bio-michele-ruggieriv/id=ivc-antonio-de-almeida-his3-10-per1-10
 
-            estadia$Sequiam (Shaoxing?)/23/1/1586%?his5-135/obs=data em Michela Catto - Michele Ruggieri, Dizionario Biografico degli Italiani - Volume 89 (2017)
+            estadia$Sequiam (Shaoxing?)/23/1/1586%?his5-135/obs=data em Michela Catto - Michele Ruggieri, Dizionario Biografico degli Italiani - Volume 89 (2017)/id=ivc-antonio-de-almeida-his4-10
 
-               referido$Michele Ruggieri/xmesmo_que=bio-michele-ruggieri
+               referido$Michele Ruggieri/xmesmo_que=bio-michele-ruggieri/id=ivc-antonio-de-almeida-his4-10-per1-10
 
-            estadia$Xauceo (?)/0/8/1589/obs=Voltou a Macau mais do que uma vez por doença, faleceu em Xauceo [Shiuchow] p.392his5-137
+            estadia$Xauceo (?)/0/8/1589/obs=Voltou a Macau mais do que uma vez por doença, faleceu em Xauceo [Shiuchow] p.392his5-137/id=ivc-antonio-de-almeida-his5-10
 
-               referido$Matteo Ricci/xmesmo_que=bio-matteo-ricci
+               referido$Matteo Ricci/xmesmo_que=bio-matteo-ricci/id=ivc-antonio-de-almeida-his5-10-per1-10
 
       carta$carta-antonio-almeida-1586/10/2/1586/resumo="""
       Feito já china, por amor daquele, que por mim se fez homem, sendo Deus,lhe dou
@@ -737,7 +737,7 @@ kleio$gacto2.str/translations=12
       tanto a conversão deste grande reino, que uma vida, que tenho, me parece nada, e
       das mil, que tivera, as dera por ella""" p.393-394
 
-         emissor$António de Almeida/mesmo_que=ivc-antonio-de-almeida
+         emissor$António de Almeida/mesmo_que=ivc-antonio-de-almeida/id=carta-antonio-almeida-1586-per1-10
 
-         receptor$nome desconhecido
+         receptor$nome desconhecido/id=carta-antonio-almeida-1586-per2-10
             ls$jesuita-estatutoa-cargo/Superior da residência de Macau%superior da nossa caza de Macao

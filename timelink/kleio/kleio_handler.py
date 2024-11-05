@@ -129,6 +129,8 @@ class KleioHandler:
         self.kleio_translator = attrs["TRANSLATOR"]
         self.kleio_when = attrs["WHEN"]
         self.kleio_file_is_aregister = False
+        self.kleio_source_id = None
+        self.aregister_id = None
         self.pom_som_cache = dict()
         logging.debug("Kleio file: %s", self.kleio_file)
         logging.debug("Kleio structure: %s", self.kleio_structure)
@@ -224,6 +226,9 @@ class KleioHandler:
             )
             return
 
+        # store the current source id into the group
+        group.source_id = self.kleio_source_id
+
         # check if pom_mapper_for_group is attached to the session
         if not self.session.object_session(pom_mapper_for_group):
             self.session.add(pom_mapper_for_group)
@@ -233,6 +238,11 @@ class KleioHandler:
 
         if pom_mapper_for_group.id == "aregister":  # TODO should be .extends("aregister")
             self.kleio_file_is_aregister = True  # current file is an authority register
+            self.aregister_id = str(group.id.core)
+
+        if pom_mapper_for_group.id == "source":  # TODO should be .extends("source")
+            self.kleio_source_id = str(group.id.core)
+            group.source_id = self.kleio_source_id
 
         if pom_mapper_for_group.id == "relation":  # TODO should be .extends("relation")
             # it can happen that the destination of a relation
@@ -282,7 +292,7 @@ class KleioHandler:
         both related to processing same as relations:
 
         1. same_as:  register the same_as and xsame_as elements
-                     in groups
+                    in groups
         ```xml
         <RELATION ID="__-sa-deh-joao-barradas-rela6"
             ORG="sa-deh-joao-barradas-per1-11"
@@ -294,7 +304,7 @@ class KleioHandler:
         2. attach_to_rentity:  used in authority registers to register
                                 existing real entities to the register
         ```xml
-              <RELATION ID="rp-31-occ1"
+            <RELATION ID="rp-31-occ1"
                     REGISTER="real-entities-toliveira"
                     USER="toliveira"
                     ORG="deh-paul-lieou"
@@ -318,7 +328,9 @@ class KleioHandler:
             try:
                 REntity.same_as(rel_origin,
                                 rel_dest,
-                                status=STATUS.SOURCE, rule=f"same_as('{self.kleio_file_name}')",
+                                status=STATUS.SOURCE,
+                                rule=f"same_as('{self.kleio_file_name}')",
+                                source=self.kleio_source_id,
                                 session=self.session)
                 self.session.commit()
             except Exception as exc:
@@ -334,10 +346,14 @@ class KleioHandler:
             self.session.commit()
             rentity = self.session.get(REntity, rel_dest)
             if rentity is None:
-                self.errors.append(
+                error_msg = (
                     f"ERROR: {self.kleio_file_name} "
                     f"processing attach_to_rentity relation {rel_id}: "
                     f"Real entity {rel_dest} not found"
+                )
+                logging.error(error_msg)
+                self.errors.append(
+                    error_msg
                 )
                 self.session.rollback()
                 return
@@ -346,13 +362,18 @@ class KleioHandler:
                     occ_id=rel_origin,
                     user=rel_user,
                     status=rentity.status,
-                    rule=f"attach_to_rentity('{rel_register}')"
+                    rule=f"attach_to_rentity('{rel_register}')",
+                    aregister=self.aregister_id,
                 )
                 self.session.commit()
             except Exception as exc:
-                self.errors.append(
+                msg = (
                     f"ERROR: {self.kleio_file_name} "
                     f"processing attach_to_rentity relation {rel_id}: {exc.__class__.__name__}: {exc}"
+                )
+                logging.error(msg)
+                self.errors.append(
+                    msg
                 )
                 self.session.rollback()
                 return

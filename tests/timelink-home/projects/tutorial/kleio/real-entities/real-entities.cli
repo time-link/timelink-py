@@ -1,10 +1,10 @@
-kleio$/translations=15
-   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-4
-   fonte$sameas-tests/obs="""
+kleio$9/translations=2
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1
+   fonte$real-entities/obs="""
 
-    File with occurrences of the sameas tag, to be used in tests.
-    Note that ids are prefixed with "sa-" to avoid conflicts with other ids.
-    """
+     File with occurrences of the sameas tag, to be used in tests.
+     Note that ids are prefixed with "sa-" to avoid conflicts with other ids.
+     """
 
       lista$sameas-dehergne/20/09/2024
 
@@ -17,10 +17,10 @@ kleio$/translations=15
             ls$jesuita-entrada/Roma% (Noviciado de Sant'Andrea al Quirinale)# @wikidata:Q220/15710816
             ls$partida-x/Roma/1577-05-18/obs=Schutte, Monumenta historica japoniae I.1280
             ls$estadia-x/Coimbra/obs="""
-            Ricci and Tacchi Venturi, Opere Storiche Del p. Matteo Ricci s. i.
-               de Junho de 1577 a fim de março de 1578, p. lxiii
+             Ricci and Tacchi Venturi, Opere Storiche Del p. Matteo Ricci s. i.
+                de Junho de 1577 a fim de março de 1578, p. lxiii
 
-            Schutte, Monumenta historica japoniae I. 1280"""
+             Schutte, Monumenta historica japoniae I. 1280"""
             ls$embarque/S. Luís/15780324
             ls$wicky/200/15780324
             ls$wicky-viagem/25/15780324
@@ -61,14 +61,14 @@ kleio$/translations=15
             ls$dehergne/684/obs=pécimen d'écriture, nom chinois et romanisation, Allan, pl. p. 49 (noter le -RI de Ricci, écrit à la fois RI et LI. Copie de la lettre du P. « Matheo Risi y Saliano » (1584) à Juan Bautista RomAn, facteur des îles Philippines à Macao, dans Carlos Sanz, Primitivas Relaciones de Espana con Asia y Oceania, Madrid, 1958, 372-384 (Archivos de Indias 67-6-29) et l'art, de Léon Lopetegui, Miss. Hisp. I, 1944, 341-352., Razén y Fe IV, 1902, 463477.
             ls$nota/JRC/obs="""
 
-      Schutte, Monumenta historica japoniae I. 1280
-      “18. Maji 1577 Roma discessit, in Lusitaniam se
-      contulit, Conimbricae studio deditus;
-      24. Martii 1578 e Lusitania in Indiam solvit,
-      13. Sept. 1578 Goam advenit. Cochini deinceps
-      et Goae studium prosecu-tus. litt. quoque human. docuit.”
+       Schutte, Monumenta historica japoniae I. 1280
+       “18. Maji 1577 Roma discessit, in Lusitaniam se
+       contulit, Conimbricae studio deditus;
+       24. Martii 1578 e Lusitania in Indiam solvit,
+       13. Sept. 1578 Goam advenit. Cochini deinceps
+       et Goae studium prosecu-tus. litt. quoque human. docuit.”
 
-      """
+       """
 
             pai$Giovanni Battista Ricci/id=deh-matteo-ricci-pai
                ls$profissao/Boticário
@@ -82,7 +82,7 @@ kleio$/translations=15
             ls$morte/Rio Kan#Rio Nam Khan, em Laos?/15940000#afogado no naufrágio, a caminho do noviciato
             ls$dehergne/77/obs=Barradas, João (macaïste) 77 N. à Macao (v. 1570?). En 1594, en route pour entrer au noviciat, accompagne Ricci sur la rivière Kan où il fait naufrage et se noie. Pf. 25., DElia, I 341 et 344 n.
 
-            referido$Matteo Ricci/mesmo_que=deh-matteo-ricci/id=deh-joao-barradas-ref1
+            referido$Matteo Ricci/id=deh-joao-barradas-ref1
                ls$estadia/rio Kan#Rio Nam Khan, em Laos?/15940000
 
          n$Lazzaro Cattaneo/id=deh-lazzaro-cattaneo
@@ -217,26 +217,26 @@ kleio$/translations=15
             ls$jesuita-votos-local/Hangchow%(«in sacello Doctoris Michaelis Yam Kiyuen»)# @wikidata:Q4970/16171101
             ls$morte/Hangchow# @wikidata:Q4970/16211124#cerca de, foi feito três vezes prisioneiro e torturado por causa da sua fé, em 1596 e em 1615
             ls$dehergne/295/obs="""
-                     Fernandes Tchong, Sébastien (chin.) (II) fr. coadj. 295
-                     Bastian Hernandes. Tchong Mlng-Jen Nien-Kiang Pa-siang (= Sebastianus) (Pf.).
-                     N. « Sinensis natus Macai »
-                     v. 1562 (JS 134, 301v)., en réalité à Sunwui (Sin-houei, sud de Canton) (D'Elia I, 291).
-                     E. avec le fr. Francisco Martins Houang (les deux premiers Chinois candidats à la Compagnie), fin nov. 1589,
-                        à « Sciaoceo » (Shiuchow, Chao-tcheou fou) et admis le 1 janv. 1591 avec Ricci pour maître des novices.,
-                     étudient chinois et latin.,
-                     Nanchang (Nantch'ang, Kiangsi), d'où il accompagne Ricci à Pékin
-                        (où il sé- journe du 7 sept, au 5 nov. 1598).,
-                     Nankin, mai 1599.,
-                     Nanchang, 1600., regagne Pékin
-                     qu'il quitte avant le 20 sept. 1602 pour Nanchang.,
-                     Pékin, 1604-1608., 1609,
-                     Nankin., 1611, fondation de la résidence de Hangchow (Hang-tcheou).
-                     V. « in sacello Doctoris Michaelis Yam Kiyuen », Hangchow extra muros, 1 nov. 1617,
-                           coadj. temp. (Lus. 27, 3).
-                     M. Hangchow vers le 24 nov. 1621 (D'Elia I, 291 et III, 110).
-                     Il signe sa formule portugaise de voeux « Sebastiam Fernandez (D'Elia I, 290, photocopie).
-                     Emprisonné à 3 reprises pour la foi 1596 et après., en 1615 torturé.
-                     Pf. 47., DHGE (J. Dehergne)."""
+                      Fernandes Tchong, Sébastien (chin.) (II) fr. coadj. 295
+                      Bastian Hernandes. Tchong Mlng-Jen Nien-Kiang Pa-siang (= Sebastianus) (Pf.).
+                      N. « Sinensis natus Macai »
+                      v. 1562 (JS 134, 301v)., en réalité à Sunwui (Sin-houei, sud de Canton) (D'Elia I, 291).
+                      E. avec le fr. Francisco Martins Houang (les deux premiers Chinois candidats à la Compagnie), fin nov. 1589,
+                         à « Sciaoceo » (Shiuchow, Chao-tcheou fou) et admis le 1 janv. 1591 avec Ricci pour maître des novices.,
+                      étudient chinois et latin.,
+                      Nanchang (Nantch'ang, Kiangsi), d'où il accompagne Ricci à Pékin
+                         (où il sé- journe du 7 sept, au 5 nov. 1598).,
+                      Nankin, mai 1599.,
+                      Nanchang, 1600., regagne Pékin
+                      qu'il quitte avant le 20 sept. 1602 pour Nanchang.,
+                      Pékin, 1604-1608., 1609,
+                      Nankin., 1611, fondation de la résidence de Hangchow (Hang-tcheou).
+                      V. « in sacello Doctoris Michaelis Yam Kiyuen », Hangchow extra muros, 1 nov. 1617,
+                            coadj. temp. (Lus. 27, 3).
+                      M. Hangchow vers le 24 nov. 1621 (D'Elia I, 291 et III, 110).
+                      Il signe sa formule portugaise de voeux « Sebastiam Fernandez (D'Elia I, 290, photocopie).
+                      Emprisonné à 3 reprises pour la foi 1596 et après., en 1615 torturé.
+                      Pf. 47., DHGE (J. Dehergne)."""
 
             referido$Francisco Martins Houang/id=deh-sebastien-fernandes-tchong-ref1/obs=Dehergne 522
                ls$jesuita-entrada/Shiuchow% Chao-tcheou fou# @wikidata:Q1346617/15891100#fim do mês

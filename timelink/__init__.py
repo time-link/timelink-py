@@ -10,14 +10,14 @@ information collected from historical sources.
 
 
 """
-from .api import database  # noqa: F401
 from .api import models  # noqa: F401
+from .api import database  # noqa: F401
 from .api import views  # noqa: F401
 from .api import schemas  # noqa: F401
 
 
 __author__ = """Joaquim Ramos de Carvalho"""
 __email__ = 'joaquim@uc.pt'
-__version__ = '1.1.13'
+__version__ = '1.1.15'
 
 version = __version__

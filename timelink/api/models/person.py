@@ -35,9 +35,13 @@ class Person(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, self_string='', ident="", ident_inc="  ", show_contained=True, width=80) -> str:
+    def to_kleio(self, self_string='', ident="", ident_inc="  ", show_contained=True, width=80, **kwargs) -> str:
+        if self.groupname is None:
+            myname = "person"
+        else:
+            myname = self.groupname
         r = (
-            f"{self.groupname}${quote_long_text(self.name)}/"
+            f"{myname}${quote_long_text(self.name)}/"
             f"{quote_long_text(self.sex)}{self.render_id()}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:

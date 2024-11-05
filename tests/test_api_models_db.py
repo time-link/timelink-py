@@ -4,13 +4,13 @@ import pytest  # pylint: disable=import-error
 from sqlalchemy import select  # noqa
 
 from tests import skip_on_travis, conn_string
-from timelink.api.models.person import get_person
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson, KGeoentity
+from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # noqa
 from timelink.api.models.base_class import Base
-from timelink.api.database import TimelinkDatabase
 from timelink.api.models.entity import Entity  # noqa
 from timelink.api.models.pom_som_mapper import PomSomMapper
+from timelink.api.models.person import get_person
 from timelink.api.models.source import Source
 
 # pytestmark = skip_on_travis

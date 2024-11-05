@@ -4,12 +4,45 @@ import math
 from typing import Optional
 from itertools import chain
 
-from sqlalchemy import Enum, String, ForeignKey, update
+from sqlalchemy import Enum, Integer, String, ForeignKey, update
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.orm import object_session
 
-from .entity import Entity
 from .base_class import Base
+from .entity import Entity
+from .aregister import ARegister
+from .source import Source
+
+
+class OccurrenceMissingError(ValueError):
+    """Error raised when an occurrence is missing in the database
+    and an attempt is made to link it to a real entity"""
+
+    pass
+
+
+class RealEntityMissingError(ValueError):
+    """Error raised when a Real Entity required for an opperation is missing"""
+
+    pass
+
+
+class OccurenceTypeError(ValueError):
+    """Error raised when an attempot is made to link two entities of different types"""
+
+    pass
+
+
+class RealEntityIdExists(ValueError):
+    """Error raised when an attempt is made to create a real entity with an existing id"""
+
+    pass
+
+
+class RealEntityIdChangeError(ValueError):
+    """Error raised when an attempt is made to change the id of a real entity"""
+
+    pass
 
 
 class REntityStatus(PyEnum):
@@ -65,6 +98,14 @@ class REntity(Entity):
     different users have different opinions about the identity
     of the entities.
 
+    Fields:
+        id: id of the real entity
+        user: user that identified this real entity
+        description: description of the real entity
+        status: status of the real entity
+        obs: observations about the real entity
+        links: list of links to the entities that compose the real entity
+
 
     """
 
@@ -87,8 +128,10 @@ class REntity(Entity):
         String
     )  # observations about the real entity
 
-    occurrences: Mapped[list["Link"]] = relationship(
-        "Link", back_populates="rentity"
+    links: Mapped[list["Link"]] = relationship(
+        "Link", back_populates="rentity_rel",
+        cascade="all, delete",
+        passive_deletes=True
     )  # One-to-many relationship
 
     def __repr__(self):
@@ -137,16 +180,49 @@ class REntity(Entity):
 
     def get_occurrences(self):
         """Get the occurrences of the real entity"""
-        return self.occurrences
+        return [link.entity for link in self.links]
 
     @property
     def contains(self):
         # get the sqlalchemy session of self
         session = object_session(self)
-        # collect all the entities that are linked to this real entity and return the cones they contain
+        # collect all the entities that are linked to this real entity and return the ones they contain
         return list(
             chain.from_iterable(
-                session.get(Entity, occ.entity).contains for occ in self.occurrences
+                session.get(Entity, occ.entity).contains for occ in self.links
+            )
+        )
+
+    @property
+    def attributes(self):
+        # get the sqlalchemy session of self
+        session = object_session(self)
+        # collect all the entities that are linked to this real entity and return the ones they contain
+        return list(
+            chain.from_iterable(
+                session.get(Entity, occ.entity).attributes for occ in self.links
+            )
+        )
+
+    @property
+    def rels_in(self):
+        """Relations having this real entity as destination"""
+        # get the sqlalchemy session of self
+        session = object_session(self)
+        return list(
+            chain.from_iterable(
+                session.get(Entity, occ.entity).rels_in for occ in self.links
+            )
+        )
+
+    @property
+    def rels_out(self):
+        """Relations having this real entity as source"""
+        # get the sqlalchemy session of self
+        session = object_session(self)
+        return list(
+            chain.from_iterable(
+                session.get(Entity, occ.entity).rels_out for occ in self.links
             )
         )
 
@@ -234,7 +310,7 @@ class REntity(Entity):
         Delete a real entity from the database
 
         If sucessfull returns the id of the deleted real entity
-        if not returns and silent=True returns None otherwise raises an exception
+        if the rentity does not exist and silent=True returns None otherwise raises an exception
         """
 
         if session is not None:
@@ -249,13 +325,12 @@ class REntity(Entity):
                             raise ValueError(f"Error, {rentity_id} does not exist")
                         return None
                     else:
-                        for link in re.occurrences:
+                        for link in re.links:
                             session.delete(link)
                         session.delete(re)
                 except Exception as e:
                     session.rollback()
                     raise e
-
                 session.commit()
         return rentity_id
 
@@ -270,6 +345,7 @@ class REntity(Entity):
         real_id_prefix=None,
         description=None,
         rule=None,
+        source=None,
         session=None,
     ) -> str:
         """Returns a real entity id linking id1 and id2.
@@ -283,6 +359,7 @@ class REntity(Entity):
             real_id_prefix: prefix of the generated real entity id
             description: description of the real entity (defaults to description or name of first entity)
             rule: rule used to link the entities
+            source: if of the source with the link (same_as or x_same_as)
             session: database session
 
         if id1 and id2 are both unliked occurrences then a new real entity is created
@@ -310,6 +387,7 @@ class REntity(Entity):
                     real_id_prefix=real_id_prefix,
                     description=description,
                     rule=rule,
+                    source=source,
                     session=session,
                 )
 
@@ -317,34 +395,39 @@ class REntity(Entity):
             eid1 = session.get(Entity, id1)
             eid2 = session.get(Entity, id2)
             if eid1 is None or eid2 is None:
-                raise ValueError(f"Error, {id1} and {id2} must exist in the database")
+                raise OccurrenceMissingError(
+                    f"Error, {id1} and {id2} must exist in the database"
+                )
 
             if eid1.pom_class != eid2.pom_class:
-                raise ValueError(f"Error, {id1} and {id2} must be of the same type")
+                raise OccurenceTypeError(
+                    f"Error, {id1} and {id2} must be of the same type"
+                )
 
             # check if id1 and id2 are already linked
             # Query the links table for entity=id1 and user=user and return the rid
             # if it exists otherwise return None
             # if it exists return the Real Entity
-            r1 = (
+            r1_id = (
                 session.query(Link.rid)
                 .filter(Link.entity == id1, Link.user == user)
                 .scalar()
             )
-            r2 = (
+            r2_id = (
                 session.query(Link.rid)
                 .filter(Link.entity == id2, Link.user == user)
                 .scalar()
             )
 
             # if r1 and r2 are not None and equal return r1
-            if r1 is not None and r2 is not None and r1 == r2:
-                if real_id is not None and r1 != real_id:
+            if r1_id is not None and r2_id is not None and r1_id == r2_id:
+                # Check if it is possible to change the real_id
+                if real_id is not None and r1_id != real_id:
                     raise ValueError(
-                        f"Error, {id1} and {id2} are already linked to {r1}"
+                        f"Error, {id1} and {id2} are already linked to {r1_id}"
                     )
 
-                return session.get(REntity, r1)
+                return session.get(REntity, r1_id)
 
             if rule is None:
                 rule = f"same_as('{id1}', '{id2}')"
@@ -352,7 +435,7 @@ class REntity(Entity):
             if status is None:
                 status = REntityStatus.MANUAL
 
-            if r1 is None and r2 is None:
+            if r1_id is None and r2_id is None:
                 # both are unlinked occurrences
 
                 if description is None:
@@ -366,75 +449,116 @@ class REntity(Entity):
 
                 if real_id is None:
                     if real_id_prefix is None:
-                        ridp = "r" + eid1.pom_class[0]  # we take firs
+                        ridp = "r" + eid1.pom_class[0]  # we take first letter of the class
+                    else:
+                        ridp = real_id_prefix
                     real_id = cls.generate_id(session=session)
-                    real_id = f"{ridp}-{real_id}"
+                    real_id = f"{ridp}{real_id}"
                 else:
                     # check if real_id exists
                     if session.get(REntity, real_id) is not None:
-                        raise ValueError(f"Error, {real_id} already exists")
+                        raise RealEntityIdExists(f"Error, {real_id} already exists")
 
                 r = REntity(id=real_id, user=user, description=desc, status=status)
                 session.add(r)
+                l1 = Link(
+                    rid=real_id,
+                    entity=id1,
+                    user=user,
+                    status=status,
+                    rule=rule,
+                    source=source,
+                )
+                l2 = Link(
+                    rid=real_id,
+                    entity=id2,
+                    user=user,
+                    status=status,
+                    rule=rule,
+                    source=source,
+                )
+                r.links.append(l1)
+                r.links.append(l2)
                 session.flush()
-                l1 = Link(rid=real_id, entity=id1, user=user, status=status, rule=rule)
-                l2 = Link(rid=real_id, entity=id2, user=user, status=status, rule=rule)
-                session.add(l1)
-                session.add(l2)
+                session.commit()
 
-            elif r1 is not None and r2 is None:
+            elif r1_id is not None and r2_id is None:
                 # r1 is a real entity and r2 is an occurrence
                 if real_id is not None:
-                    if r1.id != real_id:
-                        raise ValueError(f"Error, {id1} is already linked to {r1}, cannot change to {real_id}. "
-                                         f"Use make_real('{id2}', real_id='{real_id}')")
-                link = Link(rid=r1, entity=id2, user=user, status=status, rule=rule)
-                session.add(link)
-                r = session.get(REntity, r1)
+                    if r1_id.id != real_id:
+                        raise RealEntityIdChangeError(
+                            f"Error, {id1} is already linked to {r1_id}, cannot change to {real_id}. "
+                            f"Use make_real('{id2}', real_id='{real_id}')"
+                        )
+                link = Link(
+                    rid=r1_id,
+                    entity=id2,
+                    user=user,
+                    status=status,
+                    rule=rule,
+                    source=source,
+                )
+                r = session.get(REntity, r1_id)
+                r.links.append(link)
 
-            elif r1 is None and r2 is not None:
+            elif r1_id is None and r2_id is not None:
                 # rid2 is a real entity and id1 is an occurrence
                 if real_id is not None:
-                    if r2 != real_id:
-                        raise ValueError(f"Error, {id2} is already linked to {r2}, cannot change to {real_id}. "
-                                         f"Use make_real('{id1}', real_id='{real_id}')")
-                link = Link(rid=r2, entity=id1, user=user, status=status, rule=rule)
-                session.add(link)
-                r = session.get(REntity, r2)
+                    if r2_id != real_id:
+                        raise RealEntityIdChangeError(
+                            f"Error, {id2} is already linked to {r2_id}, cannot change to {real_id}. "
+                            f"Use make_real('{id1}', real_id='{real_id}')"
+                        )
+                link = Link(
+                    rid=r2_id,
+                    entity=id1,
+                    user=user,
+                    status=status,
+                    rule=rule,
+                    source=source,
+                )
+                r = session.get(REntity, r2_id)
+                r.links.append(link)
 
             # both are real entities
             else:
-                real1 = session.get(REntity, r1)
-                real2 = session.get(REntity, r2)
+                real1 = session.get(REntity, r1_id)
+                real2 = session.get(REntity, r2_id)
 
                 if real1.status.value > real2.status.value:
                     # r1 is more important
                     # update links with rid=r2 to rid=r1
                     # update with SQLALchemy update statement
                     # update links set rid = r1 where rid = r2
-                    stmt = update(Link).where(Link.rid == r2).values(rid=r1, rule=rule)
+                    stmt = (
+                        update(Link)
+                        .where(Link.rid == r2_id)
+                        .values(rid=r1_id, rule=rule, source=source)
+                    )
                     session.execute(stmt)
-                    r = real1
+                    session.merge(real1)
                     session.delete(real2)
+                    r = real1
                 else:
                     # r2 is more important
                     # update links with rid=r1 to rid=r2
                     # update with SQLALchemy update statement
                     # update links set rid = r2 where rid = r1
-                    stmt = update(Link).where(Link.rid == r1).values(rid=r2, rule=rule)
+                    stmt = (
+                        update(Link)
+                        .where(Link.rid == r1_id)
+                        .values(rid=r2_id, rule=rule, source=source)
+                    )
                     session.execute(stmt)
-                    r = real2
+                    session.merge(real2)
                     session.delete(real1)
-
+                    r = real2
             session.commit()
         return r
 
     @classmethod
     def generate_id(cls, length=6, session=None):
-        """Generate a random n digit id for a real entity
-
-        Needs a section to test if already exists
-        """
+        """Generate a random n digit id for a real entity"""
         if session is None:
             raise ValueError("Error, session needed")
 
@@ -471,6 +595,7 @@ class REntity(Entity):
         real_id_prefix=None,
         description=None,
         rule=None,
+        source=None,
         session=None,
     ):
         """Make an entity a real entity
@@ -489,23 +614,25 @@ class REntity(Entity):
             # check if id1 exists
             eid1 = session.get(Entity, id1)
             if eid1 is None:
-                raise ValueError(f"Error, {id1} must exist in the database")
+                raise OccurrenceMissingError(f"Error, {id1} must exist in the database")
 
             # check if id1 is already linked
-            r1 = (
+            r1_id = (
                 session.query(Link.rid)
                 .filter(Link.entity == id1, Link.user == user)
                 .scalar()
             )
 
-            if r1 is not None:
+            if r1_id is not None:
                 if real_id is None:
-                    return r1
+                    return r1_id
                 else:
-                    if r1 == real_id:
-                        return r1
+                    if r1_id == real_id:
+                        return r1_id
                     else:
-                        raise ValueError(f"Error, {id1} is already linked to {r1}")
+                        raise RealEntityIdChangeError(
+                            f"Error, {id1} is already linked to {r1_id}"
+                        )
 
             if description is None:
                 desc = "<No description>"
@@ -519,20 +646,35 @@ class REntity(Entity):
             if real_id is None:
                 if real_id_prefix is None:
                     ridp = "r" + eid1.pom_class[0]  # we take firs
+                else:
+                    ridp = real_id_prefix
                 real_id = cls.generate_id(session=session)
                 real_id = f"{ridp}-{real_id}"
 
             r = REntity(id=real_id, user=user, description=desc, status=status)
             session.add(r)
             session.flush()
-            l1 = Link(rid=real_id, entity=id1, user=user, status=status, rule=rule)
-            session.add(l1)
+            l1 = Link(
+                rid=real_id,
+                entity=id1,
+                user=user,
+                status=status,
+                rule=rule,
+                source=source,
+            )
+            r.links.append(l1)
+            session.flush()
             session.commit()
             real_id = r.id
         return r
 
     def attach_occurrence(
-        self, occ_id: str, user="user", status=REntityStatus.MANUAL, rule=None
+        self,
+        occ_id: str,
+        user="user",
+        status=REntityStatus.MANUAL,
+        rule=None,
+        aregister=None,
     ) -> "REntity":
         """Attach an occurrence to a real entity
 
@@ -541,22 +683,40 @@ class REntity(Entity):
             user: user that linked the occurrence
             status: status of the link
             rule: rule used to link the occurrence
+            aregister: id of the source of the link (normally an identifications source)
 
         """
         if rule is None:
             rule = f"attach({self.id},'{occ_id}')"
-
         with object_session(self) as session:
             # check if the entiy exists
             if session.get(Entity, occ_id) is None:
-                raise ValueError(f"Error, {occ_id} must exist in the database")
+                raise OccurrenceMissingError(
+                    f"Error, {occ_id} must exist in the database"
+                )
 
-            link = Link(rid=self.id, entity=occ_id, user=user, status=status, rule=rule)
-            self.occurrences.append(link)
-            session.add(link)
-            session.flush()
-            session.commit()
+            existing = [
+                link
+                for link in self.links
+                if link.rid == self.id and link.entity == occ_id
+            ]
+            if len(existing) == 0:
+                link = Link(
+                    rid=self.id,
+                    entity=occ_id,
+                    user=user,
+                    status=status,
+                    rule=rule,
+                    aregister=aregister,
+                )
+                self.links.append(link)
+                session.merge(self)
+                session.commit()
         return self
+
+    def is_inbound_relation(self, relation):
+        """Check if the relation is inbound to this real entity."""
+        return relation.destination in self.get_occurrences()
 
 
 class Link(Base):
@@ -564,16 +724,36 @@ class Link(Base):
     Represents the link between a real entity and an entity.
 
     The link between a real entity and an entity is maintained in this table.
+
+    Fields:
+        rid: id of the real entity
+        entity: id of the entity
+        rule: rule used to link the entity to the real entity
+        user: user that linked the entity to the real entity
+        status: status of the link
+        source: id of source of the link when same_as or x_same_as
+        aregister: id of source of the link when same_as or x_same
     """
 
     __tablename__ = "links"
 
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     rid: Mapped[str] = mapped_column(
-        String(64), ForeignKey(REntity.id, ondelete="CASCADE"), primary_key=True
+        String(64), ForeignKey(REntity.id, ondelete="CASCADE"), index=True
     )
     entity: Mapped[str] = mapped_column(
-        String(64), ForeignKey(Entity.id, ondelete="CASCADE"), primary_key=True
+        String(64), ForeignKey(Entity.id, ondelete="CASCADE"), index=True
     )
+    # Define the relationship with Entity
+    entity_rel = relationship(
+        "Entity",
+        back_populates="linked_to",
+    )
+
+    rentity_rel: Mapped[REntity] = relationship(
+        REntity, back_populates="links", foreign_keys=[rid]
+    )  # Many-to-one relationship Many side
+
     rule: Mapped[str] = mapped_column(
         String(4096)
     )  # rule used to link the entity to the real entity
@@ -587,9 +767,36 @@ class Link(Base):
         Enum(REntityStatus), nullable=False
     )  # status of the link
 
-    rentity: Mapped[REntity] = relationship(
-        REntity, back_populates="occurrences", foreign_keys=[rid]
-    )  # Many-to-one relationship
+    source: Mapped[Optional[str]] = mapped_column(
+        String(64), ForeignKey(Source.id, ondelete="CASCADE"), index=True
+    )  # id of source of the link when same_as or x_same_as
+
+    aregister: Mapped[Optional[str]] = mapped_column(
+        String(64), ForeignKey(ARegister.id, ondelete="CASCADE")
+    )  # id of source of the link when same_as or x_same_as
+
+    @classmethod
+    def missing_occurrences(cls, session=None):
+        """
+        Find link rows where the entity is missing in the Entity table
+
+        """
+        if session is None:
+            raise ValueError("Error, session needed")
+        with session:
+            missing = (
+                session.query(Link)
+                .filter(~Link.entity.in_(session.query(Entity.id)))
+                .all()
+            )
+        return missing
 
     def __repr__(self):
         return f"Link(rid={self.rid}, entity={self.entity}, rule={self.rule})"
+
+
+# this is the back relation from Entities
+Entity.linked_to = relationship(
+    Link, back_populates="entity_rel", cascade="all, delete-orphan",
+    passive_deletes=False
+)

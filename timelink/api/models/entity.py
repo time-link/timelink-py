@@ -1,6 +1,5 @@
 from typing import List, Optional
 from datetime import datetime
-import json
 
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
@@ -10,27 +9,34 @@ from sqlalchemy import ForeignKey  # pylint: disable=import-error
 from sqlalchemy import String  # pylint: disable=import-error
 from sqlalchemy import Integer  # pylint: disable=import-error
 from sqlalchemy import DateTime  # pylint: disable=import-error
+from sqlalchemy import JSON  # pylint: disable=import-error
 from sqlalchemy.orm import backref  # pylint: disable=import-error
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
 from sqlalchemy.orm import relationship  # pylint: disable=import-error
+from sqlalchemy.orm import object_session  # pylint: disable=import-error
+from sqlalchemy import inspect  # pylint: disable=import-error
 
-from timelink.kleio.utilities import kleio_escape
+from timelink.kleio.utilities import (
+    kleio_escape,
+    get_extra_info,
+    render_with_extra_info,
+)
 from .base_class import Base
 
 
 class Entity(Base):
     """ORM Model root of the object hierarchy.
 
-     All entities in a Timelink/MHK database have an entry in this table.
-     Each entity is associated with a class that allow access to a
-     specialization table with more columns for that class.
+    All entities in a Timelink/MHK database have an entry in this table.
+    Each entity is associated with a class that allow access to a
+    specialization table with more columns for that class.
 
     This corresponds to the model described as "Joined Table Inheritance"
     in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
 
-    TODO: specialize in TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
-         Acts, Sources, Attributes and Relations are TemporalEntities
+    TODO: specialize TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
+            Acts, Sources, Attributes and Relations are TemporalEntities
     """
 
     __tablename__ = "entities"
@@ -50,6 +56,8 @@ class Entity(Base):
     inside: Mapped[Optional[str]] = mapped_column(
         String, ForeignKey("entities.id", ondelete="CASCADE"), index=True
     )
+    # id of the source from which this entity was extracted
+    the_source: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     #: int: sequential order of this entity in the source
     the_order = mapped_column(Integer, nullable=True)
     #: int: the nesting level of this entity in the source
@@ -58,14 +66,30 @@ class Entity(Base):
     the_line = mapped_column(Integer, nullable=True)
     #: str: name of the kleio group that produced this entity
     groupname = mapped_column(String, index=True, nullable=True)
+    # extra_info a JSON field with extra information about the entity
+    extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
     updated = mapped_column(DateTime, default=datetime.utcnow, index=True)
     #: datetime: when this entity was added to the full text index
     indexed = mapped_column(DateTime, index=True, nullable=True)
 
+    # This is defined in attribute.py
+    # Entity.attributes = relationship(
+    #   "Attribute", foreign_keys=[Attribute.entity], back_populates="the_entity"
+    #   )
+    attributes = None
+
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")
     # rels_out = relationship("Relation", back_populates="org")
+
+    rels_in = None
+    rels_out = None
+
+    # This is defined in REntity.py
+    # links = relationship("Link", back_populates="entity_rel", cascade="all, delete-orphan")
+
+    links = None
 
     # this based on
     # https://stackoverflow.com/questions/28843254
@@ -77,7 +101,7 @@ class Entity(Base):
     )
 
     # group_models = contains the correspondence between groupname and ORM class
-    group_models = dict()
+    group_models = {}
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
@@ -108,11 +132,11 @@ class Entity(Base):
     @classmethod
     def get_orm_entities_classes(cls):
         """Currently defined ORM classes that extend Entity
-         (including Entity itself)
+        (including Entity itself)
 
 
         Returns:
-             list: List of ORM classes
+            list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
         sc.append(Entity)
@@ -123,7 +147,7 @@ class Entity(Base):
         """Ids of SomPomMapper references by orm classes
 
         Returns:
-             List[str]: List of strings
+            List[str]: List of strings
         """
         return [
             aclass.__mapper_args__["polymorphic_identity"]
@@ -176,7 +200,7 @@ class Entity(Base):
         return cls.get_som_mapper_to_orm_as_dict().get(pom_class, None)
 
     @classmethod
-    def get_entity(cls, id: str, session=None):
+    def get_entity(cls, eid: str, session=None):
         """
         Get an Entity from the database. The object returned
         will be of the ORM class defined by mappings.
@@ -184,18 +208,63 @@ class Entity(Base):
         :param session: current session
         :return: an Entity object of the proper class for the mapping
         """
-        entity = session.get(Entity, id)
+        entity = session.get(Entity, eid)
         if entity is not None:
             if entity.pom_class != "entity":
                 orm_class = Entity.get_orm_for_pom_class(entity.pom_class)
-                object_for_id = session.get(orm_class, id)
+                object_for_id = session.get(orm_class, eid)
                 return object_for_id
             else:
                 return entity
         else:
             return None
 
-    def get_extra_info(self):
+    def add_attribute(self, attribute):
+        """Add an attribute to the entity"""
+        if attribute.inside is None:
+            attribute.inside = self.id
+        self.attributes.append(attribute)
+
+    def add_relation(self, relation):
+        """Add a relation to the entity"""
+        if relation.inside is None:
+            relation.inside = self.id
+        if relation.origin is None or self.id == relation.origin:
+            # no origin, this is the origin
+            relation.origin = self.id
+            self.rels_out.append(relation)
+        elif relation.destination is None or self.id == relation.destination:
+            # no destination, this is the destination
+            relation.destination = self.id
+            self.rels_in.append(relation)
+        else:
+            raise ValueError("Relation does not belong to this entity")
+
+    def with_extra_info(self):
+        """Returns a copy of the entity with field values rendered with extra information
+
+        Extra_info is current stored as json in the obs field of the entity.
+        """
+        # the the current session
+        session = object_session(self)
+        if session is None:
+            raise ValueError("Entity must be in a session to get extra info")
+        # create a new object of the same class
+        new_entity = self.__class__()
+        mapper = inspect(type(self))
+        field_to_column = {
+            col.key: col.columns[0].name for col in list(mapper.column_attrs)
+        }
+        obs, extra_info = self.get_extra_info()
+        for name, __column in field_to_column.items():
+            nvalue = render_with_extra_info(name, getattr(self, name), extra_info)
+            setattr(new_entity, name, nvalue)
+
+        setattr(new_entity, "obs", obs)  # noqa
+
+        return new_entity
+
+    def get_extra_info(self) -> tuple[str, dict]:
         """Return a dictionatry with extra information about this entity or None
 
         if entity has an 'obs' field and that field
@@ -204,40 +273,35 @@ class Entity(Base):
         extra information about the entity. Extra information can
         be comments and original wording of field values.
 
-        This method returns
-        the json information as a dictionnary.
+        This method returns a tuple with the new obs string
+        (withou the extra_info part) and a dictionary with
+        the extra information.
+
 
         Currently the dictionary has the following structure:
 
             {'field_name': {'comment': text_of_comment, 'original': original_wording}}
         """
-        obs = getattr(self, 'obs', None)
-        if obs is not None:
-            s = obs.split('extra_info:')
-            if len(s) > 1:
-                exs = s[1].strip()
-                extra_info = json.loads(exs)
-            else:
-                extra_info = None
-        else:
-            extra_info = None
-        return extra_info
+        obs = getattr(self, "obs", None)
+        return get_extra_info(obs)
 
     def __repr__(self):
         return (
             f'Entity(id="{self.id}", '
-            f'pom_class="{self.pom_class}",'
+            f'pom_class="{self.pom_class}", '
             f'inside="{self.inside}", '
+            f"the_source={self.the_source}, "
             f"the_order={self.the_order}, "
             f"the_level={self.the_level}, "
             f"the_line={self.the_line}, "
             f'groupname="{self.groupname}", '
             f"updated={self.updated}, "
-            f"indexed={self.indexed},"
-            f")"
+            f"indexed={self.indexed})"
         )
 
     def __str__(self):
+        if self.groupname is None:
+            return f"{self.pom_class}${kleio_escape(self.id)}"
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def render_id(self):
@@ -249,27 +313,94 @@ class Entity(Base):
         else:
             return f"/id={self.id}"
 
-    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=True, **kwargs):
-        """Return a string representation of the entity in kleio format
+    def dated_bio(self) -> dict:
+        """Return the atributes and relations of the entity grouped by date
 
-        Args:
-            self_string (str, optional): string to use as the entity name. Defaults to None.
-            show_contained (bool, optional): show the contained entities. Defaults to True.
-            ident (str, optional): indentation string. Defaults to "".
-            ident_inc (str, optional): increment of indentation. Defaults to "  ".
+        Returns a dictionary with the date as key and a list of attributes and relations as value
 
         """
+        bio = dict()
+
+        if self.rels_in is not None:
+            for rel in self.rels_in:
+                date = rel.the_date
+                this_date_list = bio.get(date, [])
+                this_date_list.append(rel)
+                bio[date] = this_date_list
+        if self.rels_out is not None:
+            for rel in self.rels_out:
+                date = rel.the_date
+                this_date_list = bio.get(date, [])
+                this_date_list.append(rel)
+                bio[date] = this_date_list
+        if self.attributes is not None:
+            for attr in self.attributes:
+                date = attr.the_date
+                this_date_list = bio.get(date, [])
+                this_date_list.append(attr)
+                bio[date] = this_date_list
+        return bio
+
+    def is_inbound_relation(self, relation):
+        """Check if the relation is inbound to this entity.
+
+        Override in real entities or other special cases
+        """
+        return relation.destination == self.id
+
+    def to_kleio(
+        self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
+    ):
+        """conver the entity to a kleio string
+
+        Args:
+            self_string: the string to be used to represent the entity
+            show_contained: if True, contained entities are also converted to kleio
+            ident: initial identation
+            ident_inc: identation increment
+            kwargs: additional arguments to be passed to contained entities"""
         if self_string is None:
             s = f"{ident}{str(self)}"
         else:
             s = f"{ident}{self_string}"
 
-        contained_entities: List[Entity] = self.contains
+        contained_entities = list(
+            set(self.contains)
+            - set(self.rels_in)  # noqa: W503
+            - set(self.rels_out)  # noqa: W503
+            - set(self.attributes)  # noqa: W503
+        )
+        bio = self.dated_bio()
+        sorted_keys = sorted(bio.keys())
+        for date in sorted_keys:
+            date_list = bio[date]
+            for bio_item in date_list:
+                bio_item_xi = bio_item
+                if bio_item.pom_class == "relation":
+
+                    kwargs["outgoing"] = not self.is_inbound_relation(bio_item)
+                    if self.is_inbound_relation(bio_item):
+                        if bio_item.the_type == "function-in-act":
+                            # we don't render inbound function-in-act relations
+                            # because they are redundant with contained entities
+                            continue
+
+                bio_itemk = bio_item_xi.to_kleio(
+                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                )
+
+                if bio_itemk != "":
+                    s = f"{s}\n{bio_itemk}"
+
         # sort by the_order
         if show_contained and contained_entities is not None:
-            contained_entities.sort(key=lambda x: x.the_order)
+            contained_entities.sort(
+                key=lambda x: x.the_order if x.the_order is not None else 999999
+            )
             for inner in contained_entities:
-                innerk = inner.to_kleio(ident=ident + ident_inc, ident_inc=ident_inc, **kwargs)
+                innerk = inner.to_kleio(
+                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                )
                 if innerk != "":
                     s = f"{s}\n{innerk}"
         return s

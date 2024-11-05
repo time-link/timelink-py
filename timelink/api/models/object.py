@@ -37,7 +37,7 @@ class Object(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80, show_contained=True) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", width=80, show_contained=True, **kwargs) -> str:
         if self.name is None:
             name = ""
         else:

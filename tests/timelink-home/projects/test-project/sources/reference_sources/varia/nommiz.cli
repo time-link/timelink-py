@@ -1,4 +1,4 @@
-kleio$gacto.str/translations=6
+kleio$gacto.str/translations=9
    fonte$nommiz/obs=Misericordia mis termos de aceitacao de Irmaos (1724-1829)
 
       nom$nom1a/3/7/1729/2
@@ -6,19 +6,19 @@ kleio$gacto.str/translations=6
          n$leonardo de sa/id=nom1a-r1
             ls$titulo/irmao de maior condicao/obs=o termo esta riscado nao se dizendo a razao porque foi riscado
 
-            referido$diogo vaz de sa
+            referido$diogo vaz de sa/id=nom1a-r1-per1-4
                ls$residencia/figueiro dos vinhos
                rel$parentesco/pai/leonardo de sa/nom1a-r1
 
       nom$nom1/3/7/1729/2v./obs= "termo por que se derriscou e por elles desriscado o irmam o padre philipe leal franco" (por ser dezobediente ao provedor do anno antecedente "por nao querer tomar juramento para o cargo de escrivao para o que foi eleito para o prezente anno e alem disso proferindo contrahicoes e outras palavras menos soantesque cauzaram escandalo nao so aos ditos oficiais mas ainda atoda a irmandade".,era provedor o padre thome leal cortez).
 
-         referido$philipe leal franco
+         referido$philipe leal franco/id=nom1-per1-4
             ls$profissao/padre
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
       nom$nom2/2/7/1730/3
 
-         n$antonio arnaut de rivo
+         n$antonio arnaut de rivo/id=nom2-per1-4
             ls$filiacao/filho de hieronimo henriques
             ls$titulo/irmao de maior condicao
             ls$titulo/cristao velho
@@ -26,17 +26,17 @@ kleio$gacto.str/translations=6
 
             referido$hieronimo henriques/id=nom2-p1
 
-            referido$manuel de almeida serra
+            referido$manuel de almeida serra/id=nom2-per1-4-per2-4
                ls$cargo/provedor
                ls$titulo/licenciado
 
       nom$nom3/29/8/1734/3v./obs="termo em que a mesa elege por mordomos das demandas na forma do compromisso" -sao eleitos:o irmao de maior condicao, o doutor manuel de almeida serra e o de menor antonio francisco. ,oficial
 
-         referido$manuel de almeida serra
+         referido$manuel de almeida serra/id=nom3-per1-4
             ls$titulo/irmao de maior condicao
             ls$cargo/mordomo das demandas
 
-         referido$antonio francisco
+         referido$antonio francisco/id=nom3-per2-4
             ls$titulo/oficial
             ls$cargo/mordomo das demandas
 
@@ -56,12 +56,12 @@ kleio$gacto.str/translations=6
             ls$titulo/reverendo
             ls$titulo/irmao
 
-            referido$antonio arnaut cortez
+            referido$antonio arnaut cortez/id=nom5-p1-per1-4
                ls$cargo/provedor
 
       nom$nom6/13/4/1737/5/obs="termo por que se riscou de irmao o licenciado manoel vas cortez" "por nao vir a procissao dos santos passos que se fez no anno prezente nem vir a esta meza dar razao por que nao veio a dita procissao"
 
-         referido$manoel vaz cortez
+         referido$manoel vaz cortez/id=nom6-per1-4
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
       nom$nom7/1/7/1738/5v
@@ -72,7 +72,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de maior condicao
             ls$titulo/cristao velho
 
-            referido$jozeantonio monteiro de tavora
+            referido$jozeantonio monteiro de tavora/id=nom7-p1-per1-4
                ls$cargo/provedor
 
       nom$nom8/26/3/1739/6
@@ -80,7 +80,7 @@ kleio$gacto.str/translations=6
          n$joaquim furtado de mesquita/id=nom8-p1
             ls$titulo/irmao
 
-            referido$joze miguel macedo magalhaes mexia
+            referido$joze miguel macedo magalhaes mexia/id=nom8-p1-per1-4
                ls$cargo/provedor
 
       nom$nom9/2/4/1740/6/obs="termo em como a meza ha por derriscado jose miguel de macedo"-por "ter dito repetidas vezes nao querer continuar em servir esta santa caza e ter faltado a procissao do senhor dos passos que se fez em este prezente anno tendo obrigacam de assistir e vindo a procissam sem veste a portanto e o haviao por desriscado e por imbuido nas penas do compromisso (...)"., era provedor martinho nagrao arnaut
@@ -100,18 +100,18 @@ kleio$gacto.str/translations=6
 
       nom$nom10/3/9/1742/7/obs="termo em que se riscarao martinho negrao arnaut e o doutor jose antonio quaresma por dispozi?ao da meza""visto martinho negrao arnaut e o doutor joze antonio quaresma desta vila nam quererem ser irmaons desta mesma irmandade e requererem ao dito provedor (o reverendo thome leal cortez) e mais irmaons da meza della que os mandassem riscar do livro dos irmaons., sem embargo do que os ditos provedor e irmaons da meza intendendo que o seo requerimento seria movido de paxam deferiram o mandar fazer este termo the se lhe dar tempo a que mudassem de rezolucao., e como persistem na mesma sem embargo de serem por mim escrivao varias vezes avizados ao responderem com dicterios e injurias com que esta santa caza se da por muito offendida ., os hao por riscado de irmaons della determinando que (fl. 6v) nunca mais uzassem dos previllegios de irmaons da mesma e que incorressem nas penas do compromisso., e que nenhum provedor e meza futura os podera aceitar novamente para irmaons da dita santa caza e aceytando-os serao obrigados a pagar qutrocento mil reis a mesma santa caza (...)"
 
-         referido$jose antonio quaresma
+         referido$jose antonio quaresma/id=nom10-per1-4
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
-         referido$tome leal cortez
+         referido$tome leal cortez/id=nom10-per2-4
             ls$cargo/provedor
 
       nom$nom11/23/12/1742/7v/obs="termo em como foy riscado de irmao desta santa caza leonardo de sa cabral""porquanto leonardo de sa cabral irmaos desta santa caza sem cauza que para isso tivesse disse o nao queria ser sem embargo de se lhe esperar muito tempo para que mudasse de rezolu?ao sendo avizado por mim escrivam por mais de huma vez sempre persistiu na mesma teyma e houverao por riscado de irmao desta santa caza e que de hoje em diante elle nem couza sua gozasse de previlegio de tal., nem que possa ser novamente admitido a isso, so dado para a santa caza quatrocentos mil reis e no cazo que algum provedor ou meza admitirem ao sobredito serao obrigados a pagar a sobredita quantia da sua bol?a(...)"
 
-         referido$leonardo de sa cabral
+         referido$leonardo de sa cabral/id=nom11-per1-4
             ls$titulo/irmao/obs= riscado nestra data(ver acto)
 
-         referido$tome leal cortez
+         referido$tome leal cortez/id=nom11-per2-4
             ls$cargo/provedor
 
       nom$nom12/7/4/1743/8
@@ -121,7 +121,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de maior condicao
             ls$titulo/cristao velho%sem raca de judeu ou outra alguma infecta nacao
 
-            referido$tome leal cortez
+            referido$tome leal cortez/id=nom12-p1-per1-4
                ls$cargo/provedor
 
       nom$nom13/7/7/1743/8v
@@ -131,16 +131,16 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de maior condicao
             ls$titulo/cristao velho
 
-            referido$joze madeira neto
+            referido$joze madeira neto/id=nom13-p1-per1-4
                ls$titulo/reverendo
                ls$cargo/provedor
 
       nom$nom14/13/2/1746/9/obs="termo de como se dispensou pella junta da irmandade na penna do compromisso no tocante ao enterro de martinho negrao arnaut de rivo"estando"prezente o reverendo prior joze coelho cortez e a mayor parte da irmandade da mesma santa caza por elle reverendo prior foy proposto a dita irmandade que porquanto por parte do dito martinho negrao arnaut morrendo este se requereo a meza fosse enterrado com pompa nao obstante o capitulo 15 da addic?ao do compromisso e que se sujeitaria a penna estabelecida no mesmo compromisso esperando comtudo se houvesse comisera?ao na execucao da dita pena., o que visto pella dita junta da irmandade votou unanime que da dita pena de vinte mil reis que determina o referido compromisso se lhe abatesse a meya metade e que so se pagassem do dito enterro dez mil reis e que fazia por nao faltar ao titulo que tem da misericordia observando esta com o sobredito., determinando porem a junta que este abatimento e absolvi?ao nao podesse para o futuro servir de exemplo., nem para os que ja estavao riscados., nem para os irmaons que pello tempo sdiante se riscassem porque queriao que nao obstante esta absolvicao(...) o dito capitulo sempre ficasse em sua for?a e vigor como se nao houvesse tal dispensa (..)"Era nesse ano provedor o reverendo prior joze coelho cortez
 
-         referido$martinho negrao arnaut de rivo
+         referido$martinho negrao arnaut de rivo/id=nom14-per1-4
             ls$morto/antes
 
-         referido$joze coelho cortez
+         referido$joze coelho cortez/id=nom14-per2-4
             ls$profissao/prior
             ls$titulo/reverendo
             ls$cargo/provedor
@@ -151,7 +151,7 @@ kleio$gacto.str/translations=6
             ls$profissao/padre
             ls$titulo/irmao de maior condicao
 
-            referido$joao xavier de almeida serra
+            referido$joao xavier de almeida serra/id=nom15-p1-per1-4
                ls$cargo/provedor
 
       nom$nom16/30/3/1749/10
@@ -161,7 +161,7 @@ kleio$gacto.str/translations=6
             ls$titulo/reverendo
             ls$titulo/irmao
 
-            referido$joao barreto bacelar
+            referido$joao barreto bacelar/id=nom16-p1-per1-4
                ls$titulo/doutor
                ls$cargo/provedor
 
@@ -197,12 +197,12 @@ kleio$gacto.str/translations=6
 
       nom$nom21/22/8/1756/12v/obs= "elei?ao e aceita?ao do novo capelao"(o reverendo aquilino jose da gama)- estando"prezente o escrivam della que prezidia a meza em abzencia do excellentissimo provedor da mesma o illustrissimo e excelentissimo senhor duque de aveyro e os mays irmaons da meza abaxo assignado., que este prezente anno servem: pello dito escrivam prezidente antonio arnaut cortez foy proposto a meza que porquanto se escuzava de cappelao., o reverendo doutor joze antonio monteiro de tavora ., irmao da mesma santa caza que ha anos servia., se fazia necessario eleger e aceytar novo cappelao que servisse daqui em diante e foy proposto o reverendo accyllino jose da gama para servir a ditta cappellaniavisto os reverendos sacerdotes que sao ao prezente irmaons estarem ocuppadoscom missas pois conforme o estatuto que se fez no livro de addi?ao do compromisso a fl.16 sobre as missas da caza deviao estes preferir., e uniformemente foy aceyto pello dito prezidente e mais irmaons para servir a cappellania (...) o reverendo cappellao e o aceyou na forma que em elle se declara(...)"
 
-         referido$aquilino jose da gama
+         referido$aquilino jose da gama/id=nom21-per1-4
             ls$cargo/capelao da misericordia/obs=nomeado em 22-8-1756
 
       nom$nom21b/5/11/1758/13/obs="aceyta?am do cappellao desta santa caza da mizericordia"(o padre diogo pinto cabral)"(...) pelo dito provedor(antonio arnao cotez foi proposto que por nam haver de prezente cappellam na dita santa caza em rezam de seer deminuto o pre?o da esmola doutenta reis pello qual the agora se diziam as missas da santa caza parecia racionavel que por verem dita a hora certa e local determinado se aumentasse esta esmola em cem reis o que parecendo aos ditos irmaons ser justo assim o votataram e por estar prezente o padre diogo pnto cabral disse que elle se obrigava a dizer as missas da obrigassam desta santa caza pella esmola referida as horas competentes(...)"
 
-         referido$diogo pinto cabral
+         referido$diogo pinto cabral/id=nom21b-per1-4
             ls$cargo/capelao da misericordia/obs=nomeado em 5-11-1758
 
       nom$nom22/5/11/1758/13v/obs=no termo figura simultaneamente a aceitacao de pedro cotta bandeira ottone
@@ -230,7 +230,7 @@ kleio$gacto.str/translations=6
 
       nom$nom26/10/8/1755/15/obs="termo por que foi derriscado de irmao alexandre de britto e franca"(o termo tem a data de 1755 mas deve ser engano., devendo ler-se 1765)-"(...) ahi pello ditro provedor foi proposto que sendo alexandre de britto e franca irmao desta caza e tendo obrigacam de assistir as funcoens della o nao fizera em todo anno proximo passado nem huma so vez viera assistir aos enterros sendo irmao da meza., e por essa razao no dia da festa que se fez em dois de julho perterito., fora acordado em meza que este fora avizado para vir declarar a mesma meza ficara ou nao continuar em servir esta caza mandando-se logo avizo., pello irmao de azul veio com resposta dizendo que estava para hir para fora que na primeira meza responderia e por nao vir em a primeira por ordem desta meza foi avizado por mim escrivao para que viesse na primeira meza dar a razao por que nao tinha comprido com a sua obrigacam e aparecendo nella aprezentou uma resposta por escrito (...) e porque as rezoens que nella expoe nao exc leum de ser de riscado de irmao., entes injuriam esta caza mandava o dito provedor que esta meza votasse sobre o que se devia fazerno prezente cazo e sendo todos reonidos por mais votos se rezolveo que fosse derriscado e que o papel que expoe as suas razoens se guardasse no cartorio desta caza para se usar quando for necessario(...)"
 
-         referido$alexandre de brito e franca
+         referido$alexandre de brito e franca/id=nom26-per1-4
             ls$titulo/irmao/obs=riscado nesta data (ver acto).
 
       nom$nom27/24/3/1766/15v
@@ -323,199 +323,199 @@ kleio$gacto.str/translations=6
 
       nom$nom41/27/4/1788/22/obs="termo que se ouve por derriscado luis joze de macedo"estando "prezente o provedor joze arnaut de almeyda e mais irmaons da meza abaixo assgnados, por elles foy assentado uniformemente que o dito luis joze de macedo era incapaz de ser irmao desta santa caza por motivos muito inocentes (sic) que tinha expressado na prezenca do provedor e meza pellos quais o haviao por de riscadoe excluido deta corporacao para nunca nella mais entrar nem gozar dos previlegios de irmao "(a paginacao tem um erro do fl.20 passa para fl.22)
 
-         referido$luiz joze de macedo
+         referido$luiz joze de macedo/id=nom41-per1-4
             ls$titulo/irmao/obs=riscado nesta data(ver acto)
 
       nom$nom42/2/6/1796/22v
 
-         n$leonardo cortez serra
+         n$leonardo cortez serra/id=nom42-per1-4
             ls$profissao/padre/obs=nao especificado
             ls$titulo/reverendo
             ls$titulo/irmao
 
       nom$nom43/0/0/1729/59/obs="titulo dos irmaos de mayor condicao que actualmente estam servindo a stacasa da mizericordia desta villa da lousaa o prezente anno de 1729"- (nota- entre os fls 23 e 26 ha assentos do seculo XIX.,os folios 26 a 58 estao em branco., no foilio 58v ha um assento do seculo XIX)
 
-         referido$jom negrao arnaut%capitao mor joam negram arnaut - morto
+         referido$jom negrao arnaut%capitao mor joam negram arnaut - morto/id=nom43-per1-4
             ls$titulo/irmao de maior condicao
 
-         referido$francisco leal pinto%francisco leal pinto- morto
+         referido$francisco leal pinto%francisco leal pinto- morto/id=nom43-per2-4
             ls$titulo/irmao de maior condicao
 
-         referido$joam arnaut cortez%o cappitam joam arnaut cortez-morto
+         referido$joam arnaut cortez%o cappitam joam arnaut cortez-morto/id=nom43-per3-4
             ls$cargo/capitao
             ls$titulo/irmao demaior condicao
 
-         referido$joam arnaut%o reverendo padre joam arnaut morto
+         referido$joam arnaut%o reverendo padre joam arnaut morto/id=nom43-per4-4
             ls$profissqo/padre
             ls$titulo/irmao de maior condicao
 
-         referido$antonio da serra%o reverendo padre antonio da serra-morto
+         referido$antonio da serra%o reverendo padre antonio da serra-morto/id=nom43-per5-4
             ls$profissao/padre
             ls$titulo/irmao de maior condicao
 
-         referido$luis cabral coelho% luis cabral coelho- morto
+         referido$luis cabral coelho% luis cabral coelho- morto/id=nom43-per6-4
             ls$titulo/irmao de maior condicao
 
-         referido$teodozio arnaut de rivo% theodozio arnaut de rivo- morto
+         referido$teodozio arnaut de rivo% theodozio arnaut de rivo- morto/id=nom43-per7-4
             ls$cargo/irmao de maior condicao
 
-         referido$bebiano nunes da gama% o reverendo padre bebiano nunes da gama- morto
+         referido$bebiano nunes da gama% o reverendo padre bebiano nunes da gama- morto/id=nom43-per8-4
             ls$titulo/irmao de maior condicao
 
-         referido$ascenco de paiva pinto%ascenco de payva pinto morto
+         referido$ascenco de paiva pinto%ascenco de payva pinto morto/id=nom43-per9-4
             ls$titulo/irmao de maior condicao
 
-         referido$belchior henriques arnaut%o reverendo padre belchior henriques arnaut morto
+         referido$belchior henriques arnaut%o reverendo padre belchior henriques arnaut morto/id=nom43-per10-4
             ls$profissao/padre
             ls$titulo/irmao de maior condicao
 
-         referido$joao barreto bacelar%o doutor joao barreto bacellar morto
+         referido$joao barreto bacelar%o doutor joao barreto bacellar morto/id=nom43-per11-4
             ls$titulo/irmao de maior condicao
 
-         referido$alexandre da costa quaresma%alexandre da costa quaresma morto
+         referido$alexandre da costa quaresma%alexandre da costa quaresma morto/id=nom43-per12-4
             ls$titulo/irmao de maior condicao
 
-         referido$philipe leal franco%o reverendo padre philippe leal franco-de riscado pello termo que se acha no livro das contas digo neste livro a fl. 2v (fl59)
+         referido$philipe leal franco%o reverendo padre philippe leal franco-de riscado pello termo que se acha no livro das contas digo neste livro a fl. 2v (fl59)/id=nom43-per13-4
             ls$titulo/irmao de maior condicao/obs=riscado a 17290703 por nao querer aceitar o lugar de escrivao e por ter usado "palavras menos sonantes"(ver acto)
 
-         referido$feliciano monteiro de tavora% feliciano monteiro de tavora-auzente a annos-morto
+         referido$feliciano monteiro de tavora% feliciano monteiro de tavora-auzente a annos-morto/id=nom43-per14-4
             ls$titulo/irmao de maior condicao
 
-         referido$thome leal cortez%o reverendo padre thome leal cortez
+         referido$thome leal cortez%o reverendo padre thome leal cortez/id=nom43-per15-4
             ls$titulo/irmao de maior condicao
 
-         referido$silverio jose cortez%o doutor sylverio joseph cortez- prezo por crime grave a annos morto
+         referido$silverio jose cortez%o doutor sylverio joseph cortez- prezo por crime grave a annos morto/id=nom43-per16-4
             ls$titulo/irmao de maior condicao
 
-         referido$antonio de alfonseca%o doutor antonio de alfonceca-aubzente a annos e morador em outra parte
+         referido$antonio de alfonseca%o doutor antonio de alfonceca-aubzente a annos e morador em outra parte/id=nom43-per17-4
             ls$cargo/irmao de maior condicao
 
-         referido$antonio de almeida de magalhaens%antonio de almeyda de magalhaens- morto
+         referido$antonio de almeida de magalhaens%antonio de almeyda de magalhaens- morto/id=nom43-per18-4
             ls$titulo/irmao de maior condicao
 
-         referido$manoel de almeida serra%o doutor manoel de almeyda serra morto
+         referido$manoel de almeida serra%o doutor manoel de almeyda serra morto/id=nom43-per19-4
             ls$titulo/irmao de maior condicao
 
-         referido$manoel vaz cortez/obs=o doutor manoel vaz cortez- de riscado por um termo que se acha a fl.5 deste livro riscado a 17370413 por nao ter ido a processao dos "santos passos" e nao ter dado qualquer justificacao(ver acto)
+         referido$manoel vaz cortez/obs=o doutor manoel vaz cortez- de riscado por um termo que se acha a fl.5 deste livro riscado a 17370413 por nao ter ido a processao dos "santos passos" e nao ter dado qualquer justificacao(ver acto)/id=nom43-per20-4
             ls$titulo/irmao de maior condicao
 
-         referido$leonardo de sa cabral/obs=riscado a 17420903 por nao querer se-lo(ver acto) leonardo de sa cabral- de riscado pello termo a fl7
+         referido$leonardo de sa cabral/obs=riscado a 17420903 por nao querer se-lo(ver acto) leonardo de sa cabral- de riscado pello termo a fl7/id=nom43-per21-4
             ls$titulo/irmao de maior condicao/17290703
 
-         referido$antonio arnaut cortes/obs=ha um termo de aceitacao de um antonio arnaut de rivo antonio arnaut cortez-morto
+         referido$antonio arnaut cortes/obs=ha um termo de aceitacao de um antonio arnaut de rivo antonio arnaut cortez-morto/id=nom43-per22-4
             ls$titulo/irmao de maior condicao
 
-         referido$jose antonio monteiro de tavora%o doutor joseph antonio monteiro de tavora/mesmo_que=nom4-p1
+         referido$jose antonio monteiro de tavora%o doutor joseph antonio monteiro de tavora/mesmo_que=nom4-p1/id=nom43-per23-4
             ls$titulo/irmao de maior condicao/17360702
 
-         referido$antonio jose madeira neto/mesmo_que=nom5-p1/obs=o padre antonio jozeph madeira netto- morto
+         referido$antonio jose madeira neto/mesmo_que=nom5-p1/obs=o padre antonio jozeph madeira netto- morto/id=nom43-per24-4
             ls$profissao/padre
             ls$titulo/irmao de maior condicao/17370302
 
-         referido$jose miguel de macedo%jose miguel de macedo de magalhaes mexia joze miguel de macedo de riscado a fl. 68v./mesmo_que=nom9-p1/obs=riscado a 17400402
+         referido$jose miguel de macedo%jose miguel de macedo de magalhaes mexia joze miguel de macedo de riscado a fl. 68v./mesmo_que=nom9-p1/obs=riscado a 17400402/id=nom43-per25-4
             ls$titulo/irmao de maior condicao/17380404/obs=o termo de aceitacao foi riscado
 
-         referido$martinho negrao arnaut%martinho negrao arnaut de riscado a fl. 69/mesmo_que=nom9-p2/obs=riscado a 17420903 por nao querer ser irmao usando de palavras menos proprias (ver acto)
+         referido$martinho negrao arnaut%martinho negrao arnaut de riscado a fl. 69/mesmo_que=nom9-p2/obs=riscado a 17420903 por nao querer ser irmao usando de palavras menos proprias (ver acto)/id=nom43-per26-4
             ls$titulo/irmao de maior condicao/17380404/obs=o termo de aceitacao foi riscado
 
-         referido$luis botelho de macedo/xmesmo_que=nom64-p1/obs=luis botelho de macedo-de riscado a fl. 70, riscado a 417390412 por nao querer aceitar os cargos que lhe foram dados durante a semans santa e faltar a varios enterros(ver acto)
+         referido$luis botelho de macedo/xmesmo_que=nom64-p1/obs=luis botelho de macedo-de riscado a fl. 70, riscado a 417390412 por nao querer aceitar os cargos que lhe foram dados durante a semans santa e faltar a varios enterros(ver acto)/id=nom43-per27-4
             ls$titulo/irmao de maior condicao/17380404/obs=o termo de aceitacao foi riscado
 
-         referido$joze coelho cortez/xmesmo_que=nom7-p1/obs= o padre joze coelho cortez- de riscado a fl. 5
+         referido$joze coelho cortez/xmesmo_que=nom7-p1/obs= o padre joze coelho cortez- de riscado a fl. 5/id=nom43-per28-4
             ls$titulo/irmao de maior condicao/17380701
             ls$profissao/padre
 
-         referido$joze antonio quaresma/mesmo_que=nom9a-p1/obs=o licenciado joze antonio quaresma- de riscado a fl.7 riscado a 17420903 por ano querer ser irmao e proferir palavras menos proprias (ver acto)
+         referido$joze antonio quaresma/mesmo_que=nom9a-p1/obs=o licenciado joze antonio quaresma- de riscado a fl.7 riscado a 17420903 por ano querer ser irmao e proferir palavras menos proprias (ver acto)/id=nom43-per29-4
             ls$titulo/irmao de maior condicao/17400702
             ls$tiulo/licenciado
 
-         referido$joachim furtado de mesquita/mesmo_que=nom8-p1/obs=joachim furtado de mesquita- ... a fl.6-morto
+         referido$joachim furtado de mesquita/mesmo_que=nom8-p1/obs=joachim furtado de mesquita- ... a fl.6-morto/id=nom43-per30-4
             ls$titulo/irmao/17390326
 
-         referido$joao monteiro de tavora/mesmo_que=nom12-p1/obs=o licenciado joao monteiro de tavora
+         referido$joao monteiro de tavora/mesmo_que=nom12-p1/obs=o licenciado joao monteiro de tavora/id=nom43-per31-4
             ls$titulo/irmao de maior condicao/17430407
             ls$titulo/licenciado
 
-         referido$joao xavier de almeida serra/mesmo_que=nom13-p1/obs=o licenciado joao xavier de almeyda serra- fl.8v.
+         referido$joao xavier de almeida serra/mesmo_que=nom13-p1/obs=o licenciado joao xavier de almeyda serra- fl.8v./id=nom43-per32-4
             ls$titulo/irmao de maior condicao/17430707
             ls$titulo/licenciado
 
-         referido$joao barreto cabral/mesmo_que=nom15-p1/obs=o padre joao barreto cabral fl.9v.
+         referido$joao barreto cabral/mesmo_que=nom15-p1/obs=o padre joao barreto cabral fl.9v./id=nom43-per33-4
             ls$titulo/irmao de maior condicao/17461223
             ls$profissao/padre
 
-         referido$boaventura de aguiar e carvalho/mesmo_que=nom16-p1/obs=o reverendo prior boaventura de aguiar e carvalho- morto- fl. 10
+         referido$boaventura de aguiar e carvalho/mesmo_que=nom16-p1/obs=o reverendo prior boaventura de aguiar e carvalho- morto- fl. 10/id=nom43-per34-4
             ls$titulo/irmao/17490330
             ls$titulo/reverendo
             ls$ profissao/padre%prior
 
-         referido$alexandre de britto e fran?a/mesmo_que=nom17-p1/obs=alexandre de britto e franca- de riscado fl 10v (fl.60)
+         referido$alexandre de britto e fran?a/mesmo_que=nom17-p1/obs=alexandre de britto e franca- de riscado fl 10v (fl.60)/id=nom43-per35-4
             ls$titulo/irmao de maior condicao/17490404
 
-         referido$joao de franca/mesmo_que=nom18a- p1/obs=joao de franca- a fl.10
+         referido$joao de franca/mesmo_que=nom18a- p1/obs=joao de franca- a fl.10/id=nom43-per36-4
             ls$titulo/irmao de maior condicao/17500325
 
-         referido$alexandre de britto/mesmo_que=nom18-p1/obs=alexandre de britto o velho- morto- a fl.11 (fl. 59v)
+         referido$alexandre de britto/mesmo_que=nom18-p1/obs=alexandre de britto o velho- morto- a fl.11 (fl. 59v)/id=nom43-per37-4
             ls$alcunha/o velho
             ls$titulo/irmao de maior condicao/17500325
 
-         referido$damazo joze de as cabral/mesmo_que=nom19-p1/obs=damazo joze de sa cabral- tem o assento a fl. 11-morto
+         referido$damazo joze de as cabral/mesmo_que=nom19-p1/obs=damazo joze de sa cabral- tem o assento a fl. 11-morto/id=nom43-per38-4
             ls$titulo/irmao de maior condicao/17520109
 
-         referido$diamantino arnaut de almeida/mesmo_que=nom20-p1/obs=diamantino arnaut de almeyda- a fl.12
+         referido$diamantino arnaut de almeida/mesmo_que=nom20-p1/obs=diamantino arnaut de almeyda- a fl.12/id=nom43-per39-4
             ls$titulo/irmao/17520330
 
-         referido$joze raymundo de as cabral/mesmo_que=nom24-p1/obs=joze raymundo de sa cabral- morto- fl.14
+         referido$joze raymundo de as cabral/mesmo_que=nom24-p1/obs=joze raymundo de sa cabral- morto- fl.14/id=nom43-per40-4
             ls$titulo/irmao de maior condicao/17700314
 
-         referido$mateus barreto cabral/mesmo_que=nom25-p1/obs=matheus barreto cabral- a fl.14
+         referido$mateus barreto cabral/mesmo_que=nom25-p1/obs=matheus barreto cabral- a fl.14/id=nom43-per41-4
             ls$titulo/irmao de maior condicao/17611215
 
-         referido$pedro cota bandeira/mesmo_que=nom23-p1/obs=pedro cota bandeira-aubzente- a fl.13
+         referido$pedro cota bandeira/mesmo_que=nom23-p1/obs=pedro cota bandeira-aubzente- a fl.13/id=nom43-per42-4
             ls$titulo/irmao de maior condicao/17581105
 
-         referido$agostinho ottone bandeira/mesmo_que=nom22-p1/obs=agostinho ottone bandeira- aubzente- a fl.13., no termo de aceitacao agostinho otone cota bandeira
+         referido$agostinho ottone bandeira/mesmo_que=nom22-p1/obs=agostinho ottone bandeira- aubzente- a fl.13., no termo de aceitacao agostinho otone cota bandeira/id=nom43-per43-4
             ls$titulo/irmao de maior condicao/17581105
 
-         referido$joao negrao arnaut/mesmo_que=nom28-p1/obs=joao negrao arnaut- morto-a fl.16
+         referido$joao negrao arnaut/mesmo_que=nom28-p1/obs=joao negrao arnaut- morto-a fl.16/id=nom43-per44-4
             ls$titulo/irmao de maior condicao/17660324
 
-         referido$joze arnaut de almeida serra/xmesmo_que=nom29/obs=no termo de aceitacao escreve-se joze arnaut de almeida - joze arnaut de almeida serra- ambos a fl.17
+         referido$joze arnaut de almeida serra/xmesmo_que=nom29/obs=no termo de aceitacao escreve-se joze arnaut de almeida - joze arnaut de almeida serra- ambos a fl.17/id=nom43-per45-4
             ls$titulo/irmao de maior condicao/17660702
 
-         referido$francisco xavier de almeida/mesmo_que=nom30-p1/obs=no termo de aceitacao joao xavier de almeida serra., ai escreveu por sua mao que se havia riscado "por justos motivos que me assistem" francisco xavier de almeyda - " "
+         referido$francisco xavier de almeida/mesmo_que=nom30-p1/obs=no termo de aceitacao joao xavier de almeida serra., ai escreveu por sua mao que se havia riscado "por justos motivos que me assistem" francisco xavier de almeyda - " "/id=nom43-per46-4
             ls$titulo/irmao de maior condicao/17660702
 
-         referido$feliciano monteiro velozo da silva/mesmo_que=nom27-p1/obs=feliciano monteyro vellozo da silva- morto-a fl 15
+         referido$feliciano monteiro velozo da silva/mesmo_que=nom27-p1/obs=feliciano monteyro vellozo da silva- morto-a fl 15/id=nom43-per47-4
             ls$titulo/irmao de maior condicao/17660324
 
-         referido$joze de magalhaes mexia/mesmo_que=nom34-p1/obs=no termo de aceitacao escreve-se jose de magalhaes mexia de macedo joze de magalhaens mexia- a fl.14
+         referido$joze de magalhaes mexia/mesmo_que=nom34-p1/obs=no termo de aceitacao escreve-se jose de magalhaes mexia de macedo joze de magalhaens mexia- a fl.14/id=nom43-per48-4
             ls$titulo/irmao/17780412
 
-         referido$joze joaquim da silva galvao/mesmo_que=nom54-p1/obs=joze joaquim da silva galvao- a fl. 14?
+         referido$joze joaquim da silva galvao/mesmo_que=nom54-p1/obs=joze joaquim da silva galvao- a fl. 14?/id=nom43-per49-4
             ls$titulo/irmao/17780412
 
-         referido$manoel lopes caetano serra/mesmo_que= nom36-p1/obs=manoel lopes caetano serra- a fl.19 .no termo de aceitacao escreve-se manoel lopes caetano cortez serra
+         referido$manoel lopes caetano serra/mesmo_que= nom36-p1/obs=manoel lopes caetano serra- a fl.19 .no termo de aceitacao escreve-se manoel lopes caetano cortez serra/id=nom43-per50-4
             ls$titulo/irmao de maior condicao/17780412
 
-         referido$miguel dinis pereira/mesmo_que=nom37-p1/obs=o reverendo prior de villarinho miguel denis pereira- a fl. 19v
+         referido$miguel dinis pereira/mesmo_que=nom37-p1/obs=o reverendo prior de villarinho miguel denis pereira- a fl. 19v/id=nom43-per51-4
             ls$profissao/padre%prior
             ls$titulo/reverendo
             ls$titulo/irmao/17810702
 
-         referido$leonardo de as cabral/xmesmo_que=nom179-p1/obs=o conego dom leonardo de sa cabral riscado a 17930106 por enquanto provedor ter atitudes nao aceites pela irmandade(ver acto)
+         referido$leonardo de as cabral/xmesmo_que=nom179-p1/obs=o conego dom leonardo de sa cabral riscado a 17930106 por enquanto provedor ter atitudes nao aceites pela irmandade(ver acto)/id=nom43-per52-4
             ls$titulo/conego%conego dom leonardo de as cabral
             ls$titulo/irmao de maior condicao/17840702
 
       nom$nom44/2/6/1728/61
 
-         n$antonio francisco
+         n$antonio francisco/id=nom44-per1-4
             ls$profissao/sapateiro
             ls$titulo/irmao de menor condicao
             ls$residencia/vila da lousa
             ls$assinatura/de cruz-nivel1
 
-            referido$manoel de almeida serra
+            referido$manoel de almeida serra/id=nom44-per1-4-per2-4
                ls$cargo/provedor
 
       nom$nom45/19/3/1729/61v
@@ -527,10 +527,10 @@ kleio$gacto.str/translations=6
             ls$residencia/lugar do casal
             ls$assinatura/de cruz-nivel 1
 
-            referido$manoel simoes
+            referido$manoel simoes/id= nom45-r1-per1-4
                rel$parentesco/pai/manoel antunes/nom45-r1
 
-            referido$manoel de almeida serra
+            referido$manoel de almeida serra/id= nom45-r1-per2-4
                ls$cargo/provedor
 
       nom$nom46/19/3/1729/62
@@ -544,7 +544,7 @@ kleio$gacto.str/translations=6
 
       nom$nom47/19/3/1729/62/obs=no mesmo termo aceita-se joam francisco-o bruxo
 
-         n$antonio simoes
+         n$antonio simoes/id=nom47-per1-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao
             ls$titulo/cristao velho
@@ -552,14 +552,14 @@ kleio$gacto.str/translations=6
 
       nom$nom48/2/6/1730/62v
 
-         n$thomas galvam
+         n$thomas galvam/id=nom48-per1-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao
             ls$titulo/cristao velho
             ls$profissao/barbeiro
             ls$assinatura/mal-nivel 2
 
-            referido$manoel de almeida serra
+            referido$manoel de almeida serra/id=nom48-per1-4-per2-4
                ls$titulo/licenciado
                ls$cargo/provedor
 
@@ -571,7 +571,7 @@ kleio$gacto.str/translations=6
             ls$titulo/cristao velho
             ls$assinatura/cruz-nivel 1
 
-            referido$manoel de almeida serra
+            referido$manoel de almeida serra/id=nom49-p1-per1-4
                ls$tiulo/licenciado
                ls$cargo/provedor
 
@@ -583,7 +583,7 @@ kleio$gacto.str/translations=6
             ls$titulo/cristao velho
             ls$assinatura/bem-nivel 3
 
-            referido$leonardo de as cabral
+            referido$leonardo de as cabral/id=nom50-p1-per1-4
                ls$cargo/provedor
 
       nom$nom51/11/4/1732/64
@@ -594,7 +594,7 @@ kleio$gacto.str/translations=6
             ls$titulo/cristao velho
             ls$assinatura/mal-nivel 2
 
-            referido$joao arnaut
+            referido$joao arnaut/id=nom51-p1-per1-4
                ls$profissao/padre
                ls$titulo/reverendo
                ls$titulo/provedor
@@ -614,10 +614,10 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de menor condicao
             ls$assinatura/de cruz-nivel1
 
-            referido$duque de aveiro
+            referido$duque de aveiro/id=nom53-p1-per1-4
                ls$cargo/provedor%excelentissimo e ilustrissino duque de aveiro
 
-            referido$theodozio arnaut de rivo
+            referido$theodozio arnaut de rivo/id=nom53-p1-per2-4
                ls$cargo/escrivao/obs=a exerce as fun?oes de provedor na sua ausencia
 
       nom$nom53a/19/3/1733/64v
@@ -666,7 +666,7 @@ kleio$gacto.str/translations=6
             ls$titulo/cristao velho
             ls$assinatura/bem-nivel 3
 
-            referido$joao barreto cabral
+            referido$joao barreto cabral/id=nom58-p1-per1-4
                ls$cargo/provedor
 
       nom$nom59/16/1/1735/66v/obs=no mesmo assento se aceita como irmao theodozio simoes
@@ -692,7 +692,7 @@ kleio$gacto.str/translations=6
             ls$titulo/cristao velho
             ls$assiantura/de cruz-nivel1
 
-            referido$antonio arnaut cortez
+            referido$antonio arnaut cortez/id=nom61-p1-per1-4
                ls$cargo/provedor
 
       nom$nom62/25/3/1736/fol?
@@ -704,7 +704,7 @@ kleio$gacto.str/translations=6
             ls$titulo/christao velho
             ls$assintura/uma cruz-nivel 1
 
-            referido$manoel dos santos
+            referido$manoel dos santos/id=nom62-r1-per1-4
                ls$residencia/vila da louza
                rel$parentesco/pai/marcelino dos santos/nom62-r1
 
@@ -741,7 +741,7 @@ kleio$gacto.str/translations=6
 
       nom$nom65/12/4/1739/70v/obs= estando "prezente o provedor e mais irmaos da meza por elles foy ditto que visto luis botelho de macedo escrivao actual da dita santo caza o prezente anno repugnar levar os cargos que lhe forao destribuidos pella mesma meza na semana santa e outrossi faltar a varios interros que tem havido., dizendo que nao queria ser irmao da dita santa caza o haviao elles ditto provedor e mais irmaos da meza por derriscado de irmao da dita santa caza " (foram-lhe aplicadas as penas determinadas no compromisso relativas aos irmaos que se riscassem)
 
-         referido$luis botelho de macedo
+         referido$luis botelho de macedo/id=nom65-per1-4
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
       nom$nom66/2/7/1739/71
@@ -751,7 +751,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao
             ls$asinatura/bem-nivel 3
 
-            referido$gaspar correa
+            referido$gaspar correa/id=nom66-r1-per1-4
                ls$residencia/vila da lousa
                rel$parentesco/pai/manoel joseph de figueiredo/nom66-r1
 
@@ -763,7 +763,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao
             ls$assinatura/mal-nivel 2
 
-            referido$martinho negrao arnaut
+            referido$martinho negrao arnaut/id=nom67-p1-per1-4
                ls$cargo/provedor
 
       nom$nom68/11/4/1740/71v/obs=no mesmo termo e aceite joze rodrigues marrafao
@@ -773,7 +773,7 @@ kleio$gacto.str/translations=6
             ls$residencia/vila da louza
             ls$assinatura/uma cruz-nivel2
 
-            referido$manoel rodrigues braz
+            referido$manoel rodrigues braz/id=nom68-r1-per1-4
                rel$parentesco/pai/bebiano joze/nom68-r1
 
       nom$nom69/30/10/1740/72
@@ -783,11 +783,11 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de menor condicao
             ls$assinatura/mal-nivel2
 
-            referido$antonio fernandes
+            referido$antonio fernandes/id=nom69-rl-per1-4
                ls$residencia/casal dos rios
                rel$parentesco/pai/joao antunes/nom69-r1
 
-            referido$leonardo de as cabral
+            referido$leonardo de as cabral/id=nom69-rl-per2-4
                ls$cargo/provedor
 
       nom$nom70/18/3/1741/72
@@ -798,7 +798,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de menor condicao
             ls$assinatura/de cruz-nivel1
 
-            referido$leonardo de as cabral
+            referido$leonardo de as cabral/id=nom70-p1-per1-4
                ls$cargo/provedor
 
       nom$nom71/30/3/1741/72v
@@ -815,7 +815,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de menor condicao
             ls$assinatura/de cruz-nivel1
 
-            referido$joze antonio quaresma
+            referido$joze antonio quaresma/id=nom72-rl-per1-4
                ls$titulo/licencenciado
                ls$cargo/provedor
 
@@ -828,7 +828,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao de menor condicao
             ls$assintura/mal-nivel2
 
-            referido$thome leal cortez
+            referido$thome leal cortez/id=nom73-p1-per1-4
                ls$titulo/reverendo
                ls$cargo/provedor
 
@@ -839,7 +839,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao
             ls$assiantura/bem-nivel 3
 
-            referido$joao monteiro de tavora
+            referido$joao monteiro de tavora/id=nom74-p1-per1-4
                ls$titulo/licenciado%doutor
                ls$cargo/provedor
 
@@ -850,7 +850,7 @@ kleio$gacto.str/translations=6
             ls$tiulo/irmao
             ls$assinatura/de cruz-nivel1
 
-            referido$joao monteiro de tavora
+            referido$joao monteiro de tavora/id=nom75-p1-per1-4
                ls$titulo/licenciado%doutor
                ls$cargo/provedor
 
@@ -863,7 +863,7 @@ kleio$gacto.str/translations=6
             ls$titulo/cristao velho
             ls$assiantura/de cruz-nivel 1
 
-            referido$joze coelho cortez
+            referido$joze coelho cortez/id=nom76-p1-per1-4
                ls$titulo/reverendo
                ls$cargo/provedor
 
@@ -874,7 +874,7 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao
             ls$assinatura/mal-nivel2
 
-            referido$joao xavier de almeida serra
+            referido$joao xavier de almeida serra/id=nom77-p1-per1-4
                ls$titulo/licenciado%doutor
                ls$cargo/provedor
 
@@ -885,23 +885,23 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao
             ls$assinatura/de cruz-nivel1
 
-            referido$joao xavier de almeida serra
+            referido$joao xavier de almeida serra/id=nom78-p1-per1-4
                ls$titulo/licenciado%doutor
                ls$cargo/provedor
 
       nom$nom79/1/12/1748/77/obs="termo em que a meza determinou se riscassem os irmaos joao rodrigues jorge e theodozio rodrigues ambos desta villa""(...)aonde estava prezidindo o provedor o doutor joao barreto bacellar e junta a meza foy proposto que se tinha mandado avizar pello sachristao da sta caza aos irmaos thodozio rodrigues e joao rodrigues jorge tanto para virem dar rezao em meza das faltas sucessivas que tinhao feito a varios enterros., e para aprezentarem as suas vestia., na forma do compromisso., e porque nao vieram fazer nem huma nem outra couza., determinou a meza que na forma da pena que lhe impoem os capitullos do compromisso fossem riscados de irmaons (fl. 77)e nunca mais gozassem do previllegio de tais e incorressem nas mais penas que o compromisso dispoem incorram os irmaons que forem riscados do servico da dita stacaza(...)"
 
-         referido$joao rodrigues jorge
+         referido$joao rodrigues jorge/id=nom79-per1-4
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
             ls$residenca/vila da louza
 
-         referido$theodozio rodrigues
+         referido$theodozio rodrigues/id=nom79-per2-4
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
             ls$residencia/vila da louza
 
       nom$nom80/12/1/1749/77v/obs="termo em que a meza riscou de irmao a celestino fernandes da ponte do areal"" (...) prezidindo o provedor joao barreto bacellar e os irmaons da meza que servem este prezente anno e por elles se rezolveo que porquanto se tinha determinado a celestino fernandes da ponte do areal que aprezentasse a sua veste dentro em tempo limitado., conforme ao compromisso por annos que hera irmao e a nao tinha e fazer assim muita falta na obrigacao de irmao., que o dito fosse riscado de irmao desta santa caza e assim nunca mais gozasse do provimento de tal e incorresse nas mais penas que o compromisso dispoem (...)"
 
-         referido$celestino fernandes
+         referido$celestino fernandes/id=nom80-per1-4
             ls$residencia/ponte do areal
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
@@ -913,11 +913,11 @@ kleio$gacto.str/translations=6
             ls$titulo/irmao
             ls$assinatura/mal-nivel2
 
-            referido$joze coelho cortez
+            referido$joze coelho cortez/id=nom81-r1-per1-4
                ls$titulo/reverendo
                ls$cargo/provedor
 
-            referido$mateus dos reis
+            referido$mateus dos reis/id=nom81-r1-per2-4
                ls$residencia/vila
                rel$parentesco/pai/bernardo dos reis/nom81-r1
 
@@ -930,7 +930,7 @@ kleio$gacto.str/translations=6
 
       nom$nom83/26/3/1750/78v
 
-         n$raymundo antonio de jesus
+         n$raymundo antonio de jesus/id=nom83-per1-4
             ls$residencia/vila da lousa
             ls$titulo/irmao
             ls$assiantura/nao figura qualquer referencia
@@ -972,7 +972,7 @@ kleio$gacto.str/translations=6
 
       nom$nom89/2/7/1752/81/obs= "(...) em esta stacaza da mizericordia aonde estava o reverendo provedor joze antonio monteiro de tavora e mais irmaons da meza abaixo assignados pello dito provedor e irmaos da meza(...) foi dito haviao por derriscado de irmao desta stacaza a paschoal simoes ferreira do lugar de ceyra por ha annos nao vir assistir as funcoens desta santa caza de sorte que o anno passado de setecentos e cinquenta e hum fazendo-se prossi?ao dos passos assestiu o dito irmao a procissao sem vestia e juntamente porque sendo avizado por mim escrivao no dia vinte e nove do m?s de junho passado para servir a esta sta caza em a propria funssao della que he a prezente da eleycao nao apreceo e por isso e pello mais o ham por derriscado de irmao (...)"
 
-         referido$pascoal simoes ferreira
+         referido$pascoal simoes ferreira/id=nom89-per1-4
             ls$residencia/ceira%lugar de ceira
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
@@ -1018,11 +1018,11 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
             ls$residencia/vila da louza
             ls$cargo/irmao de azul
 
-         referido$manoel dias
+         referido$manoel dias/id=nom91-per1-4
             ls$residencia/vila%rua direita
             rel$parentesco/pai/joachim dias/nom91-r1
 
-         referido$joao de almeida
+         referido$joao de almeida/id=nom91-per2-4
             ls$cargo/irmao de azul
             ls$morto/antes
 
@@ -1085,7 +1085,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom100/23/3/1760/85v/obs=pelo mesmo termo se admitem joze antono soares., francisco rodrigues correia., thome coelho-de todos constou "limpeza de sangue" e joze duarte relativamente ao qual foram feitas as deligencias necessarias para atestar limpeza de sangue.
 
-         n$manoel luiz sopico
+         n$manoel luiz sopico/id=nom100-per1-4
             ls$residencia/vila da lousa
             ls$titulo/irmao
             ls$assinatura/de cruz-nivel1
@@ -1176,7 +1176,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom113/3/5/1771/88v/obs="termo de aceytacao do irmao de azul anastasio dias""aos tres dias (...) em meza a que preside o provedor actual (...)por elle foy proposto a meza que esta caza se achava mal servida com hum so irmao do azul., em rezao de serem as funcoens da caza muytas., o que actualmente serve., per si so nao pode accudir a ellase juntamente porque em outro tempo haviao quatro mamposteyros em esta caza que ajudavao as funcoens da semana santa e sta izabel ao irmao do azul., cujos todos hoje faltao e nao ha algum que supra as suas faltas, se fazia muito precizo a vista de nao haver mamposteyros o fazer-se elleicao de outro irmao do azul para com elle cumprirem as obrigacoens da caza(...) e porque lhe constava que anastasio dias filho de manoel dias desta villa., irmao de joachim dias actual irmao do azul nesta stacaza queria servir com o dito seo irmao parecia a elle provedor que se fizesse aceytacao do dito anastasio dias para como segundo irmao do azul ou como mamposteyro (...)mandou o dito provedor prezidente se chamasse o dito anastasio dias o qual aparecendo disse tinha grande desejo de servir esta santa caza ou como irmao do azul ou como mamposteyro e que assim rogava o aceytassem como tal., o que aceytarao., e o mesmo (fl.88v)se obrigou a bem satisfazer e cumprir com a sua obrigacao na mesma forma que se tinha obrigado seo irmao joachim dias pello termo que se achava neste livro a folhas outenta e hum verso e seguintes e que nomeava por seo fiador a todo o prejuzo seo pay manoel dias., o qual por estar prezente disse que elle como fiador e como principal pagador de todo o prejuizo que cauzasse o dito so filho nesta santa caza se obrigava por sua pessoa e bens., a que forao testemunhas que prezente estavao e tao bem assignarao os reverendos manoel ribeyro serrao e manoel de jesus monteyro todos da mesma villa(...)"(de manoel dias uma cruz., anastacio dias nao aparece nas assinaturas)
 
-         referido$anastacio dias
+         referido$anastacio dias/id=nom113-per1-4
             ls$cargo/irmao de azul/obs=eleito como segundo irmao do azul
 
       nom$nom114/30/3/1773/89v/obs=pelo mesmo termo se aceita como irmao acellino soares do mesmo lugar
@@ -1210,34 +1210,34 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom118/27/3/1766/90v
 
-         n$manoel baiao
+         n$manoel baiao/id=nom118-per1-4
             ls$residencia/vila da louza
             ls$titulo/irmao
             ls$assinatura/noa figura no termo
 
       nom$nom119/24/8/1766/91/obs="termo de elleiccam que se fez em meza na forma do compromisso""aos vinte e quatro dias do mez de agosto de mil settecentos e setenta e seis annos nesta villa da louzam(...)aonde estava prezente o provedor o doutor joao monteyro leite ferraz e os mais irmaons da meza (...) pellos quais foy determinado a sua elleicao canonica que estes por pauta em dia de sta(fl.91)izabel do dito anno sahiram eleytos por irmaos da meza pedro cotta bandeyra da fabrica do papel., o reverendo prior boaventura de aguiar e carvalho., o reverendo padre joze coelho cortez e por o sobredicto pedro cotta bandeyra se achar aubzente em esta villa e termo e os outros dous irmaos., hum por ser parocho e outro por ser iconomo na collegiada de s.silvestre da dita villa se acharem todos legitimamente empedidos para comprirem com a sua obriga?am de irmaos e o compromicio(sic) desta stacaza da faculdade ao dito pocurador e mais irmaos da meza para (...) fazer elleicao de outros tres irmaos em logar daquelles empedidos para que emquanto durace o seo impedimento servissem com a sua obrigacam e irmaos da meza desta stacaza e votando a dita meza uniformemente sahiram com mais votos joao rodrigues quartam dos rios do penedo., e antonio soares do cazal e leonardo soares do cazal e nesta forma houveram o dito provedor e mais irmaos da meza esta elleicam por feita e acabado e mandaram o sachristam desta santa caza os avizasse para exercerem a dita ocupacam (...)"
 
-         referido$pedro cotta bandeira%pedro cota bandeira da fabrica do papel
+         referido$pedro cotta bandeira%pedro cota bandeira da fabrica do papel/id=nom119-per1-4
             ls$cargo/irmao da mesa/obs=impedido de exercer o cargo por estar ausente
 
-         referido$boabentura de aguiar e carvalho
+         referido$boabentura de aguiar e carvalho/id=nom119-per2-4
             ls$titulo/reverendo/obs=paroco na igreja de s.silvestre da vila da louza
             ls$cargo/irmao da mesa/obs=impedido de exercer o cargo pelas fun?oes na igreja
 
-         referido$joze coelho cortez
+         referido$joze coelho cortez/id=nom119-per3-4
             ls$profissao/padre
             ls$titulo/reverendo
             ls$cargo/irmao da mesa/obs=impedido de exercer o cargo por ser iconomo na colegiada de s.silvestre da vila da louza
 
-         referido$joao rodrigues quartam
+         referido$joao rodrigues quartam/id=nom119-per4-4
             ls$residencia/penedo
             ls$cargo/irmao da mesa/obs=eleito em substitui?ao de irmao com impedimento
 
-         referido$antonio soares
+         referido$antonio soares/id=nom119-per5-4
             ls$residencia/casal
             ls$cargo/irmao da mesa/obs=eleito em substituicao de irmao com impedimento
 
-         referido$leonardo soares
+         referido$leonardo soares/id=nom119-per6-4
             ls$residencia/casa
             ls$cargo/irmao da mesa/obs=eleito em substituicao de irmao com impedimento
 
@@ -1270,7 +1270,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
             ls$titulo/irmao
             ls$assinatura/bem-nivel3
 
-            referido$theodozio duarte
+            referido$theodozio duarte/id=nom123-r1-per1-4
                ls$residencia/porto da reguenga
                rel$parentesco/pai/manoel duarte/nom123-r1
 
@@ -1290,13 +1290,13 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom126/2/7/1774/95
 
-         n$bartolomeu joze buzano
+         n$bartolomeu joze buzano/id=nom126-per1-4
             ls$titulo/irmao
             ls$assinatura/de cruz-nivel1
 
       nom$nom127/2/7/1777/95v
 
-         n$simao caneva
+         n$simao caneva/id=nom127-per1-4
             ls$titulo/irmao
             ls$assinatura/nao ha/obs=o termo nao apresenta nenhuma assinatura
 
@@ -1309,7 +1309,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom128a/12/4/1778/96v./obs=no mesmo assento figuram mais vinte individuos que foram aceites como irmaos
 
-         n$antonio pires
+         n$antonio pires/id=nom128a-per1-4
             ls$residencia/fontainhas
             ls$profissao/alferes
             ls$titulo/irmao/obs=o nome deste individuo esta sublinhado e esta escrito ao lado "foi engano"
@@ -1464,7 +1464,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom149/2/7/1778/98/obs="termo em que a meza determinou riscar antonio pires das fontainhas""(...) e por elles foi dito (provedor e mais irmaos da meza)que antonio pires do lugar das fontainhas (...)se lhe lavrou o termo de aceita?ao juntamente com outros e por que agora nos expunha rezois que nam convinha ser irmam desta caza por dizer nam hera compativel com ocupacam (...) de alferes dos auxuliares(?) que exercitava (...) por cuja rezam o havemos por desarriscado(...)"
 
-         referido$antonio pires
+         referido$antonio pires/id=nom149-per1-4
             ls$residencia/fontainhas
             ls$profissoa/alferes%alferes dos auxuliares
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
@@ -1477,7 +1477,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
             ls$titulo/irmao
             ls$assinatura/de cruz-nivel1
 
-            referido$manoel rodrigues
+            referido$manoel rodrigues/id=nom150-r1-per1-4
                ls$residencia/casal novo
                rel$parentesco/pai/joze rodrigues/nom150-r1
 
@@ -1489,7 +1489,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
             ls$titulo/irmao
             ls$assinatura/nao figura
 
-            referido$bernarda maria
+            referido$bernarda maria/id=nom151-r1-per1-4
                rel$parentesco/mulher/joze correa/nom151-r1
 
       nom$nom152/12/4/1781/112/obs=pelo mesmo termo se aceitam "joze correa" da vila da louza e joze francisco do casal
@@ -1578,7 +1578,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
             ls$titulo/irmao
             ls$assinatura/bem-nivel3/obs=assina "thomati"
 
-            referido$paulo francisco tomate%paulo francisco tomate da fabrica do papel
+            referido$paulo francisco tomate%paulo francisco tomate da fabrica do papel/id= nom163-r1-per1-4
                ls$residencia/rios/obs=na listagem de irmaos de 1729 fl.cento e quarenta e dois afirma-se serem "dos rios"
                rel$parentesco/filho/joze maria thomate/nom163-r1
 
@@ -1589,7 +1589,7 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
             ls$titulo/imao
             ls$assinatura/bem-nivel3/obs=assina "thomati"
 
-            referido$joze maria thomate
+            referido$joze maria thomate/id=nom164 -rl-per1-4
                ls$residencia/rios
                rel$parentesco/pai/paulo francisco thomate/nom164-rl
 
@@ -1630,15 +1630,15 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom179/6/1/1793/101/obs=termo pelo qual se riscou o reverendo dom leonardo de sa cabral entao provedor da santa caza (designado "termo galante" no fl.cento e quarenta e dois)-em reuniao do escrivao joze da silva galvao e demais irmaos da meza "por elles foi dito que o nosso provedor o reverendo dom lionardo de sa cabral (...) tem obrado factos estranhos da nossa religiao como era o de prohibir ao sachristao desta santa caza o toque do sino para o povo se juntar a missa que na dita igreja se costumava dizer privando ao povo deste bem., lancando fora da mesma igreja as pessoas que nelle se achavao para ouvir missa., tratando a alguns irmaons desta irmandade com menos prodencia., sendo advertido no interro que se fez no dia 3 do referido mez ele mostrou a meza querer insistir nos mesmos projectos largando a veste da irmandade., retirando-se para sua propria caza sem querer assistir aquele acto de mizericordia que era da sua inspesao dizendo se dava por derriscadode irmao desta santa caza de que rezultou convocar-se a irmandade que assentou., por querer exercitar actos de humildade o escrivao desta santa caza., foi por ordem desta irmandade convocar ao dito provedor para continuar no exercicio da sua ocupasao ou ser ouvido sobre a resolucao da irmandade., ao que respondeo nao querer ser irmao della e para mais se justificar a procedencia da irmandade para conciliar (...) e evitar o escandalo segunda vez convocarao o irmao o doutor francisco xavier de almeida serra a quem deo a mesma resposta alem de lha ter dado por escrito., a vista do ponderado lancaram votos por escortinio lancando seo voto oculto cada hum de per si sahirao com vinte e sete para se despor (sic)da ocupasao de provedor e irmao desta santa caza e sete que nao., o que visto havemos (fl.101) por desposto ao reverendo dom leonardo de sa cabral da ocupasao de provedor e irmao desta santa caza e elegemos para provedor desta joze da silva galvao e para escrivao della a joze arnao de almeida serra ., ficando servindo a meza ja eleita(...)"
 
-         referido$leonardo de sa cabral
+         referido$leonardo de sa cabral/id=nom179-per1-4
             ls$titulo/reverendo%dom
             ls$cargo/provedor
             ls$titulo/irmao/obs=riscado nesta data (ver acto)
 
-         referido$joze da silva galvao
+         referido$joze da silva galvao/id=nom179-per2-4
             ls$cargo/provedor/obs=eleito nesta data(ver acto)
 
-         referido$joze arnao de almeida serra
+         referido$joze arnao de almeida serra/id=nom179-per3-4
             ls$cargo/escrivao/obs=eleito nesta data (ver acto)
 
       nom$nom180/2/7/1765/102/obs=a data deve estar incorrecta-deveria estar escrito 1795.,no mesmo termo se aceitam: diogo de barros., antonio do rego., manoel dias., joaquim dos reis
@@ -1717,49 +1717,49 @@ delle como de abonacao e fianca do dito seo pay(- foram testemunhas- joseph fran
 
       nom$nom189/1/7/1797/102v/obs=no mesmo assento figuram os nomes de: joze soares o novo.,bartholomeo fernandes., joze fernandes o novo., manoel duarte o novo"do lugar do porto da reguenga"
 
-         n$joze buzano
+         n$joze buzano/id=nom189-per1-4
             ls$titulo/irmao
             ls$assinatura/de cruz-nivel1
 
       nom$nom190/4/4/1813/108v/obs=termo pelo qual se identificam os irmaos cujo termo de aceitacao nao consta deste livro-"achao-se servindo aceitos nesta irmandade alguns individuos de cuja aceitacao nao aparecem neste livro os termos ou isto fosse porque se nao lavrarao logo que elles forao aceitos e ao depois veio a ficar por aprever digo e ao depois vierao a ficar por escrever ou fosse porque se perdesse a folha em que elles estavao posto que nao parece verosimil esta causa: fosse pello que fosse aqui se escrevem seos nomes para constar e sao os seguintes: joao fernandes dos rios., jeronimo mathias do porto da reguenga., joaquim joze supico dos rios., joao ferreira da fornia., joaquim de almeida de val de neira., joze antonio do fundo da villa., joaquim rodrigues do sacramento.,antonio guilherme.,jeronimo do rego., joze antonio do rego.,joao pinheiro., todos desta villa., de que se fez este termo que o provedor e mais irmaons de que todos da meza assignarao aqui (por se achar em branco esta pagina(sic.) aos dous dias do mez de abril de 1813"o provedor joze coelho de souza da gama (assinatura autografa)(nao aparecem mais assinaturas)
 
-         referido$joao fernandes
+         referido$joao fernandes/id=nom190-per1-4
             ls$residencia/rios
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$jeronimo mathias
+         referido$jeronimo mathias/id=nom190-per2-4
             ls$residencia/porto da reguenga
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$joaquim joze supico
+         referido$joaquim joze supico/id=nom190-per3-4
             ls$residencia/rios
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$jao ferreira
+         referido$jao ferreira/id=nom190-per4-4
             ls$residencia/fornea
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$joaquim de almeida
+         referido$joaquim de almeida/id=nom190-per5-4
             ls$residencia/val de neira
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$joze antonio
+         referido$joze antonio/id=nom190-per6-4
             ls$residencia/funda da vila
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$joaquim rodrigues do sacramento
+         referido$joaquim rodrigues do sacramento/id=nom190-per7-4
             ls$residencia/vila da louza
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$antonio guilherme
+         referido$antonio guilherme/id=nom190-per8-4
             ls$residencia/vila da lousa
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$jeronimo do rego
+         referido$jeronimo do rego/id=nom190-per9-4
             ls$residencia/vila da louza
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
-         referido$joao pinheiro
+         referido$joao pinheiro/id=nom190-per10-4
             ls$residencia/vila da louza
             ls$titulo/irmao/obs=o termo de aceitacao nao figura(ver acto)
 
@@ -1816,137 +1816,137 @@ cortez escrivao da dita santa caza o escrevi antonio arnaut cortez """(assinatur
 
       nom$nom193/0/0/1729/139/obs="titulo do irmaos de menor condicao que actualmente estam servindo a santa caza da mizericordia desta villa da louza o przente anno de 1729" (esta riscado"menor condicao")
 
-         referido$antonio jorge/obs=antonio jorge dos rios- morto
+         referido$antonio jorge/obs=antonio jorge dos rios- morto/id=nom193-per1-4
             ls$rsidencia/rios
             ls$titulo/irmao de menor condicao
 
-         referido$antonio de sequeira/obs=antonio de sequeira barbeiro de seyra-morto
+         referido$antonio de sequeira/obs=antonio de sequeira barbeiro de seyra-morto/id=nom193-per2-4
             ls$profissao/barbeiro
             ls$residencia/ceira dos vales
             ls$titulo/irmao de menor condicao
 
-         referido$lourenco simoes/obs=lourenco simoes alfaiate- morto
+         referido$lourenco simoes/obs=lourenco simoes alfaiate- morto/id=nom193-per3-4
             ls$profissao/alfaiates
             ls$titulo/irmao de menor condicao
 
-         referido$manoel coelho cabral/obs=manoel coelho cabral-morto
+         referido$manoel coelho cabral/obs=manoel coelho cabral-morto/id=nom193-per4-4
             ls$titulo/irmao de menor condicao
 
-         referido$francisco jorge/obs=francisco jorge dos rios-morto
+         referido$francisco jorge/obs=francisco jorge dos rios-morto/id=nom193-per5-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao
 
-         referido$manoel fernandes/obs=manoel fernandes pedreiro do cazal-de riscado
+         referido$manoel fernandes/obs=manoel fernandes pedreiro do cazal-de riscado/id=nom193-per6-4
             ls$profissao/pedreiro
             ls$residencia/casal
             ls$titulo/irmao de menor condicao
 
-         referido$pedro simoes/obs=pedro simoes de val de maceira-morto
+         referido$pedro simoes/obs=pedro simoes de val de maceira-morto/id=nom193-per7-4
             ls$residencia/val de maceira
             ls$titulo/irmao de menor condicao
 
-         referido$manoel goncalves%manoel goncalves rey do reguengo/obs=manoel goncalves rey do reguengo-morto
+         referido$manoel goncalves%manoel goncalves rey do reguengo/obs=manoel goncalves rey do reguengo-morto/id=nom193-per8-4
             ls$titulo/irmao de menor condicao
 
-         referido$manoel rodrigues/obs=manoel rodrigues do reguengo-morto
+         referido$manoel rodrigues/obs=manoel rodrigues do reguengo-morto/id=nom193-per9-4
             ls$residencia/reguengo
             ls$titulo/irmao de menor condicao
 
-         referido$francisco arantes/obs=francisco de arantes da villa-morto
+         referido$francisco arantes/obs=francisco de arantes da villa-morto/id=nom193-per10-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$luis goncalves/obs=luiz goncalves de cova de lobo-morto
+         referido$luis goncalves/obs=luiz goncalves de cova de lobo-morto/id=nom193-per11-4
             ls$residencia/cova de lobo
             ls$titulo/irmao de menor condicaoreferido/manoel moreira/obs=manoel moreira de alfucheira-morto
             ls$residencia/alfucheira
             ls$titulo/irmao de menor condicao
 
-         referido$manoel francisco maygo(sic)/obs=manoel francisco maygo(sic) da villa-morto
+         referido$manoel francisco maygo(sic)/obs=manoel francisco maygo(sic) da villa-morto/id=nom193-per12-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$joao rodrigues trincalho/obs=joao rodrigues trincalho dahi-morto(fl.139)
+         referido$joao rodrigues trincalho/obs=joao rodrigues trincalho dahi-morto(fl.139)/id=nom193-per13-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$manoel francisco rapozo/obs=manoel francisco rapozo dahi-morto
+         referido$manoel francisco rapozo/obs=manoel francisco rapozo dahi-morto/id=nom193-per14-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$manoel correa/obs=manoel correa de cova de lobo-morto
+         referido$manoel correa/obs=manoel correa de cova de lobo-morto/id=nom193-per15-4
             ls$residencia/cova de lobo
             ls$titulo/irmao de menor condicao
 
-         referido$brz francisco/obs=braz francisco da villa-morto
+         referido$brz francisco/obs=braz francisco da villa-morto/id=nom193-per16-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$manoel alvares/obs=manoel alvares da povoa-morto
+         referido$manoel alvares/obs=manoel alvares da povoa-morto/id=nom193-per17-4
             ls$residencia/povoa
             ls$titulo/irmao de menor condicao
 
-         referido$manoel dos santos/obs=manoel dos santos da villa-morto
+         referido$manoel dos santos/obs=manoel dos santos da villa-morto/id=nom193-per18-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$martinho lopes/obs=martinho lopes dahi
+         referido$martinho lopes/obs=martinho lopes dahi/id=nom193-per19-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$bartolomeu simoes da larangeyra/obs=bartholomeo simoes da lanrangeyra dahi-morto
+         referido$bartolomeu simoes da larangeyra/obs=bartholomeo simoes da lanrangeyra dahi-morto/id=nom193-per20-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$gabriel correa/obs=gabriel correa de val de neira-morto
+         referido$gabriel correa/obs=gabriel correa de val de neira-morto/id=nom193-per21-4
             ls$residencia/val de neira
             ls$titulo/irmao de menor condicao
 
-         referido$manoel jorge/obs=manoel jorge de val de maceyra-morto
+         referido$manoel jorge/obs=manoel jorge de val de maceyra-morto/id=nom193-per22-4
             ls$residencia/val de maceira
             ls$titulo/irmao de emnor condicao
 
-         referido$francisco fernandes de carvalho/obs=francisco fernandes de carvalho da villa-morto
+         referido$francisco fernandes de carvalho/obs=francisco fernandes de carvalho da villa-morto/id=nom193-per23-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao
 
-         referido$joao francisco/obs=joao francisco de val domingos morto
+         referido$joao francisco/obs=joao francisco de val domingos morto/id=nom193-per24-4
             ls$residencia/val domingos
             ls$titulo/irmao de menor condicao
 
-         referido$thome francisco/obs=thome francisco dahi-morto
+         referido$thome francisco/obs=thome francisco dahi-morto/id=nom193-per25-4
             ls$residencia/val domingos
             ls$titulo/irmao de menor condicao
 
-         referido$manoel vicente(?)/obs=manoel vicente(?) da villa-morto
+         referido$manoel vicente(?)/obs=manoel vicente(?) da villa-morto/id=nom193-per26-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$jose simoes%jose simoes barqueiro/obs=jozeph simois barqueiro dahi-morto
+         referido$jose simoes%jose simoes barqueiro/obs=jozeph simois barqueiro dahi-morto/id=nom193-per27-4
             ls$profissao/ barqueiro
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$jose da costa%jose da costa sapateiro/obs=joseph de costa sapaterio da villa-morto
+         referido$jose da costa%jose da costa sapateiro/obs=joseph de costa sapaterio da villa-morto/id=nom193-per28-4
             ls$profissao/sapateiro
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$antonio francisco musgo/obs=antonio francisco musgo dahi-morto
+         referido$antonio francisco musgo/obs=antonio francisco musgo dahi-morto/id=nom193-per29-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$manoel rodrigues braz/obs=manoel rodrigues braz dahi-morto
+         referido$manoel rodrigues braz/obs=manoel rodrigues braz dahi-morto/id=nom193-per30-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$sebastiao rodrigues carreira/obs=sebastiam rodrigues carreyra morto
+         referido$sebastiao rodrigues carreira/obs=sebastiam rodrigues carreyra morto/id=nom193-per31-4
             ls$titulo/irmao de menor condicao
 
-         referido$joao rodrigues soares/obs=joao rodrigues soares-morto
+         referido$joao rodrigues soares/obs=joao rodrigues soares-morto/id=nom193-per32-4
             ls$titulo/irmao de menor condicao
 
-         referido$martinho jorge/obs=martinho jorge(?) do cazal-morto(fl.139v)
+         referido$martinho jorge/obs=martinho jorge(?) do cazal-morto(fl.139v)/id=nom193-per33-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao
 
@@ -1954,558 +1954,558 @@ cortez escrivao da dita santa caza o escrevi antonio arnaut cortez """(assinatur
             ls$residente/vila da lousa
             ls$titulo/irmao de menor condicao
 
-         referido$nome desconhecido
+         referido$nome desconhecido/id=nom193-per34-4
             ls$alcunha/bruxo
             rel$parentesco/pai/antonio simoes/nom193-r1
 
-         referido$manoel simoes pote/obs=manoel simoes potte dos rios-morto
+         referido$manoel simoes pote/obs=manoel simoes potte dos rios-morto/id=nom193-per35-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao
 
-         referido$antono caneva/obs=antonio caneva dahi-morto
+         referido$antono caneva/obs=antonio caneva dahi-morto/id=nom193-per36-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao
 
-         referido$manoel goncalves%manoel goncalves moleiro/obs=manoel goncalves moleyro dahi-morto
+         referido$manoel goncalves%manoel goncalves moleiro/obs=manoel goncalves moleyro dahi-morto/id=nom193-per37-4
             ls$profissao/moleiro
             ls$residencia/rios
             ls$titulo/irmao de menor condicao
 
-         referido$joao francisco%joao francisco bruxo/mesmo_que=nom46-p1/obs=joao francisco bruxo dahi-morto
+         referido$joao francisco%joao francisco bruxo/mesmo_que=nom46-p1/obs=joao francisco bruxo dahi-morto/id=nom193-per38-4
             ls$alcunha/o bruxo
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17290319
 
-         referido$manoel antunes/xmesmo_que=nom45-p1/obs=manoel antunes solteiro dahi filho que ficou de manoel simois do mesmo lugar-morto
+         referido$manoel antunes/xmesmo_que=nom45-p1/obs=manoel antunes solteiro dahi filho que ficou de manoel simois do mesmo lugar-morto/id=nom193-per39-4
             ls$estado civil/solteiro
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17290319
 
-         referido$manoel dos reys/obs=manoel dos reys do cazal-morto
+         referido$manoel dos reys/obs=manoel dos reys do cazal-morto/id=nom193-per40-4
             ls$residencia/cazal
             ls$titulo/irmao de menor condicao
 
-         referido$martinho freire/obs=martinho freyre dahi-morto
+         referido$martinho freire/obs=martinho freyre dahi-morto/id=nom193-per41-4
             ls$residencia/cazal
             ls$titulo/irmao de menor condicao
 
-         referido$manoel luis/obs=manoel luis de ponte coudiz-morto
+         referido$manoel luis/obs=manoel luis de ponte coudiz-morto/id=nom193-per42-4
             ls$residencia/ponte coudisz
             ls$titulo/irmao de menor condicao
 
-         referido$manoel rodriges/obs=luis rodrigues de val da velha-morto
+         referido$manoel rodriges/obs=luis rodrigues de val da velha-morto/id=nom193-per43-4
             ls$titulo/residencia/val da velha
             ls$titulo/irmao demenor condicao
 
-         referido$francisco curado/obs=francisco curado solteiro da favarica-morto
+         referido$francisco curado/obs=francisco curado solteiro da favarica-morto/id=nom193-per44-4
             ls$estado civil/solteiro
             ls$titulo/irmao de menor condicao
 
-         referido$manoel correa%manoel correa ferreiro/obs=manoel correa ferreiro(?) da val de nugueira-morto em 3 de agosto de 1752
+         referido$manoel correa%manoel correa ferreiro/obs=manoel correa ferreiro(?) da val de nugueira-morto em 3 de agosto de 1752/id=nom193-per45-4
             ls$profisso/ferreiro/obs=morrreu a tres de agosto de 1752
             ls$tiutlo/irmao de menor condicao
 
-         referido$manoel francisco cabessudo/obs=manoel francisco cabessudo da villa-morto
+         referido$manoel francisco cabessudo/obs=manoel francisco cabessudo da villa-morto/id=nom193-per46-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao
 
-         referido$joze francisco/mesmo_que=nom50-p1/obs=jozeph francisco de alfucheira-derriscado
+         referido$joze francisco/mesmo_que=nom50-p1/obs=jozeph francisco de alfucheira-derriscado/id=nom193-per47-4
             ls$residencia/alfucheira
             ls$titulo/irmao de menor condicao/17310702
 
-         referido$antonio rodrigues/mesmo_que=nom52-p1/obs=antonio rodrigues de palhais desta villa-morto
+         referido$antonio rodrigues/mesmo_que=nom52-p1/obs=antonio rodrigues de palhais desta villa-morto/id=nom193-per48-4
             ls$residencias/palhais%de palhais dsta vila
             ls$titulo/irmao de menor condicao/17320411
 
-         referido$paschoal simoes ferreira/mesmo_que=nom51-p1/obs=paschoal simois ferreira de ceyra-morto
+         referido$paschoal simoes ferreira/mesmo_que=nom51-p1/obs=paschoal simois ferreira de ceyra-morto/id=nom193-per49-4
             ls$residencia/ceyra
             ls$titulo/irmao de menor condicao/17320411
 
-         referido$jose simoes cabasso/mesmo_que=nom53-p1/obs=joao simois cabasso do lugar dos rios-morto
+         referido$jose simoes cabasso/mesmo_que=nom53-p1/obs=joao simois cabasso do lugar dos rios-morto/id=nom193-per50-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17330319
 
-         referido$manoel seco/mesmo_que=54-p1/obs=manoel seco do lugar do cazal dos rios-morto
+         referido$manoel seco/mesmo_que=54-p1/obs=manoel seco do lugar do cazal dos rios-morto/id=nom193-per51-4
             ls$residencia/casal dos rios
             ls$titulo/irmao de menor condicao/17330426
 
-         referido$joao soares/mesmo_que=nom55-p1/obs=joao soares do dito lugar do cazal-morto
+         referido$joao soares/mesmo_que=nom55-p1/obs=joao soares do dito lugar do cazal-morto/id=nom193-per52-4
             ls$residncia/casal
             ls$titulo/irmao de menor condicao/17330426
 
-         referido$manoel fernandes/mesmo_que=nom56-p1/obs=manoel fernandes da levada do cazal dos rios-morto(fl. 140)
+         referido$manoel fernandes/mesmo_que=nom56-p1/obs=manoel fernandes da levada do cazal dos rios-morto(fl. 140)/id=nom193-per53-4
             ls$residencia/levada do casal dos rios
             ls$titulo/irmao de menor condicao/17330426
 
-         referido$francisco soares/mesmo_que=nom49-p1/obs=francisco soares da villa-morto
+         referido$francisco soares/mesmo_que=nom49-p1/obs=francisco soares da villa-morto/id=nom193-per54-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de manor condicao/17310702
 
-         referido$thiodozio antunes/mesmo_que=nom58-p1/obs=thiodozio antunes da villa-morto
+         referido$thiodozio antunes/mesmo_que=nom58-p1/obs=thiodozio antunes da villa-morto/id=nom193-per55-4
             ls$residencia/vila da lousa/obs=no assento de aceita?ao indica-se "rios"
             ls$titulo/irmao de menor condicao/17350116
 
-         referido$caitano simoes/mesmo_que=nom59-p1/obs=caetano simois dos rios-morto
+         referido$caitano simoes/mesmo_que=nom59-p1/obs=caetano simois dos rios-morto/id=nom193-per56-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17350116
 
-         referido$celestino fernandes/mesmo_que=nom60-p1/obs=riscado a 17490112 por nao apresentar veste dentro do tempo determinado(ver acto)/obs=cilistino fernandes do arial-riscado
+         referido$celestino fernandes/mesmo_que=nom60-p1/obs=riscado a 17490112 por nao apresentar veste dentro do tempo determinado(ver acto)/obs=cilistino fernandes do arial-riscado/id=nom193-per57-4
             ls$residencia/ponte do areal
             ls$titulo/irmao de menor condicao/17350403
 
-         referido$mathias seco/mesmo_que=nom61-p1/obs=mathias seco do casal- morto
+         referido$mathias seco/mesmo_que=nom61-p1/obs=mathias seco do casal- morto/id=nom193-per58-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao/17360325
 
-         referido$marcelino dos santos/xmesmo_que=62-p1/obs=marcelino dos santos solteiro da villa-morto
+         referido$marcelino dos santos/xmesmo_que=62-p1/obs=marcelino dos santos solteiro da villa-morto/id=nom193-per59-4
             ls$estado cicvil/solteiro
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17360325
 
-         referido$francisco seco/mesmo_que=nom63-p1/obs=francisco seco desta villa-morto
+         referido$francisco seco/mesmo_que=nom63-p1/obs=francisco seco desta villa-morto/id=nom193-per60-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/117370413
 
-         referido$manoel borges/xmesmo_que=nom64-p1/obs=manoel borges da povoa-morto
+         referido$manoel borges/xmesmo_que=nom64-p1/obs=manoel borges da povoa-morto/id=nom193-per61-4
             ls$residencia/povoa
             ls$titulo/irmao de menor condicao/17380404
 
-         referido$jose rodrigues marrafao/mesmo_que=nom67-p1/obs=joze rodrigues marrafao da villa- morto
+         referido$jose rodrigues marrafao/mesmo_que=nom67-p1/obs=joze rodrigues marrafao da villa- morto/id=nom193-per62-4
             ls$alcunha/marrafao
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17400411
 
-         referido$bebiano jose/mesmo_que=nom68-r1/obs=bebiano joze filho de braz francisco da villa-morto
+         referido$bebiano jose/mesmo_que=nom68-r1/obs=bebiano joze filho de braz francisco da villa-morto/id=nom193-per63-4
             ls$residencia/vila da louza%filho de braz francisco da vila
             ls$titulo/irmao de menor condicao/17400411
 
-         referido$antonio simoes/mesmo_que=nom71-p1/obs=antonio simois o sego(sic) do cazal-morto
+         referido$antonio simoes/mesmo_que=nom71-p1/obs=antonio simois o sego(sic) do cazal-morto/id=nom193-per64-4
             ls$alcunha/o cego/obs=no termo de aceitacao noa figura "cego"
             ls$residncia/casal
             ls$tittulo/irmao de menor condicao/17410330
 
-         referido$joao antunes/xmesmo_que=nom69-p1/obs=joao antunes do cazal filho de antonio fernandes morto
+         referido$joao antunes/xmesmo_que=nom69-p1/obs=joao antunes do cazal filho de antonio fernandes morto/id=nom193-per65-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao/17401030
 
-         referido$manoel francisco/mesmo_que=nom70-p1/obs=manoel francisco pizoeiro desta villa-morto
+         referido$manoel francisco/mesmo_que=nom70-p1/obs=manoel francisco pizoeiro desta villa-morto/id=nom193-per66-4
             ls$profissao/pizoeiro
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17410318
 
-         referido$alexandre rodrigues/mesmo_que=nom72-rl/obs=alexandre rodrigues filho de joao rodrigues freire coelho-aubzente- morto
+         referido$alexandre rodrigues/mesmo_que=nom72-rl/obs=alexandre rodrigues filho de joao rodrigues freire coelho-aubzente- morto/id=nom193-per67-4
             ls$titulo/irmao de meno condicao/17420318
 
-         referido$joao rodrigues freire coelho
+         referido$joao rodrigues freire coelho/id=nom193-per68-4
             rel$parentesco/pai/alexandre rodrigues/nom72-rl
 
-         referido$joao rodrigues/mesmo_que=nom73-p1/obs=riscado a 1121748 por faltas sucessivas a enterros sem justificacao (ver acto)/obs=joao rodrigues filho de manoel rodrigues marrafao-riscado
+         referido$joao rodrigues/mesmo_que=nom73-p1/obs=riscado a 1121748 por faltas sucessivas a enterros sem justificacao (ver acto)/obs=joao rodrigues filho de manoel rodrigues marrafao-riscado/id=nom193-per69-4
             ls$titulo/irmao de menor condicao/17420322
 
-         referido$matheus dos reis/obs=matheus dos reis da villa-morto
+         referido$matheus dos reis/obs=matheus dos reis da villa-morto/id=nom193-per70-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao
 
-         referido$thomas galvao/obs=thomas galvao da villa-morto
+         referido$thomas galvao/obs=thomas galvao da villa-morto/id=nom193-per71-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor conciao
 
-         referido$gregorio simoes/obs=gregorio simoens da villa-morto
+         referido$gregorio simoes/obs=gregorio simoens da villa-morto/id=nom193-per72-4
             ls$residncia/vila da lousa
             ls$titulo/irmao de menor condicao
 
-         referido$manoel joze de figueiredo/obs=manoel joze de figueiredo do gevim-morto
+         referido$manoel joze de figueiredo/obs=manoel joze de figueiredo do gevim-morto/id=nom193-per73-4
             ls$residencia/gevim
             ls$titulo/irmao de menor condicao/17390702/obs=no termo de aceitacao a residencia e na vila., pode nao ser o mesmo
 
          referido$theodozio rodrigues/id=nom192-r1/obs=theodozio rodrigues filho de joao braz trincalho riscado
             ls$titulo/irmao de menor condicao
 
-         referido$joao braz trincalho
+         referido$joao braz trincalho/id=nom193-per74-4
             rel$parentesco/pai/theodozio rodrigues/nom192-r1
 
-         referido$joao seco mathias/mesmo_que=nom75-p1/obs=joao seco mathias do lugar do cazal dos rios-aubzente
+         referido$joao seco mathias/mesmo_que=nom75-p1/obs=joao seco mathias do lugar do cazal dos rios-aubzente/id=nom193-per75-4
             ls$residencia/casal dos rios
             ls$titulo/irmao de menor condicao/17450415
 
-         referido$antonio rodrigues/xmesmo_que=76/obs=antonio rodrigues pedreiro desta villa-aubzente "esta sego"
+         referido$antonio rodrigues/xmesmo_que=76/obs=antonio rodrigues pedreiro desta villa-aubzente "esta sego"/id=nom193-per76-4
             ls$profissao/pedreiro
             ls$residncia/vila da louza
             ls$titulo/irmao de menor condicao/17450709
 
-         referido$constantino joze/mesmo_que=nom74-p1/obs=costantino(sic)joze desta villa-morto
+         referido$constantino joze/mesmo_que=nom74-p1/obs=costantino(sic)joze desta villa-morto/id=nom193-per77-4
             ls$residencia/vila da louza
             ls$titulo/rimao de menor condicao/17450411
 
-         referido$joao rodrigues pinheiro/mesmo_que=nom77-p1/obs=joao rodrigues pinheiro desta villa-morto
+         referido$joao rodrigues pinheiro/mesmo_que=nom77-p1/obs=joao rodrigues pinheiro desta villa-morto/id=nom193-per78-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17460910
 
-         referido$francisco joze de almeida/mesmo_que=nom78-p1/obs=francisco joze de almeida desta villa-morto(f1.140v)
+         referido$francisco joze de almeida/mesmo_que=nom78-p1/obs=francisco joze de almeida desta villa-morto(f1.140v)/id=nom193-per79-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17461016
 
-         referido$manoel rodrigues/mesmo_que=nom84-p1/obs=manoel rodrigues de val da velha- tem assento a fl. 79
+         referido$manoel rodrigues/mesmo_que=nom84-p1/obs=manoel rodrigues de val da velha- tem assento a fl. 79/id=nom193-per80-4
             ls$residencia/val da velha
             ls$titulo/irmao de menor condicao/17520109
 
-         referido$manoel seco/mesmo_que=nom85-p1/obs=manoel seco do cazal a fl. 79v.-morto
+         referido$manoel seco/mesmo_que=nom85-p1/obs=manoel seco do cazal a fl. 79v.-morto/id=nom193-per81-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao/17520702
 
-         referido$joze dias/mesmo_que=nom86-p1/obs=joze dias-morreo- a fl. 80
+         referido$joze dias/mesmo_que=nom86-p1/obs=joze dias-morreo- a fl. 80/id=nom193-per82-4
             ls$residencia/casal/obs=identificada no termo de aceitacao
             ls$titulo/irmao de menor condicao/17520331
 
-         referido$joaquim luis/mesmo_que=nom87-p1/obs=joachim luis-morreo- a fl. 80
+         referido$joaquim luis/mesmo_que=nom87-p1/obs=joachim luis-morreo- a fl. 80/id=nom193-per83-4
             ls$residencia/vila da lousa/obs=identificado no termo de aceitacao
             ls$titulo/irmao de menor condicao/17520331
 
-         referido$domingos simoes/mesmo_que=nom90-p1/obs=domingos simoes da papanata- a fl. 83
+         referido$domingos simoes/mesmo_que=nom90-p1/obs=domingos simoes da papanata- a fl. 83/id=nom193-per84-4
             ls$residencia/papanata
             ls$titulo/irmao de menor condicao/17530401
 
-         referido$antonio dos reis/mesmo_que=nom93-p1/obs=antonio dos reis da villa- morto- a fl. 83
+         referido$antonio dos reis/mesmo_que=nom93-p1/obs=antonio dos reis da villa- morto- a fl. 83/id=nom193-per85-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17530319
 
-         referido$joze sequo mathias/mesmo_que=nom94-p1/obs=joze sequo mathias do cazal- morto- a fl. 83v
+         referido$joze sequo mathias/mesmo_que=nom94-p1/obs=joze sequo mathias do cazal- morto- a fl. 83v/id=nom193-per86-4
             ls$residencia/cazal
             ls$titulo/irmao de menor condicao/17550319
 
-         referido$manoel simoes/mesmo_que=nom95-p1/obs=manoel simois da silveira-morreo- a fl. 84
+         referido$manoel simoes/mesmo_que=nom95-p1/obs=manoel simois da silveira-morreo- a fl. 84/id=nom193-per87-4
             ls$residencia/silveira
             ls$titulo/irmao de menor condicao/17560712
 
-         referido$joao rodrigues quartao/mesmo_que=nom96-p1/obs=joao rodrigues coartao do penedo- morreo-fl. 84v
+         referido$joao rodrigues quartao/mesmo_que=nom96-p1/obs=joao rodrigues coartao do penedo- morreo-fl. 84v/id=nom193-per88-4
             ls$residencia/penedo
             ls$titulo/irmao de menor condicao/17590408
 
-         referido$joao de oliveira neves/mesmo_que=nom97-p1/obs=joao de oliveira neves do porto da reguenga- morto- a fl.85
+         referido$joao de oliveira neves/mesmo_que=nom97-p1/obs=joao de oliveira neves do porto da reguenga- morto- a fl.85/id=nom193-per89-4
             ls$residencia/porto da reguenga
             ls$titulo/irmao de menor condicao/17590412
 
-         referido$antonio fernandes/mesmo_que=nom99-p1/obs=antonio fernandes sapateiro da villa-morto-a fl. 85
+         referido$antonio fernandes/mesmo_que=nom99-p1/obs=antonio fernandes sapateiro da villa-morto-a fl. 85/id=nom193-per90-4
             ls$profissao/sapateiro
             ls$titulo/irmao de menor condicao/17590412
 
-         referido$manoel luis sopico/xmesmo_que=nom100-p1/obs=manoel luis sopico da villa-morreo-a fl.85v
+         referido$manoel luis sopico/xmesmo_que=nom100-p1/obs=manoel luis sopico da villa-morreo-a fl.85v/id=nom193-per91-4
             ls$residncia/vila da lousa
             ls$titulo/irmao de menor condicao/17600323
 
-         referido$joze antonio soares/mesmo_que=nom101-p1/obs=joze antonio soares da villa-morre-ibid.
+         referido$joze antonio soares/mesmo_que=nom101-p1/obs=joze antonio soares da villa-morre-ibid./id=nom193-per92-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17600323
 
-         referido$francisco rodrigues carreira/mesmo_que=nom102-p1/obs=francisco rodrigues carreira da villa- morto- ibid.
+         referido$francisco rodrigues carreira/mesmo_que=nom102-p1/obs=francisco rodrigues carreira da villa- morto- ibid./id=nom193-per93-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17600323
 
-         referido$thome coelho/mesmo_que=nom103-p1/obs=thome coelho da villa-morto-ibid.
+         referido$thome coelho/mesmo_que=nom103-p1/obs=thome coelho da villa-morto-ibid./id=nom193-per94-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/1760323
 
-         referido$joze duarte/mesmo_que=nom104-p1/obs=joze duarte da villa-morto-ibid.
+         referido$joze duarte/mesmo_que=nom104-p1/obs=joze duarte da villa-morto-ibid./id=nom193-per95-4
             ls$residencia/vila da louza
             ls$tutlo/irmao de menor condicao/17600323
 
-         referido$joze antunes/obs=joze antunes da villa-aubzente-ibid.
+         referido$joze antunes/obs=joze antunes da villa-aubzente-ibid./id=nom193-per96-4
             ls$residencia/vila da louzan
             ls$titulo/irmao de menor condicao
 
-         referido$ancelmo ferreira/obs=ancelmo ferreira dos rios-morto-ibid.
+         referido$ancelmo ferreira/obs=ancelmo ferreira dos rios-morto-ibid./id=nom193-per97-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao
 
-         referido$manoel fernandes/mesmo_que=nom98-p1/obs=manoel fernandes da levada que morava na favarica-morto- fl85
+         referido$manoel fernandes/mesmo_que=nom98-p1/obs=manoel fernandes da levada que morava na favarica-morto- fl85/id=nom193-per98-4
             ls$residencia/levada
             ls$titulo/irmao de menor condicao/17590412
 
-         referido$felix correia/xmesmo_que=nom1056-p1/obs=felix correa do penedo-morto- a fl. 86v
+         referido$felix correia/xmesmo_que=nom1056-p1/obs=felix correa do penedo-morto- a fl. 86v/id=nom193-per99-4
             ls$residencia/penedo
             ls$titulo/irmao de menor condicao/17700403
 
-         referido$martinho francisco/mesmo_que=nom106-p1/obs=martinho francisco do cazal-morto- a fl87
+         referido$martinho francisco/mesmo_que=nom106-p1/obs=martinho francisco do cazal-morto- a fl87/id=nom193-per100-4
             ls$residencia/cazal
             ls$titulo/irmao de menor condicao/17600702
 
-         referido$antonio soares/mesmo_que=nom107-p1/obs=antonio soares dahi- morto- ibid.
+         referido$antonio soares/mesmo_que=nom107-p1/obs=antonio soares dahi- morto- ibid./id=nom193-per101-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao/17600702
 
-         referido$joze cabral/mesmo_que=nom108-p1/obs=joze cabral das possas-morto-ibid.
+         referido$joze cabral/mesmo_que=nom108-p1/obs=joze cabral das possas-morto-ibid./id=nom193-per102-4
             ls$residencia/possas
             ls$titulo/irmao de menor condicao/17600702
 
-         referido$leonardo soares/obs=leonardo soares dos rios-morto-ibid.
+         referido$leonardo soares/obs=leonardo soares dos rios-morto-ibid./id=nom193-per103-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17600702
 
-         referido$caetano de alemeida/mesmo_que=nom110-p1/obs=caetano de almeida dos rios-aubzente-ibid.
+         referido$caetano de alemeida/mesmo_que=nom110-p1/obs=caetano de almeida dos rios-aubzente-ibid./id=nom193-per104-4
             ls$residencia/rios/obs=no termo de aceitacao"casal"
             ls$titulo/irmao de menor condicao/17600702
 
-         referido$joao soares/mesmo_que=nom111-p1/obs=-joao soares da villa-morreu-a fl.88
+         referido$joao soares/mesmo_que=nom111-p1/obs=-joao soares da villa-morreu-a fl.88/id=nom193-per105-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17610319
 
-         referido$bartholomeu cabral/mesmo_que=nom112-p1/obs=bartholomeu cabral das possas-morto-a fl.88
+         referido$bartholomeu cabral/mesmo_que=nom112-p1/obs=bartholomeu cabral das possas-morto-a fl.88/id=nom193-per106-4
             ls$residncia/possas
             ls$titulo/irmao de menor condicao/17610319
 
-         referido$joze soares/mesmo_que=nom114-p1/obs=joze soares o novo do cazal dos rios-morto-a fl.89
+         referido$joze soares/mesmo_que=nom114-p1/obs=joze soares o novo do cazal dos rios-morto-a fl.89/id=nom193-per107-4
             ls$residencia/casal dos rios
             ls$titulo/irmao de menor condicao/17330330
 
-         referido$accelino soares/mesmo_que=nom115-p1/obs=- accelino soares do cazal dos rios-morto-a fl.89
+         referido$accelino soares/mesmo_que=nom115-p1/obs=- accelino soares do cazal dos rios-morto-a fl.89/id=nom193-per108-4
             ls$residencia/casal dos rios
             ls$titulo/irmao de menor co ndicao/17730330
 
-         referido$joze francisco/mesmo_que=nom120-p1/obs=joze francisco bruxo da villa- morto-a fl-90
+         referido$joze francisco/mesmo_que=nom120-p1/obs=joze francisco bruxo da villa- morto-a fl-90/id=nom193-per109-4
             ls$alcunha/bruxo
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17770412
 
-         referido$joaquim rodrigues/mesmo_que=nom117-p1/obs=joaquim rodrigues do penedo-morto-a fl.90v
+         referido$joaquim rodrigues/mesmo_que=nom117-p1/obs=joaquim rodrigues do penedo-morto-a fl.90v/id=nom193-per110-4
             ls$residencia/penedo
             ls$titulo/irmao de menor condicao/17651110
 
-         referido$joze simoes/mesmo_que=nom116-p1/obs=joze simois potte dos rios-a fl.90(fl. 141)
+         referido$joze simoes/mesmo_que=nom116-p1/obs=joze simois potte dos rios-a fl.90(fl. 141)/id=nom193-per111-4
             ls$alcunha/pote/obs=nao se refere no termo de aceitacao
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17640414
 
-         referido$manoel baiao/obs=manoel bayao da villa-morreo-a fl.91
+         referido$manoel baiao/obs=manoel bayao da villa-morreo-a fl.91/id=nom193-per112-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17660327
 
-         referido$martinho correia/mesmo_que=nom121-p1/obs=martinho correa dos rios- morto- a fl. 92
+         referido$martinho correia/mesmo_que=nom121-p1/obs=martinho correa dos rios- morto- a fl. 92/id=nom193-per113-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17780331
 
-         referido$leonardo soares/mesmo_que=nom122-p1/obs=leonardo soares da villa- morreu-a fl. 93
+         referido$leonardo soares/mesmo_que=nom122-p1/obs=leonardo soares da villa- morreu-a fl. 93/id=nom193-per114-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/176900323
 
-         referido$manoel duarte/xmesmo_que=nom123-p1/obs=manoel duarte do porto da reguenga-morto-a fl.93v
+         referido$manoel duarte/xmesmo_que=nom123-p1/obs=manoel duarte do porto da reguenga-morto-a fl.93v/id=nom193-per115-4
             ls$residnecia/porto da reguenga
             ls$titulo/irmao de menor condicao/17700702
 
-         referido$joze freire/mesmo_que=nom31-p1/obs=joze freire da ponte coudiz-morto- a fl.17
+         referido$joze freire/mesmo_que=nom31-p1/obs=joze freire da ponte coudiz-morto- a fl.17/id=nom193-per116-4
             ls$residencia/ponte coudiz
             ls$titulo/irmao de menor condicao/17720416
 
-         referido$juliao antonio/mesmo_que=nom32-p1/obs=juliao antonio desta villa-morto-a fl.17
+         referido$juliao antonio/mesmo_que=nom32-p1/obs=juliao antonio desta villa-morto-a fl.17/id=nom193-per117-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17720416
 
-         referido$antonio joze/mesmo_que=nom33-p1/obs=antonio joze correa-morto- a fl.17
+         referido$antonio joze/mesmo_que=nom33-p1/obs=antonio joze correa-morto- a fl.17/id=nom193-per118-4
             ls$residencia/vila da lousa/obs=identificada no termo de aceitacao
             ls$titulo/irmao de menor condicao/17720416
 
-         referido$joao seco/mesmo_que=nom124-p1/obs=joao seco do cazal-morto- a fl.44.(nota: nao ha nenhum assento neste folio., deve ser fl.94)
+         referido$joao seco/mesmo_que=nom124-p1/obs=joao seco do cazal-morto- a fl.44.(nota: nao ha nenhum assento neste folio., deve ser fl.94)/id=nom193-per119-4
             ls$residencia/casal
             ls$titulo/irmao de menor condicao/17700416
 
-         referido$joze lopes serra/mesmo_que=nom128-p1/obs=(seguem-se tres nomes:" joze de magalhaes mexia-morto-lf.27 joze joaquim da silva galvao-morto-a fl.28 manoel lopes caetano serra- morto- a fl.29" escrevendo-se ao lado "ficao a fl60) joze lopes serra de val de maceira- morto- a fl.96V"
+         referido$joze lopes serra/mesmo_que=nom128-p1/obs=(seguem-se tres nomes:" joze de magalhaes mexia-morto-lf.27 joze joaquim da silva galvao-morto-a fl.28 manoel lopes caetano serra- morto- a fl.29" escrevendo-se ao lado "ficao a fl60) joze lopes serra de val de maceira- morto- a fl.96V"/id=nom193-per120-4
             ls$residencia/val de maceira
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$antonio dos reis correa/mesmo_que=nom129-p1/obs=antonio dos reis correa do espinheiro-morto- ibid.
+         referido$antonio dos reis correa/mesmo_que=nom129-p1/obs=antonio dos reis correa do espinheiro-morto- ibid./id=nom193-per121-4
             ls$residencia/espeinheiro
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joze duarte/mesmo_que=nom130-p1/obs=joze duarte da favari?a-morto-ibid.
+         referido$joze duarte/mesmo_que=nom130-p1/obs=joze duarte da favari?a-morto-ibid./id=nom193-per122-4
             ls$residencia/favarica
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$bernardo vaz/mesmo_que=nom131-p1/obs=bernardo vaz dahi-morto-ibid
+         referido$bernardo vaz/mesmo_que=nom131-p1/obs=bernardo vaz dahi-morto-ibid/id=nom193-per123-4
             ls$residencia/fravarica
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joao travasso/mesmo_que=nom132-p1/obs=no termo de aceitacao travacos/obs=joao travasso de alfucheira-morreo-ibid
+         referido$joao travasso/mesmo_que=nom132-p1/obs=no termo de aceitacao travacos/obs=joao travasso de alfucheira-morreo-ibid/id=nom193-per124-4
             ls$residencia/alfucheira
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$mateus nunes/mesmo_que=nom133-p1/obs=matheus nunes da villa-morreo-ibid.
+         referido$mateus nunes/mesmo_que=nom133-p1/obs=matheus nunes da villa-morreo-ibid./id=nom193-per125-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joze luis supico/mesmo_que=nom134-p1/obs=joze luis sopico dahi-morto-ibid
+         referido$joze luis supico/mesmo_que=nom134-p1/obs=joze luis sopico dahi-morto-ibid/id=nom193-per126-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joao simoes pinheiro/mesmo_que=nom135-p1/obs=joao simoens pinheiro dahi-ibid.
+         referido$joao simoes pinheiro/mesmo_que=nom135-p1/obs=joao simoens pinheiro dahi-ibid./id=nom193-per127-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joao ferreira/mesmo_que=nom136-p1/obs=joao ferreira das po?as-morreo- ibid.
+         referido$joao ferreira/mesmo_que=nom136-p1/obs=joao ferreira das po?as-morreo- ibid./id=nom193-per128-4
             ls$residencia/possas
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joze cabral/mesmo_que=nom137-p1/obs=joze cabral de ponte coudiz-morto-ibid.
+         referido$joze cabral/mesmo_que=nom137-p1/obs=joze cabral de ponte coudiz-morto-ibid./id=nom193-per129-4
             ls$residencia/ponte coudiz
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joao de almeida ferreira/mesmo_que=nom139-p1/obs=joao de almeida ferreira de val de neira-morreu-ibid.
+         referido$joao de almeida ferreira/mesmo_que=nom139-p1/obs=joao de almeida ferreira de val de neira-morreu-ibid./id=nom193-per130-4
             ls$residencia/val de neira
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$antonio simoes/mesmo_que=nom140-p1/obs=antonio simoens do picoto-morto-ibid.
+         referido$antonio simoes/mesmo_que=nom140-p1/obs=antonio simoens do picoto-morto-ibid./id=nom193-per131-4
             ls$residencia/picoto
             ls$titulo/irmao de menor codicao/17780412
 
-         referido$joao francisco/mesmo_que=nom141-p1/obs=joao francisco das serdeiras-morto-ibid.
+         referido$joao francisco/mesmo_que=nom141-p1/obs=joao francisco das serdeiras-morto-ibid./id=nom193-per132-4
             ls$residencia/serdeiras
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$simao borges/mesmo_que=nom142-p1/obs=simao beorges da papanata-morto-ibid.
+         referido$simao borges/mesmo_que=nom142-p1/obs=simao beorges da papanata-morto-ibid./id=nom193-per133-4
             ls$residencia/papanata
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$francisco correa/mesmo_que=nom143-p1/obs=francisco correa da ribeira-morto em 21 de maio de 1871-ibid.
+         referido$francisco correa/mesmo_que=nom143-p1/obs=francisco correa da ribeira-morto em 21 de maio de 1871-ibid./id=nom193-per134-4
             ls$residencia/ribeira
             ls$morte/2151871
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$bernardo dos reis/mesmo_que=nom144-p1/obs=baernardo dos reis dahi-morto-ibid.
+         referido$bernardo dos reis/mesmo_que=nom144-p1/obs=baernardo dos reis dahi-morto-ibid./id=nom193-per135-4
             ls$residencia/papanata
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$ignacio lopes/mesmo_que=nom145-p1/obs=ignacio lopes das fontainhas-morto-ibid.
+         referido$ignacio lopes/mesmo_que=nom145-p1/obs=ignacio lopes das fontainhas-morto-ibid./id=nom193-per136-4
             ls$residencia/fontainhas
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$joze borges/mesmo_que=nom146-p1/obs=joze borges da povoa- todos a fl.96v.
+         referido$joze borges/mesmo_que=nom146-p1/obs=joze borges da povoa- todos a fl.96v./id=nom193-per137-4
             ls$residencia/povoa
             ls$titulo/irmao de menor condicao/17780412
 
-         referido$bartholomeu do sacramento/mesmo_que=nom147-p1/obs=no termo de aceita?ao "bartholomeu rodrigues"., nao sei se sera o mesmo/obs=bartholomeo do sacramento da cavada-morto- a fl.97
+         referido$bartholomeu do sacramento/mesmo_que=nom147-p1/obs=no termo de aceita?ao "bartholomeu rodrigues"., nao sei se sera o mesmo/obs=bartholomeo do sacramento da cavada-morto- a fl.97/id=nom193-per138-4
             ls$residencia/cavada
             ls$titulo/irmao de menor condicao/17780702
 
-         referido$joze rodrigues/mesmo_que=nom148-p1/obs=joze rodrigues dahi-morto-a fl.97
+         referido$joze rodrigues/mesmo_que=nom148-p1/obs=joze rodrigues dahi-morto-a fl.97/id=nom193-per139-4
             ls$residencia/cavada
             ls$titulo/irmao de menor condicao/17780702
 
-         referido$joze rodrigues/xmesmo_que=nom150-p1/obs=joze rodrigues do cazal novo-morto-a fl. 98
+         referido$joze rodrigues/xmesmo_que=nom150-p1/obs=joze rodrigues do cazal novo-morto-a fl. 98/id=nom193-per140-4
             ls$residencia/casal novo
             ls$titulo/irmao de menor condicao/17790110
 
-         referido$joze correa/xmesmo_que=nom151-p1/obs=joze correa da villa- morto-a fl.99 (corresponde ao fl.112 que indevidamente se segue a fl.99)
+         referido$joze correa/xmesmo_que=nom151-p1/obs=joze correa da villa- morto-a fl.99 (corresponde ao fl.112 que indevidamente se segue a fl.99)/id=nom193-per141-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/177810412
 
-         referido$joze cortes/mesmo_que=nom152-p1/obs=joze cortes dahi-"estao em huma folha entre 98 e 99"- reporta-se a afirma?ao a este nome e o anterior-corresponde ao fl.112)
+         referido$joze cortes/mesmo_que=nom152-p1/obs=joze cortes dahi-"estao em huma folha entre 98 e 99"- reporta-se a afirma?ao a este nome e o anterior-corresponde ao fl.112)/id=nom193-per142-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17810412
 
-         referido$joze francisco/mesmo_que=nom153-p1/obs=joze francisco do cazal-morto-a fl.99
+         referido$joze francisco/mesmo_que=nom153-p1/obs=joze francisco do cazal-morto-a fl.99/id=nom193-per143-4
             ls$residencia/cazal
             ls$titulo/irmao de menor condicao/17810412
 
-         referido$manoel fernandes/mesmo_que=nom154-p1/obs=manoel fernandes de val de neira- (esta no fl.112v.) (fl. 142)
+         referido$manoel fernandes/mesmo_que=nom154-p1/obs=manoel fernandes de val de neira- (esta no fl.112v.) (fl. 142)/id=nom193-per144-4
             ls$reseidencia/val de neira
             ls$titulo/irmao de meor condicao/17830412
 
-         referido$joquim luis/mesmo_que=nom155-p1/obs=joaquim luiz de val de neira-morto-(esta no fl. 112v.)
+         referido$joquim luis/mesmo_que=nom155-p1/obs=joaquim luiz de val de neira-morto-(esta no fl. 112v.)/id=nom193-per145-4
             ls$residencia/val de neira
             ls$titulo/irmao de menor condicao/17830402
 
-         referido$antonio de almeida/mesmo_que=nom156-p1/obs=antonio de almeida-morto(esta na fl.112v.)
+         referido$antonio de almeida/mesmo_que=nom156-p1/obs=antonio de almeida-morto(esta na fl.112v.)/id=nom193-per146-4
             ls$residencia/val de neira/obs=identificacao feita no termo de aceitacao
             ls$titulo/irmao de menor condicao/17830402
 
-         referido$joze de almeida/mesmo_que=nom157-p1/obs=joze de almeida-morto(esta no fl.112v.)
+         referido$joze de almeida/mesmo_que=nom157-p1/obs=joze de almeida-morto(esta no fl.112v.)/id=nom193-per147-4
             ls$residencia/casal novo/obs=referido no termo de aceitacao
             ls$titulo/irmao de menor condicao/17830402
 
-         referido$joao das neves de figueiredo/mesmo_que=nom158-p1/obs=joao das neves de figueiredo do gevim morto- a fl. 99
+         referido$joao das neves de figueiredo/mesmo_que=nom158-p1/obs=joao das neves de figueiredo do gevim morto- a fl. 99/id=nom193-per148-4
             ls$residencia/gevim
             ls$titulo/irmao de menor condicao/17840402
 
-         referido$manoel dias/mesmo_que=nom159-p1/obs=manoel dias de val da velha-morto-a fl.99
+         referido$manoel dias/mesmo_que=nom159-p1/obs=manoel dias de val da velha-morto-a fl.99/id=nom193-per149-4
             ls$residencia/val da velha
             ls$titulo/irmao de menor condicao/17840402
 
-         referido$lourenco thomati/mesmo_que=nom160-p1/obs=no termo da aceitacao "thomate"/obs=lourenco thometi dos rios-morto-a fl.99v
+         referido$lourenco thomati/mesmo_que=nom160-p1/obs=no termo da aceitacao "thomate"/obs=lourenco thometi dos rios-morto-a fl.99v/id=nom193-per150-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17890405
 
-         referido$simao joze rodrigues/mesmo_que=nom161-p1/obs=simao joze rodrigues dos rios-morto- a fl.99v
+         referido$simao joze rodrigues/mesmo_que=nom161-p1/obs=simao joze rodrigues dos rios-morto- a fl.99v/id=nom193-per151-4
             ls$residencia/rios
             ls$titulo/irmao de menor condicao/17890405
 
-         referido$gon?alo lopes serra/mesmo_que=nom162-p1/obs=gon?alo lopes serra desta villa-morto- a fl.99v
+         referido$gon?alo lopes serra/mesmo_que=nom162-p1/obs=gon?alo lopes serra desta villa-morto- a fl.99v/id=nom193-per152-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17890405
 
-         referido$joze maria thomati/xmesmo_que=nom163-p1/obs=joze maria thomati-morto- a fl. 100
+         referido$joze maria thomati/xmesmo_que=nom163-p1/obs=joze maria thomati-morto- a fl. 100/id=nom193-per153-4
             ls$resiedencia/rios/obs=no termo de aceitacao diz ser "da fabrica do papel"
             ls$titulo/irmao de menor condicao/17890405
 
-         referido$paulo francisco thomati/xmesmo_que=nom164-p1/obs=no termo de aceitacao "thomate"/obs=paulo francisco thomati ambos dos rios- morto- a fl.100
+         referido$paulo francisco thomati/xmesmo_que=nom164-p1/obs=no termo de aceitacao "thomate"/obs=paulo francisco thomati ambos dos rios- morto- a fl.100/id=nom193-per154-4
             ls$residencia/rios/obs=no termo de aceitacao diz ser "da fabrica do papel"
             ls$titulo/irmao de menor condicao/17890405
 
-         referido$amaro rodrigues/mesmo_que=nom165-p1/obs=no termo de aceitacao de "manoel joze rodrigues"/obs=amaro rodrigues desta villa-morto- a fl.100v.
+         referido$amaro rodrigues/mesmo_que=nom165-p1/obs=no termo de aceitacao de "manoel joze rodrigues"/obs=amaro rodrigues desta villa-morto- a fl.100v./id=nom193-per155-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17900702
 
-         referido$custodio herse/mesmo_que=nom166-p1/obs=custodio herse desta villa morto-fl.100v.
+         referido$custodio herse/mesmo_que=nom166-p1/obs=custodio herse desta villa morto-fl.100v./id=nom193-per156-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17900702
 
-         referido$joze somoens/mesmo_que=nom167-p1/obs=joze simoens desta villa-morto- a fl. 100 v
+         referido$joze somoens/mesmo_que=nom167-p1/obs=joze simoens desta villa-morto- a fl. 100 v/id=nom193-per157-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17900702
 
-         referido$joaquim pedrozo/mesmo_que=nom168-p1/obs=joaquim pedrozo desta villa-morto- a fl.100 v
+         referido$joaquim pedrozo/mesmo_que=nom168-p1/obs=joaquim pedrozo desta villa-morto- a fl.100 v/id=nom193-per158-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17900702
 
-         referido$joze lopes/mesmo_que=nom169-p1/obs=joze lopes desta villa- morto- a fl. 100v
+         referido$joze lopes/mesmo_que=nom169-p1/obs=joze lopes desta villa- morto- a fl. 100v/id=nom193-per159-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17900702
 
-         referido$joze de oliveira/mesmo_que=nom180-p1/obs=escreve-se em seguida "a fl.101 esta um termo galante" joze de oliveira do engenho-morto- a fl. 102
+         referido$joze de oliveira/mesmo_que=nom180-p1/obs=escreve-se em seguida "a fl.101 esta um termo galante" joze de oliveira do engenho-morto- a fl. 102/id=nom193-per160-4
             ls$residencia/engenho
             ls$titulo/irmao de menor condicao/17650702/obs=pensamos haver erro., devera ler-se 1795
 
-         referido$diogo barros/mesmo_que=nom181-p1/obs=diogo de barros desta villa-morto- a fl.102
+         referido$diogo barros/mesmo_que=nom181-p1/obs=diogo de barros desta villa-morto- a fl.102/id=nom193-per161-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17950702/obs=pensamos haver erro., devera ler-se 1795
 
-         referido$antonio do rego/mesmo_que=nom182-p1/obs=antonio do rego desta villa- morto-a 102
+         referido$antonio do rego/mesmo_que=nom182-p1/obs=antonio do rego desta villa- morto-a 102/id=nom193-per162-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de meor condicao/17650702/obs=pensamos haver erro.,devera ler-se 1795
 
-         referido$manoel dias/mesmo_que=nom183-p1/obs=manoel dias desta villa-morto-a fl.102
+         referido$manoel dias/mesmo_que=nom183-p1/obs=manoel dias desta villa-morto-a fl.102/id=nom193-per163-4
             ls$residencia/vila da lousa
             ls$titulo/irmao de menor condicao/17650702/obs=pensamos haver erro., de vera ler-se 1795
 
-         referido$joaquim dos reis/mesmo_que=nom184-p1/obs=joaquim dos reis desta villa-aubzente- a fl.102
+         referido$joaquim dos reis/mesmo_que=nom184-p1/obs=joaquim dos reis desta villa-aubzente- a fl.102/id=nom193-per164-4
             ls$residencia/vila da louza
             ls$titulo/irmao de menor condicao/17650702/obs=pensamos haver erro., devera ler-se 1795
 
-         referido$joze soares/mesmo_que=nom186-p1/obs=joze soares o novo-a fl. 102v
+         referido$joze soares/mesmo_que=nom186-p1/obs=joze soares o novo-a fl. 102v/id=nom193-per165-4
             ls$alcunha/o novo
             ls$residencia/porto da reguenga/obs=nao temos a certeza de acordo com o termo de aceitacao
             ls$titulo/irmao de menor condicao/17970701
 
-         referido$luis jose antunes/mesmo_que=nom185-p1/obs=padre luis jose antunes de alfucheiro retirado fl.102v
+         referido$luis jose antunes/mesmo_que=nom185-p1/obs=padre luis jose antunes de alfucheiro retirado fl.102v/id=nom193-per166-4
             ls$profissao/padre
             ls$residencia/alfucheira
             ls$titulo/irmao/obs=nao sabemos a condicao uma vez que se escreve "retirado"
 
-         referido$joze fernandes/mesmo_que=nom187-p1/obs=joze fernandes o novo- aubzente- a fl. 102v
+         referido$joze fernandes/mesmo_que=nom187-p1/obs=joze fernandes o novo- aubzente- a fl. 102v/id=nom193-per167-4
             ls$residencia/porto da regenga/obs=nao temos a certeza
             ls$titulo/irmao de menor condicao/17970702
 
-         referido$bartholomeu fernandes/mesmo_que=nom186a-p1/obs=bartholomeo fernandes- a fl.102v
+         referido$bartholomeu fernandes/mesmo_que=nom186a-p1/obs=bartholomeo fernandes- a fl.102v/id=nom193-per168-4
             ls$titulo/irmao de menor condicao/17970702
 
-         referido$manuel duarte/mesmo_que=nom188-p1/obs=manoel duarte o novo- a fl.102 v. (...)
+         referido$manuel duarte/mesmo_que=nom188-p1/obs=manoel duarte o novo- a fl.102 v. (...)/id=nom193-per169-4
             ls$acunha/o novo
             ls$rersidencia/porto da reguenga/obs=conforme listagem de 1729
             ls$titulo/irmao de menor condicao/17970702

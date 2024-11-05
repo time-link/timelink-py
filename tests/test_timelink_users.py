@@ -43,7 +43,7 @@ def dbsystem(request: pytest.FixtureRequest):
     try:
         yield dbsystem
     finally:
-        dbsystem.drop_db
+        dbsystem.drop_db()
         dbsystem.session().close()
 
 

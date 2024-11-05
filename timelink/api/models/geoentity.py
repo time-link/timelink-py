@@ -10,6 +10,8 @@ from .entity import Entity
 
 
 class Geoentity(Entity):
+    """ represents a geographical entity."""
+
     __tablename__ = "geoentities"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
@@ -32,13 +34,18 @@ class Geoentity(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", width=80, **kwargs) -> str:
-        if self.name is None:
-            name = ""
-        else:
-            name = self.name + "/"
-        r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}{self.render_id()}"
-        if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
-        r = super().to_kleio(self_string=r, ident=ident, ident_inc=ident_inc, width=width)
+    def to_kleio(self, self_string=None, show_contained=False, ident="", ident_inc="  ", width=80, **kwargs) -> str:
+
+        if self_string is None:
+            if self.name is None:
+                name = ""
+            else:
+                name = self.name + "/"
+            r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}{self.render_id()}"
+            if self.obs is not None and len(self.obs.strip()) > 0:
+                self_string = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
+            else:
+                self_string = r
+        r = super().to_kleio(self_string=self_string, ident=ident, ident_inc=ident_inc,
+                             show_contained=show_contained, width=width)
         return r

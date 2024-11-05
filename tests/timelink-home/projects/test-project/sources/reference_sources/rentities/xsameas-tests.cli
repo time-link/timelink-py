@@ -1,0 +1,52 @@
+kleio$/translations=2
+   fonte$xsameas-tests/documentação avulsa/obs="""vários documentos dispersos em diferentes arquivos"""
+
+      lista$bio-notes-list-1/2/10/2020
+
+         n$Matteo Ricci/id=bio-matteo-ricci/xmesmo_que=deh-matteo-ricci
+            ls$estadia/Roma/1577
+            ls$estadia/Coimbra/1578
+            ls$estadia/Lisboa/1578
+
+            referido$Rodolfo Aquaviva/id=bio-rodolfo-aquaviva/obs=Martir de Salsette
+               ls$data-nascimento/1550
+               ls$data-morte/1583
+               rel$sociabilidade/esteve com/Matteo Ricci/bio-matteo-ricci/data=15580000/obs=Em Lisboa
+
+            referido$Nicola Spinola/id=bio-nicola-spinola
+               ls$data-nascimento/1547
+               rel$sociabilidade/esteve com/Matteo Ricci/bio-matteo-ricci/data=15580000/obs=Em Lisboa
+
+            referido$Michele Ruggieri/xmesmo_que=bio-michele-ruggieri/id=bio-matteo-ricci-per1-35
+               rel$sociabilidade/esteve com/Matteo Ricci/bio-matteo-ricci/data=15580000/obs=Em Lisboa
+
+            referido$Francesco Pasio/id=bio-francesco-pasio
+               rel$sociabilidade/esteve com/Matteo Ricci/bio-matteo-ricci/data=15580000/obs=Em Lisboa
+
+            referido$Martino da Silva/id=bio-padre-martino-da-silva
+               ls$cargo/Procurador das Índias Orientais
+               ls$data-nascimento/1526
+               ls$data-morte/1583
+               ls$estadia/Roma/1577
+               rel$institucional/recomendou para a missão da Índia/Matteo Ricci/bio-matteo-ricci
+
+            referido$Everardo Mercuriano/id=bio-everardo-mercuriano
+               ls$cargo/Prepósito da Companhia de Jesus
+               ls$data-nascimento/1514
+               ls$data-morte/1580
+               rel$institucional/autorizou missão na Índia/Matteo Ricci/bio-matteo-ricci
+
+         n$Michele Ruggieri/id=bio-michele-ruggieri/xmesmo_que=deh-michele-ruggiere
+            ls$nascimento/Spinazzola, Bari/15431028
+            ls$morte/Salerno, Italy/16070511
+
+            viagem$Lisboa-Goa/0/0/15780300/id=bio-michele-ruggieri-his4-19
+               ls$destino/Índia/15780900
+
+               referido$Rudolph Aquaviva/id=bio-michele-ruggieri-his4-19-per1-19
+
+               referido$Matteo Ricci/mesmo_que=bio-matteo-ricci/id=bio-michele-ruggieri-his4-19-per1-21
+
+            estadia$Zhaoqing/10/9/1583/id=bio-michele-ruggieri-his4-20
+
+               referido$Matteo Ricci/mesmo_que=bio-matteo-ricci/id=bio-michele-ruggieri-his4-20-per1-21

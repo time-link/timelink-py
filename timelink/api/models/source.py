@@ -62,7 +62,7 @@ class Source(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80) -> str:
+    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80, **kwargs) -> str:
         r = (
             f"{self.groupname}${self.id}/{self.the_date}"
             f"/type={kleio_escape(self.the_type)}"

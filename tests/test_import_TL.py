@@ -44,7 +44,7 @@ def dbsystem(request):
     try:
         yield database
     finally:
-        # database.drop_db
+        # database.drop_db()
         database.session().close()
 
 
