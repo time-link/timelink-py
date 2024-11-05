@@ -5,8 +5,9 @@ Also provides basic mhk manager functionality.
 Run with  python -m timelink.cli
 
 """
+
 import os
-from typing import Annotated
+from typing import Annotated  # noqa
 import platform
 import uvicorn
 import typer
@@ -17,7 +18,6 @@ from timelink.api.database import get_postgres_dbnames
 from timelink.api.database import get_sqlite_databases
 from timelink.api.database import get_postgres_url
 from timelink.api.database import get_sqlite_url
-from pathlib import Path
 
 
 server: uvicorn.Server = None  # uvicorn server instance
@@ -41,9 +41,11 @@ app.add_typer(db_app, name="db", help="Database manager")
 # https://github.com/miguelgrinberg/python-socketio/issues/332#issuecomment-712928157
 # https://stackoverflow.com/questions/68603658/how-to-terminate-a-uvicorn-fastapi-application-cleanly-with-workers-2-when
 
+
 def cli_header():
     typer.echo("Timelink and MHK manager")
     typer.echo(f"{current_working_directory}")
+
 
 @app.command("start")
 def start():
@@ -56,28 +58,25 @@ def start():
     server.run()
     return 0
 
+
+# ================================================
 # DB related commands
 # These are used to manage the database migrations
+# ================================================
 
 
 db_index = {}
 db_url = {}
 
 
-@db_app.command("list")
-def db_database_list_cmd():
-    """List all available databases (sqlite, postgresql, etc)"""
-    global db_index
-    db_index = create_db_index()
-    typer.echo("Available data bases:")
-    for i, db in db_index.items():
-        typer.echo(f"    {i:>5} {db[0]:>8} {db[1]:20}: {db[2]}")  # f-string
-    return db_index
-
-
 def create_db_index():
-    postgres_list = [('postgres', db, get_postgres_url(db)) for db in sorted(get_postgres_dbnames())]
-    sqlite_list = [('sqlite', os.path.basename(db), get_sqlite_url(db)) for db in sorted(get_sqlite_databases(current_working_directory))]
+    postgres_list = [
+        ("postgres", db, get_postgres_url(db)) for db in sorted(get_postgres_dbnames())
+    ]
+    sqlite_list = [
+        ("sqlite", os.path.basename(db), get_sqlite_url(db))
+        for db in sorted(get_sqlite_databases(current_working_directory))
+    ]
     # make tuples of the form (int, dbame) from postgres_list + sqlite_list
     enumeration = enumerate(postgres_list + sqlite_list, 1)
     db_index = {i: db for i, db in enumeration}
@@ -89,8 +88,30 @@ def parse_db_url(db_url):
     if db_url.isdigit():
         db_index = create_db_index()
         key = int(db_url)
-        db_url = db_index[key][2]
+        db_url = (db_index[key])[2]
     return db_url
+
+
+@db_app.command("list")
+def db_database_list_cmd():
+    """List all available databases (sqlite, postgresql, etc)"""
+    global db_index
+    db_index = create_db_index()
+    typer.echo("Available data bases:")
+    for i, db in db_index.items():
+        db_url = db[2]
+        db_version = migrations.heads(db_url)
+        if len(db_version) == 0:
+            db_version = ''
+        else:
+            db_version = f" ({db_version[0][:4]})"
+        typer.echo(f" {i:>6}{db[0]:>8} {db_version:6} {db[1]}: {db_url}")  # f-string
+    typer.echo("\nList of revisions:")
+    revisions = migrations.get_versions()
+    for revision in revisions:
+        down = revision.down_revision or "None"
+        typer.echo(f" {revision.revision[:4]} {revision.doc} <- {down[:4]}")
+    return db_index
 
 
 @db_app.command("current")
@@ -104,7 +125,30 @@ def db_current_cmd(
     migrations.current(db_url, verbose)
 
 
+@db_app.command("upgrade")
+def db_upgrade_cmd(db_url: str, revision: str = "heads"):
+    """Update database to (most recent) revision
+
+    """
+    db_url = parse_db_url(db_url)
+    migrations.upgrade(db_url, revision)
+
+
+@db_app.command("heads")
+def db_heads(db_url: str):
+    """Return the head(s) (current revision)
+
+    see: https://alembic.sqlalchemy.org/en/latest/api/runtime.html#alembic.runtime.migration.MigrationContext.get_current_heads
+    """
+    db_url = parse_db_url(db_url)
+    typer.echo(migrations.heads(db_url))
+
+
+# ====================
 # MHK related commands
+# ====================
+
+
 @mhk_app.command(name="version")
 def mhk_version():
     """shows MHK manager version
@@ -133,8 +177,8 @@ def mhk_version():
             typer.echo(mhkv)
         except Exception as e:
             typer.echo(f"Could not access docker: {e}")
-        else:
-            type.echo("Could not find a MHK instalation")
+    else:
+        type.echo("Could not find a MHK instalation")
     return 0
 
 
@@ -152,6 +196,11 @@ def mhk_status():
     """
     )
     return 0
+
+
+# ================
+# Main
+# ================
 
 
 @app.callback()

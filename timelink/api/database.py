@@ -271,7 +271,7 @@ def get_sqlite_databases(directory_path: str) -> list[str]:
     sqlite_databases = []
     for root, _dirs, files in os.walk(directory_path):
         for file_name in files:
-            if file_name.endswith(".sqlite"):
+            if file_name.endswith(".sqlite") or file_name.endswith(".db"):
                 db_path = os.path.join(root, file_name)
                 # path relative to cd
                 db_path = os.path.relpath(db_path, cd)
@@ -286,6 +286,8 @@ def get_sqlite_url(db_path: str) -> str:
     Returns:
         str: sqlite url
     """
+    if db_path == ":memory:":
+        return "sqlite:///:memory:"
     return f"sqlite:///{db_path}"
 
 
@@ -333,9 +335,9 @@ class TimelinkDatabase:
 
     Main methods:
         * table_names: get the current tables in the database
+        * get_columns: get the
         * table_row_count: get the number of rows of each table in the database
         * get_models: get ORM Models for using in Queries
-
 
     """
 
@@ -469,11 +471,24 @@ class TimelinkDatabase:
                 raise ValueError(f"Unknown database type: {db_type}")
 
         self.engine = create_engine(self.db_url, connect_args=connect_args)
-        if not database_exists(self.engine.url):
-            create_database(self.engine.url)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.metadata = models.Base.metadata
-        self.create_db()
+        if not database_exists(self.engine.url):
+            create_database(self.engine.url)
+            self.create_db()
+        else:
+            # upgrade the database with alembic
+            # first check if the timelink tables are there
+            if 'entities' not in self.table_names():
+                self.create_db()
+            else:
+                try:
+                    migrations.upgrade(self.db_url)
+                    with self.session() as session:
+                        self.ensure_all_mappings(session)  # this will cache the pomsom mapper objects
+                except Exception as exc:
+                    logging.ERROR(exc)
+
         if kleio_server is not None:
             self.set_kleio_server(kleio_server)
         else:
@@ -492,7 +507,7 @@ class TimelinkDatabase:
 
         Will create the tables and views if they do not exist
         Will load the database classes and ensure all mappings
-        Will update the database with alembic
+        Will update the database with alembicw
         """
 
         self.create_tables()
@@ -504,8 +519,10 @@ class TimelinkDatabase:
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
             session.commit()
-            # upgrade the database with alembic
-            migrations.set_db_url(self.db_url)
+            try:
+                migrations.stamp(self.db_url, "head")
+            except Exception as exc:
+                logging.ERROR(exc)
 
     def set_kleio_server(self, kleio_server: KleioServer):
         """Set the kleio server for imports
@@ -594,6 +611,7 @@ class TimelinkDatabase:
 
     def ensure_all_mappings(self, session):
         """Ensure that all database classes have a table and ORM class"""
+
         pom_classes = PomSomMapper.get_pom_classes(session)
         for pom_class in pom_classes:
             pom_class.ensure_mapping(session)
@@ -931,15 +949,23 @@ class TimelinkDatabase:
         """
         return Entity.get_som_mapper_ids()
 
-    def get_model(self, class_id: str | List[str]):
+    def get_model(self, class_id: str | List[str], make_alias=None):
         """Get the ORM class for a entity type
 
+        Args:
+            class_id (str | List[str]): class id or list of class ids
+            make_alias (bool, optional): if True, return an aliased ORM class;
+                                         defaults to True in lists; False if single class_id.
         Returns:
             ORM class
         """
         if isinstance(class_id, list):
-            return [self.get_model_by_name(c, make_alias=True) for c in class_id]
-        return self.get_model_by_name(class_id, make_alias=True)
+            if make_alias is None:
+                make_alias = True
+                return [self.get_model_by_name(c, make_alias=make_alias) for c in class_id]
+        else:
+            make_alias = False
+            return self.get_model_by_name(class_id, make_alias=False)
 
     def get_model_by_name(self, class_or_groupname: str, make_alias=False):
         """Get the ORM class for a entity type by name

@@ -24,4 +24,3 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     op.drop_column('entities', 'extra_info')
-

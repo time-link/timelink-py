@@ -10,7 +10,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['typer~=0.4.0', ]
+requirements = ['typer>=0.9.0', ]
 
 test_requirements = ['pytest>=3', ]
 
@@ -18,7 +18,7 @@ description = "Timelink is an information system for person related information 
 
 setup(
     author="Joaquim Ramos de Carvalho",
-    author_email='joaquimcarvalho@ipm.edu.mo',
+    author_email='joaquimcarvalho@mpu.edu.mo',
     python_requires='>=3.10',
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -32,6 +32,7 @@ setup(
     entry_points={
         'console_scripts': [
             'timelink=timelink.cli:app',
+            'tmlk=timelink.cli:app',
         ],
     },
     project_urls={

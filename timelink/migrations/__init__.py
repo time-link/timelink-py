@@ -8,8 +8,11 @@
 
 from pathlib import Path
 
-from alembic.config import Config
 from alembic import command
+from alembic.runtime import migration
+from alembic.config import Config
+from alembic.script import ScriptDirectory
+from sqlalchemy import engine
 
 
 ROOT_PATH = Path(__file__).parent.parent
@@ -25,14 +28,26 @@ def set_db_url(db_url):
     ALEMBIC_CFG.set_section_option("alembic", "sqlalchemy.url", db_url)
 
 
+def get_versions(base='base', head='heads'):
+    """Get the list of versions of the database.
+
+    Args:
+        base (str): The base revision to start from.
+        head (str): The head revision to stop at.
+    """
+    script = ScriptDirectory.from_config(ALEMBIC_CFG)
+    revisions = list(script.walk_revisions(base, head))
+    return revisions
+
+
 def current(db_url, verbose=False):
     """Get the current revision of the database."""
     set_db_url(db_url)
     command.current(ALEMBIC_CFG, verbose=verbose)
 
 
-def upgrade(db_url, revision="head"):
-    """Upgrade the database to the given revision."""
+def upgrade(db_url, revision="heads"):
+    """Upgrade the database to a given revision (default most recent)."""
     set_db_url(db_url)
     command.upgrade(ALEMBIC_CFG, revision)
 
@@ -41,3 +56,19 @@ def downgrade(db_url, revision):
     """Downgrade the database to the given revision."""
     set_db_url(db_url)
     command.downgrade(ALEMBIC_CFG, revision)
+
+
+def heads(db_url):
+    """ Show heads of database"""
+    set_db_url(db_url)
+    engine_ = engine.create_engine(db_url)
+    with engine_.begin() as connection:
+        migration_context = migration.MigrationContext.configure(connection)
+        heads = migration_context.get_current_heads()
+    return heads
+
+
+def stamp(db_url, revision: str):
+    """ Stamp current"""
+    set_db_url(db_url)
+    command.stamp(ALEMBIC_CFG, revision)
