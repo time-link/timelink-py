@@ -577,6 +577,7 @@ class PomSomMapper(Entity):
             # so we need to same the id of inbound relations and restore the destination
             # id after the entity is reinserted.
             session.delete(exists)
+            session.commit()
 
         try:
             session.add(entity_from_group)
