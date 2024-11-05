@@ -10,6 +10,7 @@ from datetime import datetime
 import json
 import textwrap
 from os import linesep as nl
+import warnings
 
 
 def kleio_escape(v: str) -> str:
@@ -175,8 +176,7 @@ def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
     try:
         result = datetime.strptime(new_date, format)
     except ValueError as BadDate:
-        print(tl_date, tl_date_clean)
-        print(BadDate)
+        warnings.warn(f"Invalid date: {tl_date_clean} -> {BadDate}", UserWarning, stacklevel=2)
         result = None
     return result
 

@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from typing import List, Optional
 from datetime import datetime
 
@@ -318,7 +317,7 @@ class Entity(Base):
         Returns a dictionary with the date as key and a list of attributes and relations as value
 
         """
-        bio = OrderedDict()
+        bio = dict()
 
         if self.rels_in is not None:
             for rel in self.rels_in:
@@ -338,7 +337,7 @@ class Entity(Base):
                 this_date_list = bio.get(date, [])
                 this_date_list.append(attr)
                 bio[date] = this_date_list
-        return sorted(bio)
+        return bio
 
     def is_inbound_relation(self, relation):
         """Check if the relation is inbound to this entity.
@@ -369,7 +368,6 @@ class Entity(Base):
             - set(self.rels_out)  # noqa: W503
             - set(self.attributes)  # noqa: W503
         )
-
         bio = self.dated_bio()
         sorted_keys = sorted(bio.keys())
         for date in sorted_keys:
@@ -379,6 +377,11 @@ class Entity(Base):
                 if bio_item.pom_class == "relation":
 
                     kwargs["outgoing"] = not self.is_inbound_relation(bio_item)
+                    if self.is_inbound_relation(bio_item):
+                        if bio_item.the_type == "function-in-act":
+                            # we don't render inbound function-in-act relations
+                            # because they are redundant with contained entities
+                            continue
 
                 bio_itemk = bio_item_xi.to_kleio(
                     ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
