@@ -74,7 +74,10 @@ class KGroup:
     @property
     def kname(self):
         """The kleio name of this group, used in the to_kleio() method"""
-        return self.unpack_from_kelement(self._name)
+        kname = self.unpack_from_kelement(self._name)
+        if kname is None or kname == "kgroup":
+            kname = self.__class__._name
+        return kname
 
     @kname.setter
     def kname(self, value):
@@ -676,7 +679,7 @@ class KGroup:
         return self.to_dots()
 
     def __str__(self, indent="", recurse=False):
-        sname = getattr(self, "_name", self.__class__.__name__)
+        sname = self.kname
         s = str(sname) + "$"
         first = True
         out = []
