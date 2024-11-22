@@ -1,4 +1,4 @@
-kleio$/translations=27
+kleio$/translations=28
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-4
    fonte$sameas-tests/obs="""
 
@@ -35,7 +35,7 @@ kleio$/translations=27
             ls$nome-chines/Kouo Kiu-Tsing Yang-Houang
             rel$sociabilidade/Companheiro/Matteo Ricci/deh-lazzaro-cattaneo-ref1/data=15940000
 
-            referido$Matteo Ricci/id=deh-lazzaro-cattaneo-ref1/xmesmo_que=deh-matteo-ricci
+            referido$Matteo Ricci/id=deh-lazzaro-cattaneo-ref1/mesmo_que=deh-matteo-ricci
                ls$estadia/Shiuchow (Chao-tcheou)# @wikidata:Q1346617/15940000
                ls$jesuita-tarefa/Toma o hábito de letrado
                ls$tarefa/Romaniza os cinco tons do chinês
