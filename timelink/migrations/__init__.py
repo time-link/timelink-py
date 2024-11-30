@@ -72,3 +72,20 @@ def stamp(db_url, revision: str):
     """ Stamp current"""
     set_db_url(db_url)
     command.stamp(ALEMBIC_CFG, revision)
+
+
+def history(verbose=False):
+    """Show the migration history."""
+    command.history(ALEMBIC_CFG, verbose=verbose)
+
+
+def autogenerate(db_url, message):
+    """Autogenerate migration script."""
+    set_db_url(db_url)
+    command.revision(ALEMBIC_CFG, message=message, autogenerate=True)
+
+
+def revision(db_url, message, autogenerate=False):
+    """Create a new revision."""
+    set_db_url(db_url)
+    command.revision(ALEMBIC_CFG, message=message, autogenerate=autogenerate)
