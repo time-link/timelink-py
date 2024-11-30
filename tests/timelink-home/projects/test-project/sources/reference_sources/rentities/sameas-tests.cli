@@ -1,4 +1,4 @@
-kleio$/translations=28
+kleio$/translations=30
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-4
    fonte$sameas-tests/obs="""
 
@@ -79,7 +79,21 @@ kleio$/translations=28
             ls$jesuita-estatuto/Frade Coadjutor
             ls$nome/Ferdinando
             rel$sociabilidade/Ajuda/Bento de Góis/deh-jean-fernandes-tchong-ref2/data=16060000
-            ls$dehergne/291/obs=Fernandes Tchong, Jean (chin.) (I) fr. coadj. 291 Ferdlnando (JS 134, 300). Tchong Ming-11 Jo-han (Pf.). N. Sunwui (Sin-houei hien), Kwangtung, 1581, frère cadet de Sébastien Fernandes. En 1606, Ricci l'envoie au secours du frère Bento de Gôis., de retour, 29 oct. 1607, Pékin. E. mars 1608, Nankin. En 1612, Namyung (Nan-hiong)., 1616, Hangchow (Hang-tcheou), puis Nankin, où 20 sept. 1616, persécution., le 24 sept. 1616 il est emprisonné. Entre 1621 et 1626 est porté « dimissus a Societate », n'est plus jésuite (D'Elia II, 436., JS 134, 301v). Pf. 121. — Distinct du fr. Juan Fernandez qui accompagnait St François Xavier à Kagoshima, 15 août 1549, et M. 26 juin 1567 à Hirado (ScHtirrE, 916., DI. VI, 823). — Autres de ce nom, DI. IV, 891.
+            ls$dehergne/291/obs="""
+            Fernandes Tchong, Jean (chin.) (I) fr. coadj. 291 Ferdlnando (JS 134, 300).
+             Tchong Ming-11 Jo-han (Pf.). N. Sunwui (Sin-houei hien), Kwangtung, 1581,
+             frère cadet de Sébastien Fernandes.
+             En 1606, Ricci l'envoie au secours du frère Bento de Gôis.,
+             de retour, 29 oct. 1607, Pékin.
+             E. mars 1608, Nankin. En 1612, Namyung (Nan-hiong)., 1616,
+             Hangchow (Hang-tcheou), puis Nankin, où 20 sept. 1616,
+             persécution., le 24 sept. 1616 il est emprisonné.
+             Entre 1621 et 1626 est porté « dimissus a Societate »,
+             n'est plus jésuite (D'Elia II, 436., JS 134, 301v). Pf. 121.
+             — Distinct du fr. Juan Fernandez qui accompagnait St François Xavier
+              à Kagoshima, 15 août 1549, et M. 26 juin 1567 à Hirado (ScHtirrE, 916.,
+              DI. VI, 823). — Autres de ce nom, DI. IV, 891.
+              """
 
             irmao$Sébastien Fernandes Tchong/id=deh-jean-fernandes-tchong-irmao
                ls$nacionalidade/China
@@ -147,7 +161,7 @@ kleio$/translations=28
                ls$dehergne/731-ref2/obs=Serait-il parent du P. Michael Rogerius N. à Capoue en 1536, E. 1572, pr. des 3 V. le 31 mars 1603?
 
             pai$Luigi Ruggiere/id=deh-michele-ruggiere-pai
-               rel$profissional/Ao serviço de/Nome desconhecido/dehmichele-ruggiere-ref3
+               rel$profissional/Ao serviço de/Nome desconhecido/deh-michele-ruggiere-ref3
 
             mae$Giulia Fonella/id=deh-michele-ruggiere-mae
                ls$nascimento/Nápoles# @wikidata:Q2634/00000000
