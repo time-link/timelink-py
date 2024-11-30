@@ -7,14 +7,13 @@ Run with  python -m timelink.cli
 """
 
 import os
-from typing import Annotated  # noqa
 import platform
 import uvicorn
 import typer
 import docker
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 from timelink import migrations
-from timelink.api.database import get_postgres_dbnames
+from timelink.api.database import TimelinkDatabase, get_postgres_dbnames
 from timelink.api.database import get_sqlite_databases
 from timelink.api.database import get_postgres_url
 from timelink.api.database import get_sqlite_url
@@ -134,6 +133,12 @@ def db_upgrade_cmd(db_url: str, revision: str = "heads"):
     migrations.upgrade(db_url, revision)
 
 
+@db_app.command("create")
+def db_create_cmd(db_url: str = typer.Argument(..., help="Database URL")):  # noqa: B008
+    """Create a new database"""
+    TimelinkDatabase(db_url=db_url)
+
+
 @db_app.command("heads")
 def db_heads(db_url: str):
     """Return the head(s) (current revision)
@@ -142,6 +147,26 @@ def db_heads(db_url: str):
     """
     db_url = parse_db_url(db_url)
     typer.echo(migrations.heads(db_url))
+
+
+@db_app.command("revision")
+def db_revision(db_url: str, message: str):
+    """Create a new migration script"""
+    db_url = parse_db_url(db_url)
+    migrations.revision(db_url, message)
+
+
+@db_app.command("autogenerate")
+def db_autogenerate(db_url: str, message: str):
+    """Create a new migration script"""
+    db_url = parse_db_url(db_url)
+    migrations.autogenerate(db_url, message)
+
+
+@db_app.command("history")
+def db_history(verbose: bool = False):
+    """Show the migration history"""
+    migrations.history(verbose)
 
 
 # ====================
