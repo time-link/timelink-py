@@ -6,7 +6,7 @@ import random
 import pytest
 from typer.testing import CliRunner
 from timelink.cli import app, create_db_index
-from tests import mhk_absent
+from tests import mhk_absent, TEST_DIR
 
 
 @pytest.fixture
@@ -95,3 +95,17 @@ def test_db_heads():
     heads = runner.invoke(app, ["db", "heads", str(db_key)])
     print(heads)
 
+
+def test_create_db():
+    runner = CliRunner()
+    result = runner.invoke(app, ["db", "create", f"sqlite:///{TEST_DIR}/db/test.db"])
+    print(f"Test result {result.exit_code}")
+    print(f"Test result {result.stdout}")
+    assert result.exit_code == 0
+    assert "alembic.runtime.migration" in result.output
+    # assert "not found" in result.output
+    # assert "Error" in result.output
+    # assert "Exception" in result.output
+    # assert "Traceback" in result.output
+    # assert "Usage" in result.output
+    # assert "Try
