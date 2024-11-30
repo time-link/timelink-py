@@ -507,7 +507,7 @@ class TimelinkDatabase:
 
         Will create the tables and views if they do not exist
         Will load the database classes and ensure all mappings
-        Will update the database with alembicw
+        Will update the database with alembic
         """
 
         self.create_tables()
