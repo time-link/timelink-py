@@ -5,6 +5,7 @@ from typing import Optional
 from itertools import chain
 
 from sqlalchemy import Enum, Integer, String, ForeignKey, update
+from sqlalchemy import UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.orm import object_session
 
@@ -45,7 +46,7 @@ class RealEntityIdChangeError(ValueError):
     pass
 
 
-class REntityStatus(PyEnum):
+class LinkStatus(PyEnum):
     """
     Status of a real entity.
 
@@ -73,9 +74,9 @@ class REntityStatus(PyEnum):
     AUTOMATIC = "1"  # linked automatically
     SOURCE = "2"  # linked in the source with same_as or x_same_as
     MANUAL = "3"  # Linked manually by the user in the database after import
-    VALID = "4"  # Validated by the user (whatever the origin)
     MHK = "N"  # legacy status, linked in MHK (considered valid)
     N = "MHK"  # legacy status, linked in MHK (considered valid)
+    INVALID = "I"  # During import of a source, links are invalidated
 
 
 class REntity(Entity):
@@ -121,17 +122,17 @@ class REntity(Entity):
     description: Mapped[str] = mapped_column(
         String(4096)
     )  # description of the real entity
-    status: Mapped[REntityStatus] = mapped_column(
-        Enum(REntityStatus), nullable=False
+    status: Mapped[LinkStatus] = mapped_column(
+        Enum(LinkStatus), nullable=False
     )  # status of the real entity
     obs: Mapped[Optional[str]] = mapped_column(
         String
     )  # observations about the real entity
 
     links: Mapped[list["Link"]] = relationship(
-        "Link", back_populates="rentity_rel",
-        cascade="all, delete",
-        passive_deletes=True
+        "Link",
+        back_populates="rentity_rel",
+        passive_deletes="all",
     )  # One-to-many relationship
 
     def __repr__(self):
@@ -363,7 +364,8 @@ class REntity(Entity):
             session: database session
 
         if id1 and id2 are both unliked occurrences then a new real entity is created
-            associated with user.  if real_id is given is not given a random id is generated.
+            associated with user.
+            if real_id is not given a random id is generated.
 
         if id1 is a real entity and id2 is not, then id2 is added to id1 and id1 returned
         if id2 is a real entity and id1 is not, swap and do as above.
@@ -374,6 +376,9 @@ class REntity(Entity):
         common type not equal to Entity is an error."""
         if session is None:
             raise ValueError("Error, session needed")
+
+        if "bio-michele-ruggieri-his4-19-per1-21" in [id1, id2]:
+            print(f"DEBUG same_as({id1}, {id2})")
 
         with session:
             # session.commit()
@@ -405,37 +410,66 @@ class REntity(Entity):
                 )
 
             # check if id1 and id2 are already linked
-            # Query the links table for entity=id1 and user=user and return the rid
-            # if it exists otherwise return None
-            # if it exists return the Real Entity
-            r1_id = (
-                session.query(Link.rid)
-                .filter(Link.entity == id1, Link.user == user)
-                .scalar()
-            )
-            r2_id = (
-                session.query(Link.rid)
-                .filter(Link.entity == id2, Link.user == user)
-                .scalar()
-            )
+            # Query the links table for entity=id1 and user=user and return the id, rid, and status
 
-            # if r1 and r2 are not None and equal return r1
-            if r1_id is not None and r2_id is not None and r1_id == r2_id:
+            result = (
+                session.query(Link.rid, Link.id, Link.status)
+                .filter(Link.entity == id1, Link.user == user)
+                .first()
+            )
+            if result is None:
+                result = (None, None, None)
+            r1_id, l1_id, l1_status = result
+
+            result = (
+                session.query(Link.rid, Link.id, Link.status)
+                .filter(Link.entity == id2, Link.user == user)
+                .first()
+            )
+            if result is None:
+                result = (None, None, None)
+            r2_id, l2_id, l2_status = result
+
+            # CASE 1: occurrences are already linked to the same real entity
+            #  and link status is the same
+            #  note that this recicles previous links that are invalid
+            if (
+                r1_id is not None
+                and r2_id is not None  # noqa: W503
+                and r1_id == r2_id  # noqa: W503
+                and l1_status == l2_status  # noqa: W503
+            ):
                 # Check if it is possible to change the real_id
                 if real_id is not None and r1_id != real_id:
                     raise ValueError(
                         f"Error, {id1} and {id2} are already linked to {r1_id}"
                     )
-
+                # update the link status
+                l1 = session.get(Link, l1_id)
+                l2 = session.get(Link, l2_id)
+                l1.status = LinkStatus.SOURCE
+                l2.status = LinkStatus.SOURCE
+                session.merge(l1)
+                session.merge(l2)
+                session.commit()
                 return session.get(REntity, r1_id)
 
             if rule is None:
                 rule = f"same_as('{id1}', '{id2}')"
 
             if status is None:
-                status = REntityStatus.MANUAL
+                status = LinkStatus.MANUAL
 
-            if r1_id is None and r2_id is None:
+            # CASE 2: occurrences are not linked
+            # or both link status is invalid
+            # New real entity is created
+            if (
+                (r1_id is None and r2_id is None)
+                or (  # noqa: W503
+                    l2_status == LinkStatus.INVALID and l1_status == LinkStatus.INVALID
+                )
+                or (l1_id is None and l2_id is None)  # noqa: W503
+            ):
                 # both are unlinked occurrences
 
                 if description is None:
@@ -449,7 +483,9 @@ class REntity(Entity):
 
                 if real_id is None:
                     if real_id_prefix is None:
-                        ridp = "r" + eid1.pom_class[0]  # we take first letter of the class
+                        ridp = (
+                            "r" + eid1.pom_class[0]
+                        )  # we take first letter of the class
                     else:
                         ridp = real_id_prefix
                     real_id = cls.generate_id(session=session)
@@ -461,28 +497,41 @@ class REntity(Entity):
 
                 r = REntity(id=real_id, user=user, description=desc, status=status)
                 session.add(r)
-                l1 = Link(
-                    rid=real_id,
-                    entity=id1,
-                    user=user,
-                    status=status,
-                    rule=rule,
-                    source=source,
-                )
-                l2 = Link(
-                    rid=real_id,
-                    entity=id2,
-                    user=user,
-                    status=status,
-                    rule=rule,
-                    source=source,
-                )
+                if l1_id is not None:  # reuse the link
+                    l1 = session.get(Link, l1_id)
+                    l1.status = status
+                    session.merge(l1)
+                else:
+                    l1 = Link(
+                        rid=real_id,
+                        entity=id1,
+                        user=user,
+                        status=status,
+                        rule=rule,
+                        source=source,
+                    )
+                if l2_id is not None:  # reuse the link
+                    l2 = session.get(Link, l2_id)
+                    l2.status = status
+                    session.merge(l2)
+                else:
+                    l2 = Link(
+                        rid=real_id,
+                        entity=id2,
+                        user=user,
+                        status=status,
+                        rule=rule,
+                        source=source,
+                    )
                 r.links.append(l1)
                 r.links.append(l2)
                 session.flush()
                 session.commit()
 
-            elif r1_id is not None and r2_id is None:
+            # CASE 3: one of the occurrences is already linked
+            elif (r1_id is not None and l1_status != LinkStatus.INVALID) and (
+                r2_id is None or l2_status == LinkStatus.INVALID or l2_id is None
+            ):  # noqa: W503
                 # r1 is a real entity and r2 is an occurrence
                 if real_id is not None:
                     if r1_id.id != real_id:
@@ -490,18 +539,36 @@ class REntity(Entity):
                             f"Error, {id1} is already linked to {r1_id}, cannot change to {real_id}. "
                             f"Use make_real('{id2}', real_id='{real_id}')"
                         )
-                link = Link(
-                    rid=r1_id,
-                    entity=id2,
-                    user=user,
-                    status=status,
-                    rule=rule,
-                    source=source,
-                )
+                # validate the first linlk
+                l1 = session.get(Link, l1_id)
+                l1.status = status
+                session.merge(l1)
+                # add the second link
                 r = session.get(REntity, r1_id)
-                r.links.append(link)
 
-            elif r1_id is None and r2_id is not None:
+                if l2_id is not None:  # reuse the link
+                    l2 = session.get(Link, l2_id)
+                    l2.status = status
+                    session.merge(l2)
+                else:
+                    link = Link(
+                        rid=r1_id,
+                        entity=id2,
+                        user=user,
+                        status=status,
+                        rule=rule,
+                        source=source,
+                    )
+                    r.links.append(link)
+                session.merge(r)
+                session.commit()
+
+            # CASE 4: one of the occurrences is already linked (right)
+            elif (
+                r1_id is None or l1_status == LinkStatus.INVALID or l1_id is None
+            ) and (
+                r2_id is not None and l2_status != LinkStatus.INVALID
+            ):  # noqa: W503
                 # rid2 is a real entity and id1 is an occurrence
                 if real_id is not None:
                     if r2_id != real_id:
@@ -509,23 +576,47 @@ class REntity(Entity):
                             f"Error, {id2} is already linked to {r2_id}, cannot change to {real_id}. "
                             f"Use make_real('{id1}', real_id='{real_id}')"
                         )
-                link = Link(
-                    rid=r2_id,
-                    entity=id1,
-                    user=user,
-                    status=status,
-                    rule=rule,
-                    source=source,
-                )
+                # validate first link
                 r = session.get(REntity, r2_id)
-                r.links.append(link)
+                l2 = session.get(Link, l2_id)
+                l2.status = status
+                session.merge(l2)
+                if l1_id is not None:  # reuse the link
+                    l1 = session.get(Link, l1_id)
+                    l1.status = status
+                    session.merge(l1)
+                else:
+                    link = Link(
+                        rid=r2_id,
+                        entity=id1,
+                        user=user,
+                        status=status,
+                        rule=rule,
+                        source=source,
+                    )
+                    r.links.append(link)
 
             # both are real entities
-            else:
+            elif (r1_id is not None and r2_id is not None) and (  # noqa: W503
+                l1_status != LinkStatus.INVALID and l2_status != LinkStatus.INVALID
+            ):  # noqa: W503
                 real1 = session.get(REntity, r1_id)
                 real2 = session.get(REntity, r2_id)
 
-                if real1.status.value > real2.status.value:
+                # delete links to r1_id and r2_id with invalid status
+                stmt = (
+                    session.query(Link)
+                    .filter(
+                        Link.rid.in_([r1_id, r2_id]),
+                        Link.status == LinkStatus.INVALID,
+                    )
+                    .delete()
+                )
+                session.commit()
+
+                if real1.status.value > real2.status.value or (  # noqa: W504
+                    real1.status.value == real2.status.value and real1.id < real2.id
+                ):
                     # r1 is more important
                     # update links with rid=r2 to rid=r1
                     # update with SQLALchemy update statement
@@ -553,6 +644,11 @@ class REntity(Entity):
                     session.merge(real2)
                     session.delete(real1)
                     r = real2
+            else:
+                raise ValueError(
+                    f"Error, could not determine same as strategy for {id1} and {id2} "
+                    f" are already linked to {r1_id} and {r2_id} with link status {l1_status} and {l2_status}"
+                )
             session.commit()
         return r
 
@@ -590,7 +686,7 @@ class REntity(Entity):
         cls,
         id1: str,
         user="user",
-        status=REntityStatus.MANUAL,
+        status=LinkStatus.MANUAL,
         real_id=None,
         real_id_prefix=None,
         description=None,
@@ -672,7 +768,7 @@ class REntity(Entity):
         self,
         occ_id: str,
         user="user",
-        status=REntityStatus.MANUAL,
+        status=LinkStatus.MANUAL,
         rule=None,
         aregister=None,
     ) -> "REntity":
@@ -737,34 +833,39 @@ class Link(Base):
 
     __tablename__ = "links"
 
+    __table_args__ = (UniqueConstraint("rid", "entity", "user", name="unique_link"),)
+
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     rid: Mapped[str] = mapped_column(
         String(64), ForeignKey(REntity.id, ondelete="CASCADE"), index=True
     )
     entity: Mapped[str] = mapped_column(
-        String(64), ForeignKey(Entity.id, ondelete="CASCADE"), index=True
+        String(64),
+        ForeignKey(Entity.id),  # we do not null the entity when it is deleted
+        nullable=True,
+        index=True,
     )
     # Define the relationship with Entity
     entity_rel = relationship(
         "Entity",
         back_populates="linked_to",
+        passive_deletes="all"
     )
 
     rentity_rel: Mapped[REntity] = relationship(
         REntity, back_populates="links", foreign_keys=[rid]
     )  # Many-to-one relationship Many side
 
-    rule: Mapped[str] = mapped_column(
-        String(4096)
-    )  # rule used to link the entity to the real entity
-
     # The next two are redundant de normalized for efficiency
     user: Mapped[str] = mapped_column(
         String(64)
     )  # user that linked the entity to the real entity
+    rule: Mapped[str] = mapped_column(
+        String(4096)
+    )  # rule used to link the entity to the real entity
 
-    status: Mapped[REntityStatus] = mapped_column(
-        Enum(REntityStatus), nullable=False
+    status: Mapped[LinkStatus] = mapped_column(
+        Enum(LinkStatus), nullable=False
     )  # status of the link
 
     source: Mapped[Optional[str]] = mapped_column(
@@ -796,7 +897,16 @@ class Link(Base):
 
 
 # this is the back relation from Entities
+# this is configured so that in a reimported
+# when the entities are deleted the links are
+# kept including the reference to the id of the linked
+# entity. This is necessary to keep the links to the
+# real entities when the entities are reimported
+# and the links are reestablished
+# note that for this to world it is necessary to
+# review the links after reimporting the entities
+# or other operations that involve deleting entities
+# to remove the links that are no longer valid
 Entity.linked_to = relationship(
-    Link, back_populates="entity_rel", cascade="all, delete-orphan",
-    passive_deletes=False
+    Link, back_populates="entity_rel", passive_deletes="all"
 )
