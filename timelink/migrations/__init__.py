@@ -69,7 +69,9 @@ def heads(db_url):
 
 
 def stamp(db_url, revision: str):
-    """ Stamp current"""
+    """ Stamp current revision to a given revision
+    Use "heads" to mark the database as up-to-date
+    """
     set_db_url(db_url)
     command.stamp(ALEMBIC_CFG, revision)
 

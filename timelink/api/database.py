@@ -479,13 +479,16 @@ class TimelinkDatabase:
         else:
             # upgrade the database with alembic
             # first check if the timelink tables are there
-            if 'entities' not in self.table_names():
+            if "entities" not in self.table_names():
                 self.create_db()
+                # here needs to stamp the database with alembic
             else:
                 try:
                     migrations.upgrade(self.db_url)
                     with self.session() as session:
-                        self.ensure_all_mappings(session)  # this will cache the pomsom mapper objects
+                        self.ensure_all_mappings(
+                            session
+                        )  # this will cache the pomsom mapper objects
                 except Exception as exc:
                     logging.ERROR(exc)
 
@@ -962,7 +965,9 @@ class TimelinkDatabase:
         if isinstance(class_id, list):
             if make_alias is None:
                 make_alias = True
-                return [self.get_model_by_name(c, make_alias=make_alias) for c in class_id]
+                return [
+                    self.get_model_by_name(c, make_alias=make_alias) for c in class_id
+                ]
         else:
             make_alias = False
             return self.get_model_by_name(class_id, make_alias=False)
@@ -1225,7 +1230,11 @@ def get_import_status(
             )
 
     for path, file in valid_files_dict.items():
-        if path not in imported_files_dict or file.translated is None:
+        if (
+            path not in imported_files_dict
+            or file.translated is None  # noqa: W503
+            or file.imported is None
+        ):
             file.import_status = import_status_enum.N
         elif file.translated > imported_files_dict[path].imported.replace(
             tzinfo=timezone.utc

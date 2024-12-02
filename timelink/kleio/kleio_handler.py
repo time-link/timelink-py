@@ -22,7 +22,8 @@ from timelink.api.models.base import (
 )
 from timelink.api.models.rentity import (
     REntity as REntityTL,
-    Link as LinkTL
+    Link as LinkTL,
+    BLink as BLinkTL
 )
 
 from timelink.api.models.base import REntity, LinkStatus as STATUS
@@ -157,6 +158,9 @@ class KleioHandler:
                 AND e.the_source = :source_id
                 AND link_source != e.the_source;
         """
+        # Currently not implemented in MHK Mysql databases
+        if self.model_type == "MHK":
+            return
         # make a sql alchemy query to get the cross source relations
         # and store them in cross_source_relations
         sql = """select r.id,
@@ -215,12 +219,34 @@ class KleioHandler:
             )
         )
         xlinks = self.session.execute(sql_query).fetchall()
+
+        # save the links that are going to be affected by the reimport
         for link_id in [link.id for link in xlinks]:
             link = self.session.get(self.link_model, link_id)
-            link.status = STATUS.INVALID
-            self.session.merge(link)
+
+            # find a blink for the same rid, entity and user
+            # if it exists we do not create a new one
+
+            blink = self.session.query(BLinkTL).filter(
+                BLinkTL.rid == link.rid,
+                BLinkTL.entity == link.entity,
+                BLinkTL.user == link.user
+            ).first()
+
+            if blink is None:
+                # create a blink with the link information
+                blink = BLinkTL(
+                    rid=link.rid,
+                    entity=link.entity,
+                    user=link.user,
+                    rule=link.rule,
+                    status=link.status,
+                    source=link.source,
+                )
+            self.session.add(blink)
             self.session.commit()
 
+        # maybe not useful
         self.xlinks[source_id] = xlinks
 
     def restore_source_context(self, source_id):
@@ -234,7 +260,8 @@ class KleioHandler:
         at the end of the source import it is possible to restore
         the missing links
         """
-
+        if self.model_type == "MHK":
+            return
         relations = self.xrelations[source_id]
         for r in relations:
             # we get the relation in other sources that was affect by the reimport
@@ -296,8 +323,6 @@ class KleioHandler:
                     f"but was deleted during reimport."
                 )
 
-        return relations
-
     def newKleioFile(self, attrs):
         # <KLEIO STRUCTURE="/kleio-home/system/conf/kleio/stru/gacto2.str"
         # SOURCE="/kleio-home/sources/soure-fontes/sources/1685-1720/baptismos/b1685.cli"
@@ -330,6 +355,12 @@ class KleioHandler:
         logging.debug("Kleio structure: %s", self.kleio_structure)
         logging.debug("Kleio translator: %s", self.kleio_translator)
         logging.debug("Kleio when: %s", self.kleio_when)
+        # mark that file is being imported by nulling the imported date
+        kfile = self.session.get(self.kleio_file_model, self.kleio_file)
+        if kfile is not None:
+            kfile.imported = None
+            kfile.imported_string = None
+            self.session.commit()
 
     def newClass(
         self,
@@ -623,7 +654,7 @@ class KleioHandler:
 
         # store information on kleio file import
         kfile = self.kleio_file_model(
-            path=self.kleio_file,  # TODO: #20 should remove /Kleio-home from path
+            path=self.kleio_file,
             name=self.kleio_file_name,
             structure=self.kleio_structure,
             translator=self.kleio_translator,

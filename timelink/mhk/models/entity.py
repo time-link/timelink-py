@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import (
+    JSON,
     Column,
     String,
     Integer,
@@ -34,6 +35,9 @@ class Entity(Base):
     )
     #: str: id of the entity inside which this occurred.
     inside = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), index=True)
+    # id of the source from which this entity was extracted
+    the_source = Column(String, nullable=True)
+
     #: int: sequential order of this entity in the source
     the_order = Column(Integer)
     #: int: the nesting level of this entity in the source
@@ -42,6 +46,9 @@ class Entity(Base):
     the_line = Column(Integer)
     #: str: name of the kleio group that produced this entity
     groupname = Column(String, index=True)
+
+    # extra_info a JSON field with extra information about the entity
+    extra_info = Column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
     updated = Column(DateTime, default=datetime.utcnow, index=True)
     #: datetime: when this entity was added to the full text index

@@ -69,6 +69,14 @@ db_url = {}
 
 
 def create_db_index():
+    """Create a dictionary of databases
+
+    Returns:
+        dict: dictionary of databases, key is an integer,
+                    value is a tuple of the form:
+                    (db_type, db_name, db_url)
+
+    """
     postgres_list = [
         ("postgres", db, get_postgres_url(db)) for db in sorted(get_postgres_dbnames())
     ]
@@ -76,8 +84,10 @@ def create_db_index():
         ("sqlite", os.path.basename(db), get_sqlite_url(db))
         for db in sorted(get_sqlite_databases(current_working_directory))
     ]
-    # make tuples of the form (int, dbame) from postgres_list + sqlite_list
-    enumeration = enumerate(postgres_list + sqlite_list, 1)
+    all_dbs = postgres_list + sqlite_list
+
+    # make tuples of the form (int, db info) from postgres_list + sqlite_list
+    enumeration = enumerate(sorted(all_dbs, key=lambda x: x[1]), 1)
     db_index = {i: db for i, db in enumeration}
     return db_index
 
@@ -104,7 +114,7 @@ def db_database_list_cmd():
             db_version = ''
         else:
             db_version = f" ({db_version[0][:4]})"
-        typer.echo(f" {i:>6}{db[0]:>8} {db_version:6} {db[1]}: {db_url}")  # f-string
+        typer.echo(f" {i:>6}{db[0]:>9} {db_version:>8} {db[1]}: {db_url}")  # f-string
     typer.echo("\nList of revisions:")
     revisions = migrations.get_versions()
     for revision in revisions:
@@ -168,6 +178,12 @@ def db_history(verbose: bool = False):
     """Show the migration history"""
     migrations.history(verbose)
 
+
+@db_app.command("stamp")
+def db_stamp(db_url: str, revision: str):
+    """Stamp the database to a given revision. Use 'heads' to mark the database as up-to-date"""
+    db_url = parse_db_url(db_url)
+    migrations.stamp(db_url, revision)
 
 # ====================
 # MHK related commands

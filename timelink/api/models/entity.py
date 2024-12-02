@@ -87,9 +87,7 @@ class Entity(Base):
     rels_out = None
 
     # This is defined in REntity.py
-    # links = relationship("Link", back_populates="entity_rel", cascade="all, delete-orphan")
-
-    links = None
+    links = relationship("Link", back_populates="entity_rel", cascade="all, delete-orphan")
 
     # this based on
     # https://stackoverflow.com/questions/28843254
