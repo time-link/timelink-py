@@ -335,6 +335,9 @@ def test_import_xsameas(dbsystem: TimelinkDatabase):
 def test_import_aregister(dbsystem):
     """Test the import a identifications file"""
     file = Path(TEST_FILES_DIR, "aregister-tests.xml")
+    # first fill in the database with the sameas file
+    file1 = "sameas-tests.cli"
+    dbsystem.update_from_sources(file1)
     with dbsystem.session() as session:
         try:
             stats = import_from_xml(file, session, options={"return_stats": True})
