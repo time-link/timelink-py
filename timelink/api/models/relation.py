@@ -1,8 +1,14 @@
+import warnings
+
 # pylint: disable=import-error
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
 
-from timelink.kleio.utilities import kleio_escape, quote_long_text, format_timelink_date as ftld
+from timelink.kleio.utilities import (
+    kleio_escape,
+    quote_long_text,
+    format_timelink_date as ftld,
+)
 from .entity import Entity
 
 
@@ -53,6 +59,9 @@ class Relation(Entity):
 
     @property
     def dest_class(self):
+        if self.dest is None:
+            warnings.warn("Missing destination for relation", UserWarning, stacklevel=2)
+            return None
         return self.dest.pom_class
 
     @property
@@ -61,7 +70,9 @@ class Relation(Entity):
 
     @property
     def dest_name(self):
-        if self.dest_class == "person" or self.dest_class == "object":
+        if self.dest_class is None:
+            return ""
+        elif self.dest_class == "person" or self.dest_class == "object":
             return self.dest.name
         else:
             return self.dest.groupname
@@ -105,18 +116,23 @@ class Relation(Entity):
                 return s
 
             if self.the_type == "identification":
+
                 return f"{ident}rel$identification/{self.the_value}/{self.dest_name}/{self.destination}/{ftld(self.the_date)}"
 
-            if self.dest is not None and self.dest.pom_class in [
-                "person",
-                "object",
-                "geoentity",
-            ]:
-                relname = self.dest.name
+            if self.dest is not None:
+                if self.dest.pom_class in [
+                    "person",
+                    "object",
+                    "geoentity",
+                ]:
+                    relname = self.dest.name
+                else:
+                    relname = self.dest.groupname
             else:
-                relname = self.dest.groupname
+                relname = "*missing*"
             label = "rel"
-        else:  # relation registred at the destination
+        else:  # incoming relation
+
             if self.org is not None and self.org.pom_class in [
                 "person",
                 "object",

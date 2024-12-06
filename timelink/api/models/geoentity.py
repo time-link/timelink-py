@@ -44,6 +44,8 @@ class Geoentity(Entity):
             r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}{self.render_id()}"
             if self.obs is not None and len(self.obs.strip()) > 0:
                 self_string = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
+            else:
+                self_string = r
         r = super().to_kleio(self_string=self_string, ident=ident, ident_inc=ident_inc,
                              show_contained=show_contained, width=width)
         return r

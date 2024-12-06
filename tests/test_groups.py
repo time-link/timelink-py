@@ -501,18 +501,9 @@ def test_kgroup_subclasses():
 
 
 def test_allow_as_part_1():
-    class Kx(KGroup):
-        pass
 
-    class Ky(KGroup):
-        pass
-
-    Kx._name = "kx"
-    Kx._guaranteed = ["id"]
-
-    Ky._name = "ky"
-    Ky._guaranteed = ["id"]
-    Ky._position = ["id"]
+    Kx = KGroup.extend("kx", guaranteed=["id"])
+    Ky = KGroup.extend("ky", guaranteed=["id"], position=["id"])
 
     x = Kx(id="x001")
     y = Ky("y001")
@@ -523,7 +514,7 @@ def test_allow_as_part_1():
     with pytest.raises(ValueError):
         x.include(y), "include should have failed"
 
-    Kx.allow_as_part("ky")
+    Kx.allow_as_part('ky')
     x.include(y)
     assert y in x.includes(), "include failed"
 

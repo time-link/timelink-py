@@ -500,6 +500,7 @@ class PomSomMapper(Entity):
                     ) from e
 
         # positional information in the original file
+        entity_from_group.the_source = getattr(group, 'source_id', None)  # set by import
         entity_from_group.the_line = group.line
         entity_from_group.the_level = group.level
         entity_from_group.the_order = group.order
@@ -515,13 +516,14 @@ class PomSomMapper(Entity):
         # if group_obs.strip() != '':
         #     entity_from_group.obs = group_obs.strip()
         if len(extra_info) > 0:
-            if group_obs is not None and group_obs.strip() != '':
-                group_obs = f"{group_obs.strip()} extra_info: {json.dumps(extra_info)}"
-            else:
-                group_obs = f"extra_info: {json.dumps(extra_info)}"
+            if hasattr(entity_from_group, 'extra_info'):  # has JSON field
+                entity_from_group.extra_info = extra_info
+            else:  # no JSON field
+                if group_obs is not None and group_obs.strip() != '':
+                    group_obs = f"{group_obs.strip()} extra_info: {json.dumps(extra_info)}"
+                else:
+                    group_obs = f"extra_info: {json.dumps(extra_info)}"
 
-        # convert extra_info to string
-        entity_from_group.extra_info = extra_info
         entity_from_group.obs = group_obs
 
         # check if we have an id from the group

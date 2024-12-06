@@ -6,18 +6,34 @@ Run with  python -m timelink.cli
 
 """
 
+import os
+from typing import Annotated  # noqa
 import platform
 import uvicorn
 import typer
 import docker
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
+from timelink import migrations
+from timelink.api.database import get_postgres_dbnames
+from timelink.api.database import get_sqlite_databases
+from timelink.api.database import get_postgres_url
+from timelink.api.database import get_sqlite_url
+
 
 server: uvicorn.Server = None  # uvicorn server instance
+
+# get the current directory
+# this is used to find the alembic.ini file
+# and the migrations folder
+# ROOT_PATH = Path(__file__).parent.parent
+current_working_directory = os.getcwd()
 
 # We use Typer https://typer.tiangolo.com
 app = typer.Typer(help="Timelink and MHK manager")
 mhk_app = typer.Typer()
 app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
+db_app = typer.Typer()
+app.add_typer(db_app, name="db", help="Database manager")
 
 
 # Start server
@@ -26,16 +42,111 @@ app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
 # https://stackoverflow.com/questions/68603658/how-to-terminate-a-uvicorn-fastapi-application-cleanly-with-workers-2-when
 
 
+def cli_header():
+    typer.echo("Timelink and MHK manager")
+    typer.echo(f"{current_working_directory}")
+
+
 @app.command("start")
 def start():
     """Starts timelink with uvicorn"""
     typer.echo("Starting Timelink")
     config = uvicorn.Config("timelink.app.main:app", port=8008, reload=True)
 
-    global server
+    global server  # pylint: disable=global-statement
     server = uvicorn.Server(config)
     server.run()
     return 0
+
+
+# ================================================
+# DB related commands
+# These are used to manage the database migrations
+# ================================================
+
+
+db_index = {}
+db_url = {}
+
+
+def create_db_index():
+    postgres_list = [
+        ("postgres", db, get_postgres_url(db)) for db in sorted(get_postgres_dbnames())
+    ]
+    sqlite_list = [
+        ("sqlite", os.path.basename(db), get_sqlite_url(db))
+        for db in sorted(get_sqlite_databases(current_working_directory))
+    ]
+    # make tuples of the form (int, dbame) from postgres_list + sqlite_list
+    enumeration = enumerate(postgres_list + sqlite_list, 1)
+    db_index = {i: db for i, db in enumeration}
+    return db_index
+
+
+def parse_db_url(db_url):
+    # check if db_url is an integer
+    if db_url.isdigit():
+        db_index = create_db_index()
+        key = int(db_url)
+        db_url = (db_index[key])[2]
+    return db_url
+
+
+@db_app.command("list")
+def db_database_list_cmd():
+    """List all available databases (sqlite, postgresql, etc)"""
+    global db_index
+    db_index = create_db_index()
+    typer.echo("Available data bases:")
+    for i, db in db_index.items():
+        db_url = db[2]
+        db_version = migrations.heads(db_url)
+        if len(db_version) == 0:
+            db_version = ''
+        else:
+            db_version = f" ({db_version[0][:4]})"
+        typer.echo(f" {i:>6}{db[0]:>8} {db_version:6} {db[1]}: {db_url}")  # f-string
+    typer.echo("\nList of revisions:")
+    revisions = migrations.get_versions()
+    for revision in revisions:
+        down = revision.down_revision or "None"
+        typer.echo(f" {revision.revision[:4]} {revision.doc} <- {down[:4]}")
+    return db_index
+
+
+@db_app.command("current")
+def db_current_cmd(
+    db_url: str,
+    verbose: str = "--verbose",
+):
+    """Display current database revision"""
+    db_url = parse_db_url(db_url)
+
+    migrations.current(db_url, verbose)
+
+
+@db_app.command("upgrade")
+def db_upgrade_cmd(db_url: str, revision: str = "heads"):
+    """Update database to (most recent) revision
+
+    """
+    db_url = parse_db_url(db_url)
+    migrations.upgrade(db_url, revision)
+
+
+@db_app.command("heads")
+def db_heads(db_url: str):
+    """Return the head(s) (current revision)
+
+    see: https://alembic.sqlalchemy.org/en/latest/api/runtime.html#alembic.runtime.migration.MigrationContext.get_current_heads
+    """
+    db_url = parse_db_url(db_url)
+    typer.echo(migrations.heads(db_url))
+
+
+# ====================
+# MHK related commands
+# ====================
 
 
 @mhk_app.command(name="version")
@@ -48,24 +159,24 @@ def mhk_version():
     if is_mhk_installed():
         mhk_info = get_mhk_info()
 
-    try:
-        client = docker.from_env(version="auto")
-        dv = client.version()
-        mhkv = f"""    Manager version:  {mhk_info.mhk_version}
-        Docker version:   {dv["Version"]}
-        Host OS:          {platform.system()} {platform.release()}
-        User home:        {mhk_info.user_home}
-        mhk-home:         {mhk_info.mhk_home}
-        mhk-home init:    {mhk_info.mhk_home_init}
-        mhk-home update:  {mhk_info.mhk_home_update}
-        mhk use-tag:      {mhk_info.mhk_app_env.get("TAG", "*none*")}
-        mhk local host:   {mhk_info.mhk_host}
-        MHK URL:          http://127.0.0.1:8080/mhk
-        Kleio URL:        http://127.0.0.1:8088
-        Portainer URL:    http://127.0.0.1:9000"""
-        typer.echo(mhkv)
-    except Exception as e:
-        typer.echo(f"Could not access docker: {e}")
+        try:
+            client = docker.from_env(version="auto")
+            dv = client.version()
+            mhkv = f"""    Manager version:  {mhk_info.mhk_version}
+            Docker version:   {dv["Version"]}
+            Host OS:          {platform.system()} {platform.release()}
+            User home:        {mhk_info.user_home}
+            mhk-home:         {mhk_info.mhk_home}
+            mhk-home init:    {mhk_info.mhk_home_init}
+            mhk-home update:  {mhk_info.mhk_home_update}
+            mhk use-tag:      {mhk_info.mhk_app_env.get("TAG", "*none*")}
+            mhk local host:   {mhk_info.mhk_host}
+            MHK URL:          http://127.0.0.1:8080/mhk
+            Kleio URL:        http://127.0.0.1:8088
+            Portainer URL:    http://127.0.0.1:9000"""
+            typer.echo(mhkv)
+        except Exception as e:
+            typer.echo(f"Could not access docker: {e}")
     else:
         type.echo("Could not find a MHK instalation")
     return 0
@@ -85,6 +196,11 @@ def mhk_status():
     """
     )
     return 0
+
+
+# ================
+# Main
+# ================
 
 
 @app.callback()

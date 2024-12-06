@@ -38,13 +38,11 @@ class KGroup:
         "id",
     ]
 
-    id = None
-    _name: str = "kgroup"
+    # These are shared between all instances of the class
     _position: list = []  # list of positional elements
     _guaranteed: list = []  # list of required elements
     _also: list = []  # list of optional elements
     _part: list = []  # allowed sub groups
-
     _extends: Type["KGroup"]  # name of group this is based on
     _pom_class_id: str = "entity"  # Id of PomSom mapper for this group
     _element_check = True  # if true validates element assignment
@@ -76,7 +74,10 @@ class KGroup:
     @property
     def kname(self):
         """The kleio name of this group, used in the to_kleio() method"""
-        return self.unpack_from_kelement(self._name)
+        kname = self.unpack_from_kelement(self._name)
+        if kname is None or kname == "kgroup":
+            kname = self.__class__._name
+        return kname
 
     @kname.setter
     def kname(self, value):
@@ -293,6 +294,9 @@ class KGroup:
         Use element_check=False to turn off checking of element names
 
         """
+        self.id: str = None
+        self.source_id: str = None
+        self._name: str = "kgroup"
         self._containsd: dict = {}
         self.level = 1
         self.line = 1
@@ -300,6 +304,7 @@ class KGroup:
         self._element_check = True
         self._elementsd = {}
         self._inside = None
+        self.source_id = None
 
         if len(args) > len(self._position):
             raise ValueError("Too many positional elements")
@@ -674,7 +679,7 @@ class KGroup:
         return self.to_dots()
 
     def __str__(self, indent="", recurse=False):
-        sname = getattr(self, "_name", self.__class__.__name__)
+        sname = self.kname
         s = str(sname) + "$"
         first = True
         out = []

@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from typing import List, Optional
 from datetime import datetime
 
@@ -10,6 +9,7 @@ from sqlalchemy import ForeignKey  # pylint: disable=import-error
 from sqlalchemy import String  # pylint: disable=import-error
 from sqlalchemy import Integer  # pylint: disable=import-error
 from sqlalchemy import DateTime  # pylint: disable=import-error
+from sqlalchemy import JSON  # pylint: disable=import-error
 from sqlalchemy.orm import backref  # pylint: disable=import-error
 from sqlalchemy.orm import Mapped  # pylint: disable=import-error
 from sqlalchemy.orm import mapped_column  # pylint: disable=import-error
@@ -56,6 +56,8 @@ class Entity(Base):
     inside: Mapped[Optional[str]] = mapped_column(
         String, ForeignKey("entities.id", ondelete="CASCADE"), index=True
     )
+    # id of the source from which this entity was extracted
+    the_source: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     #: int: sequential order of this entity in the source
     the_order = mapped_column(Integer, nullable=True)
     #: int: the nesting level of this entity in the source
@@ -64,6 +66,8 @@ class Entity(Base):
     the_line = mapped_column(Integer, nullable=True)
     #: str: name of the kleio group that produced this entity
     groupname = mapped_column(String, index=True, nullable=True)
+    # extra_info a JSON field with extra information about the entity
+    extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
     updated = mapped_column(DateTime, default=datetime.utcnow, index=True)
     #: datetime: when this entity was added to the full text index
@@ -289,15 +293,15 @@ class Entity(Base):
     def __repr__(self):
         return (
             f'Entity(id="{self.id}", '
-            f'pom_class="{self.pom_class}",'
+            f'pom_class="{self.pom_class}", '
             f'inside="{self.inside}", '
+            f"the_source={self.the_source}, "
             f"the_order={self.the_order}, "
             f"the_level={self.the_level}, "
             f"the_line={self.the_line}, "
             f'groupname="{self.groupname}", '
             f"updated={self.updated}, "
-            f"indexed={self.indexed},"
-            f")"
+            f"indexed={self.indexed})"
         )
 
     def __str__(self):
@@ -306,7 +310,9 @@ class Entity(Base):
         return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
 
     def render_id(self):
-        """if the id begins with an underscore, it is a temporary id and returns an empty string"""
+        """Return the id of the entity in a kleio format
+
+        Does not return the id if it starts with an underscore"""
         if self.id[:1] == "_":
             return ""
         else:
@@ -318,7 +324,7 @@ class Entity(Base):
         Returns a dictionary with the date as key and a list of attributes and relations as value
 
         """
-        bio = OrderedDict()
+        bio = dict()
 
         if self.rels_in is not None:
             for rel in self.rels_in:
@@ -338,7 +344,7 @@ class Entity(Base):
                 this_date_list = bio.get(date, [])
                 this_date_list.append(attr)
                 bio[date] = this_date_list
-        return OrderedDict(sorted(bio.items()))
+        return bio
 
     def is_inbound_relation(self, relation):
         """Check if the relation is inbound to this entity.
@@ -350,57 +356,57 @@ class Entity(Base):
     # Handling of updating entities already in the databse
     # This should be overriden in the different models.
     def get_update_context(Entity, session, **kwargs):
-        """ return the context of this entity prior to an update.
+        """return the context of this entity prior to an update.
 
-		Updates are done by deleting and reinserting entities,
-		and all their contained entities in the scope of a source.
-		If an entity has links and dependencies with entities not
-		in the same source, then its possible that those links will be affected
-		by foreign keys constraints like "on delete cascade".
+        Updates are done by deleting and reinserting entities,
+        and all their contained entities in the scope of a source.
+        If an entity has links and dependencies with entities not
+        in the same source, then its possible that those links will be affected
+        by foreign keys constraints like "on delete cascade".
 
-		This method saves the extra source context of this entity before
-		it is replaced so that it can be restored by the sister
-		function restore_update_context.
+        This method saves the extra source context of this entity before
+        it is replaced so that it can be restored by the sister
+        function restore_update_context.
 
-		Usage:
-			ent = session.get(Entity,eid).
-			new_ent = Entity(...)
-			ctxt = ent.get_update_context(ent,session)
-			session.delete(ent.id)
-			session.add(new_ent)
-			new_ent.restore_update_contex(ctxt,session)
+        Usage:
+                ent = session.get(Entity,eid).
+                new_ent = Entity(...)
+                ctxt = ent.get_update_context(ent,session)
+                session.delete(ent.id)
+                session.add(new_ent)
+                new_ent.restore_update_contex(ctxt,session)
 
-		In the base person oriented model the only external context of entities
-		are normally those related to record linking and involves  "same as" links
-		between sources, that are recorded as relations `identification/same as`
-		where origin and destination are not in the same source,
-		and generate entries in the `links` table where the
-		entity referred in the link is not in the same file as the link (both are
-		generated by "sameas" element in groups.
+        In the base person oriented model the only external context of entities
+        are normally those related to record linking and involves  "same as" links
+        between sources, that are recorded as relations `identification/same as`
+        where origin and destination are not in the same source,
+        and generate entries in the `links` table where the
+        entity referred in the link is not in the same file as the link (both are
+        generated by "sameas" element in groups.
 
-		Note that nothing prevents that a "normal" user entered relation refers
-		to a destination outside the source (normally VIPs).
+        Note that nothing prevents that a "normal" user entered relation refers
+        to a destination outside the source (normally VIPs).
 
-		Early Soure records had a bit of this
-		before it became good practice to always record
+        Early Soure records had a bit of this
+        before it became good practice to always record
         a local entity for the destination of relations
         and use "sameas" to link the local entity to the
-		external one.
+        external one.
 
-		Currently sqlalchemy ORM sets the destination of these relations to None and
-		removed the link row when it refers to an entity that was deleted.
+        Currently sqlalchemy ORM sets the destination of these relations to None and
+        removed the link row when it refers to an entity that was deleted.
 
-		Note that it not useful to save the link, because it contains a pair RealId,
-		occurrenceID, and the RealId might have changed with reimport. So it must
-		be regenerated by calling REntity.same_as(...)
+        Note that it not useful to save the link, because it contains a pair RealId,
+        occurrenceID, and the RealId might have changed with reimport. So it must
+        be regenerated by calling REntity.same_as(...)
 
-		"""
+        """
 
         return None
 
     #
     def restore_update_context(self, ctxt, session):
-        """ restore the context of this entity after an update.
+        """restore the context of this entity after an update.
         See get_update_context for details
         """
         return None
@@ -427,7 +433,6 @@ class Entity(Base):
             - set(self.rels_out)  # noqa: W503
             - set(self.attributes)  # noqa: W503
         )
-
         bio = self.dated_bio()
         sorted_keys = sorted(bio.keys())
         for date in sorted_keys:
@@ -437,6 +442,11 @@ class Entity(Base):
                 if bio_item.pom_class == "relation":
 
                     kwargs["outgoing"] = not self.is_inbound_relation(bio_item)
+                    if self.is_inbound_relation(bio_item):
+                        if bio_item.the_type == "function-in-act":
+                            # we don't render inbound function-in-act relations
+                            # because they are redundant with contained entities
+                            continue
 
                 bio_itemk = bio_item_xi.to_kleio(
                     ident=ident + ident_inc, ident_inc=ident_inc, **kwargs

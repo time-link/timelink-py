@@ -20,7 +20,7 @@ from timelink.kleio.schemas import KleioFile
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # conn_string local file version
 # from pathlib import Path
-sqlite_db = Path(TEST_DIR, "sqlite/test.db")
+sqlite_db = Path(TEST_DIR, "sqlite/tests.sqlite")
 
 # Extract the directory path
 directory = os.path.dirname(sqlite_db)

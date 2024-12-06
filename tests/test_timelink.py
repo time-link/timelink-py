@@ -2,10 +2,10 @@
 
 """Tests for `timelink-py` package."""
 
+import random
 import pytest
 from typer.testing import CliRunner
-
-from timelink.cli import app
+from timelink.cli import app, create_db_index
 from tests import mhk_absent
 
 
@@ -50,3 +50,48 @@ def test_command_mhk_status():
     result = runner.invoke(app, ["mhk", "status"])
     assert result.exit_code == 0
     assert "Stopped" in result.output
+
+
+# test db command
+def test_db_list():
+    """Test the CLI."""
+    runner = CliRunner()
+    result = runner.invoke(app, ["db", "list"])
+    assert result.exit_code == 0
+
+
+def test_db_current():
+    """Test the CLI."""
+    runner = CliRunner()
+    db_list = create_db_index()
+    # chose a random key from dict db_list
+    db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
+    print(f"db_key: {db_key} db_list: {db_list[db_key]}")
+    result = runner.invoke(app, ["db", "current", str(db_key)])
+    print(f"Test result {result.exit_code}")
+    print(f"Test result {result.stdout}")
+    assert result.exit_code == 0
+
+
+def test_db_upgrade():
+    """Test the CLI."""
+    runner = CliRunner()
+    db_list = create_db_index()
+    # chose a random key from dict db_list
+    db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
+    print(f"db_key: {db_key} db_list: {db_list[db_key]}")
+    result = runner.invoke(app, ["db", "upgrade", str(db_key)])
+    print(f"Test result {result.exit_code}")
+    print(f"Test result {result.stdout}")
+    assert result.exit_code == 0
+
+
+def test_db_heads():
+    runner = CliRunner()
+    db_list = create_db_index()
+    # choose a random db
+    db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
+    print(f"db_key: {db_key} db_list: {db_list[db_key]}")
+    heads = runner.invoke(app, ["db", "heads", str(db_key)])
+    print(heads)
+
