@@ -5,7 +5,7 @@
 import random
 import pytest
 from typer.testing import CliRunner
-from timelink.cli import app, create_db_index
+from timelink.cli import app, create_db_index, avoid_db_patterns
 from tests import mhk_absent, TEST_DIR
 
 
@@ -63,7 +63,7 @@ def test_db_list():
 def test_db_current():
     """Test the CLI."""
     runner = CliRunner()
-    db_list = create_db_index()
+    db_list = create_db_index(avoid_patterns=avoid_db_patterns)
     # chose a random key from dict db_list
     db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
@@ -76,11 +76,10 @@ def test_db_current():
 def test_db_upgrade():
     """Test the CLI."""
     runner = CliRunner()
-    db_list = create_db_index()
+    db_list = create_db_index(avoid_patterns=avoid_db_patterns)
     # chose a random key from dict db_list
     db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
     #
-    db_key = 21
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
     result = runner.invoke(app, ["db", "upgrade", str(db_key)])
     print(f"Test result {result.exit_code}")
@@ -90,7 +89,7 @@ def test_db_upgrade():
 
 def test_db_heads():
     runner = CliRunner()
-    db_list = create_db_index()
+    db_list = create_db_index(avoid_patterns=avoid_db_patterns)
     # choose a random db
     db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
