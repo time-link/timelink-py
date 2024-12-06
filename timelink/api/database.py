@@ -260,7 +260,7 @@ def get_postgres_dbnames():
     return []
 
 
-def get_sqlite_databases(directory_path: str) -> list[str]:
+def get_sqlite_databases(directory_path: str, relative_path=True) -> list[str]:
     """Get the sqlite databases in a directory
     Args:
         directory_path (str): directory path
@@ -274,7 +274,8 @@ def get_sqlite_databases(directory_path: str) -> list[str]:
             if file_name.endswith(".sqlite") or file_name.endswith(".db"):
                 db_path = os.path.join(root, file_name)
                 # path relative to cd
-                db_path = os.path.relpath(db_path, cd)
+                if relative_path:
+                    db_path = os.path.relpath(db_path, cd)
                 sqlite_databases.append(db_path)
     return sqlite_databases
 
@@ -481,7 +482,6 @@ class TimelinkDatabase:
             # first check if the timelink tables are there
             if "entities" not in self.table_names():
                 self.create_db()
-                # here needs to stamp the database with alembic
             else:
                 try:
                     migrations.upgrade(self.db_url)
@@ -522,10 +522,10 @@ class TimelinkDatabase:
             self.load_database_classes(session)
             self.ensure_all_mappings(session)
             session.commit()
-            try:
-                migrations.stamp(self.db_url, "head")
-            except Exception as exc:
-                logging.ERROR(exc)
+        try:
+            migrations.stamp(self.db_url, "head")
+        except Exception as exc:
+            logging.ERROR(exc)
 
     def set_kleio_server(self, kleio_server: KleioServer):
         """Set the kleio server for imports
@@ -549,6 +549,8 @@ class TimelinkDatabase:
     def create_views(self):
         """Creates the views
 
+        eattributes: view of the entity attributes linked with entity information
+        pattributes: view of the person attributes linked with person information
 
         :return: None
         """
@@ -734,7 +736,7 @@ class TimelinkDatabase:
                     "Either provide list of files or attach database to Kleio server."
                 )
             else:
-                kleio_files = self.get_kleio_server().translation_status(
+                kleio_files = self.get_kleio_server().get_translations(
                     path=path, recurse=recurse
                 )
         files: List[KleioFile] = get_import_status(
@@ -843,7 +845,7 @@ class TimelinkDatabase:
             if path is None:
                 path = ""
                 logging.debug("Path set to ''")
-            for kfile in self.kserver.translation_status(
+            for kfile in self.kserver.get_translations(
                 path=path, recurse=recurse, status="T"  # TODO: make parameter
             ):
                 logging.info(
@@ -852,33 +854,33 @@ class TimelinkDatabase:
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             logging.debug("Waiting for translations to finish")
-            pfiles = self.kserver.translation_status(
+            pfiles = self.kserver.get_translations(
                 path=path, recurse="yes", status="P"
             )
 
-            qfiles = self.kserver.translation_status(
+            qfiles = self.kserver.get_translations(
                 path=path, recurse="yes", status="Q"
             )
             # TODO: change to import as each translation finishes
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(1)
 
-                pfiles = self.kserver.translation_status(
+                pfiles = self.kserver.get_translations(
                     path="", recurse="yes", status="P"
                 )
-                qfiles = self.kserver.translation_status(
+                qfiles = self.kserver.get_translations(
                     path="", recurse="yes", status="Q"
                 )
             # import the files
-            to_import = self.kserver.translation_status(
+            to_import = self.kserver.get_translations(
                 path=path, recurse=recurse, status="V"  # TODO recurse make param
             )
             if with_translation_warnings:
-                to_import += self.kserver.translation_status(
+                to_import += self.kserver.get_translations(
                     path=path, recurse=recurse, status="W"
                 )
             if with_translation_errors:
-                to_import += self.kserver.translation_status(
+                to_import += self.kserver.get_translations(
                     path=path, recurse=recurse, status="E"
                 )
             # https://github.com/time-link/timelink-py/issues/40
@@ -1233,8 +1235,11 @@ def get_import_status(
         if (
             path not in imported_files_dict
             or file.translated is None  # noqa: W503
-            or file.imported is None
         ):
+            file.import_status = import_status_enum.N
+        elif imported_files_dict[path].imported is None:
+            # if a reimport of a previous imported file fails its
+            # imported date will be None and it needs reimport
             file.import_status = import_status_enum.N
         elif file.translated > imported_files_dict[path].imported.replace(
             tzinfo=timezone.utc

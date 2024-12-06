@@ -19,6 +19,13 @@ ROOT_PATH = Path(__file__).parent.parent
 ALEMBIC_CFG = Config(ROOT_PATH / "alembic.ini")
 ALEMBIC_CFG.set_main_option("script_location", str(ROOT_PATH / "migrations"))
 
+# Naming conventions for foreign keys
+# https://alembic.sqlalchemy.org/en/latest/naming.html#naming-conventions
+naming_convention = {
+    "fk":
+    "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+}
+
 
 def set_db_url(db_url):
     """Set the database URL in the alembic configuration.
@@ -28,6 +35,7 @@ def set_db_url(db_url):
     ALEMBIC_CFG.set_section_option("alembic", "sqlalchemy.url", db_url)
 
 
+# Unused
 def get_versions(base='base', head='heads'):
     """Get the list of versions of the database.
 

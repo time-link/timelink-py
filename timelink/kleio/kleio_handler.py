@@ -633,7 +633,7 @@ class KleioHandler:
                 self.session.commit()
             except IntegrityError as ierror:
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} {str(group.line)} "
+                    f"ERROR: {self.kleio_file_name}: {str(group.line)} "
                     f"storing {group.to_kleio()}\n {ierror}"
                 )
                 self.session.rollback()

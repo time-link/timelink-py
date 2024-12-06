@@ -50,9 +50,9 @@ class Entity(Base):
     # extra_info a JSON field with extra information about the entity
     extra_info = Column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
-    updated = Column(DateTime, default=datetime.utcnow, index=True)
+    updated = Column(DateTime, default=datetime.utcnow, nullable=True, index=True)
     #: datetime: when this entity was added to the full text index
-    indexed = Column(DateTime, index=True)
+    indexed = Column(DateTime, nullable=True, index=True)
 
     # These are defined in relation.py
     # rels_in = relationship("Relation", back_populates="dest")

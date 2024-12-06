@@ -82,7 +82,7 @@ def create_db_index():
     ]
     sqlite_list = [
         ("sqlite", os.path.basename(db), get_sqlite_url(db))
-        for db in sorted(get_sqlite_databases(current_working_directory))
+        for db in sorted(get_sqlite_databases(current_working_directory, relative_path=False))
     ]
     all_dbs = postgres_list + sqlite_list
 
@@ -94,7 +94,7 @@ def create_db_index():
 
 def parse_db_url(db_url):
     # check if db_url is an integer
-    if db_url.isdigit():
+    if type(db_url) is int or db_url.isdigit():
         db_index = create_db_index()
         key = int(db_url)
         db_url = (db_index[key])[2]

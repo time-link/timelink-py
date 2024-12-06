@@ -309,7 +309,7 @@ async def translation_status(
     """
     if status == "*":
         status = None
-    return kserver.translation_status(path, recurse, status)
+    return kserver.get_translations(path, recurse, status)
 
 
 # translate

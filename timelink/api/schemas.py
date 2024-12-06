@@ -27,10 +27,12 @@ class EntitySchema(BaseModel):
     id: str
     pom_class: str
     inside: Optional[str]
+    the_source: Optional[str]
     the_order: Optional[int]
     the_level: Optional[int]
     the_line: Optional[int]
     groupname: Optional[str]
+    extra_info: Optional[str]
     updated: Optional[datetime]
     indexed: Optional[datetime]
     contains: Optional[List["EntitySchema"]]
@@ -47,10 +49,12 @@ class EntityBriefSchema(BaseModel):
     id: str
     pom_class: str
     inside: Optional[str]
+    the_source: Optional[str]
     the_order: Optional[int]
     the_level: Optional[int]
     the_line: Optional[int]
     groupname: Optional[str]
+    extra_info: Optional[str]
     updated: Optional[datetime]
     indexed: Optional[datetime]
 

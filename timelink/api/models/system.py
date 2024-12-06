@@ -211,8 +211,8 @@ class KleioImportedFileSchema(BaseModel):
     """warning_rpt: str warning report"""
     warning_rpt: Optional[str]
     """imported: datetime date of import"""
-    imported: datetime
+    imported: Optional[datetime]
     """imported_string: str date of import as string"""
-    imported_string: str
+    imported_string: Optional[str]
 
     model_config = ConfigDict(from_attributes=True)

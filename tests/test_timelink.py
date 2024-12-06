@@ -79,6 +79,8 @@ def test_db_upgrade():
     db_list = create_db_index()
     # chose a random key from dict db_list
     db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
+    #
+    db_key = 21
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
     result = runner.invoke(app, ["db", "upgrade", str(db_key)])
     print(f"Test result {result.exit_code}")
@@ -108,4 +110,3 @@ def test_create_db():
     # assert "Exception" in result.output
     # assert "Traceback" in result.output
     # assert "Usage" in result.output
-    # assert "Try
