@@ -19,8 +19,14 @@ from timelink.kleio.schemas import KleioFile
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 # conn_string local file version
-# from pathlib import Path
+
 sqlite_db = Path(TEST_DIR, "sqlite/tests.sqlite")
+
+# path to reference sqlite database
+# this is used to test migrations
+
+reference_db = Path(TEST_DIR, "db/reference_db/timelink.sqlite")
+reference_db_con_str = f"sqlite:///{reference_db}"
 
 # Extract the directory path
 directory = os.path.dirname(sqlite_db)
@@ -50,9 +56,9 @@ def get_one_translation(kserver: KleioServer,
                         path="",
                         max_wait=120) -> KleioFile:
     """Get one translation from the server"""
-    translations = kserver.translation_status(path=path, recurse="yes", status="V")
+    translations = kserver.get_translations(path=path, recurse="yes", status="V")
     if len(translations) == 0:
-        need_translation = kserver.translation_status(path=path, recurse="yes", status="T")
+        need_translation = kserver.get_translations(path=path, recurse="yes", status="T")
         if len(need_translation) == 0:
             raise RuntimeError(f"No files available for translation, path={path}")
 
@@ -62,8 +68,8 @@ def get_one_translation(kserver: KleioServer,
         counter = 0
         wait_for = 1
         max_counter = max_wait / wait_for
-        translations = kserver.translation_status(path=path, recurse="yes", status="V")
-        in_process = kserver.translation_status(path=path, recurse="yes", status="P")
+        translations = kserver.get_translations(path=path, recurse="yes", status="V")
+        in_process = kserver.get_translations(path=path, recurse="yes", status="P")
         while len(translations) == 0 and (counter < max_counter
                                           or len(in_process) > 0):  # noqa: W503
             time.sleep(wait_for)
@@ -71,8 +77,8 @@ def get_one_translation(kserver: KleioServer,
             if counter % 20 == 0:
                 warnings.warn(f"Waiting for translations {one_translation.name}, counter={counter}",
                               stacklevel=1)
-            translations = kserver.translation_status(path=path, recurse="yes", status="V")
-            in_process = kserver.translation_status(path=path, recurse="yes", status="P")
+            translations = kserver.get_translations(path=path, recurse="yes", status="V")
+            in_process = kserver.get_translations(path=path, recurse="yes", status="P")
 
     if len(translations) > 0:
         kleio_file: KleioFile = random.choice(translations)
