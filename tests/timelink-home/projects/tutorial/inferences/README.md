@@ -1,0 +1,3 @@
+# Inference rules
+
+This directory contains the inference rules used when processing the source files. Inference rules derive personal attributes and relations from the co-occurrence of people or other entities in specific acts or events. Rules encapsulate non ambiguous information that can be inferred from the source, avoiding explicit registration. Examples: kin-ship relations from baptisms (mother-father, parents-child).
