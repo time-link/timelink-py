@@ -188,7 +188,11 @@ Release process
 ===============
 
 To release a new version:
+
+
 tox --recreate
+
+
 .. code-block:: bash
 
    make lint                        # check code style
