@@ -145,7 +145,7 @@ def test_generate_limited_token(setup):
     assert limited_token is not None
 
     try:
-        kserver.translation_status("", recurse=False, token=limited_token)
+        kserver.get_translations("", recurse=False, token=limited_token)
         raise AssertionError("This should not happen, user has no privileges")
     except KleioServerForbidenException:
         assert True
@@ -202,7 +202,7 @@ def test_translations_get(setup):
     status: str = None
 
     kserver: KleioServer = setup
-    translations = kserver.translation_status(path,
+    translations = kserver.get_translations(path,
                                               recurse=recurse,
                                               status=status)
     assert len(translations) > 0
@@ -235,7 +235,7 @@ def test_translations_processing(setup):
     status: str = "P"
 
     kserver: KleioServer = setup
-    translations = kserver.translation_status(path, recurse, status)
+    translations = kserver.get_translations(path, recurse, status)
     assert len(translations) is not None
 
     kfile: KleioFile
@@ -253,7 +253,7 @@ def test_translations_queued(setup):
     status: str = "Q"
 
     kserver: KleioServer = setup
-    translations = kserver.translation_status(path, recurse, status)
+    translations = kserver.get_translations(path, recurse, status)
     assert translations is not None
 
     kfile: KleioFile
@@ -271,21 +271,21 @@ def test_translations_clean(setup):
 
     kserver: KleioServer = setup
 
-    queued = kserver.translation_status(path, recurse, "Q")
+    queued = kserver.get_translations(path, recurse, "Q")
     while len(queued) > 0:
         print(f"Waiting for {len(queued)} queued translations to finish")
         import time
 
         time.sleep(1)
-        queued = kserver.translation_status(path, recurse, "Q")
+        queued = kserver.get_translations(path, recurse, "Q")
 
-    processing = kserver.translation_status(path, recurse, "P")
+    processing = kserver.get_translations(path, recurse, "P")
     while len(processing) > 0:
         print(f"Waiting for {len(processing)} processing translations to finish")
         import time
 
         time.sleep(1)
-        processing = kserver.translation_status(path, recurse, "P")
+        processing = kserver.get_translations(path, recurse, "P")
 
     translations = kserver.translation_clean(path, recurse)
     assert translations is not None
