@@ -195,7 +195,7 @@ tox --recreate
    make test                        # run the local test suite
    make coverage                    # check test coverage
    make test-all                    # test on different versions of python
-   make docs                        # update the documentation
+   make docs                        # update the documentation (add to HISTORY.rst first)
    git status                       # check if everything is commited
    bump2version [major|minor|patch] # update version
    git push
