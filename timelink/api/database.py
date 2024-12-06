@@ -7,13 +7,9 @@ TODO:
 
 
 """
-
-from datetime import timezone
+# pylint: disable=unused-import
 import os
-import random
-import string
 import time
-import re
 import warnings
 import logging
 
@@ -31,11 +27,9 @@ from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import database_exists
 from sqlalchemy_utils import create_database
-import docker  # pylint: disable=import-error
 
 import timelink
 from timelink import migrations
-from timelink.kleio.kleio_server import is_docker_running
 from timelink.mhk import utilities
 from timelink import models  # pylint: disable=unused-import
 from timelink.api.models import Entity, PomSomMapper
@@ -46,268 +40,17 @@ from timelink.api.models import KleioImportedFile
 from timelink.api.models.system import KleioImportedFileSchema
 from timelink.kleio import KleioServer, KleioFile, import_status_enum
 from timelink.kleio.importer import import_from_xml
+
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 
-
-# container for postgres
-postgres_container: docker.models.containers.Container = None
-
-# SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
-# SQLALCHEMY_DATABASE_URL = f"postgresql://timelink:db_password@postgresserver/db"
-# SQLALCHEMY_DATABASE_URL="mysql://username:password@14.41.50.12/dbname"
-
-
-def is_postgres_running():
-    """Check if postgres is running in docker"""
-
-    if not is_docker_running():
-        warnings.warn("Docker is not running", stacklevel=2)
-        return False
-
-    client = docker.from_env()
-
-    postgres_containers: list[docker.models.containers.Container] = (
-        client.containers.list(filters={"ancestor": "postgres"})
-    )
-    return len(postgres_containers) > 0
-
-
-# get the postgres container
-
-
-def get_postgres_container() -> docker.models.containers.Container:
-    """Get the postgres container
-    Returns:
-        docker.models.containers.Container: the postgres container
-    """
-
-    if not is_docker_running():
-        raise RuntimeError("Docker is not running")
-
-    client: docker.DockerClient = docker.from_env()
-    postgres_containers: docker.models.container.Container = (  # pylint: disable=E1101
-        client.containers.list(  # pylint: disable=E1101
-            filters={"ancestor": "postgres"}
-        )
-    )
-    return postgres_containers[0]
-
-
-def get_postgres_container_pwd() -> str:
-    """Get the postgres container password
-    Returns:
-        str: the postgres container password
-    """
-    if not is_docker_running():
-        raise RuntimeError("Docker is not running")
-
-    if is_postgres_running():
-        container = get_postgres_container()
-        pwd = [
-            env
-            for env in container.attrs["Config"]["Env"]
-            if env.startswith("POSTGRES_PASSWORD")
-        ][0].split("=")[1]
-        return pwd
-
-
-def get_postgres_container_user() -> str:
-    """Get the postgres container user
-    Returns:
-        str: the postgres container user
-    """
-    if not is_docker_running():
-        raise RuntimeError("Docker is not running")
-
-    if is_postgres_running():
-        container = get_postgres_container()
-        user = [
-            env
-            for env in container.attrs["Config"]["Env"]
-            if env.startswith("POSTGRES_USER")
-        ][0].split("=")[1]
-        return user
-
-
-def get_postgres_url(dbname: str) -> str:
-    """Get the postgres url for dbname"""
-    usr = get_postgres_container_user()
-    pwd = get_postgres_container_pwd()
-    return f"postgresql://{usr}:{pwd}@localhost:5432/{dbname}"
-
-
-def start_postgres_server(
-    dbname: str | None = "timelink",
-    dbuser: str | None = "timelink",
-    dbpass: str | None = None,
-    image: str | None = "postgres",
-    version: str | None = "latest",
-):
-    """Starts a postgres server in docker
-    Args:
-        dbname (str): database name
-        dbuser (str): database user
-        dbpass (str): database password
-        version (str | None, optional): postgres version; defaults to "latest".
-    """
-    if not is_docker_running():
-        raise RuntimeError("Docker is not running")
-
-    # check if postgres is already running in docker
-    if is_postgres_running():
-        return get_postgres_container()
-
-    if dbname is None:
-        dbname = "timelink"
-    if dbuser is None:
-        dbuser = "timelink"
-    client = docker.from_env()
-    if dbpass is None:
-        dbpass = get_db_password()
-    if image is None:
-        image = "postgres"
-    if version is None:
-        version = "latest"
-    psql_container = client.containers.run(
-        image=f"{image}:{version}",
-        detach=True,
-        ports={"5432/tcp": 5432},
-        environment={
-            "POSTGRES_USER": dbuser,
-            "POSTGRES_PASSWORD": dbpass,
-            "POSTGRES_DB": dbname,
-        },
-    )
-
-    timeout = 15
-    stop_time = 1
-    elapsed_time = 0
-    # this necessary to get the status
-    cont = client.containers.get(psql_container.id)
-    while cont.status not in ["running"] and elapsed_time < timeout:
-        time.sleep(stop_time)
-        logging.debug("Waiting for postgres server to start: %s seconds", elapsed_time)
-        cont = client.containers.get(psql_container.id)
-        elapsed_time += stop_time
-    if cont.status != "running":
-        raise RuntimeError("Postgres server did not start")
-
-    while True:
-        # Execute the 'pg_isready' command in the container
-        exit_code, _output = psql_container.exec_run("pg_isready")
-
-        # If the 'pg_isready' command succeeded, break the loop
-        if exit_code == 0:
-            logging.info("Postgres server is ready")
-            break
-
-        # If the 'pg_isready' command failed, wait for 1 seconds and try again
-        time.sleep(1)
-
-    return psql_container
-
-
-def random_password():
-    """Generate a random password"""
-
-    letters = string.ascii_letters
-    result_str = "".join(random.choice(letters) for i in range(10))
-    return result_str
-
-
-def get_db_password():
-    """Get the database password from the environment.
-    If none generated one and set it in the environment."""
-    # get password from environment
-    db_password = os.environ.get("TIMELINK_DB_PASSWORD")
-    if db_password is None:
-        db_password = random_password()
-        os.environ["TIMELINK_DB_PASSWORD"] = db_password
-    return db_password
-
-
-def get_postgres_dbnames():
-    """Get the database names from a postgres server
-    Returns:
-        list[str]: list of database names
-
-    ..code-block:: sql
-
-        SELECT datname
-            FROM pg_database
-        WHERE NOT datistemplate
-                AND datallowconn
-                AND datname <> 'postgres';
-    """
-
-    if not is_docker_running():
-        raise RuntimeError("Docker is not running")
-
-    container = start_postgres_server()
-    if container is not None:
-        engine = create_engine(
-            f"postgresql://{get_postgres_container_user()}:{get_postgres_container_pwd()}@localhost:5432/postgres"
-        )
-        with engine.connect() as conn:
-            dbnames = conn.execute(
-                text(
-                    "SELECT datname FROM pg_database "
-                    "WHERE NOT datistemplate AND datallowconn AND datname <> 'postgres';"
-                )
-            )
-            result = [dbname[0] for dbname in dbnames]
-        return result
-    return []
-
-
-def get_sqlite_databases(directory_path: str, relative_path=True) -> list[str]:
-    """Get the sqlite databases in a directory
-    Args:
-        directory_path (str): directory path
-    Returns:
-        list[str]: list of sqlite databases
-    """
-    cd = os.getcwd()
-    sqlite_databases = []
-    for root, _dirs, files in os.walk(directory_path):
-        for file_name in files:
-            if file_name.endswith(".sqlite") or file_name.endswith(".db"):
-                db_path = os.path.join(root, file_name)
-                # path relative to cd
-                if relative_path:
-                    db_path = os.path.relpath(db_path, cd)
-                sqlite_databases.append(db_path)
-    return sqlite_databases
-
-
-def get_sqlite_url(db_path: str) -> str:
-    """Get the sqlite url for a database path
-    Args:
-        db_path (str): database path
-    Returns:
-        str: sqlite url
-    """
-    if db_path == ":memory:":
-        return "sqlite:///:memory:"
-    return f"sqlite:///{db_path}"
-
-
-def is_valid_postgres_db_name(db_name):
-    """Check if the database name is valid"""
-    # Check if the name is less than 64 characters long
-    if len(db_name) >= 64:
-        return False
-
-    # Check if the name starts with a letter or underscore
-    if not re.match(r"^[a-zA-Z_]", db_name):
-        return False
-
-    # Check if the name contains only letters, digits, and underscores
-    if not re.match(r"^\w+$", db_name):
-        return False
-
-    # If all checks pass, the name is valid
-    return True
+from .database_utils import get_db_password, get_import_status, random_password
+from .database_postgres import get_postgres_container_pwd, is_postgres_running
+from .database_postgres import start_postgres_server, get_postgres_container
+from .database_postgres import get_postgres_url # noqaO
+from .database_postgres import get_postgres_dbnames  # noqa
+from .database_postgres import get_postgres_container_user  # noqa
+from .database_postgres import is_valid_postgres_db_name # noqa
+from .database_sqlite import get_sqlite_databases, get_sqlite_url  # noqa
 
 
 class TimelinkDatabase:
@@ -490,7 +233,7 @@ class TimelinkDatabase:
                             session
                         )  # this will cache the pomsom mapper objects
                 except Exception as exc:
-                    logging.ERROR(exc)
+                    logging.error(exc)
 
         if kleio_server is not None:
             self.set_kleio_server(kleio_server)
@@ -525,7 +268,7 @@ class TimelinkDatabase:
         try:
             migrations.stamp(self.db_url, "head")
         except Exception as exc:
-            logging.ERROR(exc)
+            logging.error(exc)
 
     def set_kleio_server(self, kleio_server: KleioServer):
         """Set the kleio server for imports
@@ -1196,66 +939,3 @@ class TimelinkDatabase:
                     f.write(str(ent.to_kleio()) + "\n\n")
 
 
-def get_import_status(
-    db: TimelinkDatabase, kleio_files: List[KleioFile], match_path=False
-) -> List[KleioImportedFileSchema]:
-    """Get the import status of the kleio files.
-
-        The status in returned
-        in :attr:`timelink.api.models.system.KleioImportedFileSchema.import_status`
-
-    Args:
-        db (TimelinkDatabase): timelink database
-        kleio_files (List[KleioFile]): list of kleio files with extra field import_status
-        match_path (bool, optional): if True, match the path of the kleio file
-                                    with the path of the imported file;
-                                    defaults to False.
-
-    Returns:
-        List[KleioImportedFileSchema]: list of kleio files with field import_status
-
-    TODO: KleioFile should also receive the import_errors and import_warnings
-    """
-
-    previous_imports: List[KleioImportedFileSchema] = db.get_imported_files()
-    if match_path:
-        imported_files_dict = {imported.path: imported for imported in previous_imports}
-        valid_files_dict = {file.path: file for file in kleio_files}
-    else:
-        imported_files_dict = {imported.name: imported for imported in previous_imports}
-        valid_files_dict = {file.name: file for file in kleio_files}
-        if len(valid_files_dict) != len(kleio_files):
-            raise ValueError(
-                "Some kleio files have the same name. "
-                "Use match_path=True to match the full path of the kleio file "
-                "with the path of the imported file."
-            )
-
-    for path, file in valid_files_dict.items():
-        if (
-            path not in imported_files_dict
-            or file.translated is None  # noqa: W503
-        ):
-            file.import_status = import_status_enum.N
-        elif imported_files_dict[path].imported is None:
-            # if a reimport of a previous imported file fails its
-            # imported date will be None and it needs reimport
-            file.import_status = import_status_enum.N
-        elif file.translated > imported_files_dict[path].imported.replace(
-            tzinfo=timezone.utc
-        ):
-            file.import_status = import_status_enum.U
-        else:
-            file.import_errors = imported_files_dict[path].nerrors
-            file.import_warnings = imported_files_dict[path].nwarnings
-            file.import_error_rpt = imported_files_dict[path].error_rpt
-            file.import_warning_rpt = imported_files_dict[path].warning_rpt
-            file.imported = imported_files_dict[path].imported
-            file.imported_string = imported_files_dict[path].imported_string
-            if imported_files_dict[path].nerrors > 0:
-                file.import_status = import_status_enum.E
-            elif imported_files_dict[path].nwarnings > 0:
-                file.import_status = import_status_enum.W
-            else:
-                file.import_status = import_status_enum.I
-    return kleio_files
