@@ -66,10 +66,14 @@ def start():
 
 db_index = {}
 db_url = {}
+avoid_db_patterns = ["_users"]
 
 
-def create_db_index():
+def create_db_index(avoid_patterns=None):
     """Create a dictionary of databases
+
+    Args:
+        avoid_patterns (list): list of patterns to avoid in the database name
 
     Returns:
         dict: dictionary of databases, key is an integer,
@@ -85,6 +89,8 @@ def create_db_index():
         for db in sorted(get_sqlite_databases(current_working_directory, relative_path=False))
     ]
     all_dbs = postgres_list + sqlite_list
+    if avoid_patterns:
+        all_dbs = [db for db in all_dbs if all([pattern not in db[1] for pattern in avoid_patterns])]
 
     # make tuples of the form (int, db info) from postgres_list + sqlite_list
     enumeration = enumerate(sorted(all_dbs, key=lambda x: x[1]), 1)
@@ -95,7 +101,8 @@ def create_db_index():
 def parse_db_url(db_url):
     # check if db_url is an integer
     if type(db_url) is int or db_url.isdigit():
-        db_index = create_db_index()
+        # TODO: in the future user databases may need migration too, need to refactor
+        db_index = create_db_index(avoid_patterns=avoid_db_patterns)  # this is to avoid users databases
         key = int(db_url)
         db_url = (db_index[key])[2]
     return db_url
@@ -105,7 +112,7 @@ def parse_db_url(db_url):
 def db_database_list_cmd():
     """List all available databases (sqlite, postgresql, etc)"""
     global db_index
-    db_index = create_db_index()
+    db_index = create_db_index(avoid_patterns=avoid_db_patterns)
     typer.echo("Available data bases:")
     for i, db in db_index.items():
         db_url = db[2]
