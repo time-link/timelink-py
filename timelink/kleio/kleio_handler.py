@@ -337,8 +337,8 @@ class KleioHandler:
         self.warnings = []
         self.kleio_file = attrs["SOURCE"]
         # extract prefix /kleio-home/ from self.kleio_file
-        if self.kleio_file.startswith("/kleio-home"):
-            self.kleio_file = self.kleio_file.replace("/kleio-home", "")
+        if self.kleio_file.startswith("/kleio-home/"):
+            self.kleio_file = self.kleio_file.replace("/kleio-home/", "")
         # extract name of file from path
         self.kleio_file_name = self.kleio_file.split("/")[-1]
         self.kleio_structure = attrs["STRUCTURE"]
