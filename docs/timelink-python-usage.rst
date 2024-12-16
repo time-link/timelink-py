@@ -1,9 +1,9 @@
 Timelink Python Package
 =======================
 
-The Timelink Python package provides a Python interface to the 
+The Timelink Python package provides a Python interface to the
 Timelink system. It is intended to be used by clients such as
-Jupyter notebooks to access the Timelink database and process 
+Jupyter notebooks to access the Timelink database and process
 Kleio source files.
 
 Installation
@@ -23,13 +23,13 @@ that processes source files in the Kleio
 notation and produces data that can be
 imported into the Timelink database.
 
-The Timelink Python package provides 
-a :class:`timelink.kleio.kleio_server.KleioServer` class 
+The Timelink Python package provides
+a :class:`timelink.kleio.kleio_server.KleioServer` class
 that can be used to interface with a Kleio server.
 
 For more information on the Kleio notation,
 and how it is used to produce data for the
-Timelink database, see 
+Timelink database, see
 :doc:`/som_pom_mapping`
 
 Starting a Kleio Server
@@ -49,7 +49,7 @@ in the local machine.
     kleio_home="."
     kserver: KleioServer = KleioServer.start(kleio_home=kleio_home)
 
-The latest image from the Kleio Docker repository will be 
+The latest image from the Kleio Docker repository will be
 used to start the server. If the image is not available locally,
 it will be downloaded from the Docker repository. So the
 first run may take some time.
@@ -61,7 +61,7 @@ Getting status of Kleio files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Kleio server can be queried for the status of Kleio files
-using the :meth:`timelink.kleio.kleio_server.KleioServer.translation_status` method.
+using the :meth:`timelink.kleio.kleio_server.KleioServer.get_translations` method.
 
 .. code:: python
 
@@ -69,7 +69,7 @@ using the :meth:`timelink.kleio.kleio_server.KleioServer.translation_status` met
     from timelink.kleio import KleioServer
     from timelink.kleio.schemas import KleioFile
 
-    kfiles: List[KleioFile] = kserver.translation_status(path='',recurse='yes',status=None)
+    kfiles: List[KleioFile] = kserver.get_translations(path='',recurse='yes',status=None)
 
     for kfile in kfiles:
         print(kfile.status.value,kfile.path,kfile.modified_string, kfile.translated_string)
@@ -81,7 +81,7 @@ using the :meth:`timelink.kleio.kleio_server.KleioServer.translation_status` met
     V reference_sources/linked_data/dehergne-a.cli 2023-10-24 12:56:44 2023-10-24T12:56:00+00:00
     W reference_sources/varia/EmpFAfonso.cli 2023-10-21 05:34:30 2023-10-21T05:34:00+00:00
 
-The status of a Kleio file are defined in an enumeration: 
+The status of a Kleio file are defined in an enumeration:
 :class: `timelink.kleio.schemas.KleioFileStatus`
 
 * T - Translation needed
