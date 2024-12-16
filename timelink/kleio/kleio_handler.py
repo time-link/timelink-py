@@ -146,7 +146,8 @@ class KleioHandler:
                                 (SELECT id
                                  FROM entities e2
                                  WHERE e2.id = r.destination
-                                                AND e2.the_source != e.the_source)
+                                       e2.the_source = :source_id
+                                        AND e2.the_source != e.the_source)
 
         ```
         And to get the external links to this source:
@@ -174,7 +175,7 @@ class KleioHandler:
                         FROM relations r, entities e, entities e2
                         WHERE r.id = e.id
                             AND r.destination = e2.id
-                            AND e.the_source != :source_id
+                            AND e2.the_source = :source_id
                             AND e.the_source != e2.the_source
                 """
         # https://docs.sqlalchemy.org/en/20/orm/queryguide/select.html#orm-queryguide-selecting-text
