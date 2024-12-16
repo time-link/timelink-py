@@ -1,0 +1,44 @@
+kleio$gacto2str/translations=79
+
+   property$multiple-entry-flag/124#ascii for pipe char/id=root-pro1-78
+   link$uc-china/"https://timelink.uc.pt/mhk/china/id/$1"/id=root-lin1-78
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-78
+   fonte$issue48-sourceb/tipo=cronologia/data=1552:1758/substitui=china-geral/obs="""
+
+         Referências:
+
+         Dehergne, J. (1973). Répertoire des Jésuites de Chine de 1552 à 1800.
+                   Institutum historicum; Letouzey & Ané.
+                   https://archive.org/details/bhsi37
+                   pp. 325-352
+         """
+
+      crono$1522-01-28/China/Imperador Kia-Tsing/id=issue48-sourceb-his1-79
+
+         referido$Jiajing%Kia-Tsing#@wikidata:Q10011/id=deh-chronologie-his1-78-per1-78
+
+      crono$1542:1543/Fora da China/Chegada dos Portugueses ao Japão/id=deh-chronologie-his2-78
+
+         lugar$Japão#@wikidata:Q17/id=deh-chronologie-his2-78-geo1-78
+
+      crono$1549/Fora da China/chegada de S. Francisco Xavier ao Japão/id=deh-chronologie-his3-78
+
+         referido$Francisco Xavier/xmesmo_que=francisco-xavier/id=deh-chronologie-his3-78-per1-78
+
+         lugar$Japão#@wikidata:Q17/id=deh-chronologie-his3-78-geo2-78
+
+      crono$1552-12-02/China/Morte de Francisco Xavier em Sanchuan/id=deh-chronologie-his4-78
+
+         lugar$Sanchuan#@wikidata:Q5613831 (conhecido como Guanting, o povo Monguor chama-lhe "Sanchuan", 三川)/id=deh-chronologie-his4-78-geo3-78
+
+         referido$Francisco Xavier/xmesmo_que=francisco-xavier/id=deh-chronologie-his4-78-per1-78
+
+      crono$1555-7-0/China/Melchior Nunes Barreto chega a Sanchuan/id=deh-chronologie-his5-78
+
+         lugar$Sanchuan#@wikidata:Q5613831 (conhecido como Guanting, o povo Monguor chama-lhe "Sanchuan", 三川)/id=deh-chronologie-his5-78-geo4-78
+
+         referido$Melchior Nunes Barreto/id=deh-chronologie-his5-78-per1-78
+
+      crono$1557/China/Fundação de Macau%possession portugaise/id=deh-chronologie-his6-78
+
+         lugar$Macau#@wikidata:Q14773/id=deh-chronologie-his6-78-geo5-78

@@ -47,7 +47,9 @@ def setup():
     else:
         # Setup kleio server for tests
         khome = f"{TEST_DIR}/timelink-home"
-        ks = KleioServer.start(kleio_home=khome, kleio_debug='DEBUG', reuse=True, update=True)
+        ks = KleioServer.start(
+            kleio_home=khome, kleio_debug="DEBUG", reuse=True, update=True
+        )
         print()
     return ks
 
@@ -202,9 +204,7 @@ def test_translations_get(setup):
     status: str = None
 
     kserver: KleioServer = setup
-    translations = kserver.get_translations(path,
-                                              recurse=recurse,
-                                              status=status)
+    translations = kserver.get_translations(path, recurse=recurse, status=status)
     assert len(translations) > 0
 
     kfile: KleioFile
@@ -312,7 +312,7 @@ def tests_get_logs(setup):
 def test_homepage_get(setup):
     # Test if homepage is retrieved"""
     url = "https://timelink.uc.pt/kleio"
-    ks = KleioServer.attach(url, '', '')
+    ks = KleioServer.attach(url, "", "")
     home = ks.get_home_page()
     # extract lines with pattern "([A-Za-z_]+):(.*)"
     pattern = re.compile(r"([A-Za-z_\ ]*):(.*)")
@@ -322,7 +322,7 @@ def test_homepage_get(setup):
     for key, value in matches:
         print(f"{key} = {value}")
         home_page_info[key] = value
-    version = home_page_info['Version']
+    version = home_page_info["Version"]
     assert version is not None
 
 
@@ -354,7 +354,8 @@ def test_start_kleio_server_env():
         kleio_token_db=kleio_token_db,
         kleio_debug=kleio_debug,
         reuse=False,
-        update=False)
+        update=False,
+    )
 
     time.sleep(3)
     home = ks.get_home_page()
@@ -366,7 +367,9 @@ def test_start_kleio_server_env():
     for key, value in matches:
         print(f"{key} = {value}")
         home_page_info[key] = value
-    assert home_page_info['Workers'].strip() == str(kworkers), "number of works do not match"
-    ptoken = home_page_info['Kleio_admin_token'].strip()
+    assert home_page_info["Workers"].strip() == str(
+        kworkers
+    ), "number of works do not match"
+    ptoken = home_page_info["Kleio_admin_token"].strip()
     assert ptoken == kadmin_token[:5], "token does not match"
     ks.stop()

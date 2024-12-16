@@ -1,10 +1,10 @@
-kleio$gacto2.str/translations=52
+kleio$gacto2.str/translations=73
    fonte$dev1692/1692/devassa/loc=auc III-d,5,2,135
 
       devassa$devass1692/10/4/1692/visdor=manuel joao%doutor#cargo: desembargador da relacao episcopal/fol=fol?/obs= """
-      
+
       Pároco Luís Álvaro Pinto.
-      A visita e' feita na igreja da Misericórdia em vários dias. 
+      A visita e' feita na igreja da Misericórdia em vários dias.
       Continua em 13 de Abril de 1692.
       Continua em 15 de Abril de 1692 (a partir da testemunha 33 inc.).
       Continua em 16 de Abril de 1692 (a partir da testemunha 45 inc.).
@@ -60,7 +60,11 @@ kleio$gacto2.str/translations=52
                      referido$joao costa/id=d1692-2008/obs=frequentava mulheres em casa de antonio cordeiro
                         ls$profissao/escrivao do tabaco
 
-                     referido$jose cunha e sa/id=d1692-2009/obs=sera jose da cunha e sa?,segundo uma das testemunhas de 1692 era um dos que recebia em casa mulheres levadas por antonio cordeiro
+                     referido$jose cunha e sa/id=d1692-2009/obs="""
+                     Sera jose da cunha e sá?
+                     Segundo uma das testemunhas de 1692 era
+                     um dos que recebia em casa mulheres
+                     levadas por antonio cordeiro"""
                         ls$residencia/sobral
 
          testa$maria de jesus/id=dev1692-per3
@@ -71,23 +75,23 @@ kleio$gacto2.str/translations=52
 
             acusa$c1692-antonio-cordeiro-alcouc/origem="""
                   Viu o meirinho dos tabacos (antonio correira) entrar em casa de
-                  antonio cordeiro e é irma de madalena vargas que foi entregue 
+                  antonio cordeiro e é irma de madalena vargas que foi entregue
                   pelo antonio cordeiro a manuel homem de quadros
                   """/literal= """
 
-                  ...sabe por ser publico e por sua irmam magdalena solteira 
-                  que o denunciado [antonio cordeiro] entregara a d.ta irmam 
-                  como dito he a manoel homen coadros m.or na sua quinta 
-                  freguesia desta igreja de santiago para o que o dito 
-                  denunciado abriu uma porta que estava fechada com um 
+                  ...sabe por ser publico e por sua irmam magdalena solteira
+                  que o denunciado [antonio cordeiro] entregara a d.ta irmam
+                  como dito he a manoel homen coadros m.or na sua quinta
+                  freguesia desta igreja de santiago para o que o dito
+                  denunciado abriu uma porta que estava fechada com um
                   cadeado aonde o pai da dita madalena e da dita testemunha
                   da dita madalena que tambem o he meu [sic] a havia fechado
                   para que ninguem a pudesse enganar a qual foi com o denunciado
-                  para casa do dito manuel homem onde esteve onze ou doze dias, 
-                  sem ninguem o saber e depois que veio comecou a queixar-se a 
-                  sua gente que o denunciado lhe? tivera a culpa. Alem da dita sua 
-                  irma o dizer ela testemunha via que o denunciado 
-                  falava algumas vezes com sua irma mas que lhe nao parecia 
+                  para casa do dito manuel homem onde esteve onze ou doze dias,
+                  sem ninguem o saber e depois que veio comecou a queixar-se a
+                  sua gente que o denunciado lhe? tivera a culpa. Alem da dita sua
+                  irma o dizer ela testemunha via que o denunciado
+                  falava algumas vezes com sua irma mas que lhe nao parecia
                   que lhe falava com ma intento o que tudo sabe por ser publico
                   e pellas razoes que dito tem.
             """/id=dev1692-per3-obj2-20
@@ -711,16 +715,16 @@ kleio$gacto2.str/translations=52
             ls$profissao/trabalhador
 
             acusa$c1692-antonio-cordeiro-alcouc/alcouc/literal= """
-            e' o pai. versao ligeiramente diferente. 
-            
-            '... e se dizia que fora para casa de manuel homem morador 
-            na sua quinta termo desta vila, aonde esteve alguns dias 
-            e ouvio dizer a pessoas de que nao esta lembrado que o 
-            denunciado fora a causa da filha delle testemunha ir 
+            e' o pai. versao ligeiramente diferente.
+
+            '... e se dizia que fora para casa de manuel homem morador
+            na sua quinta termo desta vila, aonde esteve alguns dias
+            e ouvio dizer a pessoas de que nao esta lembrado que o
+            denunciado fora a causa da filha delle testemunha ir
             para a casa do dito manuel homem'
-            
+
             testemunho menos claro que o das filhas
-            
+
             """/id=dev1692-per13-obj82-20
 
          testo$joao simoes/id=d1692-2085
@@ -789,18 +793,18 @@ kleio$gacto2.str/translations=52
             ls$assina/+
 
             acusa$c1692-antonio-cordeiro-alcouc/alcouc/literal="""
-            acusa de alcouce. 
-            Tem em casa maria da silva, a ruiva, maria esteva, solteiras, 
-            mulheres devassas, joao da costa, meirinho do tabaco e um escrivao, 
-            frequentam, com outros homens que vinham de fora " a algumas diligencias". 
+            acusa de alcouce.
+            Tem em casa maria da silva, a ruiva, maria esteva, solteiras,
+            mulheres devassas, joao da costa, meirinho do tabaco e um escrivao,
+            frequentam, com outros homens que vinham de fora " a algumas diligencias".
             Tb. acusa a mulher francisca nunes
             """/id=d1692-2092-obj91-20
 
             acusa$c1692-maria-esteva/dev/literal="""
-            
-            ela ja culpada antes de alcouce e alcov com maria da silva a ruiva, 
+
+            ela ja culpada antes de alcouce e alcov com maria da silva a ruiva,
             "nao terem outro negocio mais do que pecarem"
-            
+
             """/id=d1692-2092-obj92-20
 
                caso$c1692-maria-esteva/dev
@@ -837,7 +841,7 @@ kleio$gacto2.str/translations=52
                   acusada$maria/f/id=d1692-2096
                      ls$ec/s
                      ls$residencia/simoes
-                     ls$profissao/gramadeira/obs="""segundo a testemunha diogo domingues. 
+                     ls$profissao/gramadeira/obs="""segundo a testemunha diogo domingues.
 
                      Morais da Silva:
                      'gramadeira: instrumento de madeira em forma de cutelo com que se trilha o linho, antes de ser esadelado.|| Gancho que se usa nas estrebarias para puxar a palha para as manjedouras || provinc. Mulher que trabalha com a gramadeira ||Ant. utensilio para esmagar a palha'
@@ -921,8 +925,8 @@ kleio$gacto2.str/translations=52
             ls$assina/?#verificar
 
             acusa$c1692-antonio-simoes-raposo-maria/amanc/literal="""
-            
-            o denunciado ao qual dizem que ela ia buscar ao servico 
+
+            o denunciado ao qual dizem que ela ia buscar ao servico
             aonde andava por ser moça louca e amiga de ser vista
             """,fol.34/id=d1692-2100-obj103-20
 
@@ -938,13 +942,13 @@ kleio$gacto2.str/translations=52
 
             acusa$c1692-antonio-catarina-fernandes/amanc/literal="""
 
-            ele testemunha na sexta-feira proxima passada, indo do 
-            lagar para sua casa achou ao juiz desta vila com seu 
-            escrivao o qual chamou a ele testemunha para dar conta 
-            daquele preso o qual acharao em casa da cumplice descalco 
-            e assentado ao lume e ele dissera se dava por preso o que ele 
+            ele testemunha na sexta-feira proxima passada, indo do
+            lagar para sua casa achou ao juiz desta vila com seu
+            escrivao o qual chamou a ele testemunha para dar conta
+            daquele preso o qual acharao em casa da cumplice descalco
+            e assentado ao lume e ele dissera se dava por preso o que ele
             testemunha viu por se achar presente e o acompanhar ate a cadeia desta vila
-            
+
             """, fol.35/id=d1692-2101-obj106-20
 
             acusa$c1692-manuel-catarina/amanci/literal=queriam casar mas saiu impedimento, parentes em 4o grau ela pariu uma crianca que morreu. Caso de muitos anos/id=d1692-2101-obj107-20
@@ -1015,10 +1019,10 @@ kleio$gacto2.str/translations=52
                no verao passado, em tempo dos trigos em dia que nao esta
                   lembrado viu ele testemunha que indo a cumplice tangendo
                   uma bezerra a viu ao denunciado que andava apanhando erva
-                  e se foi para onde ela estava e que o lugar era acomodado 
-                  para cometerem pecado de sensualidade sem serem vistos  
-                  porquanto o trigo era muito alto, mas ele testemunha 
-                  nao viu se o cometeram ou nao, so estranhou ver ir a 
+                  e se foi para onde ela estava e que o lugar era acomodado
+                  para cometerem pecado de sensualidade sem serem vistos
+                  porquanto o trigo era muito alto, mas ele testemunha
+                  nao viu se o cometeram ou nao, so estranhou ver ir a
                   cumplice sendo mulher donsela para aquele lugar andando
                   ai o denunciado.
 
@@ -1082,14 +1086,14 @@ kleio$gacto2.str/translations=52
             acusa$c1692-antonio-catarina-fernandes/amanc,relata a cena da prisao/id=dev1692-per20-obj130-20
 
             acusa$c1692-manuel-catarina/amanci/literal="""
-            
-            tendo ele testemunha por criado a manuel, solteiro, 
-            filho de maria francisca a travinca? ele aleivosamente 
-            se afeicoou a uma sua filha por nome catarina e a 
-            emprenhou ha mais de um ano a esta parte e que 
-            a dita sua filha vendo-se prenhada se absentou 
+
+            tendo ele testemunha por criado a manuel, solteiro,
+            filho de maria francisca a travinca? ele aleivosamente
+            se afeicoou a uma sua filha por nome catarina e a
+            emprenhou ha mais de um ano a esta parte e que
+            a dita sua filha vendo-se prenhada se absentou
             como tambem o dito moco os quais denunciados sao parentes em 4 grau de afinidade
-            
+
             """ (explica o parentesco)/id=dev1692-per20-obj131-20
 
             referido$manuel/id=d1692-2103b
@@ -1287,14 +1291,14 @@ kleio$gacto2.str/translations=52
                ls$residencia/quinta da cruz
 
             acusa$c1692-antonio-simoes-raposo-maria/amanc/literal= fol 52 ..."""
-            
-            viu ela testemunha indo o ano passado no mes de julho pouco mais ou 
-            menos ao campo do mondego sachar em companhia dos denunciados 
-            juntamente com o pais da cumplice e dormindo uma noite em uma 
-            eira em alfarelos, o denunciado com a cumplice se deitaram ambos 
-            juntos muito pegados um a outro com o rosto junto um a outro a modo 
-            que foram casados e a ela testemunha pareceu muito mal ainda que 
-            nao sentiu que tivesse entre acto de copula ainda que a podiao 
+
+            viu ela testemunha indo o ano passado no mes de julho pouco mais ou
+            menos ao campo do mondego sachar em companhia dos denunciados
+            juntamente com o pais da cumplice e dormindo uma noite em uma
+            eira em alfarelos, o denunciado com a cumplice se deitaram ambos
+            juntos muito pegados um a outro com o rosto junto um a outro a modo
+            que foram casados e a ela testemunha pareceu muito mal ainda que
+            nao sentiu que tivesse entre acto de copula ainda que a podiao
             ter pelo modo com que estavam juntos
             """ e ainda que quando as raparigas iam "gramar" ela se desviava do caminho para ir ver o cumplice./id=d1692-2126-obj159-20
 
@@ -1309,14 +1313,14 @@ kleio$gacto2.str/translations=52
                ls$morto/antes
 
             acusa$c1692-antonio-simoes-raposo-maria/amanc/literal=ela gravida """
-            
-            ... o ano passado pela ocasiao dos passos vindo o denunciado de uma sua 
-            fazenda e passando pelo lugar onde mora a dita cumplice entrara o dito 
-            denunciado em casa da dita cumplice que ai estava com outra mulher e 
-            parecendo mal a ela testemunha foi a casa da dita cumplice porque 
-            mora junto dela e pelejou muito com o denunciado que se fosse aviar 
+
+            ... o ano passado pela ocasiao dos passos vindo o denunciado de uma sua
+            fazenda e passando pelo lugar onde mora a dita cumplice entrara o dito
+            denunciado em casa da dita cumplice que ai estava com outra mulher e
+            parecendo mal a ela testemunha foi a casa da dita cumplice porque
+            mora junto dela e pelejou muito com o denunciado que se fosse aviar
             sua vida e que deixasse a dita maria porque ali nao estavam seus pais em casa
-            
+
             """/id=d1692-2127-obj160-20
 
          testo$joao rodrigues alvaro/id=d1692-2128
@@ -1406,12 +1410,12 @@ kleio$gacto2.str/translations=52
             ls$assina/+
 
             acusa$c1692-antonio-simoes-raposo-maria/amanc/literal="""
-            
-               vindo ele testemunha havera tres ou quatro anos com eles da 
-               Nossa Senhora da Nazare, em o lugar de Cavalinhos, em 
-               uma noite que ai dormiram, viu ele testemunha que o 
-               denunciado dormio ao redor de um valado junto com a 
-               cumplice, cobertos com um manto estando ambos juntos 
+
+               vindo ele testemunha havera tres ou quatro anos com eles da
+               Nossa Senhora da Nazare, em o lugar de Cavalinhos, em
+               uma noite que ai dormiram, viu ele testemunha que o
+               denunciado dormio ao redor de um valado junto com a
+               cumplice, cobertos com um manto estando ambos juntos
                como se foram casados o que ele testemunha estranhara muito...
                """ . Ela esta gravida/id=d1692-2143-obj168-20
 
@@ -1425,13 +1429,13 @@ kleio$gacto2.str/translations=52
             referido$joao lourenco/id=d1692-2144a
 
             acusa$c1692-antonio-simoes-raposo-maria/amanc/literal="""
-            havera tres anos em dia de que nao esta lembrado viu 
-            os denunciados estarem ambos metidos em uma barraca no 
-            sitio que chamam ribeira da barrosa, aonde se detiveram 
+            havera tres anos em dia de que nao esta lembrado viu
+            os denunciados estarem ambos metidos em uma barraca no
+            sitio que chamam ribeira da barrosa, aonde se detiveram
             por espaco de tres ou quatro horas
-            """ """ e noutras ocasioes, estando ja os trigos crescidos e 
+            """ """ e noutras ocasioes, estando ja os trigos crescidos e
             espigados os viu ambos andarem a apanhar erva sos
-            
+
             """. Ela gravida/id=d1692-2144-obj169-20
 
          testo$luis rodrigues/id=d1692-2145
@@ -1441,10 +1445,10 @@ kleio$gacto2.str/translations=52
             ls$assina/+
 
             acusa$c1692-baptista-moura-domingas-carvalho/amanci/literal="""
-            que foi para casa do denunciado em fama de honrada e virtuosa 
+            que foi para casa do denunciado em fama de honrada e virtuosa
             e de casa do denunciado saiu prenha
             [...]
-            e que a cumplice dizia publicamente que o denunciado a desflorara a 
+            e que a cumplice dizia publicamente que o denunciado a desflorara a
             titulo de casar com ela
             """/id=d1692-2145-obj170-20
 
@@ -1464,15 +1468,15 @@ kleio$gacto2.str/translations=52
             ls$assina/b
 
             acusa$8d1692-c1/alcouc/literal="""
-                        
-            foi fama publica que quando o denunciado entregara a dita sua cunhada 
-            ao dito manuel fernandes nogueira, proprietario do escrivao dos orfaos 
-            desta vila ela a levara para fora da terra e a trouxera por la alguns 
-            meses recebeu do dito manuel fernandes o dito denunciado um capote de 
+
+            foi fama publica que quando o denunciado entregara a dita sua cunhada
+            ao dito manuel fernandes nogueira, proprietario do escrivao dos orfaos
+            desta vila ela a levara para fora da terra e a trouxera por la alguns
+            meses recebeu do dito manuel fernandes o dito denunciado um capote de
             que fizera um vestido a um filho
 
-            [vem gente de fora. Entregou sua cunhada domingas nunes a 
-            manuel fernandes nogueira, proprietario do oficio de escrivao dos 
+            [vem gente de fora. Entregou sua cunhada domingas nunes a
+            manuel fernandes nogueira, proprietario do oficio de escrivao dos
             orfaos e tambem madalena vargas a manuel homem de quadros]
             """/id=d1692-2147-obj172-20
 

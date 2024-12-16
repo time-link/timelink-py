@@ -4,7 +4,7 @@
 # pylint: disable=C0116
 
 from timelink.kleio.utilities import (
-    get_extra_info,
+    get_extra_info_from_obs,
     quote_long_text,
     kleio_escape,
     render_with_extra_info
@@ -44,19 +44,19 @@ def test_quote_long_text_with_text_containing_special_chars():
 
 
 def test_get_extra_info_with_none():
-    result = get_extra_info(None)
+    result = get_extra_info_from_obs(None)
     assert result == ("", {})
 
 
 def test_get_extra_info_with_empty_string():
-    result = get_extra_info("")
+    result = get_extra_info_from_obs("")
     assert result == ("", {})
 
 
 def test_get_extra_info_with_valid_string():
     extra_info = 'saiu a primeira vez extra_info: {"value": {"comment": "@wikidata:Q45412"}}'
     expected_result = ("saiu a primeira vez", {"value": {"comment": "@wikidata:Q45412"}})
-    result = get_extra_info(extra_info)
+    result = get_extra_info_from_obs(extra_info)
     assert result == expected_result
 
 
@@ -86,6 +86,6 @@ def test_kleio_escape_with_mixed_chars():
 def test_render_with_extra_info():
     element_name = "value"
     element_value = 'saiu a primeira vez extra_info: {"value": {"comment": "@wikidata:Q45412"}}'
-    core, extra_info = get_extra_info(element_value)
+    core, extra_info = get_extra_info_from_obs(element_value)
     expected_result = f'{core}#@wikidata:Q45412'
     assert render_with_extra_info(element_name, core, extra_info) == expected_result
