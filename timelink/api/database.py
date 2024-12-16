@@ -219,21 +219,15 @@ class TimelinkDatabase:
         self.metadata = models.Base.metadata
         if not database_exists(self.engine.url):
             create_database(self.engine.url)
-            self.create_db()
-        else:
-            # upgrade the database with alembic
-            # first check if the timelink tables are there
-            if "entities" not in self.table_names():
-                self.create_db()
-            else:
-                try:
-                    migrations.upgrade(self.db_url)
-                    with self.session() as session:
-                        self.ensure_all_mappings(
-                            session
-                        )  # this will cache the pomsom mapper objects
-                except Exception as exc:
-                    logging.error(exc)
+        self.create_db()
+        try:
+            migrations.upgrade(self.db_url)
+            with self.session() as session:
+                self.ensure_all_mappings(
+                    session
+                )  # this will cache the pomsom mapper objects
+        except Exception as exc:
+            logging.error(exc)
 
         if kleio_server is not None:
             self.set_kleio_server(kleio_server)
@@ -373,6 +367,8 @@ class TimelinkDatabase:
         # for a given group, we can use this dictionary.
         # which is based on the actual class associated with each
         # group in the database.
+        # This is also done during import but is needed here to
+        # ensure that the ORM classes are available for queries
 
         stmt = select(Entity.pom_class, Entity.groupname).distinct()
         results = session.execute(stmt).all()
@@ -677,13 +673,17 @@ class TimelinkDatabase:
             kwargs["db"] = self
         return timelink.api.models.person.get_person(*args, **kwargs)
 
-    def get_entity(self, *args, **kwargs) -> Entity:
+    def get_entity(self, id: str, session=None) -> Entity:
         """Fetch an entity by id.
 
         See: :func:`timelink.api.models.entity.Entity.get_entity`
 
         """
-        return Entity.get_entity(self, *args, **kwargs)
+        if session is None:
+            with self.session() as session:
+                return Entity.get_entity(id, session)
+        else:
+            return Entity.get_entity(id, session)
 
     def pperson(self, id: str):
         """Prints a person in kleio notation"""
@@ -937,5 +937,3 @@ class TimelinkDatabase:
                 with self.session() as session:
                     ent = Entity.get_entity(id, session)
                     f.write(str(ent.to_kleio()) + "\n\n")
-
-
