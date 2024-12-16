@@ -45,12 +45,6 @@ class Source(Entity):
 
     __mapper_args__ = {"polymorphic_identity": "source"}
 
-    def get_update_context(Entity, session, **kwargs):
-        """ When a source is deleted it is necessary
-        See: https://time-link.github.io/timelink-docs/D_Updating_sources_in_the_database/D.1%20Processing%20new%20versions%20of%20source%20transcription/
-        """
-        return None
-
     def __repr__(self):
         sr = super().__repr__()
         return (
@@ -68,7 +62,9 @@ class Source(Entity):
     def __str__(self):
         return self.to_kleio()
 
-    def to_kleio(self, ident="", ident_inc="  ", show_contained=True, width=80, **kwargs) -> str:
+    def to_kleio(
+        self, ident="", ident_inc="  ", show_contained=True, width=80, **kwargs
+    ) -> str:
         r = (
             f"{self.groupname}${self.id}/{self.the_date}"
             f"/type={kleio_escape(self.the_type)}"

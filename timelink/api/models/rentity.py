@@ -78,6 +78,9 @@ class LinkStatus(PyEnum):
     N = "MHK"  # legacy status, linked in MHK (considered valid)
     INVALID = "I"  # During import of a source, links are invalidated
 
+    def __str__(self):
+        return self.name
+
 
 class REntity(Entity):
     """

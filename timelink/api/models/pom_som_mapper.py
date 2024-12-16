@@ -128,11 +128,18 @@ class PomSomMapper(Entity):
     }
     # stores the ORM mapper for this mapping (source, act,person...)
     orm_class: Entity
+
     # Class attribute stores current PomSomMappings keyed by id
     pom_classes: dict = {}
-    # Stores the association between group names and ORM Models.
+
+    # Stores the association between group names and PomSomMapper.
     #  See get_orm_for_groupname and issue #53
     group_orm_models: dict = {}
+
+    # Caches group to PomSomMapper mapping
+    # Note that this need to be updated everytime a group is imported
+    # or a new mapping is created
+    group_pom_classes: dict = {}
 
     def ensure_mapping(self, session=None):
         """
@@ -351,7 +358,8 @@ class PomSomMapper(Entity):
 
         See also Entity.get_orm_for_pom_class
 
-        :param pom_class_id: the id of a pom_class
+        :param pom_class_id:
+        the id of a pom_class
         """
         return session.get(cls, pom_class_id)
 
@@ -418,6 +426,25 @@ class PomSomMapper(Entity):
                 return super_class.element_class_to_column(eclass, session=session)
         return None
 
+    def element_name_to_column(self, ename: str, session: None) -> str:
+        """ Return the column name corresponding to a group element name.
+
+        Args:
+            ename (str): The name of an element (included in the export file).
+
+        Returns:
+            str: The name of the column corresponding to this element in the mapped table.
+        """
+        cattr: PomClassAttributes = None
+        for cattr in self.class_attributes:  # pylint: disable=no-member
+            if cattr.colclass == ename:
+                return cattr.colname
+        if self.id != "entity":
+            super_class = self.get_pom_class(self.super_class, session=session)
+            if super_class is not None:
+                return super_class.element_name_to_column(ename, session=session)
+        return None
+
     def column_to_class_attribute(self, colname: str, session: None) -> 'PomClassAttributes':
         """ Return the class attribute corresponding to a column name.
 
@@ -438,6 +465,8 @@ class PomSomMapper(Entity):
     def kgroup_to_entity(cls, group: KGroup, session=None, with_pom=None) -> Entity:
         """
         Store a Kleio Group in the database.
+
+        This is the main method that imports Kleio transcripts into the database.
 
         :param group: a Kleio Group
         :param with_pom: id of a PomSom class to handle storing this group
@@ -465,15 +494,41 @@ class PomSomMapper(Entity):
         pom_class.ensure_mapping(session)
         ormClass = Entity.get_orm_for_pom_class(pom_class.id)
 
+        # store the ORM class and the PomSom Mapper for this group
+        #  in the top level of the ORM model (Entity)
+        # this is necessary because the Kleio export file
+        # only exports a class once, but a given source can
+        # have multiple groups associated with the same class.
+        # That is the case with persons, for example.
+        # If later we want to know which ORM class to use for
+        # for a given group, we can use this dictionary.
+        # which is based on the actual class associated with each
+        # group in the database.
+        Entity.group_models[group.kname] = ormClass
+        Entity.group_pom_classes[group.kname] = pom_class
+
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
 
         # extra_info =  this will store the extra information in comment and original words
         extra_info: dict = dict()  # {el1:{'core':'','comment':'','original':''},el2:...}
-        group_obs = ''  # this will store the observation information with extra info
+        group_obs = ''  # in previous versions extra info was stored in the obs column. Now it is stored in extra_info
         columns = inspect(ormClass).columns
-        # temp
+        entity_has_extra_info_column = "extra_info" in [c.name for c in columns]
+        # Certain columns are not mapped to elements, so we need to skip them
+        skip_columns = ["the_source",
+                        "the_line",
+                        "the_level",
+                        "the_order",
+                        "indexed",
+                        "updated",
+                        "inside",
+                        "groupname",
+                        "extra_info"]
+
         for column in set([c.name for c in columns]):
+            if column in skip_columns:
+                continue
             cattr = pom_class.column_to_class_attribute(column, session)
             if cattr is None:  # cols as updated and indexed not mapped
                 continue
@@ -481,6 +536,13 @@ class PomSomMapper(Entity):
                 pass
             element: KElement = group.get_element_by_name_or_class(cattr.colclass)
             if element is not None and element.core is not None:
+                # Update the association between the element and the column
+                # in the Entity class so that it can be used later
+                # for instance in to_kleio() methods
+                group_elements_to_columns: dict = Entity.group_elements_to_columns.get(group.kname, {})
+                group_elements_to_columns[element.name] = column
+                Entity.group_elements_to_columns[group.kname] = group_elements_to_columns
+
                 core_value = str(element.core)
                 try:
                     # if value too long for column truncate with warning
@@ -534,12 +596,14 @@ class PomSomMapper(Entity):
         # if group_obs.strip() != '':
         #     entity_from_group.obs = group_obs.strip()
         if len(extra_info) > 0:
-            if group_obs is not None and group_obs.strip() != "":
-                group_obs = f"{group_obs.strip()} extra_info: {json.dumps(extra_info)}"
-            else:
-                group_obs = f"extra_info: {json.dumps(extra_info)}"
+            if not entity_has_extra_info_column:
+                # we need to store the extra_info in the obs column
+                if group_obs is not None and group_obs.strip() != "":
+                    group_obs = f"{group_obs.strip()} extra_info: {json.dumps(extra_info)}"
+                else:
+                    group_obs = f"extra_info: {json.dumps(extra_info)}"
 
-        # convert extra_info to string
+        # store the extra_info in the extra_info column
         entity_from_group.extra_info = extra_info
         entity_from_group.obs = group_obs
 
@@ -550,6 +614,9 @@ class PomSomMapper(Entity):
             entity_from_group.inside = container_id
         else:
             entity_from_group.inside = None
+
+        # we have successfully created the entity from the group
+
         return entity_from_group
 
     @classmethod

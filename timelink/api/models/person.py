@@ -41,11 +41,12 @@ class Person(Entity):
         else:
             myname = self.groupname
         r = (
-            f"{myname}${quote_long_text(self.name)}/"
-            f"{quote_long_text(self.sex)}{self.render_id()}"
+            f"{myname}${self.for_kleio('name')}/"
+            f"{self.for_kleio('sex')}{self.render_id()}"
         )
-        if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs,width=width)}"
+        obss = self.for_kleio('obs')
+        if len(obss) > 0:
+            r = f"{r}/obs={quote_long_text(obss,width=width)}"
         kleio = super().to_kleio(
             self_string=r,
             show_contained=show_contained,

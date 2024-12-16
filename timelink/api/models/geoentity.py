@@ -5,7 +5,7 @@ MIT License, no warranties.
 
 from sqlalchemy import Column, String, ForeignKey
 
-from timelink.kleio.utilities import quote_long_text
+from timelink.kleio.utilities import quote_long_text, render_with_extra_info
 from .entity import Entity
 
 
@@ -36,14 +36,15 @@ class Geoentity(Entity):
 
     def to_kleio(self, self_string=None, show_contained=False, ident="", ident_inc="  ", width=80, **kwargs) -> str:
 
-        if self_string is None:
-            if self.name is None:
-                name = ""
-            else:
-                name = self.name + "/"
-            r = f"{self.groupname}${name}{quote_long_text(self.the_type, width=width)}{self.render_id()}"
-            if self.obs is not None and len(self.obs.strip()) > 0:
-                self_string = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
+        obs, extra_info = self.get_extra_info()
+        if self.groupname is None:
+            myname = "attribute"
+        else:
+            myname = self.groupname
+            r = f"{myname}${render_with_extra_info('name', self.name, extra_info=extra_info, **kwargs)}"
+            r += f"/{render_with_extra_info('the_type', self.the_type, extra_info=extra_info, **kwargs)}"
+            if obs is not None and len(obs.strip()) > 0:
+                self_string = f"{r}/obs={quote_long_text(obs.strip(), width=width)}"
             else:
                 self_string = r
         r = super().to_kleio(self_string=self_string, ident=ident, ident_inc=ident_inc,

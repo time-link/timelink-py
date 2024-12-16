@@ -1,5 +1,6 @@
 from typing import List, Optional
 from datetime import datetime
+from collections import OrderedDict
 
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
@@ -19,8 +20,9 @@ from sqlalchemy import inspect  # pylint: disable=import-error
 
 from timelink.kleio.utilities import (
     kleio_escape,
-    get_extra_info,
+    get_extra_info_from_obs,
     render_with_extra_info,
+    format_timelink_date as ftld,
 )
 from .base_class import Base
 
@@ -87,7 +89,9 @@ class Entity(Base):
     rels_out = None
 
     # This is defined in REntity.py
-    links = relationship("Link", back_populates="entity_rel", cascade="all, delete-orphan")
+    links = relationship(
+        "Link", back_populates="entity_rel", cascade="all, delete-orphan"
+    )
 
     # this based on
     # https://stackoverflow.com/questions/28843254
@@ -99,7 +103,18 @@ class Entity(Base):
     )
 
     # group_models = contains the correspondence between groupname and ORM class
+    # Ensure mappings are up to date
+    # see self.ensure_mappings()
+    # see PomSomMapper.group_to_entity(self)
     group_models = {}
+
+    # group pom classes = contains the correspondence between groupname and PomSomMapper
+    # note that classes store here can raise DetachedInstanceError when accessed
+    group_pom_classes = {}
+
+    # maps group elements to columns. updated by PomSomMapper.kgroup_to_entity
+    # this is a dictionary of dictionaries: first key the group name, second key the element name
+    group_elements_to_columns = {"entity": {"id": "id"}}
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
@@ -142,7 +157,7 @@ class Entity(Base):
 
     @classmethod
     def get_som_mapper_ids(cls):
-        """Ids of SomPomMapper references by orm classes
+        """Ids of PomSomMapper references by orm classes
 
         Returns:
             List[str]: List of strings
@@ -217,6 +232,58 @@ class Entity(Base):
         else:
             return None
 
+    def get_column_for_element(self, element: str):
+        """Get the column name for a group element"""
+        self.update_group_elements_to_columns
+        return Entity.group_elements_to_columns.get(self.groupname, {}).get(
+            element, None
+        )
+
+    def get_element_for_column(self, column: str):
+        """Get the element name for a column"""
+
+        self.update_group_elements_to_columns()
+        for element, column_name in Entity.group_elements_to_columns.get(
+            self.groupname, {}
+        ).items():
+            if column_name == column:
+                return element
+        return None
+
+    def update_group_elements_to_columns(self):
+        """Update the element to column mappings for this entity"""
+        if (
+            Entity.group_elements_to_columns.get(self.groupname, None) is None
+            or len(  # noqa: W503
+                Entity.group_elements_to_columns.get(self.groupname, {})
+            )
+            == 0  # noqa: W503
+        ):
+            session = object_session(self)
+            if session is None:
+                raise ValueError(
+                    "Entity must be in a session to update element to columns" "mappings"
+                )
+                # when a group is added programaically, the element to column mappings
+                # the pom_class can be None. In this case, we use the group name
+                # as the pom_class
+            if self.pom_class is None:
+                self.pom_class = self.groupname
+                # get the PomSomMapper for this group
+            psm = session.get(Entity, self.pom_class)  # <- PomSomMapper
+            if psm is None:
+                raise ValueError(f"No PomSomMapper found for this group {self.groupname}")
+                # get the element to column mappings
+            elcol_map: dict = Entity.group_elements_to_columns.get(self.groupname, {})
+            for cattr in psm.class_attributes:  # noqa
+                elcol_map[cattr.name] = cattr.colname
+            Entity.group_elements_to_columns[self.groupname] = elcol_map
+
+    def get_element_names(self):
+        """Get the names of the elements for this entity"""
+        self.update_group_elements_to_columns()
+        return Entity.group_elements_to_columns.get(self.groupname, {}).keys()
+
     def add_attribute(self, attribute):
         """Add an attribute to the entity"""
         if attribute.inside is None:
@@ -266,27 +333,62 @@ class Entity(Base):
     def get_extra_info(self) -> tuple[str, dict]:
         """Return a dictionatry with extra information about this entity or None
 
-        if entity has an 'obs' field and that field
+        This method checks if there is extra information about the entity.
+        This is needed because in the source oriented notation each
+        value can have a comment and the original wording of the value,
+        and also multiple values for a single element/field.
+
+        The way this is managed in the relational database (person oriented model)
+        is to store the information as a Json object in the 'extra_info' field.
+        A legacy pattern was to store the information in the 'obs' field.
+
+        if an entity has an 'obs' field and that field
         contains the string 'extra_info:' then the rest
         of the field is considered a json representation of
         extra information about the entity. Extra information can
         be comments and original wording of field values.
 
-        This method returns a tuple with the new obs string
-        (withou the extra_info part) and a dictionary with
-        the extra information.
+        This method returns a tuple with the extra information
+        as dict and, in the case that the obs field
+        contains extra information, a new obs string
+        (withou the extra_info part).
 
 
         Currently the dictionary has the following structure:
 
-            {'field_name': {'comment': text_of_comment, 'original': original_wording}}
+            {'field_name':
+                {'comment': text_of_comment,
+                 'original': original_wording}}
+
+
         """
-        if hasattr(self, "extra_info"):
+        extra_info = {}
+        if hasattr(self, "obs"):
+            obs = getattr(self, "obs", None)
+        else:
+            obs = None
+        if obs is not None and "extra_info:" in obs:
+            obs, extra_info = get_extra_info_from_obs(obs)
+
+        if hasattr(self, "extra_info") and self.extra_info is not None:
             extra_info = getattr(self, "extra_info", None)
-            if extra_info is not None:
-                return getattr(self, "obs", None), extra_info
-        obs = getattr(self, "obs", None)
-        return get_extra_info(obs)
+        return obs, extra_info
+
+    # render related methods
+    def description_elements(self):
+        """Return a list of elements to be used in the description of the entity"""
+        return ["name", "description", "desc", "title", "id"]
+
+    def get_description(self, default=None):
+        """Return a descritive name for the entity"""
+        desc = None
+        for element in self.description_elements():
+            if hasattr(self, element):
+                desc = getattr(self, element)
+                break
+        if desc is None:
+            desc = default
+        return desc
 
     def __repr__(self):
         return (
@@ -303,9 +405,26 @@ class Entity(Base):
         )
 
     def __str__(self):
-        if self.groupname is None:
-            return f"{self.pom_class}${kleio_escape(self.id)}"
-        return f"{self.groupname}${kleio_escape(self.id)}/type={kleio_escape(self.pom_class)}"
+        groupname = self.groupname
+        if groupname is None:
+            groupname = self.pom_class
+        if groupname is None:
+            groupname = "entity"
+        desc = self.get_description()
+        if desc is not None:
+            r = f"{groupname}${desc}"
+        else:
+            r = f"{groupname}${self.id}"
+        els = self.get_element_names()
+        dels = self.description_elements()
+        show = sorted(list(set(els) - set(dels)))
+        if "obs" in show:
+            show.remove("obs")
+            show.append("obs")
+        for element in show:
+            r = f"{r}{self.for_kleio(element, prefix='/', named=True, skip_if_empty=True)}"
+        r = r + self.render_id()
+        return r
 
     def render_id(self):
         """Return the id of the entity in a kleio format
@@ -350,6 +469,61 @@ class Entity(Base):
         Override in real entities or other special cases
         """
         return relation.destination == self.id
+
+    def for_kleio(self, element: str, named=False, prefix="", skip_if_empty=False):
+        """Render a specific attribute/column/element of the entity for kleio.
+
+        Check which attribute is requested and return the value
+        Checks for extra information for this attribute.
+
+        Extra information can be "comment" or "original"
+
+        if the attribute has a comment, #comment is appended to the value
+        if the attribute has an original wording, %original is appended to the value
+
+        """
+        # check if the element is a mapped kleio group element
+        attr_name = self.get_column_for_element(element)
+        if attr_name is None and hasattr(self, element):
+            # if not take it as a direct attribute
+            # this means the element is a column name like "the_date"
+            # and not a group element like "date"
+            # but we still the element name to check
+            # for extra information
+            attr_name = element
+            element = self.get_element_for_column(attr_name)
+
+        if hasattr(self, attr_name):
+            attr = getattr(self, attr_name)
+            if attr is None:
+                attr = ""
+            else:
+                attr = str(attr)  # we need this for enumerations and numbers
+            # if the lement is obs that is can cointain extra information
+            # that we need to extract and remove from the fied
+            obs, extra_info = self.get_extra_info()
+            if element == "obs":  # if the element is obs, replace without extra_info
+                if obs is not None:
+                    attr = obs.strip()
+                else:
+                    attr = ""
+            attr = kleio_escape(attr)
+            if element == "date":  # TODO this should test element class not name
+                attr = ftld(attr)
+            if extra_info is not None and element in extra_info:
+                extras = extra_info.get(element, {})
+                element_comment = extras.get("comment", None)
+                element_original = extras.get("original", None)
+                if element_comment is not None:
+                    attr = f"{attr}#{kleio_escape(element_comment)}"
+                if element_original is not None:
+                    attr = f"{attr}%{kleio_escape(element_original)}"
+            if skip_if_empty and attr == "":
+                return ""
+            else:
+                return (f"{prefix}{element}=" if named else "") + attr
+        else:
+            return ""
 
     def to_kleio(
         self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
