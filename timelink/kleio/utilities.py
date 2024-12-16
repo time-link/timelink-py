@@ -80,7 +80,7 @@ def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048, **k
     return s
 
 
-def get_extra_info(obs_text: str) -> tuple[str, dict]:
+def get_extra_info_from_obs(obs_text: str) -> tuple[str, dict]:
     """
     Extracts the extra information from the extra_info string
     and returns a tuple with the cleaned string and a dictionary
@@ -119,9 +119,10 @@ def render_with_extra_info(element_name, element_value, extra_info, **kwargs) ->
     :param kwargs: Additional parameters for :py:func:`quote_long_text`
     :rtype: str
     """
+
     if type(extra_info) is not dict:
         if type(extra_info) is str:
-            _notused, extra_info = get_extra_info(extra_info)
+            _notused, extra_info = get_extra_info_from_obs(extra_info)
         else:
             extra_info = {}
     if type(element_value) is not str:
