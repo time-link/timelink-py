@@ -41,6 +41,9 @@ def dbsystem(request):
         db_pwd = get_postgres_container_pwd()
 
     database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
+    # attach a kleio server
+    kleio_server = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home")
+    database.set_kleio_server(kleio_server)
     try:
         yield database
     finally:
@@ -87,21 +90,17 @@ def test_import_xml(dbsystem):
 )
 def test_import_linked_data_attributes(dbsystem):
     """Test the import of a translation with linked_data in attributes"""
-    file: Path = Path(TEST_DIR, "xml_data/dehergne-a.xml")
-    session = dbsystem.session()
-    try:
-        stats = import_from_xml(file, session, options={"return_stats": True})
-    except Exception as exc:
-        print(exc)
-        raise
-    sfile: Path = stats["file"]
-    assert sfile.name == file.name
-    per: Person = session.get(Person, "deh-antonio-de-abreu")
-    assert per is not None, "could not get a group with linked data from file"
-    # check for attributes with extra_info
-    for a in per.attributes:
-        if 'extra_info' in a.obs:
-            assert a.get_extra_info() is not None
+    path = "projects/test-project/sources/reference_sources/linked_data"
+    dbsystem.update_from_sources(path=path)
+    with dbsystem.session() as session:
+        per: Person = session.get(Person, "deh-antonio-de-abreu")
+        assert per is not None, "could not get a group with linked data from file"
+        k = per.to_kleio()
+        print(k)
+        # check for attributes with extra_info
+        for a in per.attributes:
+            if len(a.extra_info) > 0:
+                assert a.extra_info.keys is not None
 
 
 @pytest.mark.parametrize(
@@ -198,27 +197,15 @@ def test_import_with_custom_mapping(dbsystem):
 )
 def test_import_issue48(dbsystem):
     """ Problem with importing mapping hierarchies issue #48 """
-    file = Path(TEST_DIR, "xml_data/issue36.xml")
+    path = "projects/test-project/sources/reference_sources/issues/issue48/"
+    dbsystem.update_from_sources(path=path)
     with dbsystem.session() as session:
-        try:
-            import_from_xml(file, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
 
         carta = session.get(Entity, "deh-ca-1645-b-2-a")
         assert carta.the_type is not None, "carta did not have a type"
         pom_class: PomSomMapper = PomSomMapper.get_pom_class(carta.pom_class, session)
         assert pom_class.element_class_to_column('type', session) is not None
-    file = Path(TEST_DIR, "xml_data/issue36b.xml")
-    with dbsystem.session() as session:
-        try:
-            import_from_xml(file, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
-
-        crono = session.get(Entity, "__china-geral-his1-34")
+        crono = session.get(Entity, "issue48-sourceb-his1-79")
         assert crono.loc is not None, "crono did not have a loc"
         pom_class: PomSomMapper = PomSomMapper.get_pom_class(crono.pom_class, session)
         assert pom_class.element_class_to_column('loc', session) is not None

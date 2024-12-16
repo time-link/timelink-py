@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=166
+kleio$gacto2.str/translations=167
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-44
    link$geonames/"https://www.geonames.org/$1"/id=root-lin2-45
    link$issues/"https://github.com/time-link/timelink-py/issues/$1"/id=root-lin1-165
@@ -9,3 +9,22 @@ kleio$gacto2.str/translations=166
       geodesc$issue9-geoentity/0/0/1644
 
          geo1$Chekiang%Tche-kiang#hoje:Zhejiang, 浙江, @wikidata:Q16967/província/issue9-geodesc1
+
+      lista$issue9-lista/12/12/2024
+
+         n$Pedro de Alcáçova/id=deh-pedro-de-alcacova
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Frade
+            ls$nome/Pedro de Alcáceva
+            ls$nome/Pedro de Alcoceva
+            ls$nome-chines/Chang-Tch'ouan
+            ls$nome-chines/San Chuang
+            ls$nascimento/?/15230000#cerca de
+            ls$jesuita-entrada/Coimbra# @wikidata:Q45412/15420000/obs=saiu a primeira vez
+            ls$jesuita-entrada/Goa# @wikidata:Q1171/15480502
+            ls$estadia/Malaca# @wikidata:Q61089/obs=acompanha S. Francisco Xavier de Goa
+            ls$estadia/Japão# @wikidata:Q17/15520000
+            ls$estadia/Kagoshima# @wikidata:Q15674/15520814
+            ls$estadia/Shangchuan%ilha de «Sancien» (Changtch'ouan, Shangchwan)/15530000
+            ls$estadia/Goa# @wikidata:Q1171/15550000
+            ls$morte/?/15790000

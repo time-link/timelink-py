@@ -48,15 +48,12 @@ def test_upgrade(timelink_db):
 
 
 def test_upgrade_random():
-    db_list = create_db_index()
-    # chose a random key from dict db_list
-    avoid_users_table = False
-    while avoid_users_table is not True:
-        db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
-        # set a specific db_key or URL
-        # db_key = '5'
-        db_url = parse_db_url(db_key)
-        avoid_users_table = '_users' not in db_url
+    # get list of databases avoiding _users table
+    db_list = create_db_index(avoid_patterns=["_users"])
+    db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
+    # set a specific db_key or URL
+    # db_key = '5'
+    db_url = parse_db_url(db_key)
     db: TimelinkDatabase = TimelinkDatabase(db_url=db_url)
     print(db.table_names())
     result = upgrade(db_url, revision="head")
