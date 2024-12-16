@@ -64,7 +64,10 @@ def upgrade() -> None:
         fks = inspector.get_foreign_keys(table_name='links')
         for fk in fks:
             if fk['referred_table'] == 'entities':
-                batch_op.drop_constraint(fk['name'], type_="foreignkey")
+                try:
+                    batch_op.drop_constraint(fk['name'], type_="foreignkey")
+                except Exception as e:
+                    print(f"Caught Error dropping constraint: {e}")
         batch_op.create_foreign_key(None, "entities", ["entity"], ["id"])
     # ### end Alembic commands ###
 
