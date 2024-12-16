@@ -2,19 +2,14 @@
 
 from sqlalchemy import Column, String, ForeignKey, Index
 from sqlalchemy.orm import relationship
-from timelink.kleio.utilities import (
-    quote_long_text,
-    get_extra_info,
-    render_with_extra_info,
-    format_timelink_date as ftld,
-)
 from .entity import Entity
 
 
 class Attribute(Entity):
-    """ represents an attribute of an entity.
+    """represents an attribute of an entity.
 
     Attributes have a type, a value, a date and an optional observation."""
+
     __tablename__ = "attributes"
 
     id = Column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
@@ -51,27 +46,28 @@ class Attribute(Entity):
     def __str__(self):
         return self.to_kleio(show_contained=False)
 
-    def to_kleio(self, ident="", ident_inc="  ", self_string=None, show_contained=False, **kwargs):
-        obs, extra_info = get_extra_info(self.obs)
+    def to_kleio(
+        self, ident="", ident_inc="  ", self_string=None, show_contained=False, **kwargs
+    ):
         if self.groupname is None:
             myname = "attribute"
         else:
             myname = self.groupname
-        r = f"{myname}${quote_long_text(self.the_type)}"
-        r += f"/{render_with_extra_info('value', self.the_value, extra_info=extra_info, **kwargs)}/"
-        r += f"{render_with_extra_info('the_date', ftld(self.the_date), extra_info=extra_info, **kwargs)}"
-        if obs is not None and len(obs.strip()) > 0:
-            r = f"{r}/obs={render_with_extra_info('obs', obs, extra_info=extra_info, **kwargs)}"
+        r = f"{myname}${self.for_kleio('the_type')}"
+        r += f"/{self.for_kleio('the_value')}/"
+        r += f"{self.for_kleio('the_date')}"
+        obs_el = self.for_kleio("obs", named=True, prefix="", skip_if_empty=True)
+        r = f"{r}{obs_el}"
         kleio = super().to_kleio(
             self_string=r,
             show_contained=show_contained,
             ident=ident,
             ident_inc=ident_inc,
-            **kwargs
+            **kwargs,
         )
         return kleio
 
 
 Entity.attributes = relationship(
-    "Attribute", foreign_keys=[Attribute.entity], back_populates="the_entity"
+    Attribute, foreign_keys=[Attribute.entity], back_populates="the_entity"
 )
