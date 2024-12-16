@@ -52,10 +52,10 @@ lint: ## check style with flake8
 
 test: ## run tests quickly with the default Python
 	pytest --rootdir=tests
-	py.test --nbval tests/timelink-home/projects/test-project/*
+	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
 
 test-nb: ## test notebooks only
-	py.test --nbval tests/timelink-home/projects/test-project/*
+	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
 
 
 test-all: ## run tests on every Python version with tox
