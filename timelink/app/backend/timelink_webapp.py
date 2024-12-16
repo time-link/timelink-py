@@ -170,7 +170,7 @@ class TimelinkWebApp:
         self.update_projects()
 
     def get_info(self, show_token=False, show_password=False):
-        """Print information about the Timel8nk Webapp object"""
+        """Print information about the Timelink Webapp object"""
         if not show_password:
             # mask any password that might be present in the dabase URL
             url = make_url(str(self.users_db.engine.url))
