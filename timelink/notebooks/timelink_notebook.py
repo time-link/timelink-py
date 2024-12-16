@@ -269,7 +269,7 @@ class TimelinkNotebook:
             # convert the column "import_errors" to int with NA as 0
             # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
             ifiles_df["import_errors"] = ifiles_df["import_errors"].astype("Int64").fillna(0)
-            ifiles_df["import_warnings"] = ifiles_df["import_errors"].astype("Int64").fillna(0)
+            ifiles_df["import_warnings"] = ifiles_df["import_warnings"].astype("Int64").fillna(0)
 
             return ifiles_df
         else:
