@@ -1,6 +1,5 @@
 from typing import List, Optional
 from datetime import datetime
-from collections import OrderedDict
 
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
