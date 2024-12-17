@@ -2,6 +2,31 @@
 History
 =======
 
+1.1.15 (2024-12-17)
+-------------------
+
+Implements real-entities (#21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a major refactor of the code, including changes to database structure
+and the way data is imported. The main changes are:
+
+1. Entities now register the source of the data.
+   This was necessary to detect easily cross source references,
+   such as xsame_as that link occurrences in different
+   sources refering to the same entity.
+2. Migrations with Alembic are now used to update the database
+   schema. This is a major change, and it is still experimental.
+   Since this version changes to the database are handled
+   through Alembic migration scripts and authomatically
+   triggered when a Timelink database is opened
+   with TimelinkDatabase() class.
+3. The import process was refactored to save the context of
+   cross source references, and restoring them after reimport.
+   `See this note <https://time-link.github.io/timelink-docs/D_Updating_sources_in_the_database/D.1%20Processing_new_versions_of_source_transcriptions/>`_
+4. Improvements to to_kleio() rendering, taking into account
+   `extra_info` with comments and original wording.
+
 1.1.14 (2024-09-23)
 -------------------
 

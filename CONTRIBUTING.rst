@@ -252,10 +252,6 @@ Tests related to the existence of a MHK installation
 Tha make target "test" activates both code and notebook tests.
 Currently the notebooks are not tested on different versions of Python (no tox integration)
 
-
-
-
-
 Code style (lint)
 -----------------
 
