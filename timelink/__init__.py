@@ -17,7 +17,7 @@ from .api import schemas  # noqa: F401
 
 
 __author__ = """Joaquim Ramos de Carvalho"""
-__email__ = 'joaquim@uc.pt'
-__version__ = '1.1.15'
+__email__ = 'joaquimcarvalho@mpu.edu.mo'
+__version__ = '1.1.14'
 
 version = __version__
