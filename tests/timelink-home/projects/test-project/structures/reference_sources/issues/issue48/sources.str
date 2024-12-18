@@ -514,6 +514,77 @@ part name=topico; source=topic
 
 part name=lugar; source=place
 
+part name=carta; source=pt-acto;
+	position=id,dia,mes,ano,loc;
+	also=resumo,refere,obs;
+	part=receptor,emissor,
+         receptora,emissora,
+         referido,referida,
+         emissor-representante,
+         evento,topico, lugar,
+         adenda
+
+part name=local; source=geoentity; part=atr,rel
+part name=topico; source=abstraction;
+	position=subject,description;
+	guaranteed=subject,description;
+	also=id,obs
+
+part name=adenda; source=pt-acto;
+	position=id,dia,mes,ano,loc;
+	also=resumo,refere,obs;
+	par
+
+part name=evento; source=pt-acto;
+	position=description,dia,mes,ano;
+	guaranteed=description;
+	also=obs,id;
+	part=n, referido,referida,
+        informador,defector,representante,
+		intermediario,topico,local,comerciante,agente_financeiro,agente_seguros,fonte_info,cheater,
+		beneficiario,beneficiario-representante,beneficiario-procurador,
+		beneficiario1,beneficiario1-representante,beneficiario1-procurador,
+		beneficiario2,beneficiario2-representante,beneficiario2-procurador,
+		beneficiario3,beneficiario3-representante,beneficiario3-procurador,
+		beneficiario4,beneficiario4-representante,beneficiario4-procurador,
+		beneficiario5,beneficiario5-representante,beneficiario5-procurador,
+		beneficiario6,beneficiario6-representante,beneficiario6-procurador,
+		cobrador,cobrador-representante,
+		cobrador1,cobrador-representante1,
+		cobrador2,cobrador-representante2,
+		cobrador3,cobrador-representante3,
+		cobrador4,cobrador-representante4,
+		destinatario,destinatario1,destinatario2,
+		dador,dador-representante,
+		dador1,dador1-representante,
+		dador2,dador2-representante,
+		dador3,dador3-representante,
+		dador4,dador4-representante,
+		debitado,
+		endossante,
+		endossado,
+		fretador,
+		pagador,pagador-representante,
+		pagador1,pagador1-representante,
+		pagador2,pagador2-representante,
+		pagador3,pagador3-representante,
+		pagador4,pagador4-representante,
+		pagador5,pagador5-representante,
+		receptor,
+		recebedor,recebedor-proc,
+		recebedor1,recebedor1-proc,
+		recebedor2,recebedor2-proc,
+		recebedor3,recebedor3-proc,
+		recebedor4,recebedor4-proc,
+		remetente,
+		tomador,tomador-representante,
+		tomador1,tomador1-representante,
+		tomador2,tomador2-representante,
+		tomador3,tomador3-representante,
+		tomador4,tomador4-representante,
+		tomador5,tomador5-representante,
+		vendedor,comprador,transportador,
+		emissor,emissor-representante
 
 note =====================================================================
 note Special prosopographical groups
@@ -917,6 +988,11 @@ part name=vitima; source=person;
      repeat=ls,atr,rel
 part name=vitima-m; source= actorm; position=nome
 part name=vitima-f; source= actorf; position=nome
+
+note Cartas Anuas
+note Cartas Anuas
+part name=emissor;source=actorm
+part name=emissor-representante;source=actorm
 
 note *****************************************************************
 note Parente masculino, definicao generica

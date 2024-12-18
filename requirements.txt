@@ -1,6 +1,8 @@
 # requirements.txt
 alembic
 bokeh
+certifi>=2024.07.04
+cryptography>=43.0.1
 docker>=7.0.0
 fastapi
 fastui
@@ -8,11 +10,11 @@ fief-client
 httpx
 ipykernel
 IPython
-jinja2>=3.1.4
+Jinja2>=3.1.4
 jsonrpcclient
 makefun           # tox seems to need this
 matplotlib
-mysql-connector-python~=8.0.0
+mysql-connector-python>=9.1.0
 networkx>=3.0.0
 numpy==1.26.4
 pandas~=2.2.2
@@ -33,6 +35,7 @@ sqlalchemy-utils
 sqlalchemy-views
 SQLAlchemy~=2.0.0
 sqlalchemy-utils
+starlette>=0.40.0
 starlette-admin
 typer>=0.9
 urllib3>=1.26.19
