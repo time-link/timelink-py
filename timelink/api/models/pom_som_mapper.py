@@ -504,6 +504,7 @@ class PomSomMapper(Entity):
         # for a given group, we can use this dictionary.
         # which is based on the actual class associated with each
         # group in the database.
+
         Entity.group_models[group.kname] = ormClass
         Entity.group_pom_classes[group.kname] = pom_class
 
