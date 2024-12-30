@@ -1,7 +1,7 @@
 ### Migration with alembic
 
 To generate new migration evoke alembic at the command line in the
-timelink-py base directory.
+timelink-py/timelink base directory.
 
 Migrations are generated targetted at the reference database
 defined by `reference_database` variable in alembic.ini

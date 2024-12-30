@@ -1,14 +1,14 @@
 {
-  "keio_version_date":"2024-02-29 07:39:02",
-  "kleio_admin_token":"wWPcLfCj1pL9IXLFnrtnPMw1bTezpQBK",
+  "keio_version_date":"2024-10-24 16:53:53",
+  "kleio_admin_token":"w3qpgEXLYdSKdqOZ3xLOpoR5TqYJeK8D",
   "kleio_admin_token_path":"/kleio-home/.kleio/conf/.admin_token",
   "kleio_conf_dir":"/kleio-home/.kleio/conf",
   "kleio_home":"/kleio-home",
   "kleio_home_local":null,
   "kleio_log":"/kleio-home/.kleio/logs//kleio_service.log",
-  "kleio_setup_date":"2024-07-08T00:16:24+0000",
+  "kleio_setup_date":"2024-12-18T13:48:00+0000",
   "kleio_token_db_status":"No tokens defined but KLEIO_ADMIN_TOKEN env has valid value",
   "kleio_url":"http://localhost:8088",
-  "kleio_version":"12.5",
-  "kleio_version_build":"570"
+  "kleio_version":"12.6",
+  "kleio_version_build":"577"
 }
