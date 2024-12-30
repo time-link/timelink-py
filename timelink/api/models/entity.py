@@ -5,7 +5,7 @@ from datetime import datetime
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
 # and https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table
 
-from sqlalchemy import ForeignKey  # pylint: disable=import-error
+from sqlalchemy import ForeignKey, Index  # pylint: disable=import-error
 from sqlalchemy import String  # pylint: disable=import-error
 from sqlalchemy import Integer  # pylint: disable=import-error
 from sqlalchemy import DateTime  # pylint: disable=import-error
@@ -580,3 +580,7 @@ class Entity(Base):
                 if innerk != "":
                     s = f"{s}\n{innerk}"
         return s
+
+
+#  Add composite index to speed up
+Index("entities_class_group", Entity.pom_class, Entity.groupname)
