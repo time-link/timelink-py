@@ -1,4 +1,24 @@
-""" Authentication services """
+
+""" Authentication services for FastAPI using Fief.
+
+Classes:
+    CustomFiefAuth: A subclass of FiefAuth that customizes user authentication responses.
+    MemoryUserInfoCache: An in-memory cache for storing Fief user information.
+
+Functions:
+    get_memory_userinfo_cache: Returns an instance of MemoryUserInfoCache.
+
+Variables:
+    memory_userinfo_cache: An instance of MemoryUserInfoCache.
+    fief_url: The URL of the Fief authentication server, retrieved from environment variables.
+    fief_key: The API key for the Fief authentication server, retrieved from environment variables.
+    fief_secret: The secret key for the Fief authentication server, retrieved from environment variables.
+    fief: An instance of FiefAsync initialized with the Fief server URL, API key, and secret key.
+    SESSION_COOKIE_NAME: The name of the session cookie used for authentication.
+    scheme: An instance of APIKeyCookie for handling session cookies.
+    auth: An instance of CustomFiefAuth for managing authentication.
+"""
+
 import os
 import uuid
 from typing import Optional
