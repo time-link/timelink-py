@@ -533,7 +533,7 @@ part name=topico; source=abstraction;
 part name=adenda; source=pt-acto;
 	position=id,dia,mes,ano,loc;
 	also=resumo,refere,obs;
-	par
+	part=evento
 
 part name=evento; source=pt-acto;
 	position=description,dia,mes,ano;

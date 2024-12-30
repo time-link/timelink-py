@@ -1,0 +1,36 @@
+- extends: system.yml
+# Base data types
+- element:
+    name: number
+- element:
+    name: string64
+- element: {name: string256} # alternative syntax
+- element:
+    name: text
+
+# Base groups
+- group:
+    name: kleio
+    description: >
+      This is the top level group of Kleio files.
+      Specific historical sources must be added
+      to the part parameter of this group.
+    position:
+      - structure
+      - translator
+    also:
+      - autorels
+      - obs
+      - prefix
+      - translations
+    includes:
+      - historical-source
+      - fonte
+      - authority-register
+      - identifications
+      - link
+- group:
+    name: historical-source
+    position: [id,year,type,ref] # alternative syntax
+    guaranteed: [id]
+    includes: [historical-act]

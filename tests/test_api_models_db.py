@@ -105,7 +105,7 @@ def kgroup_nested() -> KSource:
 
     ks.include(ka2)
     p1 = KPerson("Joaquim", "m", "p01")
-    p1.attr("residencia", "Macau", date="2021-12-11")
+    p1.attr("residencia", ("Macau", "Em Chinês AoMen", "澳门"), date="2021-12-11")
     p2 = KPerson("Margarida", "f", "p02")
     p2.attr("residencia", "Trouxemil", date="2020-10-18")
     p3 = KPerson("Pedro", "m", "p03")
@@ -183,6 +183,21 @@ def test_create_pattribute(get_db, kgroup_nested):
     pattr = db.get_pattribute_view()
     # l2 = len(inspect(get_db.get_engine()).get_view_names())
     assert pattr is not None
+
+
+def test_create_nfucntions(get_db, kgroup_nested):
+    # Database is created and initialized in the fixture
+    db: TimelinkDatabase = get_db
+    ks = kgroup_nested
+    with get_db.session() as session:
+        PomSomMapper.store_KGroup(ks, session)
+        session.commit()
+
+    # views = inspect(db.get_engine()).get_view_names()
+    # l1 = len(views)
+    nfunc = db.get_nfunction_view()
+    # l2 = len(inspect(get_db.get_engine()).get_view_names())
+    assert nfunc is not None
 
 
 def test_entity_contains(get_db):
