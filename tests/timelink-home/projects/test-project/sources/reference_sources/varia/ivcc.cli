@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=16
+kleio$gacto2.str/translations=17
    fonte$ivcc/tipo=fonte-jesuita/ano=1719/obs="""
       Franco (S.I.), Antonio, Imagem da virtude em o noviciado da Companhia de
       Jesus no Real Collegio de Jesus de Coimbra em Portugal
@@ -137,7 +137,7 @@ kleio$gacto2.str/translations=16
                ls$cargo/Alcaide Mor de Alenquer
                ls$mission/Embaixador para o casamento de D.Isabel com Carlos V.
                ls$estadia/Almeirim/15260223/obs=Seguindo a Corte
-               ls$dead-tomb/Igreja de Góis/geral|view|70290/obs=Buried at the Igreja de Góis,see p.40 cap. XIII http:||www.patrimoniocultural.gov.pt|pt|patrimonio|patrimonio-imovel|pesquisa-do-patrimonio|classificado-ou-em-vias-de-classificacao
+               ls$dead-tomb/Igreja de Góis/geral|view|70290/obs=Buried at the Igreja de Góis,see p.40 cap. XIII http:|www.patrimoniocultural.gov.pt|pt|patrimonio|patrimonio-imovel|pesquisa-do-patrimonio|classificado-ou-em-vias-de-classificacao
                rel$parentesco/pai/Filipa de Vilhena/ivc-filipa-de-vilhena
 
                ppai$Nuno Martins da Silveira/id=ivc-goncalo-da-silveira-per3-10-per4-10
