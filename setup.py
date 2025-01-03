@@ -46,8 +46,6 @@ setup(
         'sqlalchemy',
         'sqlalchemy-utils',
         'alembic',
-        'bcrypt==4.1.2',  # bug see https://github.com/logspace-ai/langflow/issues/1173
-        'passlib[bcrypt]',
         'pydantic',
         'pydantic-settings',
         'python-dotenv',
