@@ -109,3 +109,10 @@ def test_create_db():
     # assert "Exception" in result.output
     # assert "Traceback" in result.output
     # assert "Usage" in result.output
+
+def test_get_latest_version():
+    from timelink import get_latest_version
+    version = get_latest_version("timelink")
+    print(f"Latest version: {version}")
+    assert version is not None
+    assert len(version) > 0
