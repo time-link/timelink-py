@@ -27,6 +27,8 @@ def entities_with_attribute(
         the_value   : if present, limit to this value, can be SQL wildcard,
         entity_type : if present, limit to this entity type, string
         column_name : if present, use this name for the attribute column, otherwise use the_type
+                      usefull when the_type is a list
+        name_like   : if present, limit to this name, can have SQL wildcards
         show_elements: List of entity elements to add to the dataframe
         dates_in    : (after,before) if present only between those dates (exclusive)
         filter_by   : list of ids, limit to these entities
@@ -46,12 +48,16 @@ def entities_with_attribute(
                                 more_attributes=["profissao"]
                                 )
 
+    Notes:
+        - The function will return a dataframe with the columns:
+            id, group
+
     Ideas:
         Add :
             the_value_in: (list of values)
             the_value_between_inc (min, max, get >=min and <= max)
             the_value_between_exc (min, max, get >min and < max)
-        accept a list of the_type and return a dataframe with all of them
+
 
     """
     # We try to use an existing connection and table introspection
@@ -76,6 +82,7 @@ def entities_with_attribute(
     type_column_name = f"{column_name}.type"
     line_column_name = f"{column_name}.line"
     level_column_name = f"{column_name}.level"
+    attribute_extra_info_column_name = f"{column_name}.extra_info"
 
     entity_types = db.get_models_ids()
     if entity_type not in entity_types:
@@ -115,6 +122,7 @@ def entities_with_attribute(
             attr.c.the_line.label(line_column_name),
             attr.c.the_level.label(level_column_name),
             attr.c.aobs.label(obs_column_name),
+            attr.c.a_extra_info.label(attribute_extra_info_column_name),
         ]
     )
 
@@ -182,6 +190,18 @@ def entities_with_attribute(
         records = session.execute(stmt)
         col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
+        # Check for extra info
+        for index, row in df.iterrows():
+            if row[attribute_extra_info_column_name] is not None:
+                extra_info: dict = row[attribute_extra_info_column_name]
+                for key, value in extra_info.items():
+                    if key != "value":
+                        xtra_col_name = f"{column_name}.{key}"
+                    else:
+                        xtra_col_name = column_name
+                    for aspect, avalue in value.items():
+                        xtra_col_name = f"{xtra_col_name}.{aspect}"
+                        df.loc[index, xtra_col_name] = avalue
 
     if filter_by is not None:
         fb_ids = filtered_df.index.unique()
@@ -206,11 +226,13 @@ def entities_with_attribute(
             column_name = mcol
             date_column_name = f"{column_name}.date"
             obs_column_name = f"{column_name}.obs"
+            extra_info_column_name = f"{column_name}.extra_info"
             stmt = select(
                 attr.c.entity.label("id"),
                 attr.c.the_value.label(column_name),
                 attr.c.the_date.label(date_column_name),
                 attr.c.aobs.label(obs_column_name),
+                attr.c.a_extra_info.label(extra_info_column_name),
             ).where(attr.c.the_type == mcol)
             stmt = stmt.where(id_col.in_(df.index))
             col_names = stmt.columns.keys()
@@ -220,6 +242,17 @@ def entities_with_attribute(
                 df2 = pd.DataFrame.from_records(
                     records, index=["id"], columns=col_names
                 )
+                for index, row in df2.iterrows():
+                    if row[extra_info_column_name] is not None:
+                        extra_info: dict = row[extra_info_column_name]
+                        for key, value in extra_info.items():
+                            if key != "value":
+                                xtra_col_name = f"{column_name}.{key}"
+                            else:
+                                xtra_col_name = column_name
+                            for aspect, avalue in value.items():
+                                xtra_col_name2 = f"{xtra_col_name}.{aspect}"
+                                df2.loc[index, xtra_col_name2] = avalue
 
             if sql_echo:
                 print(f"Query for more_attributes={mcol}:\n", stmt)
@@ -228,5 +261,7 @@ def entities_with_attribute(
                 df[mcol] = None  # nothing found we set the column to nulls
             else:
                 df = df.join(df2)
+
+            # use extra_info to add more columns
 
     return df
