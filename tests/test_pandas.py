@@ -108,13 +108,13 @@ def test_entities_with_attribute(dbsystem):
     df = entities_with_attribute(
         db=dbsystem,
         entity_type="person",
-        the_type="residencia",
-        the_value="soure",
-        show_elements=["name", "sex"],
-        more_attributes=[],
+        the_type="jesuita-entrada",
+        the_value="Coimbra",
+        show_elements=["name", "sex", "extra_info"],
+        more_attributes=['nascimento'],
         sql_echo=True,
     )
-    assert df is not None, "entities_with_attribute returned None"
+    assert df is not None, "entities_w,ith_attribute returned None"
     assert len(df) > 0, "entities_with_attribute returned empty dataframe"
     print(df)
 
