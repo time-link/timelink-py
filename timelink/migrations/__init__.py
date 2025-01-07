@@ -5,7 +5,10 @@
 #
 # this file and the techniques used are based on the following SO answer:
 # https://stackoverflow.com/questions/73633063/distribute-alembic-migration-scripts-in-application-package
-
+# This might be generating and error related to "formaters" in some cases.
+# Check the following link for more information:
+# https://stackoverflow.com/questions/47636747/python3-6-keyerror-formatters
+# it might be related to the way we configure the path to the alembic.ini file.
 from pathlib import Path
 
 from alembic import command
