@@ -17,8 +17,8 @@ and the way data is imported. The main changes are:
    sources refering to the same entity.
 2. Migrations with Alembic are now used to update the database
    schema. This is a major change, and it is still experimental.
-   Since this version changes to the database are handled
-   through Alembic migration scripts and authomatically
+   From this version onwards changes to the database are handled
+   through Alembic and authomatically
    triggered when a Timelink database is opened
    with TimelinkDatabase() class.
 3. The import process was refactored to save the context of
