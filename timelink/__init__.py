@@ -10,6 +10,8 @@ information collected from historical sources.
 
 
 """
+import requests
+
 from .api import models  # noqa: F401
 from .api import database  # noqa: F401
 from .api import views  # noqa: F401
@@ -22,7 +24,6 @@ __version__ = '1.1.15'
 
 version = __version__
 
-import requests
 
 def get_latest_version(package_name):
     """Get the latest version of a package from PyPI."""
