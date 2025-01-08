@@ -147,13 +147,16 @@ def db_upgrade_cmd(db_url: str, revision: str = "heads"):
 
     """
     db_url = parse_db_url(db_url)
+    TimelinkDatabase(db_url=db_url)
     migrations.upgrade(db_url, revision)
+    typer.echo(f"Database {db_url} upgraded to revision {revision}")
 
 
 @db_app.command("create")
 def db_create_cmd(db_url: str = typer.Argument(..., help="Database URL")):  # noqa: B008
     """Create a new database"""
     TimelinkDatabase(db_url=db_url)
+    typer.echo(f"Database {db_url} created")
 
 
 @db_app.command("heads")
