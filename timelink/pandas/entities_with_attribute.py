@@ -191,7 +191,9 @@ def entities_with_attribute(
         col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
         # Check for extra info
-        for index, row in df.iterrows():
+        extra_info_edits = []
+        for row_number, (index, row) in enumerate(df.iterrows()):
+            # Perform operations using row_number, index, and row
             if row[attribute_extra_info_column_name] is not None:
                 extra_info: dict = row[attribute_extra_info_column_name]
                 for key, value in extra_info.items():
@@ -201,7 +203,11 @@ def entities_with_attribute(
                         xtra_col_name = column_name
                     for aspect, avalue in value.items():
                         xtra_col_name = f"{xtra_col_name}.{aspect}"
-                        df.loc[index, xtra_col_name] = avalue
+                        extra_info_edits.append((row_number, xtra_col_name, avalue))
+        for row_number, xtra_col_name, avalue in extra_info_edits:
+            if xtra_col_name not in df.columns:
+                df[xtra_col_name] = None
+            df.iat[row_number, df.columns.get_loc(xtra_col_name)] = avalue
 
     if filter_by is not None:
         fb_ids = filtered_df.index.unique()
@@ -242,7 +248,8 @@ def entities_with_attribute(
                 df2 = pd.DataFrame.from_records(
                     records, index=["id"], columns=col_names
                 )
-                for index, row in df2.iterrows():
+                extra_info_edits = []
+                for row_number, (index, row) in enumerate(df2.iterrows()):
                     if row[extra_info_column_name] is not None:
                         extra_info: dict = row[extra_info_column_name]
                         for key, value in extra_info.items():
@@ -252,7 +259,13 @@ def entities_with_attribute(
                                 xtra_col_name = column_name
                             for aspect, avalue in value.items():
                                 xtra_col_name2 = f"{xtra_col_name}.{aspect}"
-                                df2.loc[index, xtra_col_name2] = avalue
+                                extra_info_edits.append(
+                                    (row_number, xtra_col_name2, avalue)
+                                )
+                for row_number, xtra_col_name2, avalue in extra_info_edits:
+                    if xtra_col_name2 not in df2.columns:
+                        df2[xtra_col_name2] = None
+                    df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = avalue
 
             if sql_echo:
                 print(f"Query for more_attributes={mcol}:\n", stmt)
