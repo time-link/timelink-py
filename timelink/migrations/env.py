@@ -21,7 +21,10 @@ config = context.config
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
-    fileConfig(config.config_file_name)
+    # we bypass this line because it is generating a "formatters"
+    # errors see warning in https://alembic.sqlalchemy.org/en/latest/api/config.html
+    # fileConfig(config.config_file_name)
+    pass
 
 # add your model's MetaData object here
 
