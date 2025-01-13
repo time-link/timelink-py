@@ -1,11 +1,14 @@
 =======
 History
 =======
+
 1.1.16 (2025-01-08)
+-------------------
 
 - Adds comment and original wording to entities_with_attribute
 - Fixes problem with alembic and logging.
 - Improves view generation across database migrations
+
 
 1.1.15 (2024-12-17)
 -------------------
