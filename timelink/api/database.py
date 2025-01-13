@@ -450,8 +450,10 @@ class TimelinkDatabase:
         """
         This will drop all timelink related tables from the database.
         It will not touch non timelink tables that might exist.
+
+        If a real drop database is desidered use sqlalchemy_utils.drop_database
         :param session:
-        :return:
+
         """
         if session is None:
             session = self.session()
