@@ -25,10 +25,8 @@ __version__ = '1.1.15'
 version = __version__
 
 
-def get_latest_version(package_name):
+def get_latest_version(package_name="timelink"):
     """Get the latest version of a package from PyPI."""
-    if not package_name:
-        package_name = 'timelink'
     # Step 1: Fetch the package information from PyPI
     url = f'https://pypi.org/pypi/{package_name}/json'
     response = requests.get(url)
