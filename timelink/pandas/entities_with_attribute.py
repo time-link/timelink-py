@@ -2,8 +2,7 @@
 
 from typing import List
 import pandas as pd
-from sqlalchemy import select
-
+from sqlalchemy.sql import select
 from timelink.api.database import TimelinkDatabase
 
 
@@ -110,7 +109,7 @@ def entities_with_attribute(
             raise (ValueError("To filter by name requires name in the show_elements list."))
 
     attr = db.create_eattribute_view()
-    id_col = attr.c.entity.label("id")
+    # id_col = attr.c.entity.label("id")
     cols = [entity_id_col]
     cols.extend(extra_cols)
     more_info_cols = cols.copy()
@@ -228,8 +227,6 @@ def entities_with_attribute(
         more_columns = more_attributes
 
     if len(more_columns) > 0:
-        id_col = attr.c.entity
-
         for mcol in more_columns:
             column_name = mcol
             date_column_name = f"{column_name}.date"
@@ -241,12 +238,14 @@ def entities_with_attribute(
                 attr.c.the_date.label(date_column_name),
                 attr.c.aobs.label(obs_column_name),
                 attr.c.a_extra_info.label(extra_info_column_name),
-            ).where(attr.c.the_type == mcol)
-            stmt = stmt.where(id_col.in_(df.index))
-            col_names = stmt.columns.keys()
+            ).where(attr.c.the_type == mcol
+                    ).where(attr.c.entity.in_(df.index))
+            # col_names = stmt.columns.keys()
 
             with db.session() as session:
                 records = session.execute(stmt)
+                col_names = stmt.selected_columns.keys()
+
                 df2 = pd.DataFrame.from_records(
                     records, index=["id"], columns=col_names
                 )
