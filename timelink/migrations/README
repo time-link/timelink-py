@@ -4,7 +4,7 @@ To generate new migration evoke alembic at the command line in the
 timelink-py/timelink base directory.
 
 Migrations are generated targetted at the reference database
-defined by `reference_database` variable in alembic.ini
+defined by `sqlalchemy.url` variable in alembic.ini
 
 
 #### Auto migration
