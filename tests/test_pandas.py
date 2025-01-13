@@ -3,6 +3,8 @@
 import pytest
 from pathlib import Path
 
+from sqlalchemy_utils import drop_database
+
 from timelink.api.database import (
     TimelinkDatabase,
     is_postgres_running,
@@ -43,6 +45,8 @@ def dbsystem(request):
     finally:
         database.drop_db(db)
         db.close()
+        if ":memory:" not in database.db_url:
+            drop_database(database.db_url)
 
 
 @pytest.mark.parametrize(

@@ -10,6 +10,7 @@ from typing import List
 
 import pytest
 from sqlalchemy import select
+from sqlalchemy_utils import drop_database
 
 from tests import TEST_DIR, skip_on_travis
 from timelink.api.models.relation import Relation
@@ -80,6 +81,8 @@ def dbsystem(request):
     finally:
         database.drop_db()
         database.session().close()
+        if ":memory:" not in database.db_url:
+            drop_database(database.db_url)
 
 
 @pytest.mark.parametrize(

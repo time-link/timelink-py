@@ -2,6 +2,7 @@ import os
 
 import pytest  # pylint: disable=import-error
 from sqlalchemy import select  # noqa
+from sqlalchemy_utils import drop_database
 
 from tests import skip_on_travis, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson, KGeoentity
@@ -25,6 +26,8 @@ def get_db():
     finally:
         with database.session() as db:
             database.drop_db(db)
+            if ":memory:" not in database(database.engine.url):
+                drop_database(database.engine.url)
 
 
 @pytest.fixture
