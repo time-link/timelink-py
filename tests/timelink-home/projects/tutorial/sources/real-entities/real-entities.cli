@@ -1,0 +1,431 @@
+kleio$9/translations=3
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1
+   fonte$real-entities/obs="""
+
+     File with occurrences of the sameas tag, to be used in tests.
+     Note that ids are prefixed with "sa-" to avoid conflicts with other ids.
+     """
+
+      lista$sameas-dehergne/20/09/2024
+
+         n$Matteo Ricci/id=deh-matteo-ricci
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Li Ma-teou
+            ls$nome-chines/Si-T'ai
+            ls$nascimento/Macerata# @wikidata:Q13135/15521006
+            ls$jesuita-entrada/Roma% (Noviciado de Sant'Andrea al Quirinale)# @wikidata:Q220/15710816
+            ls$partida-x/Roma/1577-05-18/obs=Schutte, Monumenta historica japoniae I.1280
+            ls$estadia-x/Coimbra/obs="""
+             Ricci and Tacchi Venturi, Opere Storiche Del p. Matteo Ricci s. i.
+                de Junho de 1577 a fim de março de 1578, p. lxiii
+
+             Schutte, Monumenta historica japoniae I. 1280"""
+            ls$embarque/S. Luís/15780324
+            ls$wicky/200/15780324
+            ls$wicky-viagem/25/15780324
+            ls$chegada/Goa# @wikidata:Q1171/15780913
+            ls$estadia/Cochim# @wikidata:Q1800/15800726
+            ls$tarefa/Celebra a primeira missa/15800726
+            ls$chegada/Macau# @wikidata:Q14773/15820807
+            ls$estadia/Cantão# @wikidata:Q16572/15830800
+            ls$estadia/Shiuhing (Tchao-k'ing fou)/15830910
+            ls$jesuita-tarefa/Funda uma residência em Shiuhing/15830910#depois
+            ls$estadia/Shiuchow (Chao-tcheou)# @wikidata:Q1346617/15891000
+            ls$jesuita-tarefa/Funda uma residência em Shiuchow#?/15891000#depois
+            ls$estadia/Nanquim# @wikidata:Q16666/15950521
+            ls$estadia/Nanquim# @wikidata:Q16666/15950615
+            ls$estadia/Nan-tch'ang fou/15960628
+            ls$jesuita-cargo/Superior da missão da China/15970800
+            ls$estadia/Nan-tch'ang fou/15980625
+            ls$estadia/Nanquim# @wikidata:Q16666/15990705
+            ls$partida/Pequim# @wikidata:Q956/16000519
+            ls$chegada/Pequim# @wikidata:Q956/16010124
+            ls$jesuita-tarefa/Funda a missão do Hopei/16010000
+            ls$estadia/Pequim# @wikidata:Q956/16090000
+            ls$jesuita-tarefa/Congregação marial de Pequim#funda?/16090000
+            ls$tarefa/Calendário cristão na China#introduz?
+            ls$jesuita-cargo/Superior da missão da China/16100511
+            ls$jesuita-ordenacao-padre/Cochim# @wikidata:Q1800/15800725
+            ls$jesuita-votos/4V/15960101
+            ls$jesuita-votos-local/Nan-tch'ang/15960101
+            ls$morte/Pequim# @wikidata:Q956/16100511
+            ls$dehergne/684/obs=Ricci, Matteo (ital.) P. 684 Li Ma-teou, Si-T'al (Pf.., et non Ki-Jen, RBS 218)., en portugais Richo (DI. XI, 155, n. 19). N. 6 oct. 1552, Macerata, dans la Marche d'Ancône. E. noviciat St André du Quirinal, Rome, 16 août 1571 (Rom. 171A, 16: il signe: Matteo Riccio). Emb. sur le S. Luis, 24 mars 1578 (W 200)., arr. Goa, 13 sept., et Macao, 7 août 1582., août 1583, Canton., 10 sept. 1583, Shiuhing (Tchao-k'ing fou), où il fonde une résidence., oct. 1589, résidence à Shiuchow (Chao-tcheou)., du 21 mai 1595 au 15 juin, Nankin., 28 juin 1596 au 25 juin 1598, Nan-tch'ang fou., 5 juill. 1599, Nankin., 19 mai 1600, départ pour Pékin où il arr. le 24 janv. 1601, et où il fonde la mission du Hopei, 1601., Supérieur de la mission de Chine, d'août 1597 à sa mort., 1609, congrégation mariale. Pékin., calendrier chrétien en Chine (Pf. 117).
+            ls$dehergne/684/obs=P. 25 juill. 1580, à Cochin, où il célèbre sa première messe le 26 juill. (D'Elia III, 22). V. Nan-tch'ang 1er janv. 1596 (D'Elia I, 374 et II, 4) pr. « Nanciani » ... Riccius (Lus. 2, 128). M. 11 mai 1610, Pékin (JS 113, 120-146., Planchet p. 222). Fils de Giovanni Battista Ricci, pharmacien, et de Giovanna Angiolelli, famille noble, marquis de Castelvecchio (D'Elia I, cii et II, 550). HS 43, 58 le fait mourir d'abord en 1609, puis le 11 mai 1610. Portrait: Pf. 31., D'Elia I, p. vi., ARSI Rom. 185, f° 97-98., BN: Estampes, Ne 100., en couleurs dans Bortone, P. Fernando,- Gesuiti alla corte di Pechino, 1969, pl. II p. 1., cf. Hamy. Pf. 22., Koch., NCE (F. A. Rouleau)., EC (Cel. Testore)., EB (J.S. Sebes)., CE (J. Brucker)., El (Tacchi Venturi). Bibliographie: SiRErr IV, p. 525-528., XII, p. 275-283., XIV. 1. p. 778.,
+            ls$dehergne/684/obs=D'Elu III, 239-243. Biographie: en chinois: BN: Courant 9 (anonyme), 1014-1016 I, par Aleni, 1321 (par Pantoja, de Ursis)., et 6832 I, poème sur Rica. BernardE-MaÎtre], H., Le P. Matthieu Ricci et la société chinoise de son temps (1552-1610), Tientsin, 1937, 2 vol.., trad. chinoise par Wang Tch'ang-Tche, J., 1943., du même, Iles Philippines, 213-218 (sur la pensée de Ricci)., Cronin, Vincent, The Wise Man front the West, Londres, 1955., Dunne, G. H., Génération of Giants, 1962, p. 23-108., trad. franç. Chinois avec les Chinois, te P. Ricci et ses compagnons, Paris, 1964., Bortone, Fernando, P. Matteo Ricci, SJ.: Il « Saggio d'Occidente », 2' éd., 1965., trad. franç. en préparation. Le ms de Pires, Francisco, montre qu'il a failli être envoyé au Japon.Son oeuvre: Nocentini, Lod., --primo Sinologo, P.M.R., Florence, 1882.,
+            ls$dehergne/684/obs=Tacchi-Venturi, Opère storiche del P. M. R., Macerata, 1911-1912, 2 vol.., D'Elia, P. M., Fonti Ricciane, Rome, 1942-1949, 3 vol.., du même,. Grandi Missionari, t. I (Rome, 1939), 127-176., du même, Il domma cattolico integralmente présentai da M. R ai letterati delta Cina, Civ. Catt., 1935, II, 35-53., cf Gregorianum 21 (1940), 482-526., du même, Galiteo in Cina, Anatecta Gregor. il, Sect. A n° 1., Son oeuvre: Nocentini, Lod., -- primo Sinologo, P.M.R., Florence, 1882., Tacchi-Venturi, Opère storiche del P. M. R., Macerata, 1911-1912, 2 vol.., D'Elia, P. M., Fonti Ricciane, Rome, 1942-1949, 3 vol.., du même,- Grandi Missionari, t. I (Rome, 1939), 127-176., du même, Il domma cattolico integralmente présentai da M. R ai letterati delta Cina, Civ. Catt., 1935, II, 35-53., cf Gregorianum 21 (1940), 482-526., du même, Galiteo in Cina, Anatecta Gregor. il, Sect. A n° 1.,
+            ls$dehergne/684/obs=id.. L'apport scientifique du P. M. R à la Chine, Tientsin, 1935, dont trad. anglaise par Chalmers Werner, Edw., Pékin, 1935., id., L'attitude du P. M. R. en face des coutumes et rites chinois, RSRel. 28 (1938), 31-47., id., Les étapes de la cartographie scientifique pour ta Chine et tes pays voisins, MS I (1936), 428-477., Brou, A., Les tâtonnements du P. M. R., RHM 15 (1938), 228-244., Szczesniak, B., The Seventeenth Maps of China, Imago Mundi 17 (1956), 116-136, 9 cartes., id., Matteo Ricci's Maps of China, ibid , 11 (1954), 127-134., cf Giles, L., Geographicat Journal 52 (1918), 367-385 et 53 (1919), 19-30., Wallis, Helen, The Influence of Father R. on Far Eastern Cartography, Imago Mundi 19 (1965), 38-45, 5 cartes., Harris, George L., The Mission of M. R. A case study of an effort at guided culture change in the Sixteenth Century, MS 25 (1968), 1-168.,
+            ls$dehergne/684/obs=Bettray, Johannes, S.V.D., Die akkomodationmethode des P. M. R., S.J., in China, Analecta Gregoriana, nº 76, Rome, 411 p.., Rule, Paul A., Jestât and Confucian? Chinese Religion in the journal of M.R, Journal of Religious History (Sidney, 1969), 105-124., D'Elia, P. M., Récent discoveries and New Studies (1938-1960) on the World Map in Chinese of F. M.R., SJ., MS XX (1961), 82-164., Danibl-Rops, Histoire de t'Eglise du Christ VI (Paris, 1966), 272-276, Le Christ entre au « Cathay » avec « Li Mateou »., Schutte, 996., DI. XII, 1031. Et nombre d'études sur des points spéciaux., par exemple, sur la Congré- gation mariale de Pékin: Du Manoir, Hubert, Maria t. IV, 968-972., NZM 1962, 255 citant Margiotti...
+            ls$dehergne/684/obs=Sur l'art chinois: Sepp Schûller, P. M. Ricci und die christliche Kunst, Die Kath. Miss. LXIV (Diisseldorf, 1936), 3-8., H. Bernard [Maître], L'Art chré- tien en Chine au temps du P. M. R., RHM 12 (1935), 199-229., D'Elia, Le origini delt'arte cristiana cinese, Rome 1939. Sur l'influence au Japon des cartes de Ricci, Aleni et Verbiest, l'art, de Shintarô Ayusawa, MNipp. 19 (1964), 45-49. Sur le Ki-jen che p'ien, RBS 228 et 399. Principaux autographes de RICCI: — Son catéchisme, B. Casanatense ms 2136 G. I 1, daté de 1603, cf. JS 195.
+            ls$dehergne/684/obs=— Délia Entrata delta Comp. nella Cina, avec additions de N. Trigault, JS 106a. Cf D'Elia. Une édition nouvelle, avec un important appareil documentaire et critique est en préparation à l'Université de Paris VII (Bulletin de Liaison, Ecole Pratique des Hautes Etudes, VI* section, 54 bd Raspail, 75006 Paris, vol. V (1972) p. 42. — La Carte de Chine, 28 sept. 1584, reproduite dans Colin, Francisco & Pastells, Pablo, Labor Evangelica .... Barcelone, 1902, III, planche, p. 448 (Arch. d. Ind., 145-7-7). Sa carte du Monde, supra. Gaibandi, Pietro, -- P. M.R e ta geografia délia Cina, Rivista di fisica, matematica e scienze naturali, Padua, VIII, 1903, 321-355, 459-464.
+            ls$dehergne/684/obs=pécimen d'écriture, nom chinois et romanisation, Allan, pl. p. 49 (noter le -RI de Ricci, écrit à la fois RI et LI. Copie de la lettre du P. « Matheo Risi y Saliano » (1584) à Juan Bautista RomAn, facteur des îles Philippines à Macao, dans Carlos Sanz, Primitivas Relaciones de Espana con Asia y Oceania, Madrid, 1958, 372-384 (Archivos de Indias 67-6-29) et l'art, de Léon Lopetegui, Miss. Hisp. I, 1944, 341-352., Razén y Fe IV, 1902, 463477.
+            ls$nota/JRC/obs="""
+
+       Schutte, Monumenta historica japoniae I. 1280
+       “18. Maji 1577 Roma discessit, in Lusitaniam se
+       contulit, Conimbricae studio deditus;
+       24. Martii 1578 e Lusitania in Indiam solvit,
+       13. Sept. 1578 Goam advenit. Cochini deinceps
+       et Goae studium prosecu-tus. litt. quoque human. docuit.”
+
+       """
+
+            pai$Giovanni Battista Ricci/id=deh-matteo-ricci-pai
+               ls$profissao/Boticário
+
+            mae$Giovanna Angiolelli/id=deh-matteo-ricci-mae/obs=Dehergne menciona família nobre, marqueses de Castelvecchio, mas não diz de que lado
+
+         n$João Barradas/id=deh-joao-barradas
+            ls$nacionalidade/China
+            ls$nascimento/Macau# @wikidata:Q14773/15700000#cerca de?
+            rel$sociabilidade/Companheiro/Matteo Ricci/deh-joao-barradas-ref1/data=15940000
+            ls$morte/Rio Kan#Rio Nam Khan, em Laos?/15940000#afogado no naufrágio, a caminho do noviciato
+            ls$dehergne/77/obs=Barradas, João (macaïste) 77 N. à Macao (v. 1570?). En 1594, en route pour entrer au noviciat, accompagne Ricci sur la rivière Kan où il fait naufrage et se noie. Pf. 25., DElia, I 341 et 344 n.
+
+            referido$Matteo Ricci/id=deh-joao-barradas-ref1
+               ls$estadia/rio Kan#Rio Nam Khan, em Laos?/15940000
+
+         n$Lazzaro Cattaneo/id=deh-lazzaro-cattaneo
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Lazzaro Cataneo
+            ls$nome-chines/Kouo Kiu-Tsing Yang-Houang
+            ls$nascimento/Sarzana# @wikidata:Q160628/15600000
+            ls$idade/66/16260000
+            ls$jesuita-entrada/Roma% (Noviciado de Sant'Andrea al Quirinale)# @wikidata:Q220/15810227
+            ls$embarque/S. Tomé/15880401
+            ls$wicky/302/15880401
+            ls$wicky-viagem/32/15880401
+            ls$chegada/Goa# @wikidata:Q1171/15890000
+            ls$estadia/Costa da Pescaria# costa este do Sul da Índia, a norte do Cabo Comorimo @wikidata:Q41562 [Thoothukudi ]
+            ls$estadia/Macau# @wikidata:Q14773/15930000
+            ls$estadia/Shiuchow (Chao-tcheou)# @wikidata:Q1346617/15940000
+            rel$sociabilidade/Companheiro/Matteo Ricci/deh-lazzaro-cattaneo-ref1/data=15940000
+            ls$jesuita-tarefa/Toma o hábito de letrado
+            ls$tarefa/Romaniza os cinco tons do chinês
+            ls$estadia/Pequim# @wikidata:Q956/15980907
+            ls$estadia/Pequim# @wikidata:Q956/15981105
+            ls$estadia/Macau# @wikidata:Q14773/15990800
+            ls$estadia/Nanquim# @wikidata:Q16666/16000300
+            ls$estadia/Macau# @wikidata:Q14773/16010000#passagem
+            ls$estadia/Macau# @wikidata:Q14773/16020000#passagem
+            ls$estadia/Malaca# @wikidata:Q61089/16040000
+            ls$estadia/Macau# @wikidata:Q14773/16040000
+            ls$jesuita-tarefa/Primeiro apóstolo de Shanghai e Kiating, a convite de Paul Siu/16080900
+            ls$jesuita-tarefa/Primeiro apóstolo de Shanghai e Kiating, a convite de Paul Siu/16100000
+            ls$jesuita-tarefa/Funda a residência de Hangchow, Tchokiang/16110508
+            ls$estadia/Hangchow, Tchokiang# @wikidata:Q4970/16110508
+            ls$estadia/Kiating#@wikidata:Q662101/16200000
+            ls$estadia/Hangchow# @wikidata:Q4970/16220000
+            ls$estadia/Hangchow# @wikidata:Q4970/16310000
+            ls$jesuita-ordenacao-padre/?/15870000
+            ls$jesuita-votos/4V/15960526
+            ls$jesuita-votos-local/Cantão# @wikidata:Q16572/15960526
+            ls$morte/Hangchow# @wikidata:Q4970/16400119
+            ls$dehergne/158/obs=Cattaneo (Cataneo), Lazzaro (ital.) P. 158 Kouo Klu-Tslng Yang-Houang (Pf.., Yang-fong, selon Courant, 6880). N. 1560 (1568, selon Streit), Sarzana, en Toscane (JS 134, 303: 66 ans en 1626) -E. 27 févr. 1581, Rome, noviciat St André (Rom. 169. 16). Emb. sur le S. Tomé 1 avr. 1588 (W 302)., arr. 1589, Goa., Côte de la Pêcherie., 1593, Macao., Shiuchow (Chao-tcheou) avec Ricci, ils prennent l'habit de lettrés et « romanisent » les 5 tons du chinois, 1594., 7 sept, au 5 nov. 1598, à Pékin., août 1599, Macao., mars Cattaneo (Cataneo), Lazzaro (ital.) P. 158 Kouo Klu-Tslng Yang-Houang (Pf.., Yang-fong, selon Courant, 6880). N. 1560 (1568, selon Streit), Sarzana, en Toscane (JS 134, 303: 66 ans en 1626) -E. 27 févr. 1581, Rome, noviciat St André (Rom. 169. 16). Emb. sur le S. Tomé 1 avr. 1588 (W 302)., arr. 1589, Goa., Côte de la Pêcherie., 1593, Macao., Shiuchow (Chao-tcheou)# @wikidata:Q1346617 avec Ricci, ils prennent l'habit de lettrés et « romanisent » les 5 tons du chinois, 1594., 7 sept, au 5 nov. 1598, à Pékin
+            ls$dehergne/158/obs=août 1599, Macao., mars 1600, Nankin., passages à Macao 1601 et 1602., 1604, Malacca et Macao, procure., sept. 1608 à 1610, premier apôtre de Shanghai et de Kiating, invité par Paul Siu., 8 mai 1611, autre résidence fondée à Hangchow, Tchôkiang., 1620, Kiating., 1622, Hangchow., 1631, Hangchow (D'Elia I, 331-334). P. 1587. V. Canton, 26 mai 1596, pr. (Lus. 2, 139). M. 19 janv. 1640, Hangchow. Pf. 51., DHGE (A. De Bil)., EC (E. Lamalle). Art. de Strizoli dans Marco Polo II et III, Shanghai, 1940-1941., de J. de La Servière, New China Review, (Shanghai 1921) 350-355 et D'Elu, dans Florilegio Apostolico II, Venise 1922, 25-39.
+
+            referido$Matteo Ricci/id=deh-lazzaro-cattaneo-ref1
+               ls$estadia/Shiuchow (Chao-tcheou)# @wikidata:Q1346617/15940000
+               ls$jesuita-tarefa/Toma o hábito de letrado
+               ls$tarefa/Romaniza os cinco tons do chinês
+
+         n$Giovanni Cola Niccolò/id=deh-giovanni-cola-niccolo
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Giovanni Cola Nicolao
+            ls$nome/Giovanni Cola Nicolaus
+            ls$nome/Giovanni Cola Nicola
+            ls$nascimento/Nole, Itália# @wikidata:Q9505/15600000
+            ls$jesuita-entrada/?/15771200
+            ls$embarque/Reis Magos/15810408
+            ls$wicky/228/15810408
+            ls$wicky-viagem/27/15810408
+            ls$chegada/Macau# @wikidata:Q14773/15820807
+            rel$sociabilidade/Companheiro/Matteo Ricci/deh-giovanni-cola-niccolo-ref1/data=15820807
+            ls$jesuita-tarefa/Funda uma escola de pintura em Macau
+            ls$estadia/Nagasaki# @wikidata:Q38234/16030000
+            ls$jesuita-tarefa/Funda uma escola de pintura em Nagasaki/16030000
+            ls$estadia/Macau# @wikidata:Q14773/16140000
+            ls$jesuita-ordenacao-padre/?/16010000#antes de
+            ls$jesuita-votos/Coadjutor Espiritual/16030608
+            ls$jesuita-votos-local/Nagasaki# @wikidata:Q38234/16030608
+            ls$morte/Macau# @wikidata:Q14773/16260316#ou 24
+            ls$dehergne/188/obs=Cola (Nlccolô), Giovanni (ital.) P. 188 Nicolao., Nicolaus., Nicola. N. 1560, Noie., (« cidade de Napoles », Naples, selon JS 25, 91v). E. déc. 1577 (JS 25, 13). Emb. sur le Reis Magos, 8 avril 1581 (W 228)., arr. à Macao avec Ricci, 7 août 1582., fonde une école de peinture d'abord à Macao, puis, peu après au Japon, à Nagasaki, 1603 (1613)., en 1614, Macao. P. avant 1601. V. 8 juin 1603, coadj. spir., « In Japonia Nagasaquii in ecclesia Collegii » (Lus. 20, 21). Il signe: Joannes Nicolaus., et Gioâ Cola (DI. XII, pl. p. 32). M. 16 (ou 24) mars 1626, Macao (D'Elia I, 231., BEM 1968, 677., HS 43, 8). Nécrologe Goa 32, 623., Lus. 58, 267. Schurhammer, Georg, Die Jesuiten Missionare ... japanische Malerei, dans Jubilàumsband ... deutsche Gesellschaft .... Tôkyô, I, 1933, 116-126., John E. Me Call, dans Artibus Asiae X (1947), 126-134, XI (1948), 47-48.
+
+            referido$Matteo Ricci/id=deh-giovanni-cola-niccolo-ref1
+               ls$chegada/Macau# @wikidata:Q14773/15820807
+
+         n$Sabatino De Ursis/id=deh-sabatino-de-ursis
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Sabatino degli Orsi
+            ls$nome/Sabatino des Ursins
+            ls$nome/Sebastianus Deursis
+            ls$nome/Sabatino d'Orsi
+            ls$nome-chines/Hiong San-pa Yeou-Kang
+            ls$nascimento/Lecce, Itália#reino de Nápoles @wikidata:Q13386/15750000
+            ls$jesuita-entrada/Nápoles# @wikidata:Q2634/15971106
+            ls$embarque/Nossa Senhora da Bigonha#segundo Wicky/16020325
+            ls$wicky/479/16020325
+            ls$wicky-viagem/44/16020325
+            ls$chegada/Macau# @wikidata:Q14773/16030000#destinado ao Japão
+            ls$partida/Nanchang#@wikidata:Q171943/16060000
+            ls$chegada/Pequim# @wikidata:Q956/16070000
+            ls$profissao/Astrónomo/16070000
+            ls$profissao/Engenheiro hidráulico/16070000
+            ls$estadia/Pequim# @wikidata:Q956/16170318#expulso
+            ls$partida/Cantão#e Macau @wikidata:Q16572 e @wikidata:Q14773/16170318#depois de
+            ls$estadia/Macau# @wikidata:Q14773
+            rel$sociabilidade/Companheiro/Diego Pantoja/deh-sabatino-de-ursis-ref1/data=16170318
+            ls$tarefa/Introduz na China a farmácia europeia e a destilação de essências
+            ls$profissao/Arquitecto
+            ls$jesuita-votos/4V/16180217
+            ls$jesuita-votos-local/Macau# @wikidata:Q14773/16180217
+            ls$morte/Macau# @wikidata:Q14773/16200503
+            ls$dehergne/250/obs=De Ursis, Sabatino (ital.) P. 250 degll Orsi., des Urslns (Borg. Lat. 523, P 57)., Deursls Sebastianus (!)., d'Orsl Sabbatino (Streit V, p. 748). Hiong San-pa Yeou-Kang (Pf.). Hiong = ours, San-pa évoque Sabatino. N. 1575 à Lecce, royaume de Naples -E. 1597, 6 nov., Naples. Emb. 25 mars 1602 (W 479)., Arr. 1603, Macao, destiné au Japon., mais en 1606, il quitte Macao pour Nanchang., mandé par Ricci à Pékin, il y arr. en 1607 comme astronome et hydraulicien., à la persécution de 1616, il est expulsé de Pékin le 18 mars 1617 avec Pantoja pour Canton et Macao (JS 161 I, 37., D'Elia II, 387- 388)., introduit en Chine la pharmacie européenne et la distillation des essences (RBS 209). Architecte, JS 14 II, 234v. V. Macao, 17 févr. 1618 (Lus. 4, 8, 25, 126, 133), pr. M. 3 mai 1620 (20 avril 1620, selon la Lista de Defuntos, AHU ms 1659, 102v). HS 43, 57v: P. Sabatinus de Visis (!), Macai, 1620. Pf. 103., Schùtte, 1022., RBS 209 sur le Yo lou chouo, Essences médicinales.
+
+            referido$Matteo Ricci/id=deh-sabatino-de-ursis-ref1
+               rel$institucional/Envia a Pequim/Sabatino De Ursis/deh-sabatino-de-ursis
+
+         n$Sébastien Fernandes Tchong/id=deh-sebastien-fernandes-tchong
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Bastian Hernandes
+            ls$nome-chines/Tchong Ming-Jen Nien-Kiang Pa-siang
+            ls$nascimento/Sunwui (Sin-houei)/15620000#cerca de
+            ls$jesuita-entrada/Shiuchow% Chao-tcheou fou#@wikidata: Q1346617/15891100#fim do mês
+            rel$sociabilidade/Companheiro/Francisco Martins Houang/deh-sebastien-fernandes-tchong-ref1/data=15891100/obs=os dois primeiros chineses candidatos à Companhia
+            ls$jesuita-cargo/Mestre dos Noviços/15910101
+            rel$sociabilidade/Companheiro/Matteo Ricci/deh-sebastien-fernandes-tchong-ref2/data=15910101
+            ls$tarefa/Estuda chinês e latim#com Ricci
+            ls$estadia/Shiuchow, Chao-techeou fou/15911100
+            ls$estadia/Nanchang (Nantch'ang, Kiangsi)#@wikidata:Q171943
+            rel$sociabilidade/Companheiro/Matteo Ricci/deh-sebastien-fernandes-tchong-ref2/data=15980907
+            ls$estadia/Pequim# @wikidata:Q956/15980907
+            ls$estadia/Pequim# @wikidata:Q956/15981105
+            ls$estadia/Nanquim# @wikidata:Q16666/15990500
+            ls$estadia/Nanchang#@wikidata:Q171943/16000000
+            ls$estadia/Pequim# @wikidata:Q956/16020920#sai antes desta data
+            ls$partida/Nanchang#@wikidata:Q171943/16020920#parte antes desta data
+            ls$estadia/Pequim# @wikidata:Q956/16040000
+            ls$estadia/Pequim# @wikidata:Q956/16080000
+            ls$estadia/Nanquim# @wikidata:Q16666/16090000
+            ls$estadia/Hangchow (Hang-tcheou)# @wikidata:Q4970/16110000
+            ls$jesuita-tarefa/Funda a residência de Hangchow/16110000
+            ls$jesuita-votos/Coadjutor Temporal/16171101
+            ls$jesuita-votos-local/Hangchow%(«in sacello Doctoris Michaelis Yam Kiyuen»)# @wikidata:Q4970/16171101
+            ls$morte/Hangchow# @wikidata:Q4970/16211124#cerca de, foi feito três vezes prisioneiro e torturado por causa da sua fé, em 1596 e em 1615
+            ls$dehergne/295/obs="""
+                      Fernandes Tchong, Sébastien (chin.) (II) fr. coadj. 295
+                      Bastian Hernandes. Tchong Mlng-Jen Nien-Kiang Pa-siang (= Sebastianus) (Pf.).
+                      N. « Sinensis natus Macai »
+                      v. 1562 (JS 134, 301v)., en réalité à Sunwui (Sin-houei, sud de Canton) (D'Elia I, 291).
+                      E. avec le fr. Francisco Martins Houang (les deux premiers Chinois candidats à la Compagnie), fin nov. 1589,
+                         à « Sciaoceo » (Shiuchow, Chao-tcheou fou) et admis le 1 janv. 1591 avec Ricci pour maître des novices.,
+                      étudient chinois et latin.,
+                      Nanchang (Nantch'ang, Kiangsi), d'où il accompagne Ricci à Pékin
+                         (où il sé- journe du 7 sept, au 5 nov. 1598).,
+                      Nankin, mai 1599.,
+                      Nanchang, 1600., regagne Pékin
+                      qu'il quitte avant le 20 sept. 1602 pour Nanchang.,
+                      Pékin, 1604-1608., 1609,
+                      Nankin., 1611, fondation de la résidence de Hangchow (Hang-tcheou).
+                      V. « in sacello Doctoris Michaelis Yam Kiyuen », Hangchow extra muros, 1 nov. 1617,
+                            coadj. temp. (Lus. 27, 3).
+                      M. Hangchow vers le 24 nov. 1621 (D'Elia I, 291 et III, 110).
+                      Il signe sa formule portugaise de voeux « Sebastiam Fernandez (D'Elia I, 290, photocopie).
+                      Emprisonné à 3 reprises pour la foi 1596 et après., en 1615 torturé.
+                      Pf. 47., DHGE (J. Dehergne)."""
+
+            referido$Francisco Martins Houang/id=deh-sebastien-fernandes-tchong-ref1/obs=Dehergne 522
+               ls$jesuita-entrada/Shiuchow% Chao-tcheou fou# @wikidata:Q1346617/15891100#fim do mês
+
+            referido$Matteo Ricci/id=deh-sebastien-fernandes-tchong-ref2
+               ls$jesuita-cargo/Mestre dos Noviços/15910101
+               ls$tarefa/Estuda chinês e latim#com Tchong
+               ls$estadia/Nanchang (Nantch'ang, Kiangsi)#@wikidata:Q171943
+               ls$estadia/Pequim# @wikidata:Q956/15980907
+               ls$estadia/Pequim# @wikidata:Q956/15981105
+
+         n$Jean Fernandes Tchong/id=deh-jean-fernandes-tchong
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Ferdinando
+            ls$nome-chines/Tchong Ming-li Jo-han
+            ls$nascimento/Sunwui (Sin-houei hien), Kwangtung/15810000
+            rel$sociabilidade/Ajuda/Bento de Góis/deh-jean-fernandes-tchong-ref2/data=16060000
+            ls$estadia/Pequim# @wikidata:Q956/16071029
+            ls$jesuita-entrada/Nanquim# @wikidata:Q16666/16080300
+            ls$estadia/Namyung (Nan-hiong)#@wikidata:Q934465/16120000
+            ls$estadia/Hangchow (Hang-tcheou)# @wikidata:Q4970/16160000
+            ls$estadia/Nanquim# @wikidata:Q16666/16160920#preso quatro dias depois na perseguição
+            ls$jesuita-tarefa/Sai da Companhia/16210000#entre 1621 e 1626
+            ls$jesuita-tarefa/Sai da Companhia/16260000#entre 1621 e 1626
+            ls$dehergne/291/obs=Fernandes Tchong, Jean (chin.) (I) fr. coadj. 291 Ferdlnando (JS 134, 300). Tchong Ming-11 Jo-han (Pf.). N. Sunwui (Sin-houei hien), Kwangtung, 1581, frère cadet de Sébastien Fernandes. En 1606, Ricci l'envoie au secours du frère Bento de Gôis., de retour, 29 oct. 1607, Pékin. E. mars 1608, Nankin. En 1612, Namyung (Nan-hiong)., 1616, Hangchow (Hang-tcheou), puis Nankin, où 20 sept. 1616, persécution., le 24 sept. 1616 il est emprisonné. Entre 1621 et 1626 est porté « dimissus a Societate », n'est plus jésuite (D'Elia II, 436., JS 134, 301v). Pf. 121. — Distinct du fr. Juan Fernandez qui accompagnait St François Xavier à Kagoshima, 15 août 1549, et M. 26 juin 1567 à Hirado (ScHtirrE, 916., DI. VI, 823). — Autres de ce nom, DI. IV, 891.
+
+            irmao$Sébastien Fernandes Tchong/id=deh-jean-fernandes-tchong-irmao
+               ls$nacionalidade/China
+
+            referido$Matteo Ricci/id=deh-jean-fernandes-tchong-ref1
+               rel$sociabilidade/Envia em auxílio de Bento de Góis/Jean Fernandes Tchong/deh-jean-fernandes-tchong/data=16060000
+
+            referido$Bento de Góis/id=deh-jean-fernandes-tchong-ref2
+
+            referido$Juan Fernandez/id=deh-jean-fernandes-tchong-ref3
+               ls$jesuita-estatuto/Frade Coadjutor
+               rel$sociabilidade/Companheiro/Francisco Xavier/deh-jean-fernandes-tchong-ref4/data=15490815
+               ls$estadia/Kagoshima# @wikidata:Q15674/15490815
+               ls$morte/Hirado# @wikidata:Q328601/15670626
+               ls$dehergne/291-ref3/obs=f. 121. — Distinct du fr. Juan Fernandez qui accompagnait St François Xavier à Kagoshima, 15 août 1549, et M. 26 juin 1567 à Hirado (Schütte, 916., DI. VI, 823). — Autres de ce nom, DI. IV, 891.
+
+            referido$Francisco Xavier/id=deh-jean-fernandes-tchong-ref4
+               ls$titulo/Santo
+               ls$estadia/Kagoshima# @wikidata:Q15674/15490815
+
+         n$Bento de Góis/id=deh-bento-de-gois
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Bento de Goes
+            ls$nome/Bento de Goesio
+            ls$nome/Bento de Goëz
+            ls$nome-chines/Ngo Pen-tou
+            ls$nascimento/Vila Franca do Campo, ilha de S. Miguel, Açores# @wikidata:Q565290/15630000
+            ls$estadia/Índia# @wikidata:Q668
+            ls$profissao/Soldado
+            ls$jesuita-entrada/?#suponho que na Índia/15840000#entra como frade coadjutor
+            ls$jesuita-tarefa/Sai da Companhia#para se tornar padre
+            ls$jesuita-entrada/?#suponho que na Índia/15880000
+            ls$jesuita-tarefa/Pede para ir para as missões do Grão Mogol/15880000
+            ls$chegada/Lahora (corte do Grão Mogol)# @wikidata:Q11739 (hoje no Paquistão)/15980000
+            ls$cargo/Embaixador do Grão Mogol/16010500
+            rel$profissional/Embaixador/Akbar/deh-bento-de-gois-ref1/data=16010500
+            ls$estadia/Agra# @wikidata:Q42941/16021029#até
+            ls$partida/China%le Cathay# @wikidata:Q148/16021029/obs=disfarçado de mercador arménio
+            ls$pseudonimo/Abdullah Isai
+            ls$pseudonimo/Banda Abdullah
+            ls$estadia/Lahore# @wikidata:Q11739 (hoje no Paquistão)/16021208
+            ls$estadia/Yarkand# @wikidata:Q857618/16031100#fim do mês
+            ls$estadia/Pamir# @wikidata:Q161750
+            ls$estadia/Tourphan# Turpan @wikidata:Q868527
+            ls$estadia/Hami# @wikidata:Q989892/17051017
+            ls$estadia/Kia-yu-louan
+            ls$estadia/Suchou% Suchow du Kan-sou (Sou-tcheou, actuel Kiuchûan)# @wikidata:Q131962/16051222
+            rel$sociabilidade/Companheiro/Jean Fernandes Tchong/deh-bento-de-gois-ref3/data=16060000/obs=a data vem da entrada de Jean Fernandes Tchong
+            ls$tarefa/Identifica o Grão Cataio com a China e Cambalik com Pequim
+            ls$jesuita-votos/Coadjutor Temporal/15980613
+            ls$jesuita-votos-local/Lahore%« Lahor » cité du Grand Mogol# @wikidata:Q11739 (hoje no Paquistão)/15980613
+            ls$morte/Sou-tcheou do Kan-sou# @wikidata:Q131962/16070411
+            ls$dehergne/366/obs=Góis (Goes), Bento (= Benoît) de (port.) fr. coadj. 366 Gôis est la forme moderne du nom (cf Verbo)., Goesio., de Goëz. Ngo Pen-tou (Pf.). N. 1563, Villa Franca do Campos, île S. Miguel, Açores. Soldat aux Indes., E. comme fr. coadj. en 1584 et sorti pour devenir prêtre, il entre de nouveau en 1588 et demande les missions du Grand Mogol. Arr. 1598, Lahore, à la cour du Grand Mogol Akbar., devient son ambassadeur à Goa, mai 1601., revient Agra., en repart le 29 oct. 1602 pour le « Cathay », déguisé en marchand arménien sous le nom d'ABDULLAH Isai et de Banda Abdullah (cf AHSI 22 (1953) p. 157 n° 320)., Lahore, 8 déc. 1602., Yarkand, fin nov. 1603., le Pamir., Tourphan., Hami, 17 oct. 1705., Kia-yu-louan., Suchow du Kan-sou (Sou-tcheou, actuel Kiuchûan), à l'extrémité de la Grande Muraille, 22 déc. 1605 (D'Elia II, 396 et III, 152). Ricci lui envoie le fr. Jean Fernandes. Gôis a identifié « le Cathay » avec la Chine, et « Cambalik (Kambalucq) » avec Pékin.
+            ls$dehergne/366/obs=V. « Lahor » cité du Grand Mogol, 13 juin 1598, coadj. temp. (Lus. 25, 119. Il signe B. de Goes. M. Sou-tcheou du Kan-sou, 11 avril 1607 «in Cathaio» (HS 43, 58). Pf. 95., EC (Cel. Testore)., Verbo (D. Mauricio)., Koch. TV Centenario de Bento de Goes (léffl-lWl), Homagem da Sociedade de Geographia de Lisboa, 1907., Yule-Cordier, Cathay t. IV, London, 1916, p. 169-259., Wessels, Early Travellers in Central Asia, The Hague, 1924, p. 1-41., Wessels, The Grave of Bento de Goes, AHSI IV, 1935, p. 337-339., Maclagan, E., The Jesuits and the Great Mogul, London, 1932, 51-54, 331-340, 363-372., Bernard-Maître, H., Le Frère Bento de Goez chez tes Musulmans de la Haute Asie, Tientsin, 1934., Sir Percy M. Sykes, The Quest for Cathay, London, 1936, trad. française A la recherche du Cathay, Paris, 1938., et trad. allem. Leipzig 1938., Brazâo, Eduardo, A viagem de Bento de Goes a China, Lisboa, 1954
+            ls$dehergne/366/obs=Candido, Armando, Exaltaçâo de Bento de Gois, Lisboa, Imprensa Nacional, 1962., Cronin, Vincent, The Wise Man iront the West, Londres, 1955, 236-256., Lach, 277-278., Streit V, n° 2035., XIII n° 1921., RBS 405. Statue (en costume de marchand persan) à Villa-Franca do Campos. Timbres édités en Portugal en 1968.
+
+            referido$Akbar/id=deh-bento-de-gois-ref1
+               ls$titulo/Grão-Mogol
+
+            referido$Matteo Ricci/id=deh-bento-de-gois-ref2
+               rel$sociabilidade/Envia em auxílio de Bento de Góis/Jean Fernandes Tchong/deh-bento-de-gois-ref3/data=16060000/obs=a data vem da entrada de Jean Fernandes Tchong
+
+            referido$Jean Fernandes Tchong/id=deh-bento-de-gois-ref3/obs=Dehergne 291
+               ls$jesuita-estatuto/Frade Coadjutor
+
+         n$Manuel Pereira Yeou/id=deh-manuel-pereira-yeou
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Manuel Pererius
+            ls$nome-chines/Yeou Wen-Houei Han-P'o
+            ls$nascimento/Macau# @wikidata:Q14773/15750000
+            ls$estadia/Nanquim# @wikidata:Q16666/16030000
+            ls$jesuita-cargo/Catequista/16030000#à espera de entrar no noviciado
+            ls$tarefa/Estuda latim/16030000
+            ls$jesuita-entrada/?/16050815
+            ls$estadia/Pequim# @wikidata:Q956/16100000
+            ls$tarefa/Assiste Matteo Ricci na sua morte
+            rel$sociabilidade/Assiste/Matteo Ricci/deh-manuel-pereira-yeou/data=16100000
+            ls$estadia/Namyong/16130000
+            ls$jesuita-cargo/Catequista
+            ls$profissao/Pintor
+            ls$jesuita-votos/Coadjutor Temporal/16171225
+            ls$jesuita-votos-local/Hangchow (Hang-tcheou fou)/16171225
+            ls$morte/Hangchow# @wikidata:Q4970/16330000
+            ls$dehergne/624/obs=Pereira Yeou, Manuel (macaïste) (I) fr. coadj. 624 Pererius (JS 134, 304). Yeou Wen-Houei Han-P'o (Pk.., MS XX (1961), p. 145). N. Macao, 1575 -E. 15 août 1605., était, en 1603, catéchiste à Nankin, attendant d'entrer au noviciat (JS 25, 66) et il étudiait le latin (JS 134, 304). En 1610, à Pékin, il assiste Ricci mourant., 1613, Namyong., catéchiste et peintre (MS XX, 1961, 145). V. « Manoel Pereira, Hancheo in sacello doctoris Michaelis Yam kiyuen extra muros » 25 déc. 1617, c. t. (Lus. 27, 4). A Hangchow (Hang-tcheou fou). M. 1633, Hangchow (D'Elia II, 10). HS 43, 64v., HS 45, 13, avait d'abord marqué Fereira., il ajoute en face Pereira, mort en 1633. Pf. 102., John E. M'Call, dans Artibus Asiae X (1947) 134 et XI (1948) p. 49.
+
+            referido$Matteo Ricci/id=deh-manuel-pereira-yeou-ref1
+               ls$morte/Pequim# @wikidata:Q956/16100000
+
+         n$Michele (Pompilio) Ruggiere/id=deh-michele-ruggiere/obs=aparece como Pompilio, depois Michele, mas achei que era mais óbvio colocar Michele como n
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Pompilio Ruggiere#ele inscreve-se como Pompilio de Roggiere
+            ls$nome/Michele Rogerio
+            ls$nome/Michele Rogeiro
+            ls$nome/Michel Rougier
+            ls$nome/Michel Jogerius
+            ls$nome-chines/Lo Ming-kien
+            ls$nome-chines/Fou-Tch'ou
+            ls$nascimento/Spinazzola, Bari# @wikidata:Q23253/15430000
+            ls$grau-academico/Doutor em Direito
+            ls$jesuita-entrada/Roma# @wikidata:Q220/15721028
+            ls$embarque/S. Luís/15780324
+            ls$wicky/198/15780324
+            ls$wicky-viagem/25/15780324
+            ls$chegada/Macau# @wikidata:Q14773/15790720
+            ls$jesuita-tarefa/Funda o Catecumenado de S. Martin para a conversão dos chineses
+            ls$estadia/Cantão# @wikidata:Q16572/15800400
+            ls$estadia/Cantão# @wikidata:Q16572/15811000#existem outras curtas estadias no Cantão, mas Dehergne não as enumera
+            ls$jesuita-tarefa/Catequismo#escreve?/15810000
+            ls$estadia/Tchao-k'ing fou (Shiuhing)/15820600
+            ls$estadia/Tchao-k'ing fou (Shiuhing)/15821200
+            ls$estadia/Macau# @wikidata:Q14773
+            ls$estadia/Tchao-k'ing fou (Shiuhing)/15830101#para a primeira missa
+            rel$sociabilidade/Escreve obra com/Matteo Ricci/deh-michele-ruggiere-ref4/data=15830000
+            rel$sociabilidade/Escreve obra com/Sébastien Fernandes Tchong/deh-michele-ruggiere-ref5/data=15830000
+            ls$tarefa/Começa a escrever o primeiro dicionário europeu-chinês/15830000
+            ls$estadia/Chao-hing/15850000#fim do ano
+            ls$jesuita-tarefa/Funda a missão de Tchö-kiang/15850000#fim do ano
+            rel$sociabilidade/Companheiro/Almeida/deh-michele-ruggiere-ref1/data=15850000
+            ls$estadia/Kweilin, Kouang-si/15870000
+            ls$jesuita-tarefa/Tenta fundar missão em Kweilin, Kouang-si/15870000
+            ls$jesuita-tarefa/Funda missão de Hou-kouang/15870000
+            ls$tarefa/Termina o primeiro dicionário europeu-chinês/15880000
+            rel$sociabilidade/Escreve obra com/Matteo Ricci/deh-michele-ruggiere-ref4/data=15880000
+            rel$sociabilidade/Escreve obra com/Sébastien Fernandes Tchong/deh-michele-ruggiere-ref5/data=15880000
+            ls$jesuita-cargo/Procurador da missão da China/1588000
+            ls$partida/Roma# @wikidata:Q220/15881100#chamado para projectar uma embaixada do papa
+            ls$jesuita-ordenacao-padre/Lisboa# @wikidata:Q597/15780312#primeira missa
+            ls$morte/Salerno# @wikidata:Q1083/16070511
+            ls$dehergne/731/obs=Ruggieri (Rogerio), Pompilio., puis Michèle (ital.) P. 731 Rogelro., Rougier., Jogerius (Goa 24, 146). Lo Ming-kien, Fou-Tch'ou (Pf.). N. Spinazzola, (« Apulia » = dans les Pouilles), 1543 - Docteur en droit. -E. 28 oct. 1572, Rome. Emb. le 24 mars 1578 sur le S. Luis (W 198: P. Michèle Ruggieri)., arr. Macao vers le 20 juill. 1579., il y fonde le Catecumenado de S. Martin, pour la conversion des Chinois., avril 1580, oct. 1581 etc, brefs séjour à Canton., 1581, catéchisme (BVEFG. 1276)., juindéc. 1582, Tchao-k'ing fou (Shiuhing)., Macao., pour la première fois messe à Tchao-k'ing, 1er janv. 1583., Chao-hing, fonde la mission du Tchô-kiang avec le P. d'ALMEiDA, fin 1585., autre tentative à Kouei-lin (Kweilin), Kouang-si, 1587., cette même année, fonde la mission du Hou-kouang., appelé à Rome, nov. 1588, pour y projeter une ambassade du Pape (D'Elia I, 147., II, 638). Son Caté- chisme (Tacchi Venturi II, 498-540, ms de la BVE).
+            ls$dehergne/731/obs=P. Lisbonne 12 mars 1578, première messe (D. XI, 21*). V. (la formule est perdue). M. Salerne, 11 mai 1607 (HS 43a, 36v dit P. Michael Rogerius M. Naples 11 mai 1607). Oeuvres JS 101 I, II. Portrait: Ruggieri avec Matteo Ricci par Lommblin. Pf. 15., EC (Cel. Testore). Wilson, Arnold T., in Bull, of the School of Oriental Studies, Londres 1926., Wieger, L., Notes sur la première catéchèse écrite en chinois, 1582-1584, AHSI I (1932), 72-84 (cf D'Elia, I, 194)., D'Elia, P. M., Quadro storico sinologico del primo tibro di dottrina cristiana in cinese, AHSI 3 (1934), 193-222., Bernard, Aux Portes 143-194., Sczesniak, B., The Seventeenth Century Maps of China, Imago Mundi 13 (1956), 116-136., Shih, Joseph, Le P.R. et le problème de l'évangélisation en Chine, Rome, 1964., Brunner, 18-24., Streit IV n» 1937., Bortone, Fern.,
+            ls$dehergne/731/obs=P. Matteo Ricci, S., Il « Saggio d'Occidente », 2° éd. 1965, p. 477., D'Elia, La reprise des missions catholiques en Chine à la fin des Ming (1579- 1644), Journal of World History V (1959-^0), 679-691., Lach, 955., Schutte, 1000., Streit IV n» 1937. Ruggikri est inscrit le 28 oct. 1572 sous le nom de « Pompilio Rugœro napolitano » et il signe « Pompilio de Roggieri » (Rom. 171 A, f° 23v) sur le registre des entrées. Serait-il parent du P. Michael Rogerius N. à Capoue en 1536, E. 1572, pr. des 3 V. le 31 mars 1603? Il est, en tout cas, le fils de Luigi R. (qui fut longtemps au service du duc de Gravina) et de Giulia Fonella, napolitaine. Le Dizionario portoghese-cinese, composé par Ricci et Ruggieri, avec l'aide du fr. Sébastien Fernandes, entre 1583 et 1588, est le premier dictionnaire européen-chinois connu.
+            ls$dehergne/731/obs=Il va des mots abitar, à zunir (Paul Yang Fu-Mien, The Catholic Missionary Contribution to the Study of Chinese LHalects, Orbis, t. IX, Louvain, 1960, p. 158-185, avec fac-similé)., D'Elia II p. 32 hors-texte.
+
+            referida$Almeida/id=deh-michele-ruggiere-ref1/obs=não consegui perceber qual dos Almeidas é
+               ls$estadia/Chao-hing/15850000#fim do ano
+               ls$jesuita-tarefa/Funda a missão de Tchö-kiang/15850000#fim do ano
+
+            referido$Michael Rogerius/id=deh-michele-ruggiere-ref2/obs=Dehergne questiona se será seu parente
+               ls$nacionalidade/Itália
+               ls$jesuita-estatuto/Padre
+               ls$nascimento/Capua# @wikidata:Q58477/15360000
+               ls$jesuita-entrada/?/15720000
+               ls$jesuita-votos/3V/16030331
+               ls$dehergne/731-ref2/obs=Serait-il parent du P. Michael Rogerius N. à Capoue en 1536, E. 1572, pr. des 3 V. le 31 mars 1603?
+
+            pai$Luigi Ruggiere/id=deh-michele-ruggiere-pai
+               rel$profissional/Ao serviço de/Nome desconhecido/dehmichele-ruggiere-ref3
+
+            mae$Giulia Fonella/id=deh-michele-ruggiere-mae
+               ls$nascimento/Nápoles# @wikidata:Q2634/00000000
+
+            referido$Nome desconhecido/id=deh-michele-ruggiere-ref3
+               ls$cargo/Duque de Gravina
+
+            referido$Matteo Ricci/id=deh-michele-ruggiere-ref4
+               ls$jesuita-estatuto/Padre
+               ls$tarefa/Começa a escrever o primeiro dicionário europeu-chinês/15830000
+               ls$tarefa/Termina o primeiro dicionário europeu-chinês/15880000
+
+            referido$Sébastien Fernandes Tchong/id=deh-michele-ruggiere-ref5/obs=Dehergne 295
+               ls$jesuita-estatuto/Frade Coadjutor
+               ls$tarefa/Começa a escrever o primeiro dicionário europeu-chinês/15830000
+               ls$tarefa/Termina o primeiro dicionário europeu-chinês/15880000

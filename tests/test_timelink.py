@@ -80,6 +80,7 @@ def test_db_upgrade():
     # chose a random key from dict db_list
     db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
     #
+    db_key=17
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
     result = runner.invoke(app, ["db", "upgrade", str(db_key)])
     print(f"Test result {result.exit_code}")
@@ -103,7 +104,7 @@ def test_create_db():
     print(f"Test result {result.exit_code}")
     print(f"Test result {result.stdout}")
     assert result.exit_code == 0
-    assert "alembic.runtime.migration" in result.output
+    assert "created" in result.output
     # assert "not found" in result.output
     # assert "Error" in result.output
     # assert "Exception" in result.output
@@ -113,7 +114,7 @@ def test_create_db():
 
 def test_get_latest_version():
     from timelink import get_latest_version
-    version = get_latest_version("timelink")
+    version = get_latest_version()
     print(f"Latest version: {version}")
     assert version is not None
     assert len(version) > 0

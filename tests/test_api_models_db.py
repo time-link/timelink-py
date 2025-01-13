@@ -145,7 +145,7 @@ def test_create_eattribute(get_db, kgroup_nested):
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    eattr = db.get_eattribute_view()
+    eattr = db.create_eattribute_view()
     # l2 = len(inspect(get_db.get_engine()).get_view_names())
 
     assert eattr is not None
@@ -180,7 +180,7 @@ def test_create_pattribute(get_db, kgroup_nested):
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    pattr = db.get_pattribute_view()
+    pattr = db.create_pattribute_view()
     # l2 = len(inspect(get_db.get_engine()).get_view_names())
     assert pattr is not None
 
@@ -195,7 +195,7 @@ def test_create_nfucntions(get_db, kgroup_nested):
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    nfunc = db.get_nfunction_view()
+    nfunc = db.create_nfunction_view()
     # l2 = len(inspect(get_db.get_engine()).get_view_names())
     assert nfunc is not None
 

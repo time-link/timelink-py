@@ -88,7 +88,9 @@ def test_attribute_values(dbsystem):
     # get count of unique values for Portugal
     attr_type_count = attr_values.loc["Portugal"]["count"]
     # now count filtering by groupname "n" (this filters out "referidos"
-    attr_values_2 = attribute_values("nacionalidade", groupname="n", db=dbsystem, sql_echo=True)
+    attr_values_2 = attribute_values(
+        "nacionalidade", groupname="n", db=dbsystem, sql_echo=True
+    )
     # get count of unique values for Portugal
     attr_type_count_2 = attr_values_2.loc["Portugal"]["count"]
     assert attr_type_count > attr_type_count_2, "attribute_values returned bad results"
@@ -111,7 +113,7 @@ def test_entities_with_attribute(dbsystem):
         the_type="jesuita-entrada",
         the_value="Coimbra",
         show_elements=["name", "sex", "extra_info"],
-        more_attributes=['nascimento'],
+        more_attributes=["nascimento"],
         sql_echo=True,
     )
     assert df is not None, "entities_w,ith_attribute returned None"
@@ -148,7 +150,9 @@ def test_entities_with_attribute_filter_by(dbsystem):
         db=dbsystem,
     )
     assert df is not None, "entities_with_attribute returned None"
-    assert len(df.index.unique()) == len(conimbricensis), "entities_with_attribute returned bad filtered dataframe"
+    assert len(df.index.unique()) == len(
+        conimbricensis
+    ), "entities_with_attribute returned bad filtered dataframe"
     print(df)
 
 
@@ -166,12 +170,61 @@ def test_entities_with_attribute_list(dbsystem):
     df = entities_with_attribute(
         db=dbsystem,
         entity_type="person",
-        the_type=["nascimento", "entrada", "partida", "estadia", "morte"],
+        the_type=[
+            "nascimento",
+            "entrada",
+            "partida",
+            "estadia",
+            "morte",
+            "jesuita-entrada",
+            "jesuita-votos-local",
+        ],
         column_name="lugares",
         show_elements=["name", "sex", "the_line"],
         more_attributes=[],
+        filter_by=["deh-ludovico-antonio-adorno"],
         sql_echo=True,
     )
     assert df is not None, "entities_with_attribute_list returned None"
     assert len(df) > 0, "entities_with_attribute_lisy returned empty dataframe"
+    df_org = df[df["lugares.original"].notnull()]
+    assert len(df_org) > 0, "entities_with_attribute_list returned empty dataframe"
+    df_comment = df[df["lugares.comment"].notnull()]
+    assert len(df_comment) > 0, "entities_with_attribute_list returned empty dataframe"
     print(df)
+
+
+@pytest.mark.parametrize(
+    "dbsystem",
+    [
+        # db_type, db_name, db_url, db_user, db_pwd
+        ("sqlite", ":memory:", None, None, None),
+        ("postgres", "tests", None, None, None),
+    ],
+    indirect=True,
+)
+def test_entities_with_attribute_empty(dbsystem):
+    """Test generation of dataframe from attributes"""
+    df = entities_with_attribute(
+        db=dbsystem,
+        entity_type="person",
+        the_type="nonexistent",
+        column_name="lugares",
+        show_elements=["name", "sex", "the_line"],
+        more_attributes=[],
+        filter_by=["deh-ludovico-antonio-adorno"],
+        sql_echo=True,
+    )
+    assert df is None, "entities_with_attribute failed to return None"
+
+    df = entities_with_attribute(
+        db=dbsystem,
+        entity_type="person",
+        the_type="nascimento",
+        column_name="lugares",
+        show_elements=["name", "sex", "the_line"],
+        more_attributes=["nonexistent"],
+        filter_by=["deh-ludovico-antonio-adorno"],
+        sql_echo=True,
+    )
+    assert df is not None, "entities_with_attribute returned None"

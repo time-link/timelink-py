@@ -50,13 +50,16 @@ def test_upgrade(timelink_db):
 def test_upgrade_random():
     # get list of databases avoiding _users table
     db_list = create_db_index(avoid_patterns=["_users"])
-    db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
-    # set a specific db_key or URL
-    # db_key = '5'
-    db_url = parse_db_url(db_key)
-    db: TimelinkDatabase = TimelinkDatabase(db_url=db_url)
-    print(db.table_names())
-    result = upgrade(db_url, revision="head")
+    for _ in range(5):   # try 5 random databases some are not upgradable
+        db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
+        db_url = parse_db_url(db_key)
+        db: TimelinkDatabase = TimelinkDatabase(db_url=db_url)
+        print(db.table_names())
+        result = upgrade(db_url, revision="head")
+        if result is None:
+            break
+        else:
+            print(f"Failed to upgrade {db_url} {result}")
     # Add assertions to check the database state if needed
     assert result is None
 

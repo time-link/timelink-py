@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=276
+kleio$gacto2.str/translations=58
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-44
    link$geonames/"https://www.geonames.org/$1"/id=root-lin2-45
    fonte$dehergne-locations-1644/1644/geoinformation/substitui=dehergne-map-1644/obs="""
@@ -94,9 +94,9 @@ kleio$gacto2.str/translations=276
 
       geodesc$deh-chre-1644/0/0/1644
 
-         geo1$Chekiang%Tche-kiang#hoje:Zhejiang, 浙江, @wikidata:Q16967/província/deh-r1644-chekiang
+         geo1$Chekiang#Tche-kiang, hoje:Zhejiang, 浙江, @wikidata:Q16967/província/deh-r1644-chekiang
 
-            geo2$Hangchou%Hang-tcheou#hoje: Hangzhou, 杭州, @wikidata:Q4970/capital provincial/deh-r1644-hangchou
+            geo2$Hangchou#Hang-tcheou, hoje: Hangzhou, 杭州, @wikidata:Q4970/capital provincial/deh-r1644-hangchou
                atr$activa/sim/16110000
                atr$residencia-missao/Jesuíta/16110000
 
@@ -167,10 +167,10 @@ kleio$gacto2.str/translations=276
                atr$activa/sim/1617%en 1636 23 chrétientés., en 1638 17 églises
                atr$residencia-missao/Jesuíta/<1645%avant 1645
 
-               geo3$Hungtang/burgo%bourg de Hungtang#hoje: Hongtang, 洪塘, @wikidata: Q11146687, in the Chinese translation it is written as “宏塘”, and in Dehergne(1957) it is "洪堂". But actually this place is written with the characters "洪塘"./deh-r1644-hungtang
+               geo3$Hungtang/burgo%bourg de Hungtang, hoje: Hongtang, 洪塘, @wikidata: Q11146687, in the Chinese translation it is written as “宏塘”, and in Dehergne(1957) it is "洪堂". But actually this place is written with the characters "洪塘"./deh-r1644-hungtang
                   atr$activa/sim/1636
 
-               geo3$Machang/burgo%bourg de Machang, Machang#hoje: Machang, 马厂村, @wikidata:Q17033140, The Wikidata code is that of "马厂街基督教堂" Machang Street Christian Church/deh-r1644-machang
+               geo3$Machang/burgo%bourg de Machang, Machang, hoje: Machang, 马厂村, @wikidata:Q17033140, The Wikidata code is that of "马厂街基督教堂" Machang Street Christian Church/deh-r1644-machang
                   atr$activa/sim/1636
 
                geo3$Diongloh%Diongloh (Tch'ang-lo), Tch'ang-lo,Changlo, hoje: Changle,长乐, @wikidata:Q766619/tchou-hien/deh-r1644-diongloh
