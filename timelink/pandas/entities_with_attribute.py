@@ -107,9 +107,9 @@ def entities_with_attribute(
 
     if name_like is not None:
         if "name" not in entity_columns:
-            raise (ValueError("To filter by name requires person_info=True."))
+            raise (ValueError("To filter by name requires name in the show_elements list."))
 
-    attr = db.get_eattribute_view()
+    attr = db.create_eattribute_view()
     id_col = attr.c.entity.label("id")
     cols = [entity_id_col]
     cols.extend(extra_cols)
@@ -190,9 +190,11 @@ def entities_with_attribute(
         records = session.execute(stmt)
         col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
+        if df.iloc[0].count() == 0:
+            return None  # nothing found we return None
         # Check for extra info
         extra_info_edits = []
-        for row_number, (index, row) in enumerate(df.iterrows()):
+        for row_number, (_, row) in enumerate(df.iterrows()):
             # Perform operations using row_number, index, and row
             if row[attribute_extra_info_column_name] is not None:
                 extra_info: dict = row[attribute_extra_info_column_name]
@@ -248,24 +250,25 @@ def entities_with_attribute(
                 df2 = pd.DataFrame.from_records(
                     records, index=["id"], columns=col_names
                 )
-                extra_info_edits = []
-                for row_number, (index, row) in enumerate(df2.iterrows()):
-                    if row[extra_info_column_name] is not None:
-                        extra_info: dict = row[extra_info_column_name]
-                        for key, value in extra_info.items():
-                            if key != "value":
-                                xtra_col_name = f"{column_name}.{key}"
-                            else:
-                                xtra_col_name = column_name
-                            for aspect, avalue in value.items():
-                                xtra_col_name2 = f"{xtra_col_name}.{aspect}"
-                                extra_info_edits.append(
-                                    (row_number, xtra_col_name2, avalue)
-                                )
-                for row_number, xtra_col_name2, avalue in extra_info_edits:
-                    if xtra_col_name2 not in df2.columns:
-                        df2[xtra_col_name2] = None
-                    df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = avalue
+                if df2.iloc[0].count() > 0:
+                    extra_info_edits = []
+                    for row_number, (_, row) in enumerate(df2.iterrows()):
+                        if row[extra_info_column_name] is not None:
+                            extra_info: dict = row[extra_info_column_name]
+                            for key, value in extra_info.items():
+                                if key != "value":
+                                    xtra_col_name = f"{column_name}.{key}"
+                                else:
+                                    xtra_col_name = column_name
+                                for aspect, avalue in value.items():
+                                    xtra_col_name2 = f"{xtra_col_name}.{aspect}"
+                                    extra_info_edits.append(
+                                        (row_number, xtra_col_name2, avalue)
+                                    )
+                    for row_number, xtra_col_name2, avalue in extra_info_edits:
+                        if xtra_col_name2 not in df2.columns:
+                            df2[xtra_col_name2] = None
+                        df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = avalue
 
             if sql_echo:
                 print(f"Query for more_attributes={mcol}:\n", stmt)
