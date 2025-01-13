@@ -26,8 +26,8 @@ def get_db():
     finally:
         with database.session() as db:
             database.drop_db(db)
-            if ":memory:" not in database(database.engine.url):
-                drop_database(database.engine.url)
+            if ":memory:" not in database.db_url:
+                drop_database(database.db_url)
 
 
 @pytest.fixture
