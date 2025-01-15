@@ -60,6 +60,7 @@ def test_db_list():
     result = runner.invoke(app, ["db", "list"])
     assert result.exit_code == 0
 
+
 @skip_on_travis
 def test_db_current():
     """Test the CLI."""
@@ -72,6 +73,7 @@ def test_db_current():
     print(f"Test result {result.exit_code}")
     print(f"Test result {result.stdout}")
     assert result.exit_code == 0
+
 
 @skip_on_travis
 def test_db_upgrade():
@@ -88,6 +90,7 @@ def test_db_upgrade():
     print(f"Test result {result.stdout}")
     assert result.exit_code == 0
 
+
 @skip_on_travis
 def test_db_heads():
     runner = CliRunner()
@@ -97,6 +100,7 @@ def test_db_heads():
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
     heads = runner.invoke(app, ["db", "heads", str(db_key)])
     print(heads)
+
 
 @skip_on_travis
 def test_create_db():
@@ -115,8 +119,8 @@ def test_create_db():
 
 def test_get_latest_version():
     from timelink import get_latest_version
+
     version = get_latest_version()
     print(f"Latest version: {version}")
     assert version is not None
     assert len(version) > 0
-
