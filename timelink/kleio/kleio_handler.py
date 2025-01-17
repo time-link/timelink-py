@@ -91,6 +91,7 @@ class KleioHandler:
     kleio_when = None
     kleio_context = None
     pom_som_cache = dict()
+    kleio_file_is_aregister = False
 
     def __init__(self, session: Session, mode="TL", user="user"):
         """
@@ -102,6 +103,10 @@ class KleioHandler:
         """
         self.session = session
         self.user = user
+        self.kleio_file_is_aregister = False
+        self.kleio_source_id = None
+        self.aregister_id = None
+        self.xrefs = {}
         if mode == "TL":
             self.pom_som_base_mappings = pom_som_base_mappingsTL
             self.pom_som_mapper = PomSomMapperTL
@@ -325,13 +330,14 @@ class KleioHandler:
                 )
 
     def newKleioFile(self, attrs):
-        # <KLEIO STRUCTURE="/kleio-home/system/conf/kleio/stru/gacto2.str"
-        # SOURCE="/kleio-home/sources/soure-fontes/sources/1685-1720/baptismos/b1685.cli"
-        # TRANSLATOR="gactoxml2.str"
-        # WHEN="2020-8-18 17:10:32"
-        # OBS="" SPACE="">
+        """Process a new Kleio file
+        #<KLEIO STRUCTURE="/kleio-home/system/conf/kleio/stru/gacto2.str"
+                SOURCE="/kleio-home/sources/soure-fontes/sources/1685-1720/baptismos/b1685.cli"
+                TRANSLATOR="gactoxml2.str"
+                WHEN="2020-8-18 17:10:32"
+                OBS="" SPACE="">
         # TODO: should use a subclass for this
-
+        """
         self.session.commit()
         self.postponed_relations = []
         self.errors = []
@@ -343,6 +349,8 @@ class KleioHandler:
         # extract name of file from path
         self.kleio_file_name = self.kleio_file.split("/")[-1]
         self.kleio_structure = attrs["STRUCTURE"]
+        if self.kleio_structure.startswith("/kleio-home/"):
+            self.kleio_structure = self.kleio_structure.replace("/kleio-home/", "")
         self.kleio_translator = attrs["TRANSLATOR"]
         self.kleio_when = attrs["WHEN"]
         self.kleio_file_is_aregister = False
