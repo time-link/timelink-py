@@ -8,7 +8,7 @@ Create Date: 2024-10-27 18:51:35.393732
 from typing import Sequence, Union
 
 from alembic import op
-from sqlalchemy import Column, JSON
+from sqlalchemy import Column, JSON, String
 
 # revision identifiers, used by Alembic.
 revision: str = '48dd68d06c60'
@@ -19,7 +19,9 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     op.add_column('entities', Column('extra_info', JSON, nullable=True))
+    op.add_column('entities', Column('the_source', String, nullable=True))
 
 
 def downgrade() -> None:
     op.drop_column('entities', 'extra_info')
+    op.drop_column('entities', 'the_source')
