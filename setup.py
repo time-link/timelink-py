@@ -12,7 +12,7 @@ with open('HISTORY.rst') as history_file:
 
 requirements = ['typer>=0.9.0', ]
 
-test_requirements = ['pytest>=3', ]
+test_requirements = ['pytest>=8', ]
 
 description = "Timelink is an information system for person related information collected from historical sources. "  # noqa
 
