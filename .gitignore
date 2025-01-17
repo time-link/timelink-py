@@ -77,6 +77,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+.venv_devcont
 
 # Spyder project settings
 .spyderproject
@@ -138,3 +139,5 @@ tests/-- SQLite.sql
 -- SQLite.sql
 
 tests/db/test.db
+.bash_profile
+timelink-1.1.15/

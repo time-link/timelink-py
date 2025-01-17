@@ -7,6 +7,7 @@ TODO:
 
 
 """
+
 # pylint: disable=unused-import
 import os
 import time
@@ -21,18 +22,22 @@ from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy import create_engine
 from sqlalchemy import inspect
-from sqlalchemy import select, func
+from sqlalchemy import select, func, union
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import database_exists
 from sqlalchemy_utils import create_database
+from sqlalchemy.sql.selectable import TableClause
 
 import timelink
 from timelink import migrations
 from timelink.api.models.act import Act
+from timelink.api.models.geoentity import Geoentity
+from timelink.api.models.object import Object
 from timelink.mhk import utilities
 from timelink import models  # pylint: disable=unused-import
+from timelink.api.models.base_class import Base
 from timelink.api.models import Entity, PomSomMapper
 from timelink.api.models import pom_som_base_mappings
 from timelink.api.models import Person
@@ -48,10 +53,10 @@ from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 from .database_utils import get_db_password, get_import_status, random_password
 from .database_postgres import get_postgres_container_pwd, is_postgres_running
 from .database_postgres import start_postgres_server, get_postgres_container
-from .database_postgres import get_postgres_url # noqaO
+from .database_postgres import get_postgres_url  # noqaO
 from .database_postgres import get_postgres_dbnames  # noqa
 from .database_postgres import get_postgres_container_user  # noqa
-from .database_postgres import is_valid_postgres_db_name # noqa
+from .database_postgres import is_valid_postgres_db_name  # noqa
 from .database_sqlite import get_sqlite_databases, get_sqlite_url  # noqa
 
 
@@ -100,9 +105,6 @@ class TimelinkDatabase:
     db_user: str
     db_pwd: str
     db_type: str
-    pattributes: Table | None = None
-    eattributes: Table | None = None
-    nfunctions: Table | None = None
     kserver: KleioServer | None = None
 
     def __init__(
@@ -229,23 +231,26 @@ class TimelinkDatabase:
         self.engine = create_engine(self.db_url, connect_args=connect_args)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.metadata = models.Base.metadata
-        if not database_exists(self.engine.url):
+        # create an empty database if it does not exist
+        if not database_exists(self.engine.url):  # noqa
             try:
                 create_database(self.engine.url)
                 self.create_db()
             except Exception as exc:
                 logging.error(exc)
                 raise Exception("Error while creating database") from exc
-        # in some cases a database may exists but not with timelink tables
-        if self.table_exists("entities") is False:
+        # if the database exists, check if the tables are there
+        elif self.table_exists("entities") is False:
             self.create_db()
-        else:
+        else:  # the database exists upgrade if necessary
             try:
                 migrations.upgrade(self.db_url)
                 with self.session() as session:
                     self.ensure_all_mappings(
                         session
                     )  # this will cache the pomsom mapper objects
+                # ensure views
+                self.create_views()
             except Exception as exc:
                 logging.error(exc)
 
@@ -267,7 +272,7 @@ class TimelinkDatabase:
 
         Will create the tables and views if they do not exist
         Will load the database classes and ensure all mappings
-        Will update the database with alembic
+        Will stamp the database with alembic as most recent version
         """
 
         self.create_tables()
@@ -283,7 +288,8 @@ class TimelinkDatabase:
         except Exception as exc:
             logging.error(exc)
         try:
-            self.create_views()
+            # self.create_views()
+            pass
         except Exception as exc:
             logging.error(exc)
             raise Exception("Error while creating database views") from exc
@@ -305,6 +311,7 @@ class TimelinkDatabase:
 
         :return: None
         """
+        self.create_views()
         self.metadata.create_all(self.engine)  # only creates if missing
 
     def create_views(self):
@@ -312,12 +319,15 @@ class TimelinkDatabase:
 
         eattributes: view of the entity attributes linked with entity information
         pattributes: view of the person attributes linked with person information
-
+        named_entities: view of the named entities linked with entity information
+        nfunctions: view of the functions of people in acts linked with entity information
+        See issue #63
         :return: None
         """
-        self.pattributes = self.get_pattribute_view()
-        self.eattributes = self.get_eattribute_view()
-        self.nfunctions = self.get_nfunction_view()
+        self.pattribute_view = self.create_pattribute_view()
+        self.eattribute_view = self.create_eattribute_view()
+        self.named_entity_view = self.create_named_entity_view()
+        self.nfunctions_view = self.create_nfunction_view()
 
     def table_names(self):
         """Current tables in the database"""
@@ -440,8 +450,10 @@ class TimelinkDatabase:
         """
         This will drop all timelink related tables from the database.
         It will not touch non timelink tables that might exist.
+
+        If a real drop database is desidered use sqlalchemy_utils.drop_database
         :param session:
-        :return:
+
         """
         if session is None:
             session = self.session()
@@ -618,13 +630,9 @@ class TimelinkDatabase:
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             logging.debug("Waiting for translations to finish")
-            pfiles = self.kserver.get_translations(
-                path=path, recurse="yes", status="P"
-            )
+            pfiles = self.kserver.get_translations(path=path, recurse="yes", status="P")
 
-            qfiles = self.kserver.get_translations(
-                path=path, recurse="yes", status="Q"
-            )
+            qfiles = self.kserver.get_translations(path=path, recurse="yes", status="Q")
             # TODO: change to import as each translation finishes
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(1)
@@ -809,28 +817,39 @@ class TimelinkDatabase:
         insp = inspect(Model)
         return list(insp.columns)
 
-    def describe(self, argument, **kwargs):
+    def describe(self, argument, show=None, **kwargs):
         """Describe a table or a model
-          if argument is a string, it is assumed to be a table name
+          if argument is a string, it is assumed to be a table
           if argument is a model, it is assumed to be a ORM model
+          otherwise it is checked if it is a table object
           the method prints the columns of the table or model
+
         Args:
             argument: table name or model
             kwargs: additional arguments to pass to the describe method
+            show: print the columns
+
+        Returns:
+            list: list of columns
         """
         columns = []
         if isinstance(argument, str):
             columns = self.get_columns(argument)
-        elif issubclass(argument, Entity):
+        elif isinstance(argument, type) and issubclass(argument, Base):
             Model = argument
             insp = inspect(Model)
             columns = list(insp.columns)
-        if len(columns) > 0:
+        elif issubclass(type(argument), TableClause):
+            columns = list(argument.columns)
+
+        if len(columns) > 0 and show is not None:
+            print(str(argument))
             for col in columns:
                 fkey = str(col.foreign_keys) if col.foreign_keys else ""
-                print(col.table, col.name, col.type, fkey)
+                print(f"{col.name:<20} {str(col.table):<20} {str(col.type):<10} {fkey}")
+        return columns
 
-    def get_pattribute_view(self):
+    def create_pattribute_view(self):
         """Return the pattribute view.
 
         Returns a sqlalchemy table linked to the pattributes view of timelink/MHK databases
@@ -859,124 +878,167 @@ class TimelinkDatabase:
                 WHERE (a.entity = p.id)
 
         """
-        if self.pattributes is None:
-            eng: Engine = self.engine
-            metadata: MetaData = self.metadata
-            # texists = inspect(eng).has_table("pattributes")
+        eng: Engine = self.engine
+        metadata: MetaData = self.metadata
+        # texists = inspect(eng).has_table("pattributes")
+        person = Person.__table__
+        attribute = Attribute.__table__
 
-            person = Person.__table__
-            attribute = Attribute.__table__
-            attr = views.view(
-                "nattributes",
-                metadata,
-                select(
-                    person.c.id.label("id"),
-                    person.c.name.label("name"),
-                    person.c.sex.label("sex"),
-                    attribute.c.the_type.label("the_type"),
-                    attribute.c.the_value.label("the_value"),
-                    attribute.c.the_date.label("the_date"),
-                    person.c.obs.label("pobs"),
-                    attribute.c.obs.label("aobs"),
-                ).select_from(
-                    person.join(attribute, person.c.id == attribute.c.entity)
-                ),
-            )
-            self.pattributes = attr
-            with eng.begin() as con:
-                metadata.create_all(con)
-        return self.pattributes
+        attr = views.view(
+            "nattributes",
+            metadata,
+            select(
+                person.c.id.label("id"),
+                person.c.name.label("name"),
+                person.c.sex.label("sex"),
+                attribute.c.the_type.label("the_type"),
+                attribute.c.the_value.label("the_value"),
+                attribute.c.the_date.label("the_date"),
+                person.c.obs.label("pobs"),
+                attribute.c.obs.label("aobs"),
+            ).select_from(person.join(attribute, person.c.id == attribute.c.entity)),
+        )
+        with eng.begin() as con:
+            metadata.create_all(con)
+        return attr
 
-    def get_eattribute_view(self):
+    def create_eattribute_view(self):
         """Return the eattribute view.
 
         Returns a sqlalchemy table with a view that joins the table "entities"
-        and the table "attributes". This view provides attribute values with
+        and the table "attributes".
+
+        This view provides attribute values with
         the "positional" information kept in the entities tables, such as
         line number, level and order in the source file as well as groupname of
-        the attribute ("ls", "attr", etc...) and timestamps for updates and indexing.
+        the attribute ("ls", "attr", etc.)
+        and timestamps for updates and indexing.
         """
 
-        if self.eattributes is None:
-            eng: Engine = self.engine
-            metadata: MetaData = self.metadata
-            # texists = inspect(eng).has_table("eattributes")
+        eng: Engine = self.engine
+        metadata: MetaData = self.metadata
+        # texists = inspect(eng).has_table("eattributes")
 
-            entity = Entity.__table__
-            attribute = Attribute.__table__
-            attr_entity = aliased(Entity.__table__)
-            attr = views.view(
-                "eattributes",
-                metadata,
-                select(
-                    entity.c.id.label("id"),
-                    entity.c.the_line.label("the_line"),
-                    entity.c.the_level.label("the_level"),
-                    entity.c.the_order.label("the_order"),
-                    entity.c.groupname.label("groupname"),
-                    entity.c.updated.label("updated"),
-                    entity.c.indexed.label("indexed"),
-                    entity.c.extra_info.label("e_extra_info"),
-                    attribute.c.entity.label("entity"),
-                    attribute.c.the_type.label("the_type"),
-                    attribute.c.the_value.label("the_value"),
-                    attribute.c.the_date.label("the_date"),
-                    attribute.c.obs.label("aobs"),
-                    attr_entity.c.extra_info.label("a_extra_info")
-                ).select_from(
-                    entity.join(attribute, entity.c.id == attribute.c.entity)
-                          .join(attr_entity, attribute.c.id == attr_entity.c.id)
-                ),
-            )
-            self.eattributes = attr
-            with eng.begin() as con:
-                metadata.create_all(con)
-        return self.eattributes
+        entity = Entity.__table__
+        attribute = Attribute.__table__
+        attr_entity = aliased(Entity.__table__)
+        attr = views.view(
+            "eattributes",
+            metadata,
+            select(
+                entity.c.id.label("id"),
+                entity.c.the_line.label("the_line"),
+                entity.c.the_level.label("the_level"),
+                entity.c.the_order.label("the_order"),
+                entity.c.groupname.label("groupname"),
+                entity.c.updated.label("updated"),
+                entity.c.indexed.label("indexed"),
+                entity.c.extra_info.label("e_extra_info"),
+                attribute.c.entity.label("entity"),
+                attribute.c.the_type.label("the_type"),
+                attribute.c.the_value.label("the_value"),
+                attribute.c.the_date.label("the_date"),
+                attribute.c.obs.label("aobs"),
+                attr_entity.c.extra_info.label("a_extra_info"),
+            ).select_from(
+                entity.join(attribute, entity.c.id == attribute.c.entity).join(
+                    attr_entity, attribute.c.id == attr_entity.c.id
+                )
+            ),
+        )
+        with eng.begin() as con:
+            metadata.create_all(con)
+        return attr
 
-    def get_nfunction_view(self):
-        """Create a vue that link people to acts through functions
+    def create_named_entity_view(self):
+        """Create a vue for entities with names
 
-
-        CREATE VIEW nfuncs AS
-            SELECT
-                r.origin    AS id,
-                p.name,
-                r.the_value AS func,
-                a.id        AS id_act,
-                a.the_type  AS act_type,
-                a.the_date  AS act_date
-            FROM relations r, persons p, acts a
-            WHERE r.the_type = 'function-in-act' AND r.destination = a.id AND r.origin = p.id;
-
+        persons, objects and geoentities
 
         """
-        if self.nfunctions is None:
-            eng: Engine = self.engine
-            metadata: MetaData = self.metadata
-            # texists = inspect(eng).has_table("nfuncs")
+        eng: Engine = self.engine
+        metadata: MetaData = self.metadata
 
-            person = Person.__table__
-            act = Act.__table__
-            relation = Relation.__table__
-            nfuncs = views.view(
-                "nfunctions",
-                metadata,
-                select(
-                    person.c.id.label("id"),
-                    person.c.name.label("name"),
-                    relation.c.the_value.label("func"),
-                    act.c.id.label("id_act"),
-                    act.c.the_type.label("act_type"),
-                    act.c.the_date.label("act_date"),
-                ).select_from(
-                    person.join(relation, person.c.id == relation.c.origin)
-                    .join(act, relation.c.destination == act.c.id)
-                ).where(relation.c.the_type == "function-in-act"),
+        person = Person.__table__
+        object = Object.__table__
+        geoentity = Geoentity.__table__
+        entity = Entity.__table__
+        sel1 = select(
+            person.c.id.label("id"),
+            person.c.name.label("name"),
+        )
+        sel2 = select(
+            object.c.id.label("id"),
+            object.c.name.label("name"),
+        )
+        sel3 = select(
+            geoentity.c.id.label("id"),
+            geoentity.c.name.label("name"),
+        )
+        union_all = union(sel1, sel2, sel3).subquery()
+
+        named_entities = views.view(
+            "named_entities",
+            metadata,
+            select(
+                entity.c.id.label("id"),
+                entity.c.groupname.label("groupname"),
+                entity.c['class'].label("pom_class"),
+                entity.c.the_line.label("the_line"),
+                entity.c.the_level.label("the_level"),
+                entity.c.the_order.label("the_order"),
+                entity.c.updated.label("updated"),
+                entity.c.indexed.label("indexed"),
+                entity.c.extra_info.label("extra_info"),
+                union_all.c.name.label("name")
+            ).select_from(entity.join(union_all, entity.c.id == union_all.c.id)),
+        )
+        with eng.begin() as con:
+            metadata.create_all(con)
+        return named_entities
+
+    def create_nfunction_view(self):
+        """Create a vue that links people to acts through functions
+
+        TODO: this should be generalized to objects (named entities)
+        """
+        eng: Engine = self.engine
+        metadata: MetaData = self.metadata
+        # texists = inspect(eng).has_table("nfuncs")
+
+        named_entity = self.named_entity_view
+        act = Act.__table__  # this can be replaced by aliased(Act) and get the full act with entity info
+        relation = Relation.__table__
+        nfuncs = views.view(
+            "nfunctions",
+            metadata,
+            select(
+                named_entity.c.id.label("id"),
+                named_entity.c.name.label("name"),
+                named_entity.c.groupname.label("groupname"),
+                named_entity.c.pom_class.label("pom_class"),
+                named_entity.c.the_line.label("the_line"),
+                named_entity.c.the_level.label("the_level"),
+                named_entity.c.the_order.label("the_order"),
+                named_entity.c.updated.label("updated"),
+                named_entity.c.indexed.label("indexed"),
+                named_entity.c.extra_info.label("extra_info"),
+                relation.c.the_value.label("func"),
+                act.c.id.label("id_act"),
+                act.c.the_type.label("act_type"),
+                act.c.the_date.label("act_date"),
+                act.c.obs.label("act_obs"),
             )
-            self.nfunctions = nfuncs
-            with eng.begin() as con:
-                metadata.create_all(con)
-        return self.nfunctions
+            .select_from(
+                named_entity.join(relation, named_entity.c.id == relation.c.origin).join(
+                    act, relation.c.destination == act.c.id
+                )
+            )
+            .where(relation.c.the_type == "function-in-act"),
+        )
+        with eng.begin() as con:
+            metadata.create_all(con)
+        return nfuncs
 
     def export_as_kleio(
         self,

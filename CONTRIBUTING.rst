@@ -207,7 +207,15 @@ tox --recreate
 
 Travis will then deploy to PyPI if tests pass.
 
-If Travis fails to deploy to PyPI, try "make release" locally.
+If Travis fails to deploy to PyPI:
+* Check the Travis logs. Normally failures are due to tests that do not work in the CI environment.
+  In that case the test can be skipped with the fixture @skip_on_travis. See tests/test_import_MHK.py for
+    an example.
+* Every push to Travis in the main branch will trigger a build, but only tagged commits will be
+    deployed to PyPI. In order not to update the version number in the code, the last commit
+    can be tagged with fix-travis and pushed to the repository. This will trigger a build and deployment
+    to PyPI.
+ try "make release" locally.
 
 Note that errors in package description in setup.py can prevent deployment to PyPI.
 This happens mainly with markup problems in HISTORY.rst.
@@ -249,7 +257,7 @@ Tests related to the existence of a MHK installation
 
     $ py.test --nbval tests/timelink-home/projects/test-project/*
 
-Tha make target "test" activates both code and notebook tests.
+The make target "test" activates both code and notebook tests.
 Currently the notebooks are not tested on different versions of Python (no tox integration)
 
 Code style (lint)

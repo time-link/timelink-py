@@ -1,4 +1,4 @@
-# blake disable unused import
+# blake disable unused import TODO: not sure the purpose of this file. see __init__.py
 from .base_class import Base  # noqa pylint: disable=unused-import
 from .entity import Entity  # noqa pylint: disable=unused-import
 from .attribute import Attribute  # noqa pylint: disable=unused-import

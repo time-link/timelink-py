@@ -224,7 +224,7 @@ class PomSomMapper(Entity):
                     Column(
                         "id",
                         pytype,
-                        ForeignKey(super_class_table_id),
+                        ForeignKey(super_class_table_id, ondelete="CASCADE", onupdate="CASCADE"),
                         primary_key=True,
                     ),
                     replace_existing=True,

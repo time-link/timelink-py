@@ -11,6 +11,7 @@ flake8==3.9.2
 nbsphinx
 nbval>=0.10.0
 pytest>=6.2.4
+pipdeptree
 setuptools>=65.5.1
 sphinx_rtd_theme~=1.2.0
 sphinx-rtd-theme

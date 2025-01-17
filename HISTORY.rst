@@ -2,6 +2,16 @@
 History
 =======
 
+
+1.1.16 (2025-01-08)
+-------------------
+
+- Adds comment and original wording to entities_with_attribute
+- Fixes problem with alembic and logging.
+- Improves view generation across database migrations
+- Improves testing fixtures
+
+
 1.1.15 (2024-12-17)
 -------------------
 
@@ -17,8 +27,8 @@ and the way data is imported. The main changes are:
    sources refering to the same entity.
 2. Migrations with Alembic are now used to update the database
    schema. This is a major change, and it is still experimental.
-   Since this version changes to the database are handled
-   through Alembic migration scripts and authomatically
+   From this version onwards changes to the database are handled
+   through Alembic and authomatically
    triggered when a Timelink database is opened
    with TimelinkDatabase() class.
 3. The import process was refactored to save the context of

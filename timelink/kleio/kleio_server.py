@@ -1,7 +1,6 @@
 """ Interface to Kleio Server"""
 
 import logging
-import warnings
 import socket
 import os
 from time import sleep
@@ -478,12 +477,6 @@ class KleioServer:
             list[KleioFile]: List of KleioFile objects.
 
         """
-        warnings.warn(
-            "The 'translation_status' method is deprecated and will be removed in a future version. "
-            "Use 'get_translations' instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
         if recurse is True:
             recurse = "yes"
         elif recurse is False:

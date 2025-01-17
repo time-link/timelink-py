@@ -34,7 +34,10 @@ def _create_view(element, compiler, **kw):
 
 @compiler.compiles(DropView)
 def _drop_view(element, compiler, **kw):
-    return "DROP VIEW %s" % (element.name)
+    if compiler.dialect.name == "sqlite":
+        return "DROP VIEW %s" % (element.name)
+    elif compiler.dialect.name == "postgresql":
+        return "DROP VIEW IF EXISTS %s CASCADE" % (element.name)
 
 
 def view_exists(ddl, target, connection, **kw):
@@ -77,6 +80,16 @@ def view(name, metadata, selectable):
         col._make_proxy(t) for col in selectable.selected_columns
     )
 
+    sa.event.listen(
+        metadata, "before_create", DropView(name).execute_if(callable_=view_exists)
+    )
+    # after metadata is created, drop the view if it exists
+    sa.event.listen(
+        metadata,
+        "after_create",
+        DropView(name).execute_if(callable_=view_exists),
+    )
+    # after metadata is created, create the view
     sa.event.listen(
         metadata,
         "after_create",
