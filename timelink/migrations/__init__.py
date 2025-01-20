@@ -16,11 +16,33 @@ from alembic.runtime import migration
 from alembic.config import Config
 from alembic.script import ScriptDirectory
 from sqlalchemy import engine
+from sqlalchemy import inspect
 
 
 ROOT_PATH = Path(__file__).parent.parent
 ALEMBIC_CFG = Config(ROOT_PATH / "alembic.ini")
 ALEMBIC_CFG.set_main_option("script_location", str(ROOT_PATH / "migrations"))
+
+
+# Auxiliary function for migrations
+def column_exists(table_name, column_name, alembic_op):
+    """ Check if a column exists
+
+    Args:
+        table_name: name of table
+        column_name: name of column
+        alembic_op:  alembic operations object in use
+
+    Example:
+
+
+    """
+
+    bind = alembic_op.get_context().bind
+    insp = inspect(bind)
+    columns = insp.get_columns(table_name)
+    return any(c["name"] == column_name for c in columns)
+
 
 # Naming conventions for foreign keys
 # https://alembic.sqlalchemy.org/en/latest/naming.html#naming-conventions

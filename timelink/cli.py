@@ -124,9 +124,10 @@ def db_database_list_cmd():
         typer.echo(f" {i:>6}{db[0]:>9} {db_version:>8} {db[1]}: {db_url}")  # f-string
     typer.echo("\nList of revisions:")
     revisions = migrations.get_versions()
-    for revision in revisions:
+    nr = len(revisions)
+    for i, revision in enumerate(revisions, 0):
         down = revision.down_revision or "None"
-        typer.echo(f" {revision.revision[:4]} {revision.doc} <- {down[:4]}")
+        typer.echo(f" {nr-i:>3} {revision.revision[:4]} {revision.doc} <- {down[:4]}")
     return db_index
 
 
