@@ -31,22 +31,48 @@ class KleioServerDockerException(KleioServerException):
 
 
 class KleioServer:
+
     """This class interfaces to a Kleio server through its JSON-RPC api.
     It also provides convenience methods
     to start a server in Docker locally.
 
-    This class is not intended to be used directly.
+    This class is not intended to be instantiated directly.
     Use KleioServer.start() and KleioServer.attach() to create instances of KleioServer.
 
     Args:
         container (docker.models.containers.Container): runing kleio server container
         url (str): kleio server url if running in a different machine (container=None)
         token (str): kleio server token if running in a different machine (container=None)
-        kleio_home (str): kleio server home directory. If None and container is not None
+        kleio_home (str): kleio server home directory.
+                          If None and container is not None
                             then kleio_home is obtained
                             from the container. If not none
 
 
+    Main methods:
+
+        - start: Starts a kleio server in docker.
+        - attach: Attach to an already running Kleio Server.
+        - get_server: Return a running kleio server associated with a kleio_hom
+        - is_server_running: Check if a kleio server is running in docker mapped to a given kleio home directory.
+        - find_local_kleio_home: Find kleio home directory.
+        - make_token: Get the kleio server token from environment or generate a new one if not set.
+        - get_token: Get the running kleio server token.
+        - get_kleio_home: Get the kleio server home directory.
+        - get_container: Get the kleio server container.
+        - get_logs: Get the logs of the kleio server container.
+        - get_url: Get the kleio server url.
+        - call: Basic call to kleio server API.
+        - stop: Stop the kleio server container.
+        - invalidate_user: Invalidate a user.
+        - generate_token: Generate a token for a user.
+        - get_translations: Get translation status from kleio server.
+        - translate: Translate sources from kleio server.
+        - translation_clean: Clean translations from kleio server.
+        - get_sources: Get sources from kleio server.
+        - get_report: Get report from kleio server.
+        - get_url_content: Get content from Kleio Server.
+        - get_home_page: Get home page from Kleio Server.
     """
 
     #: kleio server host
@@ -459,7 +485,9 @@ class KleioServer:
     def get_translations(
         self, path: str, recurse: str = True, status: str = None, token: str = None
     ) -> List[KleioFile]:
-        """Get translations from kleio server
+        """Get translation status from kleio server.
+
+        Returns the translation status of the kleio files in path.
 
         Args:
             path (str): Path to the directory in sources.
