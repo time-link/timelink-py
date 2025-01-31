@@ -1,0 +1,35 @@
+kleio$/translations=6
+   historical-source$issue1/2025/obs="""
+        Test for TEP 1
+        https://github.com/time-link/timelink-kleio/issues/1
+
+        * 1580
+        * 1640-12-01 (December 1st 1640)
+        * 1580-04-15:1640-12-01 (from 15 April 1580 to December 1st 1640)
+        * 1580:1640 (from 1580 to 1640)
+        * 1580:  (period starting in 1580, no end date)
+        * :1640  (period ending in 1640, no start date)
+        *  >1580  (after 1580)
+        * <1640 (before 1640)
+        * >1580:<1640 (after 1580 and before 1640)
+        * >1580-04-15:<1640-12-01 (after 15 April 1580 and before December 1st 1640)
+
+        * 1681? (uncertain)
+        * 1681-05-16? (uncertain, the whole date, not just the day)
+        """
+
+      historical-act$hc-1/test-data/2025-01-29/obs=implement TEP-1
+
+         person$John Smith/m/issue1_ks_p1
+            ls$tep-date/date-year/1580
+            ls$tep-date/date-full-hifens/1640-12-01/obs=(December 1st 1640)
+            ls$tep-date/date-range/1580-04-15:1640-12-01/obs=(from 15 April 1580 to December 1st 1640)
+            ls$tep-date/date-range-years/1580:1640/obs=(from 1580 to 1640)
+            ls$tep-date/date-range-open-end/1580:/obs=(period starting in 1580, no end date)
+            ls$tep-date/date-range-open-start/:1640/obs=(period ending in 1640, no start date)
+            ls$tep-date/date-relative-after/>1580/obs=(after 1580)
+            ls$tep-date/date-relative-before/<1640/obs=(before 1640)
+            ls$tep-date/date-range-relative>/1580:<1640/obs=(after 1580 and before 1640)
+            ls$tep-date/date-range-relative>/1580-04-15:<1640-12-01/obs=(after 15 April 1580 and before December 1st 1640)
+            ls$tep-date/date-uncertain/1681#[?]/obs=(uncertain)
+            ls$tep-date/date-uncertain/1681-05-16#[?]/obs=(uncertain, the whole date, not just the day)
