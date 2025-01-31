@@ -508,7 +508,9 @@ class Entity(Base):
                     attr = ""
             attr = kleio_escape(attr)
             if element == "date":  # TODO this should test element class not name
-                attr = ftld(attr)
+                # if the date a just composed of digits try to format it
+                if attr.isdigit():
+                    attr = ftld(attr)
             if extra_info is not None and element in extra_info:
                 extras = extra_info.get(element, {})
                 element_comment = extras.get("comment", None)

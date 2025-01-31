@@ -56,7 +56,7 @@ class Attribute(Entity):
         r = f"{myname}${self.for_kleio('the_type')}"
         r += f"/{self.for_kleio('the_value')}/"
         r += f"{self.for_kleio('the_date')}"
-        obs_el = self.for_kleio("obs", named=True, prefix="", skip_if_empty=True)
+        obs_el = self.for_kleio("obs", named=True, prefix="/", skip_if_empty=True)
         r = f"{r}{obs_el}"
         kleio = super().to_kleio(
             self_string=r,
