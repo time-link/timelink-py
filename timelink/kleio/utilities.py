@@ -159,6 +159,7 @@ def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
     # if tl_date is not a string, return None
     if not isinstance(tl_date, str):
         return None
+
     # remove dashes
     tl_date_clean = tl_date.replace("-", "")
     # pad tl_date with zeros up to length 8
@@ -202,8 +203,21 @@ def format_timelink_date(tl_datet) -> str:
     if tl_datet.endswith("00"):
         return tl_datet[:4] + "-" + tl_datet[4:6]
     # Otherwise convert the date
-    py_date = convert_timelink_date(tl_datet)
-    if py_date is None:
-        return ""
-    # return date in format YYYY-MM-DD
-    return py_date.strftime("%Y-%m-%d")
+    dates = tl_datet.split(':')
+    if len(dates) == 2:
+        py_date1 = convert_timelink_date(dates[0])
+        if py_date1 is None:
+            py_date1 = ''
+        py_date2 = convert_timelink_date(dates[1])
+        if py_date2 is None:
+            py_date2 = ''
+        return (py_date1.strftime("%Y-%m-%d")
+                + ":"
+                + py_date2.strftime("%Y-%m-%d"))
+    else:
+        py_date = convert_timelink_date(dates[0])
+
+        if py_date is None:
+            return ""
+        # return date in format YYYY-MM-DD
+        return py_date.strftime("%Y-%m-%d")
