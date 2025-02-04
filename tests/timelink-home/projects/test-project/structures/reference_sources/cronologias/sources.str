@@ -177,6 +177,31 @@ part 	name=historical-act;
      also=loc,ref,obs,day,month,year;
      arbitrary=person,object,geoentity,abstraction,ls,atr,rel
 
+note -------------------------------------------------------
+note Event - similar to act but no id and with a description
+note -------------------------------------------------------
+note doc group event Something that happened.
+        Used for registering events mentioned
+        in letters, chronicles, interviews, not
+        in formal records.
+note --------------------------------
+part name=event; source=historical-act;
+        position=description,day,month,year;
+        guaranteed=description;
+        part=person
+
+note --------------------------------
+note doc group cevent chronology event,
+           with date upfront, followed by place
+           (or context) and a description
+note --------------------------------
+
+part name=cevent; source=event;
+    position=data,loc,description;
+    guaranteed=data,loc,description;
+    also=id,obs,same_as, xsame_as;
+    part=person,topic,place
+
 note ============================================================
 note A person
 note	base class por persons
@@ -437,7 +462,7 @@ part name=lista; source=pt-acto;
 element name=sumario; source=summary
 element name=fol; source=ref;
 
-part name=evento; source=pt-acto;
+part name=evento; source=event;
 	position=description,dia,mes,ano,loc;
 	guaranteed=description;
 	also=obs,id;
@@ -491,8 +516,7 @@ part name=evento; source=pt-acto;
 note ============================================
 note doc group cevento Chronology event,
 note           can be used inside source
-note TODO: change to cevent source event, check mappings
-part name=cevento; source=evento;
+part name=cevento; source=cevent;
     position=data,loc,description;
     guaranteed=data,loc,description;
     also=id,obs, same_as, xsame_as;

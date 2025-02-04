@@ -16,7 +16,6 @@ import re
 KLEIO_ADMIN_TOKEN: str = None
 KLEIO_LIMITED_TOKEN: str = None
 KLEIO_NORMAL_TOKEN: str = None
-
 KLEIO_SERVER: KleioServer = None
 
 
@@ -28,9 +27,20 @@ class KleioServerTestMode(Enum):
 mode = KleioServerTestMode.DOCKER
 
 
+skip_if_local = pytest.mark.skipif(
+    mode == KleioServerTestMode.LOCAL,
+    reason="Skipping test in LOCAL mode"
+)
+
+
 @pytest.fixture(scope="function", autouse=True)
 def setup():
     """setup kleio server for tests
+
+    The local mode does not start a new Kleio Server in docker.
+    Instead it will attach to a running kleio server at a specific
+    url with a specific token (setup above). This is usefull to
+    have the server running in swil prolog and debug interactively.
 
     To run tests with a local Kleio Server outside docker:
     1) set "mode" abose to KleioServerTestMode.LOCAL
@@ -39,16 +49,27 @@ def setup():
         setenv('KLEIO_ADMIN_TOKEN','mytoken').
         setup_and_run_server(run_debug_server,[port(8089)]).
 
+    Or run run_test_server in serverStart.pl and use
+    token=mytoken and port 8088. Make sure the port
+    is not in use by docker.
+
+    Then use tpsy(predicate) in the Prolog console to debug
+    requests comming from the tests in this suite.
+
     """
     if mode == KleioServerTestMode.LOCAL:
         token = "mytoken"
-        url = "http://localhost:8089"
+        url = "http://localhost:8088"
         ks = KleioServer.attach(url, token)
     else:
         # Setup kleio server for tests
         khome = f"{TEST_DIR}/timelink-home"
         ks = KleioServer.start(
-            kleio_home=khome, kleio_debug="DEBUG", reuse=True, update=True
+            kleio_home=khome,
+            kleio_debug="DEBUG",
+            reuse=True,
+            kleio_image='kleio-server',
+            kleio_version='latest'
         )
         print()
     return ks
@@ -66,6 +87,7 @@ def test_is_kleio_server_running():
     assert ks is not None or ks is None
 
 
+@skip_if_local
 def test_start_kleio_server():
     # Test if kleio server is started"""
     ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home", update=False)
@@ -83,6 +105,7 @@ def test_attach_kleio_server(setup):
     assert ks is not None
 
 
+@skip_if_local
 def test_get_kleio_server_container(setup):
     kserver: KleioServer = setup
     # Test get the container of the running kleio server"""
@@ -108,6 +131,7 @@ def test_make_token():
     assert KleioServer.make_token() is not None
 
 
+@skip_if_local
 def test_stop_kleio_server(setup):
     kserver: KleioServer = setup
     kome: str = kserver.get_kleio_home()
@@ -183,7 +207,8 @@ def test_generate_normal_token(setup):
         invalidated = kserver.invalidate_user(user)
         if invalidated is None:
             print("User not invalidated")
-    except Exception:
+    except Exception as exception:
+        print(exception)
         pass
 
     KLEIO_NORMAL_TOKEN = kserver.generate_token(user, info)
@@ -301,6 +326,7 @@ def test_sources_get(setup):
     assert sources is not None
 
 
+@skip_if_local
 def tests_get_logs(setup):
     # Test if logs are retrieved"""
     kserver: KleioServer = setup
@@ -326,6 +352,7 @@ def test_homepage_get(setup):
     assert version is not None
 
 
+@skip_if_local
 def test_start_kleio_server_env():
     # Test if kleio server is started with env variables"""
     khome = f"{TEST_DIR}/timelink-home"
