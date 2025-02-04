@@ -68,8 +68,7 @@ def setup():
             kleio_home=khome,
             kleio_debug="DEBUG",
             reuse=True,
-            kleio_image='kleio-server',
-            kleio_version='latest'
+            update=True
         )
         print()
     return ks
