@@ -60,7 +60,8 @@ class Relation(Entity):
     @property
     def dest_class(self):
         if self.dest is None:
-            warnings.warn("Missing destination for relation", UserWarning, stacklevel=2)
+            relinfo = repr(self)
+            warnings.warn(f"Missing destination for relation\n {relinfo}", UserWarning, stacklevel=2)
             return None
         return self.dest.pom_class
 
