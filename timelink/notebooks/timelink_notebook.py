@@ -212,7 +212,10 @@ class TimelinkNotebook:
                 "Postgres version": self.postgres_version,
                 "Postgres user": self.db.db_user,
             })
-
+        db_version = self.db.get_database_version()
+        if db_version is None:
+            db_version = 'Not versioned with Alembic'
+        info_dict["Database version"] = db_version
         return info_dict
 
     def get_imported_files(self, data_frame=True, **kwargs):

@@ -212,8 +212,8 @@ def format_timelink_date(tl_datet) -> str:
         if py_date2 is None:
             py_date2 = ''
         return (py_date1.strftime("%Y-%m-%d")
-                + ":"
-                + py_date2.strftime("%Y-%m-%d"))
+                + ":"  # noqa
+                + py_date2.strftime("%Y-%m-%d"))  # noqa
     else:
         py_date = convert_timelink_date(dates[0])
 
