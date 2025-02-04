@@ -178,7 +178,7 @@ def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
     try:
         result = datetime.strptime(new_date, format)
     except ValueError as BadDate:
-        warnings.warn(f"Invalid date: {tl_date_clean} -> {BadDate}", UserWarning, stacklevel=2)
+        warnings.warn(f"Invalid date: {tl_date_clean} -> {BadDate}", UserWarning, stacklevel=4)
         result = None
     return result
 
