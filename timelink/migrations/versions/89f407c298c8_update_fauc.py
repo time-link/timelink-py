@@ -7,6 +7,7 @@ Create Date: 2025-01-18 10:58:45.626725
 """
 
 from typing import Sequence, Union
+import warnings
 
 from alembic import op
 import sqlalchemy as sa
@@ -57,13 +58,16 @@ def upgrade() -> None:
         if_not_exists=True,
     )
     op.create_index(
-        op.f("ix_aregisters_kleiofile"), "aregisters", ["kleiofile"], unique=False
+        op.f("ix_aregisters_kleiofile"), "aregisters", ["kleiofile"], unique=False,
+        if_not_exists=True
     )
     op.create_index(
-        op.f("ix_aregisters_the_date"), "aregisters", ["the_date"], unique=False
+        op.f("ix_aregisters_the_date"), "aregisters", ["the_date"], unique=False,
+        if_not_exists=True
     )
 
     # links
+    op.drop_table("links", if_exists=True)
     op.create_table(
         "links",
         sa.Column("id", sa.Integer(), autoincrement=True, nullable=False),
@@ -94,7 +98,8 @@ def upgrade() -> None:
             ondelete="CASCADE",
         ),
         sa.ForeignKeyConstraint(
-            ["entity"], ["entities.id"], name=op.f("fk_links_entity_entities")
+            ["entity"], ["entities.id"], name=op.f("fk_links_entity_entities"),
+
         ),
         sa.ForeignKeyConstraint(
             ["rid"],
@@ -109,8 +114,7 @@ def upgrade() -> None:
             ondelete="CASCADE",
         ),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_links")),
-        sa.UniqueConstraint("rid", "entity", "user", name="unique_link"),
-        if_not_exists=True,
+        sa.UniqueConstraint("rid", "entity", "user", name="unique_link")
     )
     op.create_index(
         op.f("ix_links_entity"), "links", ["entity"], unique=False, if_not_exists=True
@@ -131,7 +135,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "acts", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("acts") as batch_op:
         batch_op.create_foreign_key(
@@ -145,7 +149,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "attributes", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("attributes") as batch_op:
         batch_op.create_foreign_key(
@@ -179,7 +183,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "classes", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("classes") as batch_op:
         batch_op.create_foreign_key(
@@ -200,15 +204,16 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "entities", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     # Geoentities
-    op.create_index(op.f("ix_geoentities_name"), "geoentities", ["name"], unique=False)
+    op.create_index(op.f("ix_geoentities_name"), "geoentities", ["name"], unique=False,
+                    if_not_exists=True)
 
     try:
         op.drop_constraint(None, "geoentities", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("geoentities") as batch_op:
         batch_op.create_foreign_key(
@@ -232,7 +237,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "objects", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("objects") as batch_op:
         batch_op.alter_column(
@@ -253,7 +258,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "persons", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("persons") as batch_op:
         batch_op.create_foreign_key(
@@ -268,7 +273,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "relations", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("relations") as batch_op:
         batch_op.create_foreign_key(
@@ -283,7 +288,7 @@ def upgrade() -> None:
     try:
         op.drop_constraint(None, "rentities", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        print(f"Warning: updating constraints (normal in old databases): {e}")
 
     with op.batch_alter_table("rentities") as batch_op:
         batch_op.alter_column(
@@ -318,13 +323,16 @@ def upgrade() -> None:
             ondelete="CASCADE",
         )
 
-    op.drop_column("rentities", "the_class")
+    try:
+        op.drop_column("rentities", "the_class")
+    except Exception as e:
+        warnings.warn(f"Error dropping column 'the_class' from 'rentities': {e}", stacklevel=2)
 
     # sources
     try:
         op.drop_constraint(None, "sources", type_="foreignkey")
     except Exception as e:
-        print(f"Error dropping constraint: {e}")
+        warnings.warn(f"Warning: updating constraints (normal in old databases): {e}", stacklevel=2)
 
     with op.batch_alter_table("sources") as batch_op:
         batch_op.create_foreign_key(
