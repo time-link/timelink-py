@@ -1,7 +1,19 @@
 =======
 History
 =======
+1.1.18 (2025-02-04)
+-------------------
 
+- Fix rendering of dates in kleio outputs
+- More improvment to migration of old databases.
+- Add database version to information on TimelinkNotebook
+- Various bug fixes.
+
+1.1.17 (2025-01-20)
+-------------------
+
+- Improve migration of old databases
+- Various improvments in unit tests
 
 1.1.16 (2025-01-08)
 -------------------
