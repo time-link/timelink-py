@@ -329,6 +329,13 @@ class TimelinkDatabase:
         self.named_entity_view = self.create_named_entity_view()
         self.nfunctions_view = self.create_nfunction_view()
 
+    def get_database_version(self):
+        """ Get the alembic version string for this db"""
+        with self.engine.connect() as connection:
+            result = connection.execute(select(text("version_num")).select_from(text("alembic_version")))
+            version = result.scalar()
+        return version
+
     def table_names(self):
         """Current tables in the database"""
         insp = inspect(self.engine)
