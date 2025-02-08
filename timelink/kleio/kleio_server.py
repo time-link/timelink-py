@@ -493,12 +493,14 @@ class KleioServer:
             path (str): Path to the directory in sources.
             recurse (str): If "yes", recurse in subdirectories.
             status (str, optional): Filter by translation status. Options include:
+
                 V = valid translations
                 T = need translation (source more recent than translation)
                 E = translation with errors
                 W = translation with warnings
                 P = translation being processed
                 Q = file queued for translation
+
             token (str, optional): Kleio server token.
 
         Returns:
@@ -640,6 +642,9 @@ class KleioServer:
         with urllib.request.urlopen(req) as source:
             response_content = source.read().decode("utf-8")
             return response_content
+
+    def __repr__(self):
+        return (f"KleioServer(url={self.get_url()}, kleio_home={self.get_kleio_home()})")
 
 
 def is_docker_running():
