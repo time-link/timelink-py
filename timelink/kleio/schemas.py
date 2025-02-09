@@ -23,8 +23,51 @@ class import_status_enum(str, Enum):
 
 
 class KleioFile(BaseModel):
-    """Represents the information about a kleio file and its
-    translation and import status"""
+    """Represents the information about a kleio file and its translation and import status.
+
+    Attributes:
+        path (str): The path of the file.
+        name (str): The name of the file.
+        size (int): The size of the file in bytes.
+        directory (str): The directory containing the file.
+        modified (datetime): The last modified time of the file.
+        modified_iso (datetime): The last modified time of the file in ISO format.
+        modified_string (str): The last modified time of the file as a string.
+        qtime (datetime): The time the file was queued for translation.
+        qtime_string (str): The time the file was queued for translation as a string.
+        source_url (str): The URL of the source file.
+        status (translation_status_enum): The status of the file:
+            - V: valid translations
+            - T: need translation (source more recent than translation)
+            - E: translation with errors
+            - W: translation with warnings
+            - P: translation being processed
+            - Q: file queued for translation
+        translated (Optional[datetime]): The time the file was translated.
+        translated_string (Optional[str]): The time the file was translated as a string.
+        errors (Optional[int]): The number of errors encountered during translation.
+        warnings (Optional[int]): The number of warnings encountered during translation.
+        version (Optional[str]): The version of the kleio translator.
+        rpt_url (Optional[str]): The URL of the report file.
+        xml_url (Optional[str]): The URL of the XML file.
+        import_status (Optional[import_status_enum]): The status of the file import:
+            - I: imported
+            - E: imported with error
+            - W: imported with warnings no errors
+            - N: not imported
+            - U: translation updated need to reimport
+        import_errors (Optional[int]): The number of errors encountered during import.
+        import_warnings (Optional[int]): The number of warnings encountered during import.
+        import_error_rpt (Optional[str]): Error report from import.
+        import_warning_rpt (Optional[str]): Warning report from import.
+        imported (Optional[datetime]): Date of import of the file.
+        imported_string (Optional[str]): Date of import of the file as a string.
+
+    Methods:
+        needs_translation(): Return True if the file needs translation.
+        needs_import(): Return True if the file needs import. A file needs import if it has not been imported before or if it has been translated again since the last import.
+
+    """
 
     path: str = Field(..., description="The path of the file")
     name: str = Field(..., description="The name of the file")
@@ -129,6 +172,9 @@ class KleioFile(BaseModel):
 
 
 class ApiPermissions(str, Enum):
+    """Permissions for Kleio Server operations
+
+    """
     sources = "sources"
     kleioset = "kleioset"
     files = "files"
