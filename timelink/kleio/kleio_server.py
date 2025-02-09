@@ -572,8 +572,8 @@ class KleioServer:
         pars = {"path": path, "recurse": recurse}
         return self.call("translations_delete", pars)
 
-    def get_sources(self, path: str, recurse: str, token=None):
-        """Get sources from kleio server
+    def get_sources(self, path: str, recurse: bool = True, token=None):
+        """Get list of sources from kleio server
 
         :param path: path to the directory in sources
         :type path: str
@@ -591,21 +591,43 @@ class KleioServer:
         pars = {"path": path, "recurse": recurse}
         return self.call("sources_get", pars, token=token)
 
-    def get_report(self, rpt_url: str, token=None) -> str:
+    def get_report(self, rpt_url: str | KleioFile, token=None) -> str:
         """Get report from kleio server
 
-        :param rpt_url: url of the report in the Kleio Server
-        :type rpt_url: str
+        Args:
 
+            rpt_url (str | KleioFile): report file url or KleioFile object
+            token (str, optional): Kleio server token; defaults to None -> use admin token.
 
-        :return: kleio server API response
-        :rtype: dict
+            Returns:
+                str: report content
         """
+        if isinstance(rpt_url, KleioFile):
+            rpt_url = rpt_url.rpt_url
 
         if not rpt_url.startswith("/"):
             rpt_url = f"/{rpt_url}"
 
         server_url = f"{self.get_url()}{rpt_url}"
+        return self.get_url_content(server_url, token=token)
+
+    def get_source(self, src: str | KleioFile, token=None) -> str:
+        """ Get the texto of a source
+
+        Args:
+            src (str | KleioFile): source file url or KleioFile object
+            token (str, optional): Kleio server token; defaults to None -> use admin token.
+
+        Returns:
+            str: source text
+        """
+        if isinstance(src, KleioFile):
+            url = src.source_url
+
+        if not url.startswith("/"):
+            url = f"/{url}"
+
+        server_url = f"{self.get_url()}{url}"
         return self.get_url_content(server_url, token=token)
 
     def get_url_content(self, server_url: str, token=None, timeout=30) -> str:
