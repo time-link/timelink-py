@@ -157,6 +157,7 @@ class TimelinkDatabase:
                                         :func:`timelink.kleio.KleioServer.start`
 
 
+
         """
         if db_name is None:
             db_name = "timelink"
@@ -329,6 +330,7 @@ class TimelinkDatabase:
         self.eattribute_view = self.create_eattribute_view()
         self.named_entity_view = self.create_named_entity_view()
         self.nfunctions_view = self.create_nfunction_view()
+        self.nrelations_view = self.create_nrelations_view()
 
     def get_database_version(self):
         """Get the alembic version string for this db"""
@@ -344,6 +346,16 @@ class TimelinkDatabase:
         insp = inspect(self.engine)
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
+
+    def view_names(self):
+        """Get the list of views in the database"""
+        inspector = inspect(self.engine)
+        return inspector.get_view_names()
+
+    def get_view_columns(self, view_name: str):
+        """Get the columns of a view"""
+        view = Table(view_name, self.metadata, autoload_with=self.engine)
+        return list(view.columns)
 
     def table_row_count(self) -> List[tuple[str, int]]:
         """Number of rows of each table in the database
@@ -853,6 +865,8 @@ class TimelinkDatabase:
         if Model is None:
             if class_or_table in self.table_names():
                 return list(self.get_table(class_or_table).columns)
+            elif class_or_table in self.view_names():
+                return self.get_view_columns(class_or_table)
             else:
                 raise ValueError(f"{class_or_table} not found")
 
@@ -860,8 +874,8 @@ class TimelinkDatabase:
         return list(insp.columns)
 
     def describe(self, argument, show=None, **kwargs):
-        """Describe a table or a model
-          if argument is a string, it is assumed to be a table
+        """Describe a table, view or a model
+          if argument is a string, it is assumed to be a table or view
           if argument is a model, it is assumed to be a ORM model
           otherwise it is checked if it is a table object
           the method prints the columns of the table or model
@@ -1001,6 +1015,9 @@ class TimelinkDatabase:
         eng: Engine = self.engine
         metadata: MetaData = self.metadata
 
+        # We should have a class "named_entity" to mixin
+        #  and detect dynamically.
+
         person = Person.__table__
         object = Object.__table__
         geoentity = Geoentity.__table__
@@ -1042,7 +1059,6 @@ class TimelinkDatabase:
     def create_nfunction_view(self):
         """Create a vue that links people to acts through functions
 
-        TODO: this should be generalized to objects (named entities)
         """
         eng: Engine = self.engine
         metadata: MetaData = self.metadata
@@ -1084,6 +1100,62 @@ class TimelinkDatabase:
             metadata.create_all(con)
         return nfuncs
 
+    def create_nrelations_view(self):
+        """ A view that links relations with named entities.
+
+        Easy access to the names of the entities involved in the
+        relation. Depends on view name_entity_view for definition
+        of what named entity is.
+
+        Inspired by MHK nrels view
+
+        .. code-block:: sql
+            CREATE VIEW nrels AS
+                SELECT
+                    relations.id,
+                    p1.id   AS ida,
+                    p1.name AS namea,
+                    p1.sex  as sexa,
+                    p2.id   AS idb,
+                    p2.name AS nameb,
+                    p2.sex  AS sexb,
+                    relations.the_type,
+                    relations.the_value,
+                    relations.the_date,
+                    relations.obs
+                FROM relations, persons p1, persons p2
+                WHERE relations.origin = p1.id
+                    AND relations.destination = p2.id
+                    AND relations.the_type <> 'Identification';
+
+        """
+        eng: Engine = self.engine
+        metadata: MetaData = self.metadata
+        # texists = inspect(eng).has_table("nrelations")
+        origin = self.named_entity_view
+        destination = aliased(origin)
+        relation = self.get_table('relations')
+        nrelations = views.view(
+            "nrelations",
+            metadata,
+            select(
+                relation.c.id.label("relation_id"),
+                origin.c.id.label("origin_id"),
+                origin.c.name.label("origin_name"),
+                destination.c.id.label("destination_id"),
+                destination.c.name.label("destination_name"),
+                relation.c.the_type.label("relation_type"),
+                relation.c.the_value.label("relation_value"),
+                relation.c.the_date.label("relation_date"),
+            ).select_from(
+                relation.join(origin, relation.c.origin == origin.c.id)
+                        .join(destination, relation.c.destination == destination.c.id)
+            )
+        )
+        with eng.begin() as con:
+            metadata.create_all(con)
+        return nrelations
+
     def export_as_kleio(
         self,
         ids: List,
@@ -1124,3 +1196,4 @@ class TimelinkDatabase:
     def table_exists(self, table_name: str) -> bool:
         inspector = inspect(self.engine)
         return inspector.has_table(table_name)
+
