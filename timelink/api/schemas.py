@@ -19,6 +19,7 @@ from typing import List, Optional
 from datetime import datetime
 from datetime import date
 from pydantic import BaseModel, ConfigDict  # pylint: disable=import-error
+from timelink.api.models.rentity import LinkStatus
 
 
 class EntitySchema(BaseModel):
@@ -32,9 +33,9 @@ class EntitySchema(BaseModel):
     the_level: Optional[int]
     the_line: Optional[int]
     groupname: Optional[str]
-    extra_info: Optional[str]
     updated: Optional[datetime]
     indexed: Optional[datetime]
+    extra_info: Optional[dict]
     contains: Optional[List["EntitySchema"]]
 
     model_config = ConfigDict(from_attributes=True)
@@ -54,7 +55,7 @@ class EntityBriefSchema(BaseModel):
     the_level: Optional[int]
     the_line: Optional[int]
     groupname: Optional[str]
-    extra_info: Optional[str]
+    extra_info: Optional[dict]
     updated: Optional[datetime]
     indexed: Optional[datetime]
 
@@ -104,10 +105,57 @@ class EntityAttrRelSchema(BaseModel):
     groupname: Optional[str]
     updated: Optional[datetime]
     indexed: Optional[datetime]
+    extra_info: Optional[dict]
+    attributes: Optional[List["AttributeSchema"]]
+    rels_in: Optional[List["RelationInSchema"]]
+    rels_out: Optional[List["RelationOutSchema"]]
+    contains: Optional[List["EntityAttrRelSchema"]]
+    links: Optional[List["LinkSchema"]]
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class RealEntitySchema(BaseModel):
+    """Pydantic Schema for RealEntity"""
+
+    id: str
+    user: str
+    description: Optional[str]
+    status: LinkStatus
+    obs: Optional[str]
+    links: Optional[List["LinkSchema"]]
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class RealEntityAttrRelSchema(BaseModel):
+    """Pydantic Schema for RealEntity"""
+
+    id: str
+    user: str
+    description: Optional[str]
+    status: LinkStatus
+    obs: Optional[str]
     attributes: Optional[List["AttributeSchema"]]
     rels_in: Optional[List["RelationInSchema"]]
     rels_out: Optional[List["RelationOutSchema"]]
     contains: Optional[List["EntityBriefSchema"]]
+    links: Optional[List["LinkSchema"]]
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class LinkSchema(BaseModel):
+    "Identification links between entities"
+
+    id: int
+    rid: str
+    entity: str
+    user: str
+    rule: str
+    source: str
+    status: LinkStatus
+    aregister: Optional[str]
 
     model_config = ConfigDict(from_attributes=True)
 
