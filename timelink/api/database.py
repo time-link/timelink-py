@@ -161,6 +161,7 @@ class TimelinkDatabase:
         if db_name is None:
             db_name = "timelink"
         self.db_name = db_name
+        self.db_type = db_type
 
         # if we received a url, use it to connect
         if db_url is not None:
@@ -330,9 +331,11 @@ class TimelinkDatabase:
         self.nfunctions_view = self.create_nfunction_view()
 
     def get_database_version(self):
-        """ Get the alembic version string for this db"""
+        """Get the alembic version string for this db"""
         with self.engine.connect() as connection:
-            result = connection.execute(select(text("version_num")).select_from(text("alembic_version")))
+            result = connection.execute(
+                select(text("version_num")).select_from(text("alembic_version"))
+            )
             version = result.scalar()
         return version
 
@@ -424,6 +427,9 @@ class TimelinkDatabase:
 
     def __enter__(self):
         return self.session()
+
+    def __repr__(self):
+        return f"TimelinkDatabase(db_type={self.db_type}, db_name={self.db_name})"
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.session().close()
@@ -531,7 +537,7 @@ class TimelinkDatabase:
 
     def get_need_import(  # TODO: better name check_need_import
         self,
-        kleio_files: List[KleioFile],
+        kleio_files: List[KleioFile] = None,
         with_import_errors=False,
         with_import_warnings=False,
         match_path=False,
@@ -555,8 +561,8 @@ class TimelinkDatabase:
             List[KleioFile]: list of kleio files with field import_status
         """
 
-        kleio_files: List[KleioFile] = get_import_status(
-            self, kleio_files, match_path=match_path
+        kleio_files: List[KleioFile] = self.get_import_status(
+            kleio_files, match_path=match_path
         )
         return [
             file
@@ -692,6 +698,35 @@ class TimelinkDatabase:
                         logging.error("Unexpected error:")
                         logging.error("Error: %s", e)
                         continue
+
+    def import_from_xml(self, file: str | KleioFile, kserver=None, return_stats=True):
+        """Import one file"""
+        if isinstance(file, KleioFile):
+            path = file.xml_url
+        else:
+            path = file
+
+        if kserver is None:
+            kserver = self.kserver
+        if kserver is None:
+            raise ValueError(
+                "No kleio server attached to this database."
+                "Attach kleio server or provide one in call."
+            )
+        # TODO: #18 expose import_from_xml in TimelinkDatabase
+        stats = None
+        with self.session() as session:
+            stats = import_from_xml(
+                path,
+                session=session,
+                options={
+                    "return_stats": return_stats,
+                    "kleio_token": kserver.get_token(),
+                    "kleio_url": kserver.get_url(),
+                    "mode": "TL",
+                },
+            )
+        return stats
 
     def query(self, query_spec):
         """Executes a query in the database
@@ -990,14 +1025,14 @@ class TimelinkDatabase:
             select(
                 entity.c.id.label("id"),
                 entity.c.groupname.label("groupname"),
-                entity.c['class'].label("pom_class"),
+                entity.c["class"].label("pom_class"),
                 entity.c.the_line.label("the_line"),
                 entity.c.the_level.label("the_level"),
                 entity.c.the_order.label("the_order"),
                 entity.c.updated.label("updated"),
                 entity.c.indexed.label("indexed"),
                 entity.c.extra_info.label("extra_info"),
-                union_all.c.name.label("name")
+                union_all.c.name.label("name"),
             ).select_from(entity.join(union_all, entity.c.id == union_all.c.id)),
         )
         with eng.begin() as con:
@@ -1014,7 +1049,9 @@ class TimelinkDatabase:
         # texists = inspect(eng).has_table("nfuncs")
 
         named_entity = self.named_entity_view
-        act = Act.__table__  # this can be replaced by aliased(Act) and get the full act with entity info
+        act = (
+            Act.__table__
+        )  # this can be replaced by aliased(Act) and get the full act with entity info
         relation = Relation.__table__
         nfuncs = views.view(
             "nfunctions",
@@ -1037,9 +1074,9 @@ class TimelinkDatabase:
                 act.c.obs.label("act_obs"),
             )
             .select_from(
-                named_entity.join(relation, named_entity.c.id == relation.c.origin).join(
-                    act, relation.c.destination == act.c.id
-                )
+                named_entity.join(
+                    relation, named_entity.c.id == relation.c.origin
+                ).join(act, relation.c.destination == act.c.id)
             )
             .where(relation.c.the_type == "function-in-act"),
         )
