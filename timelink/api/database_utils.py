@@ -65,8 +65,6 @@ def get_import_status(
 
     Returns:
         List[KleioFile]: list of kleio files with field import_status
-
-    TODO: KleioFile should also receive the import_errors and import_warnings
     """
 
     previous_imports: List[KleioImportedFileSchema] = db.get_imported_files()
