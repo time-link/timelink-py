@@ -45,7 +45,7 @@ TEST_FILES_DIR = str(
 kserver = None
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def dbsystem(request):
     """Create a database for testing"""
     db_type, db_name, db_url, db_user, db_pwd = request.param

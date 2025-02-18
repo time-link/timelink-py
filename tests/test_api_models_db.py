@@ -183,7 +183,7 @@ def test_create_pattribute(get_db, kgroup_nested):
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    pattr = db.create_pattribute_view()
+    pattr = db.create_nattributes_view()
     # l2 = len(inspect(get_db.get_engine()).get_view_names())
     assert pattr is not None
 
