@@ -38,6 +38,8 @@ def _drop_view(element, compiler, **kw):
         return "DROP VIEW %s" % (element.name)
     elif compiler.dialect.name == "postgresql":
         return "DROP VIEW IF EXISTS %s CASCADE" % (element.name)
+    else:
+        raise ValueError(f"Bad dialect name for sql.alchemy: {compiler.dialect.name}")
 
 
 def view_exists(ddl, target, connection, **kw):
@@ -80,21 +82,24 @@ def view(name, metadata, selectable):
         col._make_proxy(t) for col in selectable.selected_columns
     )
 
-    sa.event.listen(
-        metadata, "before_create", DropView(name).execute_if(callable_=view_exists)
-    )
+    # sa.event.listen(
+    #    metadata, "before_create", DropView(name).execute_if(callable_=view_exists)
+    # )
     # after metadata is created, drop the view if it exists
-    sa.event.listen(
-        metadata,
-        "after_create",
-        DropView(name).execute_if(callable_=view_exists),
-    )
+
+    # sa.event.listen(
+    #    metadata,
+    #    "after_create",
+    #    DropView(name).execute_if(callable_=view_exists),
+    # )
+
     # after metadata is created, create the view
     sa.event.listen(
         metadata,
         "after_create",
         CreateView(name, selectable).execute_if(callable_=view_doesnt_exist),
     )
+
     sa.event.listen(
         metadata, "before_drop", DropView(name).execute_if(callable_=view_exists)
     )

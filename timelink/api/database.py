@@ -17,7 +17,6 @@ import logging
 from typing import List
 from pydantic import TypeAdapter
 
-from sqlalchemy import Engine
 from sqlalchemy import MetaData
 from sqlalchemy import Table
 from sqlalchemy import create_engine
@@ -124,6 +123,7 @@ class TimelinkDatabase:
         postgres_image=None,
         postgres_version=None,
         stop_duplicates=True,
+        echo=False,
         **connect_args,
     ):
         """Initialize the database connection and setup
@@ -131,10 +131,10 @@ class TimelinkDatabase:
         Example:
             .. code-block:: python
 
-                db = TimelinkDatabase('timelink', 'sqlite')
-                with db.session() as session:
-                    # do something with the session
-                    session.commit()
+            db = TimelinkDatabase('timelink', 'sqlite')
+            with db.session() as session:
+                # do something with the session
+                session.commit()
 
         Args:
             db_name (str, optional): database name; defaults to "timelink".
@@ -145,19 +145,17 @@ class TimelinkDatabase:
             db_path (str, optional): database path (for sqlite databases); defaults to None.
             kleio_server (KleioServer, optional): kleio server for imports; defaults to None.
             kleio_home (str, optional): kleio home directory; defaults to None. If present and
-                                        kleio_server is None will start new kleio server, which
-                                        can be fetched with get_kleio_server()
+                        kleio_server is None will start new kleio server, which
+                        can be fetched with get_kleio_server()
             kleio_image (str, optional): kleio docker image. Passed to KleioServer().
             kleio_version (str, optional): kleio version. Passed to KleioServer().
             kleio_token (str, optional): kleio token. Passed to KleioServer().
             kleio_update (bool, optional): update kleio server. Passed to KleioServer().
             postgres_image (str, optional): postgres docker image; defaults to None.
             postgres_version (str, optional): postgres version; defaults to None.
-            extra_args (dict, optional): extra arguments to sqlalchemy and
-                                        :func:`timelink.kleio.KleioServer.start`
-
-
-
+            echo (bool, optional): if True, the Engine will log all statements; defaults to False.
+            connect_args (dict, optional): extra arguments to sqlalchemy and
+                           :func:`timelink.kleio.KleioServer.start`
         """
         if db_name is None:
             db_name = "timelink"
@@ -230,7 +228,7 @@ class TimelinkDatabase:
             else:
                 raise ValueError(f"Unknown database type: {db_type}")
 
-        self.engine = create_engine(self.db_url, connect_args=connect_args)
+        self.engine = create_engine(self.db_url, echo=echo, connect_args=connect_args)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.metadata = models.Base.metadata
         # create an empty database if it does not exist
@@ -252,7 +250,7 @@ class TimelinkDatabase:
                         session
                     )  # this will cache the pomsom mapper objects
                 # ensure views
-                self.create_views()
+                self.update_views()
             except Exception as exc:
                 logging.error(exc)
 
@@ -290,11 +288,10 @@ class TimelinkDatabase:
         except Exception as exc:
             logging.error(exc)
         try:
-            # self.create_views()
-            pass
+            self.update_views()
         except Exception as exc:
             logging.error(exc)
-            raise Exception("Error while creating database views") from exc
+            raise Exception("Error while updating database views") from exc
 
     def set_kleio_server(self, kleio_server: KleioServer):
         """Set the kleio server for imports
@@ -313,8 +310,17 @@ class TimelinkDatabase:
 
         :return: None
         """
-        self.create_views()
         self.metadata.create_all(self.engine)  # only creates if missing
+
+    def drop_views(self):
+        """ Drop views"""
+
+        existing = self.view_names()
+        with self.session() as session:
+            for view_name in existing:
+                stmt = views.DropView(view_name).execute_if(callable_=views.view_exists)
+                session.execute(stmt)
+                session.commit()
 
     def create_views(self):
         """Creates the views
@@ -326,11 +332,20 @@ class TimelinkDatabase:
         See issue #63
         :return: None
         """
-        self.pattribute_view = self.create_pattribute_view()
+        self.pattribute_view = self.create_nattributes_view()
         self.eattribute_view = self.create_eattribute_view()
         self.named_entity_view = self.create_named_entity_view()
         self.nfunctions_view = self.create_nfunction_view()
         self.nrelations_view = self.create_nrelations_view()
+        try:
+            self.metadata.create_all(self.engine)
+        except Exception as exc:
+            logging.error(f"Error creating views: {exc}")
+
+    def update_views(self):
+        """ Drop and recreate all views"""
+        self.drop_views()
+        self.create_views()
 
     def get_database_version(self):
         """Get the alembic version string for this db"""
@@ -905,7 +920,7 @@ class TimelinkDatabase:
                 print(f"{col.name:<20} {str(col.table):<20} {str(col.type):<10} {fkey}")
         return columns
 
-    def create_pattribute_view(self):
+    def create_nattributes_view(self):
         """Return the pattribute view.
 
         Returns a sqlalchemy table linked to the pattributes view of timelink/MHK databases
@@ -934,7 +949,6 @@ class TimelinkDatabase:
                 WHERE (a.entity = p.id)
 
         """
-        eng: Engine = self.engine
         metadata: MetaData = self.metadata
         # texists = inspect(eng).has_table("pattributes")
         person = Person.__table__
@@ -954,8 +968,11 @@ class TimelinkDatabase:
                 attribute.c.obs.label("aobs"),
             ).select_from(person.join(attribute, person.c.id == attribute.c.entity)),
         )
-        with eng.begin() as con:
-            metadata.create_all(con)
+        # with eng.begin() as con:
+        #     try:
+        #         metadata.create_all(con)
+        #     except Exception as exc:
+        #         logging.error(f"Error creating view: {exc}")
         return attr
 
     def create_eattribute_view(self):
@@ -971,7 +988,6 @@ class TimelinkDatabase:
         and timestamps for updates and indexing.
         """
 
-        eng: Engine = self.engine
         metadata: MetaData = self.metadata
         # texists = inspect(eng).has_table("eattributes")
 
@@ -1002,8 +1018,11 @@ class TimelinkDatabase:
                 )
             ),
         )
-        with eng.begin() as con:
-            metadata.create_all(con)
+        # with eng.begin() as con:
+        #     try:
+        #         metadata.create_all(con)
+        #     except Exception as exc:
+        #         logging.error(f"Error creating view: {exc}")
         return attr
 
     def create_named_entity_view(self):
@@ -1012,7 +1031,6 @@ class TimelinkDatabase:
         persons, objects and geoentities
 
         """
-        eng: Engine = self.engine
         metadata: MetaData = self.metadata
 
         # We should have a class "named_entity" to mixin
@@ -1052,15 +1070,17 @@ class TimelinkDatabase:
                 union_all.c.name.label("name"),
             ).select_from(entity.join(union_all, entity.c.id == union_all.c.id)),
         )
-        with eng.begin() as con:
-            metadata.create_all(con)
+        # with eng.begin() as con:
+        #     try:
+        #         metadata.create_all(con)
+        #     except Exception as exc:
+        #         logging.error(f"Error creating view: {exc}")
         return named_entities
 
     def create_nfunction_view(self):
         """Create a vue that links people to acts through functions
 
         """
-        eng: Engine = self.engine
         metadata: MetaData = self.metadata
         # texists = inspect(eng).has_table("nfuncs")
 
@@ -1096,8 +1116,11 @@ class TimelinkDatabase:
             )
             .where(relation.c.the_type == "function-in-act"),
         )
-        with eng.begin() as con:
-            metadata.create_all(con)
+        # with eng.begin() as con:
+        #     try:
+        #         metadata.create_all(con)
+        #     except Exception as exc:
+        #         logging.error(f"Error creating view: {exc}")
         return nfuncs
 
     def create_nrelations_view(self):
@@ -1129,7 +1152,6 @@ class TimelinkDatabase:
                     AND relations.the_type <> 'Identification';
 
         """
-        eng: Engine = self.engine
         metadata: MetaData = self.metadata
         # texists = inspect(eng).has_table("nrelations")
         origin = self.named_entity_view
@@ -1152,8 +1174,11 @@ class TimelinkDatabase:
                         .join(destination, relation.c.destination == destination.c.id)
             )
         )
-        with eng.begin() as con:
-            metadata.create_all(con)
+        # with eng.begin() as con:
+        #     try:
+        #         metadata.create_all(con)
+        #     except Exception as exc:
+        #         logging.error(f"Error creating view: {exc}")
         return nrelations
 
     def export_as_kleio(
@@ -1196,4 +1221,3 @@ class TimelinkDatabase:
     def table_exists(self, table_name: str) -> bool:
         inspector = inspect(self.engine)
         return inspector.has_table(table_name)
-
