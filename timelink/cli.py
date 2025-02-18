@@ -13,6 +13,7 @@ import typer
 import docker
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 from timelink import migrations
+from timelink import version
 from timelink.api.database import TimelinkDatabase, get_postgres_dbnames
 from timelink.api.database import get_sqlite_databases
 from timelink.api.database import get_postgres_url
@@ -28,7 +29,7 @@ server: uvicorn.Server = None  # uvicorn server instance
 current_working_directory = os.getcwd()
 
 # We use Typer https://typer.tiangolo.com
-app = typer.Typer(help="Timelink and MHK manager")
+app = typer.Typer(help=f"Timelink and MHK manager {version}")
 mhk_app = typer.Typer()
 app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
 db_app = typer.Typer()
@@ -81,8 +82,9 @@ def create_db_index(avoid_patterns=None):
                     (db_type, db_name, db_url)
 
     """
+    pgsql_dbs = get_postgres_dbnames()
     postgres_list = [
-        ("postgres", db, get_postgres_url(db)) for db in sorted(get_postgres_dbnames())
+        ("postgres", db, get_postgres_url(db)) for db in sorted(pgsql_dbs)
     ]
     sqlite_list = [
         ("sqlite", os.path.basename(db), get_sqlite_url(db))
@@ -261,7 +263,7 @@ def main():
     This is the timelink/MHK manager on the command line
     """
 
-    typer.echo("This is the timelink/MHK manager")
+    typer.echo(f"This is the timelink/MHK manager {version}")
 
 
 if __name__ == "__main__":
