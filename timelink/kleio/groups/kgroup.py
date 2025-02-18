@@ -219,7 +219,7 @@ class KGroup:
     @classmethod
     def is_kgroup(cls, g):
         """True g is an instance of a subclass of KGroup"""
-        return "KGroup" in [c.__name__ for c in type(g).mro()]
+        return issubclass(type(g), KGroup)
 
     @classmethod
     def elements_allowed(cls) -> set:
