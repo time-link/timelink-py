@@ -1,10 +1,12 @@
 """ Interface to Kleio Server"""
 
 import logging
+import re
 import socket
 import os
 from time import sleep
-from typing import List, Tuple
+import time
+from typing import List, Optional, Tuple
 import docker
 import secrets
 import requests
@@ -175,7 +177,29 @@ class KleioServer:
             stop_duplicates=stop_duplicates,
         )
 
-        return KleioServer(container)
+        kserver = KleioServer(container)
+
+        # wait for the server to be ready
+        start_time = time.time()
+        stop_time = 1
+        timeout = 15
+        while True:
+            try:
+                kserver.get_home_page()
+                break
+            except Exception as e:
+                elapsed_time = time.time() - start_time
+                if elapsed_time >= timeout:
+                    raise RuntimeError(
+                        f"Failed to start Kleio server after {timeout} seconds: {e}"
+                    )
+                logging.warning(
+                    f"Kleio server not ready, retrying in {stop_time} seconds: {e}"
+                )
+                time.sleep(stop_time)
+        logging.info("Kleio server started successfully")
+
+        return kserver
 
     @staticmethod
     def attach(url: str, token: str, kleio_home: str = "."):
@@ -454,8 +478,22 @@ class KleioServer:
 
     def stop(self):
         """Stop the kleio server container"""
+        logging.debug(f"Stopping kleio server {self.container.name}")
+        self.container.reload()
+        if self.container.status != "running":
+            self.container.reload()
+            if self.container.status != "running":
+                sleep(5)
+            self.container.reload()
+            if self.container.status != "running":
+                raise KleioServerDockerException("Container is not running")
         self.container.stop()
-        self.container.remove()
+        try:
+            self.container.remove()
+        except Exception as e:
+            print(f"Error removing container: {e} {self.container.name}")
+            pass
+        return
 
     def invalidate_user(self, user: str):
         """Invalidate a user
@@ -665,6 +703,35 @@ class KleioServer:
             response_content = source.read().decode("utf-8")
             return response_content
 
+    def extract_version_info(self, home_page_content: str) -> Optional[Tuple[str, str, str]]:
+        """Extract version information from the home page content.
+
+        Args:
+            home_page_content (str): The content of the home page.
+
+        Returns:
+            Optional[Tuple[str, str, str]]: A tuple containing the version number, build number, and date of build,
+                                            or None if the information could not be extracted.
+        """
+        pattern = r"Version: KleioTranslator - server version (\d+\.\d+) - build (\d+) (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})"
+        match = re.search(pattern, home_page_content)
+        if match:
+            version = match.group(1)
+            build_number = match.group(2)
+            build_date = match.group(3)
+            return version, build_number, build_date
+        return None
+
+    def get_version_info(self) -> Optional[Tuple[str, str, str]]:
+        """Fetch the home page and extract version information.
+
+        Returns:
+            Optional[Tuple[str, str, str]]: A tuple containing the version number, build number, and date of build,
+                                            or None if the information could not be extracted.
+        """
+        home_page_content = self.get_home_page()
+        return self.extract_version_info(home_page_content)
+
     def __repr__(self):
         return (f"KleioServer(url={self.get_url()}, kleio_home={self.get_kleio_home()})")
 
@@ -871,7 +938,7 @@ def get_kserver_container_list(
 
     client: docker.DockerClient = docker.from_env()
 
-    allcontainers = client.containers.list()
+    allcontainers = client.containers.list(all=False)
     allimages_tags = [(t, c) for c in allcontainers for t in c.image.tags]
 
     if kleio_version is None:
@@ -1019,9 +1086,6 @@ def start_kleio_server(
     if exists is not None:
         if reuse:
             return exists
-        else:  # if exists and not reuse stop existing
-            exists.stop()
-            exists.remove()
 
     # if kleio_home is None, use current directory
     if kleio_home is None:
