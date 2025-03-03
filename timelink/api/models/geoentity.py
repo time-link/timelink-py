@@ -48,5 +48,5 @@ class Geoentity(Entity):
             else:
                 self_string = r
         r = super().to_kleio(self_string=self_string, ident=ident, ident_inc=ident_inc,
-                             show_contained=show_contained, width=width)
+                             show_contained=show_contained, width=width, **kwargs)
         return r
