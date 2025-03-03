@@ -68,6 +68,26 @@ class Entity(Base):
     #: str: name of the kleio group that produced this entity
     groupname = mapped_column(String, index=True, nullable=True)
     # extra_info a JSON field with extra information about the entity
+    # For each column of the entity, the value is a dictionary with the following keys:
+    # 'class': {'db_column_name': 'class',
+    #         'kleio_element_class': 'class',
+    #         'kleio_element_name': 'class'},
+    # 'date': {'db_column_name': 'the_date',
+    #         'kleio_element_class': 'date',
+    #         'kleio_element_name': 'date'},
+    # 'entity': {'db_column_name': 'entity',
+    #             'kleio_element_class': 'entity',
+    #             'kleio_element_name': 'entity'},
+    # 'id': {'db_column_name': 'id',
+    #         'kleio_element_class': 'id',
+    #         'kleio_element_name': 'id'},
+    # 'type': {'db_column_name': 'the_type',
+    #         'kleio_element_class': 'type',
+    #         'kleio_element_name': 'tipo'},
+    # 'value': {'comment': '@wikidata:Q1171',
+    #         'db_column_name': 'the_value',
+    #         'kleio_element_class': 'value',
+    #         'kleio_element_name': 'valor'}}
     extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
     updated = mapped_column(DateTime, default=datetime.utcnow, index=True)
@@ -105,15 +125,11 @@ class Entity(Base):
     # Ensure mappings are up to date
     # see self.ensure_mappings()
     # see PomSomMapper.group_to_entity(self)
-    group_models = {}
-
-    # group pom classes = contains the correspondence between groupname and PomSomMapper
-    # note that classes store here can raise DetachedInstanceError when accessed
-    group_pom_classes = {}
+    group_models: dict = {}
 
     # maps group elements to columns. updated by PomSomMapper.kgroup_to_entity
     # this is a dictionary of dictionaries: first key the group name, second key the element name
-    group_elements_to_columns = {"entity": {"id": "id"}}
+    group_elements_to_columns: dict[str, dict[str, str]] = {"entity": {"id": "id"}}
 
     # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
     # To handle non mapped pom_class
@@ -177,13 +193,35 @@ class Entity(Base):
         }
 
     @classmethod
+    def get_group_models(cls) -> dict:
+        """ Return a dictionary of group models
+
+        The keys are group names and the values and ORM
+        Models.
+        """
+        return cls.group_models.get(cls.metadata)
+
+    @classmethod
     def get_orm_for_group(cls, groupname: str):
         """
         Entity.get_orm_for_group("acts")
 
         will return the ORM class handling a given group
         """
-        return cls.group_models.get(groupname, None)
+        meta_group_models = cls.get_group_models()
+        if meta_group_models is not None:
+            return meta_group_models.get(groupname, None)
+        else:
+            raise ValueError(f"{groupname} is not associated with any ORM Model class")
+
+    @classmethod
+    def set_orm_for_group(cls, groupname: str, ormclass):
+        cls.group_models[cls.metadata][groupname] = ormclass
+
+    @classmethod
+    def clear_group_models_cache(cls):
+        """Clear cached association between groups and ormclass"""
+        cls.group_models[cls.metadata] = dict()
 
     @classmethod
     def get_som_mapper_to_orm_as_dict(cls):
@@ -239,9 +277,18 @@ class Entity(Base):
         )
 
     def get_element_for_column(self, column: str):
-        """Get the element name for a column"""
+        """Get the kleio element name for a column"""
 
         self.update_group_elements_to_columns()
+        extra_info = getattr(self, "extra_info", None)
+        element_name = None
+        if extra_info is not None:
+            col_extra_info = extra_info.get(column, None)
+            if col_extra_info is not None:
+                element_name = col_extra_info.get("kleio_element_name", None)
+        if element_name is not None:
+            return element_name
+        # if we didn't find it in extra_info, look in the group_elements_to_columns
         for element, column_name in Entity.group_elements_to_columns.get(
             self.groupname, {}
         ).items():
@@ -250,7 +297,8 @@ class Entity(Base):
         return None
 
     def update_group_elements_to_columns(self):
-        """Update the element to column mappings for this entity"""
+        """Update the element to column mappings for the Group of this Entity"""
+        # Only do this if we don't have any mappings for this Entity
         if (
             Entity.group_elements_to_columns.get(self.groupname, None) is None
             or len(  # noqa: W503
@@ -263,7 +311,7 @@ class Entity(Base):
                 raise ValueError(
                     "Entity must be in a session to update element to columns" "mappings"
                 )
-                # when a group is added programaically, the element to column mappings
+                # when a group is added programatically, the element to column mappings
                 # the pom_class can be None. In this case, we use the group name
                 # as the pom_class
             if self.pom_class is None:
@@ -272,15 +320,23 @@ class Entity(Base):
             psm = session.get(Entity, self.pom_class)  # <- PomSomMapper
             if psm is None:
                 raise ValueError(f"No PomSomMapper found for this group {self.groupname}")
-                # get the element to column mappings
+            # get the element to column mappings
             elcol_map: dict = Entity.group_elements_to_columns.get(self.groupname, {})
+            # update the element to column mappings
             for cattr in psm.class_attributes:  # noqa
                 elcol_map[cattr.name] = cattr.colname
+            # put it back in the dictionary
             Entity.group_elements_to_columns[self.groupname] = elcol_map
 
     def get_element_names(self):
         """Get the names of the elements for this entity"""
         self.update_group_elements_to_columns()
+        # it is better to try to get from the extra_info
+        if getattr(self, "extra_info", None) is not None:
+            columns = self.extra_info.keys()
+            element_names = [self.get_element_for_column(col) for col in columns]
+            return element_names
+        # if not, get from the group_elements_to_columns
         return Entity.group_elements_to_columns.get(self.groupname, {}).keys()
 
     def add_attribute(self, attribute):
