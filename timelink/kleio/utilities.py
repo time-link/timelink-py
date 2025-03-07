@@ -26,12 +26,15 @@ def kleio_escape(v: str) -> str:
     if v is None:
         return None
     # test if v is already quoted
-    if v.startswith('"') and v.endswith('"'):
+    if v.strip().startswith('"'):
         return v
     s = str(v)
 
-    if any(i in s for i in "/;=$#%\n"):
-        return '"' + s + '"'
+    if any(i in s for i in "/;=$#%\n\""):
+        if '"' not in s:
+            return '"' + s + '"'
+        else:  # double quote in value, need triple quotes
+            return '"""' + s + '"""'
     else:
         return s
 
@@ -65,7 +68,7 @@ def quote_long_text(txt, initial_indent=" " * 4, indent=" " * 2, width=2048, **k
         txt = str(txt)
 
     # check if text already is triple quoted, starts with """ and end with """
-    if txt.startswith('"""') and txt.endswith('"""'):
+    if txt.strip().startswith('"""'):
         return txt
     if len(txt) > width or len(txt.splitlines()) > 1:
         s = '"""'

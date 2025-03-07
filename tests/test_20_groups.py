@@ -22,7 +22,7 @@ from timelink.kleio.groups.kls import KLs
 from timelink.kleio.utilities import quote_long_text
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def kgroup_nested() -> KSource:
     """Returns a nested structure"""
     ks = KSource(
@@ -73,7 +73,7 @@ def kgroup_nested() -> KSource:
     return ks
 
 
-@pytest.fixture
+@pytest.fixture(scope="module")
 def kgroup_source_dev() -> KSource:
     """
     KSource('dev-1718',
@@ -490,13 +490,15 @@ def test_kgroup_include():
 
 
 def test_kgroup_subclasses():
+    sc_before = KPerson.all_subclasses()
     n = KPerson.extend("n")
     m = KPerson.extend("m")
     f = KPerson.extend("f")
-    sub_classes = (n, m, f)
     p = n("joaquim", "m", "01")
-    sc = KPerson.all_subclasses()
-    assert len(sc) == 3 and len(sub_classes) == 3, "Failed to register subclasses"
+    sc_new = [n, m, f]
+    sc_after = KPerson.all_subclasses()
+    print(f"sub_classes before. {sc_before}, after: {sc_after}")
+    assert len(sc_after) == len(sc_before) + len(sc_new), f"Failed to register subclasses {len(sc_after)} ≠ {len(sc_before)} + 3 "
     assert KPerson.is_kgroup(p), "Failed is_kgroup test"
 
 
@@ -516,7 +518,7 @@ def test_allow_as_part_1():
 
     Kx.allow_as_part('ky')
     x.include(y)
-    assert y in x.includes(), "include failed"
+    assert y in x.contains(), "include failed"
 
 
 def test_allow_as_part_2():
@@ -538,7 +540,7 @@ def test_allow_as_part_2():
 
     Kx.allow_as_part(Ky)
     x.include(y)
-    assert y in list(x.includes()), "include failed after class allowed as part"
+    assert y in list(x.contains()), "include failed after class allowed as part"
 
 
 def test_allow_as_part_3():
@@ -560,7 +562,7 @@ def test_allow_as_part_4():
     pn = KPerson.extend("pn", position=["name"], guaranteed=["name"])
     n.allow_as_part(pn)
     j.include(pn("Arménio"))
-    assert len(j.includes()) == 1, "Could not insert sub group"
+    assert len(j.contains()) == 1, "Could not insert sub group"
 
 
 def test_includes_group():
@@ -590,7 +592,7 @@ def test_includes_by_part_order():
     n.allow_as_part(pn)
     j.include(pn("Arménio"))
     j.attr("residencia", "Macau", date="2021-08-08", obs="Taipa")
-    inc = list(j.includes())
+    inc = list(j.contains())
     assert inc[-1].kname == "pn", "included groups not by part order"
 
 
@@ -626,7 +628,7 @@ def test_includes_no_arg():
 def test_kgroup_attr():
     p = KPerson("joaquim", "m", id="joaq")
     p.attr("location", "macau", "2021")
-    attrs = list(p.includes())
+    attrs = list(p.contains())
     assert len(attrs) > 0, "attribute not included in KGroup"
 
 
@@ -817,7 +819,7 @@ def test_KPerson_to_json():
 
 
 def test_kgroup_to_json(kgroup_nested):
-    for inner in kgroup_nested.includes():
+    for inner in kgroup_nested.contains():
         logging.log(logging.DEBUG, f"json for {inner.kname}")
         logging.log(logging.DEBUG, f"json {inner.to_json()}")
     json_string = kgroup_nested.to_json()

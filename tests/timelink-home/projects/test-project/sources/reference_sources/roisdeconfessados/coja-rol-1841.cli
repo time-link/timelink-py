@@ -2141,7 +2141,7 @@ kleio$gacto2.str/translations=19
          fogo$fogo112/coja
 
             n$joao filipe/m/id=fogo112-per484-11
-               atr$ec/viuvo/sim
+               atr$ec/viuvo
                atr$confessado/sim
                atr$comungado/sim
 
@@ -3638,7 +3638,7 @@ kleio$gacto2.str/translations=19
 
             n$dona maria pereira/f/id=fogo196-per822-11
                atr$ec/viuva
-               atr$titulo/dona/sim
+               atr$titulo/dona
                atr$confessada/sim
                atr$comungada/sim
 

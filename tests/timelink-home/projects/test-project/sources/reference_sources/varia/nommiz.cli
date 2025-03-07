@@ -540,7 +540,7 @@ kleio$gacto.str/translations=12
             ls$residencia/penedo "dos rios"/obs=devera ser erro., no mesmo termo e aceite antonio simoes do cazal (aqui e que deveria figurar "casal dos rios")
             ls$titulo/irmao de menor condicao
             ls$titulo/cristao velho
-            ls$assinatura/de cruz/nivel 1
+            ls$assinatura/de cruz#nivel 1
 
       nom$nom47/19/3/1729/62/obs=no mesmo termo aceita-se joam francisco-o bruxo
 
@@ -1858,7 +1858,8 @@ cortez escrivao da dita santa caza o escrevi antonio arnaut cortez """(assinatur
 
          referido$luis goncalves/obs=luiz goncalves de cova de lobo-morto/id=nom193-per11-4
             ls$residencia/cova de lobo
-            ls$titulo/irmao de menor condicaoreferido/manoel moreira/obs=manoel moreira de alfucheira-morto
+            ls$titulo/irmao de menor condicao
+            referido$manoel moreira/obs=manoel moreira de alfucheira-morto
             ls$residencia/alfucheira
             ls$titulo/irmao de menor condicao
 
@@ -1994,7 +1995,7 @@ cortez escrivao da dita santa caza o escrevi antonio arnaut cortez """(assinatur
             ls$titulo/irmao de menor condicao
 
          referido$manoel rodriges/obs=luis rodrigues de val da velha-morto/id=nom193-per43-4
-            ls$titulo/residencia/val da velha
+            ls$residencia/val da velha
             ls$titulo/irmao demenor condicao
 
          referido$francisco curado/obs=francisco curado solteiro da favarica-morto/id=nom193-per44-4

@@ -66,6 +66,9 @@ def get_import_status(
     Returns:
         List[KleioFile]: list of kleio files with field import_status
     """
+    # if kleio_files is a single object wrap in a list
+    if isinstance(kleio_files, KleioFile):
+        kleio_files = [kleio_files]
 
     previous_imports: List[KleioImportedFileSchema] = db.get_imported_files()
     if match_path:

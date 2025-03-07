@@ -1,6 +1,7 @@
 """ Mapping between Kleio Groups and relational database tables"""
 
 import logging
+# import pdb
 import warnings
 import json
 from typing import Optional, Type, List
@@ -129,7 +130,9 @@ class PomSomMapper(Entity):
     # stores the ORM mapper for this mapping (source, act,person...)
     orm_class: Entity
 
+    # Class attributes
     # Class attribute stores current PomSomMappings keyed by id
+
     pom_classes: dict = {}
 
     # Stores the association between group names and PomSomMapper.
@@ -139,7 +142,17 @@ class PomSomMapper(Entity):
     # Caches group to PomSomMapper mapping
     # Note that this need to be updated everytime a group is imported
     # or a new mapping is created
+    # currently 2025-03-01 not used
     group_pom_classes: dict = {}
+
+    @classmethod
+    def reset_cache(cls):
+        """ Reset cache of mappers.
+
+        Call this when reattaching to a new database
+        to avoid carry over between databases """
+        cls.pom_classes = dict()
+        cls.group_orm_models = dict()
 
     def ensure_mapping(self, session=None):
         """
@@ -285,6 +298,13 @@ class PomSomMapper(Entity):
                             replace_existing=True,
                         )
                 else:
+                    # Here should check if column name already exists in super
+                    # class. But in fact it can exist in any of the superclasses
+                    # we need a function self.get_columns_of_super()
+                    # and check if cattr.colname is there if it is we can
+                    # append self.name + "_" + cattr.colname.
+                    # but the PomClassAtributes would need to be updated to
+                    # reflect the new colname.
                     my_table.append_column(
                         Column(cattr.colname, PyType, primary_key=False),
                         replace_existing=True,
@@ -345,10 +365,13 @@ class PomSomMapper(Entity):
         # stmt = select(cls.id)
         # pom_class_ids: Optional[List[str]] = session.execute(
         #     stmt).scalars().all()
-        if cls.pom_classes and len(cls.pom_classes) > 0:
-            pass
-        else:
-            cls.get_pom_classes(session)
+        # we do not cache any longer because of the
+        # changing data base problem. If this class
+        # is used with diferent database it might
+        # have different mappings, so we need to fetch
+        # from the database.
+
+        cls.get_pom_classes(session)
         return list(cls.pom_classes.keys())
 
     @classmethod
@@ -505,11 +528,14 @@ class PomSomMapper(Entity):
         # which is based on the actual class associated with each
         # group in the database.
 
-        Entity.group_models[group.kname] = ormClass
-        Entity.group_pom_classes[group.kname] = pom_class
+        Entity.set_orm_for_group(group.kname, ormClass)
+        cls.group_pom_classes[group.kname] = pom_class
 
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
+
+        if group.kname == 'caso':
+            pass  # remove after DEBUG
 
         # extra_info =  this will store the extra information in comment and original words
         extra_info: dict = dict()  # {el1:{'core':'','comment':'','original':''},el2:...}
@@ -526,11 +552,10 @@ class PomSomMapper(Entity):
                         "inside",
                         "groupname",
                         "extra_info"]
-
         for column in set([c.name for c in columns]):
             if column in skip_columns:
                 continue
-            cattr = pom_class.column_to_class_attribute(column, session)
+            cattr: PomClassAttributes = pom_class.column_to_class_attribute(column, session)
             if cattr is None:  # cols as updated and indexed not mapped
                 continue
             if cattr.colclass == "id":
@@ -558,17 +583,22 @@ class PomSomMapper(Entity):
                                 stacklevel=2,
                             )
                             core_value = element.core[: cattr.colsize]
-
+                    if group.kname == 'ls':
+                        pass
                     setattr(entity_from_group, cattr.colname, core_value)
-                    extra_info.update({element.name: {}})
+                    extra_info.update({cattr.colname: {
+                        "kleio_element_name": element.name,
+                        "kleio_element_class": element.element_class,
+                        "entity_attr_name": cattr.name,
+                        "entity_column_class": cattr.colclass}})
                     if cattr.colname == "obs":
                         group_obs = core_value  # we save the obs element for later
                     if element.comment is not None and element.comment.strip() != "":
-                        extra_info[element.name].update(
+                        extra_info[cattr.colname].update(
                             {"comment": element.comment.strip()}
                         )
                     if element.original is not None and element.original.strip() != "":
-                        extra_info[element.name].update(
+                        extra_info[cattr.colname].update(
                             {"original": element.original.strip()}
                         )
                 except Exception as e:
@@ -650,16 +680,21 @@ class PomSomMapper(Entity):
             session.add(entity_from_group)
             session.commit()
         except IntegrityError as e:
+            session.rollback()
+            logger.error(f"IntegrityError while storing group {group.id}: {e}")
             raise e  # TODO create our own Exception
         except Exception as e:  # pylint: disable=broad-except
+            logger.error(f"Exception while storing group {group.id}: {e}")
+            session.rollback()
             raise e
 
         in_group: KGroup
-        for in_group in group.includes():
+        for in_group in group.contains():
             cls.store_KGroup(in_group, session)
         try:
             session.commit()
         except Exception as e:  # pylint: disable=broad-except
+            session.rollback()
             raise e
 
     def __repr__(self):

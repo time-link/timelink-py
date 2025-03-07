@@ -518,6 +518,11 @@ class KleioHandler:
             try:
                 pom_mapper_for_group.store_KGroup(group, self.session)
             except IntegrityError as ierror:
+                logging.error(
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} "
+                    f"integrity error {group.kname}${group.id}: {ierror}",
+                    stacklevel=3
+                )
                 self.errors.append(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
                     f"** integrity error {group.kname}${group.id}: {ierror}"
@@ -525,6 +530,11 @@ class KleioHandler:
                 self.session.rollback()
 
             except Exception as exc:
+                logging.error(
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} "
+                    f"storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}",
+                    stacklevel=3
+                )
                 self.session.rollback()
                 self.errors.append(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "

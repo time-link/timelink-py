@@ -1,0 +1,9 @@
+kleio$gacto2.str/translations=593
+   link$wikidata/"https://www.wikidata.org/wiki/$1"
+   fonte$element_name/2025/obs=testing bug in element_name
+
+      lista$element_name_list/22/2/2025
+
+         n$António de Abreu/id=el-antonio-de-abreu
+            ls$jesuita-entrada/Goa, Índia# @wikidata:Q1171/15791200
+            ls$nacionalidade/Espanha

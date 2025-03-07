@@ -32,7 +32,7 @@ def entities_with_attribute(
         dates_in    : (after,before) if present only between those dates (exclusive)
         filter_by   : list of ids, limit to these entities
         more_attributes: add more attributes if available
-        db          : A TimelinkMHK object
+        db          : A TimelinkDatabase object
         sql_echo    : if True echo the sql generated
 
     Example:
@@ -81,6 +81,7 @@ def entities_with_attribute(
     type_column_name = f"{column_name}.type"
     line_column_name = f"{column_name}.line"
     level_column_name = f"{column_name}.level"
+    atr_id_column_name = f"{column_name}.attr_id"
     attribute_extra_info_column_name = f"{column_name}.extra_info"
 
     entity_types = db.get_models_ids()
@@ -108,13 +109,14 @@ def entities_with_attribute(
         if "name" not in entity_columns:
             raise (ValueError("To filter by name requires name in the show_elements list."))
 
-    attr = db.create_eattribute_view()
+    attr = db.get_view("eattributes")
     # id_col = attr.c.entity.label("id")
     cols = [entity_id_col]
     cols.extend(extra_cols)
     more_info_cols = cols.copy()
     cols.extend(
         [
+            attr.c.attr_id.label(atr_id_column_name),
             attr.c.the_type.label(type_column_name),
             attr.c.the_value.label(column_name),
             attr.c.the_date.label(date_column_name),
@@ -196,15 +198,36 @@ def entities_with_attribute(
         for row_number, (_, row) in enumerate(df.iterrows()):
             # Perform operations using row_number, index, and row
             if row[attribute_extra_info_column_name] is not None:
+                # get the extra_info dict from the row
+                # the dict contains information store during the import
+                # process that is not stored directly in the attribute/columns
+                # of the database. These include: comment and original aspects,
+                # the element name and class in the original source
+                # and the attribute name and column name in the database
                 extra_info: dict = row[attribute_extra_info_column_name]
                 for key, value in extra_info.items():
-                    if key != "value":
-                        xtra_col_name = f"{column_name}.{key}"
+                    if key != "the_value":
+                        # here we determine the name of columns
+                        # with extra information about the value of
+                        # the kleio attribute (group attribute or descendatns)
+                        # normally this would be comments or original wording
+                        # of the_type or the_date.
+                        # we need to use the name of the ORM attribute
+                        # "type" or "date" instead of the column name
+                        # and this is stored in "entity_attr_name" in
+                        # the extra_info dict under the key for the column name.
+                        attr_name = value.get("entity_attr_name", key)
+                        xtra_col_name = f"{column_name}.{attr_name}"
                     else:
                         xtra_col_name = column_name
-                    for aspect, avalue in value.items():
-                        xtra_col_name = f"{xtra_col_name}.{aspect}"
-                        extra_info_edits.append((row_number, xtra_col_name, avalue))
+                    original = value.get("original", None)
+                    if original is not None:
+                        xtra_col_name = f"{xtra_col_name}.original"
+                        extra_info_edits.append((row_number, xtra_col_name, original))
+                    comment = value.get("comment", None)
+                    if comment is not None:
+                        xtra_col_name = f"{xtra_col_name}.comment"
+                        extra_info_edits.append((row_number, xtra_col_name, comment))
         for row_number, xtra_col_name, avalue in extra_info_edits:
             if xtra_col_name not in df.columns:
                 df[xtra_col_name] = None
@@ -255,15 +278,18 @@ def entities_with_attribute(
                         if row[extra_info_column_name] is not None:
                             extra_info: dict = row[extra_info_column_name]
                             for key, value in extra_info.items():
-                                if key != "value":
-                                    xtra_col_name = f"{column_name}.{key}"
+                                if key != "the_value":
+                                    attr_name = value.get("entity_attr_name", key)
+                                    xtra_col_name2 = f"{column_name}.{attr_name}"
                                 else:
-                                    xtra_col_name = column_name
-                                for aspect, avalue in value.items():
-                                    xtra_col_name2 = f"{xtra_col_name}.{aspect}"
-                                    extra_info_edits.append(
-                                        (row_number, xtra_col_name2, avalue)
-                                    )
+                                    xtra_col_name2 = column_name
+                                original = value.get("original", None)
+                                if original is not None:
+                                    xtra_col_name2 = f"{xtra_col_name2}.original"
+                                    extra_info_edits.append((row_number, xtra_col_name2, original))
+                                comment = value.get("comment", None)
+                                if comment is not None:
+                                    xtra_col_name2 = f"{xtra_col_name2}.comment"
                     for row_number, xtra_col_name2, avalue in extra_info_edits:
                         if xtra_col_name2 not in df2.columns:
                             df2[xtra_col_name2] = None
@@ -276,7 +302,5 @@ def entities_with_attribute(
                 df[mcol] = None  # nothing found we set the column to nulls
             else:
                 df = df.join(df2)
-
-            # use extra_info to add more columns
 
     return df

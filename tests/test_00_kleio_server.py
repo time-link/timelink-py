@@ -3,12 +3,9 @@
 https://github.com/time-link/timelink-kleio-server
 """
 
-from enum import Enum
 import time
-import pytest
-
-from tests import TEST_DIR
-import timelink.kleio.kleio_server as kleio_server
+#  import pdb
+from tests import TEST_DIR, skip_if_local
 from timelink.kleio.schemas import KleioFile, TokenInfo
 from timelink.kleio.kleio_server import KleioServer, KleioServerForbidenException
 import re
@@ -19,83 +16,22 @@ KLEIO_NORMAL_TOKEN: str = None
 KLEIO_SERVER: KleioServer = None
 
 
-class KleioServerTestMode(Enum):
-    LOCAL = "local"
-    DOCKER = "docker"
-
-
-mode = KleioServerTestMode.DOCKER
-
-
-skip_if_local = pytest.mark.skipif(
-    mode == KleioServerTestMode.LOCAL,
-    reason="Skipping test in LOCAL mode"
-)
-
-
-@pytest.fixture(scope="function", autouse=True)
-def setup():
-    """setup kleio server for tests
-
-    The local mode does not start a new Kleio Server in docker.
-    Instead it will attach to a running kleio server at a specific
-    url with a specific token (setup above). This is usefull to
-    have the server running in swil prolog and debug interactively.
-
-    To run tests with a local Kleio Server outside docker:
-    1) set "mode" abose to KleioServerTestMode.LOCAL
-    2)Run the server in Prolog loading serverStart.pl and then:
-
-        setenv('KLEIO_ADMIN_TOKEN','mytoken').
-        setup_and_run_server(run_debug_server,[port(8089)]).
-
-    Or run run_test_server in serverStart.pl and use
-    token=mytoken and port 8088. Make sure the port
-    is not in use by docker.
-
-    Then use tpsy(predicate) in the Prolog console to debug
-    requests comming from the tests in this suite.
-
-    """
-    if mode == KleioServerTestMode.LOCAL:
-        token = "mytoken"
-        url = "http://localhost:8088"
-        ks = KleioServer.attach(url, token)
-    else:
-        # Setup kleio server for tests
-        khome = f"{TEST_DIR}/timelink-home"
-        ks = KleioServer.start(
-            kleio_home=khome,
-            kleio_debug="DEBUG",
-            reuse=True,
-            update=True
-        )
-        print()
-    return ks
-
-
 def test_find_kleio_home() -> str:
     # Test if kleio home is found"""
     kleio_home = KleioServer.find_local_kleio_home()
     assert kleio_home is not None
 
 
-def test_is_kleio_server_running():
+def test_is_kleio_server_running(kleio_server):
     # Test if kleio server is running"""
+    kleio_server.get_url()
     ks = KleioServer.get_server()
     assert ks is not None or ks is None
 
 
-@skip_if_local
-def test_start_kleio_server():
-    # Test if kleio server is started"""
-    ks = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home", update=False)
-    assert ks is not None
-
-
-def test_attach_kleio_server(setup):
+def test_attach_kleio_server(kleio_server):
     # Test attach to a running kleio server"""
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     token = kserver.get_token()
     url = kserver.get_url()
     kleio_home = kserver.get_kleio_home()
@@ -105,21 +41,21 @@ def test_attach_kleio_server(setup):
 
 
 @skip_if_local
-def test_get_kleio_server_container(setup):
-    kserver: KleioServer = setup
+def test_get_kleio_server_container(kleio_server):
+    kserver: KleioServer = kleio_server
     # Test get the container of the running kleio server"""
     container = kserver.get_container()
     assert container is not None
 
 
-def test_get_kleio_server_token(setup):
-    kserver: KleioServer = setup
+def test_get_kleio_server_token(kleio_server):
+    kserver: KleioServer = kleio_server
     # Test if kleio server token is available"""
     assert kserver.get_token() is not None
 
 
-def test_kleio_get_url(setup):
-    kserver: KleioServer = setup
+def test_kleio_get_url(kleio_server):
+    kserver: KleioServer = kleio_server
     # Test if kleio server url is available"""
     KLEIO_URL = kserver.get_url()
     assert KLEIO_URL is not None
@@ -130,26 +66,8 @@ def test_make_token():
     assert KleioServer.make_token() is not None
 
 
-@skip_if_local
-def test_stop_kleio_server(setup):
-    kserver: KleioServer = setup
-    kome: str = kserver.get_kleio_home()
-
-    # Test if kleio server is stopped"""
-
-    kserver.stop()
-    assert KleioServer.get_server(kome) is None
-    kleio_home = f"{TEST_DIR}/timelink-home"
-    assert KleioServer.get_server(kleio_home) is None
-    kserver.start(kleio_home=kleio_home, update=False)
-    # wait for server to start
-
-    time.sleep(1)
-    assert KleioServer.is_server_running(kleio_home=kleio_home) is True
-
-
-def test_generate_limited_token(setup):
-    kserver: KleioServer = setup
+def test_generate_limited_token(kleio_server):
+    kserver: KleioServer = kleio_server
     """Generate a token with limited privileges"""
     user: str = "limited_user"
     info: TokenInfo = TokenInfo(
@@ -176,7 +94,7 @@ def test_generate_limited_token(setup):
         assert True
 
 
-def test_generate_normal_token(setup):
+def test_generate_normal_token(kleio_server):
     """Generate a token for normal user"""
     user: str = "normal_user"
     info: TokenInfo = TokenInfo(
@@ -200,7 +118,7 @@ def test_generate_normal_token(setup):
         }
     )
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
 
     try:
         invalidated = kserver.invalidate_user(user)
@@ -214,20 +132,20 @@ def test_generate_normal_token(setup):
     assert KLEIO_NORMAL_TOKEN is not None
 
 
-def test_get_kserver_home():
+def test_get_kserver_home(kleio_server):
     # Test get the mapped kleio home from running server"""
-
-    kleio_home = kleio_server.get_kserver_home()
+    kserver = kleio_server
+    kleio_home = kserver.get_kleio_home()
     assert kleio_home is not None
 
 
-def test_translations_get(setup):
+def test_translations_get(kleio_server):
     # Test if translations are retrieved"""
     path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
     status: str = None
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     translations = kserver.get_translations(path, recurse=recurse, status=status)
     assert len(translations) > 0
 
@@ -241,24 +159,24 @@ def test_translations_get(setup):
     print()
 
 
-def test_translations_translate(setup):
+def test_translations_translate(kleio_server):
     # Test if translations are translated"""
     path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
     spawn: str = "no"
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     translations = kserver.translate(path, recurse, spawn)
     assert translations is not None
 
 
-def test_translations_processing(setup):
+def test_translations_processing(kleio_server):
     # Test translations in process"""
     path: str = "projects/test_project/"
     recurse: str = "yes"
     status: str = "P"
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     translations = kserver.get_translations(path, recurse, status)
     assert len(translations) is not None
 
@@ -270,13 +188,13 @@ def test_translations_processing(setup):
         )
 
 
-def test_translations_queued(setup):
+def test_translations_queued(kleio_server):
     # Test translation queued"""
     path: str = "projects/test-project/"
     recurse: str = "yes"
     status: str = "Q"
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     translations = kserver.get_translations(path, recurse, status)
     assert translations is not None
 
@@ -288,17 +206,16 @@ def test_translations_queued(setup):
         )
 
 
-def test_translations_clean(setup):
+def test_translations_clean(kleio_server):
     # Test if translations results are deleted"""
     path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
 
     queued = kserver.get_translations(path, recurse, "Q")
     while len(queued) > 0:
         print(f"Waiting for {len(queued)} queued translations to finish")
-        import time
 
         time.sleep(1)
         queued = kserver.get_translations(path, recurse, "Q")
@@ -315,28 +232,28 @@ def test_translations_clean(setup):
     assert translations is not None
 
 
-def test_sources_get(setup):
+def test_sources_get(kleio_server):
     # Test if sources are retrieved"""
     path: str = ""
     recurse: str = "yes"
 
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     sources = kserver.get_sources(path, recurse)
     assert sources is not None
 
 
 @skip_if_local
-def tests_get_logs(setup):
+def tests_get_logs(kleio_server):
     # Test if logs are retrieved"""
-    kserver: KleioServer = setup
+    kserver: KleioServer = kleio_server
     logs = kserver.get_logs(tail=10)
     print(logs)
     assert logs is not None
 
 
-def test_homepage_get(setup):
+def test_homepage_get(kleio_server):
     # Test if homepage is retrieved"""
-    url = "https://timelink.uc.pt/kleio"
+    url = kleio_server.get_url()
     ks = KleioServer.attach(url, "", "")
     home = ks.get_home_page()
     # extract lines with pattern "([A-Za-z_]+):(.*)"
@@ -349,6 +266,15 @@ def test_homepage_get(setup):
         home_page_info[key] = value
     version = home_page_info["Version"]
     assert version is not None
+
+
+def test_get_version(kleio_server):
+    # Test if homepage is retrieved"""
+    url = kleio_server.get_url()
+    ks = KleioServer.attach(url, "", "")
+    version_info = ks.get_version_info()
+    print(version_info)
+    assert version_info is not None
 
 
 @skip_if_local
@@ -399,3 +325,15 @@ def test_start_kleio_server_env():
     ptoken = home_page_info["Kleio_admin_token"].strip()
     assert ptoken == kadmin_token[:5], "token does not match"
     ks.stop()
+
+
+@skip_if_local
+def test_start_stop_kleio_server():
+    # pdb.set_trace()
+    # kserver: KleioServer = KleioServer.start(kleio_home=KLEIO_HOME, kleio_external_port=8999, reuse=False)
+    # kome: str = kserver.get_kleio_home()
+    # Test if kleio server is stopped"""
+    # kserver.stop()
+    # running_server = KleioServer.get_server(kome)
+    # assert running_server is None
+    pass

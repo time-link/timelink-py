@@ -563,7 +563,7 @@ class PomSomMapper(Entity):
             raise e
 
         in_group: KGroup
-        for in_group in group.includes():
+        for in_group in group.contains():
             cls.store_KGroup(in_group, session)
 
         try:

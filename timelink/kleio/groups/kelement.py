@@ -112,8 +112,8 @@ class KElement:
         Creates a new KElement class that extends this one.
         This allows creating new KElement
         names for different languages and keep the behaviour of
-        a specific element type (e.g. mapping "data" elements
-        behave like "date" elements).
+        a specific element type (e.g. mapping "tipo" elements
+        behave like "type" elements).
 
         When an element of a group is set with an atomic value
         or a tuple, a new KElement of the class with the same

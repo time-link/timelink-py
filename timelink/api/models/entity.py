@@ -158,7 +158,7 @@ class Entity(Base):
             yield subclass
 
     @classmethod
-    def get_orm_entities_classes(cls):
+    def get_orm_models(cls):
         """Currently defined ORM classes that extend Entity
         (including Entity itself)
 
@@ -167,8 +167,7 @@ class Entity(Base):
             list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
-        sc.append(Entity)
-        return sc
+        return [Entity] + sc
 
     @classmethod
     def get_som_mapper_ids(cls):
@@ -179,7 +178,7 @@ class Entity(Base):
         """
         return [
             aclass.__mapper_args__["polymorphic_identity"]
-            for aclass in Entity.get_orm_entities_classes()
+            for aclass in Entity.get_orm_models()
         ]
 
     @classmethod
@@ -189,17 +188,33 @@ class Entity(Base):
         """
         return {
             ormclass.__mapper__.local_table.name: ormclass
-            for ormclass in Entity.get_orm_entities_classes()
+            for ormclass in Entity.get_orm_models()
         }
+
+    @classmethod
+    def get_orm_table_names(cls):
+        """ Return the names of tables associated with ORM models"""
+        return [str(table) for table in cls.get_tables_to_orm_as_dict().keys()]
 
     @classmethod
     def get_group_models(cls) -> dict:
         """ Return a dictionary of group models
 
-        The keys are group names and the values and ORM
+        The keys are group names and the values are ORM
         Models.
         """
-        return cls.group_models.get(cls.metadata)
+        return cls.group_models
+
+    @classmethod
+    def get_groups_for_orm(cls, orm: str):
+        """ get the list of groups that map to this model
+
+        Args:
+           orm (str):  id of a orm model
+        """
+        return [group for (group, orm)
+                in cls.get_group_models().items()
+                if orm.id == str]
 
     @classmethod
     def get_orm_for_group(cls, groupname: str):
@@ -216,19 +231,19 @@ class Entity(Base):
 
     @classmethod
     def set_orm_for_group(cls, groupname: str, ormclass):
-        cls.group_models[cls.metadata][groupname] = ormclass
+        cls.group_models[groupname] = ormclass
 
     @classmethod
     def clear_group_models_cache(cls):
         """Clear cached association between groups and ormclass"""
-        cls.group_models[cls.metadata] = dict()
+        cls.group_models = dict()
 
     @classmethod
     def get_som_mapper_to_orm_as_dict(cls):
         """
         Return a dict with pom_class id as key and ORM class as value
         """
-        sc = Entity.get_orm_entities_classes()
+        sc = Entity.get_orm_models()
         return {ormclass.__mapper__.polymorphic_identity: ormclass for ormclass in sc}
 
     @classmethod

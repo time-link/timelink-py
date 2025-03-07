@@ -49,7 +49,7 @@ def attribute_values(
             " with db="
         )
 
-    attr_table = db.create_eattribute_view()
+    attr_table = db._create_eattribute_view()
     entities_table = db.get_table("entity")
 
     if dates_between is not None:

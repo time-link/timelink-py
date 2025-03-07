@@ -918,7 +918,9 @@ kleio$gacto2.str/prefix=lousa/translations=19
                ls$freguesia/lousa
 
             mad$francisca/id=b1714-43-per1-10-per5-10
-               ls$ec/solteira pmad/manuel ferreira
+               ls$ec/solteira
+
+               pmad$manuel ferreira
                ls$morada/gandara
                ls$freguesia/lousa
 

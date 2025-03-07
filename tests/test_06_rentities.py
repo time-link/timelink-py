@@ -15,7 +15,7 @@ from sqlalchemy_utils import drop_database
 from tests import TEST_DIR, skip_on_travis
 from timelink.api.models.relation import Relation
 from timelink.api.models.system import KleioImportedFile
-from timelink.kleio.kleio_server import KleioServer, KleioFile
+from timelink.kleio.kleio_server import KleioFile, KleioServer
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
@@ -35,18 +35,12 @@ RENTITY_DB = "rentities"
 # rentity_db = ":memory:"
 
 # set a list of files to be imported before the tests begin
-TEST_FILES_DIR = str(
-    Path(
-        TEST_DIR,
-        "timelink-home/projects/test-project/sources/reference_sources/rentities",
-    )
-)
-
-kserver = None
+# relative to KLEIO_HOME
+TEST_FILES_DIR = "projects/test-project/sources/reference_sources/rentities"
 
 
-@pytest.fixture(scope="function")
-def dbsystem(request):
+@pytest.fixture(scope="module")
+def dbsystem(request, kleio_server):
     """Create a database for testing"""
     db_type, db_name, db_url, db_user, db_pwd = request.param
     if db_type == "postgres":
@@ -63,18 +57,7 @@ def dbsystem(request):
         db_pwd=db_pwd,
     )
 
-    global kserver
-    global TEST_FILES_DIR
-
-    if kserver is None:
-        # start a kleio server
-        try:
-            kserver = KleioServer.start(kleio_home=TEST_FILES_DIR, update=False)
-        except Exception as exc:
-            print(exc)
-            raise
-
-    database.set_kleio_server(kserver)
+    database.set_kleio_server(kleio_server)
 
     try:
         yield database
@@ -113,12 +96,8 @@ def test_link_two_occ(dbsystem):
 
         session.expire_on_commit = False
 
-        file1 = Path(TEST_FILES_DIR, "sameas-tests.xml")
-        try:
-            import_from_xml(file1, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
+        file1 = Path(TEST_FILES_DIR, "sameas-tests.cli")
+        dbsystem.update_from_sources(file1, force=True)
 
         ricci = session.get(Person, "deh-matteo-ricci")
         assert ricci is not None, "could not get a person from file"
@@ -130,12 +109,7 @@ def test_link_two_occ(dbsystem):
 
         # Fetch occurrences
         # everyboby with a name like Matteo Ricci
-        occurrences = [
-            id
-            for (id,) in session.query(Person.id)
-            .filter(Person.name.like("Mat%Ricci"))
-            .all()
-        ]
+        occurrences = [id for (id,) in session.query(Person.id).filter(Person.name.like("Mat%Ricci")).all()]
 
         # Shuffle the occurrences to randomize the order
         random.shuffle(occurrences)
@@ -155,9 +129,7 @@ def test_link_two_occ(dbsystem):
         occ1 = occurrences[0]
         occ2 = occurrences[1]
         # two unbound occurrences
-        ri1 = REntity.same_as(
-            occ1, occ2, real_id=test_rid, status=STATUS.MANUAL, session=session
-        )
+        ri1 = REntity.same_as(occ1, occ2, real_id=test_rid, status=STATUS.MANUAL, session=session)
         assert ri1 is not None, "Real entity not returned"
         assert ri1.id == test_rid, "real_id not preserved"
 
@@ -203,9 +175,7 @@ def test_link_two_occ(dbsystem):
 
         # check that cannot set real_id if occurrences are already bound
         with pytest.raises(ValueError):
-            REntity.same_as(
-                occ5, occ6, real_id="xpto", status=STATUS.AUTOMATIC, session=session
-            )
+            REntity.same_as(occ5, occ6, real_id="xpto", status=STATUS.AUTOMATIC, session=session)
 
         real_ricci = session.get(REntity, ri1.id)
         assert len(real_ricci.to_kleio()) > 0
@@ -226,19 +196,12 @@ def test_link_two_occ(dbsystem):
 )
 def test_make_real(dbsystem):
     """Test the creation of a real entity"""
+    dbsystem.update_from_sources(Path(TEST_FILES_DIR, "sameas-tests.cli"))
     with dbsystem.session() as session:
-        file1 = Path(TEST_FILES_DIR, "sameas-tests.xml")
-        try:
-            import_from_xml(file1, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
         bento_de_gois = session.get(Person, "deh-bento-de-gois")
         assert bento_de_gois is not None, "could not get a person from file"
 
-        rid = REntity.make_real(
-            bento_de_gois.id, status=STATUS.AUTOMATIC, session=session
-        )
+        rid = REntity.make_real(bento_de_gois.id, status=STATUS.AUTOMATIC, session=session)
         assert rid is not None, "real_id not returned"
         real_bento = session.get(REntity, rid.id)
         assert len(real_bento.to_kleio()) > 0
@@ -257,8 +220,8 @@ def test_make_real(dbsystem):
 )
 def test_import_xsameas(dbsystem: TimelinkDatabase):
     # Test that the sequence of import files does not affect the result
-    file1 = "sameas-tests.cli"
-    file2 = "xsameas-tests.cli"
+    file1 = f"{TEST_FILES_DIR}/sameas-tests.cli"
+    file2 = f"{TEST_FILES_DIR}/xsameas-tests.cli"
 
     with dbsystem.session() as session:
 
@@ -335,39 +298,33 @@ def test_import_xsameas(dbsystem: TimelinkDatabase):
     ],
     indirect=True,
 )
-def test_import_aregister(dbsystem):
+def test_import_aregister(dbsystem: TimelinkDatabase):
     """Test the import a identifications file"""
-    file = Path(TEST_FILES_DIR, "aregister-tests.xml")
     # first fill in the database with the sameas file
-    file1 = "sameas-tests.cli"
-    dbsystem.update_from_sources(file1)
+    file1 = Path(TEST_FILES_DIR, "sameas-tests.cli")
+    dbsystem.update_from_sources(file1, force=True)
+    # now import the identifications file
+    file = Path(TEST_FILES_DIR, "aregister-tests.cli")
+    dbsystem.update_from_sources(file, force=True)
+    kserver: KleioServer = dbsystem.kserver
+    kfiles = kserver.get_translations(path=file, status='V')
+    assert len(kfiles) == 1, "wrong number of files"
+    kfile = kfiles[0]
+    stats = dbsystem.import_from_xml(kfile)
+    # Import again to test the update mechanis
+    sfile = stats["file"]
+    assert "aregister" in sfile  # ensure import was done
     with dbsystem.session() as session:
-        try:
-            stats = import_from_xml(file, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
-        sfile = stats["file"]
-        assert "aregister" in sfile.name  # ensure import was done
         real_person = session.get(REntity, "rp-66")
-        assert (
-            real_person is not None
-        ), "could not get a real person from identifications import"  # noqa
+        assert real_person is not None, "could not get a real person from identifications import"  # noqa
         assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
         kleio = real_person.to_kleio()
         assert len(kleio) > 0
-        # Import again
-        try:
-            stats = import_from_xml(file, session, options={"return_stats": True})
-        except Exception as exc:
-            print(exc)
-            raise
+        stats = dbsystem.import_from_xml(kfile)
         sfile = stats["file"]
-        assert "aregister" in sfile.name
+        assert "aregister" in sfile
         real_person = session.get(REntity, "rp-66")
-        assert (
-            real_person is not None
-        ), "could not get a real person from identifications import"
+        assert real_person is not None, "could not get a real person from identifications import"
         assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
 
 

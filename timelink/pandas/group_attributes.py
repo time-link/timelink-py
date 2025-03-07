@@ -172,8 +172,9 @@ def display_group_attributes(
         filter_by=ids,
         db=db,
     )
+    # remove irrelevant columns
+    header_df = header_df.loc[:, ~header_df.columns.str.endswith(("line", "level", "extra_info", "attr_id"))]
     # remove  entries with duplicate index from header_df
-
     header_df = (
         header_df.reset_index()
         .drop_duplicates(subset="id", keep="first")
