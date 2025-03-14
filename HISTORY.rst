@@ -2,7 +2,8 @@
 History
 =======
 
-1.1.19 (2025-03-07)
+1.1.19 (2025-03-14)
+-------------------
 
 Various fixes and improvments.
 
@@ -31,6 +32,7 @@ Various fixes and improvments.
     pandas module, namely using the name of the attribute instead of the name
     of the column in the database, when naming dataframe columns.
   - Improve Makefile, add profile command.
+
 
 1.1.18 (2025-02-04)
 -------------------
