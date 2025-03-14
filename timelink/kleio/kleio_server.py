@@ -1085,6 +1085,7 @@ def start_kleio_server(
 
     if exists is not None:
         if reuse:
+            logging.warning(f"Reusing existing container {exists.name}")
             return exists
 
     # if kleio_home is None, use current directory
