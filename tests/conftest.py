@@ -39,13 +39,17 @@ def kleio_server():
         url = "http://localhost:8088"
         server = KleioServer.attach(url, token)
     else:
-        server = KleioServer.start(kleio_home=KLEIO_HOME)
+        server = KleioServer.start(kleio_home=KLEIO_HOME,
+                                   kleio_version="latest",
+                                   kleio_image="kleio-server",
+                                   kleio_external_port=8999,
+                                   kleio_debug="true")
 
     yield server
 
-    print("Stopping kleio server", server.container.name)
     if not local:
         try:
+            print("Stopping kleio server", server.container.name)
             server.stop()
         except Exception as e:
             print("Error stopping server", e)

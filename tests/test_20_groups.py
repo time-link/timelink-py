@@ -579,7 +579,7 @@ def test_includes_group():
     j.include(PN("Arménio"))
     j.attr("profissao", "professor", date="2021-08-08", obs="Taipa")
 
-    lpn = list(j.includes(group="pn"))
+    lpn = list(j.contains(group="pn"))
     pai = lpn[0]
     np = pai.name.core
     assert np == "Arménio", "Could not retrieve group by name"
@@ -705,11 +705,11 @@ def test_kgroup_line_seq_level():
     ks.include(ka1)
     line = ks.line
     assert line == 2, "Failed line update"
-    act = ks.includes("act")[0]
+    act = ks.contains("act")[0]
     assert act.level == 3, " Failed level update"
     p1 = KPerson("Joaquim", "m", "p01")
     ka1.include(p1)
-    person = act.includes("person")[0]
+    person = act.contains("person")[0]
     assert person.level == 4, " Failed level update"
     assert person.order == 4, " Failed sequence update"
 

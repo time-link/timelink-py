@@ -10,7 +10,7 @@ from time import sleep
 
 import pytest
 
-from tests import TEST_DIR, get_one_translation, skip_on_travis
+from tests import TEST_DIR, get_one_translation, skip_on_travis, has_internet
 from timelink.api.models.system import KleioImportedFile
 from timelink.kleio.importer import import_from_xml
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
@@ -189,6 +189,7 @@ def test_import_with_many(dbsystem):
             raise
 
 
+@pytest.mark.skipif(not has_internet(), reason="No internet connection available")
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_git_hub(dbsystem):
     """Test the import of a Kleio file from github into the Timelink database"""

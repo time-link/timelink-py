@@ -214,18 +214,22 @@ def test_translations_clean(kleio_server):
     kserver: KleioServer = kleio_server
 
     queued = kserver.get_translations(path, recurse, "Q")
+    start_time = time.time()
     while len(queued) > 0:
+        if time.time() - start_time > 20:
+            raise TimeoutError("Queued translations did not finish within 20 seconds")
         print(f"Waiting for {len(queued)} queued translations to finish")
 
-        time.sleep(1)
+        time.sleep(5)
         queued = kserver.get_translations(path, recurse, "Q")
 
     processing = kserver.get_translations(path, recurse, "P")
+    start_time = time.time()
     while len(processing) > 0:
+        if time.time() - start_time > 20:
+            raise TimeoutError("Processing translations did not finish within 20 seconds")
         print(f"Waiting for {len(processing)} processing translations to finish")
-        import time
-
-        time.sleep(1)
+        time.sleep(5)
         processing = kserver.get_translations(path, recurse, "P")
 
     translations = kserver.translation_clean(path, recurse)

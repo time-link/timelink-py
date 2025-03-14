@@ -7,6 +7,7 @@ from pathlib import Path
 import random
 import time
 import warnings
+import requests
 
 import pytest
 
@@ -55,6 +56,20 @@ skip_on_travis = pytest.mark.skipif(
 )
 
 
+# fixture to skip test if no internet
+# Usage:
+# @pytest.mark.skipif(not has_internet(), reason="No internet connection available")
+def has_internet():
+    """Check if there is an internet connection by trying to reach GitHub's domain."""
+    try:
+        # Attempt to reach GitHub's server. Replace 'https://github.com' with another URL if needed.
+        response = requests.head('https://github.com', timeout=5)
+        return response.status_code == 200
+    except requests.ConnectionError:
+        # If a connection error occurs, there is no internet connection.
+        return False
+
+
 class KleioServerTestMode(Enum):
     LOCAL = "local"
     DOCKER = "docker"
@@ -62,6 +77,16 @@ class KleioServerTestMode(Enum):
 
 kleio_server_mode = KleioServerTestMode.DOCKER
 
+# determine the image of kleio-server to use.
+# "kleio-server" is a local image, can be built in timelink-kleio project
+#   with "make build-local". Use for debugging kleio-server fixes
+#
+# "timelinkserver/kleio-server" is the version in Docker Hub
+#     use when testing timelink-py against last public kleio-server images
+#
+use_kleio_image = "kleio-server"
+# use latest or specific build e.g. 12.8.586
+use_kleio_version = "latest"
 
 skip_if_local = pytest.mark.skipif(kleio_server_mode == KleioServerTestMode.LOCAL, reason="Skipping test in LOCAL mode")
 
