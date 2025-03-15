@@ -5,34 +5,33 @@ History
 1.1.19 (2025-03-14)
 -------------------
 
-Various fixes and improvments.
+- Extends extra_info content in Entities.
 
-- Extends extra_info content in Entities. Now extra_info
-  retains some of the SOM-POM Mapping information present in
-  the import file. Extra_info is a dictionnary with keys equal
-  to the column names of the Entity (and the columns of its
-  specialization tables). For each column there is a dictionnary
-  containing the Kleio element name that produced the information,
-  the kleio element class, the Entity attribute name (which can be
-  different from the name of the column, and the Entity column class.
-  This allows for implementation of the to_kleio() method with
-  results closer to the original source.
+    - Now extra_info
+      retains some of the SOM-POM Mapping information present in
+      the import file. Extra_info is a dictionary with keys equal
+      to the column names of the Entity (and the columns of its
+      specialization tables). For each column there is a dictionary
+      containing the Kleio element name that produced the information,
+      the kleio element class, the Entity attribute name (which can be
+      different from the name of the column, and the Entity column class.
+      This allows for implementation of the to_kleio() method with
+      results closer to the original source.
 - Various fixes and improvements.
-  - Better introspection methods in Entity class.
-  - Better handling of database views.
-  - Add force parameter to TimelinkDatabase.update_from_sources
-  - Improved error handling in database operations, avoiding dangling
-    sessions and locked tables.
-  - Improved KGroup.get_element_by_name_or_class(element_spec) which is the
-    way to extract from an imported group the data for a specific attribute
-    in an ORM model.
-  - Improve quoting of values with special characters when rendering kleio
-    from database content
-  - Better usage of extra_info information when generating dataframes in the
-    pandas module, namely using the name of the attribute instead of the name
-    of the column in the database, when naming dataframe columns.
-  - Improve Makefile, add profile command.
-
+    - Better introspection methods in Entity class.
+    - Better handling of database views.
+    - Add force parameter to TimelinkDatabase.update_from_sources
+    - Improved error handling in database operations, avoiding dangling
+      sessions and locked tables.
+    - Improved KGroup.get_element_by_name_or_class(element_spec) which is the
+      way to extract from an imported group the data for a specific attribute
+      in an ORM model.
+    - Improve quoting of values with special characters when rendering kleio
+      from database content.
+    - Better usage of extra_info information when generating dataframes in the
+      pandas module, namely using the name of the attribute instead of the name
+      of the column in the database, when naming dataframe columns.
+    - Improve Makefile, add profile command.
 
 1.1.18 (2025-02-04)
 -------------------
