@@ -2,7 +2,7 @@
 History
 =======
 
-1.1.22 (2025-03-16)
+1.1.23 (2025-03-16)
 -------------------
 
 - Fixes some issues with the rendering of dates in kleio outputs
