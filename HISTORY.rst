@@ -2,6 +2,13 @@
 History
 =======
 
+1.1.22 (2025-03-16)
+-------------------
+
+- Fixes some issues with the rendering of dates in kleio outputs
+- Improves handling of extra_info in Entities
+- Improves metadata handling when acessing multiple databases
+
 1.1.21 (2025-03-15)
 -------------------
 
