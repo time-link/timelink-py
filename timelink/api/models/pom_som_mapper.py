@@ -327,6 +327,7 @@ class PomSomMapper(Entity):
                 # specialized classes (obs normally, but also the_type...)
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
+                my_orm.__is_dynamic__ = True  # mark as dynamic ORM
         except Exception as e:  # pylint: disable=broad-except
             logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), e)
 

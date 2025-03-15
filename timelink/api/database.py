@@ -231,8 +231,8 @@ class TimelinkDatabase:
         # create an empty database if it does not exist
         if not database_exists(self.engine.url):  # noqa
             try:
-                create_database(self.engine.url)
-                self.create_db()
+                create_database(self.engine.url)  # create empty database
+                self.create_db()  # creates the tables
             except Exception as exc:
                 logging.error(exc)
                 raise Exception("Error while creating database") from exc
@@ -296,9 +296,18 @@ class TimelinkDatabase:
     def _create_tables(self):
         """Creates the tables from the current ORM metadata if needed
 
+        This method is normally called after an empty database is created
+        to populate the database with the basic table associated with the
+        builtin ORM Models (that inherit from timelink.api.models.Base)
+
         :return: None
         """
-        self.metadata.create_all(self.engine)  # only creates if missing
+        tables = self.db_base_tables()  # get the base tables
+        dynamic_tables = [ormclass.__mapper__.local_table
+                          for ormclass in Entity.get_subclasses()
+                          if ormclass.is_dynamic()]
+        tables = [table for table in tables if table not in dynamic_tables]
+        self.metadata.create_all(self.engine, tables=tables)  # only creates if missing
 
     def _drop_views(self):
         """Drop views"""
@@ -404,6 +413,30 @@ class TimelinkDatabase:
         insp = inspect(self.engine)
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
+
+    def db_base_tables(self):
+        """Base tables in the database
+
+        These are the tables managed by SQLAlchemy ORM.
+        These tables should be present in the database.
+
+        These include:
+        * All the tables of the timelink data model (Entity and its subclasses)
+        * Other auxiliary tables managed with SQLAlchemy ORM like class_attributes
+          and Kleio imported files, syspar, syslog, etc.
+        * Dynamically created tables during import
+
+        Returns:
+            list: list of table objects
+        """
+        def get_all_base_subclasses(cls):
+            subclasses = set(cls.__subclasses__())
+            for subclass in subclasses.copy():
+                subclasses.update(get_all_base_subclasses(subclass))
+            return subclasses
+
+        all_subclasses = get_all_base_subclasses(Base)
+        return [ormclass.__mapper__.local_table for ormclass in all_subclasses]
 
     def orm_table_names(self):
         """ Current tables associated with ORM models"""
@@ -916,6 +949,9 @@ class TimelinkDatabase:
         argument_type = None
         if isinstance(argument, str):
             if argument in self.get_models_ids():
+                argument_type = "model"
+                columns = self.get_columns(argument)
+            elif self.get_model_by_name(argument) is not None:
                 argument_type = "model"
                 columns = self.get_columns(argument)
             elif argument in self.orm_table_names():

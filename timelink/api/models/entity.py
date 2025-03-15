@@ -36,6 +36,12 @@ class Entity(Base):
     This corresponds to the model described as "Joined Table Inheritance"
     in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
 
+    This class also provides methods to manage the association between
+    groups and ORM classes. This is needed because the ORM classes
+    are created dynamically based on the mappings defined in the
+    PomSomMapper class and during import diferent Kleio groups
+    are imported associated with different classes.
+
     TODO: specialize TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
             Acts, Sources, Attributes and Relations are TemporalEntities
     """
@@ -197,6 +203,11 @@ class Entity(Base):
         return [str(table) for table in cls.get_tables_to_orm_as_dict().keys()]
 
     @classmethod
+    def get_orm_tables(cls):
+        """ Return the  table objects associated with ORM models"""
+        return [ormclass.__mapper__.local_table for ormclass in Entity.get_orm_models()]
+
+    @classmethod
     def get_group_models(cls) -> dict:
         """ Return a dictionary of group models
 
@@ -284,9 +295,20 @@ class Entity(Base):
         else:
             return None
 
+    @classmethod
+    def is_dynamic(cls):
+        """Return True if this class was created by a dynamic mapping
+
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group. These mappings are stored in the PomSomMapper
+        class. The mappings are used to create ORM classes that are
+        subclasses of Entity.
+        """
+        return getattr(cls, "__is_dynamic__", False)  # this is set in PomSomClass.ensure_mapping
+
     def get_column_for_element(self, element: str):
         """Get the column name for a group element"""
-        self.update_group_elements_to_columns
+        self.update_group_elements_to_columns()
         return Entity.group_elements_to_columns.get(self.groupname, {}).get(
             element, None
         )
@@ -563,7 +585,7 @@ class Entity(Base):
             attr_name = element
             element = self.get_element_for_column(attr_name)
 
-        if hasattr(self, attr_name):
+        if attr_name is not None and hasattr(self, attr_name):
             attr = getattr(self, attr_name)
             if attr is None:
                 attr = ""
@@ -582,8 +604,8 @@ class Entity(Base):
                 # if the date a just composed of digits try to format it
                 if attr.isdigit():
                     attr = ftld(attr)
-            if extra_info is not None and element in extra_info:
-                extras = extra_info.get(element, {})
+            if extra_info is not None and attr_name in extra_info:
+                extras = extra_info.get(attr_name, {})
                 element_comment = extras.get("comment", None)
                 element_original = extras.get("original", None)
                 if element_comment is not None:
@@ -598,7 +620,11 @@ class Entity(Base):
             return ""
 
     def to_kleio(
-        self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
+        self, self_string=None, show_contained=True,
+        ident="",
+        ident_inc="  ",
+        show_inrels=True,
+        **kwargs
     ):
         """conver the entity to a kleio string
 
@@ -607,7 +633,9 @@ class Entity(Base):
             show_contained: if True, contained entities are also converted to kleio
             ident: initial identation
             ident_inc: identation increment
+            show_inrels: if False, inbound relations are not shown, default is True
             kwargs: additional arguments to be passed to contained entities"""
+
         if self_string is None:
             s = f"{ident}{str(self)}"
         else:
@@ -633,9 +661,13 @@ class Entity(Base):
                             # we don't render inbound function-in-act relations
                             # because they are redundant with contained entities
                             continue
+                        # if we do not show inrels, we skip the inbound relations
+                        if not show_inrels:
+                            continue
 
                 bio_itemk = bio_item_xi.to_kleio(
-                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                    ident=ident + ident_inc, ident_inc=ident_inc, show_inrels=show_inrels,
+                    **kwargs
                 )
 
                 if bio_itemk != "":
@@ -648,7 +680,8 @@ class Entity(Base):
             )
             for inner in contained_entities:
                 innerk = inner.to_kleio(
-                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                    ident=ident + ident_inc, ident_inc=ident_inc, show_inrels=show_inrels,
+                    **kwargs
                 )
                 if innerk != "":
                     s = f"{s}\n{innerk}"
