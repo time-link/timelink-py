@@ -164,7 +164,9 @@ def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
         return None
 
     # remove dashes
-    tl_date_clean = tl_date.replace("-", "")
+    range = tl_date.split(':')
+    tl_date_clean = range[0]
+    tl_date_clean = tl_date_clean.replace("-", "").replace(">", "").replace("<", "")
     # pad tl_date with zeros up to length 8
     tl_date_clean = tl_date_clean.ljust(8, "0")
     year, month, day = tl_date_clean[:4], tl_date_clean[4:6], tl_date_clean[6:]

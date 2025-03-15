@@ -664,7 +664,7 @@ class TimelinkDatabase:
         with_translation_errors=False,
         with_import_errors=False,
         with_import_warnings=False,
-        force=True,
+        force=False,
         match_path=False,
     ):
         """Update the database from the sources.

@@ -22,7 +22,7 @@ def test_date_with_dashes():
 def test_date_with_greater_less_than():
     assert convert_timelink_date(">1900-01-01") == datetime(1900, 1, 1)
     assert convert_timelink_date("<1900-01") == datetime(1900, 1, 15)
-    assert convert_timelink_date("<1900-") == datetime(1900, 7, 2)
+    assert convert_timelink_date("<1900") == datetime(1900, 7, 2)
 
 
 def test_ranges_with_greater_less_than():
