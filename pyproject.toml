@@ -7,3 +7,10 @@ line-length = 120
 exclude = '__init__.py'
 extend-immutable-calls = 'Depends, fastapi.Depends, fastapi.params.Depends'
 
+[tool.poetry]
+name = "timelink"
+# ... other poetry configuration ...
+
+[tool.poetry.include]
+"timelink/migrations/versions/*" = {format = "sdist", extension = "py"}
+

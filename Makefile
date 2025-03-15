@@ -85,7 +85,7 @@ servedocs: docs ## compile the docs watching for changes
 
 release: dist ## package and upload a release
 	twine check dist/*
-	twine upload dist/*
+	twine upload dist/* --verbose
 
 dist: clean ## builds source and wheel package
 	python -m build
