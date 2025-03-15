@@ -338,7 +338,7 @@ pom_som_base_mappings = {
     ],
     "good": [
         PomSomMapper(
-            id="good", table_name="goods", group_name="bem", super_class="object"
+            id="good", table_name="goods", group_name="good", super_class="object"
         ),
         PomClassAttributes(
             the_class="good",
@@ -562,7 +562,8 @@ pom_som_base_mappings = {
             pkey="0",
         )
     ],
-    "rgeoentity": [
+    # currently we only use rentity mappings
+    "rgeoentity": [  # not sure if this is needed
         PomSomMapper(
             id="rgeoentity",
             table_name="rgeoentities",
@@ -590,7 +591,7 @@ pom_som_base_mappings = {
             pkey="0",
         ),
     ],
-    "robject": [
+    "robject": [  # not sure if this is needed
         PomSomMapper(
             id="robject",
             table_name="robjects",
@@ -628,7 +629,7 @@ pom_som_base_mappings = {
             pkey="0",
         ),
     ],
-    "rperson": [
+    "rperson": [   # not sure if this is needed
         PomSomMapper(
             id="rperson",
             table_name="rpersons",
@@ -755,17 +756,17 @@ pom_som_base_mappings = {
         ),
     ],
 }
-
+# these currenty are not used as part of the builtin mappings
 more_mappings = {
-    "acusacoes": [
+    "acusacao": [
         PomSomMapper(
-            id="acusacoes",
+            id="acusacao",
             table_name="acusacoes",
             group_name="acusa",
             super_class="object",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="id",
             colname="id",
             colclass="id",
@@ -775,7 +776,7 @@ more_mappings = {
             pkey="1",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="idcaso",
             colname="idcaso",
             colclass="idcaso",
@@ -785,7 +786,7 @@ more_mappings = {
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="literal",
             colname="literal",
             colclass="literal",
@@ -795,7 +796,7 @@ more_mappings = {
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="obs",
             colname="obs",
             colclass="obs",
@@ -805,7 +806,7 @@ more_mappings = {
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="origem",
             colname="origem",
             colclass="origem",
