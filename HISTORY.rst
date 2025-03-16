@@ -2,6 +2,18 @@
 History
 =======
 
+1.1.24 (2025-03-16)
+-------------------
+
+- Tries to fix test errors when tests are run in a single session
+  (as in pytest). This cannot be fixed and is related to behaviour
+  of sqlalchemy when acessing multiple database with the same
+  metadata, that is dynamically changed by addind new dynamic classes
+  and tables. The solution is to run tests in separate sessions to
+  check for tests. A new target make test-loop run each test file
+  separetly to check for real errors.
+- While this is not fixed deploy via Travis does not work. Use make release.
+
 1.1.23 (2025-03-16)
 -------------------
 
