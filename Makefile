@@ -50,9 +50,15 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 timelink tests
 
+test-loop: ## run tests quickly with the default Python
+	for file in tests/*.py; do \
+		pytest $$file $(ARGS); \
+	done
+
 test: ## run tests quickly with the default Python
 	pytest --rootdir=tests $(ARGS)
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
+
 
 test-nb: ## test notebooks only
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
