@@ -1,4 +1,4 @@
-""" Database connection and setup
+"""Database connection and setup
 
 TODO:
 
@@ -13,6 +13,7 @@ import os
 import time
 import warnings
 import logging
+import pdb
 
 from typing import List
 from pydantic import TypeAdapter
@@ -26,7 +27,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import database_exists
-from sqlalchemy_utils import create_database
+from sqlalchemy_utils import create_database, drop_database
 from sqlalchemy.sql.selectable import TableClause
 
 import timelink
@@ -232,23 +233,19 @@ class TimelinkDatabase:
         if not database_exists(self.engine.url):  # noqa
             try:
                 create_database(self.engine.url)  # create empty database
-                self.create_db()  # creates the tables
             except Exception as exc:
                 logging.error(exc)
                 raise Exception("Error while creating database") from exc
-        # if the database exists, check if the tables are there
-        elif self.table_exists("entities") is False:
-            self.create_db()
-        else:  # the database exists upgrade if necessary
-            try:
-                migrations.upgrade(self.db_url)
-                with self.session() as session:
-                    self._ensure_all_mappings(session)  # this will cache the pomsom mapper objects
-                # ensure views
-                self._update_views()
-            except Exception as exc:
-                logging.error(exc)
-                raise exc
+        self.create_db()  # creates the tables and views selectively
+        try:
+            migrations.upgrade(self.db_url)
+            with self.session() as session:
+                self._ensure_all_mappings(session)  # this will cache the pomsom mapper objects
+            # ensure views
+            self._update_views()
+        except Exception as exc:
+            logging.error(exc)
+            raise exc
 
         if kleio_server is not None:
             self.set_kleio_server(kleio_server)
@@ -271,6 +268,8 @@ class TimelinkDatabase:
         Will stamp the database with alembic as most recent version
         """
 
+        # pdb.set_trace()
+        self.metadata.reflect(bind=self.engine)
         self._create_tables()
         with self.session() as session:
             try:
@@ -302,12 +301,17 @@ class TimelinkDatabase:
 
         :return: None
         """
+        self.metadata = Base.metadata
         tables = self.db_base_tables()  # get the base tables
-        dynamic_tables = [ormclass.__mapper__.local_table
-                          for ormclass in Entity.get_subclasses()
-                          if ormclass.is_dynamic()]
-        tables = [table for table in tables if table not in dynamic_tables]
-        self.metadata.create_all(self.engine, tables=tables)  # only creates if missing
+        existing_tables = self.db_table_names()
+        dynamic_tables = [
+            ormclass.__mapper__.local_table for ormclass in Entity.get_subclasses() if ormclass.is_dynamic()
+        ]
+        tables = [table for table in tables if table not in dynamic_tables and table.name not in existing_tables]
+        try:
+            self.metadata.create_all(self.engine, tables=tables)  # only creates if missing
+        except Exception as exc:
+            logging.error(f"Error creating tables: {exc}")
 
     def _drop_views(self):
         """Drop views"""
@@ -355,15 +359,25 @@ class TimelinkDatabase:
         self._drop_views()
         self._create_views()
 
-    def drop_db(self, session=None):
+    def drop_db(self, session=None, timelink_only=False):
         """
-        This will drop all timelink related tables from the database.
-        It will not touch non timelink tables that might exist.
+        This will drop the database.
 
-        If a real drop database is desidered use sqlalchemy_utils.drop_database
-        :param session:
+        If only timelink related tables are to be dropped, set timelink_only=True.
+
+        If timelink_only=True (default is False) will not touch non timelink tables that might exist.
+
+        Args:
+            timelink_only (bool, optional): If True, only drop timelink related tables; defaults to False.
+            session (Session, optional): Database session to use; defaults to None.
 
         """
+
+        if not timelink_only:
+            if ":memory:" not in self.db_url:
+                drop_database(self.db_url)
+            return
+
         if session is None:
             session = self.session()
 
@@ -373,12 +387,17 @@ class TimelinkDatabase:
             self._ensure_all_mappings(session)
             session.commit()
             session.close()
+
             self.metadata = models.Base.metadata
         except Exception as exc:
             logging.error(f"Error during database drop: {exc}")
             session.rollback()
         try:
             with self.engine.begin() as con:
+                dynamic_tables = self.db_dynamic_tables()
+                # first the dynamic tables
+                self.metadata.drop_all(con, tables=dynamic_tables)
+                # then the rest
                 self.metadata.drop_all(con)
         except Exception as exc:
             warnings.warn("Dropping tables problem " + str(exc), stacklevel=2)
@@ -424,11 +443,12 @@ class TimelinkDatabase:
         * All the tables of the timelink data model (Entity and its subclasses)
         * Other auxiliary tables managed with SQLAlchemy ORM like class_attributes
           and Kleio imported files, syspar, syslog, etc.
-        * Dynamically created tables during import
+        * Dynamically created tables during import (see db_dynamic_tables)
 
         Returns:
             list: list of table objects
         """
+
         def get_all_base_subclasses(cls):
             subclasses = set(cls.__subclasses__())
             for subclass in subclasses.copy():
@@ -438,8 +458,17 @@ class TimelinkDatabase:
         all_subclasses = get_all_base_subclasses(Base)
         return [ormclass.__mapper__.local_table for ormclass in all_subclasses]
 
+    def db_dynamic_tables(self):
+        """Dynamic tables in the database.
+
+        These are the tables created dynamically when importing data,
+        with orm classes also dymamically created.
+
+        """
+        return [ormclass.__mapper__.local_table for ormclass in Entity.get_subclasses() if ormclass.is_dynamic()]
+
     def orm_table_names(self):
-        """ Current tables associated with ORM models"""
+        """Current tables associated with ORM models"""
         return Entity.get_orm_table_names()
 
     def view_names(self):
@@ -632,9 +661,10 @@ class TimelinkDatabase:
         if isinstance(kleio_files, KleioFile):
             kleio_files = [kleio_files]
         if not isinstance(kleio_files, list) or not all(isinstance(file, KleioFile) for file in kleio_files):
-            raise ValueError(f"kleio_files must be a list of KleioFile objects."
-                             f"Use path={kleio_files} to get a list of KleioFile objects from a Kleio server."
-                             )
+            raise ValueError(
+                f"kleio_files must be a list of KleioFile objects."
+                f"Use path={kleio_files} to get a list of KleioFile objects from a Kleio server."
+            )
 
         files: List[KleioFile] = get_import_status(self, kleio_files=kleio_files, match_path=match_path)
         if status is not None:
