@@ -17,7 +17,8 @@ from timelink.api.models.source import Source
 # pytestmark = skip_on_travis
 
 db_path = f"{TEST_DIR}/sqlite/"
-test_set = [("sqlite", "test_db"), ("postgres", "test_db")]
+TEST_DB = "API_MODELS_DB"
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
 
 
 @pytest.fixture(scope="module")
@@ -33,8 +34,8 @@ def dbsystem(request, kleio_server):
 
         yield database
     finally:
-        database.drop_db()
         database.session().close()
+        database.drop_db()
 
 
 @pytest.fixture

@@ -32,13 +32,7 @@ def dbsystem(request, kleio_server):
     try:
         yield database
     finally:
-        with database.session() as session:
-            pass
-            database.drop_db(session)
-            session.close()
-        if ":memory:" not in database.db_url:
-            pass
-            # drop_database(database.db_url)
+        database.drop_db()
 
 
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)

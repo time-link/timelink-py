@@ -13,8 +13,8 @@ from tests import TEST_DIR
 from timelink.pandas import pname_to_df, entities_with_attribute, attribute_values
 
 # pytestmark = skip_on_travis
-
-test_set = [("sqlite", "test_pandas_db"), ("postgres", "test_pandas_db")]
+TEST_DB = "test_pandas_db"
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
 test_files = "projects/test-project/sources/reference_sources/pandas"
 
 
@@ -33,7 +33,7 @@ def dbsystem(request, kleio_server):
     finally:
         with database.session() as session:
             pass
-            database.drop_db(session)
+            database.drop_db(session=session)
             session.close()
         if ":memory:" not in database.db_url:
             pass

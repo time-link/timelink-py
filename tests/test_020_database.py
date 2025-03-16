@@ -24,7 +24,8 @@ from timelink.api.views import DropView, view, view_exists
 pytestmark = skip_on_travis
 path_to_db_test_files = "projects/test-project/sources/database_tests"
 db_path = f"{TEST_DIR}/sqlite/"
-test_set = [("sqlite", "test_db"), ("postgres", "test_db")]
+TEST_DB = "database_tests"
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
 
 
 @pytest.fixture(scope="module")
@@ -36,7 +37,7 @@ def dbsystem(request, kleio_server):
     database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False)
     # attach a kleio server
     database.set_kleio_server(kleio_server)  # from tests.__init__.py
-    database.update_from_sources(path_to_db_test_files)
+    database.update_from_sources(path_to_db_test_files, force=True)
     try:
 
         yield database

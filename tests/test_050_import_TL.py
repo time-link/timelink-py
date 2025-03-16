@@ -27,9 +27,9 @@ from timelink.kleio.schemas import KleioFile
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
 
-
+TEST_DB = "test_import_tl"
 db_path = f"{TEST_DIR}/sqlite/"
-test_set = [("sqlite", "test_import_tl"), ("postgres", "test_import_tl")]
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
 
 
 @pytest.fixture(scope="module")
@@ -45,8 +45,8 @@ def dbsystem(request, kleio_server):
 
         yield database
     finally:
-        database.drop_db()
         database.session().close()
+        database.drop_db()
 
 
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
