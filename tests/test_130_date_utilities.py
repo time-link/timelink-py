@@ -1,5 +1,5 @@
 from datetime import datetime
-from timelink.kleio.utilities import convert_timelink_date
+from timelink.kleio.utilities import convert_timelink_date, format_timelink_date
 import warnings
 
 
@@ -58,3 +58,63 @@ def test_none_date():
 
 def test_not_string_date():
     assert convert_timelink_date(19000101) is None
+
+
+def test_format_timelink_date_none():
+    assert format_timelink_date(None) == ""
+
+
+def test_format_timelink_date_invalid_type():
+    assert format_timelink_date(12345) == ""
+
+
+def test_format_timelink_date_empty_string():
+    assert format_timelink_date("") == ""
+
+
+def test_format_timelink_date_single_year():
+    assert format_timelink_date("15800000") == "1580"
+
+
+def test_format_timelink_date_year_and_month():
+    assert format_timelink_date("15860300") == "1586-03"
+
+
+def test_format_timelink_date_full_date():
+    assert format_timelink_date("15860315") == "1586-03-15"
+
+
+def test_format_timelink_date_after_date():
+    assert format_timelink_date("15800000.3") == ">1580"
+
+
+def test_format_timelink_date_before_date():
+    assert format_timelink_date("16399999.7") == "<1640"
+
+
+def test_format_timelink_date_open_ended_range():
+    assert format_timelink_date("15800000.1") == "1580:"
+
+
+def test_format_timelink_date_open_start_range():
+    assert format_timelink_date("16399999.9") == ":1640"
+
+
+def test_format_timelink_date_date_range():
+    assert format_timelink_date("15800000.16400000") == "1580:1640"
+
+
+def test_format_timelink_date_invalid_date():
+    assert format_timelink_date("00000000") == ""
+
+
+def test_format_timelink_date_partial_range():
+    assert format_timelink_date("15800000:16400000") == "1580:1640"
+
+
+def test_format_timelink_date_invalid_range():
+    assert format_timelink_date("1580:0000") == "1580:"
+
+
+def test_format_timelink_date_invalid_format():
+    assert format_timelink_date("invalid") == ""

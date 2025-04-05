@@ -11,6 +11,7 @@ import json
 import textwrap
 from os import linesep as nl
 import warnings
+from decimal import Decimal
 
 
 def kleio_escape(v: str) -> str:
@@ -189,13 +190,58 @@ def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
 
 
 def format_timelink_date(tl_datet) -> str:
-    """Format a timelink date YYYYMMDD and variants to nice string"""
+    """Format a timelink date YYYYMMDD and variants to nice string
+
+    Note that we also can get dates as floating point numbers
+    as a result of kleio server processing:
+
+    -- from Kleio server issue #1
+    value is a sortable representation of the date as a number.
+        in single dates is a 8 digit number with 00 in the missing month or day if any.
+        15600000
+        15600215
+        for relative dates (>1580) is a 8 digit number with 0.3 added for "after" dates
+        and 0.3 subtracted for before dates.
+        >1580 has value: "15800000.3"
+        <1640 has value: "16399999.7"
+        for ranges is a 8 digit number equal to the "from" date and decimal part equal to the "to" date.
+        "1580:1640" has value "15800000.16400000"
+        for open ranges where only "from" date or "to" date is available values is an 8
+        digit number with 0.1 added for open ended ranges and 0.1 subtracted for open
+        start ranges.
+        * "1580:" has value "15800000.1"
+        * ":1640" has value "16399999.9"
+
+        note that it is possible to infer the date type by computing type=value-round(value)
+        type = 0 -> single date round(value)
+        type = 0.3 -> after date round(value)
+        type = -0.3 -> date before round(value)
+        type = 0.1 -> open ended range starting at round(value)
+        type = -0.1 > open start rand ending at round(value)
+        other = range from round(value) to value-round(value)
+
+    """
     # return empty string if tl_datet is None
-    if tl_datet is None:
+    if tl_datet is None or tl_datet == "":
         return ""
     # return empty string if tl_datet is not a string
     if not isinstance(tl_datet, str):
         return ""
+    #  check if tl_datet is a string with a decimal point
+    if "." in tl_datet:
+        # this dates have special semantics
+        tl_datet = _reverse_date_value(tl_datet)
+    dates = tl_datet.split(':')
+    if len(dates) == 2:
+        py_date1 = format_timelink_date(dates[0])
+        py_date2 = format_timelink_date(dates[1])
+        return py_date1 + ":" + py_date2
+
+    if tl_datet[0] == ">":
+        return ">" + format_timelink_date(tl_datet[1:])
+    if tl_datet[0] == "<":
+        return "<" + format_timelink_date(tl_datet[1:])
+
     # fill with zeros
     tl_datet = tl_datet.ljust(8, "0")
     # if tl_datet is '00000000' return empty string
@@ -203,26 +249,43 @@ def format_timelink_date(tl_datet) -> str:
         return ""
     # if date ends in '0000' return just the first 4 characters
     if tl_datet.endswith("0000"):
-        return tl_datet[:4]
+        return tl_datet[:-4]
     # if date ends in '00' return the first 6 characters with an hifen between 4th and 5th characters
     if tl_datet.endswith("00"):
         return tl_datet[:4] + "-" + tl_datet[4:6]
     # Otherwise convert the date
-    dates = tl_datet.split(':')
-    if len(dates) == 2:
-        py_date1 = convert_timelink_date(dates[0])
-        if py_date1 is None:
-            py_date1 = ''
-        py_date2 = convert_timelink_date(dates[1])
-        if py_date2 is None:
-            py_date2 = ''
-        return (py_date1.strftime("%Y-%m-%d")
-                + ":"  # noqa
-                + py_date2.strftime("%Y-%m-%d"))  # noqa
+    py_date = convert_timelink_date(tl_datet)
+    # if py_date is None return empty string
+    if py_date is None:
+        return ""
     else:
-        py_date = convert_timelink_date(dates[0])
-
-        if py_date is None:
-            return ""
-        # return date in format YYYY-MM-DD
         return py_date.strftime("%Y-%m-%d")
+
+
+def _reverse_date_value(data_str: str):
+    """ reverses the sort value of a date:
+         note that it is possible to infer the date type by computing type=value-round(value)
+        type = 0 -> single date round(value)
+        type = 0.3 -> after date round(value)
+        type = -0.3 -> date before round(value)
+        type = 0.1 -> open ended range starting at round(value)
+        type = -0.1 > open start rand ending at round(value)
+        other = range from round(value) to value-round(value)
+    """
+    value = Decimal(data_str)
+    round_value = round(value)
+    type = value - round_value
+    if type == Decimal("0"):
+        return data_str
+    elif type == Decimal("0.3"):
+        return ">" + str(round_value)
+    elif type == Decimal("-0.3"):
+        return "<" + str(round_value)
+    elif type == Decimal("0.1"):
+        return str(round_value) + ":"
+    elif type == Decimal("-0.1"):
+        return ":" + str(round_value)
+    else:
+        # range
+        dates = data_str.split('.')
+        return dates[0] + ":" + dates[1]
