@@ -17,7 +17,7 @@ from timelink.api.models.source import Source
 # pytestmark = skip_on_travis
 
 db_path = f"{TEST_DIR}/sqlite/"
-TEST_DB = "API_MODELS_DB"
+TEST_DB = "models"
 test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
 
 
@@ -306,7 +306,15 @@ def test_ensure_mapping(dbsystem):
         assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
         db_tables = dbsystem.db_table_names()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
-        assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
+        # it is possible that some tables are not in the database if they are associated
+        # dynamic orm models not present in this database
+        dynamic_tables = Entity.get_dynamic_orm_table_names()
+        if len(tables_not_in_db) > 0:
+            print(f"Tables not in db: {tables_not_in_db}")
+            print(f"Dynamic tables: {dynamic_tables}")
+            # remove dynamic tables from the list of tables not in db
+            tables_not_in_db = tables_not_in_db - set(dynamic_tables)
+            assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
         session.close()
 
 
