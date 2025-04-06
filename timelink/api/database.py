@@ -9,14 +9,17 @@ TODO:
 """
 
 # pylint: disable=unused-import
+from collections import defaultdict, namedtuple
 import os
 import time
 import warnings
 import logging
-import pdb
+
+# import pdb
 
 from typing import List
 from pydantic import TypeAdapter
+import pandas as pd
 
 from sqlalchemy import MetaData
 from sqlalchemy import Table
@@ -37,7 +40,7 @@ from timelink.api.models.geoentity import Geoentity
 from timelink.api.models.object import Object
 from timelink.mhk import utilities
 from timelink import models  # pylint: disable=unused-import
-from timelink.api.models.base_class import Base
+from timelink.api.models.base_class import Base, get_all_base_subclasses
 from timelink.api.models import Entity, PomSomMapper
 from timelink.api.models import pom_som_base_mappings
 from timelink.api.models import Person
@@ -115,6 +118,7 @@ class TimelinkDatabase:
         db_user=None,
         db_pwd=None,
         db_path=None,
+        drop_if_exists=False,
         kleio_server=None,
         kleio_home=None,
         kleio_image=None,
@@ -144,6 +148,7 @@ class TimelinkDatabase:
             db_user (str, optional): database user; defaults to None.
             db_pwd (str, optional): database password; defaults to None.
             db_path (str, optional): database path (for sqlite databases); defaults to None.
+            drop_if_exists (bool, optional): if True, drop the database if it exists; defaults to False.
             kleio_server (KleioServer, optional): kleio server for imports; defaults to None.
             kleio_home (str, optional): kleio home directory; defaults to None. If present and
                         kleio_server is None will start new kleio server, which
@@ -164,8 +169,8 @@ class TimelinkDatabase:
         self.db_type = db_type
 
         self.views = dict()
-
         self.kserver = None
+        self.base_tables_names = []
 
         # if we received a url, use it to connect
         if db_url is not None:
@@ -228,24 +233,41 @@ class TimelinkDatabase:
 
         self.engine = create_engine(self.db_url, echo=echo, connect_args=connect_args)
         self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-        self.metadata = models.Base.metadata
+
+        self.metadata = Base.metadata
+        self.registry = Base.registry
+
+        # remove dynamic tables
+        # wee need this to avoid problems of persistence of dynamic tables
+        # and dynamic ORM from one database to another.
+        #
+
         # create an empty database if it does not exist
-        if not database_exists(self.engine.url):  # noqa
+        if drop_if_exists:
+            if database_exists(self.engine.url):
+                drop_database(self.engine.url)
+        if not database_exists(self.engine.url) or db_url == "sqlite:///:memory:":  # noqa
             try:
                 create_database(self.engine.url)  # create empty database
+                self.create_db()  # creates the tables and views selectively
             except Exception as exc:
                 logging.error(exc)
                 raise Exception("Error while creating database") from exc
-        self.create_db()  # creates the tables and views selectively
-        try:
-            migrations.upgrade(self.db_url)
-            with self.session() as session:
-                self._ensure_all_mappings(session)  # this will cache the pomsom mapper objects
-            # ensure views
-            self._update_views()
-        except Exception as exc:
-            logging.error(exc)
-            raise exc
+        else:
+            try:
+
+                self.check_db()  # health check to the database
+                migrations.upgrade(self.db_url)
+                with self.session() as session:
+                    self._ensure_all_mappings(session)  # this will cache the pomsom mapper objects
+                # ensure views
+                self._update_views()
+                # get any extra table or views inspecting metadata
+                self.metadata.reflect(bind=self.engine)
+
+            except Exception as exc:
+                logging.error(exc)
+                raise exc
 
         if kleio_server is not None:
             self.set_kleio_server(kleio_server)
@@ -269,8 +291,21 @@ class TimelinkDatabase:
         """
 
         # pdb.set_trace()
-        self.metadata.reflect(bind=self.engine)
+        # Clean caches of Mappings and ORM classes
+        PomSomMapper.reset_cache()
+        Entity.reset_cache()
+
+        # remove dynamic tables from metadata
+        for dtable in self.db_dynamic_tables():
+            self.metadata.remove(dtable)
+
         self._create_tables()
+
+        try:
+            migrations.stamp(self.db_url, "head")
+        except Exception as exc:
+            logging.error(exc)
+
         with self.session() as session:
             try:
                 session.commit()
@@ -283,35 +318,107 @@ class TimelinkDatabase:
                 logging.error(f"Error during database initialization: {exc}")
                 session.rollback()
         try:
-            migrations.stamp(self.db_url, "head")
-        except Exception as exc:
-            logging.error(exc)
-        try:
             self._update_views()
         except Exception as exc:
             logging.error(exc)
             raise Exception("Error while updating database views") from exc
+
+    def check_db(self):
+        """Check the database health"""
+        db_tables = self.db_table_names()
+        orm_tables = Entity.get_orm_table_names()
+        missing = set(orm_tables) - set(db_tables)
+        if len(missing) > 0:
+            logging.warning(f"Missing tables in database: {missing}")
+            logging.warning("Creating tables")
+            # we need to create the tables
+            # remove dynamic tables from metadata
+            for dtable in self.db_dynamic_tables():
+                self.metadata.remove(dtable)
+            try:
+                self.metadata.create_all(self.engine)  # create the tables
+                migrations.stamp(self.db_url, "head")
+            except Exception as exc:
+                logging.error(f"Error creating tables: {exc}")
+        else:
+            logging.info("Database is healthy")
+
+        # check if database is postgres and has the link_status type defined
+        if self.db_type == "postgres":
+            with self.engine.connect() as connection:
+                result = connection.execute(
+                    select(text("1")).where(text("EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"))
+                )
+                if result.scalar() is not None:
+                    logging.warning("link_status found, delete it")
+                    result = connection.execute(text("DROP TYPE IF EXISTS link_status CASCADE"))
+                    # result = connection.execute(
+                    #     text("CREATE TYPE link_status AS ENUM ('valid', 'invalid', 'possible')")
+                    # )
+
+    def _build_dependency_graph(self, tables):
+        """Builds a dependency graph of tables based on foreign key constraints.
+
+        co-pilot generated this code
+        """
+        graph = defaultdict(set)
+        for table in tables:
+            for fk in table.foreign_keys:
+                graph[table.name].add(fk.column.table.name)
+        return graph
+
+    def _topological_sort(self, graph):
+        """Performs topological sort on the dependency graph.
+
+        Topological sort is an algorithm for ordering the nodes
+        in a directed acyclic graph (DAG) such that for every
+        directed edge from node A to node B, node A appears
+        before node B in the ordering. In our case, the
+        nodes are tables, and the directed edges represent
+        foreign key dependencies.
+
+        Here's an implementation of topological sort using Kahn's algorithm:
+
+        co-pilot generated this code
+        """
+        in_degree = defaultdict(int)  # Count incoming edges for each node
+        for table, dependencies in graph.items():
+            for dependency in dependencies:
+                if dependency != table:
+                    in_degree[table] += 1
+
+        queue = [table for table in graph if in_degree[table] == 0]  # Start with nodes with no incoming edges
+        sorted_tables = []
+
+        while queue:
+            table = queue.pop(0)
+            sorted_tables.append(table)
+
+            for dependent in list(graph.keys()):
+                if table in graph[dependent]:
+                    in_degree[dependent] -= 1
+                    if in_degree[dependent] == 0:
+                        queue.append(dependent)
+
+        if sum(in_degree.values()) > 0:
+            raise ValueError("Circular dependency detected in the database schema.")
+
+        return sorted_tables
 
     def _create_tables(self):
         """Creates the tables from the current ORM metadata if needed
 
         This method is normally called after an empty database is created
         to populate the database with the basic table associated with the
-        builtin ORM Models (that inherit from timelink.api.models.Base)
+        builtin ORM Models (that inherit from timelink.api.models.Base).
 
         :return: None
         """
-        self.metadata = Base.metadata
-        tables = self.db_base_tables()  # get the base tables
-        existing_tables = self.db_table_names()
-        dynamic_tables = [
-            ormclass.__mapper__.local_table for ormclass in Entity.get_subclasses() if ormclass.is_dynamic()
-        ]
-        tables = [table for table in tables if table not in dynamic_tables and table.name not in existing_tables]
         try:
-            self.metadata.create_all(self.engine, tables=tables)  # only creates if missing
+            self.metadata.create_all(self.engine)
         except Exception as exc:
             logging.error(f"Error creating tables: {exc}")
+            raise exc
 
     def _drop_views(self):
         """Drop views"""
@@ -433,8 +540,8 @@ class TimelinkDatabase:
         db_tables = insp.get_table_names()  # tables in the database
         return db_tables
 
-    def db_base_tables(self):
-        """Base tables in the database
+    def db_orm_tables(self):
+        """Orm tables in the database
 
         These are the tables managed by SQLAlchemy ORM.
         These tables should be present in the database.
@@ -448,15 +555,25 @@ class TimelinkDatabase:
         Returns:
             list: list of table objects
         """
-
-        def get_all_base_subclasses(cls):
-            subclasses = set(cls.__subclasses__())
-            for subclass in subclasses.copy():
-                subclasses.update(get_all_base_subclasses(subclass))
-            return subclasses
-
-        all_subclasses = get_all_base_subclasses(Base)
+        all_subclasses = get_all_base_subclasses()
         return [ormclass.__mapper__.local_table for ormclass in all_subclasses]
+
+    def db_base_table_names(self):
+        """Names of base tables in the database
+        These are the tables included in the base mappings,
+        i.e., the tables that are not dynamically created
+        plus the classes table
+        """
+        r = [pom_som_base_mappings[k][0].table_name for k in pom_som_base_mappings.keys()]
+        return list(set(r + ["classes"]))
+
+    def db_base_tables(self):
+        """Base tables in the database
+
+        These are the tables included in the base mappings,
+        i.e., the tables that are not dynamically created
+        """
+        return [self.metadata.tables[table_name] for table_name in self.db_base_table_names()]
 
     def db_dynamic_tables(self):
         """Dynamic tables in the database.
@@ -465,7 +582,10 @@ class TimelinkDatabase:
         with orm classes also dymamically created.
 
         """
-        return [ormclass.__mapper__.local_table for ormclass in Entity.get_subclasses() if ormclass.is_dynamic()]
+        entity_based_tables = [
+            ormclass.__mapper__.local_table for ormclass in Entity.get_subclasses() if ormclass.is_dynamic()
+        ]
+        return list(set(entity_based_tables) - set(self.db_base_tables()))
 
     def orm_table_names(self):
         """Current tables associated with ORM models"""
@@ -515,8 +635,8 @@ class TimelinkDatabase:
 
         # Check if the core tables are there
         existing_tables = self.db_table_names()
-        base_tables = [v[0].table_name for v in pom_som_base_mappings.values()]
-        missing = set(base_tables) - set(existing_tables)
+
+        missing = set(self.db_base_table_names()) - set(existing_tables)
         # If any of the core tables are missing, create all tables based on ORM metadata
         # NOTE: tables are not created based on the pom_som_base_mappings definitions
         # because the ORM metadata is the source of truth
@@ -539,7 +659,21 @@ class TimelinkDatabase:
 
         pom_classes = PomSomMapper.get_pom_classes(session)
         for pom_class in pom_classes:
+            if pom_class.table_name not in self.db_base_table_names():
+                # this is dynamic pom_class
+                pom_class.set_as_dynamic_pom()
             pom_class.ensure_mapping(session)
+
+        # remove dynamic tables from metadata
+        # at this point any table in the metadata that is not in
+        # the database should be removed
+        # this is necessary because the metadata is shared
+        # between different databases
+        # and the dynamic tables are not shared
+        db_tables = self.db_table_names()
+        for dtable in self.db_dynamic_tables():
+            if dtable.name not in db_tables:
+                self.metadata.remove(dtable)
 
         # Keep a dictionary of group names to ORM classes
         # this is necessary because the Kleio export file
@@ -977,6 +1111,11 @@ class TimelinkDatabase:
         """
         columns = []
         argument_type = None
+        if argument is None:
+            argument_type = ""
+            argument = "all kleio groups in the database"
+            GroupModel = namedtuple("GroupModel", ["group", "table", "model"])
+            return [GroupModel(group, orm.__tablename__, orm.__name__) for (group, orm) in Entity.group_models.items()]
         if isinstance(argument, str):
             if argument in self.get_models_ids():
                 argument_type = "model"
@@ -1275,6 +1414,45 @@ class TimelinkDatabase:
     #
     # Builtin queries
     #
+    def select(self, sql, session=None, as_dataframe=False):
+        """Executes a select statement in the database
+        Args:
+            sql: sqlAlchemy select statement
+        Returns:
+            result: sqlAlchemy result object
+        """
+        # if sql is a string build a select statement
+        if isinstance(sql, str):
+            sql = select(text(sql))
+        # if sql is a select statement
+        elif not isinstance(sql, select):
+            raise ValueError("sql must be a select statement or a string with a valid select statement")
+
+        if session is None:
+            with self.session() as session:
+                try:
+                    result = session.execute(sql)
+                except Exception as e:
+                    session.rollback()
+                    logging.error(f"Error executing select: {e}")
+                    raise
+        else:
+            try:
+                result = session.execute(sql)
+            except Exception as e:
+                session.rollback()
+                logging.error(f"Error executing select: {e}")
+                raise
+        if as_dataframe:
+            try:
+                result = pd.DataFrame(result.fetchall(), columns=result.keys())
+            except Exception as e:
+                session.rollback()
+                logging.error(f"Error converting to dataframe: {e}")
+                raise
+        else:
+            return result
+
     def query(self, query_spec):
         """Executes a query in the database
 

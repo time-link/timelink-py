@@ -376,6 +376,18 @@ class KleioHandler:
         psm: PomSomMapperTL | PomSomMapperMHK,
         attrs: List[PomClassAttributesTL | PomClassAttributesMHK],
     ):
+        """Process a new class definition
+
+        Send imported definition of a new class to the database.
+
+        """
+
+        if self.model_type == "TL":
+            # new code in Timelink
+            self.pom_som_mapper.import_pom_som_class(psm, attrs, self.session)
+            return
+        # from here own legacy code for MHK
+
         if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
             # TODO needs rethinking see #53

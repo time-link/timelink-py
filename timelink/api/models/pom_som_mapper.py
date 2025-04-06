@@ -1,12 +1,13 @@
-""" Mapping between Kleio Groups and relational database tables"""
+"""Mapping between Kleio Groups and relational database tables"""
 
 import logging
+
 # import pdb
 import warnings
 import json
 from typing import Optional, Type, List
 
-from sqlalchemy import Table  # pylint: disable=import-error
+from sqlalchemy import Table, delete  # pylint: disable=import-error
 from sqlalchemy import Column  # pylint: disable=import-error
 from sqlalchemy import ForeignKey  # pylint: disable=import-error
 from sqlalchemy import String  # pylint: disable=import-error
@@ -49,6 +50,9 @@ class PomSomMapper(Entity):
     :table_name: name of the table in Pom, plural form
     :group_name: name of Som group that maps to this table
     :super_class: name of PomSom class extended by this one
+    :orm_class: ORM class that maps to this table
+    :pom_classes: dictionary of all PomSomMappers (id, PomSomMapper)
+    :group_orm_models: dictionary of ORM classes for each group name
 
     For the core kleio groups (source,act,person,object, relation,attribute)
     the mapping information is predefined at database creation time and
@@ -116,9 +120,7 @@ class PomSomMapper(Entity):
 
     __tablename__ = "classes"
 
-    id: Mapped[str] = mapped_column(
-        String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True
-    )
+    id: Mapped[str] = mapped_column(String, ForeignKey("entities.id", ondelete="CASCADE"), primary_key=True)
     table_name: Mapped[str] = mapped_column(String, nullable=False)
     group_name: Mapped[Optional[str]] = mapped_column("group_name", String(32))
     super_class: Mapped[Optional[str]] = mapped_column("super", String)
@@ -130,9 +132,11 @@ class PomSomMapper(Entity):
     # stores the ORM mapper for this mapping (source, act,person...)
     orm_class: Entity
 
+    # flags this class as dynamic, created by import of a class structure
+    __is_dynamic__: bool = False
+
     # Class attributes
     # Class attribute stores current PomSomMappings keyed by id
-
     pom_classes: dict = {}
 
     # Stores the association between group names and PomSomMapper.
@@ -140,25 +144,132 @@ class PomSomMapper(Entity):
     group_orm_models: dict = {}
 
     # Caches group to PomSomMapper mapping
-    # Note that this need to be updated everytime a group is imported
-    # or a new mapping is created
-    # currently 2025-03-01 not used
+    # Note that this needs updating everytime a group is imported
+    # or a new mapping is created.
     group_pom_classes: dict = {}
+
+    def is_dynamic_pom(self):
+        """Return True if this class was created by a dynamic mapping
+
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group.
+        """
+        return getattr(self, "__dynamicpom__", False)  # this is set in PomSomClass.ensure_mapping
+
+    def set_as_dynamic_pom(self):
+        """Set this class as dynamic
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group.
+        """
+        self.__dynamicpom__ = True
 
     @classmethod
     def reset_cache(cls):
-        """ Reset cache of mappers.
+        """Reset cache of mappers.
 
         Call this when reattaching to a new database
-        to avoid carry over between databases """
+        to avoid carry over between databases"""
         cls.pom_classes = dict()
         cls.group_orm_models = dict()
+        cls.group_pom_classes = dict()
+
+    @classmethod
+    def get_pom_class(cls, pom_class_id: String, session):
+        """
+        Return the pom_class object for a given pom_class_id.
+
+        See also Entity.get_orm_for_pom_class
+
+        :param pom_class_id:
+        the id of a pom_class
+        """
+        if pom_class_id in cls.pom_classes.keys():
+            cached_pom_class = cls.pom_classes[pom_class_id]
+            session.add(cached_pom_class)
+            return cached_pom_class
+        return session.get(cls, pom_class_id)
+
+    @classmethod
+    def import_pom_som_class(cls, pom_class: "PomSomMapper",
+                             pom_class_attrs: List["PomClassAttributes"],
+                             session=None):
+        """
+        Process a PomSomMapper class that was imported from a Kleio transcript
+
+        This method is called after the PomSomMapper class is created
+        from the Kleio transcript and before it is stored in the database.
+
+        It is used to ensure that the ORM class and the table associated with it
+        are created in the database.
+        It does not change base_mappings.
+
+        :param pom_class: a PomSomMapper object
+        :param pom_class_attrs: a list of PomClassAttributes objects
+        :param base_mappings: a dictionary of base mappings
+        :param session: a database session
+
+        :return: None
+        """
+        pom_class_id = pom_class.id
+        group_name = pom_class.group_name
+
+        # check if the pom_class is already in the database
+        existing_psm = cls.get_pom_class(pom_class_id, session)
+        if existing_psm is not None:  # class exists: delete, insert again
+            # if it is builtin class, we do not delete it
+            if not existing_psm.is_dynamic():
+                return existing_psm
+            else:
+                # class exists and is not base class, we replace it
+                try:
+                    logging.debug("Deleting existing class %s", pom_class.id)
+                    session.commit()
+                    stmt = delete(PomClassAttributes).where(PomClassAttributes.the_class == pom_class_id)
+                    session.execute(stmt)
+                    session.delete(existing_psm)
+                    session.commit()
+                except Exception as e:
+                    logger.error(f"Could not delete PomSomMapper {pom_class_id}," f"error deleting class attributes", e)
+                    raise e
+                # insert the new class
+                try:
+                    logging.debug("Adding dynamic class %s", pom_class.id)
+                    pom_class.set_as_dynamic_pom()
+                    session.add(pom_class)
+                    for class_attr in pom_class_attrs:
+                        session.add(class_attr)
+                    session.commit()
+
+                except IntegrityError as e:
+                    session.rollback()
+                    logger.error(f"Could not import PomSomMapper {pom_class_id}", e)
+                    raise e
+        else:  # this pom_class does not exist in the database
+            try:
+                logging.debug("Adding new class %s", pom_class.id)
+                pom_class.set_as_dynamic_pom()
+                session.add(pom_class)
+                for class_attr in pom_class_attrs:
+                    session.add(class_attr)
+                session.commit()
+            except IntegrityError as e:
+                session.rollback()
+                logger.error(f"Could not import PomSomMapper {pom_class_id}", e)
+                raise e
+
+        # ensure that the ORM and table are created
+        pom_class.ensure_mapping(session=session)
+        # at this point the pom_class will have an orm_class
+        orm_class = pom_class.orm_class
+        # store the ORM class and the PomSom Mapper for this group
+        cls.group_orm_models[group_name] = orm_class
+        cls.group_pom_classes[group_name] = pom_class
+        return pom_class
 
     def ensure_mapping(self, session=None):
         """
-        Ensure that a table exists to support
-        this SOM Mapping and an ORM class is created
-        to represent data of objects from this mapping.
+        Ensure that a table and ORM model exist to support
+        this PomSom mappings
 
         Checks if there is a table definition
         to support this mapping. If not a new table
@@ -167,32 +278,52 @@ class PomSomMapper(Entity):
 
         A new ORM class is also created for mapping the new
         table. The new ORM class will extend the superclass
-        ORM mapping
+        ORM mapping.
+
 
         """
 
         if not hasattr(self, "orm_class"):
             self.orm_class = None
 
-        # if we have ensured before return what we found then
-        if self.orm_class is not None:
+        # store the existing tables known to sqlalchemy metadata
+        metadata_obj = type(self).metadata
+        orm_tables = metadata_obj.tables  # these are the tables known to ORM
+
+        # we need to check the existence of the ORM class
+        # and the associated table in the database.
+        # The reason is that in some cases the ORM can exist
+        # without the table, i.e., when in the same application
+        # connection to a database with dynamic mappings is made
+        # and later on a new database is created, without the
+        # dynamic mappings. In this case the ORM class will exist
+        # but the table will not.
+
+        # if we have both orm and table we return the orm
+        if self.orm_class is not None and self.orm_class.__mapper__.local_table.name in orm_tables.keys():
             return self.orm_class
 
         # if not check if Entity knows about an orm class
-        # if so return it and save for next time
         my_orm = Entity.get_orm_for_pom_class(self.id)
-        if my_orm is not None:
+        if my_orm is not None and my_orm.__mapper__.local_table.name in orm_tables.keys():
+            # ORM model for this pom_som_mapper already exists
+            # and also the table, so we return.
+            # if this PomSomMapper is dynamic so is the ORM
+            if self.is_dynamic_pom():
+                my_orm.set_as_dynamic()  # mark as dynamic ORM
             self.orm_class = my_orm
-            if self.group_name is not None:
+            if self.group_name is not None and self.group_name != "na":
                 # Store as "static"
                 PomSomMapper.group_orm_models[self.group_name] = my_orm
+
             return self.orm_class
 
         # we have no ORM mapping for the SomPomMapper
+        # or we have the ORM mapping but the table is missing.
         # First check if we have this table already mapped to some Entity.
         # This might happen if we have different kleio groups mapped to the
         # same table, in order to make the kleio transcripts more readable
-        # (it happens frequently with the table 'acts').
+        # (it happens frequently with the tables 'acts', 'persons' and 'objects').
         # If so we will reuse the existing Table class.
         #
         # It can also happen that while not having a ORM mapping the table
@@ -202,17 +333,16 @@ class PomSomMapper(Entity):
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
         #
-        metadata_obj = type(self).metadata
-        pytables = metadata_obj.tables  # these are the tables known to ORM
 
         dbengine: Engine = session.get_bind()
         insp = inspect(dbengine)
         dbtables = insp.get_table_names()  # these are the ones in the database
 
         my_table: Table
-        if self.table_name in pytables.keys():
+        if self.table_name in orm_tables.keys():
             # table is known to ORM we used the Table class there
-            my_table = pytables[self.table_name]
+            # we will extend if necessary
+            my_table = orm_tables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
             my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
@@ -220,16 +350,11 @@ class PomSomMapper(Entity):
             # otherwise the ORM mapping further down will fail.
             if self.super_class not in ["root", "base"]:
                 # print("Getting super class " + self.super_class)
-                pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                    self.super_class, session
-                )
+                pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(self.super_class, session)
                 if pom_super_class is not None:
                     super_class_table_id = pom_super_class.table_name + ".id"
                 else:
-                    message = (
-                        "Creating mapping for %s super class %s not found"
-                        " Default to entities as super class"
-                    )
+                    message = "Creating mapping for %s super class %s not found" " Default to entities as super class"
                     logger.warning(message, self.id, self.super_class)
                     super_class_table_id = "entities.id"
                 pytype = my_table.c.id.type
@@ -243,9 +368,9 @@ class PomSomMapper(Entity):
                     replace_existing=True,
                 )
         else:
-            # Table is unknown to ORM mapper and does not exist in the database
+            # Table is unknown to ORM mapper or does not exist in the database
             # This is the dynamic part, we create a table with
-            # the definition the "class" and "class_attributes" tables
+            # the definition of "class" and "class_attributes"
             # fetched by this class
             # NOTE this does not take into account that the columns
             #       may already exist in the super class or up in the
@@ -253,15 +378,20 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(self.table_name, metadata_obj, extend_existing=True)
+            my_table = Table(
+                self.table_name,
+                metadata_obj,
+                info={"dynamic": True, "pom_class_id  ": self.id},  # we flag as dynamic  # this goes to metadata
+                extend_existing=True,
+            )
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:  # pylint: disable=no-member
                 PyType: str  # pylint: disable=invalid-name
                 pom_type = cattr.coltype.lower()
                 if pom_type == "varchar":
-                    PyType = String(cattr.colsize)   # pylint: disable=invalid-name
+                    PyType = String(cattr.colsize)  # pylint: disable=invalid-name
                 elif pom_type == "numeric" and cattr.colprecision == 0:
-                    PyType = Integer   # pylint: disable=invalid-name
+                    PyType = Integer  # pylint: disable=invalid-name
                 elif pom_type == "numeric" and cattr.colprecision > 0:
                     PyType = Float
                 else:
@@ -271,15 +401,12 @@ class PomSomMapper(Entity):
                 if cattr.pkey != 0:
                     if self.super_class not in ["root", "base"]:
                         # print("Getting super class " + self.super_class)
-                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(
-                            self.super_class, session
-                        )
+                        pom_super_class: PomSomMapper = PomSomMapper.get_pom_class(self.super_class, session)
                         if pom_super_class is not None:
                             super_class_table_id = pom_super_class.table_name + ".id"
                         else:
                             message = (
-                                "Creating mapping for %s super class %s not found"
-                                " Default to entities as super class"
+                                "Creating mapping for %s super class %s not found" " Default to entities as super class"
                             )
                             logger.warning(message, self.id, self.super_class)
                             super_class_table_id = "entities.id"
@@ -314,6 +441,9 @@ class PomSomMapper(Entity):
             # End of creation of a dynamic mapping and table
 
         # we know create a new ORM mapping for this PomSomMapper
+        # note that if a class with the same name already exists
+        # it will be replaced by the new one.
+        # This is the dynamic part of the ORM mapping
         super_orm = Entity.get_orm_for_pom_class(self.super_class)
         if super_orm is None:
             super_orm = pom_super_class.ensure_mapping(session)
@@ -321,18 +451,23 @@ class PomSomMapper(Entity):
             "__table__": my_table,
             "__mapper_args__": {"polymorphic_identity": self.id},
         }
+        # and now we create the ORM class
         try:
             with warnings.catch_warnings():
                 # We ignore warning related to duplicate fields in
                 # specialized classes (obs normally, but also the_type...)
                 warnings.simplefilter("ignore", category=sa_exc.SAWarning)
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
-                my_orm.__is_dynamic__ = True  # mark as dynamic ORM
+                my_orm.set_as_dynamic()  # mark as dynamic ORM
         except Exception as e:  # pylint: disable=broad-except
             logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), e)
 
         self.orm_class = my_orm
         PomSomMapper.group_orm_models[self.group_name] = my_orm
+
+        # set this pom_class as dynamic
+        # we mark this pom_class as dynamic
+        self.set_as_dynamic_pom()
 
         return self.orm_class
 
@@ -376,18 +511,6 @@ class PomSomMapper(Entity):
         return list(cls.pom_classes.keys())
 
     @classmethod
-    def get_pom_class(cls, pom_class_id: String, session):
-        """
-        Return the pom_class object for a given pom_class_id.
-
-        See also Entity.get_orm_for_pom_class
-
-        :param pom_class_id:
-        the id of a pom_class
-        """
-        return session.get(cls, pom_class_id)
-
-    @classmethod
     def get_pom_class_from_group(cls, group: KGroup, session=None):
         """Returns the PomSomMapper for a given group"""
         # TODO use property instead
@@ -401,10 +524,12 @@ class PomSomMapper(Entity):
 
     @classmethod
     def get_pom_id_by_group_name(cls, session, kname):
-        """ Returns the PomSomMapper id for a given group name"""
+        """Returns the PomSomMapper id for a given group name"""
+        if kname in cls.group_pom_classes.keys():
+            return cls.group_pom_classes[kname].id
         for pom in cls.get_pom_classes(session):
             if kname == pom.group_name:
-                # TODO use a setter
+                # TODO use a getter
                 return pom.id
         return None
 
@@ -431,7 +556,7 @@ class PomSomMapper(Entity):
             pom_class.ensure_mapping(session=session)
 
     def element_class_to_column(self, eclass: str, session: None) -> str:
-        """ Return the column name corresponding to a group element class.
+        """Return the column name corresponding to a group element class.
 
         Args:
             eclass (str): The class of an element (included in the export file).
@@ -451,7 +576,7 @@ class PomSomMapper(Entity):
         return None
 
     def element_name_to_column(self, ename: str, session: None) -> str:
-        """ Return the column name corresponding to a group element name.
+        """Return the column name corresponding to a group element name.
 
         Args:
             ename (str): The name of an element (included in the export file).
@@ -469,8 +594,8 @@ class PomSomMapper(Entity):
                 return super_class.element_name_to_column(ename, session=session)
         return None
 
-    def column_to_class_attribute(self, colname: str, session: None) -> 'PomClassAttributes':
-        """ Return the class attribute corresponding to a column name.
+    def column_to_class_attribute(self, colname: str, session: None) -> "PomClassAttributes":
+        """Return the class attribute corresponding to a column name.
 
         Args:
             colname (str): The name of a column in the mapped table.
@@ -500,7 +625,7 @@ class PomSomMapper(Entity):
         the PomSomMapper specific to that group, using the following:
 
             * if with_pom is given with a PomSomMapper id we fetch that
-            * if the group was imported it should have _pom_class_id
+            * if the group was imported before it should have _pom_class_id
             * if neither then we search for a PomSom mapper with "groupname"
                equal to the name of the group.
         """
@@ -511,12 +636,11 @@ class PomSomMapper(Entity):
             pom_class = cls.get_pom_class_from_group(group, session)
 
         if pom_class is None:
-            raise ValueError(
-                f"Could not determine PomSomMapper for this group: {group}"
-            )
+            raise ValueError(f"Could not determine PomSomMapper for this group: {group}")
 
+        # Not sure if this is necessary ensure mapping should have been done before
         pom_class.ensure_mapping(session)
-        ormClass = Entity.get_orm_for_pom_class(pom_class.id)
+        ormClass = pom_class.orm_class
 
         # store the ORM class and the PomSom Mapper for this group
         #  in the top level of the ORM model (Entity)
@@ -528,31 +652,41 @@ class PomSomMapper(Entity):
         # for a given group, we can use this dictionary.
         # which is based on the actual class associated with each
         # group in the database.
-
         Entity.set_orm_for_group(group.kname, ormClass)
+        # Also cache the relation between group name and PomSomMapper
+        # Note that many groups can be mapped to the same PomSomMapper
+        # this is common with persons, objects, acts, etc.
+        # where different names are given in Kleio to the same entity class.
         cls.group_pom_classes[group.kname] = pom_class
 
         entity_from_group: Entity = ormClass()
         entity_from_group.groupname = group.kname
 
-        if group.kname == 'caso':
+        if group.kname == "caso":
             pass  # remove after DEBUG
 
         # extra_info =  this will store the extra information in comment and original words
         extra_info: dict = dict()  # {el1:{'core':'','comment':'','original':''},el2:...}
-        group_obs = ''  # in previous versions extra info was stored in the obs column. Now it is stored in extra_info
+        group_obs = ""  # in previous versions extra info was stored in the obs column. Now it is stored in extra_info
         columns = inspect(ormClass).columns
         entity_has_extra_info_column = "extra_info" in [c.name for c in columns]
         # Certain columns are not mapped to elements, so we need to skip them
-        skip_columns = ["the_source",
-                        "the_line",
-                        "the_level",
-                        "the_order",
-                        "indexed",
-                        "updated",
-                        "inside",
-                        "groupname",
-                        "extra_info"]
+        skip_columns = [
+            "the_source",
+            "the_line",
+            "the_level",
+            "the_order",
+            "indexed",
+            "updated",
+            "inside",
+            "groupname",
+            "extra_info",
+        ]
+        # avoid detached instance error with pom_class
+        insp = inspect(pom_class)
+        if insp.detached:
+            session.add(pom_class)
+
         for column in set([c.name for c in columns]):
             if column in skip_columns:
                 continue
@@ -574,7 +708,7 @@ class PomSomMapper(Entity):
                 try:
                     # if value too long for column truncate with warning
                     if cattr.coltype != "numeric":
-                        if len(element.core) > cattr.colsize :
+                        if len(element.core) > cattr.colsize:
                             # Problema que em alguns casos as colunas são números
                             warnings.warn(
                                 f"""Element {element.name} of group {group.kname}:{group.id}"""
@@ -584,24 +718,25 @@ class PomSomMapper(Entity):
                                 stacklevel=2,
                             )
                             core_value = element.core[: cattr.colsize]
-                    if group.kname == 'ls':
+                    if group.kname == "ls":
                         pass
                     setattr(entity_from_group, cattr.colname, core_value)
-                    extra_info.update({cattr.colname: {
-                        "kleio_element_name": element.name,
-                        "kleio_element_class": element.element_class,
-                        "entity_attr_name": cattr.name,
-                        "entity_column_class": cattr.colclass}})
+                    extra_info.update(
+                        {
+                            cattr.colname: {
+                                "kleio_element_name": element.name,
+                                "kleio_element_class": element.element_class,
+                                "entity_attr_name": cattr.name,
+                                "entity_column_class": cattr.colclass,
+                            }
+                        }
+                    )
                     if cattr.colname == "obs":
                         group_obs = core_value  # we save the obs element for later
                     if element.comment is not None and element.comment.strip() != "":
-                        extra_info[cattr.colname].update(
-                            {"comment": element.comment.strip()}
-                        )
+                        extra_info[cattr.colname].update({"comment": element.comment.strip()})
                     if element.original is not None and element.original.strip() != "":
-                        extra_info[cattr.colname].update(
-                            {"original": element.original.strip()}
-                        )
+                        extra_info[cattr.colname].update({"original": element.original.strip()})
                 except Exception as e:
                     session.rollback()
                     raise ValueError(
@@ -735,9 +870,7 @@ class PomClassAttributes(Base):  # pylint: disable=too-few-public-methods
 
     __tablename__ = "class_attributes"
 
-    the_class: Mapped[str] = mapped_column(
-        String, ForeignKey("classes.id"), primary_key=True
-    )
+    the_class: Mapped[str] = mapped_column(String, ForeignKey("classes.id"), primary_key=True)
 
     name: Mapped[str] = mapped_column(String(32), primary_key=True)
     colname: Mapped[str] = mapped_column(String(32))

@@ -127,9 +127,26 @@ class Entity(Base):
         cascade="all",
     )
 
+    __mapper_args__ = {
+        "polymorphic_identity": "entity",
+        "polymorphic_on": pom_class,
+    }
+
+    # == non persistent attributes ==
+    # this ORM class was dynamically created
+    # by the PomSomMapper.ensure_mapping
+    __is_dynamic__: bool = False
+
+    # is_active: this signals if the class is active
+    # a class can be inactive if the app attached
+    # to a new database where this class is not used
+    # only applies to dynamic classes
+    # set to false by PomSomMapper.remove_mapping()
+    __is_active__: bool = True
+
     # group_models = contains the correspondence between groupname and ORM class
     # Ensure mappings are up to date
-    # see self.ensure_mappings()
+    # see PomSomMapper.ensure_mappings()
     # see PomSomMapper.group_to_entity(self)
     group_models: dict = {}
 
@@ -137,24 +154,11 @@ class Entity(Base):
     # this is a dictionary of dictionaries: first key the group name, second key the element name
     group_elements_to_columns: dict[str, dict[str, str]] = {"entity": {"id": "id"}}
 
-    # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    # To handle non mapped pom_class
-    #      see https://github.com/sqlalchemy/sqlalchemy/issues/5445
-    #
-    #    __mapper_args__ = {
-    #       "polymorphic_identity": "entity",
-    #    "polymorphic_on": case(
-    #        [(type.in_(["parent", "child"]), type)], else_="entity"
-    #    ),
-    #
-    #  This defines what mappings do exist
-    # [aclass.__mapper_args__['polymorphic_identity']
-    #              for aclass in Entity.__subclasses__()]
-
-    __mapper_args__ = {
-        "polymorphic_identity": "entity",
-        "polymorphic_on": pom_class,
-    }
+    @classmethod
+    def reset_cache(cls):
+        """Reset the group_models and group_elements_to_columns cache"""
+        cls.group_models = dict()
+        cls.group_elements_to_columns = {"entity": {"id": "id"}}
 
     @classmethod
     def get_subclasses(cls):
@@ -162,6 +166,23 @@ class Entity(Base):
         for subclass in cls.__subclasses__():
             yield from subclass.get_subclasses()
             yield subclass
+
+    @classmethod
+    def is_dynamic(cls):
+        """Return True if this class was created by a dynamic mapping
+
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group.
+        """
+        return getattr(cls, "__is_dynamic__", False)
+
+    @classmethod
+    def set_as_dynamic(cls):
+        """Set this class as dynamic
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group.
+        """
+        cls.__is_dynamic__ = True
 
     @classmethod
     def get_orm_models(cls):
@@ -176,6 +197,20 @@ class Entity(Base):
         return [Entity] + sc
 
     @classmethod
+    def get_dynamic_models(cls):
+        """Dynamically defined ORM classes that extend Entity
+
+        Dynamic models are models that are created during the import
+        of Kleio groups.
+
+
+        Returns:
+            list: List of ORM classes
+        """
+
+        return [orm for orm in cls.get_orm_models() if orm.is_dynamic()]
+
+    @classmethod
     def get_som_mapper_ids(cls):
         """Ids of PomSomMapper references by orm classes
 
@@ -184,7 +219,7 @@ class Entity(Base):
         """
         return [
             aclass.__mapper_args__["polymorphic_identity"]
-            for aclass in Entity.get_orm_models()
+            for aclass in cls.get_orm_models()
         ]
 
     @classmethod
@@ -194,13 +229,28 @@ class Entity(Base):
         """
         return {
             ormclass.__mapper__.local_table.name: ormclass
-            for ormclass in Entity.get_orm_models()
+            for ormclass in cls.get_orm_models()
+        }
+
+    @classmethod
+    def get_tables_to_dynamic_orm_as_dict(cls):
+        """
+        Return a dict with table name as key and ORM class as value
+        """
+        return {
+            ormclass.__mapper__.local_table.name: ormclass
+            for ormclass in cls.get_dynamic_models()
         }
 
     @classmethod
     def get_orm_table_names(cls):
         """ Return the names of tables associated with ORM models"""
         return [str(table) for table in cls.get_tables_to_orm_as_dict().keys()]
+
+    @classmethod
+    def get_dynamic_orm_table_names(cls):
+        """ Return the names of tables associated with ORM models"""
+        return [str(table) for table in cls.get_tables_to_dynamic_orm_as_dict().keys()]
 
     @classmethod
     def get_orm_tables(cls):
@@ -295,17 +345,6 @@ class Entity(Base):
         else:
             return None
 
-    @classmethod
-    def is_dynamic(cls):
-        """Return True if this class was created by a dynamic mapping
-
-        Dynamic mappings are mappings that are created during the import
-        of a Kleio group. These mappings are stored in the PomSomMapper
-        class. The mappings are used to create ORM classes that are
-        subclasses of Entity.
-        """
-        return getattr(cls, "__is_dynamic__", False)  # this is set in PomSomClass.ensure_mapping
-
     def get_column_for_element(self, element: str):
         """Get the column name for a group element"""
         self.update_group_elements_to_columns()
@@ -335,7 +374,7 @@ class Entity(Base):
 
     def update_group_elements_to_columns(self):
         """Update the element to column mappings for the Group of this Entity"""
-        # Only do this if we don't have any mappings for this Entity
+        # Only do this if we don't have any mappings of Group elements to columns
         if (
             Entity.group_elements_to_columns.get(self.groupname, None) is None
             or len(  # noqa: W503
@@ -641,6 +680,7 @@ class Entity(Base):
         else:
             s = f"{ident}{self_string}"
 
+        show_function = kwargs.get("show_function", False)
         contained_entities = list(
             set(self.contains)
             - set(self.rels_in)  # noqa: W503
@@ -663,6 +703,10 @@ class Entity(Base):
                             continue
                         # if we do not show inrels, we skip the inbound relations
                         if not show_inrels:
+                            continue
+                    else:
+                        if (not show_function) and bio_item.the_type == "function-in-act":
+                            # we don't render outbound function-in-act relations
                             continue
 
                 bio_itemk = bio_item_xi.to_kleio(
