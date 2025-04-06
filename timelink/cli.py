@@ -181,7 +181,16 @@ def db_revision(db_url: str, message: str):
 
 @db_app.command("autogenerate")
 def db_autogenerate(db_url: str, message: str):
-    """Create a new migration script"""
+    """Create a new migration script using db_url as reference database
+
+    The current ORM models will be compared to the database schema
+    and a migration script will be generated to bring the database
+    to the current state of the ORM
+
+    A current database is kept at tests/db/reference_db/timelink_reference.sqlite
+
+
+    """
     db_url = parse_db_url(db_url)
     migrations.autogenerate(db_url, message)
 
