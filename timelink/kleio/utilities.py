@@ -222,6 +222,7 @@ def format_timelink_date(tl_datet) -> str:
 
     """
     # return empty string if tl_datet is None
+    original = tl_datet
     if tl_datet is None or tl_datet == "":
         return ""
     # return empty string if tl_datet is not a string
@@ -257,7 +258,7 @@ def format_timelink_date(tl_datet) -> str:
     py_date = convert_timelink_date(tl_datet)
     # if py_date is None return empty string
     if py_date is None:
-        return ""
+        return "E" + original
     else:
         return py_date.strftime("%Y-%m-%d")
 
