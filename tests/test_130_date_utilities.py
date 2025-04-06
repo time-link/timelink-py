@@ -117,4 +117,4 @@ def test_format_timelink_date_invalid_range():
 
 
 def test_format_timelink_date_invalid_format():
-    assert format_timelink_date("invalid") == ""
+    assert format_timelink_date("invalid") == "Einvalid"

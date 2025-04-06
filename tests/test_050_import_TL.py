@@ -38,9 +38,9 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
     # only used for sqlite databases
 
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False)
-    # attach a kleio server
-    database.set_kleio_server(kleio_server)  # from tests.__init__.py
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
+                                echo=False,
+                                kleio_server=kleio_server)
     try:
 
         yield database

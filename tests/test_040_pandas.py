@@ -24,8 +24,8 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
     db_path = Path(TEST_DIR, "sqlite")
 
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False)
-    database.set_kleio_server(kleio_server)
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
+                                kleio_server=kleio_server, echo=False)
     database.update_from_sources(test_files)
 
     try:

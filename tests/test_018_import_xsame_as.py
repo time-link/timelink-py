@@ -44,10 +44,8 @@ def dbsystem(request, kleio_server):
     database = TimelinkDatabase(
         db_name=db_name,
         db_type=db_type,
-        db_path=db_path
-    )
-
-    database.set_kleio_server(kleio_server)
+        db_path=db_path,
+        kleio_server=kleio_server)
 
     try:
         yield database

@@ -1,4 +1,4 @@
-kleio$gacto.str/translations=12
+kleio$gacto.str/translations=13
    fonte$nommiz/obs=Misericordia mis termos de aceitacao de Irmaos (1724-1829)
 
       nom$nom1a/3/7/1729/2
@@ -1859,7 +1859,8 @@ cortez escrivao da dita santa caza o escrevi antonio arnaut cortez """(assinatur
          referido$luis goncalves/obs=luiz goncalves de cova de lobo-morto/id=nom193-per11-4
             ls$residencia/cova de lobo
             ls$titulo/irmao de menor condicao
-            referido$manoel moreira/obs=manoel moreira de alfucheira-morto
+
+         referido$manoel moreira/obs=manoel moreira de alfucheira-morto/id=nom193-per1-13
             ls$residencia/alfucheira
             ls$titulo/irmao de menor condicao
 

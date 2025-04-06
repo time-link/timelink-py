@@ -39,13 +39,14 @@ def dbsystem(request, kleio_server):
     """Create a database for testing"""
     db_type, db_name = request.param
 
+    if db_type == "postgres":
+        pass
+
     database = TimelinkDatabase(
         db_name=db_name,
         db_type=db_type,
-        db_path=db_path
-    )
-
-    database.set_kleio_server(kleio_server)
+        db_path=db_path,
+        kleio_server=kleio_server)
 
     try:
         yield database

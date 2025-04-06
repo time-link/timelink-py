@@ -16,7 +16,8 @@ from timelink.kleio.groups.kls import KLs
 
 # pytestmark = skip_on_travis
 
-test_set = [("sqlite", "test_el_name_bug_db"), ("postgres", "test_el_name_bug_db")]
+TEST_DB = "elname"
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
 
 
 @pytest.fixture(scope="module")
@@ -25,9 +26,8 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
     db_path = Path(TEST_DIR, "sqlite")
 
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False)
-    # attach a kleio server
-    database.set_kleio_server(kleio_server)
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False,
+                                kleio_server=kleio_server)
 
     try:
         yield database

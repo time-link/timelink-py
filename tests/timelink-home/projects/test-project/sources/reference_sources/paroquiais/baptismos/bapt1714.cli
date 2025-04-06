@@ -1,4 +1,4 @@
-kleio$gacto2.str/prefix=lousa/translations=19
+kleio$gacto2.str/prefix=lousa/translations=20
    fonte$bapt1714/localizacao-a.u.c./tipo=bapt/obs=freguesia de sao silvestre da lousalousa
 
       bap$b1714-1/6/1/1714/fl.117v./igreja de sao silvestre/joao lopes serra(padre)/obs=com licenca do padre manuel lopes serraassina joao lopes serra
@@ -920,9 +920,9 @@ kleio$gacto2.str/prefix=lousa/translations=19
             mad$francisca/id=b1714-43-per1-10-per5-10
                ls$ec/solteira
 
-               pmad$manuel ferreira
-               ls$morada/gandara
-               ls$freguesia/lousa
+               pmad$manuel ferreira/id=b1714-43-per1-10-per5-10-per1-20
+                  ls$morada/gandara
+                  ls$freguesia/lousa
 
       bap$b1714-44/18/8/1714/fl. 124v./igreja de sao silvestre/manuel da fonseca (padre cura na igreja de sao silvestre)/obs=assina o padre manuel lopes serra
 

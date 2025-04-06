@@ -1,4 +1,4 @@
-"""Test the import of Kleio files into the Timelink database.
+"""Test tview creation, describe models and tables.
 Check tests.__init__.py for parameters
 
 """
@@ -33,10 +33,11 @@ def dbsystem(request, kleio_server):
     """Create a database for testing"""
     db_type, db_name = request.param
     # only used for sqlite databases
-
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False)
+    if db_type == "postgres":
+        pass  # for debug
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
+                                kleio_server=kleio_server, echo=False)
     # attach a kleio server
-    database.set_kleio_server(kleio_server)  # from tests.__init__.py
     database.update_from_sources(path_to_db_test_files, force=True)
     try:
 
