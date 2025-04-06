@@ -40,6 +40,7 @@ class TimelinkNotebook:
         project_home=None,
         db_type=None,
         db_name=None,
+        drop_if_exists=False,
         kleio_image=None,
         kleio_version=None,
         kleio_token=None,
@@ -65,6 +66,7 @@ class TimelinkNotebook:
                     defaults to the parent of the current directory.
             db_type: type of database ('sqlite' or 'postgres'). Defaults to 'sqlite'
             db_name: name of the database. Defaults to project name, normalized
+            drop_if_exists: if True, drop the database if it exists. Defaults to False
             kleio_image: docker image for kleio server;
                             defaults to 'timelinkserver/kleio-server'
             kleio_version: version of kleio server. Defaults to 'latest'
@@ -120,6 +122,7 @@ class TimelinkNotebook:
             db_name=self.db_name,
             db_type=self.db_type,
             db_path=self.sqlite_dir,
+            drop_if_exists=drop_if_exists,
             kleio_home=self.project_home,
             kleio_image=self.kleio_image,
             kleio_version=self.kleio_version,
