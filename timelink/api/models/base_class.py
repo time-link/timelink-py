@@ -10,7 +10,6 @@ from sqlalchemy import MetaData  # pylint: disable=import-error
 from sqlalchemy.orm import DeclarativeBase  # pylint: disable=import-error
 from sqlalchemy.orm import declared_attr  # pylint: disable=import-error
 
-
 naming_convention = {
     "ix": "ix_%(column_0_label)s",
     "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -36,3 +35,18 @@ class Base(DeclarativeBase):
     @declared_attr
     def __tablename__(cls) -> str:  # pylint: disable=no-self-argument
         return cls.__name__.lower()
+
+
+def get_all_base_subclasses(cls=None):
+    """Get all base subclasses
+
+    This function returns all ORM classes that inherit from Base,
+    and so share the same metadata.
+
+    """
+    if cls is None:
+        cls = Base
+    subclasses = set(cls.__subclasses__())
+    for subclass in subclasses.copy():
+        subclasses.update(get_all_base_subclasses(subclass))
+    return subclasses
