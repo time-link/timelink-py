@@ -3,7 +3,7 @@ History
 =======
 
 1.1.25 (2025-04-06)
-------------------
+-------------------
 
 - Fixes the multiple database access issue when running tests in a single session.
 - Improves date formatting of timelink flexible dates
