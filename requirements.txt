@@ -32,7 +32,7 @@ requests>=2.32.0
 setuptools>=65.5.1
 sqlalchemy-utils
 sqlalchemy-views
-SQLAlchemy~=2.0.0
+SQLAlchemy>=2.0.38
 sqlalchemy-utils
 starlette>=0.40.0
 starlette-admin

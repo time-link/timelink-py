@@ -36,6 +36,12 @@ class Entity(Base):
     This corresponds to the model described as "Joined Table Inheritance"
     in sqlalchemy (see https://docs.sqlalchemy.org/en/14/orm/inheritance.html)
 
+    This class also provides methods to manage the association between
+    groups and ORM classes. This is needed because the ORM classes
+    are created dynamically based on the mappings defined in the
+    PomSomMapper class and during import diferent Kleio groups
+    are imported associated with different classes.
+
     TODO: specialize TemporalEntity to implement https://github.com/time-link/timelink-kleio/issues/1
             Acts, Sources, Attributes and Relations are TemporalEntities
     """
@@ -68,6 +74,26 @@ class Entity(Base):
     #: str: name of the kleio group that produced this entity
     groupname = mapped_column(String, index=True, nullable=True)
     # extra_info a JSON field with extra information about the entity
+    # For each column of the entity, the value is a dictionary with the following keys:
+    # 'class': {'db_column_name': 'class',
+    #         'kleio_element_class': 'class',
+    #         'kleio_element_name': 'class'},
+    # 'date': {'db_column_name': 'the_date',
+    #         'kleio_element_class': 'date',
+    #         'kleio_element_name': 'date'},
+    # 'entity': {'db_column_name': 'entity',
+    #             'kleio_element_class': 'entity',
+    #             'kleio_element_name': 'entity'},
+    # 'id': {'db_column_name': 'id',
+    #         'kleio_element_class': 'id',
+    #         'kleio_element_name': 'id'},
+    # 'type': {'db_column_name': 'the_type',
+    #         'kleio_element_class': 'type',
+    #         'kleio_element_name': 'tipo'},
+    # 'value': {'comment': '@wikidata:Q1171',
+    #         'db_column_name': 'the_value',
+    #         'kleio_element_class': 'value',
+    #         'kleio_element_name': 'valor'}}
     extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
     updated = mapped_column(DateTime, default=datetime.utcnow, index=True)
@@ -101,38 +127,38 @@ class Entity(Base):
         cascade="all",
     )
 
-    # group_models = contains the correspondence between groupname and ORM class
-    # Ensure mappings are up to date
-    # see self.ensure_mappings()
-    # see PomSomMapper.group_to_entity(self)
-    group_models = {}
-
-    # group pom classes = contains the correspondence between groupname and PomSomMapper
-    # note that classes store here can raise DetachedInstanceError when accessed
-    group_pom_classes = {}
-
-    # maps group elements to columns. updated by PomSomMapper.kgroup_to_entity
-    # this is a dictionary of dictionaries: first key the group name, second key the element name
-    group_elements_to_columns = {"entity": {"id": "id"}}
-
-    # see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    # To handle non mapped pom_class
-    #      see https://github.com/sqlalchemy/sqlalchemy/issues/5445
-    #
-    #    __mapper_args__ = {
-    #       "polymorphic_identity": "entity",
-    #    "polymorphic_on": case(
-    #        [(type.in_(["parent", "child"]), type)], else_="entity"
-    #    ),
-    #
-    #  This defines what mappings do exist
-    # [aclass.__mapper_args__['polymorphic_identity']
-    #              for aclass in Entity.__subclasses__()]
-
     __mapper_args__ = {
         "polymorphic_identity": "entity",
         "polymorphic_on": pom_class,
     }
+
+    # == non persistent attributes ==
+    # this ORM class was dynamically created
+    # by the PomSomMapper.ensure_mapping
+    __is_dynamic__: bool = False
+
+    # is_active: this signals if the class is active
+    # a class can be inactive if the app attached
+    # to a new database where this class is not used
+    # only applies to dynamic classes
+    # set to false by PomSomMapper.remove_mapping()
+    __is_active__: bool = True
+
+    # group_models = contains the correspondence between groupname and ORM class
+    # Ensure mappings are up to date
+    # see PomSomMapper.ensure_mappings()
+    # see PomSomMapper.group_to_entity(self)
+    group_models: dict = {}
+
+    # maps group elements to columns. updated by PomSomMapper.kgroup_to_entity
+    # this is a dictionary of dictionaries: first key the group name, second key the element name
+    group_elements_to_columns: dict[str, dict[str, str]] = {"entity": {"id": "id"}}
+
+    @classmethod
+    def reset_cache(cls):
+        """Reset the group_models and group_elements_to_columns cache"""
+        cls.group_models = dict()
+        cls.group_elements_to_columns = {"entity": {"id": "id"}}
 
     @classmethod
     def get_subclasses(cls):
@@ -142,7 +168,24 @@ class Entity(Base):
             yield subclass
 
     @classmethod
-    def get_orm_entities_classes(cls):
+    def is_dynamic(cls):
+        """Return True if this class was created by a dynamic mapping
+
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group.
+        """
+        return getattr(cls, "__is_dynamic__", False)
+
+    @classmethod
+    def set_as_dynamic(cls):
+        """Set this class as dynamic
+        Dynamic mappings are mappings that are created during the import
+        of a Kleio group.
+        """
+        cls.__is_dynamic__ = True
+
+    @classmethod
+    def get_orm_models(cls):
         """Currently defined ORM classes that extend Entity
         (including Entity itself)
 
@@ -151,8 +194,21 @@ class Entity(Base):
             list: List of ORM classes
         """
         sc = list(Entity.get_subclasses())
-        sc.append(Entity)
-        return sc
+        return [Entity] + sc
+
+    @classmethod
+    def get_dynamic_models(cls):
+        """Dynamically defined ORM classes that extend Entity
+
+        Dynamic models are models that are created during the import
+        of Kleio groups.
+
+
+        Returns:
+            list: List of ORM classes
+        """
+
+        return [orm for orm in cls.get_orm_models() if orm.is_dynamic()]
 
     @classmethod
     def get_som_mapper_ids(cls):
@@ -163,7 +219,7 @@ class Entity(Base):
         """
         return [
             aclass.__mapper_args__["polymorphic_identity"]
-            for aclass in Entity.get_orm_entities_classes()
+            for aclass in cls.get_orm_models()
         ]
 
     @classmethod
@@ -173,8 +229,53 @@ class Entity(Base):
         """
         return {
             ormclass.__mapper__.local_table.name: ormclass
-            for ormclass in Entity.get_orm_entities_classes()
+            for ormclass in cls.get_orm_models()
         }
+
+    @classmethod
+    def get_tables_to_dynamic_orm_as_dict(cls):
+        """
+        Return a dict with table name as key and ORM class as value
+        """
+        return {
+            ormclass.__mapper__.local_table.name: ormclass
+            for ormclass in cls.get_dynamic_models()
+        }
+
+    @classmethod
+    def get_orm_table_names(cls):
+        """ Return the names of tables associated with ORM models"""
+        return [str(table) for table in cls.get_tables_to_orm_as_dict().keys()]
+
+    @classmethod
+    def get_dynamic_orm_table_names(cls):
+        """ Return the names of tables associated with ORM models"""
+        return [str(table) for table in cls.get_tables_to_dynamic_orm_as_dict().keys()]
+
+    @classmethod
+    def get_orm_tables(cls):
+        """ Return the  table objects associated with ORM models"""
+        return [ormclass.__mapper__.local_table for ormclass in Entity.get_orm_models()]
+
+    @classmethod
+    def get_group_models(cls) -> dict:
+        """ Return a dictionary of group models
+
+        The keys are group names and the values are ORM
+        Models.
+        """
+        return cls.group_models
+
+    @classmethod
+    def get_groups_for_orm(cls, orm: str):
+        """ get the list of groups that map to this model
+
+        Args:
+           orm (str):  id of a orm model
+        """
+        return [group for (group, orm)
+                in cls.get_group_models().items()
+                if orm.id == str]
 
     @classmethod
     def get_orm_for_group(cls, groupname: str):
@@ -183,14 +284,27 @@ class Entity(Base):
 
         will return the ORM class handling a given group
         """
-        return cls.group_models.get(groupname, None)
+        meta_group_models = cls.get_group_models()
+        if meta_group_models is not None:
+            return meta_group_models.get(groupname, None)
+        else:
+            raise ValueError(f"{groupname} is not associated with any ORM Model class")
+
+    @classmethod
+    def set_orm_for_group(cls, groupname: str, ormclass):
+        cls.group_models[groupname] = ormclass
+
+    @classmethod
+    def clear_group_models_cache(cls):
+        """Clear cached association between groups and ormclass"""
+        cls.group_models = dict()
 
     @classmethod
     def get_som_mapper_to_orm_as_dict(cls):
         """
         Return a dict with pom_class id as key and ORM class as value
         """
-        sc = Entity.get_orm_entities_classes()
+        sc = Entity.get_orm_models()
         return {ormclass.__mapper__.polymorphic_identity: ormclass for ormclass in sc}
 
     @classmethod
@@ -233,15 +347,24 @@ class Entity(Base):
 
     def get_column_for_element(self, element: str):
         """Get the column name for a group element"""
-        self.update_group_elements_to_columns
+        self.update_group_elements_to_columns()
         return Entity.group_elements_to_columns.get(self.groupname, {}).get(
             element, None
         )
 
     def get_element_for_column(self, column: str):
-        """Get the element name for a column"""
+        """Get the kleio element name for a column"""
 
         self.update_group_elements_to_columns()
+        extra_info = getattr(self, "extra_info", None)
+        element_name = None
+        if extra_info is not None:
+            col_extra_info = extra_info.get(column, None)
+            if col_extra_info is not None:
+                element_name = col_extra_info.get("kleio_element_name", None)
+        if element_name is not None:
+            return element_name
+        # if we didn't find it in extra_info, look in the group_elements_to_columns
         for element, column_name in Entity.group_elements_to_columns.get(
             self.groupname, {}
         ).items():
@@ -250,7 +373,8 @@ class Entity(Base):
         return None
 
     def update_group_elements_to_columns(self):
-        """Update the element to column mappings for this entity"""
+        """Update the element to column mappings for the Group of this Entity"""
+        # Only do this if we don't have any mappings of Group elements to columns
         if (
             Entity.group_elements_to_columns.get(self.groupname, None) is None
             or len(  # noqa: W503
@@ -263,7 +387,7 @@ class Entity(Base):
                 raise ValueError(
                     "Entity must be in a session to update element to columns" "mappings"
                 )
-                # when a group is added programaically, the element to column mappings
+                # when a group is added programatically, the element to column mappings
                 # the pom_class can be None. In this case, we use the group name
                 # as the pom_class
             if self.pom_class is None:
@@ -272,15 +396,23 @@ class Entity(Base):
             psm = session.get(Entity, self.pom_class)  # <- PomSomMapper
             if psm is None:
                 raise ValueError(f"No PomSomMapper found for this group {self.groupname}")
-                # get the element to column mappings
+            # get the element to column mappings
             elcol_map: dict = Entity.group_elements_to_columns.get(self.groupname, {})
+            # update the element to column mappings
             for cattr in psm.class_attributes:  # noqa
                 elcol_map[cattr.name] = cattr.colname
+            # put it back in the dictionary
             Entity.group_elements_to_columns[self.groupname] = elcol_map
 
     def get_element_names(self):
         """Get the names of the elements for this entity"""
         self.update_group_elements_to_columns()
+        # it is better to try to get from the extra_info
+        if getattr(self, "extra_info", None) is not None:
+            columns = self.extra_info.keys()
+            element_names = [self.get_element_for_column(col) for col in columns]
+            return element_names
+        # if not, get from the group_elements_to_columns
         return Entity.group_elements_to_columns.get(self.groupname, {}).keys()
 
     def add_attribute(self, attribute):
@@ -492,7 +624,7 @@ class Entity(Base):
             attr_name = element
             element = self.get_element_for_column(attr_name)
 
-        if hasattr(self, attr_name):
+        if attr_name is not None and hasattr(self, attr_name):
             attr = getattr(self, attr_name)
             if attr is None:
                 attr = ""
@@ -511,8 +643,8 @@ class Entity(Base):
                 # if the date a just composed of digits try to format it
                 if attr.isdigit():
                     attr = ftld(attr)
-            if extra_info is not None and element in extra_info:
-                extras = extra_info.get(element, {})
+            if extra_info is not None and attr_name in extra_info:
+                extras = extra_info.get(attr_name, {})
                 element_comment = extras.get("comment", None)
                 element_original = extras.get("original", None)
                 if element_comment is not None:
@@ -527,7 +659,11 @@ class Entity(Base):
             return ""
 
     def to_kleio(
-        self, self_string=None, show_contained=True, ident="", ident_inc="  ", **kwargs
+        self, self_string=None, show_contained=True,
+        ident="",
+        ident_inc="  ",
+        show_inrels=True,
+        **kwargs
     ):
         """conver the entity to a kleio string
 
@@ -536,12 +672,15 @@ class Entity(Base):
             show_contained: if True, contained entities are also converted to kleio
             ident: initial identation
             ident_inc: identation increment
+            show_inrels: if False, inbound relations are not shown, default is True
             kwargs: additional arguments to be passed to contained entities"""
+
         if self_string is None:
             s = f"{ident}{str(self)}"
         else:
             s = f"{ident}{self_string}"
 
+        show_function = kwargs.get("show_function", False)
         contained_entities = list(
             set(self.contains)
             - set(self.rels_in)  # noqa: W503
@@ -562,9 +701,17 @@ class Entity(Base):
                             # we don't render inbound function-in-act relations
                             # because they are redundant with contained entities
                             continue
+                        # if we do not show inrels, we skip the inbound relations
+                        if not show_inrels:
+                            continue
+                    else:
+                        if (not show_function) and bio_item.the_type == "function-in-act":
+                            # we don't render outbound function-in-act relations
+                            continue
 
                 bio_itemk = bio_item_xi.to_kleio(
-                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                    ident=ident + ident_inc, ident_inc=ident_inc, show_inrels=show_inrels,
+                    **kwargs
                 )
 
                 if bio_itemk != "":
@@ -577,7 +724,8 @@ class Entity(Base):
             )
             for inner in contained_entities:
                 innerk = inner.to_kleio(
-                    ident=ident + ident_inc, ident_inc=ident_inc, **kwargs
+                    ident=ident + ident_inc, ident_inc=ident_inc, show_inrels=show_inrels,
+                    **kwargs
                 )
                 if innerk != "":
                     s = f"{s}\n{innerk}"

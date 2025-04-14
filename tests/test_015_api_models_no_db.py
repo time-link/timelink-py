@@ -8,7 +8,7 @@ from timelink.api.models.entity import Entity  # noqa
 
 
 def test_entity_subclasses():
-    scl = list(Entity.get_subclasses())
+    scl = list(Entity.get_orm_models())
     sc1 = len(scl)
 
     class SubEntity(Entity):
@@ -20,7 +20,7 @@ def test_entity_subclasses():
         }
         pass
 
-    scl2 = list(Entity.get_subclasses())
+    scl2 = list(Entity.get_orm_models())
     sc2 = len(scl2)
     assert sc2 == sc1 + 1, "wrong direct subclasses of Entity"
 
@@ -31,6 +31,6 @@ def test_entity_subclasses():
         }
         pass
 
-    scl3 = list(Entity.get_subclasses())
+    scl3 = list(Entity.get_orm_models())
     sc3 = len(scl3)
     assert sc3 == sc2 + 1, "wrong recursive subclasses of Entity"

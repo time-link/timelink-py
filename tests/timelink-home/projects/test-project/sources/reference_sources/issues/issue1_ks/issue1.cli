@@ -1,4 +1,5 @@
-kleio$/translations=7
+kleio$/translations=51
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-182
    historical-source$issue1/2025/obs="""
         Test for TEP 1
         https://github.com/time-link/timelink-kleio/issues/1
@@ -21,6 +22,14 @@ kleio$/translations=7
       historical-act$hc-1/test-data/2025-01-29/obs=implement TEP-1
 
          person$John Smith/m/issue1_ks_p1
+            ls$tep-date/date-relative-beforeMacau#@wikidata:Q14773/<1640/obs=(before 1640)
+            ls$date-relative-with-linked-data/Macau#@wikidata:Q14773/>1581/obs=relative with linked
+            ls$bad-date/date-bad-month/15801300/obs=(bad date)
+            ls$bad-date/date-bad-month/15804012/obs=(bad date)
+            ls$bad-date/date-bad-day/15800499/obs=(bad date)
+            ls$tep-date/date-range-relative/>1580:<1640/obs=(after 1580 and before 1640)
+            ls$tep-date/date-range-relative/>1580-04-15:<1640-12-01/obs=(after 15 April 1580 and before December 1st 1640)
+            ls$tep-date/date-uncertain/1681#?/obs=(uncertain)
             ls$tep-date/date-year/1580
             ls$tep-date/date-full-hifens/1640-12-01/obs=(December 1st 1640)
             ls$tep-date/date-range/1580-04-15:1640-12-01/obs=(from 15 April 1580 to December 1st 1640)
@@ -28,8 +37,4 @@ kleio$/translations=7
             ls$tep-date/date-range-open-end/1580:/obs=(period starting in 1580, no end date)
             ls$tep-date/date-range-open-start/:1640/obs=(period ending in 1640, no start date)
             ls$tep-date/date-relative-after/>1580/obs=(after 1580)
-            ls$tep-date/date-relative-before/<1640/obs=(before 1640)
-            ls$tep-date/date-range-relative>/1580:<1640/obs=(after 1580 and before 1640)
-            ls$tep-date/date-range-relative>/1580-04-15:<1640-12-01/obs=(after 15 April 1580 and before December 1st 1640)
-            ls$tep-date/date-uncertain/1681#[?]/obs=(uncertain)
-            ls$tep-date/date-uncertain/1681-05-16#[?]/obs=(uncertain, the whole date, not just the day)
+            ls$tep-date/date-uncertain/1681-05-16#?/obs=(uncertain, the whole date, not just the day)

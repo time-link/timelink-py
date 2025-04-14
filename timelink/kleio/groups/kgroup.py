@@ -1,3 +1,4 @@
+import itertools
 import json
 import textwrap
 import warnings
@@ -7,6 +8,7 @@ from typing import Type, List, Union, Tuple, Dict
 from box import Box
 
 from timelink.kleio.groups.kelement import KElement
+import logging
 
 
 class KGroup:
@@ -24,6 +26,42 @@ class KGroup:
     Use _part to list allowed enclosed groups, or call allow_as_part
 
     For an example see timelink.kleio.groups.KPerson
+
+    Class Methods:
+        - extend: Create a new group definition by extending this one.
+        - get_subclasses: Generator for subclasses of this group.
+        - all_subclasses: List of all the subclasses of this group.
+        - is_kgroup: Check if an object is an instance of a subclass of KGroup.
+        - elements_allowed: Get the set of elements allowed in this group.
+        - allow_as_element: Add element(s) to the list of allowed elements for this group.
+        - allow_as_part: Allow a group to be enclosed as part of this group.
+        - inc_sequence: Increment and return the global sequence count.
+        - inc_line: Increment and return the global line count.
+
+    Instance Methods:
+        - include: Include a group within this group.
+        - before_include: Method called before this group is included into another.
+        - after_include: Method called after a new group is included in this one.
+        - is_allowed_as_part: Test if a group can be included in the current one.
+        - is_allowed_as_element: Test if an element is allowed in this group.
+        - contains: Returns included groups, optionally filtered by group name.
+        - elements: Returns elements in this group.
+        - element_names: Returns the names of elements in this group
+        - attr: Utility function to include a KAttribute in this KGroup.
+        - rel: Include a relation in this KGroup.
+        - to_kleio: Return a kleio representation of the group.
+        - to_dict: Return group information as a dictionary.
+        - to_json: Return group information as a JSON string.
+        - to_dots: Return group information as a Box object for easy referencing.
+        - __str__: Return a string representation of the group.
+        - __getitem__: Get an element by name.
+        - __setitem__: Set an element by name.
+        - pack_as_kelement: Pack a value as a KElement with a given name.
+        - unpack_from_kelement: Unpack the core value from a KElement.
+        - get_core: Get the core value of an element.
+        - get_id: Return the id of the group.
+        - get_element_by_name_or_class: Return the value of an element by name or class.
+
 
     """
 
@@ -158,6 +196,8 @@ class KGroup:
 
 
         """
+        trace = f"{cls}.extend({name})"
+        logging.debug(trace)
         new_group = type(name, (cls,), {})
         new_group._name = name
         # todo: k,v in kwargs if in cls set if not error
@@ -214,12 +254,12 @@ class KGroup:
     @classmethod
     def all_subclasses(cls):
         """List of all the subclasses of this group"""
-        return list(cls.get_subclasses())
+        return list(set(cls.get_subclasses()))
 
     @classmethod
     def is_kgroup(cls, g):
         """True g is an instance of a subclass of KGroup"""
-        return "KGroup" in [c.__name__ for c in type(g).mro()]
+        return issubclass(type(g), KGroup)
 
     @classmethod
     def elements_allowed(cls) -> set:
@@ -227,24 +267,20 @@ class KGroup:
         return set(cls._guaranteed).union(set(cls._also)).union(cls._position)
 
     @classmethod
-    def allow_as_element(
-        cls, ename: Union[str, List[str]], guaranteed=False, also=True, position=None
-    ):
+    def allow_as_element(cls, ename: Union[str, List[str]], guaranteed=False, also=True, position=None):
         """
         Add element or list to list of allowed elements for this group.
         Optionally define if element(s) is positional,
         required (guaranteed) or optional
         :param ename:  name of element
-        :param guaranteed: if True this is element is added to list of required elements.
+        :param guaranteed: if True this element is added to list of required elements.
         :param also: if True this element is optional (default)
         :param position: int, this is a positional element, at this position (0 = first position)
         :return: List of allowed elements
         """
         if type(ename) is List:
             for e in ename:
-                cls.allow_as_element(
-                    e, guaranteed=guaranteed, position=position, also=also
-                )
+                cls.allow_as_element(e, guaranteed=guaranteed, position=position, also=also)
             return
         elif type(ename) is str:
             if guaranteed:
@@ -324,12 +360,19 @@ class KGroup:
                     raise ValueError(f"Element not allowed: {k}")
                 self[k] = v
         # test if the compulsory (guaranteed) elements are present
-        for g in self._guaranteed:
-            if getattr(self, g, None) is None:
-                raise TypeError(
-                    f"{self.kname}: element {g} in _guaranteed "
-                    f"is missing or with None value"
-                )
+
+        # names of the elements present and their super classes
+        # we use it to check if required elements are present
+        # in the form of a sub class of the require elements
+        elements_present = [
+            el.name
+            for el in list(itertools.chain(*[el.inherits_from() for el in self.elements()]))
+            if el.name is not None
+        ]
+
+        missing_elements = set(self._guaranteed) - set(elements_present)
+        if len(missing_elements) > 0:
+            raise TypeError(f"{self.kname}: element(s) {missing_elements} in _guaranteed " f"is missing or with None value")
 
     def include(self, group: Type["KGroup"]):
         """Include a group. `group`, or its class, must in _part list or
@@ -348,11 +391,7 @@ class KGroup:
         # Hook to before input processing in the group being included
         if hasattr(group, "before_include") and callable(group.before_include):
             if not group.before_include(self):
-                raise TypeError(
-                    f"{group} includding aborted by "
-                    f"group.before_include(self)"
-                    f" returning False"
-                )
+                raise TypeError(f"{group} includding aborted by " f"group.before_include(self)" f" returning False")
 
         # new style, dictionary based
         k = self._containsd.keys()
@@ -372,10 +411,7 @@ class KGroup:
 
         if self.id is None:
             if container_group.id is None:
-                raise ValueError(
-                    "A group with no id cannot be included in another "
-                    "group also without id"
-                )
+                raise ValueError("A group with no id cannot be included in another " "group also without id")
             gid = f"{container_group.id}-{self.order:02d}-{self.kname[0:3]}"
             self["id"] = gid
             return True
@@ -430,12 +466,23 @@ class KGroup:
 
         :return: True if element allowed False otherwise
         """
-        all_elements = (
-            self._builtin_elements + self._position + self._guaranteed + self._also
-        )
+        all_elements = self._builtin_elements + self._position + self._guaranteed + self._also
         return element_name in all_elements
 
-    def includes(self, group: Type[Union[str, Type["KGroup"]]] = None) -> list:
+    def includes(self, *args, **kargs) -> list:
+        """Deprecated. Use contains instead."""
+        warnings.warn("includes is deprecated. Use contains instead.", DeprecationWarning, stacklevel=2)
+        return self.contains(*args, **kargs)
+
+    def elements(self) -> list:
+        """Returns a list of all elements in the group."""
+        return list(self._elementsd.values())
+
+    def element_names(self) -> list:
+        """Returns a list of all element names in the group."""
+        return self._elementsd.keys()
+
+    def contains(self, group: Type[Union[str, Type["KGroup"]]] = None) -> list:
         """Returns included groups.
 
         Groups are returned by the order in _pars.
@@ -454,9 +501,7 @@ class KGroup:
                     gname = group.kname
 
                 inc_by_part_order = []
-                classes_in_contains = [
-                    c for c in self._containsd.keys() if hasattr(c, "_name")
-                ]
+                classes_in_contains = [c for c in self._containsd.keys() if hasattr(c, "_name")]
                 for class_in_contains in classes_in_contains:
                     if class_in_contains._name == gname:
                         inc_by_part_order.extend(self._containsd[class_in_contains])
@@ -576,9 +621,7 @@ class KGroup:
         kd["kleio_group"] = self._name
         elements_to_include = self.elements_allowed()
         if include_builtin:
-            els = elements_to_include.union(set(self._builtin_elements)) - set(
-                ["inside"]
-            )
+            els = elements_to_include.union(set(self._builtin_elements)) - set(["inside"])
         for e in els:
             v: KElement = getattr(self, e, None)
             if v is not None:
@@ -599,7 +642,7 @@ class KGroup:
         # we now includes subgroups
         ki = dict()
         # we now collect subgroups by name
-        included = list(self.includes())
+        included = list(self.contains())
         for i in included:
             n = i.kname
             if n not in ki.keys():
@@ -633,10 +676,7 @@ class KGroup:
                         # so we can have source['act']['ac010]['person']['p01']
                         for group in ki[subgroup]:
                             gid = group.get("id", None)
-                            if (
-                                gid is not None
-                                and subgroup not in self.elements_allowed()  # noqa
-                            ):
+                            if gid is not None and subgroup not in self.elements_allowed():  # noqa
                                 if subgroup not in kd.keys():
                                     kd[subgroup] = dict()
                                 kd[subgroup][gid] = group
@@ -692,14 +732,7 @@ class KGroup:
                     s = s + v.to_kleio(name=False)
                     first = False
                 out.append(e)
-        more = sorted(
-            list(
-                set(self._guaranteed)
-                .union(set(self._also))
-                .union(self._position)
-                .difference(out)
-            )
-        )
+        more = sorted(list(set(self._guaranteed).union(set(self._also)).union(self._position).difference(out)))
         # print(more)
         if "obs" in more:  # we like obs elements at the end
             more.remove("obs")
@@ -707,9 +740,7 @@ class KGroup:
         for e in more:
             m: Union[KElement, str] = getattr(self, e, None)
             if m is not None and (
-                type(m) is str
-                and m > ""  # noqa
-                or (issubclass(type(m), KElement) and m.to_kleio() > "")  # noqa
+                type(m) is str and m > "" or (issubclass(type(m), KElement) and m.to_kleio() > "")  # noqa  # noqa
             ):
                 # m contains data, lets output
                 if issubclass(type(m), KElement):
@@ -723,7 +754,7 @@ class KGroup:
                     first = False
 
         if recurse:
-            for g in self.includes():
+            for g in self.contains():
                 s = s + nl + g.__str__(indent + " ", recurse=recurse)
         return textwrap.indent(s, indent)
 
@@ -774,9 +805,7 @@ class KGroup:
             # have a builtin meaning or are referred to by standard names
             # in PomSomMapping
         if isinstance(value, KElement):
-            el = kelement(
-                core=value.core, comment=value.comment, original=value.original
-            )
+            el = kelement(value.name, core=value.core, comment=value.comment, original=value.original)
         else:
             comment = None
             original = None
@@ -834,27 +863,56 @@ class KGroup:
         :return: KElement, or whatever in default.
 
         """
-        el: KElement
+        el: KElement = None
+
+        # case 1 : element_spec is a column class from a PomClassAttributes object
+        #          in that case look for an element with element_class = element_spec
+        elements = [el for el in self._elementsd.values() if el.element_class == element_spec]
+        if len(elements) == 1:
+            # a single element was found with the requested class, return it
+            return elements[0]
+        elif len(elements) > 1:
+            # more than one element was found with the requested class.
+            # this means that the mapping of this group is ambiguous regarding
+            # the target table in the database, and two values can be used
+            # to provide a value of a column of class element_spec.
+            # We issue a warning and take the one where the element name
+            # is different from the type, because it is more specialized,
+            # but this is a workaround, the ambiguity should be solved at
+            # the mappig level
+            warnings.warn(f"Ambiguous mapping! more than one element of {self.kname}"
+                          f" is mapped to column class {element_spec}"
+                          f" check mapping for this group",
+                          stacklevel=2)
+            for el in elements:
+                if el.name != element_spec:
+                    # counter intuitive but normally the
+                    # the best choice is the element that specialized
+                    # the original one (tipo vs type, data vs date, dia vs day)
+                    return el
+            # if we are here more than one element matched no way to choose
+            # just choose the first
+            return elements[0]
+
+        # case 2: element_spec is an element name
         for (
             name,
             el,
-        ) in (
-            self._elementsd.items()
-        ):  # same name as column or in ancestors # noqa: E501
+        ) in self._elementsd.items():  # same name as column or in ancestors # noqa: E501
             if name == element_spec:
                 return el
-        # Handles synonyms created by subclassing core KElements
+
+        # case 3: element_spec is the name of one of the superclasses of an
+        #         element of this group, e.g. element_spec is "dia" and this
+        #         group has an element called "day" and "day" is a super class of "dia"
         for el in self._elementsd.values():  # if name in inherited names
             if element_spec in el.inherited_names():
                 return el
-        # handles multiple subclassing of core KElements
-        for (
-            el
-        ) in (
-            self._elementsd.values()
-        ):  # check if there are alternative classes # noqa: E501
-            # all classes for colspec
-            targets = KElement.get_classes_for(element_spec)
+
+        # case 4: element_spec and its subclasses are super class
+        #         of an element of this group
+        targets = KElement.get_classes_for(element_spec)
+        for el in self._elementsd.values():  # check if there are alternative classes # noqa: E501
             # other classes for el
             alternatives = KElement.get_classes_for(el.name)
             # now check if there is a common path
@@ -862,7 +920,7 @@ class KGroup:
             alt_ancestors = [(sc, sc.inherits_from()) for sc in alternatives]
             #   check if any of colspec classes are there
             for _alternative, ancestors in alt_ancestors:
-                common = set(ancestors).intersection(set(targets))
+                common = list(set(ancestors).intersection(set(targets)))
                 if len(common) > 0:
                     return el
         return default

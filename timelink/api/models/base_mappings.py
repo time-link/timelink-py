@@ -1,4 +1,4 @@
-""" These mappings are needed to boostrap a new database.
+"""These mappings are needed to boostrap a new database.
 
 They are used by TimelinkDatabase to initialize a new database.
 
@@ -33,9 +33,7 @@ from timelink.api.models.pom_som_mapper import PomSomMapper, PomClassAttributes
 
 pom_som_base_mappings = {
     "entity": [
-        PomSomMapper(
-            id="entity", table_name="entities", group_name="na", super_class="root"
-        ),
+        PomSomMapper(id="entity", table_name="entities", group_name="entity", super_class="root"),
         PomClassAttributes(
             the_class="entity",
             name="class",
@@ -120,7 +118,7 @@ pom_som_base_mappings = {
             colname="the_date",
             colclass="date",
             coltype="varchar",
-            colsize="24",
+            colsize="64",
             colprecision="0",
             pkey="0",
         ),
@@ -170,7 +168,7 @@ pom_som_base_mappings = {
             colname="the_type",
             colclass="type",
             coltype="varchar",
-            colsize="32",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
@@ -188,7 +186,7 @@ pom_som_base_mappings = {
             colname="the_date",
             colclass="date",
             coltype="varchar",
-            colsize="24",
+            colsize="64",
             colprecision="0",
             pkey="0",
         ),
@@ -228,7 +226,7 @@ pom_som_base_mappings = {
             colname="the_type",
             colclass="type",
             coltype="varchar",
-            colsize="32",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
@@ -238,7 +236,7 @@ pom_som_base_mappings = {
             colname="the_value",
             colclass="value",
             coltype="varchar",
-            colsize="254",
+            colsize="4096",
             colprecision="0",
             pkey="0",
         ),
@@ -286,15 +284,13 @@ pom_som_base_mappings = {
             colname="the_type",
             colclass="type",
             coltype="varchar",
-            colsize="32",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
     ],
     "object": [
-        PomSomMapper(
-            id="object", table_name="objects", group_name="object", super_class="entity"
-        ),
+        PomSomMapper(id="object", table_name="objects", group_name="object", super_class="entity"),
         PomClassAttributes(
             the_class="object",
             name="id",
@@ -331,50 +327,13 @@ pom_som_base_mappings = {
             colname="the_type",
             colclass="type",
             coltype="varchar",
-            colsize="32",
-            colprecision="0",
-            pkey="0",
-        ),
-    ],
-    "good": [
-        PomSomMapper(
-            id="good", table_name="goods", group_name="bem", super_class="object"
-        ),
-        PomClassAttributes(
-            the_class="good",
-            name="description",
-            colname="description",
-            colclass="description",
-            coltype="varchar",
-            colsize="1024",
-            colprecision="0",
-            pkey="0",
-        ),
-        PomClassAttributes(
-            the_class="good",
-            name="id",
-            colname="id",
-            colclass="id",
-            coltype="varchar",
-            colsize="64",
-            colprecision="0",
-            pkey="1",
-        ),
-        PomClassAttributes(
-            the_class="good",
-            name="loc",
-            colname="loc",
-            colclass="loc",
-            coltype="varchar",
-            colsize="64",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
     ],
     "person": [
-        PomSomMapper(
-            id="person", table_name="persons", group_name="person", super_class="entity"
-        ),
+        PomSomMapper(id="person", table_name="persons", group_name="person", super_class="entity"),
         PomClassAttributes(
             the_class="person",
             name="id",
@@ -429,7 +388,7 @@ pom_som_base_mappings = {
             colname="the_date",
             colclass="date",
             coltype="varchar",
-            colsize="24",
+            colsize="64",
             colprecision="0",
             pkey="0",
         ),
@@ -479,7 +438,7 @@ pom_som_base_mappings = {
             colname="the_type",
             colclass="type",
             coltype="varchar",
-            colsize="32",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
@@ -489,7 +448,7 @@ pom_som_base_mappings = {
             colname="the_value",
             colclass="value",
             coltype="varchar",
-            colsize="254",
+            colsize="4096",
             colprecision="0",
             pkey="0",
         ),
@@ -560,108 +519,72 @@ pom_som_base_mappings = {
             colsize="64",
             colprecision="0",
             pkey="0",
-        )
-    ],
-    "rgeoentity": [
-        PomSomMapper(
-            id="rgeoentity",
-            table_name="rgeoentities",
-            group_name="rgeoentity",
-            super_class="rentity",
-        ),
-        PomClassAttributes(
-            the_class="rgeoentity",
-            name="id",
-            colname="id",
-            colclass="id",
-            coltype="varchar",
-            colsize="64",
-            colprecision="0",
-            pkey="1",
-        ),
-        PomClassAttributes(
-            the_class="rgeoentity",
-            name="sname",
-            colname="sname",
-            colclass="sname",
-            coltype="varchar",
-            colsize="64",
-            colprecision="0",
-            pkey="0",
         ),
     ],
-    "robject": [
+    "aregister": [
         PomSomMapper(
-            id="robject",
-            table_name="robjects",
-            group_name="robject",
-            super_class="rentity",
+            id="aregister",
+            table_name="aregisters",
+            group_name="authority-register",
+            super_class="entity",
         ),
         PomClassAttributes(
-            the_class="robject",
-            name="id",
-            colname="id",
-            colclass="id",
-            coltype="varchar",
-            colsize="64",
-            colprecision="0",
-            pkey="1",
-        ),
-        PomClassAttributes(
-            the_class="robject",
-            name="sname",
-            colname="sname",
-            colclass="sname",
-            coltype="varchar",
-            colsize="64",
-            colprecision="0",
-            pkey="0",
-        ),
-        PomClassAttributes(
-            the_class="robject",
-            name="type",
+            the_class="aregister",
+            name="the_type",
             colname="the_type",
-            colclass="type",
+            colclass="the_type",
             coltype="varchar",
             colsize="32",
             colprecision="0",
             pkey="0",
         ),
-    ],
-    "rperson": [
-        PomSomMapper(
-            id="rperson",
-            table_name="rpersons",
-            group_name="rperson",
-            super_class="rentity",
-        ),
         PomClassAttributes(
-            the_class="rperson",
-            name="id",
-            colname="id",
-            colclass="id",
+            the_class="aregister",
+            name="date",
+            colname="the_date",
+            colclass="date",
             coltype="varchar",
             colsize="64",
-            colprecision="0",
-            pkey="1",
-        ),
-        PomClassAttributes(
-            the_class="rperson",
-            name="sex",
-            colname="sex",
-            colclass="sex",
-            coltype="char",
-            colsize="1",
             colprecision="0",
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="rperson",
-            name="sname",
-            colname="sname",
-            colclass="sname",
+            the_class="aregister",
+            name="dbase",
+            colname="dbase",
+            colclass="dbase",
+            coltype="varchar",
+            colsize="128",
+            colprecision="0",
+            pkey="0",
+        ),
+        PomClassAttributes(
+            the_class="aregister",
+            name="mode",
+            colname="replace_mode",
+            colclass="mode",
+            coltype="varchar",
+            colprecision="0",
+            colsize="64",
+            pkey="0",
+        ),
+        PomClassAttributes(
+            the_class="aregister",
+            name="kleiofile",
+            colname="kleiofile",
+            colclass="kleiofile",
             coltype="varchar",
             colsize="64",
+            colprecision="0",
+            pkey="0",
+        ),
+        PomClassAttributes(
+            the_class="aregister",
+            name="obs",
+            colname="obs",
+            colclass="obs",
+            coltype="varchar",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
@@ -739,7 +662,7 @@ pom_som_base_mappings = {
             colname="the_type",
             colclass="type",
             coltype="varchar",
-            colsize="32",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),
@@ -749,23 +672,23 @@ pom_som_base_mappings = {
             colname="the_value",
             colclass="value",
             coltype="varchar",
-            colsize="254",
+            colsize="4096",
             colprecision="0",
             pkey="0",
         ),
     ],
 }
-
+# these currenty are not used as part of the builtin mappings
 more_mappings = {
-    "acusacoes": [
+    "acusacao": [
         PomSomMapper(
-            id="acusacoes",
+            id="acusacao",
             table_name="acusacoes",
             group_name="acusa",
             super_class="object",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="id",
             colname="id",
             colclass="id",
@@ -775,7 +698,7 @@ more_mappings = {
             pkey="1",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="idcaso",
             colname="idcaso",
             colclass="idcaso",
@@ -785,7 +708,7 @@ more_mappings = {
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="literal",
             colname="literal",
             colclass="literal",
@@ -795,7 +718,7 @@ more_mappings = {
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="obs",
             colname="obs",
             colclass="obs",
@@ -805,7 +728,7 @@ more_mappings = {
             pkey="0",
         ),
         PomClassAttributes(
-            the_class="acusacoes",
+            the_class="acusacao",
             name="origem",
             colname="origem",
             colclass="origem",
@@ -816,9 +739,7 @@ more_mappings = {
         ),
     ],
     "caso": [
-        PomSomMapper(
-            id="caso", table_name="casos", group_name="caso", super_class="object"
-        ),
+        PomSomMapper(id="caso", table_name="casos", group_name="caso", super_class="object"),
         PomClassAttributes(
             the_class="caso",
             name="id",
@@ -845,7 +766,7 @@ more_mappings = {
             colname="the_type",
             colclass="the_type",
             coltype="varchar",
-            colsize="32",
+            colsize="256",
             colprecision="0",
             pkey="0",
         ),

@@ -1,10 +1,10 @@
 import os
+import warnings
 
 import pytest  # pylint: disable=import-error
 from sqlalchemy import select  # noqa
-from sqlalchemy_utils import drop_database
 
-from tests import skip_on_travis, conn_string
+from tests import TEST_DIR, skip_on_travis
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson, KGeoentity
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # noqa
@@ -16,18 +16,26 @@ from timelink.api.models.source import Source
 
 # pytestmark = skip_on_travis
 
+db_path = f"{TEST_DIR}/sqlite/"
+TEST_DB = "models"
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
+
 
 @pytest.fixture(scope="module")
-def get_db():
-    """Returns a database connection"""
-    database = TimelinkDatabase(db_url=conn_string)
+def dbsystem(request, kleio_server):
+    """Create a database for testing"""
+    db_type, db_name = request.param
+    # only used for sqlite databases
+
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path, echo=False)
+    # attach a kleio server
+    database.set_kleio_server(kleio_server)  # from tests.__init__.py
     try:
+
         yield database
     finally:
-        with database.session() as db:
-            database.drop_db(db)
-            if ":memory:" not in database.db_url:
-                drop_database(database.db_url)
+        database.session().close()
+        database.drop_db()
 
 
 @pytest.fixture
@@ -67,9 +75,7 @@ def kgroup_person_attr_rel() -> KSource:
     """
     p2 = KPerson("Margarida", "f", "p02-2", obs=mobs)
     p2.attr("residencia", "Trouxemil", date="2020-10-18")
-    p1.rel(
-        "parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira"
-    )
+    p1.rel("parentesco", "marido", p2.name, p2.id, date="2006-01-4", obs="Ilha Terceira")
     ka1.include(p2)
     ka1.include(p1)
     return ks
@@ -131,29 +137,31 @@ def test_succeed_if_not_in_travis():
     assert os.getenv("TRAVIS") != "true"
 
 
-def test_create_db(get_db):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_create_db(dbsystem):
     # Database is created and initialized in the fixture
     metadata = Base.metadata
     tables = list(metadata.tables.keys())
     assert len(tables) > 0, "tables where not created"
 
 
-def test_create_eattribute(get_db, kgroup_nested):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_create_eattribute(dbsystem, kgroup_nested):
     # Database is created and initialized in the fixture
-    db: TimelinkDatabase = get_db
+    db: TimelinkDatabase = dbsystem
     ks = kgroup_nested
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    eattr = db.create_eattribute_view()
-    # l2 = len(inspect(get_db.get_engine()).get_view_names())
+    eattr = db._create_eattribute_view()
+    # l2 = len(inspect(dbsystem.get_engine()).get_view_names())
 
     assert eattr is not None
 
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         stmt = select(eattr).where(eattr.c.entity == "p01")
         results = session.execute(stmt).all()
 
@@ -161,49 +169,53 @@ def test_create_eattribute(get_db, kgroup_nested):
         print(result)
 
 
-def test_get_person(get_db, kgroup_nested):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_get_person(dbsystem, kgroup_nested):
     # Database is created and initialized in the fixture
     ks = kgroup_nested
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
 
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         p = get_person("p01", session=session)
         assert p is not None, "Person not found with get_person"
 
 
-def test_create_pattribute(get_db, kgroup_nested):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_create_pattribute(dbsystem, kgroup_nested):
     # Database is created and initialized in the fixture
-    db: TimelinkDatabase = get_db
+    db: TimelinkDatabase = dbsystem
     ks = kgroup_nested
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    pattr = db.create_pattribute_view()
-    # l2 = len(inspect(get_db.get_engine()).get_view_names())
+    pattr = db.get_view("nattributes")
+    # l2 = len(inspect(dbsystem.get_engine()).get_view_names())
     assert pattr is not None
 
 
-def test_create_nfucntions(get_db, kgroup_nested):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_create_nfucntions(dbsystem, kgroup_nested):
     # Database is created and initialized in the fixture
-    db: TimelinkDatabase = get_db
+    db: TimelinkDatabase = dbsystem
     ks = kgroup_nested
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
 
     # views = inspect(db.get_engine()).get_view_names()
     # l1 = len(views)
-    nfunc = db.create_nfunction_view()
-    # l2 = len(inspect(get_db.get_engine()).get_view_names())
+    nfunc = db._create_nfunction_view()
+    # l2 = len(inspect(dbsystem.get_engine()).get_view_names())
     assert nfunc is not None
 
 
-def test_entity_contains(get_db):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_entity_contains(dbsystem):
     """Test entity contains relationship
 
     In this test four entities are created
@@ -245,7 +257,7 @@ def test_entity_contains(get_db):
     ent4.sequence = 4
     ent2.contains.append(ent4)
 
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         session.add(ent1)  # this adds the four entities to the database
         session.commit()
         ent4 = ent2.contained_by  # pylint: disable=no-member
@@ -258,7 +270,8 @@ def test_entity_contains(get_db):
         assert deleted is None, "Should have deleted orphan"
 
 
-def test_ensure_mapping(get_db):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_ensure_mapping(dbsystem):
     """Test that all classes registered in the classes table are mapped to ORM
 
     During database initialization, the classes and class_attributes tables
@@ -267,34 +280,50 @@ def test_ensure_mapping(get_db):
     all classes in the classes table are mapped to ORM classes.
 
     """
-    with get_db.session() as session:
-        pom_classes = PomSomMapper.get_pom_classes(session=session)
+    with dbsystem.session() as session:
         pom_ids = PomSomMapper.get_pom_class_ids(session=session)
-        pom_tables = [pom_class.table_name for pom_class in pom_classes]
+        pom_tables = []
         pom_class: PomSomMapper
-        for pom_class in pom_classes:
-            pom_class.ensure_mapping(session=session)
-            # print(repr(pom_class))
-            # print(pom_class)
+        for pom_id in pom_ids:
+            pom_class = PomSomMapper.get_pom_class(pom_id, session=session)
+
+            # this is a hack to handle the fact that in the test suite
+            # we connect to different databases that can, by import,
+            # have different pom_class definition.
+            if pom_class is not None:
+                pom_class.ensure_mapping(session=session)
+                pom_tables.append(pom_class.table_name)
+                # print(repr(pom_class))
+                # print(pom_class)
+            else:
+                warnings.warn(f"POM class with ID {pom_id} is not defined in the current database.",
+                              stacklevel=2)
         orm_mapped_classes = Entity.get_som_mapper_to_orm_as_dict()
         non_mapped = set(pom_ids) - set(orm_mapped_classes.keys())
         assert len(non_mapped) == 0, "Not all classes are mapped to ORM"
         orm_mapped_tables = Entity.get_tables_to_orm_as_dict()
         tables_not_mapped = set(pom_tables) - set(orm_mapped_tables)
         assert len(tables_not_mapped) == 0, "Not all class tables are mapped in ORM"
-        db_tables = get_db.table_names()
+        db_tables = dbsystem.db_table_names()
         tables_not_in_db = set(orm_mapped_tables) - set(db_tables)
-        assert (
-            len(tables_not_in_db) == 0
-        ), "Not all mapped tables were created in the db"
+        # it is possible that some tables are not in the database if they are associated
+        # dynamic orm models not present in this database
+        dynamic_tables = Entity.get_dynamic_orm_table_names()
+        if len(tables_not_in_db) > 0:
+            print(f"Tables not in db: {tables_not_in_db}")
+            print(f"Dynamic tables: {dynamic_tables}")
+            # remove dynamic tables from the list of tables not in db
+            tables_not_in_db = tables_not_in_db - set(dynamic_tables)
+            assert len(tables_not_in_db) == 0, "Not all mapped tables were created in the db"
         session.close()
 
 
-def test_insert_nested_groups(get_db, kgroup_nested):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_insert_nested_groups(dbsystem, kgroup_nested):
     """Test inserting a nested Kleio group"""
     ks = kgroup_nested
     source_id = ks.get_id()
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db: Source = Entity.get_entity(source_id, session)
@@ -312,11 +341,12 @@ def test_insert_nested_groups(get_db, kgroup_nested):
         assert str(person)
 
 
-def test_insert_entities_attr_rel(get_db, kgroup_person_attr_rel):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_insert_entities_attr_rel(dbsystem, kgroup_person_attr_rel):
     """Test inserting a group with attributes and relationships"""
     ks = kgroup_person_attr_rel
     source_id = ks.get_id()
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)
@@ -328,11 +358,12 @@ def test_insert_entities_attr_rel(get_db, kgroup_person_attr_rel):
         assert "obs" not in kleio, "Empty obs should not be rendered"
 
 
-def test_export_entities_as_kleio(get_db, kgroup_person_attr_rel):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_export_entities_as_kleio(dbsystem, kgroup_person_attr_rel):
     """Test exporting entities as Kleio"""
     ks = kgroup_person_attr_rel
     source_id = ks.get_id()
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         PomSomMapper.store_KGroup(ks, session)
         session.commit()
         source_from_db = Entity.get_entity(source_id, session)
@@ -343,13 +374,13 @@ def test_export_entities_as_kleio(get_db, kgroup_person_attr_rel):
         assert kact
         people = act.contains
         people_ids = [person.id for person in people]
-        get_db.export_as_kleio(people_ids, 'tests/test_kleio_export.txt')
-        assert os.path.exists('tests/test_kleio_export.txt')
+        dbsystem.export_as_kleio(people_ids, "tests/test_kleio_export.txt")
+        assert os.path.exists("tests/test_kleio_export.txt")
         # read the file
-        with open('tests/test_kleio_export.txt', 'r') as f:
+        with open("tests/test_kleio_export.txt", "r") as f:
             kleio = f.read()
             assert kleio
-        os.remove('tests/test_kleio_export.txt')
+        os.remove("tests/test_kleio_export.txt")
         # special test for geoentities rendering
         geo = source_from_db.contains[0].contains[0]
         kgeo = geo.to_kleio()
@@ -362,10 +393,11 @@ def test_quote_and_long_test(kgroup_person_attr_rel):
     assert '"""' in kleio, "Bad handling of long text"
 
 
-def test_insert_delete_previous_source(get_db, kgroup_nested):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_insert_delete_previous_source(dbsystem, kgroup_nested):
     ks = kgroup_nested
     source_id = ks.get_id()
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         print(
             f"""
 
@@ -398,7 +430,8 @@ def test_insert_delete_previous_source(get_db, kgroup_nested):
         assert len(contains) == 0, "import did not delete contained entities"
 
 
-def test_store_KGroup_1(get_db):
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_store_KGroup_1(dbsystem):
     """Test storing a group with non core group"""
     kfonte: KGroup = KSource.extend(
         "fonte",
@@ -417,7 +450,7 @@ def test_store_KGroup_1(get_db):
         tipo=KElement("tipo", "teste", element_class="type"),
         obs="First group stored through ORM with non core group",
     )
-    with get_db.session() as session:
+    with dbsystem.session() as session:
         session.commit()
         # this converts a group to an database entity
         afonte_entity = PomSomMapper.kgroup_to_entity(afonte, session)

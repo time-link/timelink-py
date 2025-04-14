@@ -50,16 +50,25 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 timelink tests
 
+test-loop: ## run tests quickly with the default Python
+	for file in tests/*.py; do \
+		pytest $$file $(ARGS); \
+	done
+
 test: ## run tests quickly with the default Python
-	pytest --rootdir=tests
+	pytest --rootdir=tests $(ARGS)
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
+
 
 test-nb: ## test notebooks only
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
 
-
 test-all: ## run tests on every Python version with tox
 	tox
+
+profile:
+	pytest --profile $(ARGS)
+	snakeviz prof/combined.prof
 
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source timelink -m pytest
@@ -82,7 +91,7 @@ servedocs: docs ## compile the docs watching for changes
 
 release: dist ## package and upload a release
 	twine check dist/*
-	twine upload dist/*
+	twine upload dist/* --verbose
 
 dist: clean ## builds source and wheel package
 	python -m build

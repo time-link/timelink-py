@@ -68,9 +68,12 @@ setup(
     keywords='timelink',
     name='timelink',
     packages=find_packages(include=['timelink', 'timelink.*']),
+    package_data={
+        'timelink': ['migrations/versions/*.py'],
+    },
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/time-link/timelink-py',
-    version='1.1.18',
+    version='1.1.25',
     zip_safe=False,
 )

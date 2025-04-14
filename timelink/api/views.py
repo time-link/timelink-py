@@ -1,25 +1,20 @@
-""" Handling views from sql Alchemy
-
-    View utilities from https://github.com/sqlalchemy/sqlalchemy/wiki/Views
-"""
+# from https://github.com/sqlalchemy/sqlalchemy/wiki/Views
+# SQLAlchemy 1.4, 2.0 version (updated for 2.0.38)
 
 import sqlalchemy as sa
 from sqlalchemy.ext import compiler
 from sqlalchemy.schema import DDLElement
-from sqlalchemy.sql import table
+# não é usado no novo exemplo, o Myer deixou isto do anterior
+# from sqlalchemy.sql import table
 
 
 class CreateView(DDLElement):
-    """Create a View"""
-
     def __init__(self, name, selectable):
         self.name = name
         self.selectable = selectable
 
 
 class DropView(DDLElement):
-    """Drop a View"""
-
     def __init__(self, name):
         self.name = name
 
@@ -49,53 +44,24 @@ def view_doesnt_exist(ddl, target, connection, **kw):
 
 
 def view(name, metadata, selectable):
-    """Create a view with the given name from the given selectable.
 
-    The view is created when the metadata is first bound to an engine.
-
-    Example:
-
-    .. code-block:: python
-
-       stuff_view
-            = view("stuff_view", metadata, sa.select(
-                stuff.c.id.label("id"),
-                stuff.c.data.label("data"),
-                more_stuff.c.data.label("moredata"),
-            )
-                .select_from(stuff.join(more_stuff))
-                .where(stuff.c.data.like(("%orange%"))),
-            )
-
-        with engine.connect() as conn:
-        conn.execute(
-            sa.select(stuff_view.c.data, stuff_view.c.moredata)
-        ).all()
-
-    """
-
-    t = table(name)
-
-    t._columns._populate_separate_keys(
-        col._make_proxy(t) for col in selectable.selected_columns
+    t = sa.table(
+        name,
+        *(
+            sa.Column(c.name, c.type, primary_key=c.primary_key)
+            for c in selectable.selected_columns
+        ),
     )
+    t.primary_key.update(c for c in t.c if c.primary_key)
 
-    sa.event.listen(
-        metadata, "before_create", DropView(name).execute_if(callable_=view_exists)
-    )
-    # after metadata is created, drop the view if it exists
-    sa.event.listen(
-        metadata,
-        "after_create",
-        DropView(name).execute_if(callable_=view_exists),
-    )
-    # after metadata is created, create the view
     sa.event.listen(
         metadata,
         "after_create",
         CreateView(name, selectable).execute_if(callable_=view_doesnt_exist),
     )
     sa.event.listen(
-        metadata, "before_drop", DropView(name).execute_if(callable_=view_exists)
+        metadata,
+        "before_drop",
+        DropView(name).execute_if(callable_=view_exists),
     )
     return t

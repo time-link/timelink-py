@@ -81,5 +81,6 @@ class Source(Entity):
             ident_inc=ident_inc,
             show_contained=show_contained,
             width=width,
+            **kwargs
         )
         return r

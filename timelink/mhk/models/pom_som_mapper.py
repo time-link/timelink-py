@@ -121,6 +121,10 @@ class PomSomMapper(Entity):
     # Stores the association between group names and ORM Models.
     #  See get_orm_for_groupname and issue #53
     group_orm_models: dict = {}
+    # Flag to indicate if this is a dynamic mapping
+    # this should be set to True by code that generates
+    # new PomSomMappings dynamically (e.g. during import)
+    is_dinamic: bool = False
 
     def ensure_mapping(self, session=None):
         """
@@ -135,19 +139,29 @@ class PomSomMapper(Entity):
 
         A new ORM class is also created for mapping the new
         table. The new ORM class will extend the superclass
-        ORM mapping
+        ORM mapping.
+
+
+
+        :param session: The SQLAlchemy session to use
+        :type session: sqlalchemy.orm.session.Session
+
+
+
+        :return: The ORM class for this mapping
 
         """
 
         if not hasattr(self, "orm_class"):
             self.orm_class = None
 
-        # if we have ensured before return what we found then
+        # if we have ensured a mapping exists before before return what we found then
         if self.orm_class is not None:
             return self.orm_class
 
         # if not check if Entity knows about an orm class
         # if so return it and save for next time
+
         my_orm = Entity.get_orm_for_pom_class(self.id)
         if my_orm is not None:
             self.orm_class = my_orm
@@ -160,14 +174,16 @@ class PomSomMapper(Entity):
         # First check if we have this table already mapped to some Entity.
         # This might happen if we have different kleio groups mapped to the
         # same table, in order to make the kleio transcripts more readable
-        # (it happens frequently with the table 'acts').
+        # (it happens frequently with the tables 'acts', 'people' and 'objects').
         # If so we will reuse the existing Table class
         # It can also happen that while not having a ORM mapping the table
         # can already exist in the database as result of previous imports.
-        #
+        # In that case we need to create a new ORM mapping for this table.
+
         # Note that non core PomSomMappings and corresponding ORM classes,
         # which are dynamically defined during import, have to be recreated
         # from the database information each time an application runs.
+
         metadata_obj = type(self).metadata  # pylint: disable=no-member
         pytables = metadata_obj.tables  # these are the tables known to ORM
 
@@ -178,6 +194,8 @@ class PomSomMapper(Entity):
         my_table: Table
         if self.table_name in pytables.keys():
             # table is known to ORM we used the Table class there
+            # TODO: not sure about this, what if this PomSomMapper contains
+            #       new columns that are not in the table currently in metadata?
             my_table = pytables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
@@ -219,7 +237,11 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(self.table_name, metadata_obj, extend_existing=True)
+            my_table = Table(self.table_name,
+                             metadata_obj,
+                             info={"dynamic": True,  # we flag as dynamic
+                                   "pom_class_id  ": self.id},  # this goes to metadata
+                             extend_existing=True)
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:  # pylint: disable=no-member
                 PyType: str
@@ -563,7 +585,7 @@ class PomSomMapper(Entity):
             raise e
 
         in_group: KGroup
-        for in_group in group.includes():
+        for in_group in group.contains():
             cls.store_KGroup(in_group, session)
 
         try:

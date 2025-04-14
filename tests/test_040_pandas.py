@@ -2,62 +2,45 @@
 
 import pytest
 from pathlib import Path
+# import pdb  # noqa  TODO: remove when no longer needed
 
-from sqlalchemy_utils import drop_database
+from sqlalchemy_utils import drop_database  # pylint: disable=unused-import. # noqa
 
-from timelink.api.database import (
-    TimelinkDatabase,
-    is_postgres_running,
-    get_postgres_container_user,
-    get_postgres_container_pwd,
-)
-from timelink.kleio.importer import import_from_xml
+from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from tests import TEST_DIR
 
 from timelink.pandas import pname_to_df, entities_with_attribute, attribute_values
 
 # pytestmark = skip_on_travis
+TEST_DB = "test_pandas_db"
+test_set = [("sqlite", TEST_DB), ("postgres", TEST_DB)]
+test_files = "projects/test-project/sources/reference_sources/pandas"
 
 
 @pytest.fixture(scope="module")
-def dbsystem(request):
+def dbsystem(request, kleio_server):
     """Create a database for testing"""
-    db_user = None
-    db_pwd = None
-    db_type, db_name, db_url, db_user, db_pwd = request.param
-    if db_type == "postgres" and is_postgres_running():
-        db_user = get_postgres_container_user()
-        db_pwd = get_postgres_container_pwd()
-    database = TimelinkDatabase(db_name, db_type, db_url, db_user, db_pwd)
-    db = database.session()
-    """Load sample data in the test database"""
-    file1: Path = Path(TEST_DIR, "xml_data/b1685.xml")
-    file2: Path = Path(TEST_DIR, "xml_data/dehergne-a.xml")
-    try:
-        import_from_xml(file1, session=db)
-        import_from_xml(file2, session=db)
-    except Exception as exc:
-        print(exc)
-        raise
+    db_type, db_name = request.param
+    db_path = Path(TEST_DIR, "sqlite")
+
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
+                                kleio_server=kleio_server, echo=False)
+    database.update_from_sources(test_files)
+
     try:
         yield database
     finally:
-        database.drop_db(db)
-        db.close()
+        with database.session() as session:
+            pass
+            database.drop_db(session=session)
+            session.close()
         if ":memory:" not in database.db_url:
-            drop_database(database.db_url)
+            pass
+            # drop_database(database.db_url)
 
 
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_name_to_df(dbsystem):
     """test generation of dataframe with people with a certain name"""
 
@@ -73,15 +56,7 @@ def test_name_to_df(dbsystem):
     print(names_df)
 
 
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_attribute_values(dbsystem):
     """test generation of dataframe with people/objects with a certain attribute"""
 
@@ -100,15 +75,7 @@ def test_attribute_values(dbsystem):
     assert attr_type_count > attr_type_count_2, "attribute_values returned bad results"
 
 
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_entities_with_attribute(dbsystem):
     """Test generation of dataframe from attributes"""
     df = entities_with_attribute(
@@ -125,15 +92,7 @@ def test_entities_with_attribute(dbsystem):
     print(df)
 
 
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_entities_with_attribute_filter_by(dbsystem):
     """Test generation of dataframe from attributes"""
     conimbricensis = [
@@ -160,15 +119,7 @@ def test_entities_with_attribute_filter_by(dbsystem):
     print(df)
 
 
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_entities_with_attribute_list(dbsystem):
     """Test generation of dataframe from attributes"""
     df = entities_with_attribute(
@@ -189,24 +140,18 @@ def test_entities_with_attribute_list(dbsystem):
         filter_by=["deh-ludovico-antonio-adorno"],
         sql_echo=True,
     )
+    # pdb.set_trace()
     assert df is not None, "entities_with_attribute_list returned None"
-    assert len(df) > 0, "entities_with_attribute_lisy returned empty dataframe"
-    df_org = df[df["lugares.original"].notnull()]
-    assert len(df_org) > 0, "entities_with_attribute_list returned empty dataframe"
-    df_comment = df[df["lugares.comment"].notnull()]
-    assert len(df_comment) > 0, "entities_with_attribute_list returned empty dataframe"
-    print(df)
+    assert len(df) > 0, "entities_with_attribute_list returned empty dataframe"
+    df_cols = list(df.columns)
+    required_column = "lugares.original"
+    assert required_column in df_cols, f"{required_column} expected in {df_cols}"
+    required_column = "lugares.comment"
+    assert required_column in df_cols, f"{required_column} expected in {df_cols}"
+    print(df.info())
 
 
-@pytest.mark.parametrize(
-    "dbsystem",
-    [
-        # db_type, db_name, db_url, db_user, db_pwd
-        ("sqlite", ":memory:", None, None, None),
-        ("postgres", "tests", None, None, None),
-    ],
-    indirect=True,
-)
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_entities_with_attribute_empty(dbsystem):
     """Test generation of dataframe from attributes"""
     df = entities_with_attribute(

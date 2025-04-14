@@ -1,6 +1,70 @@
 =======
 History
 =======
+
+1.1.25 (2025-04-06)
+-------------------
+
+- Fixes the multiple database access issue when running tests in a single session.
+- Improves date formatting of timelink flexible dates
+- Fixes issues in base mappings
+- Add parameter to TimelinkDatabase to drop database if it exists, before creating new
+
+1.1.24 (2025-03-16)
+-------------------
+
+- Tries to fix test errors when tests are run in a single session
+  (as in pytest). This cannot be fixed and is related to behaviour
+  of sqlalchemy when acessing multiple database with the same
+  metadata, that is dynamically changed by addind new dynamic classes
+  and tables. The solution is to run tests in separate sessions to
+  check for tests. A new target make test-loop run each test file
+  separetly to check for real errors.
+- While this is not fixed deploy via Travis does not work. Use make release.
+
+1.1.23 (2025-03-16)
+-------------------
+
+- Fixes some issues with the rendering of dates in kleio outputs
+- Improves handling of extra_info in Entities
+- Improves metadata handling when acessing multiple databases
+
+1.1.21 (2025-03-15)
+-------------------
+
+- Fixes issue 67
+
+1.1.19 (2025-03-14)
+-------------------
+
+- Extends extra_info content in Entities.
+
+    - Now extra_info
+      retains some of the SOM-POM Mapping information present in
+      the import file. Extra_info is a dictionary with keys equal
+      to the column names of the Entity (and the columns of its
+      specialization tables). For each column there is a dictionary
+      containing the Kleio element name that produced the information,
+      the kleio element class, the Entity attribute name (which can be
+      different from the name of the column, and the Entity column class.
+      This allows for implementation of the to_kleio() method with
+      results closer to the original source.
+- Various fixes and improvements.
+    - Better introspection methods in Entity class.
+    - Better handling of database views.
+    - Add force parameter to TimelinkDatabase.update_from_sources
+    - Improved error handling in database operations, avoiding dangling
+      sessions and locked tables.
+    - Improved KGroup.get_element_by_name_or_class(element_spec) which is the
+      way to extract from an imported group the data for a specific attribute
+      in an ORM model.
+    - Improve quoting of values with special characters when rendering kleio
+      from database content.
+    - Better usage of extra_info information when generating dataframes in the
+      pandas module, namely using the name of the attribute instead of the name
+      of the column in the database, when naming dataframe columns.
+    - Improve Makefile, add profile command.
+
 1.1.18 (2025-02-04)
 -------------------
 

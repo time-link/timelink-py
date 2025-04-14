@@ -126,7 +126,7 @@ class REntity(Entity):
         String(4096)
     )  # description of the real entity
     status: Mapped[LinkStatus] = mapped_column(
-        Enum(LinkStatus), nullable=False
+        Enum(LinkStatus, name="linkstatus"), nullable=False
     )  # status of the real entity
     obs: Mapped[Optional[str]] = mapped_column(
         String
@@ -893,7 +893,7 @@ class Link(Base):
     )  # rule used to link the entity to the real entity
 
     status: Mapped[LinkStatus] = mapped_column(
-        Enum(LinkStatus), nullable=False
+        Enum(LinkStatus, name="linkstatus"), nullable=False
     )  # status of the link
     source: Mapped[Optional[str]] = mapped_column(
         String(64), ForeignKey(Source.id, ondelete="CASCADE"), index=True
@@ -956,7 +956,7 @@ class BLink(Base):
     )  # rule used to link the entity to the real entity
 
     status: Mapped[LinkStatus] = mapped_column(
-        Enum(LinkStatus), nullable=False
+        Enum(LinkStatus, name="linkstatus"), nullable=False
     )  # status of the link
 
     aregister: Mapped[Optional[str]] = mapped_column(

@@ -76,7 +76,8 @@ def test_kleio_escape_with_special_chars():
 
 
 def test_kleio_escape_with_quotes():
-    assert kleio_escape('text"with"quotes') == 'text"with"quotes'
+    quoted = kleio_escape('text"with"quotes')
+    assert quoted == '"""text"with"quotes"""'
 
 
 def test_kleio_escape_with_mixed_chars():

@@ -1,0 +1,70 @@
+kleio$gacto2.str/translations=2
+
+   property$multiple-entry-flag/124#ascii for pipe char
+   fonte$dev1692/1692/devassa/loc=auc III-d,5,2,135/obs="short version for testing"
+
+      devassa$devass1692/10/4/1692/visdor=manuel joao%doutor#cargo: desembargador da relacao episcopal/fol=fol?/obs= """
+
+      Pároco Luís Álvaro Pinto.
+      A visita e' feita na igreja da Misericórdia em vários dias.
+      Continua em 13 de Abril de 1692.
+      Continua em 15 de Abril de 1692 (a partir da testemunha 33 inc.).
+      Continua em 16 de Abril de 1692 (a partir da testemunha 45 inc.).
+      Continua em 17 de Abril de 1692 (a partir da testemunha 62 inc.).
+      Continua em 18 de Abril de 1692 (a partir da testemunha 74 inc.).
+      Continua em 19 de abril de 1692 (a partir da testemunha 83 inc.).
+      """
+
+         testo$jose machado/id=dev1692-per1
+            ls$ec/s
+            ls$residencia/soure
+            ls$idade/24
+            ls$assina/b
+
+            pai$manuel fernandes/id=dev1692-per1-per2
+               ls$alcunha/ratinho
+
+            acusa$c1692-antonio-cordeiro-alcouc/literal=alcouceiro e alcoviteiro de varias mulheres que levava a casa de alguns homens e as entregava em sua propria casa/id=dev1692-per1-obj1-20
+
+               caso$c1692-antonio-cordeiro-alcouc/alcouc/obs=dava mulheres em casa. Margem: tirada de ambos 1.1.1691%1o. 8.bro 691
+
+                  acusado$antonio cordeiro/id=d1692-2003
+                     ls$alcunha/calhau
+                     ls$ec/c
+                     ls$profissao/sapateiro
+                     ls$residencia/soure
+                     ls$residencia/soure, rua do rossio
+                     rel$parentesco/marido/francisca nunes/d1692-2004
+                     rel$visita/alcov/maria simoes/d1692-2005
+                     rel$visita/alcov/domingas simoes/d1692-2006
+                     rel$visita/dava_mulheres/antonio correia/d1692-2007
+                     rel$visita/dava_mulheres/joao costa/d1692-2008
+                     rel$visita/dava_mulheres/jose cunha sa/d1692-2009
+                     rel$visita/dava_mulheres/manuel homem de quadros/d1692-2014
+                     rel$visita/dava_mulheres/manuel fernandes nogueira/d1692-2147a/obs=cf. test.a 84
+                     rel$visita/alcov/maria esteva?/dev1692-2011/obs=segundo a testemunha Maria de Jesus
+
+                  acusada$francisca nunes#ou francisca simoes/id=d1692-2004
+                     ls$nome/fancisca simoes
+                     ls$ec/c
+
+                     referida$maria simoes/id=d1692-2005/obs=era das mulheres que antonio cordeiro dava em sua casa
+                        ls$nome/maria da silva
+                        ls$alcunha/ruiva
+
+                     referida$domingas simoes/id=d1692-2006/obs=era das mulheres que antonio cordeiro dava em sua casa
+                        ls$ec/s
+                        rel$parentesco/cunhada/antonio cordeiro/d1692-2003
+
+                     referido$antonio correia/id=d1692-2007/obs=frequentava mulheres em casa de antonio cordeiro
+                        ls$profissao/meirinho do tabaco?
+
+                     referido$joao costa/id=d1692-2008/obs=frequentava mulheres em casa de antonio cordeiro
+                        ls$profissao/escrivao do tabaco
+
+                     referido$jose cunha e sa/id=d1692-2009/obs="""
+                     Sera jose da cunha e sá?
+                     Segundo uma das testemunhas de 1692 era
+                     um dos que recebia em casa mulheres
+                     levadas por antonio cordeiro"""
+                        ls$residencia/sobral

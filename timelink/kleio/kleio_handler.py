@@ -376,6 +376,18 @@ class KleioHandler:
         psm: PomSomMapperTL | PomSomMapperMHK,
         attrs: List[PomClassAttributesTL | PomClassAttributesMHK],
     ):
+        """Process a new class definition
+
+        Send imported definition of a new class to the database.
+
+        """
+
+        if self.model_type == "TL":
+            # new code in Timelink
+            self.pom_som_mapper.import_pom_som_class(psm, attrs, self.session)
+            return
+        # from here own legacy code for MHK
+
         if psm.id in self.pom_som_base_mappings.keys():
             # we do not allow redefining of base mappings
             # TODO needs rethinking see #53
@@ -518,6 +530,11 @@ class KleioHandler:
             try:
                 pom_mapper_for_group.store_KGroup(group, self.session)
             except IntegrityError as ierror:
+                logging.error(
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} "
+                    f"integrity error {group.kname}${group.id}: {ierror}",
+                    stacklevel=3
+                )
                 self.errors.append(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
                     f"** integrity error {group.kname}${group.id}: {ierror}"
@@ -525,6 +542,11 @@ class KleioHandler:
                 self.session.rollback()
 
             except Exception as exc:
+                logging.error(
+                    f"ERROR: {self.kleio_file_name} line {str(group.line)} "
+                    f"storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}",
+                    stacklevel=3
+                )
                 self.session.rollback()
                 self.errors.append(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "

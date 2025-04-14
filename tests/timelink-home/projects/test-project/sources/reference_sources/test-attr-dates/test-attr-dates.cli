@@ -1,0 +1,43 @@
+kleio$gacto2.str/Generated from Archeevo export file/translations=55
+   fonte$test-atr-date/"PT/AUC/ELU/UC-AUC/B/001-001"/data=1537-00-00:1919-11-14/loc=Arquivo da Universidade de Coimbra/tipo=teste
+
+      lista$lista-test-atr-dates/11/02/2020/loc=A/obs=Exemplo de registos com datas nos atributos
+
+         n$António Pinto Abadeço/m/id=t140337
+            atr$código-de-referência/"PT/AUC/ELU/UC-AUC/B/001-001/A/000001"
+            atr$data-do-registo/2018-04-19 14:32:42
+            atr$url/"https://pesquisa.auc.uc.pt/details?id=140337"
+            ls$uc.entrada/1705-10-01/1705-10-01
+            ls$uc.saida/1710-10-01/1710-10-01
+            ls$uc.estadia/1705-10-01:1710-10-01/obs=Exemplo de especificação de período
+            ls$uc.entrada.ano/1705/1705-10-01
+            ls$uc.saida.ano/1710/1710-10-01
+            ls$uc.estadia.ano/1705:1710/1705-10-01:1710-10-01/obs=periodo especificado em anos apenas
+            ls$nome/António Pinto Abadeço/1705-10-01
+            ls$nome.primeiro/António/1705-10-01
+            ls$nome.apelido/Pinto Abadeço/1705-10-01
+            ls$nome.apelido/Abadeço/1705-10-01
+            ls$naturalidade/Abrantes/1705-10-01
+            ls$naturalidade.ano/Abrantes.1705/1705-10-01
+            ls$nome-geografico/Abrantes/1705-10-01
+            ls$nome-geografico.ano/Abrantes.1705/1705-10-01
+            ls$faculdade/Cânones/1705-10-01
+            ls$faculdade.ano/Cânones.1705/1705-10-01
+            ls$matricula/Cânones/1705-10-01/obs=01.10.1705
+            ls$matricula.ano/Cânones.1705/1705-10-01/obs=01.10.1705
+            ls$matricula/Cânones/1706-10-01/obs=01.10.1706
+            ls$matricula.ano/Cânones.1706/1706-10-01/obs=01.10.1706
+            ls$matricula/Cânones/1707-01-01/obs=01.01.1707
+            ls$matricula.ano/Cânones.1707/1707-01-01/obs=01.01.1707
+            ls$matricula/Cânones/1708-10-01/obs=01.10.1708
+            ls$matricula.ano/Cânones.1708/1708-10-01/obs=01.10.1708
+            ls$matricula/Cânones/1709-10-01/obs=01.10.1709
+            ls$matricula.ano/Cânones.1709/1709-10-01/obs=01.10.1709
+            ls$matricula/Cânones/1710-10-01/obs=01.10.1710
+            ls$matricula.ano/Cânones.1710/1710-10-01/obs=01.10.1710
+            ls$matricula/Cânones/1709-06-28/obs=28.06.1709
+            ls$matricula.ano/Cânones.1709/1709-06-28/obs=28.06.1709
+            ls$grau/Bacharel/1709-06-28:/obs=28.06.1709,grau sem data de conclusão
+            ls$grau.ano/Bacharel.1709/1709-06-28:/obs=28.06.1709, grau sem data de conclusão
+
+            pai$António Pinto/id=140337-pai

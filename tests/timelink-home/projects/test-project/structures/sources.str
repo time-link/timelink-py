@@ -31,10 +31,13 @@ note doc group kleio This is the top level group of Kleio files.
      to the part parameter of this group.
 note
 
-part 	name=kleio;
- also=structure,translator,autorels,obs,prefix,translations;
- position=structure,translator;
- part=historical-source,fonte,authority-register, identifications, link
+part name=kleio;
+    also=structure,translator,autorels,obs,prefix,translations;
+    position=structure,translator,obs;
+    part=historical-source,fonte,authority-register,
+            identifications, link, property
+
+
 
 note ============================================================
 note Basic historical source group
@@ -148,7 +151,19 @@ part name=link;
     position=shortname,urlpattern;
     also=id,obs
 
+note ===========================================================
+note doc group property
+      A property of the file for the kleio parser.
+      Properties are not stored in the database.
+      They affect the parsing of the file.
 
+      Examples:
+
+      property$multiple-entry-flag/124#ascii for pipe char
+
+part name=property;
+    position=name,value;
+    also=id,obs
 
 note ============================================================
 note Basic historical act group

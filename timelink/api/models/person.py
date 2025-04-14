@@ -53,6 +53,7 @@ class Person(Entity):
             ident=ident,
             ident_inc=ident_inc,
             width=width,
+            **kwargs
         )
         return kleio
 
@@ -68,10 +69,10 @@ def get_person(id: str = None, db=None, session=None, sql_echo: bool = False) ->
         raise ValueError("Error, session or database object needed")
 
     if db is not None:
-        session = db.session()
-
-    p: Person = session.get(Person, id)
-
+        with db.session() as session:
+            p: Person = session.get(Person, id)
+    elif session is not None:
+        p: Person = session.get(Person, id)
     return p
 
 

@@ -60,7 +60,7 @@ class Attribute(Entity):
         r = f"{r}{obs_el}"
         kleio = super().to_kleio(
             self_string=r,
-            show_contained=show_contained,
+            show_contained=False,
             ident=ident,
             ident_inc=ident_inc,
             **kwargs,

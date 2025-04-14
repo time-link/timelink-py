@@ -215,11 +215,10 @@ If Travis fails to deploy to PyPI:
     deployed to PyPI. In order not to update the version number in the code, the last commit
     can be tagged with fix-travis and pushed to the repository. This will trigger a build and deployment
     to PyPI.
- try "make release" locally.
-
-Note that errors in package description in setup.py can prevent deployment to PyPI.
-This happens mainly with markup problems in HISTORY.rst.
-See https://github.com/pypi/warehouse/issues/5890
+ * try "make release" locally.
+    * Note that errors in package description in setup.py can prevent deployment to PyPI.
+    * This happens mainly with markup problems in HISTORY.rst.
+    * See https://github.com/pypi/warehouse/issues/5890
 
 "make release" will do `twine check dist/*` to check for errors.
 

@@ -25,7 +25,7 @@ def timelink_db():
 
 def test_create_reference_db():
     db: TimelinkDatabase = TimelinkDatabase(db_url=reference_db_con_str)
-    print(db.table_names())
+    print(db.db_table_names())
     result = upgrade(reference_db_con_str, revision="head")
     # Add assertions to check the database state if needed
     assert result is None
@@ -58,7 +58,7 @@ def test_upgrade_random():
         db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
         db_url = parse_db_url(db_key)
         db: TimelinkDatabase = TimelinkDatabase(db_url=db_url)
-        print(db.table_names())
+        print(db.db_table_names())
         result = upgrade(db_url, revision="head")
         if result is None:
             break

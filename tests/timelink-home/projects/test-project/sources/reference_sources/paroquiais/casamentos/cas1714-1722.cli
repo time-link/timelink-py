@@ -1,4 +1,4 @@
-kleio$gacto.str/translations=21
+kleio$gacto.str/translations=22
    fonte$cas1714-1722/localizacao-a.u.c./obs=freguesia de S. silvestre da lousa
 
       cas$c1714-1/8/2/1714/fl.142v./igreja de sao silvestre/manuel da fonseca(prior)/obs=com licenca do prior manuel lopes serra que assina o termonao se referem testemunhas
@@ -1343,7 +1343,8 @@ kleio$gacto.str/translations=21
          noiva$madalena caneva/id=c1718-57-per4-12
 
             pnoiva$simao caneva/id=c1718-57-per4-12-per5-12
-               ls$morada/rios lsüfreguesia/lousa
+               ls$morada/rios
+               ls$freguesia/lousa
 
             mnoiva$joana de lorva/obs=baptizada na freguesia de eugenio da villa de genova, reino de genova/id=c1718-57-per4-12-per6-12
 
