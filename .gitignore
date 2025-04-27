@@ -2,14 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
 
 # Distribution / packaging
 .Python
-env/
-venv/
 build/
 develop-eggs/
 dist/
@@ -27,8 +23,6 @@ wheels/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -73,11 +67,13 @@ celerybeat-schedule
 # dotenv
 .env
 
-# virtualenv
+# Virtual Environments
 .venv
+env/
 venv/
 ENV/
 .venv_devcont
+
 
 # Spyder project settings
 .spyderproject
@@ -94,50 +90,31 @@ ENV/
 
 # IDE settings
 .vscode/
-timelink/.DS_Store
-.DS_Store
 .idea
-tests/sqlite/test.db
-sql_app.db
-timelink.db
-timelink/api/soure.db
-timelink/api/timelink.sqlite
-timelink.sqlite
-tests/timelink-home/system/logs/kleio/kleio_service.log
-tests/timelink-home/system/conf/kleio/token_db
-tests/timelink-home/system/conf/kleio/.bootstrap_token
-tests/timelink-home/.kleio/logs/kleio_service.log
-tests/timelink-home/.kleio.json
-tests/timelink-home/sources/**/*.err
-tests/timelink-home/structures/reference_sources/paroquiais/sources.srpt
-tests/timelink-home/structures/reference_sources/paroquiais/sources.str.json
-tests/timelink-home/projects/test-project/notebooks/sources/.kleio/logs/kleio_service.log
-tests/timelink-home/projects/test-project/sources/.kleio/logs/kleio_service.log
-tests/timelink-home/projects/test-project/notebooks/timelink.db.sqlite
-tests/timelink-home/projects/test-project/kleio/.kleio/logs/kleio_service.log
-tests/timelink-home/projects/test-project/database/sqlite/
-tests/timelink-home/sources/sources/.kleio/logs/kleio_service.log
-tests/timelink-home/projects/test-project/.kleio/logs/kleio_service.log
-tests/timelink-home/projects/test-project/database/sqlite/test_project.sqlite
-sql_app.db
-timelink.db
-timelink/api/soure.db
-timelink/api/timelink.sqlite
+
+# OS generated files
+.DS_Store
+
+# SQLite Databases
 *.sqlite
+*.sql
+tests/sqlite/*
+tests/db/*.db
+tests/db/*.sql
+tests/timelink-home/system/db/*
+
+# Log Files
+*.log
+
+# Timelink specific files
 *.srpt
 *.str.json
-*.log
 .kleio.json
-tests/timelink-home/system/conf/kleio/token_db
-tests/timelink-home/system/conf/kleio/.bootstrap_token
-tests/timelink-home/.kleio.json
-tests/timelink-home/.kleio/conf/token_db
-tests/timelink-home/system/db/sqlite/timelink_users
-tests/timelink-home/database/sqlite/*
-tests/sqlite/*
-tests/-- SQLite.sql
--- SQLite.sql
 
-tests/db/test.db
-.bash_profile
+# Kleio Configuration
+tests/timelink-home/system/conf/kleio/*
+tests/timelink-home/.kleio/conf/*
+
+# Other
 timelink-1.1.15/
+tests/timelink-home/system/db/sqlite/timelink_users
