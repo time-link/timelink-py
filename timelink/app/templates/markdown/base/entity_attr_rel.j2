@@ -1,0 +1,97 @@
+# Entity Details
+
+
+| Element | Value |
+|----|---|
+| **ID:**    | {{model.id}} |
+| **Description:** | {{model.get_description()}} |
+| **Group Name:** | {{ entity.groupname }} |
+| **Class:** | {{ entity.pom_class }} |
+| **Source:** | {{ entity.the_source }} |
+| **Inside:**| {{ entity.inside }} |
+| **Order:** | {{ entity.the_order }} |
+| **Level:** | {{ entity.the_level }} |
+| **Line:**  | {{ entity.the_line }} |
+| **Updated:** | {{ entity.updated.strftime('%Y-%m-%d %H:%M') if entity.updated else 'N/A' }} |
+| **Indexed:** | {{ entity.indexed if entity.indexed is not none else 'N/A' }} |
+{% for element in model.get_element_names() if element not in ["class", "id", "obs"] -%}
+| **{{ element }}** | {{ model.for_kleio(element) }} |
+{% endfor %}
+
+
+{% if model.links %}
+
+## Record linking
+
+| ID | RID | User | Rule | Source | Status |
+|----|-----|------|------|--------|--------|
+{% for link in model.links -%}
+| {{ link.id }} | {{ link.rid }} | {{ link.user }} | {{ link.rule }} | {{ link.source }} | {{ link.status }} |
+{% endfor %}
+{% else %}
+No links found.
+{% endif %}
+
+{% if model.rels_in %}
+{% for rel in model.rels_in if rel.the_type == 'identification' %}
+- {{rel.the_value}} from {{rel.origin}} {{rel.org_name}}
+{% endfor %}
+{% endif %}
+
+## Biography
+
+| Date | Event |
+|------|-------|
+{% for date in model.dated_bio().keys() -%}
+{% for bio_item in model.dated_bio()[date] -%}
+{% if bio_item.the_date == '0' -%}
+|  |{% else -%}|{{ util.format_timelink_date(bio_item.the_date) }}|{% endif -%}{{ bio_item }}|
+{% endfor -%}
+{% endfor %}
+
+## Incoming Relations (rels_in)
+
+{% if entity.rels_in %}
+{% for rel in entity.rels_in %}
+- **ID:** {{ rel.id }}
+  **Origin:** {{ rel.origin }} ({{ rel.org_name }})
+  **Type:** {{ rel.the_type }}
+  **Value:** {{ rel.the_value }}
+  **Date:** {{ rel.the_date }}
+  **Obs:** {{ rel.obs }}
+{% endfor %}
+{% else %}
+No incoming relations found.
+{% endif %}
+
+## Outgoing Relations (rels_out)
+
+{% if entity.rels_out %}
+{% for rel in entity.rels_out if rel.the_type not in ['function-in-act'] %}
+- **ID:** {{ rel.id }}
+  **Destination:** {{ rel.destination }} ({{ rel.dest_name }})
+  **Type:** {{ rel.the_type }}
+  **Value:** {{ rel.the_value }}
+  **Date:** {{ rel.the_date }}
+  **Obs:** {{ rel.obs }}
+{% endfor %}
+{% else %}
+No outgoing relations found.
+{% endif %}
+
+## Contains
+
+{% if entity.contains %}
+{% for item in entity.contains if item.pom_class not in ['attribute','relation'] %}
+- **ID:** {{ item.id }}
+  **Class:** {{ item.pom_class }}
+  **Group Name:** {{ item.groupname }}
+  **Order:** {{ item.the_order }}
+  **Level:** {{ item.the_level }}
+  **Line:** {{ item.the_line }}
+  {# Add more details if needed, potentially recursively #}
+{% endfor %}
+{% else %}
+No contained items found.
+{% endif %}
+

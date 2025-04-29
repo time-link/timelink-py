@@ -107,7 +107,7 @@ def get(db: Session, id: str) -> EntityAttrRelSchema:  # pylint: disable=invalid
     """
     entity = models.Entity.get_entity(id, db)
     # get the columns of this entity
-    pentity = EntityAttrRelSchema.from_orm(entity)
+    pentity = EntityAttrRelSchema.model_validate(entity)
     # get the relations of this entity
 
     # TODO return the entity as a dictionary with rels in and out

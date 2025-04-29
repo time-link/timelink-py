@@ -103,6 +103,7 @@ class EntityAttrRelSchema(BaseModel):
     the_level: Optional[int]
     the_line: Optional[int]
     groupname: Optional[str]
+    the_source: Optional[str]
     updated: Optional[datetime]
     indexed: Optional[datetime]
     extra_info: Optional[dict]
