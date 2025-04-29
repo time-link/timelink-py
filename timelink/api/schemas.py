@@ -116,7 +116,9 @@ class EntityAttrRelSchema(BaseModel):
 
 
 class RealEntitySchema(BaseModel):
-    """Pydantic Schema for RealEntity"""
+    """Pydantic Schema for RealEntity brief
+    Without attributes, relations and contained entities
+    """
 
     id: str
     user: str
