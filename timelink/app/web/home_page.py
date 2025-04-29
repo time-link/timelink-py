@@ -6,6 +6,8 @@ from fastui.events import GoToEvent
 from timelink import version as timelink_version
 from timelink.app.schemas.user import UserSchema
 
+# DEPRECATED This used FastUI which was sunsetted
+
 
 async def home_page(
     *components: AnyComponent,
@@ -133,3 +135,5 @@ async def home_page(
         ),
     ]
     return page
+
+c.Link.model_rebuild()

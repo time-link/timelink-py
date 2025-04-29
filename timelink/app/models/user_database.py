@@ -12,7 +12,6 @@ from timelink.app.models.user import User, UserProperty, Base
 from timelink.app.models.project import ProjectAccess, Project
 from timelink.app.schemas.user import UserPropertySchema, UserSchema
 from timelink.app.schemas import UserProjectSchema
-from timelink.app.services.auth import FiefUserInfo
 
 
 class UserDatabase:
@@ -206,44 +205,6 @@ class UserDatabase:
             raise ValueError("An user with that email already exists.")
 
         session.add(user)
-
-    def on_board_user(self, user: FiefUserInfo, permissions: str = None, session=None):
-        """On board an user registered on Fief
-
-        Gets email, name and fields from fief and adds it to the database.
-
-        Adds permissions if provided. Permissions should be fetched
-        from the fief access_token and passed as a comma separeted string.
-
-        The access_token is stored in a cookie and can be validated with
-        fief.validate_access_token
-
-        """
-
-        user_email = user["email"]
-        user_in_db = self.get_user_by_email(user_email, session=session)
-        if user_in_db is None:
-            user_fields = user.get("fields", {})
-            user_name = user_fields.get("user_name", "")
-            user_nickname = user_fields.get("user_nickname", None)
-            if user_nickname is None:
-                user_nickname = user_email.split("@")[0]
-            user = User(name=user_name, nickname=user_nickname, email=user_email)
-            self.add_user(user, session=session)
-            session.commit()
-        for field_name, field_value in user["fields"].items():
-            self.set_user_property(
-                user_in_db.id, field_name, field_value, session=session
-            )
-        session.commit()
-        # todo: think about this
-        for permission in permissions:
-            self.set_user_property(
-                user_in_db.id, f"permission:{permission}", "yes", session=session
-            )
-        session.commit()
-
-        return UserSchema.model_validate(user_in_db)
 
     def set_user_property(
         self, user_id: int, property_name: str, property_value: str, session=None

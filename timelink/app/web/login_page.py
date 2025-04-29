@@ -17,6 +17,8 @@ from timelink.app.schemas.user import UserSchema
 from timelink.app.dependencies import get_current_user, get_github_auth
 from timelink.app.web.home_page import home_page
 
+# DEPRECATED This used FastUI which was sunsetted
+
 
 router = APIRouter(tags=["fastui"], responses={404: {"description": "Not found"}})
 
