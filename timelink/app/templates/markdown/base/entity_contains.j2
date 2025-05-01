@@ -1,0 +1,15 @@
+### Contains
+
+{% if model.contains %}
+{% for item in model.contains if item.pom_class not in ['attribute','relation'] %}
+- **ID:** {{ item.id }}
+  **Class:** {{ item.pom_class }}
+  **Group Name:** {{ item.groupname }}
+  **Order:** {{ item.the_order }}
+  **Level:** {{ item.the_level }}
+  **Line:** {{ item.the_line }}
+  {# Add more details if needed, potentially recursively #}
+{% endfor %}
+{% else %}
+No contained items found.
+{% endif %}

@@ -1,0 +1,24 @@
+{% if model.links -%}
+
+### Identified as
+
+| RID | User | Rule | Source | Status |
+|-----|------|------|--------|--------|
+{% for link in model.links -%}
+ | {{ link.rid }} | {{ link.user }} | {{ link.rule }} | {{ link.source }} | {{ link.status }} |
+{% endfor -%}
+{% else -%}
+No links found.
+{% endif -%}
+
+{% if model.rels_in -%}
+{% for rel in model.rels_in if rel.the_type == 'identification' -%}
+{% if loop.first -%}
+#### Identifications
+
+|  Origin | Name | Type | Source |
+|-- | -- | -- | -- |
+{% endif -%}
+| {{rel.origin}}| {{rel.org_name}} |{{rel.the_value}}| {{rel.the_source}} |
+{% endfor %}
+{% endif %}

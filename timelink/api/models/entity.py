@@ -457,7 +457,10 @@ class Entity(Base):
         }
         obs, extra_info = self.get_extra_info()
         for name, __column in field_to_column.items():
-            nvalue = render_with_extra_info(name, getattr(self, name), extra_info)
+            if name in self.extra_info.keys():
+                nvalue = render_with_extra_info(name, getattr(self, name), extra_info)
+            else:
+                nvalue = getattr(self, name)
             setattr(new_entity, name, nvalue)
 
         setattr(new_entity, "obs", obs)  # noqa

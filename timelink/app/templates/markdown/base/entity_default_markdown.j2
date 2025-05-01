@@ -1,0 +1,38 @@
+### {{model.pom_class}}
+
+{# Build the template filename based on model.pom_class, e.g. "person" -> "markdown/base/person_details.j2" #}
+{% set details_template = "markdown/base/" ~ model.pom_class|lower ~ "_default.j2" %}
+
+
+
+| Description | Group | ID |
+|-- | -- | -- |
+| {{model.get_description()}}| {{model.groupname}} |{{model.id}} |
+
+{{model.obs}}
+
+{% include "markdown/base/entity_timeline.j2" %}
+{% include "markdown/base/entity_links.j2" %}
+{% include "markdown/base/entity_rels_in.j2" %}
+{% include "markdown/base/entity_rels_out.j2" %}
+{% include "markdown/base/entity_contains.j2" %}
+### Entity details
+
+| Element | Value |
+|----|---|
+| **ID:**    | {{model.id}} |
+| **Description:** | {{model.get_description()}} |
+| **Group Name:** | {{ model.groupname }} |
+| **Class:** | {{ model.pom_class }} |
+| **Source:** | {{ model.the_source }} |
+| **Inside:**| {{ model.inside }} |
+| **Order:** | {{ model.the_order }} |
+| **Level:** | {{ model.the_level }} |
+| **Line:**  | {{ model.the_line }} |
+| **Updated:** | {{ model.updated.strftime('%Y-%m-%d %H:%M') if model.updated else 'N/A' }} |
+| **Indexed:** | {{ model.indexed if model.indexed is not none else 'N/A' }} |
+{% for element in model.get_element_names() if element not in ["class", "id", "obs"] -%}
+| **{{ element }}** | {{ model.for_kleio(element) or "_" }}|
+{% endfor %}
+
+---

@@ -1,0 +1,11 @@
+{% if model.rels_in -%}
+{% for rel in model.rels_in if rel.the_type not in ['identification', 'function-in-act'] -%}
+{% if loop.first -%}
+#### Incoming relations
+
+|  Origin | Name | Type | Value | Date |
+|-- | -- | -- | -- | -- |
+{% endif -%}
+| {{rel.origin}}| {{rel.org_name}} |{{rel.the_type}} |{{rel.the_value}}| {{ util.format_timelink_date(rel.the_date) or "_"}} |
+{% endfor %}
+{% endif %}
