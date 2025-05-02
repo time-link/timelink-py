@@ -9,6 +9,8 @@ from timelink.app.backend.timelink_webapp import TimelinkWebApp
 from timelink.app.schemas.user import UserSchema, UserProjectSchema
 from .home_page import home_page
 
+# DEPRECATED This used FastUI which was sunsetted
+
 
 class ProjectInfoSchema(BaseModel):
     """Classe to hold the relevant project info for display."""

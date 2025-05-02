@@ -18,7 +18,7 @@ import logging
 # import pdb
 
 from typing import List
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, BaseModel
 import pandas as pd
 
 from sqlalchemy import MetaData
@@ -63,45 +63,15 @@ from .database_postgres import is_valid_postgres_db_name  # noqa
 from .database_sqlite import get_sqlite_databases, get_sqlite_url  # noqa
 
 
+class TimelinkDatabaseSchema(BaseModel):
+    """Pydantic schema for TimelinkDatabase"""
+
+    db_name: str
+    db_type: str
+
+
 class TimelinkDatabase:
-    """Database connection and setup
-
-    Creates a database connection and session. If the database does not exist,
-    it is created. **db_type** determines the type of database.
-
-    Currently, only sqlite and postgres are supported.
-
-    * If db_type is sqlite, the database is created in the current directory.
-    * If db_type is postgres or mysql, the database is created in a docker container.
-    * If the database is postgres, the container is named timelink-postgres.
-    * If the database is mysql, the container is named timelink-mysql.
-
-    Attributes:
-        db_url (str): database sqlalchemy url
-        db_name (str): database name
-        db_user (str): database user (only for postgres databases)
-        db_pwd (str): database password (only for postgres databases)
-        engine (Engine): database engine
-        session (Session): database session factory
-        metadata (MetaData): database metadata
-        db_container: database container
-        kserver: kleio server attached to this database, used for imports
-
-    Main methods:
-        * table_names: get the current tables in the database
-        * get_columns: get the columns for a table or model
-        * table_row_count: get the number of rows of each table in the database
-        * get_models: get ORM Models for using in Queries
-        * create_db: create the database tables and views
-        * drop_db: drop all timelink related tables from the database
-        * get_imported_files: get the list of imported files in the database
-        * get_import_status: get the import status of the kleio files
-        * update_from_sources: update the database from the sources
-        * query: execute a query in the database
-        * get_person: fetch a person by id
-        * get_entity: fetch an entity by id
-        * export_as_kleio: export entities to a kleio file
-    """
+    """Database connection and setup"""
 
     db_url: str
     db_name: str
@@ -1542,3 +1512,7 @@ class TimelinkDatabase:
     def pperson(self, id: str, session=None):
         """Prints a person in kleio notation"""
         print(self.get_person(id=id, session=session).to_kleio())
+
+    def as_schema(self) -> TimelinkDatabaseSchema:
+        """Return a Pydantic schema for this database"""
+        return TimelinkDatabaseSchema(db_name=self.db_name, db_type=self.db_type)

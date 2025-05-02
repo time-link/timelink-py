@@ -3,13 +3,6 @@
 """
 FastAPI app for timelink
 
-Next
-
-* Authentication
-
-    * startup Fief docker container, try to add first user
-    * add first admin user to database
-
 To Run
 
     * source .venv/bin/activate; cd timelink/app; uvicorn main:app --reload
@@ -25,6 +18,7 @@ To debug
 
 """
 # Standard library imports
+import logging
 import os
 from datetime import date, timedelta
 from enum import Enum
@@ -41,21 +35,12 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.security import OAuth2PasswordRequestForm
 
-from fastui import FastUI, AnyComponent, prebuilt_html, components as c
-from fastui.components.display import DisplayMode, DisplayLookup
-from fastui.events import GoToEvent, BackEvent
-
 # import realted with starlette admin app
 from starlette_admin import EnumField
 
 from starlette_admin.contrib.sqla import Admin, ModelView
 from starlette_admin.views import Link
 
-
-# imports related to authentication with fief
-from fastapi.security import OAuth2AuthorizationCodeBearer
-from fief_client import FiefAccessTokenInfo, FiefAsync
-from fief_client.integrations.fastapi import FiefAuth
 
 from pydantic import BaseModel, Field
 
@@ -66,7 +51,7 @@ import uvicorn
 # Local application/library specific imports
 from timelink import version
 from timelink.api import crud, models, schemas
-from timelink.api.database import TimelinkDatabase, is_valid_postgres_db_name
+from timelink.api.database import TimelinkDatabase, TimelinkDatabaseSchema, is_valid_postgres_db_name
 from timelink.api.schemas import EntityAttrRelSchema, ImportStats
 
 from timelink.app.backend.settings import Settings
@@ -86,18 +71,17 @@ from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import ApiPermissions, KleioFile, TokenInfo
 from timelink.app.dependencies import get_current_active_user, get_db
 from timelink.app.schemas.user import UserSchema
-from timelink.app.services.auth import auth
 
-from timelink.app.web import router as fastui_router
 
 # Get Pydantic-based settings defined in timelink.app.backend.settings
 settings = Settings(timelink_admin_pwd="admin")
 
-# Move to settings?
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 app = FastAPI()
-app.include_router(fastui_router, prefix="/fastui")
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 # create TimelinkWebApp instance
@@ -119,13 +103,14 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
     app.state.webapp = webapp
     app.state.status = "Initialized"
 
+# startlette admin app see https://jowilf.github.io/starlette-admin/
 admin = Admin(webapp.users_db.engine,
-              title="timelink admin",
+              title="Timelink Admin",
               )
 admin.add_view(ModelView(User))
-admin.add_view(ModelView(UserProperty))
-admin.add_view(ModelView(ProjectAccess))
+admin.add_view(ModelView(UserProperty, label="User Properties"))
 admin.add_view(ModelView(Project))
+admin.add_view(ModelView(ProjectAccess, label="Project Access"))
 admin.add_view(Link(label="Timelink web", icon="fa fa-link", url="/"))
 
 admin.mount_to(app)
@@ -187,7 +172,7 @@ async def search(search_request: schemas.SearchRequest):
 
 @app.post("/syspar/", response_model=models.SysParSchema)
 async def set_syspar(
-    syspar: models.SysParSchema, db: Annotated[Session, Depends(get_db)]
+    syspar: models.SysParSchema, db: Annotated[TimelinkDatabaseSchema, Depends(get_db)]
 ):
     """Set system parameters
 
@@ -202,12 +187,12 @@ async def set_syspar(
 
 @app.get("/syspar/", response_model=list[models.SysParSchema])
 async def get_syspars(
+    db: Annotated[TimelinkDatabaseSchema, Depends(get_db)], # change to get_db
     q: list[str] | None = Query(
         default=None,
         title="Name of system parameter",
         description="Multiple values allowed," "if empty return all",
     ),
-    db: Session = Depends(get_db),
 ):
     """Get system parameters
 
@@ -220,19 +205,20 @@ async def get_syspars(
 
 
 @app.post("/syslog", response_model=models.SysLogSchema)
-async def set_syslog(syslog: models.SysLogCreateSchema, db: Session = Depends(get_db)):
+async def set_syslog(syslog: models.SysLogCreateSchema,
+                     db: Annotated[TimelinkDatabaseSchema, Depends(get_db)]):
     """Set a system log entry"""
     return crud.set_syslog(db, syslog)
 
 
 @app.get("/syslog", response_model=list[models.SysLogSchema])
 async def get_syslog(
+    db: Annotated[TimelinkDatabaseSchema, Depends(get_db)],
     nlines: int | None = Query(
         default=10,
         title="Get last N lines of log",
         description="If number of lines not specified" "return last 10",
     ),
-    db: Session = Depends(get_db),
 ):
     """Get log lines
 
@@ -246,7 +232,8 @@ async def get_syslog(
 
 
 @app.get("/sources/import-file/{file_path:path}", response_model=ImportStats)
-async def import_file(file_path: str, db: Session = Depends(get_db)):
+async def import_file(file_path: str,
+                      db: Annotated[TimelinkDatabaseSchema, Depends(get_db)]):
     """Import kleio data from xml file"""
     result = import_from_xml(file_path, db, {"return_stats": True, "mode": "TL"})
     response = ImportStats(**result)
@@ -255,8 +242,11 @@ async def import_file(file_path: str, db: Session = Depends(get_db)):
 
 
 @app.get("/get/{id}", response_model=EntityAttrRelSchema)
-async def get(id: str, db: Session = Depends(get_db)):
-    """Get entity by id"""
+async def get(id: str, db: Annotated[TimelinkDatabaseSchema, Depends(get_db)]):
+    """Get entity by id
+
+    TODO: needs to check if id is real entity or normal id
+    """
     return crud.get(db, id)
 
 
@@ -333,10 +323,10 @@ async def translate(
 # Web zone
 
 # web prefix uses templates for htmx and tailwind
-@app.get("/web")
+@app.get("/web", include_in_schema=False)
 async def root(request: Request,
                user: UserSchema = Depends(get_current_user)
-               ):
+               )-> HTMLResponse :
     """Timelink API end point. Check URL/docs for API documentation."""
     webapp: TimelinkWebApp = request.app.state.webapp
     context = {
@@ -350,8 +340,8 @@ async def root(request: Request,
     )
 
 
-@app.get("/web/templates/{template_name}")
-async def get_template(request: Request, template_name: str):
+@app.get("/web/templates/{template_name}", include_in_schema=False)
+async def get_template(request: Request, template_name: str) -> HTMLResponse:
     """Get a template"""
     webapp: TimelinkWebApp = request.app.state.webapp
     context = {
@@ -365,76 +355,24 @@ async def get_template(request: Request, template_name: str):
     )
 
 
-# This is the main entry point for the fastUI interface
 # Must come last as it matches all paths
-@app.get("/{path:path}")
-async def html_landing() -> HTMLResponse:
-    """Simple HTML page which serves the React app, comes last as it matches all paths."""
-    return HTMLResponse(prebuilt_html(title="Timelink", api_root_url="/fastui"))
+@app.get("/{path:path}", include_in_schema=False)
+async def html_landing(request: Request, path: str) -> HTMLResponse:
+    """Catch all for HTML requests
 
-
-# Tutorial
-class ModelName(str, Enum):
-    """Enum for model names"""
-
-    alexnet = "alexnet"
-    resnet = "resnet"
-    lenet = "lenet"
-
-
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
-
-
-@app.get("/models/{model_name}")
-async def get_model(model_name: ModelName):
-    """Example of path parameters with enum validation"""
-    if model_name == ModelName.alexnet:
-        return {"model_name": model_name, "message": "Deep Learning FTW!"}
-
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
-
-    return {"model_name": model_name, "message": "Have some residuals"}
-
-
-@app.get("/files/{file_path:path}")
-async def read_file(file_path: str):
-    """Example of path parameters"""
-    return {"file_path": file_path}
-
-
-@app.get("/items/")
-async def read_item(skip: int = 0, limit: int = 10):
-    """Example of query parameters"""
-    return fake_items_db[skip : skip + limit]
-
-
-@app.get("/items2/{item_id}")
-async def read_item2(item_id: str, q: str | None = None):
-    """Example of query parameters with optional
-    http://127.0.0.1:8000/items2/foo?q=somequery
-    http://127.0.0.1:8000/items2/foo
+    Currently we use the path to get the template name.
     """
-    if q:
-        return {"item_id": item_id, "q": q}
-    return {"item_id": item_id}
-
-
-# Sandbox
-# testing specifying the database in the path
-@app.get("/{dbname}/id/{id}", response_model=dict)
-async def get_id(eid: str, dbname: str, db: Session = Depends(get_db)):  # noqa: B008
-    """get entity with id from database
-
-    This will pass the name of the database in the path
-    to the get_db() function
-    """
-    result = {
-        "database": dbname,
-        "id": f"info for id {eid}",
-        "url": repr(db.get_bind().url),
+    webapp: TimelinkWebApp = request.app.state.webapp
+    context = {
+        "welcome_message": "Welcome to Timelink API and Webapp",
+        "webapp_info": webapp.get_info(),
+        "webapp_projects": webapp.projects,
     }
-    return result
+    if path == '':
+        path = "index.html"
+    return templates.TemplateResponse(
+        request=request, name=path, context=context
+    )
 
 
 if __name__ == "__main__":

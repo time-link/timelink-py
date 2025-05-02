@@ -57,8 +57,6 @@ class TimelinkWebApp:
         self,
         app_name: str = "timelink",
         timelink_url: str = "http://localhost:8008",
-        auth_manager: str = "http://localhost:8000",
-        app_manager: str = "http://localhost:8008/admin/",
         timelink_home: str = None,
         kleio_server: KleioServer = None,
         users_db_type: str = "sqlite",
@@ -111,8 +109,6 @@ class TimelinkWebApp:
         self.users_db_type = users_db_type
         self.users_db_name = users_db_name
         self.users_db = None
-        self.auth_manager = auth_manager
-        self.app_manager = app_manager
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
         self.postgres_version = postgres_version

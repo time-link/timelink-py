@@ -41,8 +41,7 @@ setup(
     install_requires=[
         'typer',
         'fastapi',
-        'fastui',
-        'fief-client',
+        'maplotlib',
         'sqlalchemy',
         'sqlalchemy-utils',
         'alembic',
@@ -57,7 +56,6 @@ setup(
         'pandas',
         'docker',
         'jsonrpcclient',
-        'httpx',
         'ipython',
         'uvicorn'
     ],

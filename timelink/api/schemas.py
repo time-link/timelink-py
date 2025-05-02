@@ -103,6 +103,7 @@ class EntityAttrRelSchema(BaseModel):
     the_level: Optional[int]
     the_line: Optional[int]
     groupname: Optional[str]
+    the_source: Optional[str]
     updated: Optional[datetime]
     indexed: Optional[datetime]
     extra_info: Optional[dict]
@@ -116,7 +117,9 @@ class EntityAttrRelSchema(BaseModel):
 
 
 class RealEntitySchema(BaseModel):
-    """Pydantic Schema for RealEntity"""
+    """Pydantic Schema for RealEntity brief
+    Without attributes, relations and contained entities
+    """
 
     id: str
     user: str

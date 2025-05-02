@@ -16,6 +16,7 @@ class WebAppInfo(BaseModel):
     info_value: Optional[str] = Field(title="Value", default="<NA>")
 
 
+# DEPRECATED This used FastUI which was sunsetted
 async def webapp_info(
     webapp: TimelinkWebApp, request: Request, user: UserSchema
 ) -> c.Page:
