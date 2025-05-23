@@ -199,7 +199,7 @@ def entities_with_attribute(
             # Perform operations using row_number, index, and row
             if row[attribute_extra_info_column_name] is not None:
                 # get the extra_info dict from the row
-                # the dict contains information store during the import
+                # the dict contains information stored during the import
                 # process that is not stored directly in the attribute/columns
                 # of the database. These include: comment and original aspects,
                 # the element name and class in the original source
@@ -209,7 +209,7 @@ def entities_with_attribute(
                     if key != "the_value":
                         # here we determine the name of columns
                         # with extra information about the value of
-                        # the kleio attribute (group attribute or descendatns)
+                        # the kleio attribute (group attribute or descendants)
                         # normally this would be comments or original wording
                         # of the_type or the_date.
                         # we need to use the name of the ORM attribute
@@ -222,12 +222,12 @@ def entities_with_attribute(
                         xtra_col_name = column_name
                     original = value.get("original", None)
                     if original is not None:
-                        xtra_col_name = f"{xtra_col_name}.original"
-                        extra_info_edits.append((row_number, xtra_col_name, original))
+                        org_xtra_col_name = f"{xtra_col_name}.original"
+                        extra_info_edits.append((row_number, org_xtra_col_name, original))
                     comment = value.get("comment", None)
                     if comment is not None:
-                        xtra_col_name = f"{xtra_col_name}.comment"
-                        extra_info_edits.append((row_number, xtra_col_name, comment))
+                        cmt_xtra_col_name = f"{xtra_col_name}.comment"
+                        extra_info_edits.append((row_number, cmt_xtra_col_name, comment))
         for row_number, xtra_col_name, avalue in extra_info_edits:
             if xtra_col_name not in df.columns:
                 df[xtra_col_name] = None
@@ -285,11 +285,12 @@ def entities_with_attribute(
                                     xtra_col_name2 = column_name
                                 original = value.get("original", None)
                                 if original is not None:
-                                    xtra_col_name2 = f"{xtra_col_name2}.original"
-                                    extra_info_edits.append((row_number, xtra_col_name2, original))
+                                    org_xtra_col_name2 = f"{xtra_col_name2}.original"
+                                    extra_info_edits.append((row_number, org_xtra_col_name2, original))
                                 comment = value.get("comment", None)
                                 if comment is not None:
-                                    xtra_col_name2 = f"{xtra_col_name2}.comment"
+                                    cmt_xtra_col_name2 = f"{xtra_col_name2}.comment"
+                                    extra_info_edits.append((row_number, cmt_xtra_col_name2, comment))
                     for row_number, xtra_col_name2, avalue in extra_info_edits:
                         if xtra_col_name2 not in df2.columns:
                             df2[xtra_col_name2] = None
