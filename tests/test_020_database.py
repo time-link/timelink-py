@@ -163,3 +163,12 @@ def test_describe(dbsystem: TimelinkDatabase):
     dbsystem.describe(KleioImportedFile, show=True)
     dbsystem.describe(Person, show=True)
     pass
+
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_pperson_prints_kleio(dbsystem: TimelinkDatabase, capsys):
+    """Test that pperson prints the Kleio representation of a person."""
+    with dbsystem.session() as session:
+        one_person = session.query(Person).first()
+        dbsystem.pperson(one_person.id, session=session)
+        captured = capsys.readouterr()
+        assert len(captured.out) > 0

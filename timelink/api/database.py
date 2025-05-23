@@ -1444,7 +1444,7 @@ class TimelinkDatabase:
         See :func:`timelink.api.models.person.get_person`
 
         """
-        if "db" not in kwargs and "session" not in kwargs:
+        if kwargs.get("session", None) is None and kwargs.get("db", None) is None:
             kwargs["db"] = self
         return timelink.api.models.person.get_person(*args, **kwargs)
 
@@ -1511,7 +1511,15 @@ class TimelinkDatabase:
 
     def pperson(self, id: str, session=None):
         """Prints a person in kleio notation"""
-        print(self.get_person(id=id, session=session).to_kleio())
+        if session is None:
+            session = self.session()
+            p = self.get_person(id=id, session=session)
+            # get session from object p
+            kleio = p.to_kleio()
+        else:
+            p = self.get_person(id=id, session=session)
+            kleio = p.to_kleio()
+        print(kleio)
 
     def as_schema(self) -> TimelinkDatabaseSchema:
         """Return a Pydantic schema for this database"""
