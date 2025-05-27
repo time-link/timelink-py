@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=10
+kleio$gacto2.str/translations=11
    fonte$ivcc/tipo=fonte-jesuita/ano=1719/obs="""
       Franco (S.I.), Antonio, Imagem da virtude em o noviciado da Companhia de
       Jesus no Real Collegio de Jesus de Coimbra em Portugal
@@ -78,8 +78,8 @@ kleio$gacto2.str/translations=10
 
             viagem$Portugal Índia/0/0/1541/id=ivc-francisco-xavier-his4-38
 
-         n$Paulo Camarte/id=ivc-paulo-camarte
-            ls$nacionalidade/Itália
+               n$Paulo Camarte/id=ivc-paulo-camarte
+                  ls$nacionalidade/Itália
 
          n$Simão Rodrigues/id=ivc-simao-rodrigues/obs=Membro do grupo inicial de Jesuítas, primeiro em Portugal com Francisco Xavier.
             ls$estadia/Mosteiro de Santo Antão-o-Velho/15410000/obs="Na raiz do monte do castelo de Lisboa"

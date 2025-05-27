@@ -2,6 +2,12 @@
 History
 =======
 
+1.1.26 (2025-05-27)
+-------------------
+
+- Fixes bug in processing of comments and original wording in pandas.entities_with_attribute()
+- Fixes TimelinkDatabase.pperson when no session is provided
+
 1.1.25 (2025-04-06)
 -------------------
 

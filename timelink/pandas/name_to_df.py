@@ -24,7 +24,7 @@ def pname_to_df(
     name_particles=None,
     sql_echo=False,
 ):
-    """name_to_df return df of people with a matching name
+    """pname_to_df return df of people with a matching name
 
     Args:
         name: name to search for

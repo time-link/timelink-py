@@ -320,7 +320,7 @@ class TimelinkDatabase:
                     select(text("1")).where(text("EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"))
                 )
                 if result.scalar() is not None:
-                    logging.warning("link_status found, delete it")
+                    logging.warning("link_status found, deleting it")
                     result = connection.execute(text("DROP TYPE IF EXISTS link_status CASCADE"))
                     # result = connection.execute(
                     #     text("CREATE TYPE link_status AS ENUM ('valid', 'invalid', 'possible')")

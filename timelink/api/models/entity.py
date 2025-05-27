@@ -350,9 +350,11 @@ class Entity(Base):
         self.update_group_elements_to_columns()
         column = Entity.group_elements_to_columns.get(self.groupname, {}).get(
             element, None)
-        if column is None:
+        if column is None and self.extra_info :
             names = {el['kleio_element_name']: el['entity_column_class'] for el in self.extra_info.values()}
             column = names.get(element, None)
+        else:  # we have no information about the element to colunn mapping, so we use the element name
+            column = element
         return column
 
     def get_element_for_column(self, column: str):

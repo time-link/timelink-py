@@ -41,7 +41,7 @@ setup(
     install_requires=[
         'typer',
         'fastapi',
-        'maplotlib',
+        'matplotlib',
         'sqlalchemy',
         'sqlalchemy-utils',
         'alembic',

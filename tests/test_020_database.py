@@ -164,6 +164,7 @@ def test_describe(dbsystem: TimelinkDatabase):
     dbsystem.describe(Person, show=True)
     pass
 
+
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_pperson_prints_kleio(dbsystem: TimelinkDatabase, capsys):
     """Test that pperson prints the Kleio representation of a person."""
