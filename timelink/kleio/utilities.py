@@ -144,6 +144,8 @@ def render_with_extra_info(element_name, element_value, extra_info, **kwargs) ->
 
 def convert_timelink_date(tl_date: str, format="%Y%m%d") -> datetime:
     """Convert a Timelink date in the format YYYYMMDD to a Python datetime
+    If the date is incomplete or correspond to a rage it will return a
+    value that represents a sortable aproximation of the date.
 
     Args:
     tl_date: a string representing a date in the format YYYYMMDD
@@ -197,28 +199,34 @@ def format_timelink_date(tl_datet) -> str:
 
     -- from Kleio server issue #1
     value is a sortable representation of the date as a number.
+
         in single dates is a 8 digit number with 00 in the missing month or day if any.
         15600000
         15600215
+
         for relative dates (>1580) is a 8 digit number with 0.3 added for "after" dates
         and 0.3 subtracted for before dates.
+
         >1580 has value: "15800000.3"
         <1640 has value: "16399999.7"
+
         for ranges is a 8 digit number equal to the "from" date and decimal part equal to the "to" date.
         "1580:1640" has value "15800000.16400000"
+
         for open ranges where only "from" date or "to" date is available values is an 8
         digit number with 0.1 added for open ended ranges and 0.1 subtracted for open
         start ranges.
+
         * "1580:" has value "15800000.1"
         * ":1640" has value "16399999.9"
 
         note that it is possible to infer the date type by computing type=value-round(value)
-        type = 0 -> single date round(value)
-        type = 0.3 -> after date round(value)
-        type = -0.3 -> date before round(value)
-        type = 0.1 -> open ended range starting at round(value)
-        type = -0.1 > open start rand ending at round(value)
-        other = range from round(value) to value-round(value)
+        * type = 0 -> single date round(value)
+        * type = 0.3 -> after date round(value)
+        * type = -0.3 -> date before round(value)
+        * type = 0.1 -> open ended range starting at round(value)
+        * type = -0.1 > open start rand ending at round(value)
+        * other = range from round(value) to value-round(value)
 
     """
     # return empty string if tl_datet is None

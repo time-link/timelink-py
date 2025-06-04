@@ -96,6 +96,10 @@ def test_format_timelink_date_open_ended_range():
     assert format_timelink_date("15800000.1") == "1580:"
 
 
+def test_format_timelink_date_open_started_range():
+    assert format_timelink_date("16629999.7") == "<1663"
+
+
 def test_format_timelink_date_open_start_range():
     assert format_timelink_date("16399999.9") == ":1640"
 
