@@ -1,8 +1,7 @@
 import timelink
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_postgres_dbnames
-import os, asyncio, time
-import pandas
+import os, asyncio
 import logging
 
 logging.basicConfig(level=logging.INFO)
