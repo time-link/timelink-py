@@ -1,34 +1,15 @@
-import timelink
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_postgres_dbnames
-import os, asyncio
-import logging
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
-logging.basicConfig(level=logging.INFO)
 
 def run_imports_sync(db):
-    db.update_from_sources()
+    print("Attempting to update database from sources...")
+    db.update_from_sources(match_path= True)
+    print("Database successfully updated!")
 
-async def run_imports_async(db):
-    await asyncio.to_thread(run_imports_sync, db)
-
-
-def run_kserver_setup():
-
-    # Timelink Information
-    local_version = timelink.version
-    last_version = timelink.get_latest_version()
-    print(f"Local version {local_version}, last version {last_version}")
-
-    # Timelink Home and Server
-    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home())
-    print("Timelink Home set to: " + timelink_home)
-    kserver = KleioServer.start(kleio_home=timelink_home)
-    print("Kleio Server URL: " + kserver.get_url())
-    print("Kleio Server Token: " + kserver.get_token()[0:6])
-    print("Kleio Server Home: " + kserver.get_kleio_home())
-
-    return kserver, timelink_home
 
 def run_db_setup(khome, db_type):
 
@@ -46,27 +27,33 @@ def run_db_setup(khome, db_type):
         print("Database type is set to Postgres.")
         print("Databases found in directory: ", get_postgres_dbnames())
 
-        db = TimelinkDatabase(db_type='postgres',
-                                db_name='timelink-web')
-
+        db = TimelinkDatabase(db_type='postgres', db_name='timelink-web')
 
     return db
 
 
 
-def run_setup():
+async def run_setup():
+    """ Load configuration environment variables, connect to kleio server and make the database."""
 
-    # KServer setup
-    kserver, timelink_home = run_kserver_setup()
+    # Load Kleio configuration from the environment.
+    load_dotenv(Path.home() / ".timelink" / ".env")
+    timelink_url = os.getenv('TIMELINK_SERVER_URL')
+    timelink_token = os.getenv('TIMELINK_SERVER_TOKEN')
+    timelink_home  = os.getenv('TIMELINK_HOME')
+    db_type  = os.getenv('TIMELINK_DB_TYPE')
+
+    # Attach to server.
+    kserver = KleioServer.start(kleio_admin_token= timelink_token, kleio_home= timelink_home)
+
+    print(f"Connected to Kleio Server at {timelink_url}, home is {timelink_home}")
 
     # Database setup
-    db = run_db_setup(timelink_home, os.getenv('DB_TYPE', 'sqlite'))
+    db = run_db_setup(timelink_home, db_type)
+    db.set_kleio_server(kserver)
 
-    # Update database from sources in the background (disabled for now)
-    # asyncio.create_task(run_imports_async(db))
 
     return kserver, db
-
 
 if __name__ == "__main__":
     run_setup()

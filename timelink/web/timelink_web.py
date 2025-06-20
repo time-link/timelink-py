@@ -1,15 +1,40 @@
-from nicegui import ui
-from timelink_web_utils import run_setup
+from nicegui import ui, app
+from timelink_web_utils import run_setup, run_imports_sync
+from sqlalchemy import select, func
 import pandas as pd
-import logging
+import sys
+from contextlib import contextmanager
+import asyncio
+import string
 
-logging.basicConfig(level=logging.INFO)
 
+port = 8000
 kserver = None
 database = None
-kserver, database = run_setup()
+
+async def initial_setup():
+    """Connect to the Kleio Server and load settings found on the .env"""
+    global database, kserver
+    kserver, database = await run_setup()
+
+
+def show_kleio_info():
+    """Helper function to display Kleio Server Path and other variables."""
+    dialog = ui.dialog()
+    with dialog, ui.card() as card:
+
+        ui.label('Kleio Server Overview')
+        ui.markdown(f"""
+        - **Kleio URL:** {kserver.url}  
+        - **Kleio Home:** {kserver.kleio_home}
+        """)
+        ui.button('Close', on_click=dialog.close)
+
+    dialog.open()
+
 
 def show_table():
+    """Helper function to display database."""
     dialog = ui.dialog()
     with dialog, ui.card() as card:
         ui.label('Database Table Overview')
@@ -33,35 +58,42 @@ def show_table():
     dialog.open()
 
 
-@ui.page('/details/{item_id}')
-def explore_id_page(item_id: str):
-    # Include the header on the details page
-    with ui.header().classes(replace='row items-center') as header:
-        with ui.tabs() as tabs:
-            # You might want to make one of these tabs active or provide a different set of tabs for the details page
-            ui.tab('explore', label="Explore")
-            ui.tab('faq', label="Status Check")
+@contextmanager
+def disable(button: ui.button):
+    button.disable()
+    try:
+        yield
+    finally:
+        button.enable()
 
-    ui.label(f'This page will display information on ID: {item_id}')
-    # The 'text' variable is not available in this scope, so navigate back to the root
-    ui.button('Back to Explore Page', on_click=lambda: ui.navigate.to('/'))
+
+async def update_from_sources(button: ui.button) -> None:
+    """ Attempt to update database from sources."""
+
+    with disable(button):
+        ui.notify("Updating database from sources...")
+        try:
+            await asyncio.to_thread(run_imports_sync, database)
+            ui.notify("Done updating the database!", type="positive")
+        except Exception as e:
+            ui.notify(f"ERROR: Database import failed: {e}", type="negative")
 
 
 @ui.page('/')
 def index():
 
     # Helper functions
-    def back_to_explore():
+    def back_to_explore_cleanup():
         """Handle returning from the details of a person."""
         details_column.visible = False
+        names_column.visible = False
         search_column.visible = True
         
         if text_input:
             text_input.value = ''
 
     with ui.header().classes(replace='row items-center') as header:
-        with ui.tabs(value="home") as tabs:
-            ui.tab('home', label="Home")
+        with ui.tabs()as tabs:
             ui.tab('explore', label="Explore")
             ui.tab('faq', label="Status Check")
 
@@ -69,41 +101,96 @@ def index():
         ui.label('Footer')
 
     with ui.tab_panels(tabs).classes('w-full') as timelink_panels:
-        with ui.tab_panel('home'):
-            """Timelink Home Panel"""
-            ui.markdown("### Welcome to the Timelink Web Interface!")
         with ui.tab_panel('explore'):
             """Explore Page - search_column will be used for an overview of the available data. details_column will be used for information on specific queries."""
             search_column = ui.column().classes('w-full')
             details_column = ui.column().classes('w-full')
+            names_column = ui.column().classes('w-full')
             details_column.visible = False
+            names_column.visible = False
+
 
             with search_column:
-                ui.markdown('#### **Explore Page**').classes('mb-4')
-                text_input = ui.input(label='Explore Database', placeholder='ID of something (person, source, act, etc..').classes('w-80')
-                search_button = ui.button('Search')
+                ui.markdown('#### **Explore Database**').classes('mb-4 text-orange-500')
+                ui.markdown('##### **Search by ID**').classes('mb-4 text-orange-500')
+                
+                with ui.row():
+                    text_input = ui.input(label='Explore Database', placeholder='ID of something (person, source, act, etc..)').classes('w-80 items-center')
+                    search_button = ui.button('Search').classes("items-center mt-4 ml-3")
+                ui.markdown('##### **Names**').classes('mb-4 text-orange-500')
 
+                with ui.row():
+                    for letter in string.ascii_uppercase + '?':
+                        ui.button(letter, on_click=lambda _, l=letter: load_names(l))
+                
 
             def load_details(item_id: str):
+                
                 search_column.visible = False
                 details_column.clear()
                 details_column.visible = True
 
                 with details_column:
-                    ui.label(f'Displaying details for: {item_id}').classes('text-lg font-semibold mt-4')
-                    ui.label(f'You searched for: {item_id}').classes('text-md mt-2')
-                    ui.button('Back to Explore Page', on_click=back_to_explore)
+                    ui.markdown('##### **Entity Details**').classes('mb-4 text-orange-500')
+                    try:
+                        with database.session() as session:
+                            entity = database.get_entity(item_id, session=session)
+                            entity_kleio = entity.to_kleio()
+                        ui.label(f'Displaying details for: {item_id}').classes('text-lg font-semibold mt-4')
+                        ui.label(entity_kleio)
+
+                    except Exception as e:
+                        ui.label(f'Could not load details for selected id {item_id}').classes('text-red-500 font-semibold mt-4')
+
+                    ui.button('Back to Explore Page', on_click=back_to_explore_cleanup)
+
+            
+            def load_names(letter: str):
+                search_column.visible = False
+                names_column.clear()
+                names_column.visible = True
+
+                with names_column:
+                    ui.markdown(f'#### **All names started with {letter}**').classes('mb-4 text-orange-500')
+
+                    try:
+                        person_table = database.get_table('persons')
+
+                        stmt = (
+                            select(person_table.c.name, func.count().label("name_count"))
+                            .where(person_table.c.name.like(f"{letter}%"))
+                            .group_by(person_table.c.name)
+                            .order_by(func.count().desc())
+                        )
+
+                        with database.session() as session:
+                            names_results = session.execute(stmt)
+                            names_df = pd.DataFrame(names_results)
+
+                        ui.table.from_pandas(names_df, column_defaults={"sortable": True}).classes("max-h-50")
+
+                    except Exception as e:
+                        ui.label(f'Could not load details for selected letter {letter}.').classes('text-red-500 font-semibold mt-4')
+                        print(e)
+
+                    ui.button('Back to Explore Page', on_click=back_to_explore_cleanup)
 
             search_button.on('click', lambda: load_details(text_input.value) if text_input.value else ui.notify("You need a valid input to search the database."))
             text_input.on('keydown.enter', lambda: load_details(text_input.value) if text_input.value else ui.notify("You need a valid input to search the database."))
+
         
         with ui.tab_panel('faq'):
             """Currently used as a debug page to check for additional information."""
-            ui.markdown(f"""
-            - **Kleio URL:** {kserver.url}  
-            - **Kleio Home:** {kserver.kleio_home}
-            """)
-            ui.button("Display Database Status", on_click=show_table)
+            with ui.row():
+                ui.button("Timelink Server Status", on_click=show_kleio_info)
+                ui.button("Database Status", on_click=show_table)
+                ui.button("Update Database from Sources", on_click=lambda this_button: update_from_sources(this_button.sender))
+
+if "--port" in sys.argv:
+    idx = sys.argv.index("--port") + 1
+    if idx < len(sys.argv):
+        port = int(sys.argv[idx])
 
 
-ui.run(title='Timelink Web Interface')
+app.on_startup(initial_setup)
+ui.run(title='Timelink Web Interface', port=int(port))
