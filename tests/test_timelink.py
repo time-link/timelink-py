@@ -83,7 +83,7 @@ def test_db_upgrade():
     # chose a random key from dict db_list
     db_key = list(db_list.keys())[random.randint(0, len(db_list) - 1)]
     #
-    db_key = 17
+    # db_key = 17
     print(f"db_key: {db_key} db_list: {db_list[db_key]}")
     result = runner.invoke(app, ["db", "upgrade", str(db_key)])
     print(f"Test result {result.exit_code}")
