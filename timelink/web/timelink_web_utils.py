@@ -1,4 +1,4 @@
-from nicegui import ui
+from nicegui import ui, events
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_postgres_dbnames
 import os
@@ -127,6 +127,51 @@ def load_data(query: str, database: TimelinkDatabase):
     except Exception as e:
         print(f"Couldn't load info from table '{tablename}': {e}")
         return None
+
+
+def add_description_column(df: pd.DataFrame, database: TimelinkDatabase, session):
+    """Add an additional description column to a given dataframe that displays information on the ID.
+    
+        Args:
+            df          : Dataframe to be filled with descriptions.
+            database    : The TimeLinkDatabase that contains information on the ID.
+
+    """
+
+    df["description"] = df["id"].apply(lambda x: str(database.get_entity(x, session=session)))
+
+    return df
+
+
+
+def pre_process_attributes_df(df_to_process: pd.DataFrame, attr_type: str):
+    """Pre-process a dataframe to retrieved with entities_with_attributes to be displayable on an AG Grid.
+    
+        Args:
+            df_to_process   : Dataframe with the information queried from entities_with_attributes
+            attr_type       : the name of the attribute the table is being built for.
+    """
+
+
+    processed_pd = df_to_process.copy()
+    if f'{attr_type}.extra_info' in processed_pd.columns:
+        processed_pd[f'{attr_type}.extra_info'] = processed_pd[f'{attr_type}.extra_info'].astype(str)
+
+    processed_pd.columns = [c.replace('.', '_') for c in processed_pd.columns]
+
+    col_definitions = []
+    for c in processed_pd.columns:
+        col_def = {'headerName': c.replace(f'{attr_type}_', '').upper(), 'field': c}
+        
+        if c.lower() == 'id':
+            col_def['cellClass'] = 'highlight-cell'
+        elif c.lower().endswith('extra_info'):
+            col_def.update({'wrapText': True, 'autoHeight': True, 'word-break': 'break-word'})
+        elif c.lower() == 'description':
+            col_def.update({'wrapText': True, 'autoHeight': True, 'word-break': 'break-word', 'hide': True})
+        col_definitions.append(col_def)
+
+    return processed_pd, col_definitions
 
 
 

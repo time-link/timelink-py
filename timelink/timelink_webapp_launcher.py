@@ -7,6 +7,7 @@ from timelink.kleio import KleioServer
 import os
 import psutil
 import sys
+from sys import platform
 
 
 app = typer.Typer()
@@ -43,8 +44,12 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
 
     typer.echo(f"Starting Timelink project at: {kserver.get_kleio_home()} on port {kserver.get_url()[-4:]}")
 
+    path_str = str(Path(timelink_home).resolve())
+    if platform.startswith("win"):
+        path_str = path_str.replace("\\", "\\\\")
+
     with TIMELINK_ENV_PATH.open("w") as f:
-        f.write(f'TIMELINK_HOME="{str(Path(timelink_home).resolve()).replace("\\", "\\\\")}"\n')
+        f.write(f'TIMELINK_HOME="{path_str}"\n')
         f.write(f'TIMELINK_SERVER_URL="{kserver.get_url()}"\n')
         f.write(f'TIMELINK_SERVER_TOKEN="{kserver.get_token()}"\n')
         f.write(f"TIMELINK_DB_TYPE={database}\n")
