@@ -629,6 +629,7 @@ class TimelinkDatabase:
 
         pom_classes = PomSomMapper.get_pom_classes(session)
         for pom_class in pom_classes:
+            pom_class = session.merge(pom_class)  # Ensure attached to session
             if pom_class.table_name not in self.db_base_table_names():
                 # this is dynamic pom_class
                 pom_class.set_as_dynamic_pom()
