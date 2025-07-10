@@ -1,4 +1,4 @@
-from nicegui import ui, events
+from nicegui import ui
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_postgres_dbnames
 import os
@@ -6,6 +6,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
+from timelink.api.models import Entity
+from timelink.api.schemas import EntityAttrRelSchema
 
 def run_imports_sync(db):
     print("Attempting to update database from sources...")
@@ -129,16 +131,17 @@ def load_data(query: str, database: TimelinkDatabase):
         return None
 
 
-def add_description_column(df: pd.DataFrame, database: TimelinkDatabase, session):
+def add_description_column(df: pd.DataFrame, database: TimelinkDatabase, id_column: str, session):
     """Add an additional description column to a given dataframe that displays information on the ID.
     
         Args:
             df          : Dataframe to be filled with descriptions.
             database    : The TimeLinkDatabase that contains information on the ID.
+            id_column   : The column from which the description should be retrieved
 
     """
 
-    df["description"] = df["id"].apply(lambda x: str(database.get_entity(x, session=session)))
+    df["description"] = df[id_column].apply(lambda x: str(database.get_entity(x, session=session)))
 
     return df
 
@@ -154,25 +157,73 @@ def pre_process_attributes_df(df_to_process: pd.DataFrame, attr_type: str):
 
 
     processed_pd = df_to_process.copy()
-    if f'{attr_type}.extra_info' in processed_pd.columns:
-        processed_pd[f'{attr_type}.extra_info'] = processed_pd[f'{attr_type}.extra_info'].astype(str)
+
+    processed_pd = processed_pd.drop(columns=[col for col in processed_pd.columns if col.endswith('extra_info')])
 
     processed_pd.columns = [c.replace('.', '_') for c in processed_pd.columns]
 
     col_definitions = []
     for c in processed_pd.columns:
-        col_def = {'headerName': c.replace(f'{attr_type}_', '').upper(), 'field': c}
+        col_def = {'headerName': c.replace(f'{attr_type}_', '').upper(), 'field': c, 'resizable': True, 'autoHeight': True}
         
         if c.lower() == 'id':
             col_def['cellClass'] = 'highlight-cell'
-        elif c.lower().endswith('extra_info'):
-            col_def.update({'wrapText': True, 'autoHeight': True, 'word-break': 'break-word'})
         elif c.lower() == 'description':
-            col_def.update({'wrapText': True, 'autoHeight': True, 'word-break': 'break-word', 'hide': True})
+            col_def.update({'wrapText': True, 'hide': True, 'minWidth': 300})
         col_definitions.append(col_def)
 
     return processed_pd, col_definitions
 
+
+def parse_entity_details(entity: Entity):
+    """Parse an entity's detailss to display on the entity's page.
+    
+        Args:
+
+        entity      : The entity with attributes to parse.
+
+    """
+
+    mr_schema = EntityAttrRelSchema.model_validate(entity)
+
+    mr_schema_dump = mr_schema.model_dump(exclude=['contains'])
+    
+    grouped = {}
+
+    for attr in mr_schema_dump['attributes']:
+
+        date = format_date(attr.get("the_date", "0"))
+        key = attr.get("the_type", "")
+        val = attr.get("the_value", "")
+        obs = attr.get("obs", "")
+
+        if date not in grouped:
+            grouped[date] = []
+        
+        entry = {key: val}
+        if obs:
+            entry["obs"] = obs
+        
+        grouped[date].append(entry)
+
+    return grouped, mr_schema_dump['rels_in'], mr_schema_dump['rels_out']
+
+
+def format_date(raw):
+    raw = str(raw)
+    if len(raw) == 8:
+        year = raw[:4]
+        month = raw[4:6]
+        day = raw[6:8]
+        return f"{year}-{month}-{day}"
+    elif len(raw) == 6:
+        year = raw[:4]
+        month = raw[4:6]
+        return f"{year}-{month}-00"
+    elif len(raw) == 4:
+        return f"{raw}-00-00"
+    else:
+        return "0000-00-00"
 
 
 if __name__ == "__main__":

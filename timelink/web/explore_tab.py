@@ -3,7 +3,7 @@ import pandas as pd
 import string
 from sqlalchemy import select, func, and_
 from timelink.pandas import entities_with_attribute
-from timelink.api.schemas import EntityAttrRelSchema
+from timelink.api.models import Entity
 
 
 class ExploreTab:
@@ -31,6 +31,7 @@ class ExploreTab:
         self.attribute_type_search = None
         self.attribute_value_search = None
         self.show_desc = False
+        self.relations = ["eclesiástica", "geografica", "institucional", "parentesco", "profissional", "sociabilidade", "identification"]
 
     def create_ui(self):
         """
@@ -55,8 +56,8 @@ class ExploreTab:
             with ui.row():
                 for letter in string.ascii_uppercase + '?':
                     ui.label(letter)\
-                        .on('click', lambda _, clicked_letter=letter: self._display_info(clicked_letter, "names", "persons"))\
-                        .tooltip(f"Show all names started with {letter}").classes('mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
+                        .on('click', lambda _, clicked_letter=letter: self._display_tables(clicked_letter, "names", "persons"))\
+                        .tooltip(f"Show all names started with {letter}").classes('highlight-cell mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
 
             # Search by Attributes
             ui.label('Attributes').classes('mb-4 text-orange-500 text-xl font-bold')
@@ -66,10 +67,10 @@ class ExploreTab:
                     grouped = attr_df.groupby("the_type")["count"].sum().to_dict()
                     for result in attr_df["the_type"].unique():
                         with ui.row().classes("items-center gap-2 no-wrap"):
-                            ui.label(result).on('click', lambda _, clicked_attr=result: self._display_info(clicked_attr, "statistics", "attributes"))\
-                                .tooltip(f"Show all the values with {result}").classes('mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
+                            ui.label(result).on('click', lambda _, clicked_attr=result: self._display_tables(clicked_attr, "statistics", "attributes"))\
+                                .tooltip(f"Show all the values with {result}").classes('highlight-cell mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
                             ui.label(str(grouped.get(result, 0))).on('click', lambda _, clicked_attr_count=result: self._display_entity_with_attributes(attr_type=clicked_attr_count))\
-                                .tooltip(f"Show all results with {result}").classes('-mt-10 cursor-pointer text-xs text-blue-500 font-semibold underline')
+                                .tooltip(f"Show all results with {result}").classes('highlight-cell -mt-10 cursor-pointer text-xs text-blue-500 font-semibold underline')
                 else:
                     ui.label("No data found.").classes('mb-4 italic underline text-gray-500')
 
@@ -82,7 +83,7 @@ class ExploreTab:
                     for result in func_df["the_value"].tolist():
                         with ui.row().classes("items-center gap-2 no-wrap"):
                             ui.label(result).on('click', lambda _, clicked_func=result: self._display_functions_view(clicked_func))\
-                                .tooltip(f"Show all the values with {result}").classes('mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
+                                .tooltip(f"Show all the values with {result}").classes('highlight-cell mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
                             ui.label(str(grouped.get(result, 0))).classes('-mt-10 text-xs text-blue-500 font-semibold')
                 else:
                     ui.label("No data found.").classes('mb-4 italic underline text-gray-500')
@@ -95,10 +96,10 @@ class ExploreTab:
                     grouped = rel_df.groupby("the_type")["count"].sum().to_dict()
                     for result in rel_df["the_type"].tolist():
                         with ui.row().classes("items-center gap-2 no-wrap"):
-                            ui.label(result).on('click', lambda _, clicked_rel=result: self._display_info(clicked_rel, "statistics", "relations"))\
-                                .tooltip(f"Show all the values with {result}").classes('mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
+                            ui.label(result).on('click', lambda _, clicked_rel=result: self._display_tables(clicked_rel, "statistics", "relations"))\
+                                .tooltip(f"Show all the values with {result}").classes('highlight-cell mb-4 cursor-pointer text-lg text-blue-500 font-semibold underline')
                             ui.label(str(grouped.get(result, 0))).on('click', lambda _, clicked_rel_count=result: self._display_relations_view(rel_type=clicked_rel_count))\
-                                .tooltip(f"Show all results with {result}").classes('-mt-10 cursor-pointer text-xs text-blue-500 font-semibold underline')
+                                .tooltip(f"Show all results with {result}").classes('highlight-cell -mt-10 cursor-pointer text-xs text-blue-500 font-semibold underline')
                 else:
                     ui.label("No data found.").classes('mb-4 italic underline text-gray-500')
 
@@ -110,7 +111,7 @@ class ExploreTab:
                 advanced_options_button = ui.button('Show Persons').classes("items-center mt-4 ml-3 mb-4")
 
             # Show database sources.
-            ui.label("Show Sources").on('click', lambda x: self._display_info(x, "sources", "sources")).classes('mb-4 cursor-pointer text-orange-500 text-xl underline')
+            ui.label("Show Sources").on('click', lambda x: self._display_tables(x, "sources", "sources")).classes('mb-4 cursor-pointer text-orange-500 text-xl underline')
 
             # Update functionality of text searches.
             search_button.on('click', self._handle_id_search)
@@ -123,7 +124,7 @@ class ExploreTab:
     def _handle_id_search(self):
         """Handles the search by ID function."""
         if self.text_input.value:
-            self._load_entity_details(self.text_input.value, " ")
+            self._load_entity_details(self.text_input.value)
         else:
             ui.notify("You need a valid input to search the database.")
 
@@ -158,12 +159,15 @@ class ExploreTab:
         self.show_desc = not self.show_desc
         grid.run_grid_method('setColumnVisible', 'description', self.show_desc)
 
-        if self.show_desc:
-            grid.run_grid_method('autoSizeAllColumns')
-        else:
-            grid.run_grid_method('sizeColumnsToFit')
+        self._fit_columns(grid)
 
-    def _display_info(self, info_to_display: str, table_type: str, table_to_retrieve: str = None):
+
+    def _fit_columns(self, grid):
+        grid.run_grid_method('autoSizeAllColumns')
+        grid.run_grid_method('sizeColumnsToFit')
+        
+
+    def _display_tables(self, info_to_display: str, table_type: str, table_to_retrieve: str = None):
 
         """
         Queries the database for information on different tables and displays them after.
@@ -176,7 +180,7 @@ class ExploreTab:
 
             # To query names table for available names starting with X letter
             if table_type == "names":
-                ui.markdown(f'#### **All names started with {info_to_display}**').classes('mb-4 text-orange-500')
+                ui.markdown(f'##### **All names started with {info_to_display}**').classes('mb-4 text-orange-500')
 
                 try:
                     person_table = self.database.get_table(table_to_retrieve)
@@ -222,7 +226,7 @@ class ExploreTab:
             # For attributes found inside other tables.
             elif table_type == "statistics":
 
-                ui.markdown(f'#### **Statistics for {info_to_display}**').classes('mb-4 text-orange-500')
+                ui.markdown(f'##### **Statistics for {info_to_display}**').classes('mb-4 text-orange-500')
 
                 try:
                     table = self.database.get_table(table_to_retrieve)
@@ -267,7 +271,7 @@ class ExploreTab:
             # For "Show Sources" button
             elif table_type == "sources":
 
-                ui.markdown(f'#### **Sources in Database**').classes('mb-4 text-orange-500')
+                ui.markdown(f'##### **Sources in Database**').classes('mb-4 text-orange-500')
 
                 try:
                     table = self.database.get_table(table_to_retrieve)
@@ -296,7 +300,7 @@ class ExploreTab:
                             "paginationPageSize": 50,
                             "paginationPageSizeSelector": [10, 30, 50, 100],
                             'rowData': table_pd.to_dict("records"),
-                        }).classes('h-[70vh]').on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"], " ") if e.args["colId"] == "id" else None)
+                        }).classes('h-[70vh]').on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id" else None)
                         table_ag.on('firstDataRendered', lambda: table_ag.run_grid_method('autoSizeAllColumns'))
                         ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
                     else:
@@ -346,7 +350,7 @@ class ExploreTab:
                         "paginationPageSize": 50,
                         "paginationPageSizeSelector": [10, 30, 50, 100],
                         'rowData': table_pd.to_dict("records"),
-                    }).classes('h-[70vh]').on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"],  " ") if e.args["colId"] == "id" else None)
+                    }).classes('h-[70vh]').on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id" else None)
                     ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
 
                 else:
@@ -358,55 +362,292 @@ class ExploreTab:
                 print(e)
                 ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
 
-    def _load_entity_details(self, item_id: str, title: str = None):
-        "Page to load details on a specific entity."
+    def _load_entity_details(self, item_id: str):
+        "Maps to the correct loading function for a specific entity."
+
+        self._detail_column_cleanup()
+
+        display_func_map = {
+            "person": self._display_person,
+            "geoentity": self._display_geoentity,
+            "act": self._display_act,
+            "source": self._display_act,
+            "relation": self._display_act
+        }
+
+        with self.details_column:
+            try:
+                with self.database.session() as session:
+                    entity = self.database.get_entity(item_id, session=session)
+                    if entity:
+                        display_func = display_func_map.get(entity.pom_class)
+                        if display_func:
+                            display_func(entity)
+                        else:
+                            ui.label(f"No page created for {entity.pom_class} yet.").classes('mb-4 text-lg font-bold text-red-500')
+                            ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                    else:
+                        ui.label(f"No entity with value {item_id} found.").classes('mb-4 text-lg font-bold text-red-500')
+                        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                
+
+            except Exception as e:
+                ui.label(f'Could not load details for selected entity.').classes('text-red-500 font-semibold mt-4')
+                ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                print(e)
+
+    def _display_person(self, entity: Entity):
+        "Page to load details on an entity of type person."
 
         self._detail_column_cleanup()
 
         with self.details_column:
-            try:
 
-                with self.database.session() as session:
-                    entity = self.database.get_entity(item_id, session=session)
-                    entity_kleio = entity.to_kleio()
-                    entity_mr = EntityAttrRelSchema.model_validate(entity)
-                    class_dict = entity_mr.model_dump(exclude=['contains'])
-                    
-                with ui.row():
-                    ui.label(title).on('click', lambda: self._display_names(title)).classes('cursor-pointer underline decoration-dotted text-xl font-bold')
-                    ui.label(f"id: {item_id}").classes('text-xl font-bold text-orange-500')
-                
-                with ui.row().classes('items-center gap-1'):
-                     ui.label('groupname:').classes('text-orange-500')
-                     ui.label(f'{class_dict["groupname"]}').classes('mr-3 text-blue-400')
-                     ui.label('sex:').classes('text-orange-500')
-                     ui.label("???").classes('mr-3 text-blue-400')
-                     ui.label('line:').classes('text-orange-500')
-                     ui.label(f'{class_dict["the_line"]}').classes('mr-3 text-blue-400')
+            with ui.row():
+                ui.label(entity.name).on('click', lambda: self._display_names(entity.name)).classes('cursor-pointer underline decoration-dotted text-xl font-bold')
+                ui.label(f"id: {entity.id}").classes('text-xl font-bold text-orange-500')
+            
+            with ui.row().classes('items-center gap-1'):
+                    ui.label('groupname:').classes('text-orange-500')
+                    ui.label(entity.groupname).classes('mr-3 text-blue-400')
+                    ui.label('sex:').classes('text-orange-500')
+                    ui.label(entity.sex).classes('mr-3 text-blue-400')
+                    ui.label('line:').classes('text-orange-500')
+                    ui.label(entity.the_line).classes('mr-3 text-blue-400')
+
+            parsed_attributes, parsed_relations_in, parsed_relations_out = self.timelink_web_utils.parse_entity_details(entity)
+            
+            with ui.card().tight().classes("w-full"):
+                with ui.tabs() as tabs:
+                    person_info_tab = ui.tab('p_info', label='Person Info').classes("w-full bg-blue-100 text-orange-500 font-bold")
+                with ui.tab_panels(tabs, value=person_info_tab).classes('w-full'):
+                    with ui.tab_panel(person_info_tab).classes("items-center"):
+                        with ui.grid(columns=9).classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                            ui.label("Year").classes("text-center")
+                            ui.label("Function").classes("text-center")
+                            ui.label("Attributes").classes("break-all col-span-4 text-center")
+                            ui.label("Relations").classes("text-center col-span-2 text-center")
+                            ui.label("Name").classes("text-center")
+                        
+                        with ui.grid(columns=9).classes("w-full items-start gap-4 text-xs"):
+                            ui.label("-").classes("ml-1 mt-1 mb-1")     #TODO: YEAR DETAILS - WHEN IS THE YEAR HERE AND WHEN IS IT IN ATTR?
+                            with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
+                                for function in parsed_relations_out:
+                                    if function["the_type"] not in self.relations:
+                                        with ui.row().classes("no-wrap"):
+                                            ui.label(f'{function["dest_name"]} : {function["the_value"]}').on(
+                                                "click", lambda _, id=function["destination"]: self._load_entity_details(id)).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
+                            with ui.column().classes("col-span-4 ml-1 mt-1 mb-1 items-righ"):
+                                for date, pairs in parsed_attributes.items():
+                                    with ui.row().classes("items-start mr-1 no-wrap"):
+                                        ui.label(date).classes("font-bold text-blue-500")
+                                        with ui.column():
+                                            for pair in pairs:
+                                                for key, value in pair.items():
+                                                    if key == "obs":
+                                                        continue
+                                                    obs = pair.get("obs", "")
+                                                    with ui.row().classes("no-wrap"):
+                                                        ui.label(key).on(
+                                                            "click", lambda _, k=key: self._display_tables(k, "statistics", "attributes")).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                        ui.label(":")
+                                                        ui.label(value).on(
+                                                            "click", lambda _, k=key, v=value: self._find_persons(attr_type=k, attr_value=v)).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                        if obs:
+                                                            ui.label(obs)
+                                                ui.separator()
+                            with ui.column().classes("col-span-2 ml-1 mt-1 mb-1"):
+                                    for rel in parsed_relations_in:
+                                        with ui.row().classes("no-wrap"):
+                                            ui.label("tem como")
+                                            ui.label(rel["the_value"]).on(
+                                                "click", lambda _, type=rel["the_type"], value=rel["the_value"], id=rel["org_name"]: self._display_relations_view(type, value, id, True)
+                                                ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+                                            ui.label(" : ")
+                                            ui.label(rel["org_name"]).on(
+                                                "click", lambda _, id=rel["origin"]: self._load_entity_details(id)).classes('highlight-cell cursor-pointer decoration-dotted')
+                                    for rel in parsed_relations_out:
+                                        if rel["the_type"] in self.relations:
+                                            with ui.row().classes("no-wrap"):
+                                                ui.label(rel["the_value"]).on(
+                                                    "click", lambda _, type=rel["the_type"], value=rel["the_value"], id=rel["dest_name"]: self._display_relations_view(type, value, id, False)
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                ui.label("de:").classes('-ml-3')
+                                                ui.label(rel["dest_name"]).on(
+                                                    "click", lambda _, id=rel["destination"]: self._load_entity_details(id)).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
+                            ui.label(entity.name)
+
+        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup)
 
 
-                ui.label("Person Info").classes('font-bold text-lg')
-                with ui.row().classes('w-full'):
-                    expected_cols = [
-                            {'headerName': 'Year', 'field': 'year'},
-                            {'headerName': 'Function', 'field': 'function'},
-                            {'headerName': 'Attributes', 'field': 'attr', 'wrapText': True, 'autoHeight': True, 'word-break': 'break-word'},
-                            {'headerName': 'Relations', 'field': 'rels'},
-                            {'headerName': 'Name', 'field': 'name'},
-                            ]
+    def _display_geoentity(self, entity: Entity):
+        "Page to load details on an entity of type person."
 
-                    ui.aggrid({
-                        'columnDefs': expected_cols,
-                        'rowData': [{"year" : "test1", "function" : "test2", "attr" : entity_kleio, "rels" : "test4", "name" : "test5"}],
-                    }).classes('h-[70vh]')
+        self._detail_column_cleanup()
 
-            except Exception as e:
-                ui.label(f'Could not load details for selected id {item_id}').classes('text-red-500 font-semibold')
-                print(e)
+        with self.details_column:
+
+            with ui.row():
+                ui.label(entity.name).on('click', lambda: self._display_geoentities(entity.name)).classes('cursor-pointer underline decoration-dotted text-xl font-bold')
+            
+            with ui.row().classes('items-center gap-1'):
+                    ui.label('id:').classes('text-orange-500')
+                    ui.label(entity.id).classes('mr-3 text-blue-400')
+                    ui.label('inside:').classes('text-orange-500')
+                    ui.label(entity.inside).on('click', lambda: self._load_entity_details(entity.inside)).classes('mr-3 cursor-pointer underline decoration-dotted')
+                    ui.label('Full file:').classes('text-orange-500')
+
+
+            parsed_attributes, parsed_relations_in, parsed_relations_out = self.timelink_web_utils.parse_entity_details(entity)
+            
+            with ui.card().tight().classes("w-full"):
+                with ui.tabs() as tabs:
+                    geo_info_tab = ui.tab('p_info', label='Geoentity Details').classes("w-full bg-blue-100 text-orange-500 font-bold")
+                with ui.tab_panels(tabs, value=geo_info_tab).classes('w-full'):
+                    with ui.tab_panel(geo_info_tab).classes("items-center"):
+                        with ui.grid(columns=8).classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                            ui.label("Year").classes("text-center")
+                            ui.label("Name").classes("text-center")
+                            ui.label("Geometry").classes("text-center")
+                            ui.label("Functions").classes("text-center")
+                            ui.label("Attributes").classes("text-center col-span-2")
+                            ui.label("Relations").classes("text-center col-span-2")
+
+                        with ui.grid(columns=8).classes("w-full items-start gap-4 text-xs"):
+                            ui.label("-").classes("ml-1 mt-1 mb-1")  
+                            ui.label(entity.name).classes("ml-1 mt-1 mb-1")
+                            ui.label(" ").classes("ml-1 mt-1 mb-1")  #TODO: GEOMETRY DETAILS
+                            with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
+                                for function in parsed_relations_out:
+                                    if function["the_type"] not in self.relations:
+                                        with ui.row().classes("no-wrap"):
+                                            ui.label(f'{function["dest_name"]} : {function["the_value"]}').on(
+                                                "click", lambda _, id=function["destination"]: self._load_entity_details(id)).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
+                            with ui.column().classes("col-span-2 ml-1 mt-1 mb-1 items-righ"):
+                                for _, pairs in parsed_attributes.items():
+                                    with ui.row().classes("items-start mr-1 no-wrap"):
+                                        with ui.column():
+                                            for pair in pairs:
+                                                for key, value in pair.items():
+                                                    if key == "obs":
+                                                        continue
+                                                    obs = pair.get("obs", "")
+                                                    with ui.row().classes("no-wrap"):
+                                                        ui.label(key).classes('font-bold')
+                                                        ui.label(":")
+                                                        ui.label(value)
+                                                        if obs:
+                                                            ui.label(obs)
+                            with ui.column().classes("col-span-2 ml-1 mt-1 mb-1"):
+                                    for rel in parsed_relations_in:
+                                        with self.database.session() as session:
+                                            original_entity = self.database.get_entity(rel["origin"], session=session)
+                                            with ui.row().classes("no-wrap"):
+                                                ui.label("tem como")
+                                                ui.label(rel["the_value"]).on(
+                                                    "click", lambda _, type=rel["the_type"], value=rel["the_value"], id=rel["org_name"]: self._display_relations_view(type, value, id, True)
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+                                                ui.label(" : ")
+                                                ui.label(original_entity.name).on(
+                                                    "click", lambda _, id=rel["origin"]: self._load_entity_details(id)).classes('highlight-cell cursor-pointer decoration-dotted')
+                                    for rel in parsed_relations_out:
+                                        if rel["the_type"] in self.relations:
+                                            with self.database.session() as session:
+                                                original_entity = self.database.get_entity(rel["origin"], session=session)
+                                                with ui.row().classes("no-wrap"):
+                                                    ui.label(rel["the_value"]).on(
+                                                        "click", lambda _, type=rel["the_type"], value=rel["the_value"], id=rel["dest_name"]: self._display_relations_view(type, value, id, False)
+                                                        ).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                    ui.label("de").classes('-ml-3')
+                                                    ui.label(original_entity.name).on(
+                                                        "click", lambda _, id=rel["origin"]: self._load_entity_details(id)).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
 
             ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup)
 
+    def _display_act(self, entity: Entity):
+        "Page to load details on an entity of type act."
+
+        self._detail_column_cleanup()
+
+        with self.details_column:
+
+            with ui.row():
+                ui.label(entity.the_type)\
+                    .on('click', lambda: self._display_acts(act_type=entity.the_type))\
+                        .classes('cursor-pointer underline decoration-dotted text-xl font-bold')
+            
+            ui.label(entity.to_kleio())
+
+            ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup)
     
+    
+    def _display_acts(self, act_type: str):
+        """
+        Display all acts with given type.
+
+        Args:
+            act_type   : The type of the act to display.
+        """
+
+        self._detail_column_cleanup()
+
+        with self.details_column:
+            
+            with ui.row().classes('w-full justify-between items-center'):
+                
+                ui.markdown(f'##### **Acts with type {act_type}**').classes('mb-4 text-orange-500')
+                ui.button('Toggle Description', on_click=lambda: self._toggle_description(grid))
+
+            try:
+                
+                act_table = self.database.get_table('acts')
+                stmt = select(act_table.c.id,
+                                act_table.c.the_type,
+                                act_table.c.the_date,
+                                act_table.c.loc,
+                                act_table.c.ref,
+                                act_table.c.obs
+                                ).where(
+                                    act_table.c.the_type == act_type)
+
+                with self.database.session() as session:
+                    acts = session.execute(stmt)
+                    acts_df = pd.DataFrame(acts)
+
+                if not acts_df.empty:
+                    
+                    with self.database.session() as session:
+                        acts_df = self.timelink_web_utils.add_description_column(df=acts_df, database=self.database, id_column="id", session=session)
+
+                    processed_pd, cols = self.timelink_web_utils.pre_process_attributes_df(df_to_process=acts_df, attr_type="  ")
+
+                    grid = ui.aggrid({
+                        'columnDefs': cols,
+                        "pagination": True,
+                        "paginationPageSize": 50,
+                        "paginationPageSizeSelector": [10, 30, 50, 100],
+                        'rowData': processed_pd.to_dict("records"),
+                    }).classes('h-[75vh] w-full')
+
+                    grid.on('firstDataRendered', lambda: self._fit_columns(grid))
+                    grid.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id" else None)
+
+                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+                else:
+                    ui.label(f'No data found.').classes('text-grey-500 font-semibold ml-1')
+                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+            except Exception as e:
+                ui.label(f'Could not load details for selected act type {act_type}.').classes('text-red-500 font-semibold mt-4')
+                ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                print(e)
+
+
     def _display_entity_with_attributes(self, attr_type: str, attr_value: str | None = None):
         """
         Display all entities with given attribute. If a value is passed, the entities displayed are filtered to attributes with that value.
@@ -418,26 +659,25 @@ class ExploreTab:
         self._detail_column_cleanup()
 
         with self.details_column:
-            
+         
             with ui.row().classes('w-full justify-between items-center'):
                 
                 if attr_value:
-                    ui.markdown(f'#### **Entries with attribute {attr_type} = {attr_value}**').classes('mb-4 text-orange-500')
+                    ui.markdown(f'##### **Entries with attribute {attr_type} = {attr_value}**').classes('mb-4 text-orange-500')
                 else:
-                    ui.markdown(f'#### **Entries with attribute {attr_type}**').classes('mb-4 text-orange-500')
+                    ui.markdown(f'##### **Entries with attribute {attr_type}**').classes('mb-4 text-orange-500')
                 
                 ui.button('Toggle Description', on_click=lambda: self._toggle_description(grid))
-            
+
             try:
                 table_pd = entities_with_attribute(the_type=attr_type, the_value=attr_value, sql_echo=True, db=self.database).reset_index()
 
                 if not table_pd.empty:
                     # Pre-process dataframe so we can display it as an aggrid
                     with self.database.session() as session:
-                        table_pd = self.timelink_web_utils.add_description_column(df=table_pd, database=self.database, session=session)
+                        table_pd = self.timelink_web_utils.add_description_column(df=table_pd, database=self.database, id_column="id", session=session)
 
                     processed_pd, cols = self.timelink_web_utils.pre_process_attributes_df(df_to_process=table_pd, attr_type=attr_type)
-
 
                     grid = ui.aggrid({
                         'columnDefs': cols,
@@ -445,10 +685,10 @@ class ExploreTab:
                         "paginationPageSize": 50,
                         "paginationPageSizeSelector": [10, 30, 50, 100],
                         'rowData': processed_pd.to_dict("records"),
-                    }).classes('h-[70vh]')
+                    }).classes('h-[75vh] w-full')
 
-                    grid.on('firstDataRendered', lambda: grid.run_grid_method('sizeColumnsToFit'))
-                    grid.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"], " ") if e.args["colId"] == "id" else None)
+                    grid.on('firstDataRendered', lambda: self._fit_columns(grid))
+                    grid.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id" else None)
 
                     ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
 
@@ -462,80 +702,168 @@ class ExploreTab:
                 print(e)
 
 
-    def _display_relations_view(self, rel_type: str, rel_value: str | None = None):
+    def _display_relations_view(self, rel_type: str, rel_value: str | None = None, rel_id: str | None = None, is_from: bool | None = True):
         """
-        Display table of relations given a relation type and value.
+        Display table of relations given a relation type and value, with a specific id if provided.
 
         Args:
             rel_type   : The type of relation to display.
-            rel_type   : The value of the relation, if applicable.
+            rel_value   : The value of the relation, if applicable.
+            rel_id      : The name of the person with this relationship type and value.
+            is_from     : Flag that specifies if we are querying the destinationn or the origin
         """
         
         self._detail_column_cleanup()
 
         with self.details_column:
 
-            if rel_value:
-                ui.markdown(f'#### **Entries with relation of type {rel_type} = {rel_value}**').classes('mb-4 text-orange-500')
-            
-            else:
-                ui.markdown(f'#### **Entries with relation of type {rel_type}**').classes('mb-4 text-orange-500')
-
-            try:
-                nrels = self.database.views["nrelations"]
-
-                base_stmt = select(nrels.c.origin_id,
-                            nrels.c.origin_name,
-                            nrels.c.relation_type,
-                            nrels.c.relation_value,
-                            nrels.c.destination_id,
-                            nrels.c.destination_name,
-                            nrels.c.relation_date
-                            )
-                
-                stmt = base_stmt.where(nrels.c.relation_type == rel_type)
-
+            if not rel_id:
                 if rel_value:
-                    stmt = stmt.where(nrels.c.relation_value == rel_value)
-
-                with self.database.session() as session:
-                    rels_of_type = session.execute(stmt)
-                    rels_of_type_df = pd.DataFrame(rels_of_type)
-
-                if not rels_of_type_df.empty:
-                    # Pre-process dataframe so we can display it as an aggrid
-                    cols =  [
-                            {'headerName': 'ID A', 'field': 'origin_id', 'hide': True},
-                            {'headerName': 'Name A', 'field': 'origin_name', 'cellClass' : 'highlight-cell'},
-                            {'headerName': 'Relation Type', 'field': 'relation_type'},
-                            {'headerName': 'Value', 'field': 'relation_value'},
-                            {'headerName': 'Name B', 'field': 'destination_name', 'cellClass' : 'highlight-cell'},
-                        ]
-
-                    table = ui.aggrid({
-                        'columnDefs': cols,
-                        "pagination": True,
-                        "paginationPageSize": 50,
-                        "paginationPageSizeSelector": [10, 30, 50, 100],
-                        'rowData': rels_of_type_df.to_dict("records"),
-                    }).classes('h-[70vh]')
-
-                    table.on('cellClicked', lambda e: 
-                             self._load_entity_details(e.args["data"]["origin_id"],  " ") if e.args["colId"] == "origin_name" 
-                             else (
-                                 self._load_entity_details(e.args["data"]["destination_id"], " ") if e.args["colId"] == "destination_name" else None
-                             ))
-
-                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
-
+                    ui.markdown(f'##### **Entries with relation of type {rel_type} = {rel_value}**').classes('mb-4 text-orange-500')
+                
                 else:
-                    ui.label(f'No data found.').classes('text-grey-500 font-semibold ml-1')
-                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                    ui.markdown(f'##### **Entries with relation of type {rel_type}**').classes('mb-4 text-orange-500')
 
-            except Exception as e:
-                ui.label(f'Could not load details for selected attribute {rel_type}.').classes('text-red-500 font-semibold mt-4')
-                ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
-                print(e)
+                try:
+                    nrels = self.database.views["nrelations"]
+
+                    base_stmt = select(nrels.c.origin_id,
+                                nrels.c.origin_name,
+                                nrels.c.relation_type,
+                                nrels.c.relation_value,
+                                nrels.c.destination_id,
+                                nrels.c.relation_id,
+                                nrels.c.destination_name,
+                                nrels.c.relation_date
+                                )
+                    
+                    stmt = base_stmt.where(nrels.c.relation_type == rel_type)
+                    
+                    if rel_value:
+                        stmt = stmt.where(nrels.c.relation_value == rel_value)
+
+                    with self.database.session() as session:
+                        rels_of_type = session.execute(stmt)
+                        rels_of_type_df = pd.DataFrame(rels_of_type)
+
+                    if not rels_of_type_df.empty:
+                        # Pre-process dataframe so we can display it as an aggrid
+                        cols =  [
+                                {'headerName': 'ID A', 'field': 'origin_id', 'hide': True},
+                                {'headerName': 'Name A', 'field': 'origin_name', 'cellClass' : 'highlight-cell'},
+                                {'headerName': 'Relation Type', 'field': 'relation_type', 'cellClass' : 'highlight-cell'},
+                                {'headerName': 'Value', 'field': 'relation_value'},
+                                {'headerName': 'Name B', 'field': 'destination_name', 'cellClass' : 'highlight-cell'},
+                            ]
+
+                        table = ui.aggrid({
+                            'columnDefs': cols,
+                            "pagination": True,
+                            "paginationPageSize": 50,
+                            "paginationPageSizeSelector": [10, 30, 50, 100],
+                            'rowData': rels_of_type_df.to_dict("records"),
+                        }).classes('h-[70vh]')
+
+                        table.on('cellClicked', lambda e: 
+                                self._load_entity_details(e.args["data"]["origin_id"]) if e.args["colId"] == "origin_name"
+                                else self._load_entity_details(e.args["data"]["destination_id"]) if e.args["colId"] == "destination_name"
+                                else self._load_entity_details(e.args["data"]["relation_id"]) if e.args["colId"] == "relation_type"
+                                else None
+                        )
+
+                        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+                    else:
+                        ui.label(f'No data found.').classes('text-grey-500 font-semibold ml-1')
+                        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+                except Exception as e:
+                    ui.label(f'Could not load details for selected attribute {rel_type}.').classes('text-red-500 font-semibold mt-4')
+                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                    print(e)
+
+            else: 
+
+                with ui.row().classes('w-full justify-between items-center'):
+                    ui.markdown(f'##### **Entries with relation {rel_type}/{rel_value} = {rel_id}**').classes('mb-4 text-orange-500')
+                    ui.button('Toggle Description', on_click=lambda: self._toggle_description(table))
+                
+                try:
+                    
+                    print(rel_id, rel_type, rel_value)
+                    persons_table = self.database.get_table('persons')
+                    persons_table_2 = persons_table.alias("p2")
+                    nrels = self.database.views["nrelations"]
+
+                    stmt = (
+                            select(
+                                persons_table.c.id,
+                                persons_table.c.name,
+                                nrels.c.relation_type,
+                                nrels.c.relation_value,
+                                persons_table_2.c.id,
+                                persons_table_2.c.name,
+                                nrels.c.relation_date,
+                            )
+                            .select_from(
+                                persons_table.join(nrels, persons_table.c.id == nrels.c.origin_id)
+                                    .join(persons_table_2, nrels.c.destination_id == persons_table_2.c.id)
+                            )
+                            .where(
+                                and_(
+                                    (persons_table.c.name if is_from else persons_table_2.c.name) == rel_id,
+                                    nrels.c.relation_type == rel_type,
+                                    nrels.c.relation_value == rel_value
+                                )
+                            )
+                            .order_by(persons_table.c.name, persons_table_2.c.name, nrels.c.relation_date)
+                        )
+                    
+
+                    with self.database.session() as session:
+                        rels_of_type = session.execute(stmt)
+                        rels_of_type_df = pd.DataFrame(rels_of_type)
+                        print(rels_of_type_df.head(1))
+
+                    if not rels_of_type_df.empty:
+                        rels_of_type_df = self.timelink_web_utils.add_description_column(df=rels_of_type_df, database=self.database, id_column="id_1", session=session)
+
+                        cols =  [
+                                {'headerName': 'ID A', 'field': 'id', 'cellClass' : 'highlight-cell'},
+                                {'headerName': 'Name A', 'field': 'name'},
+                                {'headerName': 'Relation Type', 'field': 'relation_type'},
+                                {'headerName': 'Value', 'field': 'relation_value'},
+                                {'headerName': 'ID B', 'field': 'id_1', 'cellClass' : 'highlight-cell'},
+                                {'headerName': 'Name B', 'field': 'name_1'},
+                                {'headerName': 'Relation Date', 'field': 'relation_date'},
+                                {'headerName': 'Description', 'field': 'description', 'wrapText': True, 'hide': True, 'minWidth': 300},
+                            ]
+
+                        table = ui.aggrid({
+                            'columnDefs': cols,
+                            "pagination": True,
+                            "paginationPageSize": 50,
+                            "paginationPageSizeSelector": [10, 30, 50, 100],
+                            'rowData': rels_of_type_df.to_dict("records"),
+                        }).classes('h-[70vh]')
+
+                        table.on('cellClicked', lambda e: 
+                                self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id"
+                                else self._load_entity_details(e.args["data"]["id_1"]) if e.args["colId"] == "id_1"
+                                else self._load_entity_details(e.args["data"]["relation_id"]) if e.args["colId"] == "relation_type"
+                                else None
+                        )
+
+                        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+                    else:
+                        ui.label(f'No data found.').classes('text-grey-500 font-semibold ml-1')
+                        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+                except Exception as e:
+                    ui.label(f'Could not load details for selected attribute {rel_type}.').classes('text-red-500 font-semibold mt-4')
+                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+                    print(e)
 
 
     def _display_functions_view(self, func_type: str):
@@ -550,7 +878,7 @@ class ExploreTab:
 
         with self.details_column:
 
-            ui.markdown(f'#### **Entities with function of type {func_type}**').classes('mb-4 text-orange-500')
+            ui.markdown(f'##### **Entities with function of type {func_type}**').classes('mb-4 text-orange-500')
 
             try:
                 nfunctions = self.database.views["nfunctions"]
@@ -584,7 +912,7 @@ class ExploreTab:
                         'rowData': funcs_of_type_df.to_dict("records"),
                     }).classes('h-[70vh]')
 
-                    table.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"], " ") if e.args["colId"] == "id"  else None)
+                    table.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id"  else None)
 
                     ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
 
@@ -617,12 +945,12 @@ class ExploreTab:
 
                 with self.database.session() as session:
                     retrieved_df = pd.DataFrame(session.execute(sql_stmt))
-                    retrieved_df = self.timelink_web_utils.add_description_column(df=retrieved_df, database=self.database, session=session)
+                    retrieved_df = self.timelink_web_utils.add_description_column(df=retrieved_df, database=self.database, id_column="id", session=session)
 
                 if not retrieved_df.empty:
 
                     with ui.row().classes('w-full justify-between items-center'):
-                        ui.markdown(f'#### **All entries with {name_to_query}**').classes('mb-4 text-orange-500')
+                        ui.markdown(f'##### **All entries with {name_to_query}**').classes('mb-4 text-orange-500')
                         ui.button('Toggle Description', on_click=lambda: self._toggle_description(grid))
 
                     expected_cols = [
@@ -630,7 +958,7 @@ class ExploreTab:
                             {'headerName': 'Name', 'field': 'name'},
                             {'headerName': 'Sex', 'field': 'sex'},
                             {'headerName': 'Observations', 'field': 'obs'},
-                            {'headerName': 'Description', 'field': 'description', 'hide': True, 'wrapText': True, 'autoHeight': True, 'word-break': 'break-word'},
+                            {'headerName': 'Description', 'field': 'description', 'hide': True, 'wrapText': True, 'autoHeight': True},
                             ]
 
                     grid = ui.aggrid({
@@ -641,7 +969,7 @@ class ExploreTab:
                         'rowData': retrieved_df.to_dict("records")}
                     ).classes('h-[70vh]')
                     
-                    grid.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"], e.args["data"]["name"]) if e.args["colId"] == "id" else None)
+                    grid.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id" else None)
 
                     with ui.row():
                         ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
@@ -653,7 +981,65 @@ class ExploreTab:
             except Exception as e:
                 ui.label(f'Could not load details for entry.').classes('text-red-500 font-semibold ml-1')
                 print(e)
+                ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
 
+
+    def _display_geoentities(self, geoentity: str):
+        """
+        Display all results with the passed geoentity.
+
+        Args:
+            geoentity    : Name to lookup on the database.
+        """
+        
+        self._detail_column_cleanup()
+
+        with self.details_column:
+            
+            try:
+                
+                table = self.database.get_table("geoentity")
+                sql_stmt = select(table).where(table.c.name.like(geoentity))
+
+                with self.database.session() as session:
+                    retrieved_df = pd.DataFrame(session.execute(sql_stmt))
+                    retrieved_df = self.timelink_web_utils.add_description_column(df=retrieved_df, database=self.database, id_column="id", session=session)
+
+                if not retrieved_df.empty:
+
+                    with ui.row().classes('w-full justify-between items-center'):
+                        ui.markdown(f'##### **All entries with {geoentity}**').classes('mb-4 text-orange-500')
+                        ui.button('Toggle Description', on_click=lambda: self._toggle_description(grid))
+
+                    expected_cols = [
+                            {'headerName': 'ID', 'field': 'id', 'cellClass': 'highlight-cell'},
+                            {'headerName': 'Name', 'field': 'name'},
+                            {'headerName': 'Type', 'field': 'the_type'},
+                            {'headerName': 'Observations', 'field': 'obs'},
+                            {'headerName': 'Description', 'field': 'description', 'hide': True, 'wrapText': True, 'autoHeight': True},
+                            ]
+
+                    grid = ui.aggrid({
+                        'columnDefs': expected_cols,
+                        "pagination": True,
+                        "paginationPageSize": 50,
+                        "paginationPageSizeSelector": [50, 100, 200],
+                        'rowData': retrieved_df.to_dict("records")}
+                    ).classes('h-[70vh]')
+                    
+                    grid.on('cellClicked', lambda e: self._load_entity_details(e.args["data"]["id"]) if e.args["colId"] == "id" else None)
+
+                    with ui.row():
+                        ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+                else:
+                    ui.label(f'No entries found.').classes('text-grey-500 font-semibold ml-1')
+                    ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+
+            except Exception as e:
+                ui.label(f'Could not load details for entry.').classes('text-red-500 font-semibold ml-1')
+                print(e)
+                ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
 
     def _redirect_to_view(self, e: events.GenericEventArguments, type: str, table: str):
         """
