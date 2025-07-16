@@ -1,5 +1,5 @@
 from typing import List, Optional
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 
 # for sqlalchemy 2.0 ORM
 # see https://docs.sqlalchemy.org/en/20/orm/declarative_config.html
@@ -96,7 +96,7 @@ class Entity(Base):
     #         'kleio_element_name': 'valor'}}
     extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
-    updated = mapped_column(DateTime, default=lambda: datetime.now(UTC), index=True)    #: datetime: when this entity was added to the full text index
+    updated = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)    #: datetime: when this entity was added to the full text index
     indexed = mapped_column(DateTime, index=True, nullable=True)
 
     # This is defined in attribute.py
