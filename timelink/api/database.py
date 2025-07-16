@@ -453,6 +453,7 @@ class TimelinkDatabase:
         if not timelink_only:
             if ":memory:" not in self.db_url:
                 drop_database(self.db_url)
+                self.engine.dispose()
             return
 
         if session is None:

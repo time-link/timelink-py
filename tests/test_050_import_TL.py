@@ -45,7 +45,6 @@ def dbsystem(request, kleio_server):
 
         yield database
     finally:
-        database.session().close()
         database.drop_db()
 
 
