@@ -11,9 +11,9 @@ from timelink.api.database import TimelinkDatabase
 
 def attribute_values(
     attr_type,
+    db: TimelinkDatabase,
     groupname=None,
     dates_between=None,
-    db: TimelinkDatabase = None,
     sql_echo=False,
 ):
     """Return the vocabulary of an attribute
@@ -24,8 +24,8 @@ def attribute_values(
 
     Args:
         attr_type = attribute type to search for
-        groupname = groupname to filter by (str or list), if None all groups counted
         db = database connection to use, either db or session must be specified
+        groupname = groupname to filter by (str or list), if None all groups counted
         dates_between = tuple with two dates in format yyyy-mm-dd
         sql_echo = if true will print the sql statement
 
@@ -39,7 +39,7 @@ def attribute_values(
 
     #  We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
-    dbsystem: TimelinkDatabase = None
+    dbsystem: TimelinkDatabase | None = None
     if db is not None:  # try if we have a db connection in the parameters
         dbsystem = db
     else:
