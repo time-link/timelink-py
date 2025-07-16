@@ -153,6 +153,16 @@ class Relation(Entity):
             r = f"{r}/obs={quote_long_text(self.obs)}"
         return r
 
+    def to_markdown(self, **kwargs):
+        """Convert the relation to a markdown representation."""
+        return (
+            f"**Type:** {self.the_type}\n"
+            f"**Value:** {self.the_value}\n"
+            f"**Origin:** {self.org_name} ({self.origin})\n"
+            f"**Destination:** {self.dest_name} ({self.destination})\n"
+            f"**Date:** {ftld(self.the_date)}\n"
+            f"**Observation:** {self.obs or 'None'}\n"
+        )
 
 Entity.rels_out = relationship(
     "Relation", foreign_keys=[Relation.origin], back_populates="dest"

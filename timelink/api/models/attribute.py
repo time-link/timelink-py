@@ -67,6 +67,15 @@ class Attribute(Entity):
         )
         return kleio
 
+    def to_markdownn(self, **kwargs):
+        """Convert the attribute to a markdown representation."""
+        return (
+            f"**Type:** {self.the_type}\n"
+            f"**Value:** {self.the_value}\n"
+            f"**Date:** {self.the_date}\n"
+            f"**Observation:** {self.obs or 'None'}\n"
+        )
+
 
 Entity.attributes = relationship(
     Attribute, foreign_keys=[Attribute.entity], back_populates="the_entity"
