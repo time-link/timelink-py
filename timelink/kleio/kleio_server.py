@@ -562,7 +562,8 @@ class KleioServer:
         translations = self.call("translations_get", pars, token=token)
         result = []
         for t in translations:
-            kfile = KleioFile(**t)
+            # Use model_validate if KleioFile is a Pydantic model to avoid missing argument errors
+            kfile = KleioFile.model_validate(t)
             result.append(kfile)
         return result
 
