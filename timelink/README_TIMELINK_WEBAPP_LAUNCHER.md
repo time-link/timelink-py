@@ -28,5 +28,5 @@ Launch multiproject (template):
 
 Launch web interface:
 
-    timelink start web [path] [-p port]
+    timelink start web [-p port]
 

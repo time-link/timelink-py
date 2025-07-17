@@ -176,7 +176,7 @@ def pre_process_attributes_df(df_to_process: pd.DataFrame, attr_type: str):
 
 
 def parse_entity_details(entity: Entity):
-    """Parse an entity's detailss to display on the entity's page.
+    """Parse an entity's details to display on the entity's page.
     
         Args:
 
@@ -207,6 +207,7 @@ def parse_entity_details(entity: Entity):
         grouped[date].append(entry)
 
     return grouped, mr_schema_dump['rels_in'], mr_schema_dump['rels_out']
+
 
 
 def format_date(raw):

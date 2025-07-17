@@ -4,6 +4,7 @@ import string
 from sqlalchemy import select, func, and_
 from timelink.pandas import entities_with_attribute
 from timelink.api.models import Entity
+from timelink.api.schemas import EntityAttrRelSchema
 
 
 class ExploreTab:
@@ -361,6 +362,7 @@ class ExploreTab:
                 ui.label(f'Could not load details for selected attribute type/value combination.').classes('text-red-500 font-semibold mt-4')
                 print(e)
                 ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup).classes('mt-2')
+        
 
     def _load_entity_details(self, item_id: str):
         "Maps to the correct loading function for a specific entity."
@@ -567,6 +569,63 @@ class ExploreTab:
 
 
             ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup)
+    
+    def _render_act_entity(self, entity, level=0):
+        "Helper function to print act lines"
+
+        indent = f"ml-{level * 4}"
+        act_dict = EntityAttrRelSchema.model_validate(entity).model_dump(exclude=['rels_in'])
+        obs = ""
+
+        with ui.row():
+            if not act_dict['groupname'] == "relation":
+                
+                ui.label(f"{act_dict['groupname']}$").classes(f"font-bold {indent}")
+
+                if act_dict['groupname'] not in {"n", "pai", "mae", "pad", "mad", "mrmad"}: # If its the act's header
+                    
+                    ui.label(act_dict['id']).classes(f"-ml-3")
+
+                    for extra_info_key, extra_info_value in act_dict["extra_info"].items():
+                        if extra_info_key not in {'class'}:
+                            value = getattr(entity, extra_info_key)
+                            kleio_class = extra_info_value.get('kleio_element_class')
+                            if kleio_class == "obs":
+                                obs = f"{value}{extra_info_value.get('comment', '')}"
+                            else:
+                                ui.label(f"/{kleio_class}=").classes(f'-ml-4 text-green-800')
+                                if kleio_class in {'inside', 'id'}:
+                                    ui.label(value).on(
+                                        "click", lambda _, id=value: self._load_entity_details(id)
+                                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-4')
+                                else:
+                                    ui.label(value).classes(f'-ml-4')
+
+                    ui.label("/inside=").classes(f'-ml-4')
+                    ui.label(entity.inside).on(
+                        "click", lambda: self._load_entity_details(entity.inside)
+                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-4') if entity.inside else ui.label("root").classes(f"-ml-4")
+                
+                else: # If not, we only need the name, sex and id
+                    ui.label(getattr(entity, 'name')).on(
+                                        lambda _, id=getattr(entity, 'id'): self._load_entity_details(id)
+                                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-3')
+                    ui.label(f"/sex={getattr(entity, 'sex')}").classes(f"-ml-3 text-green-800")
+                    ui.label(f"/id=").classes(f"-ml-3 text-green-800")
+                    ui.label(getattr(entity, 'id')).on(
+                                        "click", lambda _, id=getattr(entity, 'id'): self._load_entity_details(id)
+                                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-3')
+        if obs:
+            ui.label(f"/obs={obs}").classes(f"font-mono italic text-sm")
+
+        # TODO - This is slow, needs a better option - commenting for now.
+        """
+        for contained_element in act_dict.get("contains", []):
+            with self.database.session() as session:
+                new_entity = self.database.get_entity(contained_element['id'], session=session)
+                self._render_act_entity(new_entity, level + 1)
+        """
+
 
     def _display_act(self, entity: Entity):
         "Page to load details on an entity of type act."
@@ -577,17 +636,17 @@ class ExploreTab:
 
             with ui.row():
                 ui.label(entity.the_type)\
-                    .on('click', lambda: self._display_acts(act_type=entity.the_type))\
+                    .on('click', lambda: self._list_acts(act_type=entity.the_type))\
                         .classes('cursor-pointer underline decoration-dotted text-xl font-bold')
-            
-            ui.label(entity.to_kleio())
+
+            self._render_act_entity(entity, level=0)  #TODO - ASYNC
 
             ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup)
     
     
-    def _display_acts(self, act_type: str):
+    def _list_acts(self, act_type: str):
         """
-        Display all acts with given type.
+        List all acts with given type.
 
         Args:
             act_type   : The type of the act to display.
@@ -790,7 +849,6 @@ class ExploreTab:
                 
                 try:
                     
-                    print(rel_id, rel_type, rel_value)
                     persons_table = self.database.get_table('persons')
                     persons_table_2 = persons_table.alias("p2")
                     nrels = self.database.views["nrelations"]
@@ -823,7 +881,6 @@ class ExploreTab:
                     with self.database.session() as session:
                         rels_of_type = session.execute(stmt)
                         rels_of_type_df = pd.DataFrame(rels_of_type)
-                        print(rels_of_type_df.head(1))
 
                     if not rels_of_type_df.empty:
                         rels_of_type_df = self.timelink_web_utils.add_description_column(df=rels_of_type_df, database=self.database, id_column="id_1", session=session)
@@ -896,13 +953,12 @@ class ExploreTab:
 
                 if not funcs_of_type_df.empty:
 
-                    # Pre-process dataframe so we can display it as an aggrid
                     cols =  [
-                            {'headerName': 'ID', 'field': 'id', 'cellClass' : 'highlight-cell'},
-                            {'headerName': 'Name', 'field': 'name',},
-                            {'headerName': 'Function', 'field': 'func'},
-                            {'headerName': 'Act Date', 'field': 'act_date'},
-                        ]
+                        {'headerName': 'ID', 'field': 'id', 'cellClass' : 'highlight-cell'},
+                        {'headerName': 'Name', 'field': 'name',},
+                        {'headerName': 'Function', 'field': 'func'},
+                        {'headerName': 'Act Date', 'field': 'act_date'},
+                    ]
 
                     table = ui.aggrid({
                         'columnDefs': cols,
@@ -1056,8 +1112,8 @@ class ExploreTab:
             self._display_entity_with_attributes(attr_type=type, attr_value=e.args["data"]["the_value"])
 
 
-        elif table == "persons":    # Names view
-            self._display_names(name_to_query= type)
+        elif table == "persons":  # Names view
+            self._display_names(name_to_query=type)
 
         else:  # Relation table views
             self._display_relations_view(rel_type=type, rel_value=e.args["data"]["the_value"])

@@ -41,7 +41,7 @@ def index():
 
     ui.add_body_html('''
                 <style>
-                .highlight-cell { text-decoration: underline; }
+                .highlight-cell { text-decoration: underline dotted; }
                 .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
                 </style>
                 ''')
@@ -54,7 +54,7 @@ def index():
 
     with ui.tab_panels(tabs, value=home_tab).classes('w-full'):
 
-        with ui.tab_panel('home'):
+        with ui.tab_panel(home_tab):
             """Home Tab - Timelink Landing page."""
             ui.markdown(f'#### **Welcome to the Timelink Web Interface!**').classes('mb-4 text-orange-500')
 
