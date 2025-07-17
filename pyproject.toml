@@ -14,3 +14,7 @@ name = "timelink"
 [tool.poetry.include]
 "timelink/migrations/versions/*" = {format = "sdist", extension = "py"}
 
+# pylance seetings see
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
+[tool.pyright]
+typeCheckingMode = "off"

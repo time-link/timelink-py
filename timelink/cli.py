@@ -46,7 +46,7 @@ def cli_header():
     typer.echo("Timelink and MHK manager")
     typer.echo(f"{current_working_directory}")
 
-
+# TODO - Replace with new functionality.
 @app.command("start")
 def start():
     """Starts timelink with uvicorn"""
