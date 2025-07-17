@@ -3,7 +3,11 @@
 #  because it breaks bump2version
 #     see https://github.com/oceanprotocol/ocean.py/issues/194
 [tool.black]
-line-length = 88
+line-length = 120
 exclude = '__init__.py'
 extend-immutable-calls = 'Depends, fastapi.Depends, fastapi.params.Depends'
 
+# pylance seetings see
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
+[tool.pyright]
+reportAssignmentType = "none"
