@@ -41,7 +41,7 @@ async def run_setup():
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
     # Load Kleio configuration from the environment.
-    load_dotenv(Path.home() / ".timelink" / ".env")
+    load_dotenv(Path.home() / ".timelink" / ".env", override= True)
     timelink_url = os.getenv('TIMELINK_SERVER_URL')
     timelink_token = os.getenv('TIMELINK_SERVER_TOKEN')
     timelink_home  = os.getenv('TIMELINK_HOME')
