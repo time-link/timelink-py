@@ -2,7 +2,6 @@ from nicegui import ui, events
 import pandas as pd
 import string
 from sqlalchemy import select, func, and_
-from timelink.pandas import entities_with_attribute
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
 
@@ -374,7 +373,8 @@ class ExploreTab:
             "geoentity": self._display_geoentity,
             "act": self._display_act,
             "source": self._display_act,
-            "relation": self._display_act
+            "relation": self._display_act,
+            "attribute": self._display_act
         }
 
         with self.details_column:
@@ -618,27 +618,34 @@ class ExploreTab:
         if obs:
             ui.label(f"/obs={obs}").classes(f"font-mono italic text-sm")
 
-        # TODO - This is slow, needs a better option - commenting for now.
-        """
         for contained_element in act_dict.get("contains", []):
             with self.database.session() as session:
                 new_entity = self.database.get_entity(contained_element['id'], session=session)
                 self._render_act_entity(new_entity, level + 1)
-        """
-
 
     def _display_act(self, entity: Entity):
-        "Page to load details on an entity of type act."
+        "Page to load details on an entity of type act, attribute or relation."
 
         self._detail_column_cleanup()
+
+
+        entity_map = {
+            "act": self._list_acts,
+            "source": self._display_tables,
+            "relation": self._display_relations_view,
+            "attribute": self._display_entity_with_attributes
+        }
+
+
+        display_func = entity_map.get(entity.pom_class)
 
         with self.details_column:
 
             with ui.row():
                 ui.label(entity.the_type)\
-                    .on('click', lambda: self._list_acts(act_type=entity.the_type))\
+                    .on('click', lambda: display_func(entity.the_type))\
                         .classes('cursor-pointer underline decoration-dotted text-xl font-bold')
-
+            
             self._render_act_entity(entity, level=0)  #TODO - ASYNC
 
             ui.button('Back to Explore Page', on_click=self._back_to_explore_cleanup)
@@ -721,15 +728,40 @@ class ExploreTab:
          
             with ui.row().classes('w-full justify-between items-center'):
                 
+                nattributes = self.database.get_view('nattributes')
+                stmt = ""
+
                 if attr_value:
                     ui.markdown(f'##### **Entries with attribute {attr_type} = {attr_value}**').classes('mb-4 text-orange-500')
+                    stmt = select(nattributes.c.id,
+                                  nattributes.c.name,
+                                  nattributes.c.the_type,
+                                  nattributes.c.the_date,
+                                  nattributes.c.sex,
+                                  nattributes.c.the_value.label(attr_type.title()),
+                                  nattributes.c.pobs
+                                  ).where(
+                                      and_(nattributes.c.the_type.like(attr_type),
+                                           nattributes.c.the_value.like(attr_value)))
                 else:
                     ui.markdown(f'##### **Entries with attribute {attr_type}**').classes('mb-4 text-orange-500')
+
+                    stmt = select(nattributes.c.id,
+                                  nattributes.c.name,
+                                  nattributes.c.the_type,
+                                  nattributes.c.the_date,
+                                  nattributes.c.sex,
+                                  nattributes.c.the_value.label(attr_type.title()),
+                                  nattributes.c.pobs
+                                  ).where(nattributes.c.the_type.like(attr_type))
                 
                 ui.button('Toggle Description', on_click=lambda: self._toggle_description(grid))
 
             try:
-                table_pd = entities_with_attribute(the_type=attr_type, the_value=attr_value, sql_echo=True, db=self.database).reset_index()
+
+                with self.database.session() as session:
+                    with_attribute = session.execute(stmt)
+                    table_pd = pd.DataFrame(with_attribute)
 
                 if not table_pd.empty:
                     # Pre-process dataframe so we can display it as an aggrid

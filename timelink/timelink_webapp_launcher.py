@@ -112,7 +112,9 @@ def start_project(path: Path = Path("."),
         If none are given, the path defaults to current directory, and the port to the first available port after 8088
     """
 
-    port = find_free_port(port or 8088, 8099)
+    # port = find_free_port(port or 8088, 8099) TODO- Not working on mac, disabling portfinding for now.
+
+    port = port or 8088
     path = os.path.normpath(path.resolve() if not path.is_absolute() else path)
 
     if database not in ("sqlite", "postgres"):

@@ -158,10 +158,6 @@ def pre_process_attributes_df(df_to_process: pd.DataFrame, attr_type: str):
 
     processed_pd = df_to_process.copy()
 
-    processed_pd = processed_pd.drop(columns=[col for col in processed_pd.columns if col.endswith('extra_info')])
-
-    processed_pd.columns = [c.replace('.', '_') for c in processed_pd.columns]
-
     col_definitions = []
     for c in processed_pd.columns:
         col_def = {'headerName': c.replace(f'{attr_type}_', '').upper(), 'field': c, 'resizable': True, 'autoHeight': True}
