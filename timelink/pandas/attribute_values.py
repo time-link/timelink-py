@@ -5,6 +5,7 @@ Create a dataframe with the values of an attribute
 import pandas as pd
 
 from sqlalchemy import select, func, and_, desc
+from sqlalchemy.orm import Session
 
 from timelink.api.database import TimelinkDatabase
 
@@ -14,6 +15,8 @@ def attribute_values(
     db: TimelinkDatabase,
     groupname=None,
     dates_between=None,
+    db: TimelinkDatabase | None = None,
+    session=None,
     sql_echo=False,
 ):
     """Return the vocabulary of an attribute
@@ -26,6 +29,8 @@ def attribute_values(
         attr_type = attribute type to search for
         db = database connection to use, either db or session must be specified
         groupname = groupname to filter by (str or list), if None all groups counted
+        db = database to use
+        session = database session to use, if None will use db.session()
         dates_between = tuple with two dates in format yyyy-mm-dd
         sql_echo = if true will print the sql statement
 
@@ -43,11 +48,7 @@ def attribute_values(
     if db is not None:  # try if we have a db connection in the parameters
         dbsystem = db
     else:
-        raise Exception(
-            "No database connection specified, must set up a database"
-            " connection before or specify previously openned database"
-            " with db="
-        )
+        raise ValueError("db parameter is required")
 
     attr_table = db._create_eattribute_view()
     entities_table = db.get_table("entity")
@@ -106,8 +107,14 @@ def attribute_values(
     if sql_echo:
         print(stmt)
 
-    with dbsystem.session() as session:
-        records = session.execute(stmt)
+    mysession: Session
+    if session is None:
+        mysession = dbsystem.session()
+    else:
+        mysession = session
+    with mysession:
+        records = mysession.execute(stmt)
+
     df = pd.DataFrame.from_records(
         records, index=["value"], columns=["value", "count", "date_min", "date_max"]
     )

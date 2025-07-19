@@ -3,6 +3,7 @@
 from typing import List
 import pandas as pd
 from sqlalchemy.sql import select
+from sqlalchemy.orm import Session
 from timelink.api.database import TimelinkDatabase
 
 
@@ -16,7 +17,8 @@ def entities_with_attribute(
     name_like=None,
     filter_by=None,
     more_attributes=None,
-    db: TimelinkDatabase = None,
+    db: TimelinkDatabase | None = None,
+    session: Session | None = None,
     sql_echo=False,
 ):
     """Generate a pandas dataframe with entities with a given attribute
@@ -33,6 +35,7 @@ def entities_with_attribute(
         filter_by   : list of ids, limit to these entities
         more_attributes: add more attributes if available
         db          : A TimelinkDatabase object
+        session     : A SQLAlchemy session, if None will use db.session()
         sql_echo    : if True echo the sql generated
 
     Example:
@@ -45,11 +48,8 @@ def entities_with_attribute(
                                 the_value="soure"
                                 column_name="local", # use this istead of "residencia"
                                 more_attributes=["profissao"]
+                                db=dbsystem,
                                 )
-
-    Notes:
-        - The function will return a dataframe with the columns:
-            id, group
 
     Ideas:
         Add :
@@ -61,13 +61,16 @@ def entities_with_attribute(
     """
     # We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
-    dbsystem: TimelinkDatabase = db
-    if dbsystem is None:
+    if db is None:
         raise (
             Exception(
                 "db: TimelinkDatabase required. Must create  to set up a database connection"
             )
         )
+
+    mysession: Session
+    if session is None:
+        mysession = db.session()
 
     # if we dont have a name for the column we use the attribute type sanitized
     if column_name is None:
@@ -90,8 +93,8 @@ def entities_with_attribute(
 
     entity_model = db.get_model(entity_type)
     # get the columns of the entity table, check if more_info is valid
-    entity_columns = select(entity_model).selected_columns.keys()
-    entity_id_col = select(entity_model).selected_columns["id"]
+    entity_columns = select(entity_model).selected_columns.keys()  # type: ignore[assignment]
+    entity_id_col = select(entity_model).selected_columns["id"]  # type: ignore[assignment]
 
     if show_elements is None:
         show_elements = []
@@ -103,7 +106,7 @@ def entities_with_attribute(
         if mi not in entity_columns:
             raise ValueError(f"{mi} is not a valid column for {entity_type}")
         else:
-            extra_cols.append(select(entity_model).selected_columns[mi])
+            extra_cols.append(select(entity_model).selected_columns[mi])  # type: ignore[assignment]
 
     if name_like is not None:
         if "name" not in entity_columns:
@@ -138,11 +141,11 @@ def entities_with_attribute(
         #  may contain ids that are not in the attribute table
         #  we need to add them to the final dataframe
         filter_by_sql = (
-            select(entity_model)
+            select(entity_model)   # type: ignore[assignment]
             .with_only_columns(*more_info_cols, maintain_column_froms=True)
             .where(entity_model.id.in_(filter_by))
         )
-        with db.session() as session:
+        with mysession as session:
             filtered_by_rows = session.execute(filter_by_sql)
             col_names = filter_by_sql.selected_columns.keys()
             filtered_df = pd.DataFrame.from_records(
@@ -187,7 +190,7 @@ def entities_with_attribute(
     if sql_echo:
         print(f"Query for {the_type}:\n", stmt)
 
-    with db.session() as session:
+    with mysession as session:
         records = session.execute(stmt)
         col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
@@ -265,7 +268,7 @@ def entities_with_attribute(
                     ).where(attr.c.entity.in_(df.index))
             # col_names = stmt.columns.keys()
 
-            with db.session() as session:
+            with mysession as session:
                 records = session.execute(stmt)
                 col_names = stmt.selected_columns.keys()
 
