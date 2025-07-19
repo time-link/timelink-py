@@ -1,6 +1,5 @@
 """ Generation of networks
 
-TODO: pass DB object instead of Engine
 """
 
 from itertools import combinations
@@ -8,15 +7,16 @@ import networkx as nx
 from sqlalchemy import text
 
 from timelink.api.database import TimelinkDatabase
+from timelink.pandas import entities_with_attribute, attribute_values
 
 
 def network_from_attribute(
     attribute: str,
     mode="cliques",
     user="*none*",
-    db: TimelinkDatabase = None,
+    db: TimelinkDatabase | None = None,
     session=None,
-):
+) -> nx.Graph:
     """
     Generate a network from common attribute values.
 
@@ -28,7 +28,7 @@ def network_from_attribute(
         mode (str, optional): The topology of the generated network (see bellow).
                               Valid values are "cliques" and "value-node". Defaults to "cliques".
         user (str, optional): Use real persons identified by this user. Defaults to "*none*".
-        db (TimelinkDatase, optional): The TimelinkDatase object representing the target database. Defaults to None.
+        db (TimelinkDatase, optional): The TimelinkDatase object. Defaults to None. Either db or session must be provided.
         session (object, optional): The session object for the database connection. Defaults to None.
 
     Raises:
@@ -69,14 +69,11 @@ def network_from_attribute(
 
     Examples:
 
+    Generate a network of people that graduated in the same place
         ``G = network_from_attribute("graduated_at", mode="value-node")``
 
     """
 
-    sql = (
-        "select distinct the_value from attributes "
-        "where the_type = :the_type and the_value <> '?'"
-    )
     G = nx.Graph()
     if db is not None:
         mysession = db.session()
@@ -87,7 +84,30 @@ def network_from_attribute(
             "No database nor session. Specifcy db=TimeLinkDatabase() or "
             "session=database session."
         )
+    sql = (
+        "select distinct the_value from attributes "
+        "where the_type = :the_type and the_value <> '?'"
+    )
     with mysession:
+        attribute_values_list = attribute_values(
+            attr_type=attribute,
+            db=db,
+            session=mysession,
+        )
+
+        if attribute_values_list.empty:
+            return G
+        for avalue in attribute_values_list.index:
+            # we get the entities with that value
+            entities = entities_with_attribute(
+                the_type=attribute,
+                the_value=avalue,
+                db=db,
+                session=mysession,
+            )
+
+
+
         result = mysession.execute(text(sql), [{"the_type": attribute}])
         values = result.all()
         for (avalue,) in values:
@@ -109,6 +129,7 @@ def network_from_attribute(
             )
             entities = result.all()
 
+            # in value node
             if mode == "value-node":
                 G.add_node(avalue, desc=avalue, type=attribute)
                 for id, name, date in entities:
