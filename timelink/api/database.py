@@ -967,7 +967,7 @@ class TimelinkDatabase:
         """
         return Entity.get_som_mapper_ids()
 
-    def get_model(self, class_id: str | List[str], make_alias=None):
+    def get_model(self, class_id: str | list[str], make_alias=None):
         """Get the ORM class for a entity type
 
         Args:
