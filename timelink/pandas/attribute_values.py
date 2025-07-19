@@ -12,7 +12,6 @@ from timelink.api.database import TimelinkDatabase
 
 def attribute_values(
     attr_type,
-    db: TimelinkDatabase,
     groupname=None,
     dates_between=None,
     db: TimelinkDatabase | None = None,

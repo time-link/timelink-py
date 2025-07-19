@@ -1,10 +1,14 @@
-""" """
+# pyright: reportArgumentType=false
+# pyright: reportCallIssue=false
+# pyright: reportAssignmentType=false
+# pyright: reportAttributeAccessIssue=false
 
 from typing import List
 import pandas as pd
 from sqlalchemy.sql import select
 from sqlalchemy.orm import Session
 from timelink.api.database import TimelinkDatabase
+from timelink.api.models.entity import Entity
 
 
 def entities_with_attribute(
@@ -71,6 +75,8 @@ def entities_with_attribute(
     mysession: Session
     if session is None:
         mysession = db.session()
+    else:
+        mysession = session
 
     # if we dont have a name for the column we use the attribute type sanitized
     if column_name is None:
@@ -91,10 +97,10 @@ def entities_with_attribute(
     if entity_type not in entity_types:
         raise ValueError(f"entity_type must be one of {entity_types}")
 
-    entity_model = db.get_model(entity_type)
+    entity_model: Entity = db.get_model(entity_type)  # type: ignore
     # get the columns of the entity table, check if more_info is valid
-    entity_columns = select(entity_model).selected_columns.keys()  # type: ignore[assignment]
-    entity_id_col = select(entity_model).selected_columns["id"]  # type: ignore[assignment]
+    entity_columns = select(entity_model).selected_columns.keys()  # type: ignore[reportCallIssue]
+    entity_id_col = select(entity_model).selected_columns["id"]  # type: ignore
 
     if show_elements is None:
         show_elements = []
@@ -136,14 +142,16 @@ def entities_with_attribute(
         attribute_query = attr.c.the_type.like(the_type)
 
     # filter by id list
+    filtered_df: pd.DataFrame = pd.DataFrame()
     if filter_by is not None:
+
         # in some cases the filter_by list
         #  may contain ids that are not in the attribute table
         #  we need to add them to the final dataframe
         filter_by_sql = (
-            select(entity_model)   # type: ignore[assignment]
+            select(entity_model)   # type: ignore
             .with_only_columns(*more_info_cols, maintain_column_froms=True)
-            .where(entity_model.id.in_(filter_by))
+            .where(entity_model.id.in_(filter_by))  # type: ignore
         )
         with mysession as session:
             filtered_by_rows = session.execute(filter_by_sql)
