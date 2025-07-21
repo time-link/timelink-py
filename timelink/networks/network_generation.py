@@ -1,19 +1,21 @@
-""" Generation of networks
-
-"""
+"""Generation of networks"""
 
 from itertools import combinations
 import networkx as nx
-from sqlalchemy import text
 
 from timelink.api.database import TimelinkDatabase
+from timelink.api.models.entity import Entity
 from timelink.pandas import entities_with_attribute, attribute_values
+from timelink.kleio.utilities import format_timelink_date as ftd
+from timelink.kleio.utilities import convert_timelink_date as ctd
 
 
 def network_from_attribute(
     attribute: str,
+    ignore_values: list[str] | None = None,
     mode="cliques",
-    user="*none*",
+    by_year=False,  # add year nodes between entities and values
+    user=None,
     db: TimelinkDatabase | None = None,
     session=None,
 ) -> nx.Graph:
@@ -25,6 +27,8 @@ def network_from_attribute(
 
     Args:
         attribute (str): The name (type) of the attribute used for generating the graph.
+        ignore_values (list[str], optional): A list of values to ignore when generating the network.
+                                              Defaults to None.
         mode (str, optional): The topology of the generated network (see bellow).
                               Valid values are "cliques" and "value-node". Defaults to "cliques".
         user (str, optional): Use real persons identified by this user. Defaults to "*none*".
@@ -75,29 +79,39 @@ def network_from_attribute(
     """
 
     G = nx.Graph()
-    if db is not None:
-        mysession = db.session()
-    elif session is not None:
+    if session is not None:
         mysession = session
+    elif db is not None:
+        mysession = db.session()
     else:
-        raise ValueError(
-            "No database nor session. Specifcy db=TimeLinkDatabase() or "
-            "session=database session."
-        )
-    sql = (
-        "select distinct the_value from attributes "
-        "where the_type = :the_type and the_value <> '?'"
-    )
+        raise ValueError("No database nor session. Specifcy db=TimeLinkDatabase() or " "session=database session.")
+
+    if ignore_values is None:
+        ignore_values = ['?']
+
     with mysession:
         attribute_values_list = attribute_values(
-            attr_type=attribute,
+            the_type=attribute,
             db=db,
             session=mysession,
         )
 
         if attribute_values_list.empty:
             return G
+
+        if ignore_values is not None:
+            # remove the values to ignore
+            attribute_values_list = attribute_values_list[~attribute_values_list.index.isin(ignore_values)]
+
+        if attribute_values_list.empty:
+            return G
+
         for avalue in attribute_values_list.index:
+            # we get the date of the attribute
+            date_col = f"{attribute}.date"
+            # we get the obs of the attribute
+            obs_col = f"{attribute}.obs"
+
             # we get the entities with that value
             entities = entities_with_attribute(
                 the_type=attribute,
@@ -105,63 +119,89 @@ def network_from_attribute(
                 db=db,
                 session=mysession,
             )
+            if entities is None or entities.empty:
+                continue
 
-
-
-        result = mysession.execute(text(sql), [{"the_type": attribute}])
-        values = result.all()
-        for (avalue,) in values:
-            if user == "*none*":
-                sql = "select id,name,the_date from nattributes "
-                "where the_type=:the_type and the_value = :the_value"
-            else:
-                sql = "SELECT IFNULL( (select rid from rlinks where instance=n.id"
-                " and user=:user),id) as id, name, the_date  from nattributes n "
-                "where the_type=:the_type and the_value = :the_value"
-            # TODO: also fetch the instance SELECT IFNULL( (select rid from rlinks
-            #       where instance=n.id and user=:user),id) as id, id as instance, name,..
-            #       then test if id=instance. If not add attribute to node is_real=yes
-            #       otherwise "no". do the same with the first select.
-            # TODO add to nodes a url attribute if host and dbase are present
-            #        is present https://joaquims-mbpr.local/mhk/toliveira/id/rp-1
-            result = mysession.execute(
-                text(sql), [{"the_type": attribute, "the_value": avalue, "user": user}]
-            )
-            entities = result.all()
-
-            # in value node
+            # in value node we create a node for each value
             if mode == "value-node":
-                G.add_node(avalue, desc=avalue, type=attribute)
-                for id, name, date in entities:
-                    G.add_node(id, desc=name, type="person")
-                    G.add_edge(
-                        avalue,
-                        id,
-                        date1=date,
-                        date2=date,
-                        attribute=attribute,
-                        value=avalue,
-                    )
-            elif len(entities) > 1:
-                for id, name, _date in entities:
-                    G.add_node(
-                        id, desc=name, type="person"
-                    )  # this should come from the entity class
-                pairs = list(combinations(entities, 2))
-                # TODO: optional date range filtering
-                for (e1, _n1, d1), (e2, _n1, d2) in pairs:
-                    G.add_edges_from(
-                        [
-                            (
-                                e1,
-                                e2,
-                                {
-                                    "date1": d1,
-                                    "date2": d2,
-                                    "attribute": attribute,
-                                    "value": avalue,
-                                },
+                # in this mode we create a node for each value
+                # and link it to the entities with that value§
+                G.add_node(avalue, id=avalue, desc=avalue, type=attribute)
+
+                for idx, row in entities.iterrows():
+                    # get info on the entity
+                    entity: Entity | None = mysession.get(Entity, idx)  # type: ignore
+
+                    if entity is not None:
+                        # Access the date_col and obs_col values
+                        date_value = ftd(row[date_col]) if date_col in row else None
+                        obs_value = row[obs_col] if obs_col in row else None
+                        # add node for the entity
+                        G.add_node(idx,
+                                   desc=entity.description,
+                                   id=entity.id,
+                                   type=entity.pom_class,
+                                   group=entity.groupname,
+                                   date=date_value,
+                                   source=entity.the_source)
+                        if by_year and date_value:
+                            # add a year node if the date is not empty
+                            year = ctd(date_value).year
+                            G.add_node(year, type="year", desc=str(year))
+                            # add an edge between the year and the entity
+                            G.add_edge(year, idx, date=date_value, obs=obs_value)
+                            # check if there is an edge between the value and the year
+                            if not G.has_edge(avalue, year):
+                                G.add_edge(avalue, year, date=date_value, obs=obs_value)
+                        else:
+                            G.add_edge(
+                                avalue,
+                                idx,
+                                date=date_value,
+                                attribute=attribute,
+                                value=avalue,
+                                obs=obs_value,
                             )
-                        ]
-                    )
+            elif mode == "cliques":
+                # in this mode each entity with the same value is connected in a clique
+                unique = entities.index.unique()
+                for id in unique:
+                    # add the entity nodes
+                    # get info on the entity
+                    entity: Entity | None = mysession.get(Entity, id)
+                    if entity is not None:
+                        G.add_node(id, desc=entity.description,
+                                   group=entity.groupname,
+                                   type=entity.pom_class,
+                                   source=entity.the_source)
+                pairs = list(combinations(unique, 2))
+                if len(pairs) > 1:
+                    for id1, id2 in pairs:
+                        # get the dates and obs
+                        date1 = entities.at[id1, date_col] if date_col in entities.columns else ""
+                        date2 = entities.at[id2, date_col] if date_col in entities.columns else ""
+                        date1 = ftd(date1) if date1 else ""
+                        date2 = ftd(date2) if date2 else ""
+                        obs1: str = entities.at[id1, obs_col] if obs_col in entities.columns else ""
+                        obs2: str = entities.at[id2, obs_col] if obs_col in entities.columns else ""
+                        if ":" in date1:
+                            date1 = f'"{date1}"'
+                        if ":" in date2:
+                            date2 = f'"{date2}"'
+                        if ":" in obs1:
+                            obs1 = f'"{obs1}"'
+                        if ":" in obs2:
+                            obs2 = f'"{obs2}"'
+
+                        # add the edge
+                        G.add_edge(
+                            id1,
+                            id2,
+                            date1=date1,
+                            date2=date2,
+                            attribute=attribute,
+                            value=avalue,
+                            obs1=obs1,
+                            obs2=obs2,
+                        )
     return G

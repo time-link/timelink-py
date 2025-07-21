@@ -2,7 +2,6 @@
 
 # pylint: disable=import-error
 import pytest
-import pandas as pd
 import networkx as nx
 
 from tests import TEST_DIR, skip_on_travis
@@ -45,9 +44,9 @@ def test_generate_network(dbsystem):
     db = dbsystem
     # generate a network from the attribute "country"
 
-    attribute_type = "nacionalidade"
+    attribute_type = "wicky-viagem"
     attribute_values_list = attribute_values(
-        attr_type=attribute_type,
+        attribute_type,
         db=db,
     )
     attribute_values_list.info()
@@ -60,7 +59,7 @@ def test_generate_network(dbsystem):
         entities.info()
 
     network = network_from_attribute(
-        attribute="nacionalidade",
+        attribute=attribute_type,
         mode="cliques",
         user="*none*",
         db=db,
