@@ -1,4 +1,9 @@
-from typing import List, Optional
+
+# pyright: reportUnnecessaryTypeIgnoreComment=false
+# pyright: reportGeneralTypeIssues=false
+# pyright: reportAssignmentType=false
+# pyright: reportAttributeAccessIssue=false
+
 from datetime import datetime, timezone
 
 # for sqlalchemy 2.0 ORM
@@ -25,6 +30,8 @@ from timelink.kleio.utilities import (
 )
 from .base_class import Base
 
+from typing import Optional, List
+
 
 class Entity(Base):
     """ORM Model root of the object hierarchy.
@@ -46,7 +53,7 @@ class Entity(Base):
             Acts, Sources, Attributes and Relations are TemporalEntities
     """
 
-    __tablename__ = "entities"
+    __tablename__ = "entities"  # type: ignore
     __allow_unmapped__ = True
 
     #: str: unique identifier for the entity
@@ -96,7 +103,8 @@ class Entity(Base):
     #         'kleio_element_name': 'valor'}}
     extra_info = mapped_column(JSON, nullable=True)
     #: datetime: when this entity was updated in the database
-    updated = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)    #: datetime: when this entity was added to the full text index
+    updated = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
+    # #: datetime: when this entity was indexed used with updated to reindex entities
     indexed = mapped_column(DateTime, index=True, nullable=True)
 
     # This is defined in attribute.py
@@ -227,7 +235,7 @@ class Entity(Base):
         Return a dict with table name as key and ORM class as value
         """
         return {
-            ormclass.__mapper__.local_table.name: ormclass
+            ormclass.__mapper__.local_table.name: ormclass  # type: ignore
             for ormclass in cls.get_orm_models()
         }
 
@@ -325,7 +333,7 @@ class Entity(Base):
         return cls.get_som_mapper_to_orm_as_dict().get(pom_class, None)
 
     @classmethod
-    def get_entity(cls, eid: str, session=None):
+    def get_entity(cls, eid: str, session):
         """
         Get an Entity from the database. The object returned
         will be of the ORM class defined by mappings.
@@ -333,6 +341,8 @@ class Entity(Base):
         :param session: current session
         :return: an Entity object of the proper class for the mapping
         """
+        if session is None:
+            raise ValueError("Entity.get_entity() requires a session")
         entity = session.get(Entity, eid)
         if entity is not None:
             if entity.pom_class != "entity":
@@ -343,6 +353,10 @@ class Entity(Base):
                 return entity
         else:
             return None
+
+    @property
+    def description(self) -> str:
+        return self.get_description(default=self.groupname)
 
     def get_column_for_element(self, element: str):
         """Get the column name for a group element"""
@@ -510,6 +524,10 @@ class Entity(Base):
 
         if hasattr(self, "extra_info") and self.extra_info is not None:
             extra_info = getattr(self, "extra_info", None)
+        if obs is None:
+            obs = ""
+        if extra_info is None:
+            extra_info = {}
         return obs, extra_info
 
     # render related methods
@@ -517,16 +535,25 @@ class Entity(Base):
         """Return a list of elements to be used in the description of the entity"""
         return ["name", "description", "desc", "title", "id"]
 
-    def get_description(self, default=None):
-        """Return a descritive name for the entity"""
+    def get_description(self, default=None) -> str:
+        """Return a descritive name for the entity
+
+        Uses list of description elements to get the first
+        non-empty element. If no element is found, returns the default value.
+        If no default is provided, returns the pom_class.
+        """
         desc = None
         for element in self.description_elements():
             if hasattr(self, element):
                 desc = getattr(self, element)
                 break
-        if desc is None:
-            desc = default
-        return desc
+        if desc is None or desc == "":
+            if default is not None:
+                desc = default
+            elif hasattr(self, "pom_class") and self.pom_class is not None:
+                desc = self.pom_class
+
+        return desc if desc is not None else "Entity"
 
     def __repr__(self):
         return (
@@ -555,7 +582,7 @@ class Entity(Base):
             r = f"{groupname}${self.id}"
         els = self.get_element_names()
         dels = self.description_elements()
-        show = sorted(list(set(els) - set(dels)))
+        show = sorted([e for e in set(els) - set(dels) if e is not None])
         if "obs" in show:
             show.remove("obs")
             show.append("obs")
@@ -690,9 +717,9 @@ class Entity(Base):
         show_function = kwargs.get("show_function", False)
         contained_entities = list(
             set(self.contains)
-            - set(self.rels_in)  # noqa: W503
-            - set(self.rels_out)  # noqa: W503
-            - set(self.attributes)  # noqa: W503
+            - set(self.rels_in or [])  # noqa: W503
+            - set(self.rels_out or [])  # noqa: W503
+            - set(self.attributes or [])  # noqa: W503
         )
         bio = self.dated_bio()
         sorted_keys = sorted(bio.keys())
