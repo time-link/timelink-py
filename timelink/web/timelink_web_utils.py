@@ -9,6 +9,7 @@ import pandas as pd
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
 
+
 def run_imports_sync(db):
     print("Attempting to update database from sources...")
     db.update_from_sources(match_path= True)
@@ -41,13 +42,14 @@ async def run_setup():
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
     # Load Kleio configuration from the environment.
-    load_dotenv(Path.home() / ".timelink" / ".env", override= True)
+    load_dotenv(Path.home() / ".timelink" / ".env")
     timelink_url = os.getenv('TIMELINK_SERVER_URL')
     timelink_token = os.getenv('TIMELINK_SERVER_TOKEN')
     timelink_home  = os.getenv('TIMELINK_HOME')
     db_type  = os.getenv('TIMELINK_DB_TYPE')
 
     # Attach to server.
+    print(timelink_url, timelink_token, timelink_home)
     kserver = KleioServer.start(kleio_admin_token= timelink_token, kleio_home= timelink_home)
 
     print(f"Connected to Kleio Server at {timelink_url}, home is {timelink_home}")
@@ -158,6 +160,10 @@ def pre_process_attributes_df(df_to_process: pd.DataFrame, attr_type: str):
 
     processed_pd = df_to_process.copy()
 
+    processed_pd = processed_pd.drop(columns=[col for col in processed_pd.columns if col.endswith('extra_info')])
+
+    processed_pd.columns = [c.replace('.', '_') for c in processed_pd.columns]
+
     col_definitions = []
     for c in processed_pd.columns:
         col_def = {'headerName': c.replace(f'{attr_type}_', '').upper(), 'field': c, 'resizable': True, 'autoHeight': True}
@@ -183,26 +189,8 @@ def parse_entity_details(entity: Entity):
     mr_schema = EntityAttrRelSchema.model_validate(entity)
 
     mr_schema_dump = mr_schema.model_dump(exclude=['contains'])
-    
-    grouped = {}
 
-    for attr in mr_schema_dump['attributes']:
-
-        date = format_date(attr.get("the_date", "0"))
-        key = attr.get("the_type", "")
-        val = attr.get("the_value", "")
-        obs = attr.get("obs", "")
-
-        if date not in grouped:
-            grouped[date] = []
-        
-        entry = {key: val}
-        if obs:
-            entry["obs"] = obs
-        
-        grouped[date].append(entry)
-
-    return grouped, mr_schema_dump['rels_in'], mr_schema_dump['rels_out']
+    return entity.dated_bio(), mr_schema_dump['rels_in'], mr_schema_dump['rels_out']
 
 
 
