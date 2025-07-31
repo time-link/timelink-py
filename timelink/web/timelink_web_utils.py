@@ -225,5 +225,40 @@ def highlight_link(path, text):
     return f"<span class='highlight-cell' onclick=\"window.location.href='{path}'\">{text}</span>"
 
 
+def collect_all_ids_sync(database, entity):
+    """
+    Collect all ids necessary to fill the jinja template with information.
+    """
+    with database.session() as session:
+        childs_list = []
+
+        def recurse(ent, level):
+            act_dict = EntityAttrRelSchema.model_validate(ent).model_dump(exclude=['rels_in'])
+            for item in act_dict.get("contains", []):
+                child = database.get_entity(item["id"], session=session)
+                if child is None:
+                    continue
+                
+                child_dict = EntityAttrRelSchema.model_validate(child).model_dump(exclude=['rels_in'])
+                child_dict["extra_attrs"] = {}
+                
+                for attr in child_dict.get("extra_info", {}).keys():
+                    if attr != "class":
+                        try:
+                            kleio_class = child_dict["extra_info"].get(attr, {}).get("kleio_element_class")
+                            if kleio_class:
+                                child_dict["extra_attrs"][kleio_class] = getattr(child, attr, None)
+                        except KeyError:
+                            continue
+                
+                child_dict["extra_attrs"]["inside"] = child.inside
+                child_dict["level"] = level
+                childs_list.append(child_dict)
+                recurse(child, level + 1)
+        
+        recurse(entity, 1)
+        return childs_list
+
+
 if __name__ == "__main__":
     run_setup()

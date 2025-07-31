@@ -1,12 +1,14 @@
 from pages import navbar
-from nicegui import ui, run, background_tasks
+from nicegui import ui
 import timelink_web_utils
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import asyncio
-import time
+
+from concurrent.futures import ThreadPoolExecutor
+executor = ThreadPoolExecutor(max_workers=4)
 
 template_dir = Path(__file__).parent.parent / "templates"
 env = Environment(loader=FileSystemLoader(template_dir))
@@ -263,67 +265,46 @@ class DisplayIDPage:
 
     async def _display_act(self, entity: Entity):
         "Page to load details on an entity of type act."
+        
+        entity_title = " "
 
         if entity.the_type:
             ui.page_title(f"{entity.the_type.title()} = {entity.id.title()}")
+            entity_title = entity.the_type
         else:
             ui.page_title(entity.id.title())
-
+            entity_title = entity.id
 
         func_dict = {
             "parse_act_header_string": self._parse_act_header_string,
-            "parse_act_body_strings": self._parse_act_body_strings
+            "parse_act_body_strings": self._parse_act_body_strings,
+            "collect_ids": self._collect_all_ids
         }
-
 
         header_html_template = env.get_template("act_header.html")
         header_html_template.globals.update(func_dict)
-        header_html_render = header_html_template.render(entity=entity)
-
-
+        header_html_render = header_html_template.render(entity_title= entity_title, entity=entity)
+        ui.add_body_html(header_html_render)
+        
         # Show spinner while loading
-        spinner = ui.spinner(size="lg")
-        spinner.visible = True
-        entity_childs_list = await run.io_bound(self._collect_all_ids, entity=entity)
-        spinner.visible = False  # Hide spinner after load
-
+        with ui.spinner(size="lg") as spinner:
+            spinner.visible = True
+            entity_childs_list = await self._collect_all_ids(entity=entity)
+            spinner.visible = False  # Hide spinner after load
 
         body_html_template = env.get_template("act_body.html")
         body_html_template.globals.update(func_dict)
         body_html_render = body_html_template.render(entity_childs=entity_childs_list)
-
-        ui.add_body_html(header_html_render)
         ui.add_body_html(body_html_render)
+
+
+
+    async def _collect_all_ids(self, entity):
+            loop = asyncio.get_running_loop()
+            # Pass `self.database` to the sync function, as it's no longer a method of the class
+            return await loop.run_in_executor(executor, timelink_web_utils.collect_all_ids_sync, self.database, entity)
+
     
-
-    def _collect_all_ids(self, entity):
-           
-        with self.database.session() as session:
-        
-            childs_list = []
-
-            def recurse(ent, level):
-                act_dict = EntityAttrRelSchema.model_validate(ent).model_dump(exclude=['rels_in'])
-                for item in act_dict.get("contains", []):
-                    child = self.database.get_entity(item["id"], session=session)
-                    child_dict = EntityAttrRelSchema.model_validate(child).model_dump(exclude=['rels_in'])
-                    child_dict["extra_attrs"] = {}
-                    
-                    for attr in child_dict.get("extra_info", {}).keys():
-                        if attr != "class":
-                            child_dict["extra_attrs"][child_dict["extra_info"][attr]["kleio_element_class"]] = getattr(child, attr, None)
-                    
-                    child_dict["extra_attrs"]["inside"] = child.inside
-
-                    child_dict["level"] = level
-                    childs_list.append(child_dict)
-                    recurse(child, level+1)
-
-            recurse(entity, 1)
-        
-
-        return childs_list
-
     def _parse_act_header_string(self, entity):
         """Parse the entity's attributes to render it properly on a Jinja Template
         

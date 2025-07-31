@@ -3,7 +3,6 @@ from nicegui import ui, events
 import pandas as pd
 from sqlalchemy import select, func, and_
 import timelink_web_utils
-from timelink.pandas import entities_with_attribute
 
 class TablesPage:
 
