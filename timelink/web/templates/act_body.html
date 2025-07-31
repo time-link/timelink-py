@@ -1,0 +1,45 @@
+<style>
+    .highlight-cell {
+        text-decoration: underline dotted;
+        cursor: pointer;
+    }
+
+    .highlight-cell:hover {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .entity-info  pre {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        line-height: 2;
+        white-space: pre-wrap; 
+        tab-size: 4;          
+        max-width: 90%;   
+        overflow-wrap: break-word;
+        word-spacing: 0.1em;
+        letter-spacing: 0.03em;
+    }
+
+    .mono {
+        font-family: monospace;
+        font-size: 13px;
+        word-spacing: 0.1em;
+        line-height: 1;
+    }
+
+    body {
+        margin-left: 20px;
+    }
+
+</style>
+
+
+<div class="entity-info">
+  
+  {% for child in entity_childs -%}
+   <pre>{{ parse_act_body_strings(child) }}</pre>
+  {% endfor %}
+
+
+</div>

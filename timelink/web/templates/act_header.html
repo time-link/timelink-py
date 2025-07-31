@@ -1,0 +1,57 @@
+<style>
+    .highlight-cell {
+        text-decoration: underline dotted;
+        cursor: pointer;
+    }
+
+    .highlight-cell:hover {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .header {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: -1rem;
+    }
+
+    .entity-title  pre {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        line-height: 2;
+        white-space: pre-wrap; 
+        tab-size: 10;          
+        max-width: 90%;   
+        overflow-wrap: break-word;
+        word-spacing: 0.1em;
+        letter-spacing: 0.03em;
+    }
+
+    .mono {
+        font-family: monospace;
+        font-size: 13px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        word-spacing: 0.1em;
+        line-height: 1;
+    }
+
+    .title-definition {
+        color: rgb(11, 131, 51);
+    }
+
+    body {
+        margin-top: 40px;
+        margin-left: 20px;
+    }
+
+</style>
+
+<h1 class="header highlight-cell"
+    onclick="window.location.href='/tables/acts?name={{ entity.the_type }}'">
+    {{ entity.the_type.title() }}
+</h1>
+
+<div class="entity-title">
+   <pre>{{ parse_act_header_string(entity) }}</pre>
+</div>

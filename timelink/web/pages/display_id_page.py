@@ -1,10 +1,12 @@
 from pages import navbar
-from nicegui import ui
+from nicegui import ui, run, background_tasks
 import timelink_web_utils
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
+import asyncio
+import time
 
 template_dir = Path(__file__).parent.parent / "templates"
 env = Environment(loader=FileSystemLoader(template_dir))
@@ -20,7 +22,7 @@ class DisplayIDPage:
 
     def register(self):
         @ui.page('/id/{item_id}')
-        def display_id_page(item_id: str):
+        async def display_id_page(item_id: str):
             """Display an entity with a specific ID."""
             
             with navbar.header():
@@ -45,7 +47,10 @@ class DisplayIDPage:
                         if entity:
                             display_func = display_func_map.get(entity.pom_class)
                             if display_func:
-                                display_func(entity)
+                                if asyncio.iscoroutinefunction(display_func):
+                                    await display_func(entity)
+                                else:
+                                    display_func(entity)
                             else:
                                 ui.label(f"No page created for {entity.pom_class} yet.").classes('mb-4 text-lg font-bold text-red-500')
                         else:
@@ -88,7 +93,7 @@ class DisplayIDPage:
                         ui.label("Date").classes("text-center")
                         ui.label("Attributes").classes("break-all col-span-4 text-center")
                         ui.label("Relations").classes("text-center col-span-2 text-center")
-                        
+
                     for date, pairs in sorted(parsed_attributes.items()):
                         with ui.card().tight().classes("w-full border-0 border-b border-gray-300 rounded-none shadow-none bg-gray-50"):
                             with ui.grid(columns=9).classes("w-full items-start gap-4 text-xs"):
@@ -255,9 +260,9 @@ class DisplayIDPage:
                                 
                         first_card_rendered == True
 
-    def _display_act(self, entity: Entity):
-        "Page to load details on an entity of type act."
 
+    async def _display_act(self, entity: Entity):
+        "Page to load details on an entity of type act."
 
         if entity.the_type:
             ui.page_title(f"{entity.the_type.title()} = {entity.id.title()}")
@@ -265,101 +270,150 @@ class DisplayIDPage:
             ui.page_title(entity.id.title())
 
 
-        entity_map = {
-            "act": f"/tables/acts?name={entity.the_type}",
-            "source": f'/all_tables/sources?display_type=sources&value={entity.the_type}',
-            "relation": f'/tables/relations?type={entity.the_type}',
-            "attribute": f'/tables/attributes?attr_type={entity.the_type}'
+        func_dict = {
+            "parse_act_header_string": self._parse_act_header_string,
+            "parse_act_body_strings": self._parse_act_body_strings
         }
 
-        display_page = entity_map.get(entity.pom_class)
-        html_page = env.get_template("act.html").render(entity=entity)
-        ui.add_body_html(html_page)
-         
-        #self._render_act_entity(entity, level=0)  #TODO - ASYNC
+
+        header_html_template = env.get_template("act_header.html")
+        header_html_template.globals.update(func_dict)
+        header_html_render = header_html_template.render(entity=entity)
 
 
-    def _render_act_entity(self, entity, level=0):
+        # Show spinner while loading
+        spinner = ui.spinner(size="lg")
+        spinner.visible = True
+        entity_childs_list = await run.io_bound(self._collect_all_ids, entity=entity)
+        spinner.visible = False  # Hide spinner after load
+
+
+        body_html_template = env.get_template("act_body.html")
+        body_html_template.globals.update(func_dict)
+        body_html_render = body_html_template.render(entity_childs=entity_childs_list)
+
+        ui.add_body_html(header_html_render)
+        ui.add_body_html(body_html_render)
     
+
+    def _collect_all_ids(self, entity):
+           
         with self.database.session() as session:
-            all_ids = self._collect_all_ids(entity, session)
+        
+            childs_list = []
 
-            preloaded = {
-                item_id: self.database.get_entity(item_id, session=session)
-                for item_id in all_ids
-            }
+            def recurse(ent, level):
+                act_dict = EntityAttrRelSchema.model_validate(ent).model_dump(exclude=['rels_in'])
+                for item in act_dict.get("contains", []):
+                    child = self.database.get_entity(item["id"], session=session)
+                    child_dict = EntityAttrRelSchema.model_validate(child).model_dump(exclude=['rels_in'])
+                    child_dict["extra_attrs"] = {}
+                    
+                    for attr in child_dict.get("extra_info", {}).keys():
+                        if attr != "class":
+                            child_dict["extra_attrs"][child_dict["extra_info"][attr]["kleio_element_class"]] = getattr(child, attr, None)
+                    
+                    child_dict["extra_attrs"]["inside"] = child.inside
 
-            self._render_act_entity_recursive(entity, level, preloaded)
+                    child_dict["level"] = level
+                    childs_list.append(child_dict)
+                    recurse(child, level+1)
 
+            recurse(entity, 1)
+        
 
-    def _collect_all_ids(self, entity, session):
-        """Query the database for all the required IDs at once.
+        return childs_list
 
+    def _parse_act_header_string(self, entity):
+        """Parse the entity's attributes to render it properly on a Jinja Template
+        
         Args:
-            entity: entity to collect ids from
-            session: current database session.
+
+            entity:         The entity to be parsed.
         
         """
-        ids = []
 
-        def recurse(ent):
-            act_dict = EntityAttrRelSchema.model_validate(ent).model_dump(exclude=['rels_in'])
-            for item in act_dict.get("contains", []):
-                ids.append(item["id"])
-                child = self.database.get_entity(item["id"], session=session)
-                recurse(child)
+        act_dict = EntityAttrRelSchema.model_validate(entity).model_dump(exclude=['rels_in'])
+        
+        entity_string = f"<strong>{act_dict['groupname']}</strong>$ {entity.the_type}"
 
-        recurse(entity)
-        return ids
+        obs = ""
 
-
-
-    def _render_act_entity_recursive(self, entity, level, preloaded):
-        indent = f"ml-{level * 4}"
-
-
-        """
-        with ui.row():
-            if not act_dict['groupname'] == "relation":
-                ui.label(f"{act_dict['groupname']}$").classes(f"font-bold {indent}")
-
-                if act_dict['groupname'] not in {"n", "pai", "mae", "pad", "mad", "mrmad"}:
-                    ui.label(act_dict['id']).classes(f"-ml-3")
-
-                    for extra_info_key, extra_info_value in act_dict["extra_info"].items():
-                        if extra_info_key not in {'class'}:
-                            value = getattr(entity, extra_info_key)
-                            kleio_class = extra_info_value.get('kleio_element_class')
-                            if kleio_class == "obs":
-                                obs = f"{value}{extra_info_value.get('comment', '')}"
-                            else:
-                                ui.label(f"/{kleio_class}=").classes(f'-ml-4 text-green-800')
-                                if kleio_class in {'inside', 'id'}:
-                                    ui.label(value).on(
-                                        "click", lambda _, id=value: ui.navigate.to(f"/id/{id}")
-                                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-4')
-                                else:
-                                    ui.label(value).classes(f'-ml-4')
-
-                    ui.label("/inside=").classes(f'-ml-4')
-                    ui.label(entity.inside).on(
-                        "click", lambda: ui.navigate.to(f"/id/{entity.inside}")
-                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-4') if entity.inside else ui.label("root").classes(f"-ml-4")
-
+        for extra_info_key, extra_info_value in act_dict["extra_info"].items():
+            if extra_info_key not in {'class'}:
+                value = getattr(entity, extra_info_key)
+                kleio_class = extra_info_value.get('kleio_element_class')
+                if kleio_class == "obs":
+                    obs = f"{value}{extra_info_value.get('comment', '')}"
+                elif kleio_class == "id":
+                    entity_string += f"/{kleio_class}=<span class='highlight-cell' onclick=\"window.location.href='/id/{value}'\">{value}</span> "
                 else:
-                    ui.label(getattr(entity, 'name')).on(
-                        lambda _, id=getattr(entity, 'id'): ui.navigate.to(f"/id/{id}")
-                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-3')
-                    ui.label(f"/sex={getattr(entity, 'sex')}").classes(f"-ml-3 text-green-800")
-                    ui.label(f"/id=").classes(f"-ml-3 text-green-800")
-                    ui.label(getattr(entity, 'id')).on(
-                        "click", lambda _, id=getattr(entity, 'id'): ui.navigate.to(f"/id/{id}")
-                    ).classes(f'highlight-cell cursor-pointer decoration-dotted -ml-3')
+                    entity_string += f'/<span class="title-definition">{kleio_class}=</span>{value} '
+
+        if entity.inside: 
+            entity_string += f"/inside=<span class='highlight-cell' onclick=\"window.location.href='/id/{entity.inside}'\">{entity.inside}</span> "
+        else:
+            entity_string += f"/inside=root"
 
         if obs:
-            ui.label(f"/obs={obs}").classes(f"font-mono italic text-sm")
+            entity_string += f'<span class="mono">\n/obs={obs}</span>'
         
-        for contained_element in act_dict.get("contains", []):
-            new_entity = preloaded[contained_element['id']]
-            self._render_act_entity_recursive(new_entity, level + 1, preloaded)
-    """
+        return entity_string
+    
+
+    def _parse_act_body_strings(self, ent_dict):
+        
+        
+        if ent_dict["groupname"] == "relation" and ent_dict["extra_attrs"].get("type") == "function-in-act":
+            return ""
+
+        level_indent = "\t" * ent_dict["level"]
+        entity_string = f"{level_indent}<strong>{ent_dict['groupname']}</strong>$ "
+
+        extra = ent_dict["extra_attrs"]
+        eid = ent_dict["id"]
+
+        if ent_dict['groupname'] in {"fonte", "lista", "geodesc", "bap"}:
+            entity_string += (
+                f"{eid}"
+                f'/<span class="title-definition">date</span>={extra["date"]} '
+                f'/<span class="title-definition">type</span>={extra["type"]} '
+                f"/inside={timelink_web_utils.highlight_link(f'/id/{extra['inside']}', extra['inside'])} "
+                f"/id={timelink_web_utils.highlight_link(f'/id/{eid}', extra['id'])} "
+            )
+        
+        elif ent_dict["groupname"] in {"rel", "relation"}:
+
+            entity_string += (
+                f" {extra['type']} "
+                f"/ {extra['value']} "
+                f"/ {timelink_web_utils.highlight_link(f'/id/{extra['destination']}', extra['destination'])} "
+                f"/ {timelink_web_utils.format_date(extra['date'])} "
+            )
+
+
+        elif ent_dict["groupname"] in {"ls", "atr"}:
+            entity_string += (
+                f" {timelink_web_utils.highlight_link(f'/all_tables/attributes?display_type=statistics&value={extra['type']}', extra['type'])} "
+                f"/ {timelink_web_utils.highlight_link(f'/tables/persons?value={extra['type']}&type={extra['value']}', extra['value'])} "
+                f"/ {timelink_web_utils.format_date(extra['date'])} "
+            )
+            if "obs" in extra:
+                entity_string += timelink_web_utils.format_obs(extra["obs"], ent_dict["level"])
+
+        elif ent_dict["groupname"].startswith("geo"):
+            entity_string += (
+                f"{timelink_web_utils.highlight_link(f'/id/{eid}', extra['name'])} "
+                f'/<span class="title-definition">type</span>={extra["type"]} '
+                f"/id={timelink_web_utils.highlight_link(f'/id/{eid}', eid)} "
+            )
+
+        else:
+            entity_string += (
+                f"{timelink_web_utils.highlight_link(f'/id/{eid}', extra['name'])} "
+                f'/<span class="title-definition">sex</span>={extra["sex"]} '
+                f"/id={timelink_web_utils.highlight_link(f'/id/{eid}', eid)} "
+            )
+
+
+        return entity_string

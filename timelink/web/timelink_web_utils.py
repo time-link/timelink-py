@@ -207,8 +207,22 @@ def format_date(raw):
         return f"{year}-{month}-00"
     elif len(raw) == 4:
         return f"{raw}-00-00"
+    elif len(raw) == 10:
+        return raw
     else:
         return "0000-00-00"
+
+
+def format_obs(obs_text, level):
+    indent = (level + 1) * 6
+    return (
+        f'/<span class="title-definition">obs</span>='
+        f'\n<span style="display:inline-block; padding-left:{indent}ch; text-indent:0;" class="mono">'
+        f'{obs_text}</span> '
+    )
+
+def highlight_link(path, text):
+    return f"<span class='highlight-cell' onclick=\"window.location.href='{path}'\">{text}</span>"
 
 
 if __name__ == "__main__":
