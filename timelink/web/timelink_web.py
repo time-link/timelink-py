@@ -3,13 +3,13 @@ import timelink_web_utils
 import sys
 
 # --- Pages ---
-from pages import homepage, status_page, explore_page, display_id_page, tables_page
-
-#from explore_tab import ExploreTab
+from pages import homepage, status_page, explore_page, display_id_page, tables_page, overview_page, people_page, families_page, calendar_page, linking_page, sources_page, search_page, admin_page 
 
 port = 8000
 kserver = None
 database = None
+
+
 
 async def initial_setup():
     """Connect to the Kleio Server and load settings found on the .env"""
@@ -27,6 +27,22 @@ async def initial_setup():
     
     table_page = tables_page.TablesPage(database=database, kserver=kserver)
     table_page.register()
+
+    overview_page.Overview(database=database, kserver=kserver)
+
+    people_page.PeopleGroupsNetworks(database=database, kserver=kserver)
+
+    families_page.Families(database=database, kserver=kserver)
+
+    calendar_page.CalendarPage(database=database, kserver=kserver)
+
+    linking_page.Linking(database=database, kserver=kserver)
+
+    sources_page.Sources(database=database, kserver=kserver)
+
+    search_page.Search(database=database, kserver=kserver)
+
+    admin_page.Admin(database=database, kserver=kserver)
 
 
 if "--port" in sys.argv:

@@ -5,7 +5,7 @@ import timelink_web_utils
 
 class ExplorePage:
     
-    """Currently used as a debug page to check for additional information."""
+    """Page for database exploration."""
     def __init__(self, database, kserver) -> None:
         self.database = database
         self.kserver = kserver

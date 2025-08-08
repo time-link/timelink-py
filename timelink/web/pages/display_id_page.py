@@ -3,6 +3,7 @@ from nicegui import ui
 import timelink_web_utils
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
+from timelink.web.models import Activity
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 import asyncio
@@ -48,6 +49,19 @@ class DisplayIDPage:
                         entity = self.database.get_entity(item_id, session=session)
                         if entity:
                             display_func = display_func_map.get(entity.pom_class)
+
+                            # Write into activity log viewed entity
+
+                            new_entry = Activity(
+                                entity_id=item_id,
+                                entity_type=entity.pom_class,
+                                activity_type='viewed',
+                                desc=f'Entity {item_id} was viewed'
+                                )
+
+                            session.add(new_entry)
+                            session.commit()
+
                             if display_func:
                                 if asyncio.iscoroutinefunction(display_func):
                                     await display_func(entity)
@@ -195,7 +209,7 @@ class DisplayIDPage:
         with ui.card().tight().classes("w-full bg-gray-50"):
             with ui.tabs() as tabs:
                 geo_info_tab = ui.tab('p_info', label='Geoentity Details').classes("w-full bg-blue-100 text-orange-500 font-bold")
-            with ui.tab_panels(tabs, value=geo_info_tab).classes('w-full'):
+            with ui.tab_panels(tabs, value=geo_info_tab).classes('w-full bg-gray-50'):
                 with ui.tab_panel(geo_info_tab).classes("items-center"):
                     with ui.grid(columns=6).classes("w-full bg-blue-100 text-orange-500 font-bold"):
                         ui.label("Name").classes("text-center")
@@ -221,6 +235,9 @@ class DisplayIDPage:
                                                     ui.label(f'{function["dest_name"]} : {function["the_value"]}').on(
                                                     "click", lambda _, id=function["destination"]: ui.navigate.to(f"/id/{id}")).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
                                 
+                                else:
+                                    ui.space().classes("col-span-2 ml-1 mt-1 mb-1")
+
                                 # --- Attributes Column ---
                                 with ui.column().classes("col-span-2 ml-1 mt-1 mb-1 items-righ"):
                                     for i, entry in enumerate(pairs):
@@ -260,7 +277,7 @@ class DisplayIDPage:
                                                             ui.label(original_entity.name).on(
                                                                 "click", lambda _, id=rel["origin"]: ui.navigate.to(f"/id/{id}")).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
                                 
-                        first_card_rendered == True
+                        first_card_rendered = True
 
 
     async def _display_act(self, entity: Entity):
@@ -281,28 +298,28 @@ class DisplayIDPage:
             "collect_ids": self._collect_all_ids
         }
 
-        header_html_template = env.get_template("act_header.html")
-        header_html_template.globals.update(func_dict)
-        header_html_render = header_html_template.render(entity_title= entity_title, entity=entity)
-        ui.add_body_html(header_html_render)
         
         # Show spinner while loading
         with ui.spinner(size="lg") as spinner:
             spinner.visible = True
+            header_html_template = env.get_template("act_header.html")
+            header_html_template.globals.update(func_dict)
+            header_html_render = header_html_template.render(entity_title= entity_title, entity=entity)
+            
+            ui.add_body_html(header_html_render)
             entity_childs_list = await self._collect_all_ids(entity=entity)
             spinner.visible = False  # Hide spinner after load
 
-        body_html_template = env.get_template("act_body.html")
-        body_html_template.globals.update(func_dict)
-        body_html_render = body_html_template.render(entity_childs=entity_childs_list)
-        ui.add_body_html(body_html_render)
+            body_html_template = env.get_template("act_body.html")
+            body_html_template.globals.update(func_dict)
+            body_html_render = body_html_template.render(entity_childs=entity_childs_list)
+            ui.add_body_html(body_html_render)
 
 
 
     async def _collect_all_ids(self, entity):
-            loop = asyncio.get_running_loop()
-            # Pass `self.database` to the sync function, as it's no longer a method of the class
-            return await loop.run_in_executor(executor, timelink_web_utils.collect_all_ids_sync, self.database, entity)
+        loop = asyncio.get_running_loop()
+        return await loop.run_in_executor(executor, timelink_web_utils.collect_all_ids_sync, self.database, entity)
 
     
     def _parse_act_header_string(self, entity):

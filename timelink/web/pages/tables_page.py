@@ -2,6 +2,10 @@ from pages import navbar
 from nicegui import ui, events
 import pandas as pd
 from sqlalchemy import select, func, and_
+import asyncio
+from timelink.api.models import Entity
+from timelink.web.models import Activity
+import re
 import timelink_web_utils
 
 class TablesPage:
@@ -60,6 +64,14 @@ class TablesPage:
             with navbar.header():
                 ui.page_title(f"{table_name.title()} Display")
                 self._display_tables(table_name, display_type, value)
+        
+        @ui.page('/search_tables')
+        async def search_database_page(keywords: str):
+            with navbar.header():
+                ui.page_title("Search Results")
+
+                keyword_list = keywords.split("__")
+                await self._search_database(keyword_list)
     
     def _display_names(self, name_to_query: str):
         """
@@ -716,6 +728,69 @@ class TablesPage:
         else:  # Relation table views
             ui.navigate.to(f'/tables/relations?type={type}&value={e.args["data"]["the_value"]}')
 
+
+    async def _search_database(self, keywords):
+        """ Search database for a variable number of terms and display the results on a table.
+        
+            Args:
+
+                keywords   : list of keywords to be searched for.
+        """
+
+
+        ui.add_body_html('''<style>
+                .highlight-cell { text-decoration: underline dotted; }
+                .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
+                </style>''')
+        
+        terms = [t.lower() for t in keywords]
+
+        def run_query():
+            result_list = []
+            with self.database.session() as session:
+                results = session.execute(select(Entity)).scalars().all()
+                for entity in results:
+                    if entity.pom_class not in {"rperson", "person", "act"}:
+                        continue
+                    searchable_text = str(entity).lower()
+                    words = set(re.findall(r"\b\w+\b", searchable_text))
+                    if all(term in words for term in terms):
+                        result_list.append({
+                            "entity": entity.id,
+                            "entity_class": entity.pom_class,
+                            "description": str(entity)
+                        })
+
+                if result_list:
+                    session.add(Activity(
+                        entity_id=" ".join(terms),
+                        entity_type="N/A",
+                        activity_type='searched',
+                        desc=f'Found {len(result_list)} results with this search.'
+                    ))
+                    session.commit()
+
+            return result_list
+
+        result_list = await asyncio.to_thread(run_query)
+
+        results_df = pd.DataFrame(result_list, columns=["entity", "entity_class", "description"])
+
+        expected_cols = [
+                        {'headerName': 'ID', 'field': 'entity', 'cellClass': 'highlight-cell'},
+                        {'headerName': 'Entity Type', 'field': 'entity_class'},
+                        {'headerName': 'Description', 'field': 'description'},
+                        ]
+
+        grid = ui.aggrid({
+            'columnDefs': expected_cols,
+            "pagination": True,
+            "paginationPageSize": 50,
+            "paginationPageSizeSelector": [50, 100, 200],
+            'rowData': results_df.to_dict("records")}
+        ).classes('h-[70vh]')
+                
+        grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["entity"]}") if e.args["colId"] == "entity" else None)
 
     def _toggle_description(self, grid):
         """Toggle description button functionality to properly resize the table."""

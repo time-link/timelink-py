@@ -1,13 +1,15 @@
 from nicegui import ui
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_postgres_dbnames
+from timelink.api.models import Entity
+from timelink.api.schemas import EntityAttrRelSchema
+from timelink.web.models import Activity, ActivityBase
 import os
 from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
-from timelink.api.models import Entity
-from timelink.api.schemas import EntityAttrRelSchema
+
 
 
 def run_imports_sync(db):
@@ -34,6 +36,16 @@ def run_db_setup(khome, db_type):
 
         db = TimelinkDatabase(db_type='postgres', db_name='timelink-web')
 
+
+    # Check if activity table exists here, and if not, create it for logging purposes
+    tables = db.db_table_names()
+
+    if "activity" not in tables:
+        print("No Activity table found in the database - creating one.")
+        ActivityBase.metadata.create_all(bind=db.engine, tables=[Activity.__table__])
+    else:
+        print("Activity table loaded successfully.")
+
     return db
 
 
@@ -49,7 +61,6 @@ async def run_setup():
     db_type  = os.getenv('TIMELINK_DB_TYPE')
 
     # Attach to server.
-    print(timelink_url, timelink_token, timelink_home)
     kserver = KleioServer.start(kleio_admin_token= timelink_token, kleio_home= timelink_home)
 
     print(f"Connected to Kleio Server at {timelink_url}, home is {timelink_home}")
@@ -195,6 +206,8 @@ def parse_entity_details(entity: Entity):
 
 
 def format_date(raw):
+    """Format date dynamically according to a raw date input string"""
+
     raw = str(raw)
     if len(raw) == 8:
         year = raw[:4]
@@ -258,6 +271,60 @@ def collect_all_ids_sync(database, entity):
         
         recurse(entity, 1)
         return childs_list
+
+def get_entity_count_table(database: TimelinkDatabase):
+    """Helper function to retrieve the count of entities currently in the database."""
+    
+    stmt = select(Entity.pom_class, func.count().label('count')).group_by(Entity.pom_class)
+
+
+    with database.session() as session:
+        result = session.execute(stmt)
+        pom_class_df = pd.DataFrame(result, columns=['pom_class', 'count'])
+
+    return pom_class_df
+
+
+def get_recent_sources(database: TimelinkDatabase):
+    """Helper function to retrieve recent sources into a dataframe."""
+    
+    imported = database.get_imported_files()
+
+    imported_df = pd.DataFrame([dict(file) for file in imported])
+    
+    # Replace NaT columns 
+    imported_df["imported"] = imported_df["imported"].fillna(pd.Timestamp(0))
+    
+    return imported_df.astype({col: str for col in imported_df.select_dtypes(include=['datetime']).columns})
+
+
+def get_recent_history(database: TimelinkDatabase, searched_only: bool = False):
+    """Helper function to retrieve activity log as a dataframe.
+    
+        Args:
+            database        :   The TimelinkDatabase we are handling currently
+            searched_only   :   Boolean that defines if we are looking for recent searches or for entity logs
+
+    """
+
+    if searched_only:
+        condition = (Activity.activity_type == "searched")
+    else:
+        condition = (Activity.activity_type != "searched")
+    
+    with database.session() as session:
+        result = session.execute(select(
+                Activity.entity_id,
+                Activity.entity_type,
+                Activity.activity_type,
+                Activity.desc,
+                Activity.when
+            ).where(condition)
+        )
+        df = pd.DataFrame(result.fetchall(), columns=result.keys())
+
+    return df.astype({col: str for col in df.select_dtypes(include=['datetime']).columns})
+    
 
 
 if __name__ == "__main__":
