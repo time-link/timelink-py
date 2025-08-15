@@ -1,9 +1,8 @@
 from pages import navbar
 import timelink_web_utils
-import pandas as pd
 from datetime import datetime
-
-from nicegui import ui
+import re
+from nicegui import ui, app
 
 
 class Overview:
@@ -123,7 +122,7 @@ class Overview:
             history_grid = ui.aggrid({
                 'columnDefs': expected_cols,
                 'rowData': history_df.to_dict("records")}
-            ).classes('h-[75vh]')
+            ).classes('h-[40vh]')
 
             history_grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["entity_id"]}") if e.args["colId"] == "entity_id" else None)
 
@@ -195,21 +194,69 @@ class Overview:
     def _display_recent_searches(self):
         """Display table with recent searches."""
 
+        ui.add_body_html('''<style>
+                    .highlight-cell { text-decoration: underline dotted; }
+                    .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
+                    </style>
+                ''')
+
         try:
             history_df = timelink_web_utils.get_recent_history(self.database, searched_only= True)
 
             expected_cols = [
-                    {'headerName': 'Search Terms', 'field': 'entity_id'},
+                    {'headerName': 'Search Terms', 'field': 'entity_id', 'cellClass': 'highlight-cell'},
+                    {'headerName': 'Entities Selected', 'field': 'entity_type'},
                     {'headerName': 'Event Type', 'field': 'activity_type'},
                     {'headerName': 'Event Description', 'field': 'desc'},
                     {'headerName': 'Time', 'field': 'when', 'sort': 'desc'}
                     ]
 
-            ui.aggrid({
+            search_grid = ui.aggrid({
                 'columnDefs': expected_cols,
                 'rowData': history_df.to_dict("records")}
-            )
+            ).classes('h-[40vh]')
+
+            search_grid.on('cellClicked', self._handle_search_results_click)
 
         except Exception as e:
-            ui.label(f'Could not load recently viewed entities - something went wrong: ({e})').classes('text-red-500 font-semibold ml-1')
+            ui.label(f'Could not load recent searches - something went wrong: ({e})').classes('text-red-500 font-semibold ml-1')
             print(e)
+
+
+    def _handle_search_results_click(self, e):
+        """Helper function that maps user to the correct query search."""
+        
+        if e.args["colId"] != "entity_id":
+            return
+
+        activity_type = e.args["data"]["activity_type"]
+        entity_id = e.args["data"]["entity_id"]
+        entity_type = e.args["data"]["entity_type"]
+
+        date_match = re.search(r"Between (\d{4}-\d{2}-\d{2}) and (\d{4}-\d{2}-\d{2})", e.args["data"]["desc"])
+        if date_match:
+            from_date, to_date = date_match.groups()
+
+        if activity_type == "searched":
+            ui.navigate.to(f'/search_tables?keywords={entity_id.replace(" ", "__").rstrip("__")}&tables={entity_type}')
+        elif activity_type == "SQL search":
+            self._redo_sql_query(entity_id, entity_type)
+        elif activity_type == "Name search":
+            ui.navigate.to(f'/search_names?names={entity_id}&from_={from_date}&to_={to_date}')
+        elif activity_type == "Name search (exact)":
+            ui.navigate.to(f'/search_names?names={entity_id}&from_={from_date}&to_={to_date}&exact=1')
+
+
+    def _redo_sql_query(self, sql_query: str, sql_table: str):
+        """Helper function to store sql search found in table and send it safely to the page responsible for displaying it.
+        
+        Args:
+        
+            sql_query   : the query to be sent
+            sql_table   : the table where the query was executed on
+            
+        """
+
+        app.storage.tab['sql_table'] = sql_table
+        app.storage.tab['sql_query'] = sql_query
+        ui.navigate.to(f'/search_tables_sql')

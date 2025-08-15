@@ -9,6 +9,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
+from datetime import datetime
 
 
 
@@ -43,8 +44,6 @@ def run_db_setup(khome, db_type):
     if "activity" not in tables:
         print("No Activity table found in the database - creating one.")
         ActivityBase.metadata.create_all(bind=db.engine, tables=[Activity.__table__])
-    else:
-        print("Activity table loaded successfully.")
 
     return db
 
@@ -188,6 +187,22 @@ def pre_process_attributes_df(df_to_process: pd.DataFrame, attr_type: str):
     return processed_pd, col_definitions
 
 
+def build_expected_col_list(df: pd.DataFrame, id_field: str):
+    """Convert a DataFrame into AG Grid column definitions, tagging one column as ID."""
+
+    col_defs = []
+    for col in df.columns:
+        col_def = {
+            'headerName': col.replace('_', ' ').title(),
+            'field': col
+        }
+        if col == id_field:
+            col_def['cellClass'] = 'highlight-cell'
+        col_defs.append(col_def)
+    return col_defs
+
+
+
 def parse_entity_details(entity: Entity):
     """Parse an entity's details to display on the entity's page.
     
@@ -217,13 +232,29 @@ def format_date(raw):
     elif len(raw) == 6:
         year = raw[:4]
         month = raw[4:6]
-        return f"{year}-{month}-00"
+        return f"{year}-{month}-01"
     elif len(raw) == 4:
-        return f"{raw}-00-00"
+        return f"{raw}-01-01"
     elif len(raw) == 10:
         return raw
     else:
-        return "0000-00-00"
+        return "0001-01-01"
+    
+
+def parse_flexible_date(date_str, default = "0001-01-01"):
+    """Parses a date in YYYY, YYYY-MM, or YYYY-MM-DD format.
+       Returns a datetime.date or the default if invalid."""
+    
+    if not date_str:
+        return default
+
+    formats = ["%Y", "%Y-%m", "%Y-%m-%d"]
+    for fmt in formats:
+        try:
+            return str(datetime.strptime(date_str, fmt).date())
+        except ValueError:
+            continue
+    return default
 
 
 def format_obs(obs_text, level):
@@ -307,10 +338,12 @@ def get_recent_history(database: TimelinkDatabase, searched_only: bool = False):
 
     """
 
+    search_types = ["searched", "SQL search", "Name search", "Name search (exact)"]
+
     if searched_only:
-        condition = (Activity.activity_type == "searched")
+        condition = Activity.activity_type.in_(search_types)
     else:
-        condition = (Activity.activity_type != "searched")
+        condition = ~Activity.activity_type.in_(search_types)
     
     with database.session() as session:
         result = session.execute(select(

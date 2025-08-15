@@ -1,12 +1,13 @@
 from pages import navbar
-from nicegui import ui, events
+from nicegui import ui, events, app
 import pandas as pd
-from sqlalchemy import select, func, and_
+from sqlalchemy import select, func, and_, text
 import asyncio
-from timelink.api.models import Entity
+from timelink.api.models import Entity, Person
 from timelink.web.models import Activity
 import re
 import timelink_web_utils
+from datetime import datetime
 
 class TablesPage:
 
@@ -66,13 +67,39 @@ class TablesPage:
                 self._display_tables(table_name, display_type, value)
         
         @ui.page('/search_tables')
-        async def search_database_page(keywords: str):
+        async def search_database_page(keywords: str, tables: str):
             with navbar.header():
                 ui.page_title("Search Results")
+                keyword_list = keywords.split("_")
+                await self._search_database(keyword_list, tables)
 
-                keyword_list = keywords.split("__")
-                await self._search_database(keyword_list)
-    
+        @ui.page('/search_names')
+        async def search_database_page(names: str, from_: str = None, to_: str = None, exact: str = "0"):
+            with navbar.header():
+                ui.page_title("Name Search Results")
+
+                exact_match = str(exact).lower() in ("1", "true", "yes")
+
+                names_to_query = names.split("_")
+
+                await self._name_search_database(names_to_query, from_, to_, exact_match)
+
+        @ui.page('/search_tables_sql')
+        async def search_database_sql_page():
+            with navbar.header():
+                ui.page_title("SQL Search Results")
+
+                await ui.context.client.connected()
+                sql_table = app.storage.tab.get('sql_table')
+                sql = app.storage.tab.get('sql_query')
+
+                if sql:
+                    app.storage.tab['sql_query'] = None
+                    app.storage.tab['sql_table'] = None
+                    await self._display_sql_results(sql, sql_table)
+                else:
+                    ui.label(f'Could not load SQL query results - did you try to directly access this link directly the browser?').classes('text-xl text-red-500 font-semibold ml-1')
+
     def _display_names(self, name_to_query: str):
         """
         Display all results with the passed name.
@@ -729,12 +756,16 @@ class TablesPage:
             ui.navigate.to(f'/tables/relations?type={type}&value={e.args["data"]["the_value"]}')
 
 
-    async def _search_database(self, keywords):
+    async def _search_database(self, keywords, tables):
         """ Search database for a variable number of terms and display the results on a table.
         
             Args:
 
                 keywords   : list of keywords to be searched for.
+                tables     : the tables within which to search
+                from_date  : the date from which results start
+                to_date    : the date up to which the results will be looked for
+                exact      : if the query needs to be an exact match or not.
         """
 
 
@@ -745,12 +776,19 @@ class TablesPage:
         
         terms = [t.lower() for t in keywords]
 
+        tables_map = {
+            "All Entities" : {"rperson", "person", "act"},
+            "Real Persons" : {"rperson"},
+            "Persons" : {"person"},
+            "Acts" : {"act"},
+        }
+
         def run_query():
             result_list = []
             with self.database.session() as session:
                 results = session.execute(select(Entity)).scalars().all()
                 for entity in results:
-                    if entity.pom_class not in {"rperson", "person", "act"}:
+                    if entity.pom_class not in tables_map[tables]:
                         continue
                     searchable_text = str(entity).lower()
                     words = set(re.findall(r"\b\w+\b", searchable_text))
@@ -764,7 +802,7 @@ class TablesPage:
                 if result_list:
                     session.add(Activity(
                         entity_id=" ".join(terms),
-                        entity_type="N/A",
+                        entity_type=tables,
                         activity_type='searched',
                         desc=f'Found {len(result_list)} results with this search.'
                     ))
@@ -791,10 +829,158 @@ class TablesPage:
         ).classes('h-[70vh]')
                 
         grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["entity"]}") if e.args["colId"] == "entity" else None)
+    
+    async def _display_sql_results(self, sql_query: str, sql_table: str):
+        """ Search database using a custom SQL query.
+        
+            Args:
+
+                sql_query   : The query to be executed.
+                sql_table   : Table where the query was executed on.
+        """
+
+        ui.add_body_html('''<style>
+                .highlight-cell { text-decoration: underline dotted; }
+                .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
+                </style>''')
+        
+        ui.label("SQL Query Results").classes('text-orange-500 text-xl mt-4 font-bold')
+
+        ui.label(sql_query).classes('text-sm italic mt-3 text-gray-600')
+
+        results = self.database.query(text(sql_query))
+        results_df = pd.DataFrame(results.fetchall(), columns=results.keys())
+
+        if results_df.empty:
+            ui.label("No rows found").classes('text-red-500')
+        else:
+            with self.database.session() as session:
+                session.add(Activity(
+                    entity_id=sql_query,
+                    entity_type=sql_table,
+                    activity_type='SQL search',
+                    desc=f'Found {results_df.shape[0]} results with this search.'
+                ))
+                session.commit()
+
+            with ui.card().tight().classes("w-full bg-gray-50"):
+
+                col_defs = timelink_web_utils.build_expected_col_list(results_df, "id")
+
+                grid = ui.aggrid({
+                        'columnDefs': col_defs,
+                        "pagination": True,
+                        "paginationPageSize": 50,
+                        "paginationPageSizeSelector": [50, 100, 200],
+                        'rowData': results_df.to_dict("records")}
+                    ).classes('h-[70vh]')
+
+                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None)
+
+
+    async def _name_search_database(self, names, from_date, to_date, exact):
+        """ Search persons table for specific people.
+        
+            Args:
+
+                names      : list of keywords to be searched for.
+                from_date  : the date from which results start
+                to_date    : the date up to which the results will be looked for
+                exact      : if the query needs to be an exact match or not.
+        """
+
+
+        ui.add_body_html('''<style>
+            .highlight-cell { text-decoration: underline dotted; }
+            .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
+            </style>''')
+        
+        
+        names_to_find = [n.lower() for n in names]
+
+        def run_query():
+            result_list = []
+            with self.database.session() as session:
+                results = session.execute(select(Person)).scalars().all()
+                for entity in results:
+                
+                    searchable_text = str(entity.name).lower()
+
+                    if exact:
+                        search_string = " ".join(names_to_find).lower().strip()
+                        match_find = search_string == searchable_text
+                    
+                    else:
+                        words = set(re.findall(r"\b\w+\b", searchable_text))
+                        match_find = all(any(name.lower() in word.lower() for word in words) for name in names_to_find)
+
+                    if match_find:
+
+                        dated_bio = entity.dated_bio()
+
+                        min_person_date = min(dated_bio.keys())
+                        min_person_datetime = timelink_web_utils.format_date(min_person_date)
+
+                        if datetime.strptime(from_date, "%Y-%m-%d") <= datetime.strptime(min_person_datetime, "%Y-%m-%d") <= datetime.strptime(to_date, "%Y-%m-%d"):
+                            
+                            function_value = "N/A"
+
+                            for _, val in dated_bio.items():
+                                for rel in val:
+                                    if getattr(rel, "the_type", None) == "function-in-act":
+                                        function_value = getattr(rel, "the_value", None)
+                        
+                            result_list.append({
+                                "name": entity.name.title(),   
+                                "sex": entity.sex,
+                                "obs": entity.obs,
+                                "id" : entity.id,
+                                "function" : function_value
+                            })
+
+
+                if result_list:
+
+                    search_type_string = "Name search (exact)" if exact else "Name search"
+                    
+                    session.add(Activity(
+                        entity_id=" ".join(names),
+                        entity_type="Persons",
+                        activity_type= search_type_string,
+                        desc=f'Between {from_date} and {to_date} - Found {len(result_list)} results.'
+                    ))
+                    session.commit()
+
+
+            return result_list
+
+        result_list = await asyncio.to_thread(run_query)
+
+        
+        results_df = pd.DataFrame(result_list, columns=["name", "function", "sex", "obs", "id"])
+
+
+        expected_cols = [
+                        {'headerName': 'Name', 'field': 'name', 'cellClass': 'highlight-cell'},
+                        {'headerName': 'Function', 'field': 'function'},
+                        {'headerName': 'Sex', 'field': 'sex'},
+                        {'headerName': 'Observations', 'field': 'obs'},
+                        ]
+
+        grid = ui.aggrid({
+            'columnDefs': expected_cols,
+            "pagination": True,
+            "paginationPageSize": 50,
+            "paginationPageSizeSelector": [50, 100, 200],
+            'rowData': results_df.to_dict("records")}
+        ).classes('h-[70vh]')
+                
+        grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "name" else None)
+
 
     def _toggle_description(self, grid):
         """Toggle description button functionality to properly resize the table."""
-        
+
         self.show_desc = not self.show_desc
         grid.run_grid_method('setColumnVisible', 'description', self.show_desc)
 
