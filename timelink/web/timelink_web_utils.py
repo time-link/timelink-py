@@ -12,7 +12,6 @@ import pandas as pd
 from datetime import datetime
 
 
-
 def run_imports_sync(db):
     print("Attempting to update database from sources...")
     db.update_from_sources(match_path= True)
@@ -357,7 +356,6 @@ def get_recent_history(database: TimelinkDatabase, searched_only: bool = False):
         df = pd.DataFrame(result.fetchall(), columns=result.keys())
 
     return df.astype({col: str for col in df.select_dtypes(include=['datetime']).columns})
-    
 
 
 if __name__ == "__main__":

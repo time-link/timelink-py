@@ -5,7 +5,6 @@ from sqlalchemy import text, inspect
 import timelink_web_utils
 
 
-
 class Search:
     
     """Page for robust searching. """
