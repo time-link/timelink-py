@@ -23,7 +23,7 @@ from timelink.api.database import TimelinkDatabase, get_postgres_dbnames
 from timelink.api.database import get_sqlite_databases
 from timelink.api.database import get_postgres_url
 from timelink.api.database import get_sqlite_url
-from timelink.kleio import KleioServer
+from timelink.kleio import KleioServer, find_free_port
 
 
 # get the current directory
@@ -95,7 +95,7 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
     typer.echo(f"Local Timelink version: {local_version}, latest Timelink version: {last_version}")
 
     # Timelink Home and Server
-    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path= timelink_path))
+    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path=timelink_path))
     typer.echo("Timelink Home set to: " + timelink_home)
     env_dir = TIMELINK_ENV_PATH.parent
     env_dir.mkdir(parents=True, exist_ok=True)
@@ -167,18 +167,15 @@ def is_port_in_use(port):
 
 
 @start_app.command("project")
-def start_project(path: Path = Path("."), 
+def start_project(path: Path = Path("."),
                   port: Optional[int] = typer.Option(None, "-p", "--port"),
                   database: Optional[str] = typer.Option("sqlite", "--database", "-d", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)")):
-    """Start a timelink docker server on defined path and port. 
+    """Start a timelink docker server on defined path and port.
         If none are given, the path defaults to current directory, and the port to the first available port after 8088
     """
-
-    # port = find_free_port(port or 8088, 8099)
-
-    port = port or 8088
+    port = port or find_free_port(8089, 8099)
     path = os.path.normpath(path.resolve() if not path.is_absolute() else path)
-
+    typer.echo(f"Starting Timelink project at: {path} on port {port}")
     if database not in ("sqlite", "postgres"):
         typer.echo(f"Warning: '{database}' is not a supported database backend. Defaulting to 'sqlite'.", err=True)
         database = "sqlite"
