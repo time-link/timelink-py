@@ -2,6 +2,7 @@
 
 """Tests for `timelink-py` package."""
 
+from pathlib import Path
 import random
 import pytest
 from typer.testing import CliRunner
@@ -25,12 +26,27 @@ def test_content(response):
     # assert 'GitHub' in BeautifulSoup(response.content).title.string
 
 
+# ===============================================================
+# Testing CLI commands
+# ===============================================================
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
     assert "Timelink and MHK manager" in result.output
+
+
+@skip_on_travis
+def test_start_project():
+    """Test 'timelink start project'
+        Assuming project is tests/timelink-home/projects/test-project
+    """
+    runner = CliRunner()
+    path_to_project = Path(TEST_DIR, "timelink-home", "projects", "test-project")
+    result = runner.invoke(app, ["start", "project", "--path", path_to_project])
+    assert result.exit_code == 0
+    assert "Start a new project" in result.output
 
 
 @mhk_absent
