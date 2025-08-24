@@ -1,6 +1,6 @@
 # flake8: noqa: F401
 from typing import List
-from .kleio_server import KleioServer
+from .kleio_server import KleioServer, find_free_port
 from .schemas import KleioFile
 from .schemas import ApiPermissions, TokenInfo
 from .schemas import translation_status_enum
