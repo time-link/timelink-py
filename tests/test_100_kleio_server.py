@@ -1,25 +1,39 @@
-""" tests for interfacing to kleio server
+"""tests for interfacing to kleio server
 
 https://github.com/time-link/timelink-kleio-server
 """
 
+from pathlib import Path
 import time
+
 #  import pdb
 from tests import TEST_DIR, skip_if_local
 from timelink.kleio.schemas import KleioFile, TokenInfo
-from timelink.kleio.kleio_server import KleioServer, KleioServerForbidenException
+from timelink.kleio.kleio_server import KleioServer, KleioServerForbidenException, is_project_directory, is_timelink_home_directory
 import re
 
-KLEIO_ADMIN_TOKEN: str = None
-KLEIO_LIMITED_TOKEN: str = None
-KLEIO_NORMAL_TOKEN: str = None
-KLEIO_SERVER: KleioServer = None
+KLEIO_ADMIN_TOKEN: str | None = None
+KLEIO_LIMITED_TOKEN: str | None = None
+KLEIO_NORMAL_TOKEN: str | None = None
+KLEIO_SERVER: KleioServer | None = None
 
 
-def test_find_kleio_home() -> str:
-    # Test if kleio home is found"""
-    kleio_home = KleioServer.find_local_kleio_home()
-    assert kleio_home is not None
+def test_find_kleio_home_project():
+    # Test if kleio home is detected in a project dir"""
+    project_path = Path(TEST_DIR, "timelink-home", "projects", "test-project")
+    kleio_home = KleioServer.find_local_kleio_home(str(project_path))
+
+    assert kleio_home == str(project_path)
+    assert is_project_directory(str(project_path))
+
+
+def test_find_timelink_home():
+    # Test if kleio home is detected in a timelink home dir"""
+    timelink_home = Path(TEST_DIR, "timelink-home")
+    kleio_home = KleioServer.find_local_kleio_home(str(timelink_home))
+
+    assert kleio_home == str(timelink_home)
+    assert is_timelink_home_directory(str(timelink_home))
 
 
 def test_is_kleio_server_running(kleio_server):
@@ -143,7 +157,7 @@ def test_translations_get(kleio_server):
     # Test if translations are retrieved"""
     path: str = "projects/test-project/sources/reference_sources/linked_data"
     recurse: str = "yes"
-    status: str = None
+    status: str | None = None
 
     kserver: KleioServer = kleio_server
     translations = kserver.get_translations(path, recurse=recurse, status=status)
@@ -323,9 +337,7 @@ def test_start_kleio_server_env():
     for key, value in matches:
         print(f"{key} = {value}")
         home_page_info[key] = value
-    assert home_page_info["Workers"].strip() == str(
-        kworkers
-    ), "number of works do not match"
+    assert home_page_info["Workers"].strip() == str(kworkers), "number of works do not match"
     ptoken = home_page_info["Kleio_admin_token"].strip()
     assert ptoken == kadmin_token[:5], "token does not match"
     ks.stop()
