@@ -18,3 +18,6 @@ name = "timelink"
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
 [tool.pyright]
 typeCheckingMode = "off"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

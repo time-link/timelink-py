@@ -4,6 +4,8 @@ from timelink.kleio.kleio_server import KleioServer
 
 from tests import KLEIO_HOME, KleioServerTestMode, kleio_server_mode
 
+from unittest.mock import MagicMock
+
 
 @pytest.fixture(scope="session")
 def kleio_server():
@@ -53,3 +55,15 @@ def kleio_server():
         except Exception as e:
             print("Error stopping server", e)
             pass
+
+
+@pytest.fixture
+def fake_db():
+    mock_db = MagicMock()
+    mock_db.session.return_value.__enter__.return_value.execute.return_value = []
+    return mock_db
+
+@pytest.fixture
+def fake_kserver():
+    fake_kserver = MagicMock()
+    return fake_kserver
