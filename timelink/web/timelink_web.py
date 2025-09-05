@@ -1,6 +1,7 @@
 from nicegui import ui, app
 from timelink.web import timelink_web_utils
 import sys
+from pathlib import Path
 
 # --- Pages ---
 from timelink.web.pages import (homepage, status_page, explore_page,
@@ -12,12 +13,14 @@ from timelink.web.pages import (homepage, status_page, explore_page,
 port = 8000
 kserver = None
 database = None
+project_path = Path.cwd()
+database_type = "sqlite"
 
 
 async def initial_setup():
     """Connect to the Kleio Server and load settings found on the .env"""
     global database, kserver
-    kserver, database = await timelink_web_utils.run_setup()
+    kserver, database = await timelink_web_utils.run_setup(project_path, database_type)
 
     homepage.HomePage(database=database, kserver=kserver)
 
@@ -53,6 +56,15 @@ if "--port" in sys.argv:
     if idx < len(sys.argv):
         port = int(sys.argv[idx])
 
+if "--directory" in sys.argv:
+    idx = sys.argv.index("--directory") + 1
+    if idx < len(sys.argv):
+        project_path = Path(sys.argv[idx]).resolve()
+
+if "--database" in sys.argv:
+    idx = sys.argv.index("--database") + 1
+    if idx < len(sys.argv):
+        database_type = sys.argv[idx]
 
 app.on_startup(initial_setup)
 

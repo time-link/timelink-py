@@ -195,8 +195,16 @@ class Overview:
             )
 
             # Date range slider
-            min_date = datetime.strptime(history_df["when"].min(), "%Y-%m-%d %H:%M:%S.%f").timestamp()
-            max_date = datetime.strptime(history_df["when"].max(), "%Y-%m-%d %H:%M:%S.%f").timestamp()
+            min_date = (
+                datetime.strptime(history_df["when"].min(), "%Y-%m-%d %H:%M:%S.%f").timestamp()
+                if not history_df.empty
+                else datetime(1, 1, 1).timestamp()
+            )
+            max_date = (
+                datetime.strptime(history_df["when"].max(), "%Y-%m-%d %H:%M:%S.%f").timestamp()
+                if not history_df.empty
+                else datetime(9999, 12, 31).timestamp()
+            )
             slider = ui.range(min=min_date, max=max_date, value={'min': min_date, 'max' : max_date})
 
             with ui.row().classes("w-full justify-between"):

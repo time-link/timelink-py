@@ -9,7 +9,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
-from datetime import datetime
 
 
 def run_imports_sync(db):
@@ -46,20 +45,32 @@ def run_db_setup(khome, db_type):
     return db
 
 
-async def run_setup():
+async def run_setup(home_path: Path, database_type: str = "sqlite"):
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
-    # Load Kleio configuration from the environment.
-    load_dotenv(Path.home() / ".timelink" / ".env")
-    timelink_url = os.getenv('TIMELINK_SERVER_URL')
-    timelink_token = os.getenv('TIMELINK_SERVER_TOKEN')
-    timelink_home = os.getenv('TIMELINK_HOME')
-    db_type = os.getenv('TIMELINK_DB_TYPE')
+    timelink_home = None
 
-    # Attach to server.
-    kserver = KleioServer.start(kleio_admin_token=timelink_token, kleio_home=timelink_home)
+    # Find timelink home in the current path.
+    timelink_home = KleioServer.find_local_kleio_home(str(home_path))
 
-    print(f"Connected to Kleio Server at {timelink_url}, home is {timelink_home}")
+    print(f"Timelink Home set to {timelink_home}")
+
+    # If for some reason timelink home wasn't found, then attempt to read it from .timelink\.env found at root directory.
+    if not timelink_home:
+        print("Could not find timelink home in the current directory. Attempting to read from .timelink env options.")
+        load_dotenv(Path.home() / ".timelink" / ".env")
+        timelink_token = os.getenv('TIMELINK_SERVER_TOKEN')
+        timelink_home = os.getenv('TIMELINK_HOME')
+        db_type = os.getenv('TIMELINK_DB_TYPE')
+        kserver = KleioServer.start(kleio_admin_token=timelink_token, kleio_home=timelink_home)
+
+    else:
+        kserver = KleioServer.get_server(timelink_home)
+        if not kserver:
+            kserver = KleioServer.start(kleio_home=timelink_home)
+        db_type = database_type
+
+    print(f"Connected to Kleio Server at {kserver.url}, home is {kserver.kleio_home}")
 
     # Database setup
     db = run_db_setup(timelink_home, db_type)
@@ -216,43 +227,6 @@ def parse_entity_details(entity: Entity):
     return entity.dated_bio(), mr_schema_dump['rels_in'], mr_schema_dump['rels_out']
 
 
-def format_date(raw):
-    """Format date dynamically according to a raw date input string"""
-
-    raw = str(raw)
-    if len(raw) == 8:
-        year = raw[:4]
-        month = raw[4:6]
-        day = raw[6:8]
-        return f"{year}-{month}-{day}"
-    elif len(raw) == 6:
-        year = raw[:4]
-        month = raw[4:6]
-        return f"{year}-{month}-01"
-    elif len(raw) == 4:
-        return f"{raw}-01-01"
-    elif len(raw) == 10:
-        return raw
-    else:
-        return "0001-01-01"
-
-
-def parse_flexible_date(date_str, default="0001-01-01"):
-    """Parses a date in YYYY, YYYY-MM, or YYYY-MM-DD format.
-       Returns a datetime.date or the default if invalid."""
-
-    if not date_str:
-        return default
-
-    formats = ["%Y", "%Y-%m", "%Y-%m-%d"]
-    for fmt in formats:
-        try:
-            return str(datetime.strptime(date_str, fmt).date())
-        except ValueError:
-            continue
-    return default
-
-
 def format_obs(obs_text, level):
     indent = (level + 1) * 6
     return (
@@ -263,7 +237,13 @@ def format_obs(obs_text, level):
 
 
 def highlight_link(path, text):
-    return f"<span class='highlight-cell' onclick=\"window.location.href='{path}'\">{text}</span>"
+    return (
+        "<span class='highlight-cell' onclick=\"window.location.href='" +
+        path +
+        "'\">" +
+        text +
+        "</span>"
+    )
 
 
 def collect_all_ids_sync(database, entity):

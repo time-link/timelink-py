@@ -7,6 +7,7 @@ from timelink.api.models import Entity, Person
 from timelink.web.models import Activity
 import re
 from timelink.web import timelink_web_utils
+from timelink.kleio.utilities import format_timelink_date
 from datetime import datetime
 
 
@@ -98,7 +99,7 @@ class TablesPage:
                     await self._display_sql_results(sql, sql_table)
                 else:
                     ui.label(
-                        'Could not load SQL query results - did you try to directly access this link directly the browser?'
+                        'Could not load SQL query results - did you try to directly access this link through the browser?'
                     ).classes('text-xl text-red-500 font-semibold ml-1')
 
     def _display_names(self, name_to_query: str):
@@ -190,7 +191,6 @@ class TablesPage:
                     names_df = pd.DataFrame(names_results)
 
                 if not names_df.empty:
-
                     names_grid = ui.aggrid({
                         'columnDefs': [
                             {'headerName': 'Name', 'field': 'name'},
@@ -984,7 +984,7 @@ class TablesPage:
                         dated_bio = entity.dated_bio()
 
                         min_person_date = min(dated_bio.keys())
-                        min_person_datetime = timelink_web_utils.format_date(min_person_date)
+                        min_person_datetime = format_timelink_date(min_person_date)
 
                         if (
                             datetime.strptime(from_date, "%Y-%m-%d") <=

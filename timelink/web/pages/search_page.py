@@ -3,6 +3,7 @@ from timelink.web import timelink_web_utils
 from nicegui import ui, app
 import pandas as pd
 from sqlalchemy import text, inspect
+from timelink.kleio.utilities import format_timelink_date
 
 
 class Search:
@@ -224,8 +225,8 @@ class Search:
         query = self.name_input.value.strip()
 
         # Date parsing
-        parsed_from = timelink_web_utils.parse_flexible_date(self.from_date.value)
-        parsed_to = timelink_web_utils.parse_flexible_date(self.to_date.value, default="9999-12-31")
+        parsed_from = format_timelink_date(self.from_date.value) or "0001-01-01"
+        parsed_to = format_timelink_date(self.to_date.value) or "9999-12-31"
 
         if parsed_to < parsed_from:
             parsed_from, parsed_to = parsed_to, parsed_from
@@ -257,8 +258,8 @@ class Search:
         """Handles advanced attribute searching."""
 
         # Date parsing
-        parsed_from = timelink_web_utils.parse_flexible_date(self.attr_from_date.value)
-        parsed_to = timelink_web_utils.parse_flexible_date(self.attr_to_date.value, default="9999-12-31")
+        parsed_from = format_timelink_date(self.attr_from_date.value) or "0001-01-01"
+        parsed_to = format_timelink_date(self.attr_to_date.value) or "9999-12-31"
 
         if parsed_to < parsed_from:
             parsed_from, parsed_to = parsed_to, parsed_from

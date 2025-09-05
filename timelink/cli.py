@@ -24,6 +24,7 @@ from timelink.api.database import get_sqlite_databases
 from timelink.api.database import get_postgres_url
 from timelink.api.database import get_sqlite_url
 from timelink.kleio import KleioServer
+from timelink.kleio.kleio_server import find_free_port
 
 
 # get the current directory
@@ -149,17 +150,6 @@ def create_project(path: Path = Path("timelink-project")):
         typer.echo("Failed to clone the project template.")
 
 
-# TODO: Currently unused - psutil needs root permissions on MacOS.
-"""
-def is_port_in_use(port):
-    # Helper function to check for usable ports
-    for conn in psutil.net_connections(kind="inet"):
-        if conn.laddr.port == port:
-            typer.echo(f"Port {port} is in use already. Attempting next port over...")
-            return True
-    return False
-"""
-
 # ================================================
 # Startup related commands
 # These are used to configure and launch a timelink project on a set directory, or launch the webapp.
@@ -174,9 +164,8 @@ def start_project(path: Path = Path("."),
         If none are given, the path defaults to current directory, and the port to the first available port after 8088
     """
 
-    # port = find_free_port(port or 8088, 8099)
+    port = find_free_port(from_port=port or 8088, to_port=8099)
 
-    port = port or 8088
     path = os.path.normpath(path.resolve() if not path.is_absolute() else path)
 
     if database not in ("sqlite", "postgres"):
@@ -189,15 +178,24 @@ def start_project(path: Path = Path("."),
 
 @start_app.command("web")
 def start_webproject(
-    port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000")
+    port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"),
+    path: Optional[Path] = typer.Option(None, "-d", "--directory", help="Timelink project directory. Defaults to the current one."),
+    database: Optional[str] = typer.Option("sqlite", "--database", "-db", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)"),
     ):
+
     """Start the webapp on the chosen port if set. If not, read from .env file. If not, default to 8000."""
     port = port or 8000
     web_app_path = Path(__file__).parent / "web/timelink_web.py"
 
-    typer.echo(f"Starting Timelink Web Interface at port {port}.")
+    path_to_use = path or Path.cwd()
 
-    subprocess.run([sys.executable, str(web_app_path), "--port", str(port)])
+    if database not in ("sqlite", "postgres"):
+        typer.echo(f"Warning: '{database}' is not a supported database backend. Defaulting to 'sqlite'.", err=True)
+        database = "sqlite"
+
+    typer.echo(f"Starting Timelink Web Interface at port {port} on {path_to_use}.")
+
+    subprocess.run([sys.executable, str(web_app_path), "--port", str(port),  "--directory", str(path_to_use), "--database", database])
 
 
 # ================================================

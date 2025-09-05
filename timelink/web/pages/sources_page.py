@@ -1,5 +1,4 @@
 from timelink.web.pages import navbar
-import os
 from pathlib import Path
 from nicegui import ui, events
 
@@ -12,7 +11,9 @@ class Sources:
         self.kserver = kserver
         self.track_files_to_import = set()
         self.track_files_to_translate = set()
-        self.imported_files_dict = {f.name: f for f in self.database.get_import_status()}
+        self.imported_files_dict = {}
+        for f in self.database.get_import_status(match_path=True):
+            self.imported_files_dict[str(f.name)] = f
 
         # Files with errors
         self.problem_files = [
@@ -60,10 +61,10 @@ class Sources:
                         with self.path_container_row:
                             ui.label("Kleio Files in ").classes("-mr-2 font-bold text-xs text-orange-500")
                             self.home_path = ui.label(
-                                f"{os.getenv('TIMELINK_HOME')}: "
+                                f"{self.kserver.kleio_home}: "
                             ).classes(
                                 "-mr-2 font-bold text-xs highlight-cell cursor-pointer"
-                            ).on("Click", lambda path=os.getenv('TIMELINK_HOME'): self._handle_home_click(path))
+                            ).on("Click", lambda path=self.kserver.kleio_home: self._handle_home_click(path))
 
                         with ui.grid(columns=3).classes("w-full"):
                             with ui.column().classes("col-span-2 mr-4"):
@@ -195,7 +196,7 @@ class Sources:
     async def _render_directory_viewer(self):
         """View of the source files available on the current timelink home."""
 
-        self.path = Path(os.getenv("TIMELINK_HOME")).expanduser()
+        self.path = Path(self.kserver.kleio_home).expanduser()
         self.upper_limit = self.path
 
         self.folder_grid = ui.aggrid({

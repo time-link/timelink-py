@@ -6,6 +6,7 @@ from timelink.web import timelink_web_utils
 from timelink.web.pages import status_page
 import pandas as pd
 from sqlalchemy import column, table
+from pathlib import Path
 
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
@@ -44,37 +45,41 @@ def test_run_db_setup(monkeypatch, capsys, db_type, fake_db):
 
 @pytest.mark.asyncio
 async def test_run_setup(monkeypatch, capsys, fake_db, fake_kserver):
-
-    # mock dotenv loader
-    monkeypatch.setattr("timelink.web.timelink_web_utils.load_dotenv", lambda path: None)
-
-    # mock environment variables
-    env_values = {
-        "TIMELINK_SERVER_URL": "http://fake.server",
-        "TIMELINK_SERVER_TOKEN": "fake-token",
-        "TIMELINK_HOME": "/fake/home",
-        "TIMELINK_DB_TYPE": "sqlite",
-    }
-    monkeypatch.setattr("os.getenv", lambda key: env_values[key])
-
-    # mock KleioServer.start
-    monkeypatch.setattr("timelink.web.timelink_web_utils.KleioServer", MagicMock(start=lambda **kwargs: fake_kserver))
-
-    # mock db setup
-    monkeypatch.setattr("timelink.web.timelink_web_utils.run_db_setup", lambda home, db_type: fake_db)
-
     from timelink.web import timelink_web_utils
 
-    kserver, db = await timelink_web_utils.run_setup()
+    # Mock KleioServer methods
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer, 
+        "find_local_kleio_home", 
+        lambda path: "/fake/home"
+    )
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer, 
+        "get_server", 
+        lambda home: None
+    )
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer, 
+        "start", 
+        lambda **kwargs: fake_kserver
+    )
 
-    # check return values
+    # Mock db setup
+    monkeypatch.setattr(timelink_web_utils, "run_db_setup", lambda home, db_type: fake_db)
+
+    # Call run_setup with a Path
+    home_path = Path("/current/path")
+    kserver, db = await timelink_web_utils.run_setup(home_path, database_type="sqlite")
+
+    # Check returned objects
     assert kserver is fake_kserver
     assert db is fake_db
     fake_db.set_kleio_server.assert_called_once_with(fake_kserver)
 
-    # check print output
+    # Check printed output
     out, _ = capsys.readouterr()
-    assert "Connected to Kleio Server at http://fake.server, home is /fake/home" in out
+    assert "Timelink Home set to /fake/home" in out
+    assert f"Connected to Kleio Server at {fake_kserver.url}, home is {fake_kserver.kleio_home}" in out
 
 
 @pytest.mark.asyncio

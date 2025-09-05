@@ -6,7 +6,9 @@ from timelink.api.schemas import EntityAttrRelSchema
 from timelink.web.models import Activity
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
+from timelink.kleio.utilities import format_timelink_date
 import asyncio
+
 
 from concurrent.futures import ThreadPoolExecutor
 executor = ThreadPoolExecutor(max_workers=4)
@@ -37,7 +39,8 @@ class DisplayIDPage:
                     "act": self._display_act,
                     "source": self._display_act,
                     "relation": self._display_act,
-                    "attribute": self._display_act
+                    "attribute": self._display_act,
+                    "escritura": self._display_act
                 }
 
                 ui.add_body_html('''<style>
@@ -53,7 +56,6 @@ class DisplayIDPage:
                             display_func = display_func_map.get(entity.pom_class)
 
                             # Write into activity log viewed entity
-
                             new_entry = Activity(
                                 entity_id=item_id,
                                 entity_type=entity.pom_class,
@@ -78,7 +80,7 @@ class DisplayIDPage:
 
                 except Exception as e:
                     ui.label('Could not load details for selected entity.').classes('text-red-500 font-semibold mt-4')
-                    print(e)
+                    print(f"Could not load details for selected entity: {e}")
 
     def _display_person(self, entity: Entity):
         "Page to load details on an entity of type person."
@@ -145,7 +147,7 @@ class DisplayIDPage:
 
                                 # --- Show Date ---
                                 with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
-                                    ui.label(timelink_web_utils.format_date(date)).classes("text-blue-600 font-bold")
+                                    ui.label(format_timelink_date(date)).classes("text-blue-600 font-bold")
 
                                 # --- Attributes Column ---
                                 with ui.column().classes("col-span-4 ml-1 mt-1 mb-1 items-right justify-center"):
@@ -370,7 +372,7 @@ class DisplayIDPage:
         return await loop.run_in_executor(executor, timelink_web_utils.collect_all_ids_sync, self.database, entity)
 
     def _parse_act_header_string(self, entity):
-        """Parse the entity's attributes to render it properly on a Jinja Template
+        """Parse the entity's attributes to render it properly on a Jinja Template header
 
         Args:
 
@@ -415,62 +417,89 @@ class DisplayIDPage:
         return entity_string
 
     def _parse_act_body_strings(self, ent_dict):
+        """Parse the entity's attributes to render it properly on the template's body.
 
-        if ent_dict["groupname"] == "relation" and ent_dict["extra_attrs"].get("type") == "function-in-act":
-            return ""
+        Args:
 
-        level_indent = "\t" * ent_dict["level"]
-        entity_string = f"{level_indent}<strong>{ent_dict['groupname']}</strong>$ "
+            entity:         The entity to be parsed.
 
-        extra = ent_dict["extra_attrs"]
-        eid = ent_dict["id"]
+        """
 
-        if ent_dict['groupname'] in {"fonte", "lista", "geodesc", "bap"}:
-            entity_string += (
-                f"{eid}"
-                f'/<span class="title-definition">date</span>={extra["date"]} '
-                f'/<span class="title-definition">type</span>={extra["type"]} '
-                f"/inside={timelink_web_utils.highlight_link(f'/id/{extra['inside']}', extra['inside'])} "
-                f"/id={timelink_web_utils.highlight_link(f'/id/{eid}', extra['id'])} "
-            )
+        try:
+            group = ent_dict["groupname"]
+            extra = ent_dict["extra_attrs"]
+            eid = ent_dict["id"]
+            level_indent = "\t" * ent_dict["level"]
 
-        elif ent_dict["groupname"] in {"rel", "relation"}:
+            if group == "relation" and extra.get("type") == "function-in-act":
+                return ""
 
-            entity_string += (
-                f" {extra['type']} "
-                f"/ {extra['value']} "
-                f"/ {timelink_web_utils.highlight_link(f'/id/{extra['destination']}', extra['destination'])} "
-                f"/ {timelink_web_utils.format_date(extra['date'])} "
-            )
+            # Base entity string
+            entity_string = level_indent + "<strong>" + group + "</strong>$ "
 
-        elif ent_dict["groupname"] in {"ls", "atr"}:
-            attr_link = timelink_web_utils.highlight_link(
-                f"/all_tables/attributes?display_type=statistics&value={extra['type']}",
-                extra['type']
-            )
-            person_link = timelink_web_utils.highlight_link(
-                f"/tables/persons?value={extra['type']}&type={extra['value']}",
-                extra['value']
-            )
-            date_str = timelink_web_utils.format_date(extra['date'])
+            if group in {"fonte", "lista", "geodesc", "bap"}:
+                inside_link = timelink_web_utils.highlight_link("/id/" + extra["inside"], extra["inside"])
+                id_link = timelink_web_utils.highlight_link("/id/" + eid, extra["id"])
 
-            entity_string += f" {attr_link} / {person_link} / {date_str} "
+                entity_string += (
+                    eid +
+                    "/<span class=\"title-definition\">date</span>=" + extra["date"] + " " +
+                    "/<span class=\"title-definition\">type</span>=" + extra["type"] + " " +
+                    "/inside=" + inside_link + " " +
+                    "/id=" + id_link + " "
+                )
 
-            if "obs" in extra:
-                entity_string += timelink_web_utils.format_obs(extra["obs"], ent_dict["level"])
+            elif group in {"rel", "relation"}:
+                dest_link = timelink_web_utils.highlight_link("/id/" + extra["destination"], extra["destination"])
+                date_str = format_timelink_date(extra["date"])
 
-        elif ent_dict["groupname"].startswith("geo"):
-            entity_string += (
-                f"{timelink_web_utils.highlight_link(f'/id/{eid}', extra['name'])} "
-                f'/<span class="title-definition">type</span>={extra["type"]} '
-                f"/id={timelink_web_utils.highlight_link(f'/id/{eid}', eid)} "
-            )
+                entity_string += (
+                    " " + extra["type"] +
+                    " / " + extra["value"] +
+                    " / " + dest_link +
+                    " / " + date_str + " "
+                )
 
-        else:
-            entity_string += (
-                f"{timelink_web_utils.highlight_link(f'/id/{eid}', extra['name'])} "
-                f'/<span class="title-definition">sex</span>={extra["sex"]} '
-                f"/id={timelink_web_utils.highlight_link(f'/id/{eid}', eid)} "
-            )
+            elif group in {"ls", "atr"}:
+                attr_link = timelink_web_utils.highlight_link(
+                    "/all_tables/attributes?display_type=statistics&value=" + extra["type"],
+                    extra["type"]
+                )
+                person_link = timelink_web_utils.highlight_link(
+                    "/tables/persons?value=" + extra["type"] + "&type=" + extra["value"],
+                    extra["value"]
+                )
+                date_str = format_timelink_date(extra["date"])
+
+                entity_string += " " + attr_link + " / " + person_link + " / " + date_str + " "
+
+                if "obs" in extra:
+                    entity_string += timelink_web_utils.format_obs(extra["obs"], ent_dict["level"])
+
+            elif group.startswith("geo"):
+                name_link = timelink_web_utils.highlight_link("/id/" + eid, extra["name"])
+                id_link = timelink_web_utils.highlight_link("/id/" + eid, eid)
+
+                entity_string += (
+                    name_link +
+                    " /<span class=\"title-definition\">type</span>=" + extra["type"] + " " +
+                    "/id=" + id_link + " "
+                )
+
+            else:
+                name_link = timelink_web_utils.highlight_link("/id/" + eid, extra["name"])
+                id_link = timelink_web_utils.highlight_link("/id/" + eid, eid)
+
+                if "sex" in extra:
+                    entity_string += (
+                        name_link +
+                        " /<span class=\"title-definition\">sex</span>=" + extra["sex"] + " " +
+                        "/id=" + id_link + " "
+                    )
+                else:
+                    entity_string += name_link + " /id=" + id_link + " "
+
+        except Exception as e:
+            print(f"Missing {e} in entity {eid}: {list(ent_dict["extra_attrs"].keys())}")
 
         return entity_string
