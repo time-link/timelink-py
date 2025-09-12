@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Optional
 import subprocess
 import sys
+import socket
 from sys import platform
 import timelink
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
@@ -174,7 +175,16 @@ def start_project(path: Path = Path("."),
 
     run_kserver_setup(path, port, database)
 
-
+def find_website_port(from_port: int = 8088, to_port: int = 8099):
+    for port in range(from_port, to_port + 1):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                typer.echo(f"Attempting to initialize on port {port}...")
+                s.bind(("0.0.0.0", port))
+                return port
+            except OSError:
+                pass
+    raise OSError(f"No free ports available in the range {from_port}-{to_port}")
 
 @start_app.command("web")
 def start_webproject(
@@ -182,9 +192,10 @@ def start_webproject(
     path: Optional[Path] = typer.Option(None, "-d", "--directory", help="Timelink project directory. Defaults to the current one."),
     database: Optional[str] = typer.Option("sqlite", "--database", "-db", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)"),
     ):
+    """Start the webapp on the chosen port if set. If not, default to 8000."""
 
-    """Start the webapp on the chosen port if set. If not, read from .env file. If not, default to 8000."""
-    port = port or 8000
+    port = find_website_port(from_port=port or 8000, to_port=8020)
+
     web_app_path = Path(__file__).parent / "web/timelink_web.py"
 
     path_to_use = path or Path.cwd()

@@ -24,8 +24,6 @@ async def initial_setup():
 
     homepage.HomePage(database=database, kserver=kserver)
 
-    status_page.StatusPage(database=database, kserver=kserver)
-
     explore_page.ExplorePage(database=database, kserver=kserver)
 
     id_page = display_id_page.DisplayIDPage(database=database, kserver=kserver)
@@ -44,7 +42,9 @@ async def initial_setup():
 
     linking_page.Linking(database=database, kserver=kserver)
 
-    sources_page.Sources(database=database, kserver=kserver)
+    source_page = sources_page.Sources(database=database, kserver=kserver)
+
+    status_page.StatusPage(database=database, kserver=kserver, sources=source_page)
 
     search_page.Search(database=database, kserver=kserver)
 

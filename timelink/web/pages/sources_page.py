@@ -1,6 +1,8 @@
 from timelink.web.pages import navbar
 from pathlib import Path
 from nicegui import ui, events
+from collections import defaultdict
+import asyncio
 
 
 class Sources:
@@ -12,20 +14,37 @@ class Sources:
         self.track_files_to_import = set()
         self.track_files_to_translate = set()
         self.imported_files_dict = {}
-        for f in self.database.get_import_status(match_path=True):
-            self.imported_files_dict[str(f.name)] = f
+        self.problem_files = []
+        self.translate_warning_files = []
+        self.import_error_files = []
+        self.queued_for_import = 0
+        self.queued_for_translate = 0
+        self.currently_translating = 0
+        self.import_lock = asyncio.Lock()
 
-        # Files with errors
-        self.problem_files = [
-            name for name, f in self.imported_files_dict.items()
-            if (f.errors or 0) > 0 or (f.warnings or 0) > 0 or (f.import_errors or 0) > 0
-        ]
-        self.translate_warning_files = [name for name, f in self.imported_files_dict.items() if (f.warnings or 0) > 0]
-        self.import_error_files = [name for name, f in self.imported_files_dict.items() if (f.import_errors or 0) > 0]
+        self.refresh_imported_files()
 
         @ui.page('/sources')
         async def register():
             await self.sources_page()
+
+    def refresh_imported_files(self):
+        """Method to refresh import files. Runs once on start and when there are changes to the database."""
+
+        self.imported_files_dict.clear()
+        for f in self.database.get_import_status(match_path=True):
+            self.imported_files_dict[str((Path(self.kserver.kleio_home) / f.path).resolve())] = f
+
+        self.problem_files = [
+            name for name, f in self.imported_files_dict.items()
+            if (f.errors or 0) > 0 or (f.warnings or 0) > 0 or (f.import_errors or 0) > 0
+        ]
+        self.translate_warning_files = [
+            name for name, f in self.imported_files_dict.items() if (f.warnings or 0) > 0
+        ]
+        self.import_error_files = [
+            name for name, f in self.imported_files_dict.items() if (f.import_errors or 0) > 0
+        ]
 
     async def sources_page(self):
         with navbar.header():
@@ -70,97 +89,9 @@ class Sources:
                             with ui.column().classes("col-span-2 mr-4"):
                                 with ui.card().tight().classes("w-full border-0 border-gray-300 rounded-none shadow-none"):
                                     await self._render_directory_viewer()
-                            with ui.column().classes("col-span-1"):
 
-                                with ui.card().tight().classes("w-full bg-blue-100 text-orange-500 font-bold"):
-                                    ui.label("Recent Changes").classes("ml-1 mt-1 mb-1")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("Need translation").classes("border-b text-blue-900")
-                                    ui.label(
-                                        str(sum(1 for f in self.imported_files_dict.values() if f.status.name == "T"))
-                                    ).classes("border-b text-blue-900 mr-4")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("Need import").classes("border-b text-blue-900")
-                                    ui.label(
-                                        str(sum(1 for f in self.imported_files_dict.values() if f.import_status.name in ("N", "U")))
-                                    ).classes("border-b text-blue-900 mr-4")
-
-                                with ui.card().tight().classes("w-full bg-blue-100 text-orange-500 font-bold"):
-                                    ui.label("Review Needed").classes("ml-1 mt-1 mb-1")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("With translation errors").classes("border-b text-red-600")
-                                    ui.label(
-                                        str(sum(f.errors or 0 for f in self.imported_files_dict.values()))
-                                    ).classes("border-b text-blue-900 mr-4")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("With translation warnings").classes("border-b text-grey-600")
-                                    ui.label(
-                                        str(sum(f.warnings or 0 for f in self.imported_files_dict.values()))
-                                    ).classes("border-b text-blue-900 mr-4")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("With import errors").classes("border-b text-purple-700")
-                                    ui.label(
-                                        str(sum(f.import_errors or 0 for f in self.imported_files_dict.values()))
-                                    ).classes("border-b text-blue-900 mr-4")
-
-                                with ui.card().tight().classes("w-full bg-blue-100 text-orange-500 font-bold"):
-                                    ui.label("In Progress").classes("ml-1 mt-1 mb-1")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("Currently translating").classes("border-b text-blue-900")
-                                    ui.label("0").classes("border-b text-blue-900 mr-4")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("Queued for translation").classes("border-b text-blue-900")
-                                    ui.label("0").classes("border-b text-blue-900 mr-4")
-
-                                with ui.row().classes("justify-between w-full"):
-                                    ui.label("Queued for import").classes("border-b text-blue-900")
-                                    ui.label("0").classes("border-b text-blue-900 mr-4")
-
-                                with ui.card().tight().classes(
-                                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-                                ):
-                                    ui.label("Review needed").classes("border-b text-grey-600")
-
-                                # TODO - Folder like structure
-                                with ui.row():
-                                    if self.problem_files:
-                                        for file in self.problem_files:
-                                            ui.label(file).classes("text-grey-600")
-                                    else:
-                                        ui.label("None").classes("text-grey-600")
-
-                                with ui.card().tight().classes(
-                                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-                                ):
-                                    ui.label("With translation warnings").classes("border-b text-grey-600")
-
-                                # TODO - Folder like structure
-                                with ui.row():
-                                    if self.translate_warning_files:
-                                        for file in self.translate_warning_files:
-                                            ui.label(file).classes("text-grey-600")
-                                    else:
-                                        ui.label("None").classes("text-grey-600")
-
-                                with ui.card().tight().classes(
-                                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-                                ):
-                                    ui.label("With import errors").classes("border-b text-grey-600")
-
-                                # TODO - Folder like structure
-                                with ui.row():
-                                    if self.import_error_files:
-                                        for file in self.import_error_files:
-                                            ui.label(file).classes("text-grey-600")
-                                    else:
-                                        ui.label("None").classes("text-grey-600")
+                            self.display_table_container = ui.column().classes("col-span-1")
+                            self.display_update_column(filepath=self.kserver.kleio_home)
 
                         ui.separator()
                         ui.label(
@@ -192,6 +123,215 @@ class Sources:
                             "Clicking on the message with the number of errors shows an error report. " +
                             "Kleio documents should be placed in the specific diretory for sources. "
                         ).classes("-mr-2 text-xs")
+
+    def filter_import_files(self, current_path: str = None):
+        """Filters the files displayed in the update column to only the ones within the current folder."""
+
+        current_folder = (Path(self.kserver.kleio_home) / current_path).resolve()
+        filtered_files = {}
+
+        for key, value in self.imported_files_dict.items():
+
+            full_file_path = (Path(self.kserver.kleio_home) / value.path).resolve()
+            if full_file_path.is_relative_to(current_folder):
+                filtered_files[key] = value
+
+        dir_problem_files = {
+            f.path: {
+                "name": f.name,
+                "path": f.path,
+                "status": (
+                    "error" if (f.errors or 0) > 0
+                    else "warning" if (f.warnings or 0) > 0
+                    else "import_error"
+                )
+            }
+            for f in filtered_files.values()
+            if (f.errors or 0) > 0 or (f.warnings or 0) > 0 or (f.import_errors or 0) > 0
+        }
+
+        dir_trans_error_files = {
+            f.path: {
+                "name": f.name,
+                "path": f.path,
+                "status": "error"
+            } for f in filtered_files.values() if (f.errors or 0) > 0
+        }
+
+        dir_trans_warning_files = {
+            f.path: {
+                "name": f.name,
+                "path": f.path,
+                "status": "warning"
+            } for f in filtered_files.values() if (f.warnings or 0) > 0
+        }
+        dir_imp_error_files = {
+            f.path: {
+                "name": f.name,
+                "path": f.path,
+                "status": "import_error"
+            } for f in filtered_files.values() if (f.import_errors or 0) > 0
+        }
+
+        return filtered_files, dir_problem_files, dir_trans_warning_files, dir_imp_error_files, dir_trans_error_files
+
+    def render_file_tree(self, files_to_render: dict, filepath: str):
+        """Render a file tree depending on the passed dictionary to display the problem files."""
+
+        # Group by parent folder
+        grouped_problem_files = defaultdict(list)
+        for full_path, name in files_to_render.items():
+            full_path_abs = (Path(self.kserver.kleio_home) / full_path).resolve()
+            try:
+                relative_parent = full_path_abs.parent.relative_to(filepath)
+            except ValueError:
+                relative_parent = full_path_abs.parent
+
+            key = "__current__" if relative_parent == Path('.') else str(relative_parent)
+            grouped_problem_files[key].append(name)
+
+        status_colors = {
+            "error": "red",
+            "warning": "gray",
+            "import_error": "purple",
+        }
+
+        with ui.column():
+            if files_to_render:
+                for folder, files in grouped_problem_files.items():
+                    with ui.row():
+                        with ui.column():
+                            if folder != "__current__":
+                                folder_path = Path(folder)
+                                if folder_path.is_absolute():
+                                    full_folder_path = folder_path.resolve()
+                                else:
+                                    full_folder_path = (Path(filepath) / folder_path).resolve()
+                                ui.label(
+                                    f"📁 {folder}"
+                                ).classes(
+                                    "font-bold text-gray-700 highlight-cell"
+                                ).on("click", lambda _, path=full_folder_path: self._handle_home_click(path))
+                            for file in files:
+                                full_file_path = str(Path(self.kserver.kleio_home) / file["path"])
+                                file_type = file["status"]
+                                file_name = file["name"]
+                                ui.label(
+                                    f"{file_name}"
+                                ).classes(
+                                    f"text-{status_colors[file_type]}-600 ml-5 highlight-cell"
+                                ).on(
+                                    "click",
+                                    lambda _,
+                                    file_path=full_file_path,
+                                    file_name=file_name,
+                                    file_type=file_type:
+                                    self._show_report_from_update_column(file_path, file_type, file_name)
+                                )
+            else:
+                ui.label("None").classes("italic text-gray-600 ml-5")
+
+    def display_update_column(self, filepath: str = None):
+        """Function to render file status table dynamically."""
+
+        (directory_imported_files,
+         dir_problem_files,
+         dir_translate_warning_files,
+         dir_import_error_files,
+         dir_translate_error_files) = self.filter_import_files(current_path=filepath)
+
+        self.display_table_container.clear()
+
+        sum_translation_error_files = sum(1 for f in directory_imported_files.values() if (f.errors or 0) > 0)
+        sum_translation_warning_files = sum(1 for f in directory_imported_files.values() if (f.warnings or 0) > 0)
+        sum_import_error_files = sum(1 for f in directory_imported_files.values() if (f.import_errors or 0) > 0)
+
+        with self.display_table_container:
+            with ui.card().tight().classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                ui.label("Recent Changes").classes("ml-1 mt-1 mb-1")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("Need translation").classes("border-b text-blue-900")
+                ui.label(
+                    str(sum(1 for f in directory_imported_files.values() if f.status.name == "T"))
+                ).classes("border-b text-blue-900 mr-4")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("Need import").classes("border-b text-blue-900")
+                ui.label(
+                    str(sum(1 for f in directory_imported_files.values() if f.import_status.name in ("N", "U")))
+                ).classes("border-b text-blue-900 mr-4")
+
+            with ui.card().tight().classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                ui.label("Review Needed").classes("ml-1 mt-1 mb-1")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("With translation errors").classes("border-b text-red-600")
+                navigate_translation_error = ui.row()
+                with navigate_translation_error:
+                    ui.label(str(sum_translation_error_files)).classes("border-b text-blue-900 mr-4")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("With translation warnings").classes("border-b text-gray-600")
+                navigate_translation_warnings = ui.row()
+                with navigate_translation_warnings:
+                    ui.label(str(sum_translation_warning_files)).classes("border-b text-blue-900 mr-4")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("With import errors").classes("border-b text-purple-700")
+                navigate_import_errors = ui.row()
+                with navigate_import_errors:
+                    ui.label(str(sum_import_error_files)).classes("border-b text-blue-900 mr-4")
+
+            with ui.card().tight().classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                ui.label("In Progress").classes("ml-1 mt-1 mb-1")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("Currently translating").classes("border-b text-blue-900")
+                ui.label(self.currently_translating).classes("border-b text-blue-900 mr-4")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("Queued for translation").classes("border-b text-blue-900")
+                ui.label(self.queued_for_translate).classes("border-b text-blue-900 mr-4")
+
+            with ui.row().classes("justify-between w-full"):
+                ui.label("Queued for import").classes("border-b text-blue-900")
+                ui.label(self.queued_for_import).classes("border-b text-blue-900 mr-4")
+
+            with ui.card().tight().classes(
+                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+            ):
+                ui.label("Review needed").classes("border-b text-orange-500")
+
+            self.render_file_tree(dir_problem_files, filepath)
+
+            with ui.card().tight().classes(
+                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+            ):
+                translation_error_label = ui.label("With Translation Errors").classes("border-b text-orange-500")
+
+            self.render_file_tree(dir_translate_error_files, filepath)
+
+            with ui.card().tight().classes(
+                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+            ):
+                translation_warning_label = ui.label("With Translation Warnings").classes("border-b text-orange-500")
+
+            self.render_file_tree(dir_translate_warning_files, filepath)
+
+            with ui.card().tight().classes(
+                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+            ):
+                import_error_label = ui.label("With Import Errors").classes("border-b text-orange-500")
+
+            self.render_file_tree(dir_import_error_files, filepath)
+
+        with navigate_translation_error:
+            ui.link('See List', translation_error_label).classes("highlight-cell") if sum_translation_error_files > 0 else None
+        with navigate_translation_warnings:
+            ui.link('See List', translation_warning_label).classes("highlight-cell") if sum_translation_warning_files > 0 else None
+        with navigate_import_errors:
+            ui.link('See List', import_error_label).classes("highlight-cell") if sum_import_error_files > 0 else None
 
     async def _render_directory_viewer(self):
         """View of the source files available on the current timelink home."""
@@ -304,17 +444,28 @@ class Sources:
             {
                 'folder_name': f'📁 <strong>{str(p.relative_to(self.upper_limit))}</strong>' if p.is_dir() else '',
                 'translate_checkbox': translate_boxes,
-                'icon_status' : f'📄 [{self.imported_files_dict[p.name].status.name}]' if not p.is_dir() else '',
-                'file_name': f'<strong>{p.name}</strong>' if not p.is_dir() and p.suffix == ".cli" else '',
+                'icon_status' : f'📄 [{self.imported_files_dict[str(p)].status.name}]' if not p.is_dir() else '',
+                'file_name': (
+                    f'<strong>{self.imported_files_dict[str(p)].name}</strong>' if not p.is_dir() and p.suffix == ".cli"
+                    else ''
+                ),
                 'file_name_no_html': p.name if not p.is_dir() and p.suffix == ".cli" else '',
-                'date': self.imported_files_dict[p.name].modified_string if not p.is_dir() else '',
-                't_report': f'{self.imported_files_dict[p.name].errors} Errors,' +
-                            f'{self.imported_files_dict[p.name].warnings} Warnings'
-                            if not p.is_dir() else '',
+                'date': self.imported_files_dict[str(p)].modified_string if not p.is_dir() else '',
+                't_report': (
+                    f'{self.imported_files_dict[str(p)].errors} Errors, ' +
+                    f'{self.imported_files_dict[str(p)].warnings} Warnings'
+                    if self.imported_files_dict[str(p)].errors is not None or
+                    self.imported_files_dict[str(p)].warnings is not None
+                    else "Not Translated Yet."
+                ) if not p.is_dir() else '',
                 'import_checkbox': import_boxes,
-                'i_report': f'{self.imported_files_dict[p.name].import_errors or 0} ERRORS'
-                            if not p.is_dir() and self.imported_files_dict[p.name].import_status.name not in ("N", "U")
-                            else 'Not Imported Yet.',
+                'i_report': (
+                    "QUEUED FOR IMPORT"
+                    if not p.is_dir() and self.imported_files_dict[str(p)].import_warning_rpt == "Q"
+                    else f'{self.imported_files_dict[str(p)].import_errors or 0} ERRORS'
+                    if not p.is_dir() and self.imported_files_dict[str(p)].import_status.name not in ("N", "U")
+                    else 'Not Imported Yet.'
+                ),
                 'path': str(p),
                 'row_id': idx,
             }
@@ -375,6 +526,7 @@ class Sources:
             self.path_container_row.remove(-1)
 
         parts = list(self.path.relative_to(self.upper_limit).parts)
+        subpath = self.kserver.kleio_home
 
         with self.path_container_row:
             for i, part in enumerate(parts):
@@ -393,10 +545,10 @@ class Sources:
                 else:
                     ui.label(part).classes("-mr-2 font-bold text-xs text-orange-500")
 
-    def process_files(self, checkbox_type: str):
-        """Send files to translate and/or import
+            self.display_update_column(filepath=subpath)
 
-        TODO - CURRENTLY IT ONLY DISPLAYS THE FILES TO DO IT FOR, DOES NOT START THE ACTUAL JOB"""
+    async def process_files(self, checkbox_type: str):
+        """Send files to translate and/or import."""
 
         files_to_process = []
         data = self.file_grid.options.get('rowData', []) or []
@@ -404,10 +556,36 @@ class Sources:
 
         for row in data:
             if row['row_id'] in checked:
-                files_to_process.append(row['file_name_no_html'])
+                files_to_process.append([row['path'], row['file_name_no_html']])
+
+        if not files_to_process:
+            return
 
         verb = "translated" if checkbox_type == 'translate_checkbox' else "imported"
-        ui.notify(f"Files to be {verb}: {files_to_process if files_to_process else "None"}.")
+
+        if verb == "imported":
+            self.queued_for_import = len(files_to_process)
+            for file in files_to_process:
+                self.imported_files_dict[file[0]].import_warning_rpt = "Q"
+                asyncio.create_task(self._run_import_background(self.imported_files_dict[file[0]]))
+            self.display_update_column(filepath=Path(files_to_process[0][0]).parent.resolve())
+            self._handle_home_click(Path(files_to_process[0][0]).parent.resolve())
+        else:
+            print("Translating files...")
+            # TODO - Send selected files for translation
+            self.queued_for_import = len(files_to_process)
+
+    async def _run_import_background(self, file):
+        async with self.import_lock:
+            try:
+                print(f"Attempting to import {file.name}...")
+                stats = await asyncio.to_thread(self.database.import_from_xml, file, self.kserver)
+                self.refresh_imported_files()
+                print(f"{file.name} imported!")
+                print(f"Stats for {file.name}: {stats}")
+                self.queued_for_import = self.queued_for_import - 1
+            except Exception as e:
+                print(f"Error importing {file.name}: {e}")
 
     def select_deselect_checkboxes(self, checkbox_type: str, select: bool):
         """Handle selection of checkboxes when buttons to select/deselect all are pressed."""
@@ -432,21 +610,39 @@ class Sources:
         full_path = row_data["data"]["path"]
 
         if col == "i_report":
-            if row_data["data"]["i_report"] != "Not Imported Yet.":
-                file_name = base_name.replace(".cli", ".err")
-                await self.switch_tabs(self.import_output_tab, file_name, ".err", full_path)
+            if row_data["data"]["i_report"] != "Not Imported Yet." and row_data["data"]["i_report"] != "QUEUED FOR IMPORT":
+                await self.switch_tabs(self.import_output_tab, base_name, "i_report", full_path)
+            elif row_data["data"]["i_report"] == "QUEUED FOR IMPORT":
+                ui.notify(f"{base_name} is queued up for import.", type="negative")
             else:
-                ui.notify(f"{base_name} was not imported yet!", type="negative")
+                ui.notify(f"{base_name} has not been imported yet!", type="negative")
 
         elif col == "t_report":
-            file_name = base_name.replace(".cli", ".rpt")
-
-            await self.switch_tabs(self.trans_output_tab, file_name, ".rpt", full_path)
-
+            if row_data["data"]["t_report"] != "Not Translated Yet.":
+                await self.switch_tabs(self.trans_output_tab, base_name, "t_report", full_path)
+            else:
+                ui.notify(f"{base_name} was not translated yet!", type="negative")
         else:
-            await self.switch_tabs(self.trans_output_tab, base_name, ".cli", full_path)
+            await self.switch_tabs(self.trans_output_tab, base_name, "cli_file", full_path)
 
-    async def switch_tabs(self, tab_to_switch: ui.tab, file_to_read: str, file_type: str, path: str):
+    async def _show_report_from_update_column(self, filepath: str, file_type: str, file_name: str):
+        """Switches to the appropriate tab based on a file's path and report type that was clicked in the update column.
+
+        Args:
+
+            filepath:   Path to the file
+            file_type:  Type of report that should be shown.
+            file_name:  Name of the file
+        """
+
+        self._handle_home_click(Path(filepath).parent.resolve())
+
+        if file_type in {"error", "warning"}:    # If it's a translation issue
+            await self.switch_tabs(self.trans_output_tab, file_name, "cli_file", filepath)
+        else:         # If it's an import issue
+            await self.switch_tabs(self.import_output_tab, file_name, "import_error", filepath)
+
+    async def switch_tabs(self, tab_to_switch: ui.tab, file_to_read: str, report_type: str, path: str):
         """Display reports on a specified row of data, both translation and import are possible depending on the cell clicked.
         Tab switching happens automatically, however importer output is incorrect because no file has been imported as of yet.
 
@@ -454,25 +650,21 @@ class Sources:
 
             tab_to_switch:      Value of the ui.tab to switch to.
             file_to_read:       File to be displayed on the selected tab.
-            file_type:          What type of file extension we are dealing with
+            file_type:          What type of report should be shown.
             path:               The relative path to the file.
 
         """
 
         self.tabs.set_value(tab_to_switch)
-
         full_path = str(Path(path).with_name(file_to_read))
 
-        if file_type in (".cli", ".rpt"):
+        if report_type == "cli_file":
             try:
                 with open(full_path, "r", encoding="utf-8") as f:
                     self.translate_file_displayer.content = f.read()
             except FileNotFoundError:
                 self.translate_file_displayer.content = "File not found."
-
+        elif report_type == "t_report":
+            self.translate_file_displayer.content = self.kserver.get_report(self.imported_files_dict[full_path])
         else:
-            try:
-                with open(full_path, "r", encoding="utf-8") as f:
-                    self.import_file_displayer.content = f.read()
-            except FileNotFoundError:
-                self.import_file_displayer.content = "File not found."
+            self.import_file_displayer.content = self.database.get_import_rpt(file_to_read)

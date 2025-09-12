@@ -9,6 +9,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
+import docker
 
 
 def run_imports_sync(db):
@@ -45,6 +46,26 @@ def run_db_setup(khome, db_type):
     return db
 
 
+def is_port_in_use_docker(port: int) -> bool:
+    client = docker.from_env()
+    for c in client.containers.list():
+        ports = c.attrs["NetworkSettings"]["Ports"]
+        if ports:
+            for _, mappings in ports.items():
+                if mappings:
+                    for m in mappings:
+                        if int(m["HostPort"]) == port:
+                            return True
+    return False
+
+
+def find_free_port(from_port: int = 8088, to_port: int = 8099):
+    for port in range(from_port, to_port + 1):
+        if not is_port_in_use_docker(port):
+            return port
+    raise OSError(f"No free ports available in {from_port}-{to_port}")
+
+
 async def run_setup(home_path: Path, database_type: str = "sqlite"):
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
@@ -67,7 +88,8 @@ async def run_setup(home_path: Path, database_type: str = "sqlite"):
     else:
         kserver = KleioServer.get_server(timelink_home)
         if not kserver:
-            kserver = KleioServer.start(kleio_home=timelink_home)
+            port = find_free_port(8088, 8099)
+            kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=port)
         db_type = database_type
 
     print(f"Connected to Kleio Server at {kserver.url}, home is {kserver.kleio_home}")
