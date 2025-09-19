@@ -44,39 +44,73 @@ def test_run_db_setup(monkeypatch, capsys, db_type, fake_db):
 
 
 @pytest.mark.asyncio
-async def test_run_setup(monkeypatch, capsys, fake_db, fake_kserver):
-    from timelink.web import timelink_web_utils
+async def test_run_setup_no_server_found(monkeypatch, capsys, fake_db, fake_kserver):
 
     # Mock KleioServer methods
     monkeypatch.setattr(
-        timelink_web_utils.KleioServer, 
-        "find_local_kleio_home", 
+        timelink_web_utils.KleioServer,
+        "find_local_kleio_home",
         lambda path: "/fake/home"
     )
     monkeypatch.setattr(
-        timelink_web_utils.KleioServer, 
-        "get_server", 
+        timelink_web_utils.KleioServer,
+        "get_server",
         lambda home: None
     )
     monkeypatch.setattr(
-        timelink_web_utils.KleioServer, 
-        "start", 
+        timelink_web_utils.KleioServer,
+        "start",
         lambda **kwargs: fake_kserver
+    )
+
+    # Patch find_free_port
+    monkeypatch.setattr(timelink_web_utils, "find_free_port", lambda a, b: 8088)
+
+    # Mock db setup
+    monkeypatch.setattr(timelink_web_utils, "run_db_setup", lambda home, db_type: fake_db)
+
+    home_path = Path("/current/path")
+    kserver, db = await timelink_web_utils.run_setup(home_path, database_type="sqlite")
+
+    assert kserver is fake_kserver
+    assert db is fake_db
+    fake_db.set_kleio_server.assert_called_once_with(fake_kserver)
+
+    out, _ = capsys.readouterr()
+    assert "Timelink Home set to /fake/home" in out
+    assert f"Connected to Kleio Server at {fake_kserver.url}, home is {fake_kserver.kleio_home}" in out
+
+
+@pytest.mark.asyncio
+async def test_run_setup_server_found(monkeypatch, capsys, fake_db, fake_kserver):
+
+    # Mock KleioServer methods
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer,
+        "find_local_kleio_home",
+        lambda path: "/fake/home"
+    )
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer,
+        "get_server",
+        lambda home: fake_kserver  # found existing server
+    )
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer,
+        "start",
+        lambda **kwargs: (_ for _ in ()).throw(AssertionError("start should not be called"))
     )
 
     # Mock db setup
     monkeypatch.setattr(timelink_web_utils, "run_db_setup", lambda home, db_type: fake_db)
 
-    # Call run_setup with a Path
     home_path = Path("/current/path")
     kserver, db = await timelink_web_utils.run_setup(home_path, database_type="sqlite")
 
-    # Check returned objects
     assert kserver is fake_kserver
     assert db is fake_db
     fake_db.set_kleio_server.assert_called_once_with(fake_kserver)
 
-    # Check printed output
     out, _ = capsys.readouterr()
     assert "Timelink Home set to /fake/home" in out
     assert f"Connected to Kleio Server at {fake_kserver.url}, home is {fake_kserver.kleio_home}" in out
@@ -87,7 +121,7 @@ async def test_show_table(user: User, fake_db, fake_kserver) -> None:
     
     fake_db.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
-    status_page.StatusPage(database=fake_db, kserver=fake_kserver)
+    status_page.StatusPage(database=fake_db, kserver=fake_kserver, sources=MagicMock())
 
     await user.open("/status")
     user.find("Database Status").click()
@@ -115,7 +149,7 @@ async def test_show_kleio_info(user: User, fake_db, fake_kserver) -> None:
     fake_kserver.url = "http://fake.kleio.server:8000"
     fake_kserver.kleio_home = "/fake/kleio/home"
 
-    status_page.StatusPage(database=fake_db, kserver=fake_kserver)
+    status_page.StatusPage(database=fake_db, kserver=fake_kserver, sources=MagicMock())
 
     await user.open("/status")
     user.find("Timelink Server Status").click()

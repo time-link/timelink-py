@@ -1,6 +1,6 @@
 from timelink.web.pages import navbar
 from pathlib import Path
-from nicegui import ui, events
+from nicegui import ui, events, run
 from collections import defaultdict
 import asyncio
 
@@ -20,7 +20,10 @@ class Sources:
         self.queued_for_import = 0
         self.queued_for_translate = 0
         self.currently_translating = 0
+        self.import_queue = []
+        self.translate_queue = []
         self.import_lock = asyncio.Lock()
+        self.translate_lock = asyncio.Lock()
 
         self.refresh_imported_files()
 
@@ -292,46 +295,90 @@ class Sources:
 
             with ui.row().classes("justify-between w-full"):
                 ui.label("Queued for translation").classes("border-b text-blue-900")
-                ui.label(self.queued_for_translate).classes("border-b text-blue-900 mr-4")
+                navigate_translate_queue = ui.row()
+                with navigate_translate_queue:
+                    ui.label(self.queued_for_translate).classes("border-b text-blue-900 mr-4")
+                    ui.label(
+                        'Update Info'
+                    ).classes(
+                        "highlight-cell"
+                    ).on(
+                        "click",
+                        lambda _,
+                        path=filepath: self._handle_home_click(path)
+                    ) if len(self.translate_queue) > 0 else None
 
             with ui.row().classes("justify-between w-full"):
                 ui.label("Queued for import").classes("border-b text-blue-900")
-                ui.label(self.queued_for_import).classes("border-b text-blue-900 mr-4")
+                navigate_import_queue = ui.row()
+                with navigate_import_queue:
+                    ui.label(self.queued_for_import).classes("border-b text-blue-900 mr-4")
+                    ui.label(
+                        'Update Info'
+                    ).classes(
+                        "highlight-cell"
+                    ).on(
+                        "click",
+                        lambda _,
+                        path=filepath: self._handle_home_click(path)
+                    ) if len(self.import_queue) > 0 else None
 
-            with ui.card().tight().classes(
-                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-            ):
-                ui.label("Review needed").classes("border-b text-orange-500")
+            if self.import_queue:
+                with ui.card().tight().classes(
+                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+                ):
+                    ui.label("Queued for Import").classes("border-b text-orange-500")
+                    ui.label(", ".join(self.import_queue)).classes("border-b ml-5 mt-2 text-gray-400")
 
-            self.render_file_tree(dir_problem_files, filepath)
+            if self.translate_queue:
+                with ui.card().tight().classes(
+                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+                ):
+                    ui.label("Queued for Translation").classes("border-b text-orange-500")
+                    ui.label(", ".join(self.translate_queue)).classes("border-b ml-5 mt-2 text-gray-400")
 
-            with ui.card().tight().classes(
-                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-            ):
-                translation_error_label = ui.label("With Translation Errors").classes("border-b text-orange-500")
+            if dir_problem_files:
+                with ui.card().tight().classes(
+                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+                ):
+                    ui.label("Review needed").classes("border-b text-orange-500")
 
-            self.render_file_tree(dir_translate_error_files, filepath)
+                self.render_file_tree(dir_problem_files, filepath)
 
-            with ui.card().tight().classes(
-                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-            ):
-                translation_warning_label = ui.label("With Translation Warnings").classes("border-b text-orange-500")
+            if dir_translate_error_files:
+                with ui.card().tight().classes(
+                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+                ):
+                    translation_error_label = ui.label("With Translation Errors").classes("border-b text-orange-500")
+                    with navigate_translation_error:
+                        ui.link(
+                            'See List',
+                            translation_error_label
+                        ).classes("highlight-cell") if sum_translation_error_files > 0 else None
 
-            self.render_file_tree(dir_translate_warning_files, filepath)
+                self.render_file_tree(dir_translate_error_files, filepath)
 
-            with ui.card().tight().classes(
-                "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
-            ):
-                import_error_label = ui.label("With Import Errors").classes("border-b text-orange-500")
+            if dir_translate_warning_files:
+                with ui.card().tight().classes(
+                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+                ):
+                    translation_warning_label = ui.label("With Translation Warnings").classes("border-b text-orange-500")
+                with navigate_translation_warnings:
+                    ui.link(
+                        'See List', translation_warning_label
+                    ).classes("highlight-cell") if sum_translation_warning_files > 0 else None
 
-            self.render_file_tree(dir_import_error_files, filepath)
+                self.render_file_tree(dir_translate_warning_files, filepath)
 
-        with navigate_translation_error:
-            ui.link('See List', translation_error_label).classes("highlight-cell") if sum_translation_error_files > 0 else None
-        with navigate_translation_warnings:
-            ui.link('See List', translation_warning_label).classes("highlight-cell") if sum_translation_warning_files > 0 else None
-        with navigate_import_errors:
-            ui.link('See List', import_error_label).classes("highlight-cell") if sum_import_error_files > 0 else None
+            if dir_import_error_files:
+                with ui.card().tight().classes(
+                    "w-full border-b text-orange-500 font-bold rounded-none shadow-none"
+                ):
+                    import_error_label = ui.label("With Import Errors").classes("border-b text-orange-500")
+                    with navigate_import_errors:
+                        ui.link('See List', import_error_label).classes("highlight-cell") if sum_import_error_files > 0 else None
+
+                self.render_file_tree(dir_import_error_files, filepath)
 
     async def _render_directory_viewer(self):
         """View of the source files available on the current timelink home."""
@@ -452,20 +499,27 @@ class Sources:
                 'file_name_no_html': p.name if not p.is_dir() and p.suffix == ".cli" else '',
                 'date': self.imported_files_dict[str(p)].modified_string if not p.is_dir() else '',
                 't_report': (
-                    f'{self.imported_files_dict[str(p)].errors} Errors, ' +
-                    f'{self.imported_files_dict[str(p)].warnings} Warnings'
-                    if self.imported_files_dict[str(p)].errors is not None or
-                    self.imported_files_dict[str(p)].warnings is not None
-                    else "Not Translated Yet."
+                    "Currently Translating"
+                    if self.imported_files_dict[str(p)].status.name == "P"
+                    else (
+                        f'{self.imported_files_dict[str(p)].errors or 0} Errors, '
+                        f'{self.imported_files_dict[str(p)].warnings or 0} Warnings'
+                        if (
+                            self.imported_files_dict[str(p)].errors is not None or
+                            self.imported_files_dict[str(p)].warnings is not None
+                        )
+                        else "File Not Translated Yet"
+                    )
                 ) if not p.is_dir() else '',
                 'import_checkbox': import_boxes,
                 'i_report': (
-                    "QUEUED FOR IMPORT"
-                    if not p.is_dir() and self.imported_files_dict[str(p)].import_warning_rpt == "Q"
+                    "Currently Translating"
+                    if self.imported_files_dict[str(p)].status.name == "P"
+                    else "QUEUED FOR IMPORT" if self.imported_files_dict[str(p)].import_warning_rpt == "QT"
                     else f'{self.imported_files_dict[str(p)].import_errors or 0} ERRORS'
-                    if not p.is_dir() and self.imported_files_dict[str(p)].import_status.name not in ("N", "U")
+                    if self.imported_files_dict[str(p)].import_status.name not in ("N", "U")
                     else 'Not Imported Yet.'
-                ),
+                ) if not p.is_dir() else '',
                 'path': str(p),
                 'row_id': idx,
             }
@@ -564,28 +618,58 @@ class Sources:
         verb = "translated" if checkbox_type == 'translate_checkbox' else "imported"
 
         if verb == "imported":
-            self.queued_for_import = len(files_to_process)
+            self.queued_for_import += len(files_to_process)
+            self.import_queue.extend([f[1] for f in files_to_process])
             for file in files_to_process:
-                self.imported_files_dict[file[0]].import_warning_rpt = "Q"
-                asyncio.create_task(self._run_import_background(self.imported_files_dict[file[0]]))
-            self.display_update_column(filepath=Path(files_to_process[0][0]).parent.resolve())
-            self._handle_home_click(Path(files_to_process[0][0]).parent.resolve())
+                self.imported_files_dict[file[0]].import_warning_rpt = "QT"
+                with ui.row():
+                    asyncio.create_task(self._run_import_background(self.imported_files_dict[file[0]]))
         else:
-            print("Translating files...")
-            # TODO - Send selected files for translation
-            self.queued_for_import = len(files_to_process)
+            self.translate_queue = [f[1] for f in files_to_process]
+            self.queued_for_translate = len(files_to_process)
+            for file in files_to_process:
+                asyncio.create_task(self._run_translate_background(self.imported_files_dict[file[0]]))
+        self.display_update_column(filepath=Path(files_to_process[0][0]).parent.resolve())
+        self._handle_home_click(Path(files_to_process[0][0]).parent.resolve())
 
     async def _run_import_background(self, file):
         async with self.import_lock:
             try:
                 print(f"Attempting to import {file.name}...")
-                stats = await asyncio.to_thread(self.database.import_from_xml, file, self.kserver)
-                self.refresh_imported_files()
-                print(f"{file.name} imported!")
-                print(f"Stats for {file.name}: {stats}")
+                await run.io_bound(self.database.import_from_xml, file, self.kserver)
+                await run.io_bound(self.refresh_imported_files)
+                if file.name in self.import_queue:
+                    self.import_queue.remove(file.name)
                 self.queued_for_import = self.queued_for_import - 1
+                print(f"Finished importing {file.name}!")
             except Exception as e:
                 print(f"Error importing {file.name}: {e}")
+
+    async def _run_translate_background(self, file):
+        async with self.translate_lock:
+            try:
+                print(f"Attempting to translate {file.name}...")
+                self.currently_translating = self.currently_translating + 1
+                self.queued_for_translate = self.queued_for_translate - 1
+                await run.io_bound(self.kserver.translate, file.path, recurse="no", spawn="no")
+
+                # Keep checking if translation is complete
+                while True:
+                    await asyncio.sleep(5)  # wait between polls
+                    await run.io_bound(self.refresh_imported_files)
+
+                    current_file = self.imported_files_dict.get(str((Path(self.kserver.kleio_home) / file.path).resolve()))
+                    status = current_file.status.name
+                    if status not in ("P", "Q"):
+                        print(f"Finished {file.name} translation!")
+                        break
+
+                if file.name in self.translate_queue:
+                    self.translate_queue.remove(file.name)
+
+                self.currently_translating = self.currently_translating - 1
+            except Exception as e:
+                print(f"Error translating {file.name}: {e}")
 
     def select_deselect_checkboxes(self, checkbox_type: str, select: bool):
         """Handle selection of checkboxes when buttons to select/deselect all are pressed."""
@@ -610,16 +694,23 @@ class Sources:
         full_path = row_data["data"]["path"]
 
         if col == "i_report":
-            if row_data["data"]["i_report"] != "Not Imported Yet." and row_data["data"]["i_report"] != "QUEUED FOR IMPORT":
+            if (
+                row_data["data"]["i_report"] != "Not Imported Yet." and
+                row_data["data"]["i_report"] not in ("QUEUED FOR IMPORT", "Currently Translating")
+            ):
                 await self.switch_tabs(self.import_output_tab, base_name, "i_report", full_path)
             elif row_data["data"]["i_report"] == "QUEUED FOR IMPORT":
-                ui.notify(f"{base_name} is queued up for import.", type="negative")
+                ui.notify(f"{base_name} is queued for import.")
+            elif row_data["data"]["i_report"] == "Currently Translating":
+                ui.notify(f"{base_name} is queued for translation.")
             else:
                 ui.notify(f"{base_name} has not been imported yet!", type="negative")
 
         elif col == "t_report":
-            if row_data["data"]["t_report"] != "Not Translated Yet.":
+            if row_data["data"]["t_report"] not in ("Not Translated Yet.", "Currently Translating"):
                 await self.switch_tabs(self.trans_output_tab, base_name, "t_report", full_path)
+            elif row_data["data"]["t_report"] == "Currently Translating":
+                ui.notify(f"{base_name} is queued for translation.")
             else:
                 ui.notify(f"{base_name} was not translated yet!", type="negative")
         else:

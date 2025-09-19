@@ -46,8 +46,14 @@ async def test_initial_setup(monkeypatch):
         module_name, class_name = path.split(".")
         cls = getattr(getattr(timelink_web, module_name), class_name)
         
-
-        cls.assert_called_once_with(database=fake_db, kserver=fake_kserver)
+        if class_name == "StatusPage":
+            cls.assert_called_once()
+            _, kwargs = cls.call_args
+            assert kwargs["database"] is fake_db
+            assert kwargs["kserver"] is fake_kserver
+            assert "sources" in kwargs
+        else:
+            cls.assert_called_once_with(database=fake_db, kserver=fake_kserver)
 
         # Check if register() was called for relevant pages
         if class_name in ["DisplayIDPage", "TablesPage"]:

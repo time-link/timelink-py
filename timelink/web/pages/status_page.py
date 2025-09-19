@@ -1,6 +1,6 @@
 from timelink.web.pages import navbar
 from timelink.web import timelink_web_utils
-from nicegui import ui
+from nicegui import ui, run
 from contextlib import contextmanager
 import asyncio
 
@@ -40,7 +40,7 @@ class StatusPage:
             ui.notify("Updating database from sources...")
             try:
                 await asyncio.to_thread(timelink_web_utils.run_imports_sync, self.database)
-                self.sources.refresh_imported_files()
+                await run.io_bound(self.sources.refresh_imported_files)
                 ui.notify("Done updating the database!", type="positive")
             except Exception as e:
                 ui.notify(f"ERROR: Database import failed: {e}", type="negative")
@@ -48,8 +48,6 @@ class StatusPage:
     def run_clean_translations_sync(self):
         print("Attempting to clean translations...")
         self.kserver.translation_clean("", recurse="yes")
-        print("Refreshing files...")
-        self.sources.refresh_imported_files()
         print("Translations are clean!")
 
     async def clean_translations(self, button: ui.button) -> None:
@@ -58,6 +56,7 @@ class StatusPage:
             ui.notify("Cleaning translations")
             try:
                 await asyncio.to_thread(self.run_clean_translations_sync)
+                await run.io_bound(self.sources.refresh_imported_files)
                 ui.notify("Done clearing translations!", type="positive")
             except Exception as e:
                 ui.notify(f"ERROR: Translation cleanup failed: {e}", type="negative")
