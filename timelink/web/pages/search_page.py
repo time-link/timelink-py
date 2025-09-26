@@ -9,9 +9,10 @@ from timelink.kleio.utilities import format_timelink_date
 class Search:
 
     """Page for robust searching. """
-    def __init__(self, database, kserver) -> None:
+    def __init__(self, database, kserver, solr_client) -> None:
         self.database = database
         self.kserver = kserver
+        self.solr_client = solr_client
 
         @ui.page('/search')
         async def register():
@@ -96,6 +97,15 @@ class Search:
 
             with ui.card().tight().classes("w-full bg-gray-50"):
                 preview_table_display("")
+            
+            # Solr Search
+            ui.label('Free Form Search').classes('text-orange-500 text-xl mt-3 ml-3 font-bold')
+            self.freeform_text_input = ui.textarea(
+                placeholder='Type your search here!',
+                    ).props(
+                        'dense outlined input-class="pl-2 pt-2"'
+                    ).classes("w-[60vh] ml-3 bg-gray-50 border border-gray-300 rounded resize-none")
+            ui.button('Execute').on('click', lambda: self._handle_freeform_search()).classes("ml-3")
 
     async def advanced_search(self):
         with navbar.header():
@@ -207,6 +217,24 @@ class Search:
             ui.navigate.to('/search_tables_sql')
         else:
             ui.notify("You need a valid SQL string to search the database.")
+
+    async def _handle_freeform_search(self):
+        """Processes the keyword search results."""
+        if self.freeform_text_input.value:
+            ui.notify(f"Searching for this: {self.freeform_text_input.value}")
+            results = self.solr_client.search(q=f"content:{self.freeform_text_input.value}")
+
+            
+            print(f"Found {len(results)} document(s).")
+            print("-" * 20)
+            
+            for result in results:
+                print(f"ID: {result.get('id')}")
+                print(f"Title: {result.get('title')}")
+                print(f"Content: {result.get('content')[:70]}...")
+                print("-" * 20)
+        else:
+            ui.notify("You need to input something before searching.")
 
     def _handle_id_search(self):
         """Handles the search by ID function."""

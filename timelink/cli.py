@@ -186,6 +186,42 @@ def find_website_port(from_port: int = 8088, to_port: int = 8099):
                 pass
     raise OSError(f"No free ports available in the range {from_port}-{to_port}")
 
+def setup_solr_container():
+    """Startup the solr container. For now this assumes we already have a solr docker image ready to go."""
+
+    solr_container_name = "solr_timelink"
+    typer.echo("Checking for Solr container...")
+
+    # Check if container is already running.
+    container_running_check = subprocess.run(
+        ["docker", "ps", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"],
+        capture_output=True, text=True
+    )
+    if solr_container_name in container_running_check.stdout:
+        typer.echo(f"Solr container '{solr_container_name}' is already running.")
+    else:
+        # Container exists but is stopped.
+        container_exists_check = subprocess.run(
+            ["docker", "ps", "-a", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"],
+            capture_output=True, text=True
+        )
+        if solr_container_name in container_exists_check.stdout:
+            # Container exists
+            typer.echo(f"Starting existing Solr container '{solr_container_name}'...")
+            subprocess.run(["docker", "start", solr_container_name], check=True)
+        else:
+            # Container does not exist
+            typer.echo(f"Creating and starting new Solr container '{solr_container_name}'...")
+            subprocess.run([
+                "docker", "run", "-d",
+                "-v", f"{os.getcwd()}/solrdata:/var/solr",
+                "-p", "8983:8983",
+                "--name", solr_container_name,
+                "solr:slim",
+                "solr-create", "-c", "timelink-core"
+            ], check=True)
+
+
 @start_app.command("web")
 def start_webproject(
     port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"),
@@ -194,6 +230,7 @@ def start_webproject(
     ):
     """Start the webapp on the chosen port if set. If not, default to 8000."""
 
+    setup_solr_container()
     port = find_website_port(from_port=port or 8000, to_port=8020)
 
     web_app_path = Path(__file__).parent / "web/timelink_web.py"

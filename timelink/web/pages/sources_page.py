@@ -83,7 +83,7 @@ class Sources:
                         with self.path_container_row:
                             ui.label("Kleio Files in ").classes("-mr-2 font-bold text-xs text-orange-500")
                             self.home_path = ui.label(
-                                f"{self.kserver.kleio_home}: "
+                                "home: "
                             ).classes(
                                 "-mr-2 font-bold text-xs highlight-cell cursor-pointer"
                             ).on("Click", lambda path=self.kserver.kleio_home: self._handle_home_click(path))

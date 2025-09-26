@@ -15,12 +15,13 @@ kserver = None
 database = None
 project_path = Path.cwd()
 database_type = "sqlite"
+solr_path = 'http://localhost:8983/solr/timelink-core'
 
 
 async def initial_setup():
     """Connect to the Kleio Server and load settings found on the .env"""
     global database, kserver
-    kserver, database = await timelink_web_utils.run_setup(project_path, database_type)
+    kserver, database, solr_client = await timelink_web_utils.run_setup(project_path, database_type, solr_path)
 
     homepage.HomePage(database=database, kserver=kserver)
 
@@ -46,7 +47,7 @@ async def initial_setup():
 
     status_page.StatusPage(database=database, kserver=kserver, sources=source_page)
 
-    search_page.Search(database=database, kserver=kserver)
+    search_page.Search(database=database, kserver=kserver, solr_client=solr_client)
 
     admin_page.Admin(database=database, kserver=kserver)
 
