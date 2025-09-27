@@ -68,11 +68,11 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
     typer.echo(f"Local Timelink version: {local_version}, latest Timelink version: {last_version}")
 
     # Timelink Home and Server
-    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path= timelink_path))
+    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path=timelink_path))
     typer.echo("Timelink Home set to: " + timelink_home)
     env_dir = TIMELINK_ENV_PATH.parent
     env_dir.mkdir(parents=True, exist_ok=True)
-    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port= str(timelink_port))
+    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=str(timelink_port))
     typer.echo("Kleio Server URL: " + kserver.get_url())
     typer.echo("Kleio Server Token: " + kserver.get_token()[0:6])
     typer.echo("Kleio Server Home: " + kserver.get_kleio_home())
@@ -89,6 +89,7 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
         f.write(f'TIMELINK_SERVER_TOKEN="{kserver.get_token()}"\n')
         f.write(f"TIMELINK_DB_TYPE={database}\n")
 
+
 def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
 
     # Timelink Information
@@ -101,7 +102,7 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
     typer.echo("Timelink Home set to: " + timelink_home)
     env_dir = TIMELINK_ENV_PATH.parent
     env_dir.mkdir(parents=True, exist_ok=True)
-    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port= str(timelink_port))
+    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=str(timelink_port))
     typer.echo("Kleio Server URL: " + kserver.get_url())
     typer.echo("Kleio Server Token: " + kserver.get_token()[0:6])
     typer.echo("Kleio Server Home: " + kserver.get_kleio_home())
@@ -121,6 +122,7 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
 
 # ----------------- TIMELINK MULTI PROJECT SETUP (STUB) ------------------------- #
 
+
 @create_app.command("multiproject")
 def create_multiproject(path: Path = Path("timelink-multi-project")):
     typer.echo(f"Getting Timelink multi project structure at: {path}")
@@ -130,6 +132,7 @@ def create_multiproject(path: Path = Path("timelink-multi-project")):
         typer.echo("File structure cloned successfully.")
     except subprocess.CalledProcessError:
         typer.echo("Failed to clone the project template.")
+
 
 @start_app.command("multiproject")
 def start_multiproject(path: Path = Path("."), port: Optional[int] = typer.Option(None, "-p", "--port")):
@@ -158,11 +161,18 @@ def create_project(path: Path = Path("timelink-project")):
 
 
 @start_app.command("project")
-def start_project(path: Path = Path("."),
-                  port: Optional[int] = typer.Option(None, "-p", "--port"),
-                  database: Optional[str] = typer.Option("sqlite", "--database", "-d", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)")):
+def start_project(
+    path: Path = Path("."),
+    port: Optional[int] = typer.Option(None, "-p", "--port"),
+    database: Optional[str] = typer.Option(
+        "sqlite",
+        "--database",
+        "-d",
+        help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)",
+    ),
+):
     """Start a timelink docker server on defined path and port.
-        If none are given, the path defaults to current directory, and the port to the first available port after 8088
+    If none are given, the path defaults to current directory, and the port to the first available port after 8088
     """
 
     port = find_free_port(from_port=port or 8088, to_port=8099)
@@ -175,6 +185,7 @@ def start_project(path: Path = Path("."),
 
     run_kserver_setup(path, port, database)
 
+
 def find_website_port(from_port: int = 8088, to_port: int = 8099):
     for port in range(from_port, to_port + 1):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -186,6 +197,7 @@ def find_website_port(from_port: int = 8088, to_port: int = 8099):
                 pass
     raise OSError(f"No free ports available in the range {from_port}-{to_port}")
 
+
 def setup_solr_container():
     """Startup the solr container. For now this assumes we already have a solr docker image ready to go."""
 
@@ -194,8 +206,7 @@ def setup_solr_container():
 
     # Check if container is already running.
     container_running_check = subprocess.run(
-        ["docker", "ps", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"],
-        capture_output=True, text=True
+        ["docker", "ps", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"], capture_output=True, text=True
     )
     if solr_container_name in container_running_check.stdout:
         typer.echo(f"Solr container '{solr_container_name}' is already running.")
@@ -203,7 +214,8 @@ def setup_solr_container():
         # Container exists but is stopped.
         container_exists_check = subprocess.run(
             ["docker", "ps", "-a", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"],
-            capture_output=True, text=True
+            capture_output=True,
+            text=True,
         )
         if solr_container_name in container_exists_check.stdout:
             # Container exists
@@ -212,22 +224,41 @@ def setup_solr_container():
         else:
             # Container does not exist
             typer.echo(f"Creating and starting new Solr container '{solr_container_name}'...")
-            subprocess.run([
-                "docker", "run", "-d",
-                "-v", f"{os.getcwd()}/solrdata:/var/solr",
-                "-p", "8983:8983",
-                "--name", solr_container_name,
-                "solr:slim",
-                "solr-create", "-c", "timelink-core"
-            ], check=True)
+            subprocess.run(
+                [
+                    "docker",
+                    "run",
+                    "-d",
+                    "-v",
+                    f"{os.getcwd()}/solrdata:/var/solr",
+                    "-p",
+                    "8983:8983",
+                    "--name",
+                    solr_container_name,
+                    "solr:slim",
+                    "solr-create",
+                    "-c",
+                    "timelink-core",
+                ],
+                check=True,
+            )
 
 
 @start_app.command("web")
 def start_webproject(
-    port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"),
-    path: Optional[Path] = typer.Option(None, "-d", "--directory", help="Timelink project directory. Defaults to the current one."),
-    database: Optional[str] = typer.Option("sqlite", "--database", "-db", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)"),
-    ):
+    port: Optional[int] = typer.Option(
+        None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"
+    ),
+    path: Optional[Path] = typer.Option(
+        None, "-d", "--directory", help="Timelink project directory. Defaults to the current one."
+    ),
+    database: Optional[str] = typer.Option(
+        "sqlite",
+        "--database",
+        "-db",
+        help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)",
+    ),
+):
     """Start the webapp on the chosen port if set. If not, default to 8000."""
 
     setup_solr_container()
@@ -243,7 +274,18 @@ def start_webproject(
 
     typer.echo(f"Starting Timelink Web Interface at port {port} on {path_to_use}.")
 
-    subprocess.run([sys.executable, str(web_app_path), "--port", str(port),  "--directory", str(path_to_use), "--database", database])
+    subprocess.run(
+        [
+            sys.executable,
+            str(web_app_path),
+            "--port",
+            str(port),
+            "--directory",
+            str(path_to_use),
+            "--database",
+            database,
+        ]
+    )
 
 
 # ================================================
@@ -270,9 +312,7 @@ def create_db_index(avoid_patterns=None):
 
     """
     pgsql_dbs = get_postgres_dbnames()
-    postgres_list = [
-        ("postgres", db, get_postgres_url(db)) for db in sorted(pgsql_dbs)
-    ]
+    postgres_list = [("postgres", db, get_postgres_url(db)) for db in sorted(pgsql_dbs)]
     sqlite_list = [
         ("sqlite", os.path.basename(db), get_sqlite_url(db))
         for db in sorted(get_sqlite_databases(current_working_directory, relative_path=False))
@@ -307,7 +347,7 @@ def db_database_list_cmd():
         db_url = db[2]
         db_version = migrations.heads(db_url)
         if len(db_version) == 0:
-            db_version = ''
+            db_version = ""
         else:
             db_version = f" ({db_version[0][:4]})"
         typer.echo(f" {i:>6}{db[0]:>9} {db_version:>8} {db[1]}: {db_url}")  # f-string
@@ -333,9 +373,7 @@ def db_current_cmd(
 
 @db_app.command("upgrade")
 def db_upgrade_cmd(db_url: str, revision: str = "heads"):
-    """Update database to (most recent) revision
-
-    """
+    """Update database to (most recent) revision"""
     db_url = parse_db_url(db_url)
     TimelinkDatabase(db_url=db_url)
     migrations.upgrade(db_url, revision)
@@ -393,6 +431,7 @@ def db_stamp(db_url: str, revision: str):
     """Stamp the database to a given revision. Use 'heads' to mark the database as up-to-date"""
     db_url = parse_db_url(db_url)
     migrations.stamp(db_url, revision)
+
 
 # ====================
 # MHK related commands
