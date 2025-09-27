@@ -86,7 +86,7 @@ class KleioServer:
     #: kleio server home directory
     kleio_home: str
     #: kleio server container
-    container: docker.models.containers.Container
+    container: docker.models.containers.Container  # type: ignore
 
     @staticmethod
     def start(
@@ -94,9 +94,9 @@ class KleioServer:
         kleio_version: str | None = "latest",
         kleio_home: str | None = None,
         kleio_admin_token: str | None = None,
-        kleio_server_port="8088",
+        kleio_server_port=8088,
         kleio_external_port=None,
-        kleio_server_workers="3",
+        kleio_server_workers=3,
         kleio_idle_timeout=900,
         kleio_conf_dir=None,
         kleio_source_dir=None,
@@ -105,7 +105,7 @@ class KleioServer:
         kleio_default_stru=None,
         kleio_debug=None,
         consistency: str = "cached",
-        port: int = None,
+        port: int | None = None,
         update: bool = False,
         reuse: bool = True,
         stop_duplicates: bool = False,
@@ -156,7 +156,7 @@ class KleioServer:
             raise RuntimeError("Docker is not running")
         # TODO: test if kleio_home is a valid directory
 
-        container: docker.models.containers.Container = start_kleio_server(
+        container: docker.models.containers.Container = start_kleio_server(  # type: ignore
             image=kleio_image,
             version=kleio_version,
             kleio_home=kleio_home,
@@ -236,7 +236,7 @@ class KleioServer:
         return KleioServer(url=url, token=token, kleio_home=kleio_home)
 
     @staticmethod
-    def get_server(kleio_home: str = None, kleio_version="latest"):
+    def get_server(kleio_home: str | None = None, kleio_version="latest"):
         """Check if a kleio server is running in docker mapped to a given kleio home directory.
 
         If yes return a KleioServer object, otherwise return None
@@ -261,7 +261,7 @@ class KleioServer:
             return None
 
     @staticmethod
-    def is_server_running(kleio_home: str = None, kleio_version="latest"):
+    def is_server_running(kleio_home: str | None = None, kleio_version="latest"):
         """Check if a kleio server is running in docker mapped to a given kleio home directory.
 
         Args:
@@ -287,7 +287,7 @@ class KleioServer:
         return container is not None
 
     @staticmethod
-    def find_local_kleio_home(path: str = None):
+    def find_local_kleio_home(path: str | None = None):
         """Find kleio home directory.
 
         Kleio home directory is the directory where Kleio Server finds sources and auxiliary
@@ -324,10 +324,10 @@ class KleioServer:
 
     def __init__(
         self,
-        container: docker.models.containers.Container = None,
-        url: str = None,
-        token: str = None,
-        kleio_home: str = None,
+        container: docker.models.containers.Container = None,  # type: ignore
+        url: str | None = None,
+        token: str | None = None,
+        kleio_home: str | None = None,
     ):
         """Not to be used directly.
 
@@ -439,7 +439,7 @@ class KleioServer:
     def __str__(self):
         return f"KleioServer(url={self.url}, kleio_home={self.kleio_home})"
 
-    def call(self, method: str, params: dict, token: str = None, timeout=60):
+    def call(self, method: str, params: dict, token: str | None = None, timeout=60):
         """Call kleio server API
 
         Args:
@@ -518,18 +518,18 @@ class KleioServer:
             dict: kleio server API response
         """
         pars = {"user": user, "info": info.model_dump()}
-        return self.call("tokens_generate", pars)
+        return str(self.call("tokens_generate", pars))
 
     def get_translations(
-        self, path: str, recurse: str = True, status: str = None, token: str = None
-    ) -> List[KleioFile]:
+        self, path: str, recurse: str | bool = True, status: str | None = None, token: str | None = None
+    ) -> list[KleioFile]:
         """Get translation status from kleio server.
 
         Returns the translation status of the kleio files in path.
 
         Args:
             path (str): Path to the directory in sources.
-            recurse (str): If "yes", recurse in subdirectories.
+            recurse (str): If "yes", or True, recurse in subdirectories.
             status (str, optional): Filter by translation status. Options include:
 
                 V = valid translations
@@ -611,12 +611,12 @@ class KleioServer:
         pars = {"path": path, "recurse": recurse}
         return self.call("translations_delete", pars)
 
-    def get_sources(self, path: str, recurse: bool = True, token=None):
+    def get_sources(self, path: str, recurse: str | bool = True, token=None):
         """Get list of sources from kleio server
 
         :param path: path to the directory in sources
         :type path: str
-        :param recurse: if "yes" recurse in subdirectories
+        :param recurse: if "yes" or True, recurse in subdirectories
         :type recurse: str
 
         :return: kleio server API response
@@ -630,7 +630,7 @@ class KleioServer:
         pars = {"path": path, "recurse": recurse}
         return self.call("sources_get", pars, token=token)
 
-    def get_report(self, rpt_url: str | KleioFile, token=None) -> str:
+    def get_report(self, rpt_url: str | KleioFile | None, token=None) -> str | None:
         """Get report from kleio server
 
         Args:
@@ -643,6 +643,9 @@ class KleioServer:
         """
         if isinstance(rpt_url, KleioFile):
             rpt_url = rpt_url.rpt_url
+
+        if rpt_url is None:
+            return None
 
         if not rpt_url.startswith("/"):
             rpt_url = f"/{rpt_url}"
@@ -748,16 +751,23 @@ def is_docker_running():
         return False
 
 
-def find_local_kleio_home(path: str = None):
+def find_local_kleio_home(path: str | None = None):
     """Find kleio home directory.
 
     Kleio home directory is the directory where Kleio Server finds sources and auxiliary
     files like structures, mappings and inferences.
 
+    There are two types of Kleio home directories:
+         * A project directory, which contains a "sources" subdirectory and optionally
+              "structures","inferences" and also optionally a ".timelink-project"
+        * a multiple project directory, which contains multiple project directories
+          and optionally a ".timelink-home" file.
+
     It can be in the current directory, parent directory, or tests directory.
     It can be named "kleio-home", "timelink-home", or "mhk-home".
 
     Special cases:
+       * if the current directory is a project directory its considered kleio_home
        * if the current directory is "notebooks", kleio-home is assumed that Kleio home
             to be the parent directory of "notebooks"
        * if there is a "tests" subdirectory, kleio-home is searched in childs of "tests"
@@ -771,6 +781,52 @@ def find_local_kleio_home(path: str = None):
     else:
         current_dir = path
 
+    # Part I check if the current directory is a project or multiple project directory
+    # test if there is a file named ".timelink-project"
+    if os.path.isfile(f"{current_dir}/.timelink-project"):
+        if os.path.isdir(f"{current_dir}/sources"):
+            return current_dir
+        else:
+            raise ValueError(
+                f"Directory {current_dir} has a '.timelink-project' file but it is not a valid kleio project directory,"
+                " must have a sources subdirectory"
+            )
+
+    # test if there is a file named ".timelink-home"
+    # if yes the directory must have a "projects" subdirectory or a "sources" subdirectory
+    # and also have a "system" subdirectory
+    if os.path.isfile(f"{current_dir}/.timelink-home"):
+        if os.path.isdir(f"{current_dir}/projects") or (
+            os.path.isdir(f"{current_dir}/sources")
+            and os.path.isdir(f"{current_dir}/system")  # noqa: W503
+        ):
+            return current_dir
+        else:
+            raise ValueError(
+                f"Directory {current_dir} has a '.timelink-home' file but it is not a valid kleio home directory,"
+                " must have a 'projects' subdirectory or both 'sources' and 'system' subdirectories"
+            )
+
+    # no placeholder files try to guess which type it is
+    # test if there is a "sources" subdirectory and not a "system" subdirectory it is a project directory
+    if (
+        not os.path.isdir(f"{current_dir}/system")
+        and os.path.isdir(f"{current_dir}/sources")  # noqa: W503
+    ):
+        return current_dir
+    # if there is a "sources" and a "system" subdirectory it is a kleio home directory
+    if (
+        os.path.isdir(f"{current_dir}/system")
+        and os.path.isdir(f"{current_dir}/sources")  # noqa: W503
+    ):
+        return current_dir
+
+    # if there is a "projects" subdirectory it is a kleio home directory
+    if os.path.isdir(f"{current_dir}/projects"):
+        return current_dir
+
+    # Part II current directory is not a project or multiple project directory
+    # search for kleio-home in current directory, parents of current directory
     # get the user home directory
     user_home = os.path.expanduser("~")
 
@@ -809,12 +865,99 @@ def find_local_kleio_home(path: str = None):
     return kleio_home
 
 
+def is_project_directory(path: str, add_placeholder: bool = True) -> bool:
+    """Check if a directory is a kleio project directory
+
+    A kleio project directory must have a "sources" subdirectory
+    and optionally a ".timelink-project" file.
+
+    Args:
+        path (str): path to the directory to check
+        add_placeholder (bool, optional): if True, add a placeholder file
+                                        ".timelink-project" if the directory is a project directory
+
+    Returns:
+        bool: True if the directory is a kleio project directory, False otherwise
+    """
+    is_project_dir = False
+    if os.path.isfile(f"{path}/.timelink-project"):
+        if os.path.isdir(f"{path}/sources"):
+            is_project_dir = True
+        else:
+            raise ValueError(
+                f"Directory {path} has a '.timelink-project' file but it is not a valid kleio project directory,"
+                " must have a sources subdirectory"
+            )
+    if (
+        not os.path.isdir(f"{path}/system")
+        and os.path.isdir(f"{path}/sources")  # noqa: W503
+    ):
+        is_project_dir = True
+    else:
+        is_project_dir = False
+
+    if is_project_dir and add_placeholder:
+        # add a placeholder file if it does not exist
+        if not os.path.isfile(f"{path}/.timelink-project"):
+            with open(f"{path}/.timelink-project", "w") as f:
+                f.write("# This is a kleio project directory\n")
+    return is_project_dir
+
+
+def is_timelink_home_directory(path: str, add_placeholder: bool = True) -> bool:
+    """Check if a directory is a kleio home directory
+
+    A kleio home directory must have a "projects" subdirectory
+    or both "sources" and "system" subdirectories,
+    and optionally a ".timelink-home" file.
+
+    Args:
+        path (str): path to the directory to check
+        add_placeholder (bool, optional): if True, add a placeholder file
+                                        if it does not exist; defaults to True.
+
+    Returns:
+        bool: True if the directory is a kleio home directory, False otherwise
+    """
+    is_home_dir = False
+    if os.path.isfile(f"{path}/.timelink-home"):
+        if os.path.isdir(f"{path}/projects") or (
+            os.path.isdir(f"{path}/sources")
+            and os.path.isdir(f"{path}/system")  # noqa: W503
+        ):
+            is_home_dir = True
+        else:
+            raise ValueError(
+                f"Directory {path} has a '.timelink-home' file but it is not a valid kleio home directory,"
+                " must have a 'projects' subdirectory or both 'sources' and 'system' subdirectories"
+            )
+    if os.path.isdir(f"{path}/projects"):
+        is_home_dir = True
+    elif (
+        os.path.isdir(f"{path}/system")
+        and os.path.isdir(f"{path}/sources")  # noqa: W503
+    ):
+        is_home_dir = True
+    else:
+        is_home_dir = False
+
+    if is_home_dir and add_placeholder:
+        # add a placeholder file if it does not exist
+        if not os.path.isfile(f"{path}/.timelink-home"):
+            with open(f"{path}/.timelink-home", "w") as f:
+                f.write("# This is a kleio home directory\n")
+    return is_home_dir
+
+
 def get_kserver_home(
-    container: docker.models.containers.Container = None,
+    container: docker.models.containers.Container = None,  # type: ignore
     container_number: int = 0,
     kleio_version="latest",
 ):
     """Get the kleio server home directory
+       Requires a container running kleio server or a container number
+       If container number is given, the container is obtained
+       from the list of running kleio server containers.
 
     Args:
         container (docker.models.containers.Container, optional): kleio server container;
@@ -825,9 +968,9 @@ def get_kserver_home(
     Returns the volume mapped to /kleio-home in the kleio server container"""
 
     if container is None:
-        container = get_kserver_container_list(kleio_version=kleio_version)[
-            container_number
-        ]
+        container_list = get_kserver_container_list(kleio_version=kleio_version)
+        if container_list is not None:
+            container = container_list[container_number]
 
     kleio_home = None
     if container is not None:
@@ -844,8 +987,8 @@ def get_kserver_home(
 
 
 def list_kleio_server_containers(
-    kleio_version: str = None,
-) -> List[Tuple[str, str, int, docker.models.containers.Container]]:
+    kleio_version: str | None = None,
+) -> list[tuple[str, str, int, docker.models.containers.Container]]:  # type: ignore
     """List running kleio server containers
 
     Args:
@@ -854,7 +997,7 @@ def list_kleio_server_containers(
     Returns:
         a tuple (name, kleio_home, port, token, container) for each container
     """
-    containers: list[docker.models.containers.Container] = get_kserver_container_list(
+    containers: list[docker.models.containers.Container] = get_kserver_container_list(  # type: ignore
         kleio_version=kleio_version
     )
 
@@ -872,7 +1015,7 @@ def list_kleio_server_containers(
 
 
 def get_kserver_container(
-    kleio_home: str = None, kleio_version="latest", stop_duplicates=False
+    kleio_home: str | None = None, kleio_version: str | None = "latest", stop_duplicates=False
 ):
     """Check if a kleio server is running in docker, possibly mapped to
     a given kleio home directory.
@@ -887,7 +1030,7 @@ def get_kserver_container(
         docker.models.containers.Container: the Kleio server container
     """
 
-    containers: list[docker.models.containers.Container] = get_kserver_container_list(
+    containers: list[docker.models.containers.Container] = get_kserver_container_list(  # type: ignore
         kleio_version=kleio_version
     )
 
@@ -922,8 +1065,8 @@ def get_kserver_container(
 
 
 def get_kserver_container_list(
-    kleio_version: str = None,
-) -> None | List[docker.models.containers.Container]:
+    kleio_version: str | None = None,
+) -> None | List[docker.models.containers.Container]:  # type: ignore
     """Get the Kleio server containers currently running in docker
 
     Running containers are inspected to detect
@@ -956,7 +1099,7 @@ def get_kserver_container_list(
 
 
 def get_kserver_token(
-    container: docker.models.containers.Container = None,
+    container: docker.models.containers.Container = None,  # type: ignore
     container_number: int = 0,
     kleio_version="latest",
 ) -> str:
@@ -972,9 +1115,11 @@ def get_kserver_token(
         str: the kleio server container token
     """
     if container is None:
-        container = get_kserver_container_list(kleio_version=kleio_version)[
-            container_number
-        ]
+        container_list = get_kserver_container_list(kleio_version=kleio_version)
+        if container_list is not None and len(container_list) > container_number:
+            container = container_list[container_number]
+        else:
+            raise ValueError("No running Kleio server containers found")
 
     token = [
         env
@@ -1000,9 +1145,9 @@ def start_kleio_server(
     version: str | None = None,
     kleio_home: str | None = None,
     kleio_admin_token: str | None = None,
-    kleio_server_port="8088",
+    kleio_server_port=8088,
     kleio_external_port=None,
-    kleio_server_workers="3",
+    kleio_server_workers=3,
     kleio_idle_timeout=900,
     kleio_conf_dir=None,
     kleio_source_dir=None,
@@ -1138,7 +1283,7 @@ def start_kleio_server(
         ports={f"{kleio_server_port}/tcp": kleio_external_port},
         environment=kleio_env,
         mounts=[
-            docker.types.Mount(
+            docker.types.Mount(  # type: ignore
                 target="/kleio-home",
                 source=kleio_home,
                 type="bind",
@@ -1152,10 +1297,10 @@ def start_kleio_server(
     stop_time = 1
     elapsed_time = 0
     # this necessary to get the status
-    cont = client.containers.get(kleio_container.id)
+    cont = client.containers.get(kleio_container.id)  # type: ignore
     while cont.status not in ["running"] and elapsed_time < timeout:
         sleep(stop_time)
-        cont = client.containers.get(kleio_container.id)
+        cont = client.containers.get(kleio_container.id)  # type: ignore
         elapsed_time += stop_time
     if cont.status != "running":
         raise RuntimeError("Kleio server did not start")
@@ -1169,7 +1314,7 @@ def random_token(length=32):
     return "".join(secrets.choice(alphabet) for i in range(length))
 
 
-def stop_kleio_server(container: docker.models.containers.Container = None):
+def stop_kleio_server(container: docker.models.containers.Container = None):  # type: ignore
     """Stop kleio server"""
     if is_docker_running() is False:
         raise Exception("Docker is not running")
