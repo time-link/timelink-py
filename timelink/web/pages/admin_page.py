@@ -1,10 +1,10 @@
-from pages import navbar
+from timelink.web.pages import navbar
 
 from nicegui import ui
 
 
 class Admin:
-    
+
     """Page for Administration settings. """
     def __init__(self, database, kserver) -> None:
         self.database = database
@@ -14,8 +14,7 @@ class Admin:
         async def register():
             await self.admin_page()
 
-
     async def admin_page(self):
         with navbar.header():
             ui.page_title("Admin")
-            ui.markdown(f'#### **Admin configuration page.**').classes('ml-2 mb-4 text-orange-500')
+            ui.markdown('#### **Admin configuration page.**').classes('ml-2 mb-4 text-orange-500')

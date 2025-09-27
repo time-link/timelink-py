@@ -4,6 +4,7 @@ from datetime import datetime
 
 ActivityBase = declarative_base()
 
+
 class Activity(ActivityBase):
     __tablename__ = 'activity'
 

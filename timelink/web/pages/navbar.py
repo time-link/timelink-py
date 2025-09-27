@@ -1,12 +1,13 @@
-from pages.menu import menu
+from timelink.web.pages.menu import menu
 from contextlib import contextmanager
 
 from nicegui import ui
 
+
 @contextmanager
 def header():
     """Web Interface page frame"""
-    
+
     with ui.left_drawer(value=False, bordered=True, elevated=True).classes('bg-gray-50').props('width=200') as left_drawer:
         ui.link('Overview', '/overview').classes('text-lg font-bold no-underline')
         ui.separator()
@@ -31,6 +32,6 @@ def header():
             menu()
         ui.space()
         ui.label('Timelink Web Interface').classes('font-bold')
-        
+
     with ui.column().classes('w-full'):
         yield
