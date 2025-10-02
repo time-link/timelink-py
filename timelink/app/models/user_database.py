@@ -1,3 +1,5 @@
+""" User database model and associated functions"""
+
 import os
 import warnings
 from typing import Dict, List
@@ -15,6 +17,7 @@ from timelink.app.schemas import UserProjectSchema
 
 
 class UserDatabase:
+    """A UserDatabase manages a database of users."""
     def __init__(
         self,
         db_name: str = " timelink_users.sqlite",
@@ -26,10 +29,9 @@ class UserDatabase:
         postgres_image=None,
         postgres_version=None,
         initial_users=None,
-        stop_duplicates=True,
         **connect_args,
     ):
-        """Create a new UserDatabase object.
+        """Create a new UserDatabase .
 
         Args:
             db_name: the name of the database
@@ -69,7 +71,7 @@ class UserDatabase:
         self.db_type = db_type
         self.db_container = None
         self.engine = None
-        self.session = None
+        self.db_session = None
         self.current_session = None
         self.metadata = None
         self.cache: Dict[str, UserSchema] = {}
@@ -152,20 +154,20 @@ class UserDatabase:
         self.engine = create_engine(self.db_url, connect_args=connect_args)
         if not database_exists(self.engine.url):
             create_database(self.engine.url)
-        self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+        self.db_session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.current_session = None
         self.metadata = Base.metadata
         Base.metadata.create_all(self.engine)
         if initial_users is not None:
-            with self.session() as session:
+            with self.db_session() as my_session:
                 for user in initial_users:
-                    user_exists = self.get_user_by_name(user.name, session=session)
+                    user_exists = self.get_user_by_name(user.name, session=my_session)
                     if user_exists is None:
-                        self.add_user(user, session=session)
-                session.commit()
+                        self.add_user(user, session=my_session)
+                my_session.commit()
 
     def __enter__(self):
-        self.current_session = self.session()
+        self.current_session = self.db_session()
         return self.current_session
 
     def __exit__(self, exc_type, exc_value, traceback):

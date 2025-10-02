@@ -357,7 +357,7 @@ class KleioServer:
             self.url = url
 
             self.kleio_admin_token = token
-            self.kleio_home = kleio_home
+            self.kleio_home = kleio_home  # TODO: this is wrong if url is remote. must ask server, dubious utility
             self.container = None
             return
 

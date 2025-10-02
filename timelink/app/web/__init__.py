@@ -175,7 +175,7 @@ async def project_select(
     if project_name is not None:
         user.current_project_name = project_name
         users_db = webapp.users_db
-        with users_db.session() as session:
+        with users_db.db_session() as session:
             project: Project = users_db.get_project_by_name(project_name, session=session)
         user.current_project = project
         access_level: ProjectAccess = users_db.get_user_project_access(user.id, project.id, session=session)
