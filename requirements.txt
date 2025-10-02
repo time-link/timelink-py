@@ -16,6 +16,8 @@ makefun           # tox seems to need this
 matplotlib
 mysql-connector-python>=9.1.0
 networkx>=3.0.0
+nicegui[testing]
+nicegui-tabulator
 numpy==1.26.4
 pandas~=2.2.2
 psycopg2-binary==2.9.10
@@ -24,11 +26,12 @@ pydantic
 pydantic-settings
 pysolr==3.10.0
 pytest
-python-box~=5.3.0
-python-dotenv~=0.21.0
+python-box>=5.3.0
+python-dotenv>=0.21.0
 python-jose[cryptography]
 python-multipart
 pyYAML>=6.0.2
+pysolr
 requests>=2.32.0
 setuptools>=65.5.1
 sqlalchemy-utils

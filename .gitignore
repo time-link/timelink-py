@@ -121,3 +121,6 @@ tests/timelink-home/system/db/sqlite/timelink_users
 
 # Solr files
 solrdata/
+
+# node_modules
+node_modules/
