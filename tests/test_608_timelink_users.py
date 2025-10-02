@@ -32,7 +32,7 @@ def dbsystem(request: pytest.FixtureRequest):
         db_path=db_path,
     )
 
-    with dbsystem.session() as session:
+    with dbsystem.db_session() as session:
         # delete all users and properties
         session.execute(delete(ProjectAccess))
         session.execute(delete(Project))
@@ -44,7 +44,7 @@ def dbsystem(request: pytest.FixtureRequest):
         yield dbsystem
     finally:
         dbsystem.drop_db()
-        dbsystem.session().close()
+        dbsystem.db_session().close()
 
 
 dbparam = pytest.mark.parametrize(
@@ -183,7 +183,7 @@ def test_duplicate_email(dbsystem):
     if db.db_type == "postgres":
         if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
-    with db.session() as session:
+    with db.db_session() as session:
         user = User(
             name="User five",
             email="five@xpto.com",
@@ -211,7 +211,7 @@ def test_user_project_access(dbsystem):
     if db.db_type == "postgres":
         if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
-    with db.session() as session:
+    with db.db_session() as session:
         user = db.get_user_by_nickname("PU1", session=session)
         if user is None:
             user = User(
@@ -254,7 +254,7 @@ def test_get_project_name(dbsystem):
     if db.db_type == "postgres":
         if os.environ.get("TRAVIS") == "true":
             pytest.xfail("No postgres on Travis")
-    with db.session() as session:
+    with db.db_session() as session:
         result = db.get_project_by_name(name="Project One", session=session)
         if result is None:
             project = Project(

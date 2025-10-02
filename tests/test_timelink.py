@@ -20,12 +20,6 @@ def response():
     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
-
-
 # ===============================================================
 # Testing CLI commands
 # ===============================================================
@@ -40,11 +34,21 @@ def test_command_line_interface():
 @skip_on_travis
 def test_start_project():
     """Test 'timelink start project'
-        Assuming project is tests/timelink-home/projects/test-project
+    Assuming project is tests/timelink-home/projects/test-project
     """
     runner = CliRunner()
     path_to_project = Path(TEST_DIR, "timelink-home", "projects", "test-project")
     result = runner.invoke(app, ["start", "project", "--path", path_to_project])
+    assert result.exit_code == 0
+    assert "Start a new project" in result.output
+
+
+@skip_on_travis
+def test_start_web():
+    """Test 'timelink start web' """
+    runner = CliRunner()
+    path_to_project = Path(TEST_DIR, "timelink-home", "projects", "test-project")
+    result = runner.invoke(app, ["start", "web", "-d", path_to_project])
     assert result.exit_code == 0
     assert "Start a new project" in result.output
 

@@ -6,6 +6,8 @@ from tests import KLEIO_HOME, KleioServerTestMode, kleio_server_mode
 
 from unittest.mock import MagicMock
 
+pytest_plugins = ["nicegui.testing.plugin"]
+
 
 @pytest.fixture(scope="session")
 def kleio_server():
@@ -41,10 +43,9 @@ def kleio_server():
         url = "http://localhost:8088"
         server = KleioServer.attach(url, token)
     else:
-        server = KleioServer.start(kleio_home=KLEIO_HOME,
-                                   kleio_version="latest",
-                                   kleio_external_port=8999,
-                                   kleio_debug="true")
+        server = KleioServer.start(
+            kleio_home=KLEIO_HOME, kleio_version="latest", kleio_external_port=8999, kleio_debug="true"
+        )
 
     yield server
 
@@ -62,6 +63,7 @@ def fake_db():
     mock_db = MagicMock()
     mock_db.session.return_value.__enter__.return_value.execute.return_value = []
     return mock_db
+
 
 @pytest.fixture
 def fake_kserver():

@@ -25,7 +25,7 @@ async def test_initial_setup(monkeypatch):
         "linking_page.Linking",
         "sources_page.Sources",
         "search_page.Search",
-        "admin_page.Admin"
+        "admin_page.Admin",
     ]
 
     for path in page_mocks:
@@ -33,7 +33,7 @@ async def test_initial_setup(monkeypatch):
         module = getattr(timelink_web, module_name)
         mock_instance = MagicMock()
         mock_instance.register = MagicMock()
-        
+
         # Patch the class to return the mock instance when called
         monkeypatch.setattr(module, class_name, MagicMock(return_value=mock_instance))
 
@@ -45,7 +45,7 @@ async def test_initial_setup(monkeypatch):
     for path in page_mocks:
         module_name, class_name = path.split(".")
         cls = getattr(getattr(timelink_web, module_name), class_name)
-        
+
         if class_name == "StatusPage":
             cls.assert_called_once()
             _, kwargs = cls.call_args
@@ -60,10 +60,10 @@ async def test_initial_setup(monkeypatch):
             cls.return_value.register.assert_called_once()
 
 
-
 def test_port_argument(monkeypatch):
     # Test that the port is read from sys.argv
     monkeypatch.setattr(sys, "argv", ["timelink_web.py", "--port", "1234"])
     import importlib
+
     importlib.reload(timelink_web)
     assert timelink_web.port == 1234

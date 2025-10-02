@@ -8,7 +8,7 @@ import pandas as pd
 from sqlalchemy import column, table
 from pathlib import Path
 
-pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
+pytest_plugins = ["nicegui.testing.plugin", "nicegui.testing.user_plugin"]
 
 
 def test_run_imports_sync(capsys, fake_db):
@@ -25,7 +25,7 @@ def test_run_imports_sync(capsys, fake_db):
 @pytest.mark.parametrize("db_type", ["sqlite", "postgres"])
 def test_run_db_setup(monkeypatch, capsys, db_type, fake_db):
 
-    fake_db.db_table_names.return_value = ["users", "activity"] 
+    fake_db.db_table_names.return_value = ["users", "activity"]
 
     # patch TimelinkDatabase to return fake db
     monkeypatch.setattr("timelink.web.timelink_web_utils.TimelinkDatabase", lambda **kwargs: fake_db)
@@ -35,6 +35,7 @@ def test_run_db_setup(monkeypatch, capsys, db_type, fake_db):
     monkeypatch.setattr("timelink.web.timelink_web_utils.Activity", MagicMock())
 
     from timelink.web import timelink_web_utils
+
     db = timelink_web_utils.run_db_setup("fake_home", db_type)
 
     assert db is fake_db
@@ -47,21 +48,9 @@ def test_run_db_setup(monkeypatch, capsys, db_type, fake_db):
 async def test_run_setup_no_server_found(monkeypatch, capsys, fake_db, fake_kserver):
 
     # Mock KleioServer methods
-    monkeypatch.setattr(
-        timelink_web_utils.KleioServer,
-        "find_local_kleio_home",
-        lambda path: "/fake/home"
-    )
-    monkeypatch.setattr(
-        timelink_web_utils.KleioServer,
-        "get_server",
-        lambda home: None
-    )
-    monkeypatch.setattr(
-        timelink_web_utils.KleioServer,
-        "start",
-        lambda **kwargs: fake_kserver
-    )
+    monkeypatch.setattr(timelink_web_utils.KleioServer, "find_local_kleio_home", lambda path: "/fake/home")
+    monkeypatch.setattr(timelink_web_utils.KleioServer, "get_server", lambda home: None)
+    monkeypatch.setattr(timelink_web_utils.KleioServer, "start", lambda **kwargs: fake_kserver)
 
     # Patch find_free_port
     monkeypatch.setattr(timelink_web_utils, "find_free_port", lambda a, b: 8088)
@@ -85,20 +74,14 @@ async def test_run_setup_no_server_found(monkeypatch, capsys, fake_db, fake_kser
 async def test_run_setup_server_found(monkeypatch, capsys, fake_db, fake_kserver):
 
     # Mock KleioServer methods
+    monkeypatch.setattr(timelink_web_utils.KleioServer, "find_local_kleio_home", lambda path: "/fake/home")
     monkeypatch.setattr(
-        timelink_web_utils.KleioServer,
-        "find_local_kleio_home",
-        lambda path: "/fake/home"
-    )
-    monkeypatch.setattr(
-        timelink_web_utils.KleioServer,
-        "get_server",
-        lambda home: fake_kserver  # found existing server
+        timelink_web_utils.KleioServer, "get_server", lambda home: fake_kserver  # found existing server
     )
     monkeypatch.setattr(
         timelink_web_utils.KleioServer,
         "start",
-        lambda **kwargs: (_ for _ in ()).throw(AssertionError("start should not be called"))
+        lambda **kwargs: (_ for _ in ()).throw(AssertionError("start should not be called")),
     )
 
     # Mock db setup
@@ -118,7 +101,7 @@ async def test_run_setup_server_found(monkeypatch, capsys, fake_db, fake_kserver
 
 @pytest.mark.asyncio
 async def test_show_table(user: User, fake_db, fake_kserver) -> None:
-    
+
     fake_db.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
     status_page.StatusPage(database=fake_db, kserver=fake_kserver, sources=MagicMock())
@@ -127,18 +110,15 @@ async def test_show_table(user: User, fake_db, fake_kserver) -> None:
     user.find("Database Status").click()
 
     timelink_web_utils.show_table(fake_db)
-    
+
     table = user.find(ui.table).elements.pop()
     expected_columns = [
-        {'name': 'Table', 'label': 'Table', 'field': 'Table'},
-        {'name': 'Row Count', 'label': 'Row Count', 'field': 'Row Count'}
+        {"name": "Table", "label": "Table", "field": "Table"},
+        {"name": "Row Count", "label": "Row Count", "field": "Row Count"},
     ]
 
-    expected_rows = [
-        {'Table': 'attributes', 'Row Count': 10},
-        {'Table': 'entities', 'Row Count': 5}
-    ]
-    
+    expected_rows = [{"Table": "attributes", "Row Count": 10}, {"Table": "entities", "Row Count": 5}]
+
     assert table.columns == expected_columns
     assert table.rows == expected_rows
 
@@ -162,7 +142,7 @@ async def test_show_kleio_info(user: User, fake_db, fake_kserver) -> None:
         - **Kleio URL:** {fake_kserver.url}
         - **Kleio Home:** {fake_kserver.kleio_home}
         """
-    
+
     assert markdown.content.strip() == expected_markdown.strip()
 
     assert user.find("Kleio Server Overview")
@@ -172,13 +152,13 @@ async def test_show_kleio_info(user: User, fake_db, fake_kserver) -> None:
 def test_load_data_functions_query(fake_db):
     """Test load_data with a 'functions' query."""
 
-    mock_results = [('name', 5), ('ativa', 12)]
-    mock_df = pd.DataFrame(mock_results, columns=['the_value', 'count'])
-    fake_db.session.return_value.__enter__.return_value.execute.return_value =  mock_df
+    mock_results = [("name", 5), ("ativa", 12)]
+    mock_df = pd.DataFrame(mock_results, columns=["the_value", "count"])
+    fake_db.session.return_value.__enter__.return_value.execute.return_value = mock_df
 
     mock_table = MagicMock()
-    mock_table.c.the_value = column('the_value')
-    mock_table.c.the_type = column('the_type')
+    mock_table.c.the_value = column("the_value")
+    mock_table.c.the_type = column("the_type")
     fake_db.get_table.return_value = mock_table
 
     df = timelink_web_utils.load_data("functions", fake_db)
@@ -187,7 +167,7 @@ def test_load_data_functions_query(fake_db):
 
     assert isinstance(df, pd.DataFrame)
 
-    expected_df = pd.DataFrame(mock_results, columns=['the_value', 'count'])
+    expected_df = pd.DataFrame(mock_results, columns=["the_value", "count"])
     pd.testing.assert_frame_equal(df, expected_df)
 
 
@@ -195,13 +175,13 @@ def test_load_data_functions_query(fake_db):
 def test_load_data_general_query(fake_db, query_type):
     """Test load_data with relations/attributes queries."""
 
-    mock_results = [('typeA', 10, 3), ('typeB', 20, 5)]
-    mock_df = pd.DataFrame(mock_results, columns=['the_type', 'count', 'distinct_value'])
-    fake_db.session.return_value.__enter__.return_value.execute.return_value =  mock_df
+    mock_results = [("typeA", 10, 3), ("typeB", 20, 5)]
+    mock_df = pd.DataFrame(mock_results, columns=["the_type", "count", "distinct_value"])
+    fake_db.session.return_value.__enter__.return_value.execute.return_value = mock_df
 
     mock_table = MagicMock()
-    mock_table.c.the_type = column('the_type')
-    mock_table.c.the_value = column('the_value')
+    mock_table.c.the_type = column("the_type")
+    mock_table.c.the_value = column("the_value")
     fake_db.get_table.return_value = mock_table
 
     df = timelink_web_utils.load_data(query_type, fake_db)
@@ -210,9 +190,8 @@ def test_load_data_general_query(fake_db, query_type):
 
     assert isinstance(df, pd.DataFrame)
 
-    expected_df = pd.DataFrame(mock_results, columns=['the_type', 'count', 'distinct_value'])
+    expected_df = pd.DataFrame(mock_results, columns=["the_type", "count", "distinct_value"])
     pd.testing.assert_frame_equal(df, expected_df)
-
 
 
 @pytest.mark.parametrize("query_type", ["relations", "attributes", "functions"])
@@ -242,25 +221,25 @@ def test_load_data_exception_handling(fake_db, capsys, query_type):
 
 def test_add_description_column(fake_db):
     """Test if a 'description' column is added to the DataFrame with correct values."""
-    
+
     fake_session = MagicMock()
 
     fake_db.get_entity.side_effect = ["description_for_A", "description_for_B", "description_for_C"]
 
-    test_data = {'id': ['A', 'B', 'C'], 'value': [1, 2, 3]}
+    test_data = {"id": ["A", "B", "C"], "value": [1, 2, 3]}
     df = pd.DataFrame(test_data)
 
-    result_df = timelink_web_utils.add_description_column(df, fake_db, 'id', fake_session)
-    
+    result_df = timelink_web_utils.add_description_column(df, fake_db, "id", fake_session)
+
     assert isinstance(result_df, pd.DataFrame)
     assert "description" in result_df.columns
-    
-    fake_db.get_entity.assert_any_call('A', session=fake_session)
-    fake_db.get_entity.assert_any_call('B', session=fake_session)
-    fake_db.get_entity.assert_any_call('C', session=fake_session)
+
+    fake_db.get_entity.assert_any_call("A", session=fake_session)
+    fake_db.get_entity.assert_any_call("B", session=fake_session)
+    fake_db.get_entity.assert_any_call("C", session=fake_session)
 
     assert fake_db.get_entity.call_count == len(df)
-    
+
     expected_descriptions = ["description_for_A", "description_for_B", "description_for_C"]
     pd.testing.assert_series_equal(result_df["description"], pd.Series(expected_descriptions, name="description"))
 
@@ -268,13 +247,15 @@ def test_add_description_column(fake_db):
 def test_pre_process_attributes_df():
     """Test if a dataframe to retrieved with entities_with_attributes is properly processed to be displayed."""
 
-    df = pd.DataFrame({
-        "id": [1, 2],
-        "description": ["desc1", "desc2"],
-        "attr_extra_info": ["x", "y"],
-        "some.attr": ["a", "b"],
-        "my_attr_value": [10, 20],
-    })
+    df = pd.DataFrame(
+        {
+            "id": [1, 2],
+            "description": ["desc1", "desc2"],
+            "attr_extra_info": ["x", "y"],
+            "some.attr": ["a", "b"],
+            "my_attr_value": [10, 20],
+        }
+    )
 
     processed_df, col_defs = timelink_web_utils.pre_process_attributes_df(df, "my_attr")
 
@@ -305,11 +286,13 @@ def test_pre_process_attributes_df():
 def test_build_expected_col_list():
     """Test function that builds expected columns to be displayed in an AG Grid"""
 
-    df = pd.DataFrame({
-        "id": [1, 2],
-        "first_name": ["Alice", "Bob"],
-        "age": [30, 40],
-    })
+    df = pd.DataFrame(
+        {
+            "id": [1, 2],
+            "first_name": ["Alice", "Bob"],
+            "age": [30, 40],
+        }
+    )
 
     col_defs = timelink_web_utils.build_expected_col_list(df, id_field="id")
 
@@ -324,7 +307,7 @@ def test_build_expected_col_list():
 
 def test_parse_entity_details(monkeypatch):
     """Test if parse_entity_details returns correct dictionaries."""
-    
+
     rel_in = MagicMock(the_date="16200101")
     rel_out = MagicMock(the_date="16000101")
     attr = MagicMock(the_date="15400101")
@@ -340,6 +323,7 @@ def test_parse_entity_details(monkeypatch):
             "16000101": [rel_out],
             "15400101": [attr],
         }
+
     fake_entity.dated_bio.side_effect = fake_dated_bio
 
     fake_schema = MagicMock()
@@ -374,19 +358,18 @@ def test_format_obs():
     result = timelink_web_utils.format_obs(obs, level)
     expected_indent = (level + 1) * 6
 
-    assert f'padding-left:{expected_indent}ch' in result
+    assert f"padding-left:{expected_indent}ch" in result
     assert "obs" in result
     assert obs in result
 
 
-
 def test_highlight_link():
     """Test if highlight_link returns HTML span with correct path and text."""
-    
+
     path = "/some/path"
     text = "some text goes here"
     result = timelink_web_utils.highlight_link(path, text)
-    
+
     assert path in result
     assert text in result
     assert "highlight-cell" in result
@@ -404,12 +387,12 @@ def test_collect_all_ids_sync(monkeypatch, fake_db):
     parent_contains_id = 123
     parent_dict = {
         "contains": [{"id": parent_contains_id}],
-        "extra_info": {"some_attr": {"kleio_element_class": "my_class"}}
+        "extra_info": {"some_attr": {"kleio_element_class": "my_class"}},
     }
 
     child = MagicMock()
     child.inside = "child_inside"
-    setattr(child, "some_attr", "child_value")
+    setattr(child, "some_attr", "child_value")  # noqa: B010
     child_dict = {"contains": [], "extra_info": {"some_attr": {"kleio_element_class": "my_class"}}}
 
     # patch get_entity to return child when called with the parent's child ID
@@ -417,7 +400,7 @@ def test_collect_all_ids_sync(monkeypatch, fake_db):
 
     monkeypatch.setattr(
         "timelink.web.timelink_web_utils.EntityAttrRelSchema.model_validate",
-        lambda e: MagicMock(model_dump=MagicMock(return_value=parent_dict if e == parent else child_dict))
+        lambda e: MagicMock(model_dump=MagicMock(return_value=parent_dict if e == parent else child_dict)),
     )
 
     result = timelink_web_utils.collect_all_ids_sync(fake_db, parent)
@@ -449,7 +432,6 @@ def test_get_entity_count_table(fake_db):
 
 def test_get_recent_sources(fake_db):
     """Test if get_recent_sources returns a DataFrame with recent sources."""
-
 
     fake_db.get_imported_files.return_value = [
         {"file": "file1.txt", "imported": pd.Timestamp("2023-01-01")},
