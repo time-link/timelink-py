@@ -15,20 +15,22 @@ from timelink.app.schemas.project import ProjectSchema
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty  # noqa
 from timelink.app.models.project import Project
+from timelink.web.timelink_web_utils import run_solr_client_setup
+from .webapp_settings import WebAppSettings
 
 
 class TimelinkWebApp:
     """A class to interact with the Timelink system
-    from a FastAPI web application
+    from a NiceGui, FastAPI web application
 
-    It stores TimelinkDatabase, KleioServer objects
-    and Fief (user management) objects.
+    It stores TimelinkDatabase, KleioServer and Solr objects.
 
     Attributes:
         app_name (str): Name of the application.
         timelink_home (str): Directory where the Timelink database is located.
         host_url (str): URL of the Timelink web application.
         kleio_server (KleioServer): A KleioServer instance.
+        solr_url (str): URL of the Solr server.
         users_db_type (str): Type of the users database (sqlite or postgres).
         users_db_name (str): Name of the users database.
         users_db (UserDatabase): A UserDatabase instance.
@@ -40,6 +42,7 @@ class TimelinkWebApp:
         sqlite_dir (str): Directory where the sqlite databases are located.
         stop_duplicates (bool): If True, stop other kleio servers for the same timelink home.
 
+    TODO: add a parameter for WebAppSettings and get defaults from there
     """
     # this should be set in a Dependency
     after_auth_url = None
@@ -55,16 +58,19 @@ class TimelinkWebApp:
 
     def __init__(
         self,
+        settings: WebAppSettings,
         app_name: str = "timelink",
         timelink_url: str = "http://localhost:8008",
         timelink_home: str = None,
         kleio_server: KleioServer = None,
+        solr_url: str = "http://localhost:8983",
         users_db_type: str = "sqlite",
         users_db_name: str = "timelink_users.sqlite",
         kleio_image=None,
         kleio_version=None,
         kleio_token=None,
         kleio_update=False,
+        solr_image=None,
         postgres_image=None,
         postgres_version=None,
         sqlite_dir=None,
@@ -85,6 +91,7 @@ class TimelinkWebApp:
             timelink_url: URL of the Timelink web application
             timelink_home: directory where the Timelink database is located
             kleio_server: a KleioServer instance
+            solr_url: base URL of the Solr server
             users_db_type: type of the users database (sqlite or postgres)
             users_db_name: name of the users database
             kleio_image: name of the Kleio image to use
@@ -105,12 +112,14 @@ class TimelinkWebApp:
         self.timelink_home = timelink_home
         self.host_url = timelink_url
         self.kleio_server = kleio_server
+        self.solr_url = solr_url
         self.kleio_version = kleio_version
         self.users_db_type = users_db_type
         self.users_db_name = users_db_name
         self.users_db = None
         self.kleio_image = kleio_image
         self.postgres_image = postgres_image
+        self.solr_image = solr_image
         self.postgres_version = postgres_version
         self.sqlite_dir = sqlite_dir
         self.stop_duplicates = stop_duplicates
@@ -120,6 +129,15 @@ class TimelinkWebApp:
         self.kleio_token = kleio_token
         self.kleio_update = kleio_update
         self.projects: List[ProjectSchema] = []
+
+        # we now override everything with the settings
+        if settings is not None:
+            self.app_name = settings.timelink_app_name
+            self.host_url = settings.timelink_app_url
+            self.users_db_type = settings.timelink_users_db_type
+            self.users_db_name = settings.timelink_users_db_name
+            self.sqlite_dir = settings.timelink_users_db_path
+            self.solr_url = settings.timelink_solr_url
 
         if initial_users is None:
             self.initial_users = []
@@ -163,6 +181,12 @@ class TimelinkWebApp:
                     update=self.kleio_update,
                     stop_duplicates=self.stop_duplicates,
                 )
+
+        # TODO: make a SolrServer class similar to KleioServer
+        #       that loads server in Docker, etc...
+        # e.g.
+        # self.solr = SolrServer(solr_image, solr_url)
+        self.solr_server = run_solr_client_setup(self.solr_url)
         self.update_projects()
 
     def get_info(self, show_token=False, show_password=False):

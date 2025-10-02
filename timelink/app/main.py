@@ -54,7 +54,7 @@ from timelink.api import crud, models, schemas
 from timelink.api.database import TimelinkDatabase, TimelinkDatabaseSchema, is_valid_postgres_db_name
 from timelink.api.schemas import EntityAttrRelSchema, ImportStats
 
-from timelink.app.backend.settings import Settings
+from timelink.app.backend.webapp_settings import WebAppSettings
 from timelink.app.backend.timelink_webapp import TimelinkWebApp
 from timelink.app.dependencies import get_current_user, get_kleio_server
 from timelink.app.models.user import User, UserProperty
@@ -73,8 +73,8 @@ from timelink.app.dependencies import get_current_active_user, get_db
 from timelink.app.schemas.user import UserSchema
 
 
-# Get Pydantic-based settings defined in timelink.app.backend.settings
-settings = Settings(timelink_admin_pwd="admin")
+# Get Pydantic-based settings defined in timelink.app.backend.webapp_settings
+webapp_settings = WebAppSettings(timelink_admin_pwd="admin")
 
 
 app = FastAPI()
@@ -92,10 +92,10 @@ if hasattr(app.state, "webapp") is False or app.state.webapp is None:
 
     # need to add timelink_home to settings and to webapp
     webapp = TimelinkWebApp(
-        app_name=settings.timelink_app_name,
+        app_name=webapp_settings.timelink_app_name,
         timelink_home=possible_timelink_home,
-        users_db_name=settings.timelink_users_db_name,
-        users_db_type=settings.timelink_users_db_type,
+        users_db_name=webapp_settings.timelink_users_db_name,
+        users_db_type=webapp_settings.timelink_users_db_type,
         initial_users=initial_users,
 
     )
