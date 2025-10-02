@@ -70,10 +70,11 @@ def find_free_port(from_port: int = 8088, to_port: int = 8099):
 def run_solr_client_setup(solr_url):
     """ Configure Solr instance based on passed initialization parameters. """
     solr = pysolr.Solr(solr_url, always_commit=True, timeout=10)
-    
+
     # Health check
     solr.ping()
     return solr
+
 
 async def run_setup(home_path: Path, database_type: str = "sqlite", solr_url: str = "http://localhost:8983/solr"):
     """ Load configuration environment variables, connect to kleio server and make the database."""

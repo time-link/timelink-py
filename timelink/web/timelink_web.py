@@ -1,5 +1,6 @@
 from nicegui import ui, app
 from timelink.web import timelink_web_utils
+from timelink.app.backend import TimelinkWebApp, WebAppSettings
 import sys
 from pathlib import Path
 
@@ -13,7 +14,7 @@ from timelink.web.pages import (homepage, status_page, explore_page,
 port = 8000
 kserver = None
 database = None
-project_path = Path.cwd()
+project_path = Path.cwd()  # melhor timelink_path
 database_type = "sqlite"
 solr_path = 'http://localhost:8983/solr/timelink-core'
 
@@ -22,6 +23,16 @@ async def initial_setup():
     """Connect to the Kleio Server and load settings found on the .env"""
     global database, kserver
     kserver, database, solr_client = await timelink_web_utils.run_setup(project_path, database_type, solr_path)
+
+    # Alternative: delegate all setup work to TimelinkWebApp
+    #  and settings setup to Pydantic BaseSettings
+    web_settings = WebAppSettings(timelink_home=project_path,
+                                  users_db_type=database_type,
+                                  timelink_solr_url=solr_path
+                                  )
+    tlweb = TimelinkWebApp(settings=web_settings)
+
+    kserver = tlweb.kleio_server
 
     homepage.HomePage(database=database, kserver=kserver)
 
