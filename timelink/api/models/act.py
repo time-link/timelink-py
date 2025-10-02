@@ -77,7 +77,7 @@ class Act(Entity):
             f"/loc={quote_long_text(self.loc)}"
         )
         if self.obs is not None and len(self.obs.strip()) > 0:
-            r = f"{r}/obs={quote_long_text(self.obs.strip(),width=width)}"
+            r = f"{r}/obs={quote_long_text(self.obs.strip(), width=width)}"
         kleio = super().to_kleio(
             self_string=r,
             ident=ident,
