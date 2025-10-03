@@ -9,9 +9,9 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 def test_overview_init(fake_db, fake_kserver):
     """Test if Overview page stores database and kserver references correctly."""
-    
+
     page = Overview(fake_db, fake_kserver)
-    
+
     assert page.database is fake_db
     assert page.kserver is fake_kserver
 
@@ -44,14 +44,16 @@ async def test_display_entity_count_success(user, fake_db, fake_kserver, monkeyp
 
     # Patch aggrid to capture input and check data inside would-be grid.
     captured = {}
+
     def fake_aggrid(options):
         captured.update(options)
         return MagicMock()
+
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
     Overview(database=fake_db, kserver=fake_kserver)
-    
-    # Visible to user 
+
+    # Visible to user
     await user.open("/overview")
     await user.should_see("Total number of entities:")
     await user.should_see("18")
@@ -68,7 +70,7 @@ async def test_display_entity_count_success(user, fake_db, fake_kserver, monkeyp
 @pytest.mark.asyncio
 async def test_display_entity_count_failure(user, fake_db, fake_kserver, monkeypatch):
     """Throw an error in display_entity_count to check for correct error output."""
-    
+
     # force an exception
     def bad_get_table(db):
         raise RuntimeError("Huge Database Error!")
@@ -89,7 +91,7 @@ async def test_display_entity_count_failure(user, fake_db, fake_kserver, monkeyp
 @pytest.mark.asyncio
 async def test_display_sources_count_success(user: User, fake_db, fake_kserver, monkeypatch):
     """Check that _display_sources_count renders a table correctly."""
-    
+
     # fake sources DataFrame
     df = pd.DataFrame({
         "name": ["Source A", "Source B"],
@@ -112,6 +114,7 @@ async def test_display_sources_count_success(user: User, fake_db, fake_kserver, 
 
     # capture aggrid call
     captured_aggrid = {}
+
     def fake_aggrid(options):
         captured_aggrid.update(options)
         return MagicMock(on=lambda event, func: None, classes=lambda x: None)
@@ -135,7 +138,7 @@ async def test_display_sources_count_failure(user, fake_db, fake_kserver, monkey
     # force an exception
     def bad_get_sources(db):
         raise RuntimeError("Fetched miserably...")
-    
+
     monkeypatch.setattr(
         "timelink.web.pages.overview_page.timelink_web_utils.get_recent_sources",
         bad_get_sources
@@ -144,20 +147,31 @@ async def test_display_sources_count_failure(user, fake_db, fake_kserver, monkey
     page = Overview(database=fake_db, kserver=fake_kserver)
     page._display_sources_count()
 
-
     # User should see error message
     await user.open("/overview")
     user.find("Latest Source Status").click()
-    await user.should_see(f"Could not load recent sources - something went wrong: (Fetched miserably...)")
+    await user.should_see("Could not load recent sources - something went wrong: (Fetched miserably...)")
 
 
 @pytest.mark.asyncio
 async def test_display_recent_views_success(user, fake_db, fake_kserver, monkeypatch):
     """Check that _display_recent_views renders a table correctly."""
-    
+
     df = pd.DataFrame([
-        {"entity_id": "geo-1", "entity_type": "geoentity", "activity_type": "viewed", "desc": "Viewed geo-1", "when": "2025-09-02 12:00:00.000"},
-        {"entity_id": "person-1", "entity_type": "source", "activity_type": "viewed", "desc": "Viewed person-1", "when": "2025-09-02 13:00:00.000"},
+        {
+            "entity_id": "geo-1",
+            "entity_type": "geoentity",
+            "activity_type": "viewed",
+            "desc": "Viewed geo-1",
+            "when": "2025-09-02 12:00:00.000"
+        },
+        {
+            "entity_id": "person-1",
+            "entity_type": "source",
+            "activity_type": "viewed",
+            "desc": "Viewed person-1",
+            "when": "2025-09-02 13:00:00.000"
+        },
     ])
 
     monkeypatch.setattr(
@@ -166,6 +180,7 @@ async def test_display_recent_views_success(user, fake_db, fake_kserver, monkeyp
     )
 
     captured_aggrids = []
+
     def fake_aggrid(options):
         captured_aggrids.append(options)
         return MagicMock(on=lambda event, func: None, classes=lambda x: None)
@@ -174,7 +189,7 @@ async def test_display_recent_views_success(user, fake_db, fake_kserver, monkeyp
 
     Overview(database=fake_db, kserver=fake_kserver)
     await user.open("/overview")
-    
+
     # Get the grid that is rendered when the tab is clicked.
     user.find("Recently Viewed").click()
     search_grid = captured_aggrids[-1]
@@ -194,9 +209,27 @@ async def test_display_important_entities_success(user, fake_db, fake_kserver, m
     """Check that _display_important_entities renders a table correctly."""
 
     df = pd.DataFrame([
-        {"entity_id": "geo-1", "entity_type": "geoentity", "activity_type": "viewed", "desc": "Viewed geo-1", "when": "2025-09-02 12:00:00.000"},
-        {"entity_id": "person-1", "entity_type": "source", "activity_type": "viewed", "desc": "Viewed person-1", "when": "2025-09-02 13:00:00.000"},
-        {"entity_id": "geo-1", "entity_type": "geoentity", "activity_type": "viewed", "desc": "Viewed geo-1 again", "when": "2025-09-02 14:00:00.000"},
+        {
+            "entity_id": "geo-1",
+            "entity_type": "geoentity",
+            "activity_type": "viewed",
+            "desc": "Viewed geo-1",
+            "when": "2025-09-02 12:00:00.000"
+        },
+        {
+            "entity_id": "person-1",
+            "entity_type": "source",
+            "activity_type": "viewed",
+            "desc": "Viewed person-1",
+            "when": "2025-09-02 13:00:00.000"
+        },
+        {
+            "entity_id": "geo-1",
+            "entity_type": "geoentity",
+            "activity_type": "viewed",
+            "desc": "Viewed geo-1 again",
+            "when": "2025-09-02 14:00:00.000"
+        },
     ])
 
     monkeypatch.setattr(
@@ -214,7 +247,7 @@ async def test_display_important_entities_success(user, fake_db, fake_kserver, m
 
     Overview(database=fake_db, kserver=fake_kserver)
     await user.open("/overview")
-    
+
     # Only consider the last aggrid call
     user.find("Important Entities").click()
     imp_grid = captured_aggrids[-1]
@@ -225,7 +258,7 @@ async def test_display_important_entities_success(user, fake_db, fake_kserver, m
     # Check data
     actual_cols = [col["field"] for col in imp_grid["columnDefs"]]
     row_values = [val for row in imp_grid["rowData"] for val in row.values()]
-    
+
     assert actual_cols == expected_cols
     assert all(v in row_values for v in expected_values)
 
@@ -270,10 +303,9 @@ async def test_display_recent_searches_success(user, fake_db, fake_kserver, monk
 
     actual_cols = [col["field"] for col in search_grid["columnDefs"]]
     row_values = [val for row in search_grid["rowData"] for val in row.values()]
-    
+
     assert actual_cols == expected_cols
     assert all(v in row_values for v in expected_values)
-
 
 
 @pytest.mark.asyncio
@@ -291,10 +323,50 @@ async def test_handle_search_results_click(monkeypatch):
     page = Overview(database=None, kserver=None)
 
     events = [
-        {"args": {"colId": "entity_id", "data": {"activity_type": "searched", "entity_id": "ana", "entity_type": "All Entities", "desc": "Found 17 results"}}},
-        {"args": {"colId": "entity_id", "data": {"activity_type": "SQL search", "entity_id": "SELECT * FROM entities LIMIT 50", "entity_type": "entities", "desc": "Found 50 results"}}},
-        {"args": {"colId": "entity_id", "data": {"activity_type": "Name search", "entity_id": "Joao", "entity_type": "Persons", "desc": "Between 2025-01-01 and 2025-12-31"}}},
-        {"args": {"colId": "entity_id", "data": {"activity_type": "Name search (exact)", "entity_id": "Joao", "entity_type": "Persons", "desc": "Between 2025-01-01 and 2025-12-31"}}},
+        {
+            "args": {
+                "colId": "entity_id",
+                "data": {
+                    "activity_type": "searched",
+                    "entity_id": "ana",
+                    "entity_type": "All Entities",
+                    "desc": "Found 17 results"
+                }
+            }
+        },
+        {
+            "args": {
+                "colId": "entity_id",
+                "data": {
+                    "activity_type": "SQL search",
+                    "entity_id": "SELECT * FROM entities LIMIT 50",
+                    "entity_type": "entities",
+                    "desc": "Found 50 results"
+                }
+            }
+        },
+        {
+            "args": {
+                "colId": "entity_id",
+                "data": {
+                    "activity_type": "Name search",
+                    "entity_id": "Joao",
+                    "entity_type": "Persons",
+                    "desc": "Between 2025-01-01 and 2025-12-31"
+                }
+            }
+        },
+        {
+            "args": {
+                "colId": "entity_id",
+                "data": {
+                    "activity_type": "Name search (exact)",
+                    "entity_id": "Joao",
+                    "entity_type": "Persons",
+                    "desc": "Between 2025-01-01 and 2025-12-31"
+                }
+            }
+        },
     ]
 
     # Test searched

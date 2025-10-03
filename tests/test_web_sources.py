@@ -9,6 +9,7 @@ from nicegui import ui
 
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
+
 @pytest.mark.asyncio
 async def test_sources_page_init(fake_db, fake_kserver):
     """Test initialization of Sources page and imported files name resolution."""
@@ -16,8 +17,9 @@ async def test_sources_page_init(fake_db, fake_kserver):
     fake_file = SimpleNamespace(path="test.cli", name="test", errors=0, warnings=0, import_errors=0)
     fake_db.get_import_status.return_value = [fake_file]
     fake_kserver.kleio_home = "/tmp"
+    fake_scheduler = MagicMock()
 
-    page = Sources(fake_db, fake_kserver)
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
 
     assert str((Path("/tmp") / "test.cli").resolve()) in page.imported_files_dict
     assert page.database is fake_db
@@ -35,13 +37,13 @@ async def test_sources_refresh_imported_files(fake_db, fake_kserver):
 
     fake_db.get_import_status.return_value = [fake_ok, fake_error, fake_warn, fake_import_err]
     fake_kserver.kleio_home = "/tmp"
+    fake_scheduler = MagicMock()
 
-    page = Sources(fake_db, fake_kserver)
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
 
     assert any("err.cli" in k for k in page.problem_files)
     assert any("warn.cli" in k for k in page.translate_warning_files)
     assert any("imp.cli" in k for k in page.import_error_files)
-
 
 
 @pytest.mark.asyncio
@@ -50,8 +52,9 @@ async def test_sources_page_register(user, fake_db, fake_kserver):
 
     fake_db.get_import_status.return_value = []
     fake_kserver.kleio_home = "/tmp"
+    fake_scheduler = MagicMock()
 
-    page = Sources(fake_db, fake_kserver)
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
 
     await user.open("/sources")
     assert page.database is fake_db
@@ -62,6 +65,7 @@ async def test_sources_page_register(user, fake_db, fake_kserver):
     await user.should_see('Source Files')
     await user.should_see('Repository')
     await user.should_see('Translate and Import')
+
 
 def make_file(path, name, errors=0, warnings=0, import_errors=0):
     """Auxiliary function to create mock files for testing."""
@@ -80,10 +84,11 @@ async def test_filter_import_files_filters_correctly(fake_db, fake_kserver, tmp_
     warn_file = make_file("sub/warn.cli", "warn", warnings=2)
     imp_file = make_file("sub/imp.cli", "imp", import_errors=3)
     outside_file = make_file("other/out.cli", "out", errors=1)
+    fake_scheduler = MagicMock()
 
     fake_db.get_import_status.return_value = [ok_file, err_file, warn_file, imp_file, outside_file]
 
-    page = Sources(fake_db, fake_kserver)
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
 
     # Filter inside "sub"
     filtered, problems, warnings, import_errors, errors = page.filter_import_files("sub")
@@ -109,7 +114,8 @@ async def test_render_file_tree_renders_files(user, fake_db, fake_kserver, tmp_p
     """Test that render_file_tree displays folders and files with correct styling and callbacks."""
 
     fake_kserver.kleio_home = str(tmp_path)
-    page = Sources(fake_db, fake_kserver)
+    fake_scheduler = MagicMock()
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
 
     await user.open("/sources")
 
@@ -131,7 +137,7 @@ async def test_render_file_tree_renders_files(user, fake_db, fake_kserver, tmp_p
 
     # Trigger page rendering
     await user.open("/sources")
-    
+
     # Verify that the file labels are present and have the right classes
     file1_label = user.find("file1")
     user.find("file2")
@@ -144,14 +150,15 @@ async def test_render_file_tree_renders_files(user, fake_db, fake_kserver, tmp_p
 @pytest.mark.asyncio
 async def test_display_update_column_counts(user, fake_db, fake_kserver, tmp_path, monkeypatch):
     """Test that _display_column_update displays the correct information."""
-    
-    page = Sources(fake_db, fake_kserver)
-    
+
+    fake_scheduler = MagicMock()
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
+
     # Prepare fake files
     file1 = MagicMock(errors=2, warnings=0, import_errors=0, status=MagicMock(name='T'), import_status=MagicMock(name='N'))
     file2 = MagicMock(errors=0, warnings=1, import_errors=0, status=MagicMock(name='T'), import_status=MagicMock(name='N'))
     file3 = MagicMock(errors=0, warnings=0, import_errors=1, status=MagicMock(name='T'), import_status=MagicMock(name='N'))
-    
+
     fake_imported_files = {
         "file1.cli": file1,
         "file2.cli": file2,
@@ -220,8 +227,9 @@ async def test_render_directory_viewer(user, fake_db, fake_kserver, monkeypatch)
 
     monkeypatch.setattr("timelink.web.pages.sources_page.ui.aggrid", fake_aggrid)
     monkeypatch.setattr("timelink.web.pages.sources_page.Sources.update_grid", lambda self: None)
+    fake_scheduler = MagicMock()
 
-    page = Sources(fake_db, fake_kserver)
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
     await page._render_directory_viewer()
 
     # check folder grid
@@ -250,8 +258,10 @@ class DummyFile:
         self.import_warning_rpt = import_warning_rpt
         self.modified_string = "2025-01-01"
 
+
 @pytest.mark.parametrize("cli_mode", [False, True])
 def test_update_grid(monkeypatch, tmp_path, cli_mode):
+
     # setup fake folder
     tmp_file = tmp_path / "file.cli"
     if cli_mode:
@@ -277,6 +287,8 @@ def test_update_grid(monkeypatch, tmp_path, cli_mode):
         track_files_to_import=set(),
         track_files_to_translate=set(),
     )
+
+    page.has_cli_files = lambda p: True
 
     Sources.update_grid(page, translate_boxes=True, import_boxes=False)
 
@@ -350,7 +362,6 @@ def test_handle_cell_value_changed(monkeypatch, translate, import_):
         assert 1 not in page.track_files_to_import
 
 
-
 @pytest.mark.asyncio
 @pytest.mark.parametrize("checkbox_type, expected_queue_attr, expected_count_attr", [
     ("translate_checkbox", "translate_queue", "queued_for_translate"),
@@ -411,11 +422,12 @@ async def test_process_files(monkeypatch, tmp_path, checkbox_type, expected_queu
 
 
 @pytest.mark.asyncio
-async def test_run_import_background(monkeypatch):
+async def test_run_import_background(fake_db, fake_kserver, monkeypatch):
     from timelink.web.pages.sources_page import Sources
 
     # Create a real Sources instance
-    page = Sources(database=MagicMock(), kserver=MagicMock())
+    fake_scheduler = MagicMock()
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
 
     # Setup attributes for the test
     dummy_file = MagicMock()
@@ -436,8 +448,10 @@ async def test_run_import_background(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_get_report(monkeypatch):
-    page = Sources(database=MagicMock(), kserver=MagicMock(kleio_home=""))
+async def test_get_report(fake_db, fake_kserver, monkeypatch):
+
+    fake_scheduler = MagicMock()
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
     page.switch_tabs = AsyncMock()
     page.import_output_tab = "import_tab_mock"
     page.trans_output_tab = "trans_tab_mock"
@@ -466,8 +480,10 @@ async def test_get_report(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_show_report_from_update_column(monkeypatch, tmp_path):
-    page = Sources(database=MagicMock(), kserver=MagicMock(kleio_home=str(tmp_path)))
+async def test_show_report_from_update_column(fake_db, fake_kserver, tmp_path):
+
+    fake_scheduler = MagicMock()
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
     page.switch_tabs = AsyncMock()
     page.trans_output_tab = "trans_tab_mock"
     page.import_output_tab = "import_tab_mock"
@@ -486,20 +502,23 @@ async def test_show_report_from_update_column(monkeypatch, tmp_path):
 
 
 @pytest.mark.asyncio
-async def test_switch_tabs(tmp_path):
-    page = Sources(database=MagicMock(), kserver=MagicMock())
+async def test_switch_tabs(fake_db, fake_kserver, tmp_path):
+
+    fake_scheduler = MagicMock()
+
+    page = Sources(fake_db, fake_kserver, fake_scheduler)
     page.tabs = MagicMock()
     page.translate_file_displayer = MagicMock()
     page.import_file_displayer = MagicMock()
-    
+
     # Mocks for reports
     page.kserver.get_report = MagicMock(return_value="translation report")
     page.database.get_import_rpt = MagicMock(return_value="import report")
-    
+
     # CLI file
     cli_file = tmp_path / "file.cli"
     cli_file.write_text("dummy content", encoding="utf-8")
-    
+
     # ----------------- cli_file branch -----------------
     await page.switch_tabs(
         tab_to_switch="tab_cli",
@@ -509,7 +528,7 @@ async def test_switch_tabs(tmp_path):
     )
     page.tabs.set_value.assert_called_with("tab_cli")
     assert page.translate_file_displayer.content == "dummy content"
-    
+
     # ----------------- t_report branch -----------------
     row_path = tmp_path / "t_file.cli"
     row_path.write_text("ignored content")
@@ -521,7 +540,7 @@ async def test_switch_tabs(tmp_path):
         path=str(row_path)
     )
     assert page.translate_file_displayer.content == "translation report"
-    
+
     # ----------------- import_error branch -----------------
     await page.switch_tabs(
         tab_to_switch="tab_import",

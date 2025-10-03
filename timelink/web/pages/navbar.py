@@ -5,10 +5,17 @@ from nicegui import ui
 
 
 @contextmanager
-def header():
+def header(responsive: bool = True):
     """Web Interface page frame"""
 
-    with ui.left_drawer(value=False, bordered=True, elevated=True).classes('bg-gray-50').props('width=200') as left_drawer:
+    drawer_props = ''
+
+    if responsive:
+        drawer_props += 'show-if-above breakpoint=1000 width=200'
+    else:
+        drawer_props += 'width=200'
+
+    with ui.left_drawer(value=responsive, bordered=True, elevated=True).classes('bg-gray-50').props(drawer_props) as left_drawer:
         ui.link('Overview', '/overview').classes('text-lg font-bold no-underline')
         ui.separator()
         ui.link('People', '/people').classes('text-lg font-bold no-underline')

@@ -89,36 +89,6 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
         f.write(f'TIMELINK_SERVER_TOKEN="{kserver.get_token()}"\n')
         f.write(f"TIMELINK_DB_TYPE={database}\n")
 
-def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
-
-    # Timelink Information
-    local_version = timelink.version
-    last_version = timelink.get_latest_version()
-    typer.echo(f"Local Timelink version: {local_version}, latest Timelink version: {last_version}")
-
-    # Timelink Home and Server
-    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path= timelink_path))
-    typer.echo("Timelink Home set to: " + timelink_home)
-    env_dir = TIMELINK_ENV_PATH.parent
-    env_dir.mkdir(parents=True, exist_ok=True)
-    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port= str(timelink_port))
-    typer.echo("Kleio Server URL: " + kserver.get_url())
-    typer.echo("Kleio Server Token: " + kserver.get_token()[0:6])
-    typer.echo("Kleio Server Home: " + kserver.get_kleio_home())
-
-    typer.echo(f"Starting Timelink project at: {kserver.get_kleio_home()} on port {kserver.get_url()[-4:]}")
-
-    path_str = str(Path(timelink_home).resolve())
-    if platform.startswith("win"):
-        path_str = path_str.replace("\\", "\\\\")
-
-    with TIMELINK_ENV_PATH.open("w") as f:
-        f.write(f'TIMELINK_HOME="{path_str}"\n')
-        f.write(f'TIMELINK_SERVER_URL="{kserver.get_url()}"\n')
-        f.write(f'TIMELINK_SERVER_TOKEN="{kserver.get_token()}"\n')
-        f.write(f"TIMELINK_DB_TYPE={database}\n")
-
-
 # ----------------- TIMELINK MULTI PROJECT SETUP (STUB) ------------------------- #
 
 @create_app.command("multiproject")
@@ -186,42 +156,6 @@ def find_website_port(from_port: int = 8088, to_port: int = 8099):
                 pass
     raise OSError(f"No free ports available in the range {from_port}-{to_port}")
 
-def setup_solr_container():
-    """Startup the solr container. For now this assumes we already have a solr docker image ready to go."""
-
-    solr_container_name = "solr_timelink"
-    typer.echo("Checking for Solr container...")
-
-    # Check if container is already running.
-    container_running_check = subprocess.run(
-        ["docker", "ps", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"],
-        capture_output=True, text=True
-    )
-    if solr_container_name in container_running_check.stdout:
-        typer.echo(f"Solr container '{solr_container_name}' is already running.")
-    else:
-        # Container exists but is stopped.
-        container_exists_check = subprocess.run(
-            ["docker", "ps", "-a", "-f", f"name={solr_container_name}", "--format", "{{.Names}}"],
-            capture_output=True, text=True
-        )
-        if solr_container_name in container_exists_check.stdout:
-            # Container exists
-            typer.echo(f"Starting existing Solr container '{solr_container_name}'...")
-            subprocess.run(["docker", "start", solr_container_name], check=True)
-        else:
-            # Container does not exist
-            typer.echo(f"Creating and starting new Solr container '{solr_container_name}'...")
-            subprocess.run([
-                "docker", "run", "-d",
-                "-v", f"{os.getcwd()}/solrdata:/var/solr",
-                "-p", "8983:8983",
-                "--name", solr_container_name,
-                "solr:slim",
-                "solr-create", "-c", "timelink-core"
-            ], check=True)
-
-
 @start_app.command("web")
 def start_webproject(
     port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"),
@@ -230,7 +164,6 @@ def start_webproject(
     ):
     """Start the webapp on the chosen port if set. If not, default to 8000."""
 
-    setup_solr_container()
     port = find_website_port(from_port=port or 8000, to_port=8020)
 
     web_app_path = Path(__file__).parent / "web/timelink_web.py"

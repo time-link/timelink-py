@@ -18,10 +18,10 @@ async def test_display_id_init(user: User, fake_db, fake_kserver, entity_class):
 
     fake_db.session.return_value.__enter__.return_value = fake_db
     fake_db.get_entity.return_value = fake_entity
-    
+
     page = DisplayIDPage(fake_db, fake_kserver)
     page.register()
-    
+
     assert page.database is fake_db
     assert page.kserver is fake_kserver
 
@@ -30,13 +30,12 @@ async def test_display_id_init(user: User, fake_db, fake_kserver, entity_class):
     fake_db.get_entity.assert_called_once_with("test-id", session=fake_db)
 
 
-
 @pytest.mark.asyncio
 async def test_display_id_not_found(user: User, fake_db, fake_kserver):
     """Test failure state when entity is not found."""
 
     fake_db.session.return_value.__enter__.return_value = fake_db
-    fake_db.get_entity.return_value = None 
+    fake_db.get_entity.return_value = None
 
     page = DisplayIDPage(fake_db, fake_kserver)
     page.register()
@@ -87,12 +86,12 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
         groupname="grp",
         sex="M",
         the_line="10",
-        pom_class = "person"
+        pom_class="person",
+        inside="entity_container"
     )
 
     fake_db.session.return_value.__enter__.return_value = fake_db
     fake_db.get_entity.return_value = fake_entity
-
 
     # Fake parsed details
     fake_attrs = {
@@ -111,7 +110,7 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
             'the_date': '15500421',
             'obs': '',
             'org_name': 'test mom'}
-        ]
+    ]
 
     fake_rels_out = [
         {
@@ -133,7 +132,7 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
             'the_date': '16850823',
             'obs': '',
             'dest_name': 'bap'
-        } # should appear in functions
+        }
     ]
 
     mock_parse = MagicMock(return_value=(fake_attrs, fake_rels_in, fake_rels_out))
@@ -156,6 +155,8 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
     await user.should_see(fake_entity.sex)
     await user.should_see('line:')
     await user.should_see(fake_entity.the_line)
+    await user.should_see('inside:')
+    await user.should_see(fake_entity.inside)
 
     # User sees proper date
     await user.should_see("1501-08-27")
@@ -199,7 +200,7 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
     )
 
     fake_db.session.return_value.__enter__.return_value = fake_db
-    
+
     # Side effect to return different entities depending on ID
     def get_entity_side_effect(entity_id, session=None):
         if entity_id == "geo-1":
@@ -209,7 +210,6 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
         return SimpleNamespace(id=entity_id, name="Unknown", pom_class="geoentity")
 
     fake_db.get_entity.side_effect = get_entity_side_effect
-
 
     # Fake parsed details
     fake_attrs = {
@@ -264,10 +264,10 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
     page.register()
 
     await user.open("/id/geo-1")
-    
+
     # --- Assertions ---
     mock_parse.assert_called_once_with(fake_entity)
-    
+
     # Header content
     await user.should_see("Lisbon")
     await user.should_see("id:")
@@ -372,13 +372,14 @@ def test_parse_act_header_string(monkeypatch):
         obs="this is an observation",
     )
 
-    monkeypatch.setattr("timelink.web.pages.display_id_page.EntityAttrRelSchema.model_validate", 
-                        lambda e: SimpleNamespace(
-                            model_dump=lambda exclude=None: {
-                                "groupname": "baptismo",
-                                "extra_info": fake_entity.extra_info,
-                            }
-                        )
+    monkeypatch.setattr(
+        "timelink.web.pages.display_id_page.EntityAttrRelSchema.model_validate",
+        lambda e: SimpleNamespace(
+            model_dump=lambda exclude=None: {
+                "groupname": "baptismo",
+                "extra_info": fake_entity.extra_info
+            }
+        )
     )
 
     page = DisplayIDPage(None, None)
@@ -405,7 +406,12 @@ def test_parse_act_body_strings(monkeypatch):
         }
     }
 
-    monkeypatch.setattr("timelink.web.pages.display_id_page.timelink_web_utils.highlight_link", lambda url, label: f"<a>{label}</a>")
+    monkeypatch.setattr(
+        "timelink.web.pages.display_id_page.timelink_web_utils.highlight_link",
+        lambda url,
+        label: f"<a>{label}</a>"
+    )
+
     monkeypatch.setattr("timelink.kleio.utilities.format_timelink_date", lambda d: "1685-08-27")
 
     page = DisplayIDPage(None, None)

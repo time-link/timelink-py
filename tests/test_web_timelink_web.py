@@ -2,7 +2,7 @@ from timelink.web import timelink_web
 
 import sys
 import pytest
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, ANY
 
 
 @pytest.mark.asyncio
@@ -10,7 +10,8 @@ async def test_initial_setup(monkeypatch):
 
     fake_kserver = MagicMock()
     fake_db = MagicMock()
-    monkeypatch.setattr(timelink_web.timelink_web_utils, "run_setup", AsyncMock(return_value=(fake_kserver, fake_db)))
+    fake_solr_client = MagicMock()
+    monkeypatch.setattr(timelink_web.timelink_web_utils, "run_setup", AsyncMock(return_value=(fake_kserver, fake_db, fake_solr_client)))
 
     page_mocks = [
         "homepage.HomePage",
@@ -33,7 +34,7 @@ async def test_initial_setup(monkeypatch):
         module = getattr(timelink_web, module_name)
         mock_instance = MagicMock()
         mock_instance.register = MagicMock()
-        
+
         # Patch the class to return the mock instance when called
         monkeypatch.setattr(module, class_name, MagicMock(return_value=mock_instance))
 
@@ -45,20 +46,26 @@ async def test_initial_setup(monkeypatch):
     for path in page_mocks:
         module_name, class_name = path.split(".")
         cls = getattr(getattr(timelink_web, module_name), class_name)
-        
+
         if class_name == "StatusPage":
             cls.assert_called_once()
             _, kwargs = cls.call_args
             assert kwargs["database"] is fake_db
             assert kwargs["kserver"] is fake_kserver
             assert "sources" in kwargs
+
+        elif class_name == "Sources":
+            cls.assert_called_once_with(database=fake_db, kserver=fake_kserver, scheduler=ANY)
+
+        elif class_name == "Search":
+            cls.assert_called_once_with(database=fake_db, kserver=fake_kserver, solr_manager=fake_solr_client)
+
         else:
             cls.assert_called_once_with(database=fake_db, kserver=fake_kserver)
 
         # Check if register() was called for relevant pages
         if class_name in ["DisplayIDPage", "TablesPage"]:
             cls.return_value.register.assert_called_once()
-
 
 
 def test_port_argument(monkeypatch):

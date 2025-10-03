@@ -63,6 +63,7 @@ def fake_db():
     mock_db.session.return_value.__enter__.return_value.execute.return_value = []
     return mock_db
 
+
 @pytest.fixture
 def fake_kserver():
     fake_kserver = MagicMock()

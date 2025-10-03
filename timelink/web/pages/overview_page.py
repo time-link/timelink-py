@@ -142,7 +142,7 @@ class Overview:
 
             history_grid.on(
                 'cellClicked',
-                lambda e: ui.navigate.to(f"/id/{e.args["data"]["entity_id"]}") if e.args["colId"] == "entity_id" else None
+                lambda e: ui.navigate.to(f"/id/{e.args['data']['entity_id']}") if e.args["colId"] == "entity_id" else None
             )
 
         except Exception as e:
@@ -191,7 +191,7 @@ class Overview:
 
             imp_ent_grid.on(
                 'cellClicked',
-                lambda e: ui.navigate.to(f"/id/{e.args["data"]["entity_id"]}") if e.args["colId"] == "entity_id" else None
+                lambda e: ui.navigate.to(f"/id/{e.args['data']['entity_id']}") if e.args["colId"] == "entity_id" else None
             )
 
             # Date range slider
@@ -266,13 +266,18 @@ class Overview:
         activity_type = e.args["data"]["activity_type"]
         entity_id = e.args["data"]["entity_id"]
         entity_type = e.args["data"]["entity_type"]
+        underscores_to_remove = "__"
 
         date_match = re.search(r"Between (\d{4}-\d{2}-\d{2}) and (\d{4}-\d{2}-\d{2})", e.args["data"]["desc"])
         if date_match:
             from_date, to_date = date_match.groups()
 
         if activity_type == "searched":
-            ui.navigate.to(f'/search_tables?keywords={entity_id.replace(" ", "__").rstrip("__")}&tables={entity_type}')
+            ui.navigate.to(
+                f'/search_tables?keywords='
+                f'{entity_id.replace(" ", underscores_to_remove).rstrip(underscores_to_remove)}'
+                f'&tables={entity_type}'
+            )
         elif activity_type == "SQL search":
             self._redo_sql_query(entity_id, entity_type)
         elif activity_type == "Name search":

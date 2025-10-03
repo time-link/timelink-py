@@ -11,9 +11,9 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 def test_explore_init(fake_db, fake_kserver):
     """Test if HomePage stores database and kserver references correctly."""
-    
+
     page = ExplorePage(fake_db, fake_kserver)
-    
+
     assert page.database is fake_db
     assert page.kserver is fake_kserver
 
@@ -48,22 +48,9 @@ async def test_explore_main_view_no_data(user: User, fake_db, fake_kserver, monk
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view_no_data(user: User, fake_db, fake_kserver, monkeypatch) -> None:
-    """Check if attributes, functions and relations display no data correctly if none is to be found in the database."""
-
-    monkeypatch.setattr(timelink_web_utils, "load_data", lambda query, db: None)
-    ExplorePage(database=fake_db, kserver=fake_kserver)
-
-    await user.open("/explore")
-    with user:
-        elements = list(ElementFilter(kind=ui.label, content="No data found."))
-        assert len(elements) == 3
-
-
-@pytest.mark.asyncio
 async def test_explore_main_view_with_data(user, fake_db, fake_kserver, monkeypatch):
     """Check if attributes, functions, and relations display correctly when data is available."""
-    
+
     attr_df = pd.DataFrame({
         "the_type": ["activa", "alcunha"],
         "count": [163, 2],
@@ -112,7 +99,7 @@ async def test_explore_main_view_with_data(user, fake_db, fake_kserver, monkeypa
 @pytest.mark.asyncio
 async def test_explore_search_by_id(user, fake_db, fake_kserver, monkeypatch):
     """Test Search by ID functionality"""
-    
+
     mock_handler = MagicMock()
     monkeypatch.setattr(ExplorePage, "_handle_id_search", mock_handler)
     ExplorePage(database=fake_db, kserver=fake_kserver)
@@ -127,7 +114,7 @@ async def test_explore_search_by_id(user, fake_db, fake_kserver, monkeypatch):
 @pytest.mark.asyncio
 async def test_explore_advanced_search(user, fake_db, fake_kserver, monkeypatch):
     """Test Search by ID functionality"""
-    
+
     mock_handler = MagicMock()
     monkeypatch.setattr(ExplorePage, "_handle_advanced_search", mock_handler)
     ExplorePage(database=fake_db, kserver=fake_kserver)

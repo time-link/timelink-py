@@ -4,13 +4,16 @@ from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_po
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
 from timelink.web.models import Activity, ActivityBase
+from timelink.web.backend.solr_wrapper import SolrWrapper
 import os
 from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
 import docker
-import pysolr
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from datetime import datetime, date
+import json
 
 
 def run_imports_sync(db):
@@ -67,15 +70,95 @@ def find_free_port(from_port: int = 8088, to_port: int = 8099):
     raise OSError(f"No free ports available in {from_port}-{to_port}")
 
 
-def run_solr_client_setup(solr_url):
+def run_solr_client_setup():
     """ Configure Solr instance based on passed initialization parameters. """
-    solr = pysolr.Solr(solr_url, always_commit=True, timeout=10)
-    
-    # Health check
-    solr.ping()
-    return solr
 
-async def run_setup(home_path: Path, database_type: str = "sqlite", solr_url: str = "http://localhost:8983/solr"):
+    solr_manager = SolrWrapper(
+        solr_container_name="timelink_solr",
+        solr_port="8983",
+        solr_core_name="timelink_core"
+    )
+
+    solr_manager.setup_solr_container()
+
+    solr_manager.init_solr_client()
+
+    return solr_manager
+
+
+def json_serial(obj):
+    """JSON serializer for datetime objects not serializable by default json code"""
+
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    raise TypeError("Type %s not serializable" % type(obj))
+
+
+def flatten_dictionary(data, parent_key='', sep='_'):
+    """Flatten a dictionary to be received by Solr"""
+    items = {}
+
+    for k, v in data.items():
+        new_key = parent_key + sep + k if parent_key else k
+
+        if isinstance(v, dict):
+            # Recurse into nested dictionaries
+            items.update(flatten_dictionary(v, new_key, sep=sep))
+        elif isinstance(v, list):
+            for i, item in enumerate(v):
+                if isinstance(item, (dict, list)):
+                    items.update(flatten_dictionary({str(i): item}, new_key, sep=sep))
+                else:
+                    items[new_key] = v
+                    break
+        else:
+            items[new_key] = v
+
+    # Ensure the 'id' field remains at the top level
+    if 'id' in data and not parent_key:
+        items['id'] = data['id']
+
+    return items
+
+
+async def init_index_job_scheduler(solr_client, database):
+    """Initiate the job to index new documents to the Apache Solr database
+
+    NOT WORKING AT THE MOMENT
+    """
+
+    ignore_classes = ['class', 'rentity', 'source']
+    solr_client.delete(q='*:*', commit=True)
+
+    with database.session() as session:
+        entities = session.query(Entity).filter(Entity.indexed.is_(None)).filter(~Entity.pom_class.in_(ignore_classes)).limit(10).all()
+
+        if not entities:
+            return
+
+        # solr_doc_list = []
+        for entity in entities:
+            mr_schema = EntityAttrRelSchema.model_validate(entity)
+            mr_schema_dump = mr_schema.model_dump(exclude=["contains", "extra_info"])
+            flattened_schema = flatten_dictionary(json.loads(json.dumps(mr_schema_dump, default=json_serial)))
+            # print(flattened_schema)
+            solr_client.add([flattened_schema], commit=True)
+            # solr_doc_list.append(json.loads(json.dumps(mr_schema_dump, default=json_serial)))
+            break
+
+        """
+        solr_client.add(solr_doc_list, commit=True)
+
+        now = datetime.now()
+        for entity in entities:
+            entity.indexed = now
+
+        session.commit()
+    print("Yes!")
+    """
+
+
+async def run_setup(home_path: Path, job_scheduler: AsyncIOScheduler, database_type: str = "sqlite"):
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
     timelink_home = None
@@ -101,16 +184,20 @@ async def run_setup(home_path: Path, database_type: str = "sqlite", solr_url: st
             kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=port)
         db_type = database_type
 
+    # Solr setup
+    solr_manager = run_solr_client_setup()
+
     print(f"Connected to Kleio Server at {kserver.url}, home is {kserver.kleio_home}")
 
     # Database setup
     db = run_db_setup(timelink_home, db_type)
     db.set_kleio_server(kserver)
 
-    # Solr client setup
-    solr_client = run_solr_client_setup(solr_url)
+    # Schedule Solr server updates (Needs update on indexing)
+    # job_scheduler.add_job(init_index_job_scheduler, args = [solr_client, db], name="Index Documents to Solr", trigger="interval", seconds=10)
+    # await init_index_job_scheduler(solr_client, db)
 
-    return kserver, db, solr_client
+    return kserver, db, solr_manager
 
 
 def show_table(database: TimelinkDatabase):
@@ -273,10 +360,7 @@ def format_obs(obs_text, level):
 def highlight_link(path, text):
     return (
         "<span class='highlight-cell' onclick=\"window.location.href='" +
-        path +
-        "'\">" +
-        text +
-        "</span>"
+        path + "'\">" + text + "</span>"
     )
 
 

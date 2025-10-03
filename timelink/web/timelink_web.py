@@ -2,6 +2,8 @@ from nicegui import ui, app
 from timelink.web import timelink_web_utils
 import sys
 from pathlib import Path
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 
 # --- Pages ---
 from timelink.web.pages import (homepage, status_page, explore_page,
@@ -15,13 +17,31 @@ kserver = None
 database = None
 project_path = Path.cwd()
 database_type = "sqlite"
-solr_path = 'http://localhost:8983/solr/timelink-core'
+job_scheduler = AsyncIOScheduler()
+
+
+def job_scheduler_listener(event):
+    """Listens to events coming from the scheduler to monitor the execution of scheduled jobs."""
+
+    job = job_scheduler.get_job(event.job_id).name
+
+    if event.exception:
+        print(f'\"{job}\" job crashed.')
+    else:
+        print(f'\"{job}\" job executed successfully.')
 
 
 async def initial_setup():
     """Connect to the Kleio Server and load settings found on the .env"""
-    global database, kserver
-    kserver, database, solr_client = await timelink_web_utils.run_setup(project_path, database_type, solr_path)
+
+    global database, kserver, job_scheduler
+
+    job_scheduler.add_listener(job_scheduler_listener, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
+
+    kserver, database, solr_manager = await timelink_web_utils.run_setup(
+        home_path=project_path,
+        job_scheduler=job_scheduler,
+        database_type=database_type)
 
     homepage.HomePage(database=database, kserver=kserver)
 
@@ -43,13 +63,15 @@ async def initial_setup():
 
     linking_page.Linking(database=database, kserver=kserver)
 
-    source_page = sources_page.Sources(database=database, kserver=kserver)
+    source_page = sources_page.Sources(database=database, kserver=kserver, scheduler=job_scheduler)
 
     status_page.StatusPage(database=database, kserver=kserver, sources=source_page)
 
-    search_page.Search(database=database, kserver=kserver, solr_client=solr_client)
+    search_page.Search(database=database, kserver=kserver, solr_manager=solr_manager)
 
     admin_page.Admin(database=database, kserver=kserver)
+
+    job_scheduler.start()
 
 
 if "--port" in sys.argv:

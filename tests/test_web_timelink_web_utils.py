@@ -25,7 +25,7 @@ def test_run_imports_sync(capsys, fake_db):
 @pytest.mark.parametrize("db_type", ["sqlite", "postgres"])
 def test_run_db_setup(monkeypatch, capsys, db_type, fake_db):
 
-    fake_db.db_table_names.return_value = ["users", "activity"] 
+    fake_db.db_table_names.return_value = ["users", "activity"]
 
     # patch TimelinkDatabase to return fake db
     monkeypatch.setattr("timelink.web.timelink_web_utils.TimelinkDatabase", lambda **kwargs: fake_db)
@@ -63,14 +63,24 @@ async def test_run_setup_no_server_found(monkeypatch, capsys, fake_db, fake_kser
         lambda **kwargs: fake_kserver
     )
 
+    monkeypatch.setattr(
+        timelink_web_utils.KleioServer,
+        "start",
+        lambda **kwargs: fake_kserver
+    )
+
     # Patch find_free_port
     monkeypatch.setattr(timelink_web_utils, "find_free_port", lambda a, b: 8088)
 
     # Mock db setup
     monkeypatch.setattr(timelink_web_utils, "run_db_setup", lambda home, db_type: fake_db)
 
+    # Mock solr setup
+    fake_solr = MagicMock()
+    monkeypatch.setattr(timelink_web_utils, "run_solr_client_setup", lambda: fake_solr)
+
     home_path = Path("/current/path")
-    kserver, db = await timelink_web_utils.run_setup(home_path, database_type="sqlite")
+    kserver, db, _ = await timelink_web_utils.run_setup(home_path, database_type="sqlite", job_scheduler=MagicMock())
 
     assert kserver is fake_kserver
     assert db is fake_db
@@ -104,8 +114,12 @@ async def test_run_setup_server_found(monkeypatch, capsys, fake_db, fake_kserver
     # Mock db setup
     monkeypatch.setattr(timelink_web_utils, "run_db_setup", lambda home, db_type: fake_db)
 
+    # Mock solr setup
+    fake_solr = MagicMock()
+    monkeypatch.setattr(timelink_web_utils, "run_solr_client_setup", lambda: fake_solr)
+
     home_path = Path("/current/path")
-    kserver, db = await timelink_web_utils.run_setup(home_path, database_type="sqlite")
+    kserver, db, _ = await timelink_web_utils.run_setup(home_path, database_type="sqlite", job_scheduler=MagicMock())
 
     assert kserver is fake_kserver
     assert db is fake_db
@@ -118,7 +132,7 @@ async def test_run_setup_server_found(monkeypatch, capsys, fake_db, fake_kserver
 
 @pytest.mark.asyncio
 async def test_show_table(user: User, fake_db, fake_kserver) -> None:
-    
+
     fake_db.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
     status_page.StatusPage(database=fake_db, kserver=fake_kserver, sources=MagicMock())
@@ -127,7 +141,7 @@ async def test_show_table(user: User, fake_db, fake_kserver) -> None:
     user.find("Database Status").click()
 
     timelink_web_utils.show_table(fake_db)
-    
+
     table = user.find(ui.table).elements.pop()
     expected_columns = [
         {'name': 'Table', 'label': 'Table', 'field': 'Table'},
@@ -138,7 +152,7 @@ async def test_show_table(user: User, fake_db, fake_kserver) -> None:
         {'Table': 'attributes', 'Row Count': 10},
         {'Table': 'entities', 'Row Count': 5}
     ]
-    
+
     assert table.columns == expected_columns
     assert table.rows == expected_rows
 
@@ -162,7 +176,7 @@ async def test_show_kleio_info(user: User, fake_db, fake_kserver) -> None:
         - **Kleio URL:** {fake_kserver.url}
         - **Kleio Home:** {fake_kserver.kleio_home}
         """
-    
+
     assert markdown.content.strip() == expected_markdown.strip()
 
     assert user.find("Kleio Server Overview")
@@ -174,7 +188,7 @@ def test_load_data_functions_query(fake_db):
 
     mock_results = [('name', 5), ('ativa', 12)]
     mock_df = pd.DataFrame(mock_results, columns=['the_value', 'count'])
-    fake_db.session.return_value.__enter__.return_value.execute.return_value =  mock_df
+    fake_db.session.return_value.__enter__.return_value.execute.return_value = mock_df
 
     mock_table = MagicMock()
     mock_table.c.the_value = column('the_value')
@@ -197,7 +211,7 @@ def test_load_data_general_query(fake_db, query_type):
 
     mock_results = [('typeA', 10, 3), ('typeB', 20, 5)]
     mock_df = pd.DataFrame(mock_results, columns=['the_type', 'count', 'distinct_value'])
-    fake_db.session.return_value.__enter__.return_value.execute.return_value =  mock_df
+    fake_db.session.return_value.__enter__.return_value.execute.return_value = mock_df
 
     mock_table = MagicMock()
     mock_table.c.the_type = column('the_type')
@@ -212,7 +226,6 @@ def test_load_data_general_query(fake_db, query_type):
 
     expected_df = pd.DataFrame(mock_results, columns=['the_type', 'count', 'distinct_value'])
     pd.testing.assert_frame_equal(df, expected_df)
-
 
 
 @pytest.mark.parametrize("query_type", ["relations", "attributes", "functions"])
@@ -242,7 +255,7 @@ def test_load_data_exception_handling(fake_db, capsys, query_type):
 
 def test_add_description_column(fake_db):
     """Test if a 'description' column is added to the DataFrame with correct values."""
-    
+
     fake_session = MagicMock()
 
     fake_db.get_entity.side_effect = ["description_for_A", "description_for_B", "description_for_C"]
@@ -251,16 +264,16 @@ def test_add_description_column(fake_db):
     df = pd.DataFrame(test_data)
 
     result_df = timelink_web_utils.add_description_column(df, fake_db, 'id', fake_session)
-    
+
     assert isinstance(result_df, pd.DataFrame)
     assert "description" in result_df.columns
-    
+
     fake_db.get_entity.assert_any_call('A', session=fake_session)
     fake_db.get_entity.assert_any_call('B', session=fake_session)
     fake_db.get_entity.assert_any_call('C', session=fake_session)
 
     assert fake_db.get_entity.call_count == len(df)
-    
+
     expected_descriptions = ["description_for_A", "description_for_B", "description_for_C"]
     pd.testing.assert_series_equal(result_df["description"], pd.Series(expected_descriptions, name="description"))
 
@@ -324,7 +337,7 @@ def test_build_expected_col_list():
 
 def test_parse_entity_details(monkeypatch):
     """Test if parse_entity_details returns correct dictionaries."""
-    
+
     rel_in = MagicMock(the_date="16200101")
     rel_out = MagicMock(the_date="16000101")
     attr = MagicMock(the_date="15400101")
@@ -379,14 +392,13 @@ def test_format_obs():
     assert obs in result
 
 
-
 def test_highlight_link():
     """Test if highlight_link returns HTML span with correct path and text."""
-    
+
     path = "/some/path"
     text = "some text goes here"
     result = timelink_web_utils.highlight_link(path, text)
-    
+
     assert path in result
     assert text in result
     assert "highlight-cell" in result
@@ -409,7 +421,7 @@ def test_collect_all_ids_sync(monkeypatch, fake_db):
 
     child = MagicMock()
     child.inside = "child_inside"
-    setattr(child, "some_attr", "child_value")
+    child.some_attr = "child_value"
     child_dict = {"contains": [], "extra_info": {"some_attr": {"kleio_element_class": "my_class"}}}
 
     # patch get_entity to return child when called with the parent's child ID
@@ -449,7 +461,6 @@ def test_get_entity_count_table(fake_db):
 
 def test_get_recent_sources(fake_db):
     """Test if get_recent_sources returns a DataFrame with recent sources."""
-
 
     fake_db.get_imported_files.return_value = [
         {"file": "file1.txt", "imported": pd.Timestamp("2023-01-01")},

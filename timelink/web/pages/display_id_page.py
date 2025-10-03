@@ -32,7 +32,7 @@ class DisplayIDPage:
         async def display_id_page(item_id: str):
             """Display an entity with a specific ID."""
 
-            with navbar.header():
+            with navbar.header(responsive=False):
                 display_func_map = {
                     "person": self._display_person,
                     "geoentity": self._display_geoentity,
@@ -106,6 +106,10 @@ class DisplayIDPage:
             ui.label(entity.sex).classes('mr-3 text-blue-400')
             ui.label('line:').classes('text-orange-500')
             ui.label(entity.the_line).classes('mr-3 text-blue-400')
+            if entity.inside:
+                ui.label('inside:').classes('text-orange-500')
+                ui.label(entity.inside).on(
+                    'click', lambda: ui.navigate.to(f'/id/{entity.inside}')).classes('highlight-cell')
 
         parsed_attributes, parsed_relations_in, parsed_relations_out = timelink_web_utils.parse_entity_details(entity)
 
@@ -500,6 +504,6 @@ class DisplayIDPage:
                     entity_string += name_link + " /id=" + id_link + " "
 
         except Exception as e:
-            print(f"Missing {e} in entity {eid}: {list(ent_dict["extra_attrs"].keys())}")
+            print(f"Missing {e} in entity {eid}: {list(ent_dict['extra_attrs'].keys())}")
 
         return entity_string

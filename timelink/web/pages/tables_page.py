@@ -151,7 +151,7 @@ class TablesPage:
                     'rowData': retrieved_df.to_dict("records")}
                 ).classes('h-[70vh]')
 
-                grid.on('cellClicked', lambda e: ui.navigate.to(f'/id/{e.args["data"]["id"]}') if e.args["colId"] == "id" else None)
+                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args['colId'] == 'id' else None)
 
             else:
                 ui.label('No entries found.').classes('text-grey-500 font-semibold ml-1')
@@ -299,7 +299,7 @@ class TablesPage:
                         'rowData': table_pd.to_dict("records"),
                     }).classes('h-[70vh]').on(
                         'cellClicked',
-                        lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None
+                        lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None
                     )
                     table_ag.on('firstDataRendered', lambda: table_ag.run_grid_method('autoSizeAllColumns'))
 
@@ -354,7 +354,7 @@ class TablesPage:
                 }).classes('h-[70vh]').on(
                     'cellClicked',
                     lambda e:
-                    ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None
+                    ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None
                 )
 
             else:
@@ -442,9 +442,9 @@ class TablesPage:
                     table.on(
                         'cellClicked',
                         lambda e:
-                        ui.navigate.to(f"/id/{e.args["data"]["origin_id"]}") if e.args["colId"] == "origin_name"
-                        else ui.navigate.to(f"/id/{e.args["data"]["destination_id"]}") if e.args["colId"] == "destination_name"
-                        else ui.navigate.to(f"/id/{e.args["data"]["relation_id"]}") if e.args["colId"] == "relation_type"
+                        ui.navigate.to(f"/id/{e.args['data']['origin_id']}") if e.args["colId"] == "origin_name"
+                        else ui.navigate.to(f"/id/{e.args['data']['destination_id']}") if e.args["colId"] == "destination_name"
+                        else ui.navigate.to(f"/id/{e.args['data']['relation_id']}") if e.args["colId"] == "relation_type"
                         else None
                     )
 
@@ -526,9 +526,9 @@ class TablesPage:
 
                     table.on(
                         'cellClicked',
-                        lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id"
-                        else ui.navigate.to(f"/id/{e.args["data"]["id_1"]}") if e.args["colId"] == "id_1"
-                        else ui.navigate.to(f"/id/{e.args["data"]["relation_id"]}") if e.args["colId"] == "relation_type"
+                        lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id"
+                        else ui.navigate.to(f"/id/{e.args['data']['id_1']}") if e.args["colId"] == "id_1"
+                        else ui.navigate.to(f"/id/{e.args['data']['relation_id']}") if e.args["colId"] == "relation_type"
                         else None
                     )
 
@@ -616,7 +616,7 @@ class TablesPage:
                 }).classes('h-[75vh] w-full')
 
                 grid.on('firstDataRendered', lambda: self._fit_columns(grid))
-                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None)
+                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None)
 
             else:
                 ui.label('No data found.').classes('text-grey-500 font-semibold ml-1')
@@ -673,7 +673,7 @@ class TablesPage:
 
                 table.on(
                     'cellClicked',
-                    lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None
+                    lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None
                 )
 
             else:
@@ -732,7 +732,7 @@ class TablesPage:
                     'rowData': retrieved_df.to_dict("records")}
                 ).classes('h-[70vh]')
 
-                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None)
+                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None)
 
             else:
                 ui.label('No entries found.').classes('text-grey-500 font-semibold ml-1')
@@ -796,7 +796,7 @@ class TablesPage:
                 }).classes('h-[75vh] w-full')
 
                 grid.on('firstDataRendered', lambda: self._fit_columns(grid))
-                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None)
+                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None)
 
             else:
                 ui.label('No data found.').classes('text-grey-500 font-semibold ml-1')
@@ -896,7 +896,7 @@ class TablesPage:
             'rowData': results_df.to_dict("records")}
         ).classes('h-[70vh]')
 
-        grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["entity"]}") if e.args["colId"] == "entity" else None)
+        grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['entity']}") if e.args["colId"] == "entity" else None)
 
     async def _display_sql_results(self, sql_query: str, sql_table: str):
         """ Search database using a custom SQL query.
@@ -943,7 +943,7 @@ class TablesPage:
                     'rowData': results_df.to_dict("records")}
                 ).classes('h-[70vh]')
 
-                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "id" else None)
+                grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None)
 
     async def _name_search_database(self, names, from_date, to_date, exact):
         """ Search persons table for specific people.
@@ -1040,7 +1040,7 @@ class TablesPage:
             'rowData': results_df.to_dict("records")}
         ).classes('h-[70vh]')
 
-        grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args["data"]["id"]}") if e.args["colId"] == "name" else None)
+        grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "name" else None)
 
     def _toggle_description(self, grid):
         """Toggle description button functionality to properly resize the table."""

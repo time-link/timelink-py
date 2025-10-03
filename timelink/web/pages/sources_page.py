@@ -8,9 +8,10 @@ import asyncio
 class Sources:
 
     """Page for sources viewing. """
-    def __init__(self, database, kserver) -> None:
+    def __init__(self, database, kserver, scheduler) -> None:
         self.database = database
         self.kserver = kserver
+        self.scheduler = scheduler
         self.track_files_to_import = set()
         self.track_files_to_translate = set()
         self.imported_files_dict = {}
@@ -25,11 +26,17 @@ class Sources:
         self.import_lock = asyncio.Lock()
         self.translate_lock = asyncio.Lock()
 
+        # Refresh imported files on load and once every five minutes automatically.
         self.refresh_imported_files()
+        self.scheduler.add_job(self.scheduled_refresh_imported_files, "interval", name="Refresh Source Files Dictionary", minutes=5)
 
         @ui.page('/sources')
         async def register():
             await self.sources_page()
+
+    async def scheduled_refresh_imported_files(self):
+        """Job trigger to refresh imported files."""
+        self.refresh_imported_files()
 
     def refresh_imported_files(self):
         """Method to refresh import files. Runs once on start and when there are changes to the database."""
@@ -386,68 +393,74 @@ class Sources:
         self.path = Path(self.kserver.kleio_home).expanduser()
         self.upper_limit = self.path
 
-        self.folder_grid = ui.aggrid({
-            'columnDefs': [{'field': 'folder_name', 'headerName': 'Folder'}],
-            'rowSelection': 'multiple',
-        }, html_columns=[0]).classes('w-full h-[50vh]').on('cellClicked', lambda e: self._handle_cell_click(e))
+        with ui.column().classes("w-full h-[calc(90vh-64px)]"):
 
-        self.file_grid = ui.aggrid({
-            'columnDefs': [
-                {'field': 'translate_checkbox', 'headerName': '', "cellRenderer": 'checkboxRenderer', 'width' : 30},
-                {'field': 'icon_status', 'headerName': 'Status', 'width' : 60},
-                {'field': 'file_name', 'headerName': 'Name', "cellClass" : "highlight-cell"},
-                {'field': 'date', 'headerName': 'Date'},
-                {'field': 't_report', 'headerName': 'Translation Report', "cellClass" : "highlight-cell"},
-                {'field': 'import_checkbox', 'headerName': ' ', "cellRenderer": 'checkboxRenderer', 'width' : 30},
-                {'field': 'i_report', 'headerName': 'Import Report', "cellClass" : "import-cell"}
-            ],
-            'rowSelection': 'multiple',
-        }, html_columns=[2]).classes('w-full h-[50vh]').on('cellValueChanged', self._handle_cell_value_changed)
-        self.file_grid.on(
-            'cellClicked',
-            lambda e: self._get_report(e.args) if e.args["colId"] in ("file_name", "t_report", "i_report") else None
-        )
+            self.folder_grid = ui.aggrid({
+                'columnDefs': [{'field': 'folder_name', 'headerName': 'Folder'}],
+                'rowSelection': 'multiple',
+            }, html_columns=[0]).classes('w-full flex-1').on('cellClicked', lambda e: self._handle_cell_click(e))
 
-        self.file_grid.visible = False
+            self.file_grid = ui.aggrid({
+                'columnDefs': [
+                    {'field': 'translate_checkbox', 'headerName': '', "cellRenderer": 'checkboxRenderer', 'width': 30},
+                    {'field': 'icon_status', 'headerName': 'Status', 'width': 60},
+                    {'field': 'file_name', 'headerName': 'Name', "cellClass": "highlight-cell"},
+                    {'field': 'date', 'headerName': 'Date'},
+                    {'field': 't_report', 'headerName': 'Translation Report', "cellClass": "highlight-cell"},
+                    {'field': 'import_checkbox', 'headerName': ' ', "cellRenderer": 'checkboxRenderer', 'width': 30},
+                    {'field': 'i_report', 'headerName': 'Import Report', "cellClass": "import-cell"},
+                ],
+                'rowSelection': 'multiple',
+            }, html_columns=[2]).classes('w-full flex-1').on('cellValueChanged', self._handle_cell_value_changed)
 
-        self.cli_buttons_row = ui.row().classes("mt-2 w-full justify-between items-center")
+            self.file_grid.on(
+                'cellClicked',
+                lambda e: self._get_report(e.args) if e.args["colId"] in ("file_name", "t_report", "i_report") else None
+            )
 
-        with self.cli_buttons_row:
-            with ui.row():
-                ui.button(
-                    "Translate Selected Files",
-                    on_click=lambda: self.process_files("translate_checkbox")
-                ).classes("text-xs px-2 py-1 h-6")
+            self.file_grid.visible = False
 
-                ui.label("Unselect all").on(
-                    "click",
-                    lambda: self.select_deselect_checkboxes("translate_checkbox", False)
-                ).classes("mt-2 highlight-cell")
+            self.cli_buttons_row = ui.row().classes("mt-2 w-full justify-between items-center")
 
-                ui.label("Select all").on(
-                    "click",
-                    lambda: self.select_deselect_checkboxes("translate_checkbox", True)
-                ).classes("mt-2 highlight-cell")
+            with self.cli_buttons_row:
+                with ui.row():
+                    ui.button(
+                        "Translate Selected Files",
+                        on_click=lambda: self.process_files("translate_checkbox")
+                    ).classes("text-xs px-2 py-1 h-6")
 
-            with ui.row():
-                ui.button(
-                    "Import Selected Files",
-                    on_click=lambda: self.process_files("import_checkbox")
-                ).classes("text-xs px-2 py-1 h-6")
+                    ui.label("Unselect all").on(
+                        "click",
+                        lambda: self.select_deselect_checkboxes("translate_checkbox", False)
+                    ).classes("mt-2 highlight-cell")
 
-                ui.label("Unselect all").on(
-                    "click",
-                    lambda: self.select_deselect_checkboxes("import_checkbox", False)
-                ).classes("mt-2 highlight-cell")
+                    ui.label("Select all").on(
+                        "click",
+                        lambda: self.select_deselect_checkboxes("translate_checkbox", True)
+                    ).classes("mt-2 highlight-cell")
 
-                ui.label("Select all").on(
-                    "click",
-                    lambda: self.select_deselect_checkboxes("import_checkbox", True)
-                ).classes("mt-2 highlight-cell")
+                with ui.row():
+                    ui.button(
+                        "Import Selected Files",
+                        on_click=lambda: self.process_files("import_checkbox")
+                    ).classes("text-xs px-2 py-1 h-6")
+
+                    ui.label("Unselect all").on(
+                        "click",
+                        lambda: self.select_deselect_checkboxes("import_checkbox", False)
+                    ).classes("mt-2 highlight-cell")
+
+                    ui.label("Select all").on(
+                        "click",
+                        lambda: self.select_deselect_checkboxes("import_checkbox", True)
+                    ).classes("mt-2 highlight-cell")
 
         self.cli_buttons_row.visible = False
-
         self.update_grid()
+
+    def has_cli_files(self, folder: Path) -> bool:
+        """Check if a folder has cli files within it."""
+        return any(f.suffix == ".cli" for f in folder.rglob("*.cli"))
 
     def update_grid(self, translate_boxes: bool = False, import_boxes: bool = False) -> None:
         """Refresh grid contextually depending on if there are files within the current subdirectory.
@@ -473,12 +486,21 @@ class Sources:
         if self.path == self.upper_limit:
             dirs = [
                 p for p in self.path.rglob('*')
-                if p.is_dir() and not any(part.startswith('.') for part in p.relative_to(self.upper_limit).parts)
+                if (
+                    p.is_dir() and
+                    not any(part.startswith('.') for part in p.relative_to(self.upper_limit).parts) and
+                    self.has_cli_files(p)
+                )
             ]
-            paths = dirs + [p for p in self.path.glob('*') if p.suffix == ".cli"]
-
+            paths = dirs + [p for p in self.path.glob('*.cli')]
         else:
-            paths = [p for p in self.path.glob('*') if not p.name.startswith('.') and (p.is_dir() or p.suffix == ".cli")]
+            paths = [
+                p for p in self.path.glob('*')
+                if not p.name.startswith('.') and (
+                    (p.is_dir() and self.has_cli_files(p)) or
+                    p.suffix == ".cli"
+                )
+            ]
 
         if in_cli_mode:
             paths = [p for p in paths if p.suffix == ".cli"]

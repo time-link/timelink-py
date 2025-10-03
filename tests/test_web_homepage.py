@@ -7,12 +7,11 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 def test_homepage_init(fake_db, fake_kserver):
     """Test if HomePage stores database and kserver references correctly."""
-    
+
     page = HomePage(fake_db, fake_kserver)
-    
+
     assert page.database is fake_db
     assert page.kserver is fake_kserver
-
 
 
 @pytest.mark.asyncio
@@ -26,7 +25,7 @@ async def test_homepage_view(user: User, fake_db, fake_kserver) -> None:
 
 @pytest.mark.asyncio
 async def test_menu_and_navbar_view(user: User, fake_db, fake_kserver) -> None:
-    
+
     fake_db.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
     HomePage(database=fake_db, kserver=fake_kserver)
@@ -37,7 +36,6 @@ async def test_menu_and_navbar_view(user: User, fake_db, fake_kserver) -> None:
     await user.should_see('Explore')
     await user.should_see('Search')
     await user.should_see('Status')
-
 
     # Side menu button check
     await user.should_see('Overview')
