@@ -11,7 +11,11 @@ async def test_initial_setup(monkeypatch):
     fake_kserver = MagicMock()
     fake_db = MagicMock()
     fake_solr_client = MagicMock()
-    monkeypatch.setattr(timelink_web.timelink_web_utils, "run_setup", AsyncMock(return_value=(fake_kserver, fake_db, fake_solr_client)))
+    monkeypatch.setattr(
+        timelink_web.timelink_web_utils,
+        "run_setup",
+        AsyncMock(return_value=(fake_kserver, fake_db, fake_solr_client))
+    )
 
     page_mocks = [
         "homepage.HomePage",

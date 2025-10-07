@@ -14,9 +14,9 @@ from datetime import datetime
 class TablesPage:
 
     """Pages to display tables"""
-    def __init__(self, database, kserver) -> None:
-        self.database = database
-        self.kserver = kserver
+    def __init__(self, timelink_app) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
         self.show_desc = False
 
     def register(self):

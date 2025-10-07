@@ -24,7 +24,7 @@ class SolrWrapper:
 
     def __init__(
         self,
-        solr_settings_dir: str,
+        solr_settings_dir: str = None,
         solr_container_name: str = "timelink_solr",
         solr_port: str = "8983",
         solr_core_name: str = "timelink_core",
@@ -67,7 +67,9 @@ class SolrWrapper:
                 subprocess.run(["docker", "start", self.solr_container_name], check=True)
             else:
                 # Container does not exist
-                print(f"Creating and starting new Solr container '{self.solr_container_name}' with core '{self.solr_core_name}' ...")
+                print(
+                    f"Creating and starting new Solr container '{self.solr_container_name}' with core '{self.solr_core_name}' ..."
+                )
                 subprocess.run([
                     "docker", "run", "-d",
                     "-v", self.solr_settings_dir,

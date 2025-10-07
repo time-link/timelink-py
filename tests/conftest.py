@@ -68,3 +68,11 @@ def fake_db():
 def fake_kserver():
     fake_kserver = MagicMock()
     return fake_kserver
+
+
+@pytest.fixture
+def fake_timelink_app(fake_db, fake_kserver):
+    mock_app = MagicMock()
+    mock_app.database = fake_db
+    mock_app.kleio_server = fake_kserver
+    return mock_app

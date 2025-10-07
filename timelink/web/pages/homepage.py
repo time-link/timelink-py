@@ -5,10 +5,10 @@ from nicegui import ui
 
 class HomePage:
 
-    def __init__(self, database, kserver) -> None:
+    def __init__(self, timelink_app) -> None:
 
-        self.database = database
-        self.kserver = kserver
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
 
         @ui.page('/')
         def home_page():

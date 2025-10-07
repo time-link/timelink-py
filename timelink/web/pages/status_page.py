@@ -8,9 +8,9 @@ import asyncio
 class StatusPage:
 
     """Currently used as a debug page to check for additional information."""
-    def __init__(self, database, kserver, sources) -> None:
-        self.database = database
-        self.kserver = kserver
+    def __init__(self, timelink_app, sources) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
         self.sources = sources
 
         @ui.page('/status')

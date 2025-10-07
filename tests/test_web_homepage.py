@@ -5,30 +5,30 @@ from nicegui.testing import User
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 
-def test_homepage_init(fake_db, fake_kserver):
+def test_homepage_init(fake_timelink_app):
     """Test if HomePage stores database and kserver references correctly."""
 
-    page = HomePage(fake_db, fake_kserver)
+    page = HomePage(fake_timelink_app)
 
-    assert page.database is fake_db
-    assert page.kserver is fake_kserver
+    assert page.database is fake_timelink_app.database
+    assert page.kserver is fake_timelink_app.kleio_server
 
 
 @pytest.mark.asyncio
-async def test_homepage_view(user: User, fake_db, fake_kserver) -> None:
+async def test_homepage_view(user: User, fake_timelink_app) -> None:
 
-    HomePage(database=fake_db, kserver=fake_kserver)
+    HomePage(fake_timelink_app.database)
 
     await user.open("/")
     await user.should_see('Welcome to the Timelink Web Interface!')
 
 
 @pytest.mark.asyncio
-async def test_menu_and_navbar_view(user: User, fake_db, fake_kserver) -> None:
+async def test_menu_and_navbar_view(user: User, fake_timelink_app) -> None:
 
-    fake_db.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
+    fake_timelink_app.database.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
-    HomePage(database=fake_db, kserver=fake_kserver)
+    HomePage(fake_timelink_app)
 
     # Navbar button check
     await user.open("/")

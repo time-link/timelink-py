@@ -7,9 +7,9 @@ from timelink.web import timelink_web_utils
 class ExplorePage:
 
     """Page for database exploration."""
-    def __init__(self, database, kserver) -> None:
-        self.database = database
-        self.kserver = kserver
+    def __init__(self, timelink_app) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
 
         @ui.page('/explore')
         def register():

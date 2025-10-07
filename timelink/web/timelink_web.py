@@ -3,7 +3,6 @@ from timelink.web import timelink_web_utils
 import sys
 from pathlib import Path
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 
 # --- Pages ---
 from timelink.web.pages import (homepage, status_page, explore_page,
@@ -20,58 +19,44 @@ database_type = "sqlite"
 job_scheduler = AsyncIOScheduler()
 
 
-def job_scheduler_listener(event):
-    """Listens to events coming from the scheduler to monitor the execution of scheduled jobs."""
-
-    job = job_scheduler.get_job(event.job_id).name
-
-    if event.exception:
-        print(f'\"{job}\" job crashed.')
-    else:
-        print(f'\"{job}\" job executed successfully.')
-
-
 async def initial_setup():
     """Connect to the Kleio Server and load settings found on the .env"""
 
-    global database, kserver, job_scheduler
-
-    job_scheduler.add_listener(job_scheduler_listener, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
-
-    kserver, database, solr_manager = await timelink_web_utils.run_setup(
+    timelink_app_settings = await timelink_web_utils.run_setup(
         home_path=project_path,
         job_scheduler=job_scheduler,
-        database_type=database_type)
+        database_type=database_type
+    )
 
-    homepage.HomePage(database=database, kserver=kserver)
+    homepage.HomePage(timelink_app=timelink_app_settings)
 
-    explore_page.ExplorePage(database=database, kserver=kserver)
+    explore_page.ExplorePage(timelink_app=timelink_app_settings)
 
-    id_page = display_id_page.DisplayIDPage(database=database, kserver=kserver)
+    id_page = display_id_page.DisplayIDPage(timelink_app=timelink_app_settings)
     id_page.register()
 
-    table_page = tables_page.TablesPage(database=database, kserver=kserver)
+    table_page = tables_page.TablesPage(timelink_app=timelink_app_settings)
     table_page.register()
 
-    overview_page.Overview(database=database, kserver=kserver)
+    overview_page.Overview(timelink_app=timelink_app_settings)
 
-    people_page.PeopleGroupsNetworks(database=database, kserver=kserver)
+    people_page.PeopleGroupsNetworks(timelink_app=timelink_app_settings)
 
-    families_page.Families(database=database, kserver=kserver)
+    families_page.Families(timelink_app=timelink_app_settings)
 
-    calendar_page.CalendarPage(database=database, kserver=kserver)
+    calendar_page.CalendarPage(timelink_app=timelink_app_settings)
 
-    linking_page.Linking(database=database, kserver=kserver)
+    linking_page.Linking(timelink_app=timelink_app_settings)
 
-    source_page = sources_page.Sources(database=database, kserver=kserver, scheduler=job_scheduler)
+    source_page = sources_page.Sources(timelink_app=timelink_app_settings)
 
-    status_page.StatusPage(database=database, kserver=kserver, sources=source_page)
+    status_page.StatusPage(timelink_app=timelink_app_settings, sources=source_page)
 
-    search_page.Search(database=database, kserver=kserver, solr_manager=solr_manager)
+    search_page.Search(timelink_app=timelink_app_settings)
 
-    admin_page.Admin(database=database, kserver=kserver)
+    admin_page.Admin(timelink_app=timelink_app_settings)
 
-    job_scheduler.start()
+    timelink_app_settings.job_scheduler.start()
 
 
 if "--port" in sys.argv:

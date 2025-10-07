@@ -7,9 +7,9 @@ import pandas as pd
 class PeopleGroupsNetworks:
 
     """Page for People, Groups and Networks"""
-    def __init__(self, database, kserver) -> None:
-        self.database = database
-        self.kserver = kserver
+    def __init__(self, timelink_app) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
         self.current_value = "Attributes"
 
         @ui.page('/people')

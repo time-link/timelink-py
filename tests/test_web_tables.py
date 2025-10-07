@@ -37,11 +37,14 @@ def fake_db_with_persons():
 
 
 @pytest.mark.asyncio
-async def test_display_names_success(user: User, fake_db_with_persons, monkeypatch):
+async def test_display_names_success(user: User, fake_timelink_app, fake_db_with_persons, monkeypatch):
     """Check that _display_names renders a grid with expected columns and rows."""
+
+    fake_timelink_app.database = fake_db_with_persons
 
     # Patch timelink_web_utils.add_description_column
     def fake_add_desc(df, database, id_column, session):
+
         df["description"] = "this is the file's description."
         return df
     monkeypatch.setattr("timelink.web.pages.tables_page.timelink_web_utils.add_description_column", fake_add_desc)
@@ -54,7 +57,7 @@ async def test_display_names_success(user: User, fake_db_with_persons, monkeypat
         return MagicMock(on=lambda *a, **k: None, classes=lambda x: None)
     monkeypatch.setattr("timelink.web.pages.tables_page.ui.aggrid", fake_aggrid)
 
-    page = TablesPage(database=fake_db_with_persons, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     # Call method
@@ -92,7 +95,7 @@ async def test_display_names_success(user: User, fake_db_with_persons, monkeypat
         {"id": "test-sources-2"}
     ]
     ), ])
-async def test_display_tables(user: User, fake_db, monkeypatch, table_name, table_type, expected_return):
+async def test_display_tables(user: User, fake_timelink_app, monkeypatch, table_name, table_type, expected_return):
 
     captured = {}
 
@@ -114,7 +117,7 @@ async def test_display_tables(user: User, fake_db, monkeypatch, table_name, tabl
         def execute(self, stmt):
             return expected_return
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     metadata = MetaData()
     if table_type == "names":
@@ -146,14 +149,14 @@ async def test_display_tables(user: User, fake_db, monkeypatch, table_name, tabl
             Column("obs", String)
         )
 
-    fake_db.get_table.return_value = table
+    fake_timelink_app.database.get_table.return_value = table
 
     monkeypatch.setattr(
         "timelink.web.pages.tables_page.timelink_web_utils.add_description_column",
         lambda df, database, id_column, session: df
     )
 
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     await user.open(f"/all_tables/{table_name}?display_type={table_type}&value=a")
@@ -211,7 +214,7 @@ async def test_display_tables(user: User, fake_db, monkeypatch, table_name, tabl
         ])
     ]
 )
-async def test_find_persons(user: User, fake_db, monkeypatch, attr_type, attr_value, expected_rows):
+async def test_find_persons(user: User, fake_timelink_app, monkeypatch, attr_type, attr_value, expected_rows):
 
     captured = {}
 
@@ -232,7 +235,7 @@ async def test_find_persons(user: User, fake_db, monkeypatch, attr_type, attr_va
         def execute(self, stmt):
             return expected_rows
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     metadata = MetaData()
     persons_table = Table(
@@ -249,10 +252,10 @@ async def test_find_persons(user: User, fake_db, monkeypatch, attr_type, attr_va
         Column("entity", Integer),
         Column("the_date", String)
     )
-    fake_db.get_table.side_effect = lambda name: persons_table if name == "persons" else attributes_table
+    fake_timelink_app.database.get_table.side_effect = lambda name: persons_table if name == "persons" else attributes_table
 
     # Create page and run method
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page._find_persons(attr_type, attr_value)
 
     # Assertions
@@ -287,7 +290,15 @@ async def test_find_persons(user: User, fake_db, monkeypatch, attr_type, attr_va
         ])
     ]
 )
-async def test_display_relations_view(user: User, fake_db, monkeypatch, rel_type, rel_value, rel_id, is_from, expected_rows):
+async def test_display_relations_view(
+        user: User,
+        fake_timelink_app,
+        monkeypatch,
+        rel_type,
+        rel_value,
+        rel_id,
+        is_from,
+        expected_rows):
 
     captured = {}
 
@@ -314,24 +325,28 @@ async def test_display_relations_view(user: User, fake_db, monkeypatch, rel_type
         def execute(self, db):
             return expected_rows
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     metadata = MetaData()
     persons_table = Table("persons", metadata, Column("id", Integer), Column("name", String))
-    fake_db.get_table.side_effect = lambda _: persons_table
+    fake_timelink_app.database.get_table.side_effect = lambda _: persons_table
 
-    fake_db.views = {"nrelations": Table("nrelations", metadata,
-                                         Column("origin_id", Integer),
-                                         Column("origin_name", String),
-                                         Column("relation_type", String),
-                                         Column("relation_value", String),
-                                         Column("destination_id", Integer),
-                                         Column("destination_name", String),
-                                         Column("relation_id", Integer),
-                                         Column("relation_date", String)
-                                         )}
+    fake_timelink_app.database.views = {
+        "nrelations": Table(
+            "nrelations",
+            metadata,
+            Column("origin_id", Integer),
+            Column("origin_name", String),
+            Column("relation_type", String),
+            Column("relation_value", String),
+            Column("destination_id", Integer),
+            Column("destination_name", String),
+            Column("relation_id", Integer),
+            Column("relation_date", String)
+        )
+    }
 
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
 
     page._display_relations_view(rel_type, rel_value=rel_value, rel_id=rel_id, is_from=is_from)
 
@@ -380,7 +395,7 @@ async def test_display_relations_view(user: User, fake_db, monkeypatch, rel_type
         ])
     ]
 )
-async def test_display_entity_with_attributes(user: User, fake_db, monkeypatch, attr_type, attr_value, expected_rows):
+async def test_display_entity_with_attributes(user: User, fake_timelink_app, monkeypatch, attr_type, attr_value, expected_rows):
 
     captured = {}
 
@@ -405,10 +420,10 @@ async def test_display_entity_with_attributes(user: User, fake_db, monkeypatch, 
 
             return expected_rows
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     metadata = MetaData()
-    fake_db.get_view.return_value = Table(
+    fake_timelink_app.database.get_view.return_value = Table(
         "nattributes", metadata,
         Column("id", Integer),
         Column("name", String),
@@ -429,7 +444,7 @@ async def test_display_entity_with_attributes(user: User, fake_db, monkeypatch, 
         lambda df_to_process, attr_type: (df_to_process, [{"headerName": "ID", "field": "id"}])
     )
 
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     url = (
@@ -464,7 +479,7 @@ async def test_display_entity_with_attributes(user: User, fake_db, monkeypatch, 
         ])
     ]
 )
-async def test_display_functions_view(user: User, fake_db, monkeypatch, func_type, expected_rows):
+async def test_display_functions_view(user: User, fake_timelink_app, monkeypatch, func_type, expected_rows):
     captured = {}
 
     def fake_aggrid(options):
@@ -488,10 +503,10 @@ async def test_display_functions_view(user: User, fake_db, monkeypatch, func_typ
 
             return expected_rows
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     metadata = MetaData()
-    fake_db.views = {"nfunctions": Table(
+    fake_timelink_app.database.views = {"nfunctions": Table(
         "nfunctions", metadata,
         Column("id", Integer),
         Column("name", String),
@@ -499,7 +514,7 @@ async def test_display_functions_view(user: User, fake_db, monkeypatch, func_typ
         Column("act_date", String)
     )}
 
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     await user.open(f"/tables/functions?type={func_type}")
@@ -525,7 +540,7 @@ async def test_display_functions_view(user: User, fake_db, monkeypatch, func_typ
         ("hunan", [{"id": "test-geo-2", "name": "Huwan", "the_type": "provincia", "obs": None, "description": ""}])
     ]
 )
-async def test_display_geoentities(user: User, fake_db, monkeypatch, geoentity, expected_rows):
+async def test_display_geoentities(user: User, fake_timelink_app, monkeypatch, geoentity, expected_rows):
     captured = {}
 
     def fake_aggrid(options):
@@ -548,11 +563,11 @@ async def test_display_geoentities(user: User, fake_db, monkeypatch, geoentity, 
 
             return expected_rows
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     # Mock get_table
     metadata = MetaData()
-    fake_db.get_table.return_value = Table(
+    fake_timelink_app.database.get_table.return_value = Table(
         "geoentity", metadata,
         Column("id", Integer),
         Column("name", String),
@@ -567,7 +582,7 @@ async def test_display_geoentities(user: User, fake_db, monkeypatch, geoentity, 
         lambda df, database, id_column, session: df
     )
 
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     await user.open(f"/tables/geoentities?name={geoentity}")
@@ -593,7 +608,7 @@ async def test_display_geoentities(user: User, fake_db, monkeypatch, geoentity, 
         ("test act", [{"id": "deh-test-id", "the_type": "testact", "the_date": "2025-01-01", "loc": "", "ref": None, "obs": None}]),
     ]
 )
-async def test_display_acts(user: User, fake_db, monkeypatch, act_type, expected_rows):
+async def test_display_acts(user: User, fake_timelink_app, monkeypatch, act_type, expected_rows):
 
     captured = {}
 
@@ -618,11 +633,11 @@ async def test_display_acts(user: User, fake_db, monkeypatch, act_type, expected
 
             return expected_rows
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
     # Mock get_table
     metadata = MetaData()
-    fake_db.get_table.return_value = Table(
+    fake_timelink_app.database.get_table.return_value = Table(
         "acts", metadata,
         Column("id", Integer),
         Column("the_type", String),
@@ -651,7 +666,7 @@ async def test_display_acts(user: User, fake_db, monkeypatch, act_type, expected
         ])
     )
 
-    page = TablesPage(database=fake_db, kserver=None)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     await user.open(f"/tables/acts?name={act_type}")
@@ -668,13 +683,13 @@ async def test_display_acts(user: User, fake_db, monkeypatch, act_type, expected
     assert opts["rowData"] == expected_rows
 
 
-def test_redirect_to_view(monkeypatch):
+def test_redirect_to_view(fake_timelink_app, monkeypatch):
     navigated = {}
 
     # Fake ui.navigate.to
     monkeypatch.setattr("timelink.web.pages.tables_page.ui.navigate.to", lambda url: navigated.setdefault("url", url))
 
-    page = TablesPage(database=MagicMock(), kserver=None)
+    page = TablesPage(fake_timelink_app)
 
     # Test attribute table
     event = MagicMock()
@@ -694,7 +709,7 @@ def test_redirect_to_view(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_search_database(user: User, fake_db, fake_kserver, monkeypatch):
+async def test_search_database(user: User, fake_timelink_app, monkeypatch):
 
     captured = {}
 
@@ -750,9 +765,9 @@ async def test_search_database(user: User, fake_db, fake_kserver, monkeypatch):
 
             pass
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
-    page = TablesPage(database=fake_db, kserver=fake_kserver)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     await user.open('/search_tables?keywords=test&tables=Persons')
@@ -765,7 +780,7 @@ async def test_search_database(user: User, fake_db, fake_kserver, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_display_sql_results(user: User, fake_db, fake_kserver, monkeypatch):
+async def test_display_sql_results(user: User, fake_timelink_app, monkeypatch):
     captured = {}
 
     # Fake aggrid
@@ -790,7 +805,7 @@ async def test_display_sql_results(user: User, fake_db, fake_kserver, monkeypatc
 
             return ["id", "name"]
 
-    fake_db.query.return_value = FakeResult()
+    fake_timelink_app.database.query.return_value = FakeResult()
 
     # Fake session for Activity logging
     class FakeSession:
@@ -810,9 +825,9 @@ async def test_display_sql_results(user: User, fake_db, fake_kserver, monkeypatc
 
             pass
 
-    fake_db.session.return_value = FakeSession()
+    fake_timelink_app.database.session.return_value = FakeSession()
 
-    page = TablesPage(database=fake_db, kserver=fake_kserver)
+    page = TablesPage(fake_timelink_app)
     page.register()
 
     # Directly call the coroutine
@@ -826,10 +841,10 @@ async def test_display_sql_results(user: User, fake_db, fake_kserver, monkeypatc
     assert opts["rowData"][1]["name"] == "joao"
 
 
-def test_toggle_and_fit_columns():
+def test_toggle_and_fit_columns(fake_timelink_app):
     # Create a mock grid
     grid_mock = MagicMock()
-    page = TablesPage(database=MagicMock(), kserver=MagicMock())
+    page = TablesPage(fake_timelink_app)
 
     # Initially show_desc should be False
     assert page.show_desc is False

@@ -9,20 +9,20 @@ from unittest.mock import MagicMock
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 
-def test_explore_init(fake_db, fake_kserver):
+def test_explore_init(fake_timelink_app):
     """Test if HomePage stores database and kserver references correctly."""
 
-    page = ExplorePage(fake_db, fake_kserver)
+    page = ExplorePage(fake_timelink_app)
 
-    assert page.database is fake_db
-    assert page.kserver is fake_kserver
+    assert page.database is fake_timelink_app.database
+    assert page.kserver is fake_timelink_app.kleio_server
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view(user: User, fake_db, fake_kserver) -> None:
+async def test_explore_main_view(user: User, fake_timelink_app) -> None:
     """Check for elements within the page that are always present independent of database state."""
 
-    ExplorePage(database=fake_db, kserver=fake_kserver)
+    ExplorePage(timelink_app=fake_timelink_app)
 
     await user.open("/explore")
     await user.should_see('Search by ID')
@@ -35,11 +35,11 @@ async def test_explore_main_view(user: User, fake_db, fake_kserver) -> None:
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view_no_data(user: User, fake_db, fake_kserver, monkeypatch) -> None:
+async def test_explore_main_view_no_data(user: User, fake_timelink_app, monkeypatch) -> None:
     """Check if attributes, functions and relations display no data correctly if none is to be found in the database."""
 
     monkeypatch.setattr(timelink_web_utils, "load_data", lambda query, db: None)
-    ExplorePage(database=fake_db, kserver=fake_kserver)
+    ExplorePage(timelink_app=fake_timelink_app)
 
     await user.open("/explore")
     with user:
@@ -48,7 +48,7 @@ async def test_explore_main_view_no_data(user: User, fake_db, fake_kserver, monk
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view_with_data(user, fake_db, fake_kserver, monkeypatch):
+async def test_explore_main_view_with_data(user, fake_timelink_app, monkeypatch):
     """Check if attributes, functions, and relations display correctly when data is available."""
 
     attr_df = pd.DataFrame({
@@ -77,7 +77,7 @@ async def test_explore_main_view_with_data(user, fake_db, fake_kserver, monkeypa
 
     monkeypatch.setattr(timelink_web_utils, "load_data", fake_load_data)
 
-    ExplorePage(database=fake_db, kserver=fake_kserver)
+    ExplorePage(timelink_app=fake_timelink_app)
 
     await user.open("/explore")
 
@@ -97,12 +97,12 @@ async def test_explore_main_view_with_data(user, fake_db, fake_kserver, monkeypa
 
 
 @pytest.mark.asyncio
-async def test_explore_search_by_id(user, fake_db, fake_kserver, monkeypatch):
+async def test_explore_search_by_id(user, fake_timelink_app, monkeypatch):
     """Test Search by ID functionality"""
 
     mock_handler = MagicMock()
     monkeypatch.setattr(ExplorePage, "_handle_id_search", mock_handler)
-    ExplorePage(database=fake_db, kserver=fake_kserver)
+    ExplorePage(fake_timelink_app)
 
     await user.open("/explore")
 
@@ -112,12 +112,12 @@ async def test_explore_search_by_id(user, fake_db, fake_kserver, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_explore_advanced_search(user, fake_db, fake_kserver, monkeypatch):
+async def test_explore_advanced_search(user, fake_timelink_app, monkeypatch):
     """Test Search by ID functionality"""
 
     mock_handler = MagicMock()
     monkeypatch.setattr(ExplorePage, "_handle_advanced_search", mock_handler)
-    ExplorePage(database=fake_db, kserver=fake_kserver)
+    ExplorePage(fake_timelink_app)
 
     await user.open("/explore")
 
@@ -128,7 +128,7 @@ async def test_explore_advanced_search(user, fake_db, fake_kserver, monkeypatch)
 
 
 @pytest.mark.asyncio
-async def test_explore_search_handlers(fake_db, fake_kserver, monkeypatch):
+async def test_explore_search_handlers(fake_timelink_app, monkeypatch):
     """Test ID/advanced search handlers with empty and filled inputs."""
 
     # Patch ui.navigate.to and ui.notify so we can track calls
@@ -137,7 +137,7 @@ async def test_explore_search_handlers(fake_db, fake_kserver, monkeypatch):
     monkeypatch.setattr("nicegui.ui.navigate.to", mock_navigate)
     monkeypatch.setattr("nicegui.ui.notify", mock_notify)
 
-    page = ExplorePage(database=fake_db, kserver=fake_kserver)
+    page = ExplorePage(fake_timelink_app)
 
     # ---- Test ID search ----
     # Empty input

@@ -9,10 +9,10 @@ from timelink.kleio.utilities import format_timelink_date
 class Search:
 
     """Page for robust searching. """
-    def __init__(self, database, kserver, solr_manager) -> None:
-        self.database = database
-        self.kserver = kserver
-        self.solr_manager = solr_manager
+    def __init__(self, timelink_app) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
+        self.solr_manager = timelink_app.solr_manager
 
         @ui.page('/search')
         async def register():

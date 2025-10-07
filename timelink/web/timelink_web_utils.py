@@ -1,73 +1,21 @@
 from nicegui import ui
 from timelink.kleio import KleioServer
-from timelink.api.database import TimelinkDatabase, get_sqlite_databases, get_postgres_dbnames
+from timelink.api.database import TimelinkDatabase
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
-from timelink.web.models import Activity, ActivityBase
+from timelink.web.models import Activity
 from timelink.web.backend.solr_wrapper import SolrWrapper
-import os
+from timelink.web.backend.timelink_app_wrapper import TimelinkWebApp
 from pathlib import Path
-from dotenv import load_dotenv
 from sqlalchemy import select, func
 import pandas as pd
-import docker
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from datetime import datetime, date
-import json
 
 
 def run_imports_sync(db):
     print("Attempting to update database from sources...")
     db.update_from_sources(match_path=True)
     print("Database successfully updated!")
-
-
-def run_db_setup(khome, db_type):
-
-    print("Selected Database configuration:", db_type)
-
-    if db_type == "sqlite":
-        db_dir = os.path.join(khome, 'database', 'sqlite')
-        print("Database type is set to Sqlite.")
-        print("Databases will reside in: ", db_dir)
-        print("Databases found in directory: ", get_sqlite_databases(directory_path=khome))
-
-        db = TimelinkDatabase(db_type=db_type, db_path=db_dir, db_name='timelink-web')
-    elif db_type == "postgres":
-
-        print("Database type is set to Postgres.")
-        print("Databases found in directory: ", get_postgres_dbnames())
-
-        db = TimelinkDatabase(db_type='postgres', db_name='timelink-web')
-
-    # Check if activity table exists here, and if not, create it for logging purposes
-    tables = db.db_table_names()
-
-    if "activity" not in tables:
-        print("No Activity table found in the database - creating one.")
-        ActivityBase.metadata.create_all(bind=db.engine, tables=[Activity.__table__])
-
-    return db
-
-
-def is_port_in_use_docker(port: int) -> bool:
-    client = docker.from_env()
-    for c in client.containers.list():
-        ports = c.attrs["NetworkSettings"]["Ports"]
-        if ports:
-            for _, mappings in ports.items():
-                if mappings:
-                    for m in mappings:
-                        if int(m["HostPort"]) == port:
-                            return True
-    return False
-
-
-def find_free_port(from_port: int = 8088, to_port: int = 8099):
-    for port in range(from_port, to_port + 1):
-        if not is_port_in_use_docker(port):
-            return port
-    raise OSError(f"No free ports available in {from_port}-{to_port}")
 
 
 def run_solr_client_setup():
@@ -86,118 +34,17 @@ def run_solr_client_setup():
     return solr_manager
 
 
-def json_serial(obj):
-    """JSON serializer for datetime objects not serializable by default json code"""
-
-    if isinstance(obj, (datetime, date)):
-        return obj.isoformat()
-    raise TypeError("Type %s not serializable" % type(obj))
-
-
-def flatten_dictionary(data, parent_key='', sep='_'):
-    """Flatten a dictionary to be received by Solr"""
-    items = {}
-
-    for k, v in data.items():
-        new_key = parent_key + sep + k if parent_key else k
-
-        if isinstance(v, dict):
-            # Recurse into nested dictionaries
-            items.update(flatten_dictionary(v, new_key, sep=sep))
-        elif isinstance(v, list):
-            for i, item in enumerate(v):
-                if isinstance(item, (dict, list)):
-                    items.update(flatten_dictionary({str(i): item}, new_key, sep=sep))
-                else:
-                    items[new_key] = v
-                    break
-        else:
-            items[new_key] = v
-
-    # Ensure the 'id' field remains at the top level
-    if 'id' in data and not parent_key:
-        items['id'] = data['id']
-
-    return items
-
-
-async def init_index_job_scheduler(solr_client, database):
-    """Initiate the job to index new documents to the Apache Solr database
-
-    NOT WORKING AT THE MOMENT
-    """
-
-    ignore_classes = ['class', 'rentity', 'source']
-    solr_client.delete(q='*:*', commit=True)
-
-    with database.session() as session:
-        entities = session.query(Entity).filter(Entity.indexed.is_(None)).filter(~Entity.pom_class.in_(ignore_classes)).limit(10).all()
-
-        if not entities:
-            return
-
-        # solr_doc_list = []
-        for entity in entities:
-            mr_schema = EntityAttrRelSchema.model_validate(entity)
-            mr_schema_dump = mr_schema.model_dump(exclude=["contains", "extra_info"])
-            flattened_schema = flatten_dictionary(json.loads(json.dumps(mr_schema_dump, default=json_serial)))
-            # print(flattened_schema)
-            solr_client.add([flattened_schema], commit=True)
-            # solr_doc_list.append(json.loads(json.dumps(mr_schema_dump, default=json_serial)))
-            break
-
-        """
-        solr_client.add(solr_doc_list, commit=True)
-
-        now = datetime.now()
-        for entity in entities:
-            entity.indexed = now
-
-        session.commit()
-    print("Yes!")
-    """
-
-
 async def run_setup(home_path: Path, job_scheduler: AsyncIOScheduler, database_type: str = "sqlite"):
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
-    timelink_home = None
-
-    # Find timelink home in the current path.
-    timelink_home = KleioServer.find_local_kleio_home(str(home_path))
-
-    print(f"Timelink Home set to {timelink_home}")
-
-    # If for some reason timelink home wasn't found, then attempt to read it from .timelink\.env found at root directory.
-    if not timelink_home:
-        print("Could not find timelink home in the current directory. Attempting to read from .timelink env options.")
-        load_dotenv(Path.home() / ".timelink" / ".env")
-        timelink_token = os.getenv('TIMELINK_SERVER_TOKEN')
-        timelink_home = os.getenv('TIMELINK_HOME')
-        db_type = os.getenv('TIMELINK_DB_TYPE')
-        kserver = KleioServer.start(kleio_admin_token=timelink_token, kleio_home=timelink_home)
-
-    else:
-        kserver = KleioServer.get_server(timelink_home)
-        if not kserver:
-            port = find_free_port(8088, 8099)
-            kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=port)
-        db_type = database_type
-
-    # Solr setup
     solr_manager = run_solr_client_setup()
+    timelink_web_app_settings = TimelinkWebApp(
+        home_url=home_path,
+        users_db_type=database_type,
+        solr_manager=solr_manager,
+        job_scheduler=job_scheduler)
 
-    print(f"Connected to Kleio Server at {kserver.url}, home is {kserver.kleio_home}")
-
-    # Database setup
-    db = run_db_setup(timelink_home, db_type)
-    db.set_kleio_server(kserver)
-
-    # Schedule Solr server updates (Needs update on indexing)
-    # job_scheduler.add_job(init_index_job_scheduler, args = [solr_client, db], name="Index Documents to Solr", trigger="interval", seconds=10)
-    # await init_index_job_scheduler(solr_client, db)
-
-    return kserver, db, solr_manager
+    return timelink_web_app_settings
 
 
 def show_table(database: TimelinkDatabase):

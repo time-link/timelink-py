@@ -10,39 +10,39 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("entity_class", ["person", "geoentity", "act"])
-async def test_display_id_init(user: User, fake_db, fake_kserver, entity_class):
+async def test_display_id_init(user: User, fake_timelink_app, entity_class):
     """Test if display page is being properly initialized."""
 
     # Mock entity
     fake_entity = SimpleNamespace(pom_class=entity_class, name=f"Test {entity_class}")
 
-    fake_db.session.return_value.__enter__.return_value = fake_db
-    fake_db.get_entity.return_value = fake_entity
+    fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
+    fake_timelink_app.database.get_entity.return_value = fake_entity
 
-    page = DisplayIDPage(fake_db, fake_kserver)
+    page = DisplayIDPage(timelink_app=fake_timelink_app)
     page.register()
 
-    assert page.database is fake_db
-    assert page.kserver is fake_kserver
+    assert page.database is fake_timelink_app.database
+    assert page.kserver is fake_timelink_app.kleio_server
 
     await user.open("/id/test-id")
 
-    fake_db.get_entity.assert_called_once_with("test-id", session=fake_db)
+    fake_timelink_app.database.get_entity.assert_called_once_with("test-id", session=fake_timelink_app.database)
 
 
 @pytest.mark.asyncio
-async def test_display_id_not_found(user: User, fake_db, fake_kserver):
+async def test_display_id_not_found(user: User, fake_timelink_app):
     """Test failure state when entity is not found."""
 
-    fake_db.session.return_value.__enter__.return_value = fake_db
-    fake_db.get_entity.return_value = None
+    fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
+    fake_timelink_app.database.get_entity.return_value = None
 
-    page = DisplayIDPage(fake_db, fake_kserver)
+    page = DisplayIDPage(timelink_app=fake_timelink_app)
     page.register()
 
     await user.open("/id/missing-id")
 
-    fake_db.get_entity.assert_called_once_with("missing-id", session=fake_db)
+    fake_timelink_app.database.get_entity.assert_called_once_with("missing-id", session=fake_timelink_app.database)
 
     # Assert the error message is rendered
     user.find("No entity with value missing-id found.")
@@ -56,28 +56,28 @@ async def test_display_id_not_found(user: User, fake_db, fake_kserver):
         ("geoentity", "_display_geoentity"),
         ("act", "_display_act"),
     ])
-async def test_display_id_dispatch(user, fake_db, fake_kserver, monkeypatch, pom_class, func_name):
+async def test_display_id_dispatch(user, fake_timelink_app, monkeypatch, pom_class, func_name):
     """Test that the correct display function is called for each class."""
 
     fake_entity = SimpleNamespace(pom_class=pom_class, name=f"Test {pom_class}")
 
-    fake_db.session.return_value.__enter__.return_value = fake_db
-    fake_db.get_entity.return_value = fake_entity
+    fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
+    fake_timelink_app.database.get_entity.return_value = fake_entity
 
     mock_display = AsyncMock()
     monkeypatch.setattr(DisplayIDPage, func_name, mock_display)
 
-    page = DisplayIDPage(fake_db, fake_kserver)
+    page = DisplayIDPage(fake_timelink_app)
     page.register()
 
     await user.open("/id/test-id")
 
-    fake_db.get_entity.assert_called_once_with("test-id", session=fake_db)
+    fake_timelink_app.database.get_entity.assert_called_once_with("test-id", session=fake_timelink_app.database)
     mock_display.assert_awaited_once_with(fake_entity)
 
 
 @pytest.mark.asyncio
-async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
+async def test_display_person(user: User, fake_timelink_app, monkeypatch):
     """Check if display_person renders as expected."""
 
     fake_entity = SimpleNamespace(
@@ -90,8 +90,8 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
         inside="entity_container"
     )
 
-    fake_db.session.return_value.__enter__.return_value = fake_db
-    fake_db.get_entity.return_value = fake_entity
+    fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
+    fake_timelink_app.database.get_entity.return_value = fake_entity
 
     # Fake parsed details
     fake_attrs = {
@@ -138,7 +138,7 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
     mock_parse = MagicMock(return_value=(fake_attrs, fake_rels_in, fake_rels_out))
     monkeypatch.setattr("timelink.web.pages.display_id_page.timelink_web_utils.parse_entity_details", mock_parse)
 
-    page = DisplayIDPage(database=fake_db, kserver=fake_kserver)
+    page = DisplayIDPage(timelink_app=fake_timelink_app)
     page.register()
 
     await user.open("/id/test-id")
@@ -182,7 +182,7 @@ async def test_display_person(user: User, fake_db, fake_kserver, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_geoentity(user, fake_timelink_app, monkeypatch):
     """Check if display_geoentity renders as expected."""
 
     fake_entity = SimpleNamespace(
@@ -199,7 +199,7 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
         pom_class="geoentity"
     )
 
-    fake_db.session.return_value.__enter__.return_value = fake_db
+    fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
 
     # Side effect to return different entities depending on ID
     def get_entity_side_effect(entity_id, session=None):
@@ -209,7 +209,7 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
             return fake_origin_entity
         return SimpleNamespace(id=entity_id, name="Unknown", pom_class="geoentity")
 
-    fake_db.get_entity.side_effect = get_entity_side_effect
+    fake_timelink_app.database.get_entity.side_effect = get_entity_side_effect
 
     # Fake parsed details
     fake_attrs = {
@@ -260,7 +260,7 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
         mock_parse,
     )
 
-    page = DisplayIDPage(database=fake_db, kserver=fake_kserver)
+    page = DisplayIDPage(timelink_app=fake_timelink_app)
     page.register()
 
     await user.open("/id/geo-1")
@@ -296,7 +296,7 @@ async def test_display_geoentity(user, fake_db, fake_kserver, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_display_act(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_act(user, fake_timelink_app, monkeypatch):
     """Check if _display_act renders header and body as expected."""
 
     fake_entity = SimpleNamespace(
@@ -305,10 +305,10 @@ async def test_display_act(user, fake_db, fake_kserver, monkeypatch):
         pom_class="act"
     )
 
-    fake_db.session.return_value.__enter__.return_value = fake_db
-    fake_db.get_entity.return_value = fake_entity
+    fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
+    fake_timelink_app.database.get_entity.return_value = fake_entity
 
-    page = DisplayIDPage(database=fake_db, kserver=fake_kserver)
+    page = DisplayIDPage(timelink_app=fake_timelink_app)
     page.register()
 
     # Mock templates
@@ -356,7 +356,7 @@ async def test_display_act(user, fake_db, fake_kserver, monkeypatch):
     assert "<div>body content</div>" in added_html
 
 
-def test_parse_act_header_string(monkeypatch):
+def test_parse_act_header_string(fake_timelink_app, monkeypatch):
     """Check if header parser is rendering HTML for jinja correctly."""
 
     fake_entity = SimpleNamespace(
@@ -382,7 +382,7 @@ def test_parse_act_header_string(monkeypatch):
         )
     )
 
-    page = DisplayIDPage(None, None)
+    page = DisplayIDPage(fake_timelink_app)
     result = page._parse_act_header_string(fake_entity)
 
     assert "<strong>baptismo</strong>$ important-act" in result
@@ -391,7 +391,7 @@ def test_parse_act_header_string(monkeypatch):
     assert "\'/id/act-list-file\'\">act-list-file" in result
 
 
-def test_parse_act_body_strings(monkeypatch):
+def test_parse_act_body_strings(fake_timelink_app, monkeypatch):
     """Check if body parser is rendering HTML for jinja correctly."""
 
     ent_dict = {
@@ -414,7 +414,7 @@ def test_parse_act_body_strings(monkeypatch):
 
     monkeypatch.setattr("timelink.kleio.utilities.format_timelink_date", lambda d: "1685-08-27")
 
-    page = DisplayIDPage(None, None)
+    page = DisplayIDPage(fake_timelink_app)
     result = page._parse_act_body_strings(ent_dict)
 
     assert "parentesco" in result

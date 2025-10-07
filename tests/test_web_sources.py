@@ -11,23 +11,22 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 
 @pytest.mark.asyncio
-async def test_sources_page_init(fake_db, fake_kserver):
+async def test_sources_page_init(fake_timelink_app):
     """Test initialization of Sources page and imported files name resolution."""
 
     fake_file = SimpleNamespace(path="test.cli", name="test", errors=0, warnings=0, import_errors=0)
-    fake_db.get_import_status.return_value = [fake_file]
-    fake_kserver.kleio_home = "/tmp"
-    fake_scheduler = MagicMock()
+    fake_timelink_app.database.get_import_status.return_value = [fake_file]
+    fake_timelink_app.kleio_server.kleio_home = "/tmp"
 
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
 
     assert str((Path("/tmp") / "test.cli").resolve()) in page.imported_files_dict
-    assert page.database is fake_db
-    assert page.kserver is fake_kserver
+    assert page.database is fake_timelink_app.database
+    assert page.kserver is fake_timelink_app.kleio_server
 
 
 @pytest.mark.asyncio
-async def test_sources_refresh_imported_files(fake_db, fake_kserver):
+async def test_sources_refresh_imported_files(fake_timelink_app):
     """Test if refresh_imported_files appropriately associates import/translate warnings and errors with the correct dicionary."""
 
     fake_ok = SimpleNamespace(path="ok.cli", name="ok", errors=0, warnings=0, import_errors=0)
@@ -35,11 +34,10 @@ async def test_sources_refresh_imported_files(fake_db, fake_kserver):
     fake_warn = SimpleNamespace(path="warn.cli", name="warn", errors=0, warnings=2, import_errors=0)
     fake_import_err = SimpleNamespace(path="imp.cli", name="imp", errors=0, warnings=0, import_errors=3)
 
-    fake_db.get_import_status.return_value = [fake_ok, fake_error, fake_warn, fake_import_err]
-    fake_kserver.kleio_home = "/tmp"
-    fake_scheduler = MagicMock()
+    fake_timelink_app.database.get_import_status.return_value = [fake_ok, fake_error, fake_warn, fake_import_err]
+    fake_timelink_app.kleio_server.kleio_home = "/tmp"
 
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
 
     assert any("err.cli" in k for k in page.problem_files)
     assert any("warn.cli" in k for k in page.translate_warning_files)
@@ -47,18 +45,17 @@ async def test_sources_refresh_imported_files(fake_db, fake_kserver):
 
 
 @pytest.mark.asyncio
-async def test_sources_page_register(user, fake_db, fake_kserver):
+async def test_sources_page_register(user, fake_timelink_app):
     """Test that the /sources page is properly registered and can be opened."""
 
-    fake_db.get_import_status.return_value = []
-    fake_kserver.kleio_home = "/tmp"
-    fake_scheduler = MagicMock()
+    fake_timelink_app.database.get_import_status.return_value = []
+    fake_timelink_app.kleio_server.kleio_home = "/tmp"
 
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
 
     await user.open("/sources")
-    assert page.database is fake_db
-    assert page.kserver is fake_kserver
+    assert page.database is fake_timelink_app.database
+    assert page.kserver is fake_timelink_app.kleio_server
     await user.should_see('Help')
     await user.should_see('Importer Output')
     await user.should_see('Translation Output')
@@ -73,10 +70,10 @@ def make_file(path, name, errors=0, warnings=0, import_errors=0):
 
 
 @pytest.mark.asyncio
-async def test_filter_import_files_filters_correctly(fake_db, fake_kserver, tmp_path):
+async def test_filter_import_files_filters_correctly(fake_timelink_app, tmp_path):
     """Test that filter_import_files returns only files under current folder and groups errors correctly."""
 
-    fake_kserver.kleio_home = str(tmp_path)
+    fake_timelink_app.kleio_server.kleio_home = str(tmp_path)
 
     # Create test files
     ok_file = make_file("sub/ok.cli", "ok")
@@ -84,11 +81,10 @@ async def test_filter_import_files_filters_correctly(fake_db, fake_kserver, tmp_
     warn_file = make_file("sub/warn.cli", "warn", warnings=2)
     imp_file = make_file("sub/imp.cli", "imp", import_errors=3)
     outside_file = make_file("other/out.cli", "out", errors=1)
-    fake_scheduler = MagicMock()
 
-    fake_db.get_import_status.return_value = [ok_file, err_file, warn_file, imp_file, outside_file]
+    fake_timelink_app.database.get_import_status.return_value = [ok_file, err_file, warn_file, imp_file, outside_file]
 
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
 
     # Filter inside "sub"
     filtered, problems, warnings, import_errors, errors = page.filter_import_files("sub")
@@ -110,12 +106,11 @@ async def test_filter_import_files_filters_correctly(fake_db, fake_kserver, tmp_
 
 
 @pytest.mark.asyncio
-async def test_render_file_tree_renders_files(user, fake_db, fake_kserver, tmp_path, monkeypatch):
+async def test_render_file_tree_renders_files(user, fake_timelink_app, tmp_path, monkeypatch):
     """Test that render_file_tree displays folders and files with correct styling and callbacks."""
 
-    fake_kserver.kleio_home = str(tmp_path)
-    fake_scheduler = MagicMock()
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    fake_timelink_app.kleio_server.kleio_home = str(tmp_path)
+    page = Sources(fake_timelink_app)
 
     await user.open("/sources")
 
@@ -148,11 +143,10 @@ async def test_render_file_tree_renders_files(user, fake_db, fake_kserver, tmp_p
 
 
 @pytest.mark.asyncio
-async def test_display_update_column_counts(user, fake_db, fake_kserver, tmp_path, monkeypatch):
+async def test_display_update_column_counts(user, fake_timelink_app, tmp_path, monkeypatch):
     """Test that _display_column_update displays the correct information."""
 
-    fake_scheduler = MagicMock()
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
 
     # Prepare fake files
     file1 = MagicMock(errors=2, warnings=0, import_errors=0, status=MagicMock(name='T'), import_status=MagicMock(name='N'))
@@ -211,7 +205,7 @@ async def test_display_update_column_counts(user, fake_db, fake_kserver, tmp_pat
 
 
 @pytest.mark.asyncio
-async def test_render_directory_viewer(user, fake_db, fake_kserver, monkeypatch):
+async def test_render_directory_viewer(user, fake_timelink_app, monkeypatch):
     """Test that directory viewer renders grids and CLI buttons correctly."""
     captured = {}
 
@@ -227,10 +221,9 @@ async def test_render_directory_viewer(user, fake_db, fake_kserver, monkeypatch)
 
     monkeypatch.setattr("timelink.web.pages.sources_page.ui.aggrid", fake_aggrid)
     monkeypatch.setattr("timelink.web.pages.sources_page.Sources.update_grid", lambda self: None)
-    fake_scheduler = MagicMock()
 
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
-    await page._render_directory_viewer()
+    Sources(fake_timelink_app)
+    await user.open("/sources")
 
     # check folder grid
     folder_opts = captured.get("folder_grid")
@@ -260,7 +253,7 @@ class DummyFile:
 
 
 @pytest.mark.parametrize("cli_mode", [False, True])
-def test_update_grid(monkeypatch, tmp_path, cli_mode):
+def test_update_grid(tmp_path, cli_mode):
 
     # setup fake folder
     tmp_file = tmp_path / "file.cli"
@@ -307,7 +300,7 @@ def test_update_grid(monkeypatch, tmp_path, cli_mode):
         assert row["folder_name"].startswith("📁")
 
 
-def test_handle_home_click(monkeypatch, tmp_path):
+def test_handle_home_click(tmp_path):
     page = SimpleNamespace(
         path=None,
         refresh_path=MagicMock(),
@@ -321,7 +314,7 @@ def test_handle_home_click(monkeypatch, tmp_path):
     page.update_grid.assert_called_once()
 
 
-def test_handle_cell_click(monkeypatch, tmp_path):
+def test_handle_cell_click(tmp_path):
     subfolder = tmp_path / "subfolder"
     subfolder.mkdir()
 
@@ -340,7 +333,7 @@ def test_handle_cell_click(monkeypatch, tmp_path):
 
 
 @pytest.mark.parametrize("translate, import_", [(True, False), (False, True), (True, True), (False, False)])
-def test_handle_cell_value_changed(monkeypatch, translate, import_):
+def test_handle_cell_value_changed(translate, import_):
     page = SimpleNamespace(
         track_files_to_translate=set(),
         track_files_to_import=set(),
@@ -422,12 +415,10 @@ async def test_process_files(monkeypatch, tmp_path, checkbox_type, expected_queu
 
 
 @pytest.mark.asyncio
-async def test_run_import_background(fake_db, fake_kserver, monkeypatch):
+async def test_run_import_background(fake_timelink_app, monkeypatch):
     from timelink.web.pages.sources_page import Sources
 
-    # Create a real Sources instance
-    fake_scheduler = MagicMock()
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
 
     # Setup attributes for the test
     dummy_file = MagicMock()
@@ -448,10 +439,9 @@ async def test_run_import_background(fake_db, fake_kserver, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_get_report(fake_db, fake_kserver, monkeypatch):
+async def test_get_report(fake_timelink_app, monkeypatch):
 
-    fake_scheduler = MagicMock()
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
     page.switch_tabs = AsyncMock()
     page.import_output_tab = "import_tab_mock"
     page.trans_output_tab = "trans_tab_mock"
@@ -480,10 +470,9 @@ async def test_get_report(fake_db, fake_kserver, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_show_report_from_update_column(fake_db, fake_kserver, tmp_path):
+async def test_show_report_from_update_column(fake_timelink_app, tmp_path):
 
-    fake_scheduler = MagicMock()
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
     page.switch_tabs = AsyncMock()
     page.trans_output_tab = "trans_tab_mock"
     page.import_output_tab = "import_tab_mock"
@@ -502,11 +491,9 @@ async def test_show_report_from_update_column(fake_db, fake_kserver, tmp_path):
 
 
 @pytest.mark.asyncio
-async def test_switch_tabs(fake_db, fake_kserver, tmp_path):
+async def test_switch_tabs(fake_timelink_app, tmp_path):
 
-    fake_scheduler = MagicMock()
-
-    page = Sources(fake_db, fake_kserver, fake_scheduler)
+    page = Sources(fake_timelink_app)
     page.tabs = MagicMock()
     page.translate_file_displayer = MagicMock()
     page.import_file_displayer = MagicMock()

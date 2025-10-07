@@ -8,10 +8,10 @@ import asyncio
 class Sources:
 
     """Page for sources viewing. """
-    def __init__(self, database, kserver, scheduler) -> None:
-        self.database = database
-        self.kserver = kserver
-        self.scheduler = scheduler
+    def __init__(self, timelink_app) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
+        self.scheduler = timelink_app.job_scheduler
         self.track_files_to_import = set()
         self.track_files_to_translate = set()
         self.imported_files_dict = {}

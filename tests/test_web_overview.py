@@ -7,20 +7,20 @@ from unittest.mock import MagicMock
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 
-def test_overview_init(fake_db, fake_kserver):
+def test_overview_init(fake_timelink_app):
     """Test if Overview page stores database and kserver references correctly."""
 
-    page = Overview(fake_db, fake_kserver)
+    page = Overview(fake_timelink_app)
 
-    assert page.database is fake_db
-    assert page.kserver is fake_kserver
+    assert page.database is fake_timelink_app.database
+    assert page.kserver is fake_timelink_app.kleio_server
 
 
 @pytest.mark.asyncio
-async def test_overview_main_view(user: User, fake_db, fake_kserver) -> None:
+async def test_overview_main_view(user: User, fake_timelink_app) -> None:
     """Check for elements within the page that are always present independent of database state."""
 
-    Overview(database=fake_db, kserver=fake_kserver)
+    Overview(fake_timelink_app)
 
     await user.open("/overview")
     await user.should_see('Database Overview')
@@ -32,7 +32,7 @@ async def test_overview_main_view(user: User, fake_db, fake_kserver) -> None:
 
 
 @pytest.mark.asyncio
-async def test_display_entity_count_success(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_entity_count_success(user, fake_timelink_app, monkeypatch):
     """Test if entities are being correctly counted."""
 
     df = pd.DataFrame({
@@ -51,7 +51,7 @@ async def test_display_entity_count_success(user, fake_db, fake_kserver, monkeyp
 
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
-    Overview(database=fake_db, kserver=fake_kserver)
+    Overview(fake_timelink_app)
 
     # Visible to user
     await user.open("/overview")
@@ -68,7 +68,7 @@ async def test_display_entity_count_success(user, fake_db, fake_kserver, monkeyp
 
 
 @pytest.mark.asyncio
-async def test_display_entity_count_failure(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_entity_count_failure(user, fake_timelink_app, monkeypatch):
     """Throw an error in display_entity_count to check for correct error output."""
 
     # force an exception
@@ -80,7 +80,7 @@ async def test_display_entity_count_failure(user, fake_db, fake_kserver, monkeyp
         bad_get_table
     )
 
-    page = Overview(database=fake_db, kserver=fake_kserver)
+    page = Overview(fake_timelink_app)
     page._display_entity_count()
 
     # User should see error message
@@ -89,7 +89,7 @@ async def test_display_entity_count_failure(user, fake_db, fake_kserver, monkeyp
 
 
 @pytest.mark.asyncio
-async def test_display_sources_count_success(user: User, fake_db, fake_kserver, monkeypatch):
+async def test_display_sources_count_success(user: User, fake_timelink_app, monkeypatch):
     """Check that _display_sources_count renders a table correctly."""
 
     # fake sources DataFrame
@@ -121,7 +121,7 @@ async def test_display_sources_count_success(user: User, fake_db, fake_kserver, 
 
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
-    page = Overview(database=fake_db, kserver=fake_kserver)
+    page = Overview(fake_timelink_app)
     page._display_sources_count()
 
     # check that rowData matches the DataFrame
@@ -132,7 +132,7 @@ async def test_display_sources_count_success(user: User, fake_db, fake_kserver, 
 
 
 @pytest.mark.asyncio
-async def test_display_sources_count_failure(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_sources_count_failure(user, fake_timelink_app, monkeypatch):
     """Check that _display_sources_count shows an error if the function fails."""
 
     # force an exception
@@ -144,7 +144,7 @@ async def test_display_sources_count_failure(user, fake_db, fake_kserver, monkey
         bad_get_sources
     )
 
-    page = Overview(database=fake_db, kserver=fake_kserver)
+    page = Overview(fake_timelink_app)
     page._display_sources_count()
 
     # User should see error message
@@ -154,7 +154,7 @@ async def test_display_sources_count_failure(user, fake_db, fake_kserver, monkey
 
 
 @pytest.mark.asyncio
-async def test_display_recent_views_success(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_recent_views_success(user, fake_timelink_app, monkeypatch):
     """Check that _display_recent_views renders a table correctly."""
 
     df = pd.DataFrame([
@@ -187,7 +187,7 @@ async def test_display_recent_views_success(user, fake_db, fake_kserver, monkeyp
 
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
-    Overview(database=fake_db, kserver=fake_kserver)
+    Overview(fake_timelink_app)
     await user.open("/overview")
 
     # Get the grid that is rendered when the tab is clicked.
@@ -205,7 +205,7 @@ async def test_display_recent_views_success(user, fake_db, fake_kserver, monkeyp
 
 
 @pytest.mark.asyncio
-async def test_display_important_entities_success(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_important_entities_success(user, fake_timelink_app, monkeypatch):
     """Check that _display_important_entities renders a table correctly."""
 
     df = pd.DataFrame([
@@ -245,7 +245,7 @@ async def test_display_important_entities_success(user, fake_db, fake_kserver, m
 
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
-    Overview(database=fake_db, kserver=fake_kserver)
+    Overview(fake_timelink_app)
     await user.open("/overview")
 
     # Only consider the last aggrid call
@@ -264,7 +264,7 @@ async def test_display_important_entities_success(user, fake_db, fake_kserver, m
 
 
 @pytest.mark.asyncio
-async def test_display_recent_searches_success(user, fake_db, fake_kserver, monkeypatch):
+async def test_display_recent_searches_success(user, fake_timelink_app, monkeypatch):
     """Check that _display_recent_searches renders a table correctly."""
 
     df = pd.DataFrame([
@@ -291,7 +291,7 @@ async def test_display_recent_searches_success(user, fake_db, fake_kserver, monk
 
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
-    Overview(database=fake_db, kserver=fake_kserver)
+    Overview(fake_timelink_app)
     await user.open("/overview")
 
     # Click "Recent Searches" tab to render
@@ -309,7 +309,7 @@ async def test_display_recent_searches_success(user, fake_db, fake_kserver, monk
 
 
 @pytest.mark.asyncio
-async def test_handle_search_results_click(monkeypatch):
+async def test_handle_search_results_click(fake_timelink_app, monkeypatch):
     """Test navigation based on activity_type in _handle_search_results_click."""
 
     # Mock ui.navigate.to
@@ -320,7 +320,7 @@ async def test_handle_search_results_click(monkeypatch):
         tab = {}
     monkeypatch.setattr("timelink.web.pages.overview_page.app", AppStorage())
 
-    page = Overview(database=None, kserver=None)
+    page = Overview(fake_timelink_app)
 
     events = [
         {
@@ -388,7 +388,7 @@ async def test_handle_search_results_click(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_redo_sql_query(monkeypatch):
+async def test_redo_sql_query(fake_timelink_app, monkeypatch):
     """Test that _redo_sql_query stores values and navigates correctly."""
 
     navigated_to = {}
@@ -402,7 +402,7 @@ async def test_redo_sql_query(monkeypatch):
 
     monkeypatch.setattr("timelink.web.pages.overview_page.app", FakeApp())
 
-    page = Overview(database=None, kserver=None)
+    page = Overview(fake_timelink_app)
     page._redo_sql_query("SELECT 1", "entities")
 
     assert FakeApp.storage.tab["sql_table"] == "entities"
