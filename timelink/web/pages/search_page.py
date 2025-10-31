@@ -12,7 +12,6 @@ class Search:
     def __init__(self, timelink_app) -> None:
         self.database = timelink_app.database
         self.kserver = timelink_app.kleio_server
-        self.solr_manager = timelink_app.solr_manager
 
         @ui.page('/search')
         async def register():
@@ -54,7 +53,7 @@ class Search:
             def preview_table_display(table_name: str) -> None:
                 """Refreshable table preview on the Search page"""
 
-                if not table_name:
+                if not table_name or table_name in ["users", "projects", "user_project_access", "user_projects"]:
                     return
 
                 self.sql_input.value = f"SELECT * FROM {table_name} LIMIT 50"
@@ -78,11 +77,16 @@ class Search:
             with ui.row().classes("items-center w-full"):
                 with ui.card().classes("items-center bg-[#5898d4]"):
                     ui.label("Table Selection").classes("font-bold text-white")
+                    internal_tables = {"users", "projects", "user_project_access", "user_properties"}
 
                     self.table_select = ui.select(
-                        options=self.database.db_table_names(),
+                        options=[t for t in self.database.db_table_names() if t not in internal_tables],
                         on_change=lambda e: preview_table_display.refresh(e.value)
-                    ).props('dense outlined input-class="pl-3"').classes('w-[160px] bg-blue-50 rounded border border-blue-300')
+                    ).props(
+                        'dense outlined input-class="pl-3"'
+                    ).classes(
+                        'w-[160px] ml-100 bg-blue-50 rounded border border-blue-300'
+                    )
 
                 with ui.column().classes("items-center"):
                     self.sql_input = ui.textarea(
@@ -103,7 +107,7 @@ class Search:
             self.freeform_text_input = ui.textarea(
                 placeholder='Type your search here!',
             ).props(
-                'dense outlined input-class="pl-2 pt-2"'
+                'dense outlined input-class="pt-2"'
             ).classes("w-[60vh] ml-3 bg-gray-50 border border-gray-300 rounded resize-none")
             ui.button('Execute').on('click', lambda: self._handle_freeform_search()).classes("ml-3")
 
@@ -221,17 +225,7 @@ class Search:
     async def _handle_freeform_search(self):
         """Processes the keyword search results."""
         if self.freeform_text_input.value:
-            ui.notify(f"Searching for this: {self.freeform_text_input.value}")
-            results = self.solr_manager.solr_client.search(q=f"content:{self.freeform_text_input.value}")
-
-            print(f"Found {len(results)} document(s).")
-            print("-" * 20)
-
-            for result in results:
-                print(f"ID: {result.get('id')}")
-                print(f"Title: {result.get('title')}")
-                print(f"Content: {result.get('content')[:70]}...")
-                print("-" * 20)
+            ui.navigate.to(f'/freeform_search?query={self.freeform_text_input.value}')
         else:
             ui.notify("You need to input something before searching.")
 

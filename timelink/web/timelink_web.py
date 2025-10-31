@@ -3,13 +3,16 @@ from timelink.web import timelink_web_utils
 import sys
 from pathlib import Path
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from starlette_admin.contrib.sqla import Admin, ModelView
+
 
 # --- Pages ---
 from timelink.web.pages import (homepage, status_page, explore_page,
                                 display_id_page, tables_page, overview_page,
                                 people_page, families_page, calendar_page,
-                                linking_page, sources_page, search_page, admin_page)
-
+                                linking_page, sources_page, search_page)
+from timelink.web.models.project import Project, ProjectAccess
+from timelink.web.models.user import User, UserProperty
 
 port = 8000
 kserver = None
@@ -54,7 +57,13 @@ async def initial_setup():
 
     search_page.Search(timelink_app=timelink_app_settings)
 
-    admin_page.Admin(timelink_app=timelink_app_settings)
+    # Starlette Admin setup
+    admin_app = Admin(engine=timelink_app_settings.database.engine)
+    admin_app.add_view(ModelView(User))
+    admin_app.add_view(ModelView(UserProperty))
+    admin_app.add_view(ModelView(Project))
+    admin_app.add_view(ModelView(ProjectAccess))
+    admin_app.mount_to(app)
 
     timelink_app_settings.job_scheduler.start()
 

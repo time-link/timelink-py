@@ -2,19 +2,24 @@ from timelink.web import timelink_web
 
 import sys
 import pytest
-from unittest.mock import AsyncMock, MagicMock, ANY
+from unittest.mock import AsyncMock, MagicMock
+from types import SimpleNamespace
 
 
 @pytest.mark.asyncio
 async def test_initial_setup(monkeypatch):
 
-    fake_kserver = MagicMock()
-    fake_db = MagicMock()
-    fake_solr_client = MagicMock()
+    fake_database = MagicMock()
+    fake_job_scheduler = MagicMock()
+    fake_settings = SimpleNamespace(
+        database=fake_database,
+        job_scheduler=fake_job_scheduler
+    )
+
     monkeypatch.setattr(
         timelink_web.timelink_web_utils,
         "run_setup",
-        AsyncMock(return_value=(fake_kserver, fake_db, fake_solr_client))
+        AsyncMock(return_value=fake_settings)
     )
 
     page_mocks = [
@@ -29,8 +34,7 @@ async def test_initial_setup(monkeypatch):
         "calendar_page.CalendarPage",
         "linking_page.Linking",
         "sources_page.Sources",
-        "search_page.Search",
-        "admin_page.Admin"
+        "search_page.Search"
     ]
 
     for path in page_mocks:
@@ -42,9 +46,11 @@ async def test_initial_setup(monkeypatch):
         # Patch the class to return the mock instance when called
         monkeypatch.setattr(module, class_name, MagicMock(return_value=mock_instance))
 
+    mock_admin_instance = MagicMock()
+    monkeypatch.setattr(timelink_web, "Admin", MagicMock(return_value=mock_admin_instance))
+    monkeypatch.setattr(timelink_web, "ModelView", MagicMock())
+
     await timelink_web.initial_setup()
-    assert timelink_web.kserver is fake_kserver
-    assert timelink_web.database is fake_db
 
     # Check that page classes were instantiated and register() was called for relevant pages
     for path in page_mocks:
@@ -54,22 +60,30 @@ async def test_initial_setup(monkeypatch):
         if class_name == "StatusPage":
             cls.assert_called_once()
             _, kwargs = cls.call_args
-            assert kwargs["database"] is fake_db
-            assert kwargs["kserver"] is fake_kserver
+            assert kwargs["timelink_app"] is fake_settings
             assert "sources" in kwargs
 
         elif class_name == "Sources":
-            cls.assert_called_once_with(database=fake_db, kserver=fake_kserver, scheduler=ANY)
+            cls.assert_called_once_with(timelink_app=fake_settings)
 
         elif class_name == "Search":
-            cls.assert_called_once_with(database=fake_db, kserver=fake_kserver, solr_manager=fake_solr_client)
+            cls.assert_called_once_with(timelink_app=fake_settings)
 
         else:
-            cls.assert_called_once_with(database=fake_db, kserver=fake_kserver)
+            cls.assert_called_once_with(timelink_app=fake_settings)
 
         # Check if register() was called for relevant pages
         if class_name in ["DisplayIDPage", "TablesPage"]:
             cls.return_value.register.assert_called_once()
+
+        # Check Admin setup called correctly
+        timelink_web.Admin.assert_called_once_with(engine=fake_database.engine)
+        timelink_web.ModelView.assert_any_call(timelink_web.User)
+        timelink_web.ModelView.assert_any_call(timelink_web.UserProperty)
+        timelink_web.ModelView.assert_any_call(timelink_web.Project)
+        timelink_web.ModelView.assert_any_call(timelink_web.ProjectAccess)
+        mock_admin_instance.mount_to.assert_called_once()
+        fake_job_scheduler.start.assert_called_once()
 
 
 def test_port_argument(monkeypatch):

@@ -284,6 +284,8 @@ class Overview:
             ui.navigate.to(f'/search_names?names={entity_id}&from_={from_date}&to_={to_date}')
         elif activity_type == "Name search (exact)":
             ui.navigate.to(f'/search_names?names={entity_id}&from_={from_date}&to_={to_date}&exact=1')
+        elif activity_type == "Free search":
+            ui.navigate.to(f'/freeform_search?query={entity_id}')
 
     def _redo_sql_query(self, sql_query: str, sql_table: str):
         """Helper function to store sql search found in table and send it safely to the page responsible for displaying it.

@@ -4,10 +4,15 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 import docker
+from datetime import datetime
 
 import timelink
 from timelink.api.database import TimelinkDatabase, get_postgres_dbnames, get_sqlite_databases
-from timelink.web.models import Activity, ActivityBase
+from timelink.web.models.activity import Activity, ActivityBase
+from timelink.web.models.project import Project, ProjectAccess
+from timelink.web.models.user import UserBase
+from timelink.api.models import Entity
+from timelink.api.schemas import EntityAttrRelSchema
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from timelink.kleio.kleio_server import KleioServer
 from timelink.web.backend.solr_wrapper import SolrWrapper
@@ -92,41 +97,35 @@ class TimelinkWebApp:
         self.job_scheduler.add_job(self.init_index_job_scheduler, name="Index Documents to Solr", trigger="interval", minutes=1)
 
     async def init_index_job_scheduler(self):
-        """Initiate the job to index new documents to the Apache Solr database - NOT WORKING AT THE MOMENT """
+        """Initiate the job to index new documents to the Apache Solr database"""
 
-        print("This will eventually index 10 documents into Solr.")
+        print("Initiating Solr indexing job...")
 
-        """
         ignore_classes = ['class', 'rentity', 'source']
-        solr_client.delete(q='*:*', commit=True)
 
-        with database.session() as session:
+        with self.database.session() as session:
             entities = session.query(Entity).filter(
-            Entity.indexed.is_(None)
+                Entity.indexed.is_(None)
             ).filter(~Entity.pom_class.in_(ignore_classes)).limit(10).all()
 
             if not entities:
+                print("No entities need to be indexed.")
                 return
 
-            # solr_doc_list = []
+            solr_doc_list = []
             for entity in entities:
                 mr_schema = EntityAttrRelSchema.model_validate(entity)
-                mr_schema_dump = mr_schema.model_dump(exclude=["contains", "extra_info"])
-                flattened_schema = flatten_dictionary(json.loads(json.dumps(mr_schema_dump, default=json_serial)))
-                # print(flattened_schema)
-                solr_client.add([flattened_schema], commit=True)
-                # solr_doc_list.append(json.loads(json.dumps(mr_schema_dump, default=json_serial)))
-                break
+                mr_schema_dump = mr_schema.model_dump()
+                solr_doc_list.append(self.solr_manager.entity_to_solr_doc(mr_schema_dump))
 
-            solr_client.add(solr_doc_list, commit=True)
+            self.solr_manager.solr_client.add(solr_doc_list, commit=True)
 
             now = datetime.now()
             for entity in entities:
+                print(f"Entity {entity.id} indexed at date {now}.")
                 entity.indexed = now
 
             session.commit()
-        print("Yes!")
-        """
 
     def job_scheduler_listener(self, event):
         """Listens to events coming from the scheduler to monitor the execution of scheduled jobs."""
@@ -178,12 +177,18 @@ class TimelinkWebApp:
 
             db = TimelinkDatabase(db_type='postgres', db_name='timelink-web')
 
-        # Check if activity table exists here, and if not, create it for logging purposes
+        # Check if tables exist here.
         tables = db.db_table_names()
 
         if "activity" not in tables:
-            print("No Activity table found in the database - creating one.")
+            print("No Activity table found in the database - creating...")
             ActivityBase.metadata.create_all(bind=db.engine, tables=[Activity.__table__])
+            print("Done!")
+
+        if "users" not in tables:
+            print("Creating user/project tables...")
+            UserBase.metadata.create_all(bind=db.engine)
+            print("Done!")
 
         db.set_kleio_server(self.kleio_server)
         return db

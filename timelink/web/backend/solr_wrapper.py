@@ -94,3 +94,61 @@ class SolrWrapper:
 
         if resp.get('status') == 'OK':
             print('Solr OK!')
+
+    def entity_to_solr_doc(self, entity_data: dict) -> dict:
+        """
+        Transforms a complex entity dictionary into a Solr document with a searchable text field.
+        """
+
+        # Keys with searchable values
+        SEARCHABLE_VALUE_KEYS = [
+            'inside', 'the_source', 'the_value', 'obs',
+            'org_name', 'dest_name', 'the_type'
+        ]
+
+        # Keys with nested values
+        NESTED_CONTAINER_KEYS = [
+            'rels_in', 'rels_out', 'contains', 'attributes', 'links', 'extra_info'
+        ]
+
+        searchable_text_parts = set()
+
+        def extract_searchable_values(data):
+            if isinstance(data, dict):
+                for key, value in data.items():
+                    if key in SEARCHABLE_VALUE_KEYS and isinstance(value, str) and value:
+                        searchable_text_parts.add(value)
+                    elif key in NESTED_CONTAINER_KEYS:
+                        extract_searchable_values(value)
+
+            elif isinstance(data, list):
+                for item in data:
+                    extract_searchable_values(item)
+
+        solr_doc = {
+            'id': entity_data['id'],
+            'pom_class': entity_data['pom_class'],
+            'groupname': entity_data['groupname'],
+            'inside': entity_data['inside'],
+            'the_order': entity_data['the_order'],
+            'the_level': entity_data['the_level'],
+            'updated': entity_data['updated'].isoformat() if entity_data.get('updated') else None,
+            'the_source': entity_data.get('the_source'),
+        }
+
+        # Start the extraction process from the root entity data
+        extract_searchable_values(entity_data)
+
+        # Include top-level strings already extracted
+        searchable_text_parts.add(entity_data['id'])
+        searchable_text_parts.add(entity_data['pom_class'])
+        searchable_text_parts.add(entity_data['groupname'])
+        searchable_text_parts.add(entity_data.get('inside', ''))
+        searchable_text_parts.add(entity_data.get('the_source', ''))
+
+        # Construct Full Text field
+        clean_parts = [part for part in searchable_text_parts if part and not part.isspace()]
+        solr_doc['searchable_field_t'] = ' '.join(clean_parts)
+
+        # Final cleanup
+        return {k: v for k, v in solr_doc.items() if v is not None}

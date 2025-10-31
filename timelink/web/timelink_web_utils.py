@@ -38,6 +38,7 @@ async def run_setup(home_path: Path, job_scheduler: AsyncIOScheduler, database_t
     """ Load configuration environment variables, connect to kleio server and make the database."""
 
     solr_manager = run_solr_client_setup()
+
     timelink_web_app_settings = TimelinkWebApp(
         home_url=home_path,
         users_db_type=database_type,
@@ -280,7 +281,7 @@ def get_recent_history(database: TimelinkDatabase, searched_only: bool = False):
 
     """
 
-    search_types = ["searched", "SQL search", "Name search", "Name search (exact)"]
+    search_types = ["searched", "SQL search", "Name search", "Name search (exact)", "Free search"]
 
     if searched_only:
         condition = Activity.activity_type.in_(search_types)

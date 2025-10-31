@@ -15,6 +15,7 @@ class TablesPage:
 
     """Pages to display tables"""
     def __init__(self, timelink_app) -> None:
+        self.solr_manager = timelink_app.solr_manager
         self.database = timelink_app.database
         self.kserver = timelink_app.kleio_server
         self.show_desc = False
@@ -101,6 +102,12 @@ class TablesPage:
                     ui.label(
                         'Could not load SQL query results - did you try to directly access this link through the browser?'
                     ).classes('text-xl text-red-500 font-semibold ml-1')
+
+        @ui.page('/freeform_search')
+        async def freeform_search_page(query: str):
+            with navbar.header():
+                ui.page_title("Freeform Search Results")
+                await self._freeform_search_results(query)
 
     def _display_names(self, name_to_query: str):
         """
@@ -944,6 +951,66 @@ class TablesPage:
                 ).classes('h-[70vh]')
 
                 grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None)
+
+    async def _freeform_search_results(self, freeform_search):
+        """ Display documents indexed in a Solr core with the chosen terms.
+
+            Args:
+
+                freeform_search : freeform search query.
+
+        """
+
+        ui.add_body_html('''<style>
+                .highlight-cell { text-decoration: underline dotted; }
+                .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
+                </style>''')
+
+        results = self.solr_manager.solr_client.search(q=f"searchable_field_t:*{freeform_search}*")
+
+        result_list = []
+
+        for result in results:
+            result_list.append({
+                "entity": result.get("id"),
+                "class": result.get("pom_class", ""),
+                "searched": result.get("searchable_field_t", ""),
+            })
+
+        if results:
+
+            with self.database.session() as session:
+                session.add(Activity(
+                    entity_id=freeform_search,
+                    entity_type="Persons",
+                    activity_type="Free search",
+                    desc=f'Found {len(result_list)} results.'
+                ))
+                session.commit()
+
+            results_df = pd.DataFrame(result_list, columns=["entity", "class", "searched"])
+
+            expected_cols = [
+                {'headerName': 'ID', 'field': 'entity', 'cellClass': 'highlight-cell'},
+                {'headerName': 'Entity Class', 'field': 'class'},
+                {'headerName': 'Search Terms', 'field': 'searched'},
+            ]
+
+            grid = ui.aggrid(
+                {
+                    'columnDefs': expected_cols,
+                    'rowData': results_df.to_dict("records"),
+                    "pagination": True,
+                    "paginationPageSize": 50,
+                    "paginationPageSizeSelector": [50, 100, 200],
+                }
+            ).classes('h-[70vh]')
+
+            grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['entity']}")
+                    if e.args["colId"] == "entity" else None)
+
+        else:
+            ui.label('No results found.').classes('text-grey-500 font-semibold ml-1')
 
     async def _name_search_database(self, names, from_date, to_date, exact):
         """ Search persons table for specific people.
