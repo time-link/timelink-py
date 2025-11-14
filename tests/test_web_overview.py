@@ -17,7 +17,7 @@ def test_overview_init(fake_timelink_app):
 
 
 @pytest.mark.asyncio
-async def test_overview_main_view(user: User, fake_timelink_app) -> None:
+async def test_overview_main_view(user: User, fake_timelink_app, fake_user) -> None:
     """Check for elements within the page that are always present independent of database state."""
 
     Overview(fake_timelink_app)
@@ -32,7 +32,7 @@ async def test_overview_main_view(user: User, fake_timelink_app) -> None:
 
 
 @pytest.mark.asyncio
-async def test_display_entity_count_success(user, fake_timelink_app, monkeypatch):
+async def test_display_entity_count_success(user, fake_timelink_app, monkeypatch, fake_user):
     """Test if entities are being correctly counted."""
 
     df = pd.DataFrame({
@@ -68,7 +68,7 @@ async def test_display_entity_count_success(user, fake_timelink_app, monkeypatch
 
 
 @pytest.mark.asyncio
-async def test_display_entity_count_failure(user, fake_timelink_app, monkeypatch):
+async def test_display_entity_count_failure(user, fake_timelink_app, monkeypatch, fake_user):
     """Throw an error in display_entity_count to check for correct error output."""
 
     # force an exception
@@ -89,7 +89,7 @@ async def test_display_entity_count_failure(user, fake_timelink_app, monkeypatch
 
 
 @pytest.mark.asyncio
-async def test_display_sources_count_success(user: User, fake_timelink_app, monkeypatch):
+async def test_display_sources_count_success(user: User, fake_timelink_app, monkeypatch, fake_user):
     """Check that _display_sources_count renders a table correctly."""
 
     # fake sources DataFrame
@@ -132,7 +132,7 @@ async def test_display_sources_count_success(user: User, fake_timelink_app, monk
 
 
 @pytest.mark.asyncio
-async def test_display_sources_count_failure(user, fake_timelink_app, monkeypatch):
+async def test_display_sources_count_failure(user, fake_timelink_app, monkeypatch, fake_user):
     """Check that _display_sources_count shows an error if the function fails."""
 
     # force an exception
@@ -154,7 +154,7 @@ async def test_display_sources_count_failure(user, fake_timelink_app, monkeypatc
 
 
 @pytest.mark.asyncio
-async def test_display_recent_views_success(user, fake_timelink_app, monkeypatch):
+async def test_display_recent_views_success(user, fake_timelink_app, monkeypatch, fake_user):
     """Check that _display_recent_views renders a table correctly."""
 
     df = pd.DataFrame([
@@ -205,7 +205,7 @@ async def test_display_recent_views_success(user, fake_timelink_app, monkeypatch
 
 
 @pytest.mark.asyncio
-async def test_display_important_entities_success(user, fake_timelink_app, monkeypatch):
+async def test_display_important_entities_success(user, fake_timelink_app, monkeypatch, fake_user):
     """Check that _display_important_entities renders a table correctly."""
 
     df = pd.DataFrame([
@@ -264,7 +264,7 @@ async def test_display_important_entities_success(user, fake_timelink_app, monke
 
 
 @pytest.mark.asyncio
-async def test_display_recent_searches_success(user, fake_timelink_app, monkeypatch):
+async def test_display_recent_searches_success(user, fake_timelink_app, monkeypatch, fake_user):
     """Check that _display_recent_searches renders a table correctly."""
 
     df = pd.DataFrame([
@@ -388,7 +388,7 @@ async def test_handle_search_results_click(fake_timelink_app, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_redo_sql_query(fake_timelink_app, monkeypatch):
+async def test_redo_sql_query(fake_timelink_app, monkeypatch, fake_user):
     """Test that _redo_sql_query stores values and navigates correctly."""
 
     navigated_to = {}

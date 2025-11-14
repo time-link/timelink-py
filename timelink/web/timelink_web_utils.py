@@ -1,4 +1,4 @@
-from nicegui import ui
+from nicegui import ui, app
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models import Entity
@@ -10,6 +10,15 @@ from pathlib import Path
 from sqlalchemy import select, func
 import pandas as pd
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from starlette_admin.contrib.sqla import Admin, ModelView
+from starlette_admin.views import Link
+
+from timelink.web.pages import (status_page, explore_page,
+                                display_id_page, tables_page, overview_page,
+                                people_page, families_page, calendar_page,
+                                linking_page, sources_page, search_page)
+from timelink.web.models.project import Project, ProjectAccess
+from timelink.web.models.user import User, UserProperty
 
 
 def run_imports_sync(db):
@@ -41,11 +50,52 @@ async def run_setup(home_path: Path, job_scheduler: AsyncIOScheduler, database_t
 
     timelink_web_app_settings = TimelinkWebApp(
         home_url=home_path,
-        users_db_type=database_type,
+        db_type=database_type,
         solr_manager=solr_manager,
         job_scheduler=job_scheduler)
 
     return timelink_web_app_settings
+
+
+def setup_pages_and_database(timelink_app_settings, project_list, active_project: Project = None):
+    """Register all pages on the website after the appropriate database is loaded"""
+
+    timelink_app_settings.load_config_for_project_list(project_list, active_project)
+
+    timelink_app_settings.projects_loaded = True
+
+    explore_page.ExplorePage(timelink_app=timelink_app_settings)
+
+    id_page = display_id_page.DisplayIDPage(timelink_app=timelink_app_settings)
+    id_page.register()
+
+    table_page = tables_page.TablesPage(timelink_app=timelink_app_settings)
+    table_page.register()
+
+    overview_page.Overview(timelink_app=timelink_app_settings)
+
+    people_page.PeopleGroupsNetworks(timelink_app=timelink_app_settings)
+
+    families_page.Families(timelink_app=timelink_app_settings)
+
+    calendar_page.CalendarPage(timelink_app=timelink_app_settings)
+
+    linking_page.Linking(timelink_app=timelink_app_settings)
+
+    source_page = sources_page.Sources(timelink_app=timelink_app_settings)
+
+    status_page.StatusPage(timelink_app=timelink_app_settings, sources=source_page)
+
+    search_page.Search(timelink_app=timelink_app_settings)
+
+    # Starlette Admin setup
+    admin_app = Admin(engine=timelink_app_settings.users_db.engine, title="Timelink Web Admin Panel")
+    admin_app.add_view(ModelView(User))
+    admin_app.add_view(ModelView(UserProperty, label="User Properties"))
+    admin_app.add_view(ModelView(Project))
+    admin_app.add_view(ModelView(ProjectAccess, label="Project Access"))
+    admin_app.add_view(Link(label="⬅️ Back to the App", url="/"))
+    admin_app.mount_to(app)
 
 
 def show_table(database: TimelinkDatabase):

@@ -6,6 +6,7 @@ from timelink.web import timelink_web_utils
 from timelink.web.pages import status_page
 import pandas as pd
 from sqlalchemy import column, table
+from timelink.web.timelink_web_utils import setup_pages_and_database
 
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
@@ -22,7 +23,7 @@ def test_run_imports_sync(capsys, fake_timelink_app):
 
 
 @pytest.mark.asyncio
-async def test_show_table(user: User, fake_timelink_app) -> None:
+async def test_show_table(user: User, fake_timelink_app, fake_user) -> None:
 
     fake_timelink_app.database.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
@@ -49,7 +50,7 @@ async def test_show_table(user: User, fake_timelink_app) -> None:
 
 
 @pytest.mark.asyncio
-async def test_show_kleio_info(user: User, fake_timelink_app) -> None:
+async def test_show_kleio_info(user: User, fake_timelink_app, fake_user) -> None:
 
     fake_timelink_app.kleio_server.url = "http://fake.kleio.server:8000"
     fake_timelink_app.kleio_server.kleio_home = "/fake/kleio/home"
@@ -408,3 +409,58 @@ def test_get_recent_history(fake_timelink_app, searched_only):
         assert df.shape[0] == 1
 
     assert isinstance(df.iloc[0]["when"], str)
+
+
+@pytest.mark.asyncio
+async def test_setup_pages_and_database(fake_timelink_app, monkeypatch):
+    # Add users_db mock
+    fake_timelink_app.users_db = MagicMock()
+    fake_timelink_app.users_db.engine = "fake_engine"
+
+    # Create some fake projects
+    fake_project1 = MagicMock()
+    fake_project1.name = "Project1"
+    fake_project2 = MagicMock()
+    fake_project2.name = "Project2"
+    project_list = [fake_project1, fake_project2]
+
+    # Patch the Admin class so we can track instantiation
+    admin_mock = MagicMock()
+    monkeypatch.setattr("timelink.web.timelink_web_utils.Admin", lambda **kwargs: admin_mock)
+
+    # Patch ModelView and Link
+    monkeypatch.setattr("timelink.web.timelink_web_utils.ModelView", lambda model, **kwargs: MagicMock())
+    monkeypatch.setattr("timelink.web.timelink_web_utils.Link", lambda **kwargs: MagicMock())
+
+    # Prepare page mocks
+    page_paths = [
+        "explore_page.ExplorePage",
+        "display_id_page.DisplayIDPage",
+        "tables_page.TablesPage",
+        "overview_page.Overview",
+        "people_page.PeopleGroupsNetworks",
+        "families_page.Families",
+        "calendar_page.CalendarPage",
+        "linking_page.Linking",
+        "sources_page.Sources",
+        "status_page.StatusPage",
+        "search_page.Search",
+    ]
+
+    page_mocks = {path: MagicMock() for path in page_paths}
+    for path, mock in page_mocks.items():
+        monkeypatch.setattr(f"timelink.web.pages.{path}", mock)
+
+    # Call function
+    setup_pages_and_database(fake_timelink_app, project_list, active_project=fake_project1)
+
+    # Assertions
+    assert fake_timelink_app.projects_loaded is True
+    fake_timelink_app.load_config_for_project_list.assert_called_with(project_list, fake_project1)
+
+    # Check that all pages were instantiated
+    for mock in page_mocks.values():
+        mock.assert_called()
+
+    # Check that admin app mounted
+    admin_mock.mount_to.assert_called()

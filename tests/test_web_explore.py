@@ -19,7 +19,7 @@ def test_explore_init(fake_timelink_app):
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view(user: User, fake_timelink_app) -> None:
+async def test_explore_main_view(user: User, fake_timelink_app, fake_user) -> None:
     """Check for elements within the page that are always present independent of database state."""
 
     ExplorePage(timelink_app=fake_timelink_app)
@@ -35,7 +35,7 @@ async def test_explore_main_view(user: User, fake_timelink_app) -> None:
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view_no_data(user: User, fake_timelink_app, monkeypatch) -> None:
+async def test_explore_main_view_no_data(user: User, fake_timelink_app, monkeypatch, fake_user) -> None:
     """Check if attributes, functions and relations display no data correctly if none is to be found in the database."""
 
     monkeypatch.setattr(timelink_web_utils, "load_data", lambda query, db: None)
@@ -48,7 +48,7 @@ async def test_explore_main_view_no_data(user: User, fake_timelink_app, monkeypa
 
 
 @pytest.mark.asyncio
-async def test_explore_main_view_with_data(user, fake_timelink_app, monkeypatch):
+async def test_explore_main_view_with_data(user, fake_timelink_app, monkeypatch, fake_user):
     """Check if attributes, functions, and relations display correctly when data is available."""
 
     attr_df = pd.DataFrame({
@@ -97,7 +97,7 @@ async def test_explore_main_view_with_data(user, fake_timelink_app, monkeypatch)
 
 
 @pytest.mark.asyncio
-async def test_explore_search_by_id(user, fake_timelink_app, monkeypatch):
+async def test_explore_search_by_id(user, fake_timelink_app, monkeypatch, fake_user):
     """Test Search by ID functionality"""
 
     mock_handler = MagicMock()
@@ -112,7 +112,7 @@ async def test_explore_search_by_id(user, fake_timelink_app, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_explore_advanced_search(user, fake_timelink_app, monkeypatch):
+async def test_explore_advanced_search(user, fake_timelink_app, monkeypatch, fake_user):
     """Test Search by ID functionality"""
 
     mock_handler = MagicMock()

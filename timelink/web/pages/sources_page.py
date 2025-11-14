@@ -28,7 +28,20 @@ class Sources:
 
         # Refresh imported files on load and once every five minutes automatically.
         self.refresh_imported_files()
-        self.scheduler.add_job(self.scheduled_refresh_imported_files, "interval", name="Refresh Source Files Dictionary", minutes=5)
+        self.scheduled_refresh_job_id = "scheduled_refresh"
+        self.job = self.scheduler.get_job(self.scheduled_refresh_job_id)
+
+        # Job already exists - recreate it
+        if self.job:
+            self.scheduler.remove_job(self.scheduled_refresh_job_id)
+
+        self.scheduler.add_job(
+            self.scheduled_refresh_imported_files,
+            trigger="interval",
+            id=self.scheduled_refresh_job_id,
+            name="Refresh Source Files Dictionary",
+            minutes=5
+        )
 
         @ui.page('/sources')
         async def register():
@@ -36,6 +49,8 @@ class Sources:
 
     async def scheduled_refresh_imported_files(self):
         """Job trigger to refresh imported files."""
+
+        print(f"Gonna refresh this from {self.database.db_url}.")
         self.refresh_imported_files()
 
     def refresh_imported_files(self):

@@ -21,6 +21,7 @@ class Project(UserBase):
     description: Mapped[Optional[str]] = mapped_column(String(4096))
     databaseURL: Mapped[Optional[str]] = mapped_column(String(256))
     kleioServerURL: Mapped[Optional[str]] = mapped_column(String(256))
+    solr_core_name: Mapped[Optional[str]] = mapped_column(String(128))
     created: Mapped[datetime] = mapped_column(DateTime, default=func.now())
     updated: Mapped[datetime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
 

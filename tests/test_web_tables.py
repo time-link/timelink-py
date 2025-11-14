@@ -37,7 +37,7 @@ def fake_db_with_persons():
 
 
 @pytest.mark.asyncio
-async def test_display_names_success(user: User, fake_timelink_app, fake_db_with_persons, monkeypatch):
+async def test_display_names_success(user: User, fake_timelink_app, fake_db_with_persons, monkeypatch, fake_user):
     """Check that _display_names renders a grid with expected columns and rows."""
 
     fake_timelink_app.database = fake_db_with_persons
@@ -95,7 +95,7 @@ async def test_display_names_success(user: User, fake_timelink_app, fake_db_with
         {"id": "test-sources-2"}
     ]
     ), ])
-async def test_display_tables(user: User, fake_timelink_app, monkeypatch, table_name, table_type, expected_return):
+async def test_display_tables(user: User, fake_timelink_app, monkeypatch, table_name, table_type, expected_return, fake_user):
 
     captured = {}
 
@@ -395,7 +395,9 @@ async def test_display_relations_view(
         ])
     ]
 )
-async def test_display_entity_with_attributes(user: User, fake_timelink_app, monkeypatch, attr_type, attr_value, expected_rows):
+async def test_display_entity_with_attributes(
+    user: User, fake_timelink_app, monkeypatch, attr_type, attr_value, expected_rows, fake_user
+):
 
     captured = {}
 
@@ -479,7 +481,7 @@ async def test_display_entity_with_attributes(user: User, fake_timelink_app, mon
         ])
     ]
 )
-async def test_display_functions_view(user: User, fake_timelink_app, monkeypatch, func_type, expected_rows):
+async def test_display_functions_view(user: User, fake_timelink_app, monkeypatch, func_type, expected_rows, fake_user):
     captured = {}
 
     def fake_aggrid(options):
@@ -540,7 +542,7 @@ async def test_display_functions_view(user: User, fake_timelink_app, monkeypatch
         ("hunan", [{"id": "test-geo-2", "name": "Huwan", "the_type": "provincia", "obs": None, "description": ""}])
     ]
 )
-async def test_display_geoentities(user: User, fake_timelink_app, monkeypatch, geoentity, expected_rows):
+async def test_display_geoentities(user: User, fake_timelink_app, monkeypatch, geoentity, expected_rows, fake_user):
     captured = {}
 
     def fake_aggrid(options):
@@ -608,7 +610,7 @@ async def test_display_geoentities(user: User, fake_timelink_app, monkeypatch, g
         ("test act", [{"id": "deh-test-id", "the_type": "testact", "the_date": "2025-01-01", "loc": "", "ref": None, "obs": None}]),
     ]
 )
-async def test_display_acts(user: User, fake_timelink_app, monkeypatch, act_type, expected_rows):
+async def test_display_acts(user: User, fake_timelink_app, monkeypatch, act_type, expected_rows, fake_user):
 
     captured = {}
 
@@ -709,7 +711,7 @@ def test_redirect_to_view(fake_timelink_app, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_search_database(user: User, fake_timelink_app, monkeypatch):
+async def test_search_database(user: User, fake_timelink_app, monkeypatch, fake_user):
 
     captured = {}
 

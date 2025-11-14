@@ -3,16 +3,12 @@ from timelink.web import timelink_web_utils
 import sys
 from pathlib import Path
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from starlette_admin.contrib.sqla import Admin, ModelView
+from fastapi.responses import RedirectResponse
+from starlette.middleware.base import BaseHTTPMiddleware
 
 
 # --- Pages ---
-from timelink.web.pages import (homepage, status_page, explore_page,
-                                display_id_page, tables_page, overview_page,
-                                people_page, families_page, calendar_page,
-                                linking_page, sources_page, search_page)
-from timelink.web.models.project import Project, ProjectAccess
-from timelink.web.models.user import User, UserProperty
+from timelink.web.pages import login, homepage, register_page
 
 port = 8000
 kserver = None
@@ -20,6 +16,21 @@ database = None
 project_path = Path.cwd()
 database_type = "sqlite"
 job_scheduler = AsyncIOScheduler()
+
+
+class AuthMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        if not app.storage.user.get('authenticated', False):
+            if request.url.path in {'/admin/'}:
+                if not app.storage.user.get("is_admin", False):
+                    return RedirectResponse("/")
+            if request.url.path not in {'/login', '/register'} and not request.url.path.startswith('/_nicegui'):
+                return RedirectResponse(f'/login?redirect_to={request.url.path}')
+        else:
+            if request.url.path.startswith('/admin'):
+                if not app.storage.user.get("is_admin", False):
+                    return RedirectResponse("/")
+        return await call_next(request)
 
 
 async def initial_setup():
@@ -31,40 +42,9 @@ async def initial_setup():
         database_type=database_type
     )
 
+    login.Login(timelink_app=timelink_app_settings)
     homepage.HomePage(timelink_app=timelink_app_settings)
-
-    explore_page.ExplorePage(timelink_app=timelink_app_settings)
-
-    id_page = display_id_page.DisplayIDPage(timelink_app=timelink_app_settings)
-    id_page.register()
-
-    table_page = tables_page.TablesPage(timelink_app=timelink_app_settings)
-    table_page.register()
-
-    overview_page.Overview(timelink_app=timelink_app_settings)
-
-    people_page.PeopleGroupsNetworks(timelink_app=timelink_app_settings)
-
-    families_page.Families(timelink_app=timelink_app_settings)
-
-    calendar_page.CalendarPage(timelink_app=timelink_app_settings)
-
-    linking_page.Linking(timelink_app=timelink_app_settings)
-
-    source_page = sources_page.Sources(timelink_app=timelink_app_settings)
-
-    status_page.StatusPage(timelink_app=timelink_app_settings, sources=source_page)
-
-    search_page.Search(timelink_app=timelink_app_settings)
-
-    # Starlette Admin setup
-    admin_app = Admin(engine=timelink_app_settings.database.engine)
-    admin_app.add_view(ModelView(User))
-    admin_app.add_view(ModelView(UserProperty))
-    admin_app.add_view(ModelView(Project))
-    admin_app.add_view(ModelView(ProjectAccess))
-    admin_app.mount_to(app)
-
+    register_page.RegisterPage(timelink_app=timelink_app_settings)
     timelink_app_settings.job_scheduler.start()
 
 
@@ -83,7 +63,8 @@ if "--database" in sys.argv:
     if idx < len(sys.argv):
         database_type = sys.argv[idx]
 
+app.add_middleware(AuthMiddleware)
 app.on_startup(initial_setup)
 
 if __name__ in {'__main__', '__mp_main__'}:
-    ui.run(title='Timelink Web Interface', port=int(port))
+    ui.run(title='Timelink Web Interface', port=int(port), storage_secret="Very secret secret!")

@@ -11,7 +11,7 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 
 @pytest.mark.asyncio
-async def test_sources_page_init(fake_timelink_app):
+async def test_sources_page_init(fake_timelink_app, fake_user):
     """Test initialization of Sources page and imported files name resolution."""
 
     fake_file = SimpleNamespace(path="test.cli", name="test", errors=0, warnings=0, import_errors=0)
@@ -26,7 +26,7 @@ async def test_sources_page_init(fake_timelink_app):
 
 
 @pytest.mark.asyncio
-async def test_sources_refresh_imported_files(fake_timelink_app):
+async def test_sources_refresh_imported_files(fake_timelink_app, fake_user):
     """Test if refresh_imported_files appropriately associates import/translate warnings and errors with the correct dicionary."""
 
     fake_ok = SimpleNamespace(path="ok.cli", name="ok", errors=0, warnings=0, import_errors=0)
@@ -45,7 +45,7 @@ async def test_sources_refresh_imported_files(fake_timelink_app):
 
 
 @pytest.mark.asyncio
-async def test_sources_page_register(user, fake_timelink_app):
+async def test_sources_page_register(user, fake_timelink_app, fake_user):
     """Test that the /sources page is properly registered and can be opened."""
 
     fake_timelink_app.database.get_import_status.return_value = []
@@ -70,7 +70,7 @@ def make_file(path, name, errors=0, warnings=0, import_errors=0):
 
 
 @pytest.mark.asyncio
-async def test_filter_import_files_filters_correctly(fake_timelink_app, tmp_path):
+async def test_filter_import_files_filters_correctly(fake_timelink_app, tmp_path, fake_user):
     """Test that filter_import_files returns only files under current folder and groups errors correctly."""
 
     fake_timelink_app.kleio_server.kleio_home = str(tmp_path)
@@ -106,7 +106,7 @@ async def test_filter_import_files_filters_correctly(fake_timelink_app, tmp_path
 
 
 @pytest.mark.asyncio
-async def test_render_file_tree_renders_files(user, fake_timelink_app, tmp_path, monkeypatch):
+async def test_render_file_tree_renders_files(user, fake_timelink_app, tmp_path, monkeypatch, fake_user):
     """Test that render_file_tree displays folders and files with correct styling and callbacks."""
 
     fake_timelink_app.kleio_server.kleio_home = str(tmp_path)
@@ -143,7 +143,7 @@ async def test_render_file_tree_renders_files(user, fake_timelink_app, tmp_path,
 
 
 @pytest.mark.asyncio
-async def test_display_update_column_counts(user, fake_timelink_app, tmp_path, monkeypatch):
+async def test_display_update_column_counts(user, fake_timelink_app, tmp_path, monkeypatch, fake_user):
     """Test that _display_column_update displays the correct information."""
 
     page = Sources(fake_timelink_app)
@@ -205,7 +205,7 @@ async def test_display_update_column_counts(user, fake_timelink_app, tmp_path, m
 
 
 @pytest.mark.asyncio
-async def test_render_directory_viewer(user, fake_timelink_app, monkeypatch):
+async def test_render_directory_viewer(user, fake_timelink_app, monkeypatch, fake_user):
     """Test that directory viewer renders grids and CLI buttons correctly."""
     captured = {}
 

@@ -1,0 +1,78 @@
+from nicegui import ui, app
+from typing import Optional
+from fastapi.responses import RedirectResponse
+from timelink.web.models.user import User
+from passlib.hash import argon2
+from timelink.web import timelink_web_utils
+
+
+class Login:
+
+    def __init__(self, timelink_app) -> None:
+        self.timelink_app = timelink_app
+        self.user_database = timelink_app.users_db
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
+
+        @ui.page('/login')
+        async def register(redirect_to: str = '/'):
+            await self.login_page(redirect_to)
+
+    async def login_page(self, redirect_to: str = '/') -> Optional[RedirectResponse]:
+
+        ui.page_title("Timelink Web Login")
+        app.storage.user.clear()
+
+        with ui.header().classes("w-full justify-center"):
+            ui.markdown('#### **Welcome to the Timelink Web Interface!**').classes('mb-4')
+
+        def try_login() -> None:
+            if not username.value or not password.value:
+                ui.notify("Please enter both username and password", color="negative")
+                return
+
+            with self.user_database.session() as session:
+                user = session.query(User).filter(User.nickname == username.value).first()
+                if user and argon2.verify(password.value, user.hashed_password):
+                    app.storage.user.update({
+                        'username': user.name,
+                        'authenticated': True,
+                        'is_admin': getattr(user, 'is_admin', False),
+                        'user_id': user.id
+                    })
+                    project_list = self.user_database.get_user_projects(user.id, session)
+                    timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                    ui.navigate.to(redirect_to)
+                else:
+                    ui.notify('Wrong username or password', color='negative')
+
+        if app.storage.user.get('authenticated', False):
+            return RedirectResponse('/')
+
+        def continue_as_guest():
+            with self.user_database.session() as session:
+                user = session.query(User).filter(User.nickname == "guest").first()
+                if user:
+                    app.storage.user.update({
+                        'username': user.name,
+                        'authenticated': True,
+                        'is_admin': False,
+                        'user_id': user.id
+                    })
+                    project_list = self.user_database.get_user_projects(user.id, session)
+                    timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                    ui.navigate.to(redirect_to)
+
+        with ui.column().classes('absolute-center items-center gap-4'):
+            with ui.card():
+                ui.label("Login").classes("text-lg font-semibold mb-4 text-orange-500")
+                username = ui.input("Username").classes("w-full mb-2")
+                password = ui.input(
+                    "Password", password=True, password_toggle_button=True
+                ).classes("w-full mb-4").on('keydown.enter', try_login)
+
+                with ui.row().classes("w-full justify-between"):
+                    ui.button("Login", on_click=lambda: try_login()).classes("bg-blue-500 text-white")
+                    ui.button("Continue as Guest", on_click=continue_as_guest).classes("bg-gray-400 text-white")
+
+            ui.link("New account? Sign up here!", "/register")

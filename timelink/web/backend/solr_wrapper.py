@@ -2,6 +2,7 @@ import subprocess
 import os
 import pysolr
 import json
+import requests
 
 
 class SolrWrapper:
@@ -152,3 +153,22 @@ class SolrWrapper:
 
         # Final cleanup
         return {k: v for k, v in solr_doc.items() if v is not None}
+
+    def switch_active_core(self, new_core_name: str):
+        """Switch to existing Solr core or create it if missing."""
+
+        get_core_url = f"http://localhost:{self.solr_port}/solr/admin/cores?action=STATUS"
+        resp = requests.get(get_core_url)
+        cores = resp.json().get("status", {}).keys()
+
+        if new_core_name not in cores:
+            print(f"Core '{new_core_name}' not found. Creating new core...")
+            subprocess.run([
+                "docker", "exec", self.solr_container_name,
+                "solr", "create", "-c", new_core_name
+            ], check=True)
+
+        self.solr_core_name = new_core_name
+        solr_url = f"http://localhost:{self.solr_port}/solr/{self.solr_core_name}"
+        self.solr_client = pysolr.Solr(solr_url, always_commit=self.always_commit, timeout=self.timeout)
+        print(f"Core {new_core_name} loaded!")

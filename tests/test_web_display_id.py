@@ -1,6 +1,7 @@
 import pytest
 from timelink.web.pages.display_id_page import DisplayIDPage
 from nicegui.testing import User
+from nicegui import app
 from unittest.mock import AsyncMock, MagicMock
 from types import SimpleNamespace
 
@@ -10,12 +11,11 @@ pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("entity_class", ["person", "geoentity", "act"])
-async def test_display_id_init(user: User, fake_timelink_app, entity_class):
+async def test_display_id_init(user: User, fake_timelink_app, entity_class, fake_user):
     """Test if display page is being properly initialized."""
 
     # Mock entity
     fake_entity = SimpleNamespace(pom_class=entity_class, name=f"Test {entity_class}")
-
     fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
     fake_timelink_app.database.get_entity.return_value = fake_entity
 
@@ -31,7 +31,7 @@ async def test_display_id_init(user: User, fake_timelink_app, entity_class):
 
 
 @pytest.mark.asyncio
-async def test_display_id_not_found(user: User, fake_timelink_app):
+async def test_display_id_not_found(user: User, fake_timelink_app, fake_user):
     """Test failure state when entity is not found."""
 
     fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
@@ -56,7 +56,7 @@ async def test_display_id_not_found(user: User, fake_timelink_app):
         ("geoentity", "_display_geoentity"),
         ("act", "_display_act"),
     ])
-async def test_display_id_dispatch(user, fake_timelink_app, monkeypatch, pom_class, func_name):
+async def test_display_id_dispatch(user, fake_timelink_app, monkeypatch, pom_class, func_name, fake_user):
     """Test that the correct display function is called for each class."""
 
     fake_entity = SimpleNamespace(pom_class=pom_class, name=f"Test {pom_class}")
@@ -77,7 +77,7 @@ async def test_display_id_dispatch(user, fake_timelink_app, monkeypatch, pom_cla
 
 
 @pytest.mark.asyncio
-async def test_display_person(user: User, fake_timelink_app, monkeypatch):
+async def test_display_person(user: User, fake_timelink_app, monkeypatch, fake_user):
     """Check if display_person renders as expected."""
 
     fake_entity = SimpleNamespace(
@@ -182,7 +182,7 @@ async def test_display_person(user: User, fake_timelink_app, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_display_geoentity(user, fake_timelink_app, monkeypatch):
+async def test_display_geoentity(user, fake_timelink_app, monkeypatch, fake_user):
     """Check if display_geoentity renders as expected."""
 
     fake_entity = SimpleNamespace(
@@ -296,7 +296,7 @@ async def test_display_geoentity(user, fake_timelink_app, monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_display_act(user, fake_timelink_app, monkeypatch):
+async def test_display_act(user, fake_timelink_app, monkeypatch, fake_user):
     """Check if _display_act renders header and body as expected."""
 
     fake_entity = SimpleNamespace(

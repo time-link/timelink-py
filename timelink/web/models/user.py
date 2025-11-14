@@ -39,6 +39,7 @@ class User(UserBase):
         email (str): Required, unique.
         hashed_password (str): Optional.
         disabled (bool): Optional, default is False.
+        is_admin (bool): Whether the user is a site admin or not, default is False
         created (datetime): Required, default is now.
         updated (datetime): Optional, default is now, updated at now.
     """
@@ -49,6 +50,7 @@ class User(UserBase):
     name: Mapped[str] = mapped_column(String(128), unique=False)
     nickname: Mapped[Optional[str]] = mapped_column(String(32))
     email: Mapped[str] = mapped_column(unique=True)
+    is_admin: Mapped[bool] = mapped_column(default=False)
 
     hashed_password: Mapped[Optional[str]]
     disabled: Mapped[Optional[bool]] = mapped_column(default=False)
@@ -85,7 +87,6 @@ class User(UserBase):
             f"id={self.id}, "
             f"name={self.name}, "
             f"email={self.email}, "
-            f"fullname={self.fullname}, "
             f"nickname={self.nickname}, "
             f"created={self.created}, "
             f"updated={self.updated}, "

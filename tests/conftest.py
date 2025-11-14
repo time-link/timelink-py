@@ -75,4 +75,41 @@ def fake_timelink_app(fake_db, fake_kserver):
     mock_app = MagicMock()
     mock_app.database = fake_db
     mock_app.kleio_server = fake_kserver
+    mock_app.storage = MagicMock()
+    mock_app.storage.user = {"is_admin": False}
     return mock_app
+
+@pytest.fixture
+def fake_user(monkeypatch):
+    """Fake logged in user."""
+
+    from nicegui import app
+    monkeypatch.setattr(
+        type(app.storage),
+        "user",
+        property(lambda self: {
+            "username": "test_user",
+            "user_id": 1,
+            "is_admin": False,
+            "projects_loaded": True
+        })
+    )
+    return app.storage.user
+
+
+@pytest.fixture
+def fake_admin(monkeypatch):
+    """Fake logged in user."""
+
+    from nicegui import app
+    monkeypatch.setattr(
+        type(app.storage),
+        "user",
+        property(lambda self: {
+            "username": "admin_test_user",
+            "user_id": 2,
+            "is_admin": True,
+            "projects_loaded": True
+        })
+    )
+    return app.storage.user
