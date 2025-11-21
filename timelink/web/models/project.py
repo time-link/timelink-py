@@ -47,11 +47,10 @@ class ProjectAccess(UserBase):
     project: Mapped["Project"] = relationship("Project", back_populates="users")
 
     def __repr__(self):
-        def __repr__(self):
-            return (
-                f"UserProjectAccess("
-                f"id={self.id}, "
-                f"user_id={self.user_id}, "
-                f"project_id={self.project_id}, "
-                f"access_level={self.access_level})"
-            )
+        return (
+            f"ProjectAccess("
+            f"id={self.id}, "
+            f"user_id={self.user_id}, "
+            f"project_id={self.project_id}, "
+            f"access_level={self.access_level})"
+        )

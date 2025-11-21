@@ -44,5 +44,14 @@ class HomePage:
         """Switch to different project."""
 
         project = self.timelink_app.users_db.get_project_by_name(project_name, session)
-        timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list, project)
-        ui.navigate.to("/")
+
+        with ui.dialog() as dialog, ui.card().classes('items-center justify-center p-6'):
+            ui.label("Switching projects...")
+            ui.spinner(size='lg')
+        dialog.open()
+
+        async def run_setup():
+            timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list, project)
+            dialog.close()
+
+        ui.timer(0.1, run_setup, once=True)

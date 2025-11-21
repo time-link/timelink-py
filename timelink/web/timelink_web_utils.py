@@ -97,12 +97,14 @@ def setup_pages_and_database(timelink_app_settings, project_list, active_project
     admin_app.add_view(Link(label="⬅️ Back to the App", url="/"))
     admin_app.mount_to(app)
 
+    ui.navigate.to("/")
+
 
 def show_table(database: TimelinkDatabase):
     """Helper function to display database."""
     dialog = ui.dialog()
     with dialog, ui.card():
-        ui.label('Database Table Overview')
+        ui.label('Database Table Overview').classes('font-bold text-orange-500')
 
         table_placeholder = ui.column()
 
@@ -123,12 +125,39 @@ def show_table(database: TimelinkDatabase):
     dialog.open()
 
 
+def show_project_info(project):
+    dialog = ui.dialog()
+
+    with dialog, ui.card():
+        ui.label('Project Info').classes('font-bold text-orange-500')
+
+        data = {
+            "ID": project.id,
+            "Name": project.name,
+            "Description": project.description,
+            "Database URL": project.databaseURL,
+            "Kleio Server URL": project.kleioServerURL,
+            "Solr Core": project.solr_core_name,
+            "Created": project.created,
+            "Updated": project.updated,
+        }
+
+        for key, val in data.items():
+            with ui.row().classes('items-center gap-2'):
+                ui.label(f"{key}:").classes('font-bold')
+                ui.label(str(val))
+
+        ui.button('Close', on_click=dialog.close)
+
+    dialog.open()
+
+
 def show_kleio_info(kserver: KleioServer):
     """Helper function to display Kleio Server Path and other variables."""
     dialog = ui.dialog()
     with dialog, ui.card():
 
-        ui.label('Kleio Server Overview')
+        ui.label('Kleio Server Overview').classes('font-bold text-orange-500')
         ui.markdown(f"""
         - **Kleio URL:** {kserver.url}
         - **Kleio Home:** {kserver.kleio_home}

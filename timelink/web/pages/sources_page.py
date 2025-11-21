@@ -50,7 +50,6 @@ class Sources:
     async def scheduled_refresh_imported_files(self):
         """Job trigger to refresh imported files."""
 
-        print(f"Gonna refresh this from {self.database.db_url}.")
         self.refresh_imported_files()
 
     def refresh_imported_files(self):

@@ -41,8 +41,18 @@ class Login:
                         'user_id': user.id
                     })
                     project_list = self.user_database.get_user_projects(user.id, session)
-                    timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
-                    ui.navigate.to(redirect_to)
+
+                    with ui.dialog() as dialog, ui.card().classes('items-center justify-center p-6'):
+                        ui.label("Loading user projects...")
+                        ui.spinner(size='lg')
+                    dialog.open()
+
+                    async def run_setup():
+                        timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                        dialog.close()
+
+                    ui.timer(0.1, run_setup, once=True)
+
                 else:
                     ui.notify('Wrong username or password', color='negative')
 
@@ -60,8 +70,17 @@ class Login:
                         'user_id': user.id
                     })
                     project_list = self.user_database.get_user_projects(user.id, session)
-                    timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
-                    ui.navigate.to(redirect_to)
+
+                    with ui.dialog() as dialog, ui.card().classes('items-center justify-center p-6'):
+                        ui.label("Loading guest projects...")
+                        ui.spinner(size='lg')
+                    dialog.open()
+
+                    async def run_setup():
+                        timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                        dialog.close()
+
+                    ui.timer(0.1, run_setup, once=True)
 
         with ui.column().classes('absolute-center items-center gap-4'):
             with ui.card():

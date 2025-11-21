@@ -466,8 +466,41 @@ class UserDatabase:
             return None
 
     def get_user_projects(self, user_id, session):
+        """Check all projects a user is involved in."""
 
         return session.query(Project).join(ProjectAccess).filter(ProjectAccess.user_id == user_id).all()
+
+    def get_all_users_not_in_project(self, project_id, session):
+        """Retrieve all users not in a project to be potentially added to it."""
+
+        return (session.query(User).filter(
+            ~User.id.in_(
+                session.query(ProjectAccess.user_id).filter(ProjectAccess.project_id == project_id)
+            )).all()
+        )
+
+    def get_project_user_list(self, project_id, session):
+        """Check all users that are tied to a given project."""
+
+        return (
+            session.query(User)
+            .join(ProjectAccess)
+            .filter(ProjectAccess.project_id == project_id)
+            .all()
+        )
+
+    def remove_user_from_project(self, user_id, project_id, session):
+        """Remove permissions of a user to see a given project."""
+
+        access = session.scalars(
+            select(ProjectAccess).filter(
+                ProjectAccess.user_id == user_id,
+                ProjectAccess.project_id == project_id
+            )
+        ).first()
+
+        if access is not None:
+            session.delete(access)
 
     def add_project(self, project: Project, session: session = None):
         """Add a project to the database

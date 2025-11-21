@@ -33,9 +33,11 @@ def header(responsive: bool = True):
         ui.link('Sources', '/sources').classes('text-lg font-bold no-underline')
         ui.separator()
         ui.link('Search', '/search').classes('text-lg font-bold no-underline')
+        ui.separator()
+        ui.link('Project Management', '/project_admin').classes('text-lg font-bold no-underline')
         if app.storage.user["is_admin"]:
             ui.separator()
-            ui.link('Admin', '/admin').classes('text-lg font-bold no-underline')
+            ui.link('App Admin', '/admin').classes('text-lg font-bold no-underline')
 
     with ui.header():
         with ui.row():

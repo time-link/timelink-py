@@ -3,6 +3,7 @@ import os
 import pysolr
 import json
 import requests
+import time
 
 
 class SolrWrapper:
@@ -154,11 +155,30 @@ class SolrWrapper:
         # Final cleanup
         return {k: v for k, v in solr_doc.items() if v is not None}
 
+    def wait_for_solr(self, port: int, timeout: int = 30):
+        """Wait for solr to connect for 30 seconds."""
+
+        start = time.time()
+        url = f"http://localhost:{port}/solr/admin/cores?action=STATUS"
+
+        while time.time() - start < timeout:
+            try:
+                r = requests.get(url, timeout=2)
+                if r.status_code == 200:
+                    return True
+            except Exception:
+                pass
+            time.sleep(0.5)
+
+        raise RuntimeError("Solr did not start in time")
+
     def switch_active_core(self, new_core_name: str):
         """Switch to existing Solr core or create it if missing."""
 
-        get_core_url = f"http://localhost:{self.solr_port}/solr/admin/cores?action=STATUS"
-        resp = requests.get(get_core_url)
+        self.wait_for_solr(self.solr_port)
+
+        url = f"http://localhost:{self.solr_port}/solr/admin/cores?action=STATUS"
+        resp = requests.get(url)
         cores = resp.json().get("status", {}).keys()
 
         if new_core_name not in cores:
