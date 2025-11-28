@@ -22,15 +22,13 @@ def test_init_uses_existing_kleio_home(fake_timelink_app):
         assert app.kleio_server is fake_timelink_app.kleio_server
 
 
-def test_init_starts_server_if_missing_kserver(fake_kserver):
-    with patch("timelink.web.backend.timelink_app_wrapper.KleioServer.find_local_kleio_home",
-               return_value="/fake/home"), \
-         patch("timelink.web.backend.timelink_app_wrapper.KleioServer.get_server",
-               return_value=None), \
-         patch("timelink.web.backend.timelink_app_wrapper.KleioServer.start",
-               return_value=fake_kserver), \
-         patch("timelink.web.backend.timelink_app_wrapper.TimelinkWebApp.run_users_db_setup",
-               return_value=MagicMock()), \
+@pytest.mark.asyncio
+async def test_init_starts_server_if_missing_kserver(fake_kserver):
+    with patch("timelink.web.backend.timelink_app_wrapper.KleioServer.find_local_kleio_home", return_value="/fake/home"), \
+         patch("timelink.web.backend.timelink_app_wrapper.KleioServer.get_server", return_value=None), \
+         patch("timelink.web.backend.timelink_app_wrapper.KleioServer.start", return_value=fake_kserver), \
+         patch("timelink.web.backend.timelink_app_wrapper.TimelinkWebApp.find_free_port", return_value=8088), \
+         patch("timelink.web.backend.timelink_app_wrapper.TimelinkWebApp.run_users_db_setup", return_value=MagicMock()), \
          patch("timelink.web.backend.timelink_app_wrapper.TimelinkWebApp.load_config_for_project_list"), \
          patch("timelink.web.backend.timelink_app_wrapper.TimelinkWebApp.create_template_project"), \
          patch("timelink.web.backend.timelink_app_wrapper.TimelinkWebApp.job_scheduler_init_setup"):

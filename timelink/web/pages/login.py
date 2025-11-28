@@ -83,8 +83,8 @@ class Login:
                     ui.timer(0.1, run_setup, once=True)
 
         with ui.column().classes('absolute-center items-center gap-4'):
-            with ui.card():
-                ui.label("Login").classes("text-lg font-semibold mb-4 text-orange-500")
+            with ui.card().classes('items-center'):
+                ui.label("Login").classes("text-lg font-semibold text-orange-500")
                 username = ui.input("Username").classes("w-full mb-2")
                 password = ui.input(
                     "Password", password=True, password_toggle_button=True
@@ -93,5 +93,40 @@ class Login:
                 with ui.row().classes("w-full justify-between"):
                     ui.button("Login", on_click=lambda: try_login()).classes("bg-blue-500 text-white")
                     ui.button("Continue as Guest", on_click=continue_as_guest).classes("bg-gray-400 text-white")
+
+                ui.separator()
+
+                github_dialog = ui.dialog()
+                with github_dialog, ui.card().classes('items-center'):
+                    ui.label("Sign up with GitHub").classes('text-lg font-semibold text-orange-500')
+                    ui.markdown("We'll redirect you to GitHub to authorize your account.").classes('text-gray-500 text-center')
+
+                    with ui.row():
+                        ui.button(
+                            "Continue", on_click=lambda: ui.navigate.to("/github/login")
+                        ).classes('bg-orange-500 text-white')
+                        ui.button("Cancel", on_click=github_dialog.close).classes('bg-gray-300')
+
+                google_dialog = ui.dialog()
+                with google_dialog, ui.card():
+                    ui.label("Google login coming soon!").classes('text-orange-500 text-center')
+                    ui.button('OK', on_click=google_dialog.close).classes('mt-2 bg-orange-500 text-white')
+                with ui.row():
+                    with ui.button(
+                        on_click=github_dialog.open
+                    ).classes(
+                        'p-1 rounded-full bg-transparent hover:bg-gray-100 transition'
+                    ):
+                        ui.image(
+                            'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'
+                        ).classes('w-12 rounded-full')
+                    with ui.button(
+                        on_click=google_dialog.open
+                    ).classes(
+                        'p-1 rounded-full bg-transparent hover:bg-gray-100 transition'
+                    ):
+                        ui.image(
+                            'https://cdn.iconscout.com/icon/free/png-256/free-google-icon-svg-download-png-189813.png'
+                        ).classes('w-12 rounded-full')
 
             ui.link("New account? Sign up here!", "/register")

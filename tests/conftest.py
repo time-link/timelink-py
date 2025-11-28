@@ -79,6 +79,7 @@ def fake_timelink_app(fake_db, fake_kserver):
     mock_app.storage.user = {"is_admin": False}
     return mock_app
 
+
 @pytest.fixture
 def fake_user(monkeypatch):
     """Fake logged in user."""

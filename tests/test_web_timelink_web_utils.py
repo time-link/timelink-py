@@ -25,11 +25,23 @@ def test_run_imports_sync(capsys, fake_timelink_app):
 @pytest.mark.asyncio
 async def test_show_table(user: User, fake_timelink_app, fake_user) -> None:
 
+    class MockProject:
+        def __init__(self, name, id):
+            self.name = name
+            self.id = id
+    mock_project = MockProject("Test Project", 123)
+
+    mock_access = MagicMock()
+    mock_access.access_level.value = "viewer"
+
+    fake_timelink_app.users_db.get_user_project_access.return_value = mock_access
+    fake_timelink_app.users_db.get_user_projects.return_value = [mock_project]
+    fake_timelink_app.current_project_name = "Test Project"
     fake_timelink_app.database.table_row_count.return_value = [("attributes", 10), ("entities", 5)]
 
     status_page.StatusPage(fake_timelink_app, MagicMock())
 
-    await user.open("/status")
+    await user.open("/project_admin")
     user.find("Database Status").click()
 
     timelink_web_utils.show_table(fake_timelink_app.database)
@@ -52,13 +64,27 @@ async def test_show_table(user: User, fake_timelink_app, fake_user) -> None:
 @pytest.mark.asyncio
 async def test_show_kleio_info(user: User, fake_timelink_app, fake_user) -> None:
 
+    class MockProject:
+        def __init__(self, name, id):
+            self.name = name
+            self.id = id
+    mock_project = MockProject("Test Project", 123)
+
+    mock_access = MagicMock()
+    mock_access.access_level.value = "viewer"
+
     fake_timelink_app.kleio_server.url = "http://fake.kleio.server:8000"
     fake_timelink_app.kleio_server.kleio_home = "/fake/kleio/home"
 
+    fake_timelink_app.users_db.get_user_project_access.return_value = mock_access
+    fake_timelink_app.users_db.get_user_projects.return_value = [mock_project]
+    fake_timelink_app.current_project_name = "Test Project"
+    fake_timelink_app.users_db.get_user_project_access.return_value = mock_access
+
     status_page.StatusPage(fake_timelink_app, MagicMock())
 
-    await user.open("/status")
-    user.find("Timelink Server Status").click()
+    await user.open("/project_admin")
+    user.find("Check Server Status").click()
 
     timelink_web_utils.show_kleio_info(fake_timelink_app.kleio_server)
 
@@ -431,6 +457,9 @@ async def test_setup_pages_and_database(fake_timelink_app, monkeypatch):
     # Patch ModelView and Link
     monkeypatch.setattr("timelink.web.timelink_web_utils.ModelView", lambda model, **kwargs: MagicMock())
     monkeypatch.setattr("timelink.web.timelink_web_utils.Link", lambda **kwargs: MagicMock())
+
+    # Patch redirect
+    monkeypatch.setattr("nicegui.ui.navigate.to", lambda *a, **kw: None)
 
     # Prepare page mocks
     page_paths = [

@@ -8,7 +8,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 
 # --- Pages ---
-from timelink.web.pages import login, homepage, register_page
+from timelink.web.pages import login, homepage, register_page, github_login
 
 port = 8000
 kserver = None
@@ -24,7 +24,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
             if request.url.path in {'/admin/'}:
                 if not app.storage.user.get("is_admin", False):
                     return RedirectResponse("/")
-            if request.url.path not in {'/login', '/register'} and not request.url.path.startswith('/_nicegui'):
+            if (
+                request.url.path not in {'/login', '/register', '/github/login', '/github/callback'} and not
+                request.url.path.startswith('/_nicegui')
+            ):
                 return RedirectResponse(f'/login?redirect_to={request.url.path}')
         else:
             if request.url.path.startswith('/admin'):
@@ -43,6 +46,7 @@ async def initial_setup():
     )
 
     login.Login(timelink_app=timelink_app_settings)
+    github_login.GithubLoginPage(timelink_app=timelink_app_settings)
     homepage.HomePage(timelink_app=timelink_app_settings)
     register_page.RegisterPage(timelink_app=timelink_app_settings)
     timelink_app_settings.job_scheduler.start()

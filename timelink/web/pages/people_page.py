@@ -64,9 +64,9 @@ class PeopleGroupsNetworks:
                             self.people_table_display(pd.DataFrame(), "")
 
                     with ui.tab_panel(self.groups_tab):
-                        ui.label("Groups!")
+                        ui.label("Groups marked by user should go here.")
                     with ui.tab_panel(self.network_tab):
-                        ui.label("Networks!")
+                        ui.label("Networks of people should go here.")
 
     @ui.refreshable
     def people_table_display(self, pd_results: pd.DataFrame, option: str) -> None:
