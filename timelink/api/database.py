@@ -71,7 +71,36 @@ class TimelinkDatabaseSchema(BaseModel):
 
 
 class TimelinkDatabase:
-    """Database connection and setup"""
+    """Database connection and setup
+
+    Creates a database connection and session. If the database does not exist,
+    it is created. **db_type** determines the type of database.
+
+    Currently, only sqlite and postgres are supported.
+
+    * If db_type is sqlite, the database is created in the current directory.
+    * If db_type is postgres or mysql, the database is created in a docker container.
+    * If the database is postgres, the container is named timelink-postgres.
+    * If the database is mysql, the container is named timelink-mysql.
+
+    Attributes:
+        db_url (str): database sqlalchemy url
+        db_name (str): database name
+        db_user (str): database user (only for postgres databases)
+        db_pwd (str): database password (only for postgres databases)
+        engine (Engine): database engine
+        session (Session): database session factory
+        metadata (MetaData): database metadata
+        db_container: database container
+        kserver: kleio server attached to this database, used for imports
+
+    Main methods:
+        * table_names: get the current tables in the database
+        * get_columns: get the
+        * table_row_count: get the number of rows of each table in the database
+        * get_models: get ORM Models for using in Queries
+
+    """
 
     db_url: str
     db_name: str
@@ -436,6 +465,13 @@ class TimelinkDatabase:
         self._drop_views()
         self._create_views()
 
+    def has_active_connections(self):
+        """Check if there are active connections in the engine pool."""
+        if hasattr(self.engine, "pool"):
+            # Check if there are checked out connections
+            return self.engine.pool.checkedout() > 0
+        return False
+
     def drop_db(self, session=None, timelink_only=False):
         """
         This will drop the database.
@@ -452,8 +488,27 @@ class TimelinkDatabase:
 
         if not timelink_only:
             if ":memory:" not in self.db_url:
-                drop_database(self.db_url)
+                if session is not None:
+                    session.close()
+                if self.engine:
+                    import time
+
+                    time.sleep(0.1)
+                    # For PostgreSQL, you might want to terminate connections first
+                    if self.engine.url.drivername.startswith("postgresql"):
+                        with self.engine.connect() as conn:
+                            # Need autocommit for drop database operations
+                            conn.execution_options(isolation_level="AUTOCOMMIT")
+                            conn.execute(
+                                text(
+                                    "SELECT pg_terminate_backend(pid) "
+                                    "FROM pg_stat_activity "
+                                    "WHERE datname = :dbname AND pid <> pg_backend_pid()"
+                                ),
+                                {"dbname": self.db_name},
+                            )
                 self.engine.dispose()
+                drop_database(self.db_url)
             return
 
         if session is None:

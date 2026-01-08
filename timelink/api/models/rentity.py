@@ -687,6 +687,7 @@ class REntity(Entity):
                     raise RealEntityIdChangeError(f"Error, {id1} is already linked to {r1_id}")
 
         # check if this occurence was previously linked to a real entity
+        had_previous_rid = False
         real_id = cls.recover_rentity(id1, user=user, session=session)
 
         if real_id is None:
@@ -696,6 +697,8 @@ class REntity(Entity):
                 ridp = real_id_prefix
             real_id = cls.generate_id(session=session)
             real_id = f"{ridp}-{real_id}"
+        else:
+            had_previous_rid = True
 
         if description is None:
             desc = "<No description>"
@@ -706,8 +709,16 @@ class REntity(Entity):
         else:
             desc = description
 
-        r = REntity(id=real_id, user=user, description=desc, status=status)
-        session.add(r)
+        # if there was a previous rid, we fetch the real entity and update
+        # description and status
+        if had_previous_rid:
+            r = session.get(REntity, real_id)
+            r.description = desc
+            r.status = status
+            r.set_user(user)
+        else:
+            r = REntity(id=real_id, user=user, description=desc, status=status)
+            session.add(r)
         session.flush()
         l1 = Link(
             rid=real_id,
