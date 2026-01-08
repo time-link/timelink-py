@@ -755,10 +755,10 @@ def find_local_kleio_home(path: str | None = None):
     """Find kleio home directory.
 
     Kleio home directory is the directory where Kleio Server finds sources and auxiliary
-    files like structures, mappings and inferences.
+        files like structures, mappings and inferences.
 
     There are two types of Kleio home directories:
-         * A project directory, which contains a "sources" subdirectory and optionally
+        * A project directory, which contains a "sources" subdirectory and optionally
               "structures","inferences" and also optionally a ".timelink-project"
         * a multiple project directory, which contains multiple project directories
           and optionally a ".timelink-home" file.

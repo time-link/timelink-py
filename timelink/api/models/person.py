@@ -46,7 +46,7 @@ class Person(Entity):
         )
         obss = self.for_kleio('obs')
         if len(obss) > 0:
-            r = f"{r}/obs={quote_long_text(obss,width=width)}"
+            r = f"{r}/obs={quote_long_text(obss, width=width)}"
         kleio = super().to_kleio(
             self_string=r,
             show_contained=show_contained,
