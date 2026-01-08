@@ -26,6 +26,7 @@ def dbsystem(request):
     db_type, db_name = request.param
 
     database = TimelinkDatabase(db_name, db_type, db_path=db_path)
+
     # attach a kleio server
     kleio_server = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home/projects/test-project")
     database.set_kleio_server(kleio_server)
@@ -33,8 +34,7 @@ def dbsystem(request):
     try:
         yield database
     finally:
-        # database.drop_db()
-        database.session().close()
+        database.drop_db()
 
 
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
