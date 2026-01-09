@@ -96,6 +96,64 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
 7. Submit a pull request through the GitHub website.
 
 ***********************
+Branch Management Conventions
+***********************
+
+To maintain a clean and organized repository, we follow these branch management conventions:
+
+Branch Naming
+=============
+
+Use descriptive names with the following prefixes:
+
+* ``feature/``: For new features or enhancements (e.g., ``feature/webapp-refactor``, ``feature/entity-export``)
+* ``bugfix/`` or ``fix/``: For bug fixes (e.g., ``fix/issue-42``, ``bugfix/database-connection``)
+* ``hotfix/``: For urgent fixes to production code (e.g., ``hotfix/security-patch``)
+* ``release/``: For preparing code releases (e.g., ``release/v1.2.0``)
+* ``chore/``: For maintenance tasks (e.g., ``chore/update-dependencies``)
+
+Branch Strategy
+===============
+
+* **main**: The main branch contains production-ready code. Direct pushes to this branch are prohibited and require a pull request with at least one approval.
+* **Feature branches**: Created from and merged back to main for implementing new features.
+* **Release branches**: Created when preparing for a new release to allow final testing and bug fixes while development continues on main.
+* **Hotfix branches**: Created from main to quickly address critical production issues.
+
+Branch Management Guidelines
+============================
+
+* Create feature branches from the latest ``main`` branch.
+* Keep feature branches up-to-date with ``main`` by rebasing regularly or merging ``main`` into your feature branch.
+* Delete feature branches after they have been successfully merged to keep the repository clean.
+* Ensure your branch contains only relevant changes for the specific feature or fix.
+* Use descriptive names that clearly indicate the purpose of the branch.
+
+Example Workflow
+================
+
+1. Create a feature branch from ``main``::
+
+    $ git checkout main
+    $ git pull origin main
+    $ git checkout -b feature/my-new-feature
+
+2. Develop and commit your changes to the feature branch.
+
+3. Before submitting a pull request, rebase with the latest ``main``::
+
+    $ git checkout main
+    $ git pull origin main
+    $ git checkout feature/my-new-feature
+    $ git rebase main
+
+4. Push the branch and create a pull request.
+
+5. After the pull request is merged, delete the feature branch::
+
+    $ git push origin --delete feature/my-new-feature
+
+***********************
 Pull Request Guidelines
 ***********************
 
