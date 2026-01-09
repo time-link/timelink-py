@@ -1,0 +1,1676 @@
+kleio$gacto2.str/translations=232
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-182
+   fonte$dehergne-b/1973/Dicionário Biográfico/loc=Online archive.org:details:bhsi37/obs=Dehergne, Joseph, Répertoire des Jésuites de Chine, de 1542 à 1800, 1973. Letra B
+
+      lista$dehergne-notices-b/0/0/0
+
+         n$Gabriel Baborier/id=deh-gabriel-baborier
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Gabriel-Ignace Baborier
+            ls$nome/Gabriel Barborier
+            ls$nome/Gabriel Babourier
+            ls$nome-chines/Pou Na-tsio
+            ls$nome-chines/Pou Kia
+            ls$nome-chines/Po Kia-pi
+            ls$nome-chines/Kao
+            ls$nascimento/Andancette, diocese de Vienne, Dauphiné# @wikidata:Q639112/16630904#ou 16630924 ou 16631004 ou 16651012
+            ls$jesuita-entrada/?/16810405#ou 16800902
+            ls$estadia/Brest# @wikidata:Q12193/16980100
+            ls$embarque/Zélande# @wikidata:Q705/16980100
+            ls$estadia/Cantão# @wikidata:Q16572/16981104
+            ls$estadia/Tingchow (T'ing-tcheou), Fukien# @wikidata:Q7808213/17010000
+            ls$estadia/Shanghang (Chang-hang), Fukien# @wikidata:Q1338218/17010000
+            ls$jesuita-tarefa/Solicita o «piao»/17080000/obs=Borg. cin. 516 cite un P. Ignace KAO Na-tsio qui sollicite le piao (la patente) en 1708. Nous ne voyons personne d'autre que le P. Baborier qui puisse avoir ce nom.
+            ls$estadia/Hanchung (Han-tchong) e Chengku (Tch'eng-kou), Shensi# @wikidata:Q515573/17040000
+            ls$estadia/Hanchung (Han-tchong) e Chengku (Tch'eng-kou), Shensi# @wikidata:Q515573/17240000
+            ls$estadia/Cantão# @wikidata:Q16572/17240000#depois das perseguições, exilado
+            ls$jesuita-ordenacao-padre/?/16960000#antes de
+            ls$jesuita-votos/4V/16980815
+            ls$jesuita-votos-local/[No mar a ocidente de Sumatra (navio Amphitrite)]/16980815
+            ls$morte/Cantão# @wikidata:Q16572/17270614
+            ls$dehergne/63/obs=Baborier, Gabriel., puis Gabriel-Ignace (franç.) P. 63 Barborier., Babourier. Pou Na-tsio (Pf.)., Pou Kia (Rosso, p. 424). Po Kia-pi (Borg. Lat. 523 f° 60)., Kao(?). N. 4 sept. 1663, « Delphinas », dioc. de Vienne en Dauphiné: Andancette (Drôme) -E. 5 avril 1681, ou 2 sept. 1680 (Jolos. 13, 8v). Emb. sur le Zélande, à Brest, janv. 1698., arr. 4 nov. 1698, Canton (JS 134, 390)., 1701, Tingchow (T'ing-tcheou), et Shanghang (Changhang), Fukien., 1704-1724, au Shensi: Hanchung (Han-tchong) et Chengku (Tch'eng-kou) (JS 134, 390sq., M 413, 211., SF V, 475)., à la persécution de 1724, exil à Canton. P. avant 1696. V. 15 août 1698 « in regia navi l'Amphitrite, dicta », à l'occident de Sumatra, pr. (Gai. 14, 177), en route vers la Chine. M. 14 juin 1727, Canton (HS 50, 125v et 52, 93).
+            ls$dehergne/63/obs=Les catal. de Toulouse 1708 ex., 1714 ex., 1724 ex. l'appellent Jacques et omettent ensuite son nom. Jacques est le nom de son père, et il a pour frère le suivant, Jean Baborier (JS 177, 401). La date de naissance est marquée au petit bonheur: 24 juin 1663 (Franc. 19, 239)., 4 sept. (Pf.) ou 4 oct. 1663 (JS 134, 427)., 12 oct. 1665 (Franc. 18, 407 et 19, 82). Malgré nos recherches, nous n'avons pu découvrir l'acte de baptême. — Borg. cin. 516 cite un P. Ignace KAO Na-tsio qui sollicite le piao (la patente) en 1708. Nous ne voyons personne d'autre que le P. Baborier qui puisse avoir ce nom. Pf. 493., DHGE (E. Lamalle).
+
+            pai$Jacques Baborier/id=deh-gabriel-baborier-pai
+
+            irmao$Jean Baborier/id=deh-gabriel-baborier-irmao
+
+         n$Jean Baborier/id=deh-jean-baborier
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Pou Jo-wang Je-Cheng
+            ls$nome-chines/Chen Jo-wang
+            ls$nascimento/Diocese de Vienne# @wikidata:Q366189/16780909#ou 16780914
+            ls$jesuita-entrada/?/16960905#ou 16960918
+            ls$estadia/Concépcion, Chile# @wikidata:Q1880/17110000#fim de
+            ls$estadia/Cantão# @wikidata:Q16572/17120725
+            ls$estadia/Cantão# @wikidata:Q16572/17160800
+            ls$estadia/Hukwang#@wikidata:Q2235155
+            ls$estadia/Macau# @wikidata:Q14773/17240000#durante a perseguição
+            ls$estadia/Hangchow, Tchö-kiang# @wikidata:Q4970
+            ls$estadia/Soochow, Kiang-nan# @wikidata:Q42622
+            ls$estadia/Macau# @wikidata:Q14773/17460000#exílio
+            ls$estadia/Lorient# @wikidata:Q71724/17520728#desembarca com três jovens chineses
+            ls$jesuita-tarefa/Conduz três jovens chineses a França e segue-os até ao colégio real de La Flèche, onde eles fazem os seus estudos
+            ls$jesuita-ordenacao-padre/Valencia# @wikidata:Q8818/17080908
+            ls$jesuita-votos/4V/17120202#nas mãos do provincial do Chile
+            ls$jesuita-votos-local/Santiago do Chile%Jacopoli# @wikidata:Q2887/17120202
+            ls$morte/Paris (colégio de La Flèche)# @wikidata:Q90/17521211
+            ls$dehergne/64/obs=Baborier, Jean (franç.) P. 64 Pou Jo-wang Je-Cheng (Pf.., et Edit de Canton 1732: Pou Ji-Chin) (JA 49-IV-66 f 120v: Po Ju-Xen)., Chen Jo-wang (M 436, 221, 222: Chin Jo-Wang). N. 9 (ou 14) sept. 1678, dioc. de Vienne (Isère), frère du précédent. E. 5 (ou 18) sept. 1696: Baborié (Tolos. 13, 366). Arr. à la Conception du Chili, fin 1711., 25 juill. 1712, Canton, où il était encore en août 1716 (JS 134, 452)., Hukwang., à la persécution de 1724, va à Macao., Hangchow, Tchô-kiang., Soochow, Kiangnan., exil à Macao en 1746., débarque à Lorient avec trois jeunes Chinois, 28 juil. 1752 (sous des noms portugais, AN: Marine C6973)., et les suit au collège royal de La Flèche, où ils font leurs études.
+            ls$dehergne/64/obs=P. 8 sept. 1708 à Valence, par l'évêque du lieu, Mgr Jean de Castellan (Tolos. 14, 49 et 7, 287v). V. entre les mains du provincial du Chili, à « Jacopoli » (Santiago du Chili), 2 févr. 1712, pr. « Joannes Baborier» (Hisp. 24, 500) « tolosanus missionarius Cinarum » (Chil. 2, 252-253). M. 11 déc. 1752 au collège de La Flèche (HS 53a, 78: P. Joannes Baborier). Streit VII n° 3277., DBF et DHGE le font mourir à tort à Macao. Nommé par erreur François (Franc. 21, 549v), Jean-François (Franc. 1753 ex.) et l'on trouve même Jean-Gabriel Baboirier (Franc. 27, 56).Pf. 628., DBF (Roman D'Amat)., DHGE (E. Lamalle)., Filhol, Hist. religieuse et civile d'Annonay, t. II, 1880, p. 308-320.
+
+            pai$Jacques Baborier/id=deh-jean-baborier-pai
+
+            irmao$Gabriel Baborier/id=deh-jean-baborier-irmao/mesmo_que=deh-gabriel-baborier
+
+            referido$Jean de Castellan/id=deh-jean-baborier-ref1
+               rel$eclesiastica/Ordena/Jean Baborier/deh-jean-baborier/data=17080908
+               ls$titulo/Monsenhor
+               ls$cargo/Bispo de Valencia/17080908
+               ls$estadia/Valencia# @wikidata:Q8818/17080908
+
+         n$Florian Joseph Bahr/id=deh-florian-joseph-bahr
+            ls$nacionalidade/Alemanha
+            ls$jesuita-estatuto/Padre
+            ls$nome/Florian Joseph Baal#boémio
+            ls$nome-chines/Wei Fouleang Ki-Tsin Chan-Sieou
+            ls$nome-chines/Kouei Ki-Pou
+            ls$nascimento/Falkenberg, Silésia# @wikidata:Q1003112/17060814
+            ls$grau-academico/Mestre em Artes
+            ls$jesuita-entrada/Brno# [República Checa] @wikidata:Q14960/17261009
+            ls$embarque/[Para a Índia]#?, segundo Wicky/17370000
+            ls$wicky/1841/17370000
+            ls$wicky-viagem/156/17370000
+            ls$estadia/Macau# @wikidata:Q14773/17380805
+            ls$estadia/Pequim# @wikidata:Q956/17390301
+            ls$profissao/Músico
+            ls$cargo/Músico da corte/17390301
+            ls$jesuita-cargo/Visitador do Japão e da China/17620000
+            ls$jesuita-cargo/Visitador do Japão e da China/17710000
+            ls$jesuita-tarefa/Obra das crianças abandonadas
+            ls$jesuita-votos/4V/17410202
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/17410202
+            ls$morte/Pequim# @wikidata:Q956/17710607
+            ls$dehergne/65/obs=Bahr, Florian Joseph (allem.) P. 65 Baal (Bohém.) (M 443, 678). Wei Fou-leang Ki-Tsin Chan-Sieou (Pf.)., Kouei Ki-Pou (M 436, 714: Kwei Ki-Pu). N. 14 août 1706, Falkenberg, en Silésie. M. A. (JS 134, 442) -E. 9 oct. 1726 « Brunn. », Brno (Boh. 51, 114., 92, 87). Emb. 1737 (W 1841). P. avant 1737. A. 5 août 1738, Macao., 1 mars 1739, Pékin, musicien à la Cour., missionnaire., 1762-1771, visiteur de Chine et du Japon., oeuvre des enfants abandonnés. V. Pékin, 2 févr. 1741, pr. (Lus. 16, 17). M. 7 juin 1771, Pékin (HS 53a, 164., Planchet, p. 144., JS 184, 250). Pf. 748., NDB (R. Samulski). Schlesische Lebensbilder Bd. 4, Breslau, 1931, 184-190., Hoffmann, H., Schles. mahr. u. bôhm. Jesuiten in d. Heidenmission, 1939.
+
+         n$Jan Baptista Chrzciciel Bakowski/id=deh-jan-baptista-chrzciciel-bakowski
+            ls$nacionalidade/Polónia
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jan Baptista Bakouski
+            ls$nome/Jan Baptista Bomkoski
+            ls$nome-chines/Pei Wei Han
+            ls$nome-chines/T'ai Wei-Han
+            ls$nascimento/Wikłów# @wikidata:Q7999955/16720722
+            ls$jesuita-entrada/Viena# [Áustria] @wikidata:Q1741/16931022
+            ls$embarque/?/1706
+            ls$wicky/1495/1706
+            ls$wicky-viagem/129/1706
+            ls$estadia/Macau# @wikidata:Q14773/1707
+            ls$estadia/China%in missione Sinensi# @wikidata:Q148/1708
+            ls$estadia/Kwangsi (Kouang-si)# @wikidata:Q15176/>1708
+            ls$estadia/Shantung, Chan-tong# @wikidata:Q43407/1710
+            ls$estadia/Kiang-nan#@wikidata:Q11133842/>1710
+            ls$estadia/Tchö-kiang#@wikidata:Q16967/>1710
+            ls$estadia/Cambodja# @wikidata:Q424/1715
+            ls$estadia/Macau# @wikidata:Q14773/1717
+            ls$estadia/Hangchow# @wikidata:Q4970/1724
+            ls$estadia/Kiang-nan#@wikidata:Q11133842/1726#escondido durante a perseguição
+            ls$estadia/Sungkiang (Song-Kiang)# @wikidata:Q11104671/1726
+            ls$estadia/Cantão# @wikidata:Q16572/1726#exilado
+            ls$jesuita-votos/4V/17160908
+            ls$morte/?/17320000
+            ls$dehergne/66/obs="""
+            Bakowskl, Jan Baptista Chrzciciel (polon.) P. 66
+            Bakouski., Bomkoski (75 25, 263v).
+            Pei Wei Han (Rosso, 273., M 443, 676: PE, Joannes Dominicus Baunkoski).
+            (T'ai Wei-Han de Pf. est fautif).
+            N. 22 juill. 1672 « Viclovensis », de Wiklôw.
+            E. 22 oct. 1693 Vienne (Austr. 50, 79v).
+            Emb. 1706 (W 1495).,
+            A. Macao 1707.,
+            1708, « in missione Sinensi ».,
+            Kwangsi (Kouang-si) (JS 25, 278).,
+            Shantung, Chan-tong, 1710.,
+            Kiangnan., Tcho-kiang., 1715, Cambodge (JS 176, 403).,
+            1717, Macao (JS 176, 412).,
+            1724, Hangchow.,
+            persécution, caché au Kiang-nan, 1726, Sungkiang (Song-Kiang) puis exilé à Canton.
+            V. 8 sept. 1716, pr.
+            M. 1732 (Austr. 128, 261v).
+            Pf. 621.,
+            Misje Katolickie 54 (Krakow 1935), 172-175."""
+            atr$note/Uniformização de datas, com datas relativas/2025-04-05#JRC
+
+         n$Michael Baldermann/id=deh-michael-baldermann
+            ls$nacionalidade/Áustria
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Viena# [Áustria] @wikidata:Q1741/17410810
+            ls$jesuita-entrada/Viena# [Áustria] @wikidata:Q1741/17561018
+            ls$estadia/Lorient# @wikidata:Q71724/17720000
+            ls$embarque/?/17720000#inícios de
+            ls$estadia/Cantão# @wikidata:Q16572/17731100
+            ls$morte/Viena# [Áustria] @wikidata:Q1741/17880000
+            ls$dehergne/67/obs=Baldermann, Michael (autrich.) P. 67 N. 10 août 1741, Vienne en Autriche - E. 18 oct. 1756, Vienne. Emb. Lorient début 1772 arr. Canton nov. 1773 (Pf. 976). M. 1788, Vienne. Pf. 976. Lettres 1773 (Pannonhalma 118 H 1-9).
+
+         n$Baltasar y Gonzalo/id=deh-baltazar-y-gonzalo
+            ls$nacionalidade/Espanha
+            ls$jesuita-estatuto/Frade#coadjutor?/obs=era noviço em 1577
+            ls$estadia/Cantão# @wikidata:Q16572/15820000
+            ls$estadia/Sciaochino (Shiuhing, Tchao-k'ing fou)# @wikidata:Q59164/15820000
+            rel$sociabilidade/Companheiro/Michele Ruggieri/deh-baltazar-y-gonzalo-ref1/data=15820000
+            rel$sociabilidade/Companheiro/Francesco Pasio/deh-baltazar-y-gonzalo-ref2/data=15820000
+            ls$dehergne/68/obs=Baltasar y Gonzalo fr. (espagn.). 68 Ce frère (coad.?) (« el Hermano ») accompagne les PP. Ruggieri et Pasio à Canton, puis « Sciaochino » (Shiuhing, Tchao-k'ing fou), en 1582 (D'Elia I, 166 n. 4). Etait novice en 1577: « Balthasar Gondicalus » (Goa 24, 121v).
+
+            referido$Michele Ruggieri/id=deh-baltazar-y-gonzalo-ref1/obs=Dehergne 731
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Cantão# @wikidata:Q16572/15820000
+               ls$estadia/Sciaochino (Shiuhing, Tchao-k'ing fou)# @wikidata:Q59164/15820000
+
+            referido$Francesco Pasio/id=deh-baltazar-y-gonzalo-ref2/obs=Dehergne 612
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Cantão# @wikidata:Q16572/15820000
+               ls$estadia/Sciaochino (Shiuhing, Tchao-k'ing fou)# @wikidata:Q59164/15820000
+
+         n$Paul Banhes Wan/id=deh-paul-banhes-wan
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Padre
+            ls$nome/Paul Vanes
+            ls$nome/Paul Vanez
+            ls$nome/Paul Vanas
+            ls$nome/Paul Vanhes
+            ls$nome/Paul Vagnes
+            ls$nome/Paul Ybanez Van#segundo ms. fr 25057 f° 800 sq
+            ls$nome/Paul Vanes Vang#Al 443, 661 le nomme Paul Vanes Vang et le fait arr. en mission en 1685
+            ls$nome-chines/Wan K'i-Yuan San-Ts'iuan
+            ls$nascimento/Kienchang, Kien-tch'ang fou, Kiangsi/16310000#ou 1627 (il a 65 ans en 1692, JS 134, 376v), ou 1634, ou 1639/obs=REVER
+            ls$jesuita-entrada/Hangchow# @wikidata:Q4970/16780000
+            ls$estadia/Shanghai# @wikidata:Q8686/16800000
+            ls$estadia/Tchö-kiang#@wikidata:Q16967/16880000
+            ls$estadia/Hukwang#@wikidata:Q2235155/16890000#parte para viver como eremita, trazido de volta por Blaise Verbiest
+            ls$estadia/Foochow, Fukien# @wikidata:Q68481/16910000
+            ls$estadia/Kwangtung#@wikidata:Q15175
+            ls$estadia/Kiang-nan#@wikidata:Q11133842
+            ls$jesuita-ordenacao-padre/Nanquim# @wikidata:Q16666/16880801
+            ls$jesuita-votos/Coadjutor Espiritual
+            ls$morte/Shanghai# @wikidata:Q8686/17001008
+            ls$dehergne/69/obs=Banhes Wan, Paul (chin.) P. 69 Vanes (JS 187, 4)., Vanez (JS 134, 398v)., Vanas., Vanhes., Vagnes (JS 134, 371). Wan K'i-Yuan San-Ts'iuan (Pf.). N. 1631 (JS 134, 398v), Kienchang, Kien-tch'ang fou, Kiangsi. E. 1678, Hangchow., 1680, Shanghai., 1688, missionnaire au Tchô-kiang., 1689 part vivre en ermite au Hukwang., ramené par Biaise Verbiest., 1691, Foochow, Fukien (JS 134, 375)., Kwangtung., Kiang-nan P. 1 août 1688 à Nankin par Mgr Lo (Lopez) (JS 134, 371): Paulus Vagnes. V. Coadj. spir. M. 8 oct. 1700, Shanghai (HS 49, 225 et 50, 64: P. Paul Vanes). Pf 388 N. 1627 (il a 65 ans en 1692, JS 134, 376v)., en 1631 (catal. 1697 etc.)., en 1634 (JS 134, 382)., en 1639 (BVE. FG 1254 n» 23). Al 443, 661 le nomme Paul Vanes Vang et le fait arr. en mission en 1685. — BN : ms. fr 25057 f° 800 sq l'appelle Van, Paul Ybanez.
+
+            referido$Blaise Verbiest/id=deh-paul-banhes-wan-ref1/obs=Dehergne 882
+               rel$institucional/Traz de volta à missão/Paul Banhes Wan/deh-paul-banhes-wan
+
+            referido$Lopez/id=deh-paul-banhes-wan-ref2
+               rel$eclesiastica/Ordena/Paul Banhes Wan/deh-paul-banhes-wan/data=16880801
+               ls$titulo/Monsenhor
+               ls$nome/Lo
+               ls$estadia/Nanquim# @wikidata:Q16666/16880801
+
+         n$Etienne Baptista P'eng/id=deh-etienne-baptista-peng
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Padre
+            ls$nome/Stephanus Baptista Pung
+            ls$nome-chines/Pung
+            ls$nascimento/Pequim# @wikidata:Q956/17110105
+            ls$jesuita-entrada/Pequim# @wikidata:Q956/17331031
+            ls$estadia/[Missão]/17390301
+            ls$estadia/Kiangsi#@wikidata:Q57052/17490000#capturado
+            ls$estadia/Siangtan (Siang-t'an) Hunan# @wikidata:Q215755/17550000
+            ls$estadia/Fukien# @wikidata:Q41705
+            ls$estadia/Kiang-nan#@wikidata:Q11133842/17580000
+            ls$jesuita-ordenacao-padre/?/17390000#cerca de
+            ls$jesuita-votos/Coadjutor Espiritual/17440000
+            ls$morte/Pequim# @wikidata:Q956/17440000
+            ls$dehergne/70/obs="""
+               Baptista P'eng, Etienne (chin.) P. 70
+               Steph. Bapt. Pung (M 443, 681)., Pung (JS 98, 70) (P'ong = P'eng).
+               N. 5 janv. 1711, Pékin (JS 134, 438v).
+               E. Pékin (31 oct. 1733 selon JS 134, 436). en mission 1 mars 1739 (JS 134, 436).,
+               Kiangsi, où capturé en 1749 (B. Casanatense ms 1576, f° 200v).,
+               1755, Siangtan (Siang-t'an) Hunan (M 445, 422)., Fukien.,
+               1758, Kiang-nan (SOCP t. 52, 1760, 580v).
+               P. v. 1739. V. 1744, coadj. spir.
+               M. 27 févr. 1771, Pékin (HS 53a, 164).
+               Pf. 735."""
+
+         n$João Baptista/id=deh-joao-baptista
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Kouo Jo-Wanf#Pf.
+            ls$nome-chines/Ngai
+            ls$nascimento/Bombarral, diocese de Lisboa# @wikidata:Q891820/16540000#ou diocese de Coimbra, 16580623
+            ls$jesuita-entrada/?/16710320
+            ls$jesuita-entrada/?/16811112#alternativa
+            ls$embarque/?/16940000
+            ls$wicky/1331/16940000
+            ls$wicky-viagem/117/16940000
+            ls$chegada/[À missão]/16951203
+            ls$estadia/Nankin [Nanjing], Chenkiang (Tchen-kiang)[Zhejiang] e Tanyang, em Kiang-nan [Jiangnan]# @wikidata:Q16666/16990000
+            ls$estadia/Hangchow#Hangzhou @wikidata:Q4970
+            ls$jesuita-tarefa/Reconstrói a Igreja de Hangchow
+            ls$estadia/Shanghai# @wikidata:Q8686/1701
+            ls$estadia/Macau# @wikidata:Q14773/17040000
+            ls$jesuita-cargo/Procurador da Vice-Província/17040000
+            ls$jesuita-votos/coadjutor espiritual/16920202
+            ls$jesuita-votos/coadjutor espiritual/16950815#alternativa
+            ls$morte/Macau# @wikidata:Q14773/17140228
+            ls$dehergne/71/obs=Baptista, João (port.) P. 71Batt--.Kouo Jo-wang (Pf.)., Ngai, son évêque l'appelle Jean Baptiste Ngai, en 1763 (SOCP t. 55, 84v). N. Ville de Bombarral, d. de Lisbonne, 1654 -E. 20 mars 1671 (Lus. 46,347) dates qui nous semblent plus sûres que celles de JS 134,399: N. 23 juin 1658, dioc. de Coïmbre, E. 12 nov. 1681.Emb. en 1694 (W 1331)., arr. en mission, 3 déc. 1695 (JS 134, 406).,1699, Nankin, Chenkiang (Tchen-kiang) et Tanyang, au Kiang-nan.,rebâtit l'église de Hangchow (RBS 299)., 1701, Shanghai., en 1704,procureur de la vice-province, à Macao.V. 2 févr. 1692, c. spir. (JS 134, 381). JS 134, 412 écrit: 15 août 1695.Formule non retrouvée.M. 28 févr. 1714, Macao (JS 25, 271v et 775, 279., HS 50 l'ignore).Pf. 477., RBS 299.--
+
+         n$Francisco Barbosa/id=deh-francisco-barbosa
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Santarém# @wikidata:Q273877/16710000
+            ls$jesuita-entrada/?/16860121
+            ls$embarque/[Para a China]/16940000#Le catal. 1693 (JS 134, 378v) l'inscrit pour la mission de Chine, et celui de 1694 pour la province de Goa. Il s'embarque effectivement pour cette dernière, en 1694
+            ls$wicky/1329/16940000
+            ls$wicky-viagem/117/16940000
+            ls$dehergne/72/obs=Barbosa, Francisco (port.) P. 72 N. Scalabis, d. de Lisbonne, 1671 -E. 21 janv. 1686 (Lus. 46, 255v). Le catal. 1693 (JS 134, 378v) l'inscrit pour la mission de Chine, et celui de 1694 pour la province de Goa. Il s'embarque effectivement pour cette dernière, en 1694 (W 1329).
+
+         n$Miguel Barbosa/id=deh-miguel-barbosa
+            ls$nacionalidade/Portugal#Dehergne diz fr. por engano
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Braga# @wikidata:Q83247/16200000
+            ls$jesuita-entrada/?/16350000
+            ls$embarque/?/16430330
+            ls$wicky/917/16430330
+            ls$wicky-viagem/77/16430330
+            ls$morte/Golfo de Hainan# @wikidata:Q42200/1653#naufrágio/obs=não se percebe se morreu
+            ls$dehergne/73/obs=Barbosa, Miguel (port.) fr. 73 N. Braga 1620 -E. 1635 (Lus. 44 II, 616). Emb. le 30 mars 1643 (W 917). Pf. 264 dit qu'il servit à la Cour de Constantin, fils de Yong-li: c'est une légende (TP 1934, 109 n. 1). Naufrage en 1653 au golfe de Hainan? (MS V (1940), 342). Pf. 264. HS 48 ignore sa mort.
+
+         n$Agostino Barelli/id=deh-agostino-barelli
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Agostino Barli
+            ls$nome/Agostino Varrelli
+            ls$nome-chines/Ngai Sseu-Ting
+            ls$nascimento/Nice#então parte do Piémont @wikidata:Q33959/16560809#ou 16531115
+            ls$jesuita-entrada/Milão# @wikidata:Q490/16731021#ou 16731105
+            ls$grau-academico/Mestre em Artes
+            ls$embarque/?#segundo a entrada de Cicero terá sido em Lisboa/16980408
+            ls$wicky/1288/16900408
+            ls$wicky-viagem/113/16900408
+            ls$estadia/Macau# @wikidata:Q14773/16980000#antes do fim do ano
+            ls$estadia/Hangchow# @wikidata:Q4970/17020000
+            ls$estadia/Hangchow# @wikidata:Q4970/17080000
+            ls$jesuita-votos/4V/16910202
+            ls$jesuita-votos-local/Goa# @wikidata:Q1171/16910202
+            ls$morte/Hangchow# @wikidata:Q4970/17110129
+            ls$dehergne/74/obs=Barelli, Agostino (ital.) P. 74 Barli (JS 134, 372)., Varrelli (JS 134, 387). Ngai Sseu-Ting [qui évoque: a-gostino] (Pf.). N. 9 août 1656, « Nizardus è provincia Medianolensi » (JS 134, 387) « Pedemontanus Niceensis », Nice en Piémont (JS 134, 402) et non Brescia (selon Bortone p. 268) -E. 21 oct. 1673, Milan (JS 25, 246) M. A.., ou mieux N. 15 nov. 1653, E. 5 nov. 1673 (Med. 56, 144). Emb. 8 avril 1698 (W 1288) arr. Macao « antequam explevisset annum » avant la fin de l'année (JS 134, 402)., Hangchow, 1702 (SF VI, 1139) et 1708 (JS 150, 471). V. Goa 2 févr. 1691, pr. (Lus. 11, 194). M. 29 janv. 1711, Hangchow (HS 50, 90v et 51, 20). Pf. 492. Distinct de l'architecte laïque de ce nom, N. 1627 à Bologne, M. v. 1699. JS 174, 108 l'appelle P. Pedemontano!
+
+            referido$Agostino Barelli/id=deh-agostino-barelli-ref1
+               ls$nascimento/Bolonha# @wikidata:Q1891/16270000
+               ls$profissao/Arquitecto
+               ls$morte/?/16990000#cerca de
+               ls$dehergne/73-ref1/obs=Pf. 492. Distinct de l'architecte laïque de ce nom, N. 1627 à Bologne, M. v. 1699. JS 174,
+
+         n$Louis Barnabé/id=deh-louis-barnabe
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Loches (Indre-et-Loire)# @wikidata:Q213349/16490830
+            ls$jesuita-entrada/?/16660831#ou 16661211
+            ls$estadia/Arménia# @wikidata:Q399/16800000
+            ls$jesuita-tarefa/Enviado estudar a possibilidade de ganhar a China por terra, pela Rússia/16800000
+            ls$estadia/Alepo# @wikidata:Q41183/16850000
+            ls$estadia/Moscovo# @wikidata:Q649/16850000#com o Padre Philippe Avril
+            ls$estadia/Roma# @wikidata:Q220/16870000#necessitava de uma comprovação de Luís XIV
+            ls$estadia/Rouen# @wikidata:Q30974
+            ls$partida/Hamburgo# @wikidata:Q1055
+            ls$morte/No Báltico# @wikidata:Q545/17080120
+            ls$dehergne/75/obs=Barnabé, Louis (franç.) P. 75 N. Loches (Indre-et-Loire), 30 août 1649 -E. 31 août ou 11 déc. 1666 (Aquit. 11, 161v). Envoyé, en 1680, étudier sur place en Arménie la possibilité de gagner la Chine par la voie de terre et la Russie. Arr. Alep, d'où, en 1685, le P. Avril l'emmène jusqu'à Moscou., on lui réclame une attestation de Louis XIV patronnant ce projet, manière de l'éconduire. Il revient à Rome en 1687. Le catal. de 1688 le met « in Sin. », à tort (Aquit. 7, 179v). M. 20 janv. 1708 dans la Baltique, emb. à Rouen pour Hambourg (M. en 1687, dit Sommervogel). Aquit. l'ignore. - Pf. 421.
+
+            referido$Philippe Avril/id=deh-louis-barnabe-ref1
+               ls$estadia/Alepo# @wikidata:Q41183/16850000
+               ls$estadia/Moscovo# @wikidata:Q649/16850000
+               rel$sociabilidade/Companheiro/Louis Barnabé/deh-louis-barnabe
+
+         n$Léon-Pascal Baron/id=deh-leon-pascal-baron
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Lieou Pao-lou
+            ls$nascimento/Carcassone# @wikidata:Q6582/17380406
+            ls$jesuita-entrada/?/17570406
+            ls$embarque/Duc de Duras/17660118
+            rel$sociabilidade/Companheiro/Pierre Ladmiral/deh-leon-pascal-baron-ref1/data=17660118
+            rel$sociabilidade/Companheiro/Jean-Matthieu Tournu Ventavon/deh-leon-pascal-baron-ref2/data=17660118
+            ls$estadia/China# @wikidata:Q148/17660000
+            ls$estadia/Cantão# @wikidata:Q16572/17690000
+            ls$jesuita-tarefa/Presta Juramento/17690407#ou 1770
+            ls$estadia/Pequim#? @wikidata:Q956
+            ls$estadia/Hukwang#@wikidata:Q2235155/17710000
+            ls$estadia/Kiangsi#@wikidata:Q57052/17780000
+            ls$jesuita-votos/4V/17710815
+            ls$jesuita-votos-local/Petsiuenchan, Houkouang (Oratório)/17710815
+            ls$morte/Kiangsi#@wikidata:Q57052/17840412
+            ls$dehergne/76/obs=Baron, Léon-Pascal (franç.) P. 76 Lieou Pao-lou (Brotier vol. 110 f° 74 n° 38). Pao-lou = Paul! N. 6 avril 1738, Carcassonne. E. 6 avril 1757 (Tolos. 16 II, 375). Emb. sur le Duc de Duras, 18 janv. 1766, avec les PP. Ladmiral et de Ventavon (AN: Col. F5B 49)., arr. 1766., Canton, 1769., Pékin?., 1771, Hukwang., puis Kiangsi, 1778. V. « Petsiuenchan in Houkouang in orat[orio] ejusdem loci », 15 août 1771, pr. (Gai. 24, 557., REO III, 268). Il signe: Leopaschalis Baron. M. 12 avril 1784, au Kiangsi (SOCP, 1785, 464). Pf. 912. Il signe Paschal Baron son serment, Canton, 7 avril (1769 ou 1770?) (SOCP, t. 57, 1771, f 85).
+
+            referido$Pierre Ladmiral/id=deh-leon-pascal-baron-ref1/obs=Dehergne 441
+               ls$embarque/Duc de Duras/17660118
+
+            referido$Jean-Matthieu Tournu Ventavon/id=deh-leon-pascal-baron-ref2/obs=Dehergne 881
+               ls$embarque/Duc de Duras/17660118
+
+         n$João Barradas/id=deh-joao-barradas
+            ls$nacionalidade/China
+            ls$nascimento/Macau# @wikidata:Q14773/15700000#cerca de?
+            rel$sociabilidade/Companheiro/Matteo Ricci/deh-joao-barradas-ref1/data=15940000
+            ls$morte/Rio Kan#Rio Nam Khan, em Laos?/15940000#afogado no naufrágio, a caminho do noviciato
+            ls$dehergne/77/obs=Barradas, João (macaïste) 77 N. à Macao (v. 1570?). En 1594, en route pour entrer au noviciat, accompagne Ricci sur la rivière Kan où il fait naufrage et se noie. Pf. 25., DElia, I 341 et 344 n.
+
+            referido$Matteo Ricci/id=deh-joao-barradas-ref1
+               ls$estadia/rio Kan#Rio Nam Khan, em Laos?/15940000
+
+         n$Didace Barreto/id=deh-didace-barreto
+            ls$nacionalidade/México#? @wikidata:Q96
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$jesuita-tarefa/Libertado dos seus votos/16450000#cerca de
+            ls$titulo/Mandarim militar
+            rel$sociabilidade/Ajuda/Francesco Sambiesi/deh-didace-barreto-ref1
+
+            referido$Francesco Sambiesi/id=deh-didace-barreto-ref1/obs=Dehergne 739
+               ls$jesuita-estatuto/Padre
+
+         n$Rui Barreto/id=deh-rui-barreto
+            ls$nascimento/Mora, diocese de Évora# @wikidata:Q174800/15520000
+            ls$nacionalidade/Portugal
+            ls$jesuita-entrada/?/15681228#ou 15721228
+            ls$jesuita-ordenacao-padre/?/15790404#antes de
+            ls$embarque/Chagas/15790404#novo padre
+            ls$wicky/206/15790404
+            ls$wicky-viagem/26/15790404
+            ls$jesuita-cargo/Procurador nas Índias/15870000
+            ls$estadia/Japão# @wikidata:Q17/15940000
+            ls$estadia/Nagasaki# @wikidata:Q38234/15970000
+            ls$estadia/Macau# @wikidata:Q14773/16100000
+            ls$jesuita-votos/Coadjutor Espiritual/15900600
+            ls$morte/Fukien#a caminho do Japão, naufrágio, assassinado por piratas @wikidata:Q41705/16110000
+            rel$sociabilidade/Companheiro/António de Abreu/deh-rui-barreto-ref1/data=16110000
+            ls$dehergne/79/obs=Barreto, Rui ( = Ruy, Ruiz, Rodericus) (port.) P. 79 N. 1552, Mora, d. d'Evora -E. 28 déc. 1568, ou 1572 (Lus. 42, 37v). Emb., nouveau prêtre, sur le Chagas, 4 avril 1579 (W 206)., 1587, procureur aux Indes., en 1594 au Japon., 1597, Nagasaki., 1610, Macao. M. en 1611, en route vers le Japon, fait naufrage au Fukien, tué par les pirates (DI XI, 24)., cf. ci-dessus d'ABREU, Antônio. Pf. 125. Il signe: Ruy Barreto (JS 13 I, 69, 71). Schutte, 882. V. juin 1590, c. spir. (JS 25, 32v).
+
+            referido$António de Abreu/xmesmo_que=deh-antonio-de-abreu/id=deh-rui-barreto-ref1
+               ls$morte/Fukien#a caminho do Japão, naufrágio, assassinado por piratas @wikidata:Q41705/16110000
+
+         n$Agostinho de Barros/id=deh-agostinho-de-barros
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Arcos de Valdevez, diocese de Braga# @wikidata:Q490302/16940902
+            ls$jesuita-entrada/?/17120212
+            ls$embarque/[Para a China]/17300404
+            ls$wicky/1752/17300404
+            ls$wicky-viagem/150/17300404
+            ls$jesuita-cargo/Superior de todas as missões da China
+            ls$estadia/China# @wikidata:Q148/17320000
+            ls$morte/Cochinchina# @wikidata:Q505503[centrada na atual Da Nang @Wikidata:Q25282]/17360219
+            ls$dehergne/80/obs=Barros, Agostinho de (port.) P. 80 N. Arcos de Valdeves, d. de Braga, 2 sept. 1694 -E. 12 février 1712 (Lus. 47, 306). Emb. 4 avril 1730 pour la Chine (W 1752). Lus. 48, 199 « superior omnis missionis » (de Chine)., arr. 1732 (M 443, 678). M. 19 févr. 1736 en Cochinchine, de la prov. du Japon (JS 53a, 16v). Inconnu de Pf.
+
+         n$António de Barros/id=deh-antonio-de-barros
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Long Ngan-tang Ngan-Kouo
+            ls$nascimento/Arcos de Valdevez, diocese de Braga# @wikidata:Q490302/16641021
+            ls$jesuita-entrada/?/16810612
+            ls$embarque/?/16940000
+            ls$wicky/1335/16940000
+            ls$wicky-viagem/117/16940000
+            ls$estadia/Goa# @wikidata:Q1171/16940000
+            ls$estadia/Pequim# @wikidata:Q956/16971000
+            ls$estadia/Sian (Si-ngan fou)#@wikidata:Q5826/17000000
+            ls$estadia/Pequim# @wikidata:Q956/17010700
+            ls$partida/Roma# @wikidata:Q220/17061017#enviado por K'ang hi
+            ls$estadia/Cantão# @wikidata:Q16572/17070104
+            ls$jesuita-votos/4V/17011203
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/17011203
+            ls$morte/Rio Âncora#ou no mar, em frente de Arcos de Valdevez @wikidata:Q10362954/17080102#ou 17080120
+            ls$dehergne/81/obs=Barros, António de (port.) (I) P. 81 Long Ngan-tang Ngan-Kouo (Pf.., JS 170, 326: Lum Ngan Que). N. 21 oct. 1664, Arcos de Valdeves, d. de Braga « Bracharensis ». E. 12 juin 1681 (JS 134, 398v., Lus. 46, 127). Emb. 1694 (W 1335)., arr. Goa 1694 (Goa 27, 110)., oct. 1697, Pékin., 1700, Sian (Si-ngan fou)., juill. 1701, Pékin. K'ang hi l'envoie à Rome, il quitte Pékin, 17 oct. 1706 et Canton, 4 janv. 1707 (SF V 518 et VI 678). V. Pékin, 3 déc. 1701, pr. (Lus. 12, 127). M. 2 janv. 1708 (HS 50, 74 et 51, 14)., 20 janv. 1708, naufrage, en mer, en face d'Arcos de Valdeves (Franco, Synopsis, p. 431), à l'entrée du rio de Ancora, Caminha, dit A. Casimiro dans l'encyclop. Verbo. Pf. 485., Verbo (A. Casimiro).
+
+            referido$K'ang hi/id=deh-antonio-de-barros-ref1/obs=Kangxi
+               ls$titulo/Imperador da China/17061017
+               rel$profissional/Envia a Roma/António de Barros/deh-antonio-de-barros/data=17061017
+
+         n$António de Barros/id=deh-antonio-de-barros-ii
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Macau# @wikidata:Q14773/17170414
+            ls$jesuita-entrada/?/17370907
+            ls$estadia/Cochinchina# @wikidata:Q505503[centrada na atual Da Nang @Wikidata:Q25282]/17530000#esteve lá noutra data
+            ls$jesuita-votos/Coadjutor Espiritual/17480630
+            ls$jesuita-votos-local/Bà Rịa, Cochinchina#Vietname @wikidata:Q881/17480630
+            ls$morte/Cochim# @wikidata:Q1800/17590528
+            ls$dehergne/82/obs=Barros, Antonio de (macaïste) (II) P. 82 N. Macao, 14 avril 1717 -E. 7 sept. 1737 (JS 25, 285). A été missionnaire en Cochinchine, où il retourne en 1753 (JS 26, 47v). Nous le citons comme originaire de Macao. V. Bâ-ria en Cochinchine, 30 juin 1748, coadj. spir. (Lus. 24, 240). M. 28 mai 1759, Cochin (HS 53a, 110).
+
+         n$João de Barros/id=deh-joao-de-barros
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Gradil, diocese de Lisboa# @wikidata:Q1024960/17080122
+            ls$jesuita-entrada/?/17240402
+            ls$embarque/[Para a China]/17300404#não padre
+            ls$wicky/1753/17300404
+            ls$wicky-viagem/150/17300404
+            rel$sociabilidade/Companheiro/Agostinho de Barros/deh-joao-de-barros-ref1/data=17300404
+            ls$estadia/China# @wikidata:Q148/17340000
+            ls$estadia/Goa# @wikidata:Q1171/17350000
+            ls$morte/Goa# @wikidata:Q1171/17360306
+            ls$dehergne/83/obs=Barros, João de (port.) P. 83 N. au bourg de Gradil, d. Lisbonne, 22 janv. 1708 -E. 2 avril 1724 (Lus. 47, 309). Emb., non prêtre, pour la Chine, 4 avril 1730, en même temps que le P. Agostinho de Barros (W 1753., Lus 48, 199). Etait prêtre de la vice-province de Chine en 1734 (Goa 26, 235)., à Goa en 1735 (Goa 27, 165v). M. à Goa, 6 mars 1736 (HS 53a, 16).
+
+            referido$Agostinho de Barros/id=deh-joao-de-barros-ref1/mesmo_que=deh-agostinho-de-barros
+               ls$embarque/[Para a China]/17300404
+               ls$wicky-viagem/150/17300404
+
+         n$Jacques Barthe/id=deh-jacques-barthe
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jacques Bartche
+            ls$nascimento/?/16610000
+            ls$jesuita-entrada/?/16780000
+            ls$idade/31/16920000
+            ls$jesuita-votos/?#désigné pour faire ses V. de profès/16920000
+            ls$estadia/[A caminho da China]/16920000
+            ls$dehergne/84/obs=Barthe (Bartche), Jacques, P. 84 Le catal. de Chine de 1692 (JS 134, 377) indique, parmi les renforts attendus, le P. Jacques Barthe, âgé de 31 ans, dont 14 de Compagnie, dé- signé pour faire ses V. de profès, et qui est dit en route pour la Chine. Il serait donc Né en 1661 et E. en 1678 et il se prépare à faire ses voeux de profès. Recherches faites, nous ne trouvons aucun nom répondant à ces données dans les catalogues de France ou de Belgique.
+
+            referido$Jacques de Bart/id=deh-jacques-bart-ref1
+               ls$nacionalidade/França
+               ls$jesuita-estatuto/Padre
+               ls$nome/Jacques Debart
+               ls$nascimento/Autun# @wikidata:Q190827/16641210
+               ls$jesuita-entrada/?/16830925
+               ls$jesuita-votos/4V/16990202
+               ls$jesuita-votos-local/Auxerre# @wikidata:Q167600/16990202
+               ls$morte/Autun# @wikidata:Q190827/17281211
+               ls$dehergne/84-ref1/obs=Nous connaissons un P. Jacques de Bart (Debart), N. « Aeduus », « Augustodun. », à Autun, 10 déc. 1664, E. 25 sept. 1683 {Camp. 13, 20), qui fera ses V. le 2 févr. 1699 « Altissiodori », à Auxerre, pr. (Gai. 14, 535)., M. à Autun, 11 déc. 1728. Pas question de départ en Chine, à notre connaissance.
+
+            referido$Jakob Bartche/id=deh-deh-jacques-bart-ref2
+               ls$nacionalidade/Alemanha
+               ls$jesuita-estatuto/Padre
+               ls$jesuita-tarefa/enviado à China/16970000#não chega a ir à China
+               ls$jesuita-votos/4V/17020202
+               ls$jesuita-votos-local/Varsóvia# @wikidata:Q270/17020202
+               ls$dehergne/84-ref2/obs= Mais il y a aussi un P. Jakob Bartche, allemand, que le catal. de France 1697 ex., Franc. 24, 388v, marque parmi ceux qui doivent s'embarquer incessamment pour la Chine « navem propé diem conscensuri ad Sinas profecturi ». Il fera ses V. « Varsaviae », à Varsovie, 2 févr. 1702, pr. et il signe P. Jacobus Bartsch (Germ. 30, 386). Il n'est pas venu en Chine.
+
+            referido$Jean Barse/id=deh-deh-jacques-bart-ref3
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Síria# @wikidata:Q858/17060000
+               ls$morte/Síria# @wikidata:Q858/17151005
+               ls$dehergne/84-ref3/obs=Tolos. 7, 287 cite par erreur un P. Jean Barse « in regno Sin. » en 1708 ex., distraction pour « Syrie », où ce P. travaille de 1706 à sa mort, 5 oct. 1715 (Tolos. 7, 257v, 376).
+
+         n$Alexandre Barvoets/id=deh-alexandre-barvoets
+            ls$nacionalidade/Bélgica
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Bruges# @wikidata:Q12994/16191016#ou 16201015
+            ls$jesuita-entrada/Mechelen%Malines# @wikidata:Q162022/1636-09-30
+            ls$estadia/Antuérpia%Anvers# @wikidata:Q12892/16401115
+            ls$jesuita-tarefa/Pede para ir para a China/16401115/obs=não chega a partir
+            ls$jesuita-votos/4V/16531001
+            ls$jesuita-votos-local/Rocroi (oratório do castelo do arquiduque Leopoldo Guilherme)# @wikidata:Q273702/16531001
+            ls$cargo/Capelão militar
+            ls$morte/Lille# @wikidata:Q648/16541201
+            ls$dehergne/85/obs="""
+            Barvoets, Alexandre (belge), P. 85
+            N. 16 oct. 1619, dit la notice de Fl. Belg. 70 II, 985.,
+               ou 15 oct. 1620 selon d'autres, à Bruges,
+               fils d'un médecin.
+            E. 30 sept. 1636, Malines.
+            Il demande la Chine, Anvers, 15 nov. 1640 (Indip.)
+               et est réclamé par Martini pour la Chine.
+               Il ne partira pas.
+            V. 1 oct. 1653 « in castris ad Roucroyam in oratorio Serenissimi
+               Archiducis Leopoldi Wilhelmi », à Rocroi, pr. (Germ. 15, 80).
+            M. aumônier militaire, Lille, 2 déc. 1654 (Fl. Belg. 70 II, 985)."""
+
+            pai$Pai Alexandre Barvoets/id=deh-alexandre-barvoets-pai
+               ls$profissao/Médico
+
+            referido$Martino Martini/id=deh-alexandre-barvoets-ref1/obs=Dehergne 520
+               rel$institucional/Reclama para a China/Alexandre Barvoets/deh-alexandre-barvoets/obs=não chega a partir
+
+         n$Jean-Baptiste Batailhé/id=deh-jean-baptiste-batailhe
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jean-Baptiste Batallié
+            ls$nome/Jean-Baptiste Bataillé
+            ls$nome/Jean-Baptiste Bathalié
+            ls$nascimento/Albi# @wikidata:Q132801/16980213
+            ls$baptizado/Albi (igreja de St. Affric)# @wikidata:Q132801/16980217
+            ls$jesuita-entrada/?/17130905
+            ls$estadia/Saint-Malo# @wikidata:Q163108/17301210
+            ls$embarque/?/17301210
+            rel$sociabilidade/Companheiro/Piloti/deh-jean-baptiste-batailhe-ref1/data=17301210
+            rel$sociabilidade/Companheiro/Buocher/deh-jean-baptiste-batailhe-ref2/data=17301210
+            rel$sociabilidade/Companheiro/Lodovico Maggi/deh-jean-baptiste-batailhe-ref3/data=17301210
+            ls$estadia/Cantão# @wikidata:Q16572/17310808
+            ls$estadia/Hukwang#@wikidata:Q2235155/17350000
+            ls$estadia/Honan#@wikidata:Q43684
+            ls$estadia/Hukwang#@wikidata:Q2235155/17430000
+            ls$jesuita-ordenacao-padre/?/17290000#ou 17300000
+            ls$jesuita-votos/4V/17330815
+            ls$jesuita-votos-local/Macau (colégio)# @wikidata:Q14773/17330815
+            ls$morte/Kucheng (Kou-tch'eng), Hupeh (Montanhas)# @wikidata:Q1168209/17430600#ou 1744
+            ls$dehergne/86/obs=Batailhé, Jean-Baptiste (franç.) P. 86 Bataillé (M 443, 677)., Bataillé (JS 134, 431)., Bathalié. N. 13 févr. 1698 « Albigensis in Occitania », à Albi (Gai. 111, 84). E. 5 sept. 1713 (Tolos. 14, 151). Emb. 10 déc. 1730 à Saint-Malo avec 2 franciscains (PP. Piloti et Buocher de Portoferraio), et le dominicain Lodovico Maggi (Margiotti p. 234, n. 47)., arr. 8 août 1731, Canton (JS 134, 431)., 1735, Hukwang (JS 181, 117)., Honan., 1743, Hukwang (Gai. 111, 84). P. 1729 ou 1730 (Franc. 26, 324). V. « Jo. B. Batailhé » 15 août 1733, chapelle du collège de Macao pr. (Gai 20, 6) (et non 1732). M. juin 1743, aux monts du Kucheng (Kou-tch'eng), Hupeh (Gai. 20, 5). Tolos. 16, 156 indique 1744 « nescitur dies ».
+            ls$dehergne/86/obs=N. à Albi le 13 févr. et non le 13 sept., comme écrit JS 134, 431, car il fut baptisé le 17 févr. 1698 en l'église de St Affric, d'Albi, fils de Jean Batailher notaire royal, et de Marie Coste (Arch. départem. du Tam). Les catal. de Toulouse le prénomment toujours Jean, et écrivent Bathalié, 1730-31., plus tard: Bataillé. Il signe J. B. Batailhé, BN : ms. fr. n. a. 6555, 15. Pf. 730.
+
+            referido$Piloti/id=deh-jean-baptiste-batailhe-ref1
+               ls$nacionalidade/Itália
+               ls$estatuto/Franciscano
+               ls$nascimento/Portoferraio# @wikidata:Q157856
+               ls$estadia/Saint-Malo# @wikidata:Q163108/17301210
+               ls$embarque/?/17301210
+
+            referido$Buocher/id=deh-jean-baptiste-batailhe-ref2
+               ls$nacionalidade/Itália
+               ls$estatuto/Franciscano
+               ls$nascimento/Portoferraio# @wikidata:Q157856
+               ls$estadia/Saint-Malo# @wikidata:Q163108/17301210
+               ls$embarque/?/17301210
+
+            referido$Lodovico Maggi/id=deh-jean-baptiste-batailhe-ref3
+               ls$nacionalidade/Itália
+               ls$estatuto/Dominicano
+               ls$estadia/Saint-Malo# @wikidata:Q163108/17301210
+               ls$embarque/?/17301210
+
+            pai$Jean Batailher/id=deh-jean-baptiste-batailhe-pai
+               ls$profissao/Notário
+               ls$cargo/Notário régio
+
+            mae$Marie Coste/id=deh-jean-baptiste-batailhe-mae
+
+         n$Ignace Baudet de Beauregard/id=deh-ignace-baudet-de-beauregard
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/François Ignace Baudet
+            ls$nascimento/St-Hugues-St-Jean de Grenoble# @wikidata:Q1289/16180207#baptismo
+            ls$jesuita-entrada/?/16350000
+            ls$estadia/Vannes# @wikidata:Q6593/16541000#fim de
+            ls$embarque/?#para Lisboa?/16541000#fim de/obs=BN: ms. fr. 25055, 140 dit : Emb. avec les PP. Greslon et Fuciti le 25 mai 1654, arr. à Macao à la mi-juin (1656).
+            rel$sociabilidade/Companheiro/Edmond Poncet/deh-ignace-baudet-de-beauregard-ref1/data=16541000
+            rel$sociabilidade/Companheiro/Germain Macret/deh-ignace-baudet-de-beauregard-ref2/data=16541000
+            rel$sociabilidade/Companheiro/Domenico Fuciti/deh-ignace-baudet-de-beauregard-ref3/data=16541000
+            ls$estadia/Lisboa# @wikidata:Q597/16550323
+            ls$embarque/S. Francisco#o nome do galeão S. Francisco vem da entrada de Poncet, Dehergne 656/16550323
+            ls$wicky/1005/16550323
+            ls$wicky-viagem/87/16550323
+            rel$sociabilidade/Companheiro/Edmond Poncet/deh-ignace-baudet-de-beauregard-ref1/data=16550323
+            rel$sociabilidade/Companheiro/Germain Macret/deh-ignace-baudet-de-beauregard-ref2/data=16550323
+            rel$sociabilidade/Companheiro/Domenico Fuciti/deh-ignace-baudet-de-beauregard-ref3/data=16550323
+            ls$estadia/Macau# @wikidata:Q14773/16560600
+            ls$estadia/Cochinchina# @wikidata:Q505503[centrada na atual Da Nang @Wikidata:Q25282]/16590000
+            ls$estadia/Cambodja# @wikidata:Q424 @wikidata:Q424
+            ls$estadia/Macau# @wikidata:Q14773/16691220
+            ls$estadia/Macau (colégio)# @wikidata:Q14773/16730000
+            ls$estadia/Cochinchina# @wikidata:Q505503[centrada na atual Da Nang @Wikidata:Q25282]/16730000
+            ls$estadia/Sião# @wikidata:Q869/16650000#exilado
+            ls$estadia/Sião# @wikidata:Q869/16740000#exilado
+            ls$jesuita-votos/Coadjutor Espiritual/16521101/obs=JS 25, 205v le met profès des 3 V. 1 nov. 1653.
+            ls$jesuita-votos-local/Vienne, Dauphiné# @wikidata: Q26849/16521101
+            ls$morte/?/16790000#depois de
+            ls$dehergne/87/obs=Baudet de Beauregard, Ignace, dit François Ignace (franç.) P. 87 N. baptisé à St-Hugues-St-Jean de Grenoble 7 févr. 1618. E. 1635. Emb. Vannes fin oct. 1654 avec les PP. Poncet, Macret et Fuciti, et avec les mêmes à Lisbonne, 23 mars 1655 (W 1005)., 1659, Cochinchine., Cambodge (JS 25, 170v)., écrit de Macao, 7 janv. et 20 déc. 1669 (JS 70, 260 et ARSI FG 730)., en 1673, au collège de Macao, « P. Franciscus Ignatius qui dicitur Baudet » (JS 25, 204) puis Cochinchine., exilé au Siam, 1665 et 1674. V. François Ignace Baudet Viennae 1 nov. 1652, coadj. spir. (Gai. 27, 150): Vienne en Dauphiné. JS 25, 205v le met profès des 3 V. 1 nov. 1653. M. après 1679. Fils d'André Baudet, seigneur de Beauregard, secrétaire et greffier au Parlement (1586-1627), et d'Olympe de Guichard, protestante avant son mariage, qui eurent onze enfants.
+            ls$dehergne/87/obs=BN : ms. fr. 25055, 140 dit : Emb. avec les PP. Greslon et Fucrn le 25 mai 1654, arr. à Macao à la mi-juin (1656). JS 25, 205v l'appelle P. Franciscus Ignatius Gallus Gratianopolitan. Pf. 294: Beaudet., Louis Basette, Trois lettres (1652-1654) du P. François Baudet de Beauregard missionnaire au Japon, en Chine et en Cochinchine, « Le Dauphiné», Grenoble, 1953., Guy-Aliard, Histoire généalogique, 1680.
+
+            pai$André Baudet/id=deh-ignace-baudet-de-beauregard-pai
+               ls$titulo/Senhor de Beauregard
+               ls$cargo/Escrivão no Parlamento%greffier
+
+            mae$Olympe de Guichard/id=deh-ignace-baudet-de-beauregard-mae/obs=era protestante antes do casamento, teve 11 filhos
+
+            referido$Edmond Poncet/id=deh-ignace-baudet-de-beauregard-ref1/obs=Dehergne 656
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Vannes# @wikidata:Q6593/16541000#fim de
+               ls$embarque/?#para Lisboa?/16541000#fim de
+               ls$estadia/Lisboa# @wikidata:Q597/16550323
+               ls$embarque/S. Francisco/16550323/obs=o nome do galeão S. Francisco vem da entrada de Poncet, Dehergne 656
+               ls$wicky-viagem/87/16550323
+
+            referido$Germain Macret/id=deh-ignace-baudet-de-beauregard-ref2/obs=Dehergne 502
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Vannes# @wikidata:Q6593/16541000#fim de
+               ls$embarque/?#para Lisboa?/16541000#fim de
+               ls$estadia/Lisboa# @wikidata:Q597/16550323
+               ls$embarque/S. Francisco/16550323/obs=o nome do galeão S. Francisco vem da entrada de Poncet, Dehergne 656
+               ls$wicky-viagem/87/16550323
+
+            referido$Domenico Fuciti/id=deh-ignace-baudet-de-beauregard-ref3/obs=Dehergne 341
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Vannes# @wikidata:Q6593/16541000#fim de
+               ls$embarque/?#para Lisboa?/16541000#fim de
+               ls$estadia/Lisboa# @wikidata:Q597/16550323/obs=não embarca no mesmo barco que os anteriores, vide a sua entrada
+               ls$wicky-viagem/87/16550323
+
+            referido$Adrien Greslon/id=deh-ignace-baudet-de-beauregard-ref4/obs=Dehergne 390
+               ls$jesuita-estatuto/Padre
+               ls$embarque/?/16540525#a entrada de Greslon diz Lisboa 25 de março de 1654 com ?
+
+         n$Giuseppe Baudino/id=deh-giuseppe-baudino
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Giuseppe Baudin
+            ls$nome/Giuseppe Baudouin
+            ls$nome/Giuseppe Bordin
+            ls$nome/Giuseppe Bodin
+            ls$nome-chines/Pao Tchong-Yi Tche-Ngan
+            ls$nascimento/Cuneo, Piemonte# @wikidata:Q5968/16571020
+            ls$jesuita-entrada/Génova# @wikidata:Q1449/16800811
+            ls$embarque/?/16920000
+            ls$wicky/1319/16920000
+            ls$wicky-viagem/115/16920000
+            ls$estadia/Macau# @wikidata:Q14773/16940711
+            ls$partida/Pequim# @wikidata:Q956/1694
+            ls$estadia/Pequim# @wikidata:Q956
+            ls$profissao/Médico
+            ls$profissao/Boticário
+            ls$tarefa/Acompanha K'ang Hi como médico na sua viagem ao sul da China/16990000
+            rel$profissional/Acompanha na viagem ao Sul da China/K'ang Hi/deh-giuseppe-baudino-ref1/data=16990000
+            ls$estadia/Sul da China# @wikidata:Q148/16990000
+            ls$jesuita-tarefa/Cuida dos pobres
+            ls$jesuita-votos/Coadjutor temporal/16910202
+            ls$jesuita-votos-local/Milão# @wikidata:Q490/16910202
+            ls$morte/Pequim# @wikidata:Q956/17181224#ou 17190109
+            ls$dehergne/88/obs=Baudino, Giuseppe (ital.) fr. coadj. 88 Baudin., Baudouin (M 419, 83)., Bordin., Bodin (BN: ms. fr. 25057, p. 807). Pao Tchong-Yi Tche-Ngan (Pf.). N. 20 oct. 1657, « Pedemontanus Cuneensis », Cuneo, au Piémont. E. 11 août (et non 16 août, JS 134, 400 etc) 1680, Gênes (Med. 57, 41v). Emb. 1692 (W 1319)., arr. 11 juill. 1694, Macao (JS 134, 408)., 1694, en bateau, de Canton à Pékin (SRC t. 6, 1691-1697, f° 172)., Pékin, médecin et pharmacien., en 1699, il accompagne comme médecin K'ang hi en son voyage au sud de la Chine (SF V, 397)., soin des pauvres. V. Milan, 2 févr. 1691, c. temp. (Ital. 51, 48). M. 24 déc. 1718, Pékin (JS 134, 437., HS 50, 116v et 51, 210., Planchet p. 165., le 9 janv. 1719, dit son éloge, Lus. 58 II, 545). Pf. 476. — Récit de voyage, 1694 (Munich, ms 590, 591).
+
+            referido$K'ang Hi/id=deh-giuseppe-baudino-ref1
+               ls$titulo/Imperador da China/16990000
+               ls$estadia/Sul da China# @wikidata:Q148/16990000
+
+         n$Julien Baudran/id=deh-julien-baudran
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Saint-Malo# @wikidata:Q163108/16370312
+            ls$jesuita-entrada/Paris# @wikidata:Q90/16551002
+            ls$jesuita-cargo/Reitor de Rouen
+            ls$jesuita-cargo/Reitor de Rennes
+            ls$jesuita-cargo/Reitor do colégio Louis-le-Grand
+            ls$jesuita-cargo/Provincial de França/17010000
+            ls$jesuita-cargo/Provincial de França/17040000
+            ls$jesuita-cargo/Superior dos Jesuítas franceses da China e da Índia/16990815/obs=Il a sa place ici en tant que supérieur direct des Jésuites français de Chine «rector Collegii Ludovici Magni parisiensis et Superior Missionum gallicarum in Indiis orientalibus et apud Sinas», 15 août 1699 {Gai. 111, llv).
+            ls$jesuita-ordenacao-padre/?/16680000
+            ls$jesuita-votos/4V/16730202
+            ls$jesuita-votos-local/Nantes# @wikidata:Q12191/16730202
+            ls$morte/Paris# @wikidata:Q90/17190107
+            ls$dehergne/89/obs=Il a sa place ici en tant que supérieur direct des Jésuites français de Chine < rector Collegii Ludovici Magni parisiensis et Superior Missionum gallicarum in Indiis orientalibus et apud Sinas », 15 août 1699 {Gai. 111, llv). V. Nantes, 2 févr. 1673, pr. (Gai 11, 207). M. Paris, 7 janv. 1719 (HS 51, 211). Il a sa place ici en tant que supérieur direct des Jésuites français de Chine < rector Collegii Ludovici Magni parisiensis et Superior Missionum gallicarum in Indiis orientalibus et apud Sinas », 15 août 1699 {Gai. 111, llv). N. « mensem et diem nescit » (Franc. 13, 252), cas fréquent alors.
+
+         n$Vautrin Baudré/id=deh-vautrin-baudre
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Saint-Mihiel, Meuse, diocese de Verdun# @wikidata:Q194932/16661217
+            ls$jesuita-entrada/?/16861017
+            ls$jesuita-ordenacao-padre/Trier%Trèves# @wikidata:Q3138/17000413
+            ls$jesuita-votos/4V/17030202#ou 17020000
+            ls$jesuita-votos-local/Índia#? @wikidata:Q668/17030202#ou 17020000
+            ls$estadia/[A caminho da China]/17030000/obs=Le Catal. Franc. 1703 ex. dit le P. Valt [rinus] Baudre « in itinere ad Sinas ».
+            ls$jesuita-cargo/Superior em Bengala#?
+            ls$morte/Bengala#? @wikidata:Q80338/17150000#ou 171600000
+            ls$dehergne/90/obs=Baudré, Vautrin (franç.) P. 90 N. « S. Michael », Saint-Mihiel (Meuse), « Sammellianus d. Virdun. », du dioc. de Verdun, 17 déc. 1666 (Camp. 13, 260). E. 17 oct. 1686 (Camp. 19, 293). P. 13 avirl 1700, ordonné à Trêves (Camp. 13, 200v). V. 2 févr. 1703, pr., Baudrey Valtrinus (Camp. 14, 29v). Formule non retrouvée. Camp. 13, 266 dit: V. in India, pr., 1702. M. en 1715 dit Sommervogel VIII, col. 1779. Camp. 14, 99v le nomme encore en 1714 mais non en 1717. HS 51 l'oublie. Le Catal. Franc. 1703 ex. dit le P. Valt [rinus] Baudre « in itinere ad Sinas ». M. au Bengale en 1715 ou 1716, où il était supérieur.
+
+         n$Jean-Simon Bayard/id=deh-jean-simon-bayard
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Fan Jo-chö Si-Yuan
+            ls$nome-chines/Fang Si-mong
+            ls$nome-chines/Fam Si-mouon
+            ls$nome-chines/Fang-Siven
+            ls$nascimento/Lescar, Béarn (paróquia de St. Julien de Lescar)# @wikidata:Q324551/16620212#ou Pau 16600212
+            ls$jesuita-entrada/?/16800421#ou 16800422
+            ls$embarque/?/16920000
+            ls$wicky/1311/16920000
+            ls$wicky-viagem/115/16920000
+            ls$estadia/Moçambique# @wikidata:Q1029/16930100
+            ls$estadia/Macau# @wikidata:Q14773/16940718
+            ls$estadia/Wuchang (Wou-tch'ang)# @wikidata:Q1014420/16950500
+            ls$estadia/Changsha# @wikidata:Q174091/17000000
+            ls$estadia/Siangtan# @wikidata:Q215755/17010000
+            ls$estadia/Kweilin (Kouei-lin) fou, Kwangsi# @wikidata:Q189633
+            ls$estadia/Wuchang (Wou-tch'ang)# @wikidata:Q1014420/17080000
+            ls$estadia/Wuchang (Wou-tch'ang)# @wikidata:Q1014420/17130000
+            ls$profissao/Historiador#figurista/17230000
+            ls$estadia/Cantão# @wikidata:Q16572/17240000#deportado
+            ls$jesuita-ordenacao-padre/Poitiers# @wikidata:Q6616/16900000
+            ls$jesuita-votos/4V/16940815
+            ls$jesuita-votos-local/Macau# @wikidata:Q14773/16940815
+            ls$morte/Cantão# @wikidata:Q16572/17250312
+            ls$dehergne/91/obs=Bayard, Jean-Simon (franç.) P. 91 Fan Jo-chô Si-Yuan (Pf.)., Fang Si-mong (JS 179, 388: Fam Si-mouon., WB n.' 346, 57: Fang-Siven). N. 12 févr. 1662 « Gallus Bearnensis », Lescar en Béarn (Pyr. Atlant.). E. 21 avril 1680 (Aquit. 11, 306v). Emb. 1692 (W 1311)., janv. 1693, Mozambique (JS 132, 148) arr. 18 juill. 1694, Macao (SF VI, 134) (Aquit. 1692-93 le met déjà en Chine)., mai 1695, Wuchang (Wou-tch'ang)., 1700, Changsha., 1701. Siangtan., Kweilin (Kouei-lin) fou, Kwangsi (JS 25, 251)., Wuchang, 1708-1713 (JS 171, 312)., déporté à Canton, 1724. Historien « figuriste » (lettre reçue en 1723, Brotier 110, 16-20). P. 1690, à Poitiers (Aquit. 12, 225). V. Macao, 15 août 1694, pr. (Lus. 11, 292) (et non 2 févr. 1695, JS 134, 38 lv, suivi par Pf.).
+            ls$dehergne/91/obs=M. 12 mars 1725, Canton (HS 50, 117., JS 180, 143., Aquit. 1726 f° 259) Pf. 468 le prénomme Jean-Joseph-Simon ., mais il signe Jean-Simon B. (AN: K 1375 n° 80., BN: ms.fr. 25056 p. 18-21). Le registre de l'église N. D. de Lescar (GG3)ne le mettant pas à cette date, il serait donc de la paroisse de St Julien de Lescar, dont le registre ne commence qu'en nov. 1661, nous écrit le directeur des Arch. des Pyr. Atlantiques. — Rosso, 242, conteste le nom Fang. N. «Cantaber» (Franc. 17, 93)., « Palensis », à Pau. 12 févr. 1660 (Sommervogel VIII, col. 1782)., E. 22 avril 1680 (Aquit. 12, 24v).
+
+         n$Louis Bazin/id=deh-louis-bazin
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome-chines/Pa Sin Meou-Sieuou
+            ls$nascimento/região d'Avranches#mas não Avranches @wikidata:Q204430/17120824
+            ls$jesuita-entrada/Paris# @wikidata:Q90/17310105
+            ls$estadia/Pérsia# @wikidata:Q83311
+            ls$profissao/Médico
+            ls$cargo/Primeiro médico de Nadir Shah/17410000
+            ls$cargo/Primeiro médico de Nadir Shah/17470000
+            ls$tarefa/Acompanha Nadir Shah nas suas expedições/17410000
+            ls$tarefa/Acompanha Nadir Shah nas suas expedições/17470000
+            ls$estadia/Isfahan, Pérsia# @wikidata:Q42053/17470000
+            ls$estadia/Pondicherry%Puducherry# @wikidata:Q639421/17550000
+            ls$estadia/Cantão# @wikidata:Q16572/17650000
+            ls$estadia/Pequim# @wikidata:Q956/17660000
+            ls$cargo/Médico da corte/17660000
+            ls$jesuita-votos/Coadjutor Temporal/17430609
+            ls$jesuita-votos-local/Rasht%Recht#perto do mar Cáspio @wikidata:Q178373/17430609
+            ls$morte/Pequim# @wikidata:Q956/17740315
+            ls$dehergne/92/obs=Bazin, Louis (franç.) fr. coadj. 92 Pa Sin Meou-Sieou (Pf.). Pa-sin = Bazin. N. 24 août 1712, région d'Avranches (mais non à Avranches, me pré- cise M. Delalonde, Conservateur de la B. Municipale). E. 5 janv. 1731 Paris (Franc. 20, 31v). Arr. d'abord en Perse., devient premier médecin de Nadir Shah, qu'il suit dans toutes ses expéditions, 1741-1747., après l'assassinat de son maître par les Kurdes, il fuit à Ispahan, puis passe à la mission française des Indes, 1755, Pondichéry., puis en Chine, 1765, Canton, et 1766, médecin à la cour de Pékin. V. 9 juin 1743, Recht (près de la mer Caspienne), coadj. temp. (Gai. 37, 494) et non 1744 (Franc. 21, 130v). M. 15 mars 1774, Pékin. Pf. 962., DBF (Roman D'Amat). Nouveaux Mém. Missions du Levant IX, 13-132.
+
+            referido$Nadir Shah/id=deh-louis-bazin-ref1
+               rel$profissional/Patrão/Louis Bazin/deh-louis-bazin/data=17410000
+               rel$profissional/Patrão/Louis Bazin/deh-louis-bazin/data=17470000
+               ls$morte/?#assassinado pelos Curdos/17470000/obs=wikipedia diz 17470619
+
+         n$Antoine de Beauvollier/id=deh-antoine-de-beauvollier
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Antoine de Beauvoillier
+            ls$nome/Antoine de Beavoglier
+            ls$nome-chines/Po Ngan-tang Hien-Che
+            ls$nome-chines/Po Hien-Su
+            ls$nome-chines/Po Hien Chi
+            ls$nascimento/Blaye (paróquia de Saint Romain)# @wikidata:Q202562/16570603
+            ls$baptizado/Blaye, (paróquia de Saint Romain, capela de St Martin)# @wikidata:Q202562/16570603
+            ls$jesuita-entrada/?/16720907
+            ls$estadia/Ásia Central# @wikidata:Q27275/1688#encarregado de tentar o caminho para a China pela Tartária
+            ls$estadia/Erzurum, Arménia#hoje é Turquia @wikidata:Q122803/>1688
+            ls$jesuita-tarefa/Funda a missão de Erzurum/>1688
+            ls$estadia/Moscovo# @wikidata:Q649/16890200#com cartas de Luís XIV, recebe ordem de abandonar imediatamente o território russo/obs=na entrada de Philippe Avril diz que foram pela Polónia e Constantinopla, local em que Beauvillier foi assassinado, em setembro de 1689, daqui se pode perceber que ele não morreu, será outro?
+            ls$estadia/Arménia# @wikidata:Q399/>1689
+            ls$estadia/Surat#existem vários, no Irão, na Tailândia, na Índia, suponho que seja o da Índia só porque de seguida está em Madras (Madrasta, actual Chennai) @wikidata:Q4629/16980000
+            ls$estadia/Chennai, Índia%antiga Madras (Madrasta)# @wikidata:Q1352/16990708
+            ls$estadia/Cantão#num navio inglês @wikidata:Q16572/16991100
+            ls$estadia/Pequim# @wikidata:Q956/17061017#até
+            ls$partida/Roma# @wikidata:Q220/17061017#enviado por K'ang hi
+            ls$estadia/Cantão# @wikidata:Q16572/17070104#a caminho de Roma
+            ls$jesuita-ordenacao-padre/?/16850000#antes de
+            ls$jesuita-votos/4V/16930629
+            ls$jesuita-votos-local/Isfahan (Nova Julfa), Pérsia%«Julfae Ispahani»# @wikidata:Q42053/16930629
+            ls$morte/[No mar, perto da costa de Portugal]#vindo do Brasil @wikidata:Q45/17080120
+            ls$dehergne/93/obs=Beauvolller, Antoine de (franç.) P. 93 Beauvoillier (M 443, 675)., BeavogUer (JS 134, 386). Po Ngan-tang Hien-Che (Pf.., JS 174, 73 et 171, 226: Po Hien-Su). N. «Blaviensis» 2 juill. 1657, dit à tort Aquit. 12, 5., 2 juin 1657 (Aquit. 12, 412): en fait le 3 juin - E. 7 sept. 1672. A. 1688 Asie centrale, chargé de tenter la voie de la Chine par la Tartarie., fonde la mission d'Erzeroum (Arménie)., venu à Moscou avec des lettres de Louis XIV, reçoit l'ordre de quitter immédiatement le territoire russe, févr. 1689., regagne l'Arménie., 1698, Surate., 8 juill. 1699, Madras (JS 132, 240)., nov. 1699, Canton sur un vaisseau anglais., Pékin., envoyé de K'ang hi à Rome, quitte Pékin le 17 oct. 1706 et Canton le 4 janv. 1707 (SF V, 518., VI, 678). P. avant 1685. V. « Julfae Ispahani », pr., 29 juin 1693 (Gai 13, 328). M. en mer, venant du Brésil, près des côtes du Portugal, 20 janv. 1708 (HS 50 et 51 l'ont oublié)
+            ls$dehergne/93/obs=Né le 3 juin 1657, fils de René de Beauvolier, écuyer, sieur de Courchamps, Lieutenant-commissaire ordinaire d'artillerie dans la garnison de Blaye, et de Catherine Besse. L'enfant a été baptisé le même jour en la chapelle de St Martin, paroisse de St Romain (renseignement aimablement communiqué par les Arch. municipales de Blaye). Nom chinois romanisé Po Hien Chi (JS 170, 326v). Pf. 538., DHGE (E. Lamalle). Lebon, Un grand marcheur de France en Chine par terre, CCS IX, Pékin 1936, 604-622 et RHM t. 13 (1936) 261-282., Avril, Voyages en divers états, Paris, 1692., BN ms. fr. 25056 p. 23-29. — Ses Eclaircissements sur les Controverses, ASJP.
+
+            referido$K'ang Hi/id=deh-antoine-de-beauvollier-ref1
+               ls$titulo/Imperador da China
+               rel$profissional/Envia a Roma/Antoine de Beauvollier/deh-antoine-de-beauvollier
+
+            pai$René de Beauvolier/id=deh-antoine-de-beauvollier-pai
+               ls$titulo/Écuyer/obs=segundo wikipédia, na época moderna esta parece ser a forma de a nobreza sem título se apresentar em documentação, não me parece que corresponda ao escudeiro em português, portanto não traduzi
+               ls$titulo/Senhor de Courchamps
+               ls$cargo/Tenente-comissário ordinário de artilharia na guarnição de Blaye%Lieutenant-commissaire ordinaire d'artillerie
+
+            mae$Catherine Besse/id=deh-antoine-de-beauvollier-mae
+
+         n$Jean Claude Béguin/id=deh-jean-claude-beguin
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Marcy-sous-Marle, diocese de Laon# @wikidata:Q872632/17320518
+            ls$baptizado/Marcy-sous-Marle, diocese de Laon (paróquia de St Médard)# @wikidata:Q872632/17320518
+            ls$jesuita-entrada/?/17530121
+            ls$estadia/Cantão# @wikidata:Q16572/17670000
+            ls$partida/Ilê-de-France# @wikidata:Q13917/17670000
+            ls$estadia/Cantão# @wikidata:Q16572/17680000
+            ls$partida/Ilê-de-France#de vez, não pode estar no Cantão nem entrar nas províncias @wikidata:Q13917
+            ls$jesuita-ordenacao-padre/Trier%Trèves# @wikidata:Q3138/17640923
+            ls$dehergne/94/obs=Béguin, Jean Claude (franç.) P. 94 N. 18 mai 1732, Marcy, d. de Laon -E. 21 janv. 1753 (Camp. 17, 28v). A. 1767, Canton, repart île de France., 1768, Canton., repart pour de bon, puisqu'il ne peut ni séjourner à Canton, ni entrer dans les provinces. P. 23 sept. 1764, à Trêves, ordonné par l'évêque de Miriophit. suffragant de Trêves (Camp. 17, 286v). Fils de Jean Béguin et de Marie-Anne Duchesne, né et baptisé le même jour, paroisse St Médard de Marcy-sous-Marle (communication de M. G. Dumas, Directeur des Archives de l'Aisne). Pf. 925.
+
+            referido$Miriophit/id=deh-jean-claude-beguin-ref1
+               rel$eclesiastica/Ordena/Jean Claude Béguin/deh-jean-claude-beguin/data=17640923
+               ls$estadia/Trier%Trèves# @wikidata:Q3138/17640923
+               ls$cargo/Bispo sufragâneo de Trier%Trèves
+
+            pai$Jean Béguin/id=deh-jean-claude-beguin-pai
+
+            mae$Marie-Anne Duchesne/id=deh-jean-claude-beguin-mae
+
+         n$François Belgoder/id=deh-francois-belgoder
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/François Belgodare
+            ls$nome/François Bergoder
+            ls$nascimento/Bastia, Córsega# @wikidata:Q134698/16431014
+            ls$jesuita-entrada/Milão (província)# @wikidata:Q15121/16581105
+            ls$embarque/?/16730315#já padre
+            ls$wicky/1151/16730315
+            ls$wicky-viagem/99/16730315
+            rel$sociabilidade/Companheiro/Prospero Intorcetta/deh-francois-belgoder-ref1/data=16730315
+            ls$jesuita-ordenacao-padre/?/16730315#antes de
+            ls$morte/[A caminho do Japão]/16730420
+            ls$dehergne/95/obs=Belgoder, François (corse) P. Belgodare., Bergoder (Pf. 322 n.). N. « Bastiensis », Bastia, 14 oct. 1643 -E. 5 nov. 1658, prov. de Milan (Mediol. 54, 88). Emb. déjà prêtre 15 mars 1673 (W 1151) avec le P. Intorcetta. M. 20 avril 1673: « P. Franc. Belgoderus in itinere ad Japon » (HS 49, 72). Pf. 322 n. le marque, à tort, pour la Chine.
+
+            referido$Prospero Intorcetta/id=deh-francois-belgoder-ref1/obs=Dehergne 414
+               ls$jesuita-estatuto/Padre
+               ls$embarque/?/16730315
+               ls$wicky-viagem/99/16730315
+
+         n$Charles de Belleville/id=deh-charles-de-belleville
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Charles de Belville
+            ls$nome-chines/Wei Kia-lou
+            ls$nome-chines/Gouei
+            ls$nome-chines/Guei
+            ls$nome-chines/Goei
+            ls$nascimento/Rouen# @wikidata:Q30974/16570105#ou 16550104
+            ls$jesuita-entrada/Bordeaux# @wikidata:Q1479/16801125#16801225
+            ls$estadia/La Rochelle# @wikidata:Q82185/16980306
+            ls$embarque/?/16980306
+            ls$estadia/Cantão# @wikidata:Q16572/16981104
+            ls$estadia/Pequim# @wikidata:Q956/16990000
+            ls$profissao/Escultor
+            ls$profissao/Arquitecto
+            ls$profissao/Pintor
+            ls$tarefa/Executa o altar de Périgueux
+            ls$tarefa/Constrói as residências de Cantão e de Pequim/16990000
+            ls$estadia/Cantão# @wikidata:Q16572/17040000
+            ls$tarefa/Executa pinturas para as igrejas de Cantão/17040000
+            ls$partida/Europa# @wikidata:Q46/17070000
+            ls$estadia/Brasil# @wikidata:Q155/17100000
+            ls$jesuita-votos/Coadjutor Temporal/16910202
+            ls$jesuita-votos-local/Poitiers# @wikidata:Q6616/16910202
+            ls$morte/Baía, Brasil# @wikidata:Q40430/17300929
+            ls$dehergne/96/obs=Belleville, Charles de (franç.) fr. coadj. 96 Belville (HS 50, 133v). Wei Kia-lou (Pf.., Borg. Lat. 523, 60: Gouei., JS 187, 5: Guei., M 443, 683: Goei). N. 5 janv. 1657, Rouen -E. 25 nov. 1680, Bordeaux (Aq.) (N. 4 janv. 1655 -E. 25 déc. 1680, dit Aquit. 12, 22). Emb. La Rochelle, 6 mars 1698., A. 4 nov. 1698, Canton., 1699, Pékin, sculpteur et architecte., peintre (JS 134, 386): a fait l'autel de Périgueux., construit résidences de Canton et de Pékin., en 1704, à Canton « fait de beaux tableaux pour nos églises » (ARSI F. G. 730, 1704)., retourne en Europe en 1707 (JA 49-VI-6, f° 232). Le catal. 1709 (Aquit. 8 I, f° 67) le dit « in itinere a Sinis in Europam », en route pour l'Europe., celui de 1710 <f° 75v) le met — avec raison — au Brésil. V. 2 févr. 1691, Poitiers, c. temp. (Gai. 35, 16). M. 29 sept. 1730, « Bahyae », à Bahia, Brésil (HS 50, 133v: Belville). Pf. 536., AHSI 20 (1951) 224-225., Leite, Artes, 129.
+
+         n$Pietro Belmonte/id=deh-pietro-balemonte
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Rimini# @wikidata:Q13369/16540410
+            ls$jesuita-entrada/?/16731104
+            ls$embarque/?#segundo a entrada de Cicero é em Lisboa/16900408
+            ls$wicky/1275/16900408
+            ls$wicky-viagem/113/16900408
+            rel$sociabilidade/Companheiro/Alessandro Cicero/deh-pietro-balemonte-ref1/data=16900408
+            ls$estadia/Macau# @wikidata:Q14773/16920000
+            ls$estadia/Cochinchina# @wikidata:Q505503[centrada na atual Da Nang @Wikidata:Q25282]/obs=marqué pourtant, en 1700, comme étant de la vice-province de Chine (JS 134, 387v) nous n'avons pas retrouvé sa formule de voeux et ignorons s'il a effectivement travaillé en Chine.
+            ls$morte/Cochinchina (prisão)# @wikidata:Q505503[centrada na atual Da Nang @Wikidata:Q25282]/17000527#ou 17000528
+            ls$dehergne/97/obs=Belmonte, Pietro (ital.) P. 97 N. « 10 avril 1654, Ariminensis è prov. Veneta », à Rimini (Ven. 43, 134). E. 4 nov. 1673 (JS 26, 45v) -Emb. 8 avril 1690 (W 1275) avec Cicero., A. Macao 1692., puis Cochinchine., marqué pourtant, en 1700, comme étant de la vice-province de Chine (JS 134, 387v) nous n'avons pas retrouvé sa formule de voeux et ignorons s'il a effectivement travaillé en Chine. M. en prison, en Cochinchine, 27 mai 1700 (HS 49, 225 et 50, 58., Lus. 58 II, 533)., le 28 mai dit Streit VI, 1467 (NLE VIII (1823). Pf. 467.
+
+            referido$Alessandro Cicero/xmesmo_que=deh-alessandro-cicero/id=deh-pietro-balemonte-ref1
+               ls$embarque/?#segundo a entrada de Cicero é em Lisboa/16900408
+               ls$wicky-viagem/113/16900408
+
+         n$Michel Benoist/id=deh-michel-benoist
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Michel Benoit
+            ls$nome-chines/Tsiang Yeou-Jen Tö-Yi
+            ls$nascimento/Dijon (paróquia de St Jean)# @wikidata:Q7003/17151008
+            ls$jesuita-entrada/Nancy# @wikidata:Q40898/17370319
+            ls$estadia/Lorient# @wikidata:Q71724/17430000
+            ls$embarque/?/17430000
+            ls$estadia/Macau# @wikidata:Q14773/17440712
+            ls$estadia/Pequim# @wikidata:Q956
+            ls$profissao/Matemático
+            ls$profissao/Construtor
+            ls$profissao/Cartógrafo
+            ls$tarefa/Dirige a impressão em cobre do Mapa da China em 104 folhas
+            ls$tarefa/Dirige a impressão das Vitórias de K'ien-long
+            ls$jesuita-ordenacao-padre/Trier%Trèves# @wikidata:Q3138/17390000
+            ls$jesuita-votos/4V/17500815
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/17500815
+            ls$morte/Pequim# @wikidata:Q956/17741023
+            ls$dehergne/98/obs=Benoist (Benoît), Michel (franç.) P. 98 Tsiang Yeou-Jen Tô-Yl (Pf.). N. 8 oct. 1715, « divionensis », à Dijon (et non Autun). E. 19 mars 1737, Nancy (JS 134, 444) (et non 8 ou 18 oct., EC., DHGE). Emb. Lorient, 1743., Arr. Macao, 12 juill. 1744., Pékin. Mathématicien et constructeur., cartographe., dirige le tirage sur cuivre de la Carte de Chine en 104 feuilles., et les Victoires de K'ien-long (BN: Réserve O2 n. 624., musée Guimet., ASJP etc). P. 1739, à Trêves (Camp. 16, 36). V. Pékin, 15 août 1750, pr. (Gai. 23, 377): il signe Benoist (Pf. dit à tort 15 juill.). M. 23 oct. 1774, Pékin (B. Inst. 1515 f° 66). Pf. 813., DHGE (E. Lamalle)., EC (E. Lamalle)., DLF (Dehergne). Cordier, TP 1917, 295 sq., Pelliot, Les Conquêtes de l'Empereur de la Chine, TP 1921, 223-225., Lancaster, Clay, « European Palaces» of Yuan Ming Yuan, Gazette des Beaux-Arts 34 (1948), 261-288., Adam, Maurice, Yuen Ming Yuen, Pékin, 1936., et divers articles de Loehr, George R., 1963.,
+            ls$dehergne/98/obs=Pirazzoli-T'sertevens, Michèle, Gravures des Conquêtes de K'ien long au Musée Guimet, Paris, 1969., Loehr, G. R. notamment dans Cahiers d'Histoire mondiale VII (1963), 795-815., Streit VII, 3342. L'acte de baptême porte : « Michel fils de Monsieur Simon Benoist con(seill)er du Roy Lieutenant général à la table de marb(r)e du palais à Dijon et de dame Marie Pontoise son espouse a esté apporté à l'Eglise pour suppléer les cérémonies obmises a son bateme que je luy ay administré à la maison par permission de Mr l'official le huitième d'octobre dernier, jour de sa naissance ... Fait le trentième de novembre 1715 », paroisse St Jean de Dijon (renseignement aimablement communiqué par les Archives municipales de la Ville de Dijon). (Cushner p. 151 l'appelle Miguel Beniio). Benoist est E. le 18 mars 1737 {Camp. 16, 22) et prononce ses premiers V. le 19 mars 1739 (Camp. 20, 293). Il n'est donc pas E. en octobre 1737.
+
+            pai$Simon Benoist/id=deh-michel-benoist-pai
+               ls$cargo/Conselheiro rei
+               ls$cargo/Tenente geral da mesa de mármore do palácio de Dijon
+
+            mae$Marie Pontoise/id=deh-michel-benoist-mae
+
+         n$Georges Berthé/id=deh-georges-berthe
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nascimento/Diocese de Bourges# @wikidata:Q575020/16220000
+            ls$jesuita-entrada/Paris# @wikidata:Q90/16380105
+            ls$jesuita-votos/Coadjutor Temporal/16530928
+            ls$jesuita-votos-local/Paris (igreja de Saint-Louis)# @wikidata:Q90/16530928
+            ls$morte/[No mar, a caminho da China]/16640207
+            ls$dehergne/99/obs=Berthé, Georges (franç.) fr. coadj. 99 N. « Avaricensis », Bourges (dioc. de), 1622. -E. 5 janv. 1638, Paris (Franc. 13, 47: Berte). V. de « George Berthé, coadj. temp., en l'église Saint-Louis à Paris, le 28 sept. 1653 » (Gai. 33, 42). M. 7 févr. 1664 « in itinere ad Sinas » (HS 48, 56v).
+
+         n$Jean-François Beauth/id=deh-jean-francois-beauth
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jean-François Reuter
+            ls$nome/Jean-François Beath
+            ls$nome/Jean-François Butth
+            ls$nome-chines/Yang Jo-wang
+            ls$nome-chines/Houang
+            ls$nascimento/Strasbourg# @wikidata:Q6602/17041026
+            ls$jesuita-entrada/Nancy# @wikidata:Q40898/17240925
+            ls$embarque/?/17431021
+            ls$estadia/China# @wikidata:Q148/17440712
+            ls$estadia/Kingchow, Hupeh# @wikidata:Q14135188/17450000
+            ls$estadia/Shasi (Chache) Hupeh# @wikidata:Q1337497/17460926#aprisionado nas perseguições
+            ls$estadia/Macau# @wikidata:Q14773/17470501
+            ls$jesuita-ordenacao-padre/Laon# @wikidata:Q167141/17400000
+            ls$jesuita-votos/4V/17400202
+            ls$jesuita-votos-local/Pont-à-Mousson# @wikidata: Q461413/17400202
+            ls$morte/Macau# @wikidata:Q14773/17470418
+            ls$dehergne/100/obs=Beuth, Jean-François (franç.) P. 100 André Ly l'appelle Reuter (Ly 17)., Beath (M 435, 19)., Butth (M 443, 678). Yang Jo-wang (Pf.)., Houang (M 443, 679: Hoang). N. 26 oct. 1704 « Argentinensis », Strasbourg -E. 25 sept. 1724, Nancy (Camp. 15, 104). Emb. 21 oct. 1743 (.Franc. 21, 64)., A. 12 juill. 1744., Kingchow, Hupeh, 1745 (M 443, 186)., persécution, arrêté 26 sept. 1746 à Shasi (Chache) Hupeh., procès (M 436, 1-49., SOCP t. 47, 1748 f 168 et t. 48 f° 273v)., expulsé à Macao, où il arr. le 1 mai 1747 (B. Casanatense ms 1577, 242v). P. en 1740, à Laon (Camp. 16, 36). V. à Pont-à-Mousson, 2 févr. 1740, pr. (Gai. 21, 135). M. 18 avril 1747 à Macao (HS 53a, 56), ou le 19 avril (Af 444, 24., Camp. 16, 270v) (Streit VII, 3343: 1748).
+            ls$dehergne/100/obs=Le Directeur des Archives de Strasbourg n'a rien trouvé à 1706 (Pf.), mais il veut bien me signaler un Jean-François Beyth né le 26 oct et baptisé de 27 oct. 1704 en l'église St-Pierre-le-Vieux catholique (N 155, f 193), fils de Auguste Beyth, originaire de Lixel, Saxe, et de Marie (...) Schrankenmuller, de Strasbourg. Pf. 826., Gubbels, 183-188.
+
+            referido$Jean-François Beyth/id=deh-jean-francois-beuth-ref1/obs=é possível que seja o mesmo?
+               ls$nascimento/Strasbourg# @wikidata:Q6602/17041026
+               ls$baptizado/Strasbourg (igreja de St-Pierre-le-Vieux)# @wikidata:Q6602/17041027
+
+            referido$Auguste Beyth/id=deh-jean-francois-beuth-ref1-pai
+               rel$parentesco/Pai/Jean-François Beyth/deh-jean-francois-beuth-ref1
+               ls$nascimento/Lixel, Saxe# ILOC/000000
+
+            referido$Marie Schrankenmüller/id=deh-jean-francois-beuth-ref1-mae
+               rel$parentesco/Mãe/Jean-François Beyth/deh-jean-francois-beuth-ref1
+               ls$nascimento/Strasbourg# @wikidata:Q6602/000000
+
+         n$Claude de Bèze/id=deh-claude-de-beze
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Claude de Besze
+            ls$nascimento/Nevers (paróquia de St-Jean)# @wikidata:Q166997/16560508
+            ls$jesuita-entrada/?/16750312
+            ls$estadia/Brest# @wikidata:Q12193/16870301/obs=informação na entrada do seu Companheiro de viagem Marcel Leblanc, Dehergne 454
+            ls$embarque/Le Gaillard/16870301/obs=informação na entrada do seu Companheiro de viagem Marcel Leblanc, Dehergne 454
+            ls$estadia/Sião# @wikidata:Q869/16871000
+            ls$estadia/Goa# @wikidata:Q1171/16890000#preso
+            ls$estadia/Malaca#interceptado pelos holandeses e reconduzido à Europa @wikidata:Q61089
+            ls$estadia/Paris# @wikidata:Q90/16910000
+            ls$partida/China# @wikidata:Q148/16910000#outono, por terra
+            ls$estadia/Esmirna, Pérsia# @wikidata:Q35997/16911100
+            ls$estadia/Yerevan%Erivan# @wikidata:Q1953/16920500
+            ls$estadia/Surat# @wikidata:Q4629/16930100
+            ls$estadia/Goa# @wikidata:Q1171/16930200
+            ls$estadia/Chandannagar%Chandernagor# @wikidata:Q695591
+            ls$profissao/Astrónomo
+            ls$profissao/Botânico
+            ls$jesuita-ordenacao-padre/?/16860000
+            ls$jesuita-votos/4V/16910202
+            ls$jesuita-votos-local/Paris (capela do colégio)# @wikidata:Q90/16910202
+            ls$morte/Ougly, Índia#Hoogly em Bengala? @wikidata:Q548518/16941027
+            ls$dehergne/101/obs=Bèze (de Besze), Claude de (franç.) P. 101 N. 8 mai 1656, non 1654, Nevers -E. 12 mars 1675 (Franc. 23, 355). A. oct. 1687 au Siam., en route pour la Chine, par voie de terre 1689, arrêté à Goa., puis intercepté par les Hollandais à Malacca (JS 132, 52-75) et conduit en Europe. Repart de Paris, automne 1691., Smyrne, nov. 1691., Erivan, mai 1692., Surate, janv. 1693., Goa, février., Chandernagor (JS 199 I, 83v)., astronome., botaniste. P. 1686 (Franc. 16, 31v) -V. Paris, chapelle du collège, 2 févr. 1691, pr. (Gai. 13, 546). M. 27 oct. 1694, Ougly, Indes (BN: ms. fr. 25056, p. 82 (88)., et non « initio anni 1695 », P. Claude « de Beza » M. au Bengale (HS 50, 39 et Franc. 16, 336).
+            ls$dehergne/101/obs=«Fils de noble Jean De Beze seigneur de Vesvres, et de demoiselle Marie Gascoing», baptisé paroisse St-Jean de Nevers, le 8 mai 1656. Il y a neuf autres enfants nés de la même union mais qui ont été baptisés, eux, à St-Pierre de Nevers, entre 1653 et 1676 (renseignements aimablement communiqués par madame Chabrolin, Directeur des Services d'Arch. de la Nièvre). La seule signature connue, lettre de Paris, 4 août 1691, est conservée chez les Bollandistes, Bruxelles: De Besze. — Son Mémoire du P de B. sur ta Vie de Constance Phaulkon, p. p. Drans, Jean, et Bernard [Maître], Henri, à Tôkyô, 1947., trad. angl. par E. W. Hutchinson sous ce titre 1688 Révolution in Siam, Hong-Kong, 1968. Pf. 1014 (et non 384)., BN: ms. fr. 25056, p. 33.
+
+            pai$Jean de Beze/id=deh-claude-de-beze-pai
+               ls$titulo/Senhor de Vesvres
+
+            mae$Marie Gascoing/id=deh-claude-de-beze-mae/obs=tiveram outros 9 filhos
+
+         n$Pierre Bonet/id=deh-pierre-bonet
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Diocese de Avignon# @wikidata:Q360149/16740826
+            ls$jesuita-entrada/Lyon# @wikidata:Q456/16920907
+            ls$estadia/[A caminho da China]/17070000
+            ls$morte/Ilhas Nicobr# @wikidata:Q157286/17170000#assassinado/obs=pertencia à missão do Madurai%Maduré
+            ls$dehergne/101a/obs=Bonnet, Pierre (franç.) P. 101a Marqué « in via ad Sinas » au catal. 1707 ex. (Franc. 25, 99)., en réalité ce P. N. au dioc. d'Avignon 26 août 1674, E. Lyon, 7 sept. 1692, a été tué aux îles Nicobar, 1717 et appartenait à la mission du Maduré.
+
+         n$Gilbert Bordes/id=deh-gilbert-bordes
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Frade coadjutor
+            ls$nome/Gilbert Borde
+            ls$nome/Gilbert Bourdon
+            ls$nascimento/«Boius»#ou Auvergne @wikidata:Q1152/16710000#ou 167440225
+            ls$jesuita-entrada/?/16991107#ou 16991031
+            ls$embarque/?/000000/obs=Emb. avec le P. François Drion, franciscain., intercepté par les Hollandais à Batavia et conduit prisonnier en Hollande. Le catal. Toulouse le dit arr. en Chine en 1706., celui de 1707-08 avoue « redux Parisios ex captivitate »., mais les catal. 1708-09 à 1710-11 continuent de le marquer en Chine. En fait, il passe au Mexique, puis revient en France.
+            rel$sociabilidade/Companheiro/François Drion/deh-gilbert-bordes-ref1
+            ls$estadia/Batávia#feito prisioneiro @wikidata:Q850526
+            ls$estadia/Holanda#prisioneiro @wikidata:Q55
+            ls$estadia/México#? @wikidata:Q96
+            ls$jesuita-votos/Coadjutor temporal/17080202
+            ls$morte/?/17120000#cerca de
+            ls$dehergne/102/obs=Bordes (Borde), Gilbert (franç.) fr. coadj. 102 Bourdon (WB n° 152, p. 10). N. « Boius », 1671 -E. 7 nov. 1699 (Tolos. 13, 369) ou N. « Arvernus », en Auvergne, 25 févr. 1674 -E. 31 oct. 1699 (Tolos. 13, 264v). Emb. avec le P. François Drion, franciscain., intercepté par les Hollandais à Batavia et conduit prisonnier en Hollande. Le catal. Toulouse le dit arr. en Chine en 1706., celui de 1707-08 avoue « redux Parisios ex captivitate »., mais les catal. 1708-09 à 1710-11 continuent de le marquer en Chine. En fait, il passe au Mexique, puis revient en France. V. 2 févr. 1708, coadj. temp. (Tolos. 14, 48v). M. vers 1712. Pf. 981., WB 152 p. 10 semble le confondre avec les fr. Rodes et Brocard.
+
+            referido$François Drion/id=deh-gilbert-bordes-ref1
+               ls$estatuto/Franciscano
+
+         n$João de Borgia Kouo/id=deh-joao-de-borgia-kouo
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome/João de Borja Kouo
+            ls$nome-chines/Kouo
+            ls$estadia/Hainan#passa sete anos lá @wikidata:Q42200
+            ls$estadia/Fatshan, Kwangtung# @wikidata:Q34412
+            ls$estadia/Macau# @wikidata:Q14773/17030000
+            ls$estadia/Sião# @wikidata:Q869/17080000
+            ls$morte/Macau# @wikidata:Q14773/17221213
+            ls$dehergne/103/obs=Borgia (Borja) Kouo, Joâo de (portug.) P. 103 Kouo. Passe 7 ans à Hainan., puis va à « Foxan » (Fatshan), Kwangtung., en 1703, Macao., 1708, Siam (JS 25, 264v). M. 13 déc. 1722, Macao (JA 49-VI-6 f° 224v). Ce serait le P. de ce nom, Joâo Borja (port.) N. 29 août 1676., E. 10 juill. 1696., Emb. non prêtre avec Miguel Amaral en 1699., V. 2 juill. 1712, Macao, coadj. spir. (Lus. 24, 47): Borgia. JS 25, 246v cite un fr. Joannes Borja faisant en 1700 ses études à Goa., et en 1703 (JS 25, 252) un P. Joannes de Borja N. 1670, E. à Evora 10 juill. 1697.
+
+            referido$João Borja/id=deh-joao-de-borgia-kouo-ref1/obs=pode ser o mesmo que o anterior?
+               ls$nascimento/?/16760829
+               ls$jesuita-entrada/?/16960710
+               ls$embarque/?/16990000#não padre
+               ls$wicky/1401/16990000/obs=Dehergne não colocou o seu Wicky, corrigido a partir de Wicky
+               ls$wicky-viagem/122/16990000/obs=Dehergne não colocou o seu Wicky, corrigido a partir de Wicky
+               rel$sociabilidade/Companheiro/Miguel do Amaral/deh-joao-de-borgia-kouo-ref2/data=16990000
+               ls$jesuita-votos/Coadjutor espiritual/17120702
+               ls$jesuita-votos-local/Macau# @wikidata:Q14773/17120702
+               ls$dehergne/103-ref1/obs=Ce serait le P. de ce nom, Joâo Borja (port.) N. 29 août 1676., E. 10 juill. 1696., Emb. non prêtre avec Miguel Amaral en 1699., V. 2 juill. 1712, Macao, coadj. spir. (Lus. 24, 47):
+
+            referido$Miguel do Amaral/id=deh-joao-de-borgia-kouo-ref2
+               ls$embarque/?/16990000
+               ls$wicky-viagem/122/16990000
+
+            referido$Joannes Borja/id=deh-joao-de-borgia-kouo-ref3/obs=pode ser o mesmo que os anteriores?
+               ls$jesuita-estatuto/Frade Coadjutor
+               ls$estadia/Goa# @wikidata:Q1171/17000000
+               ls$tarefa/Faz os seus estudos/17000000
+               ls$dehergne/103-ref3/obs=Borgia. JS 25, 246v cite un fr. Joannes Borja faisant en 1700 ses études à Goa
+
+            referido$Joannes de Boria/id=deh-joao-de-borgia-kouo-ref4/obs=pode o mesmo que os anteriores
+               ls$nascimento/?/16700000
+               ls$jesuita-entrada/Évora# @wikidata:Q179948/16970710
+               ls$dehergne/103-ref4/obs=et en 1703 (JS 25, 252) un P. Joannes de Borja N. 1670, E. à Evora 10 juill. 1697.
+
+         n$François Bourgeois/id=deh-francois-bourgeois
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Tch'ao Tsi-ko Tsouen-Sieou
+            ls$nascimento/Remicourt, Vosges# @wikidata:Q1461842/17230321
+            ls$jesuita-entrada/Nancy# @wikidata:Q40898/17400917
+            ls$estadia/Lorient# @wikidata:Q71724/17640119
+            ls$embarque/Beaumont/17640119
+            ls$estadia/Port-Louis# em França @wikidata:Q128223/17670315
+            ls$embarque/?/17670315
+            ls$estadia/China# @wikidata:Q148/17670813
+            ls$estadia/Cantão# @wikidata:Q16572/17680422#data de partida
+            ls$estadia/Pequim# @wikidata:Q956/17680701
+            ls$jesuita-tarefa/Remete os estabelecimentos jesuítas franceses aos lazaristas, chegados a Pequim, após receber notificação da supressão da Companhia/17751115
+            ls$jesuita-cargo/Superior da residência francesa de Pequim#et, en cas d'empêchement, le roi nomme à sa place, 18 nov. 1779, Joseph-Marie Amiot (1718-1793), vide Dehergne 321/17761130/obs=La Propagande tente de faire révoquer ce « brevetto » (SOCP 1779, 25)., Grammont le supplante en 1781
+            ls$jesuita-cargo/Administrador da missão francesa na China#et, en cas d'empêchement, le roi nomme à sa place, 18 nov. 1779, Joseph-Marie Amiot (1718-1793), vide Dehergne 321/17761130/obs=La Propagande tente de faire révoquer ce « brevetto » (SOCP 1779, 25)., Grammont le supplante en 1781
+            ls$jesuita-ordenacao-padre/Trier%Trèves# @wikidata:Q3138/17550410/obs=par l'évêque suffragant Myriopolitan, Myriopolitan não é nome
+            ls$jesuita-votos/4V/17580202
+            ls$jesuita-votos-local/Pont-à-Mousson# @wikidata:Q461413/17580202
+            ls$morte/Pequim# @wikidata:Q956/17920729
+            ls$dehergne/104/obs=Bourgeois, François (franç.) P. 104 Tch'ao Tsi-ko Tsouen-Sieou (Pf.., mieux que le Tsin-Sieou cité en note par Pf.). N. 21 mars 1723, « Remecuriensis », Remicourt (Vosges) et non Pulligny (Lorraine) -E. 17 sept. 1740, Nancy (Ch.), renseignements aimablement communiqués, d'après les registres du noviciat de Nancy, H 1819, f° 44, par M. Pierre Gérard, Directeur des Archives de Meurthe-et-Moselle. Emb. Lorient, sur le Beaumont, 19 janv. 1764 (AN: Col. F5B 50)., Emb. Port-Louis 15 mars 1767 (Brotier vol. 136), arr. le 13 août 1767 en Chine., quitte Canton, 22 avril 1768, arr. Pékin 1 juill. 1768. Suppression de la Compagnie signifiée à Pékin le 15 nov. 1775: le P. Bourgeois remet les établissements des jésuites français aux Lazaristes arrivés à Pékin quelques mois auparavant. Par brevet du 30 nov. 1776, Louis XVI nomme le P. Bourgeois supérieur de Pékin et administrateur de toute la mission française (AN: Col. F5A 24, f° 96). La Propagande tente de faire révoquer ce « brevetto » (SOCP 1779, 25)
+            ls$dehergne/104/obs=Grammont le supplante en 1781. P. 10 avril 1755, à Trêves par l'évêque suffragant Myriopolitan. (Camp. 17, 126, catal. 1758). V. 2 févr. 1758, Pont-à-Mousson, pr. (Gai. 24, 66). M. 29 juill. 1792, Pékin. Portrait retrouvé en 1835 dans une salle du Palais impérial, Pékin (RocheMONTEIX, p. 144). — Correspondance: B. de Zi-ka-wei près Shanghai., aux ASJP (fonds Brotier 113, et fonds Chine)., Cordibr TP 1917., JS 185 etc. Pf. 926., DHGE (A. De Bil)., DBF (M. Prévost). Streit VII, 3545. Rochemonteix 121., 205 sq., 219 (brevet)., 222-250 ., 324-343 ., 419424.
+
+            referido$Luís XVI/id=francois-bourgeois-ref1
+               ls$titulo/Rei de França/17761130
+               rel$institucional/Nomeia/François Bourgeois/deh-francois-bourgeois/data=17761130
+
+         n$Gabriel Boussel/id=deh-gabriel-boussel
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Tchao Kia-pei#de Kia-pei-eul--Gabriel
+            ls$nome-chines/Tsao Che-Lin
+            ls$nome-chines/Zao
+            ls$nascimento/Diocese de Clermont, Auvergne# @wikidata:Q1152/16990423
+            ls$jesuita-entrada/?/17171012
+            ls$estadia/Port-Louis# em França @wikidata:Q128223/17321110
+            ls$embarque/?/17321110
+            ls$estadia/Macau# @wikidata:Q14773/17330721
+            ls$jesuita-cargo/Procurador da missão de Macau/17330721
+            ls$estadia/Pequim# @wikidata:Q956/17340915
+            ls$jesuita-cargo/Procurador da missão francesa de Macau#responsável pela gestão das finanças, vide Dehergne p. 315, em 1754/17500000
+            ls$estadia/Macau# @wikidata:Q14773/17620705#preso
+            ls$jesuita-ordenacao-padre/Toulouse (capela da casa professa)# @wikidata:Q7880/17300827
+            ls$jesuita-votos/4V/17341208
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/17341208
+            ls$morte/[No mar, perto da Baía]#antes de chegar à Baía, a caminho da prisão @wikidata:Q40430/17640507
+            ls$dehergne/105/obs=Boussel, Gabriel (franç.) P. 105 Tchao Kia-pei [Kia-pei-eul = Gabriel] (Pf.). Tsao Che-Lin (Lettre de Parrenin, 29 oct. 1734)., Zao (M 443, 678). N. 23 avril 1699, d. de Clermont, Auvergne (JS 134, 444). E. 12 oct. 1717 (To.) non 28 sept. 1717 (Franc. 21, 64v). Emb. 10 nov. 1732, Port-Louis près de Lorient. A. 21 juill. 1733 Macao, procureur de la mission (JS 134, 444)., Pékin, 15 sept. 1734 (JS 181, 123)., 1750, procureur de la mission française à Macao, où il est arrêté le 5 juill. 1762. P. 27 août 1730 dans la chapelle de la maison professe de Toulouse ordonné par Mgr de St Jal de Lastic, évêque d'Uzès (Tolos. 15, 295). V. Pékin, 8 déc. 1734, pr. (Gai. 20, 29) (et non 2 févr. 1735, comme l'écrit JS 134, 431. Franc. 21, 476v aussi). M. 7 mai 1764 (HS 53a, 130) en mer, en route vers les prisons de Pombal, avant d'arriver à Bahia, Brésil. Pf . 732.
+
+            referido$Monsenhor de St Jal de Lastic/id=deh-gabriel-boussel-ref1
+               ls$titulo/Monsenhor
+               ls$cargo/Bispo de Uzès/17300827
+               ls$estadia/Toulouse# @wikidata:Q7880/17300827
+               rel$eclesiastica/Ordena/Gabriel Boussel/deh-gabriel-boussel/data=17300827
+
+         n$Joachim Bouvet/id=deh-joachim-bouvet
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Pei Tsin Ming-Yuan
+            ls$nascimento/Mans ou Conlie (Sarthe)# @wikidata:Q1476 ou @wikidata:Q833363/16560718
+            ls$jesuita-entrada/?/16731009
+            ls$estadia/Brest# @wikidata:Q12193/1685030
+            ls$embarque/?/16850303#um dos seis jesuítas matemáticos de Luís XIV
+            ls$profissao/Matemático
+            ls$estadia/Ningpo# @wikidata:Q42780/16870723
+            ls$estadia/Pequim# @wikidata:Q956/16880207
+            ls$partida/França# @wikidata:Q142/16930704
+            ls$estadia/Cantão# @wikidata:Q16572/16931011#a caminho de França
+            ls$estadia/França# @wikidata:Q142/16970300
+            ls$estadia/La Rochelle# @wikidata:Q82185/16980307
+            ls$embarque/Amphitrite/16980307
+            ls$estadia/China# @wikidata:Q148/16990300
+            ls$partida/França# @wikidata:Q142/17060102#puor les rites chinois
+            ls$estadia/Cantão#chamado de volta a Pequim @wikidata:Q16572
+            ls$estadia/Pequim# @wikidata:Q956
+            ls$profissao/Cartógrafo/17080000
+            ls$tarefa/Trabalhos de cartografia/17080000
+            ls$jesuita-ordenacao-padre/?/16850114#antes de, início de 1685, fez a primeira missa nesta data
+            ls$jesuita-votos/4V/16920202
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/16920202
+            ls$morte/Pequim# @wikidata:Q956/17300628
+            ls$dehergne/106/obs=Bouvet, Joachim (franç.) P. 106 Pei Tsta Ming-Yuan (Pf.). N. 18 juill. 1656, « Cenomanus », manceau: au Mans, ou à Confie (Sarthe), impossible de le savoir -E. 9 oct. 1673 (Franc. 23, 338). Emb. Brest 3 mars 1685, l'un des six jésuites mathématiciens de Louis XIV. A. Ningpo 23 juill. 1687., Pékin, 7 févr. 1688., envoyé en France par K'ang-hi, part 4 juill. 1693 et de Canton, 11 oct. 1693 (JS 132, 204): arr. France, mars 1697., revient sur YAmphitrite parti de La Rochelle 7 mars 1698., arr. en Chine, mars 1699., de nouveau envoyé pour les rites chinois, 2 janv. 1706 (JS 169, 363-365., 171, 46), mais rappelé aussitôt de Canton à Pékin., 1708, travaux de cartographie. P. début 1685., première messe, 14 janv. 1685 (Franc. 24, 134). V. Pékin, 2 févr. 1692, pr. (Gai. 13, 274) (et non 1694, JS 134, 417, suivi par Pf.). M. 28 juin 1730, Pékin (JS 180, 306), le 29 juin, disent HS 50, 131v et HS 52, 134., le 19 juin, écrit, à tort, Franc. 20, 126).
+            ls$dehergne/106/obs=Fils puîné de René Bouvet, conseiller au présidial du Mans, originaire de Conlie (Cordier, B. S. II*, col. 1056). Un des pionniers du « figurisme » (accord des traditions primitives chinoises avec la Bible cf. Borg. lat. 565). K'ang-hi s'intéresse d'abord à ses recherches (Yi-king), puis l'exile, mesure rapportée (JS 134, 414bv). Figuriste, il a pour disciple Foucquet. Pf. 433., DHGE (A. De Bil)., DBF (M. Prévost)., EC (E. Lamalle)., NCE (J. V. Mentac)., DLF (J. Dehergne). Son éloge, par Du Halde, Jour, des Sav. 1749, 371., Dehergne, J., Un envoyé de K'ang hi à Louis XIV, le P. Bouvet, Bua, 1943, 651-683., Gatty, J.C., Votage de Siam du P. Bouvet, Leide, 1963 (bonne bibliographie, p. lxxxix-cxviii)., B. Haureau, Hist. littér. du Maine, II, 1871, 230-255., J. J. Heeren, Father Bouvet's Picture of Emperor K'ang hi, Asia Major 7 (1932), 556-572.,
+            ls$dehergne/106/obs=Rowbotham, Arnold H., Jesuit Figurists and Eighteenth Century Religion, Jour, of the History of Ideas, 17 (1956), 471-485., Rouleau, F. A., Maillard de Tournon... (AHSI 31 [1962], 264- 323)., Streit V, 2728. — Catéchisme, B. Casanatense ms 2273, f 99-120. Son Etat présent de la Chine (Figures gravées) est à BN: Réserve 02 n. 31. — Apologia, JS 177, 240-259. Mémoire au Roi, AN: Col. 08, 64-73. — Rites: JS 169, 222-245., Courant 7161-7163., RSO 29 (1954), 83-128.
+
+            referido$Luís XIV/id=deh-joachim-bouvet-ref1
+               ls$titulo/Rei de França
+               rel$institucional/Envia à China/Joachim Bouvet/deh-joachim-bouvet
+
+            referido$K'ang Hi/id=deh-joachim-bouvet-ref2
+               ls$titulo/Imperador da China/16930704
+               rel$institucional/Envia a França/Joachim Bouvet/deh-joachim-bouvet/data=16930704
+
+            referido$Jean-François Foucquet/id=deh-joachim-bouvet-ref3/obs=Dehergne 330
+               rel$eclesiastica/Discípulo de/Joachim Bouvet/deh-joachim-bouvet/obs=do figurismo
+
+            pai$René Bouvet/id=deh-joachim-bouvet-pai/obs=é o filho mais novo
+               ls$nacionalidade/França
+               ls$nascimento/Conlie# @wikidata:Q833363
+               ls$cargo/Conselheiro no tribunal presidial de Mans
+
+         n$Michael-Pierre Boym/id=deh-michael-pierre-boym
+            ls$nacionalidade/Polónia
+            ls$jesuita-estatuto/Padre
+            ls$nome/Michael-Pierre Bohym
+            ls$nome/Michael-Pierre Boin
+            ls$nome/Miguel Boyn
+            ls$nome-chines/Pou Tche-Yuan Mi-Ko
+            ls$nascimento/Lwów# @wikidata:Q36036/16120000
+            ls$jesuita-entrada/Cracóvia# @wikidata:Q31487/16310816
+            ls$embarque/?/16430330
+            ls$wicky/909/16430330
+            ls$wicky-viagem/77/16430330
+            ls$estadia/Tonquim#@wikidata:Q622778/16450000
+            ls$estadia/Tingan, Hainan# @wikidata:Q1022249/16460000
+            ls$partida/Annam# @wikidata:Q881/16471101
+            ls$estadia/Macau# @wikidata:Q14773/16490000
+            ls$estadia/Kwangsi (corte de Yong-li)# @wikidata:Q15176/16500000
+            ls$titulo/Mandarim/16500000#Dehergne, p. 313
+            ls$partida/Goa# @wikidata:Q1171/16510101#a caminho de Roma
+            ls$jesuita-cargo/Procurador da Vice-província da China/16510000
+            ls$chegada/Goa# @wikidata:Q1171/16510500#a caminho de Roma
+            ls$estadia/Pérsia# @wikidata:Q83311
+            ls$estadia/Esmirna, Pérsia# @wikidata:Q35997
+            ls$estadia/Veneza# @wikidata:Q641/16521216
+            ls$tarefa/Encontra-se com o Doge/16521216
+            ls$estadia/Roma#três anos sem ser recebido pelo papa @wikidata:Q220
+            ls$estadia/Lisboa# @wikidata:Q597/16560530#antes de, partida
+            ls$embarque/Bom Jesus do Carmo#segundo Wicky/16560530
+            ls$wicky/1006a/16560530
+            ls$wicky-viagem/88/16560330
+            ls$estadia/Sião# @wikidata:Q869/16580000
+            ls$estadia/Tonquim# @wikidata:Q622778
+            ls$estadia/[A caminho de Kwangsi]
+            ls$jesuita-ordenacao-padre/?/16410000#cerca de
+            ls$jesuita-votos/4V/16490815
+            ls$jesuita-votos-local/Macau# @wikidata:Q14773/16490815
+            ls$morte/[Confins do Tonquim e do Kwangsi]/16590822
+            ls$dehergne/107/obs=Boym, Michael-Pierre (polon.) P. 107 Bohym (HS 48, lOlv)., Boln., Miguel Boyn (Goa 77). Pou Tche-Yuan Mi-ko (Pf.., Borg. Lat. 523, 58: Po Mi-ke). N. 1612, « Leopoli » (Lemberg = Lwôw). -E. 16 août 1631, Cracovie. Emb. 30 mars 1643 (W 909)., 1645, Tonkin., 1646, Tingan, Hainan., 1 nov. 1647, part en Annam., 1649, Macao., 1650, Kwangsi, à la Cour du dernier des Ming, Yong-Li., envoyé à Rome par l'impératrice-mère Hélène, il quitte Macao, 1 janv. 1651, pour Goa, où il arr. en mai 1651., puis par la Perse., Smyrne., Venise (BN: ms coll. Dupuy 776 f° 77-79, texte chinois) où, 16 déc. 1652, entrevue avec le Doge., trois ans à Rome sans être reçu par le Pape., quitte Lisbonne, 30 mars 1656 (W 1006a)., 1658, Siam., Tonkin., en route vers le Kwangsi. P. v. 1641. V. 15 août 1649, Macao, pr. (Lus. 6, 269). M. 22 août 1659 sur les confins du Tonkin et du Kwangsi (JA 49-V-32, f 698-699 et 720-722., HS 48, lOlv: Bohym)
+            ls$dehergne/107/obs=Fils de Paul Boym, prévôt de Wilno et premier médecin de la Cour de Sigismond III., famille anoblie depuis peu, originaire de Hongrie (Chabrie, p. 70). Pf. 269., DHGE (A. De Bil)., EC (E. Lamalle). Flora Sinensis, B. Inst. DM 26 A, in-f°. — Spécimen medicinae sinicae BN: Rés. Td 20-1. Remusat, Abel, Nouv. Mil. Asiat., II, 226-229., Rialle, Girard de, Une mission chinoise à Venise au XVIII' siècle, TP, I, (1890), 99-117., Chabrie, Robert, Michel Boym, jésuite polonais et la fin des Ming en Chine, Paris, 1934, trad. chinoise, 1941 (à compléter par Pelliot, TP 31 (1935) 95-150., Szczesniak, Boleslas, The writings of Michael Boym, MS 14 (1949-1955), 481-538., autres travaux du même, JAOS 67 (1947), 160-165 ., 73 (1953), 65-77 et Imago Mundi 13 (1956), 116-136., 19 (1965), 113-115 et critiques de Walter Simon dans Studia Serica Bernard Karlgren dedicata, Copenhague 1959 et dans Asia Major N. S. VII (Londres, 1959), 165-169, 2 pl.
+            ls$dehergne/107/obs=Szczesniak, B., The first Chinese Dictionary published in Europe, American Orient Sty, Orientât Séries 3 (Indianapolis, 1969), 217-227., Streit V, 221., Dunne, 340-356., JS 186a., RBS 156 et 221.
+
+            pai$Paul Boym/id=deh-michael-pierre-boym-pai/obs=família nobilitária, originária da Hungria
+               ls$cargo/Preboste de Wilno
+               ls$profissao/Médico
+               ls$cargo/1º médico na corte de Sigismundo III
+
+            referido$Yong-Li/id=deh-michael-pierre-boym-ref1
+               ls$titulo/Imperador da China/16500000
+               ls$estadia/Kwangsi# @wikidata:Q15176/16500000
+
+            referido$Helena/id=deh-michael-pierre-boym-ref2
+               ls$titulo/Imperatriz-mãe/16510101
+               rel$institucional/Envia a Roma/Michael-Pierre Boym/deh-michael-pierre-boym/data=16510101
+
+         n$Albert Brac/id=deh-albert-brac
+            ls$nacionalidade/Holanda
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nascimento/?/16220000
+            ls$jesuita-entrada/?/16430000
+            ls$profissao/Pintor
+            ls$embarque/[Para Goa]/16440412
+            ls$wicky/926/16440412
+            ls$wicky-viagem/78/16440412
+            ls$estadia/Macau (colégio)# @wikidata:Q14773/16480000
+            ls$dehergne/107a/obs=Brac (et non Bray), Albert (holland.) fr.coadj. 107a N. 1622 -E. 1643, peintre. Emb. 12 avril 1644 pour Goa (W 926)., en 1648 au collège de Macao, « pertinet ad vice-prov. Sinensem » dit JS 25, 148. Mais il n'est pas au catal. Fl. Belg. 1643 ni à ceux de Chine 1648, Japon 1650.
+
+         n$Christof Brack/id=deh-christof-brack
+            ls$nacionalidade/Alemanha
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Christof Brac
+            ls$nascimento/Diocese de Constance, Rottenburg am Neckar# @wikidata:Q7078/16520420
+            ls$jesuita-entrada/?/16720716
+            ls$embarque/[Para a China]/16920000
+            ls$wicky/1317/16920000
+            ls$wicky-viagem/115/16920000
+            ls$profissao/Arquitecto
+            ls$morte/[No mar, a caminho da China]/000000
+            ls$dehergne/108/obs=Brack (Brac), Christof (allem.) fr. coadj. 108 N. 20 avril 1652, d. de Constance, Rottenbourg sur le Neckar (G. Sup. 25, 329). E. 16 juill. 1672. Emb. pour la Chine comme architecte, 1692 (W 1317). M. in via (JS 199 I, 83: Brac « bavarus »). Pf. 309., Huonder 185: Brac (Bracus) N. Rottenburg.
+
+         n$Francesco Brancati/id=deh-francesco-brancati
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Francesco Brancato
+            ls$nome-chines/P'an Kouo-Kouang Yong-Kouan
+            ls$nascimento/Palermo# [Sicília] @wikidata:Q2656/16070000
+            ls$jesuita-entrada/Nápoles# @wikidata:Q2634/16230814
+            ls$embarque/?/16350413
+            ls$wicky/829/16350413
+            ls$wicky-viagem/72/16350413
+            ls$chegada/Kiangnan#@wikidata:Q11133842/16360000
+            ls$estadia/Shanghai# @wikidata:Q8686/16470000
+            ls$jesuita-tarefa/Faz 2000 a 4000 baptismos anuais
+            ls$jesuita-tarefa/Escreve o a carta anual de 1647
+            ls$estadia/Pequim# @wikidata:Q956/16650718#conduzido nas perseguições
+            ls$partida/Cantão# @wikidata:Q16572/16650917#exilado
+            ls$jesuita-votos/4V/16490501
+            ls$jesuita-votos-local/Shanghai# @wikidata:Q8686/16490501
+            ls$morte/Cantão# @wikidata:Q16572/16710425/obs=enterrado em Shanghai no cemitério do sul
+            ls$dehergne/109/obs=Brancati (Brancato), Francesco (ital.) P. 109 P'an Kouo-Kouang Yong-Kouan (Pf.)., (Borg. Lat. 523, 58 et JS 187, 3v: Puon Koue Kouam). N. 1607, Païenne, Sicile -E. 14 août 1623, Naples (Neap. 103, 6v). Emb. 13 avril 1635 (W 829)., A. 1636, Kiangnan., 1647, Shanghai, où il fera de 2000 à 4000 baptêmes annuels (Bartoli, Cina, p. 1150)., il en écrit l'annuelle de 1647., lors de la persécution des IV Ré- gents, 1665, il a 70 églises et plus de 50.000 chrétiens dans le Sungkiang, avec 6 congrégations ou confréries pour l'apostolat des laïques., conduit à Pékin, 18 juill. 1665, d'où exilé à Canton, 7 sept. 1665 (JS 112, 183-222., JS 130). V. 1 mai 1649 « Xam hai », Shanghai, pr. (Lus. 6,231): Brancatus. M. 25 avril 1671 à Canton., mais enterré à Shanghai « extra portam australem», au cimetière du sud (BVE. FG. ms. 1383 n° 20).
+            ls$dehergne/109/obs=Pf. 223., DHGE (A. De Bil)., EC (E. Lamalle)., DBI (Bertuccioli, G.). Vita, Rome, BVE. FG. ms 1383, n 20., Streit V, 2295, XIVi p. 638., RBS 202. Réponse (à Navarrete) v. 1670, BN: Bréquigny, ms 20, 1-153.
+
+         n$Jean Brandi/id=deh-jean-brandi
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jean Brandy
+            ls$nome/Jean Brandt
+            ls$nascimento/Limousin# @wikidata:Q1190/16140000
+            ls$jesuita-entrada/?/16320611
+            ls$estadia/Lisboa# @wikidata:Q597/16570323/obs=escreve carta, o que deve querer dizer que embarcou de Lisboa
+            ls$embarque/Bom Jesus da Vidigueira#segundo Wicky/16570404
+            ls$wicky/1032/16570404
+            ls$wicky-viagem/89/16570404
+            ls$jesuita-votos/4V/1620
+            ls$jesuita-votos-local/La Rochelle# @wikidata:Q82185/16490620
+            ls$morte/Goa# @wikidata:Q1171/16580000#a caminho para a China
+            ls$dehergne/110/obs=Brandi (Brandy), Jean (franç.) P. 110 Brandi., Brant. N. « Lemovicensis », Limousin, 1614 -E. 11 juin 1632. (Aquit. 9 II, 450v). Emb. pour la Chine, 4 avril 1657 (W 1032). V. « Rupellae », La Rochelle, 20 juin 1649, Brandy, pr. (Gai. 7, 171). M. in via, à Goa, 1658 (HS 48, 78: Brandy). JS 134, 344, qui ignore sa mort, cite un Joâo Brandi à Goa en 1660, sujet de la vice-province de Chine. , Pf. 329: Brand., Il signe Joannes Brandy sa lettre de Lisbonne 23 mars 1657 (Gai. 111, f> 1).
+
+            referido$João Brandi/id=deh-jean-brandi-ref1
+               ls$estadia/Goa# @wikidata:Q1171/16600000
+               ls$dehergne/110-ref1/obs=JS 134, 344, qui ignore sa mort, cite un Joâo Brandi à Goa en 1660, sujet de la vice-province de Chine.
+
+         n$Gianbattista Brandi/id=deh-gianbattista-brandi
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Gianbattista Brando
+            ls$nome-chines/Wang Jo-han Tchen-Sien
+            ls$nome-chines/Li
+            ls$nome-chines/Ly
+            ls$nascimento/Nápoles# @wikidata:Q2634/16100000
+            ls$jesuita-entrada/Nápoles# @wikidata:Q2634/16270818
+            ls$embarque/?#Nossa Senhora da Atalaia?/16400326
+            ls$wicky/884/16400326
+            ls$wicky-viagem/75/16400326
+            ls$estadia/Hainan# @wikidata:Q42200/16560622
+            ls$estadia/Tingan (residência), Hainan# @wikidata:Q1022249/16600000
+            ls$estadia/Macau (colégio)# @wikidata:Q14773/16650000
+            ls$jesuita-cargo/Reitor do colégio de Macau/16680000
+            ls$jesuita-votos/4V/16500325
+            ls$jesuita-votos-local/Goa (casa professa)# @wikidata:Q1171/16500325
+            ls$morte/Macau# @wikidata:Q14773/16811213#ou 16811214
+            ls$dehergne/111/obs=Brandi (Brando), Gianbattista (ital.) P. 111 Wang Jo-han Tchen-Slen (Pf.)., Ly selon M 443, 671., Li selon JS 187, 3. N. 1610, Naples -E. 18 août 1627, Naples (Neap. 103, 83v). Emb. 26 mars 1640 (W 884)., 22 juin 1656, Hainan (JS 25, 170)., résidence de Tingan, Hainan, 1660 (JA 49-V-14 f° 728)., 1665, collège de Macao, dont il est recteur en 1668., 1671-1673, Siam. V. 25 mars 1650, Goa, maison professe, pr. (Lus. 7, 2): Jo. B. Brandus. M. 13 déc. 1681, P. Jo. Ba. Brando, « Machai » (HS 49, 130), Macao., AHU ms 1659, P 109 dit le 14 déc. 1681, Macao., id. JS 48, 122. Pf. 285., Courant 7045?
+
+         n$Antoine-René de Brasle/id=deh-antoine-rene-de-brasle
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Antoine-René Debrasle
+            ls$nome/Antoine-René Debrasles
+            ls$nome/Antoine-René Debrelle
+            ls$nome/Antoine-René Deprelle
+            ls$nascimento/Château-Thierry, diocese de Soissons# @wikidata:Q194145/16680815
+            ls$jesuita-entrada/?/16851006
+            ls$estadia/Saint-Malo# @wikidata:Q163108/17021226
+            ls$embarque/?/17021226
+            ls$estadia/Cabo Horn# @wikidata:Q4078/>1702
+            ls$estadia/Chile# @wikidata:Q298/>1702
+            ls$estadia/Lima, Peru# @wikidata:Q2868/>1702
+            ls$estadia/México# @wikidata:Q96/<1707
+            ls$estadia/Acapulco, México#a caminho de Manila @wikidata:Q81398/<1707
+            ls$estadia/Filipinas#@wikidata:Q928/17070000#fim do ano, com destino à China, onde o marcam, erradamente, em 1704 e 1710
+            ls$estadia/Pont-à-Mousson (colégio)# @wikidata:Q461413/17130000
+            ls$jesuita-ordenacao-padre/Trier%Trèves# @wikidata:Q3138/17000413
+            ls$jesuita-votos/4V/17020202
+            ls$jesuita-votos-local/Pont-à-Mousson# @wikidata:Q461413/17020202
+            ls$morte/Pont-à-Mousson# @wikidata:Q461413/17451113
+            ls$dehergne/112/obs=Brasle (Debrasle), Antoine-René de (franc.) P. 112 Debrasles., Debrelle., Deprelle (JS 171, 116v). N. 15 août 1668, Château-Thierry -E. 6 oct. 1685 (Camp. 13, 19). Emb. 26 déc. 1703, Saint-Malo., Cap Horn., Chili., Lima., Mexique et Acapulco pour Manille., à la fin de 1707, Philippines, destiné à la Chine (où les catal. de Champagne le marquent — à tort — de 1704 à 1710)., 1713, au collège de Pont-à-Mousson. P. 13 avril 1700, à Trêves (Camp. 13, 200v). V. Pont-à-Mousson, 2 févr. 1702, pr. (Gai. 15, 192). Il signe: Antonius Renatus de Brasle. Camp. 14, 25 écrit à tort 2 févr. 1704. M. 13 nov. 1745, Pont-à-Mousson (HS 53a, 50., Camp. 16, 188v). Dentrecolles, dans sa relation de 1706, croit, lui aussi, les PP. Nœl, Debrelle et Hebrar « recens advectos » (Macao), après 3 ans de voyage., et Camp. 20, 28 le dit « degens in China ». Pf . 626.
+
+         n$Giuseppe Bressanelli/id=deh-giuseppe-bressanelli
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Frade coadjutor
+            ls$nome/Giuseppe Brassanelli
+            ls$nascimento/Milão# @wikidata:Q490/16580106
+            ls$profissao/Escultor
+            ls$jesuita-entrada/?/16791225
+            ls$jesuita-tarefa/Destinado à China/16900000/obs=na verdade irá para o Paraguai
+            ls$profissao/Escultor
+            ls$profissao/Mosaísta
+            ls$estadia/Paraguai# @wikidata:Q733
+            ls$profissao/Escultor
+            ls$profissao/Arquitecto
+            ls$profissao/Médico
+            ls$profissao/Cirurgião
+            ls$jesuita-votos/Coadjutor#não diz se temporal se espiritual/16900810
+            ls$jesuita-votos-local/Sevilha (capela de Nossa Senhora do Guadalupe)# @wikidata:Q8717/16900810
+            ls$morte/Missão de Santa Ana, dos Guaranis#antiga província do Paraguai, hoje Argentina @wikidata:Q414/17280817
+            ls$dehergne/113/obs=Brassanelli ou mieux Bressaneli, Giuseppe (ital.) fr. coadj. 113 N. 6 janv. 1658, Milan -E. étant sculpteur, 25 déc. 1679 (Med. 57, 47). Destiné à la Chine, en 1690 (JS 134, 373) comme sculpteur et mosaïste « sculpturae reique pigmentariae peritus »., mais envoyé en fait au Paraguay comme sculpteur et architecte, mais encore comme médecin et chirurgien chez les Guaranis. V. Séville « en la capilla de N. Sefiora de Guadalupe », 15 août 1690: Joshp (sic) de Bressanelli (Hisp. 58, 153). M. 17 août 1728, mission de Santa Anna, chez les Guaranis. Plattner, Félix A., L'artista dette Riduzioni, Missioni délia Compagnia di Giesu, t. 53 (1967) n« 12, 36-37.
+
+         n$Jean-Baptiste Gentil de Brassaud/id=deh-jean-baptiste-gentil-de-brassaud
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Xanto, Saintonge# @wikidata:Q1509703/17190623
+            ls$grau-academico/Mestre em Artes#Bordeaux
+            ls$estadia/Bordeaux# @wikidata:Q1479
+            ls$jesuita-entrada/?/17431220
+            ls$estadia/Hukwang#@wikidata:Q2235155/17630000
+            ls$estadia/Hukwang#@wikidata:Q2235155/17680000
+            ls$estadia/Paris (seminário de St Nicolas du Chardonnet)# @wikidata:Q90/17741010#Dit aujourd'hui Pannetier, écrit-il lui-même le 10 oct. 1774 (ASJP, fonds Brotier, vol. 91 f° 97: « Pannetier, au Séminaire St Nicolas du Chardonnet, rue Saint Victor », Paris.
+            ls$estadia/Paris# @wikidata:Q90/17760000
+            ls$jesuita-ordenacao-padre/?/17460000
+            ls$jesuita-votos/4V/17550202
+            ls$jesuita-votos-local/Paris (Colégio de La Flèche)# @wikidata:Q90/17550202
+            ls$morte/?/17780000#antes de
+            ls$dehergne/114/obs=Brassaud, Jean-Baptiste Gentil de (franç.) P. 114 N. «Xanto», en Saintonge, 23 juin 1719 -M. A., Bordeaux., E. 20 déc. 1743 (Franc. 21, 37v). On le trouve au Hukwang de 1763 à 1768 (BN: ms. fr. n. a. 1981, f° 56., Krahl), et à Paris en 1776 (Krahl, p. 91). P. 1746 (Franc. 21, 130). V. 2 févr. 1755, La Flèche, pr. (Gai. 23, 568): J. B. de Brassaud. M. après 1778 (LE XXVI, 497). Dit aujourd'hui Pannetier, écrit-il lui-même le 10 oct. 1774 (ASJP, fonds Brotier, vol. 91 f° 97: « Pannetier, au Séminaire St Nicolas du Chardonnet, rue Saint Victor », Paris. Les Index des catalogues anciens le mettent à De Brassaud, et non à Brassaud. — Inconnu de Pf.
+
+         n$Charles-François Xavier de Brévedent/id=deh-charles-francois-xavier-de-brevedent
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Genneville, Calvados# @wikidata:Q1018241/16590525
+            ls$jesuita-entrada/Paris# @wikidata:Q90/16740909#ou 16740907
+            ls$embarque/[Para a China]/000000
+            ls$estadia/Istambul%Constantinopla# @wikidata:Q406/16920000#a tentar o caminho para a China por terra
+            ls$estadia/Yerevan%Erivan, Pérsia, hoje é capital da Arménia# @wikidata:Q1953/16930500
+            ls$estadia/Alepo#de regresso @wikidata:Q41183/16940000
+            ls$estadia/Tripoli# @wikidata:Q168954/16950000
+            ls$estadia/Tripoli# @wikidata:Q168954/16960000
+            ls$estadia/Cairo# @wikidata:Q85/16970000
+            ls$partida/Abissínia# @wikidata:Q207521/16980610#pelo Nilo, a Congregação da Propaganda autoriza a criação de uma missão nesse local a 16970324
+            ls$pseudonimo/Joseph Duval#nome da mãe, disfarçado
+            ls$cargo/Intérprete#disfarçado de
+            ls$jesuita-ordenacao-padre/?/16880000
+            ls$jesuita-votos/4V/16930517
+            ls$jesuita-votos-local/Yerevan#Pérsia, hoje é capital da Arménia@wikidata:Q1953/16930517
+            ls$morte/Barko, Etiópia#perto de Gondar @wikidata:Q218861/16990709#ou 16990719
+            ls$dehergne/115/obs=Brévedent, Charles-François-Xavier de (franç.) P. 115 N. 25 mai 1659, « Juliobonen. », Genneville (Calvados). E. 9 sept. 1674 ou 7 sept. 1674, Paris (Franc. 23, 338). P. en 1688. Emb. pour la Chine., 1692, à Constantinople pour tenter la voie de terre pour la Chine., mai 1693, Erivan., 1694, retour à Alep., 1695-96, Tripoli., 1697, Le Caire., 10 juin 1698, part du Caire par le Nil pour l'Abyssinie, la Congrégation de la Propagande y autorisant (24 mars 1697) la création d'une mission., il est déguisé en interprète et prend le nom de sa mère, Duval, Joseph Duval. V. signe Carolus Franc. Xaver. de B., Erivan en Perse, 17 mai 1693, pr. (Gai. 13, 310). M. 9 (ou 19) juill. 1699 à Barko près de Gondar, Ethiopie (HS 50, 54v et 51, 51 nescitur dies & annus., Franc. 46: entre 1698 et 1701., M. in Aethiopia 9 juill. 1699 (Franc. 17, 189). Fils de Gabriel de B. et de Marie Duval.
+            ls$dehergne/115/obs= DHGE (A. De Bil)., DBF (M. Prévost)., EC (E. Lamalle). Pasquier, A., biographie manuscrite., Beccari, S. J., Rerum ethiopicarum scriptores inediti, t. XIV, Rome, 1914. Plusieurs travaux sur son voyage africain, citons: Montano, Giov. M' Ethiopia Francescana, t. II, 1691-1703, Quaracchi, 1948., Jean-Pierre Trossen, Les relations du Patriarche Copte Jean XVI avec Rome (1676-1718), Luxembourg, 1948., Crawford, O. G. S., The Fung Kingdom of Sennar Gloucester, 1951, chap. 19 & 20 p. 196-212., Giacomo D'Albano, Historia delta missione francescana in Alto Egitto-Fungi-Ethiopia 1686-1720, Le Caire, 1961, p. 45-47, 51, 54, 97., Tedeschi, Salvatore, Poncet et son voyage en Ethiopie, Journ. of Ethiopian Studies 4 (Abdis Ababa 1966), 99-126., Streit XVI, 817.
+
+            pai$Gabriel de Brévedent/id=deh-charles-francois-xavier-de-brevedent-pai
+
+            mae$Marie Duval/id=deh-charles-francois-xavier-de-brevedent-mae
+
+         n$Domingos de Brito/id=deh-domingos-de-brito
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome/Domingos de Britto
+            ls$nome-chines/Pi To-ming Teng-Yong
+            ls$nome-chines/Pié
+            ls$nascimento/Vimieiro, diocese de Évora# @wikidata:Q2259460
+            ls$jesuita-entrada/Évora# @wikidata:Q179948/16910228
+            ls$embarque/?/16990000
+            ls$wicky/1398/16990000
+            ls$wicky-viagem/122/16990000
+            ls$estadia/China# @wikidata:Q148/17010000
+            ls$estadia/China# @wikidata:Q148/17270000
+            ls$estadia/Cantão# @wikidata:Q16572
+            ls$estadia/Fatshan# @wikidata:Q34412
+            ls$estadia/Kwangsi# @wikidata:Q15176
+            ls$cargo/Vigário forâneo do Cantão e do Kwangsi/17070000
+            ls$jesuita-cargo/Superior da residência de Cantão/17080000
+            ls$estadia/Fatshan# @wikidata:Q34412/17120000
+            ls$partida/Macau# @wikidata:Q14773/17170912
+            ls$estadia/Shanghai# @wikidata:Q8686/17200000
+            ls$estadia/Shanghai# @wikidata:Q8686/17260000
+            ls$estadia/Kiating, Kiangnan#@wikidata:Q662101/17200000
+            ls$estadia/Kiating, Kiangnan#@wikidata:Q662101/17260000
+            ls$jesuita-cargo/Provincial do Japão/17250000
+            ls$jesuita-cargo/Provincial do Japão/17280000
+            ls$jesuita-cargo/Vice-provincial do Japão/17280000
+            ls$jesuita-cargo/Vice-provincial do Japão/17300000
+            ls$jesuita-cargo/Provincial do Japão/17340000
+            ls$jesuita-cargo/Provincial do Japão/17410000
+            ls$jesuita-votos/4V/17080914
+            ls$jesuita-votos-local/Cantão (igreja de Ty-lo-po)# @wikidata:Q16572/17080914
+            ls$morte/?/17420806
+            ls$dehergne/116/obs=Britto (actuel Brlto), Domingos de (port.) P. 116 PI To-ming (Pf.) Teng-Yong (JS 180, 87)., Pié (M 443, 669., M 436, 222 a lu Sy Teng-Yong). N. 14 nov. 1674, Vimieyro, d. d'Evora (8 nov., disent JS 25, 278 et 281) -E. 28 févr. 1691, Evora (Lus. 64, 271). Emb. 1699 (W 1398): « fecit missionem in Sinis ab anno 1701 ad 1727 » (JS 134, 434), Canton et Fatshan., Kwangsi. En 1707, nommé « vie. foraneo di Quam tum e Quam si » (JS 170, 355v)., en oct. 1708, supérieur de la résidence de Canton. Jean VI de Portugal le propose comme évêque de Wuchang (Wou-tch'ang fou), diocèse à créer, 9 oct. 1711., mais le Pape refuse (SF V, 714)., 1712, Fatshan., part pour Macao, 12 sept. 1717 (M 431, 399)., 1720-26, Shanghai (JS 179, 59) et Kiating, Kiangnan., provincial du Japon, 1725-28 et 1734-41., 1728-30, vice-provincial du Japon. V. Canton, église Ty-lo-pu, 14 sept. 1708, pr. (Lus. 13,69). M. 6 août 1742 (AHU ms 1659, f° 114., HS 53, 92 l'omet). Pf. 563. Rosso 267 complète le nom chinois: Têng-Yung., Schûtte, 884.
+
+            referido$João V/id=deh-domingos-de-brito-ref1/obs=Dehergne engana-se e diz que é D. João VI
+               ls$titulo/Dom
+               ls$titulo/Rei de Portugal/17111009
+               rel$eclesiastica/Propõe como bispo de Wuchang/Domingos de Brito/deh-domingos-de-brito/data=17111009/obs=o papa recusa
+
+         n$Jacques Brocard/id=deh-jacques-brocard
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome/Jacques Brocart
+            ls$nome-chines/Lou Pei-Kia Tö-Yin
+            ls$nascimento/Chatelblanc, Doubs, diocese de Besançon# @wikidata:Q203381/16640321
+            ls$jesuita-entrada/?/16950325
+            ls$embarque/Amphitrite/17010000#? Dehergne não indica a data, é esta vide Louis Brouet 119a
+            ls$chegada/?/17010909
+            ls$estadia/Pequim# @wikidata:Q956
+            ls$profissao/Construtor
+            ls$profissao/Mecânico
+            ls$morte/Pequim# @wikidata:Q956/17181007
+            ls$dehergne/117/obs=Brocard, Jacques (franç.) fr. coadj. 117 Brocart. Lou Pei-Kla Tô-Yln (JS 175, 139 et 199 I, 203., Pf.). N. 21 mars 1664 « Pontisaliensis », en fait à Chatelblanc (Doubs), d. de Besançon -E. 25 mars 1695 (Lugd. 23, 285v). Emb. sur YAmphitrite, A. 9 sept. 1701., Pékin, constructeur et mécanicien. M. 7 oct. 1718, Pékin (Planchet, p. 200). En 1661, nous voyons à Chatelblanc deux familles Jacques Brocard: l'un, marié à Anne Guyon, l'autre, à Louise Blondeau., mais sur les registres, de 1661 à 1664, il n'y a pas trace de la naissance du futur jésuite, nous écrit aimablement M.le curé de la Chaux-Neuve (Doubs). Pf. 592. — Son éloge, par Ripa (Vincentiis, p. DCXX).
+
+            referido$Jacques Brocard/id=deh-jacques-brocard-ref1/obs=poderia ser o pai de Jacques Brocard?
+               rel$parentesco/Marido/Anne Guyon/deh-jacques-brocard-ref2
+               ls$residencia/Chatelblanc# @wikidata:Q203381/16610000
+
+            referido$Anne Guyon/id=deh-jacques-brocard-ref2/obs=poderia ser a mãe de Jacques Brocard?
+               rel$parentesco/Mulher/Jacques Brocard/deh-jacques-brocard-ref1
+               ls$residencia/Chatelblanc# @wikidata:Q203381/16610000
+
+            referido$Jacques Brocard/id=deh-jacques-brocard-ref3/obs=poderia ser o pai de Jacques Brocard?
+               rel$parentesco/Marido/Louise Blondeau/deh-jacques-brocard-ref4
+               ls$residencia/Chatelblanc# @wikidata:Q203381/16610000
+
+            referido$Louise Blondeau/id=deh-jacques-brocard-ref4/obs=poderia ser a mãe de Jacques Brocard?
+               rel$parentesco/Mulher/Jacques Brocard/deh-jacques-brocard-ref3
+               ls$residencia/Chatelblanc# @wikidata:Q203381/16610000
+
+         n$Jean-Charles Etienne Froissard de Broissia/id=deh-jean-charles-etienne-froissard-de-broissia
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jean-Charles Etienne Froissard de Brosia
+            ls$nome-chines/Li Cheng-Hio Chou-Kou
+            ls$nome-chines/Si
+            ls$nascimento/Dole, Jura# @wikidata:Q205586/16600810
+            rel$parentesco/Sobrinho/Jean-Claude-Joseph Froissard de Broissia/deh-jean-charles-etienne-froissard-de-broissia-tio
+            ls$jesuita-entrada/?/16820424
+            ls$embarque/Amphitrite/16980000
+            ls$chegada/Cantão# @wikidata:Q16572/16981104
+            ls$estadia/Jaochow, Kiangis# @wikidata:Q1356313/17000000
+            ls$estadia/Ningpo, Tchö-kiang# @wikidata:Q42780/17010700
+            ls$estadia/Pequim (corte)#? @wikidata:Q956/obs=mandé à la cour de Pékin
+            ls$jesuita-ordenacao-padre/?/16900000#entre 16900000 e 16930000
+            ls$jesuita-ordenacao-padre/?/16930000#entre 16900000 e 16930000
+            ls$jesuita-votos/4V/16970815
+            ls$jesuita-votos-local/Paris (Colégio de La Flèche)# @wikidata:Q90/16970815
+            ls$morte/[No mar, para lá de Lin-tsing (Lin-ts'ing, Shantung)]# @wikidata:Q1207099/17040918#a inscrição tumular diz 17040908
+            ls$dehergne/118/obs=Broissia, Jean-Charles-Etienne Froissard de (franç.) 118 de Brosia (M 443, 674). Li Cheng-Hio Chou-Kou (Pf.)., Si (JS 187, 5: Sy., M 443, 674., Borg. Lat. 523 f° 60 met le caractère). N. 10 août 1660, « Dolanus », Dole, Jura -E. 24 avril 1682 (Lugd. 22, 292). Emb. sur l'Amphitrite, 1698. A. 4 nov. 1698, Canton., 1700, Jaochow, Kiangsi., juill. 1701, Ningpo, Tchô-kiang., mandé à la Cour de Pékin. V. La Flèche, 15 août 1697, pr., il signe: Jo. Car. Steph. Froissard de Broissia (Gai. 14, 443). P. entre 1690 et 1693. M. 18 sept. 1704 (HS 50, 67), en barque (M 407, 500), au-delà de Lintsing (Lin-ts'ing, Shantung)., M. le 8 sept. 1704 dit l'inscription tumulaire (Planchet p. 176).
+            ls$dehergne/118/obs=Fils de Jean-Ignace-Bonaventure Froissard de Broissia, commandeur de Malte, grand chantre de Besançon, lequel eut trois fils jésuites, un autre franciscain et un autre carme. Jean-Claude-Joseph, oncle de notre missionnaire, fut créé marquis de Broissia par lettres patentes d'octobre 1691 (renseignement aimablement communiqué par les Arch. Départem. du Jura). Pf. 496., DBF (M. Prévost). P.S. et A. Pidoux de la Maduere, Armoriai de Franche-Comté, p. 78.
+
+            pai$Jean-Ignace-Bonaventure Froissard de Broissia/id=deh-jean-charles-etienne-froissard-de-broissia-pai/obs=teve três filhos jesuítas, um franciscano e um carmelita
+               rel$parentesco/Irmão/Jean-Claude-Joseph Froissard de Broissia/deh-jean-charles-etienne-froissard-de-broissia-tio
+               ls$cargo/Comendador de Malta
+               ls$cargo/Grand-chantre de Besançon
+
+            referido$Jean-Claude-Joseph Froissard de Broissia/id=deh-jean-charles-etienne-froissard-de-broissia-tio
+               ls$titulo/Marquês de Broissia/16911000
+
+         n$Gabriel-Léonard de Brossard/id=deh-gabriel-leonard-de-brossard
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Frade Coadjutor
+            ls$nome-chines/Ki Wen Tchao-Ming
+            ls$nascimento/Perche, diocese de Chartres# @wikidata:Q958603/17030610
+            ls$jesuita-entrada/?/17381005
+            ls$chegada/?/17401010
+            ls$estadia/Pequim# @wikidata:Q956
+            ls$profissao/Relojoeiro
+            ls$profissao/Vidreiro
+            ls$jesuita-votos/Coadjutor Temporal/17490202
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/17490202
+            ls$morte/Pequim# @wikidata:Q956/17580903#ou 17580902
+            ls$dehergne/119/obs=Brossard, Gabriel-Léonard de (franç.) fr. coadj. 119 Kl Wen Tchao-Mlng (Pf.). N. 10 juin 1703, «Perticanus», du Perche (JS 134, 445), ou « Carnotensis » dioc. de Chartres (Franc. 20, 237) -E. 5 oct. 1738 (Franc. 20, 237). Arr. 10 oct. 1740 (JS 134, 445)., Pékin, horloger et « vitrorum conflator » = verrier. V. 2 févr. 1749, Pékin, coadj. temp. (Gai. 37, 477). M. 3 sept. 1758, Pékin. Franc. 1758 ex. dit: 2 sept. 1758, Gab. Joan. Brossart. HS 48 l'a oublié. Pf. 801.
+
+         n$Louis Brouet/xmesmo_que=deh-louis-porquet/id=deh-louis-brouet
+            ls$jesuita-estatuto/Padre
+            ls$nome/Louis Porquet
+            ls$embarque/Amphitrite/17010000
+            ls$dehergne/119a/obs=Brouet, Louis P. 119a Embarqué sur l'Amphitrite en 1701 avec les « PP. Jean de Fontaney, Melon, Noëlas, Coudeux [Le Couteulx], Goville, Chomel, de Chavagnac, de Tartre, Hervieu, Jartous, Franki, Contancin et le fr. Brocard » (JS 134, 396). Il s'agit, en réalité, de Porquet!
+
+            referido$Jean de Fontaney/id=deh-louis-brouet-ref1/obs=Dehergne 326
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Guillaume Melon/id=deh-louis-brouet-ref2/obs=provavelmente Guillaume Melon, Dehergne 540
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Jean Noëllas/id=deh-louis-brouet-ref3/obs=Dehergne 585
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Etienne Joseph Le Coulteulx/id=deh-louis-brouet-ref4/obs=Dehergne 457
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$nome/Coudeaux
+               ls$embarque/Amphitrite/17010000
+
+            referido$Pierre de Goville/id=deh-louis-brouet-ref5/obs=Dehergne 382
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Antoine Chomel/id=deh-louis-brouet-ref6/obs=Dehergne 174
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Emeric Langlois de Chavagnac/id=deh-louis-brouet-ref7/obs=Dehergne 172
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Pierre Vincent de Tartre/id=deh-louis-brouet-ref8/obs=Dehergne 824
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Julien-Placide Hervieu/id=deh-louis-brouet-ref9/obs=Dehergne 406
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Pierre Jartoux/id=deh-louis-brouet-ref10/obs=Dehergne 418
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$nome/Pierre Jartous
+               ls$embarque/Amphitrite/17010000
+
+            referido$Girolamo Franchi/id=deh-louis-brouet-ref11/obs=Dehergne 333
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$nome/Franki
+               ls$embarque/Amphitrite/17010000
+
+            referido$Cyr Contancin/id=deh-louis-brouet-ref12/obs=Dehergne 192
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Padre
+               ls$embarque/Amphitrite/17010000
+
+            referido$Jacques Brocard/mesmo_que=deh-jacques-brocard/id=deh-louis-brouet-ref13
+               rel$sociabilidade/Companheiro/deh-louis-porquet/deh-louis-brouet/data=17010000
+               ls$jesuita-estatuto/Frade Coadjutor
+               ls$embarque/Amphitrite/17010000
+
+         n$Giuseppe Bruno/id=deh-giuseppe-bruno
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Cuneo, Piemonte# @wikidata:Q5968/16580121
+            ls$jesuita-entrada/Chieri# @wikidata:Q9269/16801010
+            ls$tarefa/Estuda Teologia - 2º ano/169000
+            ls$jesuita-tarefa/Destinado à corte de Pequim/169000
+            ls$residencia/Itália#nunca foi à China @wikidata:Q38
+            ls$jesuita-votos/4V/16950522
+            ls$jesuita-votos-local/Ajaccio, Córsega# @wikidata:Q40104/16950522
+            ls$morte/Chieri# @wikidata:Q9269/17240917
+            ls$dehergne/120/obs=Bruno, Giuseppe (ital.) P. 120 N. Cuneo, 21 janv. 1658 -E. 10 oct. 1680, Chieri (Med. 57, 16v). En 1690, en seconde année de théologie, il était destiné a la Cour de Pékin (JS 134, 372). Il est resté, en fait, en Italie. V. « Adiacii in insula Corsice » (Ajaccio en Corse) 22 mai 1695, pr. Il signe: Brunus (Ital. 20, 131). M. 17 sept. 1724, à Chieri (HS 52, 116).
+
+         n$Lodovico Buglio/id=deh-lodovico-buglio
+            ls$nacionalidade/Itália
+            ls$jesuita-estatuto/Padre
+            ls$nome/Luigi Buglio
+            ls$nome/Ludovico Bouglio
+            ls$nome/Ludovico Bulhio
+            ls$nome/Ludovico Bulius
+            ls$nome/Ludovico Bullio
+            ls$nome/Ludovico Bullius
+            ls$nome-chines/Li Lei-sseu Tsai-K'o
+            ls$nascimento/Mineo, Catânia, Sicília# @wikidata:Q478457/16060126
+            ls$jesuita-entrada/Palermo# [Sicília] @wikidata:Q2656/16220000/obs=antes entrara na ordem de Malta em 16120518 diz Dehergne «La première entrée — avant « l'âge de raison » — est une « E. de dévotion », désirée par ses parents, qui consacrent leur fils au Seigneur et le revêtent des habits de l'Ordre, les Chevaliers de Malte.»
+            ls$embarque/?/16350413
+            ls$wicky/832/16350413
+            ls$wicky-viagem/72/16350413
+            ls$estadia/Macau# @wikidata:Q14773/16360000/obs=entre 1643-1646 «troubles et massacres»
+            ls$estadia/Kiang-nan#@wikidata:Q11133842/16390000
+            ls$estadia/Chengdu, Sichuan%Chengtu (Tch'eng-tou, capital de Szechwan, Sseu-tch'ouan)# @wikidata:Q30002/16400000
+            ls$jesuita-tarefa/Funda a missão de Chengdu/16400000
+            ls$titulo/Mandarim/16440000#Dehergne, p. 313
+            ls$estadia/Sian, Si-ngan fou#@wikidata:Q5826/16470000
+            ls$estadia/Pequim# @wikidata:Q956/16480222/obs=feito prisioneiro com o Padre Gabriel de Magalhães
+            ls$estadia/Pequim# @wikidata:Q956/16510000/obs=libertado
+            ls$estadia/Tong-t'ang, Pequim# @wikidata: Q1064185/16550000
+            ls$jesuita-tarefa/Funda a residência de Tong-t'ang#com Padre Gabriel de Magalhães, segundo entrada de Magalhães, Dehergne 506/16550000
+            ls$estadia/Tong-t'ang, Pequim# @wikidata: Q1064185/16620000
+            ls$jesuita-tarefa/Funda a igreja de Tong-t'ang/16620000
+            ls$estadia/Tong-t'ang, Pequim# @wikidata: Q1064185/16640000/obs=feito prisioneiro durante a perseguição
+            ls$estadia/Tong-t'ang, Pequim# @wikidata: Q1064185/16690000/obs=libertado pelo imperador
+            ls$titulo/Mandarim
+            ls$jesuita-votos/4V/16490327
+            ls$jesuita-votos-local/Pequim# @wikidata:Q956/16490327
+            ls$morte/Pequim# @wikidata:Q956/16821007
+            ls$dehergne/121/obs=Buglio, Lodovico (ou Luigi) (ital.) P. 121 Bouglio., Bulhlo., Bulius (JS 134, 316)., Bullio., Bulllus (JS 134, 326).Ll Lei-sseu Tsai-K'o (Pf.., Borg. Lat. 523, 58: Li Loui-su). N. 26 janv. 1606, « Maenensis » Mineo, prov. de Catane, Sicile. E. chez les Chevaliers de Malte, 18 mai 1612 (Rivière 3805) et E. 29 janv. (ou 28 nov.) 1622 Païenne (Sic. 155, 74v). Emb. 13 avril 1635 (W. 832., Goa 18, 152)., Arr. 1636, Macao., 1639, Kiang-nan., 1640, il fonde la mission de Chengtu (Tch'eng-tou, capitale du Szechwan, Sseu-tch'ouan)., troubles et massacres, 1643-1646 (JS 126, 129-152v)., 1647, Sian, Si-ngan fou., 22 février 1648, amené prisonnier à Pékin avec le P. G. de Magalhâes., 1651, libérés., fonde résidence du Tong-t'ang, à Pékin, 1655 (et non 1653), avec l'église, bâtie en 1662., arrêté à la persécution de 1664, libéré par K'Ang Hi en 1669. Mandarin. Nombreuses traductions en chinois: la Somme de St Thomas (Courant 6906-6910)., Missel et bréviaire chinois (Courant 7383-7392., SF VI, 387-395), etc.
+            ls$dehergne/121/obs=V. 27 mars 1649, Pékin, pr. (Lus. 6, 219). Il signe Buglius. M. 7 oct. 1682, Pékin (HS 49, 173., Planchet p. 159, 215). La première entrée — avant « l'âge de raison » — est une « E. de dévotion », désirée par ses parents, qui consacrent leur fils au Seigneur et le revêtent des habits de l'Ordre, les Chevaliers de Malte. Fils du baron Mario Del Burgio et de la fille du marquis de Francoforte Domina Antonia Gravina Isfar Corilles. Il signe Lodovico Buglio (JS 199 I, 21). Vie: par Grimaldi, ARSI F. G. 722, trad. ital. dans Lettere édifie, délia Provincia Sicuta (1905-1906), 104-114., Barbera, Mario, -- P. Ludovico Buglio, S.J., Rome, 1927, extrait de la Civiltà Cattolica 78 (1927)., Impérial Edict (en faveur de B.), CCS VI, Pékin 1933, 32-37., Streit V, 2155. — Portrait: à Mineo (DBI). Oeuvres: Cordier, H., L'imprimerie sitto-européenne, 1901, 8-10., Korolevsku, Cyrille, Liturgie en langue vivante, Orient et Occident, Paris, 1955, 150-153, le missel chinois
+            ls$dehergne/121/obs=Bontinck, François, La lutte autour de la liturgie chinoise aux XVW et XVIW siècles, Louvain-Paris, 1962, 120-185, 435, 462472., (Mitler, Theodor), S. V. D., De Summa Theologica divi Thomae ... in sinicum sermonem translata, CCS III, (1930), 521 sq., Les Faucons, BUA 1946, 522-556., 1947, 620 (H. Verhaeren, BCP (1947), 68-81)., Streit XIV. 1. p. 638440. Cf. son Nécrologe, avec liste d'ouvrages (Sic. 191, 247-248). Pf. 230., DHGE (A. De Bil)., DTC (J. Brucker)., EC (E. Lamalle)., DBI (Bertuccioli). SOCP China t. 49, 123 sq., JS 127, 1-35.
+
+            referido$Gabriel de Magalhães/id=deh-lodovico-buglio-ref1/obs=Dehergne 506
+               rel$sociabilidade/Companheiro/Lodovico Buglio/deh-lodovico-buglio
+               ls$jesuita-estatuto/Padre
+               ls$estadia/Pequim# @wikidata:Q956/16480222/obs=feito prisioneiro
+               ls$estadia/Pequim# @wikidata:Q956/16510000/obs=libertado
+               ls$estadia/Tong-t'ang, Pequim# @wikidata: Q1064185/16550000
+               ls$jesuita-tarefa/Funda a residência de Tong-t'ang#segundo entrada de Magalhães, Dehergne 506/16550000
+
+            referido$K'Ang Hi/id=deh-lodovico-buglio-ref2/obs=imperador Kangxi
+               ls$titulo/Imperador da China
+
+            pai$Mario del Burgio/id=deh-lodovico-buglio-pai
+               ls$titulo/Barão
+
+            mae$Antonia Gravina Isfar Corilles/id=deh-lodovico-buglio-mae
+
+               pmae$Avô Materno Lodovico Buglio/id=deh-lodovico-buglio-pmae
+                  ls$titulo/Marquês de Frankfurt
+
+         n$Reginaldo Burger/id=deh-reginaldo-burger
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome/Reginaldo Bourger
+            ls$nome/Reginaldo Borges
+            ls$nascimento/Lisboa# @wikidata:Q597/16390000
+            ls$jesuita-entrada/Lisboa# @wikidata:Q597/16560723
+            ls$embarque/?#Nossa Senhora da Ajuda? vide entrada De Marini/16660415
+            ls$wicky/1089/16660415
+            ls$wicky-viagem/94/16660415
+            ls$estadia/Bandora, Índia# @wikidata:Q720252/16730000
+            ls$jesuita-cargo/Procurador da província do Japão/16901000
+            ls$jesuita-cargo/Superior da casa professa de Goa/16970000
+            ls$jesuita-votos/4V/16750815
+            ls$jesuita-votos-local/Macau# @wikidata:Q14773/16750815
+            ls$morte/Goa# @wikidata:Q1171/16971206
+            ls$dehergne/122/obs=Burger (Bourger), Reginaldo (port.) P. 122 N. 1639, Lisbonne -E. 23 juili. 1656, Lisbonne (Lus. 45, 220v: Reginaldus Borges). Emb. 15 avril 1666 (W 1089: P. Reg. Borges). Le catal. de Goa 1697 (Goa 27, 120) le cite avec d'autres parmi les « Socii Sinenses in hac provincia commorantes », et le dit supérieur de la maison professe de Goa., plus loin il les marque « ex provincia japonica ». En 1673, le P. Rég. Bourger était à Bandora, aux Indes (JS 25, 204)., en oct. 1690, procureur de la province du Japon (JA 49-IV-65, f 337). V. 15 août 1675, Macao, pr. (Lus. 9, 116 et 202) et non 2 févr. 1676 (Goa 25, 352). M. à Goa, 6 déc. 1697 (HS 49, 230v et 50, 48v).
+
+         n$Jean François Burin/id=deh-jean-francois-burin
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Maché#perto de Chambéry, fazia parte do ducado de Sabóia @wikidata:Q1413666/16690606
+            ls$baptizado/Maché (paróquia de Saint-Pierre de Maché)@wikidata:Q1413666/16690607
+            ls$jesuita-entrada/Avignon# @wikidata:Q6397/16840918
+            ls$jesuita-tarefa/Destinado à China/16920000
+            ls$partida/China# @wikidata:Q148/16990300
+            ls$jesuita-ordenacao-padre/?/16960000
+            ls$morte/Moçambique#a caminho da China @wikidata:Q1029/17000100
+            ls$dehergne/123/obs=Burin, Jean Franç.) P. 123 N. 6 juin 1669, Mâché près de Chambéry -E. 18 sept. 1684 Avignon (Lugd. 15 II, 434v), P. en 1696 (Lugd. 23, 307v). En 1692, désigné pour venir en Chine « prima opportunitate » (JS 134, 377), il ne part de France qu'en mars 1699 (Franc. 24, 426). M. « Mozambici in itinere ad Sinas, sed nescitur die », janv. 1700 (HS 49, 90 et 50, 51). Nous devons au Directeur des Archives de la Savoie, Mr A. Perret, l'acte de baptême du 7 juin 1669 de la paroisse Saint Pierre de Mâché (faubourg de Chambéry): « Jean-François Burin fils de Maître Jeffé (sic) Burin et d'honorable Jeanne La Breuille, sa femme ». Maître Jeffé Burin était procureur au Sénat de Savoie.
+
+            pai$Jeffé Burin/id=deh-jean-francois-burin-pai
+               ls$titulo/Mestre
+               ls$cargo/Procurador do Senado de Sabóia
+
+            mae$Jeanne la Breuille/id=deh-jean-francois-burin-mae
