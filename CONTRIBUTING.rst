@@ -169,7 +169,7 @@ Example:
 
 Also, if tox complains of not finding the various Python versions then
 try:
-* check that the versions are installed with `pyenv versions``
+* check that the versions are installed with `pyenv versions`pyenv ins
 * if not install with pyenv e.g. `pyenv install 3.11`
 * check that the version are available locally with `pyenv local 3.10 3.11 [...]`
 *  run `tox` with the `-e` option to specify the environment.
