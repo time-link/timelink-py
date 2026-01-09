@@ -96,7 +96,7 @@ class TimelinkDatabase:
 
     Main methods:
         * table_names: get the current tables in the database
-        * get_columns: get the
+        * get_columns: get column information for tables
         * table_row_count: get the number of rows of each table in the database
         * get_models: get ORM Models for using in Queries
 
@@ -573,10 +573,10 @@ class TimelinkDatabase:
         These tables should be present in the database.
 
         These include:
-        * All the tables of the timelink data model (Entity and its subclasses)
-        * Other auxiliary tables managed with SQLAlchemy ORM like class_attributes
-          and Kleio imported files, syspar, syslog, etc.
-        * Dynamically created tables during import (see db_dynamic_tables)
+            * All the tables of the timelink data model (Entity and its subclasses)
+            * Other auxiliary tables managed with SQLAlchemy ORM like class_attributes
+              and Kleio imported files, syspar, syslog, etc.
+            * Dynamically created tables during import (see db_dynamic_tables)
 
         Returns:
             list: list of table objects

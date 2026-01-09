@@ -13,14 +13,11 @@ Subpackages
 
    timelink.api
    timelink.app
-   timelink.kleio
    timelink.mhk
    timelink.migrations
    timelink.networks
    timelink.notebooks
    timelink.pandas
-   timelink.static
-   timelink.statics
 
 Submodules
 ----------

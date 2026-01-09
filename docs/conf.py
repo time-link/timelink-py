@@ -42,8 +42,31 @@ extensions = [
 autodoc_default_options = {
     'members': True,
     'undoc-members': False,
+    'exclude-members': '__weakref__,metadata'
 }
-intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
+
+# Fix cross-reference issues with duplicate Entity classes
+autodoc_type_aliases = {
+    'Entity': 'timelink.api.models.entity.Entity',
+}
+
+# Intersphinx mapping for external documentation
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'sqlalchemy': ('https://docs.sqlalchemy.org/en/20/', None),
+}
+
+# Suppress specific warnings
+suppress_warnings = [
+    'ref.python',  # Suppress duplicate cross-reference warnings
+]
+
+# Mock modules that are not available during documentation build
+autodoc_mock_imports = [
+    'docker',
+    'fief',
+    'fief_client',
+]
 
 # Include both class and __init__ docstrings
 autoclass_content = "both"

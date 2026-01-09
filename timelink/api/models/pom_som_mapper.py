@@ -180,8 +180,8 @@ class PomSomMapper(Entity):
 
         See also Entity.get_orm_for_pom_class
 
-        :param pom_class_id:
-        the id of a pom_class
+        Args:
+            pom_class_id: the id of a pom_class
         """
         if pom_class_id in cls.pom_classes.keys():
             cached_pom_class = cls.pom_classes[pom_class_id]

@@ -95,9 +95,9 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
 
 7. Submit a pull request through the GitHub website.
 
-***********************
+*******************************
 Branch Management Conventions
-***********************
+*******************************
 
 To maintain a clean and organized repository, we follow these branch management conventions:
 
@@ -266,17 +266,21 @@ tox --recreate
 Travis will then deploy to PyPI if tests pass.
 
 If Travis fails to deploy to PyPI:
+
 * Check the Travis logs. Normally failures are due to tests that do not work in the CI environment.
   In that case the test can be skipped with the fixture @skip_on_travis. See tests/test_import_MHK.py for
-    an example.
+  an example.
+
 * Every push to Travis in the main branch will trigger a build, but only tagged commits will be
-    deployed to PyPI. In order not to update the version number in the code, the last commit
-    can be tagged with fix-travis and pushed to the repository. This will trigger a build and deployment
-    to PyPI.
- * try "make release" locally.
-    * Note that errors in package description in setup.py can prevent deployment to PyPI.
-    * This happens mainly with markup problems in HISTORY.rst.
-    * See https://github.com/pypi/warehouse/issues/5890
+  deployed to PyPI. In order not to update the version number in the code, the last commit
+  can be tagged with fix-travis and pushed to the repository. This will trigger a build and deployment
+  to PyPI.
+
+* Try "make release" locally.
+
+  * Note that errors in package description in setup.py can prevent deployment to PyPI.
+  * This happens mainly with markup problems in HISTORY.rst.
+  * See https://github.com/pypi/warehouse/issues/5890
 
 "make release" will do `twine check dist/*` to check for errors.
 

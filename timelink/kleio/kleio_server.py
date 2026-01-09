@@ -45,13 +45,10 @@ class KleioServer:
         container (docker.models.containers.Container): runing kleio server container
         url (str): kleio server url if running in a different machine (container=None)
         token (str): kleio server token if running in a different machine (container=None)
-        kleio_home (str): kleio server home directory.
-                          If None and container is not None
-                            then kleio_home is obtained
-                            from the container. If not none
+        kleio_home (str): kleio server home directory. If None and container is not None,
+                          then kleio_home is obtained from the container.
 
-
-    Main methods:
+    **Main methods:**
 
         - start: Starts a kleio server in docker.
         - attach: Attach to an already running Kleio Server.
