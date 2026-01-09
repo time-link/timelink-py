@@ -118,3 +118,4 @@ tests/timelink-home/.kleio/conf/*
 # Other
 timelink-1.1.15/
 tests/timelink-home/system/db/sqlite/timelink_users
+BRANCH_ANALYSIS.md
