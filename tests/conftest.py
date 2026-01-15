@@ -15,7 +15,7 @@ def kleio_server():
     have the server running in swil prolog and debug interactively.
 
     To run tests with a local Kleio Server outside docker:
-    1) set "mode" abose to KleioServerTestMode.LOCAL
+    1) set "mode" above to KleioServerTestMode.LOCAL
     2)Run the server in Prolog loading serverStart.pl and then:
 
         setenv('KLEIO_ADMIN_TOKEN','mytoken').
