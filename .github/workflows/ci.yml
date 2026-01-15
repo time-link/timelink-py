@@ -68,12 +68,15 @@ jobs:
       kleio-server:
         image: timelinkserver/kleio-server:latest
         options: >-
-          --health-cmd "curl -f http://localhost:3000/"
-          --health-interval 30s
-          --health-timeout 10s
-          --health-retries 5
+          --health-cmd "curl -f http://localhost:3000/ || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+          --health-start-period 30s
         ports:
           - 3000:3000
+        env:
+          SWI_HOME_DIR: /usr/lib/swi-prolog
 
     steps:
     - uses: actions/checkout@v4
@@ -97,6 +100,19 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install pytest
+
+    - name: Wait for Kleio Server
+      run: |
+        for i in {1..30}; do
+          if curl -f http://localhost:3000/; then
+            echo "Kleio Server is ready!"
+            exit 0
+          fi
+          echo "Waiting for Kleio Server... ($i/30)"
+          sleep 2
+        done
+        echo "Kleio Server failed to start"
+        exit 1
 
     - name: Run tests
       run: |
@@ -133,12 +149,15 @@ jobs:
       kleio-server:
         image: timelinkserver/kleio-server:latest
         options: >-
-          --health-cmd "curl -f http://localhost:3000/"
-          --health-interval 30s
-          --health-timeout 10s
-          --health-retries 5
+          --health-cmd "curl -f http://localhost:3000/ || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+          --health-start-period 30s
         ports:
           - 3000:3000
+        env:
+          SWI_HOME_DIR: /usr/lib/swi-prolog
 
     steps:
     - uses: actions/checkout@v4
