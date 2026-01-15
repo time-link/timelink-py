@@ -55,6 +55,16 @@ skip_on_travis = pytest.mark.skipif(
     os.environ.get("TRAVIS") == "true", reason="this test requires file system access for sqlite"
 )
 
+skip_on_github_actions = pytest.mark.skipif(
+    os.environ.get("GITHUB_ACTIONS") == "true", reason="this test requires file system access for sqlite"
+)
+
+# Backward compatibility - skip on either CI
+skip_on_ci = pytest.mark.skipif(
+    os.environ.get("TRAVIS") == "true" or os.environ.get("GITHUB_ACTIONS") == "true",
+    reason="this test requires file system access for sqlite"
+)
+
 
 # fixture to skip test if no internet
 # Usage:
