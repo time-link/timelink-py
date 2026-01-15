@@ -98,19 +98,20 @@ jobs:
 
     - name: Wait for Kleio Server
       run: |
-        echo "Waiting for Kleio Server to respond..."
+        echo "Waiting for Kleio Server to start..."
         container_id=$(docker ps | grep timelinkserver/kleio-server | awk '{print $1}')
-        echo $container_id
+        echo "Found container: $container_id"
         for i in {1..30}; do
-          output=$(docker exec $container_id swipl -g "use_module(library(http/http_client))" -g "http_get('http://localhost:8088',_,[])" -g "writeln('Kleio Alive')" -g "halt" 2>&1)
-          if echo "$output" | grep -q "Kleio Alive"; then
-            echo "Kleio Server is responding!"
+          output=$(docker logs $container_id 2>&1 | head -5)
+          if echo "$output" | grep -q "KleioTranslator"; then
+            echo "Kleio Server is running!"
             exit 0
           fi
-          echo "Waiting... ($i/30) - Output: $output"
+          echo "Waiting... ($i/30)"
           sleep 2
         done
-        echo "Kleio Server failed to respond correctly"
+        echo "Kleio Server failed to start"
+        docker logs $container_id 2>&1 | head -20
         exit 1
 
     - name: Run tests
