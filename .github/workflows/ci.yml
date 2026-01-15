@@ -103,10 +103,13 @@ jobs:
         echo "Found container: $container_id"
         for i in {1..30}; do
           output=$(docker logs $container_id 2>&1 | head -5)
+          echo "Container log output (attempt $i):"
+          echo "$output"
           if echo "$output" | grep -q "KleioTranslator"; then
             echo "Kleio Server is running!"
             exit 0
           fi
+          echo "'KleioTranslator' not found in output"
           echo "Waiting... ($i/30)"
           sleep 2
         done
