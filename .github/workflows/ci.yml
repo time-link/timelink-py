@@ -68,7 +68,6 @@ jobs:
 
       kleio-server:
         image: timelinkserver/kleio-server:latest
-        options: --health-start-period 30s
         ports:
           - 8088:8088
         env:
