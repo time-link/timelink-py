@@ -10,6 +10,7 @@ on:
 env:
   # Environment variables
   TRAVIS: true  # For compatibility with existing test configs
+  GITHUB_ACTIONS: true  # For compatibility with existing test configs
 
 jobs:
   lint:
@@ -68,13 +69,13 @@ jobs:
       kleio-server:
         image: timelinkserver/kleio-server:latest
         options: >-
-          --health-cmd "curl -f http://localhost:3000/ || exit 1"
+          --health-cmd "curl -f http://localhost:8088/ || exit 1"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 10
           --health-start-period 30s
         ports:
-          - 3000:3000
+          - 8088:8088
         env:
           SWI_HOME_DIR: /usr/lib/swi-prolog
 
@@ -100,11 +101,12 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install pytest
+        sudo apt-get update && sudo apt-get install -y curl
 
     - name: Wait for Kleio Server
       run: |
         for i in {1..30}; do
-          if curl -f http://localhost:3000/; then
+          if curl -f http://localhost:8088/; then
             echo "Kleio Server is ready!"
             exit 0
           fi
@@ -149,13 +151,13 @@ jobs:
       kleio-server:
         image: timelinkserver/kleio-server:latest
         options: >-
-          --health-cmd "curl -f http://localhost:3000/ || exit 1"
+          --health-cmd "curl -f http://localhost:8088/ || exit 1"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 10
           --health-start-period 30s
         ports:
-          - 3000:3000
+          - 8088:8088
         env:
           SWI_HOME_DIR: /usr/lib/swi-prolog
 
