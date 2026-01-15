@@ -8,59 +8,68 @@ TODO:
 
 """
 
-# pylint: disable=unused-import
-from collections import defaultdict, namedtuple
+import logging
 import os
 import time
 import warnings
-import logging
 
-# import pdb
-
+# pylint: disable=unused-import
+from collections import defaultdict, namedtuple
 from typing import List
-from pydantic import TypeAdapter, BaseModel
-import pandas as pd
 
-from sqlalchemy import MetaData
-from sqlalchemy import Table
-from sqlalchemy import create_engine
-from sqlalchemy import inspect
-from sqlalchemy import select, func, union
-from sqlalchemy import text
+import pandas as pd
+from pydantic import BaseModel, TypeAdapter
+from sqlalchemy import (
+    MetaData,
+    Table,
+    create_engine,
+    func,
+    inspect,
+    select,
+    text,
+    union,
+)
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy.orm import aliased
-from sqlalchemy_utils import database_exists
-from sqlalchemy_utils import create_database, drop_database
 from sqlalchemy.sql.selectable import TableClause
+from sqlalchemy_utils import create_database, database_exists, drop_database
 
 import timelink
+from timelink import models  # pylint: disable=unused-import
 from timelink import migrations
+from timelink.api.models import (
+    Attribute,
+    Entity,
+    KleioImportedFile,
+    Person,
+    PomSomMapper,
+    pom_som_base_mappings,
+)
 from timelink.api.models.act import Act
+from timelink.api.models.base_class import Base, get_all_base_subclasses
 from timelink.api.models.geoentity import Geoentity
 from timelink.api.models.object import Object
-from timelink.mhk import utilities
-from timelink import models  # pylint: disable=unused-import
-from timelink.api.models.base_class import Base, get_all_base_subclasses
-from timelink.api.models import Entity, PomSomMapper
-from timelink.api.models import pom_som_base_mappings
-from timelink.api.models import Person
-from timelink.api.models import Attribute
-from timelink.api.models import KleioImportedFile
 from timelink.api.models.system import KleioImportedFileSchema
-from timelink.kleio import KleioServer, KleioFile, import_status_enum
+from timelink.kleio import KleioFile, KleioServer, import_status_enum
 from timelink.kleio.importer import import_from_xml
+from timelink.mhk import utilities
 from timelink.mhk.models.relation import Relation
 
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
-
-from .database_utils import get_db_password, get_import_status, random_password
-from .database_postgres import get_postgres_container_pwd, is_postgres_running
-from .database_postgres import start_postgres_server, get_postgres_container
-from .database_postgres import get_postgres_url  # noqaO
-from .database_postgres import get_postgres_dbnames  # noqa
 from .database_postgres import get_postgres_container_user  # noqa
+from .database_postgres import get_postgres_dbnames  # noqa
+from .database_postgres import get_postgres_url  # noqaO
 from .database_postgres import is_valid_postgres_db_name  # noqa
+from .database_postgres import (
+    get_postgres_container,
+    get_postgres_container_pwd,
+    is_postgres_running,
+    start_postgres_server,
+)
 from .database_sqlite import get_sqlite_databases, get_sqlite_url  # noqa
+from .database_utils import get_db_password, get_import_status, random_password
+
+# import pdb
 
 
 class TimelinkDatabaseSchema(BaseModel):
@@ -99,7 +108,6 @@ class TimelinkDatabase:
         * get_columns: get column information for tables
         * table_row_count: get the number of rows of each table in the database
         * get_models: get ORM Models for using in Queries
-
     """
 
     db_url: str
@@ -200,7 +208,9 @@ class TimelinkDatabase:
                     self.db_container = get_postgres_container()
                     # if it it is running, we need the password
                     container_vars = self.db_container.attrs["Config"]["Env"]
-                    pwd = [var for var in container_vars if "POSTGRES_PASSWORD" in var][0]
+                    pwd = [var for var in container_vars if "POSTGRES_PASSWORD" in var][
+                        0
+                    ]
                     pwd_value = pwd.split("=")[1]
                     self.db_pwd = pwd_value
                     usr = [var for var in container_vars if "POSTGRES_USER" in var][0]
@@ -214,8 +224,13 @@ class TimelinkDatabase:
                         image=postgres_image,
                         version=postgres_version,
                     )
-                self.db_url = f"postgresql://{self.db_user}:" f"{self.db_pwd}@localhost/{self.db_name}"
-                self.db_container = start_postgres_server(self.db_name, self.db_user, self.db_pwd)
+                self.db_url = (
+                    f"postgresql://{self.db_user}:"
+                    f"{self.db_pwd}@localhost/{self.db_name}"
+                )
+                self.db_container = start_postgres_server(
+                    self.db_name, self.db_user, self.db_pwd
+                )
                 self.db_pwd = get_postgres_container_pwd()
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
@@ -245,7 +260,9 @@ class TimelinkDatabase:
         if drop_if_exists:
             if database_exists(self.engine.url):
                 drop_database(self.engine.url)
-        if not database_exists(self.engine.url) or db_url == "sqlite:///:memory:":  # noqa
+        if (
+            not database_exists(self.engine.url) or db_url == "sqlite:///:memory:"
+        ):  # noqa
             try:
                 create_database(self.engine.url)  # create empty database
                 self.create_db()  # creates the tables and views selectively
@@ -258,7 +275,9 @@ class TimelinkDatabase:
                 self.check_db()  # health check to the database
                 migrations.upgrade(self.db_url)
                 with self.session() as session:
-                    self._ensure_all_mappings(session)  # this will cache the pomsom mapper objects
+                    self._ensure_all_mappings(
+                        session
+                    )  # this will cache the pomsom mapper objects
                 # ensure views
                 self._update_views()
                 # get any extra table or views inspecting metadata
@@ -346,11 +365,17 @@ class TimelinkDatabase:
         if self.db_type == "postgres":
             with self.engine.connect() as connection:
                 result = connection.execute(
-                    select(text("1")).where(text("EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"))
+                    select(text("1")).where(
+                        text(
+                            "EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"
+                        )
+                    )
                 )
                 if result.scalar() is not None:
                     logging.warning("link_status found, deleting it")
-                    result = connection.execute(text("DROP TYPE IF EXISTS link_status CASCADE"))
+                    result = connection.execute(
+                        text("DROP TYPE IF EXISTS link_status CASCADE")
+                    )
                     # result = connection.execute(
                     #     text("CREATE TYPE link_status AS ENUM ('valid', 'invalid', 'possible')")
                     # )
@@ -386,7 +411,9 @@ class TimelinkDatabase:
                 if dependency != table:
                     in_degree[table] += 1
 
-        queue = [table for table in graph if in_degree[table] == 0]  # Start with nodes with no incoming edges
+        queue = [
+            table for table in graph if in_degree[table] == 0
+        ]  # Start with nodes with no incoming edges
         sorted_tables = []
 
         while queue:
@@ -426,7 +453,9 @@ class TimelinkDatabase:
         with self.session() as session:
             try:
                 for view_name in existing:
-                    stmt = views.DropView(view_name).execute_if(callable_=views.view_exists)
+                    stmt = views.DropView(view_name).execute_if(
+                        callable_=views.view_exists
+                    )
                     session.execute(stmt)
                     session.commit()
             except Exception as exc:
@@ -556,7 +585,9 @@ class TimelinkDatabase:
     def get_database_version(self):
         """Get the alembic version string for this db"""
         with self.engine.connect() as connection:
-            result = connection.execute(select(text("version_num")).select_from(text("alembic_version")))
+            result = connection.execute(
+                select(text("version_num")).select_from(text("alembic_version"))
+            )
             version = result.scalar()
         return version
 
@@ -573,6 +604,7 @@ class TimelinkDatabase:
         These tables should be present in the database.
 
         These include:
+
             * All the tables of the timelink data model (Entity and its subclasses)
             * Other auxiliary tables managed with SQLAlchemy ORM like class_attributes
               and Kleio imported files, syspar, syslog, etc.
@@ -590,7 +622,9 @@ class TimelinkDatabase:
         i.e., the tables that are not dynamically created
         plus the classes table
         """
-        r = [pom_som_base_mappings[k][0].table_name for k in pom_som_base_mappings.keys()]
+        r = [
+            pom_som_base_mappings[k][0].table_name for k in pom_som_base_mappings.keys()
+        ]
         return list(set(r + ["classes"]))
 
     def db_base_tables(self):
@@ -599,7 +633,10 @@ class TimelinkDatabase:
         These are the tables included in the base mappings,
         i.e., the tables that are not dynamically created
         """
-        return [self.metadata.tables[table_name] for table_name in self.db_base_table_names()]
+        return [
+            self.metadata.tables[table_name]
+            for table_name in self.db_base_table_names()
+        ]
 
     def db_dynamic_tables(self):
         """Dynamic tables in the database.
@@ -609,7 +646,9 @@ class TimelinkDatabase:
 
         """
         entity_based_tables = [
-            ormclass.__mapper__.local_table for ormclass in Entity.get_subclasses() if ormclass.is_dynamic()
+            ormclass.__mapper__.local_table
+            for ormclass in Entity.get_subclasses()
+            if ormclass.is_dynamic()
         ]
         return list(set(entity_based_tables) - set(self.db_base_tables()))
 
@@ -673,7 +712,11 @@ class TimelinkDatabase:
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for k in pom_som_base_mappings.keys():  # pylint: disable=consider-iterating-dictionary
+        for (
+            k
+        ) in (
+            pom_som_base_mappings.keys()
+        ):  # pylint: disable=consider-iterating-dictionary
             if k not in available_mappings:
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)
@@ -815,19 +858,26 @@ class TimelinkDatabase:
         if kleio_files is None:
             if self.get_kleio_server() is None:
                 raise ValueError(
-                    "Empty list of files. \n" "Either provide list of files or attach database to Kleio server."
+                    "Empty list of files. \n"
+                    "Either provide list of files or attach database to Kleio server."
                 )
             else:
-                kleio_files = self.get_kleio_server().get_translations(path=path, recurse=recurse)
+                kleio_files = self.get_kleio_server().get_translations(
+                    path=path, recurse=recurse
+                )
         if isinstance(kleio_files, KleioFile):
             kleio_files = [kleio_files]
-        if not isinstance(kleio_files, list) or not all(isinstance(file, KleioFile) for file in kleio_files):
+        if not isinstance(kleio_files, list) or not all(
+            isinstance(file, KleioFile) for file in kleio_files
+        ):
             raise ValueError(
                 f"kleio_files must be a list of KleioFile objects."
                 f"Use path={kleio_files} to get a list of KleioFile objects from a Kleio server."
             )
 
-        files: List[KleioFile] = get_import_status(self, kleio_files=kleio_files, match_path=match_path)
+        files: List[KleioFile] = get_import_status(
+            self, kleio_files=kleio_files, match_path=match_path
+        )
         if status is not None:
             files = [file for file in files if file.import_status.value == status]
         return files
@@ -858,22 +908,39 @@ class TimelinkDatabase:
             List[KleioFile]: list of kleio files with field import_status
         """
 
-        kleio_files: List[KleioFile] = self.get_import_status(kleio_files, match_path=match_path)
+        kleio_files: List[KleioFile] = self.get_import_status(
+            kleio_files, match_path=match_path
+        )
         return [
             file
             for file in kleio_files
-            if (file.import_status == import_status_enum.N or file.import_status == import_status_enum.U)  # noqa: W503
-            or (with_import_errors and file.import_status == import_status_enum.E)  # noqa: W503
-            or (with_import_warnings and file.import_status == import_status_enum.W)  # noqa: W503  # noqa: W503
+            if (
+                file.import_status == import_status_enum.N
+                or file.import_status == import_status_enum.U
+            )  # noqa: W503
+            or (
+                with_import_errors and file.import_status == import_status_enum.E
+            )  # noqa: W503
+            or (
+                with_import_warnings and file.import_status == import_status_enum.W
+            )  # noqa: W503  # noqa: W503
         ]
 
     def get_import_rpt(self, path: str, match_path=False) -> str:
         """Get the import report of a file in the database"""
         with self.session() as session:
             if match_path:
-                result = session.query(KleioImportedFile).filter(KleioImportedFile.path == path).first()
+                result = (
+                    session.query(KleioImportedFile)
+                    .filter(KleioImportedFile.path == path)
+                    .first()
+                )
             else:
-                result = session.query(KleioImportedFile).filter(KleioImportedFile.name == path).first()
+                result = (
+                    session.query(KleioImportedFile)
+                    .filter(KleioImportedFile.name == path)
+                    .first()
+                )
             if result is not None:
                 s = result.error_rpt + "\n" + result.warning_rpt
             else:
@@ -921,8 +988,12 @@ class TimelinkDatabase:
             else:
                 translate_status = "T"  # only those that need translation
 
-            for kfile in self.kserver.get_translations(path=path, recurse=recurse, status=translate_status):
-                logging.info("Request translation of %s %s", kfile.status.value, kfile.path)
+            for kfile in self.kserver.get_translations(
+                path=path, recurse=recurse, status=translate_status
+            ):
+                logging.info(
+                    "Request translation of %s %s", kfile.status.value, kfile.path
+                )
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             logging.debug("Waiting for translations to finish")
@@ -933,14 +1004,24 @@ class TimelinkDatabase:
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(1)
 
-                pfiles = self.kserver.get_translations(path="", recurse="yes", status="P")
-                qfiles = self.kserver.get_translations(path="", recurse="yes", status="Q")
+                pfiles = self.kserver.get_translations(
+                    path="", recurse="yes", status="P"
+                )
+                qfiles = self.kserver.get_translations(
+                    path="", recurse="yes", status="Q"
+                )
             # import the files
-            to_import = self.kserver.get_translations(path=path, recurse=recurse, status="V")  # TODO recurse make param
+            to_import = self.kserver.get_translations(
+                path=path, recurse=recurse, status="V"
+            )  # TODO recurse make param
             if with_translation_warnings:
-                to_import += self.kserver.get_translations(path=path, recurse=recurse, status="W")
+                to_import += self.kserver.get_translations(
+                    path=path, recurse=recurse, status="W"
+                )
             if with_translation_errors:
-                to_import += self.kserver.get_translations(path=path, recurse=recurse, status="E")
+                to_import += self.kserver.get_translations(
+                    path=path, recurse=recurse, status="E"
+                )
 
             if force:
                 import_needed = to_import
@@ -991,7 +1072,10 @@ class TimelinkDatabase:
         if kserver is None:
             kserver = self.kserver
         if kserver is None:
-            raise ValueError("No kleio server attached to this database." "Attach kleio server or provide one in call.")
+            raise ValueError(
+                "No kleio server attached to this database."
+                "Attach kleio server or provide one in call."
+            )
         # TODO: #18 expose import_from_xml in TimelinkDatabase
         stats = None
         with self.session() as session:
@@ -1035,7 +1119,9 @@ class TimelinkDatabase:
         if isinstance(class_id, list):
             if make_alias is None:
                 make_alias = True
-                return [self.get_model_by_name(c, make_alias=make_alias) for c in class_id]
+                return [
+                    self.get_model_by_name(c, make_alias=make_alias) for c in class_id
+                ]
         else:
             make_alias = False
             return self.get_model_by_name(class_id, make_alias=False)
@@ -1092,7 +1178,9 @@ class TimelinkDatabase:
                 if table is not None:
                     return table
                 else:
-                    table = Table(table_or_class, self.metadata, autoload_with=self.engine)
+                    table = Table(
+                        table_or_class, self.metadata, autoload_with=self.engine
+                    )
                     return table_or_class
             elif table_or_class in self.get_models_ids():
                 model = self.get_model_by_name(table_or_class)
@@ -1142,7 +1230,10 @@ class TimelinkDatabase:
             argument_type = ""
             argument = "all kleio groups in the database"
             GroupModel = namedtuple("GroupModel", ["group", "table", "model"])
-            return [GroupModel(group, orm.__tablename__, orm.__name__) for (group, orm) in Entity.group_models.items()]
+            return [
+                GroupModel(group, orm.__tablename__, orm.__name__)
+                for (group, orm) in Entity.group_models.items()
+            ]
         if isinstance(argument, str):
             if argument in self.get_models_ids():
                 argument_type = "model"
@@ -1343,7 +1434,9 @@ class TimelinkDatabase:
         # texists = inspect(eng).has_table("nfuncs")
 
         named_entity = self.views["named_entities"]
-        act = Act.__table__  # this can be replaced by aliased(Act) and get the full act with entity info
+        act = (
+            Act.__table__
+        )  # this can be replaced by aliased(Act) and get the full act with entity info
         relation = Relation.__table__
         nfuncs = views.view(
             "nfunctions",
@@ -1366,9 +1459,9 @@ class TimelinkDatabase:
                 act.c.obs.label("act_obs"),
             )
             .select_from(
-                named_entity.join(relation, named_entity.c.id == relation.c.origin).join(
-                    act, relation.c.destination == act.c.id
-                )
+                named_entity.join(
+                    relation, named_entity.c.id == relation.c.origin
+                ).join(act, relation.c.destination == act.c.id)
             )
             .where(relation.c.the_type == "function-in-act"),
         )
@@ -1453,7 +1546,9 @@ class TimelinkDatabase:
             sql = select(text(sql))
         # if sql is a select statement
         elif not isinstance(sql, select):
-            raise ValueError("sql must be a select statement or a string with a valid select statement")
+            raise ValueError(
+                "sql must be a select statement or a string with a valid select statement"
+            )
 
         if session is None:
             with self.session() as session:

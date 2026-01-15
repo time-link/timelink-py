@@ -8,17 +8,20 @@ Run with  python -m timelink.cli
 
 import os
 import platform
-import uvicorn
-import typer
-import docker
-from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
-from timelink import migrations
-from timelink import version
-from timelink.api.database import TimelinkDatabase, get_postgres_dbnames
-from timelink.api.database import get_sqlite_databases
-from timelink.api.database import get_postgres_url
-from timelink.api.database import get_sqlite_url
 
+import docker
+import typer
+import uvicorn
+
+from timelink import migrations, version
+from timelink.api.database import (
+    TimelinkDatabase,
+    get_postgres_dbnames,
+    get_postgres_url,
+    get_sqlite_databases,
+    get_sqlite_url,
+)
+from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 
 server: uvicorn.Server = None  # uvicorn server instance
 
@@ -83,16 +86,20 @@ def create_db_index(avoid_patterns=None):
 
     """
     pgsql_dbs = get_postgres_dbnames()
-    postgres_list = [
-        ("postgres", db, get_postgres_url(db)) for db in sorted(pgsql_dbs)
-    ]
+    postgres_list = [("postgres", db, get_postgres_url(db)) for db in sorted(pgsql_dbs)]
     sqlite_list = [
         ("sqlite", os.path.basename(db), get_sqlite_url(db))
-        for db in sorted(get_sqlite_databases(current_working_directory, relative_path=False))
+        for db in sorted(
+            get_sqlite_databases(current_working_directory, relative_path=False)
+        )
     ]
     all_dbs = postgres_list + sqlite_list
     if avoid_patterns:
-        all_dbs = [db for db in all_dbs if all([pattern not in db[1] for pattern in avoid_patterns])]
+        all_dbs = [
+            db
+            for db in all_dbs
+            if all([pattern not in db[1] for pattern in avoid_patterns])
+        ]
 
     # make tuples of the form (int, db info) from postgres_list + sqlite_list
     enumeration = enumerate(sorted(all_dbs, key=lambda x: x[1]), 1)
@@ -104,7 +111,9 @@ def parse_db_url(db_url):
     # check if db_url is an integer
     if type(db_url) is int or db_url.isdigit():
         # TODO: in the future user databases may need migration too, need to refactor
-        db_index = create_db_index(avoid_patterns=avoid_db_patterns)  # this is to avoid users databases
+        db_index = create_db_index(
+            avoid_patterns=avoid_db_patterns
+        )  # this is to avoid users databases
         key = int(db_url)
         db_url = (db_index[key])[2]
     return db_url
@@ -120,7 +129,7 @@ def db_database_list_cmd():
         db_url = db[2]
         db_version = migrations.heads(db_url)
         if len(db_version) == 0:
-            db_version = ''
+            db_version = ""
         else:
             db_version = f" ({db_version[0][:4]})"
         typer.echo(f" {i:>6}{db[0]:>9} {db_version:>8} {db[1]}: {db_url}")  # f-string
@@ -146,9 +155,7 @@ def db_current_cmd(
 
 @db_app.command("upgrade")
 def db_upgrade_cmd(db_url: str, revision: str = "heads"):
-    """Update database to (most recent) revision
-
-    """
+    """Update database to (most recent) revision"""
     db_url = parse_db_url(db_url)
     TimelinkDatabase(db_url=db_url)
     migrations.upgrade(db_url, revision)
@@ -166,7 +173,8 @@ def db_create_cmd(db_url: str = typer.Argument(..., help="Database URL")):  # no
 def db_heads(db_url: str):
     """Return the head(s) (current revision)
 
-    see: https://alembic.sqlalchemy.org/en/latest/api/runtime.html#alembic.runtime.migration.MigrationContext.get_current_heads
+    see:
+    https://alembic.sqlalchemy.org/en/latest/api/runtime.html#alembic.runtime.migration.MigrationContext.get_current_heads
     """
     db_url = parse_db_url(db_url)
     typer.echo(migrations.heads(db_url))
@@ -206,6 +214,7 @@ def db_stamp(db_url: str, revision: str):
     """Stamp the database to a given revision. Use 'heads' to mark the database as up-to-date"""
     db_url = parse_db_url(db_url)
     migrations.stamp(db_url, revision)
+
 
 # ====================
 # MHK related commands

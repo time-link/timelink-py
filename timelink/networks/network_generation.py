@@ -1,13 +1,14 @@
 """Generation of networks"""
 
 from itertools import combinations
+
 import networkx as nx
 
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models.entity import Entity
-from timelink.pandas import entities_with_attribute, attribute_values
-from timelink.kleio.utilities import format_timelink_date as ftd
 from timelink.kleio.utilities import convert_timelink_date as ctd
+from timelink.kleio.utilities import format_timelink_date as ftd
+from timelink.pandas import attribute_values, entities_with_attribute
 
 
 def network_from_attribute(
@@ -32,7 +33,8 @@ def network_from_attribute(
         mode (str, optional): The topology of the generated network (see bellow).
                               Valid values are "cliques" and "value-node". Defaults to "cliques".
         user (str, optional): Use real persons identified by this user. Defaults to "*none*".
-        db (TimelinkDatase, optional): The TimelinkDatase object. Defaults to None. Either db or session must be provided.
+        db (TimelinkDatase, optional): The TimelinkDatase object. Defaults to None.
+                                       Either db or session must be provided.
         session (object, optional): The session object for the database connection. Defaults to None.
 
     Raises:
@@ -84,10 +86,13 @@ def network_from_attribute(
     elif db is not None:
         mysession = db.session()
     else:
-        raise ValueError("No database nor session. Specifcy db=TimeLinkDatabase() or " "session=database session.")
+        raise ValueError(
+            "No database nor session. Specifcy db=TimeLinkDatabase() or "
+            "session=database session."
+        )
 
     if ignore_values is None:
-        ignore_values = ['?']
+        ignore_values = ["?"]
 
     with mysession:
         attribute_values_list = attribute_values(
@@ -101,7 +106,9 @@ def network_from_attribute(
 
         if ignore_values is not None:
             # remove the values to ignore
-            attribute_values_list = attribute_values_list[~attribute_values_list.index.isin(ignore_values)]
+            attribute_values_list = attribute_values_list[
+                ~attribute_values_list.index.isin(ignore_values)
+            ]
 
         if attribute_values_list.empty:
             return G
@@ -137,13 +144,15 @@ def network_from_attribute(
                         date_value = ftd(row[date_col]) if date_col in row else None
                         obs_value = row[obs_col] if obs_col in row else None
                         # add node for the entity
-                        G.add_node(idx,
-                                   desc=entity.description,
-                                   id=entity.id,
-                                   type=entity.pom_class,
-                                   group=entity.groupname,
-                                   date=date_value,
-                                   source=entity.the_source)
+                        G.add_node(
+                            idx,
+                            desc=entity.description,
+                            id=entity.id,
+                            type=entity.pom_class,
+                            group=entity.groupname,
+                            date=date_value,
+                            source=entity.the_source,
+                        )
                         if by_year and date_value:
                             # add a year node if the date is not empty
                             year = ctd(date_value).year
@@ -170,20 +179,39 @@ def network_from_attribute(
                     # get info on the entity
                     entity: Entity | None = mysession.get(Entity, id)
                     if entity is not None:
-                        G.add_node(id, desc=entity.description,
-                                   group=entity.groupname,
-                                   type=entity.pom_class,
-                                   source=entity.the_source)
+                        G.add_node(
+                            id,
+                            desc=entity.description,
+                            group=entity.groupname,
+                            type=entity.pom_class,
+                            source=entity.the_source,
+                        )
                 pairs = list(combinations(unique, 2))
                 if len(pairs) > 1:
                     for id1, id2 in pairs:
                         # get the dates and obs
-                        date1 = entities.at[id1, date_col] if date_col in entities.columns else ""
-                        date2 = entities.at[id2, date_col] if date_col in entities.columns else ""
+                        date1 = (
+                            entities.at[id1, date_col]
+                            if date_col in entities.columns
+                            else ""
+                        )
+                        date2 = (
+                            entities.at[id2, date_col]
+                            if date_col in entities.columns
+                            else ""
+                        )
                         date1 = ftd(date1) if date1 else ""
                         date2 = ftd(date2) if date2 else ""
-                        obs1: str = entities.at[id1, obs_col] if obs_col in entities.columns else ""
-                        obs2: str = entities.at[id2, obs_col] if obs_col in entities.columns else ""
+                        obs1: str = (
+                            entities.at[id1, obs_col]
+                            if obs_col in entities.columns
+                            else ""
+                        )
+                        obs2: str = (
+                            entities.at[id2, obs_col]
+                            if obs_col in entities.columns
+                            else ""
+                        )
                         if ":" in date1:
                             date1 = f'"{date1}"'
                         if ":" in date2:

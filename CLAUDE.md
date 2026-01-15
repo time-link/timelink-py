@@ -57,12 +57,29 @@ make profile
 # Format code with Black
 black timelink
 
-# Lint with flake8 (line length: 88 chars)
+# Lint with flake8
 make lint
 
 # Clean artifacts
 make clean
 ```
+
+**Linter and Formatter Configuration:**
+
+- **flake8** (Primary Linter)
+  - Configuration: `setup.cfg`
+  - Max line length: 120 characters
+  - Selected checks: C, E, F, W, B, B950
+  - Ignores: E203, E501
+  - Command: `make lint` or `flake8 timelink tests`
+  
+- **Black** (Code Formatter)
+  - Configuration: `pyproject.toml`
+  - Line length: 120 characters
+  - Excludes `__init__.py` (prevents breaking bump2version)
+  - Command: `black timelink`
+  
+- **Tox** includes flake8 in test suite (`tox.ini`)
 
 #### Building and Documentation
 ```bash
@@ -170,8 +187,8 @@ Core models in `timelink/api/models.py`:
 
 **Code Style:**
 - Google-style docstrings
-- Black formatting (88 char line length)
-- flake8 with bugbear extension
+- Black formatting (120 char line length)
+- flake8 with bugbear extension (120 char line length)
 - Type hints encouraged
 
 **Database Migrations:**

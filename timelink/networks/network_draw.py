@@ -1,9 +1,8 @@
-from bokeh.models import Range1d, Circle, MultiLine
-from bokeh.plotting import figure
-from bokeh.plotting import from_networkx
-from bokeh.io import show, save, output_notebook
-from bokeh.palettes import Category10
 import networkx as nx
+from bokeh.io import output_notebook, save, show
+from bokeh.models import Circle, MultiLine, Range1d
+from bokeh.palettes import Category10
+from bokeh.plotting import figure, from_networkx
 
 
 def draw_network(
@@ -48,18 +47,18 @@ def draw_network(
         Coloring is done by the attribute specified in `node_color_attr`.
         Each node is inspected to get its attribute `node_color_attr`.
         If `node_colors` is provided, it uses that dictionary to set the color.
-        `node_colors`show be a dictionary mapping attributes to colors.
+        `node_colors` should be a dictionary mapping attributes to colors.
         Colors are set to "gray" if the attribute is not found in `node_colors`.
-        If `node_colors` is None, it this functions will inspect the nodes
+        If `node_colors` is None, this functions will inspect the nodes
         to get the number of different values for `node_color_attr` and
         build a color palette using `bokeh.palettes.Category10` or a
-        custom `color_palette` if provided.
+        custom `color_palette` if provided in the arguments.
 
     """
     output_notebook()  # Use this if you want to display the plot in a Jupyter notebook
 
     # convert the label to integer
-    G = nx.convert_node_labels_to_integers(Graph, label_attribute='original_id')
+    G = nx.convert_node_labels_to_integers(Graph, label_attribute="original_id")
 
     # Establish which categories will appear when hovering over each node
     if node_tooltips is None:
@@ -74,9 +73,13 @@ def draw_network(
         if color_palette is None:
             color_palette = Category10
             palette_len = max(len(node_types), 3)  # palette length should be at least 3
-            colors = {n: color_palette[palette_len][i] for i, n in enumerate(node_types)}
+            colors = {
+                n: color_palette[palette_len][i] for i, n in enumerate(node_types)
+            }
             for node in G.nodes:
-                G.nodes[node]["color"] = colors.get(G.nodes[node][node_color_attr], "gray")
+                G.nodes[node]["color"] = colors.get(
+                    G.nodes[node][node_color_attr], "gray"
+                )
     else:
         # use the provided node_colors dictionary
         cattribute = node_color_attr
@@ -86,7 +89,8 @@ def draw_network(
     # Create a plot — set dimensions, toolbar, and title
     plot = figure(
         tooltips=HOVER_TOOLTIPS,
-        tools="pan,wheel_zoom,save,reset", active_scroll='wheel_zoom',
+        tools="pan,wheel_zoom,save,reset",
+        active_scroll="wheel_zoom",
         x_range=Range1d(-1.1, 1.1),
         y_range=Range1d(-1.1, 1.1),
         width=width,
@@ -96,17 +100,21 @@ def draw_network(
 
     # Create a network graph object with spring layout
     # https://networkx.github.io/documentation/networkx-1.9/reference/generated/networkx.drawing.layout.spring_layout.html
-    network_graph = from_networkx(G,
-                                  nx.spring_layout,   # type: ignore
-                                  iterations=iterations,
-                                  scale=scale,
-                                  center=(0, 0))
+    network_graph = from_networkx(
+        G,
+        nx.spring_layout,  # type: ignore
+        iterations=iterations,
+        scale=scale,
+        center=(0, 0),
+    )
 
     # Set node size and color
     network_graph.node_renderer.glyph = Circle(size=circle_size, fill_color="color")  # type: ignore
 
     # Set edge opacity and width
-    network_graph.edge_renderer.glyph = MultiLine(line_color=line_color, line_alpha=line_alpha, line_width=line_width)
+    network_graph.edge_renderer.glyph = MultiLine(
+        line_color=line_color, line_alpha=line_alpha, line_width=line_width
+    )
 
     # Add network graph to the plot
     plot.renderers.append(network_graph)

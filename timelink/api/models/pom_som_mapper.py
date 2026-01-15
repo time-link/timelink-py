@@ -175,8 +175,7 @@ class PomSomMapper(Entity):
 
     @classmethod
     def get_pom_class(cls, pom_class_id: String, session):
-        """
-        Return the pom_class object for a given pom_class_id.
+        """Return the pom_class object for a given pom_class_id.
 
         See also Entity.get_orm_for_pom_class
 
