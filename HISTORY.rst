@@ -2,6 +2,75 @@
 History
 =======
 
+1.1.27 (2026-01-15)
+-------------------
+
+**Code style and quality improvements:**
+
+* Applied Black code formatter with 120 character line length across the entire codebase
+* Reorganized imports following PEP 8 guidelines (standard library → third-party → local)
+* Consolidated imports from the same modules for better maintainability
+* Standardized string quotes to double quotes throughout
+* Fixed various linting issues and improved code quality
+* Added Python 3.12 to testing matrix
+
+**Documentation improvements:**
+
+* Updated and regenerated Sphinx API documentation with latest code
+* Fixed documentation build warnings and improved Sphinx configuration
+* Added comprehensive documentation for linter (flake8) and formatter (Black) configuration
+* Fixed critical issue where documentation wasn't showing the latest code versions
+* Added git worktree workflow instructions (see CLAUDE.md)
+* Updated branch management guidelines
+
+**Type hints and typing improvements:**
+
+* Improved type hints for better Pylance/VSCode compliance
+* Fixed return types and typing expressions throughout codebase
+* Enhanced type safety and IDE support
+
+**Network functionality:**
+
+* Fixed network generation and drawing issues (work in progress)
+* Added comprehensive tests for network functions
+* Improved session handling for network operations
+
+**Database improvements:**
+
+* Improved drop_db() function
+* Enhanced session handling throughout the codebase
+* Fixed DetachedInstanceError issues in database operations
+* Fixed UTC current date and time handling
+
+**Testing:**
+
+* Updated test data and notebooks to work with latest changes
+* Added comprehensive testing for Python 3.12 compatibility
+* Expanded test coverage for various components
+
+**Development workflow:**
+
+* Added Python 3.12 to tox test matrix
+* Updated VSCode workspace configuration for better development experience
+* Improved project template layouts
+* Updated requirements and dependencies
+
+**Bug fixes:**
+
+* Fixed return type of REntity.same_as()
+* Fixed usage of deprecated datetime.utcnow()
+* Fixed DetachedInstanceError in database operations
+* Fixed view usage in web database overview notebooks
+* Fixed nfunctions view bug
+* Fixed various UTC date and time handling issues
+* Improved find_kleio_home() and utility functions
+
+**Other:**
+
+* Enhanced project template layouts
+* Improved various docstrings and documentation
+* Multiple test file updates and improvements
+
 1.1.26 (2025-05-27)
 -------------------
 
