@@ -96,6 +96,27 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install pytest
 
+    - name: Wait for Kleio Server container
+      run: |
+        echo "Waiting for Kleio-server container..."
+        for i in {1..30}; do
+          if docker ps | grep -q timelinkserver/kleio-server; then
+            echo "Kleio-server container found!"
+            container_id=$(docker ps | grep timelinkserver/kleio-server | awk '{print $1}')
+            container_status=$(docker inspect --format='{{.State.Status}}' $container_id)
+            echo "Container status: $container_status"
+            if [ "$container_status" = "running" ]; then
+              echo "Kleio Server is running!"
+              exit 0
+            fi
+          fi
+          echo "Waiting... ($i/30)"
+          sleep 2
+        done
+        echo "Kleio Server container failed to start"
+        docker ps -a
+        exit 1
+
     - name: Run tests
       run: |
         pytest --rootdir=tests
