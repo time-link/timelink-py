@@ -8,6 +8,13 @@ timelink.app.models package
 Submodules
 ----------
 
+timelink.app.models.project module
+----------------------------------
+
+.. automodule:: timelink.app.models.project
+   :no-undoc-members:
+   :no-show-inheritance:
+
 timelink.app.models.user module
 -------------------------------
 

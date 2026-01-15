@@ -19,8 +19,10 @@
 #
 import os
 import sys
-import timelink
+# Insert the parent directory at the beginning of sys.path so that
+# the local development version is used instead of the installed package
 sys.path.insert(0, os.path.abspath('..'))
+import timelink
 
 # -- General configuration ---------------------------------------------
 
@@ -66,6 +68,10 @@ autodoc_mock_imports = [
     'docker',
     'fief',
     'fief_client',
+    'jinja2',
+    'jinja2.loaders',
+    'alembic',
+    'alembic.context',
 ]
 
 # Include both class and __init__ docstrings

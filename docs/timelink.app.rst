@@ -9,13 +9,12 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 4
 
    timelink.app.backend
    timelink.app.models
    timelink.app.schemas
    timelink.app.services
-   timelink.app.web
 
 Submodules
 ----------
@@ -24,12 +23,5 @@ timelink.app.dependencies module
 --------------------------------
 
 .. automodule:: timelink.app.dependencies
-   :no-undoc-members:
-   :no-show-inheritance:
-
-timelink.app.main module
-------------------------
-
-.. automodule:: timelink.app.main
    :no-undoc-members:
    :no-show-inheritance:

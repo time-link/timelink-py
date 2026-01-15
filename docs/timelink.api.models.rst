@@ -15,6 +15,13 @@ timelink.api.models.act module
    :no-undoc-members:
    :no-show-inheritance:
 
+timelink.api.models.aregister module
+------------------------------------
+
+.. automodule:: timelink.api.models.aregister
+   :no-undoc-members:
+   :no-show-inheritance:
+
 timelink.api.models.attribute module
 ------------------------------------
 
@@ -50,6 +57,13 @@ timelink.api.models.entity module
    :no-undoc-members:
    :no-show-inheritance:
 
+timelink.api.models.geoentity module
+------------------------------------
+
+.. automodule:: timelink.api.models.geoentity
+   :no-undoc-members:
+   :no-show-inheritance:
+
 timelink.api.models.object module
 ---------------------------------
 
@@ -75,6 +89,13 @@ timelink.api.models.relation module
 -----------------------------------
 
 .. automodule:: timelink.api.models.relation
+   :no-undoc-members:
+   :no-show-inheritance:
+
+timelink.api.models.rentity module
+----------------------------------
+
+.. automodule:: timelink.api.models.rentity
    :no-undoc-members:
    :no-show-inheritance:
 
