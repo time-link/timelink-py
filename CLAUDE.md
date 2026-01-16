@@ -89,7 +89,7 @@ make docs
 # Build distribution packages
 make dist
 
-# Create release (deploys to PyPI via Travis)
+# Create release (deploys to PyPI via GitHub Actions)
 make release
 ```
 
@@ -201,7 +201,7 @@ Core models in `timelink/api/models.py`:
 2. Run full test suite: `make test-all`
 3. Update version with `bump2version`
 4. Push with tags: `git push && git push --tags`
-5. Travis CI handles PyPI deployment
+5. GitHub Actions handles PyPI deployment
 
 ## Git Integration Notes
 
@@ -215,6 +215,6 @@ Core models in `timelink/api/models.py`:
 
 - **Documentation**: https://timelink-py.readthedocs.io/
 - **Repository**: https://github.com/time-link/timelink-py
-- **PyPI**: Distributed via PyPI (Travis CI deployment)
+- **PyPI**: Distributed via PyPI (GitHub Actions deployment)
 - **Issue Tracker**: GitHub Issues
-- **CI/CD**: Travis CI (configured in `.travis.yml`)
+- **CI/CD**: GitHub Actions (configured in `.github/workflows/ci.yml`)
