@@ -52,27 +52,6 @@ jobs:
         python-version: ['3.10', '3.11', '3.12']
       fail-fast: false
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
-      kleio-server:
-        image: timelinkserver/kleio-server:latest
-        ports:
-          - 8088:8088
-        env:
-          SWI_HOME_DIR: /usr/lib/swi-prolog
-
     steps:
     - uses: actions/checkout@v4
 
@@ -96,26 +75,21 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install pytest
 
-    - name: Wait for Kleio Server
+    - name: Pull Docker images
       run: |
-        echo "Waiting for Kleio Server to start..."
-        container_id=$(docker ps | grep timelinkserver/kleio-server | awk '{print $1}')
-        echo "Found container: $container_id"
-        for i in {1..30}; do
-          output=$(docker logs $container_id 2>&1 | head -5)
-          echo "Container log output (attempt $i):"
-          echo "$output"
-          if echo "$output" | grep -q "KleioTranslator"; then
-            echo "Kleio Server is running!"
-            exit 0
-          fi
-          echo "'KleioTranslator' not found in output"
-          echo "Waiting... ($i/30)"
-          sleep 2
-        done
-        echo "Kleio Server failed to start"
-        docker logs $container_id 2>&1 | head -20
-        exit 1
+        docker pull postgres:latest
+        docker pull timelinkserver/kleio-server:latest
+
+    - name: Stop default PostgreSQL
+      run: |
+        # Check if running in GitHub Actions (not act)
+        if [ -n "$GITHUB_ACTIONS" ] && [ -z "$ACT" ]; then
+          sudo systemctl stop postgresql || true
+          # Wait for PostgreSQL to shutdown
+          timeout 30 bash -c 'until ! sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done' || true
+        else
+          echo "Skipping PostgreSQL stop (running in act or no systemd)"
+        fi
 
     - name: Run tests
       run: |
@@ -145,7 +119,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.12'
 
     - name: Install build dependencies
       run: |
