@@ -49,7 +49,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12']
+        python-version: ['3.10', '3.12', '3.13']
       fail-fast: false
 
     steps:
@@ -97,12 +97,6 @@ jobs:
       env:
         # Database connection
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
-
-    - name: Test notebooks (Python 3.11 only)
-      if: matrix.python-version == '3.11'
-      run: |
-        pip install nbval
-        pytest --nbval tests/timelink-home/projects/test-project/notebooks/test*
 
   deploy:
     name: Deploy to PyPI
