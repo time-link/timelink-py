@@ -50,7 +50,11 @@ History
 
 **Development workflow:**
 
+* Migrated continuous integration from Travis CI to GitHub Actions
 * Added Python 3.12 to tox test matrix
+* Enhanced Kleio-server Docker container integration in CI
+* Added local CI testing support with act tool
+* Removed notebook tests for better CI performance
 * Updated VSCode workspace configuration for better development experience
 * Improved project template layouts
 * Updated requirements and dependencies
