@@ -915,15 +915,13 @@ class TimelinkDatabase:
             file
             for file in kleio_files
             if (
-                file.import_status == import_status_enum.N
-                or file.import_status == import_status_enum.U
-            )  # noqa: W503
-            or (
+                file.import_status == import_status_enum.N or
+                file.import_status == import_status_enum.U
+            ) or (
                 with_import_errors and file.import_status == import_status_enum.E
-            )  # noqa: W503
-            or (
+            ) or (
                 with_import_warnings and file.import_status == import_status_enum.W
-            )  # noqa: W503  # noqa: W503
+            )
         ]
 
     def get_import_rpt(self, path: str, match_path=False) -> str:
