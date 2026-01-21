@@ -4,9 +4,11 @@
 # pyright: reportAttributeAccessIssue=false
 
 from typing import List
+
 import pandas as pd
-from sqlalchemy.sql import select
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import select
+
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models.entity import Entity
 
@@ -50,7 +52,7 @@ def entities_with_attribute(
                                 show_elements=["groupname","names","sex"],
                                 the_type='residencia',
                                 the_value="soure"
-                                column_name="local", # use this istead of "residencia"
+                                column_name="local", # use this in result instead of "residencia"
                                 more_attributes=["profissao"]
                                 db=dbsystem,
                                 )
@@ -61,6 +63,18 @@ def entities_with_attribute(
             the_value_between_inc (min, max, get >=min and <= max)
             the_value_between_exc (min, max, get >min and < max)
 
+    Returns:
+        A pandas DataFrame with the results, or None if no results found
+        Other than the entity id and the entity columns specified in show_elements,
+        the dataframe will have columns named as:
+            {column_name} : the value of the attribute
+            {column_name}.date : the date of the attribute
+            {column_name}.obs  : the observation of the attribute
+            {column_name}.type : the type of the attribute
+            {column_name}.line : the line number in the source document
+            {column_name}.level: the level of the attribute
+            {column_name}.attr_id: the id of the attribute in the database
+            {column_name}.extra_info: a dict with extra information about the attribute
 
     """
     # We try to use an existing connection and table introspection
@@ -91,6 +105,7 @@ def entities_with_attribute(
     line_column_name = f"{column_name}.line"
     level_column_name = f"{column_name}.level"
     atr_id_column_name = f"{column_name}.attr_id"
+    atr_group_column_name = f"{column_name}.groupname"
     attribute_extra_info_column_name = f"{column_name}.extra_info"
 
     entity_types = db.get_models_ids()
@@ -116,7 +131,9 @@ def entities_with_attribute(
 
     if name_like is not None:
         if "name" not in entity_columns:
-            raise (ValueError("To filter by name requires name in the show_elements list."))
+            raise (
+                ValueError("To filter by name requires name in the show_elements list.")
+            )
 
     attr = db.get_view("eattributes")
     # id_col = attr.c.entity.label("id")
@@ -129,8 +146,9 @@ def entities_with_attribute(
             attr.c.the_type.label(type_column_name),
             attr.c.the_value.label(column_name),
             attr.c.the_date.label(date_column_name),
-            attr.c.the_line.label(line_column_name),
-            attr.c.the_level.label(level_column_name),
+            attr.c.a_the_line.label(line_column_name),
+            attr.c.a_the_level.label(level_column_name),
+            attr.c.a_groupname.label(atr_group_column_name),
             attr.c.aobs.label(obs_column_name),
             attr.c.a_extra_info.label(attribute_extra_info_column_name),
         ]
@@ -149,7 +167,7 @@ def entities_with_attribute(
         #  may contain ids that are not in the attribute table
         #  we need to add them to the final dataframe
         filter_by_sql = (
-            select(entity_model)   # type: ignore
+            select(entity_model)  # type: ignore
             .with_only_columns(*more_info_cols, maintain_column_froms=True)
             .where(entity_model.id.in_(filter_by))  # type: ignore
         )
@@ -234,11 +252,15 @@ def entities_with_attribute(
                     original = value.get("original", None)
                     if original is not None:
                         org_xtra_col_name = f"{xtra_col_name}.original"
-                        extra_info_edits.append((row_number, org_xtra_col_name, original))
+                        extra_info_edits.append(
+                            (row_number, org_xtra_col_name, original)
+                        )
                     comment = value.get("comment", None)
                     if comment is not None:
                         cmt_xtra_col_name = f"{xtra_col_name}.comment"
-                        extra_info_edits.append((row_number, cmt_xtra_col_name, comment))
+                        extra_info_edits.append(
+                            (row_number, cmt_xtra_col_name, comment)
+                        )
         for row_number, xtra_col_name, avalue in extra_info_edits:
             if xtra_col_name not in df.columns:
                 df[xtra_col_name] = None
@@ -266,14 +288,17 @@ def entities_with_attribute(
             date_column_name = f"{column_name}.date"
             obs_column_name = f"{column_name}.obs"
             extra_info_column_name = f"{column_name}.extra_info"
-            stmt = select(
-                attr.c.entity.label("id"),
-                attr.c.the_value.label(column_name),
-                attr.c.the_date.label(date_column_name),
-                attr.c.aobs.label(obs_column_name),
-                attr.c.a_extra_info.label(extra_info_column_name),
-            ).where(attr.c.the_type == mcol
-                    ).where(attr.c.entity.in_(df.index))
+            stmt = (
+                select(
+                    attr.c.entity.label("id"),
+                    attr.c.the_value.label(column_name),
+                    attr.c.the_date.label(date_column_name),
+                    attr.c.aobs.label(obs_column_name),
+                    attr.c.a_extra_info.label(extra_info_column_name),
+                )
+                .where(attr.c.the_type == mcol)
+                .where(attr.c.entity.in_(df.index))
+            )
             # col_names = stmt.columns.keys()
 
             with mysession as session:
@@ -297,15 +322,21 @@ def entities_with_attribute(
                                 original = value.get("original", None)
                                 if original is not None:
                                     org_xtra_col_name2 = f"{xtra_col_name2}.original"
-                                    extra_info_edits.append((row_number, org_xtra_col_name2, original))
+                                    extra_info_edits.append(
+                                        (row_number, org_xtra_col_name2, original)
+                                    )
                                 comment = value.get("comment", None)
                                 if comment is not None:
                                     cmt_xtra_col_name2 = f"{xtra_col_name2}.comment"
-                                    extra_info_edits.append((row_number, cmt_xtra_col_name2, comment))
+                                    extra_info_edits.append(
+                                        (row_number, cmt_xtra_col_name2, comment)
+                                    )
                     for row_number, xtra_col_name2, avalue in extra_info_edits:
                         if xtra_col_name2 not in df2.columns:
                             df2[xtra_col_name2] = None
-                        df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = avalue
+                        df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = (
+                            avalue
+                        )
 
             if sql_echo:
                 print(f"Query for more_attributes={mcol}:\n", stmt)
