@@ -1,0 +1,291 @@
+kleio$gacto2.str/translations=821
+   link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-231
+   fonte$dehergne-a-partial/1973/Dicionário Biográfico/loc=Online archive.org:details:bhsi37/obs=Dehergne, Joseph, Répertoire des Jésuites de Chine, de 1542 à 1800, 1973. Letra A - Entradas relacionadas com Coimbra.
+
+      lista$dehergne-notices-a/0/0/0
+
+         n$António de Abreu/id=deh-antonio-de-abreu
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$jesuita-entrada/Goa, Índia# @wikidata:Q1171/15791200
+            ls$embarque/S. Valentim/16020325#não padre
+            ls$wicky/486/16020325
+            ls$wicky-viagem/44/16020325
+            ls$jesuita-votos/4V/16040106
+            ls$jesuita-votos-local/Negapattinam, Índia%Negapatami (Négapatam)# @wikidata:Q695585/16040106
+            ls$morte/Changchow, China#no rio, a caminho do Japão @wikidata:Q57970/16110000
+            ls$dehergne/1/obs=E. Goa, déc. 1579 (DI XII, 612 n. 54). Emb. non prêtre, le 25 mars 1602, sur le S. Valentim (W 486).| V. « Negapatami » (Négapatam), 6 janv. 1604, pr. (Lus. 3, 82). Il signe Antonius Dabreu. M. dans la rivière de « Chincheo »,m.q. Changchow (Tchang-tcheou), ou peut-être Chuanchow (Ts'iuen-tcheou), au Fou-kien, en 1611, en route vers le Japon (Schûtte 343., HS 43, 57 dit 1612). Pf. 125. (Distinct du Provincial de Portugal de ce nom, 1627-1629 N. Lisbonne 1561, E. à Coïmbre 1576 (Lus. 43 II, 509v). Un P. de ce nom meurt dans un naufrage le 31 oct. 1611, mais à Coulam, sur la côte malabare (Goa 24 II). HS 43a, 2v parle, semble-t-il, de ce dernier qu'il reporte à l'an 1612.
+
+            referido$António de Abreu/id=deh-antonio-de-abreu-ref1
+               ls$nacionalidade/Portugal
+               ls$jesuita-cargo/Provincial de Portugal/16270000
+               ls$jesuita-cargo/Provincial de Portugal/16290000
+               ls$nascimento/Lisboa# @wikidata:Q597/15610000
+               ls$jesuita-entrada/Coimbra# @wikidata:Q45412/15760000
+               ls$dehergne/1-ref1/obs=(Distinct du Provincial de Portugal de ce nom, 1627-1629 N. Lisbonne 1561, E. à Coïmbre 1576 (Lus. 43 II, 509v).
+
+            referido$António de Abreu/id=deh-antonio-de-abreu-ref2
+               ls$nacionalidade/Portugal
+               ls$morte/Coulam, Malabar#Naufrágio @wikidata:Q321475/16111031
+               ls$dehergne/1-ref2/obs=Un P. de ce nom meurt dans un naufrage le 31 oct. 1611, mais à Coulam, sur la côte malabare (Goa 24 II). HS 43a, 2v parle, semble-t-il, de ce dernier qu'il reporte à l'an 1612.
+
+         n$Bento de Abreu/id=deh-bento-de-abreu
+            ls$nacionalidade/Portugal
+            ls$embarque/[Para a China]/17250000
+            ls$wicky/1694/17250000
+            ls$wicky-viagem/146/17250000
+            ls$morte/Batávia# @wikidata:Q1199713 (Jakarta), Indonésiaem viagem/17250000#cerca de
+            ls$dehergne/2/obs=Emb. 1725, destiné à la Chine, non prêtre (W 1694). M. à Batavia (Jakarta) durant le voyage. En fait, les catalogues de 1720 et de 1726 (Lus. 47, 264 et 294) ne connaissent qu'un P. Bernardus (et non Benedictus) de Abreu, N. à Elgaçao, d. de Braga, 16 mars 1665, M. A.., E. 9 août 1684., V. 24 février 1692, qui fut recteur du collège de Funchal, et, en 1720, substitut à Rome., en 1725, procureur du Malabar (Lus. 47, 210v et 325).
+
+            referido$Bernardo de Abreu/id=deh-bento-de-abreu-ref1/obs=Catálogos de 1720 Lus. 47, 210v. 264.294 e 325
+               ls$nacionalidade/Portugal
+               ls$nascimento/Elgaçau, diocese de Braga# ILOC/1665-03-16
+               ls$grau-academico/Mestre em Artes
+               ls$jesuita-entrada/?/16840809
+               ls$jesuita-votos/?/16920224
+               ls$jesuita-cargo/Reitor do Colégio do Funchal
+               ls$jesuita-cargo/Substituto em Roma/17200000
+               ls$jesuita-cargo/Procurador do Malabar/17250000
+               ls$dehergne/2-ref/obs=En fait, les catalogues de 1720 et de 1726 (Lus. 47, 264 et 294) ne connaissent qu'un P. Bernardus (et non Benedictus) de Abreu, N. à Elgaçao, d. de Braga, 16 mars 1665, M. A.., E. 9 août 1684., V. 24 février 1692, qui fut recteur du collège de Funchal, et, en 1720, substitut à Rome., en 1725, procureur du Malabar (Lus. 47, 210v et 325).
+
+         n$Gil de Abreu/id=deh-gil-de-abreu
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome/Gil d'Abreu
+            ls$nome/Gil Dabreu
+            ls$nascimento/Campo Maior# @wikidata:Q995297/15930000
+            ls$jesuita-entrada/?/16110713
+            ls$embarque/S. Carlos#segundo Wicky, destinado ao Japão/16180416#preso por um corsário holandês
+            ls$wicky/660/16180416
+            ls$wicky-viagem/57/16180400#meados do mês, 16180416 segundo Dehergne
+            ls$morte/Batavia# @wikidata:Q1199713 (Jakarta), Indonésia/16241000#depois de um ano e meio de prisão
+            ls$dehergne/3/obs=N. 1593, Campo maior, vila do Alentejo -E. 13 juill. 1611 (Lus. 44 II, 320). Emb. 16 avril 1618 pour la Chine, puis destiné au Japon (W 660)., arrêté par un corsaire hollandais et mort à Jakarta après un an et demi de prison. M. Batavia (Jakarta), oct. 1624. Franco, Ant., Imagem da virtude, 1714, p. 275-277., Témoignage de l'évêque de Malacca, JS 37, 26-36., Wessels, C, dans Studiën 120 (1933), 391-400., Visconde de Lagoa, Grandes e Humildes na Epopeia Portuguesa, Lisbonne, I, 1942, 161-162.
+
+         n$João de Abreu/id=deh-joao-de-abreu
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nascimento/Elvas%elvensis# @wikidata:Q243849/16350000
+            ls$jesuita-entrada/?/16480000
+            ls$embarque/Bom Jesus do Carmo/16560330
+            ls$wicky/1014/16560330
+            ls$wicky-viagem/88/16560330
+            ls$estadia/Goa# @wikidata:Q1171/1660
+            ls$jesuita-ordenacao-padre/?/16560330#Antes de
+            ls$morte/Macau# @wikidata:Q14773/16630624
+            ls$dehergne/4/obs=N. 1635, « Elvensis », Elvas -E. 1648 (Lus. 45, 61v). Emb. 30 mars 1656 sur le Bom Jésus do Carmo (W 1014)., en 1660 était à Goa, mais sujet de la vice-province de Chine (JS 134, 344). P. avant le 30 mars 1656. M. 24 juin 1663, Macao (JS 134, 346 et 352., AHU ms 1659, 108). Pf. 329 le dit mort en 1656. HS 48 le fait mourir: en Chine, 20 oct. 1654 f° 69v., 28 nov. 1663 (P 82v)., à Macao en 1622 (P 82)! Il y a un autre Joao d'ABREU (port.) N. à Scalabis 4 nov. 1634, E. 12 oct. 1653 (Lus. 45, 290v), qui n'est pas venu en Chine.
+
+            referido$João de Abreu/id=deh-joao-de-abreu-ref1
+               ls$nacionalidade/Portugal
+               ls$nascimento/Santarém%Scalabis# @wikidata:Q273877/16341104
+               ls$jesuita-entrada/?/16531012
+               ls$dehergne/4-ref/obs=N. 1635, « Elvensis », Elvas -E. 1648 (Lus. 45, 61v). Emb. 30 mars 1656 sur le Bom Jésus do Carmo (W 1014)., en 1660 était à Goa, mais sujet de la vice-province de Chine (JS 134, 344). P. avant le 30 mars 1656. M. 24 juin 1663, Macao (JS 134, 346 et 352., AHU ms 1659, 108). Pf. 329 le dit mort en 1656. HS 48 le fait mourir: en Chine, 20 oct. 1654 f° 69v., 28 nov. 1663 (P 82v)., à Macao en 1622 (P 82)! Il y a un autre Joao d'ABREU (port.) N. à Scalabis 4 nov. 1634, E. 12 oct. 1653 (Lus. 45, 290v), qui n'est pas venu en Chine.
+
+         n$Lodovico António Adorno/id=deh-ludovico-antonio-adorno
+            ls$nacionalidade/Itália (Luca)
+            ls$jesuita-estatuto/Padre
+            ls$nome/Adurnus
+            ls$nome-chines/Lou Lei-Sseu
+            ls$nome-chines/Sié
+            ls$nascimento/Génova, Itália# @wikidata:Q1449/16550828
+            ls$jesuita-entrada/Génova# @wikidata:Q1449/16801202
+            ls$embarque/[Para a China]#segundo a entrada de Cicero terá sido em Lisboa/16900408
+            ls$wicky/1283/16900408
+            ls$wicky-viagem/113/16900408
+            ls$estadia/Kanchow%Kan-tcheou (o de Kiangsi)
+            ls$estadia/Macau, China#doente @wikidata:Q14773
+            ls$estadia/Goa, Índia# @wikidata:Q1171/16950000
+            ls$jesuita-ordenacao-padre/?/16900408#antes de
+            ls$jesuita-votos/4V/16970202
+            ls$jesuita-votos-local/Kanchow%Chan cheu/16970202
+            ls$morte/Goa# @wikidata:Q1171/16991229
+            ls$dehergne/5/obs=Adurnus (JS 26, 45v). Lou Lei-Sseu (Pf. 468)., Sié (Borg. Lot. 523, f 60). N. 28 août 1655, Gênes -E. 2 déc. 1680, Gênes (JS 26, 45v). Emb. 8 avril 1690 (W 1283) pour la Chine (JS 134, 372)., Kanchow, Kan-tcheou (celui du Kiangsi)., au bout de quelques mois, rentre malade à Macao, puis à Goa. Borg. Lat. 523, 59 le dit arr. 1694 et retourné à Goa en 1695., il fit pourtant ses voeux à Kanchow, en 1697, v. ci-après. P. avant le 8 avril 1690. V. « Can cheu » ( m.q.Kanchow), 2 févr. 1697, pr. ( = profès) (Lus. 12, 20). M. 20 déc. 1699, Goa (JS 25, 229 et 166, 419). HS 51, 229 le dit M. 25 sept. 1701 « in missionibus Goanis ». Pf. 468., De Rossi, B., Istoria genealogica e cronologica dette due nobilissime case Adorno e Botta, Florence, 1719.
+
+         n$Ignacio Xavier de Aguado/id=deh-ignacio-xavier-de-aguado
+            ls$nacionalidade/Espanha
+            ls$estadia/México# @wikidata:Q96
+            ls$dehergne/6/obs=Aguado, Ignacio Xavier de (espagn.) 6 Pf. 980 le dit mort, le 15 mars 1735, à Pékin, ce dont il doute fort. En fait, c'est un missionnaire du Mexique, qui n'a aucun rapport avec la Chine (HS 53a, 10 et Mex. 7, 19v).
+
+         n$Manuel de Aguiar/id=deh-manuel-de-aguiar
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome-chines/Fang
+            ls$nome-chines/Fam
+            ls$nascimento/Setúbal# @wikidata:Q173699/17041101
+            ls$jesuita-entrada/Évora# @wikidata:Q179948/17230000
+            ls$embarque/[Para Goa]/17300404
+            ls$wicky/1736/17300404
+            ls$wicky-viagem/150/17300404
+            ls$estadia/China# @wikidata:Q148/17430000
+            ls$estadia/Macau, China# @wikidata:Q14773/17620705#preso
+            ls$estadia/Lisboa (Forte de S. Julião)# @wikidata:Q597/17641019
+            ls$estadia/Lisboa (Forte de S. Julião)# @wikidata:Q597/17670709#ou 17670906
+            ls$jesuita-votos/4V/17540523
+            ls$jesuita-votos-local/Nangeng, Kiangxi, China%Nanfeng (Nan-fong: «Nan Fum»), Kiangsi# @wikidata:Q1356725/17540523
+            ls$morte/Urbino, Itália# @wikidata:Q2759/17730108
+            ls$dehergne/7/obs=Aguiar, Manuel de (port.) P. 7 Fang (M 443, 678: Fam). N. 1 nov. 1704, Setûbal, près de Lisbonne -E. non 20 nov. 1740 (?) (JS 134, 446), mais à Evora en 1723 (Goa 26, 209). Emb. pour Goa, 4 avril 1730 (W 1736). En Chine en 1743 (JS 134, 446)., arrêté à Macao 5 juill. 1762., Emprisonné au Fort St Julien du 19 oct. 1764 au 9 juill. 1767 (ou au 6 sept. 1767, selon Lus. 41, 100). -P. 1732. V. Nanfeng (Nan^fong: « Nan Fum »), Kiangsi 23 mai 1754, pr. (Lus. 17, 147): ses V. nous révèlent son lieu de mission. M. 8 janv. 1773 à Urbino, Italie (si l'on ne confond pas avec son homonyme né le 17 janv. 1729 à Carraredo, d. de Braga). Pf. 808.
+
+            referido$Manuel de Aguiar/id=deh-manuel-de-aguiar-ref1
+               ls$nascimento/Carraredo, diocese de Braga# ILOC/17290117
+               ls$dehergne/7-ref/obs=son homonyme né le 17 janv. 1729 à Carraredo, d. de Braga
+
+         n$Joseph de Aguiar Souen/id=deh-joseph-de-aguiar-souen
+            ls$nacionalidade/China
+            ls$jesuita-estatuto/Padre
+            ls$nome/Souen Jo-chö Kio-Jen To-Yin
+            ls$nome/Suen Jo-chö Kio-Jen Touo-In
+            ls$nascimento/Changshu, Kiang-sou, China%Changshu (Tch'ang-chou), Kiang-sou.# @wikidata:Q1015805/17141125
+            ls$jesuita-entrada/?/17420921
+            ls$estadia/Pequim# @wikidata:Q956/17510000
+            ls$jesuita-ordenacao-padre/?/17510000/obs=é capaz de ter sido em Pequim, dadas as datas
+            ls$morte/Pequim# @wikidata:Q956/17520101
+            ls$dehergne/8/obs=Aguiar Souen, Joseph de (chin.) P. 8 Souen Jo-chô Kio-Jen To-Yin (Pf.: Suen ... Touo-In). N. 25 nov. 1714, Changshu (Tch'ang-chou), Kiang-sou. E. 21 sept. 1742; était à Pékin en 1751. P. 1751 (Pf.). M. 1 janv. 1752, Pékin (Planchet p. 147). Pf. 807.
+
+         n$Adam Algenler/id=deh-adam-algenler
+            ls$nacionalidade/Tirol/obs=Trento é Itália, actualmente, e Tramin também...
+            ls$jesuita-estatuto/Padre
+            ls$nome/Adam Agenler
+            ls$nome/Adam Aingenier
+            ls$nome/Adam Algelen
+            ls$nome/Adam Aingenis
+            ls$nome/Adam Aingiler
+            ls$nascimento/Tramin, diocese de Trento, Tirol, Itália#Tramin an der Weinstraße? @wikidata:Q499114/16331014
+            ls$jesuita-entrada/?/16531014/obs=[JRC Entrou em Landsberg, Alemanha segundo "http://www.conimbricenses.org/encyclopedia/aigenler-adam/"]
+            ls$estadia/Brasil
+            ls$embarque/[Para a China]/16730315/obs=[JRC com estadia em Coimbra desde abril 1672 tendo ensinado no Colégio das Artes, ao Jesuítas (não aos alunos regulares, até inícios de 1673) ]
+            ls$wicky/1146/16730315
+            ls$wicky-viagem/99/16730315
+            ls$profissao/Professor de Matemática
+            ls$profissao/Professor de Hebreu
+            ls$jesuita-votos/4V/16710202
+            ls$jesuita-votos-local/Ingolstadt, Alemanha# @wikidata:Q3004/16710202
+            ls$morte/[No mar, a caminho da China]/16730826#de peste contraída ao serviço dos doentes
+            ls$dehergne/9/obs=Algenler, Adam (tyrolien) P. 9 Agenler., Aingenler., Algelen., Aingenls., Aingiler {Lus. 45, 443). N. 14 oct. 1633, Tramin, d. de Trente, au Tyrol -E. 14 oct. 1653. Missionnaire au Brésil, puis Emb. avec le P. Intorcetta pour la Chine, 15 mars 1673 (W 1146)., professeur de mathématique et d'hébreu. V. 2 févr. 1671, Ingolstadt, pr. (Germ. 20, 131). Il signe: Aigenler. M. 26 août 1673, au cours du voyage, de la peste contractée au service des malades (HS 49, 3: Adamus Aingenls., Lus. 45, 443) Pf. 323: Agenler. E. à Landsberg (G. Sup. 23, 298v). Ives, Ronald L., Adam Aigenler's Field Manual, Journal of Geography 52 (Chicago 1953), 291-299., W. K. 225. Munich ms 595, 607.
+            ls$nota/bibliografia/20190730/obs="""
+            Golvers, Noël, “Aigenler, Adam”, Conimbricenses.org Encyclopedia, Mário Santiago de Carvalho, Simone Guidi (eds.), doi = “10.5281/zenodo.3355406”, URL = “http://www.conimbricenses.org/encyclopedia/aigenler-adam”, latest revision: July, 30th, 2019."""
+
+            referido$Prospero Intorcetta/id=deh-adam-algenler-ref1/obs=Dehergne 414
+               rel$sociabilidade/Companheiro/Adam Algenler/deh-adam-algenler/data=16730315
+               ls$embarque/[Para a China]/16730315
+
+         n$Afonso Aires/id=deh-afonso-aires
+            ls$nome/Afonso Ayres
+            ls$nacionalidade/Portugal
+            ls$nascimento/Santarém%Scalabis# @wikidata:Q273877/16300000
+            ls$jesuita-entrada/Coimbra# @wikidata:Q45412/16490000
+            ls$jesuita-estatuto/Padre
+            ls$tarefa/Estuda Teologia/16490000
+            ls$embarque/Bom Jesus da Vidigueira/16570404
+            ls$wicky/1043/16570404
+            ls$wicky-viagem/89/16570404
+            ls$morte/[No mar, depois do Cabo da Boa Esperança]/16570000
+            ls$dehergne/10/obs=Emb. pour la Chine sur le Bom Jésus da Vidigueira, 4 avril 1657 (W 1043).M. 1657, après avoir doublé le Cap de Bonne Espérance.Pf. 329. — Le catal. du Portugal de 1655 ne mentionne qu'un frère Ayres de Almeida, N. Scalabis 1630, E. 1649 (Lus. 45, 179v), qui commençait alors sa théologie à Coïmbre.
+
+            referido$Aires de Almeida/id=deh-afonso-aires-ref1
+               ls$nome/Ayres de Almeida
+               ls$nacionalidade/Portugal
+               ls$jesuita-estatuto/Frade
+               ls$nascimento/Santarém# @wikidata:Q273877/16300000
+               ls$jesuita-entrada/?/16490000
+               ls$estadia/Coimbra# @wikidata:Q45412/16490000
+               ls$tarefa/Estuda Teologia - 1º ano/16490000#estava a começar
+               ls$dehergne/10-ref/obs=Le catal. du Portugal de 1655 ne mentionne qu'un frère Ayres de Almeida, N. Scalabis 1630, E. 1649 (Lus. 45, 179v), qui commençait alors sa théologie à Coïmbre.
+
+         n$Johann Alberich/id=deh-johann-alberich
+            ls$nacionalidade/Alemanha
+            ls$jesuita-estatuto/Padre
+            ls$nome/Albericus
+            ls$nome/Albéric
+            ls$nascimento/Dorenbüren#ILOC/15860500
+            ls$jesuita-entrada/?/16051105
+            ls$embarque/S. Carlos#segundo Wicky/16180416
+            ls$wicky/658/16180416
+            ls$wicky-viagem/57/16180400#meados do mês, 16180416 segundo Dehergne
+            ls$jesuita-votos/4V/16150705
+            ls$jesuita-votos-local/Verdun# @wikidata:Q154748/16150705
+            ls$morte/[No mar, a caminho da China]/16180000
+            ls$dehergne/11/obs=Alberich, Johann (allem.) P. 11 Albertcus., Pf.: Albéric. N. mai 1586, Dorenbüren -E. 5 nov. 1605 (G. Sup. 21, 6). Emb. 16 avril 1618 pour la Chine (W 658). V. 5 juill. 1615 «Virduni», Verdun, pr. (Gai. 3, 11). M. en mer, 1618. Pf. 114.
+
+         n$Francisco Alberto/id=deh-francisco-alberto
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$nome/Albertus
+            ls$nome/Albert
+            ls$nome-chines/Nang
+            ls$nome-chines/Tö Ki-Jen
+            ls$nome-chines/Tée Ki-Gin
+            ls$nascimento/Bragança# @wikidata:Q768261/16950424
+            ls$jesuita-entrada/?/17100301
+            ls$embarque/[Para a China]#segundo Wicky/17170417#não padre
+            ls$wicky/1621/17170417
+            ls$wicky-viagem/140/17170417
+            ls$estadia/Macau# @wikidata:Q14773/17180527
+            ls$estadia/China%missions en Chine# @wikidata:Q148/17220000
+            ls$estadia/China%missions en Chine# @wikidata:Q148/17320000
+            ls$estadia/Limchow, Kwangtung%Limchow (Lien-tcheou, actuel Hopu) au Kwangtung/17240000
+            ls$estadia/Kweilin, Kwangsi%Kweilin, (Kouei-lin) Kwangsi/17280000
+            ls$estadia/China# @wikidata:Q148/17340000
+            ls$jesuita-cargo/Secretário da província do Japão/17460000
+            ls$jesuita-cargo/Procurador/17510000
+            ls$estadia/Goa# @wikidata:Q1171/17510000
+            ls$estadia/Portugal# @wikidata:Q45/17590000#depois de, feito prisioneiro e deportado
+            ls$jesuita-votos/4V/17280815
+            ls$jesuita-votos-local/Fatshan, Fo-chan-tchen, sudeste de Cantão%« Foxan » = Fatshan, Fo-chan-tchen, au sud-est de Canton/17280815
+            ls$morte/Azeitão (Palácio dos duques de Aveiro# @wikidata:Q10296111)convertido pelo Marquês de Pombal em risão/17610623
+            ls$dehergne/12/obs=Alberto, Francisco (port.) P. 12 Albertus., JS 25, 281v: Albert. Nang (M 443, 677., AHU ms 1659, f 23)., Tô Kl-Jen (JA 49-IV-66, 120v: Té Ki-Gin). N. 24 avril 1695, Bragança -E. 1 mars 1710 {JS 25, 281v). Emb. non prêtre, 17 avril 1717 (W 1621). A. 27 mai 1718, Macao., missions en Chine 1722-1732 , {JS 134, 434) Limchow (Lien-tcheou, actuel Hopu) au Kwangtung, 1724., Kweilin, (Kouei-lin) Kwangsi, 1728 (JA 49-V-28 f° 327v)., en 1734 en Chine (JS 25, 281v)., en 1746, secrétaire de la province du Japon (Schutte, 299)., procureur à Goa en 1751 (JS 25, 287). Emprisonné en 1759 et déporté au Portugal. V. 15 août 1728, pr., « Foxan » = Fatshan, Fo-chan-tchen, au sud-est de Canton (Lus. 15, 4). M. 23 juin 1761, Azeitâo, palais des ducs d'Aveiro converti par Pombal en prison (HS 53a n'en parle pas). Pf. 657., [encyclop.l Verbo (art. d'A. Casimiro). — AHSI 31 (1962), 335.
+
+         n$João Alberto/id=deh-joao-alberto
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Padre
+            ls$embarque/Nossa Senhora da Paz/16020325#não padre
+            ls$wicky/441/16020325
+            ls$wicky-viagem/44/16020325
+            ls$morte/Fukien (Rio de «Tchin-tcheou»)#A caminho do Japão/16110000#com António de Abreu
+
+            referido$António de Abreu/id=deh-joao-alberto-ref1/mesmo_que=deh-antonio-de-abreu
+               rel$sociabilidade/Companheiro/João Alberto/deh-joao-alberto/data=16110000
+               ls$morte/Fukien (Rio de «Tchin-tcheou»)#A caminho do Japão/16110000#com António de Abreu
+
+         n$Pierre Albier/id=deh-pierre-albier
+            ls$nacionalidade/França
+            ls$jesuita-estatuto/Padre
+            ls$nome/Jacques Albier
+            ls$nascimento/Limousin# @wikidata:Q1190/16200000
+            ls$jesuita-entrada/?/16440000
+            ls$embarque/?#para Lisboa?/16540830
+            ls$estadia# @wikidata:Q1479/16540830
+            ls$estadia/Lisboa# @wikidata:Q597/16553023#antes de
+            ls$embarque/S. Francisco%Capitaina#corrigido segundo Wicky/16553023
+            ls$wicky/1002/16550323
+            ls$wicky-viagem/87/16550323
+            ls$estadia/Macau# @wikidata:Q14773/16570200
+            ls$estadia/Tonquim# @wikidata:Q622778/16580000
+            ls$estadia/Tonquim# @wikidata:Q622778/16630000
+            ls$estadia/Sião (Tailândia)# @wikidata:Q869/16640729
+            ls$jesuita-votos/4V/16540712
+            ls$jesuita-votos-local/Agen/16540712
+            ls$estadia/Jacarta# @wikidata:Q3630
+            ls$morte/Sião# @wikidata:Q869/16650220#ou 16650307
+            ls$dehergne/14/obs=Albier, Pierre, aliàs Jacques (franç.) P. 14 N. 1620, « Gallus Lemovisensis », dans le Limousin. E. 1644 (JS 25, 170) - Emb. Bordeaux, 30 août 1654., Lisbonne, 23 mars 1655 sur le Capitaina (W 1002)., Macao févr. 1657 (ARSI, F.G. 730)., au Tonkin 1658-1663., au Siam, 29 juill. 1664 (M 121, 186). V. 12 juill. 1654, pr., Agen Gai. 8, 274., Franc. 8, 272., Petrus Albier). M. 20 févr. 1665 (HS 48, 117v) ou le 7 mars 1665 au Siam, « depois devir ali de Jacatara » (JS 26, 33, 37). Pf. 294: Jacques Albier.
+
+         n$Pedro de Alcáçova/id=deh-pedro-de-alcacova
+            ls$nacionalidade/Portugal
+            ls$jesuita-estatuto/Frade
+            ls$nome/Pedro de Alcáceva
+            ls$nome/Pedro de Alcoceva
+            ls$nome-chines/Chang-Tch'ouan
+            ls$nome-chines/San Chuang
+            ls$nascimento/?/15230000#cerca de
+            ls$jesuita-entrada/Coimbra# @wikidata:Q45412/15420000/obs=saiu a primeira vez
+            ls$jesuita-entrada/Goa# @wikidata:Q1171/15480502
+            ls$estadia/Malaca# @wikidata:Q61089/obs=acompanha S. Francisco Xavier de Goa
+            ls$estadia/Japão# @wikidata:Q17/15520000
+            ls$estadia/Kagoshima# @wikidata:Q15674/15520814
+            ls$estadia/Shangchuan%ilha de «Sancien» (Changtch'ouan, Shangchwan)/15530000
+            ls$estadia/Goa# @wikidata:Q1171/15550000
+            ls$morte/?/15790000
+            ls$dehergne/15/obs=N. vers 1523 -E. Coïmbre, 1542., sorti, puis E. 2 mai 1548, Goa. Accompagne St François Xavier de Goa à Malacca., va en 1552 au Japon., 14 août 1552, Kagoshima., en 1553 retourne du Japon à l'île de « Sancian » (Chang-tch'ouan, Shangchwan), dont il prend le nom., puis à Goa, 1555. P. dit à tort M 443, 669., non prêtre selon Sommervogel VIII col. 1600. M. non vers 1553 (AHU ms 1659, f° 17), mais en 1579 (HS 42, 27., Goa 24, 87v., DI. XI, 652). Nécrologe (Goa 31, 415). Pf. 5,8: Alcazova. SchOite, 874., DI. III, 822., Streit IV, 1399.
+
+            referido$Francisco Xavier/id=deh-pedro-de-alcacova-ref1
+               rel$sociabilidade/Companheiro/Pedro de Alcáçova/deh-pedro-de-alcacova
+               ls$estadia/Goa# @wikidata:Q1171
+               ls$estadia/Malaca# @wikidata:Q61089

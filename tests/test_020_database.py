@@ -2,22 +2,20 @@
 Check tests.__init__.py for parameters
 
 """
+
 # pylint: disable=import-error
 import logging
-import pytest
 
+import pytest
 from sqlalchemy import Engine, MetaData, select
 from sqlalchemy.orm import aliased
 
 from tests import TEST_DIR, skip_on_travis
-
-from timelink.api.models.attribute import Attribute
-from timelink.api.models.system import KleioImportedFile
+from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
+from timelink.api.models.attribute import Attribute
 from timelink.api.models.base import Person
-from timelink.api.database import (
-    TimelinkDatabase,
-)
+from timelink.api.models.system import KleioImportedFile
 from timelink.api.views import DropView, view, view_exists
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
@@ -35,8 +33,14 @@ def dbsystem(request, kleio_server):
     # only used for sqlite databases
     if db_type == "postgres":
         pass  # for debug
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
-                                kleio_server=kleio_server, echo=False)
+    database = TimelinkDatabase(
+        db_name,
+        db_type,
+        db_path=db_path,
+        kleio_server=kleio_server,
+        drop_if_exists=True,
+        echo=False,
+    )
     # attach a kleio server
     database.update_from_sources(path_to_db_test_files, force=True)
     try:
@@ -50,7 +54,7 @@ def dbsystem(request, kleio_server):
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_create_and_drop_view(dbsystem: TimelinkDatabase):
     logging.basicConfig()
-    logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+    logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
     """ test the creation and dropping of views"""
     eng: Engine = dbsystem.engine
     metadata: MetaData = dbsystem.metadata
@@ -60,7 +64,7 @@ def test_create_and_drop_view(dbsystem: TimelinkDatabase):
     views_before = dbsystem.view_names()
     print(views_before)
 
-    view_name = 'tview1'
+    view_name = "tview1"
 
     if view_name in views_before:
         stmt = DropView(view_name).execute_if(callable_=view_exists)

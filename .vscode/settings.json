@@ -38,7 +38,7 @@
         "editor.formatOnSave": true,
         "editor.rulers": [120]
     },
-    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.typeCheckingMode": "off",
     "python.analysis.autoImportCompletions": true,
     "files.exclude": {
         "**/__pycache__": true,

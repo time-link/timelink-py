@@ -92,22 +92,26 @@ class TimelinkDatabase:
     * If the database is postgres, the container is named timelink-postgres.
     * If the database is mysql, the container is named timelink-mysql.
 
-    Attributes:
-        db_url (str): database sqlalchemy url
-        db_name (str): database name
-        db_user (str): database user (only for postgres databases)
-        db_pwd (str): database password (only for postgres databases)
-        engine (Engine): database engine
-        session (Session): database session factory
-        metadata (MetaData): database metadata
-        db_container: database container
-        kserver: kleio server attached to this database, used for imports
-
-    Main methods:
-        * table_names: get the current tables in the database
-        * get_columns: get column information for tables
-        * table_row_count: get the number of rows of each table in the database
-        * get_models: get ORM Models for using in Queries
+    Attributes
+    ----------
+    db_url : str
+        database sqlalchemy url
+    db_name : str
+        database name
+    db_user : str
+        database user (only for postgres databases)
+    db_pwd : str
+        database password (only for postgres databases)
+    engine : Engine
+        database engine
+    session : Session
+        database session factory
+    metadata : MetaData
+        database metadata
+    db_container
+        database container
+    kserver
+        kleio server attached to this database, used for imports
     """
 
     db_url: str
@@ -140,8 +144,7 @@ class TimelinkDatabase:
     ):
         """Initialize the database connection and setup
 
-        Example:
-            .. code-block:: python
+        Example::
 
             db = TimelinkDatabase('timelink', 'sqlite')
             with db.session() as session:
@@ -915,13 +918,11 @@ class TimelinkDatabase:
             file
             for file in kleio_files
             if (
-                file.import_status == import_status_enum.N or
-                file.import_status == import_status_enum.U
-            ) or (
-                with_import_errors and file.import_status == import_status_enum.E
-            ) or (
-                with_import_warnings and file.import_status == import_status_enum.W
+                file.import_status == import_status_enum.N
+                or file.import_status == import_status_enum.U
             )
+            or (with_import_errors and file.import_status == import_status_enum.E)
+            or (with_import_warnings and file.import_status == import_status_enum.W)
         ]
 
     def get_import_rpt(self, path: str, match_path=False) -> str:
@@ -1347,10 +1348,10 @@ class TimelinkDatabase:
             metadata,
             select(
                 entity.c.id.label("id"),
-                entity.c.the_line.label("the_line"),
-                entity.c.the_level.label("the_level"),
-                entity.c.the_order.label("the_order"),
-                entity.c.groupname.label("groupname"),
+                entity.c.the_line.label("e_the_line"),
+                entity.c.the_level.label("e_the_level"),
+                entity.c.the_order.label("e_the_order"),
+                entity.c.groupname.label("e_groupname"),
                 entity.c.updated.label("updated"),
                 entity.c.indexed.label("indexed"),
                 entity.c.extra_info.label("e_extra_info"),
@@ -1360,6 +1361,10 @@ class TimelinkDatabase:
                 attribute.c.the_value.label("the_value"),
                 attribute.c.the_date.label("the_date"),
                 attribute.c.obs.label("aobs"),
+                attr_entity.c.the_line.label("a_the_line"),
+                attr_entity.c.the_level.label("a_the_level"),
+                attr_entity.c.the_order.label("a_the_order"),
+                attr_entity.c.groupname.label("a_groupname"),
                 attr_entity.c.extra_info.label("a_extra_info"),
             ).select_from(
                 entity.join(attribute, entity.c.id == attribute.c.entity).join(

@@ -2,6 +2,14 @@
 History
 =======
 
+1.1.28 (2026-01-22)
+-------------------
+
+**Documentation improvements:**
+
+* Fix bug with line numbers in timelink.pandas.entities_with_attribute()
+* Small fixes to documentation and docstrings
+
 1.1.27 (2026-01-15)
 -------------------
 

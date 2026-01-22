@@ -1,4 +1,4 @@
-""" Timelink projects
+"""Timelink projects
 
 A project is a collection of Kleio sources and a database to store the data.
 
@@ -15,31 +15,28 @@ When using PostgreSQL, each project is associated with a database
 (see https://www.postgresql.org/docs/8.0/managing-databases.html)
 and each project is associated with a user and a password to access the database.
 
-users have different access levels to the projects. The access levels are:
+Users have different access levels to the projects. The access levels are:
+
 1. admin: the user has full access to the project, including the ability to associate
-    new users to the project.
+   new users to the project.
 2. manager: the user has access to the project, can import data and identify
-    entities in the data, can add commentaries, but cannot associate new users
-    to the project.
-3. colaborator: the user has access to the project, cannot import data, but can
-    identify entities in the data and add commentaries.
+   entities in the data, can add commentaries, but cannot associate new users
+   to the project.
+3. collaborator: the user has access to the project, cannot import data, but can
+   identify entities in the data and add commentaries.
 4. viewer: the user has access to the project, but cannot import data, identify
-    people or add commentaries.
+   people or add commentaries.
 
 """
 
+import enum
 from datetime import datetime
 from typing import List, Optional
-import enum
-from sqlalchemy import String
 
-from sqlalchemy.orm import Mapped
-from sqlalchemy import Enum
-from sqlalchemy.orm import mapped_column
-from sqlalchemy import DateTime
+from sqlalchemy import DateTime, Enum, ForeignKey, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
+
 from .user import Base, User
 
 
@@ -52,9 +49,13 @@ class Project(Base):
     databaseURL: Mapped[Optional[str]] = mapped_column(String(256))
     kleioServerURL: Mapped[Optional[str]] = mapped_column(String(256))
     created: Mapped[datetime] = mapped_column(DateTime, default=func.now())
-    updated: Mapped[datetime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    updated: Mapped[datetime] = mapped_column(
+        DateTime, default=func.now(), onupdate=func.now()
+    )
 
-    users: Mapped[List["ProjectAccess"]] = relationship("ProjectAccess", back_populates="project")
+    users: Mapped[List["ProjectAccess"]] = relationship(
+        "ProjectAccess", back_populates="project"
+    )
 
 
 class AccessLevel(enum.Enum):
