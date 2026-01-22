@@ -1,8 +1,7 @@
 import pytest
 
-from timelink.kleio.kleio_server import KleioServer
-
 from tests import KLEIO_HOME, KleioServerTestMode, kleio_server_mode
+from timelink.kleio.kleio_server import KleioServer
 
 
 @pytest.fixture(scope="session")
@@ -39,10 +38,12 @@ def kleio_server():
         url = "http://localhost:8088"
         server = KleioServer.attach(url, token)
     else:
-        server = KleioServer.start(kleio_home=KLEIO_HOME,
-                                   kleio_version="latest",
-                                   kleio_external_port=8999,
-                                   kleio_debug="true")
+        server = KleioServer.start(
+            kleio_home=KLEIO_HOME,
+            kleio_version="latest",
+            kleio_external_port=8080,
+            kleio_debug="true",
+        )
 
     yield server
 

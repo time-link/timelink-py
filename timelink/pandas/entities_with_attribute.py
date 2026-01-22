@@ -72,7 +72,7 @@ def entities_with_attribute(
             {column_name}.obs  : the observation of the attribute
             {column_name}.type : the type of the attribute
             {column_name}.line : the line number in the source document
-            {column_name}.level: the level of the attribute
+            {column_name}.level: the level of the attribute (identation level)
             {column_name}.attr_id: the id of the attribute in the database
             {column_name}.extra_info: a dict with extra information about the attribute
 
@@ -222,7 +222,7 @@ def entities_with_attribute(
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
         if df.iloc[0].count() == 0:
             return None  # nothing found we return None
-        # Check for extra info
+        # Check for extra info.
         extra_info_edits = []
         for row_number, (_, row) in enumerate(df.iterrows()):
             # Perform operations using row_number, index, and row
