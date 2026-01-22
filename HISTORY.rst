@@ -2,18 +2,13 @@
 History
 =======
 
-1.1.28 (unreleased)
+1.1.28 (2026-01-22)
 -------------------
 
 **Documentation improvements:**
 
-* Fixed Sphinx docstring formatting errors in multiple files
-* Corrected RST syntax in timelink/api/database.py docstrings
-* Fixed code block formatting in database.py __init__ method
-* Improved docstring formatting in timelink/api/models/aregister.py
-* Fixed docstring formatting in timelink/api/models/rentity.py same_as method
-* Fixed numbered list formatting in timelink/app/models/project.py
-* Documentation now builds without errors or warnings
+* Fix bug with line numbers in timelink.pandas.entities_with_attribute()
+* Small fixes to documentation and docstrings
 
 1.1.27 (2026-01-15)
 -------------------
