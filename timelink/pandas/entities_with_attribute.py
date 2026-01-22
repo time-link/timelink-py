@@ -191,7 +191,7 @@ def entities_with_attribute(
         records = session.execute(stmt)
         col_names = stmt.selected_columns.keys()
         df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
-        if df.iloc[0].count() == 0:
+        if df.empty or df.iloc[0].count() == 0:
             return None  # nothing found we return None
         # Check for extra info.
         extra_info_edits = []
@@ -312,7 +312,7 @@ def entities_with_attribute(
             if sql_echo:
                 print(f"Query for more_attributes={mcol}:\n", stmt)
 
-            if df2.iloc[0].count() == 0:
+            if df2.empty or df2.iloc[0].count() == 0:
                 df[mcol] = None  # nothing found we set the column to nulls
             else:
                 df = df.join(df2)
