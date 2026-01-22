@@ -15,16 +15,17 @@ When using PostgreSQL, each project is associated with a database
 (see https://www.postgresql.org/docs/8.0/managing-databases.html)
 and each project is associated with a user and a password to access the database.
 
-users have different access levels to the projects. The access levels are:
+Users have different access levels to the projects. The access levels are:
+
 1. admin: the user has full access to the project, including the ability to associate
-    new users to the project.
+   new users to the project.
 2. manager: the user has access to the project, can import data and identify
-    entities in the data, can add commentaries, but cannot associate new users
-    to the project.
+   entities in the data, can add commentaries, but cannot associate new users
+   to the project.
 3. colaborator: the user has access to the project, cannot import data, but can
-    identify entities in the data and add commentaries.
+   identify entities in the data and add commentaries.
 4. viewer: the user has access to the project, but cannot import data, identify
-    people or add commentaries.
+   people or add commentaries.
 
 """
 

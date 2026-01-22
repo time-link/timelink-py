@@ -92,22 +92,26 @@ class TimelinkDatabase:
     * If the database is postgres, the container is named timelink-postgres.
     * If the database is mysql, the container is named timelink-mysql.
 
-    Attributes:
-        db_url (str): database sqlalchemy url
-        db_name (str): database name
-        db_user (str): database user (only for postgres databases)
-        db_pwd (str): database password (only for postgres databases)
-        engine (Engine): database engine
-        session (Session): database session factory
-        metadata (MetaData): database metadata
-        db_container: database container
-        kserver: kleio server attached to this database, used for imports
-
-    Main methods:
-        * table_names: get the current tables in the database
-        * get_columns: get column information for tables
-        * table_row_count: get the number of rows of each table in the database
-        * get_models: get ORM Models for using in Queries
+    Attributes
+    ----------
+    db_url : str
+        database sqlalchemy url
+    db_name : str
+        database name
+    db_user : str
+        database user (only for postgres databases)
+    db_pwd : str
+        database password (only for postgres databases)
+    engine : Engine
+        database engine
+    session : Session
+        database session factory
+    metadata : MetaData
+        database metadata
+    db_container
+        database container
+    kserver
+        kleio server attached to this database, used for imports
     """
 
     db_url: str
@@ -140,8 +144,7 @@ class TimelinkDatabase:
     ):
         """Initialize the database connection and setup
 
-        Example:
-            .. code-block:: python
+        Example::
 
             db = TimelinkDatabase('timelink', 'sqlite')
             with db.session() as session:

@@ -27,55 +27,26 @@ def entities_with_attribute(
     session: Session | None = None,
     sql_echo=False,
 ):
-    """Generate a pandas dataframe with entities with a given attribute
+    """Generate a pandas DataFrame of entities filtered by attributes.
 
     Args:
-        the_type    : type of attribute, can have SQL wildcards, string, or list
-        the_value   : if present, limit to this value, can be SQL wildcard,
-        entity_type : if present, limit to this entity type, string
-        column_name : if present, use this name for the attribute column, otherwise use the_type
-                      usefull when the_type is a list
-        name_like   : if present, limit to this name, can have SQL wildcards
-        show_elements: List of entity elements to add to the dataframe
-        dates_in    : (after,before) if present only between those dates (exclusive)
-        filter_by   : list of ids, limit to these entities
-        more_attributes: add more attributes if available
-        db          : A TimelinkDatabase object
-        session     : A SQLAlchemy session, if None will use db.session()
-        sql_echo    : if True echo the sql generated
-
-    Example:
-        # name, sex and function of people living in the same place
-
-        neighbors = entities_with_attribute(
-                                entity_type="person",
-                                show_elements=["groupname","names","sex"],
-                                the_type='residencia',
-                                the_value="soure"
-                                column_name="local", # use this in result instead of "residencia"
-                                more_attributes=["profissao"]
-                                db=dbsystem,
-                                )
-
-    Ideas:
-        Add :
-            the_value_in: (list of values)
-            the_value_between_inc (min, max, get >=min and <= max)
-            the_value_between_exc (min, max, get >min and < max)
+        the_type: Attribute type (string, SQL wildcard, or list of types).
+        the_value: Optional value filter (string, SQL wildcard, or list of strings).
+        column_name: Optional column name to use for the attribute values.
+        entity_type: Entity model to query (default "entity").
+        show_elements: Entity columns to include in the result.
+        dates_in: Tuple ``(after, before)`` to constrain attribute dates (exclusive).
+        name_like: Optional SQL LIKE filter on the entity name.
+        filter_by: List of entity ids to include even if attributes are missing.
+        more_attributes: Additional attribute types to join into the result.
+        db: TimelinkDatabase instance (required if session is not provided).
+        session: SQLAlchemy session; if omitted, one is created from ``db``.
+        sql_echo: When True, echo the generated SQL statements.
 
     Returns:
-        A pandas DataFrame with the results, or None if no results found
-        Other than the entity id and the entity columns specified in show_elements,
-        the dataframe will have columns named as:
-            {column_name} : the value of the attribute
-            {column_name}.date : the date of the attribute
-            {column_name}.obs  : the observation of the attribute
-            {column_name}.type : the type of the attribute
-            {column_name}.line : the line number in the source document
-            {column_name}.level: the level of the attribute (identation level)
-            {column_name}.attr_id: the id of the attribute in the database
-            {column_name}.extra_info: a dict with extra information about the attribute
-
+        pandas.DataFrame or None when no rows match. Result columns include the requested
+        entity fields plus attribute value, date, observation, type, line, level,
+        attr_id, groupname, and any available extra_info entries.
     """
     # We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
