@@ -57,3 +57,15 @@ def test_select_as_dataframe_with_session(setup_database):
         assert len(df) == 2
         assert df.iloc[0]['name'] == "Alice"
         assert df.iloc[1]['name'] == "Bob"
+
+
+def test_select_with_session(setup_database):
+    """Test the select method with an explicit session and as_dataframe=False."""
+    db = setup_database
+    with db.session() as session:
+        result = db.select("* FROM test_table", session=session)
+        # When session is provided and as_dataframe=False, returns a Result object
+        rows = result.fetchall()
+        assert len(rows) == 2
+        assert rows[0][1] == "Alice"
+        assert rows[1][1] == "Bob"
