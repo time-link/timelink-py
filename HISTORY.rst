@@ -2,6 +2,25 @@
 History
 =======
 
+1.1.29 (2026-01-22)
+-------------------
+
+**Database refactoring and architecture:**
+
+* Major refactoring of ``TimelinkDatabase`` into specialized mixins for better maintainability:
+    * ``DatabaseKleioMixin``: Kleio server integration and imports.
+    * ``DatabaseMetadataMixin``: Database inspection and ORM mapping.
+    * ``DatabaseQueryMixin``: Data access and querying.
+    * ``DatabaseViewsMixin``: SQL view management.
+* Improved modularity by splitting ``database.py`` into multiple specialized files.
+
+**Documentation and code quality:**
+
+* Added comprehensive Google-style docstrings to all database-related modules.
+* Fixed linting errors and improved code compliance with ``flake8``.
+* Implemented ``__all__`` in ``timelink.api.database`` for cleaner public API exports.
+* Updated test reference files and verified all 284 tests pass.
+
 1.1.28 (2026-01-22)
 -------------------
 
