@@ -14,6 +14,7 @@ from sqlalchemy import (
     select,
     text,
 )
+from sqlalchemy.sql.selectable import Select
 
 import timelink
 from timelink.api.models import Entity
@@ -37,7 +38,7 @@ class DatabaseQueryMixin:
         """Execute a SELECT statement on the database.
 
         Args:
-            sql (str | select): A SQL string or SQLAlchemy select statement.
+            sql (str | Select): A SQL string or SQLAlchemy Select statement.
             session (Session, optional): An active database session. If None,
                 creates a new session. Defaults to None.
             as_dataframe (bool, optional): If True, returns results as a pandas DataFrame.
@@ -61,9 +62,9 @@ class DatabaseQueryMixin:
         if isinstance(sql, str):
             sql = select(text(sql))
         # if sql is a select statement
-        elif not isinstance(sql, select):
+        elif not isinstance(sql, Select):
             raise ValueError(
-                "sql must be a select statement or a string with a valid select statement"
+                "sql must be a Select statement or a string with a valid select statement"
             )
 
         if session is None:
