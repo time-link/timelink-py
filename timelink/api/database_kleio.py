@@ -286,7 +286,7 @@ class DatabaseKleioMixin:
         if kserver is None:
             kserver = self.kserver
         if kserver is None:
-            raise ValueError("No kleio server attached to this database." "Attach kleio server or provide one in call.")
+            raise ValueError("No kleio server attached to this database. Attach kleio server or provide one in call.")
         # TODO: #18 expose import_from_xml in TimelinkDatabase
         stats = None
         with self.session() as session:
