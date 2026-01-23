@@ -308,8 +308,8 @@ class DatabaseMetadataMixin:
                 columns = list(insp.columns)
             elif argument in self.db_table_names():
                 argument_type = "non_model_table"
-                insp = inspect.get_table(argument)
-                columns = list(insp.columns)
+                table = Table(argument, Base.metadata, autoload_with=self.engine)
+                columns = list(table.columns)
         elif isinstance(argument, type) and issubclass(argument, Base):
             argument_type = "model"
             Model = argument
