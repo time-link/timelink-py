@@ -1,4 +1,8 @@
-""" CRUD operations for the timelink API. """
+"""CRUD operations for the Timelink API.
+
+This module provides basic Create, Read, Update, and Delete operations for
+Timelink system models, including system parameters, logs, and general entities.
+"""
 
 from datetime import datetime
 from sqlalchemy.orm import Session  # pylint: disable=import-error
@@ -7,12 +11,15 @@ from timelink.api.schemas import EntityAttrRelSchema
 
 
 def get_syspar(db: Session, q: list[str] | None = None):
-    """Get system parameters
+    """Retrieve system parameters from the database.
+
     Args:
-        db: database session
-        q: parameter name(s); if empty, return all parameters
+        db (Session): Database session.
+        q (list[str] | None, optional): List of parameter names to retrieve.
+            If None, returns all parameters. Defaults to None.
+
     Returns:
-        SysPar object
+        list[SysPar]: A list of system parameter objects.
     """
     if q:
         if isinstance(q, str):
@@ -24,12 +31,14 @@ def get_syspar(db: Session, q: list[str] | None = None):
 def set_syspar(
     db: Session, syspar: models.SysParSchema
 ):  # pylint: disable=invalid-name
-    """Set system parameters
+    """Create or update a system parameter.
+
     Args:
-        db: database session
-        syspar: SysPar object
+        db (Session): Database session.
+        syspar (SysParSchema): Pydantic schema containing parameter data.
+
     Returns:
-        SysPar object
+        SysPar: The created or updated system parameter object.
     """
     db_syspar = get_syspar(db, syspar.pname)
     if db_syspar:
@@ -49,12 +58,14 @@ def set_syspar(
 def get_syslog(
     db: Session, nlogs: int
 ) -> list[models.SysLog]:  # pylint: disable=invalid-name
-    """Get last n system logs last one first
+    """Retrieve the last n system logs, most recent first.
+
     Args:
-        db: database session
-        nlogs: sequence number
+        db (Session): Database session.
+        nlogs (int): Number of log entries to retrieve.
+
     Returns:
-        List of SysLog objects
+        list[SysLog]: A list of system log objects.
     """
     return db.query(models.SysLog).order_by(models.SysLog.seq.desc()).limit(nlogs).all()
 
@@ -64,13 +75,15 @@ def get_syslog_by_time(
     start_time: datetime,
     end_time: datetime,
 ) -> list[models.SysLog]:
-    """Get system logs between start_time and end_time
+    """Retrieve system logs within a specific time range.
+
     Args:
-        db: database session
-        start_time: start time
-        end_time: end time
+        db (Session): Database session.
+        start_time (datetime): Start of the time range.
+        end_time (datetime): End of the time range.
+
     Returns:
-        List of SysLog objects
+        list[SysLog]: A list of system log objects within the specified range.
     """
     return (
         db.query(models.SysLog)
@@ -83,12 +96,14 @@ def get_syslog_by_time(
 def set_syslog(
     db: Session, log: models.system.SysLogCreateSchema
 ) -> models.system.SysLog:  # pylint: disable=invalid-name
-    """Set system log
+    """Create a new system log entry.
+
     Args:
-        db: database session
-        log: SysLogCreateSchema object with level, origin and message
+        db (Session): Database session.
+        log (SysLogCreateSchema): Pydantic schema containing level, origin, and message.
+
     Returns:
-        SysLog object
+        SysLog: The created system log object.
     """
     db_syslog = models.SysLog(origin=log.origin, message=log.message, level=log.level)
     db.add(db_syslog)
