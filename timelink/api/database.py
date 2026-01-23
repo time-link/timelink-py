@@ -33,6 +33,7 @@ from timelink.mhk import utilities
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
 from .database_postgres import (
     get_postgres_container,
+    get_postgres_container_user,
     get_postgres_container_pwd,
     get_postgres_dbnames,
     get_postgres_url,
@@ -53,6 +54,7 @@ from .database_query import DatabaseQueryMixin
 __all__ = [
     "TimelinkDatabase",
     "get_postgres_container",
+    "get_postgres_container_user",
     "get_postgres_container_pwd",
     "get_postgres_dbnames",
     "get_postgres_url",
