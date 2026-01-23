@@ -43,10 +43,11 @@ class DatabaseKleioMixin:
         Returns:
             List[KleioImportedFileSchema]: List of imported file records with metadata.
         """
-        result = self.session().query(KleioImportedFile).all()
-        # Convert to Pydantic Schema
-        ta = TypeAdapter(List[KleioImportedFileSchema])
-        result_pydantic = ta.validate_python(result)
+        with self.session() as session:
+            result = session.query(KleioImportedFile).all()
+            # Convert to Pydantic Schema
+            ta = TypeAdapter(List[KleioImportedFileSchema])
+            result_pydantic = ta.validate_python(result)
         return result_pydantic
 
     def get_import_status(
