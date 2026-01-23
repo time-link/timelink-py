@@ -101,7 +101,9 @@ class DatabaseKleioMixin:
 
         files: List[KleioFile] = get_import_status(self, kleio_files=kleio_files, match_path=match_path)
         if status is not None:
-            files = [file for file in files if file.import_status.value == status]
+            # Allow status to be either an import_status_enum or a raw string code.
+            status_value = status.value if isinstance(status, import_status_enum) else status
+            files = [file for file in files if file.import_status.value == status_value]
         return files
 
     def get_need_import(
