@@ -38,6 +38,7 @@ from .database_postgres import (
     get_postgres_dbnames,
     get_postgres_url,
     is_postgres_running,
+    is_valid_postgres_db_name,
     start_postgres_server,
 )
 from .database_sqlite import (
@@ -48,17 +49,19 @@ from .database_utils import get_db_password, get_import_status, random_password
 from .database_views import DatabaseViewsMixin
 from .database_metadata import DatabaseMetadataMixin
 from .database_kleio import DatabaseKleioMixin
-from .database_query import DatabaseQueryMixin
+from .database_query import DatabaseQueryMixin, TimelinkDatabaseSchema
 
 
 __all__ = [
     "TimelinkDatabase",
+    "TimelinkDatabaseSchema",
     "get_postgres_container",
     "get_postgres_container_user",
     "get_postgres_container_pwd",
     "get_postgres_dbnames",
     "get_postgres_url",
     "is_postgres_running",
+    "is_valid_postgres_db_name",
     "start_postgres_server",
     "get_sqlite_databases",
     "get_sqlite_url",
