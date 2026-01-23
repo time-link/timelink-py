@@ -38,31 +38,33 @@ def test_select_invalid_query(setup_database):
         db.select("SELECT * FROM nonexistent_table")
 
 
-def test_select_as_dataframe(setup_database):
-    """Test the select method with as_dataframe=True."""
+def test_select_as_dataframe_no_session(setup_database):
+    """Test the select method with as_dataframe=True and no session provided."""
     db = setup_database
     df = db.select("* FROM test_table", as_dataframe=True)
+    assert df is not None
     assert len(df) == 2
-    assert df.iloc[0]["name"] == "Alice"
-    assert df.iloc[1]["name"] == "Bob"
+    assert df.iloc[0]['name'] == "Alice"
+    assert df.iloc[1]['name'] == "Bob"
 
 
 def test_select_as_dataframe_with_session(setup_database):
-    """Test the select method with as_dataframe=True and explicit session."""
+    """Test the select method with as_dataframe=True and a provided session."""
     db = setup_database
     with db.session() as session:
         df = db.select("* FROM test_table", session=session, as_dataframe=True)
+        assert df is not None
         assert len(df) == 2
-        assert df.iloc[0]["name"] == "Alice"
-        assert df.iloc[1]["name"] == "Bob"
+        assert df.iloc[0]['name'] == "Alice"
+        assert df.iloc[1]['name'] == "Bob"
 
 
 def test_select_with_session(setup_database):
-    """Test the select method with an explicit session."""
+    """Test the select method with an explicit session and as_dataframe=False."""
     db = setup_database
     with db.session() as session:
         result = db.select("* FROM test_table", session=session)
-        # When session is provided, select() returns a Result object
+        # When session is provided and as_dataframe=False, returns a Result object
         rows = result.fetchall()
         assert len(rows) == 2
         assert rows[0][1] == "Alice"

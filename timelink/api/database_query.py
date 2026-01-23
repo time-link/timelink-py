@@ -90,7 +90,9 @@ class DatabaseQueryMixin:
                 else:
                     return result
             except Exception as e:
-                session.rollback()
+                # Only rollback if the session is still active
+                if session.is_active:
+                    session.rollback()
                 logging.error(f"Error executing select: {e}")
                 raise
 
