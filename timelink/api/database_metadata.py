@@ -170,17 +170,21 @@ class DatabaseMetadataMixin:
             make_alias (bool, optional): if True, return an aliased ORM class;
                                          defaults to True in lists; False if single class_id.
         Returns:
-            ORM class
+            ORM class or list of ORM classes
         """
         if isinstance(class_id, list):
+            # Default: alias models when a list of class_ids is provided,
+            # unless the caller explicitly sets make_alias.
             if make_alias is None:
                 make_alias = True
-                return [
-                    self.get_model_by_name(c, make_alias=make_alias) for c in class_id
-                ]
+            return [
+                self.get_model_by_name(c, make_alias=make_alias) for c in class_id
+            ]
         else:
-            make_alias = False
-            return self.get_model_by_name(class_id, make_alias=False)
+            # Default: do not alias for a single class_id, unless explicitly requested.
+            if make_alias is None:
+                make_alias = False
+            return self.get_model_by_name(class_id, make_alias=make_alias)
 
     def get_model_by_name(self, class_or_groupname: str, make_alias=False):
         """Get the ORM class for a entity type by name
