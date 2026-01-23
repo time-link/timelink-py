@@ -56,7 +56,7 @@ def _drop_view(element, compiler, **kw):
 def view_exists(ddl, target, connection, **kw):
     """Check if a view exists in the database.
 
-    Used as a condition for conditional DL execution.
+    Used as a condition for conditional DDL execution.
     """
     return ddl.name in sa.inspect(connection).get_view_names()
 
