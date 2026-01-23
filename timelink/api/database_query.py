@@ -158,7 +158,7 @@ class DatabaseQueryMixin:
         Renders each of the entities in the list in kleio format
         using Entity.to_kleio() and writes them to a file.
 
-        If provded, kleio_group, source_group and act_group are written
+        If provided, kleio_group, source_group and act_group are written
         before the entities.
 
 
