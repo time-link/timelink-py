@@ -287,8 +287,6 @@ class DatabaseMetadataMixin:
         columns = []
         argument_type = None
         if argument is None:
-            argument_type = ""
-            argument = "all kleio groups in the database"
             GroupModel = namedtuple("GroupModel", ["group", "table", "model"])
             return [
                 GroupModel(group, orm.__tablename__, orm.__name__)
