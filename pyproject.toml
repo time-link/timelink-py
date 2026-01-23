@@ -68,7 +68,6 @@ dev = [
     "pytest-profiling",
     "snakeviz",
     "sphinx_rtd_theme>=1.2.0",
-    "sphinx-rtd-theme",
     "tox",
     "twine==4.0.2",
     "watchdog==2.1.3",
