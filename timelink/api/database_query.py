@@ -14,6 +14,7 @@ from sqlalchemy import (
     select,
     text,
 )
+from sqlalchemy.sql.selectable import Select
 
 import timelink
 from timelink.api.models import Entity
@@ -54,7 +55,7 @@ class DatabaseQueryMixin:
         if isinstance(sql, str):
             sql = select(text(sql))
         # if sql is a select statement
-        elif not isinstance(sql, select):
+        elif not isinstance(sql, Select):
             raise ValueError(
                 "sql must be a select statement or a string with a valid select statement"
             )
