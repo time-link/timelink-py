@@ -36,3 +36,13 @@ def test_select_invalid_query(setup_database):
     db = setup_database
     with pytest.raises(sqlalchemy.exc.OperationalError):
         db.select("SELECT * FROM nonexistent_table")
+
+
+def test_select_as_dataframe(setup_database):
+    """Test the select method with as_dataframe=True."""
+    db = setup_database
+    df = db.select("* FROM test_table", as_dataframe=True)
+    assert df is not None, "DataFrame should be returned when as_dataframe=True"
+    assert len(df) == 2
+    assert df.iloc[0]["name"] == "Alice"
+    assert df.iloc[1]["name"] == "Bob"
