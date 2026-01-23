@@ -1,29 +1,37 @@
-"""Schemas for the Timelink API
+"""Pydantic Schemas for the Timelink API.
 
-In the FastAPi tutorial this file
-is used for the pydantic models for the API,
-including for the classes that are used for database access.
-Another file, called models.py, is used in the tutorial
-for the SQLAlchemy models.
-
-We use a module called "models" for the SQLAlchemy models
-
-Here we put the pydantic models that are not related to
-database models like search requests and search results.
-
+This module defines Pydantic models (schemas) used for data validation,
+serialization, and API communication in the Timelink information system.
+These models are distinct from the SQLAlchemy database models and are
+used to represent data for search requests, search results, and
+structured API responses.
 """
 
 # pylint: disable=too-few-public-methods
 
 from typing import List, Optional
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
 from pydantic import BaseModel, ConfigDict  # pylint: disable=import-error
 from timelink.api.models.rentity import LinkStatus
 
 
 class EntitySchema(BaseModel):
-    """Pydantic Schema for Entity"""
+    """Pydantic Schema for a full Entity with its hierarchy.
+
+    Attributes:
+        id (str): Unique entity identifier.
+        pom_class (str): The POM class name of the entity.
+        inside (Optional[str]): ID of the containing entity.
+        the_source (Optional[str]): Source file identifier.
+        the_order (Optional[int]): Order within the source.
+        the_level (Optional[int]): Hierarchy level.
+        the_line (Optional[int]): Line number in source.
+        groupname (Optional[str]): Kleio group name.
+        updated (Optional[datetime]): Last update timestamp.
+        indexed (Optional[datetime]): Last indexing timestamp.
+        extra_info (Optional[dict]): Additional metadata.
+        contains (Optional[List[EntitySchema]]): List of nested entities.
+    """
 
     id: str
     pom_class: str
@@ -42,9 +50,9 @@ class EntitySchema(BaseModel):
 
 
 class EntityBriefSchema(BaseModel):
-    """Pydantic Schema for Entity brief
+    """Pydantic Schema for a simplified Entity view without hierarchical links.
 
-    No links to other entities
+    Used when only core entity information is needed without nested children.
     """
 
     id: str
@@ -63,6 +71,10 @@ class EntityBriefSchema(BaseModel):
 
 
 class RelationSchema(BaseModel):
+    """Pydantic Schema for an Entity Relationship.
+
+    Represents a directed relationship between two entities.
+    """
     id: str
     origin: str
     destination: str
@@ -75,14 +87,20 @@ class RelationSchema(BaseModel):
 
 
 class RelationOutSchema(RelationSchema):
+    """Pydantic Schema for an outgoing relationship including the destination name."""
     dest_name: Optional[str]
 
 
 class RelationInSchema(RelationSchema):
+    """Pydantic Schema for an incoming relationship including the origin name."""
     org_name: Optional[str]
 
 
 class AttributeSchema(BaseModel):
+    """Pydantic Schema for an Entity Attribute.
+
+    Represents a specific characteristic or property assigned to an entity.
+    """
     entity: str
     the_type: str
     the_value: str
@@ -94,7 +112,11 @@ class AttributeSchema(BaseModel):
 
 
 class EntityAttrRelSchema(BaseModel):
-    """Pydantic Schema for Entity with attributes, relation and contained entities"""
+    """Pydantic Schema for an Entity with its attributes, relations, and hierarchy.
+
+    This is a comprehensive schema used to represent an entity along with all
+    its associated data and nested structure.
+    """
 
     id: str
     pom_class: str
@@ -117,8 +139,9 @@ class EntityAttrRelSchema(BaseModel):
 
 
 class RealEntitySchema(BaseModel):
-    """Pydantic Schema for RealEntity brief
-    Without attributes, relations and contained entities
+    """Pydantic Schema for a RealEntity (reconciled entity) brief view.
+
+    Represents a "real world" entity that links multiple historical occurrences.
     """
 
     id: str
@@ -132,7 +155,10 @@ class RealEntitySchema(BaseModel):
 
 
 class RealEntityAttrRelSchema(BaseModel):
-    """Pydantic Schema for RealEntity"""
+    """Pydantic Schema for a RealEntity with all its associated data.
+
+    Includes aggregated attributes and relations from linked historical entities.
+    """
 
     id: str
     user: str
@@ -149,7 +175,7 @@ class RealEntityAttrRelSchema(BaseModel):
 
 
 class LinkSchema(BaseModel):
-    "Identification links between entities"
+    """Pydantic Schema for identification links between entities."""
 
     id: int
     rid: str
@@ -164,32 +190,25 @@ class LinkSchema(BaseModel):
 
 
 class SearchRequest(BaseModel):
-    """Search request
+    """Pydantic Schema for a search query request.
 
-    Fields:
-        q: search query
-        after: date after which to search, possibly None
-        until: date until which to search, possibly None
-        skip: number of items to skip, default 0
-        limit: number of items to return, default 100
-
+    Attributes:
+        q (str): The search query string.
+        after (date, optional): Only return results after this date.
+        until (date, optional): Only return results until this date.
+        skip (int, optional): Number of items to skip for pagination. Defaults to 0.
+        limit (int, optional): Maximum number of items to return. Defaults to 100.
     """
 
     q: str
-    after: date | None = (
-        None  # see https://docs.pydantic.dev/usage/types/#datetime-types
-    )
+    after: date | None = None
     until: date | None = None
     skip: int | None = 0
     limit: int | None = 100
 
 
 class SearchResults(BaseModel):
-    """Search results
-
-    Fields:
-        results: list of search results
-    """
+    """Pydantic Schema for a single search result entry."""
 
     id: str
     the_class: str
@@ -199,19 +218,19 @@ class SearchResults(BaseModel):
 
 
 class ImportStats(BaseModel):
-    """Import statistics
+    """Pydantic Schema for data import statistics.
 
-    Fields:
-        datetime: date and time of import
-        machine: machine where import was done
-        database: specific database where import was done
-        file: file that was imported
-        import_time_seconds: time in seconds that import took
-        entities_processed: number of entities processed
-        entity_rate: number of entities processed per second
-        person_rate: number of persons processed per second
-        nerrors: number of errors
-        errors: list of errors
+    Attributes:
+        datetime (date): Date of the import.
+        machine (str): Hostname of the machine performing the import.
+        database (str): Name of the target database.
+        file (str): Path of the file being imported.
+        import_time_seconds (float): Total duration of the import process.
+        entities_processed (int): Total number of entities handled.
+        entity_rate (float): Entities processed per second.
+        person_rate (float): Persons processed per second.
+        nerrors (int): Total number of errors encountered.
+        errors (List[str]): List of specific error messages.
     """
 
     datetime: date
