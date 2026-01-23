@@ -24,8 +24,8 @@ def setup_database():
 def test_select_valid_query(setup_database):
     """Test the select method with a valid query."""
     db = setup_database
-    result = db.select("* FROM test_table")
-    rows = result.fetchall()
+    rows = db.select("* FROM test_table")
+    # When session is None, select() returns a list of rows directly
     assert len(rows) == 2
     assert rows[0][1] == "Alice"
     assert rows[1][1] == "Bob"
