@@ -49,7 +49,7 @@ class DatabaseKleioMixin:
             # Convert to Pydantic Schema
             ta = TypeAdapter(List[KleioImportedFileSchema])
             result_pydantic = ta.validate_python(result)
-            return result_pydantic
+        return result_pydantic
 
     def get_import_status(
         self,
