@@ -76,11 +76,12 @@ class DatabaseQueryMixin:
                 raise
         if as_dataframe:
             try:
-                result = pd.DataFrame(result.fetchall(), columns=result.keys())
+                df = pd.DataFrame(result.fetchall(), columns=result.keys())
             except Exception as e:
                 session.rollback()
                 logging.error(f"Error converting to dataframe: {e}")
                 raise
+            return df
         else:
             return result
 
