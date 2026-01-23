@@ -4,6 +4,7 @@ This module provides the DatabaseKleioMixin class, which contains methods for
 integrating a Timelink database with a Kleio server. It handles file imports,
 translation tracking, and synchronization between source files and the database.
 """
+
 import logging
 import time
 from typing import List
@@ -86,26 +87,19 @@ class DatabaseKleioMixin:
         if kleio_files is None:
             if self.get_kleio_server() is None:
                 raise ValueError(
-                    "Empty list of files. \n"
-                    "Either provide list of files or attach database to Kleio server."
+                    "Empty list of files. \n" "Either provide list of files or attach database to Kleio server."
                 )
             else:
-                kleio_files = self.get_kleio_server().get_translations(
-                    path=path, recurse=recurse
-                )
+                kleio_files = self.get_kleio_server().get_translations(path=path, recurse=recurse)
         if isinstance(kleio_files, KleioFile):
             kleio_files = [kleio_files]
-        if not isinstance(kleio_files, list) or not all(
-            isinstance(file, KleioFile) for file in kleio_files
-        ):
+        if not isinstance(kleio_files, list) or not all(isinstance(file, KleioFile) for file in kleio_files):
             raise ValueError(
                 f"kleio_files must be a list of KleioFile objects."
                 f"Use path={kleio_files} to get a list of KleioFile objects from a Kleio server."
             )
 
-        files: List[KleioFile] = get_import_status(
-            self, kleio_files=kleio_files, match_path=match_path
-        )
+        files: List[KleioFile] = get_import_status(self, kleio_files=kleio_files, match_path=match_path)
         if status is not None:
             files = [file for file in files if file.import_status.value == status]
         return files
@@ -137,16 +131,11 @@ class DatabaseKleioMixin:
             List[KleioFile]: List of Kleio files that require importing.
         """
 
-        kleio_files: List[KleioFile] = self.get_import_status(
-            kleio_files, match_path=match_path
-        )
+        kleio_files: List[KleioFile] = self.get_import_status(kleio_files, match_path=match_path)
         return [
             file
             for file in kleio_files
-            if (
-                file.import_status == import_status_enum.N
-                or file.import_status == import_status_enum.U
-            )
+            if (file.import_status == import_status_enum.N or file.import_status == import_status_enum.U)
             or (with_import_errors and file.import_status == import_status_enum.E)
             or (with_import_warnings and file.import_status == import_status_enum.W)
         ]
@@ -167,17 +156,9 @@ class DatabaseKleioMixin:
         """
         with self.session() as session:
             if match_path:
-                result = (
-                    session.query(KleioImportedFile)
-                    .filter(KleioImportedFile.path == path)
-                    .first()
-                )
+                result = session.query(KleioImportedFile).filter(KleioImportedFile.path == path).first()
             else:
-                result = (
-                    session.query(KleioImportedFile)
-                    .filter(KleioImportedFile.name == path)
-                    .first()
-                )
+                result = session.query(KleioImportedFile).filter(KleioImportedFile.name == path).first()
             if result is not None:
                 s = result.error_rpt + "\n" + result.warning_rpt
             else:
@@ -235,12 +216,8 @@ class DatabaseKleioMixin:
             else:
                 translate_status = "T"  # only those that need translation
 
-            for kfile in self.kserver.get_translations(
-                path=path, recurse=recurse, status=translate_status
-            ):
-                logging.info(
-                    "Request translation of %s %s", kfile.status.value, kfile.path
-                )
+            for kfile in self.kserver.get_translations(path=path, recurse=recurse, status=translate_status):
+                logging.info("Request translation of %s %s", kfile.status.value, kfile.path)
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
             # wait for translation to finish
             logging.debug("Waiting for translations to finish")
@@ -251,24 +228,14 @@ class DatabaseKleioMixin:
             while len(pfiles) > 0 or len(qfiles) > 0:
                 time.sleep(1)
 
-                pfiles = self.kserver.get_translations(
-                    path="", recurse="yes", status="P"
-                )
-                qfiles = self.kserver.get_translations(
-                    path="", recurse="yes", status="Q"
-                )
+                pfiles = self.kserver.get_translations(path="", recurse="yes", status="P")
+                qfiles = self.kserver.get_translations(path="", recurse="yes", status="Q")
             # import the files
-            to_import = self.kserver.get_translations(
-                path=path, recurse=recurse, status="V"
-            )  # TODO recurse make param
+            to_import = self.kserver.get_translations(path=path, recurse=recurse, status="V")  # TODO recurse make param
             if with_translation_warnings:
-                to_import += self.kserver.get_translations(
-                    path=path, recurse=recurse, status="W"
-                )
+                to_import += self.kserver.get_translations(path=path, recurse=recurse, status="W")
             if with_translation_errors:
-                to_import += self.kserver.get_translations(
-                    path=path, recurse=recurse, status="E"
-                )
+                to_import += self.kserver.get_translations(path=path, recurse=recurse, status="E")
 
             if force:
                 import_needed = to_import
@@ -319,10 +286,7 @@ class DatabaseKleioMixin:
         if kserver is None:
             kserver = self.kserver
         if kserver is None:
-            raise ValueError(
-                "No kleio server attached to this database."
-                "Attach kleio server or provide one in call."
-            )
+            raise ValueError("No kleio server attached to this database. Attach kleio server or provide one in call.")
         # TODO: #18 expose import_from_xml in TimelinkDatabase
         stats = None
         with self.session() as session:

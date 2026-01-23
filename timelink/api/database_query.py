@@ -14,6 +14,7 @@ from sqlalchemy import (
     select,
     text,
 )
+from sqlalchemy.sql.selectable import Select
 
 import timelink
 from timelink.api.models import Entity
@@ -37,32 +38,46 @@ class DatabaseQueryMixin:
         """Execute a SELECT statement on the database.
 
         Args:
-            sql (str | select): A SQL string or SQLAlchemy select statement.
+            sql (str | Select): A SQL string or SQLAlchemy Select statement.
             session (Session, optional): An active database session. If None,
                 creates a new session. Defaults to None.
             as_dataframe (bool, optional): If True, returns results as a pandas DataFrame.
                 Defaults to False.
 
         Returns:
-            Result | pd.DataFrame: SQLAlchemy Result object or pandas DataFrame if
-                as_dataframe is True.
+            Result | List[Row] | pd.DataFrame: When session is provided and as_dataframe
+                is False, returns a SQLAlchemy Result object. When session is None and
+                as_dataframe is False, returns a list of Row objects (fetched immediately).
+                When as_dataframe is True, returns a pandas DataFrame.
 
         Raises:
             ValueError: If sql is not a string or select statement.
+
+        Note:
+            When session is None, all data is fetched immediately within the session
+            context to avoid connection issues. When a session is provided, the caller
+            is responsible for managing the session lifecycle.
         """
         # if sql is a string build a select statement
         if isinstance(sql, str):
             sql = select(text(sql))
         # if sql is a select statement
-        elif not isinstance(sql, select):
+        elif not isinstance(sql, Select):
             raise ValueError(
-                "sql must be a select statement or a string with a valid select statement"
+                "sql must be a Select statement or a string with a valid select statement"
             )
 
         if session is None:
             with self.session() as session:
                 try:
                     result = session.execute(sql)
+                    # When session is None, materialize results inside the session context
+                    # to avoid issues with closed connections
+                    if as_dataframe:
+                        return pd.DataFrame(result.fetchall(), columns=result.keys())
+                    else:
+                        # Fetch all rows while the session is still active
+                        return result.fetchall()
                 except Exception as e:
                     session.rollback()
                     logging.error(f"Error executing select: {e}")
@@ -70,20 +85,14 @@ class DatabaseQueryMixin:
         else:
             try:
                 result = session.execute(sql)
+                if as_dataframe:
+                    return pd.DataFrame(result.fetchall(), columns=result.keys())
+                else:
+                    return result
             except Exception as e:
                 session.rollback()
                 logging.error(f"Error executing select: {e}")
                 raise
-        if as_dataframe:
-            try:
-                df = pd.DataFrame(result.fetchall(), columns=result.keys())
-            except Exception as e:
-                session.rollback()
-                logging.error(f"Error converting to dataframe: {e}")
-                raise
-            return df
-        else:
-            return result
 
     def query(self, query_spec):
         """Execute a query on the database.
