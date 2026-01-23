@@ -70,7 +70,7 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
 
     $ mkvirtualenv timelink
     $ cd timelink/
-    $ python setup.py develop
+    $ pip install -e .
 
 4. Create a branch for local development::
 
@@ -82,7 +82,7 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
    tests, including testing other Python versions with tox::
 
     $ flake8 timelink tests
-    $ python setup.py test or pytest
+    $ pytest
     $ tox
 
    To get flake8 and tox, just pip install them into your virtualenv.
@@ -278,8 +278,8 @@ If GitHub Actions fails to deploy to PyPI:
 
 * Try "make release" locally.
 
-  * Note that errors in package description in setup.py can prevent deployment to PyPI.
-  * This happens mainly with markup problems in HISTORY.rst.
+  * Note that errors in package description in pyproject.toml or README.rst can prevent deployment to PyPI.
+  * This happens mainly with markup problems in HISTORY.rst or invalid metadata.
   * See https://github.com/pypi/warehouse/issues/5890
 
 "make release" will do `twine check dist/*` to check for errors.

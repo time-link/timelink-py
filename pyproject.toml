@@ -1,16 +1,121 @@
-# We use this just for the black code formater to prevent it from
-#  replacing single quotes with double quotes in timelink/__init__.py
-#  because it breaks bump2version
-#     see https://github.com/oceanprotocol/ocean.py/issues/194
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timelink"
+version = "1.1.27"
+authors = [
+    {name = "Joaquim Ramos de Carvalho", email = "joaquimcarvalho@mpu.edu.mo"},
+]
+description = "Timelink is an information system for person related information collected from historical sources."
+readme = "README.rst"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+keywords = ["timelink", "history", "prosopography", "kleio", "historical-data"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Sociology :: History",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "fastapi",
+    "matplotlib",
+    "sqlalchemy",
+    "sqlalchemy-utils",
+    "alembic",
+    "pydantic",
+    "pydantic-settings",
+    "python-dotenv",
+    "python-box",
+    "python-multipart",
+    "psycopg2-binary",
+    "py-markdown-table",
+    "python-jose[cryptography]",
+    "pandas",
+    "docker",
+    "jsonrpcclient",
+    "ipython",
+    "uvicorn",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "alabaster==0.7.12",
+    "argh~=0.28.1",
+    "black>=24.3.0",
+    "build",
+    "bump2version==1.0.1",
+    "coverage==5.5",
+    "docutils>=0.19.0",
+    "flake8-bugbear==24.4.26",
+    "flake8==7.1.1",
+    "nbsphinx",
+    "nbval>=0.10.0",
+    "pipdeptree",
+    "pytest>=8",
+    "pytest-profiling",
+    "snakeviz",
+    "sphinx_rtd_theme>=1.2.0",
+    "tox",
+    "twine==4.0.2",
+    "watchdog==2.1.3",
+]
+test = [
+    "pytest>=8",
+    "coverage==5.5",
+    "nbval>=0.10.0",
+]
+
+[project.urls]
+Documentation = "https://timelink-py.readthedocs.io/"
+"Source Code" = "https://github.com/time-link/timelink-py"
+"Bug Tracker" = "https://github.com/time-link/timelink-py/issues"
+Homepage = "https://github.com/time-link/timelink-py"
+
+[project.scripts]
+timelink = "timelink.cli:app"
+tmlk = "timelink.cli:app"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["timelink", "timelink.*"]
+
+[tool.setuptools.package-data]
+timelink = [
+    "migrations/versions/*.py",
+    "alembic.ini",
+    "app/static/*",
+    "app/templates/**/*",
+]
+
+# Black code formatter configuration
+# We exclude __init__.py to prevent it from replacing single quotes
+# with double quotes, which breaks bump2version
+# See https://github.com/oceanprotocol/ocean.py/issues/194
 [tool.black]
 line-length = 120
 exclude = '__init__.py'
 extend-immutable-calls = 'Depends, fastapi.Depends, fastapi.params.Depends'
 
-[tool.poetry]
-name = "timelink"
-# ... other poetry configuration ...
-
-[tool.poetry.include]
-"timelink/migrations/versions/*" = {format = "sdist", extension = "py"}
+# Flake8 linter configuration
+[tool.flake8]
+exclude = ["docs"]
+max-line-length = 120
+select = ["C", "E", "F", "W", "B", "B950"]
+extend-ignore = ["E203", "E501", "W503", "W504"]
 
