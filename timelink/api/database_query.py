@@ -90,7 +90,7 @@ class DatabaseQueryMixin:
                     return result
             except Exception as e:
                 session.rollback()
-                logging.error(f"Error converting to dataframe: {e}")
+                logging.error(f"Error executing select: {e}")
                 raise
 
     def query(self, query_spec):
