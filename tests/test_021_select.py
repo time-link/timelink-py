@@ -36,3 +36,24 @@ def test_select_invalid_query(setup_database):
     db = setup_database
     with pytest.raises(sqlalchemy.exc.OperationalError):
         db.select("SELECT * FROM nonexistent_table")
+
+
+def test_select_as_dataframe_no_session(setup_database):
+    """Test the select method with as_dataframe=True and no session provided."""
+    db = setup_database
+    df = db.select("* FROM test_table", as_dataframe=True)
+    assert df is not None
+    assert len(df) == 2
+    assert df.iloc[0]['name'] == "Alice"
+    assert df.iloc[1]['name'] == "Bob"
+
+
+def test_select_as_dataframe_with_session(setup_database):
+    """Test the select method with as_dataframe=True and a provided session."""
+    db = setup_database
+    with db.session() as session:
+        df = db.select("* FROM test_table", session=session, as_dataframe=True)
+        assert df is not None
+        assert len(df) == 2
+        assert df.iloc[0]['name'] == "Alice"
+        assert df.iloc[1]['name'] == "Bob"

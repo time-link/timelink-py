@@ -63,6 +63,13 @@ class DatabaseQueryMixin:
             with self.session() as session:
                 try:
                     result = session.execute(sql)
+                    if as_dataframe:
+                        # Convert to DataFrame while session is still open
+                        df = pd.DataFrame(result.fetchall(), columns=result.keys())
+                        return df
+                    else:
+                        # Return Result object - Note: must be consumed within session
+                        return result
                 except Exception as e:
                     session.rollback()
                     logging.error(f"Error executing select: {e}")
@@ -70,20 +77,18 @@ class DatabaseQueryMixin:
         else:
             try:
                 result = session.execute(sql)
+                if as_dataframe:
+                    # Convert to DataFrame using provided session
+                    df = pd.DataFrame(result.fetchall(), columns=result.keys())
+                    return df
+                else:
+                    return result
             except Exception as e:
-                session.rollback()
+                # Only rollback if the session is still active
+                if session.is_active:
+                    session.rollback()
                 logging.error(f"Error executing select: {e}")
                 raise
-        if as_dataframe:
-            try:
-                df = pd.DataFrame(result.fetchall(), columns=result.keys())
-            except Exception as e:
-                session.rollback()
-                logging.error(f"Error converting to dataframe: {e}")
-                raise
-            return df
-        else:
-            return result
 
     def query(self, query_spec):
         """Execute a query on the database.
