@@ -241,7 +241,7 @@ class DatabaseMetadataMixin:
                     table = Table(
                         table_or_class, self.metadata, autoload_with=self.engine
                     )
-                    return table_or_class
+                    return table
             elif table_or_class in self.get_models_ids():
                 model = self.get_model_by_name(table_or_class)
                 if model is not None:
