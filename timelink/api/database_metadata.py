@@ -246,7 +246,7 @@ class DatabaseMetadataMixin:
                 model = self.get_model_by_name(table_or_class)
                 if model is not None:
                     return model.__table__
-        elif issubclass(table_or_class, Entity):
+        elif isinstance(table_or_class, type) and issubclass(table_or_class, Entity):
             return table_or_class.__table__
         return None
 
