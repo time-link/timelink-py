@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "timelink"
-version = "1.1.27"
+version = "1.1.30"
 authors = [
     {name = "Joaquim Ramos de Carvalho", email = "joaquimcarvalho@mpu.edu.mo"},
 ]
