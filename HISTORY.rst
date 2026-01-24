@@ -2,31 +2,50 @@
 History
 =======
 
+1.1.30 (2026-01-24)
+-------------------
+
+**Configuration improvements:**
+
+* Completed migration to pyproject.toml for all packaging configuration.
+* Updated bump2version configuration to work with pyproject.toml.
+
+**Database bug fixes and improvements:**
+
+* Fixed multiple session leaks in database operations.
+* Fixed bug in database.select() that prevented DataFrame materialization when as_dataframe=True.
+* Fixed bug in database.describe() causing errors during database inspection.
+* Fixed bug in database.get_table() and database.get_model() failing to retrieve correct metadata.
+* Fixed bug in database_query.py select() to ensure proper session lifecycle and DataFrame returns.
+* Ensured query results are materialized inside session context to prevent connection errors.
+* Re-exported TimelinkDatabaseSchema and is_valid_postgres_db_name in database.py for public API.
+* Added missing get_postgres_container_user utility to timelink.database module.
+
+**Testing:**
+
+* Added test_select_with_session to cover Result object return path.
+* Improved test coverage for database session handling.
+
+**Code quality:**
+
+* Applied black formatting to database_kleio.py.
+* Fixed isinstance checks to use Select class instead of deprecated select function.
+* Updated docstrings to reference current SQLAlchemy 2.0 API.
+
 1.1.29 (2026-01-22)
 -------------------
 
-**Database refactoring and architecture:**
-
-* Major refactoring of ``TimelinkDatabase`` into specialized mixins for better maintainability:
-    * ``DatabaseKleioMixin``: Kleio server integration and imports.
-    * ``DatabaseMetadataMixin``: Database inspection and ORM mapping.
-    * ``DatabaseQueryMixin``: Data access and querying.
-    * ``DatabaseViewsMixin``: SQL view management.
-* Improved modularity by splitting ``database.py`` into multiple specialized files.
-
-**Documentation and code quality:**
-
-* Added comprehensive Google-style docstrings to all database-related modules.
-* Fixed linting errors and improved code compliance with ``flake8``.
-* Implemented ``__all__`` in ``timelink.api.database`` for cleaner public API exports.
-* Updated test reference files and verified all 284 tests pass.
+Broken, not released
 
 1.1.28 (2026-01-22)
 -------------------
 
-**Documentation improvements:**
+**Bug fixes:**
 
 * Fix bug with line numbers in timelink.pandas.entities_with_attribute()
+
+**Documentation improvements:**
+
 * Small fixes to documentation and docstrings
 
 1.1.27 (2026-01-15)
