@@ -516,11 +516,12 @@ class TimelinkDatabase(
         See Also:
             Issue #63 in the project repository for more details on view requirements.
         """
+        # Create named_entities first since other views depend on it
+        view = self._create_named_entity_view()
+        self.views[view.name] = view
         view = self._create_nattributes_view()
         self.views[view.name] = view
         view = self._create_eattribute_view()
-        self.views[view.name] = view
-        view = self._create_named_entity_view()
         self.views[view.name] = view
         view = self._create_nfunction_view()
         self.views[view.name] = view

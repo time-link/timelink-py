@@ -5,6 +5,7 @@ creating and managing SQL views in the Timelink database. These views join
 core tables to provide simplified access to complex relational data, such
 as attributes with entity names, functions in acts, and named entity relationships.
 """
+
 from sqlalchemy import (
     MetaData,
     select,
@@ -35,49 +36,53 @@ class DatabaseViewsMixin:
     def _create_nattributes_view(self):
         """Create the 'nattributes' view for named entity attributes.
 
-        This view joins the 'persons' table with the 'attributes' table to provide
-        attribute values alongside person names and sex information.
+        This view joins the 'named_entities' view with the 'attributes' table to provide
+        attribute values alongside entity names, metadata, and observations.
 
         Returns:
             Table: A SQLAlchemy view object representing the nattributes view.
 
         Note:
-            The 'id' column contains the person's ID, not the attribute's ID.
+            The 'id' column contains the entity's ID, not the attribute's ID.
 
         Example SQL::
 
             CREATE VIEW nattributes AS
-                SELECT p.id        AS id,
-                    p.name      AS name,
-                    p.sex       AS sex,
-                    a.id        AS attr_id,
-                    a.the_type  AS the_type,
-                    a.the_value AS the_value,
-                    a.the_date  AS the_date,
-                    p.obs       AS pobs,
-                    a.obs       AS aobs
-                FROM attributes a, persons p
-                WHERE (a.entity = p.id)
+                SELECT ne.id         AS id,
+                    ne.name       AS name,
+                    ne.groupname  AS groupname,
+                    ne.pom_class  AS pom_class,
+                    ne.obs        AS eobs,
+                    a.id          AS attr_id,
+                    a.the_type    AS the_type,
+                    a.the_value   AS the_value,
+                    a.the_date    AS the_date,
+                    a.obs         AS aobs
+                FROM attributes a, named_entities ne
+                WHERE (a.entity = ne.id)
         """
         metadata: MetaData = self.metadata
         # texists = inspect(eng).has_table("pattributes")
-        person = Person.__table__
+        named_entity = self.views["named_entities"]
         attribute = Attribute.__table__
 
         attr = views.view(
             "nattributes",
             metadata,
             select(
-                person.c.id.label("id"),
-                person.c.name.label("name"),
-                person.c.sex.label("sex"),
+                named_entity.c.id.label("id"),
+                named_entity.c.name.label("name"),
+                named_entity.c.groupname.label("groupname"),
+                named_entity.c.pom_class.label("pom_class"),
+                named_entity.c.obs.label("eobs"),
                 attribute.c.id.label("attr_id"),
                 attribute.c.the_type.label("the_type"),
                 attribute.c.the_value.label("the_value"),
                 attribute.c.the_date.label("the_date"),
-                person.c.obs.label("pobs"),
                 attribute.c.obs.label("aobs"),
-            ).select_from(person.join(attribute, person.c.id == attribute.c.entity)),
+            ).select_from(
+                named_entity.join(attribute, named_entity.c.id == attribute.c.entity)
+            ),
         )
         return attr
 
@@ -133,7 +138,8 @@ class DatabaseViewsMixin:
         """Create the 'named_entities' view for entities with names.
 
         This view creates a unified interface for persons, objects, and geoentities
-        by unioning their IDs and names and joining with the core entities table.
+        by unioning their IDs, names, and observations and joining with the core
+        entities table.
 
         Returns:
             Table: A SQLAlchemy view object representing the named_entities view.
@@ -150,14 +156,17 @@ class DatabaseViewsMixin:
         sel1 = select(
             person.c.id.label("id"),
             person.c.name.label("name"),
+            person.c.obs.label("obs"),
         )
         sel2 = select(
             object.c.id.label("id"),
             object.c.name.label("name"),
+            object.c.obs.label("obs"),
         )
         sel3 = select(
             geoentity.c.id.label("id"),
             geoentity.c.name.label("name"),
+            geoentity.c.obs.label("obs"),
         )
         union_all = union(sel1, sel2, sel3).subquery()
 
@@ -175,6 +184,7 @@ class DatabaseViewsMixin:
                 entity.c.indexed.label("indexed"),
                 entity.c.extra_info.label("extra_info"),
                 union_all.c.name.label("name"),
+                union_all.c.obs.label("obs"),
             ).select_from(entity.join(union_all, entity.c.id == union_all.c.id)),
         )
         return named_entities

@@ -41,7 +41,7 @@ def kleio_server():
         server = KleioServer.start(
             kleio_home=KLEIO_HOME,
             kleio_version="latest",
-            kleio_external_port=8080,
+            kleio_external_port=8089,
             kleio_debug="true",
         )
 
