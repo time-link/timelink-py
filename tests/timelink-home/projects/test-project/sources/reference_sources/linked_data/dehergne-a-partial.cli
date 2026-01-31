@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=822
+kleio$gacto2.str/translations=829
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin1-231
    fonte$dehergne-a-partial/1973/Dicionário Biográfico/loc=Online archive.org:details:bhsi37/obs=Dehergne, Joseph, Répertoire des Jésuites de Chine, de 1542 à 1800, 1973. Letra A - Entradas relacionadas com Coimbra.
 
@@ -7,7 +7,7 @@ kleio$gacto2.str/translations=822
          n$António de Abreu/id=deh-antonio-de-abreu
             ls$nacionalidade/Portugal
             ls$jesuita-estatuto/Padre
-            ls$jesuita-entrada/Goa, Índia# @wikidata:Q1171/15791200
+            ls$jesuita-entrada/Goa, Índia# @wikidata:Q1171/157912#comment of date for testing
             ls$embarque/S. Valentim/16020325#não padre
             ls$wicky/486/16020325
             ls$wicky-viagem/44/16020325

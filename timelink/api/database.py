@@ -27,7 +27,8 @@ from timelink.api.models import (
     pom_som_base_mappings,
 )
 from timelink.api.models.base_class import Base
-from timelink.kleio import KleioServer
+from timelink.kleio import KleioServer, KleioFile, import_status_enum
+from timelink.kleio.importer import import_from_xml
 from timelink.mhk import utilities
 
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
@@ -55,6 +56,10 @@ from .database_query import DatabaseQueryMixin, TimelinkDatabaseSchema
 __all__ = [
     "TimelinkDatabase",
     "TimelinkDatabaseSchema",
+    "KleioServer",
+    "KleioFile",
+    "import_status_enum",
+    "import_from_xml",
     "get_postgres_container",
     "get_postgres_container_user",
     "get_postgres_container_pwd",
