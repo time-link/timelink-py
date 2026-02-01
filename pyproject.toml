@@ -43,6 +43,7 @@ dependencies = [
     "py-markdown-table",
     "python-jose[cryptography]",
     "pandas",
+    "networkx",
     "docker",
     "jsonrpcclient",
     "ipython",
