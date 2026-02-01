@@ -11,50 +11,43 @@ import os
 import warnings
 from collections import defaultdict
 
-from sqlalchemy import (
-    create_engine,
-    select,
-    text,
-)
+from sqlalchemy import create_engine, select, text
 from sqlalchemy.orm import sessionmaker  # pylint: disable=import-error
 from sqlalchemy_utils import create_database, database_exists, drop_database
 
 from timelink import models  # pylint: disable=unused-import
 from timelink import migrations
-from timelink.api.models import (
-    Entity,
-    PomSomMapper,
-    pom_som_base_mappings,
-)
+from timelink.api.models import Entity, PomSomMapper, pom_som_base_mappings
 from timelink.api.models.base_class import Base
-from timelink.kleio import KleioServer
+from timelink.kleio import KleioFile, KleioServer, import_status_enum
+from timelink.kleio.importer import import_from_xml
 from timelink.mhk import utilities
 
 from . import views  # see https://github.com/sqlalchemy/sqlalchemy/wiki/Views
+from .database_kleio import DatabaseKleioMixin
+from .database_metadata import DatabaseMetadataMixin
 from .database_postgres import (
     get_postgres_container,
-    get_postgres_container_user,
     get_postgres_container_pwd,
+    get_postgres_container_user,
     get_postgres_dbnames,
     get_postgres_url,
     is_postgres_running,
     is_valid_postgres_db_name,
     start_postgres_server,
 )
-from .database_sqlite import (
-    get_sqlite_databases,
-    get_sqlite_url,
-)
+from .database_query import DatabaseQueryMixin, TimelinkDatabaseSchema
+from .database_sqlite import get_sqlite_databases, get_sqlite_url
 from .database_utils import get_db_password, get_import_status, random_password
 from .database_views import DatabaseViewsMixin
-from .database_metadata import DatabaseMetadataMixin
-from .database_kleio import DatabaseKleioMixin
-from .database_query import DatabaseQueryMixin, TimelinkDatabaseSchema
-
 
 __all__ = [
     "TimelinkDatabase",
     "TimelinkDatabaseSchema",
+    "KleioServer",
+    "KleioFile",
+    "import_status_enum",
+    "import_from_xml",
     "get_postgres_container",
     "get_postgres_container_user",
     "get_postgres_container_pwd",

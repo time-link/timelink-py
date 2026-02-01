@@ -1,4 +1,4 @@
-kleio$gacto2.str/translations=250
+kleio$gacto2.str/translations=254
    link$wikidata/"https://www.wikidata.org/wiki/$1"/id=root-lin2-44
    link$geonames/"https://www.geonames.org/$1"/id=root-lin2-45
    link$issues/"https://github.com/time-link/timelink-py/issues/$1"/id=root-lin1-165
