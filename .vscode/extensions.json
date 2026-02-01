@@ -4,8 +4,6 @@
     "ms-python.vscode-pylance",
     "ms-python.black-formatter",
     "ms-python.flake8",
-    "ms-python.isort",
-    "njpwerner.autodocstring",
     "littlefoxteam.vscode-python-test-adapter",
     "redhat.vscode-yaml",
     "tamasfe.even-better-toml",
