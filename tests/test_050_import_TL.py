@@ -150,7 +150,12 @@ def test_import_with_custom_mapping(dbsystem):
 
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_issue48(dbsystem):
-    """ Problem with importing mapping hierarchies issue #48 """
+    """Problem with importing mapping hierarchies issue #48.
+
+    Issue #48: importing sources with mapping hierarchies must preserve
+    `type` and `loc` element-class mappings so related entities resolve
+    their columns correctly.
+    """
     path = "projects/test-project/sources/reference_sources/issues/issue48/"
     dbsystem.update_from_sources(path=path)
     with dbsystem.session() as session:

@@ -42,7 +42,7 @@ def dbsystem(request, kleio_server):
         echo=False,
     )
     # attach a kleio server
-    database.update_from_sources(path_to_db_test_files, force=True)
+    database.update_from_sources(path_to_db_test_files, force=False)
     try:
 
         yield database
