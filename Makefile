@@ -58,14 +58,14 @@ test-loop: ## run tests quickly with the default Python
 test: ## run tests quickly with the default Python
 	pytest --rootdir=tests $(ARGS)
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
-	git restore -- tests/timelink-home/projects/test-project/**/*.cli
+	find tests/timelink-home/projects/test-project -name '*.cli' -print0 | xargs -0 git restore --
 
 
 test-nb: ## test notebooks only
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
 
 clean-test-data: ## revert generated test data changes
-	git restore -- tests/timelink-home/projects/test-project/**/*.cli
+	find tests/timelink-home/projects/test-project -name '*.cli' -print0 | xargs -0 git restore --
 
 test-all: ## run tests on every Python version with tox
 	tox
