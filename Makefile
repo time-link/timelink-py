@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean clean-test clean-test-data clean-pyc clean-build docs help
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -58,10 +58,14 @@ test-loop: ## run tests quickly with the default Python
 test: ## run tests quickly with the default Python
 	pytest --rootdir=tests $(ARGS)
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
+	git restore -- tests/timelink-home/projects/test-project/**/*.cli
 
 
 test-nb: ## test notebooks only
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
+
+clean-test-data: ## revert generated test data changes
+	git restore -- tests/timelink-home/projects/test-project/**/*.cli
 
 test-all: ## run tests on every Python version with tox
 	tox
