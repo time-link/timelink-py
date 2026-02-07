@@ -1,4 +1,4 @@
-- path: /kleio-home/structures/sources.str
+- path: /kleio-home/projects/test-project/structures/sources.str
 - group:
     also:
     - structure
