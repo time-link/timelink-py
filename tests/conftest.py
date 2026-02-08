@@ -44,6 +44,8 @@ def kleio_server():
             kleio_external_port=8089,
             kleio_debug="true",
         )
+    server.set_call_timeout(120)
+    print("Kleio server started", server.container.name)
 
     yield server
 

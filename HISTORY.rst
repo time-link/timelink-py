@@ -2,8 +2,29 @@
 History
 =======
 
-1.1.31 (2026-01-31)
+1.1.31 (2026-02-08)
 -------------------
+
+**Database views improvements (fixes issue #88):**
+
+* Updated ``nattributes`` view to include all named entities (persons, objects, geoentities)
+  instead of just persons, enabling attribute queries across all entity types.
+* Added ``groupname``, ``pom_class``, and ``eobs`` columns to the ``nattributes`` view.
+* Fixed view creation order to ensure ``named_entities`` view is created before
+  dependent views to prevent dependency errors.
+* Updated ``named_entities`` view to include ``obs`` column from all entity tables.
+
+**Dependencies:**
+
+* Added ``networkx>=3.0.0`` to main project dependencies.
+* Synchronized and updated all dependencies between ``pyproject.toml`` and ``requirements.txt``.
+* Updated various dependency versions with security and bug fixes.
+
+**Testing and build:**
+
+* Improved test cleanup and isolation.
+* Updated test data and notebooks.
+* Fixed Makefile and project configuration files.
 
 ** Fixes issue 89 **
 

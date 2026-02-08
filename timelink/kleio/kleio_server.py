@@ -1,17 +1,18 @@
-""" Interface to Kleio Server"""
+"""Interface to Kleio Server"""
 
 import logging
-import re
-import socket
 import os
-from time import sleep
-import time
-from typing import List, Optional, Tuple
-import docker
+import re
 import secrets
-import requests
-from jsonrpcclient import request, Error, Ok, parse
+import socket
+import time
 import urllib.request
+from time import sleep
+from typing import List, Optional, Tuple
+
+import docker
+import requests
+from jsonrpcclient import Error, Ok, parse, request
 
 from .schemas import KleioFile, TokenInfo
 
@@ -33,7 +34,6 @@ class KleioServerDockerException(KleioServerException):
 
 
 class KleioServer:
-
     """This class interfaces to a Kleio server through its JSON-RPC api.
     It also provides convenience methods
     to start a server in Docker locally.
@@ -325,6 +325,7 @@ class KleioServer:
         url: str | None = None,
         token: str | None = None,
         kleio_home: str | None = None,
+        call_timeout: int | float = 60,
     ):
         """Not to be used directly.
 
@@ -343,6 +344,7 @@ class KleioServer:
             kleio_home (str): kleio server home directory. If None and container is not None
                                     then kleio_home is obtained from the container.
                                     If not none
+            call_timeout (int | float): default request timeout in seconds.
         """
         if container is None:
             if url is None:
@@ -356,6 +358,7 @@ class KleioServer:
             self.kleio_admin_token = token
             self.kleio_home = kleio_home
             self.container = None
+            self.call_timeout = call_timeout
             return
 
         if is_docker_running() is False:
@@ -382,6 +385,15 @@ class KleioServer:
             for env in container.attrs["Config"]["Env"]
             if env.startswith("KLEIO_ADMIN_TOKEN")
         ][0].split("=")[1]
+        self.call_timeout = call_timeout
+
+    def set_call_timeout(self, timeout: int | float):
+        """Set the default timeout used by :meth:`call`.
+
+        Args:
+            timeout (int | float): request timeout in seconds.
+        """
+        self.call_timeout = timeout
 
     def get_token(self):
         """Get the kleio server token
@@ -436,14 +448,21 @@ class KleioServer:
     def __str__(self):
         return f"KleioServer(url={self.url}, kleio_home={self.kleio_home})"
 
-    def call(self, method: str, params: dict, token: str | None = None, timeout=60):
+    def call(
+        self,
+        method: str,
+        params: dict,
+        token: str | None = None,
+        timeout: int | float | None = None,
+    ):
         """Call kleio server API
 
         Args:
             method (str): kleio server API method
             params (dict): kleio server API method parameters
             token (str, optional): kleio server token; defaults to None -> use admin token
-            timeout (int, optional): timeout in seconds; defaults to 60.
+            timeout (int | float | None, optional): timeout in seconds; defaults to
+                the instance `call_timeout` when None.
 
         Returns:
             dict: kleio server API response
@@ -460,6 +479,9 @@ class KleioServer:
         # we add the token to the params
         params["token"] = token
         rpc = request(method, params=params)
+        if timeout is None:
+            timeout = self.call_timeout
+
         response = requests.post(url, json=rpc, timeout=timeout, headers=headers)
         parsed = parse(response.json())
         if isinstance(parsed, Ok):
@@ -518,7 +540,11 @@ class KleioServer:
         return str(self.call("tokens_generate", pars))
 
     def get_translations(
-        self, path: str, recurse: str | bool = True, status: str | None = None, token: str | None = None
+        self,
+        path: str,
+        recurse: str | bool = True,
+        status: str | None = None,
+        token: str | None = None,
     ) -> list[KleioFile]:
         """Get translation status from kleio server.
 
@@ -651,7 +677,7 @@ class KleioServer:
         return self.get_url_content(server_url, token=token)
 
     def get_source(self, src: str | KleioFile, token=None) -> str:
-        """ Get the texto of a source
+        """Get the texto of a source
 
         Args:
             src (str | KleioFile): source file url or KleioFile object
@@ -704,7 +730,9 @@ class KleioServer:
             response_content = source.read().decode("utf-8")
             return response_content
 
-    def extract_version_info(self, home_page_content: str) -> Optional[Tuple[str, str, str]]:
+    def extract_version_info(
+        self, home_page_content: str
+    ) -> Optional[Tuple[str, str, str]]:
         """Extract version information from the home page content.
 
         Args:
@@ -714,7 +742,10 @@ class KleioServer:
             Optional[Tuple[str, str, str]]: A tuple containing the version number, build number, and date of build,
                                             or None if the information could not be extracted.
         """
-        pattern = r"Version: KleioTranslator - server version (\d+\.\d+) - build (\d+) (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})"
+        pattern = (
+            r"Version: KleioTranslator - server version (\d+\.\d+) - build "
+            r"(\d+) (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})"
+        )
         match = re.search(pattern, home_page_content)
         if match:
             version = match.group(1)
@@ -734,7 +765,7 @@ class KleioServer:
         return self.extract_version_info(home_page_content)
 
     def __repr__(self):
-        return (f"KleioServer(url={self.get_url()}, kleio_home={self.get_kleio_home()})")
+        return f"KleioServer(url={self.get_url()}, kleio_home={self.get_kleio_home()})"
 
 
 def is_docker_running():
@@ -806,16 +837,14 @@ def find_local_kleio_home(path: str | None = None):
 
     # no placeholder files try to guess which type it is
     # test if there is a "sources" subdirectory and not a "system" subdirectory it is a project directory
-    if (
-        not os.path.isdir(f"{current_dir}/system")
-        and os.path.isdir(f"{current_dir}/sources")  # noqa: W503
-    ):
+    if not os.path.isdir(f"{current_dir}/system") and os.path.isdir(
+        f"{current_dir}/sources"
+    ):  # noqa: W503
         return current_dir
     # if there is a "sources" and a "system" subdirectory it is a kleio home directory
-    if (
-        os.path.isdir(f"{current_dir}/system")
-        and os.path.isdir(f"{current_dir}/sources")  # noqa: W503
-    ):
+    if os.path.isdir(f"{current_dir}/system") and os.path.isdir(
+        f"{current_dir}/sources"
+    ):  # noqa: W503
         return current_dir
 
     # if there is a "projects" subdirectory it is a kleio home directory
@@ -885,10 +914,9 @@ def is_project_directory(path: str, add_placeholder: bool = True) -> bool:
                 f"Directory {path} has a '.timelink-project' file but it is not a valid kleio project directory,"
                 " must have a sources subdirectory"
             )
-    if (
-        not os.path.isdir(f"{path}/system")
-        and os.path.isdir(f"{path}/sources")  # noqa: W503
-    ):
+    if not os.path.isdir(f"{path}/system") and os.path.isdir(
+        f"{path}/sources"
+    ):  # noqa: W503
         is_project_dir = True
     else:
         is_project_dir = False
@@ -930,10 +958,9 @@ def is_timelink_home_directory(path: str, add_placeholder: bool = True) -> bool:
             )
     if os.path.isdir(f"{path}/projects"):
         is_home_dir = True
-    elif (
-        os.path.isdir(f"{path}/system")
-        and os.path.isdir(f"{path}/sources")  # noqa: W503
-    ):
+    elif os.path.isdir(f"{path}/system") and os.path.isdir(
+        f"{path}/sources"
+    ):  # noqa: W503
         is_home_dir = True
     else:
         is_home_dir = False
@@ -1012,7 +1039,9 @@ def list_kleio_server_containers(
 
 
 def get_kserver_container(
-    kleio_home: str | None = None, kleio_version: str | None = "latest", stop_duplicates=False
+    kleio_home: str | None = None,
+    kleio_version: str | None = "latest",
+    stop_duplicates=False,
 ):
     """Check if a kleio server is running in docker, possibly mapped to
     a given kleio home directory.
