@@ -2,7 +2,7 @@
 History
 =======
 
-1.1.31 (2026-02-08)
+1.1.32 (2026-02-08)
 -------------------
 
 **Database views improvements (fixes issue #88):**
@@ -26,7 +26,11 @@ History
 * Updated test data and notebooks.
 * Fixed Makefile and project configuration files.
 
+1.1.31 (2026-01-31)
+-------------------
+
 ** Fixes issue 89 **
+
 
 1.1.30 (2026-01-24)
 -------------------
