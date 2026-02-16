@@ -1,6 +1,6 @@
 import networkx as nx
 from bokeh.io import output_notebook, save, show
-from bokeh.models import Circle, MultiLine, Range1d
+from bokeh.models import MultiLine, Range1d, Scatter
 from bokeh.palettes import Category10
 from bokeh.plotting import figure, from_networkx
 
@@ -109,7 +109,7 @@ def draw_network(
     )
 
     # Set node size and color
-    network_graph.node_renderer.glyph = Circle(size=circle_size, fill_color="color")  # type: ignore
+    network_graph.node_renderer.glyph = Scatter(size=circle_size, fill_color="color", marker="circle")  # type: ignore
 
     # Set edge opacity and width
     network_graph.edge_renderer.glyph = MultiLine(
