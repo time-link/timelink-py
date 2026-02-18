@@ -1,16 +1,14 @@
 """test network generation"""
 
 # pylint: disable=import-error
-import pytest
 import networkx as nx
+import pytest
 
 from tests import TEST_DIR, skip_on_travis
-from timelink.api.database import (
-    TimelinkDatabase,
-)
+from timelink.api.database import TimelinkDatabase
 from timelink.kleio import KleioServer
-from timelink.pandas import entities_with_attribute, attribute_values
 from timelink.networks import network_from_attribute
+from timelink.pandas import attribute_values, entities_with_attribute
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
 pytestmark = skip_on_travis
@@ -28,7 +26,9 @@ def dbsystem(request):
     database = TimelinkDatabase(db_name, db_type, db_path=db_path)
 
     # attach a kleio server
-    kleio_server = KleioServer.start(kleio_home=f"{TEST_DIR}/timelink-home/projects/test-project")
+    kleio_server = KleioServer.start(
+        kleio_home=f"{TEST_DIR}/timelink-home/projects/test-project"
+    )
     database.set_kleio_server(kleio_server)
     database.update_from_sources(path_to_db_test_files)
     try:
