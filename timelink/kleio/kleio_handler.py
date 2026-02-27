@@ -1,46 +1,39 @@
+import copy
 import logging
 from datetime import datetime, timezone
 from enum import Enum
 from typing import List
-import copy
 
-from sqlalchemy import text, delete
-from sqlalchemy.orm import Session
+from sqlalchemy import delete, text
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
 
-from timelink.api.models.pom_som_mapper import PomSomMapper as PomSomMapperTL
-from timelink.api.models.pom_som_mapper import (
-    PomClassAttributes as PomClassAttributesTL,
-)
+from timelink.api.models.base import Entity as EntityTL
+from timelink.api.models.base import LinkStatus as STATUS
+from timelink.api.models.base import Person as PersonTL
+from timelink.api.models.base import Relation as RelationTL
+from timelink.api.models.base import REntity
 from timelink.api.models.base_mappings import (
     pom_som_base_mappings as pom_som_base_mappingsTL,
 )
-from timelink.api.models.base import (
-    Entity as EntityTL,
-    Person as PersonTL,
-    Relation as RelationTL
+from timelink.api.models.pom_som_mapper import (
+    PomClassAttributes as PomClassAttributesTL,
 )
-from timelink.api.models.rentity import (
-    REntity as REntityTL,
-    Link as LinkTL,
-    BLink as BLinkTL
-)
-
-from timelink.api.models.base import REntity, LinkStatus as STATUS
+from timelink.api.models.pom_som_mapper import PomSomMapper as PomSomMapperTL
+from timelink.api.models.rentity import BLink as BLinkTL
+from timelink.api.models.rentity import Link as LinkTL
+from timelink.api.models.rentity import REntity as REntityTL
 from timelink.api.models.system import KleioImportedFile as KleioFileTL
-
-
+from timelink.kleio.groups import KGroup
 from timelink.mhk.models.db import pom_som_base_mappings as pom_som_base_mappingsMHK
-from timelink.mhk.models.pom_som_mapper import (
-    PomSomMapper as PomSomMapperMHK,
-    PomClassAttributes as PomClassAttributesMHK,
-)
 from timelink.mhk.models.entity import Entity as EntityMHK
 from timelink.mhk.models.person import Person as PersonMHK
+from timelink.mhk.models.pom_som_mapper import (
+    PomClassAttributes as PomClassAttributesMHK,
+)
+from timelink.mhk.models.pom_som_mapper import PomSomMapper as PomSomMapperMHK
 from timelink.mhk.models.relation import Relation as RelationMHK
 from timelink.mhk.models.system import KleioImportedFile as KleioFileMHK
-
-from timelink.kleio.groups import KGroup
 
 
 class KleioContext(Enum):
@@ -204,7 +197,8 @@ class KleioHandler:
 
         # get the links that are going to be affected by the reimport
         sql = """
-                SELECT l.id, l.rid,l.entity, l.user, l.rule, l.status, l.source as link_source, e.the_source as entity_source
+                SELECT l.id, l.rid,l.entity, l.user, l.rule, l.status, l.source as link_source,
+                       e.the_source as entity_source
                 FROM links l, entities e
                 WHERE l.entity = e.id
                 AND e.the_source = :source_id;
@@ -221,7 +215,7 @@ class KleioHandler:
                 self.link_model.rule,
                 self.link_model.status,
                 self.link_model.source,
-                self.entity_model.the_source.label('entity_source')
+                self.entity_model.the_source.label("entity_source"),
             )
         )
         xlinks = self.session.execute(sql_query).fetchall()
@@ -233,11 +227,15 @@ class KleioHandler:
             # find a blink for the same rid, entity and user
             # if it exists we do not create a new one
 
-            blink = self.session.query(BLinkTL).filter(
-                BLinkTL.rid == link.rid,
-                BLinkTL.entity == link.entity,
-                BLinkTL.user == link.user
-            ).first()
+            blink = (
+                self.session.query(BLinkTL)
+                .filter(
+                    BLinkTL.rid == link.rid,
+                    BLinkTL.entity == link.entity,
+                    BLinkTL.user == link.user,
+                )
+                .first()
+            )
 
             if blink is None:
                 # create a blink with the link information
@@ -297,7 +295,7 @@ class KleioHandler:
                     self.session.commit()
 
                     # TODO: and now we should process the xsame_as relations
-                    if rel.the_type == 'identification' and rel.the_value == 'same as':
+                    if rel.the_type == "identification" and rel.the_value == "same as":
 
                         REntity.same_as(
                             rel.origin,
@@ -533,7 +531,7 @@ class KleioHandler:
                 logging.error(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
                     f"integrity error {group.kname}${group.id}: {ierror}",
-                    stacklevel=3
+                    stacklevel=3,
                 )
                 self.errors.append(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
@@ -545,7 +543,7 @@ class KleioHandler:
                 logging.error(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
                     f"storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}",
-                    stacklevel=3
+                    stacklevel=3,
                 )
                 self.session.rollback()
                 self.errors.append(
