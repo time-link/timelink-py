@@ -1,0 +1,517 @@
+- file:
+  - date: 2026-02-18
+    description: Automatically generated structure file
+    json_path: /kleio-home/projects/test-project/sources/reference_sources/linked_data/dehergne-locations-1644-structure.json
+    origin: /kleio-home/projects/test-project/sources/reference_sources/linked_data/dehergne-locations-1644.cli
+    stru: /kleio-home/projects/test-project/structures/sources.str
+    yaml_path: /kleio-home/projects/test-project/sources/reference_sources/linked_data/dehergne-locations-1644-structure.yaml
+- element:
+    description: Not defined
+    name: autorels
+- element:
+    description: Not defined
+    name: prefix
+- element:
+    description: Not defined
+    name: shortname
+- element:
+    description: Not defined
+    name: structure
+- element:
+    description: Not defined
+    name: translations
+- element:
+    description: Not defined
+    name: translator
+- element:
+    description: Not defined
+    name: urlpattern
+- group:
+    also:
+    - structure
+    - translator
+    - autorels
+    - obs
+    - prefix
+    - translations
+    counter: 1
+    description: 'This is the top level group of Kleio files. Specific historical
+      sources must be added to the part parameter of this group. '
+    idprefix: kle
+    name: kleio
+    part:
+    - historical-source
+    - fonte
+    - authority-register
+    - identifications
+    - link
+    - property
+    position:
+    - structure
+    - translator
+    - obs
+- group:
+    also:
+    - type
+    - date
+    - year
+    - loc
+    - ref
+    - obs
+    - replace
+    - kleiofile
+    counter: 0
+    guaranteed:
+    - id
+    idprefix: his
+    name: historical-source
+    part:
+    - historical-act
+    position:
+    - id
+    - year
+    - type
+    - ref
+- group:
+    also:
+    - type
+    - id
+    - obs
+    counter: 0
+    description: 'GeoEntity :a spatial entity. An entity that represents a spatial
+      entity in the sense of a conceptual representation of space. A geo-entity is
+      not an object that has a particular position in place. It is rather something
+      like the parish of X ,the place Y ,the region W. '
+    idprefix: geo
+    name: geoentity
+    part:
+    - ls
+    - atr
+    - rel
+    position:
+    - name
+- group:
+    also:
+    - id
+    - obs
+    counter: 0
+    description:
+    idprefix: lin
+    name: link
+    position:
+    - shortname
+    - urlpattern
+- group:
+    also:
+    - loc
+    - ref
+    - obs
+    - day
+    - month
+    - year
+    arbitrary:
+    - person
+    - object
+    - geoentity
+    - abstraction
+    - ls
+    - atr
+    - rel
+    counter: 0
+    guaranteed:
+    - id
+    - type
+    - date
+    idprefix: his
+    name: historical-act
+    position:
+    - id
+    - type
+    - date
+- group:
+    also:
+    - obs
+    - date
+    - id
+    counter: 0
+    guaranteed:
+    - type
+    - value
+    idprefix: att
+    name: attribute
+    position:
+    - type
+    - value
+    - date
+- element:
+    description:
+    identification: non
+    name: day
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: month
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: year
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: date
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description: elemento obrigatorio ,identifica unicamente a fonte na base de dados
+      ,
+    identification: sic
+    name: id
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: type
+    prefix: non
+    suffix: non
+- element:
+    description: localizacao da fonte (arquivo pessoal ,AUC ,ANTT ).
+    identification: non
+    name: loc
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: obs
+    prefix: non
+    suffix: non
+- element:
+    description: 'cota ou outra referencia de localizacao da fonte '
+    identification: non
+    name: ref
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: value
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: name
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: replace
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: kleiofile
+    prefix: non
+    suffix: non
+- group:
+    also:
+    - tipo
+    - loc
+    - localizacao
+    - ref
+    - data
+    - ano
+    - obs
+    - substitui
+    arbitrary:
+    - acto
+    - amz
+    - nom
+    - carta
+    - pauta
+    - hab
+    - proc
+    - beneficio
+    - chanc
+    - encarte
+    - rol
+    - escritura
+    - adenda
+    - arrolamento
+    - cas
+    - bap
+    - b
+    - termo
+    - obito
+    - o
+    - ar
+    - lista
+    - rmerce
+    - merce
+    - let
+    - lbach
+    - capela
+    - gov
+    - familia
+    - po
+    - fim
+    - devassa
+    - cartaperdao
+    - denuncia
+    - matricula
+    - ordenancas
+    - milicias
+    - memoria58
+    - apontamentosd
+    - eleicao
+    - juramento
+    - lc
+    - crisma
+    - docregio
+    - docpontificio
+    - docepiscopal
+    - automed
+    - pas
+    - lcc
+    - integr
+    - movacao
+    - geodesc
+    counter: 0
+    description: 'Este constitui o grupo principal para os documentos historicos portugueses.
+      Admite qualquer dos actos definidos aqui. '
+    guaranteed:
+    - id
+    idprefix: his
+    name: fonte
+    part:
+    - historical-act
+    position:
+    - id
+    - year
+    - type
+    - ref
+    source: historical-source
+- element:
+    description:
+    identification: non
+    name: substitui
+    prefix: non
+    source: replace
+    suffix: non
+- group:
+    also:
+    - ref
+    - loc
+    - obs
+    arbitrary:
+    - celebrante
+    - actorm
+    - actorf
+    - object
+    - abstraction
+    - ls
+    - rel
+    counter: 0
+    guaranteed:
+    - id
+    - dia
+    - mes
+    - ano
+    idprefix: his
+    name: pt-acto
+    position:
+    - id
+    - dia
+    - mes
+    - ano
+    source: historical-act
+- element:
+    description:
+    identification: non
+    name: dia
+    prefix: non
+    source: day
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: mes
+    prefix: non
+    source: month
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: ano
+    prefix: non
+    source: year
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: data
+    prefix: non
+    source: date
+    suffix: non
+    type: numerus
+- element:
+    description: tipo de fonte (registos paroquiais ,livros notariais ,etc... )
+    identification: non
+    name: tipo
+    prefix: non
+    source: type
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: valor
+    prefix: non
+    source: value
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: localizacao
+    prefix: non
+    source: loc
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: fol
+    prefix: non
+    source: ref
+    suffix: non
+- group:
+    also:
+    - obs
+    arbitrary:
+    - celebrante
+    - actorm
+    - actorf
+    - object
+    - abstraction
+    - ls
+    - rel
+    counter: 0
+    description: 'A description of geographic entities. '
+    guaranteed:
+    - id
+    idprefix: his
+    name: geodesc
+    part:
+    - geo1
+    - geo2
+    - geo3
+    - geo4
+    - atr
+    - rel
+    position:
+    - id
+    - dia
+    - mes
+    - ano
+    - fol
+    source: pt-acto
+- group:
+    also:
+    - type
+    - id
+    - obs
+    counter: 0
+    description: 'A geographical entity of level 1. Levels geo1 to geo4 are defined. '
+    idprefix: geo
+    name: geo1
+    part:
+    - geo2
+    - atr
+    - rel
+    position:
+    - name
+    - type
+    - id
+    source: geoentity
+- group:
+    also:
+    - type
+    - id
+    - obs
+    counter: 0
+    idprefix: geo
+    name: geo2
+    part:
+    - geo3
+    - atr
+    - rel
+    position:
+    - name
+    - type
+    - id
+    source: geoentity
+- group:
+    also:
+    - type
+    - id
+    - obs
+    counter: 0
+    idprefix: geo
+    name: geo3
+    part:
+    - geo4
+    - atr
+    - rel
+    position:
+    - name
+    - type
+    - id
+    source: geoentity
+- group:
+    also:
+    - data
+    - obs
+    - id
+    counter: 0
+    guaranteed:
+    - tipo
+    - valor
+    identification: sic
+    idprefix: att
+    name: ls
+    position:
+    - tipo
+    - valor
+    - data
+    source: attribute
+- group:
+    also:
+    - data
+    - obs
+    - id
+    counter: 22
+    guaranteed:
+    - tipo
+    - valor
+    identification: sic
+    idprefix: att
+    name: atr
+    position:
+    - tipo
+    - valor
+    - data
+    source: ls
