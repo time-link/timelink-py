@@ -2,6 +2,32 @@
 History
 =======
 
+1.1.33 (unreleased)
+-------------------
+
+**Bug fixes:**
+
+* Fixed Bokeh deprecation warning in network drawing by replacing deprecated
+  ``Circle`` glyph with ``Scatter`` marker (fixes compatibility with Bokeh 3.0+).
+
+**Improvements:**
+
+* Improved Kleio server version detection to handle development builds
+  that don't follow standard version format.
+
+**Code quality:**
+
+* Applied Black formatter and organized imports following PEP 8 guidelines
+  in ``kleio_handler.py`` and other modules.
+* Fixed various linting issues and improved code consistency.
+
+**Testing:**
+
+* Improved test cleanup and isolation.
+* Updated test data and Kleio structure files.
+* Enhanced test coverage for network functions.
+
+
 1.1.32 (2026-02-08)
 -------------------
 
