@@ -752,6 +752,13 @@ class KleioServer:
             build_number = match.group(2)
             build_date = match.group(3)
             return version, build_number, build_date
+        # if not just return the line starting with "KleioTranslator - server version"
+        else:
+            pattern = r"KleioTranslator - server version.*"
+            match = re.search(pattern, home_page_content)
+            if match:
+                line = match.group(0)
+                return line, "dev", "nobuild"
         return None
 
     def get_version_info(self) -> Optional[Tuple[str, str, str]]:
