@@ -57,13 +57,14 @@ skip_on_travis = pytest.mark.skipif(
 )
 
 skip_on_github_actions = pytest.mark.skipif(
-    os.environ.get("GITHUB_ACTIONS") == "true", reason="this test requires file system access for sqlite"
+    os.environ.get("GITHUB_ACTIONS") == "true",
+    reason="this test requires file system access for sqlite",
 )
 
 # Backward compatibility - skip on either CI
 skip_on_ci = pytest.mark.skipif(
     os.environ.get("TRAVIS") == "true" or os.environ.get("GITHUB_ACTIONS") == "true",
-    reason="this test requires file system access for sqlite"
+    reason="this test requires file system access for sqlite",
 )
 
 
@@ -86,7 +87,7 @@ class KleioServerTestMode(Enum):
     DOCKER = "docker"
 
 
-kleio_server_mode = KleioServerTestMode.DOCKER
+kleio_server_mode = KleioServerTestMode.LOCAL
 
 # determine the image of kleio-server to use.
 # "kleio-server" is a local image, can be built in timelink-kleio project

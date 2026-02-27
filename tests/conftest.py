@@ -14,10 +14,14 @@ def kleio_server():
     have the server running in swil prolog and debug interactively.
 
     To run tests with a local Kleio Server outside docker:
-    1) set "mode" above to KleioServerTestMode.LOCAL
+    1) set "mode" in __init__.py to KleioServerTestMode.LOCAL
     2)Run the server in Prolog loading serverStart.pl and then:
 
         setenv('KLEIO_ADMIN_TOKEN','mytoken').
+        % PATH_TO_KLEIO_HOME_TEST_PROJECT e.g.:
+        % /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/
+        setenv('KLEIO_HOME_DIR', 'PATH_TO_KLEIO_HOME_TEST_PROJECT').
+
         setup_and_run_server(run_debug_server,[port(8089)]).
 
     Or run run_test_server in serverStart.pl and use
@@ -33,19 +37,31 @@ def kleio_server():
     else:
         local = False
 
+    kleio_image = "timelinkserver/kleio-server"
+    kleio_version = "latest"
+    # For testing a pre release local version of Kleio server
+    # kleio_version = "12.9.591"
+    # kleio_image = "kleio-server"
+    kleio_external_port = 8089
+    timeout_secs = 300
+
     if local:
         token = "mytoken"
-        url = "http://localhost:8088"
+        url = "http://localhost:8089"
         server = KleioServer.attach(url, token)
+        print("Kleio server attached", server.get_url())
+        print("Kleio server version", server.get_version_info())
     else:
         server = KleioServer.start(
             kleio_home=KLEIO_HOME,
-            kleio_version="latest",
-            kleio_external_port=8089,
+            kleio_image=kleio_image,
+            kleio_version=kleio_version,
+            kleio_external_port=kleio_external_port,
             kleio_debug="true",
         )
-    server.set_call_timeout(120)
-    print("Kleio server started", server.container.name)
+        print("Kleio server started in Docker", server.container.name)
+        print("Kleio server version", server.get_version_info())
+    server.set_call_timeout(timeout_secs)
 
     yield server
 
