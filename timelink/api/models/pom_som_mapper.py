@@ -377,12 +377,19 @@ class PomSomMapper(Entity):
             #       to be or if it is a problem to be dealt with here.
             #       SQLAchemy will rename the columns to avoid conflict
             #       automatically
-            my_table = Table(
-                self.table_name,
-                metadata_obj,
-                info={"dynamic": True, "pom_class_id  ": self.id},  # we flag as dynamic  # this goes to metadata
-                extend_existing=True,
-            )
+            try:
+                my_table = Table(
+                    self.table_name,
+                    metadata_obj,
+                    info={
+                        "dynamic": True,
+                        "pom_class_id": self.id,
+                    },  # we flag as dynamic  # this goes to metadata
+                    extend_existing=True,
+                )
+            except Exception as e:
+                logger.error(f"Error creating table {self.table_name} for class {self.id}: {e}")
+                raise e
             cattr: Type["PomClassAttributes"]
             for cattr in self.class_attributes:  # pylint: disable=no-member
                 PyType: str  # pylint: disable=invalid-name
