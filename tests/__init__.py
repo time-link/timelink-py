@@ -87,7 +87,7 @@ class KleioServerTestMode(Enum):
     DOCKER = "docker"
 
 
-kleio_server_mode = KleioServerTestMode.LOCAL
+kleio_server_mode = KleioServerTestMode.DOCKER
 
 # determine the image of kleio-server to use.
 # "kleio-server" is a local image, can be built in timelink-kleio project
