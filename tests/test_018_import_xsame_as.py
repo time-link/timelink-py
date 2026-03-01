@@ -6,24 +6,24 @@ Check tests.__init__.py for parameters
 # pylint: disable=import-error
 from pathlib import Path
 from typing import List
-# import pdb
 
 import pytest
 from sqlalchemy import select
 
-from tests import TEST_DIR, skip_on_travis
-from timelink.api.models.relation import Relation
-from timelink.api.models.system import KleioImportedFile
-from timelink.kleio.kleio_server import KleioFile
-from timelink.kleio.importer import import_from_xml
+from tests import TEST_DIR, skip_on_github_actions
+from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
+from timelink.api.models.relation import Relation
 from timelink.api.models.rentity import Link
-from timelink.api.database import (
-    TimelinkDatabase
-)
+from timelink.api.models.system import KleioImportedFile
+from timelink.kleio.importer import import_from_xml
+from timelink.kleio.kleio_server import KleioFile
+
+# import pdb
+
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 
 db_path = Path(TEST_DIR, "sqlite")
 TEST_DB = "xsameas"
@@ -42,10 +42,8 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
 
     database = TimelinkDatabase(
-        db_name=db_name,
-        db_type=db_type,
-        db_path=db_path,
-        kleio_server=kleio_server)
+        db_name=db_name, db_type=db_type, db_path=db_path, kleio_server=kleio_server
+    )
 
     try:
         yield database
@@ -125,4 +123,6 @@ def test_import_xsameas(dbsystem: TimelinkDatabase):
 
         stmt = select(Relation).where(Relation.destination == None)  # noqa
         relations2 = session.execute(stmt).scalars().all()
-        assert len(relations2) == nrelations, "some relations have no destination after reimport"
+        assert (
+            len(relations2) == nrelations
+        ), "some relations have no destination after reimport"

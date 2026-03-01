@@ -6,7 +6,7 @@ import random
 import pytest
 from typer.testing import CliRunner
 from timelink.cli import app, create_db_index, avoid_db_patterns
-from tests import mhk_absent, TEST_DIR, skip_on_travis
+from tests import mhk_absent, TEST_DIR, skip_on_github_actions
 
 
 @pytest.fixture
@@ -53,7 +53,7 @@ def test_command_mhk_status():
 
 
 # test db command
-@skip_on_travis
+@skip_on_github_actions
 def test_db_list():
     """Test the CLI."""
     runner = CliRunner()
@@ -61,7 +61,7 @@ def test_db_list():
     assert result.exit_code == 0
 
 
-@skip_on_travis
+@skip_on_github_actions
 def test_db_current():
     """Test the CLI."""
     runner = CliRunner()
@@ -75,7 +75,7 @@ def test_db_current():
     assert result.exit_code == 0
 
 
-@skip_on_travis
+@skip_on_github_actions
 def test_db_upgrade():
     """Test the CLI."""
     runner = CliRunner()
@@ -91,7 +91,7 @@ def test_db_upgrade():
     assert result.exit_code == 0
 
 
-@skip_on_travis
+@skip_on_github_actions
 def test_db_heads():
     runner = CliRunner()
     db_list = create_db_index(avoid_patterns=avoid_db_patterns)
@@ -102,7 +102,7 @@ def test_db_heads():
     print(heads)
 
 
-@skip_on_travis
+@skip_on_github_actions
 def test_create_db():
     runner = CliRunner()
     result = runner.invoke(app, ["db", "create", f"sqlite:///{TEST_DIR}/db/test.db"])

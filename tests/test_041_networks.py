@@ -4,14 +4,14 @@
 import networkx as nx
 import pytest
 
-from tests import TEST_DIR, skip_on_travis
+from tests import TEST_DIR, skip_on_github_actions
 from timelink.api.database import TimelinkDatabase
 from timelink.kleio import KleioServer
 from timelink.networks import network_from_attribute
 from timelink.pandas import attribute_values, entities_with_attribute
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 path_to_db_test_files = "sources/reference_sources/networks"
 # only used for sqlite databases
 db_path = f"{TEST_DIR}/sqlite/"

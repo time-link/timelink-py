@@ -10,7 +10,7 @@ import pytest
 from sqlalchemy import Engine, MetaData, select
 from sqlalchemy.orm import aliased
 
-from tests import TEST_DIR, skip_on_travis
+from tests import TEST_DIR, skip_on_github_actions
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.attribute import Attribute
@@ -19,7 +19,7 @@ from timelink.api.models.system import KleioImportedFile
 from timelink.api.views import DropView, view, view_exists
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 path_to_db_test_files = "projects/test-project/sources/database_tests"
 db_path = f"{TEST_DIR}/sqlite/"
 TEST_DB = "database_tests"

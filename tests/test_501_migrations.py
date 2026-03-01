@@ -7,11 +7,11 @@ from timelink.migrations import set_db_url, current, upgrade, downgrade
 from timelink.migrations import ALEMBIC_CFG
 from timelink.cli import parse_db_url, create_db_index
 from timelink.api.database import TimelinkDatabase
-from tests import reference_db_con_str, skip_on_travis
+from tests import reference_db_con_str, skip_on_github_actions
 
 
 # Skip tests if running on Travis CI
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 
 
 @pytest.fixture

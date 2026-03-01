@@ -11,7 +11,12 @@ from time import sleep
 
 import pytest
 
-from tests import TEST_DIR, get_one_translation, has_internet, skip_on_travis
+from tests import (
+    TEST_DIR,
+    get_one_translation,
+    has_internet,
+    skip_on_github_actions,
+)
 from timelink.api.database import TimelinkDatabase, get_import_status
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person, PomSomMapper
@@ -22,7 +27,7 @@ from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import KleioFile
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 
 TEST_DB = "test_import_tl"
 db_path = f"{TEST_DIR}/sqlite/"
@@ -182,8 +187,9 @@ def test_import_issue48(dbsystem):
             raise
 
 
+@skip_on_github_actions
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
-def test_import_with_many(dbsystem):
+def test_import_with_many(dbsystem, kleio_server):
     """Test the import of a long Kleio file into the Timelink database"""
     file = Path("projects/test-project/sources/reference_sources/varia/auc-alunos.cli")
     dbsystem.update_from_sources(file)
