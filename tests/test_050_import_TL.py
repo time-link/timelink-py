@@ -11,12 +11,7 @@ from time import sleep
 
 import pytest
 
-from tests import (
-    TEST_DIR,
-    get_one_translation,
-    has_internet,
-    skip_on_github_actions,
-)
+from tests import TEST_DIR, get_one_translation, has_internet, skip_on_github_actions
 from timelink.api.database import TimelinkDatabase, get_import_status
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person, PomSomMapper
@@ -78,7 +73,7 @@ def test_import_xml(dbsystem):
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_linked_data_attributes(dbsystem):
     """Test the import of a translation with linked_data in attributes"""
-    path = "projects/test-project/sources/reference_sources/linked_data"
+    path = "projects/test-project/sources/reference_sources/linked_data/dehergne-a-partial.cli"
     dbsystem.update_from_sources(path=path)
     with dbsystem.session() as session:
         try:
