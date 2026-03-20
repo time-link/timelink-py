@@ -23,6 +23,10 @@ from timelink.kleio.schemas import KleioFile
 #
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Shared test configuration used by pytest fixtures in tests/conftest.py.
+# Keep Kleio server mode and paths here so tests can import a single source
+# of truth.
 KLEIO_HOME = Path(TEST_DIR, "timelink-home")
 
 # this will be used in some MHK tests should be deprecated
@@ -87,6 +91,8 @@ class KleioServerTestMode(Enum):
     DOCKER = "docker"
 
 
+# Controls how the `kleio_server` fixture in tests/conftest.py provisions
+# the test server.
 kleio_server_mode = KleioServerTestMode.DOCKER
 
 # determine the image of kleio-server to use.

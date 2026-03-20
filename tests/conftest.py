@@ -1,12 +1,23 @@
 import pytest
 
-from tests import KLEIO_HOME, KleioServerTestMode, kleio_server_mode
+import tests as test_settings
 from timelink.kleio.kleio_server import KleioServer
+
+
+def _use_local_kleio_server() -> bool:
+    """Read execution mode from tests package shared settings.
+
+    Keeping this lookup in one place makes the dependency on tests.__init__
+    explicit and easier to maintain.
+    """
+    return test_settings.kleio_server_mode == test_settings.KleioServerTestMode.LOCAL
 
 
 @pytest.fixture(scope="session")
 def kleio_server():
     """setup kleio server for tests
+
+    Configuration for this fixture is defined in tests.__init__.py.
 
     The kleio_server local mode does not start a new Kleio Server in docker.
     Instead it will attach to a running kleio server at a specific
@@ -14,7 +25,8 @@ def kleio_server():
     have the server running in swil prolog and debug interactively.
 
     To run tests with a local Kleio Server outside docker:
-    1) set "mode" in __init__.py to KleioServerTestMode.LOCAL
+    1) set tests.kleio_server_mode in tests.__init__.py to
+       KleioServerTestMode.LOCAL
     2)Run the server in Prolog loading serverStart.pl and then:
 
         setenv('KLEIO_ADMIN_TOKEN','mytoken').
@@ -32,10 +44,8 @@ def kleio_server():
     requests comming from the tests in this suite.
 
     """
-    if kleio_server_mode == KleioServerTestMode.LOCAL:
-        local = True
-    else:
-        local = False
+    # The fixture behavior is controlled by values defined in tests.__init__.py.
+    local = _use_local_kleio_server()
 
     kleio_image = "timelinkserver/kleio-server"
     kleio_version = "latest"
@@ -53,7 +63,8 @@ def kleio_server():
         print("Kleio server version", server.get_version_info())
     else:
         server = KleioServer.start(
-            kleio_home=KLEIO_HOME,
+            # KLEIO_HOME comes from tests.__init__.py shared test configuration.
+            kleio_home=test_settings.KLEIO_HOME,
             kleio_image=kleio_image,
             kleio_version=kleio_version,
             kleio_external_port=kleio_external_port,

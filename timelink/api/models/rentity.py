@@ -1,3 +1,4 @@
+import logging
 import math
 import random
 from enum import Enum as PyEnum
@@ -5,6 +6,7 @@ from itertools import chain
 from typing import Optional
 
 from sqlalchemy import Enum, ForeignKey, Integer, String, UniqueConstraint, update
+from sqlalchemy.exc import MultipleResultsFound
 from sqlalchemy.orm import Mapped, mapped_column, object_session, relationship
 
 from .aregister import ARegister
@@ -376,7 +378,7 @@ class REntity(Entity):
         if session is None:
             raise ValueError("Error, session needed")
 
-        if "bio-michele-ruggieri-his4-19-per1-21" in [id1, id2]:
+        if "deh-ferdinand-verbiest" in [id1, id2]:
             print(f"DEBUG same_as({id1}, {id2})")
 
         # session.commit()
@@ -672,11 +674,31 @@ class REntity(Entity):
         # Query the links table for entity=id1 and user=user and return the id,
         # rid, and status
 
-        r1_id = (
-            session.query(BLink.rid)
-            .filter(BLink.entity == occ, BLink.user == user)
-            .scalar()
-        )
+        try:
+            r1_id = (
+                session.query(BLink.rid)
+                .filter(BLink.entity == occ, BLink.user == user)
+                .scalar()
+            )
+        except MultipleResultsFound:
+            logging.warning(
+                "recover_rentity: multiple BLink rows for entity=%s user=%s; deleting rows and ignoring backup rid",
+                occ,
+                user,
+            )
+            deleted = (
+                session.query(BLink)
+                .filter(BLink.entity == occ, BLink.user == user)
+                .delete(synchronize_session=False)
+            )
+            session.flush()
+            logging.warning(
+                "recover_rentity: deleted %s duplicate BLink rows for entity=%s user=%s",
+                deleted,
+                occ,
+                user,
+            )
+            r1_id = None
 
         if r1_id is not None:
             rentity = session.get(REntity, r1_id)

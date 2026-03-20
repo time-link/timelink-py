@@ -1,10 +1,14 @@
 import os
+
 import pandas
+
 import timelink
-from timelink.api.database import TimelinkDatabase
-from timelink.api.database import is_valid_postgres_db_name
-from timelink.api.database import get_postgres_dbnames
-from timelink.api.database import get_sqlite_databases
+from timelink.api.database import (
+    TimelinkDatabase,
+    get_postgres_dbnames,
+    get_sqlite_databases,
+    is_valid_postgres_db_name,
+)
 from timelink.kleio.kleio_server import KleioServer
 
 
@@ -190,17 +194,22 @@ class TimelinkNotebook:
             else:
                 info_dict["Kleio server token"] = kserver.get_token()[:5] + "..."
 
-            info_dict.update({
-                "Kleio server URL": kserver.get_url(),
-                "Kleio server home": kserver.get_kleio_home(),
-            })
+            info_dict.update(
+                {
+                    "Kleio server URL": kserver.get_url(),
+                    "Kleio server home": kserver.get_kleio_home(),
+                }
+            )
             if kserver.container is not None:
                 info_dict["Kleio server container"] = kserver.container.name
-            info_dict["Kleio version requested"] = self.kleio_version
-            labels = kserver.container.labels
-            build = labels.get("BUILD", "")
-            version = labels.get("VERSION", "")
-            build_date = labels.get("BUILD_DATE", "")
+                info_dict["Kleio version requested"] = self.kleio_version
+                labels = kserver.container.labels
+                build = labels.get("BUILD", "")
+                version = labels.get("VERSION", "")
+                build_date = labels.get("BUILD_DATE", "")
+                info_dict["Kleio server container status"] = kserver.container.status
+            if kserver is not None and kserver.container is None:
+                version, build, build_date = kserver.get_version_info()
             if version != "":
                 info_dict["Kleio server version"] = f"{version}.{build} ({build_date})"
         if self.db_type == "sqlite":
@@ -210,14 +219,16 @@ class TimelinkNotebook:
                 info_dict["Postgres password"] = self.db.db_pwd
             else:
                 info_dict["Postgres password"] = "..."
-            info_dict.update({
-                "Postgres image": self.postgres_image,
-                "Postgres version": self.postgres_version,
-                "Postgres user": self.db.db_user,
-            })
+            info_dict.update(
+                {
+                    "Postgres image": self.postgres_image,
+                    "Postgres version": self.postgres_version,
+                    "Postgres user": self.db.db_user,
+                }
+            )
         db_version = self.db.get_database_version()
         if db_version is None:
-            db_version = 'Not versioned with Alembic'
+            db_version = "Not versioned with Alembic"
         info_dict["Database version"] = db_version
         return info_dict
 
@@ -274,8 +285,12 @@ class TimelinkNotebook:
             )
             # convert the column "import_errors" to int with NA as 0
             # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
-            ifiles_df["import_errors"] = ifiles_df["import_errors"].astype("Int64").fillna(0)
-            ifiles_df["import_warnings"] = ifiles_df["import_warnings"].astype("Int64").fillna(0)
+            ifiles_df["import_errors"] = (
+                ifiles_df["import_errors"].astype("Int64").fillna(0)
+            )
+            ifiles_df["import_warnings"] = (
+                ifiles_df["import_warnings"].astype("Int64").fillna(0)
+            )
 
             return ifiles_df
         else:
