@@ -11,6 +11,10 @@ env:
   # Environment variables
   TRAVIS: true  # For compatibility with existing test configs
   GITHUB_ACTIONS: true  # For compatibility with existing test configs
+  # Kleio server image tag. Pinned to a promoted build for reproducible CI;
+  # keep in sync with DEFAULT_KLEIO_VERSION in timelink/kleio/kleio_server.py
+  # and STACK.md. See RELEASE_CHECKLIST.md for the coordinated-release flow.
+  KLEIO_VERSION: "12.9.588"
 
 jobs:
   lint:
@@ -78,7 +82,7 @@ jobs:
     - name: Pull Docker images
       run: |
         docker pull postgres:latest
-        docker pull timelinkserver/kleio-server:latest
+        docker pull timelinkserver/kleio-server:${KLEIO_VERSION}
 
     - name: Stop default PostgreSQL
       run: |

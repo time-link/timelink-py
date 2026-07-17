@@ -16,6 +16,23 @@ from jsonrpcclient import Error, Ok, parse, request
 
 from .schemas import KleioFile, TokenInfo
 
+# Kleio server image tag used when no explicit version is requested.
+#
+# Pinned to a known-good promoted build rather than "latest" so that a new
+# kleio-server release cannot silently break timelink-py. Override per
+# environment with the $KLEIO_VERSION env var, or per call by passing
+# ``kleio_version=...`` to ``KleioServer.start``.
+#
+# See STACK.md at the repo root for the current verified-good combination of
+# kleio-server / timelink-py / timelink-docs. Update this constant as part of
+# a coordinated release (see RELEASE_CHECKLIST.md).
+DEFAULT_KLEIO_VERSION = "12.9.588"
+
+
+def get_default_kleio_version() -> str:
+    """Resolve the Kleio image tag: ``$KLEIO_VERSION`` env, else ``DEFAULT_KLEIO_VERSION``."""
+    return os.environ.get("KLEIO_VERSION") or DEFAULT_KLEIO_VERSION
+
 
 class KleioServerException(Exception):
     pass
@@ -88,7 +105,7 @@ class KleioServer:
     @staticmethod
     def start(
         kleio_image: str = "timelinkserver/kleio-server",
-        kleio_version: str | None = "latest",
+        kleio_version: str | None = None,
         kleio_home: str | None = None,
         kleio_admin_token: str | None = None,
         kleio_server_port=8088,
@@ -111,7 +128,10 @@ class KleioServer:
 
         Args:
             kleio_image (str): kleio server image, defaults to "timelinkserver/kleio-server"
-            kleio_version (str, optional): kleio-server image version, defaults to "latest"
+            kleio_version (str, optional): kleio-server image tag. ``None`` resolves to
+                ``$KLEIO_VERSION`` env var, else :data:`DEFAULT_KLEIO_VERSION`
+                (a pinned build, not "latest"). Pass an explicit tag (e.g.
+                ``"12.9.588"`` or ``"latest"``) to override.
             kleio_home (str, optional): kleio home directory,
                                         defaults to None -> current directory
             kleio_token (str, optional): kleio server admin token,
@@ -148,7 +168,7 @@ class KleioServer:
         if kleio_image is None:
             kleio_image = "timelinkserver/kleio-server"
         if kleio_version is None:
-            kleio_version = "latest"
+            kleio_version = get_default_kleio_version()
         if not is_docker_running():
             raise RuntimeError("Docker is not running")
         # TODO: test if kleio_home is a valid directory

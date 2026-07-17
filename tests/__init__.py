@@ -103,8 +103,10 @@ kleio_server_mode = KleioServerTestMode.DOCKER
 #     use when testing timelink-py against last public kleio-server images
 #
 use_kleio_image = "timelinkserver/kleio-server"
-# use latest or specific build e.g. 12.8.586
-use_kleio_version = "latest"
+# Pinned to a promoted build for reproducible test runs; keep in sync with
+# DEFAULT_KLEIO_VERSION in timelink/kleio/kleio_server.py and STACK.md.
+# Use "latest" only for ad-hoc checks against a newly released image.
+use_kleio_version = "12.9.588"
 
 skip_if_local = pytest.mark.skipif(
     kleio_server_mode == KleioServerTestMode.LOCAL, reason="Skipping test in LOCAL mode"
