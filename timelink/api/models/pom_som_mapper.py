@@ -282,6 +282,14 @@ class PomSomMapper(Entity):
 
         """
 
+        if self.id is None or self.table_name is None:
+            raise ValueError(
+                "Cannot ensure mapping for PomSomMapper with "
+                f"id={self.id!r} table_name={self.table_name!r}. "
+                "This usually indicates a stale mapper object cached from "
+                "a previously connected database."
+            )
+
         if not hasattr(self, "orm_class"):
             self.orm_class = None
 
@@ -344,7 +352,13 @@ class PomSomMapper(Entity):
             my_table = orm_tables[self.table_name]
         elif self.table_name in dbtables:
             # the table exists in the database, we introspect
-            my_table = Table(self.table_name, metadata_obj, autoload_with=dbengine)
+            # flag it as dynamic so it is not shared with other databases
+            my_table = Table(
+                self.table_name,
+                metadata_obj,
+                info={"dynamic": True, "pom_class_id": self.id},
+                autoload_with=dbengine,
+            )
             # we need to ensure that the foreign key relation exists with super talbe
             # otherwise the ORM mapping further down will fail.
             if self.super_class not in ["root", "base"]:
@@ -466,7 +480,8 @@ class PomSomMapper(Entity):
                 my_orm = type(self.id.capitalize(), (super_orm,), props)
                 my_orm.set_as_dynamic()  # mark as dynamic ORM
         except Exception as e:  # pylint: disable=broad-except
-            logger.ERROR(Exception(f"Could not create ORM mapping for {self.id}"), e)
+            logger.error("Could not create ORM mapping for %s: %s", self.id, e)
+            raise
 
         self.orm_class = my_orm
         PomSomMapper.group_orm_models[self.group_name] = my_orm
@@ -491,11 +506,14 @@ class PomSomMapper(Entity):
 
         stmt = select(cls)
         pom_classes = session.execute(stmt).scalars().all()
-        pom_class: PomSomMapper
-        for pom_class in pom_classes:
-            cls.pom_classes[pom_class.id] = pom_class
+        # Rebuild the cache from the current database only. Accumulating
+        # into the class-level dict leaks mapper objects (possibly expired
+        # or detached) from previously connected databases into this one;
+        # such stale entries later reach ensure_mapping() with None
+        # attributes and abort table creation.
+        cls.pom_classes = {pom_class.id: pom_class for pom_class in pom_classes}
 
-        return cls.pom_classes.values()
+        return list(cls.pom_classes.values())
 
     @classmethod
     def get_pom_class_ids(cls, session):
