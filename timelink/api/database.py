@@ -260,7 +260,10 @@ class TimelinkDatabase(
                 raise Exception("Error while creating database") from exc
         else:
             try:
-
+                # Do not carry PomSomMapper cache entries over from
+                # previously connected databases; they would be merged
+                # into this one by _ensure_all_mappings below.
+                PomSomMapper.reset_cache()
                 self.check_db()  # health check to the database
                 migrations.upgrade(self.db_url)
                 with self.session() as session:
@@ -341,31 +344,94 @@ class TimelinkDatabase(
         """Check the database health and integrity.
 
         This method verifies that:
-        1. All required ORM tables exist in the database.
+        1. All tables expected in this database exist: the static timelink
+           tables plus the dynamic tables recorded in this database's own
+           "classes" table.
         2. Missing tables are created if needed.
         3. For PostgreSQL, checks for and removes obsolete 'linkstatus' type.
 
-        If missing tables are detected, they are created automatically.
+        The set of expected tables is derived from the database itself, not
+        from the global ORM registry. The SQLAlchemy metadata and the ORM
+        class registry are shared between databases opened in the same
+        process; walking them would report (and create) tables that only
+        belong to previously connected databases.
         """
-        db_tables = self.db_table_names()
-        orm_tables = Entity.get_orm_table_names()
-        missing = set(orm_tables) - set(db_tables)
+        db_tables = set(self.db_table_names())
+
+        # Static tables are the tables in the shared ORM metadata that were
+        # not created dynamically. Dynamic tables are flagged in their
+        # "info" dict (see PomSomMapper.ensure_mapping).
+        static_tables = {
+            table.name for table in self.metadata.tables.values() if not table.info.get("dynamic", False)
+        }
+
+        # Dynamic tables that belong to this database, according to its
+        # own "classes" table.
+        dynamic_tables = set()
+        if "classes" in db_tables:
+            try:
+                with self.session() as session:
+                    stmt = select(PomSomMapper.table_name).where(PomSomMapper.table_name.isnot(None))
+                    dynamic_tables = set(session.execute(stmt).scalars().all()) - static_tables
+            except Exception as exc:  # pylint: disable=broad-except
+                logging.warning(f"Could not read the classes table: {exc}")
+
+        expected = static_tables | dynamic_tables
+        missing = expected - db_tables
         if len(missing) > 0:
             logging.warning(f"Missing tables in database: {missing}")
             logging.warning("Creating tables")
-            # we need to create the tables
-            # remove dynamic tables from metadata
-            for dtable in self.db_dynamic_tables():
-                self.metadata.remove(dtable)
+            # Tables with a static definition are created from the metadata,
+            # but only those actually missing: the metadata is shared with
+            # other databases and may contain tables that do not belong here.
+            static_missing = [
+                table
+                for table in self.metadata.tables.values()
+                if table.name in missing and not table.info.get("dynamic", False)
+            ]
+            # Dynamically created tables are rebuilt from the class
+            # definitions stored in this database ("classes" and
+            # "class_attributes" tables).
+            dynamic_missing = sorted(missing - {table.name for table in static_missing})
             try:
-                self.metadata.create_all(self.engine)  # create the tables
+                if static_missing:
+                    self.metadata.create_all(self.engine, tables=static_missing)
+                if dynamic_missing:
+                    with self.session() as session:
+                        stmt = select(PomSomMapper).where(PomSomMapper.table_name.in_(dynamic_missing))
+                        pom_classes = session.execute(stmt).scalars().all()
+                        recreated = set()
+                        for pom_class in pom_classes:
+                            table_obj = self.metadata.tables.get(pom_class.table_name)
+                            orm_class = Entity.get_orm_for_pom_class(pom_class.id)
+                            if (
+                                table_obj is not None
+                                and orm_class is not None
+                                and orm_class.__mapper__.local_table is table_obj
+                            ):
+                                # A valid ORM mapping for this class survives
+                                # from earlier in this process; just recreate
+                                # the physical table.
+                                table_obj.create(self.engine)
+                            else:
+                                # Drop any stale Table object with this name:
+                                # it may belong to another database. The table
+                                # and ORM mapping are rebuilt from the class
+                                # definition stored in this database.
+                                if table_obj is not None:
+                                    self.metadata.remove(table_obj)
+                                pom_class.ensure_mapping(session)
+                            recreated.add(pom_class.table_name)
+                        lost = set(dynamic_missing) - recreated
+                        if lost:
+                            logging.error(f"Could not recreate tables, no class definition in this database: {lost}")
                 migrations.stamp(self.db_url, "head")
-            except Exception as exc:
+            except Exception as exc:  # pylint: disable=broad-except
                 logging.error(f"Error creating tables: {exc}")
         else:
             logging.info("Database is healthy")
 
-        # check if database is postgres and has the link_status type defined
+        # check if database is postgres and has the linkstatus type defined
         if self.db_type == "postgres":
             with self.engine.connect() as connection:
                 result = connection.execute(
@@ -376,12 +442,12 @@ class TimelinkDatabase(
                     )
                 )
                 if result.scalar() is not None:
-                    logging.warning("link_status found, deleting it")
+                    logging.warning("linkstatus found, deleting it")
                     result = connection.execute(
-                        text("DROP TYPE IF EXISTS link_status CASCADE")
+                        text("DROP TYPE IF EXISTS linkstatus CASCADE")
                     )
                     # result = connection.execute(
-                    #     text("CREATE TYPE link_status AS ENUM ('valid', 'invalid', 'possible')")
+                    #     text("CREATE TYPE linkstatus AS ENUM ('valid', 'invalid', 'possible')")
                     # )
 
     def _build_dependency_graph(self, tables):
