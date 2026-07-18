@@ -227,6 +227,8 @@ class DatabaseKleioMixin:
             if translate_requested:
                 self._wait_for_translations(
                     translate_requested,
+                    source_path=path,
+                    source_recurse=recurse,
                     with_translation_errors=with_translation_errors,
                 )
             # import the files
@@ -269,7 +271,14 @@ class DatabaseKleioMixin:
                         logging.error("Error: %s", e)
                         continue
 
-    def _wait_for_translations(self, paths, with_translation_errors=False, max_wait=600):
+    def _wait_for_translations(
+        self,
+        paths,
+        source_path="",
+        source_recurse=True,
+        with_translation_errors=False,
+        max_wait=600,
+    ):
         """Wait until every file requested for translation reaches a terminal status.
 
         A failed translation reverts the file to status "T" instead of a terminal
@@ -278,8 +287,16 @@ class DatabaseKleioMixin:
         revert from P/Q back to T are retried once; files that fail again, end with
         translation errors, or do not finish before max_wait are logged as errors.
 
+        Statuses are polled with a single server call per iteration (scoped to
+        ``source_path``), so polling cost stays constant no matter how many
+        files are being translated.
+
         Args:
             paths (list): Kleio server paths of the files requested for translation.
+            source_path (str, optional): Base path for the status listing; must
+                cover all ``paths``. Defaults to "" (whole server).
+            source_recurse (bool, optional): Recurse ``source_path`` in the status
+                listing. Defaults to True.
             with_translation_errors (bool, optional): If True, files that finish with
                 translation errors are not reported as errors (they will be imported
                 anyway by the caller). Defaults to False.
@@ -293,9 +310,10 @@ class DatabaseKleioMixin:
         deadline = time.time() + max_wait
         logging.debug("Waiting for translations to finish")
         while pending and time.time() < deadline:
+            listing = self.kserver.get_translations(path=source_path, recurse=source_recurse)
+            statuses = {kfile.path: kfile.status.value for kfile in listing}
             for rpath in list(pending):
-                kfiles = self.kserver.get_translations(path=rpath, recurse="no")
-                status = kfiles[0].status.value if len(kfiles) > 0 else None
+                status = statuses.get(rpath)
                 if status in {"P", "Q"}:
                     active.add(rpath)
                 elif status in terminal:
@@ -317,7 +335,8 @@ class DatabaseKleioMixin:
                             "Translation of %s failed twice; file will not be imported",
                             rpath,
                         )
-                # "T" and never active: job not yet registered on the server; keep waiting
+                # "T" or absent from the listing, and never active: job not yet
+                # registered on the server; keep waiting
             if pending:
                 time.sleep(1)
         for rpath in sorted(pending):
