@@ -431,23 +431,23 @@ class TimelinkDatabase(
         else:
             logging.info("Database is healthy")
 
-        # check if database is postgres and has the link_status type defined
+        # check if database is postgres and has the linkstatus type defined
         if self.db_type == "postgres":
             with self.engine.connect() as connection:
                 result = connection.execute(
                     select(text("1")).where(
                         text(
-                            "EXISTS (SELECT 1 FROM pg_type WHERE typname = 'link_status')"
+                            "EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"
                         )
                     )
                 )
                 if result.scalar() is not None:
-                    logging.warning("link_status found, deleting it")
+                    logging.warning("linkstatus found, deleting it")
                     result = connection.execute(
-                        text("DROP TYPE IF EXISTS link_status CASCADE")
+                        text("DROP TYPE IF EXISTS linkstatus CASCADE")
                     )
                     # result = connection.execute(
-                    #     text("CREATE TYPE link_status AS ENUM ('valid', 'invalid', 'possible')")
+                    #     text("CREATE TYPE linkstatus AS ENUM ('valid', 'invalid', 'possible')")
                     # )
 
     def _build_dependency_graph(self, tables):
