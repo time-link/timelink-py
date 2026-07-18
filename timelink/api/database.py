@@ -437,7 +437,7 @@ class TimelinkDatabase(
                 result = connection.execute(
                     select(text("1")).where(
                         text(
-                            "EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"
+                            "EXISTS (SELECT 1 FROM pg_type WHERE typname = 'link_status')"
                         )
                     )
                 )
