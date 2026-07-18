@@ -218,20 +218,17 @@ class DatabaseKleioMixin:
             else:
                 translate_status = "T"  # only those that need translation
 
+            translate_requested = []
             for kfile in self.kserver.get_translations(path=path, recurse=recurse, status=translate_status):
                 logging.info("Request translation of %s %s", kfile.status.value, kfile.path)
                 self.kserver.translate(kfile.path, recurse="no", spawn="no")
+                translate_requested.append(kfile.path)
             # wait for translation to finish
-            logging.debug("Waiting for translations to finish")
-            pfiles = self.kserver.get_translations(path=path, recurse="yes", status="P")
-
-            qfiles = self.kserver.get_translations(path=path, recurse="yes", status="Q")
-            # TODO: change to import as each translation finishes
-            while len(pfiles) > 0 or len(qfiles) > 0:
-                time.sleep(1)
-
-                pfiles = self.kserver.get_translations(path="", recurse="yes", status="P")
-                qfiles = self.kserver.get_translations(path="", recurse="yes", status="Q")
+            if translate_requested:
+                self._wait_for_translations(
+                    translate_requested,
+                    with_translation_errors=with_translation_errors,
+                )
             # import the files
             to_import = self.kserver.get_translations(path=path, recurse=recurse, status="V")  # TODO recurse make param
             if with_translation_warnings:
@@ -271,6 +268,64 @@ class DatabaseKleioMixin:
                         logging.error("Unexpected error:")
                         logging.error("Error: %s", e)
                         continue
+
+    def _wait_for_translations(self, paths, with_translation_errors=False, max_wait=600):
+        """Wait until every file requested for translation reaches a terminal status.
+
+        A failed translation reverts the file to status "T" instead of a terminal
+        state, so watching only P/Q is not enough: a failed file disappears from
+        that watch and would be silently skipped at import time. Files observed to
+        revert from P/Q back to T are retried once; files that fail again, end with
+        translation errors, or do not finish before max_wait are logged as errors.
+
+        Args:
+            paths (list): Kleio server paths of the files requested for translation.
+            with_translation_errors (bool, optional): If True, files that finish with
+                translation errors are not reported as errors (they will be imported
+                anyway by the caller). Defaults to False.
+            max_wait (int, optional): Maximum seconds to wait for all translations
+                to reach a terminal status. Defaults to 600.
+        """
+        terminal = {"V", "W", "E"}
+        pending = set(paths)
+        active = set()  # files ever seen in P or Q since last (re)request
+        retried = set()
+        deadline = time.time() + max_wait
+        logging.debug("Waiting for translations to finish")
+        while pending and time.time() < deadline:
+            for rpath in list(pending):
+                kfiles = self.kserver.get_translations(path=rpath, recurse="no")
+                status = kfiles[0].status.value if len(kfiles) > 0 else None
+                if status in {"P", "Q"}:
+                    active.add(rpath)
+                elif status in terminal:
+                    pending.discard(rpath)
+                    if status == "E" and not with_translation_errors:
+                        logging.error(
+                            "Translation of %s finished with errors; file will not be imported",
+                            rpath,
+                        )
+                elif status == "T" and rpath in active:
+                    if rpath not in retried:
+                        retried.add(rpath)
+                        active.discard(rpath)
+                        logging.warning("Translation of %s failed; retrying", rpath)
+                        self.kserver.translate(rpath, recurse="no", spawn="no")
+                    else:
+                        pending.discard(rpath)
+                        logging.error(
+                            "Translation of %s failed twice; file will not be imported",
+                            rpath,
+                        )
+                # "T" and never active: job not yet registered on the server; keep waiting
+            if pending:
+                time.sleep(1)
+        for rpath in sorted(pending):
+            logging.error(
+                "Translation of %s did not complete within %ss; file will not be imported",
+                rpath,
+                max_wait,
+            )
 
     def import_from_xml(self, file: str | KleioFile, kserver=None, return_stats=True):
         """Import one file
