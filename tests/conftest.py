@@ -69,6 +69,11 @@ def kleio_server():
             kleio_image=kleio_image,
             kleio_version=kleio_version,
             kleio_external_port=kleio_external_port,
+            # Single worker for deterministic tests: with the default of 3
+            # workers, requests are routed to any of them and a worker that
+            # is still (re)loading its RPC methods answers -32601 Method not
+            # found, which made CI flaky (issue #98).
+            kleio_server_workers="1",
             kleio_debug="true",
         )
         print("Kleio server started in Docker", server.container.name)
