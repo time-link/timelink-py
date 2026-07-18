@@ -171,6 +171,18 @@ timelink db upgrade <url> # Run migrations
 timelink mhk version      # Show MHK info
 ```
 
+## Commit Attribution
+
+Commits made by AI agents must be distinguishable from human commits.
+
+- Any AI coding agent committing to this repository must append a
+  `Co-authored-by` trailer identifying itself to every commit message it creates.
+- Kimi Work sessions use: `Co-authored-by: Kimi Agent <kimi-agent@localhost>`
+- Other agents use their own name and email in the same trailer format.
+- Do not change `user.name` / `user.email`; commit authorship stays with the
+  repository owner — agent attribution is via the trailer only.
+- Find agent commits with: `git log --grep="Co-authored-by"`
+
 ## Code Style Guidelines
 
 ### Formatting
