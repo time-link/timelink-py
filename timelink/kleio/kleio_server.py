@@ -216,6 +216,27 @@ class KleioServer:
                 time.sleep(stop_time)
         logging.info("Kleio server started successfully")
 
+        # The home page answers before all JSON-RPC method modules are
+        # registered: translations_get has been observed to return
+        # -32601 Method not found for a short window after startup
+        # (issue #98). Probe a translations call until the registry is up.
+        start_time = time.time()
+        timeout = 60
+        while True:
+            try:
+                kserver.get_translations(path="", recurse="no")
+                break
+            except Exception as e:
+                elapsed_time = time.time() - start_time
+                if elapsed_time >= timeout:
+                    raise RuntimeError(
+                        f"Kleio server RPC methods not ready after {timeout} seconds: {e}"
+                    )
+                logging.warning(
+                    f"Kleio server methods not ready, retrying in {stop_time} seconds: {e}"
+                )
+                time.sleep(stop_time)
+
         return kserver
 
     @staticmethod
