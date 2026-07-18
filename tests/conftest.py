@@ -50,7 +50,7 @@ def kleio_server():
     # Image/version come from tests.__init__.py (single source of truth for
     # the test suite). To test a pre-release local kleio-server build, set
     # use_kleio_image = "kleio-server" and use_kleio_version = "12.9.591"
-    # there — or override via the $KLEIO_VERSION env var at runtime.
+    # there (or edit these variables locally for ad-hoc runs).
     kleio_image = test_settings.use_kleio_image
     kleio_version = test_settings.use_kleio_version
     kleio_external_port = 8089
