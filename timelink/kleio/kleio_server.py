@@ -633,7 +633,22 @@ class KleioServer:
             pars = {"path": path, "recurse": recurse}
         else:
             pars = {"path": path, "recurse": recurse, "status": status}
-        translations = self.call("translations_get", pars, token=token)
+        # The server briefly stops knowing translations_get while it reloads
+        # its method modules (e.g. while processing translate requests):
+        # -32601 Method not found. Transient, so retry a few times (issue #98).
+        max_attempts = 6
+        for attempt in range(max_attempts):
+            try:
+                translations = self.call("translations_get", pars, token=token)
+                break
+            except KleioServerException as e:
+                if "-32601" not in str(e) or attempt == max_attempts - 1:
+                    raise
+                logging.warning(
+                    "translations_get not available, retrying in 2s"
+                    f" (attempt {attempt + 1}/{max_attempts}): {e}"
+                )
+                time.sleep(2)
         result = []
         for t in translations:
             # Use model_validate if KleioFile is a Pydantic model to avoid missing argument errors
