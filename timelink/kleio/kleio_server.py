@@ -216,6 +216,37 @@ class KleioServer:
                 time.sleep(stop_time)
         logging.info("Kleio server started successfully")
 
+        # The home page answers before all JSON-RPC method modules are
+        # registered: translations_get has been observed to return
+        # -32601 Method not found after the server started answering
+        # (issue #98). The server runs multiple workers and each request
+        # may be routed to a different one, so a single successful probe
+        # only proves the worker that answered is ready. Require one
+        # consecutive successful translations probe per worker.
+        workers = kleio_server_workers if kleio_server_workers else 3
+        try:
+            needed = max(1, int(workers))
+        except (TypeError, ValueError):
+            needed = 3
+        start_time = time.time()
+        timeout = 60
+        ready = 0
+        while ready < needed:
+            try:
+                kserver.get_translations(path="", recurse="no")
+                ready += 1
+            except Exception as e:
+                ready = 0
+                elapsed_time = time.time() - start_time
+                if elapsed_time >= timeout:
+                    raise RuntimeError(
+                        f"Kleio server RPC methods not ready after {timeout} seconds: {e}"
+                    )
+                logging.warning(
+                    f"Kleio server methods not ready, retrying in {stop_time} seconds: {e}"
+                )
+                time.sleep(stop_time)
+
         return kserver
 
     @staticmethod
@@ -602,7 +633,22 @@ class KleioServer:
             pars = {"path": path, "recurse": recurse}
         else:
             pars = {"path": path, "recurse": recurse, "status": status}
-        translations = self.call("translations_get", pars, token=token)
+        # The server briefly stops knowing translations_get while it reloads
+        # its method modules (e.g. while processing translate requests):
+        # -32601 Method not found. Transient, so retry a few times (issue #98).
+        max_attempts = 6
+        for attempt in range(max_attempts):
+            try:
+                translations = self.call("translations_get", pars, token=token)
+                break
+            except KleioServerException as e:
+                if "-32601" not in str(e) or attempt == max_attempts - 1:
+                    raise
+                logging.warning(
+                    "translations_get not available, retrying in 2s"
+                    f" (attempt {attempt + 1}/{max_attempts}): {e}"
+                )
+                time.sleep(2)
         result = []
         for t in translations:
             # Use model_validate if KleioFile is a Pydantic model to avoid missing argument errors
