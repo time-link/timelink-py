@@ -60,7 +60,7 @@ dependencies = [
     "requests>=2.32.0",
     "setuptools>=65.5.1",
     "sqlalchemy-views",
-    "SQLAlchemy>=2.0.38",
+    "SQLAlchemy>=2.0.38,<2.1",
     "sqlalchemy-utils",
     "starlette>=0.40.0",
     "starlette-admin",
