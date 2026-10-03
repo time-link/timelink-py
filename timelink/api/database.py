@@ -40,6 +40,16 @@ from .database_query import DatabaseQueryMixin, TimelinkDatabaseSchema
 from .database_sqlite import get_sqlite_databases, get_sqlite_url
 from .database_utils import get_db_password, get_import_status, random_password
 from .database_views import DatabaseViewsMixin
+from .projects import (
+    PROJECT_MARKER,
+    discover_projects,
+    get_timelink_projects,
+    home_is_project,
+    is_project,
+    nearest_project,
+    project_for,
+    project_layout,
+)
 
 __all__ = [
     "TimelinkDatabase",
@@ -61,6 +71,14 @@ __all__ = [
     "get_db_password",
     "get_import_status",
     "random_password",
+    "PROJECT_MARKER",
+    "discover_projects",
+    "get_timelink_projects",
+    "home_is_project",
+    "is_project",
+    "nearest_project",
+    "project_for",
+    "project_layout",
 ]
 
 
@@ -197,9 +215,7 @@ class TimelinkDatabase(
                     self.db_container = get_postgres_container()
                     # if it it is running, we need the password
                     container_vars = self.db_container.attrs["Config"]["Env"]
-                    pwd = [var for var in container_vars if "POSTGRES_PASSWORD" in var][
-                        0
-                    ]
+                    pwd = [var for var in container_vars if "POSTGRES_PASSWORD" in var][0]
                     pwd_value = pwd.split("=")[1]
                     self.db_pwd = pwd_value
                     usr = [var for var in container_vars if "POSTGRES_USER" in var][0]
@@ -213,13 +229,8 @@ class TimelinkDatabase(
                         image=postgres_image,
                         version=postgres_version,
                     )
-                self.db_url = (
-                    f"postgresql://{self.db_user}:"
-                    f"{self.db_pwd}@localhost/{self.db_name}"
-                )
-                self.db_container = start_postgres_server(
-                    self.db_name, self.db_user, self.db_pwd
-                )
+                self.db_url = f"postgresql://{self.db_user}:" f"{self.db_pwd}@localhost/{self.db_name}"
+                self.db_container = start_postgres_server(self.db_name, self.db_user, self.db_pwd)
                 self.db_pwd = get_postgres_container_pwd()
             elif db_type == "mysql":
                 self.db_url = f"mysql://{db_user}:{db_pwd}@localhost/{db_name}"
@@ -249,9 +260,7 @@ class TimelinkDatabase(
         if drop_if_exists:
             if database_exists(self.engine.url):
                 drop_database(self.engine.url)
-        if (
-            not database_exists(self.engine.url) or db_url == "sqlite:///:memory:"
-        ):  # noqa
+        if not database_exists(self.engine.url) or db_url == "sqlite:///:memory:":  # noqa
             try:
                 create_database(self.engine.url)  # create empty database
                 self.create_db()  # creates the tables and views selectively
@@ -267,9 +276,7 @@ class TimelinkDatabase(
                 self.check_db()  # health check to the database
                 migrations.upgrade(self.db_url)
                 with self.session() as session:
-                    self._ensure_all_mappings(
-                        session
-                    )  # this will cache the pomsom mapper objects
+                    self._ensure_all_mappings(session)  # this will cache the pomsom mapper objects
                 # ensure views
                 self._update_views()
                 # get any extra table or views inspecting metadata
@@ -361,9 +368,7 @@ class TimelinkDatabase(
         # Static tables are the tables in the shared ORM metadata that were
         # not created dynamically. Dynamic tables are flagged in their
         # "info" dict (see PomSomMapper.ensure_mapping).
-        static_tables = {
-            table.name for table in self.metadata.tables.values() if not table.info.get("dynamic", False)
-        }
+        static_tables = {table.name for table in self.metadata.tables.values() if not table.info.get("dynamic", False)}
 
         # Dynamic tables that belong to this database, according to its
         # own "classes" table.
@@ -435,17 +440,11 @@ class TimelinkDatabase(
         if self.db_type == "postgres":
             with self.engine.connect() as connection:
                 result = connection.execute(
-                    select(text("1")).where(
-                        text(
-                            "EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"
-                        )
-                    )
+                    select(text("1")).where(text("EXISTS (SELECT 1 FROM pg_type WHERE typname = 'linkstatus')"))
                 )
                 if result.scalar() is not None:
                     logging.warning("linkstatus found, deleting it")
-                    result = connection.execute(
-                        text("DROP TYPE IF EXISTS linkstatus CASCADE")
-                    )
+                    result = connection.execute(text("DROP TYPE IF EXISTS linkstatus CASCADE"))
                     # result = connection.execute(
                     #     text("CREATE TYPE linkstatus AS ENUM ('valid', 'invalid', 'possible')")
                     # )
@@ -500,9 +499,7 @@ class TimelinkDatabase(
                 if dependency != table:
                     in_degree[table] += 1
 
-        queue = [
-            table for table in graph if in_degree[table] == 0
-        ]  # Start with nodes with no incoming edges
+        queue = [table for table in graph if in_degree[table] == 0]  # Start with nodes with no incoming edges
         sorted_tables = []
 
         while queue:
@@ -548,9 +545,7 @@ class TimelinkDatabase(
         with self.session() as session:
             try:
                 for view_name in existing:
-                    stmt = views.DropView(view_name).execute_if(
-                        callable_=views.view_exists
-                    )
+                    stmt = views.DropView(view_name).execute_if(callable_=views.view_exists)
                     session.execute(stmt)
                     session.commit()
             except Exception as exc:
@@ -696,11 +691,7 @@ class TimelinkDatabase(
         # check if we have the data for the core database entity classes
         stmt = select(PomSomMapper.id)
         available_mappings = session.execute(stmt).scalars().all()
-        for (
-            k
-        ) in (
-            pom_som_base_mappings.keys()
-        ):  # pylint: disable=consider-iterating-dictionary
+        for k in pom_som_base_mappings.keys():  # pylint: disable=consider-iterating-dictionary
             if k not in available_mappings:
                 data = pom_som_base_mappings[k]
                 session.bulk_save_objects(data)

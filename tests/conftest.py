@@ -64,7 +64,7 @@ def kleio_server():
         print("Kleio server version", server.get_version_info())
     else:
         server = KleioServer.start(
-            # KLEIO_HOME comes from tests.__init__.py shared test configuration.
+            # KLEIO_HOME comes from tests/__init__.py shared test configuration.
             kleio_home=test_settings.KLEIO_HOME,
             kleio_image=kleio_image,
             kleio_version=kleio_version,
@@ -74,6 +74,12 @@ def kleio_server():
             # is still (re)loading its RPC methods answers -32601 Method not
             # found, which made CI flaky (issue #98).
             kleio_server_workers="1",
+            # The full suite runs ~20 min and the last Kleio consumer
+            # (test_140) comes after a long idle stretch (test_110-130 do
+            # not use the server); the default 900 s idle timeout let the
+            # server exit mid-suite and every late consumer failed with
+            # connection errors.
+            kleio_idle_timeout=3600,
             kleio_debug="true",
         )
         print("Kleio server started in Docker", server.container.name)

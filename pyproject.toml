@@ -97,6 +97,9 @@ test = [
     "coverage==5.5",
     "nbval>=0.10.0",
 ]
+mcp = [
+    "mcp>=1.9.0",
+]
 
 [project.urls]
 Documentation = "https://timelink-py.readthedocs.io/"
@@ -107,6 +110,7 @@ Homepage = "https://github.com/time-link/timelink-py"
 [project.scripts]
 timelink = "timelink.cli:app"
 tmlk = "timelink.cli:app"
+timelink-mcp = "timelink.mcp.__main__:main"
 
 [tool.setuptools]
 zip-safe = false
@@ -121,6 +125,7 @@ timelink = [
     "alembic.ini",
     "app/static/*",
     "app/templates/**/*",
+    "mcp/data/*",
 ]
 
 # Black code formatter configuration

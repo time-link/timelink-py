@@ -39,6 +39,7 @@ timelink/
 │   │   └── ...
 │   ├── database.py        # Main TimelinkDatabase class
 │   ├── database_*.py      # Database mixins (postgres, sqlite, kleio, etc.)
+│   ├── projects.py        # Structural discovery of projects in a timelink home
 │   ├── crud.py           # CRUD operations
 │   ├── schemas.py        # Pydantic schemas for API
 │   └── views.py          # Database views
