@@ -1,4 +1,4 @@
-""" Main class for the Timelink web application. """
+"""Main class for the Timelink web application."""
 
 import os
 import json
@@ -10,7 +10,7 @@ from sqlalchemy.orm import selectinload
 from sqlalchemy.engine.url import make_url
 
 import timelink
-from timelink.api.database import get_postgres_dbnames, get_sqlite_databases
+from timelink.api.database import get_postgres_dbnames, get_sqlite_databases, get_timelink_projects
 from timelink.app.schemas.project import ProjectSchema
 from timelink.kleio.kleio_server import KleioServer
 from timelink.app.models import UserDatabase, User, UserProperty  # noqa
@@ -41,6 +41,7 @@ class TimelinkWebApp:
         stop_duplicates (bool): If True, stop other kleio servers for the same timelink home.
 
     """
+
     # this should be set in a Dependency
     after_auth_url = None
     # Url in fief to authenticate
@@ -171,7 +172,7 @@ class TimelinkWebApp:
             # mask any password that might be present in the dabase URL
             url = make_url(str(self.users_db.engine.url))
             if url.password:
-                url.password = '****'
+                url.password = "****"
             db_url = str(url)
         else:
             db_url = str(self.users_db.engine.url)
@@ -196,7 +197,6 @@ class TimelinkWebApp:
                     "Kleio server URL": kserver.get_url(),
                     "Kleio server home": kserver.get_kleio_home(),
                 }
-
             )
             if not show_token:
                 info_dict["Kleio server token"] = kserver.get_token()[:5] + "..."
@@ -225,20 +225,20 @@ class TimelinkWebApp:
         return info_dict
 
     def get_project_dirs(self):
-        """Get the list of projects
+        """Get the list of top-level project directory names of the home.
 
-        Projects are sub directories of the
-        timelink home directory / projects directory."""
-        projects = []
-        # get the sub directories of timelink-home/projects
-        projects_dir = os.path.join(self.timelink_home, "projects")
-        if os.path.exists(projects_dir):
-            projects = [
-                d
-                for d in os.listdir(projects_dir)
-                if os.path.isdir(os.path.join(projects_dir, d))
-            ]
-        return projects
+        Projects are detected structurally (a ``.timelink-project``
+        marker, ``database/``, ``structures/`` or ``sources/`` child —
+        see :func:`timelink.api.projects.get_timelink_projects`), so
+        besides ``<home>/projects/<project>`` this also covers the
+        legacy MHK ``sources/<project>`` layout and skips directories
+        that are not projects. Subprojects nested inside a project's
+        ``sources/`` (git-submodule layout) belong to the enclosing
+        project and are not listed separately.
+        """
+        if self.timelink_home is None:
+            return []
+        return [project["name"] for project in get_timelink_projects(self.timelink_home) if project["inside"] is None]
 
     def update_projects(self) -> List[Project]:
         """Get the list of projects
@@ -320,9 +320,7 @@ class TimelinkWebApp:
             ifiles_df = pandas.DataFrame(ifiles)
             # convert the column "status" to the enum value
             ifiles_df["status"] = ifiles_df["status"].apply(lambda x: x.value)
-            ifiles_df["import_status"] = ifiles_df["import_status"].apply(
-                lambda x: x.value
-            )
+            ifiles_df["import_status"] = ifiles_df["import_status"].apply(lambda x: x.value)
             # convert the column "import_errors" to int with NA as 0
             # https://stackoverflow.com/questions/21287624/convert-pandas-column-containing-nans-to-dtype-int
             ifiles_df["import_errors"] = ifiles_df["import_errors"].astype("Int64")
@@ -375,9 +373,7 @@ class TimelinkWebApp:
         else:
             return []
 
-    def get_import_rpt(
-        self, file_spec: pandas.DataFrame | str, rows=None, match_path=False, **kwargs
-    ):
+    def get_import_rpt(self, file_spec: pandas.DataFrame | str, rows=None, match_path=False, **kwargs):
         """Show the import report for a given file specification
 
         Args:
@@ -418,16 +414,11 @@ class TimelinkWebApp:
         rpt = ""
         if isinstance(file_spec, pandas.DataFrame):
             if rows is None:
-                raise ValueError(
-                    "The 'rows' argument must be present "
-                    "if the file_spec is a DataFrame"
-                )
+                raise ValueError("The 'rows' argument must be present " "if the file_spec is a DataFrame")
             elif type(rows) is not list:
                 rows = [rows]
             if len(rows) == 0:
-                raise ValueError(
-                    "The 'rows' argument must be a non-empty list, or an integer"
-                )
+                raise ValueError("The 'rows' argument must be a non-empty list, or an integer")
 
             paths = self.get_file_paths(file_spec, rows, "rpt_url")
             for file in paths:
