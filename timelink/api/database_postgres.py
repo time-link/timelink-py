@@ -254,10 +254,8 @@ def get_postgres_dbnames():
     - Are not the 'postgres' system database
 
     Returns:
-        list[str]: List of database names.
-
-    Raises:
-        RuntimeError: If Docker is not running.
+        list[str]: List of database names. Empty if Docker is not running,
+            in which case a warning is issued.
 
     Note:
         This function will start a PostgreSQL server if one is not already running.
@@ -272,7 +270,8 @@ def get_postgres_dbnames():
     """
 
     if not is_docker_running():
-        raise RuntimeError("Docker is not running")
+        warnings.warn("Docker is not running; PostgreSQL databases not listed", stacklevel=2)
+        return []
 
     container = start_postgres_server()
     if container is not None:
