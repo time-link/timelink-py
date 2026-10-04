@@ -2,6 +2,38 @@
 History
 =======
 
+1.2.0 (2026-10-04)
+-------------------
+
+**New features:**
+
+* Timelink MCP server (``timelink[mcp]`` extra, ``timelink-mcp`` entry
+  point): 18 tools over FastMCP/stdio for agents — discovery
+  (``list_projects``, ``list_databases``, ``db_info``, ``db_schema``),
+  attribute and name search, relations, and the split Kleio update
+  pipeline (translate → wait → import) with per-file translation and
+  import reports. Packaged database-structure reference served as the
+  ``timelink://schema/{database}`` resource.
+* Structural project discovery in the package:
+  ``timelink.api.projects.get_timelink_projects`` detects projects by
+  layout (``.timelink-project`` marker, or ``database/``,
+  ``structures/`` or ``sources/`` child; ``.timelink-home`` marks a
+  multi-project home), covering all four documented home layouts —
+  including projects whose sources were never imported and
+  git-submodule subprojects.
+
+**Improvements:**
+
+* ``TimelinkWebApp.get_project_dirs`` now uses the structural project
+  discovery, gaining the legacy MHK ``sources/<project>`` layout and
+  skipping directories that are not projects.
+
+**Testing:**
+
+* The session Kleio server test fixture sets ``kleio_idle_timeout=3600``:
+  with the default 900 s the server self-terminated during the full
+  suite (~20 min) and late consumers failed with connection errors.
+
 1.1.33 (2026-02-27)
 -------------------
 
