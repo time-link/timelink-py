@@ -872,6 +872,13 @@ def find_local_kleio_home(path: str | None = None):
        * if the current directory is "notebooks", kleio-home is assumed that Kleio home
             to be the parent directory of "notebooks"
        * if there is a "tests" subdirectory, kleio-home is searched in childs of "tests"
+       * otherwise the parents of the current directory, up to the user home
+            directory, are searched for a ".timelink-project" or ".timelink-home"
+            marker file and the nearest one wins: a project directory inside a
+            multi-project home is detected by its own ".timelink-project" marker and
+            used as single project kleio home, while the same directory is part of
+            the multi-project home, detected by its ".timelink-home" marker, when
+            detection starts at the home directory
     """
     kleio_home = None
     timelink_home_names = ["kleio-home", "timelink-home", "mhk-home"]
@@ -936,6 +943,28 @@ def find_local_kleio_home(path: str | None = None):
     elif os.path.basename(current_dir) in timelink_home_names:
         kleio_home = os.path.dirname(current_dir)
     else:
+        # search the parents of the current directory, up to the user home
+        # directory, for a marker file; the nearest marker wins so that a
+        # project directory inside a multi-project home is detected by its
+        # own ".timelink-project" marker and used as single project home,
+        # while the multi-project home is found when detection starts at
+        # the home directory
+        dir_path = current_dir
+        while dir_path != user_home:
+            if os.path.isfile(f"{dir_path}/.timelink-project"):
+                # validates the marker; raises ValueError if the directory
+                # is not a valid project directory
+                if is_project_directory(dir_path, add_placeholder=False):
+                    return dir_path
+            if os.path.isfile(f"{dir_path}/.timelink-home"):
+                # validates the marker; raises ValueError if the directory
+                # is not a valid home directory
+                if is_timelink_home_directory(dir_path, add_placeholder=False):
+                    return dir_path
+            if dir_path == os.path.dirname(dir_path):
+                break  # we reached the filesystem root
+            dir_path = os.path.dirname(dir_path)
+
         # check if kleio-home exists in current directory,
         # parents of current directory up to user_home,
         # or tests sub directory of current directory
