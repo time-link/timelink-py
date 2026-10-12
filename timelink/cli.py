@@ -8,6 +8,9 @@ Run with  python -m timelink.cli
 
 import os
 import platform
+import shutil
+import subprocess
+from pathlib import Path
 
 import docker
 import typer
@@ -20,6 +23,10 @@ from timelink.api.database import (
     get_postgres_url,
     get_sqlite_databases,
     get_sqlite_url,
+)
+from timelink.kleio.kleio_server import (
+    is_project_directory,
+    is_timelink_home_directory,
 )
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 
@@ -37,6 +44,8 @@ mhk_app = typer.Typer()
 app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
 db_app = typer.Typer()
 app.add_typer(db_app, name="db", help="Database manager")
+create_app = typer.Typer()
+app.add_typer(create_app, name="create", help="Create new project or multi project home")
 
 
 # Start server
@@ -60,6 +69,123 @@ def start():
     server = uvicorn.Server(config)
     server.run()
     return 0
+
+
+# ================================================
+# Project creation from template repositories
+# ================================================
+
+#: repository with the single user, single project template
+PROJECT_TEMPLATE_REPO = "https://github.com/time-link/timelink-project-template.git"
+#: repository with the multi project home template
+HOME_TEMPLATE_REPO = "https://github.com/time-link/timelink-home-template.git"
+
+
+def clone_template_repo(repo_url: str, path: Path, is_template_dir, what: str):
+    """Clone a Timelink template repository into ``path``.
+
+    Hardened version of a plain ``git clone`` of a template repository:
+
+    * refuses to use an existing non empty directory;
+    * clones with ``--depth 1``;
+    * discards the template repository history and starts a fresh
+      ``git init``, so the new project is not connected to the
+      template repository;
+    * validates the result and adds the marker file
+      (``.timelink-project`` or ``.timelink-home``) if the template
+      does not provide it;
+    * removes the partial directory when it fails.
+
+    Args:
+        repo_url (str): url of the template repository
+        path (Path): target directory, created by the clone
+        is_template_dir (callable): one of
+            :func:`is_project_directory` or
+            :func:`is_timelink_home_directory`, used to validate
+            the cloned directory
+        what (str): "project" or "multi project home", used in messages
+    """
+    if path.exists():
+        if not path.is_dir() or any(path.iterdir()):
+            typer.echo(
+                f"Error: {path} already exists and is not an empty directory.",
+                err=True,
+            )
+            raise typer.Exit(code=1)
+
+    if shutil.which("git") is None:
+        typer.echo(
+            "Error: git is required to create a project from a template repository.",
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    created = not path.exists()
+    try:
+        typer.echo(f"Cloning {what} template from {repo_url} into {path}")
+        subprocess.run(
+            ["git", "clone", "--depth", "1", repo_url, str(path)],
+            check=True,
+        )
+        # keep the template files, discard the template repository history
+        if (path / ".git").is_dir():
+            shutil.rmtree(path / ".git")
+        subprocess.run(["git", "init"], cwd=path, check=True)
+    except (subprocess.CalledProcessError, OSError) as error:
+        typer.echo(f"Error: could not create the {what} at {path}: {error}", err=True)
+        if created and path.exists():
+            shutil.rmtree(path)
+        raise typer.Exit(code=1) from error
+
+    # validate the cloned directory, adding the marker file if missing
+    try:
+        valid = is_template_dir(str(path), add_placeholder=True)
+    except ValueError as error:
+        typer.echo(f"Error: {error}", err=True)
+        valid = False
+    if not valid:
+        typer.echo(
+            f"Error: {path} was cloned from {repo_url}"
+            f" but is not a valid Timelink {what} directory.",
+            err=True,
+        )
+        if created and path.exists():
+            shutil.rmtree(path)
+        raise typer.Exit(code=1)
+    typer.echo(f"Timelink {what} created at {path}")
+
+
+@create_app.command("project")
+def create_project(
+    path: Path = typer.Argument(
+        Path("timelink-project"),
+        help="directory where the project is created; must not exist or be empty",
+    ),
+):
+    """Create a new Timelink project from the timelink-project-template repository.
+
+    The project directory associates kleio source files with a database
+    and is used as timelink-home in single user, single project mode;
+    it can also live inside a multi project home.
+    """
+    clone_template_repo(PROJECT_TEMPLATE_REPO, path, is_project_directory, "project")
+    typer.echo(
+        f"Next: cd {path}, create a Python environment and open "
+        f"{path}/notebooks/README.md"
+    )
+
+
+@create_app.command("multiproject")
+def create_multiproject(
+    path: Path = typer.Argument(
+        Path("timelink-multi-project"),
+        help="directory where the home is created; must not exist or be empty",
+    ),
+):
+    """Create a new Timelink multi project home from the timelink-home-template repository."""
+    clone_template_repo(
+        HOME_TEMPLATE_REPO, path, is_timelink_home_directory, "multi project home"
+    )
 
 
 # ================================================
