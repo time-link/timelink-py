@@ -1,2 +1,39 @@
-# ignore database directory
-database/
+# macOS
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code (machine specific settings)
+.vscode/settings.json
+
+# Environment files and secrets
+.env
+
+# SQLite databases and backups (keep the README.md files)
+database/sqlite/*
+!database/sqlite/README.md
+database/backups/*
+!database/backups/README.md
+*.sqlite
+*.sqlite3
+*.db
+
+# Kleio server state
+.kleio/
+.kleio.json
+
+# Kleio server translation byproducts
+*.err
+*.ids
+*.org
+*.old
+*.cli-renamed
+*.rpt
+*.rep
+*.files.json
+strs/
