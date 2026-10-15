@@ -1,0 +1,11 @@
+# Web application stack for timelink.web (NiceGUI app).
+# Install with: pip install -r requirements_web.txt
+# (equivalent to `pip install -e .[web]`; versions below known to work together)
+nicegui>=2.20
+nicegui-tabulator
+apscheduler>=3.10
+pysolr>=3.10
+starlette-admin
+passlib
+jinja2
+httpx

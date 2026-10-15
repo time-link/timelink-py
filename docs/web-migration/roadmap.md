@@ -1,0 +1,89 @@
+# Web migration roadmap
+
+Phased plan derived from [decisions.md](decisions.md),
+[mhk-web-inventory.md](mhk-web-inventory.md) and
+[timelink-py-status.md](timelink-py-status.md). Update the status
+column as work proceeds; keep commits on `timelink-web-dev`.
+
+## Phase 0 — Consolidate the web baseline ✅ (2026-10-16)
+
+* [x] Branch `timelink-web-dev` created from `test-gsilva-web-merge`
+  (worktree `/Users/jrc/develop/timelink-web-dev`).
+* [x] `main` merged in (only `.gitignore` conflict; both sides kept).
+* [x] Web deps declared: `setup.py extras_require["web"]` +
+  `requirements_web.txt` (nicegui, nicegui-tabulator, apscheduler,
+  pysolr, starlette-admin, passlib, jinja2, httpx).
+* [x] This documentation set added under `docs/web-migration/`.
+
+## Phase 1 — Baseline hygiene (next)
+
+* [ ] Test-suite validation of the merged branch; fix regressions;
+      re-enable CI (at least fast + web tests).
+* [ ] Make secrets configurable (storage_secret, admin password) via
+      env/settings; remove hardcoded defaults.
+* [ ] Gate the raw SQL console to manager/admin roles.
+* [ ] Reconcile duplicate stacks — keep `timelink/web/` as the only
+      app: fold JWT auth service, starlette-admin mount, kleio REST
+      endpoints, Jinja2 entity templates from `timelink/app/`; delete
+      deprecated `app/web/*`, duplicate `TimelinkWebApp`, duplicate
+      user/project models, empty static dirs.
+* [ ] Salvage from `test-jrc-web-merge`: `webapp_settings.py`
+      (pydantic settings), admin page, `extras/web-specs.md`.
+* [ ] After push: delete `gsilva-timelink-webapp`; retire
+      `test-jrc-web-merge`, `test-gsilva-web-merge`.
+* [ ] Review side branches: `kleio-home-marker-walk` (project creation
+      hardening — likely merge to main independently) and
+      `export_rentities` (real-entity export sketch).
+
+## Phase 2 — Record linking workstream (highest value)
+
+* [ ] Python linking engine `timelink/linking/` per
+      [record-linking-port.md](record-linking-port.md) (normalize →
+      statistics → blocking → compare → gtest rules → graph →
+      rentities → queue → dictionary).
+* [ ] Web linking page: same-as / unlink from `display_id_page`,
+      batch confirmation lists (`sameas_list.vm` equivalent),
+      per-user identification browser (`linking_show.vm` equivalent).
+* [ ] Linking dictionary export/import in web UI (productize
+      `docs/web-migration/reference/linking_dictionary.py`).
+* [ ] Linking-graph inspection page (`graph.vm` equivalent).
+* [ ] Explore the running MHK instance (owner will provide URL +
+      credentials) to capture exact UX before building these pages.
+
+## Phase 3 — Exports
+
+* [ ] CSV exports (persons-by-attribute table, acts, links) — pandas
+      layer makes this cheap; add download buttons.
+* [ ] GEDCOM 5.5 export — requires Python `FamilyManagement`
+      equivalent (families/consorts/children from `relations`;
+      MHK Java: `geneology/FamilyManagement.java`, `GedComProcessing.java`).
+* [ ] KML export of place attributes (`attribute_to_kml.vm`).
+* [ ] Network exports (Pajek/GDF) — extend `timelink/networks`.
+
+## Phase 4 — CLI parity
+
+* [ ] `timelink import/update` — wrap `update_from_sources()`
+      (translate→import from the command line).
+* [ ] `timelink db dump/restore/copy` (SQLite file copy; PostgreSQL
+      pg_dump wrapper).
+* [ ] `timelink sources` git subcommands (status/clone/pull/commit…)
+      over the Kleio server API.
+* [ ] `timelink user` management commands (web users DB).
+* [ ] `timelink stop/logs/status` for the stack it starts.
+
+## Phase 5 — Remaining pages & migration utility
+
+* [ ] Calendar/timeline page (`calendar.vm` equivalent).
+* [ ] Families page + family tab on person display.
+* [ ] Web editor for `.cli` sources (CodeMirror or Monaco in NiceGUI).
+* [ ] Legacy MHK migration utility: MySQL/MariaDB dump → timelink
+      SQLite/Postgres (decision D2; basis `timelink/mhk/`), including
+      real entities + links via the linking dictionary format.
+
+## Cross-cutting
+
+* Entity comments feature (MHK `comments` table) — small, can slot
+  into any phase.
+* i18n: MHK had pt/en bundles; decide scope for the new app.
+* Security: parameterized queries everywhere; keep MHK's "expert SQL"
+  behind a role gate.

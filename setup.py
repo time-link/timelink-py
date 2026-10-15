@@ -59,6 +59,18 @@ setup(
         'ipython',
         'uvicorn'
     ],
+    extras_require={
+        'web': [
+            'nicegui>=2.20',
+            'nicegui-tabulator',
+            'apscheduler>=3.10',
+            'pysolr>=3.10',
+            'starlette-admin',
+            'passlib',
+            'jinja2',
+            'httpx',
+        ],
+    },
     license="MIT license",
     long_description=description + '\n\n' + history,
     long_description_content_type='text/x-rst',
