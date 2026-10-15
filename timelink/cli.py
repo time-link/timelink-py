@@ -249,7 +249,7 @@ def db_database_list_cmd():
     nr = len(revisions)
     for i, revision in enumerate(revisions, 0):
         down = revision.down_revision or "None"
-        typer.echo(f" {nr-i:>3} {revision.revision[:4]} {revision.doc} <- {down[:4]}")
+        typer.echo(f" {nr - i:>3} {revision.revision[:4]} {revision.doc} <- {down[:4]}")
     return db_index
 
 
@@ -361,7 +361,7 @@ def mhk_version():
         except Exception as e:
             typer.echo(f"Could not access docker: {e}")
     else:
-        type.echo("Could not find a MHK instalation")
+        typer.echo("Could not find a MHK instalation")
     return 0
 
 

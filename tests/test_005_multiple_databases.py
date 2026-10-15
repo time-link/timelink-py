@@ -29,7 +29,6 @@ tables exist. If not it will create the missing tables, poluting the second data
 """
 
 import pytest  # pylint: disable=import-error
-from sqlalchemy_utils import drop_database  # pylint: disable=import-error
 from tests import TEST_DIR
 from timelink.api.database import TimelinkDatabase
 
@@ -85,9 +84,8 @@ def test_multiple_databases(test_setup):
     # check if the dynamic mappings are there
     ntables_after_reopening = len(database_again.db_table_names())
     assert ntables_after_reopening == ntables_after_import, "dynamic tables lost after reopening"
-    # no longer needed
-    drop_database(database.engine.url)
 
+    database.drop_db()
     db_name2 = db_name + "2"
     # create a second database
     # note that the metadata object is shared because it is a global sqlalchemy
@@ -100,4 +98,4 @@ def test_multiple_databases(test_setup):
     ntables_2 = len(database2.db_table_names())
     # check if the tables are the same
     assert ntables_1 == ntables_2, "only base tables created in second database"
-    drop_database(database2.engine.url)
+    database2.drop_db()

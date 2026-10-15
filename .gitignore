@@ -121,3 +121,5 @@ tests/timelink-home/system/db/sqlite/timelink_users
 
 # Solr files
 solrdata/
+
+BRANCH_ANALYSIS.md

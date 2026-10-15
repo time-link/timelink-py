@@ -77,22 +77,22 @@ def test_csv_to_kleio():
             if i > 0:
                 # create Kleio and Source for this batch
                 kleio = KKleio("gacto2.str")
-                fonte_lb = fonte(f"{base_csv_filename}_{i//batch_size}", obs=f'Lido de {csv_file_name}')
+                fonte_lb = fonte(f"{base_csv_filename}_{i // batch_size}", obs=f'Lido de {csv_file_name}')
                 kleio.include(fonte_lb)
                 # update the current list
-                list_lb["id"] = f"{base_csv_filename}_l{i//batch_size}"
+                list_lb["id"] = f"{base_csv_filename}_l{i // batch_size}"
                 list_lb["data"] = f"{batch_min_date}:{batch_max_date}"
                 fonte_lb.include(list_lb)
 
                 # Write the previous kleio content to a file
-                file_path = f"{kleio_file_path}/" + f"{base_csv_filename}" + f"_{i//batch_size}.cli"
+                file_path = f"{kleio_file_path}/" + f"{base_csv_filename}" + f"_{i // batch_size}.cli"
                 with open(file_path, "w", encoding="utf-8") as kleio_file:
                     kleio_file.write(kleio.to_kleio())
 
                 # create a new list for the next batch
                 list_lb = lista("temp")
 
-        p = bacharel(id=f"letbach-{i+1}", nome=person["Name"], sexo='m')
+        p = bacharel(id=f"letbach-{i + 1}", nome=person["Name"], sexo='m')
 
         # Update min and max dates for the current batch
         if i % batch_size == 0:
@@ -115,12 +115,12 @@ def test_csv_to_kleio():
         list_lb.include(p)
 
     # Write the last batch of kleio content to a file
-    file_path = f"{kleio_file_path}/" + f"{base_csv_filename}" + f"_{i//batch_size+1}.cli"
+    file_path = f"{kleio_file_path}/" + f"{base_csv_filename}" + f"_{i // batch_size + 1}.cli"
     kleio = KKleio("gacto2.str")
-    fonte_lb = fonte(f"{base_csv_filename}_{i//batch_size+1}", obs=f'Lido de {csv_file_name}')
+    fonte_lb = fonte(f"{base_csv_filename}_{i // batch_size + 1}", obs=f'Lido de {csv_file_name}')
     kleio.include(fonte_lb)
     # update the current list
-    list_lb["id"] = f"{base_csv_filename}_l{i//batch_size+1}"
+    list_lb["id"] = f"{base_csv_filename}_l{i // batch_size + 1}"
     list_lb["data"] = f"{batch_min_date}:{batch_max_date}"
     fonte_lb.include(list_lb)
     with open(file_path, "w", encoding="utf-8") as kleio_file:

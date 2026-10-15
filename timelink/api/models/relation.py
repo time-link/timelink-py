@@ -164,6 +164,7 @@ class Relation(Entity):
             f"**Observation:** {self.obs or 'None'}\n"
         )
 
+
 Entity.rels_out = relationship(
     "Relation", foreign_keys=[Relation.origin], back_populates="dest"
 )

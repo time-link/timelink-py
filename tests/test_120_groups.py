@@ -514,7 +514,7 @@ def test_allow_as_part_1():
     # print(y.to_kleio())
 
     with pytest.raises(ValueError):
-        x.include(y), "include should have failed"
+        x.include(y)
 
     Kx.allow_as_part('ky')
     x.include(y)
@@ -655,7 +655,7 @@ def test_kgroup_get_item():
 def test_kgroup_get_item_check_el():
     p = KPerson("joaquim", "m", "jrc", obs="")
     with pytest.raises(ValueError):
-        p["nome"], "get inexistent element should raise error"
+        p["nome"]
 
 
 def test_kgroup_get_item_no_check_el():
@@ -677,7 +677,7 @@ def test_kgroup_set_item():
 def test_kgroup_set_item_check_el():
     p = KPerson("joaquim", "m", "jrc", obs="")
     with pytest.raises(ValueError):
-        p["profissao"] = "professor", "set illegal element should raise error"
+        p["profissao"] = "professor"
 
 
 def test_kgroup_get(kgroup_nested):

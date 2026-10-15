@@ -40,7 +40,7 @@ def style_color_row_by_category(row, palette, category="id"):
         category:  column that determines the row color
     """
     id = row[category]
-    row_colors = [f"background-color: {palette.get(id,'#ffffff')}"] * len(row)
+    row_colors = [f"background-color: {palette.get(id, '#ffffff')}"] * len(row)
     return row_colors
 
 
