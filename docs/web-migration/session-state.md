@@ -62,7 +62,10 @@ on top of the merged history:
    Env note: `/api` is exempt from the login redirect and has **no
    auth** yet (the old JWT code was a stub) — add token auth before
    any public deployment.
-2. Phase 2 linking workstream: `timelink/linking/` package per
+2. Phase 2 web-interface workstream (owner decision 2026-10-16:
+   build the web interface first, then record linking, then GEDCOM —
+   see roadmap Phase 2/2b): entity display pages, sources pipeline,
+   explore/calendar/families, /api auth. Then `timelink/linking/` package per
    [record-linking-port.md](record-linking-port.md), then web linking
    page — build against the captured UX in
    [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md).

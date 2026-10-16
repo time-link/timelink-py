@@ -52,18 +52,23 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       hardening — likely merge to main independently) and
       `export_rentities` (real-entity export sketch).
 
-## Phase 2 — Record linking workstream (highest value)
+## Phase 2 — Web interface workstream (owner decision 2026-10-16: web
+interface first, then record linking, then GEDCOM)
 
-* [ ] Python linking engine `timelink/linking/` per
-      [record-linking-port.md](record-linking-port.md) (normalize →
-      statistics → blocking → compare → gtest rules → graph →
-      rentities → queue → dictionary).
-* [ ] Web linking page: same-as / unlink from `display_id_page`,
-      batch confirmation lists (`sameas_list.vm` equivalent),
-      per-user identification browser (`linking_show.vm` equivalent).
-* [ ] Linking dictionary export/import in web UI (productize
-      `docs/web-migration/reference/linking_dictionary.py`).
-* [ ] Linking-graph inspection page (`graph.vm` equivalent).
+Build out the timelink/web app against the UX captured in
+[mhk-ux-walkthrough.md](mhk-ux-walkthrough.md) before porting the
+linking engine, so the engine grows alongside real pages.
+
+* [ ] Entity display pages to MHK parity: person/act/real-person
+  display with identifications tab, attribute/relation rendering
+  (Jinja2 entity markdown templates salvaged into
+  `timelink/web/templates/markdown/` are the starting point).
+* [ ] Sources pipeline page parity: translation/import status,
+  report viewers, git operations over the Kleio server API.
+* [ ] Explore/facets, calendar/timeline page (`calendar.vm`
+  equivalent — moved up from Phase 5), families page + family tab.
+* [ ] API auth for `/api` (currently unauthenticated; old JWT code
+  was a stub) — required before any public deployment.
 * [x] Explore the running MHK instance (2026-10-16): done — full
       walkthrough with 19 screenshots in
       [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md) (search, act/
@@ -71,6 +76,22 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       dashboard with export/import, sources pipeline incl. git and
       report viewers, system, explore facets, calendar, SQL query,
       networks generation).
+
+## Phase 2b — Record linking (after the web interface bones exist)
+
+* [ ] Python linking engine `timelink/linking/` per
+      [record-linking-port.md](record-linking-port.md) (normalize →
+      statistics → blocking → compare → gtest rules → graph →
+      rentities → queue → dictionary). Port incrementally: build the
+      minimum slice the linking page needs first (same-as queue +
+      operations), then the statistical pipeline.
+      Reference implementation: `~/develop/mhk` (Java, read-only).
+* [ ] Web linking page: same-as / unlink from `display_id_page`,
+      batch confirmation lists (`sameas_list.vm` equivalent),
+      per-user identification browser (`linking_show.vm` equivalent).
+* [ ] Linking dictionary export/import in web UI (productize
+      `docs/web-migration/reference/linking_dictionary.py`).
+* [ ] Linking-graph inspection page (`graph.vm` equivalent).
 
 ## Phase 3 — Exports
 
@@ -95,8 +116,9 @@ column as work proceeds; keep commits on `timelink-web-dev`.
 
 ## Phase 5 — Remaining pages & migration utility
 
-* [ ] Calendar/timeline page (`calendar.vm` equivalent).
-* [ ] Families page + family tab on person display.
+* [ ] ~~Calendar/timeline page~~ and ~~families page + family tab~~ —
+  moved up into Phase 2 (2026-10-16 owner decision: web interface
+  first).
 * [ ] Web editor for `.cli` sources (CodeMirror or Monaco in NiceGUI).
 * [ ] Legacy MHK migration utility: MySQL/MariaDB dump → timelink
       SQLite/Postgres (decision D2; basis `timelink/mhk/`), including
