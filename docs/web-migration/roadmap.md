@@ -63,6 +63,11 @@ linking engine, so the engine grows alongside real pages.
   display with identifications tab, attribute/relation rendering
   (Jinja2 entity markdown templates salvaged into
   `timelink/web/templates/markdown/` are the starting point).
+  *Started (2026-10-16): manual linking loop done — person page has
+  the RID line, Same as/Link form and Unlink; `/id/{rid}` renders a
+  real-entity page with merged-biography and Identifications tabs
+  (batch same-as), backed by `timelink/linking/service.py`. Remaining:
+  act-display parity checks, IDList batch mechanism, comments form.*
 * [ ] Sources pipeline page parity: translation/import status,
   report viewers, git operations over the Kleio server API.
 * [ ] Explore/facets, calendar/timeline page (`calendar.vm`
