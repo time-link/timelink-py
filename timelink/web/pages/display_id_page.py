@@ -1,8 +1,10 @@
 from timelink.web.pages import navbar
-from nicegui import ui
+from nicegui import ui, app
 from timelink.web import timelink_web_utils
 from timelink.api.models import Entity
+from timelink.api.models.rentity import REntity
 from timelink.api.schemas import EntityAttrRelSchema
+from timelink.linking import service as linking_service
 from timelink.web.models import Activity
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
@@ -40,7 +42,8 @@ class DisplayIDPage:
                     "source": self._display_act,
                     "relation": self._display_act,
                     "attribute": self._display_act,
-                    "escritura": self._display_act
+                    "escritura": self._display_act,
+                    "rentity": self._display_rentity,
                 }
 
                 ui.add_body_html('''<style>
@@ -110,6 +113,27 @@ class DisplayIDPage:
                 ui.label('inside:').classes('text-orange-500')
                 ui.label(entity.inside).on(
                     'click', lambda: ui.navigate.to(f'/id/{entity.inside}')).classes('highlight-cell')
+
+        # --- manual linking (MHK person_show.vm equivalent) ---
+        current_user = app.storage.user.get('username', 'guest')
+        with self.database.session() as link_session:
+            rid = linking_service.get_rid_for(entity.id, current_user, link_session)
+
+        if rid:
+            with ui.row().classes('items-center gap-1'):
+                ui.label('Full file (RID) :').classes('text-orange-500')
+                ui.label(rid).on('click', lambda: ui.navigate.to(f'/id/{rid}')
+                                 ).classes('highlight-cell text-blue-400')
+                ui.button('Unlink', on_click=lambda: self._unlink(entity.id)
+                          ).props('dense unelevated size=sm color=negative')
+
+        with ui.row().classes('items-center gap-1'):
+            link_input = ui.input(placeholder='Same as: occurrence id or RID',
+                                  validation={'required': lambda v: bool(v.strip())}
+                                  ).props('dense outlined').classes('w-72')
+            ui.button('Same as / Link',
+                      on_click=lambda: self._same_as(entity.id, link_input)
+                      ).props('dense unelevated color=positive')
 
         parsed_attributes, parsed_relations_in, parsed_relations_out = timelink_web_utils.parse_entity_details(entity)
 
@@ -217,6 +241,147 @@ class DisplayIDPage:
                                     ui.space().classes("col-span-2 ml-1 mt-1 mb-1")
 
                                 first_card_rendered = True
+
+    def _same_as(self, entity_id: str, link_input):
+        """Link this occurrence to another occurrence or an existing RID."""
+        target = (link_input.value or '').strip()
+        if not target:
+            ui.notify('Provide an occurrence id or a RID to link to.', type='warning')
+            return
+        current_user = app.storage.user.get('username', 'guest')
+        try:
+            with self.database.session() as session:
+                rentity = linking_service.same_as(entity_id, target, current_user, session)
+                rid = rentity.id if isinstance(rentity, REntity) else rentity
+            ui.notify(f'Linked {entity_id} to {rid}.', type='positive')
+            ui.navigate.to(f'/id/{rid}')
+        except Exception as e:
+            ui.notify(f'Could not link: {e}', type='negative')
+
+    def _unlink(self, entity_id: str):
+        """Remove the current user's link between this occurrence and its RID."""
+        current_user = app.storage.user.get('username', 'guest')
+        try:
+            with self.database.session() as session:
+                rid = linking_service.unlink_occurrence(entity_id, current_user, session)
+            if rid:
+                ui.notify(f'Unlinked {entity_id} from {rid}.', type='positive')
+            else:
+                ui.notify(f'{entity_id} was not linked.', type='warning')
+            ui.navigate.to(f'/id/{entity_id}')
+        except Exception as e:
+            ui.notify(f'Could not unlink: {e}', type='negative')
+
+    def _make_selected_same(self, rid: str, checkbox_pairs):
+        """Batch-link all checked occurrences under this real entity."""
+        selected = [occ_id for cb, occ_id in checkbox_pairs if cb.value]
+        if len(selected) < 2:
+            ui.notify('Select at least two entries.', type='warning')
+            return
+        current_user = app.storage.user.get('username', 'guest')
+        try:
+            with self.database.session() as session:
+                for occ in selected[1:]:
+                    linking_service.same_as(occ, rid, current_user, session)
+            ui.notify(f'Made {len(selected)} entries the same ({rid}).', type='positive')
+            ui.navigate.to(f'/id/{rid}')
+        except Exception as e:
+            ui.notify(f'Could not link selected entries: {e}', type='negative')
+
+    def _display_rentity(self, entity: REntity):
+        "Real entity display (MHK rperson_show.vm equivalent)."
+
+        ui.page_title(f"Real entity {entity.id}")
+
+        with ui.row():
+            ui.label(entity.description or entity.id
+                     ).classes('text-xl font-bold')
+            ui.label(f"id: {entity.id}").classes('text-xl font-bold text-orange-500')
+
+        with ui.row().classes('items-center gap-1'):
+            ui.label('user:').classes('text-orange-500')
+            ui.label(entity.user).classes('mr-3 text-blue-400')
+            ui.label('status:').classes('text-orange-500')
+            ui.label(str(entity.status)).classes('mr-3 text-blue-400')
+            ui.label('occurrences:').classes('text-orange-500')
+            ui.label(str(len(entity.links))).classes('text-blue-400')
+            if getattr(entity, 'obs', None):
+                ui.label('obs:').classes('text-orange-500')
+                ui.label(entity.obs).classes('text-blue-400')
+
+        with self.database.session() as session:
+            occurrences = linking_service.rperson_occurrences(entity.id, session)
+
+        with ui.card().tight().classes("w-full bg-gray-50"):
+            with ui.tabs() as tabs:
+                info_tab = ui.tab('r_info', label='Real Person Info')
+                id_tab = ui.tab('r_id', label='Identifications')
+            with ui.tab_panels(tabs, value=info_tab).classes('w-full bg-gray-50'):
+                with ui.tab_panel(info_tab):
+                    ui.markdown(
+                        'Merged view of all linked occurrences — the '
+                        '"reconstructed biography" (one row per act participation).'
+                    ).classes('text-xs italic text-gray-500')
+                    for occ in occurrences:
+                        self._render_occurrence_row(occ)
+                with ui.tab_panel(id_tab):
+                    self._render_identifications(entity, occurrences)
+
+    def _render_occurrence_row(self, occ: Entity):
+        """One occurrence's participations: date | occurrence | attributes | relations."""
+        parsed_attributes, rels_in, rels_out = timelink_web_utils.parse_entity_details(occ)
+        with ui.card().tight().classes(
+            "w-full border-0 border-b border-gray-300 rounded-none shadow-none bg-gray-50"
+        ):
+            with ui.row().classes('w-full items-start gap-6 text-xs'):
+                ui.label(getattr(occ, 'name', occ.id)).on(
+                    'click', lambda _, id=occ.id: ui.navigate.to(f'/id/{id}')
+                ).classes('highlight-cell cursor-pointer font-bold')
+                with ui.column().classes('col-span-1'):
+                    for date, pairs in sorted(parsed_attributes.items()):
+                        with ui.row().classes('no-wrap'):
+                            ui.label(format_timelink_date(date)).classes('text-blue-600 font-bold')
+                            for entry in pairs:
+                                with ui.row().classes('no-wrap'):
+                                    ui.label(f"{entry.the_type}: {entry.the_value}")
+                with ui.column().classes('col-span-1'):
+                    for rel in rels_in:
+                        with ui.row().classes('no-wrap'):
+                            ui.label(f"tem como {rel['the_value']} : {rel['org_name']}").on(
+                                'click', lambda _, id=rel['origin']: ui.navigate.to(f'/id/{id}')
+                            ).classes('highlight-cell cursor-pointer')
+                    for rel in rels_out:
+                        if rel["the_type"] in self.accepted_relations:
+                            with ui.row().classes('no-wrap'):
+                                ui.label(f"{rel['the_value']} : {rel['dest_name']}").on(
+                                    'click', lambda _, id=rel['destination']: ui.navigate.to(f'/id/{id}')
+                                ).classes('highlight-cell cursor-pointer')
+
+    def _render_identifications(self, entity: REntity, occurrences):
+        """Checkbox list of linked occurrences + batch same-as (MHK
+        rperson_identification.vm equivalent)."""
+        ui.label(
+            f"* Users that identified this person=[{entity.user}]"
+        ).classes('text-xs italic text-gray-500')
+
+        checkbox_pairs = []
+        for occ in occurrences:
+            with ui.row().classes('items-center gap-2 w-full'):
+                cb = ui.checkbox(
+                    f"{getattr(occ, 'name', occ.id)} ({occ.id})", value=False
+                ).classes('text-xs')
+                checkbox_pairs.append((cb, occ.id))
+
+        with ui.row():
+            ui.button('Select all',
+                      on_click=lambda: [cb.set_value(True) for cb, _ in checkbox_pairs]
+                      ).props('dense flat')
+            ui.button('Unselect all',
+                      on_click=lambda: [cb.set_value(False) for cb, _ in checkbox_pairs]
+                      ).props('dense flat')
+            ui.button('Make selected entries the same',
+                      on_click=lambda: self._make_selected_same(entity.id, checkbox_pairs)
+                      ).props('dense unelevated color=positive')
 
     def _display_geoentity(self, entity: Entity):
         "Page to load details on an entity of type person."
