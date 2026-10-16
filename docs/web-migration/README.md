@@ -23,6 +23,7 @@ no need to re-analyse the Java codebase from scratch.
 | [timelink-py-status.md](timelink-py-status.md) | What exists in timelink-py (main + web branches), gap matrix, CLI gaps, known issues. |
 | [record-linking-port.md](record-linking-port.md) | Inventory of the ~90 MySQL stored procedures/functions to port to Python, grouping and proposed strategy. |
 | [roadmap.md](roadmap.md) | Phased work plan and current status of each phase. |
+| [session-state.md](session-state.md) | Handoff: exact branch/commit state, env changes, immediate next actions. **Read second.** |
 | [reference/](reference/) | Reference material (e.g. the owner's `linking_dictionary.py` prototype for the linking-dictionary export). |
 
 ## Status snapshot (2026-10-16)
