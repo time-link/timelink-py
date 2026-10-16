@@ -52,4 +52,20 @@ def header(responsive: bool = True):
             ui.button("Logout", on_click=logout).classes('text-white font-bold no-underline')
 
     with ui.column().classes('w-full'):
+        # IDList mechanism (MHK person_show.vm equivalent): ids saved
+        # across pages, carried by a persistent Link preview form
+        idlist = app.storage.user.get('idlist', [])
+        if idlist:
+            def empty_idlist() -> None:
+                app.storage.user['idlist'] = []
+                ui.navigate.to(ui.context.client.page_path)
+
+            with ui.row().classes('w-full items-center gap-2 bg-amber-100 rounded p-2'):
+                ui.icon('playlist_add_check').classes('text-amber-600')
+                ui.label(f'IDList: {len(idlist)} saved ids').classes('text-sm font-bold')
+                ui.button('Link preview',
+                          on_click=lambda: ui.navigate.to('/idlist')
+                          ).props('dense unelevated size=sm color=positive')
+                ui.button('Empty list', on_click=empty_idlist
+                          ).props('dense flat size=sm color=negative')
         yield

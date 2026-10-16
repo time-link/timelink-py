@@ -14,3 +14,16 @@ class Activity(ActivityBase):
     activity_type = Column(String(32), nullable=False)
     desc = Column(Text(), nullable=True)
     when = Column(DateTime, default=datetime.now, nullable=False)
+
+
+class Comment(ActivityBase):
+    """Entity comment (MHK `comments` table equivalent): a note left
+    by a user on an entity page."""
+
+    __tablename__ = 'comments'
+
+    id = Column(Integer, primary_key=True)
+    entity_id = Column(String(64), nullable=False, index=True)
+    user_name = Column(String(64), nullable=False)
+    text = Column(Text(), nullable=False)
+    created = Column(DateTime, default=datetime.now, nullable=False)

@@ -6,6 +6,7 @@ from timelink.api.models.rentity import REntity
 from timelink.api.schemas import EntityAttrRelSchema
 from timelink.linking import service as linking_service
 from timelink.web.models import Activity
+from timelink.web.models.activity import Comment
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 from timelink.kleio.utilities import format_timelink_date
@@ -85,6 +86,81 @@ class DisplayIDPage:
                     ui.label('Could not load details for selected entity.').classes('text-red-500 font-semibold mt-4')
                     print(f"Could not load details for selected entity: {e}")
 
+        @ui.page('/idlist')
+        async def idlist_preview_page():
+            """IDList preview: batch-link the saved occurrence ids
+            (MHK rentity_preview.vm equivalent)."""
+            with navbar.header(responsive=False):
+                ui.page_title("IDList preview")
+
+                idlist = app.storage.user.get('idlist', [])
+                if not idlist:
+                    ui.label('The IDList is empty. Use "Save id" on an entity page.'
+                             ).classes('text-lg font-bold text-red-500')
+                    return
+
+                ui.label(f'{len(idlist)} saved ids:').classes('text-orange-500 text-lg font-bold')
+
+                with self.database.session() as session:
+                    entries = []
+                    for occ_id in idlist:
+                        entity = self.database.get_entity(occ_id, session=session)
+                        label = (
+                            f"{getattr(entity, 'name', occ_id)} ({occ_id})"
+                            if entity else f"missing ({occ_id})"
+                        )
+                        entries.append((occ_id, label, entity is not None))
+
+                checkbox_pairs = []
+                for occ_id, label, exists in entries:
+                    with ui.row().classes('items-center gap-2 w-full'):
+                        cb = ui.checkbox(label, value=exists).classes('text-xs')
+                        if exists:
+                            cb.set_value(True)
+                        checkbox_pairs.append((cb, occ_id, exists))
+
+                def empty_list():
+                    app.storage.user['idlist'] = []
+                    ui.navigate.to('/idlist')
+
+                def link_preview():
+                    selected = [occ_id for cb, occ_id, _ in checkbox_pairs if cb.value]
+                    target = target_input.value.strip()
+                    if target:
+                        # attach every selected occurrence to the target rid
+                        pairs = [(occ, target) for occ in selected]
+                    elif len(selected) >= 2:
+                        pairs = [(selected[0], selected[1])] + [
+                            (occ, None) for occ in selected[2:]
+                        ]
+                    else:
+                        ui.notify('Select at least two entries (or one plus a target rid).',
+                                  type='warning')
+                        return
+                    current_user = app.storage.user.get('username', 'guest')
+                    try:
+                        with self.database.session() as session:
+                            rentity = linking_service.same_as(
+                                pairs[0][0], pairs[0][1], current_user, session
+                            )
+                            rid = rentity.id if isinstance(rentity, REntity) else rentity
+                            for occ, _ in pairs[1:]:
+                                linking_service.same_as(occ, rid, current_user, session)
+                        app.storage.user['idlist'] = []
+                        ui.notify(f'Linked {len(pairs)} entries to {rid}.', type='positive')
+                        ui.navigate.to(f'/id/{rid}')
+                    except Exception as e:
+                        ui.notify(f'Could not link: {e}', type='negative')
+
+                with ui.row().classes('items-center gap-2 mt-4'):
+                    target_input = ui.input(
+                        placeholder='Target rid (optional; default: link among selected)'
+                    ).props('dense outlined').classes('w-96')
+                    ui.button('Make entries the same', on_click=link_preview
+                              ).props('dense unelevated color=positive')
+                    ui.button('Empty list', on_click=empty_list
+                              ).props('dense flat color=negative')
+
     def _display_person(self, entity: Entity):
         "Page to load details on an entity of type person."
 
@@ -134,6 +210,15 @@ class DisplayIDPage:
             ui.button('Same as / Link',
                       on_click=lambda: self._same_as(entity.id, link_input)
                       ).props('dense unelevated color=positive')
+
+        def save_id():
+            idlist = app.storage.user.get('idlist', [])
+            if entity.id not in idlist:
+                idlist.append(entity.id)
+                app.storage.user['idlist'] = idlist
+            ui.notify(f'Saved {entity.id} to IDList ({len(idlist)} ids).', type='info')
+
+        ui.button('Save id', on_click=save_id).props('dense flat size=sm')
 
         parsed_attributes, parsed_relations_in, parsed_relations_out = timelink_web_utils.parse_entity_details(entity)
 
@@ -242,6 +327,59 @@ class DisplayIDPage:
 
                                 first_card_rendered = True
 
+        self._render_comments(entity.id)
+
+    def _render_comments(self, entity_id: str):
+        """Comments section (MHK comments form equivalent).
+
+        Tolerant of databases without the comments table (older
+        projects) and of mock sessions in tests.
+        """
+        try:
+            with self.database.session() as session:
+                comments = (
+                    session.query(Comment)
+                    .filter(Comment.entity_id == entity_id)
+                    .order_by(Comment.created)
+                    .all()
+                )
+        except Exception as e:
+            print(f"Could not load comments for {entity_id}: {e}")
+            return
+
+        with ui.card().tight().classes('w-full bg-gray-50 p-4'):
+            ui.label('Comments').classes('text-orange-500 text-lg font-bold')
+            for comment in comments:
+                with ui.row().classes('w-full items-start gap-2'):
+                    ui.icon('chat').classes('text-gray-400 mt-1')
+                    with ui.column().classes('gap-0'):
+                        ui.label(
+                            f"{comment.user_name} ({comment.created:%Y-%m-%d %H:%M})"
+                        ).classes('text-xs italic text-gray-500')
+                        ui.label(comment.text).classes('text-sm')
+
+            def send_comment():
+                text = comment_input.value.strip()
+                if not text:
+                    ui.notify('Write a comment first.', type='warning')
+                    return
+                current_user = app.storage.user.get('username', 'guest')
+                try:
+                    with self.database.session() as session:
+                        session.add(Comment(entity_id=entity_id,
+                                            user_name=current_user, text=text))
+                        session.commit()
+                    ui.notify('Comment saved.', type='positive')
+                    ui.navigate.to(f'/id/{entity_id}')
+                except Exception as e:
+                    ui.notify(f'Could not save comment: {e}', type='negative')
+
+            with ui.row().classes('w-full items-center gap-2 mt-2'):
+                comment_input = ui.textarea(placeholder='Leave a comment…'
+                                            ).props('dense outlined').classes('w-full')
+                ui.button('Send', on_click=send_comment
+                          ).props('dense unelevated color=positive')
+
     def _same_as(self, entity_id: str, link_input):
         """Link this occurrence to another occurrence or an existing RID."""
         target = (link_input.value or '').strip()
@@ -311,10 +449,33 @@ class DisplayIDPage:
 
         with self.database.session() as session:
             occurrences = linking_service.rperson_occurrences(entity.id, session)
+            occ_ids = {occ.id for occ in occurrences}
+            current_user = app.storage.user.get('username', 'guest')
+            safe = {
+                occ_id: linking_service.get_rid_for(occ_id, current_user, session)
+                for occ_id in occ_ids
+            }
+            # acts containing the linked occurrences
+            act_ids, related = [], []
+            for occ in occurrences:
+                if getattr(occ, 'inside', None) and occ.inside not in act_ids:
+                    act_ids.append(occ.inside)
+                _, rels_in, rels_out = timelink_web_utils.parse_entity_details(occ)
+                for rel in rels_in:
+                    if rel["origin"] not in occ_ids and rel["origin"] not in related:
+                        related.append(rel["origin"])
+                for rel in rels_out:
+                    if rel["destination"] not in occ_ids and rel["destination"] not in related:
+                        related.append(rel["destination"])
+            related_entities = [
+                e for e in (session.get(Entity, rid) for rid in related) if e is not None
+            ]
 
         with ui.card().tight().classes("w-full bg-gray-50"):
             with ui.tabs() as tabs:
                 info_tab = ui.tab('r_info', label='Real Person Info')
+                acts_tab = ui.tab('r_acts', label='All the Acts')
+                related_tab = ui.tab('r_related', label='Related Persons')
                 id_tab = ui.tab('r_id', label='Identifications')
             with ui.tab_panels(tabs, value=info_tab).classes('w-full bg-gray-50'):
                 with ui.tab_panel(info_tab):
@@ -324,8 +485,32 @@ class DisplayIDPage:
                     ).classes('text-xs italic text-gray-500')
                     for occ in occurrences:
                         self._render_occurrence_row(occ)
+                with ui.tab_panel(acts_tab):
+                    ui.label(
+                        f'{len(act_ids)} acts mention the linked occurrences.'
+                    ).classes('text-xs italic text-gray-500')
+                    for act_id in act_ids:
+                        with ui.row().classes('items-center gap-2 w-full'):
+                            ui.icon('description').classes('text-gray-400')
+                            ui.label(act_id).on(
+                                'click', lambda _, id=act_id: ui.navigate.to(f'/id/{id}')
+                            ).classes('highlight-cell cursor-pointer')
+                with ui.tab_panel(related_tab):
+                    ui.label(
+                        f'{len(related_entities)} persons related to the linked occurrences.'
+                    ).classes('text-xs italic text-gray-500')
+                    for rel_entity in related_entities:
+                        with ui.row().classes('items-center gap-2 w-full'):
+                            ui.icon('person').classes('text-gray-400')
+                            ui.label(
+                                f"{getattr(rel_entity, 'name', rel_entity.id)} ({rel_entity.id})"
+                            ).on(
+                                'click', lambda _, id=rel_entity.id: ui.navigate.to(f'/id/{id}')
+                            ).classes('highlight-cell cursor-pointer')
                 with ui.tab_panel(id_tab):
-                    self._render_identifications(entity, occurrences)
+                    self._render_identifications(entity, occurrences, safe)
+
+        self._render_comments(entity.id)
 
     def _render_occurrence_row(self, occ: Entity):
         """One occurrence's participations: date | occurrence | attributes | relations."""
@@ -357,13 +542,15 @@ class DisplayIDPage:
                                     'click', lambda _, id=rel['destination']: ui.navigate.to(f'/id/{id}')
                                 ).classes('highlight-cell cursor-pointer')
 
-    def _render_identifications(self, entity: REntity, occurrences):
+    def _render_identifications(self, entity: REntity, occurrences, safe=None):
         """Checkbox list of linked occurrences + batch same-as (MHK
-        rperson_identification.vm equivalent)."""
+        rperson_identification.vm equivalent). safe maps occurrence id
+        to the rid linked for the *current* user (the "Safe Rid" column)."""
         ui.label(
             f"* Users that identified this person=[{entity.user}]"
         ).classes('text-xs italic text-gray-500')
 
+        safe = safe or {}
         checkbox_pairs = []
         for occ in occurrences:
             with ui.row().classes('items-center gap-2 w-full'):
@@ -371,6 +558,10 @@ class DisplayIDPage:
                     f"{getattr(occ, 'name', occ.id)} ({occ.id})", value=False
                 ).classes('text-xs')
                 checkbox_pairs.append((cb, occ.id))
+                if safe.get(occ.id):
+                    ui.label(f'safe: {safe[occ.id]}').classes(
+                        'text-xs italic text-green-700'
+                    )
 
         with ui.row():
             ui.button('Select all',

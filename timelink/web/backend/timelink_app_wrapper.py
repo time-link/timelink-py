@@ -11,7 +11,7 @@ import timelink
 from timelink.api.database import TimelinkDatabase, get_postgres_dbnames, get_sqlite_databases
 from timelink.web.models.user_database import UserDatabase
 from timelink.web.models.project import Project
-from timelink.web.models.activity import Activity, ActivityBase
+from timelink.web.models.activity import Activity, ActivityBase, Comment
 from timelink.web.models.user import User
 from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
@@ -273,10 +273,14 @@ class TimelinkWebApp:
 
             # Check if tables exist here.
             tables = db.db_table_names()
+            new_tables = []
             if "activity" not in tables:
-                print("No Activity table found in the database - creating...")
-                ActivityBase.metadata.create_all(bind=db.engine, tables=[Activity.__table__])
-                print("Done!")
+                new_tables.append(Activity.__table__)
+            if "comments" not in tables:
+                new_tables.append(Comment.__table__)
+            if new_tables:
+                print(f"Creating tables in the project database: {[t.name for t in new_tables]}")
+                ActivityBase.metadata.create_all(bind=db.engine, tables=new_tables)
 
             db.set_kleio_server(self.kleio_server)
             return db
@@ -303,10 +307,14 @@ class TimelinkWebApp:
             # Check if tables exist here.
             tables = db.db_table_names()
 
+            new_tables = []
             if "activity" not in tables:
-                print("No Activity table found in the database - creating...")
-                ActivityBase.metadata.create_all(bind=db.engine, tables=[Activity.__table__])
-                print("Done!")
+                new_tables.append(Activity.__table__)
+            if "comments" not in tables:
+                new_tables.append(Comment.__table__)
+            if new_tables:
+                print(f"Creating tables in the project database: {[t.name for t in new_tables]}")
+                ActivityBase.metadata.create_all(bind=db.engine, tables=new_tables)
 
             # Attach the Kleio server for that project - TODO : it should be the project's kleio url
             db.set_kleio_server(self.kleio_server)
