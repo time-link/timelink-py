@@ -123,3 +123,6 @@ tests/timelink-home/system/db/sqlite/timelink_users
 solrdata/
 
 BRANCH_ANALYSIS.md
+
+# NiceGUI app storage (runtime artifact)
+.nicegui/

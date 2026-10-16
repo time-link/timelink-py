@@ -67,6 +67,7 @@ setup(
             'pysolr>=3.10',
             'starlette-admin',
             'passlib',
+            'argon2-cffi',
             'jinja2',
             'httpx',
         ],
