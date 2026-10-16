@@ -48,17 +48,19 @@ on top of the merged history:
 
 ## Immediate next actions (in order)
 
-1. Push `timelink-web-dev` to origin (owner decision needed: push as-is
-   or after Phase-1 cleanup commits).
-2. Phase 1 hygiene (roadmap): configurable secrets, gate SQL console,
+0. ~~Push `timelink-web-dev` to origin~~ done 2026-10-16 (later
+   commits pushed too — see git log).
+1. Phase 1 hygiene (roadmap): configurable secrets, gate SQL console,
    reconcile duplicate `timelink/app/` vs `timelink/web/` stacks,
    salvage `webapp_settings.py` from `test-jrc-web-merge`, CI.
-3. Phase 2 linking workstream: `timelink/linking/` package per
+2. Phase 2 linking workstream: `timelink/linking/` package per
    [record-linking-port.md](record-linking-port.md), then web linking
-   page.
-4. Owner promised **online access to a running MHK instance** (URL +
-   level-3 credentials + which DBs have data) to capture the UX of the
-   pages being rebuilt — ask for it when starting page work.
+   page — build against the captured UX in
+   [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md).
+3. Live instance access (owner-provided, temporary credentials kept
+   out of this repo): `https://linode.timelink-mhk.net/mhk/`, user
+   `beta-tester` level 3, db `beta_tester_db` (Ílhavo parish data).
+   Available for re-checking flows during linking-page development.
 
 ## Pending owner decisions (see decisions.md "Open questions")
 

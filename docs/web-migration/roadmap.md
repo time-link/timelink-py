@@ -53,8 +53,13 @@ column as work proceeds; keep commits on `timelink-web-dev`.
 * [ ] Linking dictionary export/import in web UI (productize
       `docs/web-migration/reference/linking_dictionary.py`).
 * [ ] Linking-graph inspection page (`graph.vm` equivalent).
-* [ ] Explore the running MHK instance (owner will provide URL +
-      credentials) to capture exact UX before building these pages.
+* [x] Explore the running MHK instance (2026-10-16): done — full
+      walkthrough with 19 screenshots in
+      [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md) (search, act/
+      person/real-person display, identifications tab, linking
+      dashboard with export/import, sources pipeline incl. git and
+      report viewers, system, explore facets, calendar, SQL query,
+      networks generation).
 
 ## Phase 3 — Exports
 

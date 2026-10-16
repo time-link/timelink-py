@@ -22,6 +22,7 @@ no need to re-analyse the Java codebase from scratch.
 | [mhk-web-inventory.md](mhk-web-inventory.md) | Complete feature/route/schema inventory of the Java MHK web app. |
 | [timelink-py-status.md](timelink-py-status.md) | What exists in timelink-py (main + web branches), gap matrix, CLI gaps, known issues. |
 | [record-linking-port.md](record-linking-port.md) | Inventory of the ~90 MySQL stored procedures/functions to port to Python, grouping and proposed strategy. |
+| [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md) | Page-by-page UX walkthrough of the live Java instance (2026-10-16), with screenshots in [screenshots/](screenshots/). |
 | [roadmap.md](roadmap.md) | Phased work plan and current status of each phase. |
 | [session-state.md](session-state.md) | Handoff: exact branch/commit state, env changes, immediate next actions. **Read second.** |
 | [reference/](reference/) | Reference material (e.g. the owner's `linking_dictionary.py` prototype for the linking-dictionary export). |
