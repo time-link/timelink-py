@@ -1,6 +1,6 @@
 # Session state / handoff
 
-Last updated: 2026-10-16 (end of consolidation session). Read this
+Last updated: 2026-10-16 (end of Phase 1 hygiene session). Read this
 together with [README.md](README.md) and [roadmap.md](roadmap.md).
 
 ## Repos and paths
@@ -50,9 +50,18 @@ on top of the merged history:
 
 0. ~~Push `timelink-web-dev` to origin~~ done 2026-10-16 (later
    commits pushed too — see git log).
-1. Phase 1 hygiene (roadmap): configurable secrets, gate SQL console,
-   reconcile duplicate `timelink/app/` vs `timelink/web/` stacks,
-   salvage `webapp_settings.py` from `test-jrc-web-merge`, CI.
+1. ~~Phase 1 hygiene~~ done 2026-10-16 (later session): flaky tests
+   hardened (`kleio_retry`), secrets configurable
+   (`TIMELINK_STORAGE_SECRET`, `TIMELINK_ADMIN_PASSWORD`,
+   `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET`; committed GitHub OAuth
+   secret invalidated by removal), SQL console gated to admins,
+   `timelink/app/` deleted with live assets salvaged into
+   `timelink/web/` (REST API at `/api`, templates, user-property
+   methods), `webapp_settings.py` salvaged. Remaining Phase 1 items:
+   CI, branch cleanup, side-branch review.
+   Env note: `/api` is exempt from the login redirect and has **no
+   auth** yet (the old JWT code was a stub) — add token auth before
+   any public deployment.
 2. Phase 2 linking workstream: `timelink/linking/` package per
    [record-linking-port.md](record-linking-port.md), then web linking
    page — build against the captured UX in

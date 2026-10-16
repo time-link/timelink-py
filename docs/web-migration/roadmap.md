@@ -33,13 +33,19 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` (committed GitHub
       secret removed; GitHub login disabled when unset).
 * [ ] Gate the raw SQL console to manager/admin roles.
-* [ ] Reconcile duplicate stacks — keep `timelink/web/` as the only
-      app: fold JWT auth service, starlette-admin mount, kleio REST
-      endpoints, Jinja2 entity templates from `timelink/app/`; delete
-      deprecated `app/web/*`, duplicate `TimelinkWebApp`, duplicate
-      user/project models, empty static dirs.
-* [ ] Salvage from `test-jrc-web-merge`: `webapp_settings.py`
-      (pydantic settings), admin page, `extras/web-specs.md`.
+* [x] Reconcile duplicate stacks — `timelink/web/` is now the only
+      app (2026-10-16): REST endpoints salvaged into
+      `timelink/web/api.py` (mounted at `/api`), entity markdown
+      templates moved to `timelink/web/templates/`, user-property
+      methods ported into web `UserDatabase`; `timelink/app/` and
+      empty `timelink/static`/`timelink/statics` deleted, docs pruned.
+      Note: the app stack's "JWT auth" was a stub (get_current_user
+      returned None) — real token auth for `/api` is future work.
+* [x] Salvage from `test-jrc-web-merge` (2026-10-16):
+      `webapp_settings.py` → `timelink/web/backend/webapp_settings.py`;
+      `web-specs.md` → `docs/web-migration/reference/web-specs.md`.
+      The branch's admin page was an empty stub — skipped (the
+      consolidated stack already mounts starlette-admin).
 * [ ] After push: delete `gsilva-timelink-webapp`; retire
       `test-jrc-web-merge`, `test-gsilva-web-merge`.
 * [ ] Review side branches: `kleio-home-marker-walk` (project creation
