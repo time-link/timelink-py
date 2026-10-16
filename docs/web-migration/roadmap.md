@@ -23,10 +23,15 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       web extra), two (`test_050_import_TL` kleio import tests) are
       flaky under full-suite load and pass on re-run. No merge
       regressions found.
-* [ ] Flakiness: the two `test_050_import_TL` tests race with the
-      Kleio server under load — needs retry/timeout hardening.
-* [ ] Make secrets configurable (storage_secret, admin password) via
-      env/settings; remove hardcoded defaults.
+* [x] Flakiness: the two `test_050_import_TL` tests race with the
+      Kleio server under load — hardened with a `kleio_retry`
+      decorator (3 attempts) plus fixing a swallowed import exception
+      (2026-10-16); full file now passes (20/20).
+* [x] Make secrets configurable (storage_secret, admin password) via
+      env/settings; remove hardcoded defaults (2026-10-16):
+      `TIMELINK_STORAGE_SECRET`, `TIMELINK_ADMIN_PASSWORD`,
+      `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` (committed GitHub
+      secret removed; GitHub login disabled when unset).
 * [ ] Gate the raw SQL console to manager/admin roles.
 * [ ] Reconcile duplicate stacks — keep `timelink/web/` as the only
       app: fold JWT auth service, starlette-admin mount, kleio REST

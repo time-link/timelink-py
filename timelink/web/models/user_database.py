@@ -1,5 +1,6 @@
 import os
 import warnings
+from typing import List
 
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker, session
@@ -370,6 +371,94 @@ class UserDatabase:
 
         session.delete(user)
         session.commit()
+
+    def set_user_property(
+        self, user_id: int, property_name: str, property_value: str, session=None
+    ):
+        """Add or update a user property
+
+        Args:
+            user_id: the id of the user
+            property_name: the name of the property
+            property_value: the value of the property
+
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session"
+                )
+            else:
+                session = self.current_session
+
+        user_property = session.scalars(
+            select(UserProperty).filter(
+                UserProperty.user_id == user_id, UserProperty.name == property_name
+            )
+        ).first()
+        if user_property is not None:
+            user_property.value = property_value
+            session.merge(user_property)
+        else:
+            user_property = UserProperty(
+                name=property_name, value=property_value, user_id=user_id
+            )
+            session.add(user_property)
+
+    def get_user_properties(self, user_id: int, session=None) -> List[UserProperty]:
+        """Get the properties of a user
+
+        Args:
+            user_id: the id of the user
+
+        Returns:
+            a list with the properties of the user
+
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+
+        return session.scalars(
+            select(UserProperty).filter(UserProperty.user_id == user_id)
+        ).all()
+
+    def get_user_property(
+        self, user_id: int, property_name: str, session=None
+    ) -> UserProperty:
+        """Get a user property
+
+        Args:
+            user_id: the id of the user
+            property_name: the name of the property
+
+        Returns:
+            the property with the given name
+
+        """
+        if session is None:
+            if self.current_session is None:
+                raise ValueError(
+                    "No session available."
+                    "Either pass a session or "
+                    "with db as session:"
+                )
+            else:
+                session = self.current_session
+
+        return session.scalars(
+            select(UserProperty).filter(
+                UserProperty.user_id == user_id, UserProperty.name == property_name
+            )
+        ).first()
 
     def set_user_project_access(
         self, user_id: int, project_id: int, access_level: str, session=None

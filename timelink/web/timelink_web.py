@@ -28,7 +28,8 @@ class AuthMiddleware(BaseHTTPMiddleware):
                     return RedirectResponse("/")
             if (
                 request.url.path not in {'/login', '/register', '/github/login', '/github/callback'} and not
-                request.url.path.startswith('/_nicegui')
+                request.url.path.startswith('/_nicegui') and not
+                request.url.path.startswith('/api')
             ):
                 return RedirectResponse(f'/login?redirect_to={request.url.path}')
         else:
@@ -46,6 +47,10 @@ async def initial_setup():
         job_scheduler=job_scheduler,
         database_type=database_type
     )
+    app.state.webapp = timelink_app_settings
+
+    from timelink.web.api import router as api_router
+    app.include_router(api_router, prefix="/api")
 
     login.Login(timelink_app=timelink_app_settings)
     github_login.GithubLoginPage(timelink_app=timelink_app_settings)
