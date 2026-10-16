@@ -88,7 +88,9 @@ async def test_show_kleio_info(user: User, fake_timelink_app, fake_user) -> None
 
     timelink_web_utils.show_kleio_info(fake_timelink_app.kleio_server)
 
-    markdown = user.find(ui.markdown).elements.pop()
+    markdown = next(
+        m for m in user.find(ui.markdown).elements if "Kleio URL" in m.content
+    )
 
     expected_markdown = f"""
         - **Kleio URL:** {fake_timelink_app.kleio_server.url}
