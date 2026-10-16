@@ -91,6 +91,12 @@ class TablesPage:
                 ui.page_title("SQL Search Results")
 
                 await ui.context.client.connected()
+                if not app.storage.user.get('is_admin', False):
+                    ui.label('SQL search is restricted to administrators.').classes(
+                        'text-xl text-red-500 font-semibold ml-1'
+                    )
+                    return
+
                 sql_table = app.storage.tab.get('sql_table')
                 sql = app.storage.tab.get('sql_query')
 

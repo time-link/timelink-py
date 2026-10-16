@@ -46,61 +46,62 @@ class Search:
 
             ui.separator()
 
-            # SQL Search
-            ui.label('SQL Search').classes('text-orange-500 text-xl mt-3 ml-3 font-bold')
+            # SQL Search — raw SQL is an expert feature, admin only
+            if app.storage.user.get('is_admin', False):
+                ui.label('SQL Search').classes('text-orange-500 text-xl mt-3 ml-3 font-bold')
 
-            @ui.refreshable
-            def preview_table_display(table_name: str) -> None:
-                """Refreshable table preview on the Search page"""
+                @ui.refreshable
+                def preview_table_display(table_name: str) -> None:
+                    """Refreshable table preview on the Search page"""
 
-                if not table_name or table_name in ["users", "projects", "user_project_access", "user_projects"]:
-                    return
+                    if not table_name or table_name in ["users", "projects", "user_project_access", "user_projects"]:
+                        return
 
-                self.sql_input.value = f"SELECT * FROM {table_name} LIMIT 50"
-                # Preview rows
-                query = text(f"SELECT * FROM {table_name} LIMIT 5")
-                result = self.database.query(query)
-                df = pd.DataFrame(result.fetchall(), columns=result.keys())
+                    self.sql_input.value = f"SELECT * FROM {table_name} LIMIT 50"
+                    # Preview rows
+                    query = text(f"SELECT * FROM {table_name} LIMIT 5")
+                    result = self.database.query(query)
+                    df = pd.DataFrame(result.fetchall(), columns=result.keys())
 
-                # Get column types
-                cols_info = inspect(self.database.engine).get_columns(table_name)
-                col_types = {col["name"]: str(col["type"]) for col in cols_info}
+                    # Get column types
+                    cols_info = inspect(self.database.engine).get_columns(table_name)
+                    col_types = {col["name"]: str(col["type"]) for col in cols_info}
 
-                if df.empty:
-                    ui.label("No rows found").classes('text-red-500')
-                else:
-                    with ui.column().classes("w-full"):
-                        ui.label('Table Preview').classes('text-orange-500 text-lg mt-3 ml-3 font-bold')
-                        df.columns = [f"{col} ({col_types.get(col, '?')})" for col in df.columns]
-                        ui.aggrid.from_pandas(df)
+                    if df.empty:
+                        ui.label("No rows found").classes('text-red-500')
+                    else:
+                        with ui.column().classes("w-full"):
+                            ui.label('Table Preview').classes('text-orange-500 text-lg mt-3 ml-3 font-bold')
+                            df.columns = [f"{col} ({col_types.get(col, '?')})" for col in df.columns]
+                            ui.aggrid.from_pandas(df)
 
-            with ui.row().classes("items-center w-full"):
-                with ui.card().classes("items-center bg-[#5898d4]"):
-                    ui.label("Table Selection").classes("font-bold text-white")
-                    internal_tables = {"users", "projects", "user_project_access", "user_properties"}
+                with ui.row().classes("items-center w-full"):
+                    with ui.card().classes("items-center bg-[#5898d4]"):
+                        ui.label("Table Selection").classes("font-bold text-white")
+                        internal_tables = {"users", "projects", "user_project_access", "user_properties"}
 
-                    self.table_select = ui.select(
-                        options=[t for t in self.database.db_table_names() if t not in internal_tables],
-                        on_change=lambda e: preview_table_display.refresh(e.value)
-                    ).props(
-                        'dense outlined input-class="pl-3"'
-                    ).classes(
-                        'w-[160px] ml-100 bg-blue-50 rounded border border-blue-300'
-                    )
+                        self.table_select = ui.select(
+                            options=[t for t in self.database.db_table_names() if t not in internal_tables],
+                            on_change=lambda e: preview_table_display.refresh(e.value)
+                        ).props(
+                            'dense outlined input-class="pl-3"'
+                        ).classes(
+                            'w-[160px] ml-100 bg-blue-50 rounded border border-blue-300'
+                        )
 
-                with ui.column().classes("items-center"):
-                    self.sql_input = ui.textarea(
-                        placeholder='Type your SQL Query here.',
-                    ).props(
-                        'dense outlined input-class="pl-2 pt-2"'
-                    ).classes("w-[60vh] bg-gray-50 border border-gray-300 rounded resize-none")
+                    with ui.column().classes("items-center"):
+                        self.sql_input = ui.textarea(
+                            placeholder='Type your SQL Query here.',
+                        ).props(
+                            'dense outlined input-class="pl-2 pt-2"'
+                        ).classes("w-[60vh] bg-gray-50 border border-gray-300 rounded resize-none")
 
-                ui.button('Execute').on('click', lambda: self._handle_sql_searches())
+                    ui.button('Execute').on('click', lambda: self._handle_sql_searches())
+
+                with ui.card().tight().classes("w-full bg-gray-50"):
+                    preview_table_display("")
 
             ui.separator()
-
-            with ui.card().tight().classes("w-full bg-gray-50"):
-                preview_table_display("")
 
             # Solr Search
             ui.label('Free Form Search').classes('text-orange-500 text-xl mt-3 ml-3 font-bold')
@@ -215,6 +216,9 @@ class Search:
 
     async def _handle_sql_searches(self):
         """Handles the search using SQL."""
+        if not app.storage.user.get('is_admin', False):
+            ui.notify("SQL search is restricted to administrators", type="negative")
+            return
         if self.sql_input.value:
             app.storage.tab['sql_table'] = self.table_select.value
             app.storage.tab['sql_query'] = self.sql_input.value
