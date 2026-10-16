@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 from timelink.web.models.user import User
 from passlib.hash import argon2
 from timelink.web import timelink_web_utils
+from timelink.web.pages import github_login
 
 
 class Login:
@@ -112,14 +113,15 @@ class Login:
                     ui.label("Google login coming soon!").classes('text-orange-500 text-center')
                     ui.button('OK', on_click=google_dialog.close).classes('mt-2 bg-orange-500 text-white')
                 with ui.row():
-                    with ui.button(
-                        on_click=github_dialog.open
-                    ).classes(
-                        'p-1 rounded-full bg-transparent hover:bg-gray-100 transition'
-                    ):
-                        ui.image(
-                            'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'
-                        ).classes('w-12 rounded-full')
+                    if github_login.GITHUB_CLIENT_ID and github_login.GITHUB_CLIENT_SECRET:
+                        with ui.button(
+                            on_click=github_dialog.open
+                        ).classes(
+                            'p-1 rounded-full bg-transparent hover:bg-gray-100 transition'
+                        ):
+                            ui.image(
+                                'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'
+                            ).classes('w-12 rounded-full')
                     with ui.button(
                         on_click=google_dialog.open
                     ).classes(

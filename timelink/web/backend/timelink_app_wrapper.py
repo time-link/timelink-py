@@ -1,6 +1,7 @@
 """ Main class for the Timelink web application. """
 
 import os
+import secrets
 from pathlib import Path
 from dotenv import load_dotenv
 import docker
@@ -213,11 +214,17 @@ class TimelinkWebApp:
             email="guest_demo_user@timelink.com"
         )
 
+        admin_password = os.environ.get("TIMELINK_ADMIN_PASSWORD")
+        if not admin_password:
+            admin_password = secrets.token_urlsafe(12)
+            print("TIMELINK_ADMIN_PASSWORD not set; generated a one-time "
+                  f"password for the admin user: {admin_password}")
+
         admin_user = User(
             name="Admin Superuser",
             nickname="admin",
             email="admin_user@timelink.com",
-            hashed_password=argon2.hash("adminpass"),
+            hashed_password=argon2.hash(admin_password),
             is_admin=True
         )
 

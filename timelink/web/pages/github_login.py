@@ -1,13 +1,16 @@
 from nicegui import ui, app
 from fastapi import Request
 import httpx
+import os
 from timelink.web.pages import navbar
 from timelink.web.models.user import User
 from passlib.hash import argon2
 from timelink.web import timelink_web_utils
 
-GITHUB_CLIENT_ID = "Ov23li2llB5KmHOoaBRe"
-GITHUB_CLIENT_SECRET = "ce96a524f5c480a6238cbfed5990ff977276827b"
+# Register an OAuth app at https://github.com/settings/developers and
+# set these env vars to enable GitHub login.
+GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "")
+GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "")
 
 
 class GithubLoginPage:
@@ -24,6 +27,9 @@ class GithubLoginPage:
             return await self.finish_github_login(request)
 
     async def start_github_login(self):
+        if not GITHUB_CLIENT_ID or not GITHUB_CLIENT_SECRET:
+            ui.notify("GitHub login is not configured on this server", type="negative")
+            return ui.navigate.to("/login")
         authorize_url = (
             "https://github.com/login/oauth/authorize"
             f"?client_id={GITHUB_CLIENT_ID}&scope=user:email"

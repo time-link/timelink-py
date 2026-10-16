@@ -1,5 +1,7 @@
 from nicegui import ui, app
 from timelink.web import timelink_web_utils
+import os
+import secrets
 import sys
 from pathlib import Path
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -71,4 +73,10 @@ app.add_middleware(AuthMiddleware)
 app.on_startup(initial_setup)
 
 if __name__ in {'__main__', '__mp_main__'}:
-    ui.run(title='Timelink Web Interface', port=int(port), storage_secret="Very secret secret!")
+    storage_secret = os.environ.get("TIMELINK_STORAGE_SECRET")
+    if not storage_secret:
+        # without a stable secret, browser storage is invalidated on restart
+        storage_secret = secrets.token_urlsafe(32)
+        print("WARNING: TIMELINK_STORAGE_SECRET not set; using an ephemeral "
+              "secret — user storage will not survive restarts.")
+    ui.run(title='Timelink Web Interface', port=int(port), storage_secret=storage_secret)
