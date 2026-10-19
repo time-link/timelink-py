@@ -1,0 +1,245 @@
+- file:
+  - date: 2026-02-25
+    description: Automatically generated structure file
+    json_path: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/rentities/aregister-tests-auto-structure.json
+    origin: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/rentities/aregister-tests.cli
+    stru: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/rentities/aregister-tests-structure.yaml
+    yaml_path: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/rentities/aregister-tests-auto-structure.yaml
+- element:
+    description:
+    identification: non
+    name: atype
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: autorels
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: dbase
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: func
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: mode
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: occurrence
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: prefix
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: sname
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: status
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: structure
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: translations
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: translator
+    note: Not defined
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: user
+    note: Not defined
+    prefix: non
+    suffix: non
+- group:
+    also:
+    - structure
+    - translator
+    - autorels
+    - obs
+    - prefix
+    - translations
+    counter: 1
+    idprefix: kle
+    name: kleio
+    note: 'This is the top level group of Kleio files. Specific historical sources
+      must be added to the part parameter of this group. '
+    part:
+    - historical-source
+    - fonte
+    - authority-register
+    - identifications
+    - link
+    - property
+    position:
+    - structure
+    - translator
+    - obs
+- group:
+    also:
+    - date
+    - user
+    - dbase
+    counter: 0
+    guaranteed:
+    - id
+    - name
+    - date
+    - user
+    - dbase
+    idprefix: aut
+    name: authority-register
+    note: 'a register of authority-records '
+    part:
+    - authority-record
+    position:
+    - id
+    - name
+- group:
+    also:
+    - obs
+    counter: 0
+    guaranteed:
+    - id
+    - name
+    - date
+    - user
+    - dbase
+    - mode
+    idprefix: aut
+    name: identifications
+    note: 'Identifications are authority-registers for record linking. They contain
+      real-entity records (people or objects )that aggregate occurrences in the source
+      pertaining to the same person or entity. To keep imported records separate from
+      local ones use a different user. '
+    part:
+    - rentity
+    - rperson
+    - robject
+    position:
+    - id
+    - name
+    source: authority-register
+- group:
+    also:
+    - status
+    - user
+    - obs
+    counter: 0
+    guaranteed:
+    - id
+    - sname
+    - sex
+    idprefix: rpe
+    name: rperson
+    note: 'contains information about a real person. '
+    part:
+    - occ
+    - ls
+    - atr
+    - rel
+    position:
+    - id
+    - sname
+    - sex
+- group:
+    also:
+    - name
+    - atype
+    - func
+    - date
+    - id
+    - obs
+    counter: 0
+    guaranteed:
+    - occurrence
+    idprefix: occ
+    name: occ
+    note: 'contains the ids of the occurrences of a real entity '
+    position:
+    - occurrence
+    - atype
+    - func
+    - date
+    - name
+- element:
+    description:
+    identification: non
+    name: date
+    note:
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: sic
+    name: id
+    note: elemento obrigatorio ,identifica unicamente a fonte na base de dados ,
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: obs
+    note:
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: name
+    note:
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: sex
+    note:
+    prefix: non
+    suffix: non

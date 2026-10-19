@@ -3,14 +3,19 @@
 https://github.com/time-link/timelink-kleio-server
 """
 
-from pathlib import Path
+import re
 import time
+from pathlib import Path
 
 #  import pdb
 from tests import TEST_DIR, skip_if_local
+from timelink.kleio.kleio_server import (
+    KleioServer,
+    KleioServerForbidenException,
+    is_project_directory,
+    is_timelink_home_directory,
+)
 from timelink.kleio.schemas import KleioFile, TokenInfo
-from timelink.kleio.kleio_server import KleioServer, KleioServerForbidenException, is_project_directory, is_timelink_home_directory
-import re
 
 KLEIO_ADMIN_TOKEN: str | None = None
 KLEIO_LIMITED_TOKEN: str | None = None
@@ -241,7 +246,9 @@ def test_translations_clean(kleio_server):
     start_time = time.time()
     while len(processing) > 0:
         if time.time() - start_time > 20:
-            raise TimeoutError("Processing translations did not finish within 20 seconds")
+            raise TimeoutError(
+                "Processing translations did not finish within 20 seconds"
+            )
         print(f"Waiting for {len(processing)} processing translations to finish")
         time.sleep(5)
         processing = kserver.get_translations(path, recurse, "P")
@@ -337,7 +344,9 @@ def test_start_kleio_server_env():
     for key, value in matches:
         print(f"{key} = {value}")
         home_page_info[key] = value
-    assert home_page_info["Workers"].strip() == str(kworkers), "number of works do not match"
+    assert home_page_info["Workers"].strip() == str(
+        kworkers
+    ), "number of works do not match"
     ptoken = home_page_info["Kleio_admin_token"].strip()
     assert ptoken == kadmin_token[:5], "token does not match"
     ks.stop()

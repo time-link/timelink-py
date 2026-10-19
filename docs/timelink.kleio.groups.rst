@@ -43,6 +43,13 @@ timelink.kleio.groups.kelement module
    :no-undoc-members:
    :no-show-inheritance:
 
+timelink.kleio.groups.kgeoentity module
+---------------------------------------
+
+.. automodule:: timelink.kleio.groups.kgeoentity
+   :no-undoc-members:
+   :no-show-inheritance:
+
 timelink.kleio.groups.kgroup module
 -----------------------------------
 

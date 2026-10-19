@@ -6,7 +6,7 @@ import pytest
 
 # Session is shared by all tests
 from tests import Session
-from tests import skip_on_travis, conn_string
+from tests import skip_on_github_actions, conn_string
 from timelink.kleio.groups import KElement, KGroup, KSource, KAct, KPerson
 from timelink.mhk.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.mhk.models.base_class import Base
@@ -16,7 +16,7 @@ from timelink.mhk.models.pom_som_mapper import PomSomMapper
 from timelink.mhk.models.source import Source
 from timelink.mhk.utilities import is_mhk_installed
 
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 
 if not is_mhk_installed():
     pytest.skip("skipping MHK tests (MHK not present)", allow_module_level=True)
@@ -86,7 +86,7 @@ def kgroup_nested() -> KSource:
     return ks
 
 
-@skip_on_travis
+@skip_on_github_actions
 def test_succeed_if_not_in_travis():
     assert os.getenv("TRAVIS") != 'true'
 
@@ -98,7 +98,7 @@ def test_create_db(dbsystem):
     assert len(tables) > 0, "tables where not created"
 
 
-@skip_on_travis
+@skip_on_github_actions
 def test_entity_contains(dbsystem):
     ent1: Entity = Entity(id='e001', groupname='entity')
     ent1.pom_class = 'entity'

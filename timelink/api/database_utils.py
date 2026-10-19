@@ -30,7 +30,11 @@ if TYPE_CHECKING:
 
 
 def random_password():
-    """Generate a random password"""
+    """Generate a random password consisting of 10 ASCII letters.
+
+    Returns:
+        str: A randomly generated 10-character string.
+    """
 
     letters = string.ascii_letters
     result_str = "".join(random.choice(letters) for i in range(10))
@@ -38,8 +42,14 @@ def random_password():
 
 
 def get_db_password():
-    """Get the database password from the environment.
-    If none generated one and set it in the environment."""
+    """Get the database password from the environment or generate a new one.
+
+    Retrieves the password from the TIMELINK_DB_PASSWORD environment variable.
+    If not set, generates a new random password and stores it in the environment.
+
+    Returns:
+        str: The database password.
+    """
     # get password from environment
     db_password = os.environ.get("TIMELINK_DB_PASSWORD")
     if db_password is None:
@@ -51,20 +61,37 @@ def get_db_password():
 def get_import_status(
     db: TimelinkDatabase, kleio_files: List[KleioFile], match_path=False
 ) -> List[KleioFile]:
-    """Get the import status of the kleio files.
+    """Determine the import status of Kleio files by comparing with the database.
 
-        The status in returned
-        in :attr:`timelink.api.models.system.KleioImportedFileSchema.import_status`
+    Compares the provided Kleio files with previously imported files in the database
+    to determine if they need to be imported, updated, or are already current. The
+    import status is stored in each KleioFile object's import_status attribute.
+
+    Import status values:
+        - N (New): File has not been imported or translation is missing
+        - U (Updated): File has been modified since last import
+        - I (Imported): File successfully imported with no errors or warnings
+        - E (Error): File was imported but has errors
+        - W (Warning): File was imported but has warnings
 
     Args:
-        db (TimelinkDatabase): timelink database
-        kleio_files (List[KleioFile]): list of kleio files with extra field import_status
-        match_path (bool, optional): if True, match the path of the kleio file
-                                    with the path of the imported file;
-                                    defaults to False.
+        db (TimelinkDatabase): Timelink database to check against.
+        kleio_files (List[KleioFile]): List of Kleio files to check. Can also be
+            a single KleioFile object, which will be wrapped in a list.
+        match_path (bool, optional): If True, matches files by full path instead of
+            just filename. Set to True when multiple files have the same name but
+            different paths. Defaults to False.
 
     Returns:
-        List[KleioFile]: list of kleio files with field import_status
+        List[KleioFile]: The same list of Kleio files with updated import_status attributes.
+
+    Raises:
+        ValueError: If multiple files have the same name and match_path is False.
+
+    Note:
+        The import status is returned in the KleioFile.import_status attribute.
+        See :attr:`timelink.api.models.system.KleioImportedFileSchema.import_status`
+        and :class:`timelink.kleio.import_status_enum` for more details.
     """
     # if kleio_files is a single object wrap in a list
     if isinstance(kleio_files, KleioFile):

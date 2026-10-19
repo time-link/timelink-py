@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from tests import skip_on_travis, mhk_absent, conn_string, TEST_DIR
+from tests import skip_on_github_actions, mhk_absent, conn_string, TEST_DIR
 from timelink.kleio.importer import import_from_xml
 from timelink.mhk.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.mhk.models.base import Person  # noqa pylint: disable=unused-import
@@ -16,7 +16,7 @@ from timelink.mhk.utilities import is_mhk_installed
 if not is_mhk_installed():
     pytest.skip("skipping MHK tests (MHK not present)", allow_module_level=True)
 
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 
 
 @pytest.fixture(scope="module")
@@ -31,7 +31,7 @@ def dbsystem():
             session.close()
 
 
-@skip_on_travis
+@skip_on_github_actions
 @mhk_absent
 def test_import_xml(dbsystem: TimelinkMHK):
     file: Path = Path(TEST_DIR, "xml_data/b1685.xml")
@@ -51,7 +51,7 @@ def test_import_xml(dbsystem: TimelinkMHK):
             pytest.fail(f"Test failed due to an exception: {e}")
 
 
-@skip_on_travis
+@skip_on_github_actions
 @mhk_absent
 def test_import_with_custom_mapping(dbsystem: TimelinkMHK):
     file = Path(TEST_DIR, "xml_data/dev1692.xml")
@@ -80,7 +80,7 @@ def test_import_with_custom_mapping(dbsystem: TimelinkMHK):
             pytest.fail(f"Test failed due to an exception: {e}")
 
 
-@skip_on_travis
+@skip_on_github_actions
 @mhk_absent
 def test_import_with_many(dbsystem: TimelinkMHK):
     file = Path(TEST_DIR, "xml_data/test-auc-alunos-264605-A-140337-140771.xml")
@@ -95,14 +95,14 @@ def test_import_with_many(dbsystem: TimelinkMHK):
             kleio = estudante.to_kleio()
             assert len(kleio) > 0
             assert estudante is not None, (
-                "could not get an entity from big import" @ skip_on_travis
+                "could not get an entity from big import"
             )  # noqa
         except Exception as e:
             session.rollback()
             pytest.fail(f"Test failed due to an exception: {e}")
 
 
-@skip_on_travis
+@skip_on_github_actions
 @mhk_absent
 def test_import_git_hub(dbsystem: TimelinkMHK):
     file = "https://raw.githubusercontent.com/time-link/timelink-py/f76007cb7b98b39b22be8b70b3b2a62e7ae0c12f/tests/xml_data/b1685.xml"  # noqa

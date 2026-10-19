@@ -70,7 +70,7 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
 
     $ mkvirtualenv timelink
     $ cd timelink/
-    $ python setup.py develop
+    $ pip install -e .
 
 4. Create a branch for local development::
 
@@ -82,7 +82,7 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
    tests, including testing other Python versions with tox::
 
     $ flake8 timelink tests
-    $ python setup.py test or pytest
+    $ pytest
     $ tox
 
    To get flake8 and tox, just pip install them into your virtualenv.
@@ -95,9 +95,9 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
 
 7. Submit a pull request through the GitHub website.
 
-***********************
+*******************************
 Branch Management Conventions
-***********************
+*******************************
 
 To maintain a clean and organized repository, we follow these branch management conventions:
 
@@ -164,7 +164,7 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 3. The pull request should work for Python  3.10, 3.11 and for PyPy. Check
-   https://app.travis-ci.com/github/time-link/timelink-py/pull_requests
+   https://github.com/time-link/timelink-py/actions
    and make sure that the tests pass for all supported Python versions.
 
 **********
@@ -181,7 +181,7 @@ The Timelink package used as a template the `cookiecutter-pypackage`.
 Check the documentation at https://github.com/audreyfeldroy/cookiecutter-pypackage
 on how to install various tools used.
 
-Check the release procedure documentation at https://cookiecutter-pypackage.readthedocs.io/en/latest/travis_pypi_setup.html
+Check the release procedure documentation at https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
 Requirements
 ============
@@ -261,22 +261,26 @@ tox --recreate
    git status                       # check if everything is commited
    bump2version [major|minor|patch] # update version
    git push
-   git push --tags                  # will trigger travis build and deploy
+   git push --tags                  # will trigger GitHub Actions build and deploy
 
-Travis will then deploy to PyPI if tests pass.
+GitHub Actions will then deploy to PyPI if tests pass.
 
-If Travis fails to deploy to PyPI:
-* Check the Travis logs. Normally failures are due to tests that do not work in the CI environment.
-  In that case the test can be skipped with the fixture @skip_on_travis. See tests/test_import_MHK.py for
-    an example.
-* Every push to Travis in the main branch will trigger a build, but only tagged commits will be
-    deployed to PyPI. In order not to update the version number in the code, the last commit
-    can be tagged with fix-travis and pushed to the repository. This will trigger a build and deployment
-    to PyPI.
- * try "make release" locally.
-    * Note that errors in package description in setup.py can prevent deployment to PyPI.
-    * This happens mainly with markup problems in HISTORY.rst.
-    * See https://github.com/pypi/warehouse/issues/5890
+If GitHub Actions fails to deploy to PyPI:
+
+* Check the GitHub Actions logs. Normally failures are due to tests that do not work in the CI environment.
+  In that case the test can be skipped with the fixture @skip_on_github_actions or check for the GITHUB_ACTIONS environment variable.
+  See tests/test_import_MHK.py for an example.
+
+* Every push to GitHub Actions in the main branch will trigger a build, but only tagged commits will be
+  deployed to PyPI. In order not to update the version number in the code, the last commit
+  can be tagged with fix-ci and pushed to the repository. This will trigger a build and deployment
+  to PyPI.
+
+* Try "make release" locally.
+
+  * Note that errors in package description in pyproject.toml or README.rst can prevent deployment to PyPI.
+  * This happens mainly with markup problems in HISTORY.rst or invalid metadata.
+  * See https://github.com/pypi/warehouse/issues/5890
 
 "make release" will do `twine check dist/*` to check for errors.
 

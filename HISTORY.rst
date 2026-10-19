@@ -2,6 +2,213 @@
 History
 =======
 
+1.2.0 (2026-10-04)
+-------------------
+
+**New features:**
+
+* Timelink MCP server (``timelink[mcp]`` extra, ``timelink-mcp`` entry
+  point): 18 tools over FastMCP/stdio for agents — discovery
+  (``list_projects``, ``list_databases``, ``db_info``, ``db_schema``),
+  attribute and name search, relations, and the split Kleio update
+  pipeline (translate → wait → import) with per-file translation and
+  import reports. Packaged database-structure reference served as the
+  ``timelink://schema/{database}`` resource.
+* Structural project discovery in the package:
+  ``timelink.api.projects.get_timelink_projects`` detects projects by
+  layout (``.timelink-project`` marker, or ``database/``,
+  ``structures/`` or ``sources/`` child; ``.timelink-home`` marks a
+  multi-project home), covering all four documented home layouts —
+  including projects whose sources were never imported and
+  git-submodule subprojects.
+
+**Improvements:**
+
+* ``TimelinkWebApp.get_project_dirs`` now uses the structural project
+  discovery, gaining the legacy MHK ``sources/<project>`` layout and
+  skipping directories that are not projects.
+
+**Testing:**
+
+* The session Kleio server test fixture sets ``kleio_idle_timeout=3600``:
+  with the default 900 s the server self-terminated during the full
+  suite (~20 min) and late consumers failed with connection errors.
+
+1.1.33 (2026-02-27)
+-------------------
+
+**Bug fixes:**
+
+* Fixed Bokeh deprecation warning in network drawing by replacing deprecated
+  ``Circle`` glyph with ``Scatter`` marker (fixes compatibility with Bokeh 3.0+).
+
+**Improvements:**
+
+* Improved Kleio server version detection to handle development builds
+  that don't follow standard version format.
+
+**Code quality:**
+
+* Applied Black formatter and organized imports following PEP 8 guidelines
+  in ``kleio_handler.py`` and other modules.
+* Fixed various linting issues and improved code consistency.
+
+**Testing:**
+
+* Improved test cleanup and isolation.
+* Updated test data and Kleio structure files.
+* Enhanced test coverage for network functions.
+
+
+1.1.32 (2026-02-08)
+-------------------
+
+**Database views improvements (fixes issue #88):**
+
+* Updated ``nattributes`` view to include all named entities (persons, objects, geoentities)
+  instead of just persons, enabling attribute queries across all entity types.
+* Added ``groupname``, ``pom_class``, and ``eobs`` columns to the ``nattributes`` view.
+* Fixed view creation order to ensure ``named_entities`` view is created before
+  dependent views to prevent dependency errors.
+* Updated ``named_entities`` view to include ``obs`` column from all entity tables.
+
+**Dependencies:**
+
+* Added ``networkx>=3.0.0`` to main project dependencies.
+* Synchronized and updated all dependencies between ``pyproject.toml`` and ``requirements.txt``.
+* Updated various dependency versions with security and bug fixes.
+
+**Testing and build:**
+
+* Improved test cleanup and isolation.
+* Updated test data and notebooks.
+* Fixed Makefile and project configuration files.
+
+1.1.31 (2026-01-31)
+-------------------
+
+** Fixes issue 89 **
+
+
+1.1.30 (2026-01-24)
+-------------------
+
+**Configuration improvements:**
+
+* Completed migration to pyproject.toml for all packaging configuration.
+* Updated bump2version configuration to work with pyproject.toml.
+
+**Database bug fixes and improvements:**
+
+* Fixed multiple session leaks in database operations.
+* Fixed bug in database.select() that prevented DataFrame materialization when as_dataframe=True.
+* Fixed bug in database.describe() causing errors during database inspection.
+* Fixed bug in database.get_table() and database.get_model() failing to retrieve correct metadata.
+* Fixed bug in database_query.py select() to ensure proper session lifecycle and DataFrame returns.
+* Ensured query results are materialized inside session context to prevent connection errors.
+* Re-exported TimelinkDatabaseSchema and is_valid_postgres_db_name in database.py for public API.
+* Added missing get_postgres_container_user utility to timelink.database module.
+
+**Testing:**
+
+* Added test_select_with_session to cover Result object return path.
+* Improved test coverage for database session handling.
+
+**Code quality:**
+
+* Applied black formatting to database_kleio.py.
+* Fixed isinstance checks to use Select class instead of deprecated select function.
+* Updated docstrings to reference current SQLAlchemy 2.0 API.
+
+1.1.29 (2026-01-22)
+-------------------
+
+Broken, not released
+
+1.1.28 (2026-01-22)
+-------------------
+
+**Bug fixes:**
+
+* Fix bug with line numbers in timelink.pandas.entities_with_attribute()
+
+**Documentation improvements:**
+
+* Small fixes to documentation and docstrings
+
+1.1.27 (2026-01-15)
+-------------------
+
+**Code style and quality improvements:**
+
+* Applied Black code formatter with 120 character line length across the entire codebase
+* Reorganized imports following PEP 8 guidelines (standard library → third-party → local)
+* Consolidated imports from the same modules for better maintainability
+* Standardized string quotes to double quotes throughout
+* Fixed various linting issues and improved code quality
+* Added Python 3.12 to testing matrix
+
+**Documentation improvements:**
+
+* Updated and regenerated Sphinx API documentation with latest code
+* Fixed documentation build warnings and improved Sphinx configuration
+* Added comprehensive documentation for linter (flake8) and formatter (Black) configuration
+* Fixed critical issue where documentation wasn't showing the latest code versions
+* Added git worktree workflow instructions (see CLAUDE.md)
+* Updated branch management guidelines
+
+**Type hints and typing improvements:**
+
+* Improved type hints for better Pylance/VSCode compliance
+* Fixed return types and typing expressions throughout codebase
+* Enhanced type safety and IDE support
+
+**Network functionality:**
+
+* Fixed network generation and drawing issues (work in progress)
+* Added comprehensive tests for network functions
+* Improved session handling for network operations
+
+**Database improvements:**
+
+* Improved drop_db() function
+* Enhanced session handling throughout the codebase
+* Fixed DetachedInstanceError issues in database operations
+* Fixed UTC current date and time handling
+
+**Testing:**
+
+* Updated test data and notebooks to work with latest changes
+* Added comprehensive testing for Python 3.12 compatibility
+* Expanded test coverage for various components
+
+**Development workflow:**
+
+* Migrated continuous integration from Travis CI to GitHub Actions
+* Added Python 3.12 to tox test matrix
+* Enhanced Kleio-server Docker container integration in CI
+* Added local CI testing support with act tool
+* Removed notebook tests for better CI performance
+* Updated VSCode workspace configuration for better development experience
+* Improved project template layouts
+* Updated requirements and dependencies
+
+**Bug fixes:**
+
+* Fixed return type of REntity.same_as()
+* Fixed usage of deprecated datetime.utcnow()
+* Fixed DetachedInstanceError in database operations
+* Fixed view usage in web database overview notebooks
+* Fixed nfunctions view bug
+* Fixed various UTC date and time handling issues
+* Improved find_kleio_home() and utility functions
+
+**Other:**
+
+* Enhanced project template layouts
+* Improved various docstrings and documentation
+* Multiple test file updates and improvements
+
 1.1.26 (2025-05-27)
 -------------------
 

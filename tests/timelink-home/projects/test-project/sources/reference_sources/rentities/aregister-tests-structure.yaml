@@ -1,0 +1,189 @@
+- file:
+  - date: 2026-02-18
+    description: Automatically generated structure file
+    json_path: /kleio-home/projects/test-project/sources/reference_sources/rentities/aregister-tests-structure.json
+    origin: /kleio-home/projects/test-project/sources/reference_sources/rentities/aregister-tests.cli
+    stru: /kleio-home/projects/test-project/structures/sources.str
+    yaml_path: /kleio-home/projects/test-project/sources/reference_sources/rentities/aregister-tests-structure.yaml
+- element:
+    description: Not defined
+    name: atype
+- element:
+    description: Not defined
+    name: autorels
+- element:
+    description: Not defined
+    name: dbase
+- element:
+    description: Not defined
+    name: func
+- element:
+    description: Not defined
+    name: mode
+- element:
+    description: Not defined
+    name: occurrence
+- element:
+    description: Not defined
+    name: prefix
+- element:
+    description: Not defined
+    name: sname
+- element:
+    description: Not defined
+    name: status
+- element:
+    description: Not defined
+    name: structure
+- element:
+    description: Not defined
+    name: translations
+- element:
+    description: Not defined
+    name: translator
+- element:
+    description: Not defined
+    name: user
+- group:
+    also:
+    - structure
+    - translator
+    - autorels
+    - obs
+    - prefix
+    - translations
+    counter: 1
+    description: 'This is the top level group of Kleio files. Specific historical
+      sources must be added to the part parameter of this group. '
+    idprefix: kle
+    name: kleio
+    part:
+    - historical-source
+    - fonte
+    - authority-register
+    - identifications
+    - link
+    - property
+    position:
+    - structure
+    - translator
+    - obs
+- group:
+    also:
+    - date
+    - user
+    - dbase
+    counter: 0
+    description: 'a register of authority-records '
+    guaranteed:
+    - id
+    - name
+    - date
+    - user
+    - dbase
+    idprefix: aut
+    name: authority-register
+    part:
+    - authority-record
+    position:
+    - id
+    - name
+- group:
+    also:
+    - obs
+    counter: 0
+    description: 'Identifications are authority-registers for record linking. They
+      contain real-entity records (people or objects )that aggregate occurrences in
+      the source pertaining to the same person or entity. To keep imported records
+      separate from local ones use a different user. '
+    guaranteed:
+    - id
+    - name
+    - date
+    - user
+    - dbase
+    - mode
+    idprefix: aut
+    name: identifications
+    part:
+    - rentity
+    - rperson
+    - robject
+    position:
+    - id
+    - name
+    source: authority-register
+- group:
+    also:
+    - status
+    - user
+    - obs
+    counter: 0
+    description: 'contains information about a real person. '
+    guaranteed:
+    - id
+    - sname
+    - sex
+    idprefix: rpe
+    name: rperson
+    part:
+    - occ
+    - ls
+    - atr
+    - rel
+    position:
+    - id
+    - sname
+    - sex
+- group:
+    also:
+    - name
+    - atype
+    - func
+    - date
+    - id
+    - obs
+    counter: 0
+    description: 'contains the ids of the occurrences of a real entity '
+    guaranteed:
+    - occurrence
+    idprefix: occ
+    name: occ
+    position:
+    - occurrence
+    - atype
+    - func
+    - date
+    - name
+- element:
+    description:
+    identification: non
+    name: date
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description: elemento obrigatorio ,identifica unicamente a fonte na base de dados
+      ,
+    identification: sic
+    name: id
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: obs
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: name
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: sex
+    prefix: non
+    suffix: non

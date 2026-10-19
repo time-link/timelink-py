@@ -1,4 +1,10 @@
-- path: /kleio-home/projects/test-project/structures/reference_sources/issues/issue48/sources.str
+- file:
+  - date: 2026-02-26
+    description: Automatically generated structure file
+    json_path: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/structures/reference_sources/issues/issue48/sources.str.json
+    origin: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/structures/reference_sources/issues/issue48/sources.str
+    stru: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/structures/reference_sources/issues/issue48/sources.str
+    yaml_path: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/structures/reference_sources/issues/issue48/sources.str.yaml
 - group:
     also:
     - structure
@@ -7,8 +13,8 @@
     - obs
     - prefix
     - translations
-    description: "This is the top level group of Kleio files. Specific historical
-      sources must be added to the part parameter of this group. \n"
+    description: 'This is the top level group of Kleio files. Specific historical
+      sources must be added to the part parameter of this group. '
     idprefix: kle
     name: kleio
     part:
@@ -22,8 +28,6 @@
     - structure
     - translator
     - obs
-    prefix: non
-    suffix: non
 - group:
     also:
     - type
@@ -34,9 +38,6 @@
     - obs
     - replace
     - kleiofile
-    description: '
-
-      '
     guaranteed:
     - id
     idprefix: his
@@ -48,8 +49,6 @@
     - year
     - type
     - ref
-    prefix: non
-    suffix: non
 - group:
     also:
     - type
@@ -57,10 +56,10 @@
     - obs
     - same_as
     - xsame_as
-    description: "GeoEntity :a spatial entity. An entity that represents a spatial
+    description: 'GeoEntity :a spatial entity. An entity that represents a spatial
       entity in the sense of a conceptual representation of space. A geo-entity is
       not an object that has a particular position in place. It is rather something
-      like the parish of X ,the place Y ,the region W. \n"
+      like the parish of X ,the place Y ,the region W. '
     guaranteed:
     - name
     idprefix: geo
@@ -71,14 +70,12 @@
     - rel
     position:
     - name
-    prefix: non
-    suffix: non
 - group:
     also:
     - date
     - user
     - dbase
-    description: "a register of authority-records \n"
+    description: 'a register of authority-records '
     guaranteed:
     - id
     - name
@@ -92,15 +89,13 @@
     position:
     - id
     - name
-    prefix: non
-    suffix: non
 - group:
     also:
     - obs
-    description: "Identifications are authority-registers for record linking. They
+    description: 'Identifications are authority-registers for record linking. They
       contain real-entity records (people or objects )that aggregate occurrences in
       the source pertaining to the same person or entity. To keep imported records
-      separate from local ones use a different user. \n"
+      separate from local ones use a different user. '
     guaranteed:
     - id
     - name
@@ -117,44 +112,36 @@
     position:
     - id
     - name
-    prefix: non
     source: authority-register
-    suffix: non
 - group:
     also:
     - id
     - obs
-    description: '
-
-      '
+    description:
     idprefix: lin
     name: link
     position:
     - shortname
     - urlpattern
-    prefix: non
-    suffix: non
 - group:
     also:
     - id
     - obs
-    description: "A property of the file for the kleio parser. Properties are not
+    description: 'A property of the file for the kleio parser. Properties are not
       stored in the database. They affect the parsing of the file. Examples :property
-      $multiple-entry-flag /124 #ascii for pipe char \n"
+      $multiple-entry-flag /124 #ascii for pipe char '
     idprefix: pro
     name: property
     position:
     - name
     - value
-    prefix: non
-    suffix: non
 - group:
     also:
     - status
     - user
     - obs
-    description: "Rentity contains information about a real entity. Defines the standart
-      name for the entity and what are the occurences ,in `occ `subgroups. \n"
+    description: 'Rentity contains information about a real entity. Defines the standart
+      name for the entity and what are the occurences ,in `occ `subgroups. '
     guaranteed:
     - id
     - description
@@ -167,14 +154,12 @@
     - id
     - description
     - type
-    prefix: non
-    suffix: non
 - group:
     also:
     - status
     - user
     - obs
-    description: "contains information about a real person. \n"
+    description: 'contains information about a real person. '
     guaranteed:
     - id
     - sname
@@ -190,14 +175,12 @@
     - id
     - sname
     - sex
-    prefix: non
-    suffix: non
 - group:
     also:
     - status
     - user
     - obs
-    description: "contains information about a real object. \n"
+    description: 'contains information about a real object. '
     guaranteed:
     - id
     - sname
@@ -213,8 +196,6 @@
     - id
     - sname
     - type
-    prefix: non
-    suffix: non
 - group:
     also:
     - name
@@ -223,7 +204,7 @@
     - date
     - id
     - obs
-    description: "contains the ids of the occurrences of a real entity \n"
+    description: 'contains the ids of the occurrences of a real entity '
     guaranteed:
     - occurrence
     idprefix: occ
@@ -234,8 +215,6 @@
     - func
     - date
     - name
-    prefix: non
-    suffix: non
 - group:
     also:
     - loc
@@ -252,9 +231,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - id
     - type
@@ -265,8 +241,6 @@
     - id
     - type
     - date
-    prefix: non
-    suffix: non
 - group:
     also:
     - id
@@ -276,9 +250,6 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     - sex
@@ -290,8 +261,6 @@
     - id
     - same_as
     - xsame_as
-    prefix: non
-    suffix: non
 - group:
     also:
     - id
@@ -301,18 +270,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: female
     position:
     - name
-    prefix: non
     source: person
-    suffix: non
 - group:
     also:
     - id
@@ -322,18 +286,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: male
     position:
     - name
-    prefix: non
     source: person
-    suffix: non
 - group:
     also:
     - obs
@@ -342,9 +301,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: obj
@@ -352,8 +308,6 @@
     position:
     - name
     - type
-    prefix: non
-    suffix: non
 - group:
     also:
     - obs
@@ -362,9 +316,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: obj
@@ -372,17 +323,12 @@
     position:
     - name
     - type
-    prefix: non
     source: object
-    suffix: non
 - group:
     also:
     - obs
     - date
     - id
-    description: '
-
-      '
     guaranteed:
     - type
     - value
@@ -392,16 +338,11 @@
     - type
     - value
     - date
-    prefix: non
-    suffix: non
 - group:
     also:
     - obs
     - date
     - id
-    description: '
-
-      '
     guaranteed:
     - type
     - value
@@ -409,42 +350,25 @@
     - destination
     idprefix: rel
     name: relation
-    prefix: non
-    suffix: non
 - group:
     also:
     - id
-    description: '
-
-      '
     idprefix: end
     name: end
     position:
     - id
-    prefix: non
-    suffix: non
 - group:
     also:
     - obs
-    description: '
-
-      '
     guaranteed:
     - value
     idprefix: gro
     name: group-element
     position:
     - value
-    prefix: non
-    suffix: non
 - group:
-    description: '
-
-      '
     idprefix: rel
     name: relation-type
-    prefix: non
-    suffix: non
 - element:
     description:
     identification: non
@@ -689,8 +613,8 @@
     - integr
     - movacao
     - geodesc
-    description: "Este constitui o grupo principal para os documentos historicos portugueses.
-      Admite qualquer dos actos definidos aqui. \n"
+    description: 'Este constitui o grupo principal para os documentos historicos portugueses.
+      Admite qualquer dos actos definidos aqui. '
     guaranteed:
     - id
     idprefix: his
@@ -702,9 +626,7 @@
     - year
     - type
     - ref
-    prefix: non
     source: historical-source
-    suffix: non
 - element:
     description:
     identification: non
@@ -725,9 +647,6 @@
     - abstraction
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - id
     - dia
@@ -740,33 +659,24 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: historical-act
-    suffix: non
 - group:
     arbitrary:
     - actorm
     - actorf
-    description: '
-
-      '
     idprefix: rel
     name: funcao-em-acto
-    prefix: non
     source: relation-type
-    suffix: non
 - group:
     also:
     - id
     - obs
-    description: "fim indica o fim de um acto \n"
+    description: 'fim indica o fim de um acto '
     idprefix: end
     name: fim
     position:
     - id
-    prefix: non
     source: end
-    suffix: non
 - element:
     description:
     identification: non
@@ -918,8 +828,8 @@
     - ls
     - atr
     - rel
-    description: "Actos genericos :servem para vereacoes etc. Compostos por items
-      e por pessoas \n"
+    description: 'Actos genericos :servem para vereacoes etc. Compostos por items
+      e por pessoas '
     guaranteed:
     - id
     - dia
@@ -935,9 +845,7 @@
     - ano
     - loc
     - obs
-    prefix: non
     source: pt-acto
-    suffix: non
 - group:
     also:
     - resumo
@@ -951,18 +859,13 @@
     - referida
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - titulo
     idprefix: obj
     name: item
     position:
     - titulo
-    prefix: non
     source: object
-    suffix: non
 - group:
     also:
     - obs
@@ -976,9 +879,6 @@
     - celebrante
     - evento
     - colega
-    description: '
-
-      '
     guaranteed:
     - id
     - dia
@@ -991,9 +891,7 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: pt-acto
-    suffix: non
 - group:
     also:
     - obs
@@ -1006,9 +904,6 @@
     - abstraction
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - description
     idprefix: his
@@ -1122,9 +1017,7 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: pt-acto
-    suffix: non
 - group:
     also:
     - id
@@ -1139,9 +1032,7 @@
     - abstraction
     - ls
     - rel
-    description: 'Chronology event ,
-
-      '
+    description: Chronology event ,
     guaranteed:
     - data
     - loc
@@ -1156,9 +1047,7 @@
     - data
     - loc
     - description
-    prefix: non
     source: evento
-    suffix: non
 - group:
     also:
     - obs
@@ -1167,9 +1056,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: obj
@@ -1177,9 +1063,7 @@
     position:
     - name
     - description
-    prefix: non
     source: abstraction
-    suffix: non
 - group:
     also:
     - type
@@ -1187,9 +1071,6 @@
     - obs
     - same_as
     - xsame_as
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: geo
@@ -1200,9 +1081,7 @@
     - rel
     position:
     - name
-    prefix: non
     source: geoentity
-    suffix: non
 - group:
     also:
     - id
@@ -1217,7 +1096,7 @@
     - abstraction
     - ls
     - rel
-    description: "Synonym for cevento \n"
+    description: 'Synonym for cevento '
     guaranteed:
     - data
     - loc
@@ -1233,9 +1112,7 @@
     - data
     - loc
     - description
-    prefix: non
     source: cevento
-    suffix: non
 - group:
     also:
     - id
@@ -1244,9 +1121,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - subject
     - description
@@ -1255,9 +1129,7 @@
     position:
     - subject
     - description
-    prefix: non
     source: abstraction
-    suffix: non
 - group:
     also:
     - type
@@ -1265,9 +1137,6 @@
     - obs
     - same_as
     - xsame_as
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: geo
@@ -1278,9 +1147,7 @@
     - rel
     position:
     - name
-    prefix: non
     source: place
-    suffix: non
 - group:
     also:
     - resumo
@@ -1294,9 +1161,6 @@
     - abstraction
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - id
     - dia
@@ -1322,9 +1186,7 @@
     - mes
     - ano
     - loc
-    prefix: non
     source: pt-acto
-    suffix: non
 - group:
     also:
     - type
@@ -1332,9 +1194,6 @@
     - obs
     - same_as
     - xsame_as
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: geo
@@ -1344,9 +1203,7 @@
     - rel
     position:
     - name
-    prefix: non
     source: geoentity
-    suffix: non
 - group:
     also:
     - resumo
@@ -1360,9 +1217,6 @@
     - abstraction
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - id
     - dia
@@ -1378,9 +1232,7 @@
     - mes
     - ano
     - loc
-    prefix: non
     source: pt-acto
-    suffix: non
 - group:
     also:
     - obs
@@ -1394,9 +1246,7 @@
     - celebrante
     - evento
     - colega
-    description: 'Biographical description (from biographical dictionnaries ,etc )
-
-      '
+    description: Biographical description (from biographical dictionnaries ,etc )
     guaranteed:
     - id
     - dia
@@ -1409,9 +1259,7 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: lista
-    suffix: non
 - group:
     also:
     - obs
@@ -1424,9 +1272,9 @@
     - abstraction
     - ls
     - rel
-    description: "Personal event ,used inside people groups to register a personal
+    description: 'Personal event ,used inside people groups to register a personal
       event. Diferent from event /evento which are top level groups inside lists or
-      sources \n"
+      sources '
     guaranteed:
     - description
     idprefix: his
@@ -1440,9 +1288,7 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: evento
-    suffix: non
 - group:
     also:
     - obs
@@ -1455,9 +1301,6 @@
     - abstraction
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - description
     idprefix: his
@@ -1471,9 +1314,7 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: pevent
-    suffix: non
 - group:
     also:
     - obs
@@ -1486,9 +1327,6 @@
     - abstraction
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - description
     idprefix: his
@@ -1502,9 +1340,7 @@
     - dia
     - mes
     - ano
-    prefix: non
     source: pevent
-    suffix: non
 - group:
     also:
     - id
@@ -1702,9 +1538,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -1712,9 +1545,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - obs
@@ -1725,9 +1556,6 @@
     - ls
     - rel
     - atr
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -1735,9 +1563,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorm
-    suffix: non
 - group:
     also:
     - sexo
@@ -1928,9 +1754,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -1938,9 +1761,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - obs
@@ -1951,9 +1772,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -1961,9 +1779,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - sexo
@@ -2154,9 +1970,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2164,9 +1977,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - obs
@@ -2177,9 +1988,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2187,9 +1995,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2200,9 +2006,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2210,9 +2013,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2223,9 +2024,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2233,9 +2031,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2246,9 +2042,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2256,9 +2049,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2269,9 +2060,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2279,9 +2067,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2292,9 +2078,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2302,9 +2085,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2315,9 +2096,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2325,9 +2103,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2338,9 +2114,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2348,9 +2121,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2361,9 +2132,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2371,9 +2139,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - obs
@@ -2384,9 +2150,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2394,9 +2157,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: referida
-    suffix: non
 - group:
     also:
     - sexo
@@ -2587,9 +2348,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2597,9 +2355,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -2790,9 +2546,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -2800,9 +2553,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - id
@@ -2993,9 +2744,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -3006,9 +2754,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - obs
@@ -3018,9 +2764,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -3028,9 +2771,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -3221,9 +2962,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -3231,9 +2969,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -3424,9 +3160,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -3434,9 +3167,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -3627,9 +3358,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -3637,9 +3365,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -3830,9 +3556,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -3840,9 +3563,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -4033,9 +3754,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -4043,9 +3761,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -4236,9 +3952,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -4246,9 +3959,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -4439,9 +4150,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -4449,9 +4157,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -4642,9 +4348,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -4652,9 +4355,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -4845,9 +4546,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -4855,9 +4553,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -5048,9 +4744,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -5058,9 +4751,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -5251,9 +4942,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -5261,9 +4949,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -5454,9 +5140,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -5464,9 +5147,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -5657,9 +5338,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -5667,9 +5345,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -5860,9 +5536,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -5870,9 +5543,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -6063,9 +5734,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -6073,9 +5741,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -6266,9 +5932,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -6276,9 +5939,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -6469,9 +6130,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -6479,9 +6137,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -6672,9 +6328,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -6682,9 +6335,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -6875,9 +6526,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -6885,9 +6533,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -7078,9 +6724,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -7088,9 +6731,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -7281,9 +6922,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -7291,9 +6929,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -7484,9 +7120,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -7494,9 +7127,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -7687,9 +7318,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -7697,9 +7325,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -7890,9 +7516,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -7900,9 +7523,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -8093,9 +7714,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -8103,9 +7721,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -8296,9 +7912,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -8306,9 +7919,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -8499,9 +8110,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -8509,9 +8117,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -8702,9 +8308,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -8712,9 +8315,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -8905,9 +8506,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -8915,9 +8513,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -9108,9 +8704,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -9118,9 +8711,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -9311,9 +8902,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -9321,9 +8909,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -9514,9 +9100,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -9524,9 +9107,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -9717,9 +9298,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -9727,9 +9305,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -9920,9 +9496,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -9930,9 +9503,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -10123,9 +9694,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -10133,9 +9701,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - sexo
@@ -10326,9 +9892,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -10336,9 +9899,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - obs
@@ -10349,9 +9910,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -10359,9 +9917,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: person
-    suffix: non
 - group:
     also:
     - id
@@ -10559,18 +10115,13 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
     name: perdoante-m
     position:
     - nome
-    prefix: non
     source: actorm
-    suffix: non
 - group:
     also:
     - sexo
@@ -10761,18 +10312,13 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
     name: perdoante-f
     position:
     - nome
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - id
@@ -10970,18 +10516,13 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
     name: perdoado
     position:
     - nome
-    prefix: non
     source: actorm
-    suffix: non
 - group:
     also:
     - sexo
@@ -11172,18 +10713,13 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
     name: perdoada
     position:
     - nome
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - obs
@@ -11194,9 +10730,6 @@
     - ls
     - atr
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -11204,9 +10737,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: person
-    suffix: non
 - group:
     also:
     - id
@@ -11404,18 +10935,13 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
     name: vitima-m
     position:
     - nome
-    prefix: non
     source: actorm
-    suffix: non
 - group:
     also:
     - sexo
@@ -11606,18 +11132,13 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
     name: vitima-f
     position:
     - nome
-    prefix: non
     source: actorf
-    suffix: non
 - group:
     also:
     - id
@@ -11815,9 +11336,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -11825,9 +11343,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorm
-    suffix: non
 - group:
     also:
     - id
@@ -12025,9 +11541,6 @@
     - criado
     - engeitado
     - engeitada
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12035,9 +11548,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: actorm
-    suffix: non
 - group:
     also:
     - obs
@@ -12049,9 +11560,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12059,9 +11567,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - obs
@@ -12073,9 +11579,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12083,9 +11586,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -12097,9 +11598,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12107,9 +11605,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -12121,9 +11617,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12131,9 +11624,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -12145,9 +11636,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12155,9 +11643,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - obs
@@ -12169,9 +11655,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12179,9 +11662,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -12193,9 +11674,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12203,9 +11681,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -12217,9 +11693,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12227,9 +11700,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -12241,9 +11712,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12254,9 +11722,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12268,9 +11734,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12281,9 +11744,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12295,9 +11756,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12308,9 +11766,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12322,9 +11778,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12335,9 +11788,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12349,9 +11800,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12362,9 +11810,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12376,9 +11822,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12389,9 +11832,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12403,9 +11844,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12416,9 +11854,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12430,9 +11866,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12443,9 +11876,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12457,9 +11888,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12470,9 +11898,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12484,9 +11910,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12497,9 +11920,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12511,9 +11932,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12521,9 +11939,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12535,9 +11951,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12545,9 +11958,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12559,9 +11970,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12572,9 +11980,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12586,9 +11992,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12596,9 +11999,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12610,9 +12011,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12620,9 +12018,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12634,9 +12030,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12647,9 +12040,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12661,9 +12052,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12674,9 +12062,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12688,9 +12074,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12698,9 +12081,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12712,9 +12093,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12722,9 +12100,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12736,9 +12112,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12749,9 +12122,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12763,9 +12134,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12773,9 +12141,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12787,9 +12153,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12797,9 +12160,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12811,9 +12172,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12824,9 +12182,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -12838,9 +12194,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12851,9 +12204,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12865,9 +12216,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12878,9 +12226,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12892,9 +12238,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12902,9 +12245,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12916,9 +12257,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12926,9 +12264,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12940,9 +12276,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12953,9 +12286,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -12967,9 +12298,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -12977,9 +12305,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -12991,9 +12317,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13001,9 +12324,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13015,9 +12336,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13028,9 +12346,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13042,9 +12358,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13052,9 +12365,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13066,9 +12377,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13076,9 +12384,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13090,9 +12396,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13100,9 +12403,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13114,9 +12415,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13127,9 +12425,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13141,9 +12437,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13151,9 +12444,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13165,9 +12456,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13175,9 +12463,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13189,9 +12475,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13202,9 +12485,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -13216,9 +12497,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13226,9 +12504,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13240,9 +12516,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13253,9 +12526,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13267,9 +12538,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13277,9 +12545,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13291,9 +12557,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13301,9 +12564,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13315,9 +12576,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13328,9 +12586,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13342,9 +12598,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13352,9 +12605,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13366,9 +12617,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13376,9 +12624,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13390,9 +12636,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13403,9 +12646,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13417,9 +12658,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13430,9 +12668,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13444,9 +12680,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13454,9 +12687,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13468,9 +12699,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13478,9 +12706,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13492,9 +12718,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13505,9 +12728,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13519,9 +12740,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13529,9 +12747,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13543,9 +12759,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13553,9 +12766,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13567,9 +12778,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13580,9 +12788,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -13594,9 +12800,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13604,9 +12807,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13618,9 +12819,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13631,9 +12829,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13645,9 +12841,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13655,9 +12848,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13669,9 +12860,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13679,9 +12867,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13693,9 +12879,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13706,9 +12889,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13720,9 +12901,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13730,9 +12908,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13744,9 +12920,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13754,9 +12927,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13768,9 +12939,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13781,9 +12949,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13795,9 +12961,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13808,9 +12971,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13822,9 +12983,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13832,9 +12990,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13846,9 +13002,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13856,9 +13009,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13870,9 +13021,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13883,9 +13031,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13897,9 +13043,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13907,9 +13050,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13921,9 +13062,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13931,9 +13069,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -13945,9 +13081,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13958,9 +13091,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -13972,9 +13103,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -13982,9 +13110,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -13996,9 +13122,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14009,9 +13132,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14023,9 +13144,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14033,9 +13151,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14047,9 +13163,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14057,9 +13170,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14071,9 +13182,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14084,9 +13192,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14098,9 +13204,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14108,9 +13211,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14122,9 +13223,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14132,9 +13230,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14146,9 +13242,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14159,9 +13252,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14173,9 +13264,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14186,9 +13274,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14200,9 +13286,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14210,9 +13293,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14224,9 +13305,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14234,9 +13312,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14248,9 +13324,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14261,9 +13334,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14275,9 +13346,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14285,9 +13353,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14299,9 +13365,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14309,9 +13372,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14323,9 +13384,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14338,9 +13396,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -14352,9 +13408,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14365,9 +13418,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14379,9 +13430,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14392,9 +13440,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14406,9 +13452,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14416,9 +13459,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14430,9 +13471,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14440,9 +13478,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14454,9 +13490,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14467,9 +13500,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14481,9 +13512,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14491,9 +13519,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14505,9 +13531,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14515,9 +13538,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14529,9 +13550,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14542,9 +13560,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14556,9 +13572,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14569,9 +13582,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14583,9 +13594,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14593,9 +13601,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14607,9 +13613,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14617,9 +13620,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14631,9 +13632,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14644,9 +13642,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14658,9 +13654,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14668,9 +13661,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14682,9 +13673,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14692,9 +13680,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14706,9 +13692,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14719,9 +13702,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -14733,9 +13714,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14746,9 +13724,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14760,9 +13736,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14773,9 +13746,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14787,9 +13758,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14797,9 +13765,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14811,9 +13777,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14821,9 +13784,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14835,9 +13796,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14848,9 +13806,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14862,9 +13818,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14872,9 +13825,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14886,9 +13837,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14896,9 +13844,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14910,9 +13856,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14923,9 +13866,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -14937,9 +13878,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14950,9 +13888,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14964,9 +13900,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14974,9 +13907,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -14988,9 +13919,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -14998,9 +13926,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15012,9 +13938,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15025,9 +13948,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15039,9 +13960,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15049,9 +13967,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15063,9 +13979,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15073,9 +13986,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15087,9 +13998,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15100,9 +14008,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -15114,9 +14020,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15127,9 +14030,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15141,9 +14042,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15154,9 +14052,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15168,9 +14064,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15178,9 +14071,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15192,9 +14083,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15202,9 +14090,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15216,9 +14102,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15229,9 +14112,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15243,9 +14124,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15253,9 +14131,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15267,9 +14143,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15277,9 +14150,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15291,9 +14162,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15304,9 +14172,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15318,9 +14184,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15331,9 +14194,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15345,9 +14206,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15355,9 +14213,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15369,9 +14225,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15379,9 +14232,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15393,9 +14244,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15406,9 +14254,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15420,9 +14266,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15430,9 +14273,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15444,9 +14285,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15454,9 +14292,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15468,9 +14304,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15481,9 +14314,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -15495,9 +14326,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15508,9 +14336,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15522,9 +14348,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15535,9 +14358,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15549,9 +14370,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15559,9 +14377,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15573,9 +14389,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15583,9 +14396,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15597,9 +14408,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15610,9 +14418,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15624,9 +14430,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15634,9 +14437,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15648,9 +14449,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15658,9 +14456,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15672,9 +14468,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15685,9 +14478,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15699,9 +14490,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15712,9 +14500,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15726,9 +14512,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15736,9 +14519,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15750,9 +14531,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15760,9 +14538,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15774,9 +14550,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15787,9 +14560,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15801,9 +14572,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15811,9 +14579,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15825,9 +14591,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15835,9 +14598,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15849,9 +14610,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15865,9 +14623,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -15879,9 +14635,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15892,9 +14645,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15906,9 +14657,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15919,9 +14667,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15933,9 +14679,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15943,9 +14686,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -15957,9 +14698,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15967,9 +14705,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -15981,9 +14717,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -15994,9 +14727,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16008,9 +14739,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16018,9 +14746,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16032,9 +14758,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16042,9 +14765,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16056,9 +14777,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16069,9 +14787,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16083,9 +14799,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16096,9 +14809,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16110,9 +14821,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16120,9 +14828,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16134,9 +14840,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16144,9 +14847,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16158,9 +14859,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16171,9 +14869,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16185,9 +14881,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16195,9 +14888,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16209,9 +14900,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16219,9 +14907,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16233,9 +14919,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16249,9 +14932,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -16263,9 +14944,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16276,9 +14954,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16290,9 +14966,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16303,9 +14976,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16317,9 +14988,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16327,9 +14995,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16341,9 +15007,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16351,9 +15014,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16365,9 +15026,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16378,9 +15036,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16392,9 +15048,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16402,9 +15055,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16416,9 +15067,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16426,9 +15074,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16440,9 +15086,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16453,9 +15096,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16467,9 +15108,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16480,9 +15118,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16494,9 +15130,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16507,9 +15140,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16521,9 +15152,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16534,9 +15162,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16548,9 +15174,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16561,9 +15184,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16575,9 +15196,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16588,9 +15206,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -16602,9 +15218,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16615,9 +15228,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -16629,9 +15240,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16639,9 +15247,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -16653,9 +15259,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16667,9 +15270,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-son
-    suffix: non
 - group:
     also:
     - obs
@@ -16681,9 +15282,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16693,9 +15291,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-son
-    suffix: non
 - group:
     also:
     - obs
@@ -16707,9 +15303,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16719,9 +15312,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-daughter
-    suffix: non
 - group:
     also:
     - obs
@@ -16733,9 +15324,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16743,9 +15331,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -16757,9 +15343,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16767,9 +15350,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -16781,9 +15362,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16791,9 +15369,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -16805,9 +15381,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16819,9 +15392,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-daughter
-    suffix: non
 - group:
     also:
     - obs
@@ -16833,9 +15404,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16845,9 +15413,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-son
-    suffix: non
 - group:
     also:
     - obs
@@ -16859,9 +15425,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16871,9 +15434,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-daughter
-    suffix: non
 - group:
     also:
     - obs
@@ -16885,9 +15446,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16895,9 +15453,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -16909,9 +15465,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16919,9 +15472,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-husband
-    suffix: non
 - group:
     also:
     - obs
@@ -16933,9 +15484,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16943,9 +15491,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-wife
-    suffix: non
 - group:
     also:
     - obs
@@ -16957,9 +15503,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16967,9 +15510,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -16981,9 +15522,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -16994,9 +15532,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17008,9 +15544,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17021,9 +15554,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17035,9 +15566,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17045,9 +15573,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17059,9 +15585,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17069,9 +15592,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17083,9 +15604,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17093,9 +15611,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17107,9 +15623,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17117,9 +15630,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17131,9 +15642,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17144,9 +15652,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -17158,9 +15664,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17172,9 +15675,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -17186,9 +15687,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17196,9 +15694,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17210,9 +15706,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17220,9 +15713,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17234,9 +15725,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17244,9 +15732,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17258,9 +15744,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17268,9 +15751,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17282,9 +15763,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17292,9 +15770,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17306,9 +15782,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17319,9 +15792,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -17333,9 +15804,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17347,9 +15815,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -17361,9 +15827,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17371,9 +15834,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17385,9 +15846,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17395,9 +15853,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17409,9 +15865,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17419,9 +15872,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17433,9 +15884,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17443,9 +15891,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17457,9 +15903,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17467,9 +15910,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17481,9 +15922,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17494,9 +15932,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -17508,9 +15944,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17522,9 +15955,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -17536,9 +15967,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17546,9 +15974,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17560,9 +15986,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17570,9 +15993,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17584,9 +16005,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17594,9 +16012,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17608,9 +16024,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17618,9 +16031,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17632,9 +16043,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17642,9 +16050,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17656,9 +16062,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17669,9 +16072,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -17683,9 +16084,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17697,9 +16095,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -17711,9 +16107,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17721,9 +16114,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17735,9 +16126,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17745,9 +16133,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17759,9 +16145,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17769,9 +16152,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17783,9 +16164,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17793,9 +16171,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17807,9 +16183,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17817,9 +16190,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17831,9 +16202,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17844,9 +16212,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentem
-    suffix: non
 - group:
     also:
     - obs
@@ -17858,9 +16224,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17872,9 +16235,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: parentef
-    suffix: non
 - group:
     also:
     - obs
@@ -17886,9 +16247,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17896,9 +16254,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17910,9 +16266,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17920,9 +16273,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - obs
@@ -17934,9 +16285,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17944,9 +16292,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17958,9 +16304,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17968,9 +16311,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-mother
-    suffix: non
 - group:
     also:
     - obs
@@ -17982,9 +16323,6 @@
     - atr
     - ls
     - rel
-    description: '
-
-      '
     guaranteed:
     - nome
     idprefix: per
@@ -17992,9 +16330,7 @@
     position:
     - nome
     - sexo
-    prefix: non
     source: kin-father
-    suffix: non
 - group:
     also:
     - id
@@ -18004,18 +16340,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: afilhado
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18025,18 +16356,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: genro
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18046,18 +16372,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: criado
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18067,18 +16388,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: escravo
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18088,18 +16404,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: engeitado
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18109,18 +16420,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: enjeitado
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18130,18 +16436,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: sobrinho
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18151,18 +16452,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: sogro
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18172,18 +16468,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: neto
     position:
     - name
-    prefix: non
     source: male
-    suffix: non
 - group:
     also:
     - id
@@ -18193,18 +16484,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: nora
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18214,18 +16500,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: afilhada
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18235,18 +16516,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: criada
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18256,18 +16532,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: escrava
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18277,18 +16548,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: engeitada
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18298,18 +16564,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: enjeitada
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18319,18 +16580,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: sobrinha
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18340,18 +16596,13 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: sogra
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - id
@@ -18361,26 +16612,18 @@
     - atr
     - rel
     - ls
-    description: '
-
-      '
     guaranteed:
     - name
     idprefix: per
     name: neta
     position:
     - name
-    prefix: non
     source: female
-    suffix: non
 - group:
     also:
     - data
     - obs
     - id
-    description: '
-
-      '
     guaranteed:
     - tipo
     - valor
@@ -18391,17 +16634,12 @@
     - tipo
     - valor
     - data
-    prefix: non
     source: attribute
-    suffix: non
 - group:
     also:
     - data
     - obs
     - id
-    description: '
-
-      '
     guaranteed:
     - tipo
     - valor
@@ -18412,17 +16650,12 @@
     - tipo
     - valor
     - data
-    prefix: non
     source: ls
-    suffix: non
 - group:
     also:
     - data
     - obs
     - id
-    description: '
-
-      '
     guaranteed:
     - tipo
     - valor
@@ -18436,6 +16669,4 @@
     - valor
     - nomedest
     - iddest
-    prefix: non
     source: relation
-    suffix: non

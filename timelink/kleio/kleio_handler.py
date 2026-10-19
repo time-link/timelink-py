@@ -1,46 +1,39 @@
+import copy
 import logging
 from datetime import datetime, timezone
 from enum import Enum
 from typing import List
-import copy
 
-from sqlalchemy import text, delete
-from sqlalchemy.orm import Session
+from sqlalchemy import delete, text
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
 
-from timelink.api.models.pom_som_mapper import PomSomMapper as PomSomMapperTL
-from timelink.api.models.pom_som_mapper import (
-    PomClassAttributes as PomClassAttributesTL,
-)
+from timelink.api.models.base import Entity as EntityTL
+from timelink.api.models.base import LinkStatus as STATUS
+from timelink.api.models.base import Person as PersonTL
+from timelink.api.models.base import Relation as RelationTL
+from timelink.api.models.base import REntity
 from timelink.api.models.base_mappings import (
     pom_som_base_mappings as pom_som_base_mappingsTL,
 )
-from timelink.api.models.base import (
-    Entity as EntityTL,
-    Person as PersonTL,
-    Relation as RelationTL
+from timelink.api.models.pom_som_mapper import (
+    PomClassAttributes as PomClassAttributesTL,
 )
-from timelink.api.models.rentity import (
-    REntity as REntityTL,
-    Link as LinkTL,
-    BLink as BLinkTL
-)
-
-from timelink.api.models.base import REntity, LinkStatus as STATUS
+from timelink.api.models.pom_som_mapper import PomSomMapper as PomSomMapperTL
+from timelink.api.models.rentity import BLink as BLinkTL
+from timelink.api.models.rentity import Link as LinkTL
+from timelink.api.models.rentity import REntity as REntityTL
 from timelink.api.models.system import KleioImportedFile as KleioFileTL
-
-
+from timelink.kleio.groups import KGroup
 from timelink.mhk.models.db import pom_som_base_mappings as pom_som_base_mappingsMHK
-from timelink.mhk.models.pom_som_mapper import (
-    PomSomMapper as PomSomMapperMHK,
-    PomClassAttributes as PomClassAttributesMHK,
-)
 from timelink.mhk.models.entity import Entity as EntityMHK
 from timelink.mhk.models.person import Person as PersonMHK
+from timelink.mhk.models.pom_som_mapper import (
+    PomClassAttributes as PomClassAttributesMHK,
+)
+from timelink.mhk.models.pom_som_mapper import PomSomMapper as PomSomMapperMHK
 from timelink.mhk.models.relation import Relation as RelationMHK
 from timelink.mhk.models.system import KleioImportedFile as KleioFileMHK
-
-from timelink.kleio.groups import KGroup
 
 
 class KleioContext(Enum):
@@ -92,6 +85,7 @@ class KleioHandler:
     kleio_context = None
     pom_som_cache = dict()
     kleio_file_is_aregister = False
+    last_group_line = None
 
     def __init__(self, session: Session, mode="TL", user="user"):
         """
@@ -101,12 +95,14 @@ class KleioHandler:
             user: the user that is importing the data, used for same as ownership
 
         """
+        logging.debug("KleioHandler.__init__: mode=%s user=%s", mode, user)
         self.session = session
         self.user = user
         self.kleio_file_is_aregister = False
         self.kleio_source_id = None
         self.aregister_id = None
         self.xrefs = {}
+        self.last_group_line = None
         if mode == "TL":
             self.pom_som_base_mappings = pom_som_base_mappingsTL
             self.pom_som_mapper = PomSomMapperTL
@@ -130,6 +126,9 @@ class KleioHandler:
             self.model_type = "MHK"
         else:
             raise ValueError(f"Unknown mode {mode}")
+        logging.debug(
+            "KleioHandler.__init__: initialized model_type=%s", self.model_type
+        )
 
     def save_source_context(self, source_id):
         """Save all the links and relations pointing to this
@@ -164,8 +163,12 @@ class KleioHandler:
                 AND e.the_source = :source_id
                 AND link_source != e.the_source;
         """
+        logging.debug("save_source_context: start source_id=%s", source_id)
         # Currently not implemented in MHK Mysql databases
         if self.model_type == "MHK":
+            logging.debug(
+                "save_source_context: skipped in MHK mode source_id=%s", source_id
+            )
             return
         # make a sql alchemy query to get the cross source relations
         # and store them in cross_source_relations
@@ -201,10 +204,16 @@ class KleioHandler:
         xrefs = self.session.execute(sql_query).fetchall()
 
         self.xrelations[source_id] = xrefs
+        logging.debug(
+            "save_source_context: stored cross-source relations source_id=%s count=%s",
+            source_id,
+            len(xrefs),
+        )
 
         # get the links that are going to be affected by the reimport
         sql = """
-                SELECT l.id, l.rid,l.entity, l.user, l.rule, l.status, l.source as link_source, e.the_source as entity_source
+                SELECT l.id, l.rid,l.entity, l.user, l.rule, l.status, l.source as link_source,
+                       e.the_source as entity_source
                 FROM links l, entities e
                 WHERE l.entity = e.id
                 AND e.the_source = :source_id;
@@ -221,10 +230,15 @@ class KleioHandler:
                 self.link_model.rule,
                 self.link_model.status,
                 self.link_model.source,
-                self.entity_model.the_source.label('entity_source')
+                self.entity_model.the_source.label("entity_source"),
             )
         )
         xlinks = self.session.execute(sql_query).fetchall()
+        logging.debug(
+            "save_source_context: found affected links source_id=%s count=%s",
+            source_id,
+            len(xlinks),
+        )
 
         # save the links that are going to be affected by the reimport
         for link_id in [link.id for link in xlinks]:
@@ -233,11 +247,15 @@ class KleioHandler:
             # find a blink for the same rid, entity and user
             # if it exists we do not create a new one
 
-            blink = self.session.query(BLinkTL).filter(
-                BLinkTL.rid == link.rid,
-                BLinkTL.entity == link.entity,
-                BLinkTL.user == link.user
-            ).first()
+            blink = (
+                self.session.query(BLinkTL)
+                .filter(
+                    BLinkTL.rid == link.rid,
+                    BLinkTL.entity == link.entity,
+                    BLinkTL.user == link.user,
+                )
+                .first()
+            )
 
             if blink is None:
                 # create a blink with the link information
@@ -254,6 +272,12 @@ class KleioHandler:
 
         # maybe not useful
         self.xlinks[source_id] = xlinks
+        logging.debug(
+            "save_source_context: completed source_id=%s relations=%s links=%s",
+            source_id,
+            len(xrefs),
+            len(xlinks),
+        )
 
     def restore_source_context(self, source_id):
         """Restore all the links and relations pointing to this
@@ -266,9 +290,18 @@ class KleioHandler:
         at the end of the source import it is possible to restore
         the missing links
         """
+        logging.debug("restore_source_context: start source_id=%s", source_id)
         if self.model_type == "MHK":
+            logging.debug(
+                "restore_source_context: skipped in MHK mode source_id=%s", source_id
+            )
             return
         relations = self.xrelations[source_id]
+        logging.debug(
+            "restore_source_context: restoring relations source_id=%s count=%s",
+            source_id,
+            len(relations),
+        )
         for r in relations:
             # we get the relation in other sources that was affect by the reimport
             rel = self.session.get(
@@ -297,7 +330,7 @@ class KleioHandler:
                     self.session.commit()
 
                     # TODO: and now we should process the xsame_as relations
-                    if rel.the_type == 'identification' and rel.the_value == 'same as':
+                    if rel.the_type == "identification" and rel.the_value == "same as":
 
                         REntity.same_as(
                             rel.origin,
@@ -306,6 +339,11 @@ class KleioHandler:
                             rule=f"same_as('{self.kleio_file_name}', 'reimported')",
                             source=source_id,
                             session=self.session,
+                        )
+                        logging.debug(
+                            "restore_source_context: restored same_as relation id=%s source_id=%s",
+                            r.id,
+                            source_id,
                         )
                         pass
                 else:
@@ -328,6 +366,7 @@ class KleioHandler:
                     f"was saved before reimport of source {source_id} "
                     f"but was deleted during reimport."
                 )
+        logging.debug("restore_source_context: completed source_id=%s", source_id)
 
     def newKleioFile(self, attrs):
         """Process a new Kleio file
@@ -338,6 +377,7 @@ class KleioHandler:
                 OBS="" SPACE="">
         # TODO: should use a subclass for this
         """
+        logging.debug("newKleioFile: start source=%s", attrs.get("SOURCE", "<unknown>"))
         self.session.commit()
         self.postponed_relations = []
         self.errors = []
@@ -360,13 +400,20 @@ class KleioHandler:
         self.sources_in_file = []
         self.xrefs = {}
         self.xlinks = {}
-        logging.debug("Kleio file: %s", self.kleio_file)
-        logging.debug("Kleio structure: %s", self.kleio_structure)
-        logging.debug("Kleio translator: %s", self.kleio_translator)
-        logging.debug("Kleio when: %s", self.kleio_when)
+        self.last_group_line = None
+        logging.debug(
+            "newKleioFile: initialized file=%s structure=%s translator=%s when=%s",
+            self.kleio_file,
+            self.kleio_structure,
+            self.kleio_translator,
+            self.kleio_when,
+        )
         # mark that file is being imported by nulling the imported date
         kfile = self.session.get(self.kleio_file_model, self.kleio_file)
         if kfile is not None:
+            logging.debug(
+                "newKleioFile: resetting prior import info file=%s", self.kleio_file
+            )
             kfile.imported = None
             kfile.imported_string = None
             self.session.commit()
@@ -382,8 +429,22 @@ class KleioHandler:
 
         """
 
+        line_info = (
+            f" line {self.last_group_line}" if self.last_group_line is not None else ""
+        )
+        logging.debug(
+            "newClass: start class_id=%s model_type=%s attrs=%s%s",
+            psm.id,
+            self.model_type,
+            len(attrs),
+            line_info,
+        )
+
         if self.model_type == "TL":
             # new code in Timelink
+            logging.debug(
+                "newClass: delegating import_pom_som_class class_id=%s", psm.id
+            )
             self.pom_som_mapper.import_pom_som_class(psm, attrs, self.session)
             return
         # from here own legacy code for MHK
@@ -395,6 +456,11 @@ class KleioHandler:
             orm_class = self.entity_model.get_orm_for_pom_class(psm.id)
             if orm_class is not None:
                 self.pom_som_mapper.group_orm_models[psm.group_name] = orm_class
+                logging.debug(
+                    "newClass: mapped base group to ORM class_id=%s group_name=%s",
+                    psm.id,
+                    psm.group_name,
+                )
             return
 
         # if we import mapping from local file we also skip those
@@ -423,7 +489,8 @@ class KleioHandler:
             except Exception as e:
                 session.rollback()
                 self.errors.append(
-                    f"ERROR: deleting class {psm.id}: {e.__class__.__name__}: {e}"
+                    f"ERROR: {self.kleio_file_name}{line_info} "
+                    f"deleting class {psm.id}: {e.__class__.__name__}: {e}"
                 )
 
         # now we add the new mapping
@@ -436,19 +503,33 @@ class KleioHandler:
         except Exception as e:
             session.rollback()
             self.errors.append(
-                f"ERROR: adding class {psm.id}: {e.__class__.__name__}: {e}"
+                f"ERROR: {self.kleio_file_name}{line_info} "
+                f"adding class {psm.id}: {e.__class__.__name__}: {e}"
             )
         # ensure that the table and ORM classes are created
         try:
             psm.ensure_mapping(session)
             session.commit()
+            logging.debug("newClass: ensured ORM mapping class_id=%s", psm.id)
         except Exception as e:
             session.rollback()
             self.errors.append(
-                f"ERROR: creating ORM mapping for class {psm.id}: {e.__class__.__name__}: {e}"
+                f"ERROR: {self.kleio_file_name}{line_info} "
+                f"creating ORM mapping for class {psm.id}: {e.__class__.__name__}: {e}"
             )
 
     def newGroup(self, group: KGroup):
+        # Keep the source line of the most recently processed group so later
+        # parser callbacks (e.g. newRelation/newClass) can report location.
+        self.last_group_line = group.line
+        logging.debug(
+            "newGroup: start group=%s$%s class=%s line=%s",
+            group.kname,
+            group.id,
+            group.pom_class_id,
+            group.line,
+        )
+
         # get the PomSomMapper
         # pass storeKGroup
         pom_mapper_for_group: PomSomMapperTL | PomSomMapperMHK
@@ -494,6 +575,9 @@ class KleioHandler:
             self.kleio_source_id = str(group.id.core)
             group.source_id = self.kleio_source_id
             self.sources_in_file.append(self.kleio_source_id)
+            logging.debug(
+                "newGroup: detected source group source_id=%s", self.kleio_source_id
+            )
             # We need to save all the links and relations pointing to this
             # source from other sources because they will be nulled or deleted
             # when the source is deleted
@@ -514,9 +598,18 @@ class KleioHandler:
                 self.postponed_relations.append(
                     (pom_mapper_for_group.id, copy.deepcopy(group))
                 )
+                logging.debug(
+                    "newGroup: postponed relation group=%s$%s pending_count=%s",
+                    group.kname,
+                    group.id,
+                    len(self.postponed_relations),
+                )
             else:
                 try:
                     pom_mapper_for_group.store_KGroup(group, self.session)
+                    logging.debug(
+                        "newGroup: stored relation group=%s$%s", group.kname, group.id
+                    )
                 except Exception as exc:
                     self.session.rollback()
                     self.errors.append(
@@ -529,11 +622,12 @@ class KleioHandler:
             # we have the POM class, less check special cases
             try:
                 pom_mapper_for_group.store_KGroup(group, self.session)
+                logging.debug("newGroup: stored group=%s$%s", group.kname, group.id)
             except IntegrityError as ierror:
                 logging.error(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
                     f"integrity error {group.kname}${group.id}: {ierror}",
-                    stacklevel=3
+                    stacklevel=3,
                 )
                 self.errors.append(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
@@ -545,7 +639,7 @@ class KleioHandler:
                 logging.error(
                     f"ERROR: {self.kleio_file_name} line {str(group.line)} "
                     f"storing group {group.kname}${group.id}: {exc.__class__.__name__}: {exc}",
-                    stacklevel=3
+                    stacklevel=3,
                 )
                 self.session.rollback()
                 self.errors.append(
@@ -587,6 +681,17 @@ class KleioHandler:
         rel_value = attrs["VALUE"]
         rel_register = attrs.get("REGISTER", None)
         rel_user = attrs.get("USER", None)
+        line_info = (
+            f" line {self.last_group_line}" if self.last_group_line is not None else ""
+        )
+        logging.debug(
+            "newRelation: start relation_id=%s value=%s origin=%s destination=%s%s",
+            rel_id,
+            rel_value,
+            rel_origin,
+            rel_dest,
+            line_info,
+        )
 
         if rel_value == "same_as":
             self.session.commit()
@@ -603,9 +708,10 @@ class KleioHandler:
                     session=self.session,
                 )
                 self.session.commit()
+                logging.debug("newRelation: processed same_as relation_id=%s", rel_id)
             except Exception as exc:
                 self.errors.append(
-                    f"ERROR: {self.kleio_file_name} "
+                    f"ERROR: {self.kleio_file_name}{line_info} "
                     f"processing same_as relation {rel_id}: {exc.__class__.__name__}: {exc}"
                 )
                 self.session.rollback()
@@ -614,10 +720,13 @@ class KleioHandler:
         elif rel_value == "attach_to_rentity":
             # register the attach_to_rentity relation
             self.session.commit()
+            logging.debug(
+                "newRelation: processing attach_to_rentity relation_id=%s", rel_id
+            )
             rentity = self.session.get(REntity, rel_dest)
             if rentity is None:
                 error_msg = (
-                    f"ERROR: {self.kleio_file_name} "
+                    f"ERROR: {self.kleio_file_name}{line_info} "
                     f"processing attach_to_rentity relation {rel_id}: "
                     f"Real entity {rel_dest} not found"
                 )
@@ -634,9 +743,10 @@ class KleioHandler:
                     aregister=self.aregister_id,
                 )
                 self.session.commit()
+                logging.debug("newRelation: attached occurrence relation_id=%s", rel_id)
             except Exception as exc:
                 msg = (
-                    f"ERROR: {self.kleio_file_name} "
+                    f"ERROR: {self.kleio_file_name}{line_info} "
                     f"processing attach_to_rentity relation {rel_id}: {exc.__class__.__name__}: {exc}"
                 )
                 logging.error(msg)
@@ -646,12 +756,19 @@ class KleioHandler:
 
         else:  # unknown relation
             self.errors.append(
-                f"ERROR: {self.kleio_file_name} " f"unknown relation type {rel_value}"
+                f"ERROR: {self.kleio_file_name}{line_info} "
+                f"unknown relation type {rel_value}"
             )
             self.session.rollback()
 
     def endKleioFile(self):
         """Process end of file: process postponed relations"""
+        logging.debug(
+            "endKleioFile: start file=%s postponed=%s sources=%s",
+            self.kleio_file_name,
+            len(self.postponed_relations),
+            len(self.sources_in_file),
+        )
         # store postponed relations
         postponed = len(self.postponed_relations)
         if postponed > 0:
@@ -678,7 +795,7 @@ class KleioHandler:
 
         # restore all the links and relations pointing to this
         # source(s) from other sources that were saved before the source was deleted
-        # the cross references were save when a source group was processed
+        # the cross references were saved when a source group was processed
         # TODO: should this go here or to models.Source?
         for source_id in self.sources_in_file:
             self.restore_source_context(source_id)
@@ -715,3 +832,9 @@ class KleioHandler:
             self.session.commit()
         self.session.add(kfile)
         self.session.commit()
+        logging.debug(
+            "endKleioFile: completed file=%s errors=%s warnings=%s",
+            self.kleio_file_name,
+            len(self.errors),
+            len(self.warnings),
+        )

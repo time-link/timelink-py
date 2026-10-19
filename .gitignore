@@ -89,7 +89,11 @@ ENV/
 .mypy_cache/
 
 # IDE settings
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .idea
 
 # OS generated files
@@ -126,3 +130,5 @@ BRANCH_ANALYSIS.md
 
 # NiceGUI app storage (runtime artifact)
 .nicegui/
+WORKTREE_GUIDE.md
+tests/timelink-home/database/sqlite/test.sqlite-journal

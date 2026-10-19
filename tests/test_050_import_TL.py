@@ -2,6 +2,7 @@
 Check tests.__init__.py for parameters
 
 """
+
 # pylint: disable=import-error
 import logging
 import os
@@ -10,22 +11,25 @@ from time import sleep
 
 import pytest
 
-from tests import TEST_DIR, get_one_translation, skip_on_travis, has_internet, kleio_retry
-from timelink.api.models.system import KleioImportedFile
-from timelink.kleio.importer import import_from_xml
+from tests import (
+    TEST_DIR,
+    get_one_translation,
+    has_internet,
+    kleio_retry,
+    skip_on_github_actions,
+    skip_on_travis,
+)
+from timelink.api.database import TimelinkDatabase, get_import_status
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person, PomSomMapper
-from timelink.api.database import (
-    TimelinkDatabase,
-    get_import_status,
-)
 from timelink.api.models.entity import Entity
-
+from timelink.api.models.system import KleioImportedFile
+from timelink.kleio.importer import import_from_xml
 from timelink.kleio.kleio_server import KleioServer
 from timelink.kleio.schemas import KleioFile
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
 
 TEST_DB = "test_import_tl"
 db_path = f"{TEST_DIR}/sqlite/"
@@ -38,9 +42,14 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
     # only used for sqlite databases
 
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
-                                echo=False,
-                                kleio_server=kleio_server)
+    database = TimelinkDatabase(
+        db_name,
+        db_type,
+        db_path=db_path,
+        echo=False,
+        drop_if_exists=True,
+        kleio_server=kleio_server,
+    )
     try:
 
         yield database
@@ -71,11 +80,11 @@ def test_import_xml(dbsystem):
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_linked_data_attributes(dbsystem):
     """Test the import of a translation with linked_data in attributes"""
-    path = "projects/test-project/sources/reference_sources/linked_data"
+    path = "projects/test-project/sources/reference_sources/linked_data/dehergne-a-partial.cli"
     dbsystem.update_from_sources(path=path)
     with dbsystem.session() as session:
         try:
-            per: Person = session.get(Person, "deh-antonio-de-abreu")
+            per: Person = session.get(Person, "deh-pedro-de-alcacova")
             assert per is not None, "could not get a group with linked data from file"
             k = per.to_kleio()
             print(k)
@@ -111,7 +120,9 @@ def test_import_linked_data_geoentites(dbsystem):
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_atr_date(dbsystem):
     """Test the import of a Kleio file with explicit attribute dates"""
-    file: Path = Path("projects/test-project/sources/reference_sources/test-attr-dates/test-attr-dates.cli")
+    file: Path = Path(
+        "projects/test-project/sources/reference_sources/test-attr-dates/test-attr-dates.cli"
+    )
     dbsystem.update_from_sources(file)
     with dbsystem.session() as session:
         try:
@@ -150,27 +161,37 @@ def test_import_with_custom_mapping(dbsystem):
 
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_issue48(dbsystem):
-    """ Problem with importing mapping hierarchies issue #48 """
+    """Problem with importing mapping hierarchies issue #48.
+
+    Issue #48: importing sources with mapping hierarchies must preserve
+    `type` and `loc` element-class mappings so related entities resolve
+    their columns correctly.
+    """
     path = "projects/test-project/sources/reference_sources/issues/issue48/"
     dbsystem.update_from_sources(path=path)
     with dbsystem.session() as session:
         try:
             carta = session.get(Entity, "deh-ca-1645-b-2-a")
             assert carta.the_type is not None, "carta did not have a type"
-            pom_class: PomSomMapper = PomSomMapper.get_pom_class(carta.pom_class, session)
-            assert pom_class.element_class_to_column('type', session) is not None
+            pom_class: PomSomMapper = PomSomMapper.get_pom_class(
+                carta.pom_class, session
+            )
+            assert pom_class.element_class_to_column("type", session) is not None
             crono = session.get(Entity, "issue48-sourceb-his1-79")
             assert crono.loc is not None, "crono did not have a loc"
-            pom_class: PomSomMapper = PomSomMapper.get_pom_class(crono.pom_class, session)
-            assert pom_class.element_class_to_column('loc', session) is not None
+            pom_class: PomSomMapper = PomSomMapper.get_pom_class(
+                crono.pom_class, session
+            )
+            assert pom_class.element_class_to_column("loc", session) is not None
         except Exception as exc:
             print(exc)
             session.rollback()
             raise
 
 
+@skip_on_github_actions
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
-def test_import_with_many(dbsystem):
+def test_import_with_many(dbsystem, kleio_server):
     """Test the import of a long Kleio file into the Timelink database"""
     file = Path("projects/test-project/sources/reference_sources/varia/auc-alunos.cli")
     dbsystem.update_from_sources(file)
@@ -179,9 +200,9 @@ def test_import_with_many(dbsystem):
             estudante = session.get(Entity, "140771")
             kleio = estudante.to_kleio()
             assert len(kleio) > 0
-            assert estudante is not None, (
-                "could not get an entity from big import"
-            )  # noqa
+            assert (
+                estudante is not None
+            ), "could not get an entity from big import"  # noqa
         except Exception as exc:
             print(exc)
             session.rollback()

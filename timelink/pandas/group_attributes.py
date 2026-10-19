@@ -1,10 +1,12 @@
-""" Return the attributes of a group of entities in a dataframe."""
+"""Return the attributes of a group of entities in a DataFrame."""
 
 import warnings
-from sqlalchemy import column, select, not_
-from sqlalchemy.orm.session import Session
+
 import pandas as pd
 from IPython.display import display
+from sqlalchemy import column, not_, select
+from sqlalchemy.orm.session import Session
+
 from timelink.api.database import TimelinkDatabase
 from timelink.pandas.entities_with_attribute import entities_with_attribute
 from timelink.pandas.styles import category_palette, styler_row_colors
@@ -20,19 +22,17 @@ def group_attributes(
     session: Session = None,
     sql_echo=False,
 ):
-    """Return the attributes of a group of entities in a dataframe.
+    """Return attributes of a group of entities in a DataFrame.
 
     Args:
-    group: list of ids
-    entity_type: type of entities to show
-    show_elements: elements of entity type to include
-                (e.g. name, description, obs)
-    include_attributes: list of attribute types to include
-    exclude_attributes: list of attribute types to exclude
-    db: a TimelinkDatabase object if None specify session
-    session: a sqlalchemy session object, if None specify db
-    sql_echo: if True echo the sql generated
-
+        group: List of entity ids to include.
+        entity_type: Entity type to query (defaults to "entity").
+        include_attributes: Attribute types to include; supports wildcards.
+        exclude_attributes: Attribute types to exclude.
+        show_elements: Entity columns to include (for example name, description, obs).
+        db: TimelinkDatabase instance; required if ``session`` is not provided.
+        session: Existing SQLAlchemy session; used when ``db`` is not provided.
+        sql_echo: When True, echo the generated SQL statements.
     """
 
     if group is None:
@@ -173,7 +173,9 @@ def display_group_attributes(
         db=db,
     )
     # remove irrelevant columns
-    header_df = header_df.loc[:, ~header_df.columns.str.endswith(("line", "level", "extra_info", "attr_id"))]
+    header_df = header_df.loc[
+        :, ~header_df.columns.str.endswith(("line", "level", "extra_info", "attr_id"))
+    ]
     # remove  entries with duplicate index from header_df
     header_df = (
         header_df.reset_index()
@@ -194,7 +196,8 @@ def display_group_attributes(
     palette = category_palette(categories, cmap_name=cmap_name)
 
     header_df = styler_row_colors(
-        header_df[header_cols], category=category, palette=palette)
+        header_df[header_cols], category=category, palette=palette
+    )
     display(header_df)
 
     df = group_attributes(

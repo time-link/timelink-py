@@ -12,9 +12,13 @@ https://timelink-py.readthedocs.io
    :maxdepth: 2
    :caption: About Timelink:
 
-   timelink-introduction
-   timelink-python-usage
    som_pom_mapping
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API References:
+
+   timelink.kleio.groups
 
 Source code docs
 ----------------

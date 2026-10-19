@@ -5,8 +5,8 @@ Timelink Python package
 .. image:: https://img.shields.io/pypi/v/timelink.svg
         :target: https://pypi.python.org/pypi/timelink
 
-.. image:: https://api.travis-ci.com/time-link/timelink-py.svg?branch=main
-        :target: https://travis-ci.com/joaquimrcarvalho/timelink
+.. image:: https://github.com/time-link/timelink-py/workflows/CI/CD/badge.svg
+        :target: https://github.com/time-link/timelink-py/actions
 
 .. image:: https://readthedocs.org/projects/timelink-py/badge/?version=latest
         :target: https://timelink-py.readthedocs.io/en/latest/?version=latest

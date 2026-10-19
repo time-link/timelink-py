@@ -3,25 +3,26 @@ Check tests.__init__.py for parameters
 
 """
 
+import random
+
 # pylint: disable=import-error
 from pathlib import Path
-import random
-# import pdb
 
 import pytest
 from sqlalchemy import select
 
-from tests import TEST_DIR, skip_on_travis
-from timelink.kleio.kleio_server import KleioServer
+from tests import TEST_DIR, skip_on_github_actions
+from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person
-from timelink.api.models.rentity import Link, REntity, LinkStatus as STATUS
-from timelink.api.database import (
-    TimelinkDatabase
-)
+from timelink.api.models.rentity import Link
+from timelink.api.models.rentity import LinkStatus as STATUS
+from timelink.api.models.rentity import REntity
+from timelink.kleio.kleio_server import KleioServer
 
 # https://docs.pytest.org/en/latest/how-to/skipping.html
-pytestmark = skip_on_travis
+pytestmark = skip_on_github_actions
+
 
 db_path = Path(TEST_DIR, "sqlite")
 TEST_DB = "rentities"
@@ -43,10 +44,8 @@ def dbsystem(request, kleio_server):
         pass
 
     database = TimelinkDatabase(
-        db_name=db_name,
-        db_type=db_type,
-        db_path=db_path,
-        kleio_server=kleio_server)
+        db_name=db_name, db_type=db_type, db_path=db_path, kleio_server=kleio_server
+    )
 
     try:
         yield database
@@ -93,7 +92,12 @@ def test_link_two_occ(dbsystem):
 
         # Fetch occurrences
         # everyboby with a name like Matteo Ricci
-        occurrences = [id for (id,) in session.query(Person.id).filter(Person.name.like("Mat%Ricci")).all()]
+        occurrences = [
+            id
+            for (id,) in session.query(Person.id)
+            .filter(Person.name.like("Mat%Ricci"))
+            .all()
+        ]
 
         # Shuffle the occurrences to randomize the order
         random.shuffle(occurrences)
@@ -113,7 +117,9 @@ def test_link_two_occ(dbsystem):
         occ1 = occurrences[0]
         occ2 = occurrences[1]
         # two unbound occurrences
-        ri1 = REntity.same_as(occ1, occ2, real_id=test_rid, status=STATUS.MANUAL, session=session)
+        ri1 = REntity.same_as(
+            occ1, occ2, real_id=test_rid, status=STATUS.MANUAL, session=session
+        )
         assert ri1 is not None, "Real entity not returned"
         assert ri1.id == test_rid, "real_id not preserved"
 
@@ -159,7 +165,9 @@ def test_link_two_occ(dbsystem):
 
         # check that cannot set real_id if occurrences are already bound
         with pytest.raises(ValueError):
-            REntity.same_as(occ5, occ6, real_id="xpto", status=STATUS.AUTOMATIC, session=session)
+            REntity.same_as(
+                occ5, occ6, real_id="xpto", status=STATUS.AUTOMATIC, session=session
+            )
 
         real_ricci = session.get(REntity, ri1.id)
         assert len(real_ricci.to_kleio()) > 0
@@ -179,7 +187,9 @@ def test_make_real(dbsystem):
         bento_de_gois = session.get(Person, "deh-bento-de-gois")
         assert bento_de_gois is not None, "could not get a person from file"
 
-        rid = REntity.make_real(bento_de_gois.id, status=STATUS.AUTOMATIC, session=session)
+        rid = REntity.make_real(
+            bento_de_gois.id, status=STATUS.AUTOMATIC, session=session
+        )
         assert rid is not None, "real_id not returned"
         real_bento = session.get(REntity, rid.id)
         assert len(real_bento.to_kleio()) > 0
@@ -199,7 +209,7 @@ def test_import_aregister(dbsystem: TimelinkDatabase):
     file = Path(TEST_FILES_DIR, "aregister-tests.cli")
     dbsystem.update_from_sources(file, force=True)
     kserver: KleioServer = dbsystem.kserver
-    kfiles = kserver.get_translations(path=file, status='V')
+    kfiles = kserver.get_translations(path=file, status="V")
     assert len(kfiles) == 1, "wrong number of files"
     kfile = kfiles[0]
     stats = dbsystem.import_from_xml(kfile)
@@ -208,7 +218,9 @@ def test_import_aregister(dbsystem: TimelinkDatabase):
     assert "aregister" in sfile  # ensure import was done
     with dbsystem.session() as session:
         real_person = session.get(REntity, "rp-66")
-        assert real_person is not None, "could not get a real person from identifications import"  # noqa
+        assert (
+            real_person is not None
+        ), "could not get a real person from identifications import"  # noqa
         assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
         kleio = real_person.to_kleio()
         assert len(kleio) > 0
@@ -216,7 +228,9 @@ def test_import_aregister(dbsystem: TimelinkDatabase):
         sfile = stats["file"]
         assert "aregister" in sfile
         real_person = session.get(REntity, "rp-66")
-        assert real_person is not None, "could not get a real person from identifications import"
+        assert (
+            real_person is not None
+        ), "could not get a real person from identifications import"
         assert len(real_person.get_occurrences()) == 10, "wrong number of occurrences"
 
 

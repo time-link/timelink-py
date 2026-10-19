@@ -1,8 +1,16 @@
 import pytest
 
+import tests as test_settings
 from timelink.kleio.kleio_server import KleioServer
 
-from tests import KLEIO_HOME, KleioServerTestMode, kleio_server_mode
+
+def _use_local_kleio_server() -> bool:
+    """Read execution mode from tests package shared settings.
+
+    Keeping this lookup in one place makes the dependency on tests.__init__
+    explicit and easier to maintain.
+    """
+    return test_settings.kleio_server_mode == test_settings.KleioServerTestMode.LOCAL
 
 from unittest.mock import MagicMock
 
@@ -11,16 +19,23 @@ from unittest.mock import MagicMock
 def kleio_server():
     """setup kleio server for tests
 
+    Configuration for this fixture is defined in tests.__init__.py.
+
     The kleio_server local mode does not start a new Kleio Server in docker.
     Instead it will attach to a running kleio server at a specific
     url with a specific token (setup above). This is usefull to
     have the server running in swil prolog and debug interactively.
 
     To run tests with a local Kleio Server outside docker:
-    1) set "mode" abose to KleioServerTestMode.LOCAL
+    1) set tests.kleio_server_mode in tests.__init__.py to
+       KleioServerTestMode.LOCAL
     2)Run the server in Prolog loading serverStart.pl and then:
 
         setenv('KLEIO_ADMIN_TOKEN','mytoken').
+        % PATH_TO_KLEIO_HOME_TEST_PROJECT e.g.:
+        % /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/
+        setenv('KLEIO_HOME_DIR', 'PATH_TO_KLEIO_HOME_TEST_PROJECT').
+
         setup_and_run_server(run_debug_server,[port(8089)]).
 
     Or run run_test_server in serverStart.pl and use
@@ -31,20 +46,47 @@ def kleio_server():
     requests comming from the tests in this suite.
 
     """
-    if kleio_server_mode == KleioServerTestMode.LOCAL:
-        local = True
-    else:
-        local = False
+    # The fixture behavior is controlled by values defined in tests.__init__.py.
+    local = _use_local_kleio_server()
+
+    # Image/version come from tests.__init__.py (single source of truth for
+    # the test suite). To test a pre-release local kleio-server build, set
+    # use_kleio_image = "kleio-server" and use_kleio_version = "12.9.591"
+    # there (or edit these variables locally for ad-hoc runs).
+    kleio_image = test_settings.use_kleio_image
+    kleio_version = test_settings.use_kleio_version
+    kleio_external_port = 8089
+    timeout_secs = 300
 
     if local:
         token = "mytoken"
-        url = "http://localhost:8088"
+        url = "http://localhost:8089"
         server = KleioServer.attach(url, token)
+        print("Kleio server attached", server.get_url())
+        print("Kleio server version", server.get_version_info())
     else:
-        server = KleioServer.start(kleio_home=KLEIO_HOME,
-                                   kleio_version="latest",
-                                   kleio_external_port=8999,
-                                   kleio_debug="true")
+        server = KleioServer.start(
+            # KLEIO_HOME comes from tests/__init__.py shared test configuration.
+            kleio_home=test_settings.KLEIO_HOME,
+            kleio_image=kleio_image,
+            kleio_version=kleio_version,
+            kleio_external_port=kleio_external_port,
+            # Single worker for deterministic tests: with the default of 3
+            # workers, requests are routed to any of them and a worker that
+            # is still (re)loading its RPC methods answers -32601 Method not
+            # found, which made CI flaky (issue #98).
+            kleio_server_workers="1",
+            # The full suite runs ~20 min and the last Kleio consumer
+            # (test_140) comes after a long idle stretch (test_110-130 do
+            # not use the server); the default 900 s idle timeout let the
+            # server exit mid-suite and every late consumer failed with
+            # connection errors.
+            kleio_idle_timeout=3600,
+            kleio_debug="true",
+        )
+        print("Kleio server started in Docker", server.container.name)
+        print("Kleio server version", server.get_version_info())
+    server.set_call_timeout(timeout_secs)
 
     yield server
 

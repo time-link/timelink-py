@@ -30,6 +30,27 @@ timelink.api.database module
    :no-undoc-members:
    :no-show-inheritance:
 
+timelink.api.database\_postgres module
+--------------------------------------
+
+.. automodule:: timelink.api.database_postgres
+   :no-undoc-members:
+   :no-show-inheritance:
+
+timelink.api.database\_sqlite module
+------------------------------------
+
+.. automodule:: timelink.api.database_sqlite
+   :no-undoc-members:
+   :no-show-inheritance:
+
+timelink.api.database\_utils module
+-----------------------------------
+
+.. automodule:: timelink.api.database_utils
+   :no-undoc-members:
+   :no-show-inheritance:
+
 timelink.api.schemas module
 ---------------------------
 

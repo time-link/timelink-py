@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean clean-test clean-test-data clean-pyc clean-build docs help
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -58,10 +58,14 @@ test-loop: ## run tests quickly with the default Python
 test: ## run tests quickly with the default Python
 	pytest --rootdir=tests $(ARGS)
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
+	find tests/timelink-home/projects/test-project -name '*.cli' -print0 | xargs -0 git restore --
 
 
 test-nb: ## test notebooks only
 	py.test --nbval tests/timelink-home/projects/test-project/notebooks/test*
+
+clean-test-data: ## revert generated test data changes
+	find tests/timelink-home/projects/test-project -name '*.cli' -print0 | xargs -0 git restore --
 
 test-all: ## run tests on every Python version with tox
 	tox
@@ -81,9 +85,18 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/timelink.rst
 	rm -f docs/modules.rst
 
-	sphinx-apidoc --module-first --doc-project "Timelink source documentation" -o docs/ timelink
+	sphinx-apidoc --module-first --doc-project "Timelink source documentation" -o docs/ timelink \
+		timelink/migrations/env.py \
+		timelink/app/main.py \
+		timelink/app/web \
+		timelink/app/static \
+		timelink/static \
+		timelink/statics
+	# Remove package index that causes duplicate object warnings and edit parent rst
+	rm -f docs/timelink.kleio.rst
+	sed -i '' '/timelink.kleio/d' docs/timelink.rst 2>/dev/null || true
 	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
+	$(MAKE) -C docs html SPHINXOPTS="-q"
 	$(BROWSER) docs/_build/html/index.html
 
 servedocs: docs ## compile the docs watching for changes

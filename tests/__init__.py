@@ -2,15 +2,15 @@
 
 # pylint: disable=unused-import, import-error
 import functools
-from enum import Enum
 import os
-from pathlib import Path
 import random
 import time
 import warnings
-import requests
+from enum import Enum
+from pathlib import Path
 
 import pytest
+import requests
 
 # this is used in some MHK tests
 from sqlalchemy.orm import sessionmaker
@@ -24,6 +24,10 @@ from timelink.kleio.schemas import KleioFile
 #
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Shared test configuration used by pytest fixtures in tests/conftest.py.
+# Keep Kleio server mode and paths here so tests can import a single source
+# of truth.
 KLEIO_HOME = Path(TEST_DIR, "timelink-home")
 
 # this will be used in some MHK tests should be deprecated
@@ -53,7 +57,19 @@ reference_db_con_str = f"sqlite:///{reference_db}"
 mhk_absent = pytest.mark.skipif(True, reason="Deprecated tests")
 
 skip_on_travis = pytest.mark.skipif(
-    os.environ.get("TRAVIS") == "true", reason="this test requires file system access for sqlite"
+    os.environ.get("TRAVIS") == "true",
+    reason="this test requires file system access for sqlite",
+)
+
+skip_on_github_actions = pytest.mark.skipif(
+    os.environ.get("GITHUB_ACTIONS") == "true",
+    reason="this test requires file system access for sqlite",
+)
+
+# Backward compatibility - skip on either CI
+skip_on_ci = pytest.mark.skipif(
+    os.environ.get("TRAVIS") == "true" or os.environ.get("GITHUB_ACTIONS") == "true",
+    reason="this test requires file system access for sqlite",
 )
 
 
@@ -100,7 +116,7 @@ def has_internet():
     """Check if there is an internet connection by trying to reach GitHub's domain."""
     try:
         # Attempt to reach GitHub's server. Replace 'https://github.com' with another URL if needed.
-        response = requests.head('https://github.com', timeout=5)
+        response = requests.head("https://github.com", timeout=5)
         return response.status_code == 200
     except requests.ConnectionError:
         # If a connection error occurs, there is no internet connection.
@@ -112,6 +128,8 @@ class KleioServerTestMode(Enum):
     DOCKER = "docker"
 
 
+# Controls how the `kleio_server` fixture in tests/conftest.py provisions
+# the test server.
 kleio_server_mode = KleioServerTestMode.DOCKER
 
 # determine the image of kleio-server to use.
@@ -121,18 +139,24 @@ kleio_server_mode = KleioServerTestMode.DOCKER
 # "timelinkserver/kleio-server" is the version in Docker Hub
 #     use when testing timelink-py against last public kleio-server images
 #
-use_kleio_image = "kleio-server"
-# use latest or specific build e.g. 12.8.586
-use_kleio_version = "latest"
+use_kleio_image = "timelinkserver/kleio-server"
+# Pinned to a promoted build for reproducible test runs; keep in sync with
+# DEFAULT_KLEIO_VERSION in timelink/kleio/kleio_server.py and STACK.md.
+# Use "latest" only for ad-hoc checks against a newly released image.
+use_kleio_version = "12.9.588"
 
-skip_if_local = pytest.mark.skipif(kleio_server_mode == KleioServerTestMode.LOCAL, reason="Skipping test in LOCAL mode")
+skip_if_local = pytest.mark.skipif(
+    kleio_server_mode == KleioServerTestMode.LOCAL, reason="Skipping test in LOCAL mode"
+)
 
 
 def get_one_translation(kserver: KleioServer, path="", max_wait=120) -> KleioFile:
     """Get one translation from the server"""
     translations = kserver.get_translations(path=path, recurse="yes", status="V")
     if len(translations) == 0:
-        need_translation = kserver.get_translations(path=path, recurse="yes", status="T")
+        need_translation = kserver.get_translations(
+            path=path, recurse="yes", status="T"
+        )
         if len(need_translation) == 0:
             raise RuntimeError(f"No files available for translation, path={path}")
 
@@ -144,12 +168,19 @@ def get_one_translation(kserver: KleioServer, path="", max_wait=120) -> KleioFil
         max_counter = max_wait / wait_for
         translations = kserver.get_translations(path=path, recurse="yes", status="V")
         in_process = kserver.get_translations(path=path, recurse="yes", status="P")
-        while len(translations) == 0 and (counter < max_counter or len(in_process) > 0):  # noqa: W503
+        while len(translations) == 0 and (
+            counter < max_counter or len(in_process) > 0
+        ):  # noqa: W503
             time.sleep(wait_for)
             counter += 1
             if counter % 20 == 0:
-                warnings.warn(f"Waiting for translations {one_translation.name}, counter={counter}", stacklevel=1)
-            translations = kserver.get_translations(path=path, recurse="yes", status="V")
+                warnings.warn(
+                    f"Waiting for translations {one_translation.name}, counter={counter}",
+                    stacklevel=1,
+                )
+            translations = kserver.get_translations(
+                path=path, recurse="yes", status="V"
+            )
             in_process = kserver.get_translations(path=path, recurse="yes", status="P")
 
     if len(translations) > 0:

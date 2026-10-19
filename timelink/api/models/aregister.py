@@ -1,20 +1,22 @@
-"""
-mapping 'authority-register' to class aregister.
-class aregister super entity table aregisters
-      with attributes
-           id column id baseclass id coltype varchar colsize 64 colprecision 0 pkey 1
-        and
-           date column the_date baseclass date coltype varchar colsize 24 colprecision 0 pkey 0
-        and
-           user column user baseclass user coltype varchar colsize 32 colprecision 0 pkey 0
-        and
-           name column name baseclass name coltype varchar colsize 254 colprecision 0 pkey 0
-        and
-           dbase column dbase baseclass dbase coltype varchar colsize 32 colprecision 0 pkey 0
-      and
-         mode column replace_mode baseclass mode coltype varchar colsize 64 colprecision 0 pkey 0
-        and
-           obs column obs baseclass obs coltype varchar colsize 16654 colprecision 0 pkey 0 .
+"""Mapping 'authority-register' to class aregister.
+
+::
+
+    class aregister super entity table aregisters
+          with attributes
+               id column id baseclass id coltype varchar colsize 64 colprecision 0 pkey 1
+            and
+               date column the_date baseclass date coltype varchar colsize 24 colprecision 0 pkey 0
+            and
+               user column user baseclass user coltype varchar colsize 32 colprecision 0 pkey 0
+            and
+               name column name baseclass name coltype varchar colsize 254 colprecision 0 pkey 0
+            and
+               dbase column dbase baseclass dbase coltype varchar colsize 32 colprecision 0 pkey 0
+          and
+             mode column replace_mode baseclass mode coltype varchar colsize 64 colprecision 0 pkey 0
+            and
+               obs column obs baseclass obs coltype varchar colsize 16654 colprecision 0 pkey 0 .
 
 (c) Joaquim Carvalho 2024
 MIT License, no warranties.

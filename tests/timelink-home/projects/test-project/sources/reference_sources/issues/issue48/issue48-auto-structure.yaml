@@ -1,0 +1,402 @@
+- file:
+  - date: 2026-02-26
+    description: Automatically generated structure file
+    json_path: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/issues/issue48/issue48-auto-structure.json
+    origin: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/issues/issue48/issue48.cli
+    stru: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/structures/reference_sources/issues/issue48/sources.str
+    yaml_path: /Users/jrc/develop/timelink-py-worktree/main/tests/timelink-home/projects/test-project/sources/reference_sources/issues/issue48/issue48-auto-structure.yaml
+- element:
+    description: Not defined
+    name: autorels
+- element:
+    description: Not defined
+    name: prefix
+- element:
+    description: Not defined
+    name: refere
+- element:
+    description: Not defined
+    name: resumo
+- element:
+    description: Not defined
+    name: structure
+- element:
+    description: Not defined
+    name: translations
+- element:
+    description: Not defined
+    name: translator
+- group:
+    also:
+    - structure
+    - translator
+    - autorels
+    - obs
+    - prefix
+    - translations
+    counter: 1
+    description: 'This is the top level group of Kleio files. Specific historical
+      sources must be added to the part parameter of this group. '
+    idprefix: kle
+    name: kleio
+    part:
+    - historical-source
+    - fonte
+    - authority-register
+    - identifications
+    - link
+    - property
+    position:
+    - structure
+    - translator
+    - obs
+- group:
+    also:
+    - type
+    - date
+    - year
+    - loc
+    - ref
+    - obs
+    - replace
+    - kleiofile
+    counter: 0
+    guaranteed:
+    - id
+    idprefix: his
+    name: historical-source
+    part:
+    - historical-act
+    position:
+    - id
+    - year
+    - type
+    - ref
+- group:
+    also:
+    - loc
+    - ref
+    - obs
+    - day
+    - month
+    - year
+    arbitrary:
+    - person
+    - object
+    - geoentity
+    - abstraction
+    - ls
+    - atr
+    - rel
+    counter: 0
+    guaranteed:
+    - id
+    - type
+    - date
+    idprefix: his
+    name: historical-act
+    position:
+    - id
+    - type
+    - date
+- element:
+    description:
+    identification: non
+    name: day
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: month
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: year
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: date
+    prefix: non
+    suffix: non
+    type: numerus
+- element:
+    description: elemento obrigatorio ,identifica unicamente a fonte na base de dados
+      ,
+    identification: sic
+    name: id
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: type
+    prefix: non
+    suffix: non
+- element:
+    description: localizacao da fonte (arquivo pessoal ,AUC ,ANTT ).
+    identification: non
+    name: loc
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: obs
+    prefix: non
+    suffix: non
+- element:
+    description: 'cota ou outra referencia de localizacao da fonte '
+    identification: non
+    name: ref
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: replace
+    prefix: non
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: kleiofile
+    prefix: non
+    suffix: non
+- group:
+    also:
+    - tipo
+    - loc
+    - localizacao
+    - ref
+    - data
+    - ano
+    - obs
+    - substitui
+    arbitrary:
+    - crono
+    - cevento
+    - acto
+    - amz
+    - nom
+    - carta
+    - pauta
+    - hab
+    - proc
+    - beneficio
+    - chanc
+    - encarte
+    - rol
+    - escritura
+    - adenda
+    - arrolamento
+    - cas
+    - bap
+    - b
+    - termo
+    - obito
+    - o
+    - ar
+    - lista
+    - rmerce
+    - merce
+    - let
+    - lbach
+    - capela
+    - gov
+    - familia
+    - po
+    - fim
+    - devassa
+    - cartaperdao
+    - denuncia
+    - matricula
+    - ordenancas
+    - milicias
+    - memoria58
+    - apontamentosd
+    - eleicao
+    - juramento
+    - lc
+    - crisma
+    - docregio
+    - docpontificio
+    - docepiscopal
+    - automed
+    - pas
+    - lcc
+    - integr
+    - movacao
+    - geodesc
+    counter: 0
+    description: 'Este constitui o grupo principal para os documentos historicos portugueses.
+      Admite qualquer dos actos definidos aqui. '
+    guaranteed:
+    - id
+    idprefix: his
+    name: fonte
+    part:
+    - historical-act
+    position:
+    - id
+    - year
+    - type
+    - ref
+    source: historical-source
+- element:
+    description:
+    identification: non
+    name: substitui
+    prefix: non
+    source: replace
+    suffix: non
+- group:
+    also:
+    - ref
+    - loc
+    - obs
+    arbitrary:
+    - celebrante
+    - actorm
+    - actorf
+    - object
+    - abstraction
+    - ls
+    - rel
+    counter: 0
+    guaranteed:
+    - id
+    - dia
+    - mes
+    - ano
+    idprefix: his
+    name: pt-acto
+    position:
+    - id
+    - dia
+    - mes
+    - ano
+    source: historical-act
+- element:
+    description:
+    identification: non
+    name: dia
+    prefix: non
+    source: day
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: mes
+    prefix: non
+    source: month
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: ano
+    prefix: non
+    source: year
+    suffix: non
+    type: numerus
+- element:
+    description:
+    identification: non
+    name: data
+    prefix: non
+    source: date
+    suffix: non
+    type: numerus
+- element:
+    description: tipo de fonte (registos paroquiais ,livros notariais ,etc... )
+    identification: non
+    name: tipo
+    prefix: non
+    source: type
+    suffix: non
+- element:
+    description:
+    identification: non
+    name: localizacao
+    prefix: non
+    source: loc
+    suffix: non
+- group:
+    also:
+    - resumo
+    - refere
+    - obs
+    arbitrary:
+    - celebrante
+    - actorm
+    - actorf
+    - object
+    - abstraction
+    - ls
+    - rel
+    counter: 0
+    guaranteed:
+    - id
+    - dia
+    - mes
+    - ano
+    idprefix: his
+    name: carta
+    part:
+    - receptor
+    - emissor
+    - receptora
+    - emissora
+    - referido
+    - referida
+    - emissor-representante
+    - evento
+    - topico
+    - lugar
+    - adenda
+    position:
+    - id
+    - dia
+    - mes
+    - ano
+    - loc
+    source: pt-acto
+- group:
+    also:
+    - resumo
+    - refere
+    - obs
+    arbitrary:
+    - celebrante
+    - actorm
+    - actorf
+    - object
+    - abstraction
+    - ls
+    - rel
+    counter: 0
+    guaranteed:
+    - id
+    - dia
+    - mes
+    - ano
+    idprefix: his
+    name: adenda
+    part:
+    - evento
+    position:
+    - id
+    - dia
+    - mes
+    - ano
+    - loc
+    source: pt-acto

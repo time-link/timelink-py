@@ -1,0 +1,5 @@
+1[flake8]
+exclude = docs
+max-line-length = 120
+select = C,E,F,W,B,B950
+extend-ignore = E203, E501

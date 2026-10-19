@@ -4,7 +4,12 @@
 			"path": "."
 		}
 	],
-	"settings": {},
+	"settings": {
+		"makefile.configureOnOpen": false,
+		"chat.tools.terminal.autoApprove": {
+			"make": true
+		}
+	},
 	"python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
 	"python.testing.pytestEnabled": true,

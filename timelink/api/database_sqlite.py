@@ -1,22 +1,33 @@
-"""
-This module provides utility functions for working with SQLite databases.
+"""SQLite database utilities for Timelink.
+
+This module provides utility functions for working with SQLite databases,
+including methods to search for SQLite files in a directory and construct
+SQLAlchemy connection URLs for SQLite files.
 
 Functions:
-    get_sqlite_databases(directory_path: str, relative_path=True) -> list[str]:
-        Get the SQLite databases in a specified directory.
+    get_sqlite_databases(directory_path: str, relative_path: bool = True) -> list[str]:
+        Search for and list SQLite databases in a specified directory.
 
     get_sqlite_url(db_path: str) -> str:
-        Get the SQLite URL for a given database path.
+        Construct an SQLAlchemy SQLite connection URL for a given file path.
 """
 import os
 
 
 def get_sqlite_databases(directory_path: str, relative_path=True) -> list[str]:
-    """Get the sqlite databases in a directory
+    """Search for and list SQLite database files in a directory.
+
+    Walks through the directory tree starting from the specified path and
+    identifies files with .sqlite or .db extensions.
+
     Args:
-        directory_path (str): directory path
+        directory_path (str): Directory path to search for SQLite databases.
+        relative_path (bool, optional): If True, returns paths relative to the
+            current working directory. If False, returns absolute paths.
+            Defaults to True.
+
     Returns:
-        list[str]: list of sqlite databases
+        list[str]: List of SQLite database file paths.
     """
     cd = os.getcwd()
     sqlite_databases = []
@@ -32,11 +43,15 @@ def get_sqlite_databases(directory_path: str, relative_path=True) -> list[str]:
 
 
 def get_sqlite_url(db_path: str) -> str:
-    """Get the sqlite url for a database path
+    """Construct an SQLAlchemy SQLite connection URL for a given file path.
+
     Args:
-        db_path (str): database path
+        db_path (str): Database file path. Use ":memory:" for in-memory database.
+
     Returns:
-        str: sqlite url
+        str: SQLite connection URL in SQLAlchemy format.
+            - For in-memory: "sqlite:///:memory:"
+            - For file: "sqlite:///path/to/file.db"
     """
     if db_path == ":memory:":
         return "sqlite:///:memory:"

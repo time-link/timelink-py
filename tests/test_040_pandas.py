@@ -1,16 +1,17 @@
-""" Test timelink Pandas integrations"""
+"""Test timelink Pandas integrations"""
+
+from pathlib import Path
 
 import pytest
-from pathlib import Path
-# import pdb  # noqa  TODO: remove when no longer needed
-
 from sqlalchemy_utils import drop_database  # pylint: disable=unused-import. # noqa
 
+from tests import TEST_DIR
 from timelink.api.database import TimelinkDatabase
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
-from tests import TEST_DIR
+from timelink.pandas import attribute_values, entities_with_attribute, pname_to_df
 
-from timelink.pandas import pname_to_df, entities_with_attribute, attribute_values
+# import pdb  # noqa  TODO: remove when no longer needed
+
 
 # pytestmark = skip_on_travis
 TEST_DB = "test_pandas_db"
@@ -24,8 +25,9 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
     db_path = Path(TEST_DIR, "sqlite")
 
-    database = TimelinkDatabase(db_name, db_type, db_path=db_path,
-                                kleio_server=kleio_server, echo=False)
+    database = TimelinkDatabase(
+        db_name, db_type, db_path=db_path, kleio_server=kleio_server, echo=False
+    )
     database.update_from_sources(test_files)
 
     try:
@@ -135,7 +137,7 @@ def test_entities_with_attribute_list(dbsystem):
             "jesuita-votos-local",
         ],
         column_name="lugares",
-        show_elements=["name", "sex", "the_line"],
+        show_elements=["name", "sex", "the_line", "groupname"],
         more_attributes=[],
         filter_by=["deh-ludovico-antonio-adorno"],
         sql_echo=True,
@@ -148,6 +150,13 @@ def test_entities_with_attribute_list(dbsystem):
     assert required_column in df_cols, f"{required_column} expected in {df_cols}"
     required_column = "lugares.comment"
     assert required_column in df_cols, f"{required_column} expected in {df_cols}"
+    required_column = "lugares.line"
+    assert required_column in df_cols, f"{required_column} expected in {df_cols}"
+    # loop through the dataframe and check that column "groupname" is different from "a_groupname"
+    for _index, row in df.iterrows():
+        assert (
+            row["groupname"] != row["lugares.groupname"]
+        ), "groupname and [column_name].groupname should be different"
     print(df.info())
 
 
