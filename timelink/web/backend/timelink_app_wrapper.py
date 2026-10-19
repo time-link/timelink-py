@@ -230,7 +230,7 @@ class TimelinkWebApp:
 
         if self.users_db_type == "sqlite":
             if self.sqlite_dir is None:
-                self.sqlite_dir = os.path.join(self.timelink_home, "database\\sqlite")
+                self.sqlite_dir = os.path.join(self.timelink_home, "database", "sqlite")
             if not os.path.exists(self.sqlite_dir):
                 os.makedirs(self.sqlite_dir)
             self.users_db = UserDatabase(
