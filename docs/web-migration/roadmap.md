@@ -70,8 +70,10 @@ linking engine, so the engine grows alongside real pages.
   backed by `timelink/linking/service.py`. Also done: the IDList
   batch mechanism (Save id + navbar Link preview + `/idlist` page)
   and entity comments (Comment model + form on display pages).
-  Remaining: visual live-check against the MHK instance; act-display
-  parity checks.*
+  The whole loop was verified live in the browser (same-as, tabs,
+  identifications, batch link, comments, unlink, IDList); two bugs
+  fixed along the way (LinkSchema.source not Optional; backslash
+  users-db path). Remaining: act-display parity checks.*
 * [ ] Sources pipeline page parity: translation/import status,
   report viewers, git operations over the Kleio server API.
 * [ ] Explore/facets, calendar/timeline page (`calendar.vm`
