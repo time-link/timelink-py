@@ -182,7 +182,9 @@ class LinkSchema(BaseModel):
     entity: str
     user: str
     rule: str
-    source: str
+    # source/aregister are only set when the link comes from a source
+    # or an aregister; manual links leave them None
+    source: Optional[str]
     status: LinkStatus
     aregister: Optional[str]
 

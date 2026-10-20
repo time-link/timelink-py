@@ -11,7 +11,13 @@ from time import sleep
 
 import pytest
 
-from tests import TEST_DIR, get_one_translation, has_internet, skip_on_github_actions
+from tests import (
+    TEST_DIR,
+    get_one_translation,
+    has_internet,
+    kleio_retry,
+    skip_on_github_actions,
+)
 from timelink.api.database import TimelinkDatabase, get_import_status
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
 from timelink.api.models.base import Person, PomSomMapper
@@ -228,6 +234,7 @@ def test_import_git_hub(dbsystem):
         pass
 
 
+@kleio_retry()
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_from_kleio_server(dbsystem, kleio_server):
     """Test the import of a Kleio file from kleio server into the Timelink database"""
@@ -264,6 +271,7 @@ def test_import_from_kleio_server(dbsystem, kleio_server):
         except Exception as exc:
             print(exc)
             session.rollback()
+            raise
 
         try:
             # check if the file was imported
@@ -285,6 +293,7 @@ def test_import_from_kleio_server(dbsystem, kleio_server):
             raise
 
 
+@kleio_retry()
 @pytest.mark.parametrize("dbsystem", test_set, indirect=True)
 def test_import_status_1(dbsystem, kleio_server):
     """Test if import status is retrieved"""

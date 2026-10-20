@@ -59,6 +59,8 @@ setup(
         'ipython',
         'uvicorn'
     ],
+    # The web extra lives in pyproject.toml [project.optional-dependencies];
+    # duplicating it here would be ignored by PEP 621 builds.
     license="MIT license",
     long_description=description + '\n\n' + history,
     long_description_content_type='text/x-rst',

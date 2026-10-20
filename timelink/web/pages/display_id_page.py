@@ -1,0 +1,869 @@
+from timelink.web.pages import navbar
+from nicegui import ui, app
+from timelink.web import timelink_web_utils
+from timelink.api.models import Entity
+from timelink.api.models.rentity import REntity
+from timelink.api.schemas import EntityAttrRelSchema
+from timelink.linking import service as linking_service
+from timelink.web.models import Activity
+from timelink.web.models.activity import Comment
+from jinja2 import Environment, FileSystemLoader
+from pathlib import Path
+import html
+from timelink.kleio.utilities import format_timelink_date
+import asyncio
+
+
+from concurrent.futures import ThreadPoolExecutor
+executor = ThreadPoolExecutor(max_workers=4)
+
+template_dir = Path(__file__).parent.parent / "templates"
+env = Environment(loader=FileSystemLoader(template_dir))
+
+
+class DisplayIDPage:
+    """Page to display entities with specified ID"""
+
+    def __init__(self, timelink_app) -> None:
+        self.database = timelink_app.database
+        self.kserver = timelink_app.kleio_server
+
+        self.accepted_relations = ["eclesiástica", "geografica", "institucional", "parentesco",
+                                   "profissional", "sociabilidade", "identification"]
+
+    def register(self):
+        @ui.page('/id/{item_id}')
+        async def display_id_page(item_id: str):
+            """Display an entity with a specific ID."""
+
+            with navbar.header(responsive=False):
+                display_func_map = {
+                    "person": self._display_person,
+                    "geoentity": self._display_geoentity,
+                    "act": self._display_act,
+                    "source": self._display_act,
+                    "relation": self._display_act,
+                    "attribute": self._display_act,
+                    "escritura": self._display_act,
+                    "rentity": self._display_rentity,
+                }
+
+                ui.add_body_html('''<style>
+                    .highlight-cell { text-decoration: underline dotted; }
+                    .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
+                    </style>
+                ''')
+
+                try:
+                    with self.database.session() as session:
+                        entity = self.database.get_entity(item_id, session=session)
+                        if entity:
+                            display_func = display_func_map.get(entity.pom_class)
+
+                            # Write into activity log viewed entity
+                            new_entry = Activity(
+                                entity_id=item_id,
+                                entity_type=entity.pom_class,
+                                activity_type='viewed',
+                                desc=f'Entity {item_id} was viewed'
+                            )
+
+                            session.add(new_entry)
+                            session.commit()
+
+                            if display_func:
+                                if asyncio.iscoroutinefunction(display_func):
+                                    await display_func(entity)
+                                else:
+                                    display_func(entity)
+                            else:
+                                ui.label(
+                                    f"No page created for {entity.pom_class} yet."
+                                ).classes('mb-4 text-lg font-bold text-red-500')
+                        else:
+                            ui.label(f"No entity with value {item_id} found.").classes('mb-4 text-lg font-bold text-red-500')
+
+                except Exception as e:
+                    ui.label('Could not load details for selected entity.').classes('text-red-500 font-semibold mt-4')
+                    print(f"Could not load details for selected entity: {e}")
+
+        @ui.page('/idlist')
+        async def idlist_preview_page():
+            """IDList preview: batch-link the saved occurrence ids
+            (MHK rentity_preview.vm equivalent)."""
+            with navbar.header(responsive=False):
+                ui.page_title("IDList preview")
+
+                idlist = app.storage.user.get('idlist', [])
+                if not idlist:
+                    ui.label('The IDList is empty. Use "Save id" on an entity page.'
+                             ).classes('text-lg font-bold text-red-500')
+                    return
+
+                ui.label(f'{len(idlist)} saved ids:').classes('text-orange-500 text-lg font-bold')
+
+                with self.database.session() as session:
+                    entries = []
+                    for occ_id in idlist:
+                        entity = self.database.get_entity(occ_id, session=session)
+                        label = (
+                            f"{getattr(entity, 'name', occ_id)} ({occ_id})"
+                            if entity else f"missing ({occ_id})"
+                        )
+                        entries.append((occ_id, label, entity is not None))
+
+                checkbox_pairs = []
+                for occ_id, label, exists in entries:
+                    with ui.row().classes('items-center gap-2 w-full'):
+                        cb = ui.checkbox(label, value=exists).classes('text-xs')
+                        if exists:
+                            cb.set_value(True)
+                        checkbox_pairs.append((cb, occ_id, exists))
+
+                def empty_list():
+                    app.storage.user['idlist'] = []
+                    ui.navigate.to('/idlist')
+
+                def link_preview():
+                    selected = [occ_id for cb, occ_id, _ in checkbox_pairs if cb.value]
+                    target = target_input.value.strip()
+                    if target:
+                        # attach every selected occurrence to the target rid
+                        pairs = [(occ, target) for occ in selected]
+                    elif len(selected) >= 2:
+                        pairs = [(selected[0], selected[1])] + [
+                            (occ, None) for occ in selected[2:]
+                        ]
+                    else:
+                        ui.notify('Select at least two entries (or one plus a target rid).',
+                                  type='warning')
+                        return
+                    current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+                    try:
+                        with self.database.session() as session:
+                            rentity = linking_service.same_as(
+                                pairs[0][0], pairs[0][1], current_user, session
+                            )
+                            rid = rentity.id if isinstance(rentity, REntity) else rentity
+                            for occ, _ in pairs[1:]:
+                                linking_service.same_as(occ, rid, current_user, session)
+                        app.storage.user['idlist'] = []
+                        ui.notify(f'Linked {len(pairs)} entries to {rid}.', type='positive')
+                        ui.navigate.to(f'/id/{rid}')
+                    except Exception as e:
+                        ui.notify(f'Could not link: {e}', type='negative')
+
+                with ui.row().classes('items-center gap-2 mt-4'):
+                    target_input = ui.input(
+                        placeholder='Target rid (optional; default: link among selected)'
+                    ).props('dense outlined').classes('w-96')
+                    ui.button('Make entries the same', on_click=link_preview
+                              ).props('dense unelevated color=positive')
+                    ui.button('Empty list', on_click=empty_list
+                              ).props('dense flat color=negative')
+
+    def _display_person(self, entity: Entity):
+        "Page to load details on an entity of type person."
+
+        ui.page_title(f"Results for {entity.id}")
+
+        first_card_rendered = False
+
+        with ui.row():
+            ui.label(
+                entity.name
+            ).on('click', lambda: ui.navigate.to(f'/tables/persons?value={entity.name}')
+                 ).classes('cursor-pointer underline decoration-dotted text-xl font-bold')
+
+            ui.label(
+                f"id: {entity.id}"
+            ).classes('text-xl font-bold text-orange-500')
+
+        with ui.row().classes('items-center gap-1'):
+            ui.label('groupname:').classes('text-orange-500')
+            ui.label(entity.groupname).classes('mr-3 text-blue-400')
+            ui.label('sex:').classes('text-orange-500')
+            ui.label(entity.sex).classes('mr-3 text-blue-400')
+            ui.label('line:').classes('text-orange-500')
+            ui.label(entity.the_line).classes('mr-3 text-blue-400')
+            if entity.inside:
+                ui.label('inside:').classes('text-orange-500')
+                ui.label(entity.inside).on(
+                    'click', lambda: ui.navigate.to(f'/id/{entity.inside}')).classes('highlight-cell')
+
+        # --- manual linking (MHK person_show.vm equivalent) ---
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+        with self.database.session() as link_session:
+            rid = linking_service.get_rid_for(entity.id, current_user, link_session)
+
+        if rid:
+            with ui.row().classes('items-center gap-1'):
+                ui.label('Full file (RID) :').classes('text-orange-500')
+                ui.label(rid).on('click', lambda: ui.navigate.to(f'/id/{rid}')
+                                 ).classes('highlight-cell text-blue-400')
+                ui.button('Unlink', on_click=lambda: self._unlink(entity.id)
+                          ).props('dense unelevated size=sm color=negative')
+
+        with ui.row().classes('items-center gap-1'):
+            link_input = ui.input(placeholder='Same as: occurrence id or RID',
+                                  validation={'required': lambda v: bool(v.strip())}
+                                  ).props('dense outlined').classes('w-72')
+            ui.button('Same as / Link',
+                      on_click=lambda: self._same_as(entity.id, link_input)
+                      ).props('dense unelevated color=positive')
+
+        def save_id():
+            idlist = app.storage.user.get('idlist', [])
+            if entity.id not in idlist:
+                idlist.append(entity.id)
+                app.storage.user['idlist'] = idlist
+            ui.notify(f'Saved {entity.id} to IDList ({len(idlist)} ids).', type='info')
+
+        ui.button('Save id', on_click=save_id).props('dense flat size=sm')
+
+        parsed_attributes, parsed_relations_in, parsed_relations_out = timelink_web_utils.parse_entity_details(entity)
+
+        with ui.card().tight().classes("w-full bg-gray-50"):
+            with ui.tabs() as tabs:
+                person_info_tab = ui.tab('p_info', label='Person Info').classes("w-full bg-blue-100 text-orange-500 font-bold")
+            with ui.tab_panels(tabs, value=person_info_tab).classes('w-full bg-gray-50'):
+                with ui.tab_panel(person_info_tab).classes("items-center"):
+                    with ui.grid(columns=9).classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                        ui.label("Name").classes("text-center")
+                        ui.label("Function").classes("text-center")
+                        ui.label("Date").classes("text-center")
+                        ui.label("Attributes").classes("break-all col-span-4 text-center")
+                        ui.label("Relations").classes("text-center col-span-2 text-center")
+
+                    for date, pairs in sorted(parsed_attributes.items()):
+                        with ui.card().tight().classes(
+                            "w-full border-0 border-b border-gray-300 rounded-none shadow-none bg-gray-50"
+                        ):
+                            with ui.grid(columns=9).classes("w-full items-start gap-4 text-xs"):
+
+                                # Only display name function and relations once.
+                                if not first_card_rendered:
+
+                                    # ---- Display Name ----
+                                    ui.label(entity.name).classes("ml-1 mt-1 mb-1")
+
+                                    # --- Function Column ---
+                                    with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
+                                        for function in parsed_relations_out:
+                                            if function["the_type"] not in self.accepted_relations:
+                                                with ui.row().classes("no-wrap"):
+                                                    ui.label(f'{function["dest_name"]} : {function["the_value"]}').on(
+                                                        "click", lambda _, id=function["destination"]: ui.navigate.to(f'/id/{id}')
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
+                                else:
+                                    ui.space().classes("col-span-2 ml-1 mt-1 mb-1")
+
+                                # --- Show Date ---
+                                with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
+                                    ui.label(format_timelink_date(date)).classes("text-blue-600 font-bold")
+
+                                # --- Attributes Column ---
+                                with ui.column().classes("col-span-4 ml-1 mt-1 mb-1 items-right justify-center"):
+                                    with ui.row().classes("items-start mr-1 no-wrap"):
+                                        with ui.column():
+                                            for i, entry in enumerate(pairs):
+                                                with ui.row().classes("no-wrap mb-3"):
+                                                    ui.label(entry.the_type).on(
+                                                        "click",
+                                                        lambda _,
+                                                        k=entry.the_type: ui.navigate.to(
+                                                            f'/all_tables/attributes?display_type=statistics&value={k}')
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                    ui.label(":")
+                                                    ui.label(entry.the_value).on(
+                                                        "click",
+                                                        lambda _,
+                                                        k=entry.the_type,
+                                                        v=entry.the_value: ui.navigate.to(f'/tables/persons?value={k}&type={v}')
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                    if entry.obs:
+                                                        ui.label(entry.obs)
+                                                if i < len(pairs) - 1:
+                                                    ui.separator().classes("-mt-2")
+
+                                # --- Relations Column ---
+                                if not first_card_rendered:
+                                    with ui.column().classes("col-span-2 ml-1 mt-1 mb-1"):
+                                        for rel in parsed_relations_in:
+                                            with ui.row().classes("no-wrap"):
+                                                ui.label("tem como")
+                                                ui.label(rel["the_value"]).on(
+                                                    "click",
+                                                    lambda _,
+                                                    type=rel["the_type"],
+                                                    value=rel["the_value"],
+                                                    id=rel["org_name"]: ui.navigate.to(
+                                                        f'/tables/relations?type={type}&value={value}&id={id}&is_from=True')
+                                                ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+                                                ui.label(" : ")
+                                                ui.label(rel["org_name"]).on(
+                                                    "click", lambda _, id=rel["origin"]: ui.navigate.to(f'/id/{id}')
+                                                ).classes('highlight-cell cursor-pointer decoration-dotted')
+
+                                        for rel in parsed_relations_out:
+                                            if rel["the_type"] in self.accepted_relations:
+                                                with ui.row().classes("no-wrap"):
+                                                    ui.label(rel["the_value"]).on(
+                                                        "click",
+                                                        lambda _,
+                                                        type=rel["the_type"],
+                                                        value=rel["the_value"],
+                                                        id=rel["dest_name"]: ui.navigate.to(
+                                                            f'/tables/relations?type={type}&value={value}&id={id}&is_from=False')
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted')
+                                                    ui.label("de:").classes('-ml-3')
+                                                    ui.label(rel["dest_name"]).on(
+                                                        "click", lambda _, id=rel["destination"]: ui.navigate.to(f"/id/{id}")
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
+                                        ui.space().classes("mb-2")
+                                else:
+                                    ui.space().classes("col-span-2 ml-1 mt-1 mb-1")
+
+                                first_card_rendered = True
+
+        self._render_comments(entity.id)
+
+    def _render_comments(self, entity_id: str):
+        """Comments section (MHK comments form equivalent).
+
+        Tolerant of databases without the comments table (older
+        projects) and of mock sessions in tests.
+        """
+        try:
+            with self.database.session() as session:
+                comments = (
+                    session.query(Comment)
+                    .filter(Comment.entity_id == entity_id)
+                    .order_by(Comment.created)
+                    .all()
+                )
+        except Exception as e:
+            print(f"Could not load comments for {entity_id}: {e}")
+            return
+
+        with ui.card().tight().classes('w-full bg-gray-50 p-4'):
+            ui.label('Comments').classes('text-orange-500 text-lg font-bold')
+            for comment in comments:
+                with ui.row().classes('w-full items-start gap-2'):
+                    ui.icon('chat').classes('text-gray-400 mt-1')
+                    with ui.column().classes('gap-0'):
+                        ui.label(
+                            f"{comment.user_name} ({comment.created:%Y-%m-%d %H:%M})"
+                        ).classes('text-xs italic text-gray-500')
+                        ui.label(comment.text).classes('text-sm')
+
+            def send_comment():
+                text = comment_input.value.strip()
+                if not text:
+                    ui.notify('Write a comment first.', type='warning')
+                    return
+                current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+                try:
+                    with self.database.session() as session:
+                        session.add(Comment(entity_id=entity_id,
+                                            user_name=current_user, text=text))
+                        session.commit()
+                    ui.notify('Comment saved.', type='positive')
+                    ui.navigate.to(f'/id/{entity_id}')
+                except Exception as e:
+                    ui.notify(f'Could not save comment: {e}', type='negative')
+
+            with ui.row().classes('w-full items-center gap-2 mt-2'):
+                comment_input = ui.textarea(placeholder='Leave a comment…'
+                                            ).props('dense outlined').classes('w-full')
+                ui.button('Send', on_click=send_comment
+                          ).props('dense unelevated color=positive')
+
+    def _same_as(self, entity_id: str, link_input):
+        """Link this occurrence to another occurrence or an existing RID."""
+        target = (link_input.value or '').strip()
+        if not target:
+            ui.notify('Provide an occurrence id or a RID to link to.', type='warning')
+            return
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+        try:
+            with self.database.session() as session:
+                rentity = linking_service.same_as(entity_id, target, current_user, session)
+                rid = rentity.id if isinstance(rentity, REntity) else rentity
+            ui.notify(f'Linked {entity_id} to {rid}.', type='positive')
+            ui.navigate.to(f'/id/{rid}')
+        except Exception as e:
+            ui.notify(f'Could not link: {e}', type='negative')
+
+    def _unlink(self, entity_id: str):
+        """Remove the current user's link between this occurrence and its RID."""
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+        try:
+            with self.database.session() as session:
+                rid = linking_service.unlink_occurrence(entity_id, current_user, session)
+            if rid:
+                ui.notify(f'Unlinked {entity_id} from {rid}.', type='positive')
+            else:
+                ui.notify(f'{entity_id} was not linked.', type='warning')
+            ui.navigate.to(f'/id/{entity_id}')
+        except Exception as e:
+            ui.notify(f'Could not unlink: {e}', type='negative')
+
+    def _make_selected_same(self, rid: str, checkbox_pairs):
+        """Batch-link all checked occurrences under this real entity."""
+        selected = [occ_id for cb, occ_id in checkbox_pairs if cb.value]
+        if len(selected) < 2:
+            ui.notify('Select at least two entries.', type='warning')
+            return
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+        try:
+            with self.database.session() as session:
+                for occ in selected[1:]:
+                    linking_service.same_as(occ, rid, current_user, session)
+            ui.notify(f'Made {len(selected)} entries the same ({rid}).', type='positive')
+            ui.navigate.to(f'/id/{rid}')
+        except Exception as e:
+            ui.notify(f'Could not link selected entries: {e}', type='negative')
+
+    def _display_rentity(self, entity: REntity):
+        "Real entity display (MHK rperson_show.vm equivalent)."
+
+        ui.page_title(f"Real entity {entity.id}")
+
+        with ui.row():
+            ui.label(entity.description or entity.id
+                     ).classes('text-xl font-bold')
+            ui.label(f"id: {entity.id}").classes('text-xl font-bold text-orange-500')
+
+        with ui.row().classes('items-center gap-1'):
+            ui.label('user:').classes('text-orange-500')
+            ui.label(entity.user).classes('mr-3 text-blue-400')
+            ui.label('status:').classes('text-orange-500')
+            ui.label(str(entity.status)).classes('mr-3 text-blue-400')
+            ui.label('occurrences:').classes('text-orange-500')
+            ui.label(str(len(entity.links))).classes('text-blue-400')
+            if getattr(entity, 'obs', None):
+                ui.label('obs:').classes('text-orange-500')
+                ui.label(entity.obs).classes('text-blue-400')
+
+        with self.database.session() as session:
+            occurrences = linking_service.rperson_occurrences(entity.id, session)
+            occ_ids = {occ.id for occ in occurrences}
+            current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+            safe = {
+                occ_id: linking_service.get_rid_for(occ_id, current_user, session)
+                for occ_id in occ_ids
+            }
+            # acts containing the linked occurrences
+            act_ids, related = [], []
+            for occ in occurrences:
+                if getattr(occ, 'inside', None) and occ.inside not in act_ids:
+                    act_ids.append(occ.inside)
+                _, rels_in, rels_out = timelink_web_utils.parse_entity_details(occ)
+                for rel in rels_in:
+                    if rel["origin"] not in occ_ids and rel["origin"] not in related:
+                        related.append(rel["origin"])
+                for rel in rels_out:
+                    if rel["destination"] not in occ_ids and rel["destination"] not in related:
+                        related.append(rel["destination"])
+            related_entities = [
+                e for e in (session.get(Entity, rid) for rid in related) if e is not None
+            ]
+
+        with ui.card().tight().classes("w-full bg-gray-50"):
+            with ui.tabs() as tabs:
+                info_tab = ui.tab('r_info', label='Real Person Info')
+                acts_tab = ui.tab('r_acts', label='All the Acts')
+                related_tab = ui.tab('r_related', label='Related Persons')
+                id_tab = ui.tab('r_id', label='Identifications')
+            with ui.tab_panels(tabs, value=info_tab).classes('w-full bg-gray-50'):
+                with ui.tab_panel(info_tab):
+                    ui.markdown(
+                        'Merged view of all linked occurrences — the '
+                        '"reconstructed biography" (one row per act participation).'
+                    ).classes('text-xs italic text-gray-500')
+                    for occ in occurrences:
+                        self._render_occurrence_row(occ)
+                with ui.tab_panel(acts_tab):
+                    ui.label(
+                        f'{len(act_ids)} acts mention the linked occurrences.'
+                    ).classes('text-xs italic text-gray-500')
+                    for act_id in act_ids:
+                        with ui.row().classes('items-center gap-2 w-full'):
+                            ui.icon('description').classes('text-gray-400')
+                            ui.label(act_id).on(
+                                'click', lambda _, id=act_id: ui.navigate.to(f'/id/{id}')
+                            ).classes('highlight-cell cursor-pointer')
+                with ui.tab_panel(related_tab):
+                    ui.label(
+                        f'{len(related_entities)} persons related to the linked occurrences.'
+                    ).classes('text-xs italic text-gray-500')
+                    for rel_entity in related_entities:
+                        with ui.row().classes('items-center gap-2 w-full'):
+                            ui.icon('person').classes('text-gray-400')
+                            ui.label(
+                                f"{getattr(rel_entity, 'name', rel_entity.id)} ({rel_entity.id})"
+                            ).on(
+                                'click', lambda _, id=rel_entity.id: ui.navigate.to(f'/id/{id}')
+                            ).classes('highlight-cell cursor-pointer')
+                with ui.tab_panel(id_tab):
+                    self._render_identifications(entity, occurrences, safe)
+
+        self._render_comments(entity.id)
+
+    def _render_occurrence_row(self, occ: Entity):
+        """One occurrence's participations: date | occurrence | attributes | relations."""
+        parsed_attributes, rels_in, rels_out = timelink_web_utils.parse_entity_details(occ)
+        with ui.card().tight().classes(
+            "w-full border-0 border-b border-gray-300 rounded-none shadow-none bg-gray-50"
+        ):
+            with ui.row().classes('w-full items-start gap-6 text-xs'):
+                ui.label(getattr(occ, 'name', occ.id)).on(
+                    'click', lambda _, id=occ.id: ui.navigate.to(f'/id/{id}')
+                ).classes('highlight-cell cursor-pointer font-bold')
+                with ui.column().classes('col-span-1'):
+                    for date, pairs in sorted(parsed_attributes.items()):
+                        with ui.row().classes('no-wrap'):
+                            ui.label(format_timelink_date(date)).classes('text-blue-600 font-bold')
+                            for entry in pairs:
+                                with ui.row().classes('no-wrap'):
+                                    ui.label(f"{entry.the_type}: {entry.the_value}")
+                with ui.column().classes('col-span-1'):
+                    for rel in rels_in:
+                        with ui.row().classes('no-wrap'):
+                            ui.label(f"tem como {rel['the_value']} : {rel['org_name']}").on(
+                                'click', lambda _, id=rel['origin']: ui.navigate.to(f'/id/{id}')
+                            ).classes('highlight-cell cursor-pointer')
+                    for rel in rels_out:
+                        if rel["the_type"] in self.accepted_relations:
+                            with ui.row().classes('no-wrap'):
+                                ui.label(f"{rel['the_value']} : {rel['dest_name']}").on(
+                                    'click', lambda _, id=rel['destination']: ui.navigate.to(f'/id/{id}')
+                                ).classes('highlight-cell cursor-pointer')
+
+    def _render_identifications(self, entity: REntity, occurrences, safe=None):
+        """Checkbox list of linked occurrences + batch same-as (MHK
+        rperson_identification.vm equivalent). safe maps occurrence id
+        to the rid linked for the *current* user (the "Safe Rid" column)."""
+        ui.label(
+            f"* Users that identified this person=[{entity.user}]"
+        ).classes('text-xs italic text-gray-500')
+
+        safe = safe or {}
+        checkbox_pairs = []
+        for occ in occurrences:
+            with ui.row().classes('items-center gap-2 w-full'):
+                cb = ui.checkbox(
+                    f"{getattr(occ, 'name', occ.id)} ({occ.id})", value=False
+                ).classes('text-xs')
+                checkbox_pairs.append((cb, occ.id))
+                if safe.get(occ.id):
+                    ui.label(f'safe: {safe[occ.id]}').classes(
+                        'text-xs italic text-green-700'
+                    )
+
+        with ui.row():
+            ui.button('Select all',
+                      on_click=lambda: [cb.set_value(True) for cb, _ in checkbox_pairs]
+                      ).props('dense flat')
+            ui.button('Unselect all',
+                      on_click=lambda: [cb.set_value(False) for cb, _ in checkbox_pairs]
+                      ).props('dense flat')
+            ui.button('Make selected entries the same',
+                      on_click=lambda: self._make_selected_same(entity.id, checkbox_pairs)
+                      ).props('dense unelevated color=positive')
+
+    def _display_geoentity(self, entity: Entity):
+        "Page to load details on an entity of type person."
+
+        with ui.row():
+            ui.label(entity.name).on('click',
+                                     lambda: ui.navigate.to(f"/tables/geoentities?name={entity.name}")
+                                     ).classes('cursor-pointer underline decoration-dotted text-xl font-bold')
+
+        with ui.row().classes('items-center gap-1'):
+            ui.label('id:').classes('text-orange-500')
+            ui.label(entity.id).classes('mr-3 text-blue-400')
+            ui.label('inside:').classes('text-orange-500')
+            ui.label(entity.inside).on('click',
+                                       lambda: ui.navigate.to(f"/id/{entity.inside}")
+                                       ).classes('mr-3 cursor-pointer underline decoration-dotted')
+            ui.label('Full file:').classes('text-orange-500')
+
+        parsed_attributes, parsed_relations_in, parsed_relations_out = timelink_web_utils.parse_entity_details(entity)
+        first_card_rendered = False
+
+        with ui.card().tight().classes("w-full bg-gray-50"):
+            with ui.tabs() as tabs:
+                geo_info_tab = ui.tab('p_info', label='Geoentity Details').classes("w-full bg-blue-100 text-orange-500 font-bold")
+            with ui.tab_panels(tabs, value=geo_info_tab).classes('w-full bg-gray-50'):
+                with ui.tab_panel(geo_info_tab).classes("items-center"):
+                    with ui.grid(columns=6).classes("w-full bg-blue-100 text-orange-500 font-bold"):
+                        ui.label("Name").classes("text-center")
+                        ui.label("Functions").classes("text-center")
+                        ui.label("Attributes").classes("text-center col-span-2")
+                        ui.label("Relations").classes("text-center col-span-2")
+
+                    for _, pairs in sorted(parsed_attributes.items()):
+                        with ui.card().tight().classes(
+                            "w-full border-0 border-b border-gray-300 rounded-none shadow-none bg-gray-50"
+                        ):
+                            with ui.grid(columns=6).classes("w-full items-start gap-4 text-xs"):
+
+                                if not first_card_rendered:
+
+                                    # --- Name Column ---
+                                    with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
+                                        ui.label(entity.name).classes("ml-1 mt-1 mb-1")
+
+                                    # --- Functions Column ---
+                                    with ui.column().classes("col-span-1 ml-1 mt-1 mb-1"):
+                                        for function in parsed_relations_out:
+                                            if function["the_type"] not in self.accepted_relations:
+                                                with ui.row().classes("no-wrap"):
+                                                    ui.label(f'{function["dest_name"]} : {function["the_value"]}').on(
+                                                        "click",
+                                                        lambda _,
+                                                        id=function["destination"]: ui.navigate.to(f"/id/{id}")
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+
+                                else:
+                                    ui.space().classes("col-span-2 ml-1 mt-1 mb-1")
+
+                                # --- Attributes Column ---
+                                with ui.column().classes("col-span-2 ml-1 mt-1 mb-1 items-righ"):
+                                    for i, entry in enumerate(pairs):
+                                        with ui.row().classes("items-start mr-1 no-wrap mb-3"):
+                                            ui.label(entry.the_type).classes('font-bold')
+                                            ui.label(":")
+                                            ui.label(entry.the_value)
+                                            if entry.obs:
+                                                ui.label(entry.obs)
+                                        if i < len(pairs) - 1:
+                                            ui.separator().classes("-mt-2")
+
+                                # --- Relations Column ---
+                                if not first_card_rendered:
+                                    with ui.column().classes("col-span-2 ml-1 mt-1 mb-1"):
+                                        for rel in parsed_relations_in:
+                                            with self.database.session() as session:
+                                                original_entity = self.database.get_entity(rel["origin"], session=session)
+                                                with ui.row().classes("no-wrap"):
+                                                    ui.label("tem como")
+                                                    ui.label(rel["the_value"]).on(
+                                                        "click",
+                                                        lambda _,
+                                                        type=rel["the_type"],
+                                                        value=rel["the_value"],
+                                                        id=rel["org_name"]: ui.navigate.to(
+                                                            f'/tables/relations?type={type}&value={value}&id={id}&is_from=True'
+                                                        )
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted -ml-3')
+                                                    ui.label(" : ")
+                                                    ui.label(original_entity.name).on(
+                                                        "click",
+                                                        lambda _,
+                                                        id=rel["origin"]: ui.navigate.to(f"/id/{id}")
+                                                    ).classes('highlight-cell cursor-pointer decoration-dotted')
+
+                                        for rel in parsed_relations_out:
+                                            if rel["the_type"] in self.accepted_relations:
+                                                with self.database.session() as session:
+                                                    original_entity = self.database.get_entity(rel["origin"], session=session)
+                                                    with ui.row().classes("no-wrap"):
+                                                        ui.label(
+                                                            rel["the_value"]
+                                                        ).on(
+                                                            "click",
+                                                            lambda _,
+                                                            type=rel["the_type"],
+                                                            value=rel["the_value"],
+                                                            id=rel["dest_name"]: ui.navigate.to(
+                                                                f'/tables/relations?type={type}&value={value}&id={id}&is_from=False')
+                                                        ).classes(
+                                                            'highlight-cell cursor-pointer decoration-dotted'
+                                                        )
+                                                        ui.label("de").classes('-ml-3')
+                                                        ui.label(
+                                                            original_entity.name
+                                                        ).on(
+                                                            "click", lambda _, id=rel["origin"]: ui.navigate.to(f"/id/{id}")
+                                                        ).classes(
+                                                            'highlight-cell cursor-pointer decoration-dotted -ml-3')
+                        first_card_rendered = True
+
+    async def _display_act(self, entity: Entity):
+        "Page to load details on an entity of type act."
+
+        entity_title = " "
+
+        if entity.the_type:
+            ui.page_title(f"{entity.the_type.title()} = {entity.id.title()}")
+            entity_title = entity.the_type
+        else:
+            ui.page_title(entity.id.title())
+            entity_title = entity.id
+
+        func_dict = {
+            "parse_act_header_string": self._parse_act_header_string,
+            "parse_act_body_strings": self._parse_act_body_strings,
+            "collect_ids": self._collect_all_ids
+        }
+
+        # Show spinner while loading
+        with ui.spinner(size="lg") as spinner:
+            spinner.visible = True
+            header_html_template = env.get_template("act_header.html")
+            header_html_template.globals.update(func_dict)
+            header_html_render = header_html_template.render(entity_title=entity_title, entity=entity)
+
+            ui.add_body_html(header_html_render)
+            entity_childs_list = await self._collect_all_ids(entity=entity)
+            spinner.visible = False  # Hide spinner after load
+
+            body_html_template = env.get_template("act_body.html")
+            body_html_template.globals.update(func_dict)
+            body_html_render = body_html_template.render(entity_childs=entity_childs_list)
+            ui.add_body_html(body_html_render)
+
+    async def _collect_all_ids(self, entity):
+        loop = asyncio.get_running_loop()
+        return await loop.run_in_executor(executor, timelink_web_utils.collect_all_ids_sync, self.database, entity)
+
+    def _parse_act_header_string(self, entity):
+        """Parse the entity's attributes to render it properly on a Jinja Template header
+
+        Args:
+
+            entity:         The entity to be parsed.
+
+        """
+
+        act_dict = EntityAttrRelSchema.model_validate(entity).model_dump(exclude=['rels_in'])
+
+        entity_string = (
+            f"<strong>{html.escape(str(act_dict['groupname']))}</strong>"
+            f"$ {html.escape(str(entity.the_type))}"
+        )
+
+        obs = ""
+
+        for extra_info_key, extra_info_value in act_dict["extra_info"].items():
+            if extra_info_key not in {'class'}:
+                value = getattr(entity, extra_info_key)
+                kleio_class = extra_info_value.get('kleio_element_class')
+                if kleio_class == "obs":
+                    obs = f"{value}{extra_info_value.get('comment', '')}"
+                elif kleio_class == "id":
+                    entity_string += (
+                        f"/{kleio_class}=<span class='highlight-cell' "
+                        f"onclick=\"window.location.href='/id/{value}'\">{value}</span> "
+                    )
+                else:
+                    entity_string += f'/<span class="title-definition">{kleio_class}=</span>{value} '
+
+        if entity.inside:
+
+            inside_link = (
+                f"/inside=<span class='highlight-cell' "
+                f"onclick=\"window.location.href='/id/{entity.inside}'\">{entity.inside}</span> "
+            )
+            entity_string += inside_link
+
+        else:
+            entity_string += "/inside=root"
+
+        if obs:
+            entity_string += f'<span class="mono">\n/obs={obs}</span>'
+
+        return entity_string
+
+    def _parse_act_body_strings(self, ent_dict):
+        """Parse the entity's attributes to render it properly on the template's body.
+
+        Args:
+
+            entity:         The entity to be parsed.
+
+        """
+
+        try:
+            group = ent_dict["groupname"]
+            extra = ent_dict["extra_attrs"]
+            eid = ent_dict["id"]
+            level_indent = "\t" * ent_dict["level"]
+
+            if group == "relation" and extra.get("type") == "function-in-act":
+                return ""
+
+            # Base entity string
+            entity_string = level_indent + "<strong>" + html.escape(str(group)) + "</strong>$ "
+
+            if group in {"fonte", "lista", "geodesc", "bap"}:
+                inside_link = timelink_web_utils.highlight_link("/id/" + extra["inside"], extra["inside"])
+                id_link = timelink_web_utils.highlight_link("/id/" + eid, extra["id"])
+
+                entity_string += (
+                    html.escape(str(eid)) +
+                    "/<span class=\"title-definition\">date</span>=" + html.escape(str(extra["date"])) + " " +
+                    "/<span class=\"title-definition\">type</span>=" + html.escape(str(extra["type"])) + " " +
+                    "/inside=" + inside_link + " " +
+                    "/id=" + id_link + " "
+                )
+
+            elif group in {"rel", "relation"}:
+                dest_link = timelink_web_utils.highlight_link("/id/" + extra["destination"], extra["destination"])
+                date_str = format_timelink_date(extra["date"])
+
+                entity_string += (
+                    " " + html.escape(str(extra["type"])) +
+                    " / " + html.escape(str(extra["value"])) +
+                    " / " + dest_link +
+                    " / " + html.escape(str(date_str)) + " "
+                )
+
+            elif group in {"ls", "atr"}:
+                attr_link = timelink_web_utils.highlight_link(
+                    "/all_tables/attributes?display_type=statistics&value=" + extra["type"],
+                    extra["type"]
+                )
+                person_link = timelink_web_utils.highlight_link(
+                    "/tables/persons?value=" + extra["type"] + "&type=" + extra["value"],
+                    extra["value"]
+                )
+                date_str = format_timelink_date(extra["date"])
+
+                entity_string += " " + attr_link + " / " + person_link + " / " + html.escape(str(date_str)) + " "
+
+                if "obs" in extra:
+                    entity_string += timelink_web_utils.format_obs(extra["obs"], ent_dict["level"])
+
+            elif group.startswith("geo"):
+                name_link = timelink_web_utils.highlight_link("/id/" + eid, extra["name"])
+                id_link = timelink_web_utils.highlight_link("/id/" + eid, eid)
+
+                entity_string += (
+                    name_link +
+                    " /<span class=\"title-definition\">type</span>=" + html.escape(str(extra["type"])) + " " +
+                    "/id=" + id_link + " "
+                )
+
+            else:
+                name_link = timelink_web_utils.highlight_link("/id/" + eid, extra["name"])
+                id_link = timelink_web_utils.highlight_link("/id/" + eid, eid)
+
+                if "sex" in extra:
+                    entity_string += (
+                        name_link +
+                        " /<span class=\"title-definition\">sex</span>=" + html.escape(str(extra["sex"])) + " " +
+                        "/id=" + id_link + " "
+                    )
+                else:
+                    entity_string += name_link + " /id=" + id_link + " "
+
+        except Exception as e:
+            print(f"Missing {e} in entity {eid}: {list(ent_dict['extra_attrs'].keys())}")
+
+        return entity_string

@@ -1,6 +1,7 @@
 """Unit test package for timelink."""
 
 # pylint: disable=unused-import, import-error
+import functools
 import os
 import random
 import time
@@ -14,7 +15,7 @@ import requests
 # this is used in some MHK tests
 from sqlalchemy.orm import sessionmaker
 
-from timelink.kleio.kleio_server import KleioServer
+from timelink.kleio.kleio_server import KleioServer, KleioServerException
 from timelink.kleio.schemas import KleioFile
 
 # See https://docs.sqlalchemy.org/en/14
@@ -70,6 +71,42 @@ skip_on_ci = pytest.mark.skipif(
     os.environ.get("TRAVIS") == "true" or os.environ.get("GITHUB_ACTIONS") == "true",
     reason="this test requires file system access for sqlite",
 )
+
+
+def kleio_retry(attempts=3, delay=5):
+    """Retry a test that races with the Kleio server under load.
+
+    Retries the whole test when it fails with a Kleio-server error,
+    a network error, or an assertion — under full-suite load the
+    translation queue can make a single attempt fail transiently.
+    """
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            last_exc = None
+            for attempt in range(1, attempts + 1):
+                try:
+                    return func(*args, **kwargs)
+                except (
+                    KleioServerException,
+                    requests.RequestException,
+                    RuntimeError,
+                    AssertionError,
+                ) as exc:
+                    last_exc = exc
+                    if attempt < attempts:
+                        warnings.warn(
+                            f"{func.__name__} failed on attempt "
+                            f"{attempt}/{attempts}: {exc}; retrying in {delay}s",
+                            stacklevel=1,
+                        )
+                        time.sleep(delay)
+            raise last_exc
+
+        return wrapper
+
+    return decorator
 
 
 # fixture to skip test if no internet

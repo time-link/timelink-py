@@ -1,6 +1,6 @@
 """Console script for timelink.
 
-Also provides basic mhk manager functionality.
+Provides basic mhk manager functionality, setup and launch of timelink projects, and launch point for the webapp.
 
 Run with  python -m timelink.cli
 
@@ -8,12 +8,16 @@ Run with  python -m timelink.cli
 
 import os
 import platform
+import socket
+import subprocess
+import sys
+from pathlib import Path
 
 import docker
 import typer
-import uvicorn
+from typing import Optional
 
-from timelink import migrations, version
+from timelink import get_latest_version, migrations, version
 from timelink.api.database import (
     TimelinkDatabase,
     get_postgres_dbnames,
@@ -21,15 +25,17 @@ from timelink.api.database import (
     get_sqlite_databases,
     get_sqlite_url,
 )
+from timelink.kleio.kleio_server import KleioServer, find_free_port
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
-
-server: uvicorn.Server = None  # uvicorn server instance
 
 # get the current directory
 # this is used to find the alembic.ini file
 # and the migrations folder
 # ROOT_PATH = Path(__file__).parent.parent
 current_working_directory = os.getcwd()
+SINGLE_PROJECT_DIRECTORY_REPO = "https://github.com/time-link/timelink-project-template.git"
+MULTI_PROJECT_DIRECTORY_REPO = "https://github.com/time-link/timelink-home-template.git"
+TIMELINK_ENV_PATH = Path.home() / ".timelink" / ".env"
 
 # We use Typer https://typer.tiangolo.com
 app = typer.Typer(help=f"Timelink and MHK manager {version}")
@@ -37,12 +43,10 @@ mhk_app = typer.Typer()
 app.add_typer(mhk_app, name="mhk", help="MHK legacy manager")
 db_app = typer.Typer()
 app.add_typer(db_app, name="db", help="Database manager")
-
-
-# Start server
-# see alternative methods
-# https://github.com/miguelgrinberg/python-socketio/issues/332#issuecomment-712928157
-# https://stackoverflow.com/questions/68603658/how-to-terminate-a-uvicorn-fastapi-application-cleanly-with-workers-2-when
+create_app = typer.Typer()
+app.add_typer(create_app, name="create", help="Create new project")
+start_app = typer.Typer()
+app.add_typer(start_app, name="start", help="Initiate new project, or the web interface.")
 
 
 def cli_header():
@@ -50,16 +54,135 @@ def cli_header():
     typer.echo(f"{current_working_directory}")
 
 
-@app.command("start")
-def start():
-    """Starts timelink with uvicorn"""
-    typer.echo("Starting Timelink")
-    config = uvicorn.Config("timelink.app.main:app", port=8008, reload=True)
+# ================================================
+# Project setup related commands
+# These are used to create and setup the environment for a timelinkk project.
+# ================================================
 
-    global server  # pylint: disable=global-statement
-    server = uvicorn.Server(config)
-    server.run()
-    return 0
+
+def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
+
+    # Timelink Information
+    local_version = version
+    last_version = get_latest_version()
+    typer.echo(f"Local Timelink version: {local_version}, latest Timelink version: {last_version}")
+
+    # Timelink Home and Server
+    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path=timelink_path))
+    typer.echo("Timelink Home set to: " + timelink_home)
+    env_dir = TIMELINK_ENV_PATH.parent
+    env_dir.mkdir(parents=True, exist_ok=True)
+    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=str(timelink_port))
+    typer.echo("Kleio Server URL: " + kserver.get_url())
+    typer.echo("Kleio Server Token: " + kserver.get_token()[0:6])
+    typer.echo("Kleio Server Home: " + kserver.get_kleio_home())
+
+    typer.echo(f"Starting Timelink project at: {kserver.get_kleio_home()} on port {kserver.get_url()[-4:]}")
+
+    path_str = str(Path(timelink_home).resolve())
+    if sys.platform.startswith("win"):
+        path_str = path_str.replace("\\", "\\\\")
+
+    with TIMELINK_ENV_PATH.open("w") as f:
+        f.write(f'TIMELINK_HOME="{path_str}"\n')
+        f.write(f'TIMELINK_SERVER_URL="{kserver.get_url()}"\n')
+        f.write(f'TIMELINK_SERVER_TOKEN="{kserver.get_token()}"\n')
+        f.write(f"TIMELINK_DB_TYPE={database}\n")
+
+# ----------------- TIMELINK MULTI PROJECT SETUP (STUB) ------------------------- #
+
+
+@create_app.command("multiproject")
+def create_multiproject(path: Path = Path("timelink-multi-project")):
+    typer.echo(f"Getting Timelink multi project structure at: {path}")
+    typer.echo(f"Cloning Timelink project template into: {path}")
+    try:
+        subprocess.run(["git", "clone", MULTI_PROJECT_DIRECTORY_REPO, str(path)], check=True)
+        typer.echo("File structure cloned successfully.")
+    except subprocess.CalledProcessError:
+        typer.echo("Failed to clone the project template.")
+
+
+@start_app.command("multiproject")
+def start_multiproject(path: Path = Path("."), port: Optional[int] = typer.Option(None, "-p", "--port")):
+    port = port or 8000
+    typer.echo(f"Starting Timelink multiproject at: {path} on port {port}")
+
+
+# ----------------- TIMELINK SINGLE PROJECT SETUP ------------------------- #
+
+
+@create_app.command("project")
+def create_project(path: Path = Path("timelink-project")):
+    typer.echo(f"Getting Timelink single project structure at: {path}")
+    typer.echo(f"Cloning Timelink project template into: {path}")
+    try:
+        subprocess.run(["git", "clone", SINGLE_PROJECT_DIRECTORY_REPO, str(path)], check=True)
+        typer.echo("File structure cloned successfully.")
+    except subprocess.CalledProcessError:
+        typer.echo("Failed to clone the project template.")
+
+
+# ================================================
+# Startup related commands
+# These are used to configure and launch a timelink project on a set directory, or launch the webapp.
+# ================================================
+
+
+@start_app.command("project")
+def start_project(path: Path = Path("."),
+                  port: Optional[int] = typer.Option(None, "-p", "--port"),
+                  database: Optional[str] = typer.Option("sqlite", "--database", "-d", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)")):
+    """Start a timelink docker server on defined path and port.
+        If none are given, the path defaults to current directory, and the port to the first available port after 8088
+    """
+
+    port = find_free_port(from_port=port or 8088, to_port=8099)
+
+    path = os.path.normpath(path.resolve() if not path.is_absolute() else path)
+
+    if database not in ("sqlite", "postgres"):
+        typer.echo(f"Warning: '{database}' is not a supported database backend. Defaulting to 'sqlite'.", err=True)
+        database = "sqlite"
+
+    run_kserver_setup(path, port, database)
+
+
+def find_website_port(from_port: int = 8088, to_port: int = 8099):
+    for port in range(from_port, to_port + 1):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                typer.echo(f"Attempting to initialize on port {port}...")
+                s.bind(("0.0.0.0", port))
+                return port
+            except OSError:
+                pass
+    raise OSError(f"No free ports available in the range {from_port}-{to_port}")
+
+
+@start_app.command("web")
+def start_webproject(
+    port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"),
+    path: Optional[Path] = typer.Option(None, "-d", "--directory", help="Timelink project directory. Defaults to the current one."),
+    database: Optional[str] = typer.Option("sqlite", "--database", "-db", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)"),
+):
+    """Start the webapp on the chosen port if set. If not, default to 8000."""
+
+    # allow explicitly requested ports above the default search range
+    from_port = port or 8000
+    port = find_website_port(from_port=from_port, to_port=max(8020, from_port))
+
+    web_app_path = Path(__file__).parent / "web/timelink_web.py"
+
+    path_to_use = path or Path.cwd()
+
+    if database not in ("sqlite", "postgres"):
+        typer.echo(f"Warning: '{database}' is not a supported database backend. Defaulting to 'sqlite'.", err=True)
+        database = "sqlite"
+
+    typer.echo(f"Starting Timelink Web Interface at port {port} on {path_to_use}.")
+
+    subprocess.run([sys.executable, str(web_app_path), "--port", str(port), "--directory", str(path_to_use), "--database", database])
 
 
 # ================================================

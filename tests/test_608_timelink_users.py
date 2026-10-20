@@ -8,9 +8,9 @@ from sqlalchemy import delete, select
 from sqlalchemy.exc import IntegrityError
 
 from timelink.api import database
-from timelink.app.models.user import User, UserProperty  # noqa
-from timelink.app.models.user_database import UserDatabase
-from timelink.app.models.project import Project, ProjectAccess
+from timelink.web.models.user import User, UserProperty  # noqa
+from timelink.web.models.user_database import UserDatabase
+from timelink.web.models.project import Project, ProjectAccess
 
 
 @pytest.fixture(scope="module")

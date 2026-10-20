@@ -97,6 +97,18 @@ test = [
     "coverage==5.5",
     "nbval>=0.10.0",
 ]
+# Web application stack for timelink.web (NiceGUI app).
+# Keep in sync with requirements_web.txt.
+web = [
+    "nicegui==2.24.2",
+    "apscheduler>=3.10",
+    "pysolr>=3.10",
+    "starlette-admin",
+    "passlib",
+    "argon2-cffi",
+    "jinja2",
+    "httpx",
+]
 mcp = [
     "mcp>=1.9.0",
 ]
@@ -144,3 +156,7 @@ max-line-length = 120
 select = ["C", "E", "F", "W", "B", "B950"]
 extend-ignore = ["E203", "E501", "W503", "W504"]
 
+# pylance seetings see
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
+[tool.pyright]
+typeCheckingMode = "off"

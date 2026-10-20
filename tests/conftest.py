@@ -1,3 +1,5 @@
+from unittest.mock import MagicMock
+
 import pytest
 
 import tests as test_settings
@@ -11,6 +13,14 @@ def _use_local_kleio_server() -> bool:
     explicit and easier to maintain.
     """
     return test_settings.kleio_server_mode == test_settings.KleioServerTestMode.LOCAL
+
+
+# The web test suite needs the `web` extra (nicegui and friends).
+# Skip those tests instead of erroring when it is not installed.
+try:
+    import nicegui  # noqa: F401
+except ImportError:
+    collect_ignore_glob = ["test_web_*.py"]
 
 
 @pytest.fixture(scope="session")
@@ -95,3 +105,62 @@ def kleio_server():
         except Exception as e:
             print("Error stopping server", e)
             pass
+
+
+@pytest.fixture
+def fake_db():
+    mock_db = MagicMock()
+    mock_db.session.return_value.__enter__.return_value.execute.return_value = []
+    return mock_db
+
+
+@pytest.fixture
+def fake_kserver():
+    fake_kserver = MagicMock()
+    return fake_kserver
+
+
+@pytest.fixture
+def fake_timelink_app(fake_db, fake_kserver):
+    mock_app = MagicMock()
+    mock_app.database = fake_db
+    mock_app.kleio_server = fake_kserver
+    mock_app.storage = MagicMock()
+    mock_app.storage.user = {"is_admin": False}
+    return mock_app
+
+
+@pytest.fixture
+def fake_user(monkeypatch):
+    """Fake logged in user."""
+
+    from nicegui import app
+    monkeypatch.setattr(
+        type(app.storage),
+        "user",
+        property(lambda self: {
+            "username": "test_user",
+            "user_id": 1,
+            "is_admin": False,
+            "projects_loaded": True
+        })
+    )
+    return app.storage.user
+
+
+@pytest.fixture
+def fake_admin(monkeypatch):
+    """Fake logged in user."""
+
+    from nicegui import app
+    monkeypatch.setattr(
+        type(app.storage),
+        "user",
+        property(lambda self: {
+            "username": "admin_test_user",
+            "user_id": 2,
+            "is_admin": True,
+            "projects_loaded": True
+        })
+    )
+    return app.storage.user
