@@ -77,10 +77,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        # web application stack + test tooling (nicegui[testing] brings
-        # selenium and pytest-asyncio for the test_web_* suite)
+        # web application stack + test tooling for the test_web_* suite
+        # (nicegui 2.x has no [testing] extra; selenium and pytest-asyncio
+        # are needed by nicegui.testing and pytest.ini's asyncio_mode)
         pip install -r requirements_web.txt
-        pip install pytest "nicegui[testing]==2.24.2"
+        pip install pytest pytest-asyncio selenium
 
     - name: Pull Docker images
       run: |
