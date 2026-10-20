@@ -75,7 +75,7 @@ class SolrWrapper:
                 subprocess.run([
                     "docker", "run", "-d",
                     "-v", self.solr_settings_dir,
-                    "-p", "8983:8983",
+                    "-p", f"{self.solr_port}:8983",
                     "--name", self.solr_container_name,
                     f"solr:{self.solr_version}",
                     "solr-precreate", self.solr_core_name
@@ -105,7 +105,7 @@ class SolrWrapper:
         # Keys with searchable values
         SEARCHABLE_VALUE_KEYS = [
             'inside', 'the_source', 'the_value', 'obs',
-            'org_name', 'dest_name', 'the_type'
+            'org_name', 'dest_name', 'the_type', 'name', 'description'
         ]
 
         # Keys with nested values
@@ -147,6 +147,12 @@ class SolrWrapper:
         searchable_text_parts.add(entity_data['groupname'])
         searchable_text_parts.add(entity_data.get('inside', ''))
         searchable_text_parts.add(entity_data.get('the_source', ''))
+        # the entity's own descriptive fields (a person's name is the
+        # most common free-form search target)
+        for key in ('name', 'description'):
+            value = entity_data.get(key)
+            if isinstance(value, str) and value:
+                searchable_text_parts.add(value)
 
         # Construct Full Text field
         clean_parts = [part for part in searchable_text_parts if part and not part.isspace()]

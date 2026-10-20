@@ -159,6 +159,15 @@ class TimelinkWebApp:
             for entity in entities:
                 mr_schema = EntityAttrRelSchema.model_validate(entity)
                 mr_schema_dump = mr_schema.model_dump()
+                # EntityAttrRelSchema does not carry the entity's own
+                # name/description; include them for the searchable text.
+                # Only real columns are read — e.g. Entity.description is
+                # a property that must not be triggered here.
+                columns = entity.__mapper__.columns.keys()
+                if 'name' in columns:
+                    mr_schema_dump['name'] = entity.name
+                if 'description' in columns:
+                    mr_schema_dump['description'] = entity.description
                 solr_doc_list.append(self.solr_manager.entity_to_solr_doc(mr_schema_dump))
 
             self.solr_manager.solr_client.add(solr_doc_list, commit=True)

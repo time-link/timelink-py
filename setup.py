@@ -59,19 +59,8 @@ setup(
         'ipython',
         'uvicorn'
     ],
-    extras_require={
-        'web': [
-            'nicegui>=2.20',
-            'nicegui-tabulator',
-            'apscheduler>=3.10',
-            'pysolr>=3.10',
-            'starlette-admin',
-            'passlib',
-            'argon2-cffi',
-            'jinja2',
-            'httpx',
-        ],
-    },
+    # The web extra lives in pyproject.toml [project.optional-dependencies];
+    # duplicating it here would be ignored by PEP 621 builds.
     license="MIT license",
     long_description=description + '\n\n' + history,
     long_description_content_type='text/x-rst',

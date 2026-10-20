@@ -9,6 +9,7 @@ from timelink.web.models import Activity
 from timelink.web.models.activity import Comment
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
+import html
 from timelink.kleio.utilities import format_timelink_date
 import asyncio
 
@@ -137,7 +138,7 @@ class DisplayIDPage:
                         ui.notify('Select at least two entries (or one plus a target rid).',
                                   type='warning')
                         return
-                    current_user = app.storage.user.get('username', 'guest')
+                    current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
                     try:
                         with self.database.session() as session:
                             rentity = linking_service.same_as(
@@ -191,7 +192,7 @@ class DisplayIDPage:
                     'click', lambda: ui.navigate.to(f'/id/{entity.inside}')).classes('highlight-cell')
 
         # --- manual linking (MHK person_show.vm equivalent) ---
-        current_user = app.storage.user.get('username', 'guest')
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
         with self.database.session() as link_session:
             rid = linking_service.get_rid_for(entity.id, current_user, link_session)
 
@@ -363,7 +364,7 @@ class DisplayIDPage:
                 if not text:
                     ui.notify('Write a comment first.', type='warning')
                     return
-                current_user = app.storage.user.get('username', 'guest')
+                current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
                 try:
                     with self.database.session() as session:
                         session.add(Comment(entity_id=entity_id,
@@ -386,7 +387,7 @@ class DisplayIDPage:
         if not target:
             ui.notify('Provide an occurrence id or a RID to link to.', type='warning')
             return
-        current_user = app.storage.user.get('username', 'guest')
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
         try:
             with self.database.session() as session:
                 rentity = linking_service.same_as(entity_id, target, current_user, session)
@@ -398,7 +399,7 @@ class DisplayIDPage:
 
     def _unlink(self, entity_id: str):
         """Remove the current user's link between this occurrence and its RID."""
-        current_user = app.storage.user.get('username', 'guest')
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
         try:
             with self.database.session() as session:
                 rid = linking_service.unlink_occurrence(entity_id, current_user, session)
@@ -416,7 +417,7 @@ class DisplayIDPage:
         if len(selected) < 2:
             ui.notify('Select at least two entries.', type='warning')
             return
-        current_user = app.storage.user.get('username', 'guest')
+        current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
         try:
             with self.database.session() as session:
                 for occ in selected[1:]:
@@ -450,7 +451,7 @@ class DisplayIDPage:
         with self.database.session() as session:
             occurrences = linking_service.rperson_occurrences(entity.id, session)
             occ_ids = {occ.id for occ in occurrences}
-            current_user = app.storage.user.get('username', 'guest')
+            current_user = app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
             safe = {
                 occ_id: linking_service.get_rid_for(occ_id, current_user, session)
                 for occ_id in occ_ids
@@ -742,7 +743,10 @@ class DisplayIDPage:
 
         act_dict = EntityAttrRelSchema.model_validate(entity).model_dump(exclude=['rels_in'])
 
-        entity_string = f"<strong>{act_dict['groupname']}</strong>$ {entity.the_type}"
+        entity_string = (
+            f"<strong>{html.escape(str(act_dict['groupname']))}</strong>"
+            f"$ {html.escape(str(entity.the_type))}"
+        )
 
         obs = ""
 
@@ -795,16 +799,16 @@ class DisplayIDPage:
                 return ""
 
             # Base entity string
-            entity_string = level_indent + "<strong>" + group + "</strong>$ "
+            entity_string = level_indent + "<strong>" + html.escape(str(group)) + "</strong>$ "
 
             if group in {"fonte", "lista", "geodesc", "bap"}:
                 inside_link = timelink_web_utils.highlight_link("/id/" + extra["inside"], extra["inside"])
                 id_link = timelink_web_utils.highlight_link("/id/" + eid, extra["id"])
 
                 entity_string += (
-                    eid +
-                    "/<span class=\"title-definition\">date</span>=" + extra["date"] + " " +
-                    "/<span class=\"title-definition\">type</span>=" + extra["type"] + " " +
+                    html.escape(str(eid)) +
+                    "/<span class=\"title-definition\">date</span>=" + html.escape(str(extra["date"])) + " " +
+                    "/<span class=\"title-definition\">type</span>=" + html.escape(str(extra["type"])) + " " +
                     "/inside=" + inside_link + " " +
                     "/id=" + id_link + " "
                 )
@@ -814,10 +818,10 @@ class DisplayIDPage:
                 date_str = format_timelink_date(extra["date"])
 
                 entity_string += (
-                    " " + extra["type"] +
-                    " / " + extra["value"] +
+                    " " + html.escape(str(extra["type"])) +
+                    " / " + html.escape(str(extra["value"])) +
                     " / " + dest_link +
-                    " / " + date_str + " "
+                    " / " + html.escape(str(date_str)) + " "
                 )
 
             elif group in {"ls", "atr"}:
@@ -831,7 +835,7 @@ class DisplayIDPage:
                 )
                 date_str = format_timelink_date(extra["date"])
 
-                entity_string += " " + attr_link + " / " + person_link + " / " + date_str + " "
+                entity_string += " " + attr_link + " / " + person_link + " / " + html.escape(str(date_str)) + " "
 
                 if "obs" in extra:
                     entity_string += timelink_web_utils.format_obs(extra["obs"], ent_dict["level"])
@@ -842,7 +846,7 @@ class DisplayIDPage:
 
                 entity_string += (
                     name_link +
-                    " /<span class=\"title-definition\">type</span>=" + extra["type"] + " " +
+                    " /<span class=\"title-definition\">type</span>=" + html.escape(str(extra["type"])) + " " +
                     "/id=" + id_link + " "
                 )
 
@@ -853,7 +857,7 @@ class DisplayIDPage:
                 if "sex" in extra:
                     entity_string += (
                         name_link +
-                        " /<span class=\"title-definition\">sex</span>=" + extra["sex"] + " " +
+                        " /<span class=\"title-definition\">sex</span>=" + html.escape(str(extra["sex"])) + " " +
                         "/id=" + id_link + " "
                     )
                 else:

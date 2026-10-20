@@ -1,3 +1,4 @@
+import html
 from nicegui import ui, app
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase
@@ -280,14 +281,16 @@ def format_obs(obs_text, level):
     return (
         f'/<span class="title-definition">obs</span>='
         f'\n<span style="display:inline-block; padding-left:{indent}ch; text-indent:0;" class="mono">'
-        f'{obs_text}</span> '
+        f'{html.escape(str(obs_text))}</span> '
     )
 
 
 def highlight_link(path, text):
+    # path/text come from imported sources: escape text and quote the
+    # URL so markup in a value cannot inject script into the page
     return (
         "<span class='highlight-cell' onclick=\"window.location.href='" +
-        path + "'\">" + text + "</span>"
+        html.escape(str(path), quote=True) + "'\">" + html.escape(str(text)) + "</span>"
     )
 
 

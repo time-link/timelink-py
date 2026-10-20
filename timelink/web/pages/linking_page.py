@@ -23,7 +23,10 @@ class Linking:
             await self.linking_page()
 
     async def linking_page(self):
-        current_user = app.storage.user.get('username', 'guest')
+        # unique login identity (nickname), never the non-unique display name
+        current_user = (
+            app.storage.user.get('nickname') or app.storage.user.get('username', 'guest')
+        )
 
         with navbar.header():
             ui.page_title("Linking")
@@ -89,12 +92,20 @@ class Linking:
             ]
             rows = [
                 {k: link[k] for k in ('entity', 'class', 'user', 'status')}
+                | {'own': link['user'] == current_user}
                 for link in links
             ]
 
             def unlink(entity_id, rid=rid, by_user=current_user):
+                # expected_rid: the server re-checks that this user's link
+                # really belongs to the rid being displayed
                 with self.database.session() as session:
-                    linking.unlink_occurrence(entity_id, by_user, session)
+                    try:
+                        linking.unlink_occurrence(
+                            entity_id, by_user, session, expected_rid=rid)
+                    except ValueError as e:
+                        ui.notify(f'Refused: {e}', type='negative')
+                        return
                 ui.notify(f'Unlinked {entity_id} from {rid}')
                 ui.navigate.to('/linking')
 
@@ -103,7 +114,8 @@ class Linking:
                 <q-td :props="props">
                     <q-btn dense flat icon="open_in_new"
                         :href="'/id/' + props.row.entity" />
-                    <q-btn dense flat icon="link_off" color="negative"
+                    <q-btn v-if="props.row.own"
+                        dense flat icon="link_off" color="negative"
                         @click="$parent.$emit('unlink', props.row)" />
                 </q-td>
             ''')

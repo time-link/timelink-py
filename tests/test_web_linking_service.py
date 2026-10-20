@@ -134,3 +134,45 @@ def test_list_rentities_and_rentity_links(dbsystem):
         assert all(l["user"] == "tester" for l in links)
         assert all(l["status"] == "MANUAL" for l in links)
         assert all(l["class"] is not None for l in links)
+
+
+def test_same_as_reassigns_existing_link(dbsystem):
+    """same-as is a reassignment: linking to a new rid moves the link."""
+    occurrences = _occurrences(dbsystem)
+    with dbsystem.session() as session:
+        for (rid,) in session.query(REntity.id).all():
+            REntity.delete(rid, session=session)
+
+        rid_a = linking.same_as(occurrences[0], occurrences[1], "tester", session).id
+        rid_b = linking.same_as(occurrences[2], occurrences[3], "tester", session).id
+        assert rid_a != rid_b
+
+        # reassign occurrence 0 to rid_b
+        rentity = linking.same_as(occurrences[0], rid_b, "tester", session)
+        assert rentity.id == rid_b
+        assert linking.get_rid_for(occurrences[0], "tester", session) == rid_b
+        # rid_a still has occurrence 1
+        assert linking.get_rid_for(occurrences[1], "tester", session) == rid_a
+
+
+def test_unlink_refuses_wrong_rid(dbsystem):
+    """unlink with expected_rid refuses when the user's link is elsewhere."""
+    occurrences = _occurrences(dbsystem)
+    with dbsystem.session() as session:
+        for (rid,) in session.query(REntity.id).all():
+            REntity.delete(rid, session=session)
+
+        rid_a = linking.same_as(occurrences[0], occurrences[1], "tester", session).id
+        rid_b = linking.same_as(occurrences[2], occurrences[3], "tester", session).id
+
+        with pytest.raises(ValueError):
+            linking.unlink_occurrence(
+                occurrences[0], "tester", session, expected_rid=rid_b)
+
+        # the link was not touched
+        assert linking.get_rid_for(occurrences[0], "tester", session) == rid_a
+
+        # correct rid still works
+        unlinked = linking.unlink_occurrence(
+            occurrences[0], "tester", session, expected_rid=rid_a)
+        assert unlinked == rid_a

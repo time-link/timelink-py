@@ -48,8 +48,8 @@
 </style>
 
 <h1 class="header highlight-cell"
-    onclick="window.location.href='/tables/acts?name={{ entity_title }}'">
-    {{ entity_title.title() }}
+    onclick="window.location.href='/tables/acts?name={{ entity_title | urlencode }}">
+    {{ entity_title.title() | e }}
 </h1>
 
 <div class="entity-title">

@@ -5,7 +5,7 @@ import secrets
 import sys
 from pathlib import Path
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from fastapi.responses import RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 
 
@@ -26,10 +26,12 @@ class AuthMiddleware(BaseHTTPMiddleware):
             if request.url.path in {'/admin/'}:
                 if not app.storage.user.get("is_admin", False):
                     return RedirectResponse("/")
+            if request.url.path.startswith('/api'):
+                # API callers get a 401, not a login-page redirect
+                return JSONResponse({'detail': 'Not authenticated'}, status_code=401)
             if (
                 request.url.path not in {'/login', '/register', '/github/login', '/github/callback'} and not
-                request.url.path.startswith('/_nicegui') and not
-                request.url.path.startswith('/api')
+                request.url.path.startswith('/_nicegui')
             ):
                 return RedirectResponse(f'/login?redirect_to={request.url.path}')
         else:

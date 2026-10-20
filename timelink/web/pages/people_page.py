@@ -10,7 +10,6 @@ class PeopleGroupsNetworks:
     def __init__(self, timelink_app) -> None:
         self.database = timelink_app.database
         self.kserver = timelink_app.kleio_server
-        self.current_value = "Attributes"
 
         @ui.page('/people')
         async def register():
@@ -36,7 +35,7 @@ class PeopleGroupsNetworks:
                             ui.label("Search people by")
                             option_select = ui.select(
                                 ["Attributes", "Relations"],
-                                value=self.current_value,
+                                value="Attributes",
                                 label="Atribute/Relation",
                                 on_change=lambda e: self.set_type_options(search_type, e.value)
                             ).classes('w-40')
@@ -45,7 +44,7 @@ class PeopleGroupsNetworks:
                                 list(self.attr_options.keys()),
                                 with_input=True,
                                 label="Search for types...",
-                                on_change=lambda e: self.set_val_options(search_val, e.value)
+                                on_change=lambda e: self.set_val_options(search_val, e.value, option_select)
                             ).classes('w-50 ml-3')
                             ui.label("and value ")
                             search_val = ui.select([], with_input=True, label="Search for values...").classes('w-70 ml-3')
@@ -113,11 +112,11 @@ class PeopleGroupsNetworks:
         display_grid.on(
             'cellClicked',
             lambda e: ui.navigate.to(
-                f"/id/{e.args['data']['id']}"
+                f"/id/{e.args['data']['destination_id']}"
             )
-            if e.args["colId"] == "id" or
-            e.args["colId"] == "destination_id"
-            else None
+            if e.args["colId"] == "destination_id" else
+            ui.navigate.to(f"/id/{e.args['data']['id']}")
+            if e.args["colId"] == "id" else None
         )
 
         async def sort_smart_groups():
@@ -139,18 +138,20 @@ class PeopleGroupsNetworks:
         """Set the correct options to be displayed after choosing attributes/relations."""
 
         if value == "Attributes":
-            self.current_value = "Attributes"
             type_search.set_options(list(self.attr_options.keys()))
 
         else:
-            self.current_value = "Relations"
             type_search.set_options(list(self.rel_options.keys()))
 
-    def set_val_options(self, val_search, value):
-        """Set the correct options to be displayed after choosing specific attribute/relation type"""
+    def set_val_options(self, val_search, value, mode_select):
+        """Set the correct options to be displayed after choosing specific attribute/relation type.
+
+        The attributes/relations mode is read from the select element
+        belonging to this client's page, not from shared state.
+        """
 
         if value:
-            if self.current_value == "Attributes":
+            if mode_select.value == "Attributes":
                 val_search.set_options(self.attr_options[value])
 
             else:

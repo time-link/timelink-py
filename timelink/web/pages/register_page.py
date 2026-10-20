@@ -94,12 +94,21 @@ class RegisterPage:
 
         with self.timelink_app.users_db.session() as session:
             try:
+                # nicknames are login identifiers: refuse duplicates
+                existing = (
+                    session.query(User)
+                    .filter(User.nickname == new_user.nickname)
+                    .first()
+                )
+                if existing is not None:
+                    ui.notify("This username is already taken.", type="negative")
+                    return
+
                 # Add user to the database
                 self.timelink_app.users_db.add_user(new_user, session)
-                session.commit()
+                session.flush()  # new_user.id is populated by the database
 
-                # Get user id and demo project id
-                user_id = self.timelink_app.users_db.get_user_by_nickname(new_user.nickname, session).id
+                user_id = new_user.id
                 project_id = self.timelink_app.users_db.get_project_by_name("Demo project", session).id
 
                 self.timelink_app.users_db.set_user_project_access(user_id, project_id, "viewer", session)

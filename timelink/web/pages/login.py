@@ -34,9 +34,14 @@ class Login:
 
             with self.user_database.session() as session:
                 user = session.query(User).filter(User.nickname == username.value).first()
-                if user and argon2.verify(password.value, user.hashed_password):
+                if user is not None and getattr(user, 'disabled', False):
+                    ui.notify('This account is disabled', color='negative')
+                    return
+                if (user is not None and user.hashed_password
+                        and argon2.verify(password.value, user.hashed_password)):
                     app.storage.user.update({
                         'username': user.name,
+                        'nickname': user.nickname,
                         'authenticated': True,
                         'is_admin': getattr(user, 'is_admin', False),
                         'user_id': user.id
@@ -66,6 +71,7 @@ class Login:
                 if user:
                     app.storage.user.update({
                         'username': user.name,
+                        'nickname': user.nickname,
                         'authenticated': True,
                         'is_admin': False,
                         'user_id': user.id

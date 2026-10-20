@@ -78,8 +78,10 @@ linking engine, so the engine grows alongside real pages.
   report viewers, git operations over the Kleio server API.
 * [ ] Explore/facets, calendar/timeline page (`calendar.vm`
   equivalent — moved up from Phase 5), families page + family tab.
-* [ ] API auth for `/api` (currently unauthenticated; old JWT code
-  was a stub) — required before any public deployment.
+* [x] API auth for `/api` (2026-10-20, Copilot PR review): the
+  session middleware now returns 401 for unauthenticated `/api`
+  calls instead of exempting them. Token-based auth for non-browser
+  API clients is still future work.
 * [x] Explore the running MHK instance (2026-10-16): done — full
       walkthrough with 19 screenshots in
       [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md) (search, act/
@@ -143,8 +145,16 @@ linking engine, so the engine grows alongside real pages.
 
 ## Cross-cutting
 
-* Entity comments feature (MHK `comments` table) — small, can slot
-  into any phase.
+* Entity comments feature (MHK `comments` table) — done 2026-10-16
+  (Comment model + form on display pages).
+* **Multi-user correctness (from Copilot PR review, 2026-10-20):**
+  project switching on the homepage mutates the process-wide app
+  wrapper and re-registers routes, so concurrent users can see each
+  other's project databases. Needs session-scoped project resolution
+  — architectural, before any multi-user deployment. Same class of
+  issue: `explore_page` keeps per-client input state on the shared
+  page instance. Linking-page occurrence expansions still render
+  eagerly (pagination/lazy loading pending).
 * i18n: MHK had pt/en bundles; decide scope for the new app.
 * Security: parameterized queries everywhere; keep MHK's "expert SQL"
   behind a role gate.

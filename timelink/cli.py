@@ -26,6 +26,7 @@ from timelink.api.database import (
     get_sqlite_databases,
     get_sqlite_url,
 )
+from timelink.kleio.kleio_server import KleioServer, find_free_port
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 
 # get the current directory
@@ -164,7 +165,9 @@ def start_webproject(
     ):
     """Start the webapp on the chosen port if set. If not, default to 8000."""
 
-    port = find_website_port(from_port=port or 8000, to_port=8020)
+    # allow explicitly requested ports above the default search range
+    from_port = port or 8000
+    port = find_website_port(from_port=from_port, to_port=max(8020, from_port))
 
     web_app_path = Path(__file__).parent / "web/timelink_web.py"
 

@@ -93,7 +93,7 @@ async def test_display_person(user: User, fake_timelink_app, monkeypatch, fake_u
     fake_timelink_app.database.session.return_value.__enter__.return_value = fake_timelink_app.database
     fake_timelink_app.database.get_entity.return_value = fake_entity
     # the linking header: person is not linked to any real entity
-    fake_timelink_app.database.query.return_value.filter.return_value.scalar.return_value = None
+    fake_timelink_app.database.query.return_value.filter.return_value.order_by.return_value.first.return_value = None
 
     # Fake parsed details
     fake_attrs = {

@@ -97,6 +97,18 @@ test = [
     "coverage==5.5",
     "nbval>=0.10.0",
 ]
+# Web application stack for timelink.web (NiceGUI app).
+# Keep in sync with requirements_web.txt.
+web = [
+    "nicegui==2.24.2",
+    "apscheduler>=3.10",
+    "pysolr>=3.10",
+    "starlette-admin",
+    "passlib",
+    "argon2-cffi",
+    "jinja2",
+    "httpx",
+]
 mcp = [
     "mcp>=1.9.0",
 ]
