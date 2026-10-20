@@ -72,6 +72,17 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
     $ cd timelink/
     $ pip install -e .
 
+   To work on the web application (``timelink.web``) or run its tests,
+   install the web extra as well::
+
+    $ pip install -e ".[web]"
+
+   Many tests also need a running Docker daemon: the Kleio server used
+   for translations runs in ``timelinkserver/kleio-server`` containers and
+   the PostgreSQL tests start a ``postgres`` container. Without Docker,
+   those tests are skipped or fail; the web test suite is skipped
+   automatically when the web extra is not installed.
+
 4. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
@@ -92,6 +103,9 @@ Ready to contribute? Here's how to set up `timelink-py` for local development.
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
+
+   If the changes were made by an AI coding agent, tag the commit as
+   described in `Commits by AI coding agents`_ below.
 
 7. Submit a pull request through the GitHub website.
 
@@ -153,6 +167,32 @@ Example Workflow
 
     $ git push origin --delete feature/my-new-feature
 
+*******************************
+Commits by AI coding agents
+*******************************
+
+Commits made by AI coding agents (Copilot, Claude Code, ZCode, Cursor,
+etc.) must be distinguishable from human commits.
+
+* Every commit created by an AI coding agent must append a
+  ``Co-authored-by`` trailer identifying the agent **and the model**
+  that produced the change, in the standard trailer format::
+
+    Co-authored-by: <agent name> (<model name>) <agent@example.com>
+
+  For example::
+
+    Co-authored-by: ZCode Agent (GLM-5.3) <zcode-agent@localhost>
+    Co-authored-by: GitHub Copilot (GPT-4.1) <copilot@github.com>
+
+* Do not change ``user.name`` / ``user.email`` to attribute commits to
+  the agent: commit authorship stays with the repository owner, and the
+  agent attribution lives in the trailer only.
+
+* Find agent commits with::
+
+    $ git log --grep="Co-authored-by"
+
 ***********************
 Pull Request Guidelines
 ***********************
@@ -163,8 +203,8 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python  3.10, 3.11 and for PyPy. Check
-   https://github.com/time-link/timelink-py/actions
+3. The pull request should work for Python 3.10, 3.11, 3.12 and 3.13.
+   Check https://github.com/time-link/timelink-py/actions
    and make sure that the tests pass for all supported Python versions.
 
 **********
@@ -327,7 +367,7 @@ Code style (lint)
 To pass code style check
 
     `flake8` is used for code-style check,  with  the `flake8-bugbear`
-    extension for extra checks, and a line length of 88 chars.
+    extension for extra checks, and a line length of 120 chars.
 
     We recommend using `black <https://black.readthedocs.io/en/stable/index.html>`_
     to reformat your code so that it passes the flake8 checks.
