@@ -15,10 +15,9 @@ from pathlib import Path
 
 import docker
 import typer
-import uvicorn
 from typing import Optional
 
-from timelink import migrations, version
+from timelink import get_latest_version, migrations, version
 from timelink.api.database import (
     TimelinkDatabase,
     get_postgres_dbnames,
@@ -64,16 +63,16 @@ def cli_header():
 def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
 
     # Timelink Information
-    local_version = timelink.version
-    last_version = timelink.get_latest_version()
+    local_version = version
+    last_version = get_latest_version()
     typer.echo(f"Local Timelink version: {local_version}, latest Timelink version: {last_version}")
 
     # Timelink Home and Server
-    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path= timelink_path))
+    timelink_home = os.path.normpath(KleioServer.find_local_kleio_home(path=timelink_path))
     typer.echo("Timelink Home set to: " + timelink_home)
     env_dir = TIMELINK_ENV_PATH.parent
     env_dir.mkdir(parents=True, exist_ok=True)
-    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port= str(timelink_port))
+    kserver = KleioServer.start(kleio_home=timelink_home, kleio_external_port=str(timelink_port))
     typer.echo("Kleio Server URL: " + kserver.get_url())
     typer.echo("Kleio Server Token: " + kserver.get_token()[0:6])
     typer.echo("Kleio Server Home: " + kserver.get_kleio_home())
@@ -92,6 +91,7 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
 
 # ----------------- TIMELINK MULTI PROJECT SETUP (STUB) ------------------------- #
 
+
 @create_app.command("multiproject")
 def create_multiproject(path: Path = Path("timelink-multi-project")):
     typer.echo(f"Getting Timelink multi project structure at: {path}")
@@ -101,6 +101,7 @@ def create_multiproject(path: Path = Path("timelink-multi-project")):
         typer.echo("File structure cloned successfully.")
     except subprocess.CalledProcessError:
         typer.echo("Failed to clone the project template.")
+
 
 @start_app.command("multiproject")
 def start_multiproject(path: Path = Path("."), port: Optional[int] = typer.Option(None, "-p", "--port")):
@@ -129,10 +130,10 @@ def create_project(path: Path = Path("timelink-project")):
 
 
 @start_app.command("project")
-def start_project(path: Path = Path("."), 
+def start_project(path: Path = Path("."),
                   port: Optional[int] = typer.Option(None, "-p", "--port"),
                   database: Optional[str] = typer.Option("sqlite", "--database", "-d", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)")):
-    """Start a timelink docker server on defined path and port. 
+    """Start a timelink docker server on defined path and port.
         If none are given, the path defaults to current directory, and the port to the first available port after 8088
     """
 
@@ -146,6 +147,7 @@ def start_project(path: Path = Path("."),
 
     run_kserver_setup(path, port, database)
 
+
 def find_website_port(from_port: int = 8088, to_port: int = 8099):
     for port in range(from_port, to_port + 1):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -157,12 +159,13 @@ def find_website_port(from_port: int = 8088, to_port: int = 8099):
                 pass
     raise OSError(f"No free ports available in the range {from_port}-{to_port}")
 
+
 @start_app.command("web")
 def start_webproject(
     port: Optional[int] = typer.Option(None, "-p", "--port", help="Port from which to launch the Web Application. Defaults to 8000"),
     path: Optional[Path] = typer.Option(None, "-d", "--directory", help="Timelink project directory. Defaults to the current one."),
     database: Optional[str] = typer.Option("sqlite", "--database", "-db", help="Which database type to expect when launching the Web App. (Accepts sqlite, postgres)"),
-    ):
+):
     """Start the webapp on the chosen port if set. If not, default to 8000."""
 
     # allow explicitly requested ports above the default search range
@@ -179,7 +182,7 @@ def start_webproject(
 
     typer.echo(f"Starting Timelink Web Interface at port {port} on {path_to_use}.")
 
-    subprocess.run([sys.executable, str(web_app_path), "--port", str(port),  "--directory", str(path_to_use), "--database", database])
+    subprocess.run([sys.executable, str(web_app_path), "--port", str(port), "--directory", str(path_to_use), "--database", database])
 
 
 # ================================================

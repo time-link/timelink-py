@@ -1,7 +1,6 @@
 import pytest
 from timelink.web.pages.display_id_page import DisplayIDPage
 from nicegui.testing import User
-from nicegui import app
 from unittest.mock import AsyncMock, MagicMock
 from types import SimpleNamespace
 

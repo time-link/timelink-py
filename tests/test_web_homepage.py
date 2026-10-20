@@ -2,7 +2,6 @@ import pytest
 from timelink.web.pages.homepage import HomePage
 from nicegui.testing import User
 from types import SimpleNamespace
-from unittest.mock import MagicMock, patch
 
 pytest_plugins = ['nicegui.testing.plugin', 'nicegui.testing.user_plugin']
 

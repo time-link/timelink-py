@@ -1,3 +1,5 @@
+from unittest.mock import MagicMock
+
 import pytest
 
 import tests as test_settings
@@ -12,7 +14,13 @@ def _use_local_kleio_server() -> bool:
     """
     return test_settings.kleio_server_mode == test_settings.KleioServerTestMode.LOCAL
 
-from unittest.mock import MagicMock
+
+# The web test suite needs the `web` extra (nicegui and friends).
+# Skip those tests instead of erroring when it is not installed.
+try:
+    import nicegui  # noqa: F401
+except ImportError:
+    collect_ignore_glob = ["test_web_*.py"]
 
 
 @pytest.fixture(scope="session")

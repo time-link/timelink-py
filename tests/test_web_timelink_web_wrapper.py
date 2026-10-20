@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock, patch
-from timelink.web.backend.timelink_app_wrapper import TimelinkWebApp, Entity, EntityAttrRelSchema
+from timelink.web.backend.timelink_app_wrapper import TimelinkWebApp, Entity
 import pytest
 
 

@@ -130,10 +130,10 @@ def test_list_rentities_and_rentity_links(dbsystem):
         assert any(r["rid"] == rid for r in linking.list_rentities(session))
 
         links = linking.rentity_links(session, rid)
-        assert {l["entity"] for l in links} == set(occurrences[:2])
-        assert all(l["user"] == "tester" for l in links)
-        assert all(l["status"] == "MANUAL" for l in links)
-        assert all(l["class"] is not None for l in links)
+        assert {link["entity"] for link in links} == set(occurrences[:2])
+        assert all(link["user"] == "tester" for link in links)
+        assert all(link["status"] == "MANUAL" for link in links)
+        assert all(link["class"] is not None for link in links)
 
 
 def test_same_as_reassigns_existing_link(dbsystem):

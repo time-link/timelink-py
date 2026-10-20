@@ -16,8 +16,8 @@ FAKE_RENTITIES = [
 ]
 
 FAKE_LINKS = [
-        {"entity": "p1", "class": "person", "user": "test_user", "status": "MANUAL", "rule": ""},
-        {"entity": "p2", "class": "person", "user": "test_user", "status": "MANUAL", "rule": ""},
+    {"entity": "p1", "class": "person", "user": "test_user", "status": "MANUAL", "rule": ""},
+    {"entity": "p2", "class": "person", "user": "test_user", "status": "MANUAL", "rule": ""},
 ]
 
 

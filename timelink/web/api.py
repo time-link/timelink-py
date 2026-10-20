@@ -10,11 +10,9 @@ returned None) and were not ported; authentication for these routes
 follows the NiceGUI session middleware for now. Treat adding real
 token auth here as a roadmap item.
 """
-from typing import Annotated, List
-
 from fastapi import APIRouter, Depends, Query, Request
 
-from timelink.api import crud, models, schemas
+from timelink.api import crud, models
 from timelink.api.schemas import EntityAttrRelSchema, ImportStats
 from timelink.kleio.importer import import_from_xml
 from timelink.kleio.schemas import KleioFile

@@ -17,7 +17,6 @@ from tests import (
     has_internet,
     kleio_retry,
     skip_on_github_actions,
-    skip_on_travis,
 )
 from timelink.api.database import TimelinkDatabase, get_import_status
 from timelink.api.models import base  # pylint: disable=unused-import. # noqa: F401
