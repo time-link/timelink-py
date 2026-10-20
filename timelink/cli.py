@@ -11,7 +11,7 @@ import platform
 import socket
 import subprocess
 import sys
-from sys import platform
+from pathlib import Path
 
 import docker
 import typer
@@ -80,7 +80,7 @@ def run_kserver_setup(timelink_path: str, timelink_port: int, database: str):
     typer.echo(f"Starting Timelink project at: {kserver.get_kleio_home()} on port {kserver.get_url()[-4:]}")
 
     path_str = str(Path(timelink_home).resolve())
-    if platform.startswith("win"):
+    if sys.platform.startswith("win"):
         path_str = path_str.replace("\\", "\\\\")
 
     with TIMELINK_ENV_PATH.open("w") as f:
