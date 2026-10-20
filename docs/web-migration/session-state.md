@@ -1,78 +1,69 @@
 # Session state / handoff
 
-Last updated: 2026-10-16 (end of Phase 1 hygiene session). Read this
+Last updated: 2026-10-20 (after PR #106 merge). Read this
 together with [README.md](README.md) and [roadmap.md](roadmap.md).
 
 ## Repos and paths
 
 | What | Where |
 |---|---|
-| timelink-py main checkout | `/Users/jrc/develop/timelink-py` (on `test-gsilva-web-merge`, clean) |
-| **Worktree for web work** | `/Users/jrc/develop/timelink-web-dev` (branch `timelink-web-dev`) |
+| timelink-py main checkout | `/Users/jrc/develop/timelink-py` (on `main`, synced to the merge commit) |
+| **Worktree for web work** | `/Users/jrc/develop/timelink-web-dev` (branch `feature/web-interface`, cut from `main` after the merge) |
 | Legacy Java MHK (reference, read-only) | `/Users/jrc/develop/mhk` (branch `master`) |
-| Shared venv | `/Users/jrc/develop/timelink-py/.venv` (Python 3.12; used to run worktree tests) |
+| Shared venv | `/Users/jrc/develop/timelink-py/.venv` (Python 3.13; has web extra + selenium + pytest-asyncio + flake8 7.1.1 installed) |
 
-## Branch state at handoff
+## Where we are
 
-`timelink-web-dev` (local only, **not pushed**) — clean tree, 4 commits
-on top of the merged history:
+**PR #106 merged** (merge commit `4aac8c6`, 2026-10-20): the whole
+`timelink.web` NiceGUI app — entity display with the manual linking
+loop, real-entity pages, IDList, comments, linking management page,
+`/api` router, secrets config, CI green on Python 3.10–3.13. Copilot
+review comments were all addressed (fixed or deferred with roadmap
+entries) and CI now installs the web stack.
 
-1. `0e3dc14` — merge `main` into `timelink-web-dev` (from
-   `test-gsilva-web-merge` @ 5b996e5; only conflict was `.gitignore`)
-2. `4b6794f` — web deps declared (`setup.py` extras `web`,
-   `requirements_web.txt`) + `docs/web-migration/` document set
-3. `87fba9c` — add `argon2-cffi`; ignore `.nicegui/`; test results in
-   roadmap
+**Branches cleaned up** (2026-10-20): deleted on origin —
+`timelink-web-dev`, `gsilva-timelink-webapp`, `test-gsilva-web-merge`
+(all fully contained in main) and `test-jrc-web-merge` (superseded;
+salvage landed). Remaining to review separately, NOT web:
+`kleio-home-marker-walk` (project creation hardening, 161 unique
+commits), `export_rentities` (real-entity export sketch, 1 commit).
 
-## Environment changes made this session
+New web work goes on `feature/web-interface` (per the branch
+conventions in CONTRIBUTING.rst) and merges back to `main` via PR.
 
-* Installed into `/Users/jrc/develop/timelink-py/.venv`:
-  `apscheduler` 3.11.3, `passlib` 1.7.4, `argon2-cffi` 25.1.0
-  (these were used by the webapp but undeclared — now in packaging).
-* Docker was already running with two `timelinkserver/kleio-server`
-  containers (ports 8088, 8089) — the full-suite test run reused them.
+## Immediate next actions (in order)
 
-## Validated state
+1. Act-display parity verification (small): compare the current act
+   rendering against [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md)
+   §2 and the act templates in `~/develop/mhk`
+   (`act_show.vm`, `entity_show.vm`).
+2. Sources pipeline page (next big chunk): translation/import status,
+   report viewers, git operations over the Kleio server API —
+   walkthrough §4, MHK `sources_*.vm` + `DoTranslate`/`DoGitCmd`.
+3. After that: explore/facets, calendar, families (moved up from
+   Phase 5), token auth for `/api` (currently session/401 only).
 
-* Full pytest suite in the worktree: **391 passed / 13 skipped /
-  6 failed**; the 6 failures were 4× missing argon2 backend (fixed)
-  and 2× flaky `test_050_import_TL` kleio-import tests that pass on
-  re-run (race with Kleio server under load — hardening task in
-  roadmap Phase 1).
+## Known deferred items (before multi-user deployment)
+
+* Session-scoped project selection (homepage mutates the process-wide
+  wrapper — cross-user data leak). Plus per-client state in
+  `explore_page`; linking-page lazy loading/pagination. See roadmap
+  Cross-cutting.
+* Linking reassignment deletes the old link; MHK kept an audit trail
+  (`linklog`, `INVALID` status) — port if history matters.
+
+## Environment notes
+
 * Test runs bump a `translations=N` counter inside tracked `.cli`
   fixtures under `tests/timelink-home/...` — restore with
   `git checkout -- tests/` after runs; do not commit that noise.
 * Running the webapp: `cd /Users/jrc/develop/timelink-web-dev &&
-  timelink start web` (or `python timelink/web/timelink_web.py
-  --port 8000 --directory . --database sqlite`).
-
-## Immediate next actions (in order)
-
-0. ~~Push `timelink-web-dev` to origin~~ done 2026-10-16 (later
-   commits pushed too — see git log).
-1. ~~Phase 1 hygiene~~ done 2026-10-16 (later session): flaky tests
-   hardened (`kleio_retry`), secrets configurable
-   (`TIMELINK_STORAGE_SECRET`, `TIMELINK_ADMIN_PASSWORD`,
-   `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET`; committed GitHub OAuth
-   secret invalidated by removal), SQL console gated to admins,
-   `timelink/app/` deleted with live assets salvaged into
-   `timelink/web/` (REST API at `/api`, templates, user-property
-   methods), `webapp_settings.py` salvaged. Remaining Phase 1 items:
-   CI, branch cleanup, side-branch review.
-   Env note: `/api` is exempt from the login redirect and has **no
-   auth** yet (the old JWT code was a stub) — add token auth before
-   any public deployment.
-2. Phase 2 web-interface workstream (owner decision 2026-10-16:
-   build the web interface first, then record linking, then GEDCOM —
-   see roadmap Phase 2/2b): entity display pages, sources pipeline,
-   explore/calendar/families, /api auth. Then `timelink/linking/` package per
-   [record-linking-port.md](record-linking-port.md), then web linking
-   page — build against the captured UX in
-   [mhk-ux-walkthrough.md](mhk-ux-walkthrough.md).
-3. Live instance access (owner-provided, temporary credentials kept
-   out of this repo): `https://linode.timelink-mhk.net/mhk/`, user
-   `beta-tester` level 3, db `beta_tester_db` (Ílhavo parish data).
-   Available for re-checking flows during linking-page development.
+  PYTHONPATH=. timelink start web` (or `python
+  timelink/web/timelink_web.py --port 8000 --directory <project>
+  --database sqlite`). Needs Docker (Kleio server + Solr containers).
+* Docker Desktop on this machine occasionally dies with a
+  "lingering processes" dialog — `pkill -f "Docker Desktop"`, relaunch,
+  then restart the webapp.
 
 ## Pending owner decisions (see decisions.md "Open questions")
 
@@ -80,12 +71,3 @@ on top of the merged history:
 * Public signup/captcha flow: needed or not.
 * Collaborative linking semantics (per-user link ownership vs
   ProjectAccess roles).
-
-## Branches to clean up AFTER push
-
-* `gsilva-timelink-webapp` — fully contained in baseline, delete.
-* `test-jrc-web-merge`, `test-gsilva-web-merge` — retire after
-  salvage/push respectively.
-* Review separately (not web): `kleio-home-marker-walk` (project
-  creation hardening, 161 unique commits), `export_rentities`
-  (real-entity export sketch, 1 commit).

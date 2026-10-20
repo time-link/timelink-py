@@ -46,11 +46,13 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       `web-specs.md` → `docs/web-migration/reference/web-specs.md`.
       The branch's admin page was an empty stub — skipped (the
       consolidated stack already mounts starlette-admin).
-* [ ] After push: delete `gsilva-timelink-webapp`; retire
-      `test-jrc-web-merge`, `test-gsilva-web-merge`.
-* [ ] Review side branches: `kleio-home-marker-walk` (project creation
-      hardening — likely merge to main independently) and
-      `export_rentities` (real-entity export sketch).
+* [x] After push: delete `gsilva-timelink-webapp`; retire
+      `test-jrc-web-merge`, `test-gsilva-web-merge` (done 2026-10-20,
+      after PR #106 merged; `timelink-web-dev` also deleted).
+* [ ] Review side branches (owner, not web work):
+      `kleio-home-marker-walk` (project creation hardening — likely
+      merge to main independently) and `export_rentities`
+      (real-entity export sketch).
 
 ## Phase 2 — Web interface workstream (owner decision 2026-10-16: web
 interface first, then record linking, then GEDCOM)
