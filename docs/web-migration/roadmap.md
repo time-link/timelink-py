@@ -97,12 +97,18 @@ linking engine, so the engine grows alongside real pages.
       minimum slice the linking page needs first (same-as queue +
       operations), then the statistical pipeline.
       Reference implementation: `~/develop/mhk` (Java, read-only).
-* [ ] Web linking page: same-as / unlink from `display_id_page`,
+* [~] Web linking page: same-as / unlink from `display_id_page`,
       batch confirmation lists (`sameas_list.vm` equivalent),
       per-user identification browser (`linking_show.vm` equivalent).
+      Done (2026-10-20): `/linking` page lists real entities with
+      occurrences, filterable by user, with unlink per occurrence
+      (existing links only — no automatic linking, per owner decision).
 * [ ] Linking dictionary export/import in web UI (productize
       `docs/web-migration/reference/linking_dictionary.py`).
 * [ ] Linking-graph inspection page (`graph.vm` equivalent).
+      Deferred: depends on the ported record-linking engine
+      (`lgraphs`/`candidates`/`ledges` tables, decision D3); a
+      manual-links graph over `REntity`/`Link` can be added later.
 
 ## Phase 3 — Exports
 

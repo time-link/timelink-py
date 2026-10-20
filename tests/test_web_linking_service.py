@@ -104,3 +104,33 @@ def test_unlink(dbsystem):
 
         # unlinking something unlinked is a no-op
         assert linking.unlink_occurrence(occurrences[0], "tester", session) is None
+
+
+def test_list_rentities_and_rentity_links(dbsystem):
+    occurrences = _occurrences(dbsystem)
+    with dbsystem.session() as session:
+        # clean slate
+        for (rid,) in session.query(REntity.id).all():
+            REntity.delete(rid, session=session)
+
+        rid = linking.same_as(occurrences[0], occurrences[1], "tester", session).id
+
+        rows = linking.list_rentities(session, user="tester")
+        assert len(rows) == 1
+        row = rows[0]
+        assert row["rid"] == rid
+        assert row["user"] == "tester"
+        assert row["n_occurrences"] == 2
+        assert set(row["occurrences"]) == set(occurrences[:2])
+
+        # user filter excludes other users' identifications
+        assert linking.list_rentities(session, user="nobody") == []
+
+        # without filter, the rentity is listed regardless of user
+        assert any(r["rid"] == rid for r in linking.list_rentities(session))
+
+        links = linking.rentity_links(session, rid)
+        assert {l["entity"] for l in links} == set(occurrences[:2])
+        assert all(l["user"] == "tester" for l in links)
+        assert all(l["status"] == "MANUAL" for l in links)
+        assert all(l["class"] is not None for l in links)

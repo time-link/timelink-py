@@ -79,3 +79,65 @@ def rperson_occurrences(rid: str, session: Session) -> List[Entity]:
         if entity is not None:
             occurrences.append(entity)
     return occurrences
+
+
+def list_rentities(
+    session: Session, user: Optional[str] = None
+) -> List[dict]:
+    """Real entities with their link counts, for the linking management page.
+
+    Mirrors MHK ``rentities.sql`` / ``linking_show.vm``: one row per real
+    entity, optionally restricted to the identifications of one user.
+    """
+    query = (
+        session.query(
+            REntity.id,
+            REntity.user,
+            REntity.status,
+            REntity.description,
+        )
+        .order_by(REntity.id)
+    )
+    if user is not None:
+        query = query.filter(REntity.user == user)
+    rows = []
+    for rid, ruser, rstatus, rdescription in query.all():
+        occurrences = [
+            entity
+            for (entity,) in session.query(Link.entity)
+            .filter(Link.rid == rid)
+            .order_by(Link.entity)
+            .all()
+        ]
+        rows.append(
+            {
+                "rid": rid,
+                "user": ruser,
+                "status": str(rstatus),
+                "description": rdescription,
+                "occurrences": occurrences,
+                "n_occurrences": len(occurrences),
+            }
+        )
+    return rows
+
+
+def rentity_links(session: Session, rid: str) -> List[dict]:
+    """The link rows of one real entity, with occurrence class for display."""
+    links = (
+        session.query(Link, Entity.pom_class)
+        .outerjoin(Entity, Link.entity == Entity.id)
+        .filter(Link.rid == rid)
+        .order_by(Link.entity)
+        .all()
+    )
+    return [
+        {
+            "entity": link.entity,
+            "class": pom_class,
+            "user": link.user,
+            "status": str(link.status),
+            "rule": link.rule,
+        }
+        for link, pom_class in links
+    ]
