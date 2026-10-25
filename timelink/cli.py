@@ -27,6 +27,8 @@ from timelink.api.database import (
 )
 from timelink.kleio.kleio_server import KleioServer, find_free_port
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
+from timelink.api.projects import CREATED_SUBDIRS
+from timelink.api.projects import create_project as scaffold_project
 
 # get the current directory
 # this is used to find the alembic.ini file
@@ -121,6 +123,34 @@ def create_project(path: Path = Path("timelink-project")):
         typer.echo("File structure cloned successfully.")
     except subprocess.CalledProcessError:
         typer.echo("Failed to clone the project template.")
+
+
+# ----------------- TIMELINK LOCAL PROJECT SCAFFOLD ------------------------- #
+
+
+@create_app.command("local")
+def create_local(
+    name: str = typer.Argument(..., help="Name of the project"),  # noqa: B008
+    home: Optional[Path] = None,
+    force: bool = False,
+):
+    """Create a project locally in a timelink home, without downloading a template.
+
+    Scaffolds <home>/projects/<name> with the standard project layout
+    (sources, structures, database/sqlite, inferences, notebooks) and the
+    marker files (.timelink-project, .timelink-home), so the result is
+    discovered by timelink and found by the Kleio server. Works offline;
+    `create project` instead clones a template from GitHub.
+    """
+    try:
+        project = scaffold_project(name, home, force=force)
+    except (ValueError, FileExistsError) as e:
+        typer.echo(f"Error: {e}", err=True)
+        raise typer.Exit(code=1)
+    typer.echo(f"Project {project['name']} created in {project['path']}")
+    typer.echo("Project layout:")
+    for sub, _, _ in CREATED_SUBDIRS:
+        typer.echo(f"  {project['path']}/{sub}")
 
 
 # ================================================
