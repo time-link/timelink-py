@@ -50,8 +50,7 @@ def group_attributes(
     else:
         raise (
             Exception(
-                "must call TimelinkDatabase() and pass db= "
-                "or specify previously openned session with session="
+                "must call TimelinkDatabase() and pass db= " "or specify previously openned session with session="
             )
         )
 
@@ -94,9 +93,7 @@ def group_attributes(
 
     select_entities = select(entity_model).where(id_col.in_(group))
 
-    stmt = select_entities.join(
-        attr, attr.c.entity == entity_model.id, isouter=True
-    ).with_only_columns(*cols)
+    stmt = select_entities.join(attr, attr.c.entity == entity_model.id, isouter=True).with_only_columns(*cols)
 
     # these should allow sql wild cards
     # but it is not easy in sql
@@ -109,10 +106,11 @@ def group_attributes(
         print(stmt)
 
     with mysession as session:
-        records = session.execute(stmt)
-        col_names = stmt.selected_columns.keys()
-        df = pd.DataFrame.from_records(records, index="id", columns=col_names)
-    return df
+        # materialize before DataFrame construction: from_records on an
+        # empty Result raises (index="id") instead of returning an empty frame
+        records = session.execute(stmt).fetchall()
+        col_names = list(stmt.selected_columns.keys())
+    return pd.DataFrame(records, columns=col_names).set_index("id")
 
 
 def display_group_attributes(
@@ -173,15 +171,9 @@ def display_group_attributes(
         db=db,
     )
     # remove irrelevant columns
-    header_df = header_df.loc[
-        :, ~header_df.columns.str.endswith(("line", "level", "extra_info", "attr_id"))
-    ]
+    header_df = header_df.loc[:, ~header_df.columns.str.endswith(("line", "level", "extra_info", "attr_id"))]
     # remove  entries with duplicate index from header_df
-    header_df = (
-        header_df.reset_index()
-        .drop_duplicates(subset="id", keep="first")
-        .set_index("id")
-    )
+    header_df = header_df.reset_index().drop_duplicates(subset="id", keep="first").set_index("id")
 
     if sort_header is not None:
         header_df.sort_values(sort_header, inplace=True)
@@ -195,9 +187,7 @@ def display_group_attributes(
     categories = header_df[category].unique()
     palette = category_palette(categories, cmap_name=cmap_name)
 
-    header_df = styler_row_colors(
-        header_df[header_cols], category=category, palette=palette
-    )
+    header_df = styler_row_colors(header_df[header_cols], category=category, palette=palette)
     display(header_df)
 
     df = group_attributes(

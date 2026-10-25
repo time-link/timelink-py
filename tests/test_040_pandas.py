@@ -25,9 +25,7 @@ def dbsystem(request, kleio_server):
     db_type, db_name = request.param
     db_path = Path(TEST_DIR, "sqlite")
 
-    database = TimelinkDatabase(
-        db_name, db_type, db_path=db_path, kleio_server=kleio_server, echo=False
-    )
+    database = TimelinkDatabase(db_name, db_type, db_path=db_path, kleio_server=kleio_server, echo=False)
     database.update_from_sources(test_files)
 
     try:
@@ -69,9 +67,7 @@ def test_attribute_values(dbsystem):
     # get count of unique values for Portugal
     attr_type_count = attr_values.loc["Portugal"]["count"]
     # now count filtering by groupname "n" (this filters out "referidos"
-    attr_values_2 = attribute_values(
-        "nacionalidade", groupname="n", db=dbsystem, sql_echo=True
-    )
+    attr_values_2 = attribute_values("nacionalidade", groupname="n", db=dbsystem, sql_echo=True)
     # get count of unique values for Portugal
     attr_type_count_2 = attr_values_2.loc["Portugal"]["count"]
     assert attr_type_count > attr_type_count_2, "attribute_values returned bad results"
@@ -115,9 +111,7 @@ def test_entities_with_attribute_filter_by(dbsystem):
         db=dbsystem,
     )
     assert df is not None, "entities_with_attribute returned None"
-    assert len(df.index.unique()) == len(
-        conimbricensis
-    ), "entities_with_attribute returned bad filtered dataframe"
+    assert len(df.index.unique()) == len(conimbricensis), "entities_with_attribute returned bad filtered dataframe"
     print(df)
 
 
@@ -154,9 +148,7 @@ def test_entities_with_attribute_list(dbsystem):
     assert required_column in df_cols, f"{required_column} expected in {df_cols}"
     # loop through the dataframe and check that column "groupname" is different from "a_groupname"
     for _index, row in df.iterrows():
-        assert (
-            row["groupname"] != row["lugares.groupname"]
-        ), "groupname and [column_name].groupname should be different"
+        assert row["groupname"] != row["lugares.groupname"], "groupname and [column_name].groupname should be different"
     print(df.info())
 
 
@@ -186,3 +178,38 @@ def test_entities_with_attribute_empty(dbsystem):
         sql_echo=True,
     )
     assert df is not None, "entities_with_attribute returned None"
+
+
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_attribute_values_empty(dbsystem):
+    """An unknown attribute type must yield an empty dataframe, not a
+    phantom row of nulls (from_records-on-empty bug)."""
+    df = attribute_values(the_type="no-such-type", db=dbsystem)
+    assert df.empty, "empty vocabulary must return an empty dataframe"
+    assert len(df) == 0
+    assert df.isna().sum().sum() == 0
+
+
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_attribute_types(dbsystem):
+    """attribute_types lists the types present with entity and value counts."""
+    from timelink.pandas import attribute_types
+
+    df = attribute_types(db=dbsystem)
+    assert not df.empty
+    assert "residencia" in df.index, "residencia should be among the types"
+    row = df.loc["residencia"]
+    assert row["count"] > 0
+    assert row["values"] > 0
+    # the counts must agree with the vocabulary of that type
+    values = attribute_values(the_type="residencia", db=dbsystem)
+    assert len(values) == row["values"]
+
+
+@pytest.mark.parametrize("dbsystem", test_set, indirect=True)
+def test_group_attributes_empty(dbsystem):
+    """An unknown id must yield an empty dataframe, not raise."""
+    from timelink.pandas import group_attributes
+
+    df = group_attributes(["no-such-id"], db=dbsystem)
+    assert df.empty, "unknown id must return an empty dataframe"

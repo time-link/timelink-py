@@ -1,4 +1,4 @@
-"""FastMCP server assembly: 18 tools in four groups plus the schema resource."""
+"""FastMCP server assembly: 19 tools in four groups plus the schema resource."""
 
 from __future__ import annotations
 
@@ -18,7 +18,8 @@ Timelink: person-related information from historical sources.
 Workflows:
 1. Discover: list_projects (what exists, including database-less
    projects) -> list_databases -> db_info -> db_schema.
-2. Search: attribute_values (check the vocabulary) ->
+2. Search: attribute_types (which types exist) -> attribute_values
+   (check the vocabulary) ->
    find_entities_by_attribute (LIKE wildcards % and _; lists are exact
    IN-match) -> entity_attributes / entity_details on interesting ids;
    find_persons_by_name for name searches; find_relations /
