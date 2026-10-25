@@ -1,10 +1,10 @@
-"""Search-by-attribute tools (§3.4–3.8).
+"""Search-by-attribute tools (§3.5–3.9).
 
 Thin wrappers over ``timelink.pandas``; results are paged record lists
 (see :mod:`timelink.mcp.paging`). Dates are Timelink date strings
-(``yyyy``, ``yyyymm`` or ``yyyymmdd``) compared lexically; string filters
-use SQL LIKE semantics (``%`` any string, ``_`` one char), lists mean
-exact IN-match.
+(``yyyy``, ``yyyy-mm`` or ``yyyy-mm-dd``) compared lexically; lists mean
+exact IN-match. Value filters use SQL LIKE semantics (``%`` any string,
+``_`` one char) where documented; ``the_type`` matches are exact.
 """
 
 from __future__ import annotations
@@ -13,10 +13,45 @@ from timelink.api.models.entity import Entity
 from timelink.mcp.context import get_context
 from timelink.mcp.errors import tool_errors as _wrapped
 from timelink.mcp.paging import clamp_limit, df_records, empty_page, page_slice
+from timelink.pandas.attribute_values import attribute_types as attribute_types_df
 from timelink.pandas.attribute_values import attribute_values as attribute_values_df
 from timelink.pandas.entities_with_attribute import entities_with_attribute
 from timelink.pandas.group_attributes import group_attributes
 from timelink.pandas.name_to_df import pname_to_df
+
+
+def attribute_types(
+    database: str,
+    groupname: str | list[str] | None = None,
+    dates_between: list[str] | None = None,
+    row_limit: int = 50,
+    offset: int = 0,
+) -> dict:
+    """Attribute types present in one database: the missing first step of
+    the attribute-values-before-search pattern. One row per ``the_type``
+    with the number of entities carrying it, the number of distinct
+    values and the first/last dates — call this to see which types
+    exist, then ``attribute_values`` for the vocabulary of one type.
+
+    Args:
+        database: database name as shown by ``list_databases``.
+        groupname: restrict to one Kleio group or a list of groups.
+        dates_between: ``[from, to]`` Timelink date strings (exclusive).
+        row_limit: page size.
+        offset: page offset for paging.
+    """
+    ctx = get_context()
+    db = ctx.databases.get(database)
+    limit = clamp_limit(row_limit, 50, ctx.settings.max_rows)
+    df = attribute_types_df(
+        groupname=groupname,
+        dates_between=_tuple_or_none(dates_between),
+        db=db,
+    )
+    records = df_records(df)
+    if not records:
+        return empty_page()
+    return page_slice(records, offset, limit)
 
 
 def _tuple_or_none(pair: list[str] | None) -> tuple[str, str] | None:
@@ -37,11 +72,13 @@ def attribute_values(
 ) -> dict:
     """Vocabulary of one attribute type: distinct values with entity counts
     and first/last dates. Use it to check the possible values of a type
-    (e.g. ``naturalidade``, ``jesuita-entrada``) before searching.
+    (e.g. ``naturalidade``, ``jesuita-entrada``) before searching — and use
+    ``attribute_types`` first to see which types exist. ``the_type``
+    matches exactly (no wildcards).
 
     Args:
         database: database name as shown by ``list_databases``.
-        the_type: attribute type, e.g. ``"naturalidade"``.
+        the_type: attribute type, e.g. ``"naturalidade"`` — exact match.
         groupname: restrict to one Kleio group or a list of groups.
         dates_between: ``[from, to]`` Timelink date strings (exclusive).
         row_limit: page size.
@@ -227,12 +264,26 @@ def entity_details(
 def register(mcp) -> None:
     """Attach this module's tools to the FastMCP server."""
     mcp.tool(
+        name="attribute_types",
+        description=(
+            "Attribute types present in one database, each with the number of "
+            "entities carrying it, the number of distinct values and the "
+            "first/last dates. The first step of the "
+            "attribute-values-before-search pattern: call this to see which "
+            "the_type values exist, then attribute_values for the vocabulary "
+            "of one type. Params: groupname (restrict to one Kleio group or "
+            "list), dates_between ([from, to] Timelink date strings, "
+            "exclusive), row_limit/offset for paging."
+        ),
+    )(_wrapped(attribute_types))
+    mcp.tool(
         name="attribute_values",
         description=(
             "Vocabulary of one attribute type: distinct values with the number of "
             "distinct entities and first/last dates. Check the possible values "
             "of a type (naturalidade, grau, jesuita-entrada...) before "
-            "searching with find_entities_by_attribute. "
+            "searching with find_entities_by_attribute; the_type matches "
+            "exactly (use attribute_types to discover types). "
             "Dates are Timelink strings (yyyy, yyyymm or yyyymmdd)."
         ),
     )(_wrapped(attribute_values))

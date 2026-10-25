@@ -156,8 +156,9 @@ This is where dynamic classes are declared — enumerate with
   (bounds are exclusive). Never cast to SQL date types; compare as
   strings.
 * **`the_type`/`the_value` vocabularies are data-dependent.** Always list
-  the vocabulary first (`attribute_values` tool) before filtering on
-  values; `naturalidade` in one project is `local-nascimento` in another.
+  the vocabulary first before filtering on values: `attribute_types` to
+  see which types exist, then `attribute_values` for the values of one
+  type; `naturalidade` in one project is `local-nascimento` in another.
   Values can also be checked with wildcards: `the_value = "Coimbra%"`.
 * **`class` vs `groupname` vs table name.** `entities.class` selects the
   specialization table; `groupname` is the Kleio group (many groups can
