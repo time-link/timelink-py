@@ -4,7 +4,7 @@
 nicegui==3.18.0
 apscheduler>=3.10
 pysolr>=3.10
-starlette-admin
+starlette-admin==1.0.3
 passlib
 argon2-cffi
 jinja2

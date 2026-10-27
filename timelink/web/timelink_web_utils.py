@@ -90,12 +90,14 @@ def setup_pages_and_database(timelink_app_settings, project_list, active_project
     search_page.Search(timelink_app=timelink_app_settings)
 
     # Starlette Admin setup
-    admin_app = Admin(engine=timelink_app_settings.users_db.engine, title="Timelink Web Admin Panel")
+    # starlette-admin 1.x replaced the `engine` argument with `session_provider`;
+    # users_db.session is a sqlalchemy sessionmaker bound to the users engine.
+    admin_app = Admin(session_provider=timelink_app_settings.users_db.session, title="Timelink Web Admin Panel")
     admin_app.add_view(ModelView(User))
-    admin_app.add_view(ModelView(UserProperty, label="User Properties"))
+    admin_app.add_view(ModelView(UserProperty, display_name="User Properties"))
     admin_app.add_view(ModelView(Project))
-    admin_app.add_view(ModelView(ProjectAccess, label="Project Access"))
-    admin_app.add_view(Link(label="⬅️ Back to the App", url="/"))
+    admin_app.add_view(ModelView(ProjectAccess, display_name="Project Access"))
+    admin_app.add_view(Link(menu_label="⬅️ Back to the App", url="/"))
     admin_app.mount_to(app)
 
     ui.navigate.to("/")
