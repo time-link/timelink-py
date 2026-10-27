@@ -1,9 +1,37 @@
+from contextlib import contextmanager
 from unittest.mock import MagicMock
 
 import pytest
 
 import tests as test_settings
 from timelink.kleio.kleio_server import KleioServer
+
+
+def _disable_nicegui_module_purge() -> None:
+    """Stop NiceGUI >= 3 test teardown from evicting timelink modules.
+
+    nicegui_reset_globals' teardown removes every module that registered a page
+    (plus all parent packages) from sys.modules, but leaves sibling submodules
+    cached. Re-imported parents then no longer see those siblings, which breaks
+    string-target monkeypatch.setattr("timelink.web....") in later tests. The
+    purge loop iterates Client.page_routes; the setup side of the same context
+    manager already clears that dict, so clearing it before teardown exits
+    simply keeps modules cached across tests (NiceGUI 2.x behaviour).
+    """
+    import importlib
+
+    from nicegui.client import Client
+    from nicegui.testing.general import nicegui_reset_globals as original_reset
+
+    user_simulation_module = importlib.import_module("nicegui.testing.user_simulation")
+
+    @contextmanager
+    def reset_without_module_purge():
+        with original_reset():
+            yield
+            Client.page_routes.clear()
+
+    user_simulation_module.nicegui_reset_globals = reset_without_module_purge
 
 
 def _use_local_kleio_server() -> bool:
@@ -21,6 +49,8 @@ try:
     import nicegui  # noqa: F401
 except ImportError:
     collect_ignore_glob = ["test_web_*.py"]
+else:
+    _disable_nicegui_module_purge()
 
 
 @pytest.fixture(scope="session")
@@ -105,6 +135,30 @@ def kleio_server():
         except Exception as e:
             print("Error stopping server", e)
             pass
+
+
+@pytest.fixture
+async def scratch_page(user):
+    """Provide an empty NiceGUI page for calling UI-building code directly.
+
+    NiceGUI 2.x attached elements created outside a page to a shared auto-index
+    client; NiceGUI 3.x removed that, so tests must build inside an explicit
+    page context. Usage: ``with scratch_page(): page._some_render_method()``.
+    """
+    from nicegui import ui
+
+    @ui.page('/test-scratch')
+    def _scratch():
+        pass
+
+    await user.open('/test-scratch')
+
+    @contextmanager
+    def _page_slot():
+        with user.current_layout:
+            yield
+
+    return _page_slot
 
 
 @pytest.fixture

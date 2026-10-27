@@ -44,8 +44,6 @@ async def test_show_table(user: User, fake_timelink_app, fake_user) -> None:
     await user.open("/project_admin")
     user.find("Database Status").click()
 
-    timelink_web_utils.show_table(fake_timelink_app.database)
-
     table = user.find(ui.table).elements.pop()
     expected_columns = [
         {'name': 'Table', 'label': 'Table', 'field': 'Table'},
@@ -85,8 +83,6 @@ async def test_show_kleio_info(user: User, fake_timelink_app, fake_user) -> None
 
     await user.open("/project_admin")
     user.find("Check Server Status").click()
-
-    timelink_web_utils.show_kleio_info(fake_timelink_app.kleio_server)
 
     markdown = next(
         m for m in user.find(ui.markdown).elements if "Kleio URL" in m.content

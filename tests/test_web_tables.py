@@ -214,7 +214,7 @@ async def test_display_tables(user: User, fake_timelink_app, monkeypatch, table_
         ])
     ]
 )
-async def test_find_persons(user: User, fake_timelink_app, monkeypatch, attr_type, attr_value, expected_rows):
+async def test_find_persons(user: User, scratch_page, fake_timelink_app, monkeypatch, attr_type, attr_value, expected_rows):
 
     captured = {}
 
@@ -256,7 +256,8 @@ async def test_find_persons(user: User, fake_timelink_app, monkeypatch, attr_typ
 
     # Create page and run method
     page = TablesPage(fake_timelink_app)
-    page._find_persons(attr_type, attr_value)
+    with scratch_page():
+        page._find_persons(attr_type, attr_value)
 
     # Assertions
     opts = captured.get("options")
@@ -292,6 +293,7 @@ async def test_find_persons(user: User, fake_timelink_app, monkeypatch, attr_typ
 )
 async def test_display_relations_view(
         user: User,
+        scratch_page,
         fake_timelink_app,
         monkeypatch,
         rel_type,
@@ -348,7 +350,8 @@ async def test_display_relations_view(
 
     page = TablesPage(fake_timelink_app)
 
-    page._display_relations_view(rel_type, rel_value=rel_value, rel_id=rel_id, is_from=is_from)
+    with scratch_page():
+        page._display_relations_view(rel_type, rel_value=rel_value, rel_id=rel_id, is_from=is_from)
 
     opts = captured.get("options")
     assert opts is not None, "aggrid options were not captured"
@@ -782,7 +785,7 @@ async def test_search_database(user: User, fake_timelink_app, monkeypatch, fake_
 
 
 @pytest.mark.asyncio
-async def test_display_sql_results(user: User, fake_timelink_app, monkeypatch):
+async def test_display_sql_results(user: User, scratch_page, fake_timelink_app, monkeypatch):
     captured = {}
 
     # Fake aggrid
@@ -833,7 +836,8 @@ async def test_display_sql_results(user: User, fake_timelink_app, monkeypatch):
     page.register()
 
     # Directly call the coroutine
-    await page._display_sql_results("SELECT * FROM entities LIMIT 50", "entities")
+    with scratch_page():
+        await page._display_sql_results("SELECT * FROM entities LIMIT 50", "entities")
 
     opts = captured.get("options")
     assert opts is not None

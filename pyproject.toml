@@ -53,7 +53,7 @@ dependencies = [
     "pydantic-settings",
     "pytest",
     "python-box~=5.3.0",
-    "python-dotenv~=0.21.0",
+    "python-dotenv>=1.2.2",
     "python-jose[cryptography]",
     "python-multipart",
     "pyYAML>=6.0.2",
@@ -100,7 +100,7 @@ test = [
 # Web application stack for timelink.web (NiceGUI app).
 # Keep in sync with requirements_web.txt.
 web = [
-    "nicegui==2.24.2",
+    "nicegui==3.18.0",
     "apscheduler>=3.10",
     "pysolr>=3.10",
     "starlette-admin",

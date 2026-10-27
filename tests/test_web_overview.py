@@ -81,7 +81,6 @@ async def test_display_entity_count_failure(user, fake_timelink_app, monkeypatch
     )
 
     page = Overview(fake_timelink_app)
-    page._display_entity_count()
 
     # User should see error message
     await user.open("/overview")
@@ -122,7 +121,9 @@ async def test_display_sources_count_success(user: User, fake_timelink_app, monk
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
     page = Overview(fake_timelink_app)
-    page._display_sources_count()
+
+    # building the page calls _display_sources_count with the patches above
+    await user.open("/overview")
 
     # check that rowData matches the DataFrame
     assert captured_aggrid["rowData"] == df.to_dict("records")
@@ -145,7 +146,6 @@ async def test_display_sources_count_failure(user, fake_timelink_app, monkeypatc
     )
 
     page = Overview(fake_timelink_app)
-    page._display_sources_count()
 
     # User should see error message
     await user.open("/overview")
