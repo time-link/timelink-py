@@ -32,6 +32,17 @@ commits), `export_rentities` (real-entity export sketch, 1 commit).
 New web work goes on `feature/web-interface` (per the branch
 conventions in CONTRIBUTING.rst) and merges back to `main` via PR.
 
+## Work in flight (coordination, 2026-10-27)
+
+* **Nicegui 2.24.2 → 3.x upgrade**: owner runs it in ANOTHER
+  worktree/session, on its own branch (suggested `chore/nicegui-3-upgrade`
+  from main; all 30 Dependabot alerts are nicegui, fixed by 3.12+).
+  This branch (`feature/web-interface`) must NOT touch the nicegui
+  pin (`pyproject.toml` web extra / `requirements_web.txt`) until the
+  upgrade lands; merge main after it does.
+* This session continues Phase 1b here: `timelink/linking/normalize.py`
+  done; next the `SearchBackend` interface + FTS5 backend.
+
 ## Immediate next actions (in order)
 
 1. Act-display parity verification (small): compare the current act

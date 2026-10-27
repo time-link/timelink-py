@@ -56,10 +56,16 @@ column as work proceeds; keep commits on `timelink-web-dev`.
 
 ## Phase 1b — Database-native free-form search (D5)
 
-* [ ] `timelink/linking/normalize.py` — shared name/value normalizers
+* [x] `timelink/linking/normalize.py` — shared name/value normalizers
       (prerequisite for both this phase and Phase 2; step 1 of the
       proposed port order in
       [record-linking-port.md](record-linking-port.md)).
+      Done 2026-10-27: faithful ports of break_name, plig/pligp,
+      strip_commas, strip_interrog/count_interrog, normalize_place,
+      normalize_civil_status; split_person_name (pure part of
+      name_to_attributes) and fold_text (D5 search normalizer:
+      lowercase + accent-fold + collapse). Pure functions, no DB
+      access; covered by tests/test_linking_normalize.py.
 * [ ] `SearchBackend` interface; SQLite FTS5 backend (trigram +
       unicode61 fold) and PostgreSQL backend (`portuguese` config +
       `unaccent` + `pg_trgm`); index the rendered entity description;
