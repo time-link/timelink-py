@@ -40,6 +40,10 @@ marker file in the root identifies the directory.
   translations with the Kleio server before importing.
 * **The database is derived data.** Everything in `database/` can be rebuilt
   from `sources/` by translating and importing; treat it as disposable.
+* **Version stamping.** Changes to the template itself (layout, notebooks,
+  `.gitignore`, this file) must be recorded in `CHANGELOG.md` and bump
+  `VERSION`; projects cloned from the template record infrastructure
+  alignments in their own `CHANGELOG.md`.
 
 ## Processing the kleio sources (`.cli` files)
 
@@ -98,6 +102,37 @@ Full walkthroughs: `notebooks/02-tutorial.ipynb` (queries too),
 `notebooks/A1-kleio-files.ipynb` (file processing),
 `notebooks/A2-database-explore.ipynb` (database schema). Read them for
 project-specific variants before inventing new code.
+
+## Public replica: Editor and Server databases
+
+A project can keep more than one version of the database from the same
+sources. The usual setup is an **Editor** version — work in progress, on
+the contributors' machines — and a **Server** (public) version that
+contains only verified sources and identifications.
+
+Git is the synchronization mechanism; this repository is the shared
+repository between the two.
+
+* **Editor side** (the normal way this checkout is used): translate,
+  import and validate sources, make the identifications, then commit and
+  push the validated `sources/` files and the identification exports in
+  `identifications/`.
+* **Server side** (the public replica): periodically pulls the
+  repository and imports what changed. It does **not** translate or edit
+  sources — translations are produced on the Editor side and arrive
+  through git. Files are imported by change date, most recently changed
+  last.
+* Only validated sources and identifications are pushed for the public
+  replica. Work in progress stays in the Editor's database, which is
+  derived, disposable data (`database/` is never pushed).
+
+The original documentation of this model (Obsidian note "DOC ADMIN
+Setting up a public replica") is marked deprecated: its setup commands
+(`mhk user create`, `mhk.import.auto`, `mhk.git.pull.auto`, ...) belong
+to the old MHK server. In a timelink-py project the equivalent is plain
+git plus `update_from_sources()`: because translation byproducts are not
+committed here (see Rules), the replica retranslates changed files
+itself, then imports them.
 
 ## Answering common data queries
 
