@@ -80,7 +80,7 @@ async def test_display_entity_count_failure(user, fake_timelink_app, monkeypatch
         bad_get_table
     )
 
-    page = Overview(fake_timelink_app)
+    Overview(fake_timelink_app)  # registers the /overview page
 
     # User should see error message
     await user.open("/overview")
@@ -120,7 +120,7 @@ async def test_display_sources_count_success(user: User, fake_timelink_app, monk
 
     monkeypatch.setattr("timelink.web.pages.overview_page.ui.aggrid", fake_aggrid)
 
-    page = Overview(fake_timelink_app)
+    Overview(fake_timelink_app)  # registers the /overview page
 
     # building the page calls _display_sources_count with the patches above
     await user.open("/overview")
@@ -145,7 +145,7 @@ async def test_display_sources_count_failure(user, fake_timelink_app, monkeypatc
         bad_get_sources
     )
 
-    page = Overview(fake_timelink_app)
+    Overview(fake_timelink_app)  # registers the /overview page
 
     # User should see error message
     await user.open("/overview")
