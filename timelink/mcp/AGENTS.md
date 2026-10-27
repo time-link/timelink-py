@@ -5,7 +5,7 @@ below apply to **every** Timelink database; per-database specifics
 (vocabularies, class lists, table catalogue, query recipes) are in the
 `timelink://schema/{database}` resource — read it before heavy querying.
 
-The tool set is specified in `docs/mcp-tools-draft.md` (18 tools, four
+The tool set is specified in `docs/mcp-tools-draft.md` (19 tools, four
 groups). Tabular tools take `row_limit`/`offset` and return
 `{rows, row_count, truncated, next_offset}` — page with `next_offset`
 instead of asking for huge pages; the server caps pages at
@@ -17,6 +17,7 @@ instead of asking for huge pages; the server caps pages at
 |---|---|
 | See which projects exist (including ones with no database yet) | `list_projects` |
 | See which databases exist | `list_databases` → `db_info` → `db_schema` |
+| Know which attribute types exist | `attribute_types` — the first step of every attribute search |
 | Know what an attribute type can be | `attribute_values` — **always before** filtering on values |
 | Find entities by a property | `find_entities_by_attribute` (the workhorse) |
 | Find a person by name | `find_persons_by_name` (`similar=true` strips de/da/dos/…) |
@@ -27,7 +28,8 @@ instead of asking for huge pages; the server caps pages at
 
 The **attribute-values-before-search pattern**: vocabularies are
 data-dependent (`naturalidade` in one project is `local-nascimento` in
-another). Call `attribute_values(the_type=...)` first, then filter —
+another). Call `attribute_types` to see which types exist, then
+`attribute_values(the_type=...)` for the vocabulary, then filter —
 wrong-value searches silently return nothing, they don't error.
 
 **Database names in multi-project homes.** `list_databases` searches the

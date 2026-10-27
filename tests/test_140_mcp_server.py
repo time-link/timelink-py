@@ -15,6 +15,7 @@ from timelink.api.database import TimelinkDatabase
 from timelink.mcp import McpSettings, configure, get_context, reset_context
 from timelink.mcp.server import create_server, load_db_structure
 from timelink.mcp.tools.attributes import (
+    attribute_types,
     attribute_values,
     entity_attributes,
     entity_details,
@@ -41,6 +42,7 @@ EXPECTED_TOOLS = {
     "list_databases",
     "db_info",
     "db_schema",
+    "attribute_types",
     "attribute_values",
     "find_entities_by_attribute",
     "find_persons_by_name",
@@ -248,11 +250,29 @@ def test_db_schema_unknown_target_lists_available(mcp_setup):
 # -------------------------------------------------------------- attributes
 
 
+def test_attribute_types(mcp_setup):
+    """The discovery step before attribute_values: which types exist."""
+    result = attribute_types(mcp_setup["db_name"])
+    assert result["row_count"] > 0
+    types = {row["the_type"] for row in result["rows"]}
+    assert "residencia" in types
+    row = next(r for r in result["rows"] if r["the_type"] == "residencia")
+    assert row["count"] > 0 and row["values"] > 0
+
+
 def test_attribute_values(mcp_setup):
     result = attribute_values(mcp_setup["db_name"], the_type="residencia")
     assert result["row_count"] > 0
     assert result["total_count"] >= result["row_count"]
     assert isinstance(result["rows"][0]["value"], str)
+
+
+def test_attribute_values_unknown_type_is_empty(mcp_setup):
+    """An unknown type yields a clean empty page, not a phantom null row."""
+    result = attribute_values(mcp_setup["db_name"], the_type="no-such-type")
+    assert result["rows"] == []
+    assert result["row_count"] == 0
+    assert result["total_count"] == 0
 
 
 def test_attribute_values_paging(mcp_setup):

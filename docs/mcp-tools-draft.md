@@ -79,7 +79,7 @@ discovered from it.
 ## 3. Proposed tools
 
 Names are unprefixed (the MCP server name `timelink` already namespaces
-them in clients). 18 tools in four groups.
+them in clients). 19 tools in four groups.
 
 ### A. Discovery
 
@@ -191,9 +191,28 @@ searching.
 | `row_limit` | int | 50 |
 
 Library call: `timelink.pandas.attribute_values(...)` → DataFrame indexed
-by `value` with `count`, `date_min`, `date_max`.
+by `value` with `count`, `date_min`, `date_max`. `the_type` matches
+exactly — discover types with `attribute_types` (§3.6).
 
-#### 3.6 `find_entities_by_attribute` *(workhorse)*
+#### 3.6 `attribute_types`
+
+Attribute types present in one database: one row per `the_type` with the
+number of entities carrying it, the number of distinct values and the
+first/last dates. The missing first step of the
+attribute-values-before-search pattern — the question "which types
+exist?" had no tool before this one.
+
+| Param | Type | Default |
+|---|---|---|
+| `database` | string | required |
+| `groupname` | string \| string[] | none (all groups) |
+| `dates_between` | [from, to] | none |
+| `row_limit` | int | 50 |
+
+Library call: `timelink.pandas.attribute_types(...)` → DataFrame indexed
+by `the_type` with `count`, `values`, `date_min`, `date_max`.
+
+#### 3.7 `find_entities_by_attribute` *(workhorse)*
 
 Entities having a given attribute, with value/date/name filters, optionally
 enriched with further attributes. This is the tutorial's main search cell.
@@ -216,7 +235,7 @@ Returns rows keyed by entity id with `name`, the attribute value, date,
 obs, line/level (provenance in the source), plus one column per
 `more_attributes`.
 
-#### 3.7 `find_persons_by_name`
+#### 3.8 `find_persons_by_name`
 
 Persons whose name matches a pattern (or a fuzzy match with particles
 removed).
@@ -231,7 +250,7 @@ removed).
 Library call: `timelink.pandas.pname_to_df(name, similar=...)` →
 `id, name, sex, obs`.
 
-#### 3.8 `entity_attributes`
+#### 3.9 `entity_attributes`
 
 All attributes of one or more entities (the "person profile" table), with
 optional include/exclude attribute filters. Tutorial cell: `id = '140338';
@@ -250,7 +269,7 @@ group_attributes([id], db=...)` sorted by date.
 Library call: `timelink.pandas.group_attributes(group=ids, ...)` → rows
 `the_type, the_value, the_date, attr_obs` per id.
 
-#### 3.9 `entity_details`
+#### 3.10 `entity_details`
 
 Full rendering of an entity (and, optionally, its containing source/act
 hierarchy) in Kleio notation — the richest view of one entity, including
@@ -269,7 +288,7 @@ Library calls: `db.get_entity(id)` / `db.get_person(id)`;
 
 ### C. Relations
 
-#### 3.10 `find_relations`
+#### 3.11 `find_relations`
 
 Search the relation space by type, value, date and/or the parties involved.
 Built on the `nrelations` view (relations joined with `named_entities` on
@@ -290,7 +309,7 @@ as_dataframe=True)` with the filters. View columns: `relation_id,
 origin_id, origin_name, destination_id, destination_name, relation_type,
 relation_value, relation_date`.
 
-#### 3.11 `entity_relations`
+#### 3.12 `entity_relations`
 
 All relations of one entity, outgoing and/or incoming, with the name and
 class of the other side. This is the "explore the relations of X" tool; the
@@ -311,7 +330,7 @@ other_id, other_name, other_class`.
 
 ### D. Sources and updating
 
-#### 3.12 `translate_sources`
+#### 3.13 `translate_sources`
 
 Request translations on the Kleio server for the sources that are stale
 (source newer than translation), without waiting. First step of the update
@@ -336,7 +355,7 @@ Returns: `{requested: [{path, status}], count, kleio_server}` — the
 status each file had when the translation was requested (`T` normally,
 anything with `force`).
 
-#### 3.13 `wait_for_translations`
+#### 3.14 `wait_for_translations`
 
 Block until the translations requested by the last `translate_sources`
 call reach a terminal status (`V` valid, `W` warnings, `E` errors), then
@@ -362,7 +381,7 @@ only logs them). Progress notifications may be emitted while polling.
 Returns: `{finished: [{path, status}], failed: [{path, reason}],
 still_pending: [path], waited_seconds}`.
 
-#### 3.14 `import_from_sources`
+#### 3.15 `import_from_sources`
 
 Import into the database the files whose translations are ready and that
 are new or updated since the last import. Final step of the update
@@ -390,7 +409,7 @@ options={return_stats, kleio_token, kleio_url, mode: "TL"})` per file.
 Returns: `{imported: [{path, stats}], skipped: [{path, reason}]}` — the
 per-file import stats the library only logs.
 
-#### 3.15 `get_import_status`
+#### 3.16 `get_import_status`
 
 Import/translation status of the Kleio files relative to this database —
 the agent's "what would the update pipeline do / what happened" view.
@@ -406,7 +425,7 @@ Library calls: `db.get_import_status(path, recurse, status)`; underlying
 `kserver.get_translations(...)`. Returns per file: translation status
 (`V/W/E/T/P/Q`), errors, warnings, import status (`N/U/I/W/E`).
 
-#### 3.16 `get_import_report`
+#### 3.17 `get_import_report`
 
 The import error/warning report stored in the database for one file.
 
@@ -418,7 +437,7 @@ The import error/warning report stored in the database for one file.
 
 Library call: `db.get_import_rpt(path, match_path)` → text.
 
-#### 3.17 `get_translation_report`
+#### 3.18 `get_translation_report`
 
 The Kleio-server translation report for one file.
 
@@ -430,7 +449,7 @@ The Kleio-server translation report for one file.
 Library call: `db.get_kleio_server().get_report(rpt_url)` → text
 (pattern from `TimelinkNotebook.get_translation_report`).
 
-#### 3.18 `kleio_server_info`
+#### 3.19 `kleio_server_info`
 
 URL, Kleio version, home directory and health of the attached Kleio server
 (no token). For diagnosing failed updates. Library calls:
@@ -563,7 +582,7 @@ wheel and does not pollute the top-level namespace):
    `timelink://schema/{database}`.
 3. **Tests**: `tests/test_140_mcp_server.py` — builds the reference
    database through the session Kleio-server fixture (as `test_040`),
-   configures the MCP context to attach to it, and exercises all 18
+   configures the MCP context to attach to it, and exercises all 19
    tools including the split update pipeline; plus Docker-free tests for
    settings, resource content, tool registration and the project
    layouts of `list_projects`.

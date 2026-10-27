@@ -51,11 +51,7 @@ def entities_with_attribute(
     # We try to use an existing connection and table introspection
     # to avoid extra parameters and going to database too much
     if db is None:
-        raise (
-            Exception(
-                "db: TimelinkDatabase required. Must create  to set up a database connection"
-            )
-        )
+        raise (Exception("db: TimelinkDatabase required. Must create  to set up a database connection"))
 
     mysession: Session
     if session is None:
@@ -102,9 +98,7 @@ def entities_with_attribute(
 
     if name_like is not None:
         if "name" not in entity_columns:
-            raise (
-                ValueError("To filter by name requires name in the show_elements list.")
-            )
+            raise (ValueError("To filter by name requires name in the show_elements list."))
 
     attr = db.get_view("eattributes")
     # id_col = attr.c.entity.label("id")
@@ -145,9 +139,7 @@ def entities_with_attribute(
         with mysession as session:
             filtered_by_rows = session.execute(filter_by_sql)
             col_names = filter_by_sql.selected_columns.keys()
-            filtered_df = pd.DataFrame.from_records(
-                filtered_by_rows, index=["id"], columns=col_names
-            )
+            filtered_df = pd.DataFrame.from_records(filtered_by_rows, index=["id"], columns=col_names)
 
         stmt = (
             (select(entity_model).where(entity_id_col.in_(filter_by)))
@@ -188,9 +180,11 @@ def entities_with_attribute(
         print(f"Query for {the_type}:\n", stmt)
 
     with mysession as session:
-        records = session.execute(stmt)
-        col_names = stmt.selected_columns.keys()
-        df = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
+        # materialize before DataFrame construction: from_records on an
+        # empty Result builds a phantom all-NaN row from the index argument
+        records = session.execute(stmt).fetchall()
+        col_names = list(stmt.selected_columns.keys())
+        df = pd.DataFrame(records, columns=col_names).set_index("id")
         if df.empty or df.iloc[0].count() == 0:
             return None  # nothing found we return None
         # Check for extra info.
@@ -223,15 +217,11 @@ def entities_with_attribute(
                     original = value.get("original", None)
                     if original is not None:
                         org_xtra_col_name = f"{xtra_col_name}.original"
-                        extra_info_edits.append(
-                            (row_number, org_xtra_col_name, original)
-                        )
+                        extra_info_edits.append((row_number, org_xtra_col_name, original))
                     comment = value.get("comment", None)
                     if comment is not None:
                         cmt_xtra_col_name = f"{xtra_col_name}.comment"
-                        extra_info_edits.append(
-                            (row_number, cmt_xtra_col_name, comment)
-                        )
+                        extra_info_edits.append((row_number, cmt_xtra_col_name, comment))
         for row_number, xtra_col_name, avalue in extra_info_edits:
             if xtra_col_name not in df.columns:
                 df[xtra_col_name] = None
@@ -276,9 +266,7 @@ def entities_with_attribute(
                 records = session.execute(stmt)
                 col_names = stmt.selected_columns.keys()
 
-                df2 = pd.DataFrame.from_records(
-                    records, index=["id"], columns=col_names
-                )
+                df2 = pd.DataFrame.from_records(records, index=["id"], columns=col_names)
                 if df2.iloc[0].count() > 0:
                     extra_info_edits = []
                     for row_number, (_, row) in enumerate(df2.iterrows()):
@@ -293,21 +281,15 @@ def entities_with_attribute(
                                 original = value.get("original", None)
                                 if original is not None:
                                     org_xtra_col_name2 = f"{xtra_col_name2}.original"
-                                    extra_info_edits.append(
-                                        (row_number, org_xtra_col_name2, original)
-                                    )
+                                    extra_info_edits.append((row_number, org_xtra_col_name2, original))
                                 comment = value.get("comment", None)
                                 if comment is not None:
                                     cmt_xtra_col_name2 = f"{xtra_col_name2}.comment"
-                                    extra_info_edits.append(
-                                        (row_number, cmt_xtra_col_name2, comment)
-                                    )
+                                    extra_info_edits.append((row_number, cmt_xtra_col_name2, comment))
                     for row_number, xtra_col_name2, avalue in extra_info_edits:
                         if xtra_col_name2 not in df2.columns:
                             df2[xtra_col_name2] = None
-                        df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = (
-                            avalue
-                        )
+                        df2.iat[row_number, df2.columns.get_loc(xtra_col_name2)] = avalue
 
             if sql_echo:
                 print(f"Query for more_attributes={mcol}:\n", stmt)
