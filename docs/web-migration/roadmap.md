@@ -66,12 +66,17 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       name_to_attributes) and fold_text (D5 search normalizer:
       lowercase + accent-fold + collapse). Pure functions, no DB
       access; covered by tests/test_linking_normalize.py.
-* [ ] `SearchBackend` interface; SQLite FTS5 backend (trigram +
-      unicode61 fold) and PostgreSQL backend (`portuguese` config +
-      `unaccent` + `pg_trgm`); index the rendered entity description;
-      reuse the `entities.indexed` job with a sane batch size (not 10).
-* [ ] Demote Solr behind a flag (remove auto-start from default
-      startup); delete `solr_wrapper.py` after one release if unused.
+* [x] `SearchBackend` interface; SQLite FTS5 backend (trigram
+      tokenizer, text accent-folded at index/query time via
+      `fold_text`) and PostgreSQL backend (`portuguese` tsvector +
+      folded text, short-word LIKE fallback); index the entity's
+      searchable values (same extraction as the Solr index);
+      `entities.indexed` job reused with batch 200 (2026-10-27).
+      Solr kept as an adapter behind `TIMELINK_SEARCH_BACKEND=solr`;
+      freeform search reads `search_backend.search()`.
+* [x] Demote Solr behind a flag (2026-10-27): Solr container starts
+      only when `TIMELINK_SEARCH_BACKEND=solr`; default startup has no
+      Solr. Delete `solr_wrapper.py` after one release if unused.
 
 ## Phase 1c — Public access without registration (D6)
 

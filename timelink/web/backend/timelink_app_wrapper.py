@@ -18,6 +18,7 @@ from timelink.api.schemas import EntityAttrRelSchema
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from timelink.kleio.kleio_server import KleioServer
 from timelink.web.backend.solr_wrapper import SolrWrapper
+from timelink.web.backend.search_backend import SearchBackend
 from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 from passlib.hash import argon2
 
@@ -47,7 +48,8 @@ class TimelinkWebApp:
         users_db_name: str = "timelink_users_db.sqlite",
         job_scheduler: AsyncIOScheduler = None,
         sqlite_dir: str = None,
-        solr_manager: SolrWrapper = None
+        solr_manager: SolrWrapper = None,
+        search_backend: SearchBackend = None,
     ):
         """Create a TimelinkWebApp instance
 
@@ -70,6 +72,7 @@ class TimelinkWebApp:
         self.timelink_home = timelink_home
         self.db_type = db_type
         self.solr_manager = solr_manager
+        self.search_backend = search_backend
         self.job_scheduler = job_scheduler
         self.users_db_name = users_db_name
         self.users_db_type = db_type
@@ -118,7 +121,8 @@ class TimelinkWebApp:
                 description="Template project used for demo purposes",
                 databaseURL=self.sqlite_dir,
                 kleioServerURL=self.kleio_server.url,
-                solr_core_name=self.solr_manager.solr_core_name
+                solr_core_name=(self.solr_manager.solr_core_name
+                                if self.solr_manager is not None else None)
             )
             project_exists = session.query(Project).filter_by(name=demo_project.name).first()
             if not project_exists:
@@ -137,25 +141,25 @@ class TimelinkWebApp:
         """Initiate job scheduler listeners and indeing scheduler event"""
 
         self.job_scheduler.add_listener(self.job_scheduler_listener, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
-        self.job_scheduler.add_job(self.init_index_job_scheduler, name="Index Documents to Solr", trigger="interval", minutes=5)
+        self.job_scheduler.add_job(self.init_index_job_scheduler, name="Index Documents to Search", trigger="interval", minutes=5)
 
     async def init_index_job_scheduler(self):
-        """Initiate the job to index new documents to the Apache Solr database"""
+        """Index entities not yet indexed into the active search backend (D5)."""
 
-        print("Initiating Solr indexing job...")
+        print("Initiating indexing job...")
 
         ignore_classes = ['class', 'rentity', 'source']
 
         with self.database.session() as session:
             entities = session.query(Entity).filter(
                 Entity.indexed.is_(None)
-            ).filter(~Entity.pom_class.in_(ignore_classes)).limit(10).all()
+            ).filter(~Entity.pom_class.in_(ignore_classes)).limit(200).all()
 
             if not entities:
                 print("No entities need to be indexed.")
                 return
 
-            solr_doc_list = []
+            doc_list = []
             for entity in entities:
                 mr_schema = EntityAttrRelSchema.model_validate(entity)
                 mr_schema_dump = mr_schema.model_dump()
@@ -168,9 +172,9 @@ class TimelinkWebApp:
                     mr_schema_dump['name'] = entity.name
                 if 'description' in columns:
                     mr_schema_dump['description'] = entity.description
-                solr_doc_list.append(self.solr_manager.entity_to_solr_doc(mr_schema_dump))
+                doc_list.append(SearchBackend.entity_to_doc(mr_schema_dump))
 
-            self.solr_manager.solr_client.add(solr_doc_list, commit=True)
+            self.search_backend.index_entities(doc_list)
 
             now = datetime.now()
             for entity in entities:
@@ -376,5 +380,6 @@ class TimelinkWebApp:
         self.current_project_name = active_project.name
         self.database = self.run_db_setup(active_project)
 
-        self.solr_manager.solr_core_name = active_project.solr_core_name
-        self.solr_manager.switch_active_core(self.solr_manager.solr_core_name)
+        if self.solr_manager is not None and active_project.solr_core_name:
+            self.solr_manager.solr_core_name = active_project.solr_core_name
+            self.solr_manager.switch_active_core(self.solr_manager.solr_core_name)

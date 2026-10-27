@@ -41,7 +41,9 @@ conventions in CONTRIBUTING.rst) and merges back to `main` via PR.
   pin (`pyproject.toml` web extra / `requirements_web.txt`) until the
   upgrade lands; merge main after it does.
 * This session continues Phase 1b here: `timelink/linking/normalize.py`
-  done; next the `SearchBackend` interface + FTS5 backend.
+  and the search backends are done (SQLite FTS5 + PostgreSQL tsvector,
+  Solr demoted to `TIMELINK_SEARCH_BACKEND=solr`, indexing batch 200);
+  Phase 1b complete pending live smoke test.
 
 ## Immediate next actions (in order)
 

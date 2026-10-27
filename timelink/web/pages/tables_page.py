@@ -16,6 +16,7 @@ class TablesPage:
     """Pages to display tables"""
     def __init__(self, timelink_app) -> None:
         self.solr_manager = timelink_app.solr_manager
+        self.search_backend = timelink_app.search_backend
         self.database = timelink_app.database
         self.kserver = timelink_app.kleio_server
         self.show_desc = False
@@ -959,11 +960,11 @@ class TablesPage:
                 grid.on('cellClicked', lambda e: ui.navigate.to(f"/id/{e.args['data']['id']}") if e.args["colId"] == "id" else None)
 
     async def _freeform_search_results(self, freeform_search):
-        """ Display documents indexed in a Solr core with the chosen terms.
+        """Display documents matching the terms in the search index.
 
-            Args:
+        Args:
 
-                freeform_search : freeform search query.
+            freeform_search : freeform search query.
 
         """
 
@@ -972,7 +973,7 @@ class TablesPage:
                 .highlight-cell:hover { color: orange; font-weight: bold; cursor: pointer; }
                 </style>''')
 
-        results = self.solr_manager.solr_client.search(q=f"searchable_field_t:*{freeform_search}*")
+        results = self.search_backend.search(freeform_search)
 
         result_list = []
 

@@ -1,4 +1,5 @@
 import html
+import os
 from nicegui import ui, app
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase
@@ -6,6 +7,7 @@ from timelink.api.models import Entity
 from timelink.api.schemas import EntityAttrRelSchema
 from timelink.web.models import Activity
 from timelink.web.backend.solr_wrapper import SolrWrapper
+from timelink.web.backend.search_backend import create_search_backend
 from timelink.web.backend.timelink_app_wrapper import TimelinkWebApp
 from pathlib import Path
 from sqlalchemy import select, func
@@ -45,15 +47,30 @@ def run_solr_client_setup():
 
 
 async def run_setup(home_path: Path, job_scheduler: AsyncIOScheduler, database_type: str = "sqlite"):
-    """ Load configuration environment variables, connect to kleio server and make the database."""
+    """Load configuration environment variables, connect to kleio server and make the database.
 
-    solr_manager = run_solr_client_setup()
+    Search backend selection (decision D5): the database-native FTS
+    backend is the default; Solr only starts when
+    TIMELINK_SEARCH_BACKEND=solr.
+    """
+    use_solr = os.environ.get("TIMELINK_SEARCH_BACKEND", "").lower() == "solr"
+
+    solr_manager = None
+    if use_solr:
+        solr_manager = run_solr_client_setup()
 
     timelink_web_app_settings = TimelinkWebApp(
         home_url=home_path,
         db_type=database_type,
         solr_manager=solr_manager,
         job_scheduler=job_scheduler)
+
+    if timelink_web_app_settings.database is not None:
+        timelink_web_app_settings.search_backend = create_search_backend(
+            database_type,
+            timelink_web_app_settings.database.engine,
+            solr_manager=solr_manager)
+        timelink_web_app_settings.search_backend.setup()
 
     return timelink_web_app_settings
 

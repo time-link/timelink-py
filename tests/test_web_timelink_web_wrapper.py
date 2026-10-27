@@ -168,7 +168,7 @@ def test_job_scheduler_init_setup_adds_listener_and_job():
 
     fake_timelink_app.job_scheduler.add_listener.assert_called_once()
     fake_timelink_app.job_scheduler.add_job.assert_called_once()
-    assert fake_timelink_app.job_scheduler.add_job.call_args[1]["name"] == "Index Documents to Solr"
+    assert fake_timelink_app.job_scheduler.add_job.call_args[1]["name"] == "Index Documents to Search"
     assert fake_timelink_app.job_scheduler.add_job.call_args[1]["trigger"] == "interval"
     assert fake_timelink_app.job_scheduler.add_job.call_args[1]["minutes"] == 5
 
@@ -181,6 +181,7 @@ async def test_init_index_job_scheduler_indexes_entities():
     app.database = MagicMock()
     app.solr_manager = MagicMock()
     app.solr_manager.solr_client = MagicMock()
+    app.search_backend = MagicMock()
 
     # Create a real Entity object
     fake_entity = Entity(
@@ -212,14 +213,13 @@ async def test_init_index_job_scheduler_indexes_entities():
         "timelink.web.backend.timelink_app_wrapper.EntityAttrRelSchema.model_validate",
         return_value=mock_schema
     ):
-        app.solr_manager.entity_to_solr_doc.side_effect = lambda x: {"id": x["id"]}
-
         # Run the indexing job
         await app.init_index_job_scheduler()
 
     # Assertions
-    app.solr_manager.entity_to_solr_doc.assert_called_once()
-    app.solr_manager.solr_client.add.assert_called_once_with([{"id": "123"}], commit=True)
+    app.search_backend.index_entities.assert_called_once()
+    indexed_docs = app.search_backend.index_entities.call_args[0][0]
+    assert [doc["id"] for doc in indexed_docs] == ["123"]
     fake_session.commit.assert_called_once()
 
 
