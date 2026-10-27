@@ -141,5 +141,6 @@ Tests: `tests/test_web_*.py` (10 files) + sample project
    `app/models` vs `web/models`; deprecated `app/web/*` FastUI pages;
    empty `timelink/static` + `timelink/statics`.
 5. No CI; GitHub Actions workflows disabled (`.github/disabled_workflows/`).
-6. `node_modules/` directory tracked/present at repo root — should be
-   ignored/removed (not needed: NiceGUI needs no node build).
+6. ~~`node_modules/` directory tracked/present at repo root~~ —
+   resolved: not present on `timelink-web-dev` and nothing tracked
+   (verified 2026-10-27); NiceGUI needs no node build.

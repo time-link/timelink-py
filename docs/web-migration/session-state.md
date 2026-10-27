@@ -1,7 +1,8 @@
 # Session state / handoff
 
-Last updated: 2026-10-16 (end of consolidation session). Read this
-together with [README.md](README.md) and [roadmap.md](roadmap.md).
+Last updated: 2026-10-27 (accuracy fixes; consolidation session was
+2026-10-16). Read this together with [README.md](README.md) and
+[roadmap.md](roadmap.md).
 
 ## Repos and paths
 
@@ -14,8 +15,9 @@ together with [README.md](README.md) and [roadmap.md](roadmap.md).
 
 ## Branch state at handoff
 
-`timelink-web-dev` (local only, **not pushed**) — clean tree, 4 commits
-on top of the merged history:
+`timelink-web-dev` — **pushed to origin** (2026-10-16, later commits
+too), clean tree. Commits on top of the merged history (as of
+2026-10-27 — check `git log` for later ones):
 
 1. `0e3dc14` — merge `main` into `timelink-web-dev` (from
    `test-gsilva-web-merge` @ 5b996e5; only conflict was `.gitignore`)
@@ -23,6 +25,9 @@ on top of the merged history:
    `requirements_web.txt`) + `docs/web-migration/` document set
 3. `87fba9c` — add `argon2-cffi`; ignore `.nicegui/`; test results in
    roadmap
+4. `23efcbf` — add this session-state handoff document
+5. `b180bba` — add UX walkthrough of the live MHK instance (19
+   screenshots)
 
 ## Environment changes made this session
 
@@ -62,12 +67,14 @@ on top of the merged history:
    `beta-tester` level 3, db `beta_tester_db` (Ílhavo parish data).
    Available for re-checking flows during linking-page development.
 
-## Pending owner decisions (see decisions.md "Open questions")
+## Owner decisions (updated 2026-10-27; see [decisions.md](decisions.md))
 
-* Solr vs SQLite FTS5/PostgreSQL full-text as default search backend.
-* Public signup/captcha flow: needed or not.
-* Collaborative linking semantics (per-user link ownership vs
-  ProjectAccess roles).
+The three formerly-open questions are now decided: **D5** database-
+native free-form search (Solr optional behind a flag), **D6** public
+databases without registration + bot protection, no public signup,
+**D7** keep MHK per-user link ownership (schema already supports it).
+Still open (D6 details only): rate-limit parameters, Google OAuth
+timing, how non-OAuth researchers get accounts.
 
 ## Branches to clean up AFTER push
 
