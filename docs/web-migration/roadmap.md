@@ -54,6 +54,29 @@ column as work proceeds; keep commits on `timelink-web-dev`.
       merge to main independently) and `export_rentities`
       (real-entity export sketch).
 
+## Phase 1b — Database-native free-form search (D5)
+
+* [ ] `timelink/linking/normalize.py` — shared name/value normalizers
+      (prerequisite for both this phase and Phase 2; step 1 of the
+      proposed port order in
+      [record-linking-port.md](record-linking-port.md)).
+* [ ] `SearchBackend` interface; SQLite FTS5 backend (trigram +
+      unicode61 fold) and PostgreSQL backend (`portuguese` config +
+      `unaccent` + `pg_trgm`); index the rendered entity description;
+      reuse the `entities.indexed` job with a sane batch size (not 10).
+* [ ] Demote Solr behind a flag (remove auto-start from default
+      startup); delete `solr_wrapper.py` after one release if unused.
+
+## Phase 1c — Public access without registration (D6)
+
+* [ ] `public_read` flag on `Project` + resource-level auth gating to
+      replace the global `AuthMiddleware` anonymous-rejection.
+* [ ] Rate limiting / bot protection (parameters = open question,
+      see [decisions.md](decisions.md)).
+* [ ] Decide fate of `register_page.py` (open question in
+      [decisions.md](decisions.md)); admin-created local users if
+      self-registration is removed.
+
 ## Phase 2 — Web interface workstream (owner decision 2026-10-16: web
 interface first, then record linking, then GEDCOM)
 
@@ -113,6 +136,9 @@ linking engine, so the engine grows alongside real pages.
       Deferred: depends on the ported record-linking engine
       (`lgraphs`/`candidates`/`ledges` tables, decision D3); a
       manual-links graph over `REntity`/`Link` can be added later.
+* [ ] Preserve and display per-user link provenance in the linking UI
+      (D7: `rentities.user`, `links.user`, `rule='*robot'` — schema
+      already supports it).
 
 ## Phase 3 — Exports
 

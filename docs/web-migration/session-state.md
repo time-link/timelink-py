@@ -1,6 +1,7 @@
 # Session state / handoff
 
-Last updated: 2026-10-20 (after PR #106 merge). Read this
+Last updated: 2026-10-27 (decisions D5-D7 recorded, merged from the
+other machine; PR #106 merged 2026-10-20). Read this
 together with [README.md](README.md) and [roadmap.md](roadmap.md).
 
 ## Repos and paths
@@ -65,9 +66,12 @@ conventions in CONTRIBUTING.rst) and merges back to `main` via PR.
   "lingering processes" dialog — `pkill -f "Docker Desktop"`, relaunch,
   then restart the webapp.
 
-## Pending owner decisions (see decisions.md "Open questions")
+## Owner decisions (updated 2026-10-27; see [decisions.md](decisions.md))
 
-* Solr vs SQLite FTS5/PostgreSQL full-text as default search backend.
-* Public signup/captcha flow: needed or not.
-* Collaborative linking semantics (per-user link ownership vs
-  ProjectAccess roles).
+The three formerly-open questions are now decided: **D5**
+database-native free-form search (FTS5/PostgreSQL FTS; Solr optional
+behind a flag), **D6** public databases without registration + bot
+protection, no public signup, **D7** keep MHK per-user link ownership
+(schema already supports it). Still open (D6 details only): rate-limit
+parameters, Google OAuth timing, how non-OAuth researchers get
+accounts (decides the fate of `register_page.py`).
