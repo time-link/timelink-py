@@ -1,4 +1,5 @@
 import html
+import logging
 from nicegui import ui, app
 from timelink.kleio import KleioServer
 from timelink.api.database import TimelinkDatabase
@@ -11,8 +12,15 @@ from pathlib import Path
 from sqlalchemy import select, func
 import pandas as pd
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from starlette_admin.contrib.sqla import Admin, ModelView
-from starlette_admin.views import Link
+
+# starlette-admin 1.x (the only line compatible with the starlette >= 1.3 that
+# nicegui 3.x requires) needs Python >= 3.11; on 3.10 the admin panel is
+# skipped with a warning instead of breaking page setup
+try:
+    from starlette_admin.contrib.sqla import Admin, ModelView
+    from starlette_admin.views import Link
+except ImportError:  # pragma: no cover - exercised on Python 3.10 in CI
+    Admin = ModelView = Link = None
 
 from timelink.web.pages import (status_page, explore_page,
                                 display_id_page, tables_page, overview_page,
@@ -90,15 +98,19 @@ def setup_pages_and_database(timelink_app_settings, project_list, active_project
     search_page.Search(timelink_app=timelink_app_settings)
 
     # Starlette Admin setup
-    # starlette-admin 1.x replaced the `engine` argument with `session_provider`;
-    # users_db.session is a sqlalchemy sessionmaker bound to the users engine.
-    admin_app = Admin(session_provider=timelink_app_settings.users_db.session, title="Timelink Web Admin Panel")
-    admin_app.add_view(ModelView(User))
-    admin_app.add_view(ModelView(UserProperty, display_name="User Properties"))
-    admin_app.add_view(ModelView(Project))
-    admin_app.add_view(ModelView(ProjectAccess, display_name="Project Access"))
-    admin_app.add_view(Link(menu_label="⬅️ Back to the App", url="/"))
-    admin_app.mount_to(app)
+    if Admin is None:
+        logging.warning("starlette-admin is not available (requires Python >= 3.11); "
+                        "the /admin panel is disabled on this Python version")
+    else:
+        # starlette-admin 1.x replaced the `engine` argument with `session_provider`;
+        # users_db.session is a sqlalchemy sessionmaker bound to the users engine.
+        admin_app = Admin(session_provider=timelink_app_settings.users_db.session, title="Timelink Web Admin Panel")
+        admin_app.add_view(ModelView(User))
+        admin_app.add_view(ModelView(UserProperty, display_name="User Properties"))
+        admin_app.add_view(ModelView(Project))
+        admin_app.add_view(ModelView(ProjectAccess, display_name="Project Access"))
+        admin_app.add_view(Link(menu_label="⬅️ Back to the App", url="/"))
+        admin_app.mount_to(app)
 
     ui.navigate.to("/")
 

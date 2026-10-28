@@ -436,6 +436,10 @@ def test_get_recent_history(fake_timelink_app, searched_only):
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    timelink_web_utils.Admin is None,
+    reason="starlette-admin 1.x requires Python >= 3.11",
+)
 async def test_setup_pages_and_database(fake_timelink_app, monkeypatch):
     # Add users_db mock
     fake_timelink_app.users_db = MagicMock()

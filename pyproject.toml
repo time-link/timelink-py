@@ -103,7 +103,7 @@ web = [
     "nicegui==3.18.0",
     "apscheduler>=3.10",
     "pysolr>=3.10",
-    "starlette-admin==1.0.3",
+    "starlette-admin==1.0.3; python_version >= '3.11'",
     "passlib",
     "argon2-cffi",
     "jinja2",
