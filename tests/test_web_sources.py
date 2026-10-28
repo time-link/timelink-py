@@ -166,18 +166,17 @@ async def test_display_update_column_counts(user, fake_timelink_app, tmp_path, m
         lambda current_path=None: (fake_imported_files, {}, {}, {}, {})
     )
 
-    # Patch display container
-    page.display_table_container = MagicMock()
-
     # Set queues
     page.import_queue = ["fileA.cli", "fileB.cli"]
     page.translate_queue = ["fileX.cli"]
 
-    # Call the method
-    page.display_update_column(filepath=str(tmp_path))
-
     # Check if user sees expected labels.
     await user.open("/sources")
+
+    # Call the method; the real display container created by the page build
+    # provides the slot for the rendered elements.
+    page.display_update_column(filepath=str(tmp_path))
+
     await user.should_see('Recent Changes')
     await user.should_see('Need translation')
     await user.should_see('Need import')

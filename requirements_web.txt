@@ -1,10 +1,13 @@
 # Web application stack for timelink.web (NiceGUI app).
 # Install with: pip install -r requirements_web.txt
 # (equivalent to `pip install -e .[web]`; versions below known to work together)
-nicegui==2.24.2
+nicegui==3.18.0
 apscheduler>=3.10
 pysolr>=3.10
-starlette-admin
+# starlette-admin 1.x requires Python >= 3.11 and is the only line compatible
+# with the starlette >= 1.3 that nicegui 3.18 needs; on 3.10 the admin panel
+# is unavailable (see timelink_web_utils.setup_pages_and_database)
+starlette-admin==1.0.3; python_version >= "3.11"
 passlib
 argon2-cffi
 jinja2

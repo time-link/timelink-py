@@ -44,8 +44,6 @@ async def test_show_table(user: User, fake_timelink_app, fake_user) -> None:
     await user.open("/project_admin")
     user.find("Database Status").click()
 
-    timelink_web_utils.show_table(fake_timelink_app.database)
-
     table = user.find(ui.table).elements.pop()
     expected_columns = [
         {'name': 'Table', 'label': 'Table', 'field': 'Table'},
@@ -85,8 +83,6 @@ async def test_show_kleio_info(user: User, fake_timelink_app, fake_user) -> None
 
     await user.open("/project_admin")
     user.find("Check Server Status").click()
-
-    timelink_web_utils.show_kleio_info(fake_timelink_app.kleio_server)
 
     markdown = next(
         m for m in user.find(ui.markdown).elements if "Kleio URL" in m.content
@@ -440,6 +436,10 @@ def test_get_recent_history(fake_timelink_app, searched_only):
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    timelink_web_utils.Admin is None,
+    reason="starlette-admin 1.x requires Python >= 3.11",
+)
 async def test_setup_pages_and_database(fake_timelink_app, monkeypatch):
     # Add users_db mock
     fake_timelink_app.users_db = MagicMock()
