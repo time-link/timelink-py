@@ -2,6 +2,7 @@
 
 import os
 import secrets
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 import docker
@@ -230,8 +231,11 @@ class TimelinkWebApp:
         admin_password = os.environ.get("TIMELINK_ADMIN_PASSWORD")
         if not admin_password:
             admin_password = secrets.token_urlsafe(12)
+            # stderr: stdout is block-buffered when piped, which hides the
+            # one-time password exactly when it is needed
             print("TIMELINK_ADMIN_PASSWORD not set; generated a one-time "
-                  f"password for the admin user: {admin_password}")
+                  f"password for the admin user: {admin_password}",
+                  file=sys.stderr)
 
         admin_user = User(
             name="Admin Superuser",

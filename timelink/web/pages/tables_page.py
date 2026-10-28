@@ -8,6 +8,7 @@ from timelink.web.models import Activity
 import re
 from timelink.web import timelink_web_utils
 from timelink.kleio.utilities import format_timelink_date
+from timelink.linking.normalize import fold_text
 from datetime import datetime
 
 
@@ -578,27 +579,24 @@ class TablesPage:
                 stmt = select(
                     nattributes.c.id,
                     nattributes.c.name,
+                    nattributes.c.groupname,
                     nattributes.c.the_type,
                     nattributes.c.the_date,
-                    nattributes.c.sex,
                     nattributes.c.the_value.label(attr_type.title()),
-                    nattributes.c.pobs
+                    nattributes.c.aobs
                 ).where(
-                    and_(
-                        nattributes.c.the_type.like(attr_type),
-                        nattributes.c.the_value.like(attr_value)
-                    ))
+                    nattributes.c.the_type.like(attr_type))
             else:
                 ui.markdown(f'##### **Entries with attribute {attr_type}**').classes('mb-4 text-orange-500')
 
                 stmt = select(
                     nattributes.c.id,
                     nattributes.c.name,
+                    nattributes.c.groupname,
                     nattributes.c.the_type,
                     nattributes.c.the_date,
-                    nattributes.c.sex,
                     nattributes.c.the_value.label(attr_type.title()),
-                    nattributes.c.pobs
+                    nattributes.c.aobs
                 ).where(nattributes.c.the_type.like(attr_type))
 
             ui.button('Toggle Description', on_click=lambda: self._toggle_description(grid))
@@ -608,6 +606,21 @@ class TablesPage:
             with self.database.session() as session:
                 with_attribute = session.execute(stmt)
                 table_pd = pd.DataFrame(with_attribute)
+
+            if attr_value and not table_pd.empty:
+                # accent/case-insensitive match on the value: the user
+                # clicked a value shown by a query, it must be found again
+                # regardless of accents/case in the source ('capitao'
+                # vs 'capitão' vs 'Capitão')
+                value_col = (attr_type.title()
+                             if attr_type.title() in table_pd.columns
+                             else "the_value")
+                target = fold_text(str(attr_value))
+                mask = table_pd[value_col].map(
+                    lambda v: fold_text(str(v)) == target if v is not None else False)
+                folded_pd = table_pd[mask]
+                if not folded_pd.empty:
+                    table_pd = folded_pd
 
             if not table_pd.empty:
                 # Pre-process dataframe so we can display it as an aggrid

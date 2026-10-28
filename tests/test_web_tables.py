@@ -378,22 +378,22 @@ async def test_display_relations_view(
             {
                 "id": "test-id",
                 "name": "ana",
+                "groupname": "n",
                 "the_type": "alcunha",
                 "the_value": "anita",
                 "the_date": "2025-01-01",
-                "sex": "F",
-                "pobs": None
+                "aobs": None
             }
         ]),
         ("alcunha", "moco", [
             {
                 "id": "test-id-2",
                 "name": "joao",
+                "groupname": "n",
                 "the_type": "alcunha",
                 "the_value": "moco",
                 "the_date": "2025-01-01",
-                "sex": "M",
-                "pobs": None
+                "aobs": None
             }
         ])
     ]
@@ -432,11 +432,11 @@ async def test_display_entity_with_attributes(
         "nattributes", metadata,
         Column("id", Integer),
         Column("name", String),
+        Column("groupname", String),
         Column("the_type", String),
         Column("the_date", String),
-        Column("sex", String),
         Column("the_value", String),
-        Column("pobs", String)
+        Column("aobs", String)
     )
 
     monkeypatch.setattr(

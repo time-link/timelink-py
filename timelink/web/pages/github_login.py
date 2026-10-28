@@ -152,8 +152,18 @@ class GithubLoginPage:
             dialog.open()
 
             async def run_setup():
-                project_list = self.timelink_app.users_db.get_user_projects(user_id, session)
-                timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                try:
+                    project_list = self.timelink_app.users_db.get_user_projects(user_id, session)
+                    timelink_web_utils.setup_pages_and_database(
+                        self.timelink_app, project_list)
+                except Exception as e:
+                    # never leave the user on an infinite spinner
+                    print(f"GitHub login setup failed: {e}")
+                    dialog.close()
+                    ui.notify(f'Login failed during setup: {e}',
+                              type='negative', close_button='OK',
+                              multi_line=True)
+                    return
                 dialog.close()
                 ui.navigate.to("/")
 

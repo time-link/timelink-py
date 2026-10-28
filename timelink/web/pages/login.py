@@ -54,7 +54,18 @@ class Login:
                     dialog.open()
 
                     async def run_setup():
-                        timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                        try:
+                            timelink_web_utils.setup_pages_and_database(
+                                self.timelink_app, project_list)
+                        except Exception as e:
+                            # never leave the user on an infinite spinner:
+                            # surface the failure in the page (and the log)
+                            print(f"Login setup failed: {e}")
+                            dialog.close()
+                            ui.notify(f'Login failed during setup: {e}',
+                                      type='negative', close_button='OK',
+                                      multi_line=True)
+                            return
                         dialog.close()
 
                     ui.timer(0.1, run_setup, once=True)
@@ -84,7 +95,18 @@ class Login:
                     dialog.open()
 
                     async def run_setup():
-                        timelink_web_utils.setup_pages_and_database(self.timelink_app, project_list)
+                        try:
+                            timelink_web_utils.setup_pages_and_database(
+                                self.timelink_app, project_list)
+                        except Exception as e:
+                            # never leave the user on an infinite spinner:
+                            # surface the failure in the page (and the log)
+                            print(f"Login setup failed: {e}")
+                            dialog.close()
+                            ui.notify(f'Login failed during setup: {e}',
+                                      type='negative', close_button='OK',
+                                      multi_line=True)
+                            return
                         dialog.close()
 
                     ui.timer(0.1, run_setup, once=True)
