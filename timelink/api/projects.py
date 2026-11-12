@@ -1,4 +1,4 @@
-"""Discovery of Timelink projects in a home directory.
+"""Discovery and creation of Timelink projects in a home directory.
 
 A project is the association of a set of Kleio sources with a database
 (see the ``timelink_home`` reference in timelink-docs). Normally that
@@ -33,6 +33,21 @@ PROJECT_MARKER = ".timelink-project"
 HOME_MARKER = ".timelink-home"
 STRICT_SUBDIRS = ("database", "structures")  # unambiguous project layout
 LOOSE_SUBDIRS = ("sources",)  # Kleio sources not imported yet; not proof at the root
+
+# Subdirectories scaffolded by create_project, each with a README
+# placeholder so the layout survives in git (empty directories do not):
+# (subdirectory, README title, README text).
+CREATED_SUBDIRS = (
+    ("database/sqlite", "SQLite databases", "SQLite database files of this project."),
+    ("inferences", "Inferences", "Information deduced from the sources (for instance, same-as identifications)."),
+    ("notebooks", "Notebooks", "Analysis notebooks for this project."),
+    (
+        "sources",
+        "Kleio sources",
+        "Kleio source files (`.cli`, `.kleio`), their XML translations and translation reports (`.rpt`).",
+    ),
+    ("structures", "Structures", "Kleio structure files describing the internal structure of the historical sources."),
+)
 
 # Never walked into (nothing nests there that can be a project).
 PRUNE_NAMES = {"database", "structures", "notebooks", "__pycache__", "node_modules"}
@@ -148,6 +163,129 @@ def get_timelink_projects(directory_path: str | Path | None = None) -> list[dict
     """
     root = Path(directory_path or os.getcwd())
     return discover_projects(root)
+
+
+def create_project(name: str, home: str | Path | None = None, *, force: bool = False) -> dict:
+    """Scaffold a new Timelink project in a home directory.
+
+    Creates ``<home>/projects/<name>`` with the project layout
+    (``sources``, ``structures``, ``database/sqlite``, ``inferences``,
+    ``notebooks``) and the ``.timelink-project`` marker; the home root
+    gets the ``.timelink-home`` marker when it does not have it yet,
+    and ``system/db/sqlite`` when the home is created from scratch.
+    The result is discoverable by :func:`discover_projects` and
+    recognized by ``KleioServer.find_local_kleio_home``.
+
+    Args:
+        name: name of the project; used as the directory name, so it
+            must be a plain directory name (no path separators, not
+            starting with a dot).
+        home: the timelink home root; None uses the current working
+            directory, as the CLI does. The home is created when
+            missing. Must not itself be a project directory.
+        force: when the project directory already exists, fill in the
+            missing parts instead of raising; the default refuses, so
+            an unrelated directory is never taken over silently.
+
+    Returns:
+        The created project in the :func:`discover_projects` entry
+        shape (``name``, ``path``, layout facts).
+
+    Raises:
+        ValueError: invalid project name, or the home is itself a
+            project directory, or the target path exists and is not a
+            directory.
+        FileExistsError: the project directory already exists and
+            ``force`` is False.
+    """
+    if not name or name in (".", "..") or name.startswith(".") or "/" in name or "\\" in name:
+        raise ValueError(f"invalid project name: {name!r} (must be a plain directory name)")
+    root = Path(home) if home is not None else Path.cwd()
+    if home_is_project(root):
+        raise ValueError(
+            f"{root} is itself a project directory; use its parent or a dedicated home as the timelink home"
+        )
+    home_existed = root.is_dir()
+    project_dir = root / "projects" / name
+    if project_dir.exists() and not project_dir.is_dir():
+        raise ValueError(f"{project_dir} exists and is not a directory")
+    if project_dir.is_dir() and not force:
+        raise FileExistsError(f"project directory already exists: {project_dir} (use force to fill in missing parts)")
+    for sub, title, readme in CREATED_SUBDIRS:
+        (project_dir / sub).mkdir(parents=True, exist_ok=True)
+        readme_path = project_dir / sub / "README.md"
+        if not readme_path.exists():
+            readme_path.write_text(f"# {title}\n\n{readme}\n", encoding="utf-8")
+    marker = project_dir / PROJECT_MARKER
+    if not marker.exists():
+        marker.touch()
+    if not (root / HOME_MARKER).exists():
+        (root / HOME_MARKER).touch()
+    if not home_existed:
+        (root / "system" / "db" / "sqlite").mkdir(parents=True, exist_ok=True)
+    return {"name": name, "path": str(project_dir), **project_layout(project_dir)}
+
+
+def upgrade_project(path: str | Path) -> dict:
+    """Bring an existing Timelink project up to the current layout.
+
+    Creates the standard project subdirectories that are missing
+    (``sources``, ``structures``, ``database/sqlite``, ``inferences``,
+    ``notebooks``), with a README placeholder in each one newly
+    created, and adds the ``.timelink-project`` marker when absent.
+    Existing directories and files are never touched: no README is
+    added to a ``sources/`` that already exists, and the home root is
+    left alone (no ``.timelink-home`` marker, no ``system/``
+    infrastructure). Works on every layout the discovery recognizes,
+    including legacy MHK projects under ``sources/<project>``.
+
+    Args:
+        path: the project directory to upgrade. It must already be
+            recognized as a project (marker, or a ``database/``,
+            ``structures/`` or ``sources/`` child); the upgrade is
+            refused otherwise — use :func:`create_project` for new
+            projects.
+
+    Returns:
+        The project in the :func:`discover_projects` entry shape, plus
+        ``created``: the relative paths (subdirectories and the
+        marker) that this call created; empty when the project was
+        already up to date.
+
+    Raises:
+        ValueError: the path is not a directory, or is not recognized
+            as a Timelink project.
+    """
+    project_dir = Path(path)
+    if not project_dir.is_dir():
+        raise ValueError(f"{project_dir} is not a directory")
+    if not is_project(project_dir):
+        raise ValueError(
+            f"{project_dir} is not a Timelink project (no {PROJECT_MARKER} marker and no "
+            "database/, structures/ or sources/ child); create new projects with `timelink create local`"
+        )
+    created: list[str] = []
+    for sub, title, readme in CREATED_SUBDIRS:
+        sub_dir = project_dir / sub
+        if sub_dir.exists() and not sub_dir.is_dir():
+            raise ValueError(f"{sub_dir} exists and is not a directory")
+        existed = sub_dir.is_dir()
+        sub_dir.mkdir(parents=True, exist_ok=True)
+        if not existed:
+            created.append(sub)
+            readme_path = sub_dir / "README.md"
+            if not readme_path.exists():
+                readme_path.write_text(f"# {title}\n\n{readme}\n", encoding="utf-8")
+    marker = project_dir / PROJECT_MARKER
+    if not marker.exists():
+        marker.touch()
+        created.append(PROJECT_MARKER)
+    return {
+        "name": project_dir.name,
+        "path": str(project_dir),
+        "created": created,
+        **project_layout(project_dir),
+    }
 
 
 def project_dirs(root: Path) -> set[Path]:
