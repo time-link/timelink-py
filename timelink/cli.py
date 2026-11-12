@@ -29,6 +29,7 @@ from timelink.kleio.kleio_server import KleioServer, find_free_port
 from timelink.mhk.utilities import get_mhk_info, is_mhk_installed
 from timelink.api.projects import CREATED_SUBDIRS
 from timelink.api.projects import create_project as scaffold_project
+from timelink.api.projects import upgrade_project
 
 # get the current directory
 # this is used to find the alembic.ini file
@@ -151,6 +152,33 @@ def create_local(
     typer.echo("Project layout:")
     for sub, _, _ in CREATED_SUBDIRS:
         typer.echo(f"  {project['path']}/{sub}")
+
+
+@create_app.command("upgrade")
+def create_upgrade(
+    path: Path = typer.Argument(..., help="Path to the existing project directory"),  # noqa: B008
+):
+    """Upgrade an existing project in place to the current layout.
+
+    Creates the standard project subdirectories that are missing
+    (sources, structures, database/sqlite, inferences, notebooks),
+    with README placeholders in the ones newly created, and adds the
+    .timelink-project marker if absent. Existing files are never
+    touched. Works on any project layout timelink recognizes,
+    including legacy MHK projects under <mhk-home>/sources/<project>.
+    """
+    try:
+        project = upgrade_project(path)
+    except ValueError as e:
+        typer.echo(f"Error: {e}", err=True)
+        raise typer.Exit(code=1)
+    typer.echo(f"Project {project['name']} at {project['path']}")
+    if project["created"]:
+        typer.echo("Created:")
+        for sub in project["created"]:
+            typer.echo(f"  {project['path']}/{sub}")
+    else:
+        typer.echo("Already up to date.")
 
 
 # ================================================

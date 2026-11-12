@@ -13,12 +13,15 @@ from typer.testing import CliRunner
 
 from timelink.api.projects import (
     CREATED_SUBDIRS,
+    HOME_MARKER,
+    PROJECT_MARKER,
     create_project,
     get_timelink_projects,
     home_is_project,
     is_project,
     known_projects,
     project_for,
+    upgrade_project,
 )
 from timelink.cli import app
 from timelink.kleio.kleio_server import KleioServer
@@ -230,3 +233,90 @@ def test_cli_create_local(tmp_path):
     again = runner.invoke(app, ["create", "local", "demo", "--home", str(home)])
     assert again.exit_code == 1
     assert "already exists" in again.output
+
+
+# =====================
+# Project upgrade
+# =====================
+
+
+def test_upgrade_project_fills_legacy_project(tmp_path):
+    """A legacy MHK project (sources/ and identifications/ only) gains
+    the missing subdirectories, READMEs in the newly created ones
+    only, and the marker; existing content is untouched."""
+    root = tmp_path / "ilhavo"
+    _make(root, "sources/transcriptions", "identifications")
+    (root / "sources" / "ilha.cli").write_text("ilha$person\n", encoding="utf-8")
+
+    result = upgrade_project(root)
+    assert result["name"] == "ilhavo"
+    assert set(result["created"]) == {"structures", "database/sqlite", "inferences", "notebooks", PROJECT_MARKER}
+
+    assert (root / PROJECT_MARKER).is_file()
+    for sub, _, _ in CREATED_SUBDIRS:
+        assert (root / sub).is_dir()
+    assert (root / "structures" / "README.md").is_file()
+    assert not (root / "sources" / "README.md").exists()  # pre-existing dir untouched
+    assert (root / "sources" / "ilha.cli").read_text(encoding="utf-8") == "ilha$person\n"
+
+    # now a full strict-layout project for discovery
+    assert result["marker"] is True
+    assert result["has_database"] is True
+    assert result["has_structures"] is True
+    assert result["has_sources"] is True
+    assert is_project(root) is True
+
+
+def test_upgrade_project_idempotent(tmp_path):
+    """A second upgrade changes nothing: no entries in created."""
+    root = tmp_path / "proj"
+    _make(root, "sources")
+    first = upgrade_project(root)
+    assert first["created"]
+    readme = (root / "structures" / "README.md").read_text(encoding="utf-8")
+
+    second = upgrade_project(root)
+    assert second["created"] == []
+    assert (root / "structures" / "README.md").read_text(encoding="utf-8") == readme
+
+
+def test_upgrade_project_refuses_non_projects(tmp_path):
+    """Directories that are not projects are refused: an empty or
+    unrelated directory, a home container, a missing path."""
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    with pytest.raises(ValueError):
+        upgrade_project(empty)
+
+    home = tmp_path / "home"
+    _make(home, "projects/x/sources")
+    (home / HOME_MARKER).touch()
+    with pytest.raises(ValueError):
+        upgrade_project(home)
+
+    with pytest.raises(ValueError):
+        upgrade_project(tmp_path / "missing")
+
+
+def test_cli_create_upgrade(tmp_path):
+    """`timelink create upgrade PATH` fills the project, reports
+    'up to date' when done, and refuses non-projects."""
+    runner = CliRunner()
+    root = tmp_path / "ilhavo"
+    _make(root, "sources")
+
+    result = runner.invoke(app, ["create", "upgrade", str(root)])
+    assert result.exit_code == 0
+    assert "Created" in result.output
+    assert (root / ".timelink-project").is_file()
+    assert (root / "structures" / "README.md").is_file()
+
+    again = runner.invoke(app, ["create", "upgrade", str(root)])
+    assert again.exit_code == 0
+    assert "up to date" in again.output
+
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    bad = runner.invoke(app, ["create", "upgrade", str(empty)])
+    assert bad.exit_code == 1
+    assert "not a Timelink project" in bad.output

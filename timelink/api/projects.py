@@ -226,6 +226,68 @@ def create_project(name: str, home: str | Path | None = None, *, force: bool = F
     return {"name": name, "path": str(project_dir), **project_layout(project_dir)}
 
 
+def upgrade_project(path: str | Path) -> dict:
+    """Bring an existing Timelink project up to the current layout.
+
+    Creates the standard project subdirectories that are missing
+    (``sources``, ``structures``, ``database/sqlite``, ``inferences``,
+    ``notebooks``), with a README placeholder in each one newly
+    created, and adds the ``.timelink-project`` marker when absent.
+    Existing directories and files are never touched: no README is
+    added to a ``sources/`` that already exists, and the home root is
+    left alone (no ``.timelink-home`` marker, no ``system/``
+    infrastructure). Works on every layout the discovery recognizes,
+    including legacy MHK projects under ``sources/<project>``.
+
+    Args:
+        path: the project directory to upgrade. It must already be
+            recognized as a project (marker, or a ``database/``,
+            ``structures/`` or ``sources/`` child); the upgrade is
+            refused otherwise — use :func:`create_project` for new
+            projects.
+
+    Returns:
+        The project in the :func:`discover_projects` entry shape, plus
+        ``created``: the relative paths (subdirectories and the
+        marker) that this call created; empty when the project was
+        already up to date.
+
+    Raises:
+        ValueError: the path is not a directory, or is not recognized
+            as a Timelink project.
+    """
+    project_dir = Path(path)
+    if not project_dir.is_dir():
+        raise ValueError(f"{project_dir} is not a directory")
+    if not is_project(project_dir):
+        raise ValueError(
+            f"{project_dir} is not a Timelink project (no {PROJECT_MARKER} marker and no "
+            "database/, structures/ or sources/ child); create new projects with `timelink create local`"
+        )
+    created: list[str] = []
+    for sub, title, readme in CREATED_SUBDIRS:
+        sub_dir = project_dir / sub
+        if sub_dir.exists() and not sub_dir.is_dir():
+            raise ValueError(f"{sub_dir} exists and is not a directory")
+        existed = sub_dir.is_dir()
+        sub_dir.mkdir(parents=True, exist_ok=True)
+        if not existed:
+            created.append(sub)
+            readme_path = sub_dir / "README.md"
+            if not readme_path.exists():
+                readme_path.write_text(f"# {title}\n\n{readme}\n", encoding="utf-8")
+    marker = project_dir / PROJECT_MARKER
+    if not marker.exists():
+        marker.touch()
+        created.append(PROJECT_MARKER)
+    return {
+        "name": project_dir.name,
+        "path": str(project_dir),
+        "created": created,
+        **project_layout(project_dir),
+    }
+
+
 def project_dirs(root: Path) -> set[Path]:
     """Paths of the project directories below the root (root excluded)."""
     return {Path(project["path"]) for project in discover_projects(root)}
